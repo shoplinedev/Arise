@@ -1,0 +1,213 @@
+---
+collection_products:
+  limit: {{ multiply section.settings.products_num 1 }}
+---
+
+{{ inline_stylesheet 'featured-collection/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'featured-collection/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'featured-collection/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+{{ assign 'prefix' 'stage-featured-collection' }}
+
+{{ assign 'productList' (get 'list' (get section.settings.product_categories collection_products)) }}
+{{#if (boolean (isTruthy section.settings.product_categories) '&&' (boolean (length productList) '!=' 0))}}
+  {{ assign 'categoryDetail' (get section.settings.product_categories all_collections) }}
+  {{ assign 'forbiddenBtn' false }}
+{{else}}
+  {{ assign 'productList' (product_mock_data section.settings.products_num 1) }}
+  {{ assign 'forbiddenBtn' true }}
+{{/if}}
+
+{{!-- 计算product-item 宽度 参考snipper product-item-list --}}
+{{ assign 'real_product_img_width' (divide 1200 1) }}
+{{#if request.is_mobile}}
+  {{ assign 'real_product_img_width' 300 }}
+{{/if}}
+
+{{ assign 'settings' section.settings }}
+{{ assign 'button_text' settings.button_text }}
+{{ assign 'title' settings.title }}
+{{ assign 'slice_in_mobile' settings.slice_in_mobile }}
+{{ assign 'product_categories' settings.product_categories }}
+{{ assign 'categoryDetail' (JSONparse '{}') }}
+{{#if product_categories}}
+  {{ assign 'categoryDetail' (get product_categories all_collections) }}
+{{/if}}
+{{ assign 'products_num' settings.products_num }}
+{{ assign 'list' (sliceListByGrid productList settings.products_num 1) }}
+{{ assign 'listLength' (length list) }}
+{{ assign 'first_product' (get '0' list) }}
+{{ assign 'sortationCoverImg' (get 'sortationCoverImg' categoryDetail) }}
+{{ assign 'cover_img' (default (get 'image' first_product) '') }}
+{{#if sortationCoverImg}}
+  {{ assign 'cover_img' sortationCoverImg }}
+{{/if}}
+{{ assign 'showButton' (and (isTruthy button_text) (boolean listLength '>=' products_num)) }}
+
+{{ assign 'full_item' '' }}
+{{#and (boolean listLength '<' 5)}}
+{{ assign 'full_item' 'fc-fix-full-item' }}
+{{/and}}
+
+<div class="{{ prefix }} {{ prefix }}-{{ section.id }}" data-slice_in_mobile="{{ section.settings.slice_in_mobile }}">
+  <div class='container {{ prefix }}--container'>
+    {{#if title}}
+      <h2 class="section-title title4 {{ prefix }}__title text-center">{{ title }}</h2>
+    {{/if}}
+    <div class="{{ prefix }}__list">
+      <div 
+       class="{{ prefix }}__list-container length-{{ listLength }} {{#if slice_in_mobile}} slice_in_mobile{{/if}} {{ full_item }}">
+        {{#each list}}
+          <div class='{{ ../prefix }}__item-wrap'>
+            {{ assign 'pcSize' '1/4' }}
+            {{ assign 'padSize' '1/5' }}
+            {{#and (boolean ../listLength '<' 5)}}
+              {{ assign 'pcSize' (append '1/' ../listLength) }}
+              {{ assign 'padSize' (append '1/' ../listLength) }}
+            {{/and}}
+            {{ assign 'imgsizes' (append '(max-width: 749px) 200px,(max-width: 959px) calc(100vw * ' pcSize '),(min-width: 960px) calc(100vw * ' padSize '),(min-width: 1480px) calc(100vw * ' padSize ')') }}
+            {{#if ../forbiddenBtn}}
+              {{ snippet 'product/commons/product-item' section=../section sizes=imgsizes padSize=padSize pcSize=pcSize mSize='200px' hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width backgroundColor='#f3f3f3' }} 
+            {{else}}
+              {{ snippet 'product/commons/product-item' section=../section sizes=imgsizes padSize=padSize pcSize=pcSize mSize='200px' hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width }}
+            {{/if}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  {{#if showButton}}
+    <div class="{{ prefix }}__action-wrap">
+      <a class="btn btn-primary"
+        href="/collections/{{#if (isTruthy categoryDetail.uniqueKey)}}{{ categoryDetail.uniqueKey }}{{else}}{{ categoryDetail.sortationId }}{{/if}}">
+        {{ button_text }}
+      </a>
+    </div>
+  {{/if}}
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.featured-collection.name",
+  "class": "section-gap",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.featured-collection.settings.title.label",
+      "default": "Featured collection"
+    },
+    {
+      "id": "product_categories",
+      "type": "collection_picker",
+      "label": "t:sections.featured-collection.settings.product_categories.label",
+      "default": ""
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.featured-collection.settings.group_header__0.label",
+      "id": "group_header__0"
+    },
+    {
+      "id": "products_num",
+      "type": "range",
+      "label": "t:sections.featured-collection.settings.products_num.label",
+      "min": 2,
+      "max": 12,
+      "step": 2,
+      "default": 4
+    },
+    {
+      "id": "slice_in_mobile",
+      "type": "switch",
+      "label": "t:sections.featured-collection.settings.slice_in_mobile.label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:sections.featured-collection.settings.button_text.label",
+      "info": "t:sections.featured-collection.settings.button_text.info",
+      "default": "View all"
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.featured-collection.settings.group_header__1.label",
+      "id": "group_header__1"
+    },
+    {
+      "id": "product_image_ratio",
+      "type": "select",
+      "label": "t:sections.featured-collection.settings.product_image_ratio.label",
+      "options": [
+        {
+          "value": "0",
+          "label": "t:sections.featured-collection.settings.product_image_ratio.options__0.label"
+        },
+        {
+          "value": "100",
+          "label": "t:sections.featured-collection.settings.product_image_ratio.options__1.label"
+        },
+        {
+          "value": "133.33",
+          "label": "3:4"
+        },
+        {
+          "value": "75",
+          "label": "t:sections.featured-collection.settings.product_image_ratio.options__3.label"
+        },
+        {
+          "value": "150",
+          "label": "t:sections.featured-collection.settings.product_image_ratio.options__4.label"
+        }
+      ],
+      "default": "0"
+    },
+    {
+      "id": "product_fill_type",
+      "type": "select",
+      "label": "t:sections.featured-collection.settings.product_fill_type.label",
+      "options": [
+        {
+          "value": "contain",
+          "label": "t:sections.featured-collection.settings.product_fill_type.options__0.label"
+        },
+        {
+          "value": "cover",
+          "label": "t:sections.featured-collection.settings.product_fill_type.options__1.label"
+        }
+      ],
+      "default": "contain"
+    },
+    {
+      "id": "product_hover_show_next",
+      "type": "switch",
+      "label": "t:sections.featured-collection.settings.product_hover_show_next.label",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-collection.presets.presets__0.name",
+      "category": "t:sections.featured-collection.presets.presets__0.category",
+      "settings": {
+        "title": "Featured collection",
+        "product_categories": "",
+        "products_num": 4,
+        "slice_in_mobile": true,
+        "button_text": "View all",
+        "product_image_ratio": "0",
+        "product_fill_type": "contain",
+        "product_hover_show_next": false
+      }
+    }
+  ]
+}
+{{/schema}}

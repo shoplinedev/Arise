@@ -1,0 +1,30 @@
+{{#if pageInfo.seoKeyword}}
+    <meta name="keywords" content="{{useFallbackLang pageInfo.seoKeyword request.locale}}" />
+{{/if}}
+
+{{#if pageInfo.seoTitle}}
+    <meta name="title" content="{{useFallbackLang pageInfo.seoTitle request.locale}}" />
+{{/if}}
+
+{{#if pageInfo.seoDesc}}
+    <meta name="description" content="{{useFallbackLang pageInfo.seoDesc request.locale}}" />
+{{/if}}
+
+{{#if pageInfo.seoTitle}}
+    <meta property="og:title" content="{{useFallbackLang pageInfo.seoTitle request.locale}}" />
+{{/if}}
+
+{{#if pageInfo.seoDesc}}
+    <meta property="og:description" content="{{useFallbackLang pageInfo.seoDesc request.locale}}" />
+{{/if}}
+
+{{#if pageInfo.seoLink}}
+    <meta property="og:url" content="{{useFallbackLang pageInfo.seoLink request.locale}}" />
+{{/if}}
+
+{{ assign 'standardLogo' (default standardLogo storeInfo.standardLogo) }}
+{{ assign '_image'  (cond (boolean standardLogo) standardLogo 'https://img.myshopline.com/image/shopline/3439ce4a1e15489193fd9ac622e1143e.png') }}
+
+<meta property="og:image" content={{_image}} />
+<meta property="og:image:secure_url" content={{_image}} />
+<meta name="twitter:image" content={{_image}} />

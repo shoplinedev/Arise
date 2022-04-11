@@ -1,0 +1,22 @@
+<div class="base-input {{wrapperClass}}">
+  <div class="base-input-area {{ cond (boolean type '===' 'textarea') 'is-textarea' ''  }}">
+    {{#if type '===' 'textarea'}}
+      <textarea type="text" placeholder="{{cond placeholder placeholder '请输入'}}" class="base-input__inpEle" {{{inputRestAttr}}}>{{ value }}</textarea>
+    {{else}}
+      <input type="text" placeholder="{{cond placeholder placeholder '请输入'}}" class="base-input__inpEle" value="{{value}}" {{{inputRestAttr}}} />
+    {{/if}}
+    <span class="placeholder">
+      {{cond placeholder placeholder '请输入'}}
+    </span>
+  </div>
+  {{#if addonAfter}}
+    <div class="base-input__addonAfter">
+      {{{addonAfter}}}
+    </div>
+  {{/if}}
+  {{#if staticAddonAfter}}
+    <div class="base-input__staticAddonAfter">
+      {{{staticAddonAfter}}}
+    </div>
+  {{/if}}
+</div>

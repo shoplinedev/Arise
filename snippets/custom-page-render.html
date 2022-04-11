@@ -1,0 +1,37 @@
+<style>
+.custom-page-render-container iframe{max-width:100%}.custom-page-render-container img{height:auto;max-width:100%}.custom-page-render-container table{word-break: initial;}
+</style>
+{{assign '$pageConfig' (try_json_parse pageConfig)}}
+<div class="custom-page-render-container">
+  {{!-- 不能使用isTruthy 进行判断， 否则空对象返回的事false --}}
+  {{#if (boolean $pageConfig)}}
+  {{!-- 为旧版 Json SDK数据 --}}
+    {{assign 'stage' $pageConfig.page}}
+    {{assign 'grids' stage.children}}
+    {{#each grids}}
+      {{#each children}}
+        {{!-- col --}}
+        {{assign 'component' (itemAt children 0)}}
+        {{#if (boolean (get 'type' component) '===' 'Text')}}
+          {{#if (isTruthy component.props.title)}}
+            <h2>{{component.props.title}}</h2>
+          {{/if}}
+          {{{rich_editor_format component.props.content}}}
+        {{/if}}
+        {{#if (boolean (get 'type' component) '===' 'CustomHtml')}}
+          <div>{{{rich_editor_format component.props.content}}}</div>
+        {{/if}}
+        {{#if (boolean (get 'type' component) '===' 'Image')}}
+          {{#if (isTruthy component.props.image.url)}}
+            <img data-src="{{component.props.image.url}}" style="max-width:100%" data-srcset="{{component.props.image.url}}" alt="{{component.props.image.alt}}" class="lozad"  />
+          {{/if}}
+        {{/if}}
+      {{/each}}
+    {{/each}}
+  {{else if forPage}}
+    {{snippet 'rich-text-for-shaw-dom' className='bottom' content=(rich_editor_format pageConfig)}}
+  {{else}}
+  {{!-- 富文本类型数据 --}}
+    {{{rich_editor_format pageConfig}}}
+  {{/if}}
+</div>

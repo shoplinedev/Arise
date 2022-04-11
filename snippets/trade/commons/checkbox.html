@@ -1,0 +1,22 @@
+{{#if parentClass}}
+    <div class="{{parentClass}} trade_checkout_checkbox_wrapper">
+{{/if}}
+        {{#if checked}}
+        <span id="trade_checkout_checkbox" class="trade_checkout_checkbox trade_checkout_checkbox-checked">
+            <input type="checkbox" id="{{id}}" checked=true
+                class="trade_checkout_checkbox-input">
+        {{else}}
+        <span id="trade_checkout_checkbox" class="trade_checkout_checkbox">
+            <input type="checkbox" id="{{id}}"
+                class="trade_checkout_checkbox-input">
+        {{/if}}
+            <span class="trade_checkout_checkbox-inner"></span>
+        </span>
+        {{#if children}}
+            <span class="trade_checkout_checkbox-text">
+                {{{children}}}
+            </span>
+        {{/if}}
+{{#if parentClass}}
+    </div>
+{{/if}}

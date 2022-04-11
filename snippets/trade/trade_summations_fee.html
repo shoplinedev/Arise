@@ -1,0 +1,59 @@
+{{!-- 是否使用价格缩小显示 --}}
+{{assign 'useSuperscriptDecimals' (boolean @root.theme.settings.superscript_decimals)}}
+{{#if useSuperscriptDecimals}}
+  {{!-- 小数位分隔符 --}}
+  {{assign 'splitSymbol' (currency_decimal_symbol code=@root.currencyCode lang=@root.request.locale) }}
+  {{#if splitSymbol}}
+    {{assign 'valueArr' (split (currency_convert value) splitSymbol)}}
+  {{else}}
+    {{assign 'valueArr' (arrayify (currency_convert value))}}
+  {{/if}}
+{{/if}}
+
+<div class="trade_summations_fee {{hideCls}} {{#if showWithZeroValue '!=' true}} {{#if value '==' 0}} hide {{/if}}  {{/if}}" data-key="{{key}}" {{add_dataset 'value' value }}
+  {{add_dataset 'showWithZeroValue' showWithZeroValue }} {{add_dataset 'freeShipTxt' freeShipTxt }} {{add_dataset 'nextStepCalcTxt' nextStepCalcTxt }}>
+  {{#if key '!=' 'deductMemberPointAmount' }}
+      <div class="col textLeft {{prefixCls}}">
+    {{label}}
+    <span class="trade_summations_fee__tips" data-tips="{{tips}}" {{add_dataset 'hasTips' (boolean tips) }} {{add_dataset 'showTips' showTips }}>
+      {{#if showTips}}
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="cursor: pointer;">
+          <circle cx="6" cy="6" r="5.5" stroke="currentColor" />
+          <path d="M6 3V6.5" stroke="currentColor" stroke-linecap="round" />
+          <circle cx="6" cy="8.75" r="0.75" fill="currentColor" />
+        </svg>
+      {{/if}}
+    </span>
+  </div>
+  {{else}}
+    <div class="col textLeft {{prefixCls}}">
+      {{include
+        'snippets/trade/commons/checkbox'
+        id='trade_checkout_point_checkbox'
+        children=label
+        checked=memberPointInfo.use
+        parentClass="cart-member-point-checkbox"
+      }}
+      <div class="trade_summations_fee__desc {{#if memberPointInfo.use }} hide {{else}} {{/if}}">{{t 'trade.point-discount-desc' deductMemberPointNum=memberPointInfo.deductMemberPointNum}} <span class="deductMemberPointAmount">{{currency_convert memberPointInfo.deductMemberPointAmount}}</span></div>
+    </div>
+  {{/if}}
+  <div class="trade_summations__amount col textRight {{#if suffixCls }} {{suffixCls}} {{else}}black{{/if}}">
+    <span class="trade_summations__amount_reduce {{#if showReduce }} {{else}} hide {{/if}}">-</span>
+    {{#if (typeOf value) '==' 'number' }}
+      {{#if useSuperscriptDecimals}}
+        <span class="trade_summations__amount-box notranslate text_bold" data-amount={{value}}>{{itemAt valueArr 0}}<sup class="body6">{{itemAt valueArr 1}}</sup></span>
+      {{else}}
+        <span class="trade_summations__amount-box notranslate" data-amount={{value}}>{{currency_convert value}}</span>
+      {{/if}}
+    {{else }}
+      <span class="trade_summations__amount-box">
+        {{!-- 如果是中文，则传入来的是多语言的key --}}
+        {{t value}}</span>
+    {{/if}}
+    {{#if key '==' 'deductMemberPointAmount' }}
+      <div class="trade_summations_remark">
+      {{t 'trade.point-discount-remark' value=memberPointInfo.deductMemberPointNum}}
+      </div>
+    {{/if}}
+  </div>
+</div>

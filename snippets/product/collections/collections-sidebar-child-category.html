@@ -1,0 +1,34 @@
+{{!--
+可传参数：
+childCategoryData 子分类数据
+showCategoryIds 所有的子分类的id
+--}}
+
+{{#if settings.default_fold}}
+  {{assign 'is_open' 'is-hidden'}}
+{{else}}
+  {{assign 'is_open' 'is-open'}}
+{{/if}}
+<div data-all-show-sortation-ids="{{join showCategoryIds}}" class="product-list-sidebar-group __sl-custom-track-product-menu" id="product_list-sidebar-group-{{settings.group}}">
+  {{snippet 'product/collections/collections-sidebar-filters-trigger' title='Category'}}
+  <div class="product-list-sidebar-box collapsible-content {{is_open}}">
+    <div class="collapsible-content-inner">
+      <div class="product-list-child-category">
+        {{#each childCategoryData}}
+          <a data-sortation-id="{{sortationId}}" class="__sl-custom-track-product-menu-item root-level body3 {{#if selected}}selected-category{{/if}}" href="/collections/{{uniqueKey}}">{{title}}
+            {{#if ../settings.show_product_num}}—
+              {{get 'count' (get sortationId ../sortationProductsCount)}}{{/if}}</a>
+          {{#if (boolean child.length '>' 0)}}
+            {{#if ../settings.show_level3_title}}
+              {{#each child}}
+                <a data-sortation-id="{{sortationId}}" class="__sl-custom-track-product-menu-item child-level body3 {{#if selected}}selected-category{{/if}}" href="/collections/{{uniqueKey}}">{{title}} {{#if ../../settings.show_product_num}}—
+                    {{get 'count' (get sortationId ../../sortationProductsCount)}}{{/if}}
+                </a>
+              {{/each}}
+            {{/if}}
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>

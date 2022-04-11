@@ -1,0 +1,21 @@
+{{ assign 'navigation' (get section.settings.additional_menu navigations) }}
+
+<div class="footer-additional-menu body6">
+  {{#with this as |global|}}
+    {{#if navigation }}
+      <dl class="footer-additional-menu__list">
+        {{#each navigation.nodeTree as | navItem |}}
+          {{ assign 'query' global.request.uri.query}}
+          {{ assign 'locale' global.request.locale}}
+          {{ assign 'allCollections' global.all_collections}}
+          {{ assign 'allProducts' global.all_products}}
+          {{ assign 'navDetail' (navLink navItem query locale allCollections allProducts ) }}
+          <dd>
+            <a {{{navDetail.hrefAttr}}} rel="noreferrer">{{navDetail.name}}</a>
+          </dd>
+          <span class="footer-additional-menu__divider" ></span>
+        {{/each}}
+      </dl>
+    {{/if}}
+  {{/with}}
+</div>

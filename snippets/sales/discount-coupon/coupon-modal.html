@@ -1,0 +1,17 @@
+{{!-- 非移动端-优惠券弹窗 --}}
+<div id="salesCouponModalHook" class="sales-coupon-modal__container">
+  <div class="sales-coupon-modal__title">
+    {{title}}
+  </div>
+  <div class="sales-coupon-modal__list">
+    {{#each discountCodeActivityList}}
+      <div class="sales-coupon-modal__list-item">
+        {{#if this.discountCodeDisplayStyle '===' "discountCodeStyle1"}}
+          {{snippet 'sales/discount-coupon/coupon-item/coupon-card1'}}
+        {{else if discountCodeDisplayStyle '===' "discountCodeStyle2"}}
+          {{snippet 'sales/discount-coupon/coupon-item/coupon-card2'}}
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+</div>

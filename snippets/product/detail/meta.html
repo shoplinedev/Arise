@@ -1,0 +1,55 @@
+{{assign '_image' 'https://img.myshopline.com/image/shopline/3439ce4a1e15489193fd9ac622e1143e.png' }}
+
+{{#if shareInfo.image}}
+  {{assign '_image' shareInfo.image}}
+{{else if storeInfo.standardLogo}}
+  {{assign '_image' storeInfo.standardLogo }}
+{{/if}}
+
+
+<meta name="keyword" content="{{ default keywords '' }}" />
+<meta name="title" content="{{ default shareInfo.title '' }}" />
+<meta name="description" content="{{ default shareInfo.description '' }}" />
+
+{{!-- 重复网址 seo 定向到主站 --}}
+{{#if shareInfo.url}}
+  <link rel="canonical" href="{{ shareInfo.url }}" />
+  <link rel="alternate" href="{{ shareInfo.url }}" />
+  {{!-- meta link --}}
+  <meta property="og:url" content="{{ shareInfo.url }}" />
+{{/if}}
+
+{{#if storeInfo.name}}
+  <meta property="og:site_name" content="{{ storeInfo.name }}" />
+{{/if}}
+
+{{!-- meta title --}}
+{{#if shareInfo.title}}
+  <meta property="og:title" content="{{ shareInfo.title }}" />
+  <meta name="twitter:title" content="{{ shareInfo.title }}" />
+{{/if}}
+
+{{!-- meta description --}}
+{{#if shareInfo.description}}
+  <meta property="og:description" content="{{ shareInfo.description }}" />
+  <meta name="twitter:description" content="{{ shareInfo.description }}" />
+{{/if}}
+
+{{!-- meta image --}}
+{{#if _image}}
+  <meta property="og:image" content="{{ _image }}" />
+  <meta property="og:image:secure_url" content="{{ _image }}" />
+  <meta name="twitter:image" content="{{ _image }}" />
+{{/if}}
+
+{{!-- meta fb type --}}
+{{#if type}}
+  <meta property="og:type" content="{{type}}" />
+{{/if}}
+
+{{!-- meta twitter card --}}
+{{#if card}}
+  <meta name="twitter:card" content="{{card}}" />
+{{/if}}
+
+{{children}}

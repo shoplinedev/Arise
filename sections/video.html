@@ -1,0 +1,197 @@
+{{ inline_stylesheet 'video/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'video/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'video/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+{{ assign 'full_width' section.settings.full_width }}
+
+<section class="video__container color-scheme-{{ section.settings.color_scheme }}{{#if full_width}} video__full-width{{/if}} section-gap{{#if section.settings.color_scheme '!==' ''}}--padding{{/if}}">
+  <div class="video__section {{#if (isFalsey full_width)}}container{{/if}}">
+    {{#if section.settings.title}}
+      <h2 class="video__title title4 section-title text-center {{#if full_width}}container{{/if}}">{{ section.settings.title }}</h2>
+    {{/if}}
+
+    {{#style}}
+      {{ assign 'background_position' (join (split section.settings.background_position '-') ' ') }}
+      .video--{{ section.id }} .video__cover .video__cover-img {
+        object-position: {{ background_position }};
+      }
+    {{/style}}
+    <div
+      class="video video--{{ section.id }} video--r16-9"
+      data-id="{{ section.id }}"
+      data-section-id="{{ section.id }}"
+      data-section-type="video"
+    >
+      <script type="text/json" id="Video-data-{{ section.id }}">{{{ stringify section.settings }}}</script>
+      {{#if (boolean section.settings.cover.url)}}
+        <div class="video__cover">
+          <img class="video__cover-img lozad" data-src="{{ section.settings.cover.url }}" data-sizes="auto">
+          <div class="video-overlay" style="{{ overlay_background }}">
+            {{#if section.settings.url}}
+              <div class="video-overlay__button" data-controls="Video-{{ section.id }}">
+                {{ snippet 'icons/icon_video_play' }}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+      <div class="video__controll">
+        {{#contains section.settings.url 'youtube.com/watch'}}
+
+          {{ assign 'video_id' (split section.settings.url 'v=') }}
+          {{ assign 'video_id' (first (split (itemAt video_id 1) '&')) }}
+
+          <div
+            class="video-data"
+            id="Video-{{ section.id }}"
+            data-video-id="{{ video_id }}"
+            data-type="youtube"
+            data-url="{{ section.settings.url }}"
+          >
+          </div>
+        {{else}}
+          {{#contains section.settings.url 'vimeo.com'}}
+            {{ assign 'video_id' (split section.settings.url '.com/') }}
+            {{ assign 'video_id' (itemAt video_id 1) }}
+            <div
+              class="video-data is-vimeo"
+              id="Video-{{ section.id }}"
+              data-video-id="{{ video_id }}"
+              data-type="vimeo"
+              data-url="{{ section.settings.url }}"
+            >
+            </div>
+          {{else}}
+            {{ snippet 'icons/icon_video_placeholder' }}
+          {{/contains}}
+        {{/contains}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{#schema}}
+{
+  "name": "t:sections.video.name",
+  "icon": "video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.video.settings.title.label",
+      "default": "Video"
+    },
+    {
+      "type": "text",
+      "id": "url",
+      "format": "video",
+      "placeholder": "https://www.youtube.com/watch?v=V7BEzkRBp_g",
+      "info": "t:sections.video.settings.url.info",
+      "label": "t:sections.video.settings.url.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover",
+      "label": "t:sections.video.settings.cover.label"
+    },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "t:sections.video.settings.background_position.label",
+      "default": "center",
+      "options": [
+        {
+          "value": "left-top",
+          "label": "t:sections.video.settings.background_position.options__0.label"
+        },
+        {
+          "value": "top",
+          "label": "t:sections.video.settings.background_position.options__1.label"
+        },
+        {
+          "value": "right-top",
+          "label": "t:sections.video.settings.background_position.options__2.label"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.video.settings.background_position.options__3.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.video.settings.background_position.options__4.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.video.settings.background_position.options__5.label"
+        },
+        {
+          "value": "left-bottom",
+          "label": "t:sections.video.settings.background_position.options__6.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.video.settings.background_position.options__7.label"
+        },
+        {
+          "value": "right-bottom",
+          "label": "t:sections.video.settings.background_position.options__8.label"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "full_width",
+      "label": "t:sections.video.settings.full_width.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.video.settings.color_scheme.label",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "t:sections.video.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.video.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.video.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.video.settings.color_scheme.options__3.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.video.presets.presets__0.name",
+      "icon": "video",
+      "category": "t:sections.video.presets.presets__0.category",
+      "settings": {
+        "title": "Video",
+        "background_position": "center",
+        "color_scheme": "",
+        "full_width": false,
+        "cover": {
+          "url": ""
+        }
+      }
+    }
+  ]
+}
+{{/schema}}
+
+

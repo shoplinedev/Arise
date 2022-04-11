@@ -1,0 +1,14 @@
+{{!-- 折扣码弹窗 --}}
+{{#snippet 'sales/discount-coupon/drawer/common-drawer' title="SHOP COUPONS:" id="salesDiscountCoupon_DiscountDrawer"}}
+  <div class="d-flex sales-coupon-drawer__list">
+    {{#each discountCodeActivityList}}
+      <div class="sales-coupon-drawer__list-item">
+        {{#if this.discountCodeDisplayStyle '===' "discountCodeStyle1"}}
+          {{snippet 'sales/discount-coupon/coupon-item/coupon-card1'}}
+        {{else if discountCodeDisplayStyle '===' "discountCodeStyle2"}}
+          {{snippet 'sales/discount-coupon/coupon-item/coupon-card2'}}
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+{{/snippet}}

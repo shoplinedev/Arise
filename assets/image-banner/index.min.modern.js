@@ -1,0 +1,77 @@
+"use strict";
+
+(self["webpackChunkArise"] = self["webpackChunkArise"] || []).push([ [ "image-banner" ], {
+    "./src/assets/commons/utils/isMobile.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => isMobile
+        });
+        let d = $("i[data-platform]");
+        if (!d.get(0)) {
+            d = $(`<i data-platform></i>`);
+            $(document.body).append(d);
+        }
+        function isMobile() {
+            let dom = $("i[data-platform]");
+            if (!dom.get(0)) {
+                dom = $(`<i data-platform></i>`);
+                $(document.body).append(dom);
+            }
+            return "block" === dom.css("display");
+        }
+    },
+    "./src/assets/stage/image-banner/index.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
+        var _yy_sl_theme_shared_utils_sectionsLoad__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/sectionsLoad/index.js");
+        var _commons_utils_isMobile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/assets/commons/utils/isMobile.js");
+        function _defineProperty(obj, key, value) {
+            if (key in obj) Object.defineProperty(obj, key, {
+                value,
+                enumerable: true,
+                configurable: true,
+                writable: true
+            }); else obj[key] = value;
+            return obj;
+        }
+        class ImageBanner {
+            constructor(container) {
+                const banners = container.find((0, _commons_utils_isMobile__WEBPACK_IMPORTED_MODULE_1__["default"])() ? ".banner-mobile-item" : ".banner-pc-item");
+                const loadingClassName = "image-banner-loaded";
+                const count = banners.length;
+                const failCount = 6;
+                let timer = null;
+                let flag = 0;
+                try {
+                    if (timer) clearTimeout(timer);
+                    if (0 === count) {
+                        container.removeClass(loadingClassName);
+                        return;
+                    }
+                    timer = setInterval((() => {
+                        flag += 1;
+                        if (flag >= failCount) {
+                            container.removeClass(loadingClassName);
+                            flag = 0;
+                            clearTimeout(timer);
+                            return;
+                        }
+                        let successNum = 0;
+                        banners.each((function() {
+                            if (!$(this).hasClass("lazyloading")) successNum += 1;
+                        }));
+                        if (successNum === count) {
+                            container.removeClass(loadingClassName);
+                            clearInterval(timer);
+                            flag = 0;
+                        }
+                    }), 500);
+                } catch (_) {
+                    container.removeClass(loadingClassName);
+                }
+            }
+        }
+        _defineProperty(ImageBanner, "type", "image-banner");
+        (0, _yy_sl_theme_shared_utils_sectionsLoad__WEBPACK_IMPORTED_MODULE_0__.registrySectionConstructor)(ImageBanner.type, ImageBanner);
+    }
+}, __webpack_require__ => {
+    var __webpack_exec__ = moduleId => __webpack_require__(__webpack_require__.s = moduleId);
+    __webpack_exec__("./src/assets/stage/image-banner/index.js");
+} ]);

@@ -1,0 +1,72 @@
+{{ assign 'pay_channel_list' (arrayify 0) }}
+
+{{#if section.settings.show_pay_channel.show}}
+  {{#each section.settings.show_pay_channel.pay_channel_list}}
+    {{#if show}}
+      {{array-push ../pay_channel_list type}}
+    {{/if}}
+  {{/each}}
+{{/if}}
+
+<div class="footer__paychannel">
+  {{#inArray pay_channel_list 'visa'}}
+    <div class="footer__paychannel-item">
+      {{ snippet 'icons/icon_payment_visa' }}
+    </div>
+  {{/inArray}}
+
+  {{#inArray pay_channel_list 'master-card'}}
+    <div class="footer__paychannel-item">
+      {{ snippet 'icons/icon_payment_masterCard' }}
+    </div>
+  {{/inArray}}
+
+  {{#inArray pay_channel_list 'master-card2'}}
+    <div class="footer__paychannel-item">
+      {{ snippet 'icons/icon_payment_maestro' }}
+    </div>
+  {{/inArray}}
+
+  {{#inArray pay_channel_list 'visa-electron'}}
+    <div class="footer__paychannel-item">
+      {{ snippet 'icons/icon_payment_visaElectron' }}
+    </div>
+  {{/inArray}}
+
+  {{#inArray pay_channel_list 'jcb'}}
+    <div class="footer__paychannel-item">
+      {{ snippet 'icons/icon_payment_jcb' }}
+    </div>
+  {{/inArray}}
+
+  {{#inArray pay_channel_list 'american-express'}}
+    <div class="footer__paychannel-item">
+      <img class="lozad" data-src='{{ assets_url 'images/payment-icon/american-express.png'}}' />
+      {{!-- {{ snippet 'icons/icon_payment_americanExpress' }} --}}
+    </div>
+  {{/inArray}}
+
+  {{#inArray pay_channel_list 'diners-club'}}
+    <div class="footer__paychannel-item">
+      {{ snippet 'icons/icon_payment_dinersClub' }}
+    </div>
+  {{/inArray}}
+
+  {{#inArray pay_channel_list 'discover'}}
+    <div class="footer__paychannel-item">
+      <img class="lozad" data-src='{{ assets_url 'images/payment-icon/discover.png'}}' alt="" />
+    </div>
+  {{/inArray}}
+
+  {{#inArray pay_channel_list 'paypal'}}
+    <div class="footer__paychannel-item">
+      {{ snippet 'icons/icon_payment_paypal' }}
+    </div>
+  {{/inArray}}
+
+  {{#inArray pay_channel_list 'union-pay'}}
+    <div class="footer__paychannel-item">
+      {{ snippet 'icons/icon_payment_unionPayInternational' }}
+    </div>
+  {{/inArray}}
+</div>

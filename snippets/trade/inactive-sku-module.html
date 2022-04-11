@@ -1,0 +1,11 @@
+{{#if data.length '!=' 0}}
+  <div class="trade-cart-sku-list-module inactive">
+    <div class="trade-cart-sku-list-inactive-wrapper">
+      <div class="trade-cart-sku-list-inactive-wrapper-title body3">{{t 'trade.invalid-product'}}</div>
+      <button class="trade-cart-sku-list-inactive-wrapper-remove-all body3 btn-link" id="{{trade_cart_type}}-trade-cart-sku-list-inactive-wrapper-remove-all">{{t 'trade.delete-invalid-product'}}</button>
+    </div>
+    {{#each data}}
+      {{include 'snippets/trade/sku-item' data=this image-width=../image-width inactive=true trade_cart_type=../trade_cart_type}}
+    {{/each}}
+  </div>
+{{/if}}

@@ -1,0 +1,53 @@
+<!-- snippet -->
+<div class="product-list-banner ">
+  {{#if sortationId}}
+    {{snippet 'product/collections/collections-banner' sortation=sortation.sortation settings=section.settings}}
+  {{else}}
+    {{!-- 如果没有banner，加入一个特殊的div给header作为标识 --}}
+    <div id="CollectionHeaderSection" data-section-id="shopline-section-product/collections/collection-header"
+      data-section-type="shopline-section-product/collections/collection-header" class="product-list-header section-gap">
+      <!-- 全部商品列表页标题 -->
+      <div class="product-list-header-title container">
+        <a href="/" class="product-list-header-title-url custom-body4">{{t 'common.home'}} /</a>
+        <h1 class="product-list-header-title-productsTitle custom-title2 title2">{{t 'productList.all.h1Title'}}</h1>
+      </div>
+    </div>
+  {{/if}}
+</div>
+
+
+<!-- schema -->
+{{#schema}}
+{
+  "name": "t:sections.product_collections_collection-header.name",
+  "settings": [
+    {
+      "type": "switch",
+      "id": "show_category_name",
+      "label": "t:sections.product_collections_collection-header.settings.show_category_name.label",
+      "default": true
+    },
+    {
+      "type": "switch",
+      "id": "show_category_cover",
+      "label": "t:sections.product_collections_collection-header.settings.show_category_cover.label",
+      "info": "t:sections.product_collections_collection-header.settings.show_category_cover.info",
+      "default": true
+    },
+    {
+      "type": "switch",
+      "id": "parallax_scroll",
+      "label": "t:sections.product_collections_collection-header.settings.parallax_scroll.label",
+      "info": "t:sections.product_collections_collection-header.settings.parallax_scroll.info",
+      "default": false
+    }
+  ],
+  "default": {
+    "settings": {
+      "show_category_name": true,
+      "show_category_cover": true,
+      "parallax_scroll": false
+    }
+  }
+}
+{{/schema}}

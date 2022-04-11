@@ -1,0 +1,108 @@
+
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'product/recently-viewed/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'product/recently-viewed/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+{{ inline_stylesheet 'product/recently-viewed/index.min.css' }}
+
+{{ assign 'show_product_number' section.settings.show_product_number }}
+<div class="section-gap container" 
+  data-section-type="recently-viewed"
+  data-section-id="{{ section.id }}"
+>
+  <input type="hidden" data-recently-product-section-id={{ section.id }}>
+  {{#if hiddenMount}}
+    <div class="product-detail-block-space"></div>
+    <div class="product-list product-recently-viewed">
+      <div class="product-list-title product-section-title title4">{{ t 'productDetail.recentlyViewedProducts' }}</div>
+      {{ snippet 'product/commons/product-item-list' forbiddenBtn=true listData=(first historyBrowseProducts show_product_number) className='__sl-custom-track-product-recently-viewed-item' }}
+    </div>
+    {{else}}
+    <div id="recently-viewed-products"></div>
+  {{/if}} 
+  <!-- 仅在ssr环境下才生成 -->
+</div>
+{{#schema}}
+{
+  "name": "t:sections.product_recently-viewed.name",
+  "settings": [
+    {
+      "type": "range",
+      "id": "show_product_number",
+      "label": "t:sections.product_recently-viewed.settings.show_product_number.label",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.product_recently-viewed.settings.group_header__0.label",
+      "id": "group_header__0"
+    },
+    {
+      "id": "product_image_ratio",
+      "type": "select",
+      "label": "t:sections.product_recently-viewed.settings.product_image_ratio.label",
+      "options": [
+        {
+          "value": "0",
+          "label": "t:sections.product_recently-viewed.settings.product_image_ratio.options__0.label"
+        },
+        {
+          "value": "100",
+          "label": "t:sections.product_recently-viewed.settings.product_image_ratio.options__1.label"
+        },
+        {
+          "value": "133.33",
+          "label": "3:4"
+        },
+        {
+          "value": "75",
+          "label": "t:sections.product_recently-viewed.settings.product_image_ratio.options__3.label"
+        },
+        {
+          "value": "150",
+          "label": "t:sections.product_recently-viewed.settings.product_image_ratio.options__4.label"
+        }
+      ],
+      "default": "0"
+    },
+    {
+      "id": "product_fill_type",
+      "type": "select",
+      "label": "t:sections.product_recently-viewed.settings.product_fill_type.label",
+      "options": [
+        {
+          "value": "contain",
+          "label": "t:sections.product_recently-viewed.settings.product_fill_type.options__0.label"
+        },
+        {
+          "value": "cover",
+          "label": "t:sections.product_recently-viewed.settings.product_fill_type.options__1.label"
+        }
+      ],
+      "default": "contain"
+    },
+    {
+      "id": "product_hover_show_next",
+      "type": "switch",
+      "label": "t:sections.product_recently-viewed.settings.product_hover_show_next.label",
+      "default": false
+    }
+  ],
+  "default": {
+    "settings": {
+      "show_product_number": 6,
+      "product_image_ratio": "0",
+      "product_fill_type": "contain",
+      "product_hover_show_next": false
+    }
+  }
+}
+{{/schema}}

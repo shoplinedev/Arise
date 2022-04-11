@@ -1,0 +1,45 @@
+<span class="common__original-select body6 {{attr.class}}">
+  {{ assign 'Options' (default options (arrayify 0))}}
+  {{!-- 获取默认选中的option --}}
+  {{ assign 'selectedOption' (find-in-array Options (isTruthy '1') 'selected') }}
+  {{#if selectedOption}}
+    {{ assign 'selectedOptions' (arrayify selectedOption) }}
+  {{else}}
+    {{ assign 'selectedOptions' (arrayify 0) }}
+  {{/if}}
+  {{#each Options}}
+    {{#if this.label}}
+      {{#if (not ../selectedOptions.length)}}
+        {{array-push ../selectedOptions this}}
+      {{/if}}
+      {{#if this.selected}}
+        {{array-push ../selectedOptions this}}
+      {{/if}}
+    {{/if}}
+  {{/each}}
+  {{assign 'selectedOption' (last selectedOptions)}}
+
+  {{#element 'select' class=attr.selectClass attr=attr}}
+    {{#each ../Options}}
+      {{#if this.label}}
+        {{ assign 'currentValue' (default this.value @index)}}
+        {{#if this '===' ../../selectedOption}}
+          <option value="{{currentValue}}" data-value="{{currentValue}}" data-label="{{this.label}}" data-index={{@index}} selected="selected">{{this.label}}</option>
+        {{else}}
+          <option value="{{currentValue}}" data-value="{{currentValue}}" data-label="{{this.label}}" data-index={{@index}}>{{this.label}}</option>
+        {{/if}}
+      {{/if}}
+    {{/each}}
+  {{/element}}
+
+  {{#if selectedOption}}
+    <span style="display: none;" class="common__original-select-currentLabel">
+      {{selectedOption.label}}
+    </span>
+  {{/if}}
+  <i style="display: none;">
+    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0.499919 3.55029L4.94967 8.00004L9.39941 3.55029" stroke="currentColor" stroke-linecap="round" />
+    </svg>
+  </i>
+</span>

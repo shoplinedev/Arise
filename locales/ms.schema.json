@@ -1,0 +1,2663 @@
+{
+  "sections": {
+    "announcement-bar": {
+      "blocks": {
+        "item": {
+          "name": "Pengumuman",
+          "settings": {
+            "notice_link": {
+              "label": "Pautan lompat"
+            },
+            "notice_link_text": {
+              "label": "Teks"
+            },
+            "notice_style": {
+              "label": "Warna",
+              "options__0": {
+                "label": "Tidak ada"
+              },
+              "options__1": {
+                "label": "Warna 1"
+              },
+              "options__2": {
+                "label": "Warna 2"
+              },
+              "options__3": {
+                "label": "Warna 3"
+              }
+            }
+          }
+        }
+      },
+      "name": "Papan pengumumann",
+      "settings": {
+        "group_header__0": {
+          "label": "Tidak ada tetapan boleh diedit"
+        }
+      }
+    },
+    "apps": {
+      "name": "app-block-section",
+      "settings": {
+        "include_margins": {
+          "label": "Jadikan margin bahagian sama dengan tema"
+        }
+      }
+    },
+    "blog": {
+      "name": "Blog",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Blog"
+        }
+      },
+      "settings": {
+        "blog_collection_id": {
+          "label": "Koleksi blog"
+        },
+        "btn_text": {
+          "label": "Salinan butang"
+        },
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "image_ratio": {
+          "label": "Nisbah gambar",
+          "options__0": {
+            "label": "Nisbah asal"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__2": {
+            "label": "4:3"
+          },
+          "options__3": {
+            "label": "3:2"
+          },
+          "options__4": {
+            "label": "16:9"
+          }
+        },
+        "is_show_author": {
+          "label": "Tunjuk pengarang"
+        },
+        "is_show_cover": {
+          "label": "Tunjuk imej muka depan"
+        },
+        "is_show_date": {
+          "label": "Tunjuk Tarikh"
+        },
+        "is_show_desc": {
+          "label": "Tunjuk ringkasan"
+        },
+        "layout": {
+          "label": "susun atur",
+          "options__0": {
+            "label": "Grid"
+          },
+          "options__1": {
+            "label": "Senarai"
+          }
+        },
+        "limit": {
+          "label": "Bilangan blog",
+          "unit": "Item"
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
+    "cart": {
+      "name": "Kart"
+    },
+    "collection-list": {
+      "blocks": {
+        "collection": {
+          "name": "Produk kategori",
+          "settings": {
+            "category_id": {
+              "label": "Produk kategori"
+            },
+            "image_display_area": {
+              "info": "Laraskan Kawasan paparan peta produk",
+              "label": "Kawasan paparan gambar",
+              "options__0": {
+                "label": "Atas kiri"
+              },
+              "options__1": {
+                "label": "Atas tengah"
+              },
+              "options__2": {
+                "label": "Atas kanan"
+              },
+              "options__3": {
+                "label": "Sebelah kiri"
+              },
+              "options__4": {
+                "label": "Tengah"
+              },
+              "options__5": {
+                "label": "Sisi kanan"
+              },
+              "options__6": {
+                "label": "Bawah kiri"
+              },
+              "options__7": {
+                "label": "Bawah tengah"
+              },
+              "options__8": {
+                "label": "Bawah kanan"
+              }
+            },
+            "title": {
+              "label": "Tajuk"
+            }
+          }
+        }
+      },
+      "name": "Produk kategori",
+      "presets": {
+        "presets__0": {
+          "category": "Produk",
+          "name": "Produk kategori"
+        }
+      },
+      "settings": {
+        "button_text": {
+          "label": "Salinan butang"
+        },
+        "collection_image_ratio": {
+          "label": "Nisbah gambar kategori",
+          "options__0": {
+            "label": "Nisbah asal"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__2": {
+            "label": "4:3"
+          },
+          "options__3": {
+            "label": "2:3"
+          }
+        },
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "slice_in_mobile": {
+          "label": "Leret ke kiri dan kanan pada versi mudah alih untuk melihat"
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
+    "contact-form": {
+      "name": "Hubungi senarai kami",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Hubungi senarai kami"
+        }
+      },
+      "settings": {
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
+    "custom-html": {
+      "name": "Tetapan HTML tersuai",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Tetapan HTML tersuai"
+        }
+      },
+      "settings": {
+        "html": {
+          "label": "HTML"
+        }
+      }
+    },
+    "custom-page": {
+      "name": "Halaman tersuai",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Halaman tersuai"
+        }
+      },
+      "settings": {
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "page_id": {
+          "label": "Halaman tersuai"
+        }
+      }
+    },
+    "faqs": {
+      "blocks": {
+        "richText": {
+          "name": "Teks kaya",
+          "settings": {
+            "richtext_align": {
+              "label": "Penjajaran teks"
+            },
+            "richtext_text": {
+              "label": "Teks"
+            },
+            "title": {
+              "label": "Tajuk"
+            }
+          }
+        },
+        "textRow": {
+          "name": "Soal jawab",
+          "settings": {
+            "question_text": {
+              "label": "Penerangan"
+            },
+            "title": {
+              "label": "Isu"
+            }
+          }
+        }
+      },
+      "name": "Masalah biasa",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Masalah biasa"
+        }
+      },
+      "settings": {
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
+    "featured-collection": {
+      "name": "Produk pilihan khas",
+      "presets": {
+        "presets__0": {
+          "category": "Produk",
+          "name": "Produk pilihan khas"
+        }
+      },
+      "settings": {
+        "button_text": {
+          "info": "Jika “bilangan maksimum produk” lebih kecil daripada bilangan di bawah kategori produk tersebut, butang baru akan dipaparkan",
+          "label": "Salinan butang"
+        },
+        "group_header__0": {
+          "label": "Senarai"
+        },
+        "group_header__1": {
+          "label": "Gambar produk"
+        },
+        "product_categories": {
+          "label": "Produk kategori"
+        },
+        "product_fill_type": {
+          "label": "Kaedah pengisian peta komoditi",
+          "options__0": {
+            "label": "Menyesuaikan"
+          },
+          "options__1": {
+            "label": "Isi"
+          }
+        },
+        "product_hover_show_next": {
+          "label": "Paparkan gambar produk seterusnya apabila tetikus berhenti"
+        },
+        "product_image_ratio": {
+          "label": "Nisbah gambar komoditi",
+          "options__0": {
+            "label": "Nisbah asal"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__3": {
+            "label": "4:3"
+          },
+          "options__4": {
+            "label": "2:3"
+          }
+        },
+        "products_num": {
+          "label": "Bilangan maksimum produk"
+        },
+        "slice_in_mobile": {
+          "label": "Leret ke kiri dan kanan pada versi mudah alih untuk melihat"
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
+    "featured-product": {
+      "blocks": {
+        "abstract": {
+          "name": "Ringkasan"
+        },
+        "buy-button": {
+          "name": "Butang beli"
+        },
+        "description": {
+          "name": "Huraian produk"
+        },
+        "html": {
+          "name": "Tetapan HTML tersuai",
+          "settings": {
+            "html": {
+              "label": "HTML"
+            }
+          }
+        },
+        "price": {
+          "name": "Harga"
+        },
+        "quantity": {
+          "name": "Mesin pemilihan bilangan"
+        },
+        "share": {
+          "name": "Kongsi"
+        },
+        "sku-selector": {
+          "name": "Mesin pemilihan berbilang atribut",
+          "settings": {
+            "sku_style": {
+              "label": "Paparan berbilang atribut",
+              "options__0": {
+                "label": "Berjubin"
+              },
+              "options__1": {
+                "label": "Bingkai tarik bawah"
+              }
+            }
+          }
+        },
+        "title": {
+          "name": "Tajuk"
+        }
+      },
+      "name": "Produk tunggal",
+      "presets": {
+        "presets__0": {
+          "category": "Produk",
+          "name": "Produk tunggal"
+        }
+      },
+      "settings": {
+        "default_selected_sku": {
+          "label": "SKU dipilih secara piawaian"
+        },
+        "product_id": {
+          "label": "Produk"
+        },
+        "show_background": {
+          "label": "Paparkab blok warna latar belakang"
+        },
+        "video_loop": {
+          "label": "Dayakan gelung video"
+        },
+        "video_mute": {
+          "label": "Hidupkan mute video"
+        }
+      }
+    },
+    "footer": {
+      "blocks": {
+        "custom": {
+          "name": "Tetapan kandungan tersuai",
+          "settings": {
+            "content": {
+              "label": "Teks"
+            },
+            "title": {
+              "label": "Tajuk"
+            }
+          }
+        },
+        "menu": {
+          "name": "Navigasi pantas",
+          "settings": {
+            "menu": {
+              "label": "Menu navigasi"
+            },
+            "title": {
+              "label": "Tajuk navigasi"
+            }
+          }
+        },
+        "undefined": {
+          "name": "Gambar",
+          "settings": {
+            "align": {
+              "label": "susun atur",
+              "options__0": {
+                "label": "Sebelah kiri"
+              },
+              "options__1": {
+                "label": "Berpusat"
+              },
+              "options__2": {
+                "label": "Sebelah kanan"
+              }
+            },
+            "image": {
+              "label": "Gambar"
+            },
+            "image_width": {
+              "label": "Lebar gambar"
+            }
+          }
+        }
+      },
+      "name": "Pengaki",
+      "settings": {
+        "color_scheme_subscribe": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "copyright_text": {
+          "label": "Salinan hak cipta tambahan"
+        },
+        "group_header__0": {
+          "label": "Langganan E-mel"
+        },
+        "group_header__1": {
+          "label": "Tambah kandungan"
+        },
+        "show_copyright": {
+          "label": "Tunjuk maklumat hak cipta"
+        },
+        "show_currency_flags": {
+          "label": "Tunjuk simbol mata wang"
+        },
+        "show_currency_selector": {
+          "info": "Jika anda ingin menambah mata wang, anda boleh pergi ke [tetapan mata wang](/admin/settings/base)",
+          "label": "Tunjuk pemilih mata wang"
+        },
+        "show_letter_subscribe": {
+          "label": "Tunjuk langganan emel"
+        },
+        "show_locale_selector": {
+          "info": "Jika anda ingin menambah bahasa, anda boleh pergi ke [tetapan bahasa](/admin/settings/lang)",
+          "label": "Tunjuk pemilih bahasa"
+        },
+        "show_pay_channel": {
+          "label": "Papar ikon saluran pembayaran"
+        },
+        "show_social_media": {
+          "label": "Tunjuk ikon media sosial"
+        },
+        "subscribe_letter_button_text": {
+          "label": "Salinan butang"
+        },
+        "subscribe_letter_placeholder": {
+          "label": "Copywriting penunjuk ruangan input"
+        },
+        "subscribe_letter_title": {
+          "label": "Tajuk langganan emel"
+        }
+      }
+    },
+    "header": {
+      "name": "Tajuk",
+      "settings": {
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "desktop_logo_width": {
+          "label": "LOGO lebar pada computer"
+        },
+        "group_header__0": {
+          "label": "Logo"
+        },
+        "group_header__1": {
+          "label": "Menu"
+        },
+        "header_style": {
+          "label": "Pengepala ditetapkan di bahagian atas"
+        },
+        "logo": {
+          "label": "Logo"
+        },
+        "main_menu_link_list": {
+          "label": "Menu navigasi"
+        },
+        "mobile_logo_width": {
+          "label": "Lebar LOGO versi mudah alih"
+        },
+        "navigation_layout": {
+          "label": "Susun atur navigasi",
+          "options__0": {
+            "label": "LOGO di sebelah kiri, menu di sebelah kiri"
+          },
+          "options__1": {
+            "label": "LOGO di sebelah kiri, menu tukar baris"
+          },
+          "options__2": {
+            "label": "LOGO di tengah, menu tukar silang"
+          }
+        },
+        "show_cart_entry": {
+          "label": "Paparkan pintu masuk troli beli-belah"
+        },
+        "show_line_separator": {
+          "label": "Tunjuk garis pemisah"
+        },
+        "show_search_entry": {
+          "label": "Paparkan pintu masuk carian"
+        },
+        "show_user_entry": {
+          "label": "Paparkan pintu masuk pusat individu"
+        }
+      }
+    },
+    "image-banner": {
+      "blocks": {
+        "button": {
+          "name": "Butang",
+          "settings": {
+            "button_text": {
+              "label": "Salinan butang"
+            },
+            "link": {
+              "label": "Pautan lompat"
+            },
+            "link_2": {
+              "label": "Lompat pautan 2"
+            },
+            "link_text_2": {
+              "label": "Salinan butang 2"
+            },
+            "outline_button": {
+              "label": "Gunakan butang gaya kontur"
+            },
+            "outline_button_2": {
+              "label": "Gunakan butang gaya kontur"
+            }
+          }
+        },
+        "desc": {
+          "name": "Penerangan",
+          "settings": {
+            "description": {
+              "label": "Penerangan"
+            }
+          }
+        },
+        "title": {
+          "name": "Tajuk",
+          "settings": {
+            "title": {
+              "label": "Tajuk utama"
+            },
+            "title_size": {
+              "label": "Saiz tajuk utama",
+              "options__0": {
+                "label": "Tengah"
+              },
+              "options__1": {
+                "label": "Besar"
+              }
+            }
+          }
+        }
+      },
+      "name": "Sepanduk gambar",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Sepanduk gambar"
+        }
+      },
+      "settings": {
+        "alpha_range": {
+          "label": "Kelegapan tindanan"
+        },
+        "banner1": {
+          "label": "Gambar pertama"
+        },
+        "banner2": {
+          "label": "Gambar kedua"
+        },
+        "banner_height_size": {
+          "info": "Nisbah gambar direkomendasi 2:3",
+          "label": "Ketinggian gambar",
+          "options__0": {
+            "label": "Rendah"
+          },
+          "options__1": {
+            "label": "Tengah"
+          },
+          "options__2": {
+            "label": "Tinggi"
+          }
+        },
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "group_header__0": {
+          "label": "Atur cara mudah alih"
+        },
+        "mobile_banner_flatten": {
+          "label": "Paparan jubin peranti gambar mudah alih"
+        },
+        "override_banner_height": {
+          "info": "Tetapan ketinggian imej apabila dibuka",
+          "label": "Ketinggian bersesuaian dengan gambar pertama"
+        },
+        "pc_show_textarea": {
+          "label": "Paparkan kotak teks pada komputer"
+        },
+        "pc_text_position": {
+          "label": "Kedudukan teks",
+          "options__0": {
+            "label": "Sebelah kiri"
+          },
+          "options__1": {
+            "label": "Berpusat"
+          },
+          "options__2": {
+            "label": "Sebelah kanan"
+          }
+        },
+        "under_image": {
+          "label": "Paparan teks di bawah gambar"
+        }
+      }
+    },
+    "image-with-text": {
+      "blocks": {
+        "button": {
+          "name": "Butang",
+          "settings": {
+            "button_text": {
+              "label": "Salinan butang"
+            },
+            "link": {
+              "label": "Pautan lompat"
+            }
+          }
+        },
+        "content": {
+          "name": "Teks",
+          "settings": {
+            "content": {
+              "name": "Kandungan"
+            }
+          }
+        },
+        "sub_title": {
+          "name": "Sari kata",
+          "settings": {
+            "text": {
+              "label": "Teks"
+            },
+            "text_size": {
+              "label": "Saiz teks",
+              "options__0": {
+                "label": "Kecil"
+              },
+              "options__1": {
+                "label": "Tengah"
+              },
+              "options__2": {
+                "label": "Besar"
+              }
+            }
+          }
+        },
+        "title": {
+          "name": "Tajuk",
+          "settings": {
+            "title": {
+              "label": "Tajuk"
+            },
+            "title_size": {
+              "label": "Saiz teks tajuk",
+              "options__0": {
+                "label": "Kecil"
+              },
+              "options__1": {
+                "label": "Tengah"
+              },
+              "options__2": {
+                "label": "Besar"
+              }
+            }
+          }
+        }
+      },
+      "name": "Modul grafik",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Modul grafik"
+        }
+      },
+      "settings": {
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "image": {
+          "label": "Penambahan gambar"
+        },
+        "image_height": {
+          "label": "Ketinggian gambar",
+          "options__0": {
+            "label": "Sesuaikan dengan gambar"
+          },
+          "options__1": {
+            "label": "Tinggi"
+          },
+          "options__2": {
+            "label": "Rendah"
+          }
+        },
+        "image_overlap_display": {
+          "label": "Paparan tindihan kandungan gambar"
+        },
+        "mobile_text_align": {
+          "label": "Kaedah penjajaran kandungan mudah alih",
+          "options__0": {
+            "label": "Penjajaran sebelah kiri"
+          },
+          "options__1": {
+            "label": "Jajar tengah"
+          },
+          "options__2": {
+            "label": "Penjajaran sebelah kanan"
+          }
+        },
+        "pc_box_align": {
+          "label": "Lokasi kandungan komputer",
+          "options__0": {
+            "label": "Bahagian atas"
+          },
+          "options__1": {
+            "label": "Berpusat"
+          },
+          "options__2": {
+            "label": "Bahagian bawah"
+          }
+        },
+        "pc_image_position": {
+          "info": "Mudah alih ditentukan sebagai konteks gambar atas",
+          "label": "Kedudukan gambar komputer",
+          "options__0": {
+            "label": "Teks di kiri dan gambar di kanan"
+          },
+          "options__1": {
+            "label": "Gambar di kiri teks di kanan"
+          }
+        },
+        "pc_image_width": {
+          "label": "Kelebaran gambar komputer",
+          "options__0": {
+            "label": "Kecil"
+          },
+          "options__1": {
+            "label": "Tengah"
+          },
+          "options__2": {
+            "label": "Besar"
+          }
+        },
+        "pc_text_align": {
+          "label": "Kaedah penjajaran kandungan komputer",
+          "options__0": {
+            "label": "Penjajaran sebelah kiri"
+          },
+          "options__1": {
+            "label": "Jajar tengah"
+          },
+          "options__2": {
+            "label": "Penjajaran sebelah kanan"
+          }
+        }
+      }
+    },
+    "main-blog-detail": {
+      "name": "Blog",
+      "settings": {
+        "is_show_author": {
+          "label": "Tunjuk pengarang"
+        },
+        "is_show_breadcrumb": {
+          "label": "Tunjuk面包屑"
+        },
+        "is_show_date": {
+          "label": "Tunjuk Tarikh"
+        }
+      }
+    },
+    "main-blog-list": {
+      "name": "Koleksi blog",
+      "settings": {
+        "cover_img_ratio": {
+          "label": "Nisbah gambar",
+          "options__0": {
+            "label": "Nisbah asal"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__2": {
+            "label": "4:3"
+          },
+          "options__3": {
+            "label": "3:2"
+          },
+          "options__4": {
+            "label": "16:9"
+          }
+        },
+        "is_show_author": {
+          "label": "Tunjuk pengarang"
+        },
+        "is_show_breadcrumb": {
+          "label": "Tunjuk面包屑"
+        },
+        "is_show_cover": {
+          "label": "Tunjuk imej muka depan"
+        },
+        "is_show_date": {
+          "label": "Tunjuk Tarikh"
+        },
+        "is_show_desc": {
+          "label": "Tunjuk ringkasan"
+        },
+        "layout": {
+          "label": "susun atur",
+          "options__0": {
+            "label": "Grid"
+          },
+          "options__1": {
+            "label": "Senarai"
+          }
+        }
+      }
+    },
+    "main-page": {
+      "name": "Halaman tersuai"
+    },
+    "multi-media-splicing": {
+      "blocks": {
+        "collection": {
+          "name": "Produk kategori",
+          "settings": {
+            "category_id": {
+              "label": "Produk kategori"
+            },
+            "image_padding": {
+              "info": "Jika anda tidak ingin memotong gambar, sila pilih “sesuaikan”",
+              "label": "Kaedah pengisian gambar",
+              "options__0": {
+                "label": "Isi"
+              },
+              "options__1": {
+                "label": "Menyesuaikan"
+              }
+            }
+          }
+        },
+        "image": {
+          "name": "Gambar",
+          "settings": {
+            "image": {
+              "label": "Gambar"
+            },
+            "image_padding": {
+              "info": "Jika anda tidak ingin memotong gambar, sila pilih “sesuaikan”",
+              "label": "Kaedah pengisian gambar",
+              "options__0": {
+                "label": "Isi"
+              },
+              "options__1": {
+                "label": "Menyesuaikan"
+              }
+            }
+          }
+        },
+        "product": {
+          "name": "Produk",
+          "settings": {
+            "image_padding": {
+              "info": "Jika anda tidak ingin memotong gambar, sila pilih “sesuaikan”",
+              "label": "Kaedah pengisian gambar",
+              "options__0": {
+                "label": "Isi"
+              },
+              "options__1": {
+                "label": "Menyesuaikan"
+              }
+            },
+            "product_hover_show_next": {
+              "label": "Paparkan gambar produk seterusnya apabila tetikus berhenti"
+            },
+            "product_id": {
+              "label": "Produk"
+            }
+          }
+        },
+        "video": {
+          "name": "Video",
+          "settings": {
+            "cover_image": {
+              "label": "Gambar halaman muka"
+            },
+            "image_padding": {
+              "info": "Jika anda tidak ingin memotong gambar, sila pilih “sesuaikan”",
+              "label": "Kaedah pengisian gambar",
+              "options__0": {
+                "label": "Isi"
+              },
+              "options__1": {
+                "label": "Menyesuaikan"
+              }
+            },
+            "video_alt": {
+              "label": "Teks Alt video"
+            },
+            "video_url": {
+              "info": "Masukkan pautan Youtube atau Vimeo",
+              "label": "Pautan video"
+            }
+          }
+        }
+      },
+      "name": "Sambungan media",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Sambungan media"
+        }
+      },
+      "settings": {
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "desktop_layout": {
+          "label": "Atur cara komputer",
+          "options__0": {
+            "label": "Kiri besar kanan kecil"
+          },
+          "options__1": {
+            "label": "Kiri kecil kanan besar"
+          }
+        },
+        "mobile_layout": {
+          "label": "Atur cara mudah alih",
+          "options__0": {
+            "label": "Sambung"
+          },
+          "options__1": {
+            "label": "Senarai"
+          }
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
+    "notFoundPage": {
+      "name": "Halaman 404"
+    },
+    "product_collections-all_collections-list-page": {
+      "block_info": "Pemilihan hanya berkuat kuasa apabila kategori produk yang ditentukan dipaparkan dalam tetapan",
+      "blocks": {
+        "collection": {
+          "name": "Kategori",
+          "settings": {
+            "category_id": {
+              "label": "Produk kategori"
+            }
+          }
+        }
+      },
+      "name": "Senarai kategori",
+      "settings": {
+        "collection_fill_type": {
+          "label": "Kaedah pengisian gambar",
+          "options__0": {
+            "label": "Menyesuaikan"
+          },
+          "options__1": {
+            "label": "Isi"
+          }
+        },
+        "collection_image_ratio": {
+          "label": "Nisbah gambar kategori",
+          "options__0": {
+            "label": "1:1"
+          },
+          "options__1": {
+            "label": "4:3"
+          },
+          "options__2": {
+            "label": "2:3"
+          }
+        },
+        "display_type": {
+          "info": "Harus menambah kategori secara manual jika memilih kategori produk yang ditentukan",
+          "label": "Pilih paparan",
+          "options__0": {
+            "label": "Semua kategori produk"
+          },
+          "options__1": {
+            "label": "Kategori produk yang ditentukan"
+          }
+        }
+      }
+    },
+    "product_collections_collection-filter": {
+      "blocks": {
+        "child_category": {
+          "name": "Subkategori",
+          "settings": {
+            "default_fold": {
+              "label": "Lipat lalai"
+            },
+            "group_header__0": {
+              "info": "Menu subkategori yang dikonfigurasikan dalam navigasi menu akan dipaparkan di sini[Ketahui lebih lanjut] (https://shoplineapphelp.zendesk.com/hc/articles/4404860397977)",
+              "label": "Subkategori"
+            },
+            "show_level3_title": {
+              "label": "Tunjuk tajuk tiga peringkat"
+            },
+            "show_product_num": {
+              "label": "Tunjuk bilangan produk"
+            }
+          }
+        },
+        "menu": {
+          "name": "Bar menu",
+          "settings": {
+            "default_fold": {
+              "label": "Lipat lalai"
+            },
+            "menu_selector": {
+              "label": "Pemilih menu"
+            },
+            "menu_title": {
+              "label": "Tajuk menu"
+            }
+          }
+        },
+        "tag_filter": {
+          "name": "Tapis label",
+          "settings": {
+            "default_fold": {
+              "label": "Lipat lalai"
+            },
+            "tag_data": {
+              "label": "Pemilih label"
+            },
+            "tag_filter_title": {
+              "label": "Tajuk label"
+            }
+          }
+        }
+      },
+      "name": "Penapis bar sisi",
+      "settings": {
+        "filter_enable": {
+          "label": "Dayakan penapisan bar sisi"
+        },
+        "support_multiple": {
+          "label": "Label buka berbilang pilihan"
+        }
+      }
+    },
+    "product_collections_collection-header": {
+      "name": "Halaman depan kategori",
+      "settings": {
+        "parallax_scroll": {
+          "info": "Hidupkan kesan paralaks akan memangkas beberapa gambar untuk mencapai kesan",
+          "label": "Paralaks bergolek"
+        },
+        "show_category_cover": {
+          "info": "Jika anda perlu menetapkan gambar Banner klasifikasi, anda boleh pergi ke pengurusan klasifikasi produk untuk membuat konfigurasi [Pergi sekarang] (/admin/categories)",
+          "label": "Papar gambar klasifikasi"
+        },
+        "show_category_name": {
+          "label": "Papar nama klasifikasi"
+        }
+      }
+    },
+    "product_collections_collection-page": {
+      "name": "Senarai produk",
+      "settings": {
+        "category_desc_position": {
+          "info": "Jika anda perlu menetapkan pperihalan klasifikasi, anda boleh pergi ke pengurusan klasifikasi produk untuk membuat konsifgurasi.[Pergi sekarang] (/admin/categories)",
+          "label": "Lokasi penerangan klasifikasi",
+          "options__0": {
+            "label": "Bahagian atas senarai produk"
+          },
+          "options__1": {
+            "label": "Bahagian bawah senarai produk"
+          }
+        },
+        "group_header__0": {
+          "label": "Gambar produk"
+        },
+        "per_page_num": {
+          "label": "Bilangan produk pada setiap halaman"
+        },
+        "product_fill_type": {
+          "label": "Kaedah pengisian peta komoditi",
+          "options__0": {
+            "label": "Menyesuaikan"
+          },
+          "options__1": {
+            "label": "Isi"
+          }
+        },
+        "product_hover_show_next": {
+          "label": "Paparkan gambar produk seterusnya apabila tetikus berhenti"
+        },
+        "product_image_ratio": {
+          "label": "Nisbah gambar komoditi",
+          "options__0": {
+            "label": "Nisbah asal"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__3": {
+            "label": "4:3"
+          },
+          "options__4": {
+            "label": "2:3"
+          }
+        },
+        "sorter_enable": {
+          "label": "Dayakan pengisihan produk"
+        }
+      }
+    },
+    "product_detail_product-preview": {
+      "blocks": {
+        "abstract": {
+          "name": "Ringkasan"
+        },
+        "buy-button": {
+          "name": "Butang beli"
+        },
+        "description": {
+          "name": "Huraian produk"
+        },
+        "html": {
+          "name": "Tetapan HTML tersuai",
+          "settings": {
+            "html": {
+              "label": "HTML"
+            }
+          }
+        },
+        "price": {
+          "name": "Harga"
+        },
+        "product-additional": {
+          "name": "Tambah kandungan",
+          "settings": {
+            "product_custom_tab1": {
+              "label": "Tetapkan kandungan tersuai 1"
+            },
+            "product_custom_tab1_fold": {
+              "label": "Paparan lipat"
+            },
+            "product_custom_tab2": {
+              "label": "Tetapkan kandungan tersuai 2"
+            },
+            "product_custom_tab2_fold": {
+              "label": "Paparan lipat"
+            },
+            "product_custom_tab3": {
+              "label": "Tetapkan kandungan tersuai 3"
+            },
+            "product_custom_tab3_fold": {
+              "label": "Paparan lipat"
+            }
+          }
+        },
+        "product-sell-info": {
+          "name": "Maklumat jualan",
+          "settings": {
+            "product_sales_point_1": {
+              "label": "Maklumat jualan 1 dokumen"
+            },
+            "product_sales_point_1_icon": {
+              "label": "Ikon maklumat jualan 1",
+              "options__0": {
+                "label": "Kotak semak"
+              },
+              "options__1": {
+                "label": "Bumi"
+              },
+              "options__2": {
+                "label": "Perlindungan alam sekita"
+              },
+              "options__3": {
+                "label": "Kurier"
+              },
+              "options__4": {
+                "label": "Kunci keselamatan"
+              },
+              "options__5": {
+                "label": "Lori"
+              }
+            },
+            "product_sales_point_2": {
+              "label": "Maklumat jualan 2 dokumen"
+            },
+            "product_sales_point_2_icon": {
+              "label": "Maklumat jualan 2 ikon",
+              "options__0": {
+                "label": "Kotak semak"
+              },
+              "options__1": {
+                "label": "Bumi"
+              },
+              "options__2": {
+                "label": "Perlindungan alam sekita"
+              },
+              "options__3": {
+                "label": "Kurier"
+              },
+              "options__4": {
+                "label": "Kunci keselamatan"
+              },
+              "options__5": {
+                "label": "Lori"
+              }
+            },
+            "product_sales_point_3": {
+              "label": "Maklumat jualan 3 dokumen"
+            },
+            "product_sales_point_3_icon": {
+              "label": "Maklumat jualan 3 ikon",
+              "options__0": {
+                "label": "Kotak semak"
+              },
+              "options__1": {
+                "label": "Bumi"
+              },
+              "options__2": {
+                "label": "Perlindungan alam sekita"
+              },
+              "options__3": {
+                "label": "Kurier"
+              },
+              "options__4": {
+                "label": "Kunci keselamatan"
+              },
+              "options__5": {
+                "label": "Lori"
+              }
+            },
+            "product_sales_point_4": {
+              "label": "Maklumat jualan 4 dokumen"
+            },
+            "product_sales_point_4_icon": {
+              "label": "Maklumat jualan 4 ikon",
+              "options__0": {
+                "label": "Kotak semak"
+              },
+              "options__1": {
+                "label": "Bumi"
+              },
+              "options__2": {
+                "label": "Perlindungan alam sekita"
+              },
+              "options__3": {
+                "label": "Kurier"
+              },
+              "options__4": {
+                "label": "Kunci keselamatan"
+              },
+              "options__5": {
+                "label": "Lori"
+              }
+            }
+          }
+        },
+        "quantity": {
+          "name": "Mesin pemilihan bilangan"
+        },
+        "share": {
+          "name": "Kongsi"
+        },
+        "sku-selector": {
+          "name": "Mesin pemilihan berbilang atribut",
+          "settings": {
+            "sku_style": {
+              "label": "Paparan berbilang atribut",
+              "options__0": {
+                "label": "Berjubin"
+              },
+              "options__1": {
+                "label": "Bingkai tarik bawah"
+              }
+            }
+          }
+        },
+        "title": {
+          "name": "Tajuk"
+        }
+      },
+      "name": "Maklumat produk",
+      "settings": {
+        "default_selected_sku": {
+          "label": "SKU dipilih secara piawaian"
+        },
+        "product_image_pc_show_style": {
+          "label": "Atur cara komputer",
+          "options__0": {
+            "label": "Pusingan gambar kecil"
+          },
+          "options__1": {
+            "label": "Berjubin"
+          },
+          "options__2": {
+            "label": "Jubin gambar kecil"
+          }
+        },
+        "product_image_size": {
+          "label": "Saiz gambar produk computer",
+          "options__0": {
+            "label": "Besar"
+          },
+          "options__1": {
+            "label": "Tengah"
+          },
+          "options__2": {
+            "label": "Kecil"
+          }
+        },
+        "product_info_sticky": {
+          "label": "Maklumat produk komputer dipaparkan secara tetap"
+        },
+        "product_mobile_thumbnail_image_hide": {
+          "label": "Atur cara mudah alih",
+          "options__0": {
+            "label": "Sembunyikan lakaran kenit"
+          },
+          "options__1": {
+            "label": "Paparkan gambar kecil "
+          }
+        },
+        "video_loop": {
+          "label": "Dayakan gelung video"
+        }
+      }
+    },
+    "product_recently-viewed": {
+      "name": "Produk yang dilayar baru-baru ini",
+      "settings": {
+        "group_header__0": {
+          "label": "Gambar produk"
+        },
+        "product_fill_type": {
+          "label": "Kaedah pengisian peta komoditi",
+          "options__0": {
+            "label": "Menyesuaikan"
+          },
+          "options__1": {
+            "label": "Isi"
+          }
+        },
+        "product_hover_show_next": {
+          "label": "Paparkan gambar produk seterusnya apabila tetikus berhenti"
+        },
+        "product_image_ratio": {
+          "label": "Nisbah gambar komoditi",
+          "options__0": {
+            "label": "Nisbah asal"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__3": {
+            "label": "4:3"
+          },
+          "options__4": {
+            "label": "2:3"
+          }
+        },
+        "show_product_number": {
+          "label": "Tunjuk bilangan produk"
+        },
+        "show_recently_product": {
+          "label": "Tunjuk produk yang dilayar baru-baru ini"
+        }
+      }
+    },
+    "product_search_search-for-template": {
+      "name": "Hasil carian",
+      "settings": {
+        "group_header__0": {
+          "label": "Gambar produk"
+        },
+        "product_fill_type": {
+          "label": "Kaedah pengisian peta komoditi",
+          "options__0": {
+            "label": "Menyesuaikan"
+          },
+          "options__1": {
+            "label": "Isi"
+          }
+        },
+        "product_hover_show_next": {
+          "label": "Paparkan gambar produk seterusnya apabila tetikus berhenti"
+        },
+        "product_image_ratio": {
+          "label": "Nisbah gambar komoditi",
+          "options__0": {
+            "label": "Nisbah asal"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__3": {
+            "label": "4:3"
+          },
+          "options__4": {
+            "label": "2:3"
+          }
+        }
+      }
+    },
+    "rich-text": {
+      "blocks": {
+        "button": {
+          "name": "Butang",
+          "settings": {
+            "button_text": {
+              "label": "Salinan butang"
+            },
+            "jump_link": {
+              "label": "Pautan lompat"
+            },
+            "outline_button": {
+              "label": "Gunakan gaya butang kontur"
+            }
+          }
+        },
+        "heading": {
+          "name": "Tajuk",
+          "settings": {
+            "heading": {
+              "label": "Tajuk"
+            },
+            "heading_size": {
+              "label": "Saiz teks tajuk",
+              "options__0": {
+                "label": "Kecil"
+              },
+              "options__1": {
+                "label": "Tengah"
+              },
+              "options__2": {
+                "label": "Besar"
+              }
+            }
+          }
+        },
+        "text": {
+          "name": "Penerangan",
+          "settings": {
+            "text": {
+              "label": "Teks"
+            }
+          }
+        }
+      },
+      "name": "Teks kaya",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Teks kaya"
+        }
+      },
+      "settings": {
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "normal_width": {
+          "label": "Guna lebar lajur standard"
+        }
+      }
+    },
+    "sign-up-and-save": {
+      "blocks": {
+        "button_text": {
+          "name": "Kotak input langganan",
+          "settings": {
+            "button_text": {
+              "label": "Salinan butang"
+            },
+            "placeholder": {
+              "label": "Copywriting penunjuk ruangan input"
+            }
+          }
+        },
+        "desc": {
+          "name": "Penerangan langganan",
+          "settings": {
+            "description": {
+              "label": "Penerangan langganan"
+            }
+          }
+        },
+        "title": {
+          "name": "Tajuk langganan",
+          "settings": {
+            "title": {
+              "label": "Tajuk langganan"
+            }
+          }
+        }
+      },
+      "name": "Langganan emel",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Langganan emel"
+        }
+      },
+      "settings": {
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "full_screen_width": {
+          "label": "Kelebaran skrin penuh"
+        }
+      }
+    },
+    "slideshow": {
+      "block_info": "[Lihat saiz gambar templat yang disyorkan](https://shoplineapphelp.zendesk.com/hc/articles/4406422263577)",
+      "blocks": {
+        "image": {
+          "name": "Gambar",
+          "settings": {
+            "color_accent": {
+              "label": "Warna butang"
+            },
+            "focal_point": {
+              "label": "Kawasan paparan gambar",
+              "options__0": {
+                "label": "Atas kiri"
+              },
+              "options__1": {
+                "label": "Atas tengah"
+              },
+              "options__2": {
+                "label": "Atas kanan"
+              },
+              "options__3": {
+                "label": "Sebelah kiri"
+              },
+              "options__4": {
+                "label": "Tengah"
+              },
+              "options__5": {
+                "label": "Sisi kanan"
+              },
+              "options__6": {
+                "label": "Bawah kiri"
+              },
+              "options__7": {
+                "label": "Bawah tengah"
+              },
+              "options__8": {
+                "label": "Bawah kanan"
+              }
+            },
+            "group_header__0": {
+              "label": "Kandungan teks"
+            },
+            "group_header__1": {
+              "info": "Jika salianan butang tidak dikonfigurasikan, klik pada gambar untuk melompat",
+              "label": "Butang atau lompat gambar"
+            },
+            "image": {
+              "label": "Gambar computer"
+            },
+            "image_mobile": {
+              "label": "Gambar mudah alih"
+            },
+            "link": {
+              "label": "Pautan lompat"
+            },
+            "link_2": {
+              "label": "Lompat pautan 2"
+            },
+            "link_text": {
+              "label": "Salinan butang"
+            },
+            "link_text_2": {
+              "label": "Salinan butang 2"
+            },
+            "overlay_opacity": {
+              "label": "Penutup gambar"
+            },
+            "subheading": {
+              "label": "Teks"
+            },
+            "text_align": {
+              "label": "Kedudukan teks",
+              "options__0": {
+                "label": "Sebelah kiri"
+              },
+              "options__1": {
+                "label": "Tengah"
+              },
+              "options__2": {
+                "label": "Sisi kanan"
+              },
+              "options__3": {
+                "label": "Bawah kiri"
+              },
+              "options__4": {
+                "label": "Bawah tengah"
+              },
+              "options__5": {
+                "label": "Bawah kanan"
+              }
+            },
+            "title": {
+              "label": "Tajuk utama"
+            },
+            "title_size": {
+              "label": "Saiz tajuk utama"
+            },
+            "top_subheading": {
+              "label": "Sari kata"
+            }
+          }
+        }
+      },
+      "name": "Gambar karusel",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Gambar karusel"
+        }
+      },
+      "settings": {
+        "autoplay": {
+          "label": "Dayakan pensuisan automatik"
+        },
+        "autoplay_speed": {
+          "label": "Tukar selang",
+          "unit": "Saat"
+        },
+        "mobile_height": {
+          "label": "Ketinggian versi mudah alih",
+          "options__0": {
+            "label": "Sesuaikan dengan saiz gambar pertama"
+          },
+          "options__1": {
+            "label": "250px"
+          },
+          "options__2": {
+            "label": "300px"
+          },
+          "options__3": {
+            "label": "400px"
+          },
+          "options__4": {
+            "label": "500px"
+          },
+          "options__5": {
+            "label": "Skrin penuh"
+          }
+        },
+        "parallax": {
+          "info": "Hidupkan kesan paralaks akan memangkas beberapa gambar untuk mencapai kesan",
+          "label": "Dayakan kesan paralaks menatal"
+        },
+        "section_height": {
+          "label": "Ketinggian versi komputer",
+          "options__0": {
+            "label": "Sesuaikan dengan saiz gambar pertama"
+          },
+          "options__1": {
+            "label": "450px"
+          },
+          "options__2": {
+            "label": "550px"
+          },
+          "options__3": {
+            "label": "650px"
+          },
+          "options__4": {
+            "label": "750px"
+          },
+          "options__5": {
+            "label": "Skrin penuh"
+          }
+        },
+        "style": {
+          "label": "Selak sempel",
+          "options__0": {
+            "label": "Mudah"
+          },
+          "options__1": {
+            "label": "Anak panah"
+          },
+          "options__2": {
+            "label": "Bar kemajuan"
+          },
+          "options__3": {
+            "label": "Titik kecil"
+          }
+        }
+      }
+    },
+    "testimonials": {
+      "blocks": {
+        "testimonial": {
+          "name": "Komen",
+          "settings": {
+            "author": {
+              "label": "Pengarang"
+            },
+            "avatar": {
+              "label": "Gambar"
+            },
+            "description": {
+              "label": "Penerangan"
+            },
+            "star_num": {
+              "label": "Kedudukan bintang",
+              "options__0": {
+                "label": "Tidak tunjuk"
+              },
+              "options__1": {
+                "label": "Empat bintang"
+              },
+              "options__2": {
+                "label": "Empat setengah bintang"
+              },
+              "options__3": {
+                "label": "Lima bintang"
+              }
+            }
+          }
+        }
+      },
+      "name": "Modul ulasan",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Modul ulasan"
+        }
+      },
+      "settings": {
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "picture_radius": {
+          "label": "Bentuk gambar",
+          "options__0": {
+            "label": "Segi empat"
+          },
+          "options__1": {
+            "label": "Bentuk bulat"
+          },
+          "options__2": {
+            "label": "Segiempat bulat"
+          }
+        },
+        "star_color": {
+          "label": "Warna bintang"
+        },
+        "text_size": {
+          "label": "Saiz huruf",
+          "options__0": {
+            "label": "Kecil"
+          },
+          "options__1": {
+            "label": "Tengah"
+          },
+          "options__2": {
+            "label": "Besar"
+          }
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
+    "text-columns-with-images": {
+      "blocks": {
+        "item": {
+          "name": "Gambar",
+          "settings": {
+            "button_text": {
+              "label": "Salinan butang"
+            },
+            "description": {
+              "label": "Penerangan"
+            },
+            "image": {
+              "label": "Gambar"
+            },
+            "jump_link": {
+              "label": "Pautan lompat"
+            },
+            "title": {
+              "label": "Tajuk"
+            }
+          }
+        }
+      },
+      "name": "Senarai gambar dan teks",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Senarai gambar dan teks"
+        }
+      },
+      "settings": {
+        "button_text": {
+          "label": "Salinan butang"
+        },
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "image_ratio": {
+          "label": "Nisbah gambar",
+          "options__0": {
+            "label": "Nisbah asal"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__3": {
+            "label": "Bentuk bulat"
+          }
+        },
+        "image_width": {
+          "label": "Lebar gambar",
+          "options__0": {
+            "label": "Sama dengan kelebaran"
+          },
+          "options__1": {
+            "label": "Kelebaran dua per satu"
+          },
+          "options__2": {
+            "label": "Kelebaran tiga per satu"
+          }
+        },
+        "jump_link": {
+          "label": "Pautan lompat"
+        },
+        "show_block_bg": {
+          "label": "latar belakang",
+          "options__0": {
+            "label": "Tidak ada latar belakang"
+          },
+          "options__1": {
+            "label": "Paparkan senarai latar belakang"
+          }
+        },
+        "show_touch": {
+          "label": "Leret ke kiri dan kanan di versi mudah alih"
+        },
+        "text_align": {
+          "label": "Kaedah penjajaran kandungan"
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
+    "video": {
+      "name": "Video",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Video"
+        }
+      },
+      "settings": {
+        "background_position": {
+          "label": "Kawasan paparan gambar muka depan",
+          "options__0": {
+            "label": "Atas kiri"
+          },
+          "options__1": {
+            "label": "Atas tengah"
+          },
+          "options__2": {
+            "label": "Atas kanan"
+          },
+          "options__3": {
+            "label": "Sebelah kiri"
+          },
+          "options__4": {
+            "label": "Tengah"
+          },
+          "options__5": {
+            "label": "Sisi kanan"
+          },
+          "options__6": {
+            "label": "Bawah kiri"
+          },
+          "options__7": {
+            "label": "Bawah tengah"
+          },
+          "options__8": {
+            "label": "Bawah kanan"
+          }
+        },
+        "color_scheme": {
+          "label": "Warna",
+          "options__0": {
+            "label": "Tiada"
+          },
+          "options__1": {
+            "label": "Warna 1"
+          },
+          "options__2": {
+            "label": "Warna 2"
+          },
+          "options__3": {
+            "label": "Warna 3"
+          }
+        },
+        "cover": {
+          "label": "Gambar muka depan"
+        },
+        "full_width": {
+          "label": "Kelebaran skrin penuh"
+        },
+        "title": {
+          "label": "Tajuk"
+        },
+        "url": {
+          "info": "Masukkan pautan Youtube atau Vimeo",
+          "label": "Pautan video"
+        }
+      }
+    }
+  },
+  "settings_schema": {
+    "cart": {
+      "name": "Kart",
+      "settings": {
+        "cart_open_type": {
+          "label": "Kaedah pembelian tambahan",
+          "options__0": {
+            "label": "Troli beli-belah mini"
+          },
+          "options__1": {
+            "label": "Masuk ke halaman troli beli-belah"
+          }
+        }
+      }
+    },
+    "checkout": {
+      "name": "Bayar",
+      "settings": {
+        "co_background_color": {
+          "label": "Warna latar belakang"
+        },
+        "co_banner_img_show": {
+          "label": "Kawasan paparan gambar",
+          "options__0": {
+            "label": "Atas"
+          },
+          "options__1": {
+            "label": "Tengah"
+          },
+          "options__2": {
+            "label": "bawah"
+          }
+        },
+        "co_banner_pc_height": {
+          "label": "Ketinggian gambar komputer",
+          "options__0": {
+            "label": "Sesuaikan dengan gambar"
+          },
+          "options__1": {
+            "label": "Tinggi"
+          },
+          "options__2": {
+            "label": "Rendah"
+          }
+        },
+        "co_banner_pc_img": {
+          "label": "Gambar computer"
+        },
+        "co_banner_phone_height": {
+          "label": "Ketinggian gambar mudah alih",
+          "options__0": {
+            "label": "Sesuaikan dengan gambar"
+          },
+          "options__1": {
+            "label": "Tinggi"
+          },
+          "options__2": {
+            "label": "Rendah"
+          }
+        },
+        "co_banner_phone_img": {
+          "info": "Jika gambar terminal mudah alih tidak dimuat naik, terminal mudah alih akan memaparkan gambar terminal komputer",
+          "label": "Gambar mudah alih"
+        },
+        "co_bg_image": {
+          "label": "Latar belakang gambar"
+        },
+        "co_checkout_image": {
+          "label": "Gambar tersuai"
+        },
+        "co_color_btn_bg": {
+          "label": "Latar belakang butang"
+        },
+        "co_color_err_color": {
+          "info": "Petunjuk ralat mesej dan kecerahan bingkai",
+          "label": "Salah lapor mesej"
+        },
+        "co_color_msg_color": {
+          "info": "Pautan, kotak semak, sempadan kotak input dan menu lungsur",
+          "label": "Utamakan mesej"
+        },
+        "co_form_bg_color": {
+          "label": "Warna borang latar belakang",
+          "options__0": {
+            "label": "Warna putih"
+          },
+          "options__1": {
+            "label": "Lutsinar"
+          }
+        },
+        "co_full_screen": {
+          "label": "Skrin komputer lebar penuh"
+        },
+        "co_logo_position": {
+          "label": "Kedudukan Logo",
+          "options__0": {
+            "label": "Kiri"
+          },
+          "options__1": {
+            "label": "Tengah"
+          },
+          "options__2": {
+            "label": "Kanan"
+          }
+        },
+        "co_logo_size": {
+          "label": "Saiz Logo",
+          "options__0": {
+            "label": "Kecil"
+          },
+          "options__1": {
+            "label": "Tengah"
+          },
+          "options__2": {
+            "label": "Besar"
+          }
+        },
+        "co_order_background_color": {
+          "label": "Warna latar belakang"
+        },
+        "co_order_bg_image": {
+          "label": "Latar belakang gambar"
+        },
+        "co_type_body_font": {
+          "label": "Teks"
+        },
+        "co_type_title_font": {
+          "label": "Tajuk"
+        },
+        "group_header__0": {
+          "label": "Banner"
+        },
+        "group_header__1": {
+          "label": "Logo"
+        },
+        "group_header__2": {
+          "label": "Kandungan mesej"
+        },
+        "group_header__3": {
+          "label": "Ringkasan pesanan"
+        },
+        "group_header__4": {
+          "label": "warna"
+        },
+        "group_header__5": {
+          "label": "Fon"
+        }
+      }
+    },
+    "color": {
+      "name": "warna",
+      "settings": {
+        "color_btn_background": {
+          "label": "Latar belakang butang"
+        },
+        "color_btn_text": {
+          "label": "Teks butang"
+        },
+        "color_cart_dot": {
+          "label": "Isyarat troli beli-belah"
+        },
+        "color_cart_dot_text": {
+          "label": "Teks isyarat troli beli-belah"
+        },
+        "color_discount": {
+          "label": "Jumlah wang yang ditawarkan"
+        },
+        "color_entry_line": {
+          "label": "Garisan dan tepi bingkai"
+        },
+        "color_footer_background": {
+          "label": "Warna latar belakang"
+        },
+        "color_footer_border": {
+          "label": "Garisan dan tepi bingkai"
+        },
+        "color_footer_text": {
+          "label": "Warna teks"
+        },
+        "color_header_announcement_bar": {
+          "label": "Latar belakang papan pengumuman"
+        },
+        "color_header_announcement_bar_text": {
+          "label": "Teks papan buletin"
+        },
+        "color_header_background": {
+          "label": "Warna latar belakang"
+        },
+        "color_header_text": {
+          "label": "Warna teks"
+        },
+        "color_image_background": {
+          "label": "Latar belakang gambar"
+        },
+        "color_light_text": {
+          "label": "Teks warna ringan"
+        },
+        "color_mask": {
+          "label": "Latar belakang penutup tetingkap timbul"
+        },
+        "color_page_background": {
+          "label": "latar belakang"
+        },
+        "color_sale": {
+          "label": "Harga jualan"
+        },
+        "color_scheme_1_bg": {
+          "label": "Warna latar belakang"
+        },
+        "color_scheme_1_text": {
+          "label": "Warna teks"
+        },
+        "color_scheme_2_bg": {
+          "label": "Warna latar belakang"
+        },
+        "color_scheme_2_text": {
+          "label": "Warna teks"
+        },
+        "color_scheme_3_bg": {
+          "label": "Warna latar belakang"
+        },
+        "color_scheme_3_text": {
+          "label": "Warna teks"
+        },
+        "color_secondary_btn_backgroud": {
+          "label": "Latar belakang butang sekunder"
+        },
+        "color_secondary_btn_border": {
+          "label": "Tepi bingkai butang sekunder"
+        },
+        "color_secondary_btn_text": {
+          "label": "Teks butang sekunder"
+        },
+        "color_section_background": {
+          "label": "Latar belakang memuatkan gambar"
+        },
+        "color_tag_background": {
+          "label": "Label diskuan"
+        },
+        "color_tag_text": {
+          "label": "Teks label diskaun"
+        },
+        "color_text": {
+          "label": "teks"
+        },
+        "color_utility": {
+          "label": "Warna latar belakang"
+        },
+        "color_utility_text": {
+          "label": "Warna teks"
+        },
+        "group_header__0": {
+          "label": "Pangkalan"
+        },
+        "group_header__1": {
+          "label": "Tajuk"
+        },
+        "group_header__2": {
+          "label": "Papan pengumumann"
+        },
+        "group_header__3": {
+          "label": "Bar peralatan"
+        },
+        "group_header__4": {
+          "label": "Pengaki"
+        },
+        "group_header__5": {
+          "label": "Warna 1"
+        },
+        "group_header__6": {
+          "label": "Warna 2"
+        },
+        "group_header__7": {
+          "label": "Warna 3"
+        }
+      }
+    },
+    "design": {
+      "name": "Reka",
+      "settings": {
+        "button_style": {
+          "label": "Gaya butang",
+          "options__0": {
+            "label": "Sudut tepat"
+          },
+          "options__1": {
+            "label": "Sudut bulat kecil"
+          },
+          "options__2": {
+            "label": "Sudut bulat penuh"
+          }
+        },
+        "collection_grid_image": {
+          "label": "Klasifikasi gambar",
+          "options__0": {
+            "label": "Gunakan gambar muka depan kategori"
+          },
+          "options__1": {
+            "label": "Gunakan gambar produk pertama di bawah kategori"
+          }
+        },
+        "collection_grid_shape": {
+          "label": "Klasifikasi bentuk gambar",
+          "options__0": {
+            "label": "Bentuk bulat"
+          },
+          "options__1": {
+            "label": "Segi empat"
+          },
+          "options__2": {
+            "label": "Mendatar (4:3)"
+          },
+          "options__3": {
+            "label": "Menegak (2:3)"
+          }
+        },
+        "group_header__0": {
+          "label": "Produk"
+        },
+        "group_header__1": {
+          "label": "Produk kategori"
+        },
+        "superscript_decimals": {
+          "label": "Paparan perpuluhan harga jualan"
+        }
+      }
+    },
+    "favicon": {
+      "name": "Ikon tapak web",
+      "settings": {
+        "favicon_image": {
+          "info": "Saiz: 32x32px",
+          "label": "Icon tab penyemak imbas"
+        }
+      }
+    },
+    "font": {
+      "name": "Fon",
+      "settings": {
+        "group_header__0": {
+          "label": "Tajuk"
+        },
+        "group_header__1": {
+          "label": "Teks"
+        },
+        "group_header__2": {
+          "label": "Lain"
+        },
+        "type_body_font": {
+          "label": "Fon"
+        },
+        "type_body_letter_spacing": {
+          "label": "Jarak fon"
+        },
+        "type_body_line_height": {
+          "label": "Ketinggian fon"
+        },
+        "type_body_size": {
+          "label": "Saiz fon"
+        },
+        "type_navigation_font": {
+          "label": "Fon pengepala",
+          "options__0": {
+            "label": "Sama dengan tajuk"
+          },
+          "options__1": {
+            "label": "Sama dengan kandungan"
+          }
+        },
+        "type_navigation_size": {
+          "label": "Saiz fon pengepala"
+        },
+        "type_navigation_uppercase": {
+          "info": "Selepas dibuka, teks akan meningkatkan jarak fon secara automatik",
+          "label": "Huruf besar fon pengelapa"
+        },
+        "type_title_font": {
+          "label": "Fon"
+        },
+        "type_title_letter_spacing": {
+          "label": "Jarak fon"
+        },
+        "type_title_line_height": {
+          "label": "Ketinggian fon"
+        },
+        "type_title_size": {
+          "label": "Saiz fon"
+        },
+        "type_title_uppercase": {
+          "label": "Semua perkataan huruf besar"
+        }
+      }
+    },
+    "layout": {
+      "name": "susun atur",
+      "settings": {
+        "page_width": {
+          "label": "Kelebaran halaman"
+        },
+        "section_vertical_gap": {
+          "label": "Jarak menegak antara komponen"
+        }
+      }
+    },
+    "media_sosial": {
+      "name": "Media sosial",
+      "settings": {
+        "group_header__0": {
+          "info": "Digunakan oleh pelanggan untuk mengakses akaun media sosial anda",
+          "label": "Akaun"
+        },
+        "group_header__1": {
+          "info": "Menyediakan operasi perkongsian pada halaman butiran produk dan halaman blog",
+          "label": "Kongsi"
+        },
+        "share_to_facebock": {
+          "label": "Kongsi ke Facebook"
+        },
+        "share_to_line": {
+          "label": "Kongsi ke LINE"
+        },
+        "share_to_pinterest": {
+          "label": "Kongsi ke Pinterest"
+        },
+        "share_to_twitter": {
+          "label": "Kongsi ke Twitter"
+        },
+        "share_to_whatsapp": {
+          "label": "Kongsi ke Whatsapp"
+        },
+        "social_facebook_link": {
+          "label": "Facebook"
+        },
+        "social_instagram_link": {
+          "label": "Instagram"
+        },
+        "social_pinterest_link": {
+          "label": "Pinterest"
+        },
+        "social_snapchat_link": {
+          "label": "Snapchat"
+        },
+        "social_tiktok_link": {
+          "label": "TikTok"
+        },
+        "social_twitter_link": {
+          "label": "Twitter"
+        },
+        "social_youtube_link": {
+          "label": "Youtube"
+        }
+      }
+    },
+    "product": {
+      "name": "Produk",
+      "settings": {
+        "group_header__0": {
+          "label": "Senarai produk"
+        },
+        "product_add_to_cart": {
+          "label": "Sokong pembelian pantas"
+        },
+        "product_discount": {
+          "label": "Paparkan diskaun"
+        },
+        "product_discount_style": {
+          "label": "Gaya diskaun",
+          "options__0": {
+            "label": "Paparkan nilai diskaun"
+          },
+          "options__1": {
+            "label": "Paparkan nisbah diskaun"
+          }
+        },
+        "product_mobile_title_show": {
+          "label": "Paparkan tajuk produk pada versi mudah alih"
+        },
+        "product_title_show_type": {
+          "label": "Peraturan paparan tajuk produk",
+          "options__0": {
+            "label": "Tunjuk semua"
+          },
+          "options__1": {
+            "label": "Tunjukkan paling banyak 1 baris"
+          },
+          "options__2": {
+            "label": "Tunjukkan paling banyak 2 baris"
+          }
+        }
+      }
+    }
+  }
+}

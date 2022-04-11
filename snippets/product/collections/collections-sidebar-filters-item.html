@@ -1,0 +1,20 @@
+<!-- 标签筛选单项 -->
+{{ assign 'currentUrl' request.uri }}
+{{#if (inArray tags title)}}
+  {{ assign 'isActive' true }}
+  {{#if (isTruthy supportMultiple)}}
+    {{ assign 'itemUrl' (product_collections_tag_link title 'remove' currentUrl) }}
+  {{else}}
+    {{ assign 'itemUrl' (product_collections_tag_link title 'single' currentUrl) }}
+  {{/if}}
+{{else}}
+  {{ assign 'isActive' false }}
+  {{#if (isTruthy supportMultiple)}}
+    {{ assign 'itemUrl' (product_collections_tag_link title 'add' currentUrl) }}
+  {{else}}
+    {{ assign 'itemUrl' (product_collections_tag_link title 'single' currentUrl) }}
+  {{/if}}
+{{/if}}
+<li data-href="{{itemUrl}}" data-sup="{{supportMultiple}}">
+  {{snippet 'product/commons/base-checkbox' title=title isActive=isActive textClass='body3' }}
+</li>

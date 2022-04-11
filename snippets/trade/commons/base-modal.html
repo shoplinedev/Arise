@@ -1,0 +1,20 @@
+{{!-- below lists modal component props --}}
+{{!-- prop: closable --}}
+{{assign 'closable' (default closable true)}}
+{{!-- prop: maskClosable --}}
+{{assign 'maskClosable' (default maskClosable false)}}
+{{!-- prop: zIndex --}}
+{{assign 'zIndex' (default zIndex 1000)}}
+
+{{!-- modal component here --}}
+<div id="MpModal{{modalId}}" class="mp-modal__wrapper" data-maskClosable="{{maskClosable}}" style="z-index: {{zIndex}}">
+  <div class="mp-modal__mask"></div>
+  <div class="mp-modal__container {{containerClassName}}">
+    {{#if closable}}
+    <span class="mp-modal__close"></span>
+    {{/if}}
+    <div class="mp-modal__body {{bodyClassName}}">
+      <div  class="sku-filter-modal__container"></div>
+    </div>
+  </div>
+</div>

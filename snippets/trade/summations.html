@@ -1,0 +1,20 @@
+<div id="trade-summations" class="trade_summations body3">
+  {{#trade_with_summations pageType='cart'}}
+    {{! 费用列表 这里顺序不能变，UI跟产品定了的 @吴婉楠 @狄璇 }}
+    {{#each summations}}
+      {{include
+        'snippets/trade/trade_summations_fee'
+        label=(t label)
+        key=key
+        value=value
+        showWithZeroValue=showWithZeroValue
+        showReduce=showReduce
+        suffixCls=suffixCls
+        tips=(t tips)
+        showTips=showTips
+        memberPointInfo=memberPointInfo
+        hideCls=hideCls
+      }}
+    {{/each}}
+  {{/trade_with_summations}}
+</div>

@@ -1,0 +1,33 @@
+<div class="product-comment-pc-title title5 product-section-title">
+  {{t "productDetail.tabs.comments"}}({{productComment.total}})
+</div>
+{{snippet 'product/detail/comment/Pc/summary'}}
+<div class="product-comment-pc-wrap row row-cols-md-2 gx-md-4">
+	<div class="product-comment-pc-wrap-col">
+		{{#each comments.list}}
+			{{#if @index 0}}
+				{{snippet 'product/detail/comment/card' index=@index }}
+			{{/if}}
+			{{#if @index 2}}
+				{{snippet 'product/detail/comment/card' index=@index }}
+			{{/if}}
+			{{#if @index 4}}
+				{{snippet 'product/detail/comment/card' index=@index }}
+			{{/if}}
+		{{/each}}
+	</div>
+	<div class="product-comment-pc-wrap-col">
+		{{#each comments.list}}
+			{{#if @index 1}}
+				{{snippet 'product/detail/comment/card' index=@index }}
+			{{/if}}
+			{{#if @index 3}}
+				{{snippet 'product/detail/comment/card' index=@index }}
+			{{/if}}
+			{{#if @index 5}}
+				{{snippet 'product/detail/comment/card' index=@index }}
+			{{/if}}
+		{{/each}}
+	</div>
+	{{snippet 'product/commons/pagination' id="comment_pagination" total=productComment.total pageSize=6}}
+</div>

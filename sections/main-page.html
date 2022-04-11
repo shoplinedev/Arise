@@ -1,0 +1,26 @@
+{{ inline_stylesheet 'main-page/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'main-page/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'main-page/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+{{ preload_state 'pageInfo.originalPath' }}
+<div class='container stage-main-page__container'>
+  <h1 class='title3 __sl-custom-track-page-title'>{{{ pageInfo.name.default }}}</h1>
+  <div class="__sl-custom-track-page-content">
+    <div class="render-by-page">
+      {{ snippet 'custom-page-render' pageConfig=pageInfo.htmlConfig forPage=true class='bottom' }}
+    </div>
+  </div>
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.main-page.name"
+}
+{{/schema}}

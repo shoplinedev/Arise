@@ -1,0 +1,39 @@
+{
+  "name": "collection.html",
+  "wrapper": "section.product-list",
+  "sections": {
+    "collection-header": {
+      "type": "product/collections/collection-header",
+      "disabled": false,
+      "settings": {
+        "show_category_name": true,
+        "show_category_cover": true,
+        "parallax_scroll": false
+      }
+    },
+    "collection-page":{
+      "type": "product/collections/collection-page",
+      "disabled": false,
+      "settings": {
+        "sorter_enable": true,
+        "per_page_num": 16,
+        "product_image_ratio": "0",
+        "product_fill_type": "contain",
+        "product_hover_show_next": false
+      }
+    },
+    "recently-viewed":{  
+      "type": "product/recently-viewed",
+      "disabled": false,
+      "settings": {
+        "show_product_number": 6,
+        "product_image_ratio": "0",
+        "product_fill_type": "contain",
+        "product_hover_show_next": false
+      }
+    }
+  },
+  "order": [
+    "collection-header","collection-page","recently-viewed"
+  ]
+}

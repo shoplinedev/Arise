@@ -1,0 +1,28 @@
+{{ assign 'promotion' _promotion}}
+
+{{#if is-mobile}}
+  {{ assign "_promotion_config_" (sales_promotion_reminder_translate promotion (object_create lineBreak=1))}}
+{{else}}
+  {{ assign "_promotion_config_" (sales_promotion_reminder_translate promotion)}}
+{{/if}}
+
+{{#if _promotion_config_.step '==' 3}}
+  <div class="cart-sku-list-promotion-module">
+    <span>
+      {{ noTranslationHTML (t _promotion_config_.path  saved=_promotion_config_.params.saved willSave=_promotion_config_.params.willSave threshold=_promotion_config_.params.threshold br=_promotion_config_.params.br upperLimit=_promotion_config_.params.upperLimit) }}
+    </span>
+  </div>
+{{else}}
+  <div class="cart-sku-list-promotion-module-can-jump">
+    <a href="{{append '/activity/' promotion.activitySeq '?type=pool'}}" class="cart-sku-list-promotion-module-can-jump-wrapper">
+      <div>
+        {{ noTranslationHTML (t _promotion_config_.path  saved=_promotion_config_.params.saved willSave=_promotion_config_.params.willSave threshold=_promotion_config_.params.threshold br=_promotion_config_.params.br upperLimit=_promotion_config_.params.upperLimit) }}
+      </div>
+      <div class="cart-sku-list-promotion-module-can-jump-arrow" style="font-size:0;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </div>
+    </a>
+  </div>
+{{/if}}

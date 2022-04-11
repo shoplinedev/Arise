@@ -1,0 +1,255 @@
+
+{{!--判断是否要默认不选中sku--}}
+{{ assign 'notChooseSku' (boolean product.spu.inquiry '||' (boolean (boolean product.sku.skuList.length '>' 1) '&&' (isFalsey section.settings.default_selected_sku))) }}
+{{!-- sku选中相关数据 --}}
+{{ assign 'initSku' (product_default_sku product.sku.skuList product.spu.soldOut request.uri.query.sku (if theme.settings.product_sku_style 'select') notChooseSku isPreviewProduct) }}
+
+{{ assign 'shareInfo' (product_share_info product.productSeo product.spu request.uri storeInfo) }}
+{{ assign 'microdata' (product_microdata initSku.selectSku product.sku product.spu request.uri storeInfo.currency) }}
+{{#partial 'before_head'}}
+  {{#is_modern_browser}}
+  <script defer src="{{ assets_url 'product/detail/productDetailDataBus.min.modern.js' }}"></script>
+  {{else}}
+  <script defer src="{{ assets_url 'product/detail/productDetailDataBus.min.js' }}"></script>
+  {{/is_modern_browser}}
+{{/partial}}
+{{#partial 'head'}}
+  
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'product/detail/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'product/detail/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+  <link rel="stylesheet" href="{{ assets_url 'product/detail/index.min.css' }}" />
+{{/partial}}
+
+{{#partial 'seo-meta'}}
+  {{ assign 'ogTitle' shareInfo.title }}
+  {{ assign 'ogDescription' (cond product.productSeo.desc product.productSeo.desc storeInfo.name) }}
+  {{ assign 'url' shareInfo.url }}
+  {{#if product.spu.images.[0]}}
+    {{ assign 'image' product.spu.images.[0] }}
+  {{else}}{{#if page_image}}
+    {{ assign 'image' page_image }}
+  {{else}}
+    {{ assign 'image' theme.settings.checkout_image.url }}
+  {{/if}}{{/if}}
+  {{ assign 'seoTitle' (append shareInfo.title ' - ' storeInfo.name) }}
+  {{ assign 'seoDescription' (default product.productSeo.desc '') }}
+  {{ assign 'keywords' product.productSeo.key }}
+  {{ assign 'card' 'summary_large_image' }}
+  {{ assign 'type' 'product' }}
+
+  
+
+{{assign '_image' 'https://img.myshopline.com/image/shopline/3439ce4a1e15489193fd9ac622e1143e.png'}}
+{{assign 'twitterCard' (default card 'summary_large_image') }}
+
+{{! 如果存在传入的图片使用传入的 没有使用店铺log 在没有使用兜底图片 }}
+{{#if image}}
+  {{assign '_image' image}}
+{{/if}}
+{{assign 'title' (default seoTitle '')}}
+
+{{#if canonicalUrl }}
+  {{assign '_canonicalUrl' canonicalUrl}}
+{{else}}
+  {{assign '_canonicalUrl' url}}
+{{/if}}
+
+{{#if title}}
+<meta name="title" content="{{title}}" />
+{{/if}}
+{{!-- keyword 插入到title 和 description 中间 --}}
+{{#if keywords }}
+<meta name="keywords" content="{{keywords}}" /> 
+{{/if}}
+
+{{! 没有desc 不展示 }}
+{{#if seoDescription}}
+  <meta name="description" content="{{seoDescription}}" />
+{{/if}}
+
+{{! 商详页之前的标签 先保留其他页面不需要传入  }}
+{{! 重复网址 seo 定向到主站 }}
+
+
+{{#if _canonicalUrl}}
+  <link rel="canonical" href="{{_canonicalUrl}}" />
+  <link rel="alternate" href="{{_canonicalUrl}}" />
+{{/if}}
+
+{{! meta link }}
+{{#if url}}
+  <meta property="og:url" content="{{url}}" />
+{{/if}}
+
+{{#if storeInfo.name}}
+  <meta property="og:site_name" content="{{storeInfo.name}}" />
+{{/if}}
+
+{{! meta title }}
+{{#if ogTitle}}
+  <meta property="og:title" content="{{ogTitle}}" />
+{{/if}}
+
+{{#if ogDescription}}
+  <meta property="og:description" content="{{ogDescription}}" />
+{{/if}}
+
+{{! meta fb type }}
+{{#if type}}
+  <meta property="og:type" content="{{type}}" />
+{{/if}}
+
+{{#if _image}}
+  <meta property="og:image" content="{{_image}}" />
+  <meta property="og:image:secure_url" content="{{_image}}" />
+  <meta name="twitter:image" content="{{_image}}" />
+{{/if}}
+
+{{#if ogTitle}}
+  <meta name="twitter:title" content="{{ogTitle}}" />
+{{/if}}
+
+{{! meta description }}
+{{#if ogDescription}}
+  <meta name="twitter:description" content="{{ogDescription}}" />
+{{/if}}
+
+{{! meta twitter card }}
+{{#if card}}
+  <meta name="twitter:card" content="{{twitterCard}}" />
+{{/if}}
+
+{{!-- meta hide product --}}
+{{#and  (boolean templateAlias '===' 'ProductsDetail')  (isFalsey product.spu.visible)}}
+  <meta name='robots' content='noindex' />
+{{/and}}
+
+
+
+{{/partial}}
+
+{{#partial 'title'}}
+  <title>{{ shareInfo.title }} - {{ storeInfo.name }}</title>
+{{/partial}}
+
+{{#partial 'page_view'}}
+  {{!-- <script type="application/ld+json"> --}}
+  {{!-- {{{JSONstringify microdata}}} --}}
+  {{!-- </script> --}}
+  {{!-- 替换原来的 ld+json --}}
+  {{assign 'spu' product.spu}}
+
+{{assign 'discount_text' null}}
+
+{{assign 'image' (arrayify (first spu.images 3))}}
+{{#if initSku.selectSku }}
+  {{assign 'sku' (cond initSku.selectSku.itemNo initSku.selectSku.itemNo initSku.selectSku.skuSeq) }}
+  {{assign 'discount_text' initSku.selectSku.price}}
+{{else if initSku.firstSku}}
+  {{assign 'sku' (cond initSku.firstSku.itemNo initSku.firstSku.itemNo initSku.firstSku.skuSeq) }}
+  {{assign 'discount_text' initSku.firstSku.price}}
+{{else if (isTruthy sku.skuList.[0])}}
+  {{assign 'sku' (cond sku.skuList.[0].itemNo sku.skuList.[0].itemNo sku.skuList.[0].skuSeq) }}
+  {{assign 'discount_text' sku.skuList.[0].price}}
+{{/if}}
+{{ assign 'brand' (default spu.brand '')}}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ spu.title }}",
+    "image": ["{{image}}"],
+    "description": "{{ productDesc.description }}",
+    "sku": "{{sku}}",
+    "brand": {
+      "@type": "Brand",
+      "name": "{{brand}}"
+    },
+    {{#if productComment.total}}
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{productComment.score}}",
+      "reviewCount": "{{productComment.total}}"
+    },
+    {{/if}}
+    "offers": {
+      "@type": "Offer",
+      {{#if (isFalsey spu.inquiry)}}
+        "url": "{{shareInfo.url}}",
+        "priceCurrency": "{{currencyCode}}",
+        "price":  "{{ currency_format discount_text }}",
+        "availability": 
+        {{#if (isTruthy  spu.soldOut)}}
+          "https://schema.org/SoldOut"
+        {{else}}
+          "https://schema.org/InStock"
+        {{/if }}
+      {{else}}
+        "url": "{{shareInfo.url}}"
+      {{/if}}
+
+    }
+  }
+ 
+  </script>
+
+<script>
+  // 第三方埋点
+  window.SL_EventBus.emit('global:thirdPartReport', {
+    FBPixel: [
+      [
+        'track',
+        'ViewContent',
+        {
+          content_ids: [{{{ JSONstringify product.spu.spuSeq }}}],
+          content_name: {{{ JSONstringify (default product.spu.title '') }}},
+          content_category: '',
+          content_type: 'product_group',
+          currency: {{{ JSONstringify (default storeInfo.currency '') }}},
+          value: {{{ JSONstringify (currency_format (default initSku.selectSku.price initSku.firstSku.price '')) }}},
+        },
+        {
+          eventID: 'viewContent{{ serverEventId }}'
+        }
+      ],
+    ],
+  });
+</script>
+<script>
+  window.HdSdk.shopTracker.report('60006253', {
+  event_name: 'view',
+  page: 'pdp',
+  pdp_product_id: '{{ product.spu.spuSeq }}',
+  page_title: '{{ shareInfo.title }}',
+  page_des: {{{ JSONstringify shareInfo.description }}},
+  page_kw: '{{ default product.productSeo.key }}',
+  pic_rank: 1,
+  iframe_id: 1
+});
+</script>
+<script>
+  if (window.localStorage) {
+    var history_browse_products = window.localStorage.getItem('history_browse_products') || [];
+    var currencyProductId = '{{ product.spu.spuSeq }}';
+    if (history_browse_products) {
+      // 要去重、最新访问要放首位、最多只能10条数据
+      var history_browse_products_arr = typeof history_browse_products === 'string' ? history_browse_products.split(',') : history_browse_products;
+      var currencyProductIdIndex = history_browse_products_arr.indexOf(currencyProductId);
+      if (currencyProductIdIndex === -1) {
+        history_browse_products_arr.unshift(currencyProductId);
+        window.localStorage.setItem('history_browse_products', history_browse_products_arr.slice(0,10).join(','))
+      } else {
+        history_browse_products_arr.splice(currencyProductIdIndex, 1);
+        history_browse_products_arr.unshift(currencyProductId);
+        window.localStorage.setItem('history_browse_products', history_browse_products_arr.slice(0,10).join(','))
+      }
+    }
+  }
+</script>
+{{/partial}}

@@ -1,0 +1,196 @@
+---
+blogs:
+  limit: {{ section.settings.limit }}
+---
+
+{{inline_stylesheet 'blog-section/index.min.css'}}
+{{ assign 'collectionId' section.settings.blog_collection_id }}
+{{ assign 'blogData' (get_blogs_data collectionId all_blogs section.settings.limit) }}
+
+<div class="color-scheme-{{section.settings.color_scheme}} section-gap{{#if (isTruthy section.settings.color_scheme '!==' 'none') }}--padding{{/if}}">
+  <div class="blogs__main container">
+    <div class="blogs__head {{#if (not section.settings.title)}}blogs__head--no-title{{/if}}">
+      {{#if section.settings.title}}
+        <div class="blogs__title title5">{{ section.settings.title }}</div>
+      {{/if}}
+
+    </div>
+
+    {{#with this as |global|}}
+      <div class="blogs__list-wrapper">
+        <ul class="blogs__list blogs__list--{{ global.section.settings.layout }}">
+          {{#each blogData.blogs}}
+            <li class="blogs__item ">
+              {{
+                snippet 'blogs/simple-blog'
+                pathPrefix=(append '/blogs/' global.blogData.collection.id)
+                info=this
+                showAuthor=global.section.settings.is_show_author
+                showDate=global.section.settings.is_show_date
+                showCover=global.section.settings.is_show_cover
+                coverRatio=global.section.settings.image_ratio
+                showDesc=global.section.settings.is_show_desc
+                btn_text=(t 'blogList.container.readBtnText')
+              }}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/with}}
+  </div>
+  {{#if (isTruthy section.settings.btn_text)}}
+  <div class="stage-blogs-btn">
+    <a class="btn btn-primary"
+      href="{{#if (isTruthy blogData.collection.id)}}{{append '/blogs/' blogData.collection.id}}{{else}}javascript:void(0);{{/if}}">
+      {{section.settings.btn_text}}
+    </a>
+  </div>
+  {{/if}}
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.blog.name",
+  "type": "blog",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.blog.settings.title.label",
+      "default": "Blog"
+    },
+    {
+      "type": "blogs_picker",
+      "id": "blog_collection_id",
+      "label": "t:sections.blog.settings.blog_collection_id.label"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "t:sections.blog.settings.limit.label",
+      "default": 3,
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "unit": "t:sections.blog.settings.limit.unit"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "default": "grid",
+      "label": "t:sections.blog.settings.layout.label",
+      "options": [
+        {
+          "label": "t:sections.blog.settings.layout.options__0.label",
+          "value": "grid"
+        },
+        {
+          "label": "t:sections.blog.settings.layout.options__1.label",
+          "value": "list"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "is_show_date",
+      "default": true,
+      "label": "t:sections.blog.settings.is_show_date.label"
+    },
+    {
+      "type": "switch",
+      "id": "is_show_author",
+      "default": true,
+      "label": "t:sections.blog.settings.is_show_author.label"
+    },
+    {
+      "type": "switch",
+      "id": "is_show_cover",
+      "default": true,
+      "label": "t:sections.blog.settings.is_show_cover.label"
+    },
+    {
+      "id": "image_ratio",
+      "type": "select",
+      "label": "t:sections.blog.settings.image_ratio.label",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:sections.blog.settings.image_ratio.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.blog.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "0.75",
+          "label": "t:sections.blog.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "0.6666",
+          "label": "t:sections.blog.settings.image_ratio.options__3.label"
+        },
+        {
+          "value": "0.5625",
+          "label": "t:sections.blog.settings.image_ratio.options__4.label"
+        }
+      ],
+      "default": "0.75"
+    },
+    {
+      "type": "switch",
+      "id": "is_show_desc",
+      "default": true,
+      "label": "t:sections.blog.settings.is_show_desc.label"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "default": "View all",
+      "label": "t:sections.blog.settings.btn_text.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.blog.settings.color_scheme.label",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.blog.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.blog.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.blog.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.blog.settings.color_scheme.options__3.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.blog.presets.presets__0.name",
+      "category": "t:sections.blog.presets.presets__0.category",
+      "settings": {
+        "title": "Blogs",
+        "limit": 3,
+        "layout": "grid",
+        "blog_collection_id": "",
+        "color_scheme": "none",
+        "is_show_date": true,
+        "is_show_author": true,
+        "is_show_cover": true,
+        "cover_img_ratio": "0.75",
+        "is_show_desc": true,
+        "btn_text": "View all"
+      }
+    }
+  ]
+}
+{{/schema}}

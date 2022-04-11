@@ -1,0 +1,14 @@
+{{#if (boolean theme.settings.cart_open_type '===' 'minicart' '||' templateAlias '===' 'Cart')}}
+  {{#snippet 'global-top-drawer' id="cart-select" frameType="shadow"}}
+    <div class="trade_mini_cart">
+      {{snippet 'trade/banner'}}
+    </div>
+    <script>
+      window.__CHUNK_URL__ = {
+        miniCart: {
+          js: "{{assets_url 'cart/miniCart.min.js'}}",
+        }
+      }
+    </script>
+  {{/snippet}}
+{{/if}}

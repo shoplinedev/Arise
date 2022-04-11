@@ -1,0 +1,64 @@
+{{assign 'cart_type' trade_cart_type}}
+{{#trade_coupon_formatData 'cart'}}
+  <div class="trade_coupon__wrapper {{../cart_type}} {{cond (boolean @root.cartInfo.promotionCodeDTO '===' null) 'hide' ''}}">
+    <div class="trade_coupon_invalid_tips {{#unless hasErr}}hide{{/unless}}">
+      <div class="trade_coupon_invalid_tips_content">
+        <div class="trade_coupon_invalid_tips_content_icon">
+          {{include 'snippets/icons/icon_coupon' size=20}}
+        </div>
+        <div class="trade_coupon_invalid_tips_content_info">
+          {{#if discountCodeUnavailable '===' 'DISCOUNT_CODE_INVALID'}}
+            {{!-- 优惠码无效 --}}
+            {{t 'validate.discount-code-error'}}
+          {{ else if discountCodeUnavailable '===' 'DISCOUNT_CODE_NO_REACH'}}
+            {{!-- 优惠码输入正确，但商品价格或数量不符合要求 --}}
+            {{t 'validate.discount-code-user-invalid' discountCode=discountCode}}
+          {{else if discountCodeUnavailable '===' 'MUTUAL_EXCLUDED_BY_TIME_LIMITED'}}
+            {{!-- 优惠码输入正确，但与限时活动互斥 --}}
+            {{t 'validate.mutual-excluded-by-time-limited'}}
+          {{else if discountCodeUnavailable '===' 'MUTUAL_EXCLUDED_BY_LEVEL_PRICE'}}
+            {{!-- 输入正确，但商品价格或数量不符合要求 --}}
+            {{t 'validate.discount-code-user-invalid' discountCode=discountCode}}
+          {{ else if discountCodeUnavailable '===' 'DISCOUNT_CODE_CAN_NOT_ACCUMULATE'}}
+          {{!-- 商品已经存在一个优惠活动，不可与其他优惠叠加 --}}
+            {{t 'validate.discount-code-can-not-accumulate' discountCode=discountCode}}
+          {{else if discountCodeUnavailable '===' 'SHIPPING_PLAN_UNAVAILABLE'}}
+            {{!-- 优惠码不适用当前物流方式 --}}
+            {{t 'validate.shipping_plan_unavailable' discountCode=discountCode}}
+          {{/if}}
+        </div>
+      </div>
+      <div class="trade_coupon_invalid_tips_close">
+        {{include 'snippets/icons/icon_close' size=10}}
+      </div>
+    </div>
+    {{#input
+      wrapperClass='trade_coupon'
+      value=''
+      placeholder=(t 'trade.coupon-code')}}
+    <div class="trade_coupon__btns">
+      {{!-- 首屏渲染禁用“应用”按钮 --}}
+      <button id="trade_coupon_btn"
+        class="trade_coupon__btns-apply is-disabled">
+        {{ t 'common.apply' }}
+      </button>
+      <button id="trade_coupon_loading_btn" class="trade_coupon__btns-loading is-disabled hide">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.3999 7.00002C1.3999 10.0928 3.90711 12.6 6.9999 12.6C10.0927 12.6 12.5999 10.0928 12.5999 7.00002C12.5999 3.90723 10.0927 1.40002 6.9999 1.40002"
+            stroke="white" stroke-width="2.1" />
+        </svg>
+      </button>
+    </div>
+    {{/input}}
+    <div class="error-tips hide"></div>
+    {{!-- 这一层盒子用来限制flex自适应的宽 --}}
+    <div class="trade_coupon__appliedCodeBox {{#if (boolean hasErr "||" (boolean  discountCode '===' null)) }}hide{{/if}}">
+      <div class="trade_coupon__code">
+        {{include 'snippets/icons/icon_coupon' size=20}}
+        <span class="trade_coupon__code-content">{{discountCode}}</span>
+        <span class="trade_coupon__code__btn-del">{{include 'snippets/icons/icon_close' size=10}}</span>
+      </div>
+    </div>
+  </div>
+
+{{/trade_coupon_formatData}}

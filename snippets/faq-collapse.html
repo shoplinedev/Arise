@@ -1,0 +1,13 @@
+{{ assign 'borderColor' theme.color_text }}
+{{#if color_scheme '!==' 'none'}}
+  {{ assign 'borderColor' (get (append 'color_scheme_' color_scheme '_text') theme) }}
+{{/if}}
+
+{{ assign 'borderColor' (rgba borderColor 0.1) }}
+<div class="faq__collapse-title body3">
+    {{ snippet 'icons/icon_collapse_down' textColor=theme.color_text borderColor=borderColor cls="faq__collapse-icon"}}
+    {{title}}
+</div>
+<div class="faq__collapse-wrap">
+    <div class="faq__collapse-content body3 sl-richtext">{{{content}}}</div>
+</div>

@@ -1,0 +1,13 @@
+{{#if isActive}}
+  {{ assign 'activeClass' 'tag-active' }}
+{{else}}
+  {{ assign 'activeClass' '' }}
+{{/if}}
+{{assign 'textClass' (default textClass 'body4')}}
+
+<div class="product_base-checkbox {{activeClass}}" data-tag="{{title}}">
+  <i class="product_base-checkbox-icon"></i>
+  {{#if title}}
+    <span class="{{textClass}}">{{ title }}</span>
+  {{/if}}
+</div>

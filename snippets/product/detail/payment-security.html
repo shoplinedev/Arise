@@ -1,0 +1,60 @@
+{{assign 'paymentSecurity'  tradeSettleConfig.paymentSecurity}}
+{{assign 'afterSaleGuarantee'  tradeSettleConfig.afterSaleGuarantee}}
+
+{{#if (isArray paymentSecurity.displayPosition)}}
+  {{#inArray paymentSecurity.displayPosition displayPosition}}
+    {{#if paymentSecurity.desc  }}
+      {{ assign 'showPaymentSecurity' true }}
+    {{else}}
+      {{#if (and (if paymentSecurity.imageType '!==' 0) (boolean (or paymentSecurity.pcImages.length paymentSecurity.mobileImages.length) ))}}
+        {{ assign 'showPaymentSecurity' true }}
+      {{else}}
+        {{ assign 'showPaymentSecurity' false }}
+      {{/if}}
+    {{/if}}
+  {{/inArray}}
+{{else}}
+  {{ assign 'showPaymentSecurity' false }}
+{{/if}}
+
+{{#if (isArray afterSaleGuarantee.displayPosition)}}
+  {{#inArray afterSaleGuarantee.displayPosition displayPosition}}
+    {{#if afterSaleGuarantee.desc }}
+      {{ assign 'showAfterSaleGuaranteeDesc' true }}
+    {{/if}}
+  {{/inArray}}
+{{else}}
+  {{ assign 'showAfterSaleGuaranteeDesc' false }}
+{{/if}}
+
+
+{{#or showPaymentSecurity showAfterSaleGuaranteeDesc }}
+  <div class="productSecurityPayment">
+    {{#if showPaymentSecurity }}
+      {{#if paymentSecurity.desc}}
+        <p class="body4">{{paymentSecurity.desc}}</p>
+      {{/if}}
+      {{#if paymentSecurity.imageType '!==' 0 '&&' paymentSecurity.pcImages}}
+        <div class="pcImages {{#if paymentSecurity.imageType '===' 2}}customImage{{/if}}">
+          {{#each paymentSecurity.pcImages}}
+            <img class="lozad" data-src="{{ this }}" />
+          {{/each}}
+        </div>
+      {{/if}}
+      {{#if paymentSecurity.imageType '!==' 0 '&&' paymentSecurity.mobileImages}}
+        <div class="mobileImages {{#if paymentSecurity.imageType '===' 2}}customImage{{/if}}">
+          {{#each paymentSecurity.mobileImages}}
+            <img class="lozad" data-src="{{ this }}" />
+          {{/each}}
+        </div>
+      {{/if}}
+    {{/if}}
+
+
+    {{#if showAfterSaleGuaranteeDesc}}
+      <div class="afterSaleGuarantee body4">
+        {{{ afterSaleGuarantee.desc }}}
+      </div>
+    {{/if}}
+  </div>
+{{/or}}

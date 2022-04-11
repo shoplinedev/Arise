@@ -1,0 +1,60 @@
+{{assign 'isPreview' request.design_mode }}
+{{assign 'perPageNum' (cond request.is_mobile 48 section.settings.per_page_num)}}
+{{assign 'calc_page_size'  (toInt (default request.uri.query.page_size perPageNum))}}
+{{assign 'itemNumByRow' 4 }}
+{{assign 'slice_products_list' products.list }}
+{{assign 'gripType' 'small_grid' }}
+
+<div class="product-list-list" data-ssr-product-list-left>
+  <div class="product-list-description-category-top">
+    {{#if (boolean (boolean section.settings.category_desc_position '===' 'top') '&&' sortationId) }}
+      {{#if (length (trim sortation.sortation.description)) '>' 0}}
+        <div class="product-list-description-top">
+          {{snippet 'product/collections/collections_description' }}
+        </div>
+      {{/if}}
+    {{/if}}
+  </div>
+  <div class="product-list-filter-line"></div>
+  <div class="product-list-list-container" id="js-product-collections_filter_container">
+    <div class="product-list-list-header">
+      <div class="product-list-list-header-filter" id="product-list-list-header-filter">
+        {{snippet 'product/collections/collections-drawer-filter-icon' }}
+      </div>
+      <div class="product-list-filter-container">
+        <div class="product-list-show-product-number-m body3" id="product-list-list-header-left-m">
+          {{#if products.realTotal '>' 1}}
+              {{t 'productList.container.moreProductNum' num=products.realTotal}}
+            {{else}}
+              {{t 'productList.container.oneProductNum' num=products.realTotal}}
+            {{/if}}
+        </div>
+        {{#if section.settings.sorter_enable}}
+          <div class="product-list-sort-by">
+            <div class="product-list-mobile-sort-by">
+              {{snippet 'icons/icon_list_sort_by'}}
+            </div>
+            {{snippet 'product/collections/collections-sort'}}
+          </div>
+        {{else}}
+          <div class="product_sort_by_placeHolder"></div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <div class="product-list-item-list" data-ssr-product-list-top> 
+    {{#if (boolean products.list.length '>' 0)}}
+      {{snippet 'product/commons/product-item-list' effectPage="productList" gripType=gripType className='__sl-custom-track-product-list-item' colNum=itemNumByRow listData=slice_products_list pageSize=calc_page_size pageNum=products.pageNum total=products.total }}
+    {{else}}
+      <span class="body3">{{t "productList.noProduct"}}</span>
+    {{/if}}
+  </div>
+  <div class="product-list-description-category">
+    {{#if (boolean (boolean section.settings.category_desc_position '===' 'bottom') '&&' sortationId '&&' sortation.sortation.description ) }}
+      <div class="product-list-description-bottom">
+        {{snippet 'product/collections/collections_description' }}
+      </div>
+    {{/if}}
+  </div>
+</div>

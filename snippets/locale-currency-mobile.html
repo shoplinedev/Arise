@@ -1,0 +1,33 @@
+
+{{assign 'currency_selector' false}}
+{{assign 'locale_selector' false}}
+{{assign 'show_currency_symbol' false}}
+{{#if (boolean section.settings.show_currency_selector '&&' currencyConfig.enable)}}
+  {{assign 'currency_selector' true}}
+{{/if}}
+{{#if (boolean section.settings.show_locale_selector '&&' storeInfo.languageSetting.enableSelector)}}
+  {{assign 'locale_selector' true}}
+{{/if}}
+{{#if section.settings.show_currency_flags}}
+  {{assign 'show_currency_symbol' true}}
+{{/if}}
+
+{{#if (isTruthy currencyConfig.referenceCurrencies)}}
+  {{assign 'initialCurrency' (find-in-array currencyConfig.referenceCurrencies currencyCode 'currencyCode')}}
+{{/if}}
+
+
+{{#with this as |global| }}
+<div class="toolkit-mobile__container">
+  <span class="click body5 toolkit-item locale-currency notranslate j-currency-drawer-btn">
+    <span class="currency-symbol">{{global.initialCurrency.currencySymbol}}</span>
+    <span class="currency-code">{{global.initialCurrency.currencyCode}}</span>
+    {{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
+  </span>
+
+  <span class="click body5 toolkit-item locale-currency notranslate j-locale-drawer-btn d-none">
+    <span>{{nameOfLocale global.request.locale}}</span>
+    {{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
+  </span>
+</div>
+{{/with}}

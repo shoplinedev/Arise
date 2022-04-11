@@ -1,0 +1,30 @@
+<div class="product-comment-mobile-more">
+	<div class="product-comment-mobile-more-header">
+    <svg class="product-comment-mobile-more-header-back" width="28" height="28" viewBox="0 0 28 28" style="stroke: currentColor">
+      <path d="M22.5 13.5H5M5 13.5L13 5.5M5 13.5L13 21.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+		<div class="product-comment-mobile-more-header-title body3">{{ t 'comment.text' }}（{{ productComment.total }}）</div>
+	</div>
+	<div class="product-comment-mobile-more-summary">
+		<div class="product-comment-mobile-more-summary-score">
+			<div class="product-comment-mobile-more-summary-score-item notranslate">
+				<span>{{ productComment.score }}</span>
+				<span>/5</span>
+			</div>
+			{{{ rate value=productComment.score }}}
+		</div>
+		{{#with productComment}}
+			{{ snippet 'product/detail/comment/summary-detail' }}
+		{{/with}}
+		<div>
+			<div class="comment-leave-review-modal">
+  <button class="btn btn-primary btn-lg comment-leave-review-btn--mobile">
+    {{t 'comment.write-review'}}
+  </button>
+</div>
+		  </div>
+	</div>
+	<div class="container">
+		<div class="product-comment-mobile-more-loading"></div>
+	</div>
+</div>

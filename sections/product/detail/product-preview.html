@@ -1,0 +1,515 @@
+---
+product_comment_config:
+  enable: true
+---
+
+
+
+{{ preload_state 'comments' }}
+{{ preload_state 'mobileComments' }}
+{{ preload_state 'theme' }}
+{{ preload_state 'productComment' }}
+
+
+<div class="section-gap product-preview-section"
+  data-section-type="product-preview"
+  data-section-id="{{ section.id }}"
+  data-ssr-product-detail
+>
+  <div data-product-preview-section-id="{{ section.id }}"></div>
+  {{ assign 'modalPrefix' (default modalPrefix 'productModal_') }}
+
+  {{#if forModal}}
+    {{ snippet 'product/detail/product-preview' id=(append modalPrefix product.spu.spuSeq) statePrefix=(append modalPrefix product.spu.spuSeq) isAjax=true description=productDesc.description }}
+  {{else}}
+    {{ snippet 'product/detail/product-preview' id='productDetail' statePrefix='product' description=productDesc.description section=section }}
+  {{/if}}
+</div>
+
+
+{{!-- 仅商详页支持评论 --}}
+{{#if (isFalsey forModal)}}
+  {{!-- 捆绑销售 --}}
+  <div class="section-gap">
+    <div class="container" id="bundle-detail_down"></div>
+  </div>
+  {{!-- 评论受总开关影响 --}}
+  {{#if productCommentConfig.disable_comment '===' '0'}}
+    <div class="section-gap">
+      {{!-- 评价 --}}
+      {{#if (or comments mobileComments)}}
+      <div class="container" id="product-comment-container">
+        {{#if comments}}
+        <div class="product-comment-pc">
+          {{ snippet 'product/detail/comment/Pc/index' }}
+        </div>
+        {{/if}}
+        {{#if mobileComments}}
+        <div class="product-comment-mobile">
+          {{ snippet 'product/detail/comment/Mobile/index' }}
+        </div>
+        {{/if}}
+      </div>
+      {{/if}}
+      {{!-- 请勿在评论按钮和评论区域加其他dom ，否者会影响样式！！--}}
+      {{!-- 评价下方的添加评论按钮 --}}
+      <div class="container section-gap" id="product-comment-container">
+        {{ assign 'hasPcComment' (boolean comments) }}
+        <div class="comment-leave-review">
+  {{#unless hasPcComment}}
+  <div class="comment-no-comment-tips">
+    <p class="comment-no-comment-tips--title">
+      {{t 'comment.no-comment-title-tip'}}
+    </p>
+    <p class="comment-no-comment-tips--first">
+      {{t "comment.no-comment-first-tip"}}
+    </p>
+  </div>
+  {{/unless}}
+  <div class="comment-leave-pc-main">
+    <div class="comment-leave-pc-btns" >
+       <button class="btn btn-primary btn-lg comment-leave-review-btn">
+        {{t 'comment.write-review'}}
+      </button>
+    </div>
+    <div class="product-comment-leave-pc"></div>
+  </div>
+  <div class="comment-leave-mobile-btns">
+    <button class="btn btn-primary btn-lg comment-leave-review-btn--mobile">
+      {{t 'comment.write-review'}}
+    </button>
+  </div>
+  
+</div>
+      </div>
+      {{!-- 评价下方的添加评论按钮end  --}}
+    </div>
+  {{/if}}
+  {{!-- 推荐商品 --}}
+  {{ snippet 'product/product-recommend' }}
+  {{#if (compare (length comments.list) '>' 0)}}
+    {{#snippet 'product/commons/base-modal' closable=false modalId='product-comment-detail' animationType='fadeIn'}}
+      {{ snippet 'product/detail/comment/Pc/previewModal' }}
+    {{/snippet}}
+  {{/if}}
+  {{#if (compare (length mobileComments.list) '>' 3)}}
+    {{#snippet 'product/commons/base-modal' closable=false modalId='product-comment-more' animationType='popup'}}
+      {{ snippet 'product/detail/comment/MobileDetail/index' }}
+    {{/snippet}}
+  {{/if}}
+{{/if}}
+
+
+{{#schema}}
+{
+  "name": "t:sections.product_detail_product-preview.name",
+  "max_blocks": 15,
+  "settings": [
+    {
+      "type": "switch",
+      "id": "product_info_sticky",
+      "label": "t:sections.product_detail_product-preview.settings.product_info_sticky.label",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "product_image_pc_show_style",
+      "label": "t:sections.product_detail_product-preview.settings.product_image_pc_show_style.label",
+      "options": [
+        {
+          "value": "carousel",
+          "label": "t:sections.product_detail_product-preview.settings.product_image_pc_show_style.options__0.label"
+        },
+        {
+          "value": "flatten",
+          "label": "t:sections.product_detail_product-preview.settings.product_image_pc_show_style.options__1.label"
+        },
+        {
+          "value": "thumbnail_flatten",
+          "label": "t:sections.product_detail_product-preview.settings.product_image_pc_show_style.options__2.label"
+        }
+      ],
+      "default": "flatten"
+    },
+    {
+      "type": "select",
+      "id": "product_image_size",
+      "label": "t:sections.product_detail_product-preview.settings.product_image_size.label",
+      "options": [
+        {
+          "value": "large",
+          "label": "t:sections.product_detail_product-preview.settings.product_image_size.options__0.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.product_detail_product-preview.settings.product_image_size.options__1.label"
+        },
+        {
+          "value": "small",
+          "label": "t:sections.product_detail_product-preview.settings.product_image_size.options__2.label"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "product_mobile_thumbnail_image_hide",
+      "label": "t:sections.product_detail_product-preview.settings.product_mobile_thumbnail_image_hide.label",
+      "options": [
+        {
+          "value": "hide",
+          "label": "t:sections.product_detail_product-preview.settings.product_mobile_thumbnail_image_hide.options__0.label"
+        },
+        {
+          "value": "show",
+          "label": "t:sections.product_detail_product-preview.settings.product_mobile_thumbnail_image_hide.options__1.label"
+        }
+      ],
+      "default": "hide"
+    },
+    {
+      "type": "switch",
+      "id": "video_loop",
+      "label": "t:sections.product_detail_product-preview.settings.video_loop.label",
+      "default": false
+    },
+    {
+      "id": "default_selected_sku",
+      "type": "switch",
+      "label": "t:sections.product_detail_product-preview.settings.default_selected_sku.label",
+      "default": true
+    }
+  ],
+  "default": {
+    "settings": {
+      "product_image_pc_show_style": "flatten",
+      "product_image_size": "medium",
+      "video_loop": false,
+      "product_info_sticky": true,
+      "product_mobile_thumbnail_image_hide": "hide",
+      "default_selected_sku": true
+    },
+    "blocks": [
+      {
+        "type": "sku-selector",
+        "settings": {
+          "sku-type": "flatten"
+        }
+      },
+      {
+        "type": "product-sell-info",
+        "settings": {
+          "product_sales_point_1_icon": "globe",
+          "product_sales_point_1": "Free worldwide shipping",
+          "product_sales_point_2_icon": "checkmark",
+          "product_sales_point_2": "Free returns",
+          "product_sales_point_3_icon": "leaf",
+          "product_sales_point_3": "Carbon neutral",
+          "product_sales_point_4_icon": "lock",
+          "product_sales_point_4": "Secure payments"
+        }
+      },
+      {
+        "type": "product-additional",
+        "settings": {
+          "product_custom_tab1": "",
+          "product_custom_tab1_fold": true,
+          "product_custom_tab2": "",
+          "product_custom_tab2_fold": true,
+          "product_custom_tab3": "",
+          "product_custom_tab3_fold": true
+        }
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "type": "title",
+      "icon": "title",
+      "name": "t:sections.product_detail_product-preview.blocks.title.name",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "abstract",
+      "icon": "paragraph",
+      "name": "t:sections.product_detail_product-preview.blocks.abstract.name",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "icon": "normal",
+      "name": "t:sections.product_detail_product-preview.blocks.price.name",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "sku-selector",
+      "icon": "normal",
+      "name": "t:sections.product_detail_product-preview.blocks.sku-selector.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "sku_style",
+          "label": "t:sections.product_detail_product-preview.blocks.sku-selector.settings.sku_style.label",
+          "default": "flatten",
+          "options": [
+            {
+              "value": "flatten",
+              "label": "t:sections.product_detail_product-preview.blocks.sku-selector.settings.sku_style.options__0.label"
+            },
+            {
+              "value": "select",
+              "label": "t:sections.product_detail_product-preview.blocks.sku-selector.settings.sku_style.options__1.label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "quantity",
+      "icon": "normal",
+      "name": "t:sections.product_detail_product-preview.blocks.quantity.name",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "product-sell-info",
+      "icon": "normal",
+      "name": "t:sections.product_detail_product-preview.blocks.product-sell-info.name",
+      "settings": [
+        {
+          "id": "product_sales_point_1_icon",
+          "type": "select",
+          "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_1_icon.label",
+          "options": [
+            {
+              "value": "checkmark",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_1_icon.options__0.label"
+            },
+            {
+              "value": "globe",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_1_icon.options__1.label"
+            },
+            {
+              "value": "leaf",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_1_icon.options__2.label"
+            },
+            {
+              "value": "package",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_1_icon.options__3.label"
+            },
+            {
+              "value": "lock",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_1_icon.options__4.label"
+            },
+            {
+              "value": "truck",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_1_icon.options__5.label"
+            }
+          ],
+          "default": "globe"
+        },
+        {
+          "id": "product_sales_point_1",
+          "type": "text",
+          "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_1.label",
+          "default": "Free worldwide shipping"
+        },
+        {
+          "id": "product_sales_point_2_icon",
+          "type": "select",
+          "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_2_icon.label",
+          "options": [
+            {
+              "value": "checkmark",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_2_icon.options__0.label"
+            },
+            {
+              "value": "globe",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_2_icon.options__1.label"
+            },
+            {
+              "value": "leaf",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_2_icon.options__2.label"
+            },
+            {
+              "value": "package",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_2_icon.options__3.label"
+            },
+            {
+              "value": "lock",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_2_icon.options__4.label"
+            },
+            {
+              "value": "truck",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_2_icon.options__5.label"
+            }
+          ],
+          "default": "checkmark"
+        },
+        {
+          "id": "product_sales_point_2",
+          "type": "text",
+          "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_2.label",
+          "default": "Free returns"
+        },
+        {
+          "id": "product_sales_point_3_icon",
+          "type": "select",
+          "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_3_icon.label",
+          "options": [
+            {
+              "value": "checkmark",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_3_icon.options__0.label"
+            },
+            {
+              "value": "globe",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_3_icon.options__1.label"
+            },
+            {
+              "value": "leaf",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_3_icon.options__2.label"
+            },
+            {
+              "value": "package",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_3_icon.options__3.label"
+            },
+            {
+              "value": "lock",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_3_icon.options__4.label"
+            },
+            {
+              "value": "truck",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_3_icon.options__5.label"
+            }
+          ],
+          "default": "leaf"
+        },
+        {
+          "id": "product_sales_point_3",
+          "type": "text",
+          "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_3.label",
+          "default": "Carbon neutral"
+        },
+        {
+          "id": "product_sales_point_4_icon",
+          "type": "select",
+          "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_4_icon.label",
+          "options": [
+            {
+              "value": "checkmark",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_4_icon.options__0.label"
+            },
+            {
+              "value": "globe",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_4_icon.options__1.label"
+            },
+            {
+              "value": "leaf",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_4_icon.options__2.label"
+            },
+            {
+              "value": "package",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_4_icon.options__3.label"
+            },
+            {
+              "value": "lock",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_4_icon.options__4.label"
+            },
+            {
+              "value": "truck",
+              "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_4_icon.options__5.label"
+            }
+          ],
+          "default": "lock"
+        },
+        {
+          "id": "product_sales_point_4",
+          "type": "text",
+          "label": "t:sections.product_detail_product-preview.blocks.product-sell-info.settings.product_sales_point_4.label",
+          "default": "Secure payments"
+        }
+      ]
+    },
+    {
+      "type": "buy-button",
+      "icon": "button",
+      "name": "t:sections.product_detail_product-preview.blocks.buy-button.name",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "description",
+      "icon": "paragraph",
+      "name": "t:sections.product_detail_product-preview.blocks.description.name",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "share",
+      "icon": "normal",
+      "name": "t:sections.product_detail_product-preview.blocks.share.name",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "product-additional",
+      "icon": "normal",
+      "name": "t:sections.product_detail_product-preview.blocks.product-additional.name",
+      "settings": [
+        {
+          "id": "product_custom_tab1",
+          "type": "page_picker",
+          "label": "t:sections.product_detail_product-preview.blocks.product-additional.settings.product_custom_tab1.label",
+          "default": ""
+        },
+        {
+          "id": "product_custom_tab1_fold",
+          "type": "switch",
+          "label": "t:sections.product_detail_product-preview.blocks.product-additional.settings.product_custom_tab1_fold.label",
+          "default": true
+        },
+        {
+          "id": "product_custom_tab2",
+          "type": "page_picker",
+          "label": "t:sections.product_detail_product-preview.blocks.product-additional.settings.product_custom_tab2.label",
+          "default": ""
+        },
+        {
+          "id": "product_custom_tab2_fold",
+          "type": "switch",
+          "label": "t:sections.product_detail_product-preview.blocks.product-additional.settings.product_custom_tab2_fold.label",
+          "default": true
+        },
+        {
+          "id": "product_custom_tab3",
+          "type": "page_picker",
+          "label": "t:sections.product_detail_product-preview.blocks.product-additional.settings.product_custom_tab3.label",
+          "default": ""
+        },
+        {
+          "id": "product_custom_tab3_fold",
+          "type": "switch",
+          "label": "t:sections.product_detail_product-preview.blocks.product-additional.settings.product_custom_tab3_fold.label",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "html",
+      "icon": "normal",
+      "name": "t:sections.product_detail_product-preview.blocks.html.name",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "html",
+          "limit": 0,
+          "label": "t:sections.product_detail_product-preview.blocks.html.settings.html.label"
+        }
+      ]
+    }
+  ]
+}
+{{/schema}}

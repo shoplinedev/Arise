@@ -1,0 +1,6 @@
+{{ assign "config" (sales_promotion_tag_translate benefitCondition benefitType)}}
+
+<div class="sales__addToCartItem">
+  <span> {{ noTranslationHTML (replace (replace template '{condition}' config.params.threshold.string) '{discount}' config.params.save.string)}}</span>
+  <button data-count="{{benefitCondition.benefitCondition.minThreshold}}" class="addToCart">{{ t 'productList.container.tradePopup.addToCart' }}</button>
+</div>

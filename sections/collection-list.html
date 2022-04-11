@@ -1,0 +1,246 @@
+---
+collection_products:
+  limit: 0
+---
+{{!-- 不需要商品数据只需要分类数据 所以设置为0 提高响应速度 --}}
+{{ inline_stylesheet 'collection-list/index.min.css' }}
+{{!-- <link rel="stylesheet" href="{{ assets_url 'collection-list/index.min.css' }}"/> --}}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'collection-list/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'collection-list/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+{{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
+{{ assign 'title' section.settings.title }}
+{{!-- {{assign 'real_product_img_width' (divide 1420 col)}} --}}
+{{ assign 'goodsBlockLength' (length blocks) }}
+{{!-- 分类图片比例 --}}
+{{ assign 'imageRatio' section.settings.collection_image_ratio }}
+{{ assign 'color_scheme' section.settings.color_scheme }}
+{{ assign 'slice_in_mobile' section.settings.slice_in_mobile }}
+
+{{ assign 'limitWidthClass' '' }}
+{{ assign 'col' 3 }}
+{{!-- override col‘s value --}}
+
+{{#if (boolean goodsBlockLength '===' 1)}}
+  {{ assign 'col' 1 }}
+  {{ assign 'limitWidthStyle' 'limit-col-1-max-width' }}
+{{/if}}  
+
+{{#or (boolean goodsBlockLength '===' 2) (boolean goodsBlockLength '===' 4)}}
+  {{ assign 'col' 2 }}  
+{{/or}}  
+
+{{#or (boolean goodsBlockLength '===' 3) (boolean goodsBlockLength '===' 5) (boolean goodsBlockLength '>=' 6)}}
+  {{ assign 'col' 3 }}
+{{/or}}  
+
+<div class="color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}">
+  <div class="colletionlist container {{ limitWidthStyle }} {{#if (isTruthy slice_in_mobile)}}slice_in_mobile{{/if}}">
+    <h2 class="section-title colletionlist__title title4 text-center">{{ title }}</h2>
+    <div class="colletionlist__slide-container {{#if (isTruthy slice_in_mobile)}}slice_in_mobile container{{/if}}">
+      <div class="colletionlist__cagetegory row row-cols-{{ col }} ">
+        {{#each blocks}}
+          {{ assign 'sortationData' (get settings.category_id ../all_collections) }}
+          {{#if (boolean (boolean settings.title '===' undefined) '||' (boolean settings.title '===' ''))}}
+            {{#if (isFalsey settings.category_id)}}
+              {{ assign 'showTitle' 'Example Collection' }}
+            {{else}}
+              {{ assign 'showTitle' (get 'title' sortationData) }}
+            {{/if}}
+          {{else}}
+            {{ assign 'showTitle' settings.title }}
+          {{/if}}
+
+          {{ snippet 'product/commons/collection-item' sortationData=sortationData title=showTitle imageRatio=../imageRatio bgDisplayPosition=settings.image_display_area titleColor='inherit' }}         
+        {{/each}}
+      </div>
+    </div>  
+    {{#if (isTruthy section.settings.button_text)}}
+      <div class="collection-list-more-btn">
+        <a class="btn btn-primary"
+          href="/collections-all">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+
+{{#schema}}
+{
+  "name": "t:sections.collection-list.name",
+  "presets": [
+    {
+      "category": "t:sections.collection-list.presets.presets__0.category",
+      "name": "t:sections.collection-list.presets.presets__0.name",
+      "settings": {
+        "title": "Collection list",
+        "collection_image_ratio": "100",
+        "color_scheme": "none",
+        "slice_in_mobile": false,
+        "button_text": "View all"
+      },
+      "blocks": [
+        {
+          "type": "collection",
+          "settings": {
+            "image_display_area": "center_center"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "image_display_area": "center_center"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "image_display_area": "center_center"
+          }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 15,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.collection-list.settings.title.label"
+    },
+    {
+      "id": "collection_image_ratio",
+      "type": "select",
+      "label": "t:sections.collection-list.settings.collection_image_ratio.label",
+      "options": [
+        {
+          "value": "0",
+          "label": "t:sections.collection-list.settings.collection_image_ratio.options__0.label"
+        },
+        {
+          "value": "100",
+          "label": "t:sections.collection-list.settings.collection_image_ratio.options__1.label"
+        },
+        {
+          "value": "75",
+          "label": "t:sections.collection-list.settings.collection_image_ratio.options__2.label"
+        },
+        {
+          "value": "150",
+          "label": "t:sections.collection-list.settings.collection_image_ratio.options__3.label"
+        }
+      ],
+      "default": "100"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.collection-list.settings.color_scheme.label",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.collection-list.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.collection-list.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.collection-list.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.collection-list.settings.color_scheme.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "slice_in_mobile",
+      "label": "t:sections.collection-list.settings.slice_in_mobile.label",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:sections.collection-list.settings.button_text.label",
+      "default": "View all"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "icon": "normal",
+      "name": "t:sections.collection-list.blocks.collection.name",
+      "settings": [
+        {
+          "type": "collection_picker",
+          "id": "category_id",
+          "label": "t:sections.collection-list.blocks.collection.settings.category_id.label"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.collection-list.blocks.collection.settings.title.label"
+        },
+        {
+          "type": "select",
+          "id": "image_display_area",
+          "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.label",
+          "info": "t:sections.collection-list.blocks.collection.settings.image_display_area.info",
+          "default": "center_center",
+          "options": [
+            {
+              "value": "left_top",
+              "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.options__0.label"
+            },
+            {
+              "value": "center_top",
+              "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.options__1.label"
+            },
+            {
+              "value": "right_top",
+              "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.options__2.label"
+            },
+            {
+              "value": "center_left",
+              "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.options__3.label"
+            },
+            {
+              "value": "center_center",
+              "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.options__4.label"
+            },
+            {
+              "value": "center_right",
+              "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.options__5.label"
+            },
+            {
+              "value": "left_bottom",
+              "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.options__6.label"
+            },
+            {
+              "value": "center_bottom",
+              "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.options__7.label"
+            },
+            {
+              "value": "right_bottom",
+              "label": "t:sections.collection-list.blocks.collection.settings.image_display_area.options__8.label"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{{/schema}}

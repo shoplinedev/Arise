@@ -1,0 +1,30 @@
+{{#if (cart_show_security tradeSettleConfig)}}
+  <div class='trade-cart-safety-logo'>
+    {{#if tradeSettleConfig.paymentSecurity.displayPosition }}
+      {{#filter tradeSettleConfig.paymentSecurity.displayPosition 'CART'}}
+        {{#if @root.tradeSettleConfig.paymentSecurity.desc}}
+          <div class='trade-cart-safety-logo-title body4'>{{@root.tradeSettleConfig.paymentSecurity.desc}}</div>
+        {{/if}}
+        {{#if @root.tradeSettleConfig.paymentSecurity.imageType '>' 0}}
+          <div class='trade-cart-safety-logo-list trade-cart-safety-logo-list-mobile'>
+              {{#each @root.tradeSettleConfig.paymentSecurity.mobileImages }}
+              <img data-src="{{this}}" class="safety-logo-{{#if @root.tradeSettleConfig.paymentSecurity.imageType '>' 1}}image{{else}}icon{{/if}} lazyload lozad" />
+              {{/each }}
+          </div>
+          <div class='trade-cart-safety-logo-list trade-cart-safety-logo-list-pc'>
+              {{#each @root.tradeSettleConfig.paymentSecurity.pcImages }}
+              <img data-src="{{this}}" class="safety-logo-{{#if @root.tradeSettleConfig.paymentSecurity.imageType '>' 1}}image{{else}}icon{{/if}} lazyload lozad" />
+              {{/each }}
+          </div>
+        {{/if}}
+      {{/filter}}
+    {{/if}}
+    {{#if tradeSettleConfig.afterSaleGuarantee.displayPosition }}
+      {{#filter tradeSettleConfig.afterSaleGuarantee.displayPosition 'CART'}}
+        {{#if @root.tradeSettleConfig.afterSaleGuarantee.desc}}
+          <pre class="trade-cart-safety-logo-pre body4">{{#setInnerHTML @root.tradeSettleConfig.afterSaleGuarantee.desc}}{{/setInnerHTML}}</pre>
+        {{/if}}
+      {{/filter}}
+    {{/if}}
+  </div>
+{{/if}}

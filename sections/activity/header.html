@@ -1,0 +1,66 @@
+{{!-- 活动海报 --}}
+<div class="activity__poster">
+  {{#if activity.bannerPicUrlMobile }}
+    {{!-- 移动端图片 --}}
+    <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrlMobile }}" />
+  {{else}}
+    {{#if activity.bannerPicUrl }}
+      {{!-- 无移动端标签有pc端图片获取pc端图片 --}}
+      <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrl }}" />
+    {{/if}}
+  {{/if}}
+  {{#if activity.bannerPicUrl }}
+    {{!-- pc端图片 --}}
+    <img class="activity__poster-pc d-none d-md-block" src="{{ activity.bannerPicUrl }}" />
+  {{/if}}
+</div>
+{{!-- 活动信息 --}}
+<div class="container activity__info">
+  {{!-- 活动标题 --}}
+  <h1 class="title2 activity__title">
+    {{ activity.defaultActivityName }}
+  </h1>
+  {{!-- 活动规则 --}}
+  <div class="body3 activity__rules">{{ trim activity.defaultActivityRule }}</div>
+  {{#if activity.promotionSubType '===' 1}}
+    <div class="activity__limit">
+      {{#if (and activity.userLimitedType (compare activity.acquirePerUserLimit '>' 0))}}
+        <div class="body3 activity__limit-tips">
+          <i>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M21.5021 9.04113L21.3785 8.30138L21.5021 9.04113ZM2.49791 14.9589L2.37434 14.2191L2.49791 14.9589ZM2.75 4.5C2.75 4.63807 2.63807 4.75 2.5 4.75V3.25C1.80964 3.25 1.25 3.80964 1.25 4.5H2.75ZM2.75 8.5V4.5H1.25V8.5H2.75ZM5.75 12C5.75 10.1402 4.3969 8.59794 2.62147 8.30138L2.37434 9.78088C3.43868 9.95867 4.25 10.8853 4.25 12H5.75ZM2.62147 15.6986C4.39691 15.4021 5.75 13.8598 5.75 12H4.25C4.25 13.1147 3.43868 14.0413 2.37434 14.2191L2.62147 15.6986ZM2.75 19.5V15.5H1.25V19.5H2.75ZM2.5 19.25C2.63807 19.25 2.75 19.3619 2.75 19.5H1.25C1.25 20.1904 1.80964 20.75 2.5 20.75V19.25ZM21.5 19.25H2.5V20.75H21.5V19.25ZM21.25 19.5C21.25 19.3619 21.3619 19.25 21.5 19.25V20.75C22.1904 20.75 22.75 20.1904 22.75 19.5H21.25ZM21.25 15.5V19.5H22.75V15.5H21.25ZM18.25 12C18.25 13.8598 19.6031 15.4021 21.3785 15.6986L21.6257 14.2191C20.5613 14.0413 19.75 13.1147 19.75 12H18.25ZM21.3785 8.30138C19.6031 8.59794 18.25 10.1402 18.25 12H19.75C19.75 10.8853 20.5613 9.95867 21.6257 9.78088L21.3785 8.30138ZM21.25 4.5V8.5H22.75V4.5H21.25ZM21.5 4.75C21.3619 4.75 21.25 4.63807 21.25 4.5H22.75C22.75 3.80964 22.1904 3.25 21.5 3.25V4.75ZM2.5 4.75H21.5V3.25H2.5V4.75ZM21.6257 9.78088C22.1825 9.68787 22.75 9.21567 22.75 8.5H21.25C21.25 8.42511 21.2824 8.36888 21.3097 8.34017C21.3339 8.31476 21.3579 8.30482 21.3785 8.30138L21.6257 9.78088ZM22.75 15.5C22.75 14.7843 22.1825 14.3121 21.6257 14.2191L21.3785 15.6986C21.3579 15.6952 21.3339 15.6852 21.3097 15.6598C21.2824 15.6311 21.25 15.5749 21.25 15.5H22.75ZM2.37434 14.2191C1.81754 14.3121 1.25 14.7843 1.25 15.5H2.75C2.75 15.5749 2.71756 15.6311 2.69026 15.6598C2.66609 15.6852 2.64209 15.6952 2.62147 15.6986L2.37434 14.2191ZM1.25 8.5C1.25 9.21567 1.81754 9.68787 2.37434 9.78088L2.62147 8.30138C2.64209 8.30482 2.66609 8.31477 2.69026 8.34017C2.71756 8.36888 2.75 8.42511 2.75 8.5H1.25Z"
+                fill="currentColor" />
+              <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                d="M8.25 16.5L8.25 7.5H8.75C9.30228 7.5 9.75 7.94772 9.75 8.5V15.5C9.75 16.0523 9.30228 16.5 8.75 16.5H8.25Z" fill="currentColor" />
+            </svg>
+          </i>
+          {{#if activity.userLimitedType '===' 2}}
+            {{!-- 每人每款商品限购 --}}
+            {{t 'sales.customer-purchase-limit-each-item' count=activity.acquirePerUserLimit}}
+          {{else}}
+            {{!-- 每人每活动限购 --}}
+            {{t 'sales.customer-purchase-limit' count=activity.acquirePerUserLimit}}
+          {{/if}}
+        </div>
+      {{/if}}
+      <div class="body3 activity__limit-time">
+        <i>
+          <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9.5" cy="9" r="6.9375" stroke="currentColor" stroke-width="1.125" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M8.9375 4.87488H9.3125C9.72671 4.87488 10.0625 5.21066 10.0625 5.62488V8.43745H12.875C13.2892 8.43745 13.625 8.77324 13.625 9.18745V9.56245H8.9375V4.87488Z"
+              fill="currentColor" />
+          </svg>
+        </i>
+        <span class="activity__limit-time-text">{{dayjs method='format' init=activity.startTime format='YYYY-MM-DD HH:mm'}}{{#if activity.endTime}} - {{dayjs method='format' init=activity.endTime format='YYYY-MM-DD HH:mm'}}{{/if}}</span>
+      </div>
+    </div>
+  {{/if}}
+  {{!-- 活动标签 --}}
+  {{#if activity.benefitConditions.length}}
+    <div class="activity__tags">
+      {{ snippet 'sales/promotion-tags' benefitType=activity.benefitType benefitConditions=activity.benefitConditions  template = activity.discountStyleText}}
+    </div>
+  {{/if}}
+</div>

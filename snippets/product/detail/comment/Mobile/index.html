@@ -1,0 +1,29 @@
+<div class="product-comment-mobile-wrap">
+  <div class="product-section-title">
+    <div class="product-comment-mobile-title title5">{{t "comment.customer-comment"}}({{productComment.total}})</div>
+    <div class="product-comment-mobile-summary">
+      {{#with productComment as |global|}}
+        <div class="product-comment-mobile-summary-item notranslate">
+          <span>{{this.score}}</span>
+          <span>/5</span>
+        </div>
+        {{{rate count=5 value=this.score}}}
+      {{/with}}
+    </div>
+  </div>
+	{{#if (compare (length mobileComments.list) '>' 0)}}
+		{{#each mobileComments.list}}
+			{{#if (compare @index '<' 3)}}
+				{{snippet 'product/detail/comment/card' index=@index}}
+			{{/if}}
+		{{/each}}
+	{{/if}}
+	{{#if (compare (length mobileComments.list) '>' 3)}}
+		<div class="custom-link-color product-comment-mobile-summary-more">
+			<span>{{t "comment.all-reviews"}}</span>
+			<svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.5 9.3994L5.44971 5.4497L1.50001 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+		</div>
+	{{/if}}
+</div>

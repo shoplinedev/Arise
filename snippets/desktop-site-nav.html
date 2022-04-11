@@ -1,0 +1,78 @@
+{{assign 'limit' (length main_menu.nodeTree)}}
+{{assign 'startAt' 0}}
+<ul class="desktop-site-nav {{#if settings.navigation_layout '===' 'middle-line'}}desktop-site-nav__center{{/if}}">
+    {{#with this as |global|}}
+    {{#each main_menu.nodeTree}}
+    {{assign 'has_dropdown' false}}
+    {{assign 'is_megamenu' false}}
+    {{#if (isTruthy (length this.childNodes))}}
+    {{assign 'has_dropdown' true}}
+    {{#if (depth_of_nav this) '>' 1}}
+    {{assign 'is_megamenu' true}}
+    {{/if}}
+    {{/if}}
+    {{assign 'menu_block' (get (uppercase this.name.default) ../blockObj)}}
+    {{assign 'showImg1' (boolean menu_block.settings.image_1.url '||' menu_block.settings.image_1_title)}}
+    {{assign 'showImg2' (boolean menu_block.settings.image_2.url '||' menu_block.settings.image_2_title)}}
+    {{#if (boolean showImg1 '||' showImg2)}}
+        {{assign 'is_megamenu' true}}
+    {{/if}}
+    <li data-float="{{#if showImg1}}{{menu_block.settings.image_1_position}}{{/if}}{{#if showImg2}}{{menu_block.settings.image_2_position}}{{/if}}" data-site-nav-menu-id="{{this.id}}" class="d-site--nav__item  {{#if has_dropdown}}site-nav--has-dropdown{{/if}} {{#if is_megamenu}}site-nav--is-megamenu{{/if}}">
+        {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+        <a class="site-nav__link d-site--nav__underline navigation-font-size  {{#if has_dropdown}}site-nav__link--has-dropdown{{/if}}"
+           {{{navItem.hrefAttr}}}>
+            {{navItem.name}}
+            {{#if has_dropdown}}
+                {{ snippet 'icons/icon_arrow_down' classes="dropdown__icon--arrow" }}
+            {{/if}}
+        </a>
+        {{#if is_megamenu}}
+        <div class="site-nav__dropdown megamenu text-left">
+
+            <div class="container magamenu__container g-2 g-md-5">
+                {{!-- 图片逻辑 --}}
+                {{snippet 'desktop-site-nav-img' menu_block=menu_block }}
+                <div class="grid-wrap">
+                    <div class="nav-grid">
+                        {{#each this.childNodes}}
+                            <div class="nav-grid__item">
+                                {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+                                <div class="body2 fw-blod">
+                                    <a data-node-id="{{this.id}}" {{{navItem.hrefAttr}}} class="site-nav__dropdown-link site-nav__node site-nav__dropdown-link--top-level">{{ navItem.name }}</a>
+                                </div>
+                                {{#each this.childNodes}}
+                                {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+                                <div>
+                                    <a data-node-id="{{this.id}}"  class="site-nav__dropdown-link site-nav__node body3" {{{navItem.hrefAttr}}}>{{navItem.name}}</a>
+                                </div>
+                                {{/each}}
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+
+        {{#unless is_megamenu}}
+            {{#if has_dropdown}}
+                <div class="site-nav__dropdown unmegamenu-container">
+                    <ul class="text-left">
+                        {{#each this.childNodes}}
+                        <li class="{{#if has_sub_dropdown}}site-nav__deep-dropdown-trigger{{/if}}">
+                            {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+                            <a {{{navItem.hrefAttr}}} class="body3 site-nav__dropdown-link site-nav__dropdown-link--second-level">
+                                {{navItem.name}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/if}}
+        {{/unless}}
+    </li>
+    {{/each}}
+    {{/with}}
+
+</ul>

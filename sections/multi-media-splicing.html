@@ -1,0 +1,426 @@
+{{ inline_stylesheet 'multi-media-splicing/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'multi-media-splicing/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'multi-media-splicing/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+{{ assign 'settings' section.settings }}
+
+<section class="multi-media-splicing__wrapper color-scheme-{{ settings.color_scheme }} section-gap{{#if settings.color_scheme '!==' ''}}--padding{{/if}}">
+  <div
+    class="container"
+    data-section-type="multi-media-splicing"
+    data-section-id="{{ section.id }}">
+    {{#if settings.title}}
+      <h2 class="multi-media-splicing__title title5">{{ settings.title }}</h2>
+    {{/if}}
+
+    <div class="multi-media-splicing__block multi-media-block__{{ length section.block_order }} multi-media-splicing__layout-{{ settings.desktop_layout }} multi-media-{{ settings.mobile_layout }}__layout-mobile">
+      {{ assign 'blockSize' (length section.block_order) }}
+      {{#each section.block_order as | blockId |}}
+        {{#with (lookup ../section.blocks blockId)}}
+
+          {{ assign 'force_card_left' false }}
+          {{#if (and (boolean ../../settings.desktop_layout '===' 'left') '&&' @first)}}
+            {{ assign 'force_card_left' true }}
+          {{else}}{{#if (and (boolean ../../settings.desktop_layout '===' 'right') '&&' @last)}}
+            {{ assign 'focus_card_right' true }}
+          {{/if}}{{/if}}
+
+          {{ assign 'imageFit' settings.image_padding }}
+          {{#if settings.image_padding '===' 'fit'}}
+            {{ assign 'imageFit' 'contain' }}
+          {{/if}}
+
+          {{#if (boolean settings.image_padding '===' 'fit' '&&' (boolean force_card_left '||' focus_card_right))}}
+            {{ assign 'imageFit' 'cover' }}
+          {{/if}}
+
+          {{ assign 'card_class' '' }}
+          {{#if force_card_left}}
+            {{ assign 'card_class' 'multi-media-splicing__card--left' }}
+          {{else}}{{#if focus_card_right}}
+            {{ assign 'card_class' 'multi-media-splicing__card--right' }}
+          {{/if}}{{/if}}
+
+          {{#if (trim type) '===' 'video'}}
+            <div class="multi-media-splicing__card collage-video collage-image__{{ settings.image_padding }} {{ card_class }}">
+              <section
+                class="video__container video-padding__{{ settings.image_padding }}"
+              >
+                <div class="video__section multi-media-splicing__content">
+                  {{#style}}
+                    {{ assign 'background_position' (join (split 'center' '-') ' ') }}
+                    .video--{{ id }} .video__cover .video__cover-img {
+                      object-position: {{ background_position }};
+                    }
+                    {{#if settings.image_padding '===' 'fit'}}
+                      {{#if settings.cover_image}}
+                        {{ assign 'aspect_ratio' (append (multiply (divide settings.cover_image.height settings.cover_image.width) 100) '%') }}
+                        .multi-media-splicing__content .video--r16-9{
+                          padding-top: {{ aspect_ratio }}
+                        }
+                      {{/if}}
+                    {{/if}}
+                  {{/style}}
+                  <div
+                    class="video video--{{ id }} video__wrapper {{#if ../../blockSize '===' 1}}video--r16-9{{/if}}"
+                    data-id="{{ id }}"
+                    data-block-id="{{ id }}"
+                    data-block-type="video"
+                  >
+                    <script type="text/json" id="Video-data-{{ id }}">{{{ stringify settings }}}</script>
+                    {{#if (boolean settings.cover_image.url)}}
+                      <div class="video__cover">
+                        <img class="video__cover-img lozad" data-src="{{ settings.cover_image.url }}" data-sizes="auto">
+                        <div class="video-overlay">
+                          {{#if settings.video_url}}
+                            <div class="video-overlay__button" data-controls="Video-{{ id }}">
+                              {{ snippet 'icons/icon_video_play' }}
+                            </div>
+                          {{/if}}
+                        </div>
+                      </div>
+                    {{/if}}
+                    <div class="video__controll {{#if (boolean settings.video_url '&&' settings.cover_image '&&' settings.cover_image.url)}}d-none{{/if}}">
+                      {{#contains settings.video_url 'youtube.com/watch'}}
+
+                        {{ assign 'video_id' (split settings.video_url 'v=') }}
+                        {{ assign 'video_id' (first (split (itemAt video_id 1) '&')) }}
+                        <div
+                          class="video-data"
+                          id="Video-{{ id }}"
+                          data-video-id="{{ video_id }}"
+                          data-type="youtube"
+                          data-url="{{ settings.video_url }}"
+                        >
+                        </div>
+                      {{else}}
+                        {{#contains settings.video_url 'vimeo.com'}}
+                          {{ assign 'video_id' (split settings.video_url '.com/') }}
+                          {{ assign 'video_id' (itemAt video_id 1) }}
+                          <div
+                            class="video-data is-vimeo"
+                            id="Video-{{ id }}"
+                            data-video-id="{{ video_id }}"
+                            data-type="vimeo"
+                            data-url="{{ settings.video_url }}"
+                          >
+                          </div>
+                        {{else}}
+                          {{#if (isFalsey settings.cover_image '&&' settings.cover_image.url)}}
+                            {{ snippet 'icons/icon_video_placeholder' }}
+                          {{/if}}
+                        {{/contains}}
+                      {{/contains}}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          {{else}}{{#if (trim type) '===' 'product'}}
+            {{ assign 'product' (JSONparse '{}') }}
+            {{#if settings.product_id}}
+              {{ assign 'product' (get settings.product_id ../../all_products) }}
+            {{/if}}
+            <div class="multi-media-splicing__card collage-product collage-image__{{ settings.image_padding }} {{ card_class }}">
+              {{ assign 'hasImageClass' '' }}
+              {{ assign 'product_spu' (get 'spu' product) }}
+              {{ assign 'backgroundColor' (default (get 'color_page_background' ../../theme.settings) '#f3f3f3') }}
+              {{#if ../../settings.color_scheme}}
+                {{ assign 'backgroundColor' (get (append 'color_scheme_' ../../settings.color_scheme '_bg') ../../theme.settings) }}
+              {{/if}}
+              {{#if (isEmpty product)}}
+                {{ assign 'product_spu' (get '1' (product_mock_data 2 1)) }}
+              {{/if}}
+              {{ assign 'images' (get 'images' product_spu) }}
+              {{#if (isFalsey images.[0])}}
+                {{ assign 'hasImageClass' 'multi-media-splicing__no-image' }}
+                {{ assign 'backgroundColor' '#f3f3f3' }}
+              {{/if}}
+              <div class="multi-media-splicing__content multi-media-splicing__procontent {{ hasImageClass }}">
+                {{ snippet 'product/commons/product-item' section=this spu=product_spu imageList=images forbiddenBtn=true noHoverAniEffect=true imageFit=imageFit backgroundColor=backgroundColor }}
+              </div>
+            </div>
+          {{else}}{{#if (trim type) '===' 'collection'}}
+            {{ assign 'category' (get settings.category_id ../../all_collections) }}
+            {{ assign 'hasImageClass' '' }}
+            {{ assign 'firstCategory' (get '0' (get 'productList' category)) }}
+            {{#if (isFalsey (get 'image' firstCategory))}}
+              {{ assign 'hasImageClass' 'multi-media-splicing__no-image' }}
+            {{/if}}
+            <div class="multi-media-splicing__card collage-collection collage-image__{{ settings.image_padding }} {{ card_class }}">
+              <div class="multi-media-splicing__content {{ hasImageClass }}">
+              {{!-- 获取配色方案的文本色值 --}}
+              {{ assign 'titleColor' (get (append 'color_scheme_' ../../settings.color_scheme '_text') ../../theme.settings) }}
+              {{ snippet 'product/commons/collection-item' sortationData=category titleColor=titleColor imageFit=imageFit }}
+              </div>
+            </div>
+          {{else}}{{#if (trim type) '===' 'image'}}
+            <div class="multi-media-splicing__card collage-image collage-image__{{ settings.image_padding }} {{ card_class }}">
+              <div class="multi-media-splicing__content">
+                <div class="collage-image__wrapper">
+                  {{#if settings.image.url}}
+                    <img class="lozad multi-media-splicing__image" data-sizes="auto" data-src="{{ settings.image.url }}" />
+                  {{else}}
+                    {{ snippet 'icons/icon_image' class='multi-media-splicing__image multi-media-splicing__no-image' }}
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+          {{/if}}{{/if}}{{/if}}{{/if}}
+        {{/with}}
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+{{#schema}}
+{
+  "name": "t:sections.multi-media-splicing.name",
+  "icon": "video",
+  "type": "multi-media-splicing",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "video",
+      "icon": "normal",
+      "name": "t:sections.multi-media-splicing.blocks.video.name",
+      "settings": [
+        {
+          "id": "cover_image",
+          "type": "image_picker",
+          "label": "t:sections.multi-media-splicing.blocks.video.settings.cover_image.label"
+        },
+        {
+          "id": "video_url",
+          "type": "text",
+          "label": "t:sections.multi-media-splicing.blocks.video.settings.video_url.label",
+          "format": "video",
+          "placeholder": "https://www.youtube.com/watch?v=V7BEzkRBp_g",
+          "info": "t:sections.multi-media-splicing.blocks.video.settings.video_url.info"
+        },
+        {
+          "id": "video_alt",
+          "type": "text",
+          "label": "t:sections.multi-media-splicing.blocks.video.settings.video_alt.label",
+          "default": "Describe the video"
+        },
+        {
+          "id": "image_padding",
+          "type": "select",
+          "label": "t:sections.multi-media-splicing.blocks.video.settings.image_padding.label",
+          "info": "t:sections.multi-media-splicing.blocks.video.settings.image_padding.info",
+          "options": [
+            {
+              "value": "cover",
+              "label": "t:sections.multi-media-splicing.blocks.video.settings.image_padding.options__0.label"
+            },
+            {
+              "value": "fit",
+              "label": "t:sections.multi-media-splicing.blocks.video.settings.image_padding.options__1.label"
+            }
+          ],
+          "default": "cover"
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "icon": "normal",
+      "name": "t:sections.multi-media-splicing.blocks.product.name",
+      "settings": [
+        {
+          "type": "product_picker",
+          "id": "product_id",
+          "label": "t:sections.multi-media-splicing.blocks.product.settings.product_id.label"
+        },
+        {
+          "type": "switch",
+          "id": "product_hover_show_next",
+          "label": "t:sections.multi-media-splicing.blocks.product.settings.product_hover_show_next.label",
+          "default": false
+        },
+        {
+          "id": "image_padding",
+          "type": "select",
+          "label": "t:sections.multi-media-splicing.blocks.product.settings.image_padding.label",
+          "info": "t:sections.multi-media-splicing.blocks.product.settings.image_padding.info",
+          "options": [
+            {
+              "value": "cover",
+              "label": "t:sections.multi-media-splicing.blocks.product.settings.image_padding.options__0.label"
+            },
+            {
+              "value": "fit",
+              "label": "t:sections.multi-media-splicing.blocks.product.settings.image_padding.options__1.label"
+            }
+          ],
+          "default": "cover"
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "icon": "normal",
+      "name": "t:sections.multi-media-splicing.blocks.collection.name",
+      "settings": [
+        {
+          "type": "collection_picker",
+          "id": "category_id",
+          "label": "t:sections.multi-media-splicing.blocks.collection.settings.category_id.label"
+        },
+        {
+          "id": "image_padding",
+          "type": "select",
+          "label": "t:sections.multi-media-splicing.blocks.collection.settings.image_padding.label",
+          "info": "t:sections.multi-media-splicing.blocks.collection.settings.image_padding.info",
+          "options": [
+            {
+              "value": "cover",
+              "label": "t:sections.multi-media-splicing.blocks.collection.settings.image_padding.options__0.label"
+            },
+            {
+              "value": "fit",
+              "label": "t:sections.multi-media-splicing.blocks.collection.settings.image_padding.options__1.label"
+            }
+          ],
+          "default": "cover"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "icon": "normal",
+      "name": "t:sections.multi-media-splicing.blocks.image.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.multi-media-splicing.blocks.image.settings.image.label"
+        },
+        {
+          "id": "image_padding",
+          "type": "select",
+          "label": "t:sections.multi-media-splicing.blocks.image.settings.image_padding.label",
+          "info": "t:sections.multi-media-splicing.blocks.image.settings.image_padding.info",
+          "options": [
+            {
+              "value": "cover",
+              "label": "t:sections.multi-media-splicing.blocks.image.settings.image_padding.options__0.label"
+            },
+            {
+              "value": "fit",
+              "label": "t:sections.multi-media-splicing.blocks.image.settings.image_padding.options__1.label"
+            }
+          ],
+          "default": "cover"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.multi-media-splicing.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "t:sections.multi-media-splicing.settings.desktop_layout.label",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.multi-media-splicing.settings.desktop_layout.options__0.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.multi-media-splicing.settings.desktop_layout.options__1.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "t:sections.multi-media-splicing.settings.mobile_layout.label",
+      "default": "splicing",
+      "options": [
+        {
+          "value": "splicing",
+          "label": "t:sections.multi-media-splicing.settings.mobile_layout.options__0.label"
+        },
+        {
+          "value": "list",
+          "label": "t:sections.multi-media-splicing.settings.mobile_layout.options__1.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.multi-media-splicing.settings.color_scheme.label",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "t:sections.multi-media-splicing.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.multi-media-splicing.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.multi-media-splicing.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.multi-media-splicing.settings.color_scheme.options__3.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.multi-media-splicing.presets.presets__0.name",
+      "category": "t:sections.multi-media-splicing.presets.presets__0.category",
+      "blocks": [
+        {
+          "type": "video",
+          "settings": {
+            "video_alt": "Describe the video",
+            "image_padding": "cover"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "product_id": "",
+            "product_hover_show_next": false,
+            "image_padding": "cover"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "category_id": "",
+            "image_padding": "cover"
+          }
+        }
+      ],
+      "settings": {
+        "desktop_layout": "left",
+        "mobile_layout": "splicing",
+        "color_scheme": ""
+      }
+    }
+  ]
+}
+{{/schema}}

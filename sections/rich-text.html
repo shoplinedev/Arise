@@ -1,0 +1,172 @@
+{{inline_stylesheet 'rich-text/index.min.css'}}
+{{assign 'color_scheme' section.settings.color_scheme}}
+{{assign 'normal_width' section.settings.normal_width}}
+{{assign 'blocks' section.blocks}}
+{{assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order')}}
+
+<section class="rich-text__container color-scheme-{{color_scheme}} section-gap{{#if color_scheme '!==' '' }}--padding{{/if}}{{#if normal_width}} rich-text__normal-width{{/if}}">
+  <div class="container g-4 g-md-6">
+    {{#each blocks}}
+      {{#if (trim type) '===' 'heading'}}
+        <h2 class="title4{{#if settings.heading_size}} rich-text__title rich-text__title-size-{{settings.heading_size}}{{/if}}">{{settings.heading}}</h2>
+      {{/if}}
+      {{#if (trim type) '===' 'text'}}
+        <div class="sl-richtext body2">{{{settings.text}}}</div>
+      {{/if}}
+      {{#if (trim type) '===' 'button'}}
+        {{#if settings.button_text}}
+          {{assign 'link_item' (useLink settings.jump_link)}}
+          <a class="btn btn-{{#if (isTruthy settings.outline_button)}}extra{{else}}primary{{/if}} richtext__btn " {{{link_item.hrefAttr}}} data-no-side-effect>{{settings.button_text}}</a>
+        {{/if}}
+      {{/if}}
+    {{/each}}
+  </div>
+</section>
+
+{{#schema}}
+{
+  "name": "t:sections.rich-text.name",
+  "type": "rich-text",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "heading",
+      "icon": "title",
+      "limit": 1,
+      "name": "t:sections.rich-text.blocks.heading.name",
+      "settings": [
+        {
+          "id": "heading",
+          "type": "text",
+          "default": "",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "id": "heading_size",
+          "type": "select",
+          "default": "middle",
+          "limit": 1,
+          "label": "t:sections.rich-text.blocks.heading.settings.heading_size.label",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__0.label"
+            },
+            {
+              "value": "middle",
+              "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__1.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__2.label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.rich-text.blocks.text.name",
+      "icon": "paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "text",
+          "type": "richtext",
+          "default": "<p>A sentence or two introducing your brand, what you sell, and what makes your brand compelling to customers.</p>",
+          "label": "t:sections.rich-text.blocks.text.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "t:sections.rich-text.blocks.button.name",
+      "icon": "button",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "button_text",
+          "type": "text",
+          "default": "",
+          "label": "t:sections.rich-text.blocks.button.settings.button_text.label"
+        },
+        {
+          "id": "jump_link",
+          "type": "url",
+          "label": "t:sections.rich-text.blocks.button.settings.jump_link.label"
+        },
+        {
+          "id": "outline_button",
+          "type": "switch",
+          "default": false,
+          "label": "t:sections.rich-text.blocks.button.settings.outline_button.label"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.rich-text.settings.color_scheme.label",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "t:sections.rich-text.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.rich-text.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.rich-text.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.rich-text.settings.color_scheme.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "normal_width",
+      "default": true,
+      "label": "t:sections.rich-text.settings.normal_width.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.rich-text.presets.presets__0.name",
+      "category": "t:sections.rich-text.presets.presets__0.category",
+      "blocks": [
+        {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>A sentence or two introducing your brand, what you sell, and what makes your brand compelling to customers.</p>"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "button_text": "",
+            "outline_button": false
+          }
+        }
+      ],
+      "settings": {
+        "color_scheme": "",
+        "normal_width": true
+      }
+    }
+  ]
+}
+{{/schema}}

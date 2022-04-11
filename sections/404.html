@@ -1,0 +1,19 @@
+{{inline_stylesheet '404/index.min.css'}}
+
+{{assign 'prefix' 'stage__notFound'}}
+
+<div class='container {{prefix}}'>
+	<div class="{{prefix}}--content">
+		<div class='title3'>404 page not found</div>
+		<p class='body3 {{prefix}}--description'>The page you were looking for does not exist.</p>
+		<a class="body3 btn btn-link" href='/'>
+			Continue shopping
+		</a>
+	</div>
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.notFoundPage.name"
+}
+{{/schema}}

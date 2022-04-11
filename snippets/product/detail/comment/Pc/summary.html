@@ -1,0 +1,25 @@
+<div class="product-comment-summary">
+	<div class="product-comment-summary-content">
+		<div class="product-comment-summary-content-score">
+			<div class="notranslate">
+				<strong>{{productComment.score}}</strong>
+				<span>/5</span>
+			</div>
+		</div>
+		<div class="product-comment-summary-content-rateWrap">
+			{{{rate count = 5 value=productComment.score}}}
+		</div>
+		<div class="product-comment-summary-content-moreIcon">
+			<svg width="10" height="10" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path clip-rule="evenodd" d="M5.003 7.13L1.52 4.082l-.988 1.13 4.465 3.906L9.51 5.214 8.527 4.08 5.003 7.13z"></path>
+			</svg>
+		</div>
+    <div class="product-comment-summary-more">
+      <div class="product-comment-summary-more-content">
+        {{#with productComment}}
+          {{ snippet 'product/detail/comment/summary-detail' }}
+        {{/with}}
+      </div>
+    </div>
+	</div>
+</div>

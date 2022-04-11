@@ -1,0 +1,23 @@
+{{#if is-mobile}}
+  {{ assign '_promotion_config_' (sales_promotion_reminder_translate data.promotion (object_create lineBreak=1)) }}
+{{else}}
+  {{ assign '_promotion_config_' (sales_promotion_reminder_translate data.promotion) }}
+{{/if}}
+
+<div class="trade-cart-sku-list-module{{#if data.promotion}} has-promotion{{/if}}">
+  {{#if data.promotion}}
+    {{ assign '_promotion' data.promotion}}
+
+<div class="cart-sku-list-promotion">
+  {{#if _promotion.benefitType '===' 7}}
+    {{snippet 'sales/promotion-module-gift'}}
+  {{else}}
+    {{snippet 'sales/promotion-module-discount'}}
+  {{/if}}
+</div>
+
+  {{/if}}
+  {{#each data.itemList}}
+    {{ include 'snippets/trade/sku-item' data=this image-width=../image-width skuNumMap=../skuNumMap trade_cart_type=../trade_cart_type findex=../index index=@index }}
+  {{/each}}
+</div>

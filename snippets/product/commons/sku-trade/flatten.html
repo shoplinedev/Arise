@@ -1,0 +1,29 @@
+{{#if (length attr)}}
+<div style="{{style}}" class="product-sku-trade-flatten" data-ssr-plugin-sku id="{{id}}">
+  {{#each attr}}
+    {{#isFalsey hidden}}
+      <div class="spec-box" data-index="{{ @index }}"  data-ssr-plugin-sku-item data-sku-item-name="{{specName}}">
+        <div class="spec-title" data-ssr-plugin-sku-item-name>
+         <div class="spec-name body3">{{ specName }}</div>
+        </div>
+        <div class="attr-box body3" data-ssr-sku-value-list>
+          {{#each specAttrList }}
+            {{#isTruthy imgUrl}}
+              <div class="attr-value with-img {{#isTruthy active }}active{{/isTruthy}}" data-index="{{ @index }}">
+                <img class="value-img" src="{{img_url imgUrl width=32 scale=2}}">
+                {{#isFalsey ../onlyShowAttrImg}}
+                  <span class="value-text">{{ name }}</span>
+                {{/isFalsey}}
+              </div>
+            {{else}}
+              <div class="attr-value {{#isTruthy active }}active{{/isTruthy}}" data-index="{{ @index }}">
+                <span class="value-text">{{ name }}</span>
+              </div>
+            {{/isTruthy}}
+          {{/each}}
+        </div>
+      </div>
+    {{/isFalsey}}
+  {{/each}}
+</div>
+{{/if}}

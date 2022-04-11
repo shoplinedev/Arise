@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首页</title>
+  {{#if theme.settings.favicon_image}}
+    <link rel="shortcut icon" href="{{theme.settings.favicon_image}}" type="image/png">
+  {{/if}}
+  {{#slot 'head' }}{{/slot}}
+</head>
+
+<body class="template--le template__{{ replace template '/' '-' }}" data-button_style="{{ theme.settings.button_style }}"
+  data-type_title_uppercase="{{ theme.settings.type_title_uppercase }}"
+  data-type_navigation_uppercase="{{ theme.settings.type_navigation_uppercase }}">
+  {{ content_for_layout }}
+  {{#slot 'script' }}{{/slot}}
+</body>
+
+</html>

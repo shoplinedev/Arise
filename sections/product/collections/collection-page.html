@@ -1,0 +1,264 @@
+---
+# 商品列表
+products:
+  # 是否预取商品描述信息，默认值：false
+  description: true
+  limit: {{ cond request.is_mobile 48 section.settings.per_page_num }}
+
+# 最近浏览商品
+history_browse_products:
+  # 是否预取，默认值：false
+  enable: true
+---
+
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'product/collections/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'product/collections/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+{{ inline_stylesheet 'product/collections/index.min.css' }}
+
+{{ assign 'isPreview' request.design_mode }}
+{{ assign 'perPageNum' (cond request.is_mobile 48 section.settings.per_page_num) }}
+{{ assign 'calc_page_size' (toInt (default request.uri.query.page_size perPageNum)) }}
+{{ assign 'itemNumByRow' 4 }}
+{{ assign 'slice_products_list' products.list }}
+{{ assign 'gripType' 'small_grid' }}
+
+{{#partial 'page_view'}}
+  {{ assign 'top_ten_products_list' (array-slice products.list 0 10) }}
+  <script>
+  !function () {
+    var sortBy = {
+      1: 'default',
+      2: 'default',
+      3: 'newestToOldest',
+      4: 'priceLowToHigh',
+      5: 'priceHighToLow',
+    };
+
+    window.HdSdk.shopTracker.report('60006260', {
+      event_name: 'view',
+      page: 'product_list',
+      display_iterm_sum: 48,
+      sort_by: sortBy['{{ request.uri.query.sort_type }}'] || 'default',
+      pro_list_type: "{{ cond request.uri.params.uniqueKey 'category' 'all_product' }}",
+      iframe_id: '1'
+    })
+    // 第三方埋点
+    window.SL_EventBus.emit('global:thirdPartReport', {
+      GA: [
+        [
+          'event',
+          'view_item_list',
+          {
+            items: [{{#forEach top_ten_products_list}}{id: '{{ reportSkuId }}', name: '{{ title }}', price: '{{ currency_format productMinPrice }}', list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}All Products{{/if}}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
+          },
+        ],
+      ],
+      GAR: [
+      [
+         'event',
+          'view_item_list',
+          {
+            items: [{{#forEach top_ten_products_list}}{id: '{{ reportSkuId }}', google_business_vertical: 'retail'}{{#unless isLast}},{{/unless}}{{/forEach}}]
+          }
+       ]
+      ],
+      GARemarketing: [
+      [
+         'event',
+          'view_item_list',
+          {
+            ecomm_prodid: [{{#forEach top_ten_products_list}}'{{ reportSkuId }}'{{#unless isLast}},{{/unless}}{{/forEach}}], 
+            ecomm_pagetype: {{#if sortationId}}'category'{{else}}'other'{{/if}},
+            ecomm_pcat: {{#if sortationId}}'{{ sortation.sortation.title }}'{{else}}'All Products'{{/if}},
+            ecomm_category : {{#if sortationId}}'{{ sortationId }}'{{else}}''{{/if}},
+          }
+       ]
+      ],
+    });
+  }()
+</script>
+{{/partial}}
+<div  id="collectionsAjaxInner">
+  <div 
+    class="container section-gap product-list-main" 
+    data-section-type="collections-page"
+    data-section-id="{{ section.id }}"
+  >
+    <div class="row g-4">
+      <div class="product-list-main-box">
+        <div class="product-collection-page-con">
+          <div class="product-list-list" data-ssr-product-list-left>
+            <div class="product-list-description-category-top">
+              {{#if (boolean (boolean section.settings.category_desc_position '===' 'top') '&&' sortationId)}}
+                {{#if (length (trim sortation.sortation.description)) '>' 0}}
+                  <div class="product-list-description-top">
+                    {{ snippet 'product/collections/collections_description' }}
+                  </div>
+                {{/if}}
+              {{/if}}
+            </div>
+            <div class="product-list-filter-line"></div>
+            <div class="product-list-list-container" id="js-product-collections_filter_container">
+              <div class="product-list-list-header">
+                <div class="product-list-list-header-filter" id="product-list-list-header-filter">
+                  {{ snippet 'product/collections/collections-drawer-filter-icon' }}
+                </div>
+                <div class="product-list-filter-container">
+                  <div class="product-list-show-product-number-m body3" id="product-list-list-header-left-m">
+                    {{#if products.realTotal '>' 1}}
+                        {{ t 'productList.container.moreProductNum' num=products.realTotal }}
+                      {{else}}
+                        {{ t 'productList.container.oneProductNum' num=products.realTotal }}
+                      {{/if}}
+                  </div>
+                  {{#if section.settings.sorter_enable}}
+                    <div class="product-list-sort-by">
+                      <div class="product-list-mobile-sort-by">
+                        {{ snippet 'icons/icon_list_sort_by' }}
+                      </div>
+                      {{ snippet 'product/collections/collections-sort' }}
+                    </div>
+                  {{else}}
+                    <div class="product_sort_by_placeHolder"></div>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+
+            <div class="product-list-item-list" data-ssr-product-list-top> 
+              {{#if (boolean products.list.length '>' 0)}}
+                {{ snippet 'product/commons/product-item-list' effectPage='productList' gripType=gripType className='__sl-custom-track-product-list-item' colNum=itemNumByRow listData=slice_products_list pageSize=calc_page_size pageNum=products.pageNum total=products.total }}
+              {{else}}
+                <span class="body3">{{ t 'productList.noProduct' }}</span>
+              {{/if}}
+            </div>
+            <div class="product-list-description-category">
+              {{#if (boolean (boolean section.settings.category_desc_position '===' 'bottom') '&&' sortationId '&&' sortation.sortation.description)}}
+                <div class="product-list-description-bottom">
+                  {{ snippet 'product/collections/collections_description' }}
+                </div>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- 推荐商品 --}}
+  {{ snippet 'product/product-recommend' }}
+</div>
+
+
+
+{{#schema}}
+{
+  "name": "t:sections.product_collections_collection-page.name",
+  "settings": [
+    {
+      "type": "select",
+      "id": "category_desc_position",
+      "label": "t:sections.product_collections_collection-page.settings.category_desc_position.label",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.product_collections_collection-page.settings.category_desc_position.options__0.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.product_collections_collection-page.settings.category_desc_position.options__1.label"
+        }
+      ],
+      "info": "t:sections.product_collections_collection-page.settings.category_desc_position.info",
+      "default": "top"
+    },
+    {
+      "type": "range",
+      "id": "per_page_num",
+      "label": "t:sections.product_collections_collection-page.settings.per_page_num.label",
+      "default": 16,
+      "min": 8,
+      "max": 24,
+      "step": 4
+    },
+    {
+      "type": "switch",
+      "id": "sorter_enable",
+      "label": "t:sections.product_collections_collection-page.settings.sorter_enable.label",
+      "default": true
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.product_collections_collection-page.settings.group_header__0.label",
+      "id": "group_header__0"
+    },
+    {
+      "id": "product_image_ratio",
+      "type": "select",
+      "label": "t:sections.product_collections_collection-page.settings.product_image_ratio.label",
+      "options": [
+        {
+          "value": "0",
+          "label": "t:sections.product_collections_collection-page.settings.product_image_ratio.options__0.label"
+        },
+        {
+          "value": "100",
+          "label": "t:sections.product_collections_collection-page.settings.product_image_ratio.options__1.label"
+        },
+        {
+          "value": "133.33",
+          "label": "3:4"
+        },
+        {
+          "value": "75",
+          "label": "t:sections.product_collections_collection-page.settings.product_image_ratio.options__3.label"
+        },
+        {
+          "value": "150",
+          "label": "t:sections.product_collections_collection-page.settings.product_image_ratio.options__4.label"
+        }
+      ],
+      "default": "0"
+    },
+    {
+      "id": "product_fill_type",
+      "type": "select",
+      "label": "t:sections.product_collections_collection-page.settings.product_fill_type.label",
+      "options": [
+        {
+          "value": "contain",
+          "label": "t:sections.product_collections_collection-page.settings.product_fill_type.options__0.label"
+        },
+        {
+          "value": "cover",
+          "label": "t:sections.product_collections_collection-page.settings.product_fill_type.options__1.label"
+        }
+      ],
+      "default": "contain"
+    },
+    {
+      "id": "product_hover_show_next",
+      "type": "switch",
+      "label": "t:sections.product_collections_collection-page.settings.product_hover_show_next.label",
+      "default": false
+    }
+  ],
+  "default": {
+    "settings": {
+      "category_desc_position": "top",
+      "sorter_enable": true,
+      "per_page_num": 16,
+      "product_image_ratio": "0",
+      "product_fill_type": "contain",
+      "product_hover_show_next": false
+    }
+  }
+}
+{{/schema}}

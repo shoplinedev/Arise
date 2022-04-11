@@ -1,0 +1,17 @@
+{{ assign 'promotion' _promotion}}
+{{ assign 'gift_promotion_config' (sales_promotion_reminder_translate data)}}
+{{ assign 'selectText' (t 'sales.gift.select')}}
+
+<div class="cart-sku-list-promotion-module salesPluginGift__promotion" data-widget-scope="gift" data-activityseq="{{promotion.activitySeq}}" data-promotionseq="{{promotion.promotionSeq}}">
+  <div>
+    {{ noTranslationHTML (t gift_promotion_config.path saved=gift_promotion_config.params.saved willSave=gift_promotion_config.params.willSave threshold=gift_promotion_config.params.threshold br=gift_promotion_config.params.br upperLimit=gift_promotion_config.params.upperLimit) }}
+  </div>
+  <span class="cart-sku-list-promotion-module-arrow salesPluginGift__selectIcon">
+    {{#if (and (is trade_cart_type 'main') (isFalsey is-mobile))}}
+      {{selectText}}
+    {{/if}}
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+  </span>
+</div>

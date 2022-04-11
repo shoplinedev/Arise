@@ -1,0 +1,21 @@
+<div class="product-comment-summary-detail-progress-wrap">
+	{{#inArray (pluck this.scoreInfos 'score') value}}
+		{{#each this.scoreInfos as |item|}}
+			{{#if item.score ../value}}
+				<div class="product-comment-summary-detail-progress-item">
+					<div class="product-comment-summary-detail-progress-item-default">
+						<div class="product-comment-summary-detail-progress-item-active" style="width:{{floor (multiply (divide item.total ../total) 100)}}%;"></div>
+					</div>
+					<div class="product-comment-summary-detail-progress-item-num">{{floor (multiply (divide item.total ../total) 100)}}%</div>
+				</div>
+			{{/if}}
+		{{/each}}
+		{{else}}
+			<div class="product-comment-summary-detail-progress-item">
+				<div class="product-comment-summary-detail-progress-item-default">
+					<div class="product-comment-summary-detail-progress-item-active" style="width:0%;"></div>
+				</div>
+				<div class="product-comment-summary-detail-progress-item-num">0%</div>
+			</div>
+	{{/inArray}}
+</div>

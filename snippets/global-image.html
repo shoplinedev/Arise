@@ -1,0 +1,38 @@
+{{ assign 'image_url' (default src image.url) }}
+{{ assign 'has_image' (isTruthy image_url) }}
+
+{{ assign 'classes' 'global-image' }}
+{{ assign 'styles' '' }}
+{{ assign 'is_auto_scale' (if scale '===' 'auto') }}
+{{ assign 'is_custom_scale' (if (typeOf scale) '===' 'number') }}
+{{ assign 'image_scale' 0 }}
+
+{{#if (or is_auto_scale is_custom_scale)}}
+  {{#if is_auto_scale}}
+    {{ assign 'image_width' (default image.width 1) }}
+    {{ assign 'image_height' (default image.height (multiply image_width (default empty-scale 1))) }}
+    {{ assign 'image_scale' (divide image_height image_width) }}
+  {{else}}
+    {{ assign 'image_scale' scale }}
+  {{/if}}
+
+  {{ assign 'classes' (append classes ' ' 'is-scale') }}
+  {{ assign 'styles' (append styles ';' 'padding-top: ' (multiply image_scale 100) '%;') }}
+{{/if}}
+
+<div class="{{ classes }}" style="{{ styles }}">
+  {{#if has_image}}
+    <img
+      class="lozad {{ image-class }}"
+      style="{{ image-style }}"
+      data-src="{{image_url}}"
+      data-sizes="auto"
+      alt="{{ image.alt }}">
+  {{else}}
+    {{#if custom-empty}}
+      {{ slot_content 'empty' }}
+    {{else}}
+      {{ snippet 'icons/icon_image' styleParam=empty-image-style class=empty-image-class }}
+    {{/if}}
+  {{/if}}
+</div>

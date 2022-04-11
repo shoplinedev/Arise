@@ -1,0 +1,17 @@
+{{ assign 'animation_name' (default animation 'rise-up') }}
+{{ assign 'animation_delay' (default delay '1s') }}
+{{ assign 'animation_duration' (default duration '1s') }}
+{{ assign 'animation_timing_function' (default timing-function 'ease') }}
+{{ assign 'animation_fill_mode' (default fill-mode 'backwards') }}
+
+<div
+  class="global-animation-cropper lozad {{ classes }}"
+  style="
+    animation-fill-mode: {{ animation_fill_mode }};
+    animation-name: {{ animation_name }};
+    animation-delay: {{ animation_delay }};
+    animation-duration: {{ animation_duration }};
+    animation-timing-function: {{ animation_timing_function }};
+    {{ styles }}">
+  {{ slot_content }}
+</div>

@@ -1,0 +1,108 @@
+input{
+  -webkit-appearance:none;
+}
+.stage-newsletter .color-scheme-none .sl-richtext a:after{
+  background-color:{{ theme.settings.color_text }};
+}
+
+.newsletter{
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -webkit-align-items:center;
+          align-items:center;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-flex-direction:column;
+          flex-direction:column;
+  -webkit-justify-content:center;
+          justify-content:center;
+  overflow:hidden;
+  position:relative;
+  z-index:3;
+}
+.newsletter__backgroundMask{
+  height:100%;
+  position:absolute;
+  width:100vw;
+  z-index:-1;
+}
+.newsletter__title h2{
+  text-align:center !important;
+}
+.newsletter__desc{
+  margin-top:15px;
+  text-align:center;
+}
+.newsletter__btnGroup{
+  -webkit-box-align:center;
+  -webkit-align-items:center;
+          align-items:center;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  height:43px;
+  margin-top:15px;
+}
+.newsletter__input{
+  background-color:{{ theme.settings.color_page_background }};
+  border:1px solid {{ theme.settings.color_entry_line }};
+  border-radius:4px;
+  color:{{ theme.settings.color_text }};
+  height:100%;
+  margin-right:10px;
+  outline:none;
+  padding:8px 12px;
+  width:260px;
+}
+.newsletter__input::-webkit-input-placeholder{
+  color:currentColor;
+}
+.newsletter__input::placeholder{
+  color:currentColor;
+}
+.newsletter__btn{
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+  -webkit-align-items:center;
+          align-items:center;
+  cursor:pointer;
+  display:-webkit-box !important;
+  display:-webkit-flex !important;
+  display:flex !important;
+  height:100%;
+  -webkit-justify-content:center;
+          justify-content:center;
+  line-height:1em;
+  min-width:90px;
+  padding:13px 22px;
+}
+.newsletter__btn svg{
+  stroke:currentColor;
+}
+
+.newsletter__btn span{
+  display:inline-block;
+}
+.newsletter__btn.has-icon span,.newsletter__btn svg{
+  display:none;
+}
+.newsletter__btn.has-icon svg{
+  display:inline-block;
+}
+@media (max-width:749.98px){
+  .newsletter__btn span{
+    display:none;
+  }
+  .newsletter__btn svg{
+    display:inline-block;
+  }
+  .newsletter__btnGroup,.newsletter__input{
+    width:100%;
+  }
+  .newsletter__btn{
+    width:90px;
+  }
+}

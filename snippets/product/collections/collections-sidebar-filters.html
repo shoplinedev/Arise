@@ -1,0 +1,129 @@
+
+{{#if settings.default_fold}}
+  {{assign 'is_open' 'is-hidden'}}
+{{else}}
+  {{assign 'is_open' 'is-open'}}
+{{/if}}
+
+{{#if type '===' 'tag_filter'}}
+  {{assign 'triggerTitle' settings.tag_filter_title}}
+  {{assign 'currentTags' (product_collections_tags_filter product_tags settings.tag_data.tags settings.tag_data.group)}}
+{{/if}}
+{{#if type '===' 'menu'}}
+  {{assign 'menuData' (get settings.menu_selector navigations)}}
+  {{#if settings.menu_title}}
+    {{assign 'triggerTitle' settings.menu_title}}
+  {{else}}
+    {{assign 'triggerTitle' menuData.name}}
+  {{/if}}
+{{/if}}
+{{#if type '===' 'tag_filter'}}
+  {{#if (length currentTags) '>' 8}}
+    {{#if (boolean (boolean (length tags) '>' 0) '&&' (product_collections_tag_in_active tags currentTags))}}
+      {{assign 'moreClass' ''}}
+      {{assign 'moreText' (t 'productList.filterMenu.less')}}
+    {{else}}
+      {{assign 'moreClass' 'filterHasMore'}}
+      {{assign 'moreText' (t 'productList.filterMenu.more')}}
+    {{/if}}
+  {{/if}}
+{{/if}}
+
+{{#if (length currentTags) '>' 0}}
+  {{#if (boolean (boolean (length tags) '>' 0) '&&' (product_collections_tag_in_active tags currentTags))}}
+    {{assign 'is_open' 'is-open'}}
+  {{/if}}
+{{/if}}
+
+<!-- 侧边栏 -->
+{{#if type '===' 'tag_filter'}}
+  {{#if (length currentTags) '>' 0}}
+      <style>
+        .product-list-filter {
+          width: 256px !important;
+          padding: 0 10px 0 0;
+          margin: 0 12px 0 0;
+        }
+      </style>
+      <div class="product-list-sidebar-group">
+        {{snippet 'product/collections/collections-sidebar-filters-trigger' title=triggerTitle}}
+        <div class="product-list-sidebar-box collapsible-content {{is_open}}">
+          <ul class="product-list-sidebar-box-ul collapsible-content-inner {{moreClass}}">
+            {{#each currentTags as |tagName|}}
+              {{snippet 'product/collections/collections-sidebar-filters-item' index=@index title=tagName supportMultiple=../supportMultiple }}
+            {{/each}}
+            <div class="product-list-sidebar-box-mask"></div>
+          </ul>
+          {{#if (length currentTags) '>' 8}}
+            <div class="product-list-sidebar-box-ul-more btn btn-link ">
+              <span>{{moreText}}</span>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+  {{/if}}
+{{/if}}
+
+<!-- 菜单栏 -->
+{{#if type '===' 'menu'}}
+  <div class="product-list-sidebar-group">
+    {{#if (length menuData.nodeTree) '>' 0}}
+      {{snippet 'product/collections/collections-sidebar-filters-trigger' title=triggerTitle}}
+    {{/if}}
+    <div class="product-list-sidebar-box collapsible-content {{is_open}}">
+      <ul class="product-list-sidebar-box-ul collapsible-content-inner {{moreClass}}">
+          {{#if (length menuData.nodeTree) '>' 0}}
+            <style>
+              .product-list-filter {
+                width: 256px !important;
+                padding: 0 10px 0 0;
+                margin: 0 12px 0 0;
+              }
+            </style>
+          {{/if}}
+        {{#each menuData.nodeTree as |navItem|}}
+
+          {{ assign 'navDetail' (navLink navItem global.request.uri.query global.request.locale) }}
+          <li class="product-list-sidebar-box-ul-menuItem ">
+            <a href={{navDetail.url}} target={{navDetail.target}} rel="noreferrer" class="body3">{{navDetail.name}}</a>
+            {{#if childNodes.length '>' 0}}
+              <ul class="product-list-sidebar-box-ul" style="padding-left: 15px">
+                {{#each childNodes as |navItem|}}
+                  {{ assign 'navDetail' (navLink navItem global.request.uri.query global.request.locale) }}
+                  <li class="product-list-sidebar-box-ul-menuItem">
+                    <a href={{navDetail.url}} target={{navDetail.target}} rel="noreferrer" class="body3">{{navDetail.name}}</a>
+                    {{#if childNodes.length '>' 0}}
+                      <ul class="product-list-sidebar-box-ul" style="padding-left: 15px">
+                        {{#each childNodes as |navItem|}}
+                          {{ assign 'navDetail' (navLink navItem global.request.uri.query global.request.locale) }}
+                          <li class="product-list-sidebar-box-ul-menuItem ">
+                            <a href={{navDetail.url}} target={{navDetail.target}} rel="noreferrer" class="body3">{{navDetail.name}}</a>
+                          </li>
+                        {{/each}}
+                      </ul>
+                    {{/if}}
+                  </li>
+                {{/each}}
+              </ul>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+{{/if}}
+
+<!-- 子分类 -->
+{{#if (boolean (boolean type '===' 'child_category') '&&' (boolean child_category_list.finalShowCategories.length '>' 0)) }}
+    <style>
+      .product-list-filter {
+        width: 256px !important;
+        padding: 0 10px 0 0;
+        margin: 0 12px 0 0;
+      }
+      .product-list-child-category-list{
+        display:  block !important;
+      }
+    </style>
+  {{snippet 'product/collections/collections-sidebar-child-category' childCategoryData=child_category_list.finalShowCategories showCategoryIds=child_category_list.allShowCategoryIds }}
+{{/if}}

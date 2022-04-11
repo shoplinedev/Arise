@@ -1,0 +1,47 @@
+<div class="footer__social">
+  {{ snippet 'footer-block-header' }}
+
+  <div class="footer__block-main">
+    {{#with theme.settings}}
+      {{#or social_facebook_link social_twitter_link social_pinterest_link social_instagram_link social_snapchat_link social_tiktok_link social_youtube_link}}
+        <div class="footer__social-icons">
+          {{#if social_facebook_link}}
+            <a href={{social_facebook_link}} target="_blank">
+              {{ snippet 'icons/icon_social_fb' }}
+            </a>
+          {{/if}}
+          {{#if social_twitter_link}}
+            <a href={{social_twitter_link}} target="_blank">
+              {{ snippet 'icons/icon_social_twitter' }}
+            </a>
+          {{/if}}
+          {{#if social_pinterest_link}}
+            <a href={{social_pinterest_link}} target="_blank">
+              {{ snippet 'icons/icon_social_pin' }}
+            </a>
+          {{/if}}
+          {{#if social_instagram_link}}
+            <a href={{social_instagram_link}} target="_blank">
+              {{ snippet 'icons/icon_social_ig' }}
+            </a>
+          {{/if}}
+          {{#if social_snapchat_link}}
+            <a href={{social_snapchat_link}} target="_blank">
+              {{ snippet 'icons/icon_social_snapchat' }}
+            </a>
+          {{/if}}
+          {{#if social_tiktok_link}}
+            <a href={{social_tiktok_link}} target="_blank">
+              {{ snippet 'icons/icon_social_tiktok' }}
+            </a>
+          {{/if}}
+          {{#if social_youtube_link}}
+            <a href={{social_youtube_link}} target="_blank">
+              {{ snippet 'icons/icon_social_youtube' }}
+            </a>
+          {{/if}} 
+        </div>
+      {{/or}}
+    {{/with}}
+  </div>
+</div>

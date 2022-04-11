@@ -1,0 +1,72 @@
+{{ assign 'currentPageInfo' (get section.settings.page_id pages) }}
+{{ assign 'prefix' 'stage-main-page' }}
+
+{{ inline_stylesheet 'custom-page/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'custom-page/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'custom-page/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+<div class="color-scheme-{{ section.settings.color_scheme }} section-gap{{#if (isTruthy section.settings.color_scheme '!==' 'none')}}--padding{{/if}}">
+  <div class='container {{ prefix }}__container '>
+    <h1 class='title3 __sl-custom-track-page-title'>{{{ currentPageInfo.name.default }}}</h1>
+    <div class="__sl-custom-track-page-content">
+      <div class="render-by-page">
+        {{ snippet 'custom-page-render' pageConfig=currentPageInfo.htmlConfig forPage=true }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{#schema}}
+{
+  "name": "t:sections.custom-page.name",
+  "settings": [
+    {
+      "type": "page_picker",
+      "id": "page_id",
+      "default": "",
+      "label": "t:sections.custom-page.settings.page_id.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.custom-page.settings.color_scheme.label",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.custom-page.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.custom-page.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.custom-page.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.custom-page.settings.color_scheme.options__3.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-page.presets.presets__0.name",
+      "category": "t:sections.custom-page.presets.presets__0.category",
+      "settings": {
+        "page_id": "",
+        "color_scheme": "none"
+      }
+    }
+  ]
+}
+{{/schema}}

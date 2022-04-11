@@ -1,0 +1,40 @@
+{{#if (boolean settings.show_category_cover '&&' sortation.sortationImg)}}
+  {{assign 'boxClass' 'hasCover' }}
+  {{assign 'marginClass' ''}}
+{{else if (boolean (isFalsey settings.show_category_cover) '&&' (isFalsey settings.show_category_name))}}
+  {{assign 'boxClass' 'noCoverAndTitle' }}
+  {{assign 'marginClass' 'section-gap'}}
+{{else if (boolean (isFalsey sortation.sortationImg) '&&' (isFalsey settings.show_category_name))}}
+  {{assign 'boxClass' 'noCoverAndTitle' }}
+  {{assign 'marginClass' 'section-gap'}}
+{{else}}
+  {{assign 'boxClass' 'noCover' }}
+  {{assign 'marginClass' 'section-gap'}}
+{{/if}}
+
+<div class="product-list-banner-box {{boxClass}} {{marginClass}}">
+  <!-- 分类banner -->
+  {{#if settings.show_category_cover}}
+    <div class="product-list-banner-box-bg" id="productListBanner-container">
+      <div class="{{#if settings.parallax_scroll }}product-list-banner-box-bg-img{{else}}product-list-banner-box-bg-img--default{{/if}}" id="productListBanner-parallax" data-parallax-scroll="{{settings.parallax_scroll}}">
+        {{#if sortation.sortationImg}}
+          <img {{{get 'responsiveAttr' (image_responsive sortation.sortationImg useLazyLoad=false ) }}} alt="">
+        {{/if}}
+      </div>    
+    </div>
+  {{else}}
+    {{!-- 如果没有banner图片，加入一个特殊的div给header作为标识 --}}
+    <div id="CollectionHeaderSection" data-section-id="shopline-section-product/collections/collection-header"
+      data-section-type="shopline-section-product/collections/collection-header">
+    </div>
+  {{/if}}
+  <!-- 分类标题 -->
+  {{#if settings.show_category_name}}
+    <div class="product-list-banner-box-title {{boxClass}}">
+      <div class="container">
+        <a href="/" class="product-list-banner-box-title-url custom-body4">{{t 'common.home'}} /</a>
+        <h1 class="product-list-banner-box-title-sortationTitle custom-title2 title2">{{sortation.title}}</h1>
+      </div>
+    </div>
+  {{/if}}
+</div>

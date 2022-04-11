@@ -1,0 +1,21 @@
+{{assign 'product_custom_tab1' theme.settings.product_custom_tab1 }}
+{{assign 'product_custom_tab2' theme.settings.product_custom_tab2 }}
+{{assign 'product_custom_tab3' theme.settings.product_custom_tab3 }}
+
+<div class="product-tabs-container {{#if (boolean (boolean (isTruthy show_product_desc) '&&' (isFalsey product_custom_tab1) '&&' (isFalsey product_custom_tab2) '&&' (isFalsey product_custom_tab3))
+'||' (boolean (isFalsey show_product_desc) '&&' (isTruthy product_custom_tab1) '&&' (isFalsey product_custom_tab2) '&&' (isFalsey product_custom_tab3)) 
+'||' (boolean (isFalsey show_product_desc) '&&' (isFalsey product_custom_tab1) '&&' (isTruthy product_custom_tab2) '&&' (isFalsey product_custom_tab3))
+'||' (boolean (isFalsey show_product_desc) '&&' (isFalsey product_custom_tab1) '&&' (isFalsey product_custom_tab2) '&&' (isTruthy product_custom_tab3))
+)}}only_one_tab{{/if}}">
+  <div class="product-tabs-nav-box">
+    <div class="product-tabs-nav title5">
+      <div class="product-tabs-scroller">
+      {{#if show_product_desc }}<div class="product-tabs-tab {{#if product_desc_position '===' 'aside' }}body2{{/if}} active" data-key="tab0">{{t "productDetail.tabs.description"}}</div>{{/if}}
+      {{#if product_custom_tab1}}<div class="product-tabs-tab {{#if product_desc_position '===' 'aside' }}body2{{/if}}" data-key="tab1" data-id="{{product_custom_tab1}}"></div>{{/if}}
+      {{#if product_custom_tab2}}<div class="product-tabs-tab {{#if product_desc_position '===' 'aside' }}body2{{/if}}" data-key="tab2" data-id="{{product_custom_tab2}}"></div>{{/if}}
+      {{#if product_custom_tab3}}<div class="product-tabs-tab {{#if product_desc_position '===' 'aside' }}body2{{/if}}" data-key="tab3" data-id="{{product_custom_tab3}}"></div>{{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="product-tabs-content">{{slot_content}}</div>
+</div>

@@ -1,0 +1,44 @@
+<div class="inquiry-modal__container" id="JS-inquiry-price-modal_{{id}}">
+  <div class="inquiry-modal__header">
+    {{t 'common.contactUs'}}
+  </div>
+  <div class="inquiry-modal__productInfo">
+    <div class="image-container">
+      <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" src="{{img_url (default activeSku.imageList.[0] activeSku.image spuInfo.images.[0])}}" alt="productInfo" />
+    </div>
+    <div class="inquiry-modal__productTitle">
+      {{t 'productDetail.inquiry.inquiryTitle'}}
+      <br /> {{spuInfo.title}}
+    </div>
+  </div>
+  <div class="inquiry-modal__form" id="JS-inquiry-modal-form_{{id}}">
+    <div class="inquiry-modal__tips">
+      {{t 'productDetail.inquiry.inquiryTips1'}}
+    </div>
+    {{#formItem 'email'}}
+      {{snippet 'product/commons/base-input' placeholder=(t 'productDetail.inquiry.email') value='' wrapperClass="inquiry-modal__inputCon"}}
+    {{/formItem}}
+    {{#formItem 'message'}}
+      {{snippet 'product/commons/base-input' type='textarea' placeholder=(t 'productDetail.inquiry.message') value='' wrapperClass="inquiry-modal__textareaCon"}}
+    {{/formItem}}
+    <div class="inquiry-modal__tips">{{t 'productDetail.inquiry.inquiryTips2'}}</div>
+    {{#formItem 'name'}}
+      {{snippet 'product/commons/base-input' placeholder=(append (t 'productDetail.inquiry.name') ' (' (t 'productDetail.inquiry.optional') ')') value='' wrapperClass="inquiry-modal__inputCon"}}
+    {{/formItem}}
+    {{#formItem 'mobile'}}
+      {{snippet 'product/commons/base-input' placeholder=(append (t 'productDetail.inquiry.mobile') ' (' (t 'productDetail.inquiry.optional') ')') value='' wrapperClass="inquiry-modal__inputCon"}}
+    {{/formItem}}
+    {{#formItem 'region'}}
+      {{snippet 'product/commons/base-input' placeholder=(append (t 'productDetail.inquiry.region') ' (' (t 'productDetail.inquiry.optional') ')') value='' wrapperClass="inquiry-modal__inputCon"}}
+    {{/formItem}}
+  </div>
+  <div class="inquiry-modal__btnGroupMobile">
+    <button class="btn btn-primary inquiry-modal__btn JS-inquiry-modal-submit" type="button">{{t 'productDetail.inquiry.submit'}}</button>
+  </div>
+  <div class="inquiry-modal__btnCon">
+    <div class="inquiry-modal__btnGroup">
+      <button class="btn btn-outline-primary inquiry-modal__btn JS-inquiry-modal-cancel" type="button">{{t 'productDetail.inquiry.cancel'}}</button>
+      <button class="btn btn-primary inquiry-modal__btn JS-inquiry-modal-submit" type="button">{{t 'productDetail.inquiry.submit'}}</button>
+    </div>
+  </div>
+</div>

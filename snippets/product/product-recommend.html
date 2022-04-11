@@ -1,0 +1,23 @@
+<style>
+  @media (max-width: 749.98px) {
+    .section-gap.recommend {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  @media (min-width: 749.98px) {
+    .section-gap.recommend {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+</style>
+<div class="container section-gap recommend">
+  {{!-- SSR 商品推荐插件 --}}
+  <div data-ssr-product-recommend-bottom></div>
+  {{!-- 解决推荐插件找不到 snippet 的问题 --}}
+  <div style="display: none;">
+    {{snippet "product/commons/product-item-list"}}
+  </div>
+</div>

@@ -1,0 +1,85 @@
+{{!-- 生成折扣券要使用的 discountCouponInfo --}}
+{{#each discountCodeActivityList}}
+  {{assign 'activityBenefitConditionItem' (itemAt this.activityBenefitConditionList 0)}}
+  {{assign 'wrapper1' '<span style="font-weight: 600;">{val}</span>'}}
+  {{assign 'wrapper2' '<span style="font-weight: 600;" data-amount="{number}">{val}</span>'}}
+
+  {{ assign 'discountText' ''}}
+
+  {{ assign 'benefitType' this.benefitType}}
+
+  {{!-- 优惠文案 --}}
+  {{#if benefitType '===' 1}}
+    {{assign 'discountAmount' activityBenefitConditionItem.benefit.benefitAmount}}
+    {{#if discountAmount '>' 0}}
+      {{assign 'discountText' (currency_convert discountAmount) }}
+
+      {{ assign 'discountText' (replace wrapper2 '{val}' discountText)}}
+
+      {{ assign 'discountText' (replace discountText '{number}' (append discountAmount ''))}}
+      {{assign 'discountText' (replace (t 'sales.discount-coupon.coupon-content.discount1') "{discount}" discountText)}}
+    {{/if}}
+
+
+  {{else if benefitType '===' 2}}
+    {{assign 'discountPercentage' activityBenefitConditionItem.benefit.discount}}
+    {{#if (and (compare discountPercentage '>=' 0) (compare discountPercentage '<=' 100))}}
+      {{assign 'discountText' discountPercentage }}
+
+      {{ assign 'discountText' (replace wrapper1 '{val}' (append (minus 100 discountText) '%'))}}
+      {{assign 'discountText' (replace (t 'sales.discount-coupon.coupon-content.discount1') '{discount}' discountText)}}
+    {{/if}}
+
+  {{else if benefitType '===' 3}}
+
+    {{ assign 'discountText' (t 'sales.discount-coupon.coupon-content.discount2')}}
+  {{/if}}
+
+  {{assign 'benefitEventType' activityBenefitConditionItem.benefitCondition.type}}
+  {{assign 'minThreshold' activityBenefitConditionItem.benefitCondition.minThreshold}}
+
+  {{assign 'thresholdText' ''}}
+
+  {{#if benefitEventType '===' 0}}
+    {{#if minThreshold '>' 0}}
+      {{assign 'thresholdText' (replace wrapper2 '{val}' (currency_convert minThreshold))}}
+      {{assign 'thresholdText' (replace thresholdText '{number}' (append minThreshold ''))}}
+      {{assign 'thresholdText' (replace (t 'sales.discount-coupon.coupon-content.threshold') '{threshold}' thresholdText)}}
+    {{/if}}
+  {{else if benefitEventType '===' 1}}
+    {{#if minThreshold '>' 0}}
+      {{assign 'thresholdText' (replace wrapper1 '{val}' (append minThreshold ''))}}
+      {{assign 'thresholdText' (replace (t 'sales.discount-coupon.coupon-content.threshold') '{threshold}' thresholdText)}}
+    {{/if}}
+  {{/if}}
+
+  {{!-- 免邮上限 --}}
+  {{assign 'shippingPriceRangeText' ''}}
+  {{#if prerequisiteShippingPriceRange '>' 0}}
+    {{assign 'shippingPriceRangeText' (currency_convert prerequisiteShippingPriceRange)}}
+    {{assign 'shippingPriceRangeText' (replace '<span data-amount="{number}">{val}</span>' '{val}' shippingPriceRangeText)}}
+    {{assign 'shippingPriceRangeText' (replace shippingPriceRangeText "{number}" (append prerequisiteShippingPriceRange ''))}}
+    {{assign 'shippingPriceRangeText' (replace (t 'sales.discount-coupon.coupon-content.shippingRateBelow') '{value}' shippingPriceRangeText)}}
+  {{/if}}
+  {{object_set this '__customDiscountText' discountText}}
+  {{object_set this '__customThresholdText' thresholdText}}
+  {{object_set this '__customShippingPriceRangeText' shippingPriceRangeText}}
+{{/each}}
+
+{{#if discountCodeActivityList.length}}
+  <div class="fw-normal fst-normal sales-discount-coupon__coupon-wrap" id="salesDiscountCouponCouponWrapHook">
+    <div class="body sales-discount-coupon__coupon-text">
+      {{t 'sales.discount-coupon.coupon-label'}}
+    </div>
+    {{snippet 'sales/discount-coupon/coupon-item/coupon-tags' className='sales-discount-coupon__coupon-item'}}
+    <div class="sales-discount-coupon__arrow-down-wrap">
+
+      {{ snippet 'sales/commons/svg/arrow_down' }}
+    </div>
+    {{!-- 非移动端-优惠券弹窗 --}}
+    {{snippet 'sales/discount-coupon/coupon-modal' title=(uppercase (t 'sales.discount-coupon.popupLabel')) }}
+  </div>
+
+  {{!-- 折扣码弹窗 --}}
+  {{snippet 'sales/discount-coupon/drawer/coupon-drawer'}}
+{{/if}}

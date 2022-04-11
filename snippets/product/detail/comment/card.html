@@ -1,0 +1,26 @@
+<div class="product-comment-card" data-index={{index}}>
+	<div class="product-comment-card-info">
+		<div class="product-comment-card-info-nickname">{{nameDesensitization name=nickname}}</div>
+		<div class="product-comment-card-info-time">{{dayjs method='format' init=time format='MMM DD,YYYY' }}</div>
+		<div class="product-comment-card-info-rate">
+			{{{rate count = 5 value = score }}}
+		</div>
+		<div class="product-comment-card-info-content">
+			{{content}}
+		</div>
+	</div>
+	{{#if imageList.[0]}}
+		<div class="product-comment-card-image">
+			<img data-src={{imageList.[0]}} class="lozad"></img>
+			{{#if (compare (length imageList) '>' 1)}}
+				<div class="product-comment-card-image-num">
+					<svg width="10" height="11" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill="#fff" d="M1.25 5.023h7.5v1.25h-7.5z"></path>
+						<path fill="#fff" d="M4.375 9.398v-7.5h1.25v7.5z"></path>
+					</svg>
+					{{minus (length imageList) 1}}
+				</div>
+			{{/if}}
+		</div>
+	{{/if}}
+</div>

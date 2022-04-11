@@ -1,0 +1,15 @@
+{{#partial 'head'}}
+{{{css cssAssetsByRe}}}
+{{/partial}}
+
+{{!-- 样式文件放在这里，避免被 mall-stage 样式覆盖 --}}
+{{#partial 'user_head'}}
+<link rel="stylesheet" href="{{ assets_url 'user/index.min.css' }}"/>
+{{/partial}}
+
+<div id="app" class="user__wrapper"></div>
+
+{{#partial 'script'}}
+  <script src="{{ assets_url 'user/index.min.js' }}"></script>
+  {{{js jsAssetsByRe}}}
+{{/partial}}

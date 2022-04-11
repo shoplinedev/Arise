@@ -1,0 +1,90 @@
+{{#with this as |global|}}
+    <ul class="stage-mobile-nav" role="navigation" aria-label="Primary">
+        {{#each main_menu.nodeTree}}
+            {{assign 'has_dropdown' false}}
+            {{#if (length this.childNodes)}}
+                {{assign 'has_dropdown' true}}
+            {{/if}}
+            <li class="mobile-nav__item mobile-nav__first stage-drawer__animation--appear appear-delay-{{ global.animation_row }}">
+                {{#with global}}
+                    {{assign 'animation_row' (plus global.animation_row 1)}}
+                {{/with}}
+
+                {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+                {{!--{{assign 'is_open' (is_nav_active this global.request.uri.path)}}--}}
+                {{#if has_dropdown}}
+                    <div class="nav-pd mobile-nav__has-sublist">
+                        <a {{{navItem.hrefAttr}}} class="body3 mobile-nav__link mobile-nav__link--top-level" id="Label-{{ this.id }}">
+                            {{ navItem.name }}
+                        </a>
+                        <div class="mobile-nav__toggle">
+                            <button type="button" aria-controls="Linklist-{{ this.id }}" aria-labelledby="Label-{{ this.id }}"
+                                    class="nav-collapsible-trigger top-level {{#if is_open}}is-open{{/if}}">
+                                <span class="toggle-show">{{snippet 'icons/icon_minus'}}</span>
+                                <span class="toggle-close">{{snippet 'icons/icon_drawer_menu_arrow'}}</span>
+                            </button>
+                        </div>
+                    </div>
+                {{/if}}
+
+                {{#unless has_dropdown}}
+                    <a {{{navItem.hrefAttr}}} class="nav-pd body3 mobile-nav__link mobile-nav__link--top-level">{{ navItem.name }}</a>
+                {{/unless}}
+
+
+                {{#if has_dropdown}}
+                    <div id="Linklist-{{ this.id }}" class="mobile-nav__sublist collapsible-content collapsible-content--all {{#if is_open}}is-open{{/if}}"
+                        {{#if is_open}}style="height:auto;" {{/if}}>
+                        {{assign 'menu_block' (get (uppercase this.name.default) ../blockObj)}}
+                        <div class="collapsible-content__inner">
+                            <ul class="mobile-nav__sublist mobile-nav__second">
+                                {{#each this.childNodes }}
+                                    {{assign 'has_sub_dropdown' false}}
+                                    {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+                                    {{assign 'is_open' (is_nav_active this global.request.uri.path)}}
+                                    {{#if (length this.childNodes)}}
+                                        {{assign 'has_sub_dropdown' true}}
+                                    {{/if}}
+
+                                    <li class="mobile-nav__item">
+                                        <div class="mobile-nav__child-item nav-pd">
+                                            <a class="body5 mobile-nav__link" id="Sublabel-{{ this.id }}" {{{navItem.hrefAttr}}}>
+                                                {{navItem.name}}
+                                            </a>
+
+                                            {{#if has_sub_dropdown}}
+                                                <button type="button" aria-controls="Sublinklist-{{this.id}}" aria-labelledby="Sublabel-{{ this.id }}"
+                                                        class="nav-collapsible-trigger {{#if is_open}}is-open{{/if}}">
+                                                    <span class="toggle-show">{{snippet 'icons/icon_minus'}}</span>
+                                                    <span class="toggle-close">{{snippet 'icons/icon_drawer_menu_arrow'}}</span>
+                                                </button>
+                                            {{/if}}
+                                        </div>
+
+                                        {{#if has_sub_dropdown}}
+                                            <div id="Sublinklist-{{this.id}}" class="mobile-nav__sublist collapsible-content collapsible-content--all {{#if is_open}}is-open{{/if}}"
+                                                {{#if is_open}}style="height:auto;" {{/if}}>
+                                                <div class="collapsible-content__inner">
+                                                    <ul class="nav-ph">
+                                                        {{#each this.childNodes}}
+                                                            {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+                                                            <li class="mobile-nav__item nav-pd">
+                                                                <a {{{navItem.hrefAttr}}} class="body5 mobile-nav__link">
+                                                                    {{ navItem.name }}
+                                                                </a>
+                                                            </li>
+                                                        {{/each}}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        {{/if}}
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+{{/with}}

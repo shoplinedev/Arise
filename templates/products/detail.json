@@ -1,0 +1,90 @@
+{
+  "name": "products/detail.html",
+  "wrapper": "div#page-product-detail",
+  "sections": {
+    "product-preview": {
+      "type": "product/detail/product-preview",
+      "disabled": false,
+      "settings": {
+        "product_image_pc_show_style": "flatten",
+        "product_image_size": "medium",
+        "video_loop": false,
+        "product_info_sticky": true,
+        "product_mobile_thumbnail_image_hide": "hide",
+        "default_selected_sku": true
+      },
+      "blocks": {
+        "block-1": {
+          "type": "title",
+          "settings": {}
+        },
+        "block-2": {
+          "type": "abstract",
+          "settings": {}
+        },
+        "block-3": {
+          "type": "price",
+          "settings": {}
+        },
+        "block-4":{
+          "type": "sku-selector",
+          "settings": {
+            "sku_style": "flatten"
+          }
+        },
+        "block-5": {
+          "type": "quantity",
+          "settings": {}
+        },
+        "block-6": {
+          "type": "product-sell-info",
+          "settings": {
+            "product_sales_point_1_icon": "globe",
+            "product_sales_point_1": "Free worldwide shipping",
+            "product_sales_point_2_icon": "checkmark",
+            "product_sales_point_2": "Free returns",
+            "product_sales_point_3_icon": "leaf",
+            "product_sales_point_3": "Carbon neutral",
+            "product_sales_point_4_icon": "lock",
+            "product_sales_point_4": "Secure payments"
+          }
+        },
+        "block-7": {
+          "type": "buy-button",
+          "settings": {}
+        },
+        "block-8": {
+          "type": "description",
+          "settings": {}
+        },
+        "block-9": {
+          "type": "share",
+          "settings": {}
+        },
+        "block-10": {
+          "type": "product-additional",
+          "settings": {
+            "product_custom_tab1": "",
+            "product_custom_tab1_fold": true,
+            "product_custom_tab2": "",
+            "product_custom_tab2_fold": true,
+            "product_custom_tab3": "",
+            "product_custom_tab3_fold": true
+          }
+        }
+      },
+      "block_order":["block-1","block-2","block-3","block-4","block-5","block-6","block-7","block-8","block-9","block-10"]
+    },
+    "recently-viewed":{  
+      "type": "product/recently-viewed",
+      "disabled": false,
+      "settings": {
+        "show_product_number": 6,
+        "product_image_ratio": "0",
+        "product_fill_type": "contain",
+        "product_hover_show_next": false
+      }
+    }
+  },
+  "order": ["product-preview","recently-viewed"]
+}

@@ -1,0 +1,50 @@
+{{#pagination id=id wrapperClass=wrapperClass total=total pageSize=pageSize current=current isMobile=request.is_mobile uri=request.uri mode=mode}}
+{{!-- <div class="pagination_data">
+  id： {{id}}
+  wrapperClass: {{wrapperClass}}
+  total: {{ total }}
+  pageSize: {{ pageSize }}
+  current: {{ current }}
+  isMobile: {{ isMobile }}
+  threshold: {{ threshold }}
+  lastPageNum: {{ lastPageNum }}
+  boundaryThreshold: {{ boundaryThreshold }}
+  afterThreshold: {{ afterThreshold }}
+  mode: {{ mode }}
+  pageTest: {{ pageTest }}
+</div> --}}
+<div id="{{id}}" class="{{ wrapperClass }} notranslate {{cond isMobile 'mobile pagination body3' 'pagination body3'}} {{cond (boolean lastPageNum '<=' 1) 'hide' ''}} {{wrapperClass}}">
+  {{#each items}}
+    {{#if this.type '===' 'pre'}}
+      <span class="pagination_pre pagination_item" data-current={{this.current}} data-pagenum={{this.pagenum}}>
+        <a href="{{this.href}}">
+          <span class="pagination_icon_arrow_color">
+            {{snippet 'icons/icon_arrow_left_line'}}
+          </span>
+        </a>
+      </span>
+    {{/if}}
+    {{#if this.type '===' 'next'}}
+      <span class="pagination_next pagination_item" data-current={{this.current}} data-pagenum={{this.pagenum}}>
+        <a href="{{this.href}}">
+          <span class="pagination_icon_arrow_color">
+            {{snippet 'icons/icon_arrow_right_line'}}
+          </span>
+        </a>
+      </span> 
+    {{/if}}
+    {{#if this.type '===' 'link'}}
+      <span class="{{cond this.active 'pagination_item on' 'pagination_item'}}" data-current={{this.current}} data-pagenum={{this.pagenum}}>
+        {{#if this.current '===' this.pagenum}}
+          <a>
+        {{else}}
+          <a href="{{this.href}}">
+        {{/if}}
+          {{this.pagenum}}
+        </a>
+      </span>
+    {{/if}}
+    {{#if this.type '===' 'ellipsis'}}<span>...</span>{{/if}}
+  {{/each}}
+</div>
+{{/pagination}}

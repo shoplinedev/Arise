@@ -1,0 +1,32 @@
+{{#with menu_block.settings}}
+    {{assign 'linkObj1' (useLink image_1_link global.request.uri.query)}}
+    {{assign 'linkObj2' (useLink image_2_link global.request.uri.query)}}
+    {{#if ../showImg1}}
+        <a {{{linkObj1.hrefAttr}}} class="{{image_1_position}}">
+            {{#if image_1.url}}
+                <img
+                  class="lozad"
+                  style="width: {{image_1_size}}px"
+                  data-src="{{image_1.url}}"
+                  data-sizes="auto"
+                  alt="{{image_1.alt}}"
+                >
+            {{/if}}
+            <div style="width: {{image_1_size}}px" class="menu__img-title body3">{{image_1_title}}</div>
+        </a>
+    {{/if}}
+    {{#if ../showImg2}}
+        <a {{{linkObj2.hrefAttr}}} class="{{image_2_position}}">
+            {{#if image_2.url}}
+                <img
+                  class="lozad"
+                  style="width: {{image_2_size}}px"
+                  data-src="{{image_2.url}}"
+                  data-sizes="auto"
+                  alt="{{image_2.alt}}"
+                >
+            {{/if}}
+            <div style="width: {{image_2_size}}px" class="menu__img-title body3">{{image_2_title}}</div>
+        </a>
+    {{/if}}
+{{/with}}

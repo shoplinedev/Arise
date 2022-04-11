@@ -1,0 +1,15 @@
+{{#if (length thirdPartyData.thirdPathList)}}
+  <div class="product-third-party-list row">
+    {{#each thirdPartyData.thirdPathList}}
+      <div class="third-party-content col-md-12 col-24">
+        <a class="body4" target="_blank" href="{{link}}" class={{ append 'product_thirdParty_' key}}>
+          {{#if key 'amazon'}}{{ snippet 'product/detail/svg/amazon' }}{{/if}}
+          {{#if key 'rakuten'}}{{ snippet 'product/detail/svg/rakuten' }}{{/if}}
+          {{#if key 'yahoo'}}{{ snippet 'product/detail/svg/yahoo' }}{{/if}}
+          &ensp;
+          {{ t text }}
+        </a>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}

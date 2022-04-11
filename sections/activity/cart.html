@@ -1,0 +1,64 @@
+{{ assign 'GIFT_PLUGIN_TYPE' 7}}
+
+{{#if request.uri.query.type '===' 'pool'}}
+  {{!-- 无cartInfo默认隐藏活动页购物车 --}}
+  {{#if (not cartInfo)}}
+    {{ assign 'hasHide' 'd-none'}}
+  {{/if}}
+  {{!-- 获取购物车中活动信息 --}}
+  {{#if cartInfo.activeItems}}
+    {{ assign 'activeItem' (find-in-array cartInfo.activeItems activity.activitySeq 'promotion.activitySeq') }}
+    {{#if activeItem}}
+      {{ assign 'promotion' activeItem.promotion}}
+    {{/if}}
+
+    {{ assign 'hasGiftPlugin' (find-in-array cartInfo.activeItems GIFT_PLUGIN_TYPE 'promotion.benefitType')}}
+  {{/if}}
+
+  {{!-- 购物车营销数据则生成一个当前活动的step===1的营销数据 --}}
+  {{#if (and (not promotion) (not hasGiftPlugin) activity)}}
+    {{ assign 'benefitType' activity.benefitType}}
+    {{ assign 'benefitCondition' activity.benefitConditions.[0]}}
+    {{ assign 'type' benefitCondition.benefitEvent.type}}
+    {{ assign 'benefit' (default benefitCondition.benefit.discount benefitCondition.benefit.benefitAmount)}}
+    {{ assign 'amount' benefitCondition.benefitEvent.minThreshold}}
+    {{ assign 'promotion' (object_create benefitType=benefitType promotionBenefitList=(arrayify (object_create type=type benefit=benefit amount=amount)))}}
+  {{/if}}
+  
+  <div class="activity__cart custom-body-color {{hasHide}}" id="activity-cart">
+    {{!-- 营销提示信息 --}}
+    <div class="activity__salesTipBg">
+      {{!-- 是否展示主动展示购物提示信息 --}}
+      {{#if (or (not promotion) hasGiftPlugin)}}
+        {{ assign 'hasHide' 'd-none'}}
+      {{/if}}
+      <div class="activity__salesTip container body4 {{hasHide}}">
+        <span id="activity-salesTip">
+          {{!-- 购物提示文案 --}}
+          {{#if (and promotion (not hasGiftPlugin))}}
+            {{ assign "config" (sales_promotion_reminder_translate promotion)}}
+            {{ noTranslationHTML (t config.path  saved=config.params.saved willSave=config.params.willSave threshold=config.params.threshold br=config.params.br upperLimit=config.params.upperLimit) }}
+          {{/if}}
+        </span>
+      </div>
+    </div>
+    {{!-- 购物车状态信息 --}}
+    <div class="activity__cartInfo container">
+      {{#if (not hasGiftPlugin)}}
+        <span id="activity-cartTotalInfo">
+          {{!-- 购物车金额 --}}
+          <span class="activity__cartTotal body3">{{ t "common.subTotal"  }} :
+            <span id="activity-cartTotal" class="notranslate" data-amount="{{default activeItem.totalAmount 0}}">{{ currency_convert (default activeItem.totalAmount 0)}}</span>
+          </span>
+          <br />
+          {{!-- 当前活动商品数量 --}}
+          <span class="activity__cartNum body6">
+            {{ noTranslationHTML (t "sales.selected-count-activity-product" selectCount=(javascript_template '<span id="activity-cartNum" class="notranslate">${num}</span>' num=(sum (pluck activeItem.itemList 'num')))) }}
+          </span>
+        </span>
+      {{/if}}
+      {{!-- 去购物车页 --}}
+      <a href="/cart"><button type="button" class="activity__gotoCart btn btn-primary body5">{{ t "common.back-to-cart" }}</button></a>
+    </div>
+  </div>
+{{/if}}

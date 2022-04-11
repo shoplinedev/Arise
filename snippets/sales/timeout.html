@@ -1,0 +1,29 @@
+<div class="{{#if type "==" '1'}}timeout redTimeout{{else }}timeout orangeTimeout{{/if}}">
+  <div class="timeItem first-timeout-item">
+    <span class="timeout-days">00</span>
+    {{#if type "==" '2'}}
+    <span>D</span>
+    {{/if}}
+  </div>
+  <span class='timeout-first-dot'>:</span>
+  <div class="timeItem">
+    <span class="timeout-hours">00</span>
+    {{#if type "==" '2'}}
+    <span>H</span>
+    {{/if}}
+  </div>
+  <span>:</span>
+  <div class="timeItem">
+    <span class="timeout-minutes">00</span>
+    {{#if type "==" '2'}}
+    <span>M</span>
+    {{/if}}
+  </div>
+ <span>:</span>
+  <div class="timeItem">
+    <span class="timeout-seconds">00</span>
+    {{#if type "==" '2'}}
+    <span>S</span>
+    {{/if}}
+  </div>
+</div>

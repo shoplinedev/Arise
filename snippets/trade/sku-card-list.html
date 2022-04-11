@@ -1,0 +1,18 @@
+{{ assign "skuNumMap" (trade_cart_sku_num_map data.activeItems) }}
+{{#if main '==' true}}
+  {{ assign "trade_cart_type" "main"}}
+{{else}}
+  {{ assign "trade_cart_type" "sidebar"}}
+{{/if}}
+{{#and (compare is-mobile '==' false ) (compare main '==' true)}}
+  {{assign 'image-width' 150}}
+{{else}}
+  {{assign 'image-width' 100}}
+{{/and}}
+<div class="trade-cart-sku-list {{classes}} {{#if main '==' true}}main{{else}}sidebar{{/if}} {{#if is-mobile '==' true}}is-mobile{{else}}is-pc{{/if}}"
+  id="{{trade_cart_type}}-trade-cart-sku-list">
+  {{#each data.activeItems}}
+    {{include 'snippets/trade/active-sku-module' is-mobile= ../is-mobile data=this image-width=../image-width skuNumMap=../skuNumMap trade_cart_type=../trade_cart_type index=@index}}
+  {{/each}}
+  {{include 'snippets/trade/inactive-sku-module' data=data.inactiveItems image-width=image-width trade_cart_type=trade_cart_type}}
+</div>

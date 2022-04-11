@@ -1,0 +1,122 @@
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'product/collections-all/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'product/collections-all/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+{{ inline_stylesheet 'product/collections-all/index.min.css' }}
+
+{{ assign 'collection_order_ids' (product_blocks_order_translate section 'blocks' 'block_order') }}
+{{ assign 'collections-filter-all' (JSONparse '[]') }}
+{{ array_map 'collections-all' sortations_page.data 'sortation' }}
+
+{{#each collections-all}}
+  {{ assign 'productList' (get 'productList' (itemAt ../sortations_page.data @index)) }}
+{{/each}}
+
+{{#if section.settings.display_type '===' 'designated'}}
+  {{#each collection_order_ids}}
+    {{#if (isTruthy (get settings.category_id ../all_collections))}}
+      {{ array-push ../collections-filter-all (get settings.category_id ../all_collections) }}
+    {{/if}}
+  {{/each}}
+{{/if}}
+<div class="section-gap container">
+  <div class="collection-list-main">
+    <h1 class="collection-list-header title2">{{ t 'collection.all.h1Title' }}</h1>
+    {{ snippet 'product/commons/collection-item-list' colNum=3 mbColNum=1 collectionData=(cond (is section.settings.display_type 'all') collections-all collections-filter-all) }}
+  </div>
+  
+  {{#if (default ../request.uri.query.page_num sortations_page.pageNum)}} {{!-- 分类数量为零时，pageNum 为 null --}}
+    {{#with sortations_page}}
+      {{ snippet 'product/commons/pagination-slim' current=(default ../request.uri.query.page_num pageNum) enableNext=hasNext pageSize=(default ../request.uri.query.page_size pageSize) hidden=(or (boolean ../section.settings.display_type '!=' 'all') (and (is pageNum 1) (isFalsey hasNext))) }}
+    {{/with}}
+  {{/if}}
+</div>
+
+
+{{#schema}}
+{
+  "name": "t:sections.product_collections-all_collections-list-page.name",
+  "settings": [
+    {
+      "id": "collection_image_ratio",
+      "type": "select",
+      "label": "t:sections.product_collections-all_collections-list-page.settings.collection_image_ratio.label",
+      "options": [
+        {
+          "value": "100",
+          "label": "t:sections.product_collections-all_collections-list-page.settings.collection_image_ratio.options__0.label"
+        },
+        {
+          "value": "75",
+          "label": "t:sections.product_collections-all_collections-list-page.settings.collection_image_ratio.options__1.label"
+        },
+        {
+          "value": "150",
+          "label": "t:sections.product_collections-all_collections-list-page.settings.collection_image_ratio.options__2.label"
+        }
+      ],
+      "default": "100"
+    },
+    {
+      "id": "collection_fill_type",
+      "type": "select",
+      "label": "t:sections.product_collections-all_collections-list-page.settings.collection_fill_type.label",
+      "options": [
+        {
+          "value": "contain",
+          "label": "t:sections.product_collections-all_collections-list-page.settings.collection_fill_type.options__0.label"
+        },
+        {
+          "value": "cover",
+          "label": "t:sections.product_collections-all_collections-list-page.settings.collection_fill_type.options__1.label"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "display_type",
+      "label": "t:sections.product_collections-all_collections-list-page.settings.display_type.label",
+      "info": "t:sections.product_collections-all_collections-list-page.settings.display_type.info",
+      "options": [
+        {
+          "value": "all",
+          "label": "t:sections.product_collections-all_collections-list-page.settings.display_type.options__0.label"
+        },
+        {
+          "value": "designated",
+          "label": "t:sections.product_collections-all_collections-list-page.settings.display_type.options__1.label"
+        }
+      ],
+      "default": "all"
+    }
+  ],
+  "block_info": "t:sections.product_collections-all_collections-list-page.block_info",
+  "blocks": [
+    {
+      "type": "collection",
+      "icon": "productCategories",
+      "name": "t:sections.product_collections-all_collections-list-page.blocks.collection.name",
+      "settings": [
+        {
+          "type": "collection_picker",
+          "id": "category_id",
+          "label": "t:sections.product_collections-all_collections-list-page.blocks.collection.settings.category_id.label"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "settings": {
+      "display_type": "all",
+      "collection_image_ratio": "100",
+      "collection_fill_type": "cover"
+    }
+  }
+}
+{{/schema}}

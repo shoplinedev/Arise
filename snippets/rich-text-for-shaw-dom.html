@@ -1,0 +1,43 @@
+<div style="overflow: hidden;" data-node="shadow-content">
+  <div class="mce-content-body{{#if className}} {{className}}{{/if}}">
+    <style>
+      .mce-content-body img {
+        opacity: 0;
+      }
+      .mce-content-body img[srcset],
+      .mce-content-body img[src] {
+        opacity: 1;
+      }
+      .mce-content-body.aside table{
+        min-width: 100% !important;
+      }
+      @media (max-width: 749.98px){
+        .mce-content-body table{
+          min-width: 100% !important;
+        }
+      }
+      .mce-content-body .table-wraper-fix{
+        padding-bottom: 1px;
+        padding-right: 1px;
+      }
+      
+      @media (min-width: 749.98px){
+        .mce-content-body .table-wraper-fix > table > tbody > tr td,
+        .mce-content-body .table-wraper-fix > table > tbody > tr th{
+          min-width: 80px !important;
+          box-sizing: border-box !important;
+        }
+        .mce-content-body.bottom .table-wraper-fix > table > tbody > tr td,
+        .mce-content-body.bottom .table-wraper-fix > table > tbody > tr th{
+          min-width: 120px !important;
+        }
+      }
+      .table-wraper-fix > table > tbody > tr td,
+      .table-wraper-fix > table > tbody > tr th {
+        padding: 8px;
+      }
+    </style>
+    {{{content}}}
+  </div>
+</div>
+<div data-node="shadow-dom"></div>

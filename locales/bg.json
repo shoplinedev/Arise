@@ -1,0 +1,1483 @@
+{
+  "address": {
+    "dropdown": {
+      "default-placeholder": "Моля, изберете",
+      "no-item-tips": "Няма налични данни",
+      "no-search-result": "Не е открито съвпадение"
+    },
+    "mobile-errorMessage": "Моля, въведете валиден телефонен номер",
+    "mobile-errorMessage-country-code": "Моля, не въвеждайте регионален код"
+  },
+  "blog": {
+    "container": {
+      "backTo": "Върнете {{{collectionTitle}}}"
+    }
+  },
+  "blogList": {
+    "container": {
+      "empty": {
+        "desc": "В този блог няма публикации в блога.",
+        "title": "Блог"
+      },
+      "readBtnText": "Прочетете още"
+    }
+  },
+  "cart": {
+    "active-stock-limit": "Само {{stock}} броя са останали на тази намалена цена",
+    "active-stock-limit-1": "Можете да купите най-много {{stock}} продукт/а с отстъпките едновременно.",
+    "active-stock-limit-2": "Можете да купите само {{stock}} брой/я от този продукт с отстъпките",
+    "activity-price-limit": "Можете да купите само {{num}} брой/я от този продукт с отстъпките",
+    "activity-product-limit": "Можете да купите най-много {{stock}} продукт/а с отстъпките едновременно.",
+    "activity-title-limit": "Долните продукти надвишават лимита за пазаруване, продължавате ли към плащането?",
+    "checkout-error": "В количката за пазаруване има поне един неналичен продукт. Моля, оправете артикулите в количката, за да платите.",
+    "get": "Вземете",
+    "go-shopping": "ПРОДЪЛЖЕТЕ ПАЗАРУВАНЕТО",
+    "login-description": "Вече сте член? Вписването може да е по-удобно, за управление на поръчката!",
+    "login-membership": "Безплатно членство",
+    "most-100-sku": "Добавете до 100 артикула",
+    "most-buy-999": "Максималното количество от един продукт е 999 броя",
+    "not-participation-offers": "Неучастваща отстъпка",
+    "render-add-items": "Количката ви в момента е празна.",
+    "render-empty-status": "В количката ви няма артикули",
+    "shopping-fees": "такси за пазаруване",
+    "shopping-money": "отстъпка, Таксите и доставката ще бъдат калкулирани при следващата стъпка",
+    "shopping-money-step": "Таксите и доставката се калкулират при плащането",
+    "stock-limit": "{{stock}} броя налични",
+    "view-link": "Кликнете, за да видите",
+    "view-pic": "Персонализиран преглед",
+    "view-shopping-cart": "Вижте количката за пазаруване",
+    "added-to-cart": "Добавено в количката ви",
+    "cart-subtotal": "Междинна сума за количката",
+    "view-cart": "Вижте количката"
+  },
+  "checkout": {
+    "delivery-method": {
+      "store-pickup": "Вдигни"
+    },
+    "info-preview": {
+      "store-pickup__info": "Вземане от магазин • {{locationName}} • Безплатно",
+      "store-pickup__label": "Метод"
+    },
+    "store-pickup": {
+      "label": "Място за вземане",
+      "list--empty": "Вашата поръчка не е налична за вземане. Въведете адрес за доставка.",
+      "pickup-appointment--between": "Готови след около {{start}}-{{end}}",
+      "pickup-appointment--more-than": "Готов за повече от {{start}}",
+      "pickup-appointment--within": "Готово в рамките на {{end}}",
+      "pickup-appointment__value--day": "{{value}} ден",
+      "pickup-appointment__value--day-plural": "{{value}} дни",
+      "pickup-appointment__value--hour": "{{value}} час",
+      "pickup-appointment__value--hour-plural": "{{value}} часа"
+    }
+  },
+  "collection": {
+    "all": {
+      "h1Title": "Категория",
+      "title": "Всички колекции"
+    }
+  },
+  "comment": {
+    "about-product": "Моля, напишете поне една дума",
+    "add-img": "Добавете изображение",
+    "all-reviews": "Вижте всички отзиви",
+    "bad": "Много лош",
+    "best": "Отличен",
+    "comment-count": "{{total}} отзива",
+    "customer-comment": "Отзиви от клиенти",
+    "enter-comment": "Напишете отзив за продукта",
+    "experience-about": "Моля, напишете своя отзив за този продукт",
+    "general": "Среден",
+    "good": "Добър",
+    "image-only-2m": "Максималният размер на изображението е {{size}} MB",
+    "leave-a-review": "Оставете отзив",
+    "mobile-submit": "Изпращане",
+    "more-images": "Можете да добавите най-много {{total}} изображения",
+    "network-err-msg": "Поради грешка в системата вашият отзив не може да бъде обработен, моля, опитайте отново~",
+    "nickname": "Псевдоним",
+    "no-bought-msg": "Съжаляваме, не сте закупили този продукт преди и не можете да оставите отзив",
+    "no-comment-first-tip": "Публикувайте първия коментар сега",
+    "no-comment-title-tip": "Все още няма коментари",
+    "no-login-msg": "Клиенти, закупили този продукт, могат да оставят отзив; моля, първо се впишете",
+    "on-img-upload-tip": "Качване, моля, изпратете по-късно",
+    "only-image": "За качване се поддържат само файлове от типа .jpg .jpeg .png .bmp",
+    "rate-score": "Рейтинг {{score}}",
+    "ratings": "Рейтинг",
+    "read-more-comments": "Вижте още",
+    "shipping-information": "Информация за доставка",
+    "sign-in": "ВПИСВАНЕ",
+    "text": "Отзиви",
+    "thanks-msg": "Благодарим ви за отзива",
+    "total": "{{total}} отзива",
+    "worse": "Лош",
+    "write-review": "Напишете отзив"
+  },
+  "common": {
+    "address": "Адрес",
+    "amount": "Количество",
+    "anonymous": "Анонимен",
+    "anonymous-evaluation": "Анонимен отзив",
+    "apply": "Прилагане",
+    "applyDate": "Дата на заявката",
+    "audit": "Преглед",
+    "back-to-cart": "Връщане към количката",
+    "back-to-user-center": "Назад към потребителския център",
+    "backout": "Отмяна",
+    "bank-Account": "Банкова сметка",
+    "bank-Account2": "Банкова сметка",
+    "bank-card-number": "Номер на банкова карта",
+    "bank-name": "Име на банката",
+    "buy-now": "КУПЕТЕ СЕГА",
+    "cancel": "Отказ",
+    "cardholder-name": "Име на картодържателя",
+    "category": "Категория",
+    "checkout": "ПЛАЩАНЕ",
+    "close": "Затворете",
+    "confirm": "OK",
+    "contact-information": "Информация за връзка",
+    "contactUs": "СВЪРЖЕТЕ СЕ С НАС",
+    "continue": "Напред",
+    "day": "ден",
+    "days": "дни",
+    "default-address": "Зададен адрес",
+    "descountPrice": "Продажна цена",
+    "discount": "Отстъпка",
+    "discountDesc": "Описание на продажбите",
+    "discountOff": "Отстъпка",
+    "email": "Имейл адрес",
+    "email2": "Поща",
+    "enter-email": "Моля, въведете своя имейл адрес",
+    "enter-mobile-phone": "Моля, въведете своя номер на мобилен телефон",
+    "enter-username": "Моля, въведете потребителско име",
+    "error-stack": "Грешен сегмент",
+    "evaluation": "Преглед",
+    "finish": "Завършване",
+    "free-shipping": "Безплатна доставка",
+    "freightDesc": "Описание на таксите за доставка",
+    "hasSelected": "Е избрал",
+    "home": "първа страница",
+    "login": "Влизане",
+    "logistics": "Доставка",
+    "logistics-and-payment": "Доставка и плащане",
+    "member-login": "Вписване на член",
+    "meno": "Забележки",
+    "mobile": "Телефонен номер",
+    "mobile-phone": "Номер за мобилен телефон",
+    "modify": "Промяна",
+    "ok": "OK",
+    "operation": "Действие",
+    "order": "Поръчки",
+    "order-evaluation": "Преглед на поръчка",
+    "outOfStock": "Няма наличност",
+    "package": "Опаковка",
+    "page": "страница",
+    "payment": "Плащане",
+    "payment-2": "Платете сега",
+    "piece": "брой",
+    "pieces": "Броя",
+    "productError": "Не е намерена информация за продукта. Моля, опитайте по-късно",
+    "recommend": "Препоръчано",
+    "remain": "Оставащи",
+    "remove": "Извадете",
+    "returnInfo": "Информация за връщането",
+    "returnMoney": "Възстановяване на суми",
+    "returnProgress": "Ход на връщането",
+    "rollback": "Изтегляне",
+    "selectProduct": "Изберете продукт",
+    "settleMent": "Купете сега",
+    "sign-out": "Излизане",
+    "soldOut": "Продадено",
+    "stock-limit": "Само {{stock}} останали",
+    "subTotal": "Междинна сума",
+    "submit-evaluation": "Изпращане на отзив",
+    "tax": "Данъци и такси",
+    "taxDesc": "Описание на данъци и такси",
+    "tel-phone": "Телефонен номер",
+    "tips": "Напомняне",
+    "title": "Наименование",
+    "total": "Общо",
+    "upload": "Качване",
+    "upload-image": "Качване на изображение",
+    "use-address": "Използван адрес",
+    "use-new-address": "Използване на нов адрес",
+    "username": "Име"
+  },
+  "contactForm": {
+    "sendSuccess": "Благодарим ви, че се свързахте с нас, ще ви върнем обаждането възможно най-скоро."
+  },
+  "footer": {
+    "copyright": "Всички права запазени.",
+    "followus": "ПОСЛЕДВАЙТЕ НИ",
+    "subscribeBarPlaceholder": "Попълнете своя адрес тук",
+    "subscribeError": "Неуспешно абониране",
+    "subscribeRegExpError": "Грешка във формата на имейл адреса",
+    "subscribeSuccess": "Успешно абониране"
+  },
+  "gdpr": {
+    "modal": {
+      "accept": "Приеми",
+      "decline": "Отклони",
+      "link": "Политика за поверителност",
+      "tips": "За да подобрим вашата работа, ние използваме бисквитки, за запомняне данните за влизане, събиране на статистически данни и да предлагаме съдържание, съобразено с вашите интереси. Щракнете върху „Приемам“, за да приемете бисквитките или вижте нашата „Политика за поверителност“.",
+      "title": "Ние се грижим за вашата поверителност"
+    }
+  },
+  "header": {
+    "cart": "Вашата количка",
+    "center": "Център",
+    "login": "Влизане",
+    "logout": "Изход",
+    "navItemAll": "Всички",
+    "noCurrencyFallback": "Не е намерена съответната валута",
+    "search": "Търсене",
+    "searchInputPlaceholder": "Пишете тук и чукнете за търсене",
+    "searchItems": "Търсене на продукти"
+  },
+  "labelInput": {
+    "contact-error": "Моля, въведете имейл адрес/номер на мобилен телефон с валиден формат.",
+    "email-error": "Моля, въведете имейл адрес с валиден формат.",
+    "phone-error": "Моля, въведете номер на мобилен телефон с валиден формат.",
+    "phone-error-tips": "Моля, попълнете истинското име на получателя, за да улесните получаването"
+  },
+  "modal": {
+    "exceedCartContent": "Можете да добавите този продукт в количката си, като първо купите или извадите други продукти от нея",
+    "exceedCartTitle": "Съжаляваме! Броят на продуктите в количката надвишава лимита.",
+    "goCart": "Към количката",
+    "iKnow": "Разбрах"
+  },
+  "oneShop": {
+    "TCTD0108": "Начинът на доставка не съществува, моля, изберете отново",
+    "TCTD0112": "Продуктът, който сте избрали, е невалиден, моля, изберете отново",
+    "TCTD0118": "Начинът на плащане не съществува, моля, изберете отново",
+    "TCTD0121": "Маркетинговата кампания е променена, моля, изберете отново",
+    "bracket": "({{content}})",
+    "buyNow": "Купете сега",
+    "buyPop": "{{name}} закупи този продукт преди {{minutes}} минути",
+    "comboFailure": "Невалиден комбиниран пакет",
+    "comboSelectFailure": "Комбинираният пакет, който сте избрали, е невалиден, моля, изберете отново",
+    "comment": "Оставете съобщение (не е задължително)",
+    "country": "Страна",
+    "currentProductSoldOut": "Недостатъчна наличност от настоящия продукт",
+    "cutByAmount": "CNY {{n}} намаление над CNY {{amount}}",
+    "cutByNum": "CNY {{n}} намаление за {{num}} броя",
+    "defaultErrorCodeMsg": "Аномалия в мрежата, моля, опреснете страницата и опитайте отново по-късно",
+    "discountByAmount": "{{n}}% отстъпки над CNY {{amount}}",
+    "discountByNum": "{{n}}% отстъпки за {{num}} броя",
+    "freeShipping": "Безплатна доставка",
+    "noComment": "Все още няма никакви коментари",
+    "noProductDesc": "В момента няма описание на продукта",
+    "optional": "Не е задължително",
+    "orderAgain": "Моля, опитайте да направите поръчката отново",
+    "overLength": "Въведената дължина е над лимита, моля, оправете съдържанието и опитайте отново",
+    "priceStart": "От CNY {{n}}",
+    "productCommentTitle": "Отзиви за продукта（{{n}}）",
+    "productDetail": "Детайли за продукта",
+    "productFailure": "Продуктът, който сте избрали, е невалиден, моля, изберете отново",
+    "productNoSelect": "Моля, изберете спецификацията на продукта",
+    "selectedProductSoldOut": "Недостатъчна наличност от избрания продукт",
+    "soleOutSelectAgain": "Недостатъчна наличност от настоящия продукт, моля, изберете отново",
+    "submit": "Изпращане"
+  },
+  "order": {
+    "after-order-status": {
+      "cancelled": "Анулирано",
+      "completed": "Завършено",
+      "confirmed": "Потвърдено",
+      "customer-canceled": "Анулирано от клиента",
+      "customer-rejected": "Отхвърлено от клиента",
+      "delivery-progress": "Потвърдено",
+      "merchant-cancellation": "Анулирано от продавача",
+      "processing": "Обработка"
+    },
+    "after-sale-type": {
+      "refund": "Възстановяване на суми",
+      "return-and-refund": "Връщане и възстановяване"
+    },
+    "breadcrumb": {
+      "order": "Ред",
+      "order-detail": "Подробности за поръчката",
+      "title": "Ред"
+    },
+    "customer-info": "Клиентска информация",
+    "delivery-statusType": {
+      "arrived": "Пристигнало",
+      "cancel-delivery": "Анулиране на доставка",
+      "cancelled": "Анулирано",
+      "delivery-partial": "Частична доставка",
+      "delivery-return": "Върнато",
+      "picked-up": "Получено",
+      "problem": "Проблеми като проблемно изпращане и загубени поръчки изискват ръчна поддръжка",
+      "shipped": "Доставено",
+      "shipping": "Доставя се",
+      "stocking": "Подготвяне на продуктите"
+    },
+    "detail": {
+      "cancel-btn": "ОТКАЖЕТЕ ПОРЪЧКАТА",
+      "communication": {
+        "title": "Поръчки за съобщаване"
+      },
+      "coms": {
+        "operationLog": {
+          "PayDealLog": {
+            "amount": "Сума",
+            "createTime": "Начално време на плащането",
+            "dealId": "Сериен номер на плащането",
+            "payName": "Канал за плащане",
+            "status": "Състояние",
+            "title": "Плащането за {amount} е обработено чрез{payName}",
+            "updateTime": "Време на връщане на резултата"
+          }
+        }
+      },
+      "order-info": {
+        "canceled": "Анулирано",
+        "confirmed": "Потвърдено",
+        "finished": "Завършено",
+        "processing": "Обработка"
+      },
+      "order-status": {
+        "button": {
+          "refresh": "Обнови"
+        },
+        "cancel": {
+          "desc": "Поръчката ви е анулирана на {{cancelTime}}. Свържете се с нас, ако имате въпроси.",
+          "title": "Поръчката ви е анулирана"
+        },
+        "pay": {
+          "go-pay": "ПЛАЩАНЕ <0>{{orderAmount}}</0>",
+          "title": "Чакащо плащане"
+        },
+        "pedding": {
+          "desc": "Заявката ви за плащане е изпратена и изчаквате {{payChannelDesc}} да върне резултата за плащането",
+          "title": "Плащането се извършва..."
+        },
+        "pickedUp": {
+          "desc": "Поръчката ви беше взета на {{address1}} на {{weekDate}}.",
+          "title": "Вашата поръчка е взета"
+        },
+        "readyForPickup": {
+          "desc": "Моля, донесете потвърждение на поръчката си, когато вземете поръчката си.",
+          "title": "Вашата поръчка е готова за вземане"
+        },
+        "redirect": {
+          "desc": "Ако не бъдете пренасочени автоматично, опреснете страницата",
+          "title": "Пренасочване, моля, изчакайте"
+        },
+        "success": {
+          "desc": "Информация за поръчката е изпратена на {{buyerContact}}, моля, проверете.",
+          "title": "Поръчката ви е потвърдена."
+        }
+      },
+      "packages": {
+        "amount": {
+          "channel-surcharge": "Комисионна за плащането",
+          "deduct-voucher": "Сума от ваучер",
+          "discount": "Отстъпка от кода на купона",
+          "discount-amount-name": "Допълнителна отстъпка от продавача",
+          "express": "Товарът",
+          "express-surcharge": "Такса за превоз",
+          "preferential": "преференциален",
+          "subtotal": "Междинна сума за артикули",
+          "tax": "Стоков данък",
+          "tip": "Бакшиш",
+          "total": "Общо"
+        },
+        "contact-us": "Нужда от помощ? Моля, свържете се с нас: {{email}}",
+        "contact-us-title": "Свържете се с нас",
+        "logistics": {
+          "blank-trace": "Моля, проследете пакета си, като кликнете долния линк:",
+          "detail": "Детайли",
+          "no-data": "Няма информация за логистиката в момента",
+          "no-data2": "Все още няма информация за доставката, проверете по-късно.",
+          "tab-title": "Пакет {{index}}"
+        },
+        "order-note-title": "Забележка за поръчката",
+        "order-num": "Пакет ({{num}})",
+        "payment-deal": {
+          "amount": "Сума",
+          "create-time": "Създаден",
+          "deal-id": "Референтен номер на транзакция",
+          "name": "Канал за плащане",
+          "status": "Състояние",
+          "title": "Детайли за плащането",
+          "update-time": "Актуализиран"
+        },
+        "payment-info": {
+          "address": "Адрес за плащане",
+          "detail": "Детайл",
+          "method": "Начин на плащане",
+          "status": "Статус на плащането"
+        },
+        "payment-title": "Плащане",
+        "send-to-Line": "Изпрати до Line",
+        "send-to-Messenger": "Изпрати до Messenger",
+        "shippings": {
+          "fee": "Такса за доставка",
+          "method": "Начин на доставка",
+          "status": "Статус на поръчката"
+        },
+        "status": {
+          "pedding": {
+            "desc": "В момента подготвяме тези артикули за доставка.",
+            "title": "Подготвя се за доставка"
+          },
+          "success": {
+            "desc": "Получихме вашата поръчка и я подготвяме. Върнете се на тази страница за новини за вашата доставка."
+          }
+        },
+        "sub-title": "Проследяване на пакет",
+        "subscriptions-title": "Абонаменти",
+        "title": "Информация",
+        "unshipped-order-num": "Обработват се ({{num}} артикула)"
+      }
+    },
+    "help-tips": "Нужда от помощ? Моля, свържете се с нас: {{email}}",
+    "oms-status": {
+      "arrived": "Пристигнало",
+      "cancelled": "Анулиране на доставка",
+      "executing": "Изпълнява се",
+      "picked": "Подписано за",
+      "prepare-pick": "Готово за вземане",
+      "problem": "Проблемно изпращане",
+      "returned": "Върнато",
+      "returning": "Връща се",
+      "shipped": "Доставено"
+    },
+    "order-at": "Поръчано в",
+    "order-date": "Дата на поръчката",
+    "order-list": {
+      "empty-tip": "В момента няма записани поръчки, отидете да пазарувате",
+      "empty-title": "img",
+      "item-total": "{{transPackages}} артикул общо",
+      "item-total-plural": "{{transPackages}} артикула общо",
+      "load-more": "Издърпайте, за да заредите още",
+      "no-more": "Няма повече информация",
+      "package-item": "Пакет {{num}}（{{item}} артикула）",
+      "package-more": "и {{num}} повече",
+      "pay-now": "Платете сега",
+      "sub-order": "подпоръчки",
+      "track": "Проследяване"
+    },
+    "order-status": {
+      "cancelled": "Анулирано",
+      "completed": "Завършено",
+      "confirmed": "Потвърдено",
+      "customer-canceled": "Анулирано от клиента",
+      "merchant-cancellation": "Анулирано от продавача",
+      "processing": "Обработка"
+    },
+    "pay-status": {
+      "abolished": "Анулирано",
+      "already-paid": "Платено",
+      "failed": "Неуспешно плащане",
+      "partial-payment": "Частично платено",
+      "partial-refund": "Частично възстановяване",
+      "paying": "Плащане",
+      "refund-failed": "Неуспешно възстановяване",
+      "refunded": "Възстановено",
+      "refunding": "Възстановяване на суми",
+      "timed-out": "Изтекло време за плащане",
+      "unpaid": "Неплатено"
+    },
+    "refund-methods": {
+      "merchant": "Вземане от продавача",
+      "self": "Самостоятелно връщане"
+    },
+    "refund-type": {
+      "origin": "Възстановяване в оригиналната разплащателна сметка",
+      "other": "Други"
+    },
+    "seq-no": "№ {{id}}"
+  },
+  "payments-name": {
+    "COD": "В брой при доставка",
+    "Paypal": "Paypal",
+    "third-part": "Кредитна карта"
+  },
+  "paypal": {
+    "error-expired": "Продуктът е с изтекъл срок на годност",
+    "error-login-limit": "Моля, влезте в акаунта си преди да направите поръчка",
+    "error-network-error": "Грешка в мрежата",
+    "error-product-limit": "Лимитът на продукта е надхвърлен",
+    "error-shop-not-exit": "Магазинът не съществува",
+    "error-sold-out": "Недостатъчно от продукт в наличност"
+  },
+  "productDetail": {
+    "activityToast": {
+      "price-limit": "Максималното количество за този ограничен продукт е {{num}}",
+      "product-limit": "Покупката е ограничена до промоционален продукт {{stock}}",
+      "title-limit": "Продуктите по-долу надвишават лимита за покупка"
+    },
+    "addCart": "ДОБАВИ",
+    "bulkDiscount": {
+      "title": "Купете повече Спестете повече!"
+    },
+    "commentsTitle": "Отзиви",
+    "default-placeholder": "Моля, изберете {{attrName}}",
+    "goOtherChannels": "Други канали за пазаруване",
+    "goOutsideOfAmazon": "Отидете да пазарувате извън Amazon",
+    "goToAmazon": "Купете в Amazon",
+    "goToAmazonByLink": "Купете в Amazon",
+    "goToRakuten": "LOTTE",
+    "goToRakutenByLink": "Купете в LOTTE",
+    "goToYahoo": "Yahoo",
+    "goToYahooByLink": "Купете в Yahoo",
+    "inquiry": {
+      "cancel": "Отказ",
+      "email": "Имейл",
+      "emailEmptyErr": "Моля, въведете своя имейл адрес",
+      "emailFormatErr": "Моля, въведете валиден имейл адрес",
+      "inquiryTips1": "Моля, оставете ни съобщение и ще ви отговорим възможно най-скоро",
+      "inquiryTips2": "Можете да ни дадете повече от вашата информация, за да можем да ви предоставим по-подходящи услуги",
+      "inquiryTitle": "Запитване за продукта",
+      "message": "Вашето съобщение",
+      "messageEmptyErr": "Моля, въведете вашето съобщение",
+      "messageLengthErr": "Максималната дължина на вашето съобщение не бива да надвишава 1500 думи",
+      "mobile": "Телефонен номер",
+      "name": "Име",
+      "optional": "По желание",
+      "region": "Страна/Регион",
+      "submit": "Изпращане",
+      "submitFailed": "Изпращането неуспешно, моля, опитайте отново",
+      "submitSuccess": "Изпратено успешно"
+    },
+    "morePaymentOptions": "още опции за плащане",
+    "moreSpuImgBtn": "Покажи още",
+    "network": {
+      "message2": "Неуспешно извличане на информация за продукта. Моля, опитайте по-късно."
+    },
+    "no-logistics-and-payment-information": "Няма информация за начини на логистика и плащане все още",
+    "no-product-introduction": "Няма представяне на продукта все още",
+    "previewLinkToast": "Операцията за визуализация на връзката не се поддържа",
+    "recentlyViewedProducts": "Наскоро разгледане продукти",
+    "recommendTitle": "Може да харесате също",
+    "tabPanel": {
+      "comments": {
+        "empty": "Няма отзив за продукта все още",
+        "error": "Неуспешно извличане на отзив за продукта. Моля, опитайте по-късно."
+      },
+      "desc": "Няма описание все още",
+      "descFs": "Неуспешно извличане на данни. Моля, опитайте по-късно.",
+      "pay": {
+        "text1": "Начин на плащане",
+        "text2": "Няма начин на плащане все още",
+        "text3": "Няма информация за логистично плащане все още"
+      },
+      "ship": {
+        "sh": {
+          "text1": "Начин"
+        },
+        "text2": "Няма начин на доставка все още"
+      }
+    },
+    "tabs": {
+      "comments": "Отзиви",
+      "description": "Описание",
+      "shippingPayment": "Доставка и плащане"
+    },
+    "thumbSwiper": {
+      "image": {
+        "alt": "Миниатюра на продукта"
+      },
+      "share": {
+        "text": "Споделете с"
+      }
+    },
+    "toAmazon": "Amazon"
+  },
+  "productList": {
+    "all": {
+      "h1Title": "продукта"
+    },
+    "container": {
+      "empty": {
+        "desc": "Няма продукт в тази категория",
+        "description": "Ако е необходимо, е възможен контакт с бизнесмен за консултация",
+        "title": "Съжаляваме, този продукт временно не е наличен."
+      },
+      "from": "От {{price}}",
+      "listItem": {
+        "addToCart": "ДОБАВИ В КОЛИЧКАТА",
+        "off": "{{value}}% намаление",
+        "sale": "Продажба",
+        "save": "Отстъпка {{{priceDom}}}",
+        "saveByJs": "Отстъпка {{priceDom}}",
+        "saveRatio": "{{price}}% намаление",
+        "sold": {
+          "out": "ПРОДАДЕНО"
+        },
+        "soldOut": "Продадено",
+        "toDetail": "Вижте подробности"
+      },
+      "moreProductNum": "{{num}} Продукти",
+      "network": {
+        "message": "Не е намерена информация за продукта. Моля, опитайте по-късно."
+      },
+      "oneProductNum": "{{num}} Продукт",
+      "productsNum": "{{num}} продукта",
+      "show": "Покажи",
+      "sort": {
+        "newest": "Нови продукти",
+        "option1": "Дата на продажба(ново към старо)",
+        "option2": "Дата на продажба(старо към ново)",
+        "option3": "Цена (висока към ниска)",
+        "option4": "Цена (ниска към висока)",
+        "priceHighToLow": "Цена висока към ниска",
+        "priceLowToHigh": "Цена ниска към висока",
+        "recommend": "Препоръчано",
+        "sales": "Най-продавани",
+        "text1": "Всички продукти",
+        "text2": "Сортиране по"
+      },
+      "tradePopup": {
+        "addToCart": "ДОБАВИ В КОЛИЧКАТА",
+        "error1": "{{stock}} броя останали. Моля, изберете количество.",
+        "error2": "Само {{saleMax}} броя могат да бъдат закупени. Моля, отново изберете количество!",
+        "error3": "Моля, изберете количество!",
+        "error4": "Моля, изберете първо размер на продукта!",
+        "error5": "Продуктът е разпродаден",
+        "error6": "Продуктът е премахнат от рафтовете"
+      },
+      "viewAs": "Виж като"
+    },
+    "filterMenu": {
+      "filter": "Филтър",
+      "less": "По-малко",
+      "more": "Повече",
+      "price": "Цена"
+    },
+    "gategoryMenu": {
+      "catalog": "КАТАЛОГ",
+      "menuitem": "Всички продукти"
+    },
+    "noProduct": "Няма продукти в тази серия"
+  },
+  "productSearch": {
+    "container": {
+      "sort": {
+        "option1": "Време на рафтовете (ново към старо)",
+        "option2": "Време на рафтовете (старо към ново)",
+        "option3": "Цена (висока към ниска)",
+        "option4": "Цена (ниска към висока)"
+      }
+    },
+    "empty": {
+      "title1": "Препоръчваме да проверите дали има грешки при въвеждането,",
+      "title2": "и да потърсите отново с кратки ключове думи"
+    },
+    "search": {
+      "backHome": "Върни се на началната страница",
+      "noRelatedResultFound": "Няма открити свързани резултати",
+      "results": "{{count}} резултата",
+      "resultsFoundFor": "Намерени {{count}} резултата за \"{{keyword}}\"",
+      "searchNoResults": "Вашето търсене за \"{{keyword}}\" не даде никакви резултати"
+    },
+    "serachTitle": {
+      "text1": "Няма открити свързани резултати"
+    },
+    "sortName": "Сортиране по:",
+    "title": "Търсене"
+  },
+  "promotion": {
+    "activity-benefit": "Оферти на събитието",
+    "activity-introduction": "Запознаване със събитието",
+    "activity-scope": "Обхват на събитието",
+    "all-product": "Всички продукти",
+    "all-user": "Всички потребители",
+    "all-vip": "Всички членове",
+    "bundle": {
+      "desc": "Добавете тези неща в количката за пазаруване за <italic>{{value}}</italic> намаление",
+      "title": "Стоки в пакет"
+    },
+    "buy-again": "Купете <0>{{value}}</0> повече",
+    "buy-again-piece": "Купете {{value}} броя повече",
+    "coupon": "Купон",
+    "discount-benefit": "{{discount}} намаление",
+    "discounted": "Спестихте <0>{{value}}</0>",
+    "flash-sale": "Светкавична продажба",
+    "flash-sale-limit": "Лимит за покупка от {{value}} на човек",
+    "free-shipping": "Безплатна доставка",
+    "full-amount": "<0>{{value}}</0> или повече",
+    "full-discount": "Промоция",
+    "full-discount-benefit": "Промоция с отстъпки",
+    "full-piece": "{{value}} броя или повече",
+    "full-reduction": "Промоция",
+    "full-reduction-benefit": "Промоционални отстъпки",
+    "get-discount-1": "Насладете се на {{value}} намаление",
+    "get-discount-2": "Насладете се на оферта {{value}}",
+    "item-num": "Артикул {{value}}",
+    "label-vip": "Член {{label}}",
+    "level-vip": "Член ниво {{level}}",
+    "member-price": "Цена за членове",
+    "more-combo": "Още опаковки",
+    "only-one-sku": "Този продукт има само една спецификация",
+    "other-customer": "Клиенти (потребители, които не са направили поръчка)",
+    "percent-piece-step1": "Купете <more>{{price}}</more> повече, за да получите <more>{{percent}}</more> НАМАЛЕНИЕ",
+    "percent-piece-step2": "Спестете <normal>{{percent}}</normal> вече!<white /> Купете <more>{{price}}</more> повече, за да получите <more>{{morePercent}}</more> НАМАЛЕНИЕ",
+    "percent-piece-step3": "Поздравления! Спестихте <normal>{{percent}}</normal> !",
+    "percent-price-step1": "Купете <more>{{price}}</more> повече, за да получите <more>{{percent}}</more> НАМАЛЕНИЕ",
+    "percent-price-step2": "Спестете <normal>{{percent}}</normal> вече!<white /> Купете <more>{{price}}</more> повече, за да получите <more>{{morePercent}}</more> НАМАЛЕНИЕ",
+    "percent-price-step3": "Поздравления! Спестихте <normal>{{percent}}</normal> !",
+    "permanent": "Постоянна",
+    "piece-unit": "Броя",
+    "price-piece-step1": "Купете <more>{{morePrice}}</more> повече, за да спестите <more>{{totalPrice}}</more>",
+    "price-piece-step2": "Спестете <normal>{{price}}</normal> вече!<white /> Купете<more>{{morePrice}}</more> повече, за да спестите <more>{{totalPrice}}</more>",
+    "price-piece-step3": "Поздравления! Спестихте <normal>{{price}}</normal> !",
+    "price-price-step1": "Купете <more>{{morePrice}}</more> повече, за да спестите <more>{{totalPrice}}</more>",
+    "price-price-step2": "Спестете <normal>{{price}}</normal> вече!<white /> Купете<more>{{morePrice}}</more> повече, за да спестите <more>{{totalPrice}}</more>",
+    "price-price-step3": "Поздравления! Спестихте <normal>{{price}}</normal> !",
+    "price-unit": "Юан",
+    "reduce": "Намаление <0>{{value}}</0>",
+    "reduce-again": "<0>{{value}}</0> допълнително намаление",
+    "reduce1": "Намаление {{value}}",
+    "select-combo": "Изберете опаковка",
+    "select-product": "Стоки в магазина",
+    "select-sku": "Изберете спецификациите на продукта",
+    "selected-count-activity-product": "{{selectCount}} избрани продукта от събитие",
+    "still-lacking": "<0>{{value}}</0> необходими",
+    "terms-and-conditions": "Правила и условия",
+    "whole-full-amount-discount": "<italic>{{content}}</italic>% намаление над <italic>{{condition}}</italic>",
+    "whole-full-amount-reduce": "<italic>{{content}}</italic> намаление за <italic>{{condition}}</italic>",
+    "whole-full-piece-discount": "<italic>{{content}}</italic>% намаление за <italic>{{condition}}</italic> броя",
+    "whole-full-piece-reduce": "<italic>{{content}}</italic> намаление за <italic>{{condition}}</italic> броя"
+  },
+  "sales": {
+    "bundle": {
+      "saveTip": "Спестете {{amount}} като купите заедно",
+      "title": "Често купувани заедно"
+    },
+    "customer-purchase-limit": "Лимит за покупка от {{count}} на човек",
+    "customer-purchase-limit-each-item": "Лимит за покупка от {{count}} на продукт на човек",
+    "discount-coupon": {
+      "applied": "Приложено",
+      "apply": "Прилагане",
+      "applyFail": "Приложението пропадна",
+      "applySuccess": "Кодът за отстъпка е приложен успешно",
+      "coupon-content": {
+        "discount1": "{discount} намаление",
+        "discount2": "Безплатна доставка",
+        "level": "За {{level}}",
+        "shippingRateBelow": "Транспортните разходи са по-малко от {value}",
+        "specified": "За определени клиенти",
+        "threshold": "Купи {threshold}",
+        "until": "Валидно до {{endTime}}"
+      },
+      "coupon-label": "Купон:",
+      "couponNoFound": "Кодът за отстъпка не съществува",
+      "popupLabel": "Купони за магазин:"
+    },
+    "flash-sale-text": "Светкавична продажба",
+    "flash-sale-tips": "Лимит за покупка: {{count}} броя",
+    "gift": {
+      "gotAll": "Поздравления! Имате {{saved}} БЕЗПЛАТНИ ПОДАРЪКА!",
+      "noReceived": "Поздравления! Можете да се насладите на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
+      "notMetAmount": "Купете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
+      "notMetQuantity": "Купете още {{threshold}} артикула, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
+      "select": "Изберете",
+      "spendMoreMoneyGetMore": "Поздравления! Получихте {{saved}} безплатни подаръка вече! Похарчете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
+      "spendMoreQuantityGetMore": "Поздравления! Получихте {{saved}} безплатни подаръка вече! Купете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА"
+    },
+    "hot-sale": "Гореща разпродажба!",
+    "promotion": {
+      "reminder": {
+        "benefit1": {
+          "threshold0": {
+            "step1": "Купете още {{threshold}} и спестете {{willSave}}",
+            "step2": "Вече спестихте {{saved}}! {{br}}Купете още {{threshold}} и спестете {{willSave}}",
+            "step3": "Поздравления! Спестихте {{saved}}!"
+          },
+          "threshold1": {
+            "step1": "Купете още {{threshold}} и спестете {{willSave}}",
+            "step2": "Вече спестихте {{saved}}! {{br}}Купете още {{threshold}} и спестете {{willSave}}",
+            "step3": "Поздравления! Спестихте {{saved}}!"
+          }
+        },
+        "benefit11": {
+          "threshold1": {
+            "step1": {
+              "nextFree": "Купете още {{threshold}} артикула, насладете се на един безплатен от тях",
+              "normal": "Купете още {{threshold}} артикула, насладете се на {{willSave}} ОТСТЪПКА за един от артикулите"
+            },
+            "step2": {
+              "free": "Поздравления! насладете на един безплатен от артикулите",
+              "nextFree": "Поздравления! {{saved}} спестени, {{br}}Купете още {{threshold}} артикула, насладете на един безплатен от артикулите",
+              "normal": "Поздравления! {{saved}} спестени, {{br}}Купете още {{threshold}} артикула, насладете се на {{willSave}} ОТСТЪПКА за един от артикулите"
+            },
+            "step3": {
+              "free": "Поздравления! насладете на един безплатен от артикулите",
+              "normal": "Поздравления! насладете се на {{saved}} ОТСТЪПКА за един от артикулите"
+            }
+          }
+        },
+        "benefit2": {
+          "threshold0": {
+            "step1": "Купете още {{threshold}} и получете {{willSave}} ОТСТЪПКА",
+            "step2": "Вече спестихте {{saved}}! {{br}}Купете още {{threshold}} и получете {{willSave}} ОТСТЪПКА",
+            "step3": "Поздравления! Спестихте {{saved}}!"
+          },
+          "threshold1": {
+            "step1": "Купете още {{threshold}} и получете {{willSave}} ОТСТЪПКА",
+            "step2": "Вече спестихте {{saved}}! {{br}}Купете още {{threshold}} и получете {{willSave}} ОТСТЪПКА",
+            "step3": "Поздравления! Спестихте {{saved}}!"
+          }
+        },
+        "benefit3": {
+          "threshold0": {
+            "step1": {
+              "unlimited": "При повторна покупка на {{threshold}}, получавате<span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>!",
+              "upperLimit": "При повторна покупка на {{threshold}}, получавате<span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>! (Максимална сума{{upperLimit}} за безплатна доставка)"
+            },
+            "step3": {
+              "unlimited": "Честито! Получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>!",
+              "upperLimit": "Честито! Получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>! (Максимална сума{{upperLimit}} за безплатна доставка)"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "unlimited": "Купете още {{threshold}} и получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>!",
+              "upperLimit": "Купете още {{threshold}} и получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>! (Максимална сума{{upperLimit}} за безплатна доставка)"
+            },
+            "step3": {
+              "unlimited": "Честито! Получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>!",
+              "upperLimit": "Честито! Получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>! (Максимална сума{{upperLimit}} за безплатна доставка)"
+            }
+          }
+        },
+        "benefit9": {
+          "threshold1": {
+            "step1": "Купете още {{threshold}} броя, от които {{willSave}}броя са безплатни",
+            "step2": "Поздравления! {{saved}} броя са получени безплатно! Купете още {{threshold}} броя, от които {{willSave}}броя са безплатни",
+            "step3": "Поздравления! {{saved}} от тях са безплатно"
+          }
+        }
+      },
+      "tags-label": "Намаление:",
+      "tags": {
+        "benefit1": {
+          "threshold0": "Купете {{threshold}} спестете {{save}}",
+          "threshold1": "Купете {{threshold}} Вземете {{save}} ОТСТЪПКА"
+        },
+        "benefit11": {
+          "threshold1": {
+            "free": "Купете {{threshold}} артикула, насладете се на един безплатен от тях!",
+            "normal": "Купете {{threshold}} артикула, насладете се на {{save}} ОТСТЪПКА за един от артикулите"
+          }
+        },
+        "benefit2": {
+          "threshold0": "Купете {{threshold}} спестете {{save}}",
+          "threshold1": "Купете {{threshold}} Вземете {{save}} ОТСТЪПКА"
+        }
+      }
+    },
+    "selected-count-activity-product": "{{selectCount}} избрани продукта от събитие",
+    "sold": "{{count}} продадени"
+  },
+  "subscription": {
+    "not-subscript-via-line-facebook": "Не можете да се абонирате, за да поръчате известие чрез LINE или Facebook",
+    "subscript-via-line-facebook": "Абонирайте се, за да поръчате известие чрез LINE или Facebook"
+  },
+  "tips": {
+    "address-no-logistics": "Няма налични начини за доставка за настоящия адрес",
+    "and": "и",
+    "bind-change-email": "Свържете/променете имейл",
+    "bind-change-mobile-phone-number": "Свържете/променете номер на мобилен телефон",
+    "bind-success": "Свързвано",
+    "cancel-apply-sent": "Заявката за анулиране е изпратена",
+    "cancel-order-fail": "Неуспешно анулиране на поръчка, моля, опитайте отново",
+    "cancel-reason-feedback": "Моля, кажете ни причината за вашето анулиране, за да подобрим нещата в бъдеще. Ще ви бъде възстановена сумата след успешното анулиране на поръчката. Очакваме с нетърпение вашето следващо посещение в нашия магазин!",
+    "cancel-success-notice": "Ще получите известие по имейл, след като поръчката ви е успешно анулирана, благодарим ви!",
+    "change-binding-after-verification": "Можете да свържете/промените {{value}} след потвърждение",
+    "change-heart": "Промених решението си",
+    "change-item": "Желая да променя закупените артикули",
+    "continue-as-a-guest": "Продължете като гост",
+    "country-address-fail": "Продавачи, базирани в страната на въведения адрес, не са отговорни за плащания на такси за доставка. Моля, направете ръчен избор",
+    "enter-address-first": "Моля, въведете първо адрес",
+    "enter-bank-card-number": "Моля, въведете номера на банковата карта!",
+    "enter-bank-name": "Моля, въведете името на банката!",
+    "enter-email": "Моля, въведете имейл адрес",
+    "enter-name": "Моля, въведете име!",
+    "enter-tel-number": "Моля, въведете номер на телефон",
+    "error-obtaining-support-logistics-country": "Грешка при извличане на страните, поддържащи логистиката",
+    "expand-order-summary": "Покажи преглед на поръчката",
+    "fail-contact": "Ако заявката ви за анулиране е неуспешна, моля, свържете се с нас, като използвате секцията по-долу за кореспонденция при поръчки Продавач/Купувач",
+    "fill-cancel-reason": "Моля, посочете причината за анулирането на поръчката",
+    "forget-password": "Забравена парола",
+    "get-checkout-config-fail": "Грешка при извличане на конфигурацията на плащането",
+    "get-checkout-detail-fail": "Грешка при извличане на подробности за плащането",
+    "i-agree-with-the-shop": "Съгласен съм с",
+    "image-size-less-than": "Изображенията трябва да са по-малки от {{max}} MB",
+    "img-name-too-long": "Въведеното име на изображението е твърде дълго～",
+    "img-size-too-large": "Съжаляваме! Размерът на изображението надвишава ограничението!",
+    "incorrect-delivery-or-payment-information": "Грешна доставка или информация за плащането",
+    "login": "ВПИСВАНЕ",
+    "logistics-no-pre-selection": "Не е наличен предварителен избор за доставка",
+    "logistics-pre-selection": "Наличен е предварителен избор за доставка",
+    "max-upload-image": "Може да качите максимум {{max}} изображения",
+    "max-upload-img": "Съжаляваме! Достигнахте максималния брой от {{maxNum}} качвания на изображения, поддържани от портала!",
+    "more-than-0-int": "Моля, въведете число, по-голямо от 0",
+    "need-phone-number-to-deliver": "В случай, че трябва да се свържем с вас във връзка с вашата поръчка",
+    "no-logistics-available": "Няма наличен начин на доставка",
+    "no-order-information-please-confirm": "Неуспешно извличане на информация за поръчката. Моля, уверете се, че номерът на поръчката е верен",
+    "no-order-number-please-confirm": "Неуспешно извличане на номера за поръчката. Моля, уверете се, че номерът на поръчката е верен",
+    "or-use-the-following-method-to-log-in": "или вписване по следните начини",
+    "order-creation-exception": "Неуспешно подаване на поръчка",
+    "other-reason": "Други причини",
+    "password-can-be-changed-after-verification": "Можете да промените паролата след потвърждение",
+    "pay-params-error": "Неуспешно извличане на параметрите на плащането, моля, опитайте отново",
+    "paypal-country-fail": "Страната, в която се намира този PayPal акаунт, не е включена в списъка със страни за плащания на такси за доставка. Моля, направете ръчен избор",
+    "please-complete-the-payment-method-content": "Моля, попълнете начина на плащане",
+    "please-read-and-agree-to-the-user-agreement-first": "Моля, прочетете и се съгласете първо със споразумението с потребителя",
+    "poroceed-to-checkout": "Продължете към плащането",
+    "price-more-expensive": "Намерена по-ниска цена другаде",
+    "product-abnormal-back-to-cart": "Грешка в статуса на продукта, моля, върнете се при количката и опитайте отново",
+    "put-up-order-summary": "Скрий преглед на поръчката",
+    "register": "Регистриране",
+    "repeat-buy": "Купете отново",
+    "reset-password": "Възстановявате на парола за акаунт {{account}}",
+    "sale-too-slow": "Закъснения на доставката",
+    "select-cancel-reason": "Моля, изберете причина за анулирането",
+    "select-return-product-first": "Моля, първо изберете продукта за връщане",
+    "set-new-password": "Възстановяване на парола",
+    "sku-change-tips": "Установени са промени в статуса на продукта, моля, препотвърдете вашия начин за доставка/плащане",
+    "sure-cancel-order": "Наистина ли искате да анулирате тази поръчка?",
+    "update-password": "Промяна на паролата",
+    "update-success": "Променено",
+    "upload-image-fail": "Неуспешно качване на изображение {{name}}",
+    "user-agreement": "Условията за потребителя на магазина",
+    "verification-code-has-been-sent-to-your-account": "На вашия акаунт е изпратен код за потвърждение",
+    "verify-account-to-reset-password": "Моля, потвърдете своя акаунт и възстановете паролата"
+  },
+  "title": {
+    "policy": {
+      "privacy": "Декларацията за поверителност на уебсайта",
+      "refund": "Политика за възстановяване на суми",
+      "service": "Условията за ползване",
+      "shipping": "Политика за доставки"
+    }
+  },
+  "trade": {
+    "activity-price-limit": "Можете да купите само {{num}} брой/я от този продукт с отстъпките",
+    "activity-product-limit": "Можете да закупите най-много {{stock}} продукт(и) с отстъпките едновременно",
+    "activity-title-limit": "Продуктите по-долу надвишават лимита за закупуване, продължавате ли към плащането?",
+    "add-to-cart-fail": "Съжаляваме! Неуспешно добавяне в количката. Моля, опитайте отново!",
+    "after-sale-order": "Следпродажбена поръчка",
+    "agree-user-terms-first": "Моля, първо дайте съгласие за Условия за потребителя",
+    "and": "и",
+    "apply-refund": "Заявете за връщане",
+    "apply-time": "Време на заявката",
+    "at-least-comment-one-before-submit": "Моля, опитайте да оцените поне един артикул преди изпращане",
+    "audit-refuse": "Неодобрено",
+    "back-prev-step": "Върнете се към информация",
+    "back-prev-step2": "Върнете се към доставка",
+    "backout-apply": "Заявка за оттегляне",
+    "backout-refund-apply": "Заявка за оттегляне на връщане",
+    "bad-userinfo": "Грешка в информацията за потребителя",
+    "bad-userinfo-or-in-blocklist": "Грешка в информацията за потребителя или потребителят е блокиран",
+    "billing-address-abnormal": "Грешка в адреса за плащане",
+    "billing-address": {
+      "desc": "Изберете адреса, който съвпада с вашата карта или начина на плащане.",
+      "input-email": "Избраният от вас начин на плащане също трябва осигури имейл адрес за изпращане на информация за плащането",
+      "option-another": "Използване на друг адрес за плащане",
+      "option-same": "Същия като адреса за доставка",
+      "title": "Адрес за плащане"
+    },
+    "buy-number-greater-then-stock": "Количеството трябва да надвишава 1 и да е по-малко от наличната количество!",
+    "can-get": "Налично",
+    "can-not-empty": "Не може да е празно",
+    "can-not-submit-order": "Не е възможно да се изпрати поръчка",
+    "can-refund-number": "Количество, което може да се върне",
+    "cancel-order": "Откажете поръчката",
+    "choose-refund-product": "Изберете продукта за връщане",
+    "choose-refund-reason": "Моля, изберете причина за връщането",
+    "choose-store": "Сменете магазина",
+    "come-way-return": "Възстановяване в оригиналната разплащателна сметка",
+    "comment-order": "Преглед на поръчката",
+    "comment-product": "Отзив на продукта",
+    "complete-payment": "Завършете плащането",
+    "confirm-email-send-to-you": "Изпратен ви е имейл за потвърждаване",
+    "confirm-refund": "Потвърдете връщането",
+    "contact": "Контакт",
+    "coupon": "Купон",
+    "coupon-code": "Код на купона",
+    "coupon-code-offer": "Купон",
+    "coupon-mutra-discount": "Този код на купона не може да се използва с други оферти на промоция или с отстъпка",
+    "create-order-time": "Време за подаване на поръчката",
+    "customerInfo": {
+      "pickupLocation": {
+        "title": "Място за вземане"
+      }
+    },
+    "damage": "Продуктът е повреден по време на доставката",
+    "delete-invalid-product": "Изтриване на невалидните продукти",
+    "delivery-address-abnormal": "Грешка в адреса на получателя",
+    "delivery-fee": "Доставка",
+    "delivery-tax": "Такса за превоз",
+    "delivery-to-home": "Домашна доставка",
+    "delivery-way": "Начин на доставка",
+    "enter-a-tip-on-more-than": "Въведете бакшиш, не повече от {{amount}}",
+    "express-bill-pic": "Изображение на експресна логистика",
+    "express-bills-sn": "Номер на експресна логистика",
+    "express-company": "Логистична компания",
+    "fail-get-product-back-cart": "Неуспешно извличане на информация за отметнатия продукт. Моля, върнете се към количката и изпратете отново",
+    "fast-checkout": "Експресно плащане",
+    "field-can-not-longer-than": "{{field}} не може да надвишава {{length}} знака на дължина",
+    "fill-info": "Информация",
+    "fill-logistics": "Попълнете информация за логистиката",
+    "fill-refund-info": "Попълнете информацията за връщане",
+    "find-store": "Изберете магазина",
+    "footer-all-rights-reserved": "Авторско право © {{year}} {{name}}. Всички права запазени.",
+    "free": "Безплатно",
+    "free-shipping": "безплатна доставка",
+    "get-the-order": "Изберете допълнителен артикул",
+    "give-stars": "Рейтинг",
+    "go-login": "Впишете се",
+    "go-on-shopping": "Продължете към пазаруването",
+    "go-pay": "Платете сега",
+    "has-number-products": "{{number}} продукта са останали",
+    "has-removed": "НЕВАЛИДНО",
+    "i-agree-website": "Съгласен съм ссайта",
+    "i-want-recieve-discount-info": "Изпращайте ми последни новини и ексклузивни оферти?",
+    "invalid-product": "Невалидни продукти",
+    "is-paying": "Плащане",
+    "item": "АРТИКУЛ",
+    "jump-to-pay-longtips": "След като кликнете на „Завършване на поръчката“, ще бъдете пренасочени към {{payChannel}} за безопасното завършване на вашата покупка",
+    "leave-your-words": "Кажете ни какво мислите и споделете това с други купувачи～",
+    "logistics-package": "Начин на доставка",
+    "man-money-reduce": "Намаление за сумата на покупката на стойност {{money}} или повече",
+    "man-money-share": "Насладете се за сумата на покупката на стойност {{money}} или повече",
+    "man-piece-reduce": "Намаление за {{count}} броя или повече",
+    "man-piece-share": "Насладете се за {{count}} броя или повече",
+    "max-refund": "Максимална сума за възстановяване",
+    "must-agree-policy": "За да продължите, трябва да се съгласите с политиката за връщане!",
+    "must-choose": "Задължително се избира",
+    "must-fill": "Задължително",
+    "must-select": "Задължителна опция",
+    "need-choose-delivery-way": "Изисква се начин за доставка за всички температурни слоеве",
+    "need-pay": "Необходимост от плащане",
+    "next-step": "Напред",
+    "next-step-calc": "Изчислено на следващата стъпка",
+    "next-step-payment": "Преминете към избор на начина на плащане",
+    "next-step-shipment": "Продължете към доставка",
+    "next-time-use-shopping-money": "Приблизителна отстъпка за следващ магазин",
+    "no-pay-way": "Неналичен начин на плащане",
+    "not-as-expected": "Продуктът е под очакванията",
+    "not-support-paypal": "Продавачът не поддържа PayPal",
+    "now-can-not-comment": "Невъзможен преглед сега!",
+    "number-refund-product": "{{number}} продукта за връщане",
+    "off-shelf": "НЕВАЛИДНО",
+    "only-refund": "Само възстановяване",
+    "optional-fill": "По желание",
+    "optional-support-jpg": "По желание. Поддържа JPG/PNG",
+    "or-fill-info": "ИЛИ",
+    "order-created-but-data-fail": "Поръчката е създадена, но има грешка при връщането на данните...",
+    "order-detail": "Подробности за поръчката",
+    "order-detail-query-fail": "Грешка в заявката за подробности за поръчката",
+    "order-info": "Информация за поръчката",
+    "order-meno": "Забележки за поръчката",
+    "order-status": "Статус на поръчката",
+    "other-delivery": "Други начини на доставка",
+    "other-info": "Друга информация",
+    "other-reason": "Други причини",
+    "others": "Друго",
+    "over-limit-number": "Надхвърлен лимита на продукта",
+    "passport-id-card-placeholder": "Номер на ЛК/паспорт (по желание)",
+    "passport-id-card-tip": "Моля, въведете истинския номер на ЛК/паспорт на получателя, за осигуряване на лесно митническо деклариране и доставка",
+    "pay-failed-err-code": {
+      "3d-overtime": "3DS удостоверяването неуспешно, моля, опитайте отново.",
+      "buyer-account-abnormal": "Поради някакви проблеми с вашата сметка, плащането не може да бъде обработено. Моля, опитайте отново или опитайте други начини на плащане.",
+      "card-expired": "Срокът на картата е изтекъл, плащането ви не може да бъде обработено. Моля, изберете друга карта или начин на плащане и опитайте отново.",
+      "change-card": "Плащането ви не може да бъде обработено сега, Моля, изберете друга карта или начин на плащане и опитайте отново.",
+      "default": "Поради някакви причини, вашето плащане не може да бъде обработено. Моля, опитайте отново или опитайте други начини на плащане.",
+      "insufficient-balance": "Недостатъчен баланс, плащането ви не може да бъде обработено. Моля, изберете друга карта или начин на плащане и опитайте отново.",
+      "invalid-card-number": "Невалиден номер на карта, плащането ви не може да бъде обработено. Моля, изберете друга карта или начин на плащане и опитайте отново.",
+      "overpayment": "Сумата на поръчката надвишава лимита за заплащане, плащането ви не може да бъде обработено. Моля, изберете друга карта или начин на плащане и опитайте отново.",
+      "pin-over-times": "Максималният брой опити за паролата е превишен, плащането ви не може да бъде обработено. Моля, изберете друг начин на плащане и опитайте отново.",
+      "user-cancel": "Плащането е отказано. Моля, опитайте отново, ако трябва да продължите.",
+      "wrong-password": "Поради неправилна парола, вашето плащане не може да бъде обработено. Моля, опитайте отново или опитайте други начини на плащане."
+    },
+    "pay-fee": "Такси при плащане",
+    "pay-way": "Начин на плащане",
+    "pay-way-logo-and-more": "и още",
+    "payment-security-description": "Всички транзакции са защитени и криптирани.",
+    "pic-upload-fail": "Неуспешно качване на изображение {{name}}",
+    "pick-address": "Адрес за събиране",
+    "please-choose-area": "Моля, изберете район",
+    "please-choose-delivery-way": "Моля, изберете начин на доставка",
+    "please-choose-pay-way": "Моля, изберете начин на плащане",
+    "please-choose-refund-account": "Моля, изберете сметка за възстановяване!",
+    "please-choose-refund-express": "Моля, изберете режим на логистика за връщането!",
+    "please-choose-refund-type": "Изберете вида на връщането",
+    "please-choose-store": "Моля, изберете магазин",
+    "please-fill-80charact-refund-reason": "Моля, посочете вашата причина за връщането до 80 знака",
+    "please-fill-express-bills-sn": "Моля, посочете номер за експресна логистика",
+    "please-fill-express-company": "Моля, посочете логистична компания",
+    "please-fill-meno": "Моля, попълнете забележки",
+    "please-fill-refund-reason": "Моля, посочете вашата причина за връщането",
+    "please-input-field": "Моля, въведете {{field}}",
+    "please-input-legal-passport-id-card": "Моля, въведете валиден номер на ЛК/паспорт",
+    "please-pay-within": "моля, платете в рамките на",
+    "pod-link": "Кликнете, за да видите",
+    "pod-pic": "Персонализиран преглед",
+    "point-discount": "Отстъпка за точки",
+    "point-discount-desc": "Можете да използвате {{deductMemberPointNum}} точки, за да спестите {{deductMemberPointAmount}}",
+    "point-discount-remark": "Струва {{value}} точки",
+    "policy": {
+      "privacy-policy": "Декларацията за поверителност на уебсайта",
+      "refund-policy": "Политика за възстановяване на суми"
+    },
+    "private-policy": "Декларацията за поверителност на уебсайта",
+    "product-amount": "Междинна сума",
+    "product-fee": "Междинна сума",
+    "product-offline": "Продуктът е премахнат от рафтовете",
+    "product-package": "Опаковка",
+    "product-preview": "Преглед на продукта",
+    "product-remain-please-re-choose": "Остават {{stock}} броя от продукта. Моля, изберете отново количеството",
+    "product-removed": "Продуктът е премахнат",
+    "product-sold-out": "Продуктът е разпродаден",
+    "product-tax": "Стоков данък",
+    "quantity": "Количество",
+    "recieve-address-unavailable-rechoose": "Няма начин за доставка до адреса на получателя. Моля, върнете се, за да изберете отново",
+    "reciever-fullname": "Цялото име на получателя",
+    "reciever-info": "Адрес за доставка",
+    "reciever-name": "Фамилия на получателя",
+    "reciever-to": "Доставка до",
+    "refund-account": "Сметка за възстановяване",
+    "refund-amount": "Сума за възстановяване",
+    "refund-amount-bigger-zero": "Сумата за възстановяване трябва да е по-голяма от 0",
+    "refund-amount-can-over": "Сумата, която може да се възстанови, не може да надвишава максималната сума за възстановяване",
+    "refund-detail": "Подробности за възстановяването",
+    "refund-express": "Логистика за връщането",
+    "refund-logistics-info": "Информация за логистиката на връщането",
+    "refund-number": "Количество на върнатите продукти",
+    "refund-order-number": "Номер на поръчката за връщане",
+    "refund-order-stataus": "Статус на поръчката за връщане",
+    "refund-person": "Върнато от",
+    "refund-policy": "Политика за връщане",
+    "refund-reason": "Причина за връщането",
+    "refund-reason-less-60": "Причината за връщане не трябва да надвишава 60 знака!",
+    "refund-type": "Вид на връщането",
+    "refund-way": "Начин на връщане",
+    "refund-way-intro": "Запознаване с начина на връщане",
+    "refunding": "Възстановяване на суми",
+    "remove-product": "Извадете продукт",
+    "return-and-refund": "Връщане и възстановяване",
+    "return-apply-fail-SKU": "Броят на заявените продукти надвишава лимита!",
+    "return-apply-fail-max-amount": "Сумата, която може да се възстанови, не може да надвишава максималната сума за възстановяване",
+    "return-apply-fail-min-amount": "Само за възстановяване на суми, сумата за възстановяване трябва да е по-голяма от 0 CNY",
+    "return-to-selection-goods": "Избор на върнати продукти",
+    "see-detail": "Вижте подробности",
+    "see-origin-order": "Вижте оригиналната поръчка",
+    "see-refund-progress": "Вижте напредъка на връщането",
+    "self-mention": "Самостоятелно вземане",
+    "service-fee": "Такса за обслужване",
+    "service-terms": "Условията за ползване",
+    "ship-to": "Достави до",
+    "shop-list": "Количка ({{count}} )",
+    "shopping-gold-trade-off": "Намаление чрез субсидия за пазаруване",
+    "shopping-list": "Вашата количка",
+    "shopping-money": "Субсидия за пазаруване",
+    "shopping-money-deduction": "Намаление чрез субсидия за пазаруване",
+    "sku-changed-title": "{{num}}артикулите са променени, продължаване към плащането?",
+    "sku-limit-title": "Долните продукти надвишават лимита за пазаруване, моля, променете количеството",
+    "sku-not-match": "Размерите/характеристиките на продукта са различни от описанието",
+    "slpayment": {
+      "cardHolderNameErrorTips": "Моля, проверете отново.",
+      "cardHolderNamePlaceHolder": "Име на картодържателя",
+      "cardNumber": {
+        "errorTips": "Моля, въведете точния номер на картата.",
+        "placeholder": "Номер на кредитна карта",
+        "tips": "Всички транзакции са защитени и криптирани"
+      },
+      "cardholdername": "Име на картодържателя",
+      "cvv": {
+        "errorTips": "Моля, проверете отново.",
+        "placeholder": "CVV",
+        "tips": "Обикновено се намира зад картата"
+      },
+      "expiryDate": {
+        "errorTips": "Моля, въведете точното време."
+      },
+      "footer": "Вие използвате SHOPLINE плащания за заплащане сега. Със завършване на плащането вие се съгласявате на",
+      "service": "Условията за ползване на SHOPLINE плащания."
+    },
+    "sold-out": "ПРОДАДЕНО",
+    "some-discount-limit-to-pay-and-delivery": "Някои от намаленията са възможни само за определен логистичен начин/начин на плащане",
+    "sorry-all-sku-unusable": "Съжаляваме, всички артикули са невалидни, поръчката не може да бъде изпратена",
+    "sorry-limit-re-choose": "Съжаляваме! Можете да закупите само {{promotionRemainStock}} броя с една поръчка. Моля, изберете отново вашето количество",
+    "sorry-product-not-available-re-reorder": "Съжаляваме! Някои от продуктите, които пазарувате, са били премахнати от рафтовете и са невалидни. Моля, проверете и препотвърдете преди повторно изпращане.",
+    "sorry-rechoose-longtips": "Съжаляваме, избраният от вас продукт не може да бъде закупен. Моля, изберете отново",
+    "start-refund": "Иницииране на връщане",
+    "stock-not-enough": "Недостатъчно от продукта",
+    "sub-total": "Междинна сума",
+    "submit-order": "Завършване на поръчката",
+    "summary": "Общо",
+    "supermarket-self-pick": "Вземете сами от магазин",
+    "sure-remove-this-product": "Наистина ли искате да извадите продукта?",
+    "tip": {
+      "add-tip": "Добавете бакшиш"
+    },
+    "total": "Общо",
+    "total-num": "ОБЩО",
+    "use-customer-info": "Използване на информация за клиент",
+    "use-member-account-can": "Бързо плащане като член? Можете да го направите веднага",
+    "use-shopping-deduction": "Приблизителна отстъпка на {{num}} използваеми субсидии за пазаруване",
+    "user-cancel-apply": "Потребителят е оттеглил заявката",
+    "will-discount": "Отстъпка",
+    "wrong-product": "Грешен продукт",
+    "you-are-paying-wait-result": "Вашата заявка за плащане е изпратена. Резултатът за плащането от {{payChannel}} се изчаква",
+    "your-apply-auditing-sure-backout": "Заявката ви за оттегляне на връщане се преглежда. Заявка за оттегляне?",
+    "your-delivery-need-choose-store": "Изисква се информация за магазина за всички начини за доставка.",
+    "your-order-created": "поръчката ви е направена",
+    "your-order-not-pay": "Не сте завършили плащането на вашата поръчка",
+    "your-refund-order-created": "Поръчката ви за връщане е направена"
+  },
+  "user": {
+    "account": "СМЕТКА",
+    "code": "Код за потвърждение",
+    "codeError": "Моля, въведете кода за потвърждение",
+    "confirm": "OK",
+    "email": "Имейл адрес",
+    "emailEmptyError": "Моля, въведете имейл адрес",
+    "emailError": "Моля, въведете имейл адрес с валиден формат и по-малко от 50 символа",
+    "noData": "Няма налични данни",
+    "password": "Парола",
+    "passwordEmptyError": "Моля, въведете парола",
+    "passwordError": "Моля, задайте парола с дължина от минимум 8 знака и максимална дължина от 20 знака. Паролите трябва да съдържат поне една главна буква, една малка буква и една цифра",
+    "passwordMemberError": "Моля, задайте парола с дължина от минимум 6 знака и максимална дължина от 18 знака",
+    "phone": "Номер за мобилен телефон",
+    "phoneEmptyError": "Моля, въведете своя номер на мобилен телефон",
+    "phoneError": "Моля, въведете номер на мобилен телефон с валиден формат.",
+    "primevalNewPasswordError": "Новата ви парола не може да е като текущата ви парола",
+    "primevalPassword": "Текуща парола",
+    "primevalPasswordError": "Моля, въведете текущата си парола",
+    "repeatPassword": "Въведете паролата отново",
+    "repeatPasswordEmptyError": "Моля, въведете паролата отново",
+    "repeatPasswordError": "Въведените от вас пароли не съвпадат",
+    "resend": "Повторно изпращане",
+    "send": "Изпрати",
+    "sendError": "Моля, изпратете първо кода за потвърждение",
+    "signIn": "ВПИСВАНЕ",
+    "signUp": "Регистриране",
+    "subscription-text": "Регистрирайте ме за имейли, за да получавам актуализации, достъп до ексклузивни сделки и други.",
+    "udbResponse": {
+      "err-1": "Празни параметри",
+      "err-13": "stoken изчакване",
+      "err-4": "Невалидни параметри",
+      "err-5": "Незаконно действие",
+      "err-999": "Неуспешно отдалечено обаждане",
+      "err1001": "Грешка в паролата",
+      "err1002": "Потребителят не съществува",
+      "err1003": "Акаунтът ви е деактивиран поради аномалия; моля, свържете се с търговеца за освобождаване на забраната",
+      "err1004": "Изпращане на текстово съобщение няколко пъти",
+      "err1005": "Кодът е изтекъл",
+      "err1006": "Грешка в кода",
+      "err1007": "Твърде много пъти грешка с кода за потвърждение",
+      "err1008": "Третото идентифициране или канал не са конфигурирани",
+      "err1009": "Неуспешно валидиране на трета страна",
+      "err1010": "Неуспешно предаване на шаблона на текстовото съобщение/имейла",
+      "err1017": "Сметката е застрашена",
+      "err2001": "Мобилният номер е регистриран",
+      "err2002": "Имейлът е регистриран",
+      "err2003": "Не правете толкова чести опити",
+      "err2004": "Кодът е изтекъл",
+      "err2005": "Грешка в кода",
+      "err2006": "Твърде много опити за потвърждение, моля, използвайте друг код",
+      "err2007": "Неуспешно предаване на шаблона на текстовото съобщение/имейла",
+      "err2016": "Сметката е застрашена",
+      "err3001": "Бисквитката е невалидна",
+      "err3002": "Потребители, които не са обвързани с мобилни телефони/пощенски кутии, се опитват да променят своите пароли",
+      "err3003": "Не правете толкова чести опити",
+      "err3004": "Кодът е изтекъл",
+      "err3005": "Грешка в кода",
+      "err3006": "Твърде много опити за потвърждение, моля, използвайте друг код",
+      "err3007": "Мобилният номер не съществува",
+      "err3008": "Имейлът не съществува",
+      "err3009": "Мобилният номер е обвързан с други акаунти",
+      "err3010": "Имейлът е обвързан с други акаунти",
+      "err3014": "Неуспешно предаване на шаблона на текстовото съобщение/имейла",
+      "udbResponse": "Акаунтът ви е деактивиран поради аномалия; моля, свържете се с търговеца за освобождаване на забраната"
+    },
+    "username": "Имейл адрес/ номер на мобилен телефон",
+    "usernameEmptyError": "Моля, въведете имейл адрес или мобилен телефон"
+  },
+  "userCenter": {
+    "account": {
+      "account-binding": "Свързване на акаунт",
+      "account-info": "Информация за акаунт",
+      "account-subscription-email": "Изпратете до имейл",
+      "account-subscription-line": "Изпратете до приложението Line",
+      "account-subscription-messenger": "Изпрати до Messenger",
+      "account-subscription-phone": "Изпратете до мобилен телефон",
+      "bind": "Свързване",
+      "change-password": "Промяна на паролата",
+      "email": "Имейл",
+      "general-member": "Основен член",
+      "member-level": "Ниво на членство",
+      "memberLevelCom": {
+        "defaultLevel": "Основен член",
+        "discountInterest": "Намаление за пазаруване",
+        "expire": "Нужно е {{time}}",
+        "modalTitle": "Описание на класовите интереси",
+        "tableTitleGrade": "Ниво на членство",
+        "tableTitleInterest": "Интереси на членовете",
+        "upgradeSuccessText": "Поздравления, успешно се изкачихте до",
+        "upgradeText0": "Изкачете се до {{nextLevelName}} след похарчването на <italic>{{money}}</italic>",
+        "upgradeText1": "С една покупка за <italic>{{money}}</italic>, можете да се изкачите на {{nextLevelName}}"
+      },
+      "modify-email": "Промяна на имейл",
+      "modify-phone": "Промяна на телефон",
+      "password": "Парола",
+      "phone": "Мобилен телефон",
+      "reset-password-error": "Моля, първо свържете имейл или мобилен телефон",
+      "subscription-notification": "Абонаментно известие",
+      "unsubscribed": "Отписан",
+      "username": "Потребителско име",
+      "username-message": "Моля, въведете своето потребителско име!",
+      "username-placeholder": "Моля, въведете своето потребителско име"
+    },
+    "address": {
+      "add": "Добавяне на нов адрес",
+      "address": "Адрес",
+      "default": "По подразбиране",
+      "delete-address": "Изтриване на адрес",
+      "full-tip": "5 адреса за запазени и не може да се добави в момента",
+      "no-data": "В момента няма адрес за доставка",
+      "ok": "OK"
+    },
+    "buy-record-entry": "Закупени продукти",
+    "cancel": "ОТКАЗ",
+    "edit": "Редактиране",
+    "editAddress": {
+      "address1-message": "По-малко от 512 знака!",
+      "address2-message": "По-малко от 512 знака!",
+      "city-message": "Моля, изберете вашия град!",
+      "contact-message": "Моля, въведете своето име!",
+      "country-message": "Моля, изберете вашата страна!",
+      "default": "Задайте като адрес по подразбиране",
+      "district-message": "Моля, изберете вашия район!",
+      "edit": "ПРОМЯНА НА АДРЕСА ЗА ДОСТАВКА",
+      "firstName-placeholder": "Първо име (по желание)",
+      "lastName-message": "Моля, въведете своята фамилия!",
+      "lastName-placeholder": "Фамилия",
+      "name-placeholder": "Име",
+      "phone-label": "Телефон",
+      "phone-message": "Моля, въведете своя мобилен телефон!",
+      "postcode-message": "По-малко от 32 знака!",
+      "province-message": "Моля, изберете вашата провинция!"
+    },
+    "message": {
+      "inputPlaceholder": "Има ли нещо, за което да оставите съобщение?",
+      "message": "Съобщение",
+      "send": "Изпрати"
+    },
+    "orders": "Поръчки",
+    "personal-info": "Лична информация",
+    "personal": {
+      "birthday-date": "Дата на раждане",
+      "date": "Дата",
+      "gender": "Пол",
+      "gender-female": "Жена",
+      "gender-male": "Мъж",
+      "gender-secret": "Да остане тайна",
+      "personal-information": "Лична информация",
+      "select-date": "Изберете дата",
+      "select-date-cancel": "Отказ",
+      "select-date-ok": "OK",
+      "select-date-placeholder": "Изберете",
+      "unknown": "Неизвестен"
+    },
+    "point": {
+      "actionTypeDesc": {
+        "addPoint": "добавяне на точка",
+        "deductFreezePoint": "изваждане на точка на замръзване",
+        "deductPoint": "изваждане на точка",
+        "expirePoint": "изтичане на точка",
+        "freezePoint": "замразяване на точка",
+        "releaseFreezePoint": "пускане на точка на замръзване",
+        "reverseAddPoint": "връщане на добавяне на точка",
+        "reverseDeductPoint": "връщане на изваждане на точка"
+      },
+      "date": "{{day}}, {{month}} {{date}}, {{year}}",
+      "day0": "Неделя",
+      "day1": "Понеделник",
+      "day2": "Вторник",
+      "day3": "Сряда",
+      "day4": "Четвъртък",
+      "day5": "Петък",
+      "day6": "Събота",
+      "empty-btn-link": "Как да получите и да използвате парите за пазаруване?",
+      "empty-mainText": "Все още нямате пари за пазаруване",
+      "mainview-dedection": "Настоящият максимален кредит е <italic>{{money}}</italic>",
+      "mainview-link": "Разберете правилата",
+      "mainview-save": "Спестили сте <italic>{{historyTotalUsedDeduction}}</italic> с използването на {{historyTotalUsedScore}} такси за пазаруване",
+      "modal-title": "Описание на купон за пазаруване",
+      "month1": "Януари",
+      "month10": "Октомври",
+      "month11": "Ноември",
+      "month12": "Декември",
+      "month2": "Февруари",
+      "month3": "Март",
+      "month4": "Април",
+      "month5": "Май",
+      "month6": "Юни",
+      "month7": "Юли",
+      "month8": "Август",
+      "month9": "Септември",
+      "ok-btn": "OK",
+      "title": "Пазаруване на злато",
+      "unuseHistoryScore": "Не сте използвали купон за пазаруване за спестяване на разноски"
+    },
+    "pointList": {
+      "breadcrumb1": "Информация",
+      "breadcrumb2": "Покупна цена",
+      "empty": "В момента няма записи на точки",
+      "empty2": "Няма повече записи",
+      "loaded": "Заредено",
+      "loading": "Зареждане...",
+      "order": "Вижте поръчка:",
+      "total": "Отзиви ({{total}})"
+    },
+    "refunds": "Възстановени суми",
+    "save": "ЗАПАЗВАНЕ",
+    "sign-out": "Излизане",
+    "subscription": {
+      "email": "Имейл",
+      "line": "LINE",
+      "messenger": "Messenger",
+      "modal": {
+        "cancel-text": "Отписване",
+        "eamil-title": "Получавайте промоционална информация за абонамента по имейл",
+        "ok-text": "АБОНИРАНЕ",
+        "phone-title": "Абониране за телефонна промоция",
+        "save": "ЗАПАЗВАНЕ"
+      },
+      "not-sub": "Без абонамент",
+      "phone": "Мобилен телефон",
+      "subed": "Абониран",
+      "title": "Абонамент",
+      "unsub": {
+        "content": "След отписването няма повече да получавате най-новите промоции-",
+        "ok-text": "Отписване",
+        "title": "Отписване"
+      }
+    },
+    "unsubscribeFeedback": {
+      "text": "Няма да получавате повече маркетингови актуализации от нас. Можете да се абонирате отново по всяко време"
+    }
+  },
+  "validate": {
+    "coupon-code-cannot-exceed-25-length": "Кодът на купона не може да е над 25 знака",
+    "discount-code-can-not-accumulate": "Вече има преференциално събитие за продукта, което не може да се използва заедно с други преференциални събития.",
+    "discount-code-error": "Този код за отстъпка е въведен неправилно",
+    "discount-code-user-invalid": "Този {{discountCode}} е въведен правилно, но цената или количеството на стоките не отговаря на изискванията",
+    "enter-correct-email": "Моля, въведете имейл адрес с валиден формат",
+    "enter-correct-phone-number": "Моля, въведете номер на мобилен телефон с валиден формат",
+    "mutual-excluded-by-time-limited": "Направена е отстъпка за тази поръчка. Не можете да добавите друга отстъпка",
+    "phone-number-less-than-100": "Номерът на мобилния телефон не може да е над 100 знака на дължина",
+    "shipping_plan_unavailable": "Купонът {{discountCode}} е валиден за начина на доставка"
+  },
+  "widget": {
+    "order": {
+      "pending-order": "Изчакваща поръчка"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{{ assign 'prefix' 'stage-custom-page--form' }}
+
+{{ inline_stylesheet 'contact-form/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'contact-form/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'contact-form/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+{{ assign 'textColor' theme.settings.color_text }}
+{{#if section.settings.color_scheme '!==' 'none'}}
+  {{ assign 'textColor' (get (append 'color_scheme_' section.settings.color_scheme '_text') theme.settings) }}
+  <style>
+      .contact-form[data-section-id="{{ section.id }}"] .base-input textarea,
+      .contact-form[data-section-id="{{ section.id }}"] .base-input input {
+        color: {{ textColor }};
+      }
+      .contact-form[data-section-id="{{ section.id }}"] .base-input .placeholder {
+        color: {{ textColor }};
+      }
+  </style>
+{{/if}}
+<style>
+  .contact-form[data-section-id="{{ section.id }}"] .base-input:after {
+    border-color: {{ rgba textColor 0.2 }};
+  }
+  .contact-form[data-section-id="{{ section.id }}"] .base-input:focus::after,
+  .contact-form[data-section-id="{{ section.id }}"] .base-input:focus-within::after {
+    border-color: {{ rgba textColor 0.2 }};
+  }
+</style>
+
+<div class="color-scheme-{{ section.settings.color_scheme }} section-gap{{#if (isTruthy section.settings.color_scheme '!==' 'none')}}--padding{{/if}}">
+  <div class='container contact-form' data-section-type="contact-form" data-section-id="{{ section.id }}">
+      <p class="title4 contact-form__title">{{ section.settings.title }}</p>
+      <form class="row" style="--sl-gutter-y: 20px;--sl-gutter-x: 20px" id="contact-form-{{ section.id }}">
+        {{#formItem 'name' "class='col-24 col-md-12'"}}
+          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="name" maxlength="255"' name='name' placeholder=(t 'common.username') }}
+        {{/formItem}}
+        {{#formItem 'email' "class='col-24 col-md-12'"}}
+          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="email" maxlength="255"' name='email' placeholder=(t 'common.email2') }}
+        {{/formItem}}
+        {{#formItem 'phone' "class='col-24'"}}
+          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="tel" maxlength="255"' name='phone' placeholder=(t 'common.tel-phone') }}
+        {{/formItem}}
+        {{#formItem 'comment' "class='col-24'"}}
+          {{ snippet 'product/commons/base-input' wrapperClass='contact-form__textarea' inputRestAttr='autocomplete="off" maxlength="5000"' name='comment' type='textarea' placeholder=(t 'productDetail.inquiry.message') }}
+        {{/formItem}}
+        <button class="btn btn-primary contact-form__submit">{{ t 'user.send' }}</button>
+      </form>
+  </div>
+</div>
+
+
+{{#schema}}
+{
+  "name": "t:sections.contact-form.name",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "t:sections.contact-form.settings.title.label",
+      "default": "Contact us"
+    },
+    {
+      "id": "color_scheme",
+      "type": "select",
+      "label": "t:sections.contact-form.settings.color_scheme.label",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.contact-form.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.contact-form.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.contact-form.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.contact-form.settings.color_scheme.options__3.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.contact-form.presets.presets__0.name",
+      "category": "t:sections.contact-form.presets.presets__0.category",
+      "settings": {
+        "title": "Contact us",
+        "color_scheme": "none"
+      }
+    }
+  ]
+}
+{{/schema}}

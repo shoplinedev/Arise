@@ -1,0 +1,310 @@
+{
+  "name": "index.html",
+  "sections": {
+    "image-banner": {
+      "type": "image-banner",
+      "settings": {
+        "banner1": {},
+        "banner2": {},
+        "banner_height_size": "middle",
+        "override_banner_height": false,
+        "pc_text_position": "center",
+        "pc_show_textarea": false,
+        "alpha_range": "30",
+        "color_scheme": "none",
+        "mobile_banner_flatten": true,
+        "m_show_textarea": true
+      },
+      "blocks": {
+        "banner-title": {
+          "type": "title",
+          "settings": {
+            "title": "Two Line\nTitle Slide",
+            "title_size": "medium"
+          }
+        },
+        "banner-desc": {
+          "type": "desc",
+          "settings": {
+            "description": "And optional subtext"
+          }
+        },
+        "banner-button": {
+          "type": "button",
+          "settings": {
+            "button_text": "Shop this",
+            "link": "",
+            "outline_button": false,
+            "link_text_2": "Shop all",
+            "link_2": "",
+            "outline_button_2": false
+          }
+        }
+      },
+      "block_order": [
+        "banner-title",
+        "banner-desc",
+        "banner-button"
+      ]
+    },
+    "faqs": {
+      "type": "faqs",
+      "settings": {
+        "title": "FAQS",
+        "color_scheme": "none"
+      },
+      "blocks": {
+        "faq1": {
+          "type": "textRow",
+          "settings": {
+            "title": "Frequently asked question",
+            "question_text": "Use this text to answer questions in as much detail as possible for your customers."
+          }
+        },
+        "faq2": {
+          "type": "textRow",
+          "settings": {
+            "title": "Frequently asked question",
+            "question_text": "Use this text to answer questions in as much detail as possible for your customers."
+          }
+        },
+        "faq3": {
+          "type": "textRow",
+          "settings": {
+            "title": "Frequently asked question",
+            "question_text": "Use this text to answer questions in as much detail as possible for your customers."
+          }
+        },
+        "text": {
+          "type": "richText",
+          "settings": {
+            "title": "Frequently asked question",
+            "richtext_text": "Use this text to answer questions in as much detail as possible for your customers."
+          }
+        }
+      },
+      "block_order": [
+        "faq1",
+        "faq2",
+        "faq3",
+        "text"
+      ]
+    },
+    "rich-text": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "",
+        "normal_width": true
+      },
+      "disabled": false,
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "middle"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A sentence or two introducing your brand, what you sell, and what makes your brand compelling to customers.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_text": "",
+            "outline_button": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ]
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection",
+        "product_categories": "",
+        "products_num": 4,
+        "slice_in_mobile": true,
+        "button_text": "View all",
+        "product_image_ratio": "0",
+        "product_fill_type": "contain",
+        "product_hover_show_next": false
+      },
+      "disabled": false,
+      "blocks": {},
+      "block_order": []
+    },
+    "video": {
+      "type": "video",
+      "settings": {
+        "title": "Video",
+        "background_position": "center",
+        "color_scheme": "",
+        "full_width": false,
+        "cover": {
+          "url": ""
+        }
+      },
+      "disabled": false,
+      "blocks": {},
+      "block_order": []
+    },
+    "multi-media-splicing": {
+      "type": "multi-media-splicing",
+      "settings": {
+        "desktop_layout": "left",
+        "mobile_layout": "splicing",
+        "color_scheme": ""
+      },
+      "disabled": false,
+      "blocks": {
+        "video-item": {
+          "type": "video",
+          "settings": {
+            "video_alt": "Describe the video",
+            "image_padding": "cover"
+          }
+        },
+        "product": {
+          "type": "product",
+          "settings": {
+            "product_id": "",
+            "product_hover_show_next": false,
+            "image_padding": "cover"
+          }
+        },
+        "collection": {
+          "type": "collection",
+          "settings": {
+            "category_id": "",
+            "image_padding": "cover"
+          }
+        }
+      },
+      "block_order": [
+        "video-item",
+        "product",
+        "collection"
+      ]
+    },
+    "text-columns-with-images": {
+      "type": "text-columns-with-images",
+      "settings": {
+        "title": "Text columns with images",
+        "image_width": "50%",
+        "image_ratio": "auto",
+        "text_align": "left",
+        "show_block_bg": false,
+        "button_text": "Button",
+        "jump_link": "",
+        "show_touch": false,
+        "color_scheme": "none"
+      },
+      "blocks": {
+        "columns-image-1": {
+          "type": "item",
+          "settings": {
+            "image": {},
+            "title": "Example title",
+            "description": "Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.",
+            "button_text": "Optional button",
+            "jump_link": ""
+          }
+        },
+        "columns-image-2": {
+          "type": "item",
+          "settings": {
+            "image": {},
+            "title": "Example title",
+            "description": "Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.",
+            "button_text": "Optional button",
+            "jump_link": ""
+          }
+        },
+        "columns-image-3": {
+          "type": "item",
+          "settings": {
+            "image": {},
+            "title": "Example title",
+            "description": "Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.",
+            "button_text": "Optional button",
+            "jump_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "columns-image-1",
+        "columns-image-2",
+        "columns-image-3"
+      ]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "title": "Testimonials",
+        "picture_radius": "rounded",
+        "text_size": "small",
+        "star_color": "#000000",
+        "color_scheme": ""
+      },
+      "blocks": {
+        "block1": {
+          "type": "testimonial",
+          "icon": "comment",
+          "settings": {
+            "avatar": {},
+            "star_num": "4.5",
+            "description": "Add customer reviews and testimonials to showcase your store's happy customers.",
+            "author": "Author's name"
+          }
+        },
+        "block2":{
+          "type": "testimonial",
+          "icon": "comment",
+          "settings": {
+            "avatar": {},
+            "star_num": "4.5",
+            "description": "Add customer reviews and testimonials to showcase your store's happy customers.",
+            "author": "Author's name"
+          }
+        },
+        "block3":{
+          "type": "testimonial",
+          "icon": "comment",
+          "settings": {
+            "avatar": {},
+            "star_num": "4.5",
+            "description": "Add customer reviews and testimonials to showcase your store's happy customers.",
+            "author": "Author's name"
+          }
+        },
+        "block4":{
+          "type": "testimonial",
+          "icon": "comment",
+          "settings": {
+            "avatar": {},
+            "star_num": "4.5",
+            "description": "Add customer reviews and testimonials to showcase your store's happy customers.",
+            "author": "Author's name"
+          }
+        }
+      },
+      "block_order": ["block1", "block2", "block3"]
+    }
+  },
+  "order": [    
+    "image-banner",
+    "rich-text",
+    "featured-collection",
+    "multi-media-splicing",
+    "video",
+    "text-columns-with-images"
+  ]
+}

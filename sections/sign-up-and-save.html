@@ -1,0 +1,170 @@
+{{ assign 'blocks' section.blocks }}
+{{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
+
+{{ assign 'show_newsletter_full' section.settings.full_screen_width }}
+{{!-- {{assign 'placeholder' section.settings.placeholder }} --}}
+{{ assign 'color_scheme' section.settings.color_scheme }}
+
+{{ inline_stylesheet 'sign-up-and-save/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'sign-up-and-save/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'sign-up-and-save/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+<div class="stage-newsletter">
+    <div class="section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}} container{{#if show_newsletter_full}}-fluid{{/if}} color-scheme-{{ color_scheme }}">
+      <div class="newsletter">
+          <div class="newsletter__backgroundMask"></div>
+          {{#each blocks}}
+            {{#if (trim type) '===' 'title'}}
+              <div class="newsletter__title">
+                <h2 class="section-title title4">{{ settings.title }}</h2>
+              </div>
+            {{/if}}
+            {{#if (trim type) '===' 'desc'}}
+              <div class="newsletter__desc body3 sl-richtext">{{{ settings.description }}}</div>
+            {{/if}}
+            {{#if (trim type) '===' 'button'}}
+              <div class="newsletter__btnGroup">
+                <input class="newsletter__input" placeholder="{{ settings.placeholder }}"></input>
+              
+                <button class="newsletter__btn btn btn-primary fw-bold {{#isFalsey (trim settings.button_text)}}has-icon{{/isFalsey}}">
+                  <span>{{ settings.button_text }}</span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="1.5" y="3.5" width="17" height="13" rx="0.5" />
+                      <path d="M1.5 6L8.98596 10.4035C9.61186 10.7717 10.3881 10.7717 11.014 10.4035L18.5 6" />
+                  </svg>
+                </button>
+              </div>
+            {{/if}}
+          {{/each}}                        
+      </div>
+  </div>
+</div>
+
+
+
+{{#schema}}
+{
+  "name": "t:sections.sign-up-and-save.name",
+  "type": "sign-up-and-save",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.sign-up-and-save.settings.color_scheme.label",
+      "default": "2",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.sign-up-and-save.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.sign-up-and-save.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.sign-up-and-save.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.sign-up-and-save.settings.color_scheme.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "full_screen_width",
+      "label": "t:sections.sign-up-and-save.settings.full_screen_width.label",
+      "default": true
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "limit": 1,
+      "type": "title",
+      "icon": "title",
+      "name": "t:sections.sign-up-and-save.blocks.title.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.sign-up-and-save.blocks.title.settings.title.label",
+          "default": "Sign up and save"
+        }
+      ]
+    },
+    {
+      "limit": 1,
+      "type": "desc",
+      "icon": "paragraph",
+      "name": "t:sections.sign-up-and-save.blocks.desc.name",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "t:sections.sign-up-and-save.blocks.desc.settings.description.label",
+          "default": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
+        }
+      ]
+    },
+    {
+      "limit": 1,
+      "type": "button",
+      "icon": "normal",
+      "name": "t:sections.sign-up-and-save.blocks.button_text.name",
+      "settings": [
+        {
+          "id": "button_text",
+          "type": "text",
+          "label": "t:sections.sign-up-and-save.blocks.button_text.settings.button_text.label",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "t:sections.sign-up-and-save.blocks.button_text.settings.placeholder.label",
+          "default": "Enter your email"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sign-up-and-save.presets.presets__0.name",
+      "category": "t:sections.sign-up-and-save.presets.presets__0.category",
+      "settings": {
+        "full_screen_width": true,
+        "color_scheme": "2"
+      },
+      "blocks": [
+        {
+          "type": "title",
+          "settings": {
+            "title": "Sign up and save"
+          }
+        },
+        {
+          "type": "desc",
+          "settings": {
+            "description": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "button_text": "",
+            "placeholder": "Enter your email"
+          }
+        }
+      ]
+    }
+  ]
+}
+{{/schema}}

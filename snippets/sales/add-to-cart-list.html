@@ -1,0 +1,8 @@
+<div class="sales__addToCartList notranslate">
+  <div class="addToCartListTitle">{{t 'productDetail.bulkDiscount.title'}}</div>
+  <div id="addToCartList" class="addToCartList_content">
+    {{#each benefitConditions}}
+      {{ snippet 'sales/add-to-cart-item' benefitCondition=this benefitType=../benefitType template=../template}}
+    {{/each}}
+  </div>
+</div>

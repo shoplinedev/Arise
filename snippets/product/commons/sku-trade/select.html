@@ -1,0 +1,47 @@
+{{#if (length attr)}}
+<div class="product-sku-trade-select" data-ssr-plugin-sku id="{{ id }}">
+  {{#each attr}}
+  {{#isFalsey hidden}}
+  <div class="spec-box" data-index="{{ @index }}" data-ssr-plugin-sku-item data-sku-item-name="{{specName}}">
+    <div class="spec-title"  data-ssr-plugin-sku-item-name>
+      <div class="spec-name body3">{{ specName }}</div>
+    </div>
+    <div class="select-box" data-ssr-sku-value-list>
+      <div class="select-entry" data-index="{{ @index }}">
+        <img style="display: {{#isFalsey activeItem.imgUrl }}none{{/isFalsey}}" class="entry-img" src="{{img_url activeItem.imgUrl width=32 scale=2}}">
+        <span class="entry-text body3">{{#if activeItem }}{{activeItem.name}}{{else}}{{t 'productDetail.default-placeholder' attrName=specName}}{{/if}}</span>
+        <span class="entry-arrow"></span>
+      </div>
+
+      <div class="select-options body-font select-dropdown">
+      {{#each specAttrList}}
+        <div class="select-item" data-index="{{ @index }}">
+          {{#isTruthy imgUrl}}
+            <img class="select-img" src="{{img_url imgUrl width=32 scale=2 }}" >
+          {{/isTruthy}}
+          <span class="select-text">{{ name }}</span>
+          <span class="select-checked"></span>
+        </div>
+      {{/each}}
+      </div>
+    </div>
+  </div>
+  {{/isFalsey}}
+  {{/each}}
+</div>
+{{/if }}
+
+{{!-- mobile popup样式节点 --}}
+{{!-- <div class="product-sku-trade-select-popup">
+  <div class="select-options body-font select-popup">
+  {{#with attr.[0].specAttrList}}
+    <div class="select-item" data-index="{{ @index }}">
+      {{#isTruthy imgUrl}}
+        <img class="select-img" src="{{ imgUrl }}" >
+      {{/isTruthy}}
+      <span class="select-text">{{ name }}</span>
+      <span class="select-checked"></span>
+    </div>
+  {{/with}}
+  </div>
+</div> --}}

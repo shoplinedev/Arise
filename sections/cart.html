@@ -1,0 +1,76 @@
+
+{{ inline_stylesheet 'cart/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'cart/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'cart/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'cart/miniCart.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'cart/miniCart.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+{{ preload_state 'cartInfo' 'variants' }}
+
+<div class="trade_cart_empty_wrapper{{#if cartInfo.count '!=' 0}} hide{{/if}}">
+  <main class="main_wrapper" role="main">
+    {{ snippet 'trade/cart-title' }}
+    {{ snippet 'trade/cart-empty' }}
+    {{ snippet 'trade/cart-continue-btn' is_empty=true }}
+  </main>
+</div>
+<div class="trade_cart_not_empty_wrapper{{#if cartInfo.count '==' 0}} hide{{/if}}">
+  <div class="trade_cart_title_wrapper">
+    {{ snippet 'trade/cart-title' }}
+  </div>
+  <div class="container trade_cart">
+    <main class="main_wrapper" role="main">
+      {{ snippet 'trade/sku-card-list' data=cartInfo is-mobile=request.is_mobile main=true }}
+    </main>
+    <div class="container trade_cart_recently-viewed-product">{{ section 'product/detail/recently-viewed-products' }}</div>
+    {{!-- 右侧内容 --}}
+    <aside class="sidebar main_cart" role="summations">
+      <div class="trade-cart-checkout-module">
+        {{!-- 优惠码 --}}
+        {{ snippet 'trade/coupon' trade_cart_type='main' }}
+        {{!-- 金额汇总 --}}
+        {{ snippet 'trade/summations' }}
+        {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_top' }}
+        {{ snippet 'trade/cart-checkout' id='cart-spb' trade_cart_type='main' }}
+        {{ snippet 'trade/cart-continue-btn' is_empty=false }}
+        {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_bottom' }}
+        {{ snippet 'trade/cart-checkout-error' trade_cart_type='main' }}
+      </div>
+      {{ snippet 'trade/safety-logo' }}
+    </aside>
+  </div>
+  <div class="cart__stick_container">
+    {{!-- 金额汇总 --}}
+    {{ snippet 'trade/summations' }}
+    {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_top' }}
+    {{ snippet 'trade/cart-checkout' id='cart-spb-fixed' trade_cart_type='main' }}
+    {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_bottom' }}
+    {{ snippet 'trade/cart-checkout-error' trade_cart_type='main' }}
+  </div>
+  {{ snippet 'trade/commons/base-modal' modalId='sku-filter' }}
+</div>
+{{!-- 商品推荐插件 --}}
+{{ snippet 'product/product-recommend.html' }}
+
+{{#schema}}
+{
+  "name": "t:sections.cart.name",
+  "class": "section-gap",
+  "settings": [],
+  "default": {}
+}
+{{/schema}}

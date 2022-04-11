@@ -1,0 +1,16 @@
+{{assign 'spuInfo' product.spu }}
+{{assign 'comment' product.productComment }}
+<div class="product-abstract">
+  <div class="subTitle body-font body3 text-left">{{ spuInfo.subTitle }}</div>
+  {{!-- 商品评价信息 --}}
+  {{#and (boolean comment.total '>' 0) (not product.spu.inquiry) (if id 'productDetail') }}
+    <div class="comments">
+      <div class="rates">
+        {{{ rate value=comment.score  }}}
+      </div>
+      <div class="reviews body-font body4">
+        {{ comment.total }} {{t 'productDetail.commentsTitle'}}
+      </div>
+    </div>
+  {{/and}}
+</div>

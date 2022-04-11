@@ -1,0 +1,95 @@
+{{ inline_stylesheet 'announcement-bar/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'announcement-bar/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'announcement-bar/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+{{ assign 'showAnnouncement' false }}
+
+{{#with this as | global |}}
+  {{#each section.block_order as | blockId |}}
+    {{#with (lookup ../section.blocks blockId)}}
+      {{#if (trim settings.notice_link_text)}}
+        {{#with global}}
+          {{ assign 'showAnnouncement' true }}
+        {{/with}}
+      {{/if}}
+    {{/with}}
+  {{/each}}
+{{/with}}
+
+{{#if showAnnouncement}}
+<div class="announcement-bar__container" data-section-type="announcement-bar" data-section-id="{{ section.id }}">
+  <div class="announcement-bar__swiper">
+    {{#each section.block_order as | blockId |}}
+      {{#with (lookup ../section.blocks blockId)}}
+        {{#if (isTruthy settings.notice_link_text)}}
+          <div class="announcement-swiper-slide color-scheme-{{ settings.notice_style }}">
+            {{ assign 'linkItem' (useLink settings.notice_link request.uri.query) }}
+            <div class="container body4 {{#if linkItem.finalSrc}}announcement-haslink{{/if}}">
+              <a {{{ linkItem.hrefAttr }}} class="announcement__text">{{ settings.notice_link_text }}</a>
+            </div>
+          </div>
+        {{/if}}
+      {{/with}}
+    {{/each}}
+  </div>
+</div>
+{{/if}}
+
+{{#schema}}
+{
+  "name": "t:sections.announcement-bar.name",
+  "max_blocks": 12,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "icon": "normal",
+      "name": "t:sections.announcement-bar.blocks.item.name",
+      "settings": [
+        {
+          "id": "notice_link_text",
+          "type": "text",
+          "label": "t:sections.announcement-bar.blocks.item.settings.notice_link_text.label",
+          "default": "30-day postage paid returns"
+        },
+        {
+          "id": "notice_style",
+          "type": "select",
+          "label": "t:sections.announcement-bar.blocks.item.settings.notice_style.label",
+          "default": "1",
+          "options": [
+            {
+              "value": "",
+              "label": "t:sections.announcement-bar.blocks.item.settings.notice_style.options__0.label"
+            },
+            {
+              "value": "1",
+              "label": "t:sections.announcement-bar.blocks.item.settings.notice_style.options__1.label"
+            },
+            {
+              "value": "2",
+              "label": "t:sections.announcement-bar.blocks.item.settings.notice_style.options__2.label"
+            },
+            {
+              "value": "3",
+              "label": "t:sections.announcement-bar.blocks.item.settings.notice_style.options__3.label"
+            }
+          ]
+        },
+        {
+          "type": "url",
+          "id": "notice_link",
+          "label": "t:sections.announcement-bar.blocks.item.settings.notice_link.label"
+        }
+      ]
+    }
+  ]
+}
+{{/schema}}

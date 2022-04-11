@@ -1,0 +1,46 @@
+{{ assign 'has_child' (gt (length node.childNodes) 0) }}
+{{ assign 'nav_info' (navLink node request.uri.query request.locale all_collections)}}
+{{ assign 'image' (img_url nav_info.coverImg width=40) }}
+
+{{#with this as |global|}}
+  <li class="mobile-nav__item">
+    {{#if global.has_child}}
+      {{ assign 'next_level' (plus global.level 1) }}
+
+      <button class="mobile-nav__btn" type="button" data-nav="{{global.node.id}}">
+        <span class="mobile-nav__link">
+          {{#if image}}
+            <span class="mobile-nav__image" style="background-image: url('{{ image }}')" ></span>
+          {{/if}}
+          <span class="mobile-nav__name">{{ nav_info.name }}</span>
+          {{ snippet 'icons/icon_strong_arrow_r' class="mobile-nav__icon" }}
+        </span>
+      </button>
+      <ul class="mobile-nav__list mobile-nav__dropdown" data-nav-parent="{{node.id}}" data-nav-level="{{ next_level }}">
+        <li class="mobile-nav__item">
+          <button class="mobile-nav__btn" type="button">
+            <span class="mobile-nav__link mobile-nav__link--back">
+              {{ snippet 'icons/icon_strong_arrow_r' class="mobile-nav__icon" }}
+              <span class="mobile-nav__name"><span>{{ nav_info.name }}</span></span>
+            </span>
+          </button>
+        </li>
+        {{!-- 因为不允许递归引用，改用 slot_content 实现 --}}
+        {{ slot_content }}
+        {{!-- {{#each node.childNodes as |c_node|}}
+          {{ snippet 'header-mobile-nav-item' node=c_node request=global.request all_collections=global.all_collections level=global.next_level }}
+        {{/each}} --}}
+      </ul>
+    {{else}}
+      <li class="mobile-nav__item">
+        <a class="mobile-nav__link" {{{ nav_info.hrefAttr }}}>
+          {{#if image}}
+            <span class="mobile-nav__image" style="background-image: url('{{ image }}')" ></span>
+          {{/if}}
+          <span class="mobile-nav__name">{{ nav_info.name }}</span>
+          {{ snippet 'icons/icon_strong_arrow_r' class="mobile-nav__icon" }}
+        </a>
+      </li>
+    {{/if}}
+  </li>
+{{/with}}

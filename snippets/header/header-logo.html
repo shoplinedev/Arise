@@ -1,0 +1,147 @@
+{{assign 'has_logo' false}}
+{{assign 'rootUrl' '/'}}
+
+
+{{#if (boolean this.settings.logo '&&' this.settings.logo.url)}}
+    {{assign 'has_logo' true}}
+{{/if}}
+{{assign 'header_logo_size' this.settings.desktop_logo_width}}
+{{assign 'header_logo_size_mobile' this.settings.mobile_logo_width }}
+{{!-- 如果没有 logo 图片的时候，店铺名称的宽度不跟随 logo 宽度 --}}
+{{#unless has_logo}}
+  {{assign 'header_logo_size' '200' }}
+  {{assign 'header_logo_size_mobile' '200' }}
+{{/unless}}
+
+{{ assign 'url' (append request.uri.domain  request.uri.url) }}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Organization",
+    "name": "{{ storeInfo.name }}",
+    "url": "{{url}}",
+    {{#if this.settings.logo.url}}
+      "logo": "{{this.settings.logo.url}}"
+    {{/if }}
+  }
+</script>
+
+{{#if has_logo}}
+    {{#with this as |global|}}
+        {{#style}}
+            .header__item--logo{
+              -webkit-box-flex: 0 1 auto;
+              -ms-flex: 0 1 auto;
+              flex: 0 1 auto;
+              max-width: {{ header_logo_size_mobile }}px;
+            }
+
+            @media only screen and (min-width: 750px) {
+              .header__item--logo {
+                -webkit-box-flex: 0 1 auto;
+                -ms-flex: 0 1 auto;
+                flex: 0 1 auto;
+                max-width: {{ header_logo_size }}px;
+              }
+            }
+
+            .header__logo a {
+              width: {{ header_logo_size_mobile }}px;
+              display: inline-block;
+            }
+
+            @media only screen and (min-width: 750px){
+              .header__logo a {
+                width: {{ header_logo_size }}px;
+                display: inline-block;
+              }
+            }
+
+            .header__layout--left-down .header__item--left .header__logo {
+              max-width: {{ header_logo_size_mobile }}px;
+            }
+            @media only screen and (min-width: 750px){
+              .header__layout--left-down .header__item--left .header__logo {
+                max-width: {{ header_logo_size }}px;
+              }
+            }
+        {{/style}}
+        {{#if global.template '===' 'index'}}
+            <h1 class="header__logo title-font">
+        {{/if}}
+        {{#if global.template '!==' 'index'}}
+            <div class="header__logo title-font">
+        {{/if}}
+
+        {{#if (boolean this.settings.logo '&&' this.settings.logo.url)}}
+            {{assign 'header_logo_scale' this.settings.logo.scale}}
+            {{assign 'header_logo_height' (divide header_logo_size header_logo_scale)}}
+            {{assign 'header_logo_height_mobile' (divide header_logo_size_mobile header_logo_scale)}}
+                <span class="visually-hidden notranslate">{{ global.storeInfo.name }}</span>
+                <a class="header__logo--link" href="{{global.rootUrl}}">
+                    <img class="d-none d-md-block"
+                         style="height: {{header_logo_height}}px;"
+                         {{{get 'responsiveAttr' (
+                           image_responsive this.settings.logo.url
+                           breakpoints=(append (multiply header_logo_size 1) ',' (multiply header_logo_size 2) ',' (multiply header_logo_size 3))
+                           pcSize=(append header_logo_size 'px') 
+                           mSize=null
+                           useLazyLoad=false
+                          )}}}
+                         alt="{{fallbackText this.settings.logo.alt global.storeInfo.name }}">
+                    <img class="d-block d-md-none"
+                         style="height: {{header_logo_height_mobile}}px;"
+                         {{{get 'responsiveAttr' (
+                            image_responsive
+                            this.settings.logo.url
+                            breakpoints=(append (multiply header_logo_size_mobile 1) ',' (multiply header_logo_size_mobile 2) ',' (multiply header_logo_size_mobile 3))
+                            pcSize=null
+                            mSize=(append header_logo_size_mobile 'px')
+                            useLazyLoad=false
+                          )}}}
+                         alt="{{this.settings.logo.alt}}">
+                </a>
+        {{/if}}
+
+        {{#if (boolean (isFalsey this.settings.logo) '||' (isFalsey this.settings.logo.url))}}
+                <a href="{{ global.rootUrl }}" class="notranslate">{{ global.storeInfo.name }}</a>
+        {{/if}}
+
+        {{#if global.template '===' 'index'}}
+            </h1>
+        {{/if}}
+        {{#if global.template '!==' 'index'}}
+            </div>
+        {{/if}}
+    {{/with}}
+{{else}}
+	{{#style}}
+		.header__item--logo {
+			max-width: 200px;
+		}
+    .header__logo a {
+      max-width: 200px;
+      display: inline-block;
+    }
+	{{/style}}
+
+	{{#if template '===' 'index'}}
+		<h1 class="header__logo title-font">
+	{{/if}}
+
+	{{#if template '!==' 'index'}}
+		<div class="header__logo title-font">
+	{{/if}}
+
+	<a href="{{ rootUrl }}" class="notranslate">
+		{{ storeInfo.name }}
+	</a>
+
+	{{#if template '===' 'index'}}
+		</h1>
+	{{/if}}
+
+	{{#if template '!==' 'index'}}
+		</div>
+	{{/if}}
+{{/if}}

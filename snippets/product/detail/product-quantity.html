@@ -1,0 +1,10 @@
+{{ assign 'isTips' (and (not product.spu.soldOut) (boolean selectSku) (not selectSku.infiniteStock) (not selectSku.allowOversold) (boolean selectSku.stock '<' 10) (not selectSku.soldOut) )  }}
+{{ assign 'className' (default className 'text-left')}}
+
+<div class="product-sku-quantity text-md-left {{className}}" id="product-detail-sku-quantity_{{id}}">
+  <div class="body3" style="font-weight:600">{{ t 'common.amount' }}</div>
+  {{ snippet 'product/commons/sku-stepper' disabled=false value=1 id=(append 'product-detail-sku-stepper_' id)}}
+  <div class="stepper-tip {{#not isTips}}hide{{/not}} body4">
+    {{ t 'common.stock-limit'  stock=selectSku.stock  }}
+  </div>
+</div>

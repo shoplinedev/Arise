@@ -1,0 +1,612 @@
+{{ assign 'natural_height' false }}
+{{ assign 'natural_mobile_height' false }}
+{{ inline_stylesheet 'slideshow/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'slideshow/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'slideshow/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+<script type="text/json" id="Slideshow-data-{{ section.id }}">{{{ stringify section.settings }}}</script>
+<script type="text/json" id="Slideshow-data-block-{{ section.id }}">{{{ stringify section.blocks }}}</script>
+{{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
+<div
+  data-section-type="slideshow"
+  data-section-id="{{ section.id }}"
+>
+  {{#if (obj_size section.blocks) '>' 0}}
+    {{ assign 'natural_height_ratio' 0 }}
+    {{ assign 'natural_mobile_height_ratio' 0 }}
+    {{#if (boolean (boolean section.settings.section_height '==' 'natural') '||' (boolean section.settings.mobile_height '==' 'auto'))}}
+
+      {{#with this as | global |}}
+        {{#forIn blocks}}
+          {{#if @index '===' 0}}
+            {{#if (boolean this.settings.image.url '&&' (boolean global.section.settings.section_height '===' 'natural'))}}
+              {{#with global}}
+                {{ assign 'natural_height' true }}
+              {{/with}}
+              {{#if this.settings.image.scale}}
+                {{ assign 'natural_height_ratio' (multiply (divide this.settings.image.height this.settings.image.width) 100) }}
+                {{#style}}
+                  @media only screen and (min-width: 750px) {
+                    .natural--{{ global.section.id }} {
+                      padding-top: {{ natural_height_ratio }}% !important;
+                    }
+                  }
+                {{/style}}
+              {{/if}}
+            {{/if}}
+            {{#if (boolean global.section.settings.mobile_height '===' 'auto')}}
+              {{#with global}}
+                {{ assign 'natural_mobile_height' true }}
+              {{/with}}
+              {{#if (isTruthy this.settings.image_mobile.url)}}
+                {{!-- 配了m端图片， 用m端的scale --}}
+                {{ assign 'natural_mobile_height_ratio' (multiply (divide this.settings.image_mobile.height this.settings.image_mobile.width) 100) }}
+              {{else}}{{#if (boolean (isTruthy this.settings.image.url) '&&' (isFalsey this.settings.image_mobile.url))}}
+                {{!-- 配了pc的图片， m端图片没配， 用pc的scale --}}
+                {{ assign 'natural_mobile_height_ratio' (multiply (divide this.settings.image.height this.settings.image.width) 100) }}
+              {{/if}}{{/if}}
+              
+              {{#if (boolean this.settings.image.url '||' this.settings.image_mobile.url)}}
+                {{#style}}
+                  @media only screen and (max-width: 749px) {
+                    .natural-mobile--{{ global.section.id }} {
+                      padding-top: {{ natural_mobile_height_ratio }}% !important;
+                    }
+                  }
+                {{/style}}
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        {{/forIn}}
+      {{/with}}
+    {{/if}}
+    
+    <div
+      class="slideshow-wrapper flickity-viewport {{#if natural_height}}natural--{{ section.id }} is-natural{{/if}} {{#if natural_mobile_height}}natural-mobile--{{ section.id }} is-natural-mobile{{/if}}"
+    >
+      <div
+        id="Slideshow-{{ section.id }}"
+        class="hero hero--static loaded hero--h{{ section.settings.section_height }} hero--mobile-{{ section.settings.mobile_height }}"
+      >
+        <div class="flickity-slider">
+
+          {{#with this as | global |}}
+            {{#forIn blocks}}
+              {{ assign 'has_mobile_image' false }}
+              {{#if this.settings.image_mobile.url}}
+                {{ assign 'has_mobile_image' true }}
+              {{/if}}
+              {{#style}}
+                {{ assign 'button_alpha' (color_extract this.settings.color_accent 'alpha') }}
+                {{ assign 'overlay_opacity' (default this.settings.overlay_opacity 0) }}
+
+                .slideshow__slide--{{ @key }} .hero__image-wrapper:after {
+                  opacity: {{ divide overlay_opacity 100 }};
+                }
+                .slideshow__slide--{{ @key }} .hero__image {
+                  object-position: {{ this.settings.focal_point }};
+                }
+                .slideshow__slide--{{ @key }} .hero__title {
+                  font-size: {{ this.settings.title_size }}px;
+                }
+                @media only screen and (max-width: 749px) {
+                  .slideshow__slide--{{ @key }} .hero__title {
+                    font-size: {{ multiply this.settings.title_size 0.5 }}px;
+                  }
+                }
+
+                {{#if button_alpha '>' 0}}
+                  .slideshow__slide--{{ @key }} .btn-lg {
+                    background-color: {{ this.settings.color_accent }};
+                    border: none;
+                    color: #fff;
+                    {{#if (color_extract this.settings.color_accent 'lightness') '>' 40}}
+                      color: #000 !important;
+                    {{/if}}
+                  }
+                {{/if}}
+              {{/style}}
+
+              {{ assign 'link_item' (useLink this.settings.link global.request.uri.query) }}
+              {{ assign 'link_2_item' (useLink this.settings.link_2 global.request.uri.query) }}
+              {{ assign 'ele_link_item' (JSONparse '{}') }}
+              {{ assign 'ele' 'div' }}
+              {{#and (and (and (isFalsey this.settings.link_text) (isFalsey this.settings.link_text_2)) (or this.settings.link this.settings.link_2))}}
+                {{ assign 'ele' 'a' }}
+                {{ assign 'ele_link_item' link_item }}
+                {{#if (isFalsey this.settings.link)}}
+                  {{ assign 'ele_link_item' link_2_item }}
+                {{/if}}
+              {{/and}}
+
+              <{{ ele }}
+                {{#eq ele 'a'}}
+                  {{{ ele_link_item.hrefAttr }}}
+                {{/eq}}
+                class="slideshow__slide swiper-slide slideshow__slide--{{ @key }} slideshow__slide--index{{ @index }}"
+              >
+                <div class="hero__image-wrapper">
+                  {{#if global.section.settings.parallax}}
+                  <div class="parallax-container">
+                    <div class="parallax">
+                  {{/if}}
+                    {{ assign 'has_image' false }}
+                    {{#if this.settings.image.url}}
+                      {{ assign 'has_image' true }}
+                    {{/if}}
+                    {{#if this.settings.image_mobile.url}}
+                      {{ assign 'has_image' true }}
+                    {{/if}}
+                    {{#if has_image}}
+                      {{#if this.settings.image.url}}
+                        <img
+                          class="hero__image lozad {{#if has_mobile_image}}d-none d-md-block{{/if}}"
+                          data-src="{{ this.settings.image.url }}" data-sizes="auto"
+                          alt="{{ this.settings.image.alt }}"
+                          data-aspectratio-url="{{ img_url this.settings.image.url width=100 }}"
+                          data-aspectratio={{ this.settings.image.scale }}
+                          onload="this.className += ' is-img-loaded'"
+                        >
+                      {{else}}
+                        {{ snippet 'icons/icon_slideshow_placeholder' class='d-none d-md-block' }}
+                      {{/if}}
+                      {{#if this.settings.image_mobile.url}}
+                        <img
+                          class="hero__image lozad hero__image--mobile d-md-none"
+                          data-src="{{ this.settings.image_mobile.url }}" data-sizes="auto"
+                          alt="{{ this.settings.image_mobile.alt }}"
+                          data-aspectratio-url="{{ img_url this.settings.image_mobile.url width=100 }}"
+                          data-aspectratio={{ this.settings.image_mobile.scale }}
+                          onload="this.className += ' is-img-loaded'"
+                        />
+                      {{/if}}
+                      
+                    {{else}}
+                      {{ snippet 'icons/icon_slideshow_placeholder' class='d-none d-md-block' }}
+                      {{ snippet 'icons/icon_slideshow_mobile_placeholder' class='d-md-none' }}
+                    {{/if}}
+                  {{#if global.section.settings.parallax}}
+                    </div>
+                  </div>
+                  {{/if}}
+                </div>
+
+                {{ assign 'hero_text' false }}
+                {{#if (boolean_some this.settings.top_subheading this.settings.title this.settings.subheading this.settings.link_text this.settings.link_text_2)}}
+                  {{ assign 'hero_text' true }}
+                {{/if}}
+                {{#if hero_text}}
+                  <div class="hero__text-wrap">
+                    <div class="container">
+                      <div class="hero__text-content {{ this.settings.text_align }}">
+                        <div class="hero__text-shadow">
+                          {{#if this.settings.top_subheading}}
+                            <div class="hero__top-subtitle body3">
+                              <div class="animation-cropper">
+                                <div class="animation-contents">{{ this.settings.top_subheading }}</div>
+                              </div>
+                            </div>
+                          {{/if}}
+                          {{#if this.settings.title}}
+                          
+                            <h2 class="title1 hero__title {{#if global.theme.settings.type_title_uppercase}}is-uppercase{{/if}}">
+                              <div class="animation-cropper">
+                                <div class="animation-contents">{{ newline_to_br this.settings.title }}</div>
+                              </div>
+                            </h2>
+                          {{/if}}
+                          {{#if this.settings.subheading}}
+                            <div class="hero__subtitle body1">
+                              <div class="animation-cropper">
+                                <div class="animation-contents">{{ this.settings.subheading }}</div>
+                              </div>
+                            </div>
+                          {{/if}}
+                          {{ assign 'has_link' false }}
+                          {{#if this.settings.link_text}}
+                            {{ assign 'has_link' true }}
+                          {{/if}}
+                          {{#if this.settings.link_text_2}}
+                            {{ assign 'has_link' true }}
+                          {{/if}}
+                          {{#if has_link}}
+                            <div class="hero__link">
+                              {{#if this.settings.link_text}}
+                                <a {{{ link_item.hrefAttr }}} class="btn btn-lg btn-primary body2 {{#contains this.settings.color_accent 'rgba(0,0,0,0)'}}btn--inverse{{/contains}}">{{ this.settings.link_text }}</a>
+                              {{/if}}
+                              {{#if this.settings.link_text_2}}
+                                <a {{{ link_2_item.hrefAttr }}} class="btn btn-lg btn-primary body2 {{#contains this.settings.color_accent 'rgba(0,0,0,0)'}}btn--inverse{{/contains}}">{{ this.settings.link_text_2 }}</a>
+                              {{/if}}
+                            </div>
+                          {{/if}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {{/if}}
+              </{{ ele }}>
+            {{/forIn}}
+          {{/with}}
+
+        </div>
+        {{#if section.settings.style '===' 'arrows'}}
+          <div class="flickity-button flickity-button--next">
+            {{ snippet 'icons/icon_strong_arrow_r' class='flickity-button__icon' }}
+          </div>
+          <div class="flickity-button flickity-button--prev">
+            {{ snippet 'icons/icon_strong_arrow_r' class='flickity-button__icon' }}
+          </div>
+        {{/if}}
+        {{ assign 'pagination' false }}
+        {{#if section.settings.style '===' 'dots'}}
+          {{ assign 'pagination' true }}
+        {{/if}}
+        {{#if section.settings.style '===' 'bars'}}
+          {{ assign 'pagination' true }}
+        {{/if}}
+        {{#if (boolean section.settings.autoplay '&&' (boolean section.settings.style '===' 'bars'))}}
+        {{#style}}
+
+          .swiper-pagination--{{ section.id }} .swiper-pagination-bullet:after {
+            animation-duration: {{ multiply section.settings.autoplay_speed 1000 }}ms !important;
+          }
+        {{/style}}
+        {{/if}}
+        {{#if pagination}}
+          <div class="swiper-pagination swiper-pagination--{{ section.id }} {{#if section.settings.style '===' 'bars'}}swiper-pagination--bars{{/if}}"></div>
+        {{/if}}
+      </div>
+    </div>
+  {{else}}
+    <div class="placeholder-noblocks">This section doesn’t currently include any content. Add content to this section using the sidebar.</div>
+  {{/if}}
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.slideshow.name",
+  "class": "index-section--hero",
+  "block_info": "t:sections.slideshow.block_info",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "t:sections.slideshow.settings.section_height.label",
+      "default": "natural",
+      "options": [
+        {
+          "label": "t:sections.slideshow.settings.section_height.options__0.label",
+          "value": "natural"
+        },
+        {
+          "label": "t:sections.slideshow.settings.section_height.options__1.label",
+          "value": "450px"
+        },
+        {
+          "label": "t:sections.slideshow.settings.section_height.options__2.label",
+          "value": "550px"
+        },
+        {
+          "label": "t:sections.slideshow.settings.section_height.options__3.label",
+          "value": "650px"
+        },
+        {
+          "label": "t:sections.slideshow.settings.section_height.options__4.label",
+          "value": "750px"
+        },
+        {
+          "label": "t:sections.slideshow.settings.section_height.options__5.label",
+          "value": "100vh"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_height",
+      "label": "t:sections.slideshow.settings.mobile_height.label",
+      "default": "auto",
+      "options": [
+        {
+          "label": "t:sections.slideshow.settings.mobile_height.options__0.label",
+          "value": "auto"
+        },
+        {
+          "label": "t:sections.slideshow.settings.mobile_height.options__1.label",
+          "value": "250px"
+        },
+        {
+          "label": "t:sections.slideshow.settings.mobile_height.options__2.label",
+          "value": "300px"
+        },
+        {
+          "label": "t:sections.slideshow.settings.mobile_height.options__3.label",
+          "value": "400px"
+        },
+        {
+          "label": "t:sections.slideshow.settings.mobile_height.options__4.label",
+          "value": "500px"
+        },
+        {
+          "label": "t:sections.slideshow.settings.mobile_height.options__5.label",
+          "value": "100vh"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "parallax",
+      "label": "t:sections.slideshow.settings.parallax.label",
+      "info": "t:sections.slideshow.settings.parallax.info",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "t:sections.slideshow.settings.style.label",
+      "default": "dots",
+      "options": [
+        {
+          "value": "minimal",
+          "label": "t:sections.slideshow.settings.style.options__0.label"
+        },
+        {
+          "value": "arrows",
+          "label": "t:sections.slideshow.settings.style.options__1.label"
+        },
+        {
+          "value": "bars",
+          "label": "t:sections.slideshow.settings.style.options__2.label"
+        },
+        {
+          "value": "dots",
+          "label": "t:sections.slideshow.settings.style.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "autoplay",
+      "label": "t:sections.slideshow.settings.autoplay.label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "t:sections.slideshow.settings.autoplay_speed.label",
+      "default": 7,
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "t:sections.slideshow.settings.autoplay_speed.unit"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "icon": "image",
+      "name": "t:sections.slideshow.blocks.image.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.slideshow.blocks.image.settings.image.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "t:sections.slideshow.blocks.image.settings.image_mobile.label"
+        },
+        {
+          "type": "select",
+          "id": "focal_point",
+          "label": "t:sections.slideshow.blocks.image.settings.focal_point.label",
+          "default": "center center",
+          "options": [
+            {
+              "value": "20% 0",
+              "label": "t:sections.slideshow.blocks.image.settings.focal_point.options__0.label"
+            },
+            {
+              "value": "top center",
+              "label": "t:sections.slideshow.blocks.image.settings.focal_point.options__1.label"
+            },
+            {
+              "value": "80% 0",
+              "label": "t:sections.slideshow.blocks.image.settings.focal_point.options__2.label"
+            },
+            {
+              "value": "20% 50%",
+              "label": "t:sections.slideshow.blocks.image.settings.focal_point.options__3.label"
+            },
+            {
+              "value": "center center",
+              "label": "t:sections.slideshow.blocks.image.settings.focal_point.options__4.label"
+            },
+            {
+              "value": "80% 50%",
+              "label": "t:sections.slideshow.blocks.image.settings.focal_point.options__5.label"
+            },
+            {
+              "value": "20% 100%",
+              "label": "t:sections.slideshow.blocks.image.settings.focal_point.options__6.label"
+            },
+            {
+              "value": "bottom center",
+              "label": "t:sections.slideshow.blocks.image.settings.focal_point.options__7.label"
+            },
+            {
+              "value": "80% 100%",
+              "label": "t:sections.slideshow.blocks.image.settings.focal_point.options__8.label"
+            }
+          ]
+        },
+        {
+          "type": "group_header",
+          "label": "t:sections.slideshow.blocks.image.settings.group_header__0.label",
+          "id": "group_header__0"
+        },
+        {
+          "type": "text",
+          "id": "top_subheading",
+          "label": "t:sections.slideshow.blocks.image.settings.top_subheading.label"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "t:sections.slideshow.blocks.image.settings.title.label",
+          "default": "Two Line\nTitle Slide",
+          "limit": 500
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "label": "t:sections.slideshow.blocks.image.settings.title_size.label",
+          "default": 70,
+          "min": 40,
+          "max": 100,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "t:sections.slideshow.blocks.image.settings.subheading.label",
+          "default": "And optional subtext"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "t:sections.slideshow.blocks.image.settings.text_align.label",
+          "default": "vertical-center horizontal-center",
+          "options": [
+            {
+              "value": "vertical-center horizontal-left",
+              "label": "t:sections.slideshow.blocks.image.settings.text_align.options__0.label"
+            },
+            {
+              "value": "vertical-center horizontal-center",
+              "label": "t:sections.slideshow.blocks.image.settings.text_align.options__1.label"
+            },
+            {
+              "value": "vertical-center horizontal-right",
+              "label": "t:sections.slideshow.blocks.image.settings.text_align.options__2.label"
+            },
+            {
+              "value": "vertical-bottom horizontal-left",
+              "label": "t:sections.slideshow.blocks.image.settings.text_align.options__3.label"
+            },
+            {
+              "value": "vertical-bottom horizontal-center",
+              "label": "t:sections.slideshow.blocks.image.settings.text_align.options__4.label"
+            },
+            {
+              "value": "vertical-bottom horizontal-right",
+              "label": "t:sections.slideshow.blocks.image.settings.text_align.options__5.label"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "t:sections.slideshow.blocks.image.settings.overlay_opacity.label",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "%"
+        },
+        {
+          "type": "group_header",
+          "label": "t:sections.slideshow.blocks.image.settings.group_header__1.label",
+          "info": "t:sections.slideshow.blocks.image.settings.group_header__1.info",
+          "id": "group_header__1"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "t:sections.slideshow.blocks.image.settings.link_text.label",
+          "default": "Shop this"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.slideshow.blocks.image.settings.link.label"
+        },
+        {
+          "type": "text",
+          "id": "link_text_2",
+          "label": "t:sections.slideshow.blocks.image.settings.link_text_2.label",
+          "default": "Shop all"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "t:sections.slideshow.blocks.image.settings.link_2.label"
+        },
+        {
+          "type": "color_picker",
+          "id": "color_accent",
+          "label": "t:sections.slideshow.blocks.image.settings.color_accent.label",
+          "default": "rgba(0,0,0,0)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.slideshow.presets.presets__0.name",
+      "category": "t:sections.slideshow.presets.presets__0.category",
+      "settings": {
+        "section_height": "natural",
+        "mobile_height": "auto",
+        "parallax": false,
+        "style": "dots",
+        "autoplay": true,
+        "autoplay_speed": 7
+      },
+      "blocks": [
+        {
+          "type": "image",
+          "icon": "image",
+          "settings": {
+            "image": {},
+            "image_mobile": {},
+            "focal_point": "center center",
+            "title": "Two Line\nTitle Slide",
+            "subheading": "And optional subtext",
+            "title_size": 70,
+            "text_align": "vertical-center horizontal-center",
+            "link_text": "Shop this",
+            "link_text_2": "Shop all",
+            "color_accent": "rgba(0,0,0,0)",
+            "overlay_opacity": 0
+          }
+        },
+        {
+          "type": "image",
+          "icon": "image",
+          "settings": {
+            "image": {},
+            "image_mobile": {},
+            "focal_point": "center center",
+            "title": "Two Line\nTitle Slide",
+            "subheading": "And optional subtext",
+            "title_size": 70,
+            "text_align": "vertical-center horizontal-center",
+            "link_text": "Shop this",
+            "link_text_2": "Shop all",
+            "color_accent": "rgba(0,0,0,0)",
+            "overlay_opacity": 0
+          }
+        }
+      ]
+    }
+  ]
+}
+{{/schema}}

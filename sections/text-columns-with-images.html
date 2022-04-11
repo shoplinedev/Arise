@@ -1,0 +1,341 @@
+{{ assign 'data' (getTextColumnList section.blocks section.block_order) }}
+{{ assign 'image_width' section.settings.image_width }}
+{{ assign 'image_ratio' section.settings.image_ratio }}
+{{ assign 'text_align' section.settings.text_align }}
+{{ assign 'color_scheme' section.settings.color_scheme }}
+{{ assign 'button_text' section.settings.button_text }}
+{{ assign 'jump_link' section.settings.jump_link }}
+{{ assign 'show_touch' section.settings.show_touch }}
+{{ assign 'show_block_bg' section.settings.show_block_bg }}
+
+{{ assign 'blocks' section.blocks }}
+{{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
+
+{{ assign 'noSpacing' 'false' }}
+
+{{ assign 'image_style' 'square' }}
+{{#if image_ratio '===' 'circle'}}
+  {{ assign 'image_style' 'round' }}
+  {{ assign 'image_ratio' '100%' }}
+{{/if}}
+
+{{#and (boolean color_scheme '===' 'none') (boolean (isFalsey show_block_bg))}}
+  {{ assign 'noSpacing' 'true' }}
+{{/and}}
+
+{{ inline_stylesheet 'text-columns-with-images/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'text-columns-with-images/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'text-columns-with-images/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+<div class="text-columns-with-images   
+  color-scheme-{{ color_scheme }}
+  section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}
+  "
+    data-section-type="text-columns-with-images"
+    data-section-id="{{ section.id }}"
+    >
+    {{ snippet 'texture' color_scheme=section.settings.color_scheme width='200' }}
+    <div class="container color-scheme-{{ color_scheme }} g-md-5 
+        {{#if show_touch}} g-0 
+        {{else}}{{#if show_block_bg}} g-2 
+        {{else}} g-4
+        {{/if}}{{/if}}
+      "
+      >
+        {{#if section.settings.title}}
+            <div class="text-columns-with-images__title section-title title4 text-center">{{ section.settings.title }}</div>
+        {{/if}}
+
+        {{!-- pc --}}
+        <div class="d-none d-md-block">                               
+            {{#if data.wrapNum '!==' 0}}
+                <div class="text-columns-with-images__wrapper text-columns-with-images__wrapper--center row row-cols-1 row-cols-md-{{ data.rowNum }} row-cols-lg-{{ data.rowNum }}">
+                    {{#each data.rowList}}
+                        {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}
+                    {{/each}}
+                </div>
+                <div class="text-columns-with-images__wrapper text-columns-with-images__wrapper--center row row-cols-1 row-cols-md-{{ data.wrapNum }} row-cols-lg-{{ data.rowWrap }}">
+                    {{#each data.wrapList}}
+                        {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}
+                    {{/each}}
+                </div>
+            {{else}}
+                <div class="text-columns-with-images__wrapper text-columns-with-images__wrapper--center row row-cols-1 row-cols-md-{{ data.rowNum }} row-cols-lg-{{ data.rowNum }}">
+                    {{#each data.rowList}}
+                        {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}
+                    {{/each}}
+                </div>
+            {{/if}}
+                {{!-- {{ snippet 'text-columns-with-images-item'                 
+                  image_style=../image_style 
+                  image_width=../image_width 
+                  image_ratio=../image_ratio 
+                  noSpacing=../noSpacing 
+                  showMask=../show_block_bg
+                  color_scheme=../color_scheme
+                  text_align=../text_align
+                  jump_link=../jump_link
+                }}          --}}
+          </div>
+
+        {{!-- mobile --}}
+        {{#if show_touch}}
+          <div class="d-md-none">
+            <div class="swiper-container text-columns-images-swiper-container" data-no-spacing="{{ noSpacing }}" style="width: 100%;">
+              <div class="swiper-wrapper">
+                
+                  {{#each blocks}}            
+                  <div class="swiper-slide">
+                    {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}    
+                  </div>                            
+                  {{/each}}
+                
+              </div>        
+              <div class="pagination"></div>       
+            </div>     
+            
+          </div>    
+        {{else}}
+          <div class="d-md-none">
+            <div class="text-columns-with-images__wrapper d-flex">
+            {{#each blocks}}            
+              {{ snippet 'text-columns-with-images-item' classes='test' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align }}            
+            {{/each}}
+            </div>                    
+          </div>
+        {{/if}}
+        {{ assign 'linkObj' (useLink jump_link) }}
+        {{#if (trim button_text)}} 
+          <div class="text-columns-with-images__control">
+            <a {{{ linkObj.hrefAttr }}}  class="btn btn-primary fw-bold ">{{ button_text }}</a>
+          </div>
+        {{/if}}
+        
+    </div>
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.text-columns-with-images.name",
+  "max_blocks": 16,
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "t:sections.text-columns-with-images.settings.title.label",
+      "default": "Text columns with images"
+    },
+    {
+      "type": "select",
+      "id": "image_width",
+      "label": "t:sections.text-columns-with-images.settings.image_width.label",
+      "options": [
+        {
+          "label": "t:sections.text-columns-with-images.settings.image_width.options__0.label",
+          "value": "100%"
+        },
+        {
+          "label": "t:sections.text-columns-with-images.settings.image_width.options__1.label",
+          "value": "50%"
+        },
+        {
+          "label": "t:sections.text-columns-with-images.settings.image_width.options__2.label",
+          "value": "33.33%"
+        }
+      ],
+      "default": "50%"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "default": "0",
+      "label": "t:sections.text-columns-with-images.settings.image_ratio.label",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:sections.text-columns-with-images.settings.image_ratio.options__0.label"
+        },
+        {
+          "value": "100%",
+          "label": "t:sections.text-columns-with-images.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "133.33%",
+          "label": "3:4"
+        },
+        {
+          "value": "circle",
+          "label": "t:sections.text-columns-with-images.settings.image_ratio.options__3.label"
+        }
+      ]
+    },
+    {
+      "id": "text_align",
+      "type": "text_align",
+      "label": "t:sections.text-columns-with-images.settings.text_align.label",
+      "options": [
+        {
+          "value": "left"
+        },
+        {
+          "value": "center"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "id": "show_block_bg",
+      "type": "select",
+      "label": "t:sections.text-columns-with-images.settings.show_block_bg.label",
+      "options": [
+        {
+          "label": "t:sections.text-columns-with-images.settings.show_block_bg.options__0.label",
+          "value": false
+        },
+        {
+          "label": "t:sections.text-columns-with-images.settings.show_block_bg.options__1.label",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "t:sections.text-columns-with-images.settings.button_text.label",
+      "default": "Button"
+    },
+    {
+      "id": "jump_link",
+      "type": "url",
+      "label": "t:sections.text-columns-with-images.settings.jump_link.label"
+    },
+    {
+      "id": "show_touch",
+      "type": "switch",
+      "label": "t:sections.text-columns-with-images.settings.show_touch.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.text-columns-with-images.settings.color_scheme.label",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.text-columns-with-images.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.text-columns-with-images.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.text-columns-with-images.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.text-columns-with-images.settings.color_scheme.options__3.label"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "icon": "normal",
+      "name": "t:sections.text-columns-with-images.blocks.item.name",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "t:sections.text-columns-with-images.blocks.item.settings.image.label",
+          "default": ""
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "t:sections.text-columns-with-images.blocks.item.settings.title.label",
+          "default": "Example title"
+        },
+        {
+          "id": "description",
+          "type": "richtext",
+          "label": "t:sections.text-columns-with-images.blocks.item.settings.description.label",
+          "default": "Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis."
+        },
+        {
+          "id": "button_text",
+          "type": "text",
+          "label": "t:sections.text-columns-with-images.blocks.item.settings.button_text.label",
+          "default": "Optional button"
+        },
+        {
+          "id": "jump_link",
+          "type": "url",
+          "label": "t:sections.text-columns-with-images.blocks.item.settings.jump_link.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.text-columns-with-images.presets.presets__0.name",
+      "category": "t:sections.text-columns-with-images.presets.presets__0.category",
+      "blocks": [
+        {
+          "type": "item",
+          "name": "Title",
+          "settings": {
+            "image": {},
+            "title": "Example title",
+            "description": "Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.",
+            "button_text": "Optional button",
+            "jump_link": ""
+          }
+        },
+        {
+          "type": "item",
+          "name": "Title",
+          "settings": {
+            "image": {},
+            "title": "Example title",
+            "description": "Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.",
+            "button_text": "Optional button",
+            "jump_link": ""
+          }
+        },
+        {
+          "type": "item",
+          "name": "Title",
+          "settings": {
+            "image": {},
+            "title": "Example title",
+            "description": "Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.",
+            "button_text": "Optional button",
+            "jump_link": ""
+          }
+        }
+      ],
+      "settings": {
+        "title": "Text columns with images",
+        "image_width": "50%",
+        "image_ratio": "auto",
+        "text_align": "left",
+        "show_block_bg": false,
+        "button_text": "Button",
+        "jump_link": "",
+        "show_touch": false,
+        "color_scheme": "none"
+      }
+    }
+  ]
+}
+{{/schema}}

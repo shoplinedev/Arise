@@ -1,0 +1,43 @@
+{{#if settings.show_icon_statement}}
+    {{assign 'filePath' (append 'icons/icon_' settings.statement_icon)}}
+    {{ assign 'link_obj' (useLink settings.icon_link request.uri.query) }}
+    <a {{{link_obj.hrefAttr}}} class="header__icon-statement {{#if isMobile}}container header__icon-statement-ismobile{{/if}}">
+        {{#if (boolean settings.icon_image '&&' settings.icon_image.url)}}
+            <img style="width: 50px; max-height: 100px" {{{get 'responsiveAttr' (image_responsive settings.icon_image.url breakpoints='50,100,150' pcSize='50px' mSize='50px' useLazyLoad=false ) }}} alt="{{settings.icon_image.alt}}">
+        {{else if (boolean settings.statement_icon '===' "safe_payment")}}
+            {{snippet 'icons/icon_safe_payment'}}
+        {{else if (boolean settings.statement_icon '===' "package")}}
+            {{snippet 'icons/icon_package'}}
+        {{else if (boolean settings.statement_icon '===' "email")}}
+            {{snippet 'icons/icon_email'}}
+        {{else if (boolean settings.statement_icon '===' "location")}}
+            {{snippet 'icons/icon_location'}}
+        {{else if (boolean settings.statement_icon '===' "customer")}}
+            {{snippet 'icons/icon_customer'}}
+        {{else if (boolean settings.statement_icon '===' "chat")}}
+            {{snippet 'icons/icon_chat'}}
+        {{else if (boolean settings.statement_icon '===' "gift")}}
+            {{snippet 'icons/icon_gift'}}
+        {{else if (boolean settings.statement_icon '===' "phone")}}
+            {{snippet 'icons/icon_phone'}}
+        {{else if (boolean settings.statement_icon '===' "question")}}
+            {{snippet 'icons/icon_question'}}
+        {{else if (boolean settings.statement_icon '===' "logistics")}}
+            {{snippet 'icons/icon_logistics'}}
+        {{else if (boolean settings.statement_icon '===' "discount")}}
+            {{snippet 'icons/icon_discount'}}
+        {{else if (boolean settings.statement_icon '===' "medal")}}
+            {{snippet 'icons/icon_medal'}}
+        {{else if (boolean settings.statement_icon '===' "environment")}}
+            {{snippet 'icons/icon_environment'}}
+        {{/if}}
+        <div class="header__icon-right">
+            {{#if settings.icon_title}}
+                <div class="header__icon-title body3">{{settings.icon_title}}</div>
+            {{/if}}
+            {{#if settings.icon_sub_title}}
+                <div class="header__icon-title body4">{{settings.icon_sub_title}}</div>
+            {{/if}}
+        </div>
+    </a>
+{{/if}}

@@ -1,0 +1,58 @@
+{{ assign 'navigation' (get settings.menu navigations) }}
+
+{{!-- pc端菜单 --}}
+<div class="footer__menu d-none d-md-block">
+  {{ snippet 'footer-block-header' normalTitle="Menu" }}
+
+  <div class="footer__block-main">
+    {{#with this as |global|}}
+      {{#if navigation }}
+        <dl class="footer__menu-list body5">
+          {{#each navigation.nodeTree as | navItem |}}
+            {{ assign 'query' global.request.uri.query}}
+            {{ assign 'locale' global.request.locale}}
+            {{ assign 'allCollections' global.all_collections}}
+            {{ assign 'allProducts' global.all_products}}
+            {{ assign 'navDetail' (navLink navItem query locale allCollections allProducts ) }}
+            <dd>
+              <a {{{navDetail.hrefAttr}}} rel="noreferrer">{{navDetail.name}}</a>
+            </dd>
+          {{/each}}
+        </dl>
+      {{/if}}
+    {{/with}}
+  </div>
+</div>
+
+{{!-- 移动端菜单 --}}
+<div class="footer__menu d-md-none">
+  {{#snippet 'global-dropdown-list' relatedId=sectionId status=false}}
+    {{#child 'trigger'}}
+      {{#snippet 'footer-block-header' normalTitle="Menu"}}
+        {{ snippet 'icons/icon_dropdown_list_open' classes="close-icon" }}
+        {{ snippet 'icons/icon_arrow_down' classes="open-icon" }}
+      {{/snippet}}
+    {{/child}}
+
+    {{#child 'dropdownList'}}
+      <div class="footer__block-main">
+        {{#with this as |global|}}
+          {{#if navigation }}
+            <dl class="footer__menu-list body5">
+              {{#each navigation.nodeTree as | navItem |}}
+                {{ assign 'query' global.request.uri.query}}
+                {{ assign 'locale' global.request.locale}}
+                {{ assign 'allCollections' global.all_collections}}
+                {{ assign 'allProducts' global.all_products}}
+                {{ assign 'navDetail' (navLink navItem query locale allCollections allProducts ) }}
+                <dd>
+                  <a {{{navDetail.hrefAttr}}} rel="noreferrer">{{navDetail.name}}</a>
+                </dd>
+              {{/each}}
+            </dl>
+          {{/if}}
+        {{/with}}
+      </div>
+    {{/child}}
+  {{/snippet}}
+</div>

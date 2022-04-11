@@ -1,0 +1,47 @@
+
+{{!-- 传入参数：current 当前页码 --}}
+{{assign '_current' (default current 1)}}
+{{!-- 传入参数：pageSize 一页展示个数 --}}
+{{assign '_size' (default pageSize 25)}}
+{{!-- 传入参数：enableNext 可点击下一页 --}}
+{{assign '_enableNext' (default enableNext false)}}
+{{!-- 传入参数：hidden 隐藏分页组件 --}}
+{{assign '_hidden' (default hidden false)}}
+
+{{assign 'enablePrev' (gt _current 1)}}
+{{assign 'isMobile' request.is_mobile}}
+{{assign 'link' request.uri.url}}
+
+{{#if (isTruthy (obj_size request.uri.query))}}
+  {{!-- 补全 page_num --}}
+  {{#if (isFalsey (hasOwn request.uri.query 'page_num'))}}
+    {{assign 'link' (append link (append '&page_num=' _current))}}
+  {{/if}}
+  {{!-- 补全 page_num --}}
+  {{#if (isFalsey (hasOwn request.uri.query 'page_size'))}}
+    {{assign 'link' (append link (append '&page_size=' _size))}}
+  {{/if}}
+{{else}}
+  {{!-- 补全 page_num 和 page_size --}}
+  {{assign 'link' (append link (append (append '?page_num=' _current) (append '&page_size=' _size)))}}
+{{/if}}
+
+{{assign 'prevLink' (replace link (append 'page_num=' _current) (append 'page_num=' (minus _current 1)))}}
+{{assign 'nextLink' (replace link (append 'page_num=' _current) (append 'page_num=' (add _current 1)))}}
+
+<div class="notranslate {{cond isMobile 'mobile pagination body3' 'pagination body3'}} {{cond _hidden 'hide' ''}}">
+  <span class="pagination_pre pagination_item {{cond enablePrev '' 'pagination-disabled'}}">
+    <a {{#if (and enablePrev prevLink)}}href="{{prevLink}}"{{/if}}>
+      <span class="pagination_icon_arrow_color">
+        {{snippet 'icons/icon_arrow_left_line'}}
+      </span>
+    </a>
+  </span>
+  <span class="pagination_next pagination_item {{cond _enableNext '' 'pagination-disabled'}}">
+    <a {{#if (and _enableNext nextLink)}}href="{{nextLink}}"{{/if}}>
+      <span class="pagination_icon_arrow_color">
+        {{snippet 'icons/icon_arrow_right_line'}}
+      </span>
+    </a>
+  </span>
+</div>

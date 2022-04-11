@@ -1,0 +1,34 @@
+{{!-- 可传参数：
+listData: 商品列表数据，字段参考plp列表数据
+colNum: 展示列数,默认展示4行
+total: 列表数据总数
+pageSize: 每一页的数量
+pageNum: 当前页数
+forbiddenBtn:禁止加购按钮
+--}}
+
+{{assign '_colNum' 4}}
+
+{{#if colNum}}
+  {{assign '_colNum' colNum}}
+{{/if}}
+
+{{ assign 'listLayoutObj' (JSONparse (append (append '{"small_grid": "row-cols-2 row-cols-lg-3 row-cols-xl-' _colNum) ' product-list-small-grid", "list": "row-cols-1 row-cols-md-1 product-list-single-grid"}'))  }}
+
+{{ assign 'productListCls' ( default (get gripType listLayoutObj) (get 'small_grid' listLayoutObj) ) }}
+
+{{#if effectPage '==' 'productList'}}
+<div class="{{ append 'product-list-item-parent-controller row g-4 ' productListCls }}" id="product-list-container">
+{{else}}
+<div class="product-list-item-parent-controller row g-4 row-cols-2 row-cols-md-{{_colNum}}">
+{{/if}}
+  {{#each listData as |item|}}
+    <div class="col product-item-list">
+      {{snippet 'product/commons/product-item' previewQuery=../previewQuery spu=item forbiddenBtn=../forbiddenBtn index=@index className=../className }}
+    </div>
+  {{/each}}
+</div>
+
+{{#if (boolean total '>' pageSize)}}
+  {{snippet 'product/commons/pagination' mode='href' id="pagination"  total=total pageSize=pageSize current=pageNum request=request }}
+{{/if}}

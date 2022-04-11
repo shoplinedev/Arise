@@ -1,0 +1,66 @@
+<div class="sales__productBundledItem">
+  {{!-- 是否显示选中checkout --}}
+  {{#if bundledType 0}}
+    <span class="sales__productBundledItem-checkout"><input type="checkbox" checked autocomplete="off" data-index={{index}} disabled /><i>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10" r="10" fill="#1E1E1E" />
+          <circle cx="10" cy="10" r="9.5" stroke="white" stroke-opacity="0.2" />
+          <path d="M5.5 10.75L8.5 13.75L14.5 7.75" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </i></span>
+  {{/if}}
+  {{!-- 图片配置 --}}
+  {{assign 'imageRatio' (default theme.settings.product_image_ratio '100')}}
+  {{assign 'imageFit' (default theme.settings.product_fill_type 'contain')}}
+
+  <div class="sales__productBundledItem-image sales-productBundled-image" data-seq="{{product.spuSeq}}">
+    {{#each product.productSkuList}}
+      {{!-- 获取sku图片，如果没有使用商品图片第一张 --}}
+      {{ assign "productImagesSrc" this.imageList.[0]}}
+      {{#if (not productImagesSrc)}}
+        {{ assign "productImagesSrc" ../product.images.[0]}}
+      {{/if}}
+      {{!-- 组合图片srcset --}}
+      {{#if productImagesSrc}}
+        {{assign 'm_product_item_image_srcset' (append (img_url productImagesSrc width=120 scale=2) ' 240w, ') }}
+        {{assign 'pc_product_item_image_srcset' (append (img_url productImagesSrc width=160 scale=1) ' 160w') }}
+        {{assign 'product_item_image_srcset' (append m_product_item_image_srcset pc_product_item_image_srcset) }}
+      {{/if}}
+      {{!-- 控制默认显示第一张sku图片 --}}
+      <div class="productBundledImage" style="display: {{#if @index '===' 0}}block{{else}}none{{/if}};" data-index={{@index}}>
+        {{ snippet 'product/commons/product-process-image' imageRatio=../imageRatio imageFit=../imageFit srcSet=product_item_image_srcset placeholderHeight=160}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="sales__productBundledItem-content {{#if bundledType 0}}hasCheck{{/if}}">
+    {{!-- 商品标题 --}}
+    {{#if viewControlConfig.showProductTitle}}
+      <div class="sales__productBundledItem-productTitle body4">{{product.title}}</div>
+    {{/if}}
+    {{!-- 商品评分 --}}
+    {{#if (and viewControlConfig.showProductCommentScore product.spuCommentSummary.score)}}
+      <div class="sales__productBundledItem-commentScore">
+        {{ noTranslationHTML (rate value=product.spuCommentSummary.score) }}
+        <span class="sales__productBundledItem-commentScore-total body6">{{ product.spuCommentSummary.total }}</span>
+      </div>
+    {{/if}}
+    {{!-- 选择sku --}}
+    {{#if (obj_size product.skuAttributeMap)}}
+      {{#array_map 'selectOptions' product.productSkuList (object_create value="@index" label="@return")}}
+        {{join (product_sku_attribute_names this.skuAttributeIds ../product.skuAttributeMap) '/'}}
+      {{/array_map}}
+      {{ assign 'selectName' (append product.spuSeq '_' (date '' 'h:mm:ss.SSS')) }}
+      {{assign 'selectAttr' (object_create autocomplete="off" name=selectName data-index=index selectClass="sales__productBundledItem-select")}}
+      <div class="sales__productBundledItem-selectContainer">
+        {{snippet 'original-select' attr=selectAttr options=selectOptions}}
+      </div>
+    {{/if}}
+    {{!-- 价格 --}}
+    {{#if viewControlConfig.showProductPrice}}
+      <div class="sales__productBundledItem-price body3 notranslate">
+        {{ assign 'sku' (itemAt product.productSkuList 0)}}
+        <span data-amount="{{sku.promotionPrice}}">{{ currency_convert sku.promotionPrice }}</span>
+      </div>
+    {{/if}}
+  </div>
+</div>

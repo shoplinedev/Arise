@@ -1,0 +1,163 @@
+{{ assign 'color_scheme' section.settings.color_scheme }}
+
+{{ inline_stylesheet 'faqs/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'faqs/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'faqs/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+<div class="color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}" data-section-type="faqs" data-section-id="{{ section.id }}">
+  <div class="faq__wrapper container">
+    <div >
+      {{#if section.settings.title}}<h2 class="faq__title title4 text-center">{{ section.settings.title }}</h2>{{/if}}
+      <div class="faq__content">
+        {{#with section as | section |}}
+            {{#each block_order as | blockId |}}
+                {{#with (lookup ../blocks blockId)}}
+                    {{#if type '===' 'textRow'}}
+                        {{ snippet 'faq-collapse' theme=../../../theme.settings title=settings.title content=settings.question_text color_scheme=section.settings.color_scheme }}
+                    {{/if}}
+                    {{#if type '===' 'richText'}}
+                        {{ snippet 'faq-richtext' title=settings.title content=settings.richtext_text align=settings.richtext_align }}
+                    {{/if}}
+                {{/with}}
+            {{/each}}
+        {{/with}}
+      </div>
+    </div>    
+  </div>
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.faqs.name",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "FAQS",
+      "label": "t:sections.faqs.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.faqs.settings.color_scheme.label",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.faqs.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.faqs.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.faqs.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.faqs.settings.color_scheme.options__3.label"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "textRow",
+      "icon": "text",
+      "name": "t:sections.faqs.blocks.textRow.name",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "default": "Frequently asked question",
+          "label": "t:sections.faqs.blocks.textRow.settings.title.label"
+        },
+        {
+          "id": "question_text",
+          "type": "richtext",
+          "default": "Use this text to answer questions in as much detail as possible for your customers.",
+          "label": "t:sections.faqs.blocks.textRow.settings.question_text.label"
+        }
+      ]
+    },
+    {
+      "type": "richText",
+      "icon": "text",
+      "name": "t:sections.faqs.blocks.richText.name",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "default": "Rich text",
+          "label": "t:sections.faqs.blocks.richText.settings.title.label"
+        },
+        {
+          "id": "richtext_text",
+          "type": "richtext",
+          "default": "Use this section for any descriptive text you need to fill out your pages or to add introductory headings between other blocks.",
+          "label": "t:sections.faqs.blocks.richText.settings.richtext_text.label"
+        },
+        {
+          "id": "richtext_align",
+          "type": "text_align",
+          "default": "center",
+          "label": "t:sections.faqs.blocks.richText.settings.richtext_align.label",
+          "options": [
+            {
+              "value": "left"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.faqs.presets.presets__0.name",
+      "category": "t:sections.faqs.presets.presets__0.category",
+      "settings": {
+        "title": "FAQS",
+        "color_scheme": "none"
+      },
+      "blocks": [
+        {
+          "type": "textRow",
+          "settings": {
+            "title": "Frequently asked question",
+            "question_text": "Use this text to answer questions in as much detail as possible for your customers."
+          }
+        },
+        {
+          "type": "textRow",
+          "settings": {
+            "title": "Frequently asked question",
+            "question_text": "Use this text to answer questions in as much detail as possible for your customers."
+          }
+        },
+        {
+          "type": "textRow",
+          "settings": {
+            "title": "Frequently asked question",
+            "question_text": "Use this text to answer questions in as much detail as possible for your customers."
+          }
+        }
+      ]
+    }
+  ]
+}
+{{/schema}}

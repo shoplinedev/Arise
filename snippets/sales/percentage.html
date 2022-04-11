@@ -1,0 +1,15 @@
+<div class="{{#if type "==" '1'}} percentage vertical{{else }}percentage horizontal{{/if}} {{#if color "==" '1'}}red{{else }}orange{{/if}}">
+  {{#if type "==" '2'}}
+    <div class="msg">
+       {{t "sales.sold" count=sold}}
+    </div>
+  {{/if}}
+  <div class="percentOut">
+    <div class="percent flash-sale-percent"></div>
+  </div>
+  {{#if type "==" '1'}}
+    <div class="msg">
+       {{t "sales.sold" count=sold}}
+    </div>
+  {{/if}}
+</div>

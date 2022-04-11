@@ -1,0 +1,363 @@
+{{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
+{{ assign 'showLetter' section.settings.show_letter_subscribe }}
+{{ assign 'showSocialLogos' section.settings.show_social_media }}      
+{{assign 'color_scheme' section.settings.color_scheme_subscribe }}
+{{assign 'footerBlockLength' (length blocks)}}
+
+{{assign 'col' 3}}
+{{#if (boolean footerBlockLength '>=' 4)}}
+  {{assign 'col' 4}}
+{{else}} 
+  {{assign 'col' footerBlockLength}}
+{{/if}}
+
+{{#if (boolean showLetter '&&' showSocialLogos)}}
+  {{assign 'footInlineClass' 'footer__block-social-container__space-between'}}  
+{{else}}
+  {{assign 'footInlineClass' 'footer__block-social-container__center'}}
+{{/if}}
+
+<footer id="stage-footer" class="color-scheme-{{color_scheme}}">
+  <div class="footer__wrapper">
+    <div class="footer__body container g-4 g-md-5">
+      <div class="footer__block-container row row-cols-md-{{col}} {{#if col '===' 1}}footer__block-container--text-center{{/if}}">
+        {{#with section as |section|}}
+          {{#each blocks}}           
+            {{!-- 快速导航 --}}
+            {{#if type '===' 'menu'}}
+              <div class="footer__block">
+                {{ snippet 'footer-menu' sectionId=section.id }} 
+              </div>
+            {{/if}}
+            {{!-- 自定义内容 --}}
+            {{#if type '===' 'custom'}}
+              <div class="footer__block">
+                {{ snippet 'footer-custom' }}
+              </div>
+            {{/if}}
+            {{!-- 图片 --}}
+            {{#if type '===' 'image'}} 
+              <div class="footer__block-image">
+                {{ snippet 'footer-image' }}
+              </div>
+            {{/if}}
+            <div class="footer__block-divider d-md-none entry-line"></div>
+          {{/each}}
+        {{/with}}
+        </div>
+        <div class="footer__block-social-container row g-4 {{ footInlineClass }}">                
+          {{#if showLetter}}
+            {{!-- 邮件订阅 --}}
+            <div class="footer__block-subscribe">
+              {{ snippet 'footer-news-letter' }}
+            </div>
+          {{/if}}
+          {{#if showSocialLogos}}
+            {{!-- 社交媒体 --}}
+            <div class="footer__block-social">
+              {{ snippet 'footer-social' }}
+            </div>
+          {{/if}}      
+        </div>
+        {{#or showLetter showSocialLogos }}
+        <div class="footer__block-divider d-md-none entry-line"></div>
+        {{/or}}
+      </div>      
+    </div>
+    <div class="footer__corner entry-line">
+      <div class="footer__corner-wrapper container">
+        <div class="footer__corner-top">
+          {{#or section.settings.show_locale_selector section.settings.show_currency_selector}}
+            <div class="footer__tool-container">
+              {{ snippet 'header/locale-currency' settings=section.settings position="footer" }}
+            </div>
+          {{/or}}
+
+          {{#if section.settings.show_pay_channel.show}}
+            {{ snippet 'footer-pay-channel' }}
+          {{/if}}
+        </div>
+        <div class="footer__corner-bottom">                    
+          {{#if section.settings.show_copyright}}
+          <div class="footer-copy-box">
+            <p class="footer__copyright">© {{year}} {{storeInfo.name}}&nbsp;</p>{{{section.settings.copyright_text}}}
+          </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</footer>
+
+{{#schema}}
+{
+  "name": "t:sections.footer.name",
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme_subscribe",
+      "default": "2",
+      "label": "t:sections.footer.settings.color_scheme_subscribe.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.footer.settings.color_scheme_subscribe.options__0.label"
+        },
+        {
+          "label": "t:sections.footer.settings.color_scheme_subscribe.options__1.label",
+          "value": "1"
+        },
+        {
+          "label": "t:sections.footer.settings.color_scheme_subscribe.options__2.label",
+          "value": "2"
+        },
+        {
+          "label": "t:sections.footer.settings.color_scheme_subscribe.options__3.label",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.footer.settings.group_header__0.label",
+      "id": "group_header__0"
+    },
+    {
+      "type": "switch",
+      "id": "show_letter_subscribe",
+      "label": "t:sections.footer.settings.show_letter_subscribe.label",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "subscribe_letter_title",
+      "label": "t:sections.footer.settings.subscribe_letter_title.label",
+      "default": "Subscribe today and get 10% off your first purchase"
+    },
+    {
+      "id": "subscribe_letter_button_text",
+      "type": "text",
+      "label": "t:sections.footer.settings.subscribe_letter_button_text.label",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "subscribe_letter_placeholder",
+      "label": "t:sections.footer.settings.subscribe_letter_placeholder.label",
+      "default": "Enter your email"
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.footer.settings.group_header__1.label",
+      "id": "group_header__1"
+    },
+    {
+      "type": "switch",
+      "id": "show_social_media",
+      "label": "t:sections.footer.settings.show_social_media.label",
+      "default": true
+    },
+    {
+      "type": "switch",
+      "id": "show_locale_selector",
+      "label": "t:sections.footer.settings.show_locale_selector.label",
+      "info": "t:sections.footer.settings.show_locale_selector.info",
+      "default": false
+    },
+    {
+      "type": "switch",
+      "id": "show_currency_selector",
+      "label": "t:sections.footer.settings.show_currency_selector.label",
+      "info": "t:sections.footer.settings.show_currency_selector.info",
+      "default": false
+    },
+    {
+      "type": "switch",
+      "id": "show_currency_flags",
+      "label": "t:sections.footer.settings.show_currency_flags.label",
+      "default": false
+    },
+    {
+      "type": "choosePaymentIcons",
+      "id": "show_pay_channel",
+      "label": "t:sections.footer.settings.show_pay_channel.label"
+    },
+    {
+      "type": "switch",
+      "id": "show_copyright",
+      "label": "t:sections.footer.settings.show_copyright.label",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "copyright_text",
+      "label": "t:sections.footer.settings.copyright_text.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "icon": "normal",
+      "name": "t:sections.footer.blocks.menu.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.footer.blocks.menu.settings.title.label"
+        },
+        {
+          "type": "menu_picker",
+          "id": "menu",
+          "label": "t:sections.footer.blocks.menu.settings.menu.label",
+          "default": "foot"
+        }
+      ]
+    },
+    {
+      "type": "custom",
+      "icon": "paragraph",
+      "name": "t:sections.footer.blocks.custom.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.footer.blocks.custom.settings.title.label",
+          "default": "Custom text"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.footer.blocks.custom.settings.content.label",
+          "default": "Add your own custom text here."
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "icon": "image",
+      "name": "t:sections.footer.blocks.undefined.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.footer.blocks.undefined.settings.image.label"
+        },
+        {
+          "id": "image_width",
+          "type": "range",
+          "label": "t:sections.footer.blocks.undefined.settings.image_width.label",
+          "min": 50,
+          "max": 200,
+          "step": 10,
+          "unit": "px",
+          "default": 100
+        },
+        {
+          "type": "select",
+          "id": "align",
+          "label": "t:sections.footer.blocks.undefined.settings.align.label",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.footer.blocks.undefined.settings.align.options__0.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.footer.blocks.undefined.settings.align.options__1.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.footer.blocks.undefined.settings.align.options__2.label"
+            }
+          ],
+          "default": "center"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "menu",
+        "settings": {
+          "menu": "foot",
+          "title": "Menu title"
+        }
+      },
+      {
+        "type": "custom",
+        "settings": {
+          "title": "Custom text",
+          "content": "Add your own custom text here."
+        }
+      },
+      {
+        "type": "image",
+        "settings": {
+          "image": {}
+        }
+      }
+    ],
+    "settings": {
+      "show_locale_selector": false,
+      "show_currency_selector": false,
+      "show_currency_flags": true,
+      "show_pay_channel": {
+        "show": false,
+        "pay_channel_list": [
+          {
+            "type": "visa",
+            "show": true
+          },
+          {
+            "type": "master-card",
+            "show": true
+          },
+          {
+            "type": "master-card2",
+            "show": true
+          },
+          {
+            "type": "visa-electron",
+            "show": true
+          },
+          {
+            "type": "jcb",
+            "show": true
+          },
+          {
+            "type": "american-express",
+            "show": true
+          },
+          {
+            "type": "diners-club",
+            "show": true
+          },
+          {
+            "type": "discover",
+            "show": true
+          },
+          {
+            "type": "paypal",
+            "show": true
+          },
+          {
+            "type": "union-pay",
+            "show": true
+          }
+        ]
+      },
+      "show_copyright": true,
+      "copyright_text": "",
+      "color_scheme_subscribe": "2",
+      "show_letter_subscribe": true,
+      "subscribe_letter_title": "Subscribe today and get 10% off your first purchase",
+      "subscribe_letter_button_text": "",
+      "subscribe_letter_placeholder": "Enter your email",
+      "show_social_media": true
+    }
+  }
+}
+{{/schema}}

@@ -1,0 +1,22 @@
+{
+  "name": "collections_all.html",
+  "wrapper": "div.collection-list",
+  "sections": {
+    "collections-list": {
+      "type": "product/collections-all/collections-list-page",
+      "disabled": false,
+      "settings": {
+        "title": "Shop by category",
+        "col": 6,
+        "add_margin": true,
+        "show_divider": false,
+        "collection_fill_type": "cover",
+        "collection_image_ratio": "100"
+      }
+    }
+  },
+
+  "order": [
+    "collections-list"
+  ]
+}

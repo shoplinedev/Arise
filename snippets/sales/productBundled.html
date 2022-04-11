@@ -1,0 +1,176 @@
+{{#if (and productBundled.primaryProduct productBundled.secondaryProductList productBundled.display) }}
+  {{!-- 捆绑商品的有可用sku 返回 "true" 否则返回 "false" --}}
+  {{!-- 获取有效的主商品 --}}
+  {{ assign "primaryProductList" (arrayify productBundled.primaryProduct)}}
+  {{#each primaryProductList}}
+    {{assign '_productSkuList' (arrayify 0)}}
+    {{#each this.productSkuList}}
+      {{#if (sales_bundle_sku_available this)}}
+        {{ array-push ../_productSkuList this}}
+      {{/if}}
+    {{/each}}
+    {{assign 'productSkuList' _productSkuList}}
+  {{/each}}
+  {{#if primaryProductList.[0].productSkuList.length}}
+    {{ assign "primaryProduct" primaryProductList.[0]}}
+  {{/if}}
+  {{!-- 获取有效的捆绑商品列表 --}}
+  {{ assign "secondaryProductList" (arrayify 0)}}
+  {{#each productBundled.secondaryProductList}}
+    {{assign '_productSkuList' (arrayify 0)}}
+    {{#each this.productSkuList}}
+      {{#if (sales_bundle_sku_available this)}}
+        {{ array-push ../_productSkuList this}}
+      {{/if}}
+    {{/each}}
+    {{assign 'productSkuList' _productSkuList}}
+    {{#if productSkuList.length}}
+      {{!-- 当前商品有可用sku --}}
+      {{ array-push ../secondaryProductList this}}
+    {{/if}}
+  {{/each}}
+
+  {{#if productBundled.bundledType '===' 1}}
+    {{!-- 捆绑所有商品购买 --}}
+    {{assign 'secondaryAvailable' (compare secondaryProductList.length '===' productBundled.secondaryProductList.length)}}
+  {{else}}
+    {{!-- 至少选择一个捆绑商品 --}}
+    {{assign 'secondaryAvailable' (boolean secondaryProductList.length)}}
+  {{/if}}
+
+  {{!-- 判断所有商品是否满足对应条件 --}}
+  {{#if (and primaryProduct secondaryAvailable) }}
+    {{!-- selected sku list --}}
+    {{ assign "initSkus" (array_extras (pluck secondaryProductList 'productSkuList.0') 'unshift' (itemAt primaryProduct.productSkuList 0))}}
+    {{!-- 商品正常价格总和 --}}
+    {{ assign "totalPrice" (sales_skus_total_price initSkus 'price')}}
+    {{!-- 商品优惠价格总和 --}}
+    {{ assign "totalPromotionPrice" (sales_skus_total_price initSkus 'promotionPrice' (compare productBundled.benefitType '===' 9))}}
+    {{!-- 节省金额标签 --}}
+    {{ assign "savedAmount" (javascript_template '<span data-amount="${amountNum}">${amount}</span>' amount=(currency_convert (minus totalPrice totalPromotionPrice)) amountNum=(minus totalPrice totalPromotionPrice))}}
+    {{!-- 是否显示优惠金额 --}}
+    {{#if totalPrice '>' totalPromotionPrice}}
+      {{ assign "displayClass" ''}}
+    {{else}}
+      {{ assign "displayClass" 'hide'}}
+    {{/if}}
+
+    <div class="sales__productBundled container" id="sales-productBundled">
+      {{!-- 捆绑标题 --}}
+      <div id="sales-productBundled-handle">
+        {{!-- 标题 --}}
+        <h2 class="sales__productBundled-title title5">{{t 'sales.bundle.title'}}</h2>
+        {{!-- 移动端捆绑节省提示文案 --}}
+        <div class="sales__productBundled-mobileTips body4 {{displayClass}} d-md-none">{{noTranslationHTML (t 'sales.bundle.saveTip' amount=savedAmount)}}</span>
+          <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 9.8995L6.94975 5.44975L2.5 1" stroke="currentColor" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        {{!-- 移动端点击区域布局 --}}
+        <div class="sales__productBundled-mobile">
+          {{assign 'imageRatio' (default theme.settings.product_image_ratio '100')}}
+          {{assign 'imageFit' (default theme.settings.product_fill_type 'contain')}}
+
+          <div class="sales__productBundled-mobile-primaryProduct" style="align-items: center;">
+            <div class="sales__productBundled-image sales-productBundled-image" data-seq="{{primaryProduct.spuSeq}}">
+              {{#each primaryProduct.productSkuList}}
+                {{!-- 获取sku图片，如果没有使用商品图片第一张 --}}
+                {{ assign "primaryProductImageSrc" this.imageList.[0]}}
+                {{#if (not primaryProductImageSrc)}}
+                  {{ assign "primaryProductImageSrc" ../primaryProduct.images.[0]}}
+                {{/if}}
+                {{!-- 组合图片srcset --}}
+                {{#if primaryProductImageSrc}}
+                  {{assign 'product_item_image_srcset' (append (img_url primaryProductImageSrc width=80 scale=2) ' 160w') }}
+                {{/if}}
+                <div class="productBundledImage" style="display: {{#if @index '===' 0}}block{{else}}none{{/if}};" data-index={{@index}}>
+                  {{ snippet 'product/commons/product-process-image' imageRatio=../imageRatio imageFit=../imageFit srcSet=product_item_image_srcset placeholderHeight=80}}
+                </div>
+              {{/each}}
+            </div>
+            {{!-- 链接符 --}}
+            <i>
+              <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.9001 8H2.1001" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M8.5 1.5999L8.5 14.3999" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+            </i>
+          </div>
+          {{#each secondaryProductList}}
+            {{!-- 可以找到有效sku则表示当前捆绑商品为生效商品 --}}
+            <div class="sales__productBundled-image sales-productBundled-image" data-seq="{{this.spuSeq}}">
+              {{#each this.productSkuList}}
+                {{!-- 获取sku图片，如果没有使用商品图片第一张 --}}
+                {{ assign "productImagesSrc" this.imageList.[0]}}
+                {{#if (not productImagesSrc)}}
+                  {{ assign "productImagesSrc" ../this.images.[0]}}
+                {{/if}}
+                {{!-- 组合图片srcset --}}
+                {{#if productImagesSrc}}
+                  {{assign 'product_item_image_srcset' (append (img_url productImagesSrc width=80 scale=2) ' 160w') }}
+                {{/if}}
+                <div class="productBundledImage" style="display: {{#if @index '===' 0}}block{{else}}none{{/if}};" data-index={{@index}}>
+                  {{ snippet 'product/commons/product-process-image' imageRatio=../../imageRatio imageFit=../../imageFit srcSet=product_item_image_srcset placeholderHeight=80 }}
+                </div>
+              {{/each}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+
+      {{!-- 移动端弹窗、pc端布局 --}}
+      <div class="sales__productBundled-container">
+        <div class="sales__productBundled-mobileHeader body3 d-flex d-md-none">
+          {{!-- 关闭按钮 --}}
+          <i id="sales-productBundled-close">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.5 13.5H5M5 13.5L13 5.5M5 13.5L13 21.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </i>
+          <span class="sales__productBundled-mobileHeader-text">
+            {{t 'sales.bundle.title'}}
+          </span>
+        </div>
+
+        {{!-- 商品列表 --}}
+        <div class="sales__productBundled-list" data-scroll-lock-scrollable>
+          {{!-- 主商品 --}}
+          <div class="sales__productBundled-primaryProduct">
+            {{ snippet 'sales/productBundled-item' product=primaryProduct viewControlConfig=productBundled.viewControlConfigVo index=-1}}
+          </div>
+
+          {{!-- 链接符号，pc端展示 --}}
+          <i class="sales__productBundled-plus d-none d-md-flex">
+            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.4001 8.5H1.6001" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+              <path d="M8 2.10002L8 14.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </i>
+
+          {{!-- 捆绑品列表 --}}
+          <div class="sales__productBundled-secondary">
+            <div class="sales__productBundled-secondaryProductList">
+              {{#each secondaryProductList}}
+                {{ snippet 'sales/productBundled-item' product=this bundledType=../productBundled.bundledType viewControlConfig=../productBundled.viewControlConfigVo index=@index}}
+              {{/each}}
+            </div>
+          </div>
+
+          {{!-- 优惠提示及加购按钮 --}}
+          <div class="sales__productBundled-promotion">
+            <div class="sales__productBundled-info">
+              <div class="body4 sales__productBundled-info-tips notranslate body4 {{displayClass}}">{{noTranslationHTML (t 'sales.bundle.saveTip' amount=savedAmount)}}</div>
+              {{#if productBundled.viewControlConfigVo.showAllProductPrice}}
+                <div class="body4 sales__productBundled-info-total body4">{{t 'common.subTotal'}}: <span
+                    data-amount="{{totalPromotionPrice}}" class="notranslate">{{currency_convert totalPromotionPrice}}</span>
+                </div>
+              {{/if}}
+            </div>
+            <button class="sales__productBundled-buyNow body5 btn btn-primary" id="sales-productBundled-buyNow">{{t 'common.settleMent'}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+{{/if}}

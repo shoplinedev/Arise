@@ -1,0 +1,16 @@
+{{ assign 'productNums' (JSONparse '[24, 36, 48]') }}
+
+<ul class="product-list-showby body3">
+  <li>
+    <span class="product-list-showby-title">{{t "productList.container.show"}}</span>
+  </li>
+  {{#each productNums}}
+    <li>
+      {{#if ../productNum '===' this}}
+      <span class="product-list-showby-item product-list-showby-item-active notranslate" aria-label="show {{this}} items">{{this}}</span>
+      {{else}}
+      <a class="product-list-showby-item notranslate J_product_list_showby" data-num="{{this}}" href="javascript:void(0)" aria-label="show {{this}} items">{{this}}</a>
+      {{/if}}
+    </li>
+  {{/each}}
+</ul>

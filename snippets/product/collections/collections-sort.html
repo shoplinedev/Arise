@@ -1,0 +1,16 @@
+{{assign 'typeValue' '1'}}
+{{#if request.uri.query.sort_type}}
+  {{assign 'typeValue' request.uri.query.sort_type}}
+{{/if}}
+<div class="product-list-sort custom-body-color">
+  <span class="product-list-sort-arrow">
+    {{snippet 'icons/icon_collapse_arrow'}}
+  </span>
+  <select class="body3" name="collection-sort" id="collection-sort">
+    <option {{#if typeValue '===' '1'}}selected{{/if}} value="1">{{t "productList.container.sort.recommend"}}</option>
+    <option {{#if typeValue '===' '2'}}selected{{/if}} value="2">{{t "productList.container.sort.sales"}}</option>
+    <option {{#if typeValue '===' '3'}}selected{{/if}} value="3">{{t "productList.container.sort.newest"}}</option>
+    <option {{#if typeValue '===' '4'}}selected{{/if}} value="4">{{t "productList.container.sort.priceLowToHigh"}}</option>
+    <option {{#if typeValue '===' '5'}}selected{{/if}} value="5">{{t "productList.container.sort.priceHighToLow"}}</option>
+  </select>
+</div>

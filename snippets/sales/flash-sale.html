@@ -1,0 +1,49 @@
+{{preload_state 'product'}}
+{{ assign 'salesPlugins' product.productSale.saleActivities }}
+
+ {{#each salesPlugins}}
+ {{#if this.promotionSubType "==" '1'}}
+ {{#if this.promotionType "==" '1'}}
+ {{ assign 'salesPlugin' this.salesPlugin }}
+ {{ assign 'saleBuyLimitConfig' this.saleBuyLimitConfig }}
+<div class="{{#if salesPlugin.template "==" '1'}} flashSale red{{else }}flashSale orange{{/if}}">
+  <div class="countDown">
+    <div class="titleContent">
+      <p class="title">
+        <span class="titleMsg">{{t "sales.flash-sale-text"}}</span>
+        {{#if salesPlugin.countDownTimerPlugin.showCountDownTime}}
+        {{#if salesPlugin.progressPlugin.showProgressBar}}
+          {{#if salesPlugin.progressPlugin.onlyShopHotSaleLabel}}
+            <div class="hot">{{t "sales.hot-sale"}}</div>
+          {{else}}
+            {{ snippet 'sales/percentage' color=salesPlugin.template  type="1" total=salesPlugin.progressPlugin.totalNum sold=salesPlugin.progressPlugin.saleNum}}
+          {{/if}}
+        {{/if}}
+        {{/if}}
+      </p>
+    </div>
+    {{#if salesPlugin.countDownTimerPlugin.showCountDownTime}}
+    {{!-- 展示倒计时 --}}
+     {{ snippet 'sales/timeout' type=salesPlugin.template}}
+    {{else }}
+    {{!-- 不展示倒计时，进度条组件往右移 --}}
+    {{#if salesPlugin.progressPlugin.showProgressBar}}
+     {{#if salesPlugin.progressPlugin.onlyShopHotSaleLabel}}
+        <div class="hot">{{t "sales.hot-sale"}}</div>
+     {{else}}
+     {{ snippet 'sales/percentage' color=salesPlugin.template  type="2" total=salesPlugin.progressPlugin.totalNum sold=salesPlugin.progressPlugin.saleNum}}
+     {{/if}}
+    {{/if}}
+    {{/if}}
+  </div>
+</div>
+
+<div class="limit">
+  {{#if saleBuyLimitConfig.userLimitedType "!=" 0}}
+  {{t "sales.flash-sale-tips" count=saleBuyLimitConfig.acquirePerUserLimit}}
+  {{/if}}
+</div>
+
+{{/if}}
+{{/if}}
+{{/each}}

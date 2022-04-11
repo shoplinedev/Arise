@@ -1,0 +1,16 @@
+{{ assign 'currentStatus' (default status true) }}
+
+<div
+  {{#if id}}id="{{ id }}"{{/if}}
+  class="global-dropdown-list {{ classes }} {{#if currentStatus}}is-open{{else}}is-close{{/if}}"
+  style="{{ styles }}"
+  data-disabled="{{ disabled }}"
+  data-global-dropdown-list-related-id="{{ relatedId }}">
+  <div class="global-dropdown-list__head">
+    {{ slot_content 'trigger' }}
+  </div>
+
+  <div class="global-dropdown-list__main">
+    {{ slot_content 'dropdownList' }}
+  </div>
+</div>

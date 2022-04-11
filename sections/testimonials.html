@@ -1,0 +1,250 @@
+{{ inline_stylesheet 'testimonials/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'testimonials/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'testimonials/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+{{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
+{{ assign 'title' section.settings.title }}
+{{ assign 'picture_radius' section.settings.picture_radius }}
+{{ assign 'block_length' (length blocks) }}
+
+{{#style}}
+  [data-section-id="{{ section.id }}"] .testimonials__swiper {
+    width: calc((100% / 3 * {{ block_length }}) + (20px / 3 * {{ block_length }}));
+  }
+  @media (max-width: 749.98px) {
+    [data-section-id="{{ section.id }}"] .testimonials__swiper {
+      width: calc((100% + 20px) * {{ block_length }});
+    }
+  }
+{{/style}}
+
+<div class="testimonials__wrapper color-scheme-{{ section.settings.color_scheme }} section-gap{{#if section.settings.color_scheme '!==' ''}}--padding{{/if}}">
+  <div
+    class="testimonials container"
+    data-section-type="testimonials"
+    data-section-id="{{ section.id }}">
+    {{#if title}}
+      <div class="testimonials__title title4 text-center">{{ title }}</div>
+    {{/if}}
+
+    {{#if (length blocks) '>' 0}}
+      {{#with this as | global |}}
+        <div class="testimonials__container is-{{ global.section.settings.text_size }}-size">
+          <div class="testimonials__swiper-wrapper">
+            <div class="testimonials__swiper-box">
+              <ul class="testimonials__swiper">
+                {{#each blocks as | block |}}
+                  <li class="testimonials__slide">
+                    <div class="testimonial__avatar testimonial__avatar--{{ global.picture_radius }}">
+                      {{ snippet 'global-image' image=block.settings.avatar breakpoints='80,160,240' pcSize='80px' mSize='80px' }}
+                    </div>
+
+                    {{#if block.settings.star_num '!==' 'hidden'}}
+                      {{ snippet 'rate' class='testimonial__rate' value=block.settings.star_num color=global.section.settings.star_color }}
+                    {{/if}}
+
+                    {{#if block.settings.description}}
+                      <div class="testimonial__desc sl-richtext body4"><div>{{{ block.settings.description }}}</div></div>
+                    {{/if}}
+
+                    {{#if block.settings.author}}
+                      <div class="testimonial__author sl-richtext body4"><div>{{{ block.settings.author }}}</div></div>
+                    {{/if}}
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+
+            <div class="testimonials__pagination"></div>
+          </div>
+        </div>
+      {{/with}}
+    {{else}}
+      <div class="testimonials__placeholder-noblocks">This section doesn’t currently include any content. Add content to this section using the sidebar.</div>
+    {{/if}}
+  </div>
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.testimonials.name",
+  "type": "testimonials",
+  "max_blocks": 20,
+  "blocks": [
+    {
+      "type": "testimonial",
+      "icon": "normal",
+      "name": "t:sections.testimonials.blocks.testimonial.name",
+      "settings": [
+        {
+          "id": "avatar",
+          "type": "image_picker",
+          "label": "t:sections.testimonials.blocks.testimonial.settings.avatar.label"
+        },
+        {
+          "id": "star_num",
+          "type": "select",
+          "label": "t:sections.testimonials.blocks.testimonial.settings.star_num.label",
+          "default": "4.5",
+          "options": [
+            {
+              "label": "t:sections.testimonials.blocks.testimonial.settings.star_num.options__0.label",
+              "value": "hidden"
+            },
+            {
+              "label": "t:sections.testimonials.blocks.testimonial.settings.star_num.options__1.label",
+              "value": "4"
+            },
+            {
+              "label": "t:sections.testimonials.blocks.testimonial.settings.star_num.options__2.label",
+              "value": "4.5"
+            },
+            {
+              "label": "t:sections.testimonials.blocks.testimonial.settings.star_num.options__3.label",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "id": "description",
+          "type": "richtext",
+          "label": "t:sections.testimonials.blocks.testimonial.settings.description.label",
+          "default": "Add customer reviews and testimonials to showcase your store's happy customers."
+        },
+        {
+          "id": "author",
+          "type": "text",
+          "label": "t:sections.testimonials.blocks.testimonial.settings.author.label",
+          "default": "Author's name"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "t:sections.testimonials.settings.title.label",
+      "default": "Testimonials"
+    },
+    {
+      "id": "picture_radius",
+      "type": "select",
+      "label": "t:sections.testimonials.settings.picture_radius.label",
+      "default": "rounded",
+      "options": [
+        {
+          "label": "t:sections.testimonials.settings.picture_radius.options__0.label",
+          "value": "natural"
+        },
+        {
+          "label": "t:sections.testimonials.settings.picture_radius.options__1.label",
+          "value": "rounded"
+        },
+        {
+          "label": "t:sections.testimonials.settings.picture_radius.options__2.label",
+          "value": "rounded-rect"
+        }
+      ]
+    },
+    {
+      "id": "text_size",
+      "type": "select",
+      "label": "t:sections.testimonials.settings.text_size.label",
+      "default": "small",
+      "options": [
+        {
+          "label": "t:sections.testimonials.settings.text_size.options__0.label",
+          "value": "small"
+        },
+        {
+          "label": "t:sections.testimonials.settings.text_size.options__1.label",
+          "value": "medium"
+        },
+        {
+          "label": "t:sections.testimonials.settings.text_size.options__2.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "id": "star_color",
+      "type": "color_picker",
+      "label": "t:sections.testimonials.settings.star_color.label",
+      "default": "#000000"
+    },
+    {
+      "id": "color_scheme",
+      "type": "select",
+      "label": "t:sections.testimonials.settings.color_scheme.label",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "t:sections.testimonials.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.testimonials.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.testimonials.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.testimonials.settings.color_scheme.options__3.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.testimonials.presets.presets__0.name",
+      "category": "t:sections.testimonials.presets.presets__0.category",
+      "settings": {
+        "title": "Testimonials",
+        "picture_radius": "rounded",
+        "text_size": "small",
+        "star_color": "#000000",
+        "color_scheme": ""
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "avatar": {},
+            "star_num": "4.5",
+            "description": "Add customer reviews and testimonials to showcase your store's happy customers.",
+            "author": "Author's name"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "avatar": {},
+            "star_num": "4.5",
+            "description": "Add customer reviews and testimonials to showcase your store's happy customers.",
+            "author": "Author's name"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "avatar": {},
+            "star_num": "4.5",
+            "description": "Add customer reviews and testimonials to showcase your store's happy customers.",
+            "author": "Author's name"
+          }
+        }
+      ]
+    }
+  ]
+}
+{{/schema}}

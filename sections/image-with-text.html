@@ -1,0 +1,383 @@
+{{ assign 'settings' section.settings }}
+{{ assign 'blocks' section.blocks }}
+{{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
+{{ assign 'blockLength' (length blocks) }}
+{{ assign 'image' section.settings.image }}
+{{ assign 'image_height' section.settings.image_height }}
+{{ assign 'pc_image_width' section.settings.pc_image_width }}
+{{ assign 'pc_image_position' settings.pc_image_position }}
+{{ assign 'pc_box_align' settings.pc_box_align }}
+{{ assign 'pc_text_align' settings.pc_text_align }}
+{{ assign 'image_overlap_display' settings.image_overlap_display }}
+{{ assign 'color_scheme' settings.color_scheme }}
+{{ assign 'mobile_text_align' settings.mobile_text_align }}
+
+{{!-- {{ assign 'is_auto_scale' (default image_height '') }} --}}
+{{ assign 'ratio' (append (default (get 'ratio' (img_size image.url)) 100) '%') }}
+
+{{ inline_stylesheet 'image-with-text/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'image-with-text/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'image-with-text/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+<div class="container" >
+  <div class="image-with-text 
+    image-with-text--align-{{ pc_box_align }}
+    img-w-{{ pc_image_width }}
+    pos-{{ pc_image_position }}        
+    {{#if (isTruthy image_overlap_display)}}image-with-text--overlap{{/if}}
+    ">
+    <a class="image-with-text__img-wrap image-with-text__img-wrap--{{ image_height }}">
+      {{ snippet 'global-image' image=image image-class='image-with-text__img' empty-image-class='image-with-text__empty-img' pcSize='1/3' }}
+    </a>
+    <div class="image-with-text__info-wrap
+      {{#if (isFalsey image_overlap_display)}}color-scheme-{{ color_scheme }}{{/if}}      
+      ">
+      {{#if (boolean blockLength '>' 0)}} 
+      <div class="image-with-text__info-reference">
+        <div class="image-with-text__info 
+          {{#if (isTruthy image_overlap_display)}}color-scheme-{{ color_scheme }} image-with-text__info--overlap-pc-{{ pc_image_position }}{{/if}}
+          
+          image-with-text__info--align-{{ pc_text_align }}
+          image-with-text__info--m-align-{{ mobile_text_align }}        
+        ">
+          {{#each blocks}}
+            {{#if (trim type) '===' 'title'}}
+              <h3 class="image-with-text__title image-with-text__title--size-{{ settings.title_size }}">{{ settings.title }}</h3>  
+            {{/if}}
+            {{#if (trim type) '===' 'content'}} 
+              <div class="body3 image-with-text__content">{{{ settings.content }}}</div>
+            {{/if}}
+            {{#if (trim type) '===' 'sub_title'}} 
+              <div class="image-with-text__sub-title image-with-text__sub-title--size-{{ settings.text_size }} ls-30p">{{{ settings.text }}}</div>  
+            {{/if}}
+            {{#if (trim type) '===' 'button'}} 
+              {{#if (trim settings.button_text)}}
+                {{ assign 'link_obj' (useLink settings.link ../query) }}
+                <a {{{ link_obj.hrefAttr }}} class="image-with-text__btn btn btn-primary">
+                  {{ settings.button_text }}
+                </a>
+              {{/if}}
+            {{/if}}
+          {{/each}}  
+        </div>
+      </div>        
+      {{/if}}
+      
+      
+    </div>    
+  </div>
+</div>
+  
+
+{{#schema}}
+{
+  "name": "t:sections.image-with-text.name",
+  "class": "section-gap",
+  "settings": [
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "t:sections.image-with-text.settings.image.label"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "label": "t:sections.image-with-text.settings.image_height.label",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:sections.image-with-text.settings.image_height.options__0.label"
+        },
+        {
+          "value": "high",
+          "label": "t:sections.image-with-text.settings.image_height.options__1.label"
+        },
+        {
+          "value": "low",
+          "label": "t:sections.image-with-text.settings.image_height.options__2.label"
+        }
+      ],
+      "default": "auto"
+    },
+    {
+      "id": "pc_image_width",
+      "type": "select",
+      "label": "t:sections.image-with-text.settings.pc_image_width.label",
+      "options": [
+        {
+          "label": "t:sections.image-with-text.settings.pc_image_width.options__0.label",
+          "value": "small"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.image-with-text.settings.pc_image_width.options__1.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.image-with-text.settings.pc_image_width.options__2.label"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "id": "pc_image_position",
+      "type": "select",
+      "label": "t:sections.image-with-text.settings.pc_image_position.label",
+      "info": "t:sections.image-with-text.settings.pc_image_position.info",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.image-with-text.settings.pc_image_position.options__1.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.image-with-text.settings.pc_image_position.options__0.label"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "id": "pc_box_align",
+      "type": "select",
+      "label": "t:sections.image-with-text.settings.pc_box_align.label",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.image-with-text.settings.pc_box_align.options__0.label"
+        },
+        {
+          "value": "middle",
+          "label": "t:sections.image-with-text.settings.pc_box_align.options__1.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.image-with-text.settings.pc_box_align.options__2.label"
+        }
+      ],
+      "default": "middle"
+    },
+    {
+      "id": "pc_text_align",
+      "type": "select",
+      "label": "t:sections.image-with-text.settings.pc_text_align.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.image-with-text.settings.pc_text_align.options__0.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.image-with-text.settings.pc_text_align.options__1.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.image-with-text.settings.pc_text_align.options__2.label"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "id": "image_overlap_display",
+      "type": "switch",
+      "label": "t:sections.image-with-text.settings.image_overlap_display.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.image-with-text.settings.color_scheme.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__3.label"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_align",
+      "label": "t:sections.image-with-text.settings.mobile_text_align.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.image-with-text.settings.mobile_text_align.options__0.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.image-with-text.settings.mobile_text_align.options__1.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.image-with-text.settings.mobile_text_align.options__2.label"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "sub_title",
+      "limit": 1,
+      "icon": "title",
+      "name": "t:sections.image-with-text.blocks.sub_title.name",
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": "t:sections.image-with-text.blocks.sub_title.settings.text.label",
+          "default": "Improved"
+        },
+        {
+          "id": "text_size",
+          "type": "select",
+          "label": "t:sections.image-with-text.blocks.sub_title.settings.text_size.label",
+          "options": [
+            {
+              "label": "t:sections.image-with-text.blocks.sub_title.settings.text_size.options__0.label",
+              "value": "small"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.image-with-text.blocks.sub_title.settings.text_size.options__1.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.image-with-text.blocks.sub_title.settings.text_size.options__2.label"
+            }
+          ],
+          "default": "medium"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "limit": 1,
+      "icon": "title",
+      "name": "t:sections.image-with-text.blocks.title.name",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "t:sections.image-with-text.blocks.title.settings.title.label",
+          "default": "Image with text"
+        },
+        {
+          "id": "title_size",
+          "type": "select",
+          "default": "medium",
+          "limit": 1,
+          "label": "t:sections.image-with-text.blocks.title.settings.title_size.label",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.image-with-text.blocks.title.settings.title_size.options__0.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.image-with-text.blocks.title.settings.title_size.options__1.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.image-with-text.blocks.title.settings.title_size.options__2.label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "limit": 1,
+      "icon": "text",
+      "name": "t:sections.image-with-text.blocks.content.name",
+      "settings": [
+        {
+          "id": "content",
+          "type": "richtext",
+          "label": "t:sections.image-with-text.blocks.content.settings.content.name",
+          "default": "Pair large text with a full-width image to draw attention to an important detail of your brand or product line."
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "limit": 1,
+      "icon": "button",
+      "name": "t:sections.image-with-text.blocks.button.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "t:sections.image-with-text.blocks.button.settings.button_text.label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.image-with-text.blocks.button.settings.link.label",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-with-text.presets.presets__0.name",
+      "category": "t:sections.image-with-text.presets.presets__0.category",
+      "settings": {
+        "image": {},
+        "image_height": "auto",
+        "pc_image_width": "medium",
+        "pc_image_position": "left",
+        "pc_box_align": "middle",
+        "pc_text_align": "left",
+        "image_overlap_display": false,
+        "color_scheme": "none",
+        "mobile_text_align": "left"
+      },
+      "blocks": [
+        {
+          "type": "title",
+          "settings": {
+            "title": "Image with text",
+            "title_size": "medium"
+          }
+        },
+        {
+          "type": "content",
+          "settings": {
+            "content": "Pair large text with a full-width image to draw attention to an important detail of your brand or product line."
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "button_text": "Optional button",
+            "link": ""
+          }
+        }
+      ]
+    }
+  ]
+}
+{{/schema}}

@@ -1,0 +1,33 @@
+
+{{!-- 传入参数：collectionData 分类列表数据 --}}
+{{assign '_collections' (cond (isArray collectionData) collectionData (JSONparse '[]'))}}
+{{!-- 传入参数：colNum 展示列数 --}}
+{{assign '_col' (default colNum 5)}}
+
+{{assign 'realImgWidth' (cond request.is_mobile 300 (divide 1200 _col))}}
+
+<style>
+  .collection-item-list-row {
+    overflow-x: auto;
+  }
+  .collection-item-list-row::-webkit-scrollbar {
+    display: none;
+  }
+  .collection-item-list-row-wrap>* {
+    width: 18%;
+    flex: none;
+  }
+  @media (max-width: 750px) {
+    .collection-item-list-row-wrap>* {
+      width: 29%;
+    }
+  }
+</style>
+
+<div class="collection-item-list-row" style="overflow: auto;">
+  <div class="row collection-item-list-row-wrap" style="flex-wrap: nowrap;">
+    {{#each _collections}}
+      {{snippet 'product/commons/collection-item' pcSize="18/100" mSize="29/100" sortationData=this}}
+    {{/each}}
+  </div>
+</div>

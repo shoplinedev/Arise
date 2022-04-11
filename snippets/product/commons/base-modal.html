@@ -1,0 +1,29 @@
+{{!-- below lists modal component props --}}
+{{!-- prop: closable --}}
+{{assign 'closable' (default closable true)}}
+{{!-- prop: maskClosable --}}
+{{assign 'maskClosable' (default maskClosable true)}}
+{{!-- prop: zIndex --}}
+{{assign 'zIndex' (default zIndex 1000)}}
+
+{{!-- modal component here --}}
+<div id="MpModal{{modalId}}" class="mp-modal__wrapper" data-maskClosable="{{maskClosable}}" style="z-index: {{zIndex}}">
+  <div class="mp-modal__mask"></div>
+  <div class="mp-modal__container {{containerClassName}}">
+    {{#if closable}}
+    <span class="mp-modal__close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.1998 4.80005L4.7998 19.2" stroke="currentColor" stroke-width="2"/>
+        <path d="M4.7998 4.79995L19.1998 19.2" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </span>
+    {{/if}}
+    <div class="mp-modal__body {{bodyClassName}}">
+      {{#if children}}
+        {{children}}
+      {{else}}
+        {{slot_content}}
+      {{/if}}
+    </div>
+  </div>
+</div>

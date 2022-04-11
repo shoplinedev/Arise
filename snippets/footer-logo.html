@@ -1,0 +1,5 @@
+{{#and this.settings.logo this.settings.logo.url}}
+    <div class="footer__logo" style="height: {{this.settings.logo_height}}px;">
+        <img class="lozad" data-src="{{this.settings.logo.url}}" data-srcset="{{ this.settings.logo.url }} 1x, {{ this.settings.logo.url }} 2x"  alt="{{this.settings.logo.alt}}">
+    </div>
+{{/and}}

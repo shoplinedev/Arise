@@ -1,0 +1,147 @@
+{{!-- 是否使用价格缩小显示 --}}
+{{assign 'useSuperscriptDecimals' (boolean @root.theme.settings.superscript_decimals)}}
+{{#if useSuperscriptDecimals}}
+  {{!-- 小数位分隔符 --}}
+  {{assign 'splitSymbol' (currency_decimal_symbol code=@root.currencyCode lang=@root.request.locale) }}
+  {{#if splitSymbol}}
+    {{assign 'salePriceArr' (split (currency_convert data.salePrice) splitSymbol)}}
+    {{assign 'priceArr' (split (currency_convert data.price) splitSymbol)}}
+  {{else}}
+    {{assign 'salePriceArr' (arrayify (currency_convert data.salePrice))}}
+    {{assign 'priceArr' (arrayify (currency_convert data.price))}}
+  {{/if}}
+{{/if}}
+
+<div class="trade-cart-sku-item{{#and (compare data.maxPurchaseTotalNum '==' 0) (compare data.maxPurchaseReasonCode '==' "STOCK_OVER")}} sold-out{{/and}}{{#if inactive '==' true}} inactive{{/if}}"
+     id="{{trade_cart_type}}{{append '-card-sku-item-' (numToString data.groupId) '-' data.spuId '-' data.skuId '-' (numToString data.priceType)}}">
+    <a class="trade-cart-sku-item-image"
+       href="{{#if (compare data.productSource '===' 1)}}/products/{{{data.spuId}}}{{else}}javascript:void(0){{/if}}"
+       data-product-source="{{data.productSource}}"
+       data-group-id="{{ numToString data.groupId}}"
+       data-name="{{data.name}}"
+       data-sku-id="{{data.skuId}}"
+       data-spu-id="{{data.spuId}}"
+       data-sku-attrs="{{join data.skuAttr ','}}"
+       data-price="{{data.price}}"
+       data-sale-price="{{data.salePrice}}"
+    >
+    {{#unless data.image}}
+      <div class="trade-cart-sku-item-image-fallback"></div>
+    {{else}}
+      <div class="hide trade-cart-sku-item-image-fallback"></div>
+      <img class="trade-cart-sku-item-image-wrapper" src="{{img_url data.image width=image-width scale=2}}" origin-src="{{data.image}}">
+    {{/unless}}
+    {{#if data.bindProductImages}}
+        <ul class="trade-cart-sku-item-image-wrapper__accessorial__list">
+          {{~#each data.bindProductImages~}}
+            <li style="background: url('{{{this}}}') center center;"></li>
+          {{~/each~}}
+        </ul>
+      {{/if}}
+    <div class="trade-cart-sku-item-image-sold-out body6">{{t 'productList.container.listItem.sold.out'}}</div>
+  </a>
+  <div class="trade-cart-sku-item-info">
+    <div class="trade-cart-sku-item-info-title body2">
+      {{data.name}}</div>
+      {{#if (or data.skuAttributes data.properties)}}
+      <div class="trade-cart-sku-item-info-wrapper">
+        {{#if data.skuAttributes}}
+          {{#unless (isEmpty data.skuAttributes)}}
+            {{#each data.skuAttributes}}
+              <div class="trade-cart-sku-item-info-spec body3">
+                <div class="trade-cart-sku-item-info-spec-key">{{this.attributeName}}:</div>
+                <div class="trade-cart-sku-item-info-spec-value">{{this.attributeValue}}</div>
+              </div>
+            {{/each}}
+          {{/unless}}
+        {{/if}}
+        {{#if data.properties}}
+          {{#each data.properties}}
+            <div class="trade-cart-sku-item-info-spec body3">
+              <div class="trade-cart-sku-item-info-spec-key">{{this.name}}:</div>
+              {{#if this.type '==' 'text'}}
+                <div class="trade-cart-sku-item-info-spec-value">{{this.value}}</div>
+              {{else if this.type '==' 'picture'}}
+                <div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-preview-btn" data-preview-list="{{JSONstringify this.urls}}">
+                  {{t 'cart.view-pic'}}
+                </div>
+              {{else if this.type '==' 'link'}}
+                <div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-look-btn">
+                  <a href="{{cond (boolean (itemAt this.urls 0 )) (itemAt this.urls 0) ''}}" class="body3" target="_blank" >{{t 'cart.view-link'}}</a>
+                </div>
+              {{/if}}
+            </div>
+          {{/each}}
+        {{/if}}
+        {{#if data.customProductTips}}
+          {{#unless (isEmpty data.customProductTips)}}
+            {{#each data.customProductTips}}
+              <div class="trade-cart-sku-item-info-customTip notranslate">{{this}}</div>
+            {{/each}}
+          {{/unless}}
+        {{/if}}
+      </div>
+      {{/if}}
+    {{#if (boolean data.priceType '===' 2)}}
+      <span class="flash-sale" data-flash-sale-data="{{JSONstringify data}}" data-flash-sale-item-id="{{trade_cart_type}}{{append '-card-sku-item-' (numToString data.groupId) '-' data.spuId '-' data.skuId '-' (numToString data.priceType)}}"></span>
+    {{/if}}
+    <div class="trade-cart-sku-item-info-number">
+      <div class="trade-cart-sku-item-info-left">
+        {{#or (boolean data.businessFlag '&&' data.businessFlag.singleAdjustNum '===' false)  (compare data.maxPurchaseTotalNum '==' 0)  (or inactive (not (trade_cart_show_remove data skuNumMap)))}}
+          <div class="trade-cart-sku-item-info-sku-number body3">x<span>{{data.num}}</span></div>
+          {{else}}
+            {{include 'snippets/trade/stepper' count=data.num findex=findex index=index}}
+        {{/or}}
+        {{#if data.errorList }}
+          <span class="promotion-limited" data-promotion-limited-data="{{JSONstringify data}}" data-promotion-limited-item-id="{{trade_cart_type}}{{append '-card-sku-item-' (numToString data.groupId) '-' data.spuId '-' data.skuId '-' (numToString data.priceType)}}"></span>
+        {{/if}}
+      </div>
+      <div class="trade-cart-sku-item-info-amount-and-discount">
+        <div class="trade-cart-sku-item-info-amount body3{{#if (toInt data.salePrice) '>' (toInt data.price)}} has-discount{{/if}}">
+          {{#if useSuperscriptDecimals}}
+            {{#if (toInt data.salePrice) '>' (toInt data.price)}}
+              <span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount={{data.salePrice}}>{{itemAt salePriceArr 0}}<sup
+                  class="body6">{{ itemAt salePriceArr 1 }}</sup></span>
+            {{/if}}
+            <span class="notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price {{cond (boolean data.priceType '===' 2) 'trade-cart-sku-item-info-amount-and-limited-discount' ''}}" data-amount={{data.price}}>{{itemAt priceArr 0}}
+              <sup class="body6">{{ itemAt priceArr 1 }}</sup>
+              {{#if (toInt data.priceType) '==' 1}}
+                <span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>
+              {{/if}}
+            </span>
+          {{else}}
+            {{#if (toInt data.salePrice) '>' (toInt data.price)}}
+              <span class="trade-cart-sku-item-info-amount-through notranslate" data-amount={{data.salePrice}}>{{currency_convert data.salePrice}}</span>
+            {{/if}}
+            <span class="notranslate trade-cart-sku-item-info-amount-sale-price {{cond (boolean data.priceType '===' 2) 'trade-cart-sku-item-info-amount-and-limited-discount' ''}}" data-amount={{data.price}}>
+              {{currency_convert data.price}}{{#if (toInt data.priceType) '==' 1}}<span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>{{/if}}
+            </span>
+          {{/if}}
+          
+        </div>
+        {{#if (toInt data.promotionAmount) '>' 0}}
+          <div class="trade-cart-sku-item-info-discount sale-color body4">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M1.02892 5.44639C1.01074 5.59863 1.06342 5.7508 1.17184 5.85922L6.10552 10.7929C6.49605 11.1834 7.12921 11.1834 7.51974 10.7929L10.793 7.51962C11.1835 7.12909 11.1835 6.49593 10.793 6.1054L5.85934 1.17172C5.75092 1.0633 5.59875 1.01062 5.44651 1.0288L1.89069 1.45337C1.66152 1.48074 1.48086 1.6614 1.4535 1.89057L1.02892 5.44639ZM4.00013 3.00001C4.55241 3.00001 5.00013 3.44772 5.00013 4.00001C5.00013 4.55229 4.55241 5.00001 4.00013 5.00001C3.44785 5.00001 3.00013 4.55229 3.00013 4.00001C3.00013 3.44772 3.44785 3.00001 4.00013 3.00001Z" />
+              </svg><span>&nbsp;{{t 'common.discount'}}</span>
+            </div>
+            <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion"
+                data-amount={{data.promotionAmount}}>{{currency_convert data.promotionAmount}}</span><span>)</span>
+            </div>
+          </div>
+        {{/if}}
+        {{#if (and data data.businessFlag (boolean data.businessFlag.discountable '==' false))}}
+          <div class="trade-cart-sku-item-info-discount sale-color body4">{{t 'cart.not-participation-offers'}}</div>
+        {{/if}}
+      </div>
+    </div>
+      {{#if (or (compare (boolean data.businessFlag) '===' false ) (and data.businessFlag (boolean data.businessFlag.singleDelete '===' true )) )}}
+        <div class="trade-cart-sku-item-remove">
+          <button class="trade-cart-sku-item-remove-button body3 btn-link">{{t 'common.remove'}}</button>
+        </div>
+      {{/if}}
+  </div>
+  <div class="trade-cart-sku-item-mask"></div>
+</div>

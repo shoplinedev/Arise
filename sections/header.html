@@ -1,0 +1,149 @@
+{{assign 'drawer_position' 'right'}}
+{{assign 'main_menu' (get section.settings.main_menu_link_list navigations) }}
+{{assign 'settings' section.settings}}
+
+{{preload_state "tradeSettleConfig"}}
+
+{{!-- 侧边栏导航 --}}
+{{#snippet 'global_drawer' id="menu-drawer" position='left'}}
+  {{#child 'head'}}
+    {{snippet 'header-btns' btns='user' classnames='menu-drawer__header'}}
+  {{/child}}
+  {{#child}}
+    {{snippet 'drawer-menu' main_menu=main_menu drawer_position='left' blockObj=blockObj}}
+  {{/child}}
+{{/snippet}}
+
+{{!-- header --}}
+<div class="header-sticky-wrapper" data-color-scheme="{{section.settings.color_scheme}}">
+	<div id="stage-headerWrapper" class="header__wrapper">
+    <header class="header__main" id="stage-header" data-sticky={{boolean section.settings.header_style}} data-section-id="{{section.id}}">
+      {{snippet 'header/header-layout-left-down' blockObj=blockObj settings=section.settings  main_menu=main_menu}}
+      {{!-- 点击页头的输入框弹出的搜索框 --}}
+      {{snippet 'header-search' id="header-drawer"}}
+    </header>
+  </div>
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    {
+      "id": "color_scheme",
+      "type": "select",
+      "label": "t:sections.header.settings.color_scheme.label",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "t:sections.header.settings.color_scheme.options__0.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.header.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.header.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.header.settings.color_scheme.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.header.settings.group_header__0.label",
+      "id": "group_header__0"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.header.settings.logo.label"
+    },
+    {
+      "type": "range",
+      "id": "desktop_logo_width",
+      "label": "t:sections.header.settings.desktop_logo_width.label",
+      "default": 100,
+      "min": 100,
+      "max": 400,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "label": "t:sections.header.settings.mobile_logo_width.label",
+      "default": 100,
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.header.settings.group_header__1.label",
+      "id": "group_header__1"
+    },
+    {
+      "type": "menu_picker",
+      "id": "main_menu_link_list",
+      "label": "t:sections.header.settings.main_menu_link_list.label",
+      "default": "主菜单"
+    },
+    {
+      "type": "select",
+      "id": "navigation_layout",
+      "label": "t:sections.header.settings.navigation_layout.label",
+      "default": "left-left",
+      "options": [
+        {
+          "value": "left-left",
+          "label": "t:sections.header.settings.navigation_layout.options__0.label"
+        },
+        {
+          "value": "left-line",
+          "label": "t:sections.header.settings.navigation_layout.options__1.label"
+        },
+        {
+          "value": "middle-line",
+          "label": "t:sections.header.settings.navigation_layout.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "header_style",
+      "label": "t:sections.header.settings.header_style.label",
+      "default": true
+    },
+    {
+      "type": "switch",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "switch",
+      "id": "show_search_entry",
+      "default": true,
+      "label": "t:sections.header.settings.show_search_entry.label"
+    },
+    {
+      "type": "switch",
+      "id": "show_user_entry",
+      "default": true,
+      "label": "t:sections.header.settings.show_user_entry.label"
+    },
+    {
+      "type": "switch",
+      "id": "show_cart_entry",
+      "default": true,
+      "label": "t:sections.header.settings.show_cart_entry.label"
+    }
+  ]
+}
+{{/schema}}

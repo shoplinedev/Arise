@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  {{!-- 这段snippet 必须在所有插槽之前 --}}
+  {{ snippet 'page-snippet' }}
+  {{#slot 'seo-meta'}}
+    {{ snippet 'seo-meta' }}
+  {{/slot}}
+  {{#slot 'title'}}
+    {{ assign 'seoTitle' (useFallbackLang pageInfo.seoTitle request.locale) }}
+    {{#if seoTitle}}
+      <title>{{ seoTitle }}</title>
+    {{else}}
+      <title>{{ storeInfo.name }}</title>
+    {{/if}}
+  {{/slot}}
+  {{#if theme.settings.favicon_image}}
+    <link rel="shortcut icon" href="{{ theme.settings.favicon_image }}" type="image/png">
+  {{/if}}
+  {{#slot 'before_head'}}{{/slot}}
+  <link rel="stylesheet" href="{{ assets_url 'vendor/global.min.css' }}" />
+  {{ content_for_header }}
+
+  <link rel="dns-prefetch" href="https://cdn.myshopline.com">
+  <link rel="preconnect" href="https://cdn.myshopline.com">
+  <link rel="dns-prefetch" href="https://img.myshopline.com">
+  <link rel="preconnect" href="https://img.myshopline.com">
+  <link rel="dns-prefetch" href="https://img-va.myshopline.com">
+  <link rel="preconnect" href="https://img-va.myshopline.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+  {{#is_modern_browser}}
+    <script src="{{ assets_url 'commons/base/script-load.min.modern.js' }}" ></script>
+  {{else}}
+    <script src="{{ assets_url 'commons/base/script-load.min.js' }}" ></script>
+  {{/is_modern_browser}}
+  {{#slot 'head'}}{{/slot}}
+
+  {{ preload_state 'storeInfo' 'tradeSettleConfig' 'tradeCollectionConfig' }}
+  {{ preload_state 'currencyCode' }}
+  {{ preload_state 'currencyRates' }}
+  {{ preload_state 'request' }}
+  {{ preload_state 'theme.settings.cart_open_type' 'theme.settings.superscript_decimals' }}
+  {{ preload_state 'cartInfo' 'payChannelInfo' }}
+
+</head>
+
+<body class="template--le template__{{ replace template '/' '-' }}"
+  data-button_style="{{ theme.settings.button_style }}"
+  data-type_title_uppercase="{{ theme.settings.type_title_uppercase }}"
+  data-type_navigation_uppercase="{{ theme.settings.type_navigation_uppercase }}"
+  >
+  <div id="google_translate_element"></div>
+  {{#slot 'user_head'}}{{/slot}}
+  {{ section 'announcement-bar' }}
+  {{ section 'header' }}
+  {{ content_for_layout }}
+  {{ section 'footer' }}
+  {{ preload_state 'template' }}
+  {{ preload_state 'templateAlias' }}
+  {{!-- mini购物车上报专用 --}}
+  {{ preload_state 'variants' }}
+  {{#slot 'pre_script'}}
+    {{#is_modern_browser}}
+      <script src="{{ assets_url 'commons/pre-script.min.modern.js' }}" ></script>
+    {{else}}
+      <script src="{{ assets_url 'commons/pre-script.min.js' }}" ></script>
+    {{/is_modern_browser}}
+  {{/slot}}
+
+  <script>
+    window.__I18N__ = window.__I18N__ || {};
+    window.__I18N__['common'] = {{{ JSONstringify (t 'common') }}};
+    window.__I18N__['footer'] = {{{ JSONstringify (t 'footer') }}};
+    window.__I18N__['trade'] = {{{ JSONstringify (t 'trade') }}};
+    window.__I18N__['cart'] = {{{ JSONstringify (t 'cart') }}};
+    window.__I18N__['productList'] = {{{ JSONstringify (t 'productList') }}};
+    window.__I18N__['sales'] = {{{ JSONstringify (t 'sales') }}};
+    window.__I18N__['validate'] = {{{ JSONstringify (t 'validate') }}};
+    window.__I18N__['productDetail'] = {{{ JSONstringify (t 'productDetail') }}};
+    window.__I18N__['modal'] = {{{ JSONstringify (t 'modal') }}};
+    window.__I18N__['comment'] = {{{ JSONstringify (t 'comment') }}};
+    window.__I18N__['collection'] = {{{ JSONstringify (t 'collection') }}}
+    window.__I18N__['contactForm'] = {{{ JSONstringify (t 'contactForm') }}}
+  </script>
+  {{#if storeInfo.languageSetting.enableSelector}}
+    {{ snippet 'gte' }}
+  {{/if}}
+
+
+  {{ preload_state 'currencyConfig.referenceCurrencies' }}
+  {{#is_modern_browser}}
+    <script src="{{ assets_url 'vendor/global.min.modern.js' }}"></script>
+  {{else}}
+    <script src="{{ assets_url 'vendor/global.min.js' }}"></script>
+  {{/is_modern_browser}}
+  {{#slot 'script'}}{{/slot}}
+  {{#slot 'page_view'}}{{/slot}}
+  {{ sales_widgets_script }}
+  {{!-- 自定义代码底部 --}}
+  {{ content_for_footer }}
+
+
+</body>
+
+</html>

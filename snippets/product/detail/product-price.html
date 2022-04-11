@@ -1,0 +1,139 @@
+{{assign 'comment' product.productComment }}
+{{assign 'spuInfo' product.spu }}
+{{assign 'productSale' product.productSale }}
+{{assign 'salesPlugins' product.productSale.saleActivities }}
+
+{{assign 'discount_text' null}}
+{{!-- 当存在原价，则计算折扣 --}}
+{{#if productPrice.originPrice}}
+  {{#if theme.settings.product_discount_style '===' 'number'}}
+    {{assign 'discount_text' (subtract productPrice.originPrice productPrice.salesPrice)}}
+  {{else}}
+    {{assign 'discount_text' (round (multiply (subtract 1 (divide productPrice.salesPrice productPrice.originPrice)) 100))}}
+  {{/if}}
+{{/if}}
+
+ 
+<div class="product-price" id="product-info_{{id}}">
+
+  {{#not product.spu.inquiry}}
+    <div class="price product-info-price_{{id}} {{#if productPrice.originPrice '>' productPrice.salesPrice}}product-info-price_hasDiscount{{/if}}" product_discount={{theme.settings.product_discount}}>
+      {{#if (boolean theme.settings.superscript_decimals) }}
+        {{#if theme.settings.product_discount}}
+          <div
+            class="body4 product-price-discount discount product-price-discount_{{id}} {{#or (boolean productPrice.originPrice '<=' productPrice.salesPrice) spuInfo.soldOut (boolean discount_text '<=' 0)}}hide{{/or}}"
+            product_discount_style={{theme.settings.product_discount_style}}>
+            {{#if (and (and (is (typeOf productPrice.originPrice) 'number') (is (typeOf productPrice.salesPrice) 'number')) discount_text)}}
+              {{#if theme.settings.product_discount_style '===' 'number'}}   
+                {{#currency_convert_price discount_text}}
+                  {{#if fraction '===' '00'}}
+                    {{#if symbolOrder '==' 'prefix'}}
+                      {{assign 'priceVal' (append currencySymbol integer) }}
+                    {{else}}
+                      {{assign 'priceVal' (append integer currencySymbol) }}
+                    {{/if}}
+                  {{else}}
+                    {{assign 'priceVal' (currency_convert discount_text) }}
+                  {{/if}}
+                  {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate" >' priceVal '</span>') }}}
+                {{/currency_convert_price}}
+              {{else}}
+                {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate">' discount_text '% ' '</span>')}}}
+              {{/if}}
+            {{/if}}
+          </div>
+        {{/if}}
+        <div class="body1 product-sales-price product-price-sales_{{id}} notranslate">
+          {{#currency_convert_price productPrice.salesPrice }}
+            {{#if symbolOrder '==' 'prefix'}}
+              <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
+            {{else}}
+              <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
+            {{/if}}
+          {{/currency_convert_price}}
+        </div>
+        <span class="product-price-vip_{{id}} vipPrice {{cond showMemberMark '' 'hide'}}" data-vip-tag="big"></span>
+        <div class="body2 product-origin-price originPrice notranslate product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
+          {{#currency_convert_price productPrice.originPrice }}
+            {{#if symbolOrder '==' 'prefix'}}
+              <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
+            {{else}}
+              <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
+            {{/if}}
+          {{/currency_convert_price}}
+        </div>
+      {{else}}
+        {{#if theme.settings.product_discount}}
+          <span
+            class="body4 product-price-discount discount product-price-discount_{{id}} {{#or (boolean productPrice.originPrice '<=' productPrice.salesPrice) spuInfo.soldOut (boolean discount_text '<=' 0)}}hide{{/or}}"
+            product_discount_style={{theme.settings.product_discount_style}}>
+            {{#if (and (and (is (typeOf productPrice.originPrice) 'number') (is (typeOf productPrice.salesPrice) 'number')) discount_text)}}
+              {{#if theme.settings.product_discount_style '===' 'number'}}
+                {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate">' (currency_convert discount_text) '</span>')}}}
+              {{else}}
+                {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate">' discount_text '% ' '</span>')}}}
+              {{/if}}
+            {{/if}}
+          </span>
+        {{/if}}
+        <span class="body1 product-sales-price product-price-sales_{{id}} notranslate">{{ currency_convert productPrice.salesPrice }}</span>
+        <span class="product-price-vip_{{id}} vipPrice {{cond showMemberMark '' 'hide'}}" data-vip-tag="big"></span>
+        <span class="body2 product-origin-price originPrice notranslate product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">{{ currency_convert productPrice.originPrice }}</span>
+      {{/if}}
+    </div>
+  {{/not}}
+  {{assign 'saleActivity' (itemAt product.productSale.saleActivities 0) }}
+  {{#if (and saleActivity.activityBenefitConditionList (compare id '===' 'productDetail') (isFalsey spuInfo.inquiry) (compare saleActivity.discountStyleType '===' 1))}}
+    <div class="text-left product-info-salesTag" data-track-eventid="60006253" data-track-page="pdp">
+      {{ snippet 'sales/promotion-tags' benefitType=saleActivity.benefitType benefitConditions=saleActivity.activityBenefitConditionList scene='pdp' template = saleActivity.discountStyleText}}
+    </div>
+  {{/if}}
+
+  {{!-- 优惠券 --}}
+  {{assign 'discountCodeActivityList' product.productSale.discountCodeActivityList }}
+  {{#if (and discountCodeActivityList.length (compare id '===' 'productDetail') (isFalsey spuInfo.inquiry))}}
+    <div class="text-left">
+      {{snippet 'sales/discount-coupon/index' discountCodeActivityList=discountCodeActivityList }}
+    </div>
+  {{/if}}
+
+  {{!-- 询盘商品不显示倒计时和限时促销挂件 --}}
+   {{#not product.spu.inquiry}}
+   {{#if productSale}}
+      {{#if salesPlugins}}
+        {{#filter salesPlugins 1 property="promotionSubType"}}
+          {{#if promotionSubType '==' '1'}}
+            {{#or salesPlugin.countDownTimerPlugin.showCountDownTime salesPlugin.progressPlugin.showProgressBar}}
+              <div class="d-none d-md-block flash-sale-component  sales__flashSale notranslate">
+              {{ snippet 'sales/flash-sale' }}
+              </div>
+            {{else}}
+              <div class="d-none d-md-block countdown-component">
+              {{ snippet 'sales/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
+              </div>
+            {{/or}}
+          {{else}}
+            <div class="d-none d-md-block countdown-component">
+            {{ snippet 'sales/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
+            </div>
+          {{/if}}
+          {{else}}
+            <div class="d-none d-md-block countdown-component">
+            {{ snippet 'sales/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
+            </div>
+        {{/filter}}
+      {{else}}
+        <div class="d-none d-md-block countdown-component">
+            {{ snippet 'sales/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
+        </div>
+      {{/if}}
+      {{else}}
+        <div class="d-none d-md-block countdown-component">
+        {{ snippet 'sales/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
+        </div>
+      {{/if}}
+
+      {{!-- 营销赠品 --}}
+      {{ snippet 'sales/gift-plugin-container' }}
+    {{/not}}
+</div>

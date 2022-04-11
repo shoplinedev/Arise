@@ -1,0 +1,9 @@
+{{ layout none }}
+{{ assign 'id' (append "product_quick_add_" product.spu.spuSeq) }}
+
+<!-- 如果是推荐商品的弹窗id前缀为productRecommendModal -->
+{{#if request.uri.query.modalPrefix '===' 'productRecommendModal'}}
+{{ assign 'id' (append "productRecommendModal_product_quick_add_" product.spu.spuSeq) }}
+{{/if}}
+
+{{ section 'product/detail/product-quick-add' id=id statePrefix=id }}

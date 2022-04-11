@@ -1,0 +1,38 @@
+{{assign 'is_nested' false}}
+{{#if level '>' 1}}
+	{{assign 'is_nested' true}}
+{{/if}}
+
+<div id="{{id}}" class="stage-drawer {{classes}} {{#if debug '===' 1}}stage-drawer--is-open{{/if}} {{#if is_nested}}stage-drawer-nested{{/if}}" data-position="{{position}}"
+	{{#if type '===' 'cart'}}data-cart{{/if}} data-level={{level}}>
+	<div class="drawer--content">
+		<div class="drawer__header--fixed">
+			<div class="drawer__header--content {{#if is_nested}}stage-drawer-sub__animation--appear{{/if}} {{#unless is_nested}}stage-drawer__animation--appear{{/unless}} appear-delay-1">
+
+				{{#if is_nested}}
+					<div class="drawer__back">
+						<button type="button" class="drawer__button j-drawer-back">
+							<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M22.5 13.5H5M5 13.5L13 5.5M5 13.5L13 21.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+					</div>
+				{{/if}}
+				{{#unless is_nested}}
+					<div class="title4 drawer__title text-left">{{ slot_content 'head' }} {{title}}</div>
+				{{/unless}}
+				<div class="drawer__close">
+					<button type="button" class="drawer__button j-drawer-close">
+						<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 13L13 1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+							<path d="M1 1L13 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="drawer__main">
+			{{slot_content}}
+		</div>
+	</div>
+</div>

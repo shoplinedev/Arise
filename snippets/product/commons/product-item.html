@@ -1,0 +1,303 @@
+{{!-- 可传参数
+forbiddenBtn  boolean 禁止按钮 默认为false
+placeholderHeight number 传入占位高度 默认为 200
+imgRealWidth 图片真实占位宽度
+ --}}
+
+{{#if spu.spuSeq}}
+ {{assign 'spuSeq' spu.spuSeq}}
+{{else}}
+ {{assign 'spuSeq' spu.productId}}
+{{/if}}
+{{assign 'soldOut' spu.soldOut}}
+{{assign 'title' spu.title}}
+{{assign 'productMinPrice' spu.productMinPrice}} 
+{{assign 'showMemberMark' spu.showMemberMark}}
+{{assign 'showFromMark' spu.showFromMark}}
+{{!-- 判断价格的from文案是否后置，只有中日韩语后置 --}}
+{{assign 'showSuffixFrom'  (inArray  (JSONparse '["ko", "ja", "zh-hans-cn", "zh-hant-tw"]') request.locale)}}
+{{assign 'uniqueKey' spu.uniqueKey}}
+{{assign 'inquiry' spu.inquiry}}
+{{assign 'originPrice' spu.originPrice}}
+{{assign 'spuCommentSummary' spu.spuCommentSummary}}
+{{assign 'hoverZIndex' (default hoverZIndex 1)}}
+{{assign 'noHoverAniEffect' (default noHoverAniEffect false)}}
+
+{{assign 'finalRatio' (default imageRatio section.settings.product_image_ratio)}}
+{{assign 'imageFit' (default imageFit section.settings.product_fill_type) }}
+
+{{assign 'description' (cond subTitle subTitle (cond description description ''))}}
+{{assign 'description' (cond (lt description.length 150) description (append (array-slice description 0 150) '...'))}}
+
+{{!-- 如果有图片 --}}
+{{#if imageList.[0]}}
+  {{!-- 如果是自由比例，则用图片链接去获取该图片的具体比例 如果无数据取0，让图片自己撑开--}}
+  {{#if finalRatio '===' '0' }}
+    {{ assign 'finalRatio' (append (default (get 'ratio' (img_size imageList.[0])) 0) '')}}
+  {{/if}}
+
+  {{assign 'product_item_image_src' imageList.[0] }}
+
+{{else}}
+  {{!-- 如果图片为空 --}}
+  {{assign 'product_item_image_src' false }}
+{{/if}}
+{{!-- 下一张图片链接,如果没有下一张图片,不去处理 --}}
+{{#if imageList.[1]}}
+  {{assign 'product_item_next_image_src' imageList.[1] }} 
+{{else}}
+  {{assign 'product_item_next_image_src' false }} 
+{{/if}}
+
+{{assign 'discount_text' null}}
+{{assign 'isImageRounded' (isTruthy (isTruthy theme.settings.edges '===' 'rounded') '&&' (isTruthy theme.settings.product_grid_image_margin '===' '0')) }}
+{{!-- 当存在原价，则计算折扣 --}}
+{{#if originPrice}}
+  {{#if theme.settings.product_discount_style '===' 'number'}}
+    {{assign 'discount_text' (subtract originPrice   productMinPrice)}}
+  {{else}}
+    {{assign 'discount_text' (round (multiply (subtract 1 (divide productMinPrice originPrice)) 100))}}
+  {{/if}}
+{{/if}}
+{{assign 'recommendConfig' plugins.recommend.recommendConfig}}
+
+{{#if itemType '===' 'recommend'}}
+  {{assign 'soldOut' false}}
+  {{assign 'product_mobile_title_show' recommendConfig.showProductTitleOnMobile}}
+  {{#if (boolean (boolean recommendType '===' 'miniCart') '||' (boolean recommendType '===' 'cart'))}}
+    {{assign 'product_quick_view' false}}
+    {{assign 'product_add_to_cart' false}}
+  {{else}}
+    {{assign 'product_quick_view' recommendConfig.showAddToCard}}
+    {{assign 'product_add_to_cart' recommendConfig.showAddToCard}}
+  {{/if}}
+  {{#if recommendConfig.pcProductTitleLine '===' 1}}
+    {{assign 'product_title_show_type' 'display_up_to_1_rows'}}
+  {{else if recommendConfig.pcProductTitleLine '===' 2}}
+    {{assign 'product_title_show_type' 'display_up_to_2_rows'}}
+  {{/if}}
+{{else}}
+  {{assign 'product_mobile_title_show' theme.settings.product_mobile_title_show}}
+  {{assign 'product_add_to_cart' theme.settings.product_add_to_cart}}
+  {{assign 'product_title_show_type' theme.settings.product_title_show_type}}
+{{/if}}
+
+<div class="product-item__wrapper">
+  <div class="product-item__inner-wrap js-product-inner-wrap" data-hover-z-index="{{hoverZIndex}}" data-no-hover-ani-effect="{{noHoverAniEffect}}">
+    <a data-id="{{spuSeq}}" data-sku-id="{{reportSkuId}}" data-index="{{ index }}" data-status="{{ soldOut }}" data-name="{{ title }}" data-price="{{ productMinPrice }}" class="product-item js-product-item {{className}}" href="{{#if (isFalsey uniqueKey) }}javascript:;{{else}}/products/{{ uniqueKey }}{{/if}}" class="col"  data-plugin-product-item-a>
+      <div class="product-item-image-wrapper {{#if isImageRounded}}rounded{{/if}}">
+        <div class="product-item__image-content">
+          {{!-- 如果没有下一张图片，不展示hover效果 --}}
+          {{#if (boolean product_item_next_image_src '&&' section.settings.product_hover_show_next) }}
+            <div class="product-item-next-image"  data-plugin-product-item-next-img-box>
+              {{ snippet 'product/commons/product-process-image' 
+                backgroundColor=backgroundColor 
+                fallbacksBgColor="#f3f3f3"
+                imageRatio=finalRatio
+                imageFit=imageFit 
+                src=product_item_next_image_src 
+                placeholderHeight=placeholderHeight 
+              }}
+            </div>
+          {{/if}}
+          <div class="product-item-image"  data-plugin-product-item-img-box>
+            {{ snippet 'product/commons/product-process-image'
+              backgroundColor=backgroundColor 
+              fallbacksBgColor="#f3f3f3" 
+              imageRatio=finalRatio 
+              imageFit=imageFit  
+              src=product_item_image_src 
+              placeholderHeight=placeholderHeight 
+            }}
+          </div>
+          {{!-- 没有soldout字段时不展示tag --}}
+          {{#if soldOut '!==' undefined}}
+            {{!-- 询盘（inquiry）不展示tag --}}
+            {{#if (isFalsey inquiry) }}
+              {{#if soldOut}}
+                <span class="product-item-soldout-tag body4 product-item-hidden-in-grid">{{t 'productList.container.listItem.soldOut'}}</span>
+              {{else}}
+                {{#if theme.settings.product_discount}}
+                  {{!-- 没有优惠不展示sale tag --}}
+                  {{#if (boolean originPrice '&&' (boolean discount_text '>' 0))}}
+                    <span class="product-item-sale-tag body4 product-item-hidden-in-grid">
+                      {{#if theme.settings.product_discount_style '===' 'number'}}
+                        {{#currency_convert_price discount_text}}
+                          {{#if fraction '===' '00'}}
+                            {{#if symbolOrder '==' 'prefix'}}
+                              {{assign 'priceVal' (append currencySymbol integer) }}
+                            {{else}}
+                              {{assign 'priceVal' (append integer currencySymbol) }}
+                            {{/if}}
+                          {{else}}
+                            {{assign 'priceVal' (currency_convert discount_text) }}
+                          {{/if}}
+                          {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
+                        {{/currency_convert_price}}
+                      {{else}}
+                         {{t 'productList.container.listItem.saveRatio' price=discount_text }}
+                      {{/if}}
+                    </span>
+                  {{/if}}
+                {{/if}}
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="product-item-info">
+        <div class="product-item-title-wrapper">
+          <div data-ssr-product-item-bottom></div>
+          <div class="product-item-title product-grid-font body3  {{#if product_title_show_type '===' 'display_up_to_1_rows'}}display-1-row{{/if}}{{#if product_title_show_type '===' 'display_up_to_2_rows'}}display-2-row{{/if}} {{#if (isFalsey product_mobile_title_show)}}mobile-hide{{/if}}">
+            {{ title }}
+          </div>
+          {{#if description}}
+            <div class="product-item-description product-grid-font body3">
+              {{description}}
+            </div>
+          {{/if}}
+          {{#if (boolean (isFalsey inquiry) '&&' (boolean  spuCommentSummary '&&' (boolean spuCommentSummary.score '>' 0)))}}
+            <div class="product-item-comment-info">
+              {{{rate value=spuCommentSummary.score}}}
+              <div class="comment-total">
+                ({{spuCommentSummary.total}})
+              </div>
+            </div>
+          {{/if}}
+        </div>
+
+        {{!-- 询盘（inquiry）不展示价格 --}}
+        {{#if (isFalsey inquiry) }}
+          <div class="product-item-price">
+            {{!-- 当原价大于售价时，显示原价 --}}
+            {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice)) }}
+              {{#if (boolean theme.settings.superscript_decimals) }}
+                <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-list">
+                  {{#currency_convert_price originPrice}}
+                    {{#if symbolOrder '==' 'prefix'}}
+                      <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
+                    {{else}}
+                      <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
+                    {{/if}}
+                  {{/currency_convert_price}}
+                </span>
+              {{else}}
+                <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-list">{{currency_convert originPrice }}</span>
+              {{/if}}
+            {{/if}}
+
+            <span class="product-item-sale-price body2 {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice))}}product-item-sale-price--discount{{/if}}">
+              {{#if (boolean showFromMark '&&'  (not showSuffixFrom))}}
+                {{t 'productList.container.from'  price=''}}
+              {{/if}}
+              {{#if (boolean theme.settings.superscript_decimals) }}
+                <span data-product-item-price="{{productMinPrice}}" class="notranslate">
+                  {{#currency_convert_price productMinPrice}}
+                    {{#if symbolOrder '==' 'prefix'}}
+                      <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
+                    {{else}}
+                      <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
+                    {{/if}}
+                  {{/currency_convert_price}}
+                </span>
+              {{~else}}
+                <span data-product-item-price="{{productMinPrice}}" class="notranslate">{{currency_convert productMinPrice }}</span>
+              {{/if}}
+              {{~#if (boolean showFromMark '&&'  showSuffixFrom)}}
+                {{~t 'productList.container.from'  price=''}}
+              {{/if}}
+            </span>
+            {{#if showMemberMark }}
+            <span class="product-item-vip-price" data-vip-tag="small"></span>
+            {{/if}}
+            {{!-- 当原价大于售价时，显示原价 --}}
+            {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice)) }}
+              {{#if (boolean theme.settings.superscript_decimals) }}
+                <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-grid">
+                  {{#currency_convert_price originPrice}}
+                    {{#if symbolOrder '==' 'prefix'}}
+                      <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
+                    {{else}}
+                      <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
+                    {{/if}}
+                  {{/currency_convert_price}}
+                </span>
+              {{else}}
+                <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-grid">{{currency_convert originPrice }}</span>
+              {{/if}}
+            {{/if}}
+            {{#if theme.settings.product_discount }}
+              {{#if soldOut '!==' undefined}}
+                {{!-- 询盘（inquiry）不展示tag --}}
+                {{#if (isFalsey inquiry) }}
+                  {{#if soldOut}}
+                    <span class="product-item-hidden-in-list product-item-tag-panel">
+                      <span class="product-item-soldout-tag body4" style="position: static;">{{t 'productList.container.listItem.soldOut'}}</span>
+                    </span>
+                  {{else}}
+                    {{#if theme.settings.product_discount}}
+                      {{!-- 没有优惠不展示sale tag --}}
+                      <span class="product-item-hidden-in-list product-item-tag-panel">
+                        {{#if (boolean originPrice '&&' (boolean discount_text '>' 0))}}
+                          <span class="product-item-sale-tag body4" style="position: static;">
+                            {{#if theme.settings.product_discount_style '===' 'number'}}
+                              {{#currency_convert_price discount_text}}
+                                {{#if fraction '===' '00'}}
+                                  {{#if symbolOrder '==' 'prefix'}}
+                                    {{assign 'priceVal' (append currencySymbol integer) }}
+                                  {{else}}
+                                    {{assign 'priceVal' (append integer currencySymbol) }}
+                                  {{/if}}
+                                {{else}}
+                                  {{assign 'priceVal' (currency_convert discount_text) }}
+                                {{/if}}
+                                 {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
+                              {{/currency_convert_price}}
+                            {{else}}
+                               {{t 'productList.container.listItem.saveRatio' price=discount_text }}
+                            {{/if}}
+                          </span>
+                        {{/if}}
+                      </span>
+                    {{/if}}
+                  {{/if}}
+                {{/if}}
+              {{/if}}
+            {{/if}}
+
+            <div class="product-item__actions js-product-item__actions">
+              {{#if (boolean (isFalsey forbiddenBtn) '&&' (isFalsey inquiry)) }}
+                {{!-- 询盘（inquiry）不展示加车按钮 && 手机设备不显示，包括横屏 --}}
+                {{!-- 支持快速加入购物车 && 商品未售罄 --}}
+                {{#if (boolean product_add_to_cart '&&' (isFalsey soldOut) "&&" (isFalsey request.is_mobile) ) }}
+                  <button
+                    type="button"
+                    data-query="{{ previewQuery }}"
+                    data-spu-seq='{{spuSeq}}'
+                    data-unique-key='{{uniqueKey}}'
+                    class="btn btn-primary product-item__btn product-item__quick-add js-product-item-quick-add">
+                    <span>
+                      {{t 'productList.container.tradePopup.addToCart'}}
+                    </span>
+                    <i>&nbsp;</i>
+                  </button>
+                {{/if}}
+                {{!-- 列表页售罄 --}}
+                {{#if (and (isFalsey inquiry) (isTruthy soldOut))}}
+                  <button
+                    type="button"
+                    data-spu-seq='{{spuSeq}}'
+                    data-unique-key='{{uniqueKey}}'
+                    class="btn product-item__btn product-item__quick-add product-item__sold-out js-product-item-sold-out">
+                    {{t 'productList.container.listItem.soldOut'}}
+                  </button>
+                {{/if}}
+              {{/if}}
+            </div>
+          </div>
+        {{/if}}
+      </div>
+    </a>
+  </div>
+</div>

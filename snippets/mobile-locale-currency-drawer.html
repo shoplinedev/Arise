@@ -1,0 +1,84 @@
+{{assign 'currency_selector' true}}
+{{assign 'locale_selector' false}}
+{{assign 'show_currency_symbol' false}}
+
+{{#if (boolean section.settings.show_currency_selector '&&' currencyConfig.enable)}}
+  {{assign 'currency_selector' true}}
+{{/if}}
+{{#if (boolean section.settings.show_locale_selector '&&' storeInfo.languageSetting.enableSelector)}}
+  {{assign 'locale_selector' true}}
+{{/if}}
+
+{{#if section.settings.show_currency_flags}}
+  {{assign 'show_currency_symbol' true}}
+{{/if}}
+
+{{#if (isTruthy currencyConfig.referenceCurrencies)}}
+  {{assign 'initialCurrency' (find-in-array currencyConfig.referenceCurrencies currencyCode 'currencyCode')}}
+{{/if}}
+
+{{#snippet 'global-top-drawer' id="global-locale-drawer"}}
+  {{#with this as |global|}}
+    <div class="drawer-menu-locale-currency locale-currency" data-locale>
+      <div class="drawer-header">
+        <span class="click drawer-btn-close j-top-drawer-close">
+          {{ snippet 'icons/icon_header_close' }}
+        </span>
+      </div>
+
+      <ul >
+        {{#each (traditionalFilter storeInfo.languageSetting.supportLanguages)}}
+        <li class="text-left" data-alias="{{this}}" data-name="{{nameOfLocale this}}">
+          <span class="click">
+            <span class="notranslate body5 align-middle">{{nameOfLocale this}}</span>
+          </span>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/with}}
+{{/snippet}}
+
+
+
+{{#snippet 'global-top-drawer' id="global-currency-drawer"}}
+  {{#with this as |global|}}
+    <div class="drawer-menu-locale-currency locale-currency" data-currency>
+      <div class="drawer-header">
+        <span class="drawer-btn-close j-top-drawer-close click">
+          {{ snippet 'icons/icon_header_close' }}
+        </span>
+      </div>
+
+      <div class="drawer-body">
+        <div class="currency-search">
+          <i>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11.1429" cy="10.2859" r="6.42857" stroke="currentColor" stroke-width="0.857143" />
+              <path d="M15.8572 15L19.7143 19.2857" stroke="currentColor" stroke-width="0.857143" stroke-linecap="round" />
+            </svg>
+          </i>
+          <input class="j-stage-currency-search body5" type="text">
+        </div>
+
+        <div class="scroll-container">
+          <ul class="currency-list" data-show-symbol="{{global.show_currency_symbol}}">
+            {{#each global.currencyConfig.referenceCurrencies}}
+            <li class="" data-currency-code="{{currencyCode}}" data-currency-symbol="{{currencySymbol}}">
+              <span class="click body5 notranslate">
+                <span class="currency-symbol">{{currencySymbol}}</span>
+                <span>{{currencyCode}}</span>
+              </span>
+            </li>
+            {{/each}}
+          </ul>
+
+          <p class="currency-list--empty body6 text-center stage-no-currency">
+            {{t 'header.noCurrencyFallback'}}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  {{/with}}
+{{/snippet}}

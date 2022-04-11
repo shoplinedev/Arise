@@ -1,0 +1,26 @@
+{{#if (isFalsey settings.filter_enable)}}
+<style>
+  {{!-- 如果未开启filter，强制隐藏移动端filter按钮 --}}
+    #product-list-list-header-filter {
+      display: none !important;
+    }
+    .product-list-product-number{
+      display: none!important;
+    }
+</style>
+{{/if}}
+
+{{#if settings.filter_enable}}
+  <div class="product-list-menu" data-combine-tags="{{settings.support_multiple}}">
+      <!-- 侧边栏样式 -->
+        <div class="product_collections-sidebar ">
+          {{snippet 'product/collections/collections-sidebar'}}
+        </div>
+      <!-- 移动端样式 -->
+      <div class="product_collections-drawer" id="js-product-collections-mobile-filters">
+        <div class="product_collections-filters-wrapper">
+          {{snippet 'product/collections/collections-sidebar'}}
+        </div>
+      </div>
+  </div>
+{{/if}}

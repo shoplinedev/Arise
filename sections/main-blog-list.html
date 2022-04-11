@@ -1,0 +1,143 @@
+{{inline_stylesheet 'blog/list/index.min.css'}}
+
+<main class="blogs-container container">
+  {{ assign 'homeText' (t 'common.home') }}
+  {{ assign 'title' (get 'title' blogs) }}
+  {{ assign 'total' (default (get 'blogs.total' blogs) 0) }}
+  {{ assign 'pageNum' (default (get 'blogs.pageNum' blogs) 0) }}
+  {{ assign 'pageSize' (default (get 'blogs.pageSize' blogs) 12) }}
+  {{ assign 'blogs' (default (get 'blogs.list' blogs) (JSONparse '[]')) }}
+
+
+  {{#if (length blogs) '>' 0}}
+    {{#if section.settings.is_show_breadcrumb}}
+      {{ assign 'routes' (JSONparse (append '[{"name":"' homeText '","link":"/"}]')) }}
+      {{ array-push routes (object_create name=title) }}
+
+      {{ snippet 'blogs/breadcrumb' classes='blogs__breadcrumb d-none d-md-flex' routes=routes }}
+    {{/if}}
+      
+    <h1 class="blogs__title title3">{{ title }}</h1>
+
+    {{#with this as |global|}}
+      <div class="blogs__list-wrapper">
+        <ul class="blogs__list blogs__list--{{ global.section.settings.layout }}">
+          {{#each blogs}}
+            <li class="blogs__item">
+              {{
+                snippet 'blogs/simple-blog'
+                info=this
+                showAuthor=global.section.settings.is_show_author
+                showDate=global.section.settings.is_show_date
+                showCover=global.section.settings.is_show_cover
+                coverRatio=global.section.settings.cover_img_ratio
+                showDesc=global.section.settings.is_show_desc
+                btn_text=(t 'blogList.container.readBtnText')
+              }}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/with}}
+
+    {{ snippet 'product/commons/pagination' mode='href' id="blogs-pagination" wrapperClass='blogs__pagination' total=total pageSize=pageSize current=pageNum request=request }}
+  {{else}}
+    <div class="blogs__empty">
+      <h2 class="blogs__empty-title title3">{{ t 'blogList.container.empty.title' }}</h2>
+      <p class="blogs__empty-desc body3">{{ t 'blogList.container.empty.desc' }}</p>
+    </div>
+  {{/if}}
+</main>
+
+{{#schema}}
+{
+  "name": "t:sections.main-blog-list.name",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "default": "grid",
+      "label": "t:sections.main-blog-list.settings.layout.label",
+      "options": [
+        {
+          "label": "t:sections.main-blog-list.settings.layout.options__0.label",
+          "value": "grid"
+        },
+        {
+          "label": "t:sections.main-blog-list.settings.layout.options__1.label",
+          "value": "list"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "is_show_author",
+      "default": true,
+      "label": "t:sections.main-blog-list.settings.is_show_author.label"
+    },
+    {
+      "type": "switch",
+      "id": "is_show_date",
+      "default": true,
+      "label": "t:sections.main-blog-list.settings.is_show_date.label"
+    },
+    {
+      "type": "switch",
+      "id": "is_show_cover",
+      "default": true,
+      "label": "t:sections.main-blog-list.settings.is_show_cover.label"
+    },
+    {
+      "type": "select",
+      "id": "cover_img_ratio",
+      "default": "0.75",
+      "label": "t:sections.main-blog-list.settings.cover_img_ratio.label",
+      "options": [
+        {
+          "label": "t:sections.main-blog-list.settings.cover_img_ratio.options__0.label",
+          "value": "auto"
+        },
+        {
+          "label": "t:sections.main-blog-list.settings.cover_img_ratio.options__1.label",
+          "value": "1"
+        },
+        {
+          "label": "t:sections.main-blog-list.settings.cover_img_ratio.options__2.label",
+          "value": "0.75"
+        },
+        {
+          "label": "t:sections.main-blog-list.settings.cover_img_ratio.options__3.label",
+          "value": "0.6667"
+        },
+        {
+          "label": "t:sections.main-blog-list.settings.cover_img_ratio.options__4.label",
+          "value": "0.5625"
+        }
+      ]
+    },
+    {
+      "type": "switch",
+      "id": "is_show_desc",
+      "default": true,
+      "label": "t:sections.main-blog-list.settings.is_show_desc.label"
+    },
+    {
+      "type": "switch",
+      "id": "is_show_breadcrumb",
+      "default": true,
+      "label": "t:sections.main-blog-list.settings.is_show_breadcrumb.label"
+    }
+  ],
+  "default": {
+    "settings": {
+      "layout": "grid",
+      "is_show_author": true,
+      "is_show_date": true,
+      "is_show_cover": true,
+      "cover_img_ratio": "0.75",
+      "is_show_digest": true,
+      "is_show_breadcrumb": true
+    }
+  }
+}
+{{/schema}}

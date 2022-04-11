@@ -1,0 +1,22 @@
+{
+  "name": "cart.html",
+
+  "sections": {
+    "cart": {
+      "type": "cart",
+      "disabled": false
+    },
+    "recently-viewed": {
+      "type": "product/recently-viewed",
+      "disabled": false,
+      "settings": {
+        "show_product_number": 6,
+        "product_image_ratio": "0",
+        "product_fill_type": "contain",
+        "product_hover_show_next": false
+      }
+    }
+  },
+
+  "order": ["cart", "recently-viewed"]
+}

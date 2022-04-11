@@ -1,0 +1,1483 @@
+{
+  "address": {
+    "dropdown": {
+      "default-placeholder": "선택하세요",
+      "no-item-tips": "데이터가 없습니다",
+      "no-search-result": "알맞는 내용이 없습니다"
+    },
+    "mobile-errorMessage": "합법적인 핸드폰번호를 입력하세요",
+    "mobile-errorMessage-country-code": "구역번호를 입력하세요"
+  },
+  "blog": {
+    "container": {
+      "backTo": "되돌아가다{{{collectionTitle}}}"
+    }
+  },
+  "blogList": {
+    "container": {
+      "empty": {
+        "desc": "이 블로그에는 블로그 글이 없습니다",
+        "title": "블로그"
+      },
+      "readBtnText": "더 보기"
+    }
+  },
+  "cart": {
+    "active-stock-limit": "이 상품 할인가는 {{stock}}건만 남았습니다.",
+    "active-stock-limit-1": "최다 동시에 {{stock}}건을 구매할 때의 혜택가격 상품",
+    "active-stock-limit-2": "이 상품 혜택 가격은 {{stock}}건을 구매할 때만 가능하고",
+    "activity-price-limit": "이 상품 혜택 가격은 {{num}}건을 구매할 때만 가능하고",
+    "activity-product-limit": "최다 동시에 {{stock}}건을 구매할 때의 혜택가격 상품",
+    "activity-title-limit": "다음 상품은 구매 제한을 초과했습니다. 계속 결산하시겠습니까?",
+    "checkout-error": "바구니에 최소 한개 상품은 구매할수 없습니다. 바구니에 상품을 조절하고 결제하세요.",
+    "get": "할인 받기",
+    "go-shopping": "쇼핑하러 가기",
+    "login-description": "회원입니까? 로그인 후 편리하게 주문을 관리할 수 있습니다",
+    "login-membership": "무료 회원",
+    "most-100-sku": "최다 100개 상품 푸가",
+    "most-buy-999": "최다 999 건 상품을 바구니에 추가할 수 있습니다",
+    "not-participation-offers": "제안에 참여하지 않음",
+    "render-add-items": "당신의 바구니가 비었습니다",
+    "render-empty-status": "당신의 바구니에 상품이 없습니다",
+    "shopping-fees": "구매비용",
+    "shopping-money": "다음으로 세금과 운비를 계산합니다",
+    "shopping-money-step": "다음으로 세금과 운비를 계산합니다",
+    "stock-limit": "{{stock}}건이 남았습니다",
+    "view-link": "보려면 클릭",
+    "view-pic": "맞춤 미리보기",
+    "view-shopping-cart": "바구니 보기",
+    "added-to-cart": "바구니에 추가했습니다",
+    "cart-subtotal": "바구니 총 금액",
+    "view-cart": "바구니 보기"
+  },
+  "checkout": {
+    "delivery-method": {
+      "store-pickup": "픽업"
+    },
+    "info-preview": {
+      "store-pickup__info": "매장 픽업 • {{locationName}} • 무료",
+      "store-pickup__label": "방법"
+    },
+    "store-pickup": {
+      "label": "짐을 싣는 곳",
+      "list--empty": "주문한 상품을 픽업할 수 없습니다. 배송지 주소를 입력하세요.",
+      "pickup-appointment--between": "약 {{start}}-{{end}} 후 준비",
+      "pickup-appointment--more-than": "{{start}} 후에 준비됨",
+      "pickup-appointment--within": "{{end}} 내에 준비됨",
+      "pickup-appointment__value--day": "{{value}}일",
+      "pickup-appointment__value--day-plural": "{{value}}일",
+      "pickup-appointment__value--hour": "{{value}}시간",
+      "pickup-appointment__value--hour-plural": "{{value}}시간"
+    }
+  },
+  "collection": {
+    "all": {
+      "h1Title": "컬렉션",
+      "title": "전체 분류"
+    }
+  },
+  "comment": {
+    "about-product": "최소 1개의 텍스트를 입력하세요.",
+    "add-img": "이미지 추가",
+    "all-reviews": "모든 평론 보기",
+    "bad": "차하다",
+    "best": "아주 좋다",
+    "comment-count": "{{total}}개",
+    "customer-comment": "고객 평론",
+    "enter-comment": "평론을 입력하세요",
+    "experience-about": "당신이 제품에 대한 느낌을 입력하세요",
+    "general": "일반",
+    "good": "좋다",
+    "image-only-2m": "이미지 크기 최대 {{size}}조",
+    "leave-a-review": "평가 발표",
+    "mobile-submit": "제출하기",
+    "more-images": "최다 {{total}}개 이미지를 추가할 수 있습니다",
+    "network-err-msg": "시스템에 문제가 생겼습니다. 다시 제출하세요~",
+    "nickname": "별칭",
+    "no-bought-msg": "죄송합니다. 당신은 이 상품을 구매한 적이 없기 때문에 평가를 발표할 수 없습니다",
+    "no-comment-first-tip": "빨리 첫번째 평가를 입력하세요",
+    "no-comment-title-tip": "아직 평가가 없습니다",
+    "no-login-msg": "본 상품을 구매한 고객만 평가 가능하고 우선 로그인하세요",
+    "on-img-upload-tip": "이미지 업로드 중, 잠시후 제출하세요",
+    "only-image": ".jpg .jpeg .png .bmp 형식의 이미지만 업로드할 수 있습니다",
+    "rate-score": "{{score}}별",
+    "ratings": "평점",
+    "read-more-comments": "더욱 많은 평론 보기",
+    "shipping-information": "배송 정보",
+    "sign-in": "로그인하기",
+    "text": "평론",
+    "thanks-msg": "당신의 평가에 감사드립니다",
+    "total": "{{total}}개 평론",
+    "worse": "조금 차하다",
+    "write-review": "평가 발표"
+  },
+  "common": {
+    "address": "주소",
+    "amount": "수량",
+    "anonymous": "익명",
+    "anonymous-evaluation": "익명 평가",
+    "apply": "애플리케이션",
+    "applyDate": "신청 날짜",
+    "audit": "심사",
+    "back-to-cart": "쇼핑카트로 돌아가기",
+    "back-to-user-center": "고객센터로 돌아가기",
+    "backout": "철수",
+    "bank-Account": "은행 아이디",
+    "bank-Account2": "은행 계좌",
+    "bank-card-number": "은행 카드번호",
+    "bank-name": "은행 명칭",
+    "buy-now": "지금 구매",
+    "cancel": "취소",
+    "cardholder-name": "카드 소유자 이름",
+    "category": "분류",
+    "checkout": "결산",
+    "close": "끄기",
+    "confirm": "확인",
+    "contact-information": "연락처",
+    "contactUs": "우리에게 연락하기",
+    "continue": "계속",
+    "day": "일",
+    "days": "일",
+    "default-address": "묵인 주소",
+    "descountPrice": "혜택 금액",
+    "discount": "혜택",
+    "discountDesc": "혜택 설명",
+    "discountOff": "할인",
+    "email": "이메일",
+    "email2": "이메일",
+    "enter-email": "이메일을 입력하세요",
+    "enter-mobile-phone": "핸드폰 번호를 입력하세여",
+    "enter-username": "고객명을 입력하세요",
+    "error-stack": "잘못된 창고",
+    "evaluation": "평가",
+    "finish": "완성",
+    "free-shipping": "무료배송",
+    "freightDesc": "운비 설명",
+    "hasSelected": "선택함",
+    "home": "초기 화면",
+    "login": "로그인",
+    "logistics": "물류",
+    "logistics-and-payment": "물류와 지불",
+    "member-login": "회원 등록",
+    "meno": "비주",
+    "mobile": "핸드폰",
+    "mobile-phone": "핸드폰 번호",
+    "modify": "수정",
+    "ok": "확인",
+    "operation": "작업",
+    "order": "주문",
+    "order-evaluation": "주문 평가",
+    "outOfStock": "재고 초과",
+    "package": "팩",
+    "page": "페이지",
+    "payment": "지불",
+    "payment-2": "돈지불",
+    "piece": "건",
+    "pieces": "건",
+    "productError": "현재 상품 데이터가 없습니다. 잠시후 다시 시도하세요",
+    "recommend": "추천",
+    "remain": "잔여",
+    "remove": "제거",
+    "returnInfo": "환불 정보",
+    "returnMoney": "환불 금액",
+    "returnProgress": "환불 진도",
+    "rollback": "제거",
+    "selectProduct": "상품 선택",
+    "settleMent": "지금 구매",
+    "sign-out": "로그아웃",
+    "soldOut": "판매됨",
+    "stock-limit": "{{stock}}개 재고 남음",
+    "subTotal": "소계",
+    "submit-evaluation": "평가 제출",
+    "tax": "세금",
+    "taxDesc": "세금 설명",
+    "tel-phone": "전화번호",
+    "tips": "알림",
+    "title": "제목",
+    "total": "합계",
+    "upload": "업로드",
+    "upload-image": "이미지 업로드",
+    "use-address": "사용 주소",
+    "use-new-address": "새로운 주소 사용",
+    "username": "성명"
+  },
+  "contactForm": {
+    "sendSuccess": "연락 주셔서 감사합니다.빠른 시일 내에 회답 드리겠습니다."
+  },
+  "footer": {
+    "copyright": "판권 소유",
+    "followus": "구독하기",
+    "subscribeBarPlaceholder": "이메일",
+    "subscribeError": "구독 실패",
+    "subscribeRegExpError": "이메일 주소 격식이 틀렸습니다",
+    "subscribeSuccess": "구독 성공"
+  },
+  "gdpr": {
+    "modal": {
+      "accept": "받아들이다.",
+      "decline": "거절합니다.",
+      "link": "프라이버시 정책",
+      "tips": "더 좋은 경험을 드릴 수 있도록로그인 상태를 기록하기 위해 쿠키를 사용합니다. 통계 데이터를 수집하고 관심있는 내용을 제공합니다.쿠키의 사용을 허락하기 위해 '접수'를 누르십시오.아니면 우리의 '프라이버시 정책'을 살펴보세요.",
+      "title": "우리는 당신의 프라이버시를 중시합니다."
+    }
+  },
+  "header": {
+    "cart": "바구니",
+    "center": "계좌 관리",
+    "login": "로그인",
+    "logout": "로그아웃",
+    "navItemAll": "전체",
+    "noCurrencyFallback": "상관 화폐를 찾지 못했습니다",
+    "search": "검색",
+    "searchInputPlaceholder": "여기에 입력하고 검색을 누르세요",
+    "searchItems": "제품 검색"
+  },
+  "labelInput": {
+    "contact-error": "정확한 격식의 이메일/핸드폰번호를 입력하세요",
+    "email-error": "정확한 격식의 이메일을 입력하세요",
+    "phone-error": "정확한 격식의 핸드폰 번호를 입력하세요",
+    "phone-error-tips": "순조롭게 물건을 받기 위해 수취인의 진짜 이름을 입력하세요."
+  },
+  "modal": {
+    "exceedCartContent": "바구니에서 일부 상품을 구매하거나 제거하세요",
+    "exceedCartTitle": "죄송합니다! 바구니에 상품 수량이 넘쳐났습니다",
+    "goCart": "구매카트 가기",
+    "iKnow": "알겠습니다"
+  },
+  "oneShop": {
+    "TCTD0108": "물류 방식이 존재하지 않고 다시 선택하세요",
+    "TCTD0112": "당신이 선택한 상품은 실효되었고 다시 선택하세요",
+    "TCTD0118": "지불 방식이 존재하지 않고 다시 선택하세요",
+    "TCTD0121": "영업 활동이 존재하지 않고 다시 선택하세요",
+    "bracket": "({{content}})",
+    "buyNow": "지금 구매",
+    "buyPop": "{{name}}이 {{minutes}} 분 전에 이 상품을 구매했습니다",
+    "comboFailure": "세트가 실효되었습니다",
+    "comboSelectFailure": "당신이 선택한 세트는 실효되었고 다시 선택하세요",
+    "comment": "댓글(필수항 아님)",
+    "country": "국가",
+    "currentProductSoldOut": "현재 상품 재고 부족합니다",
+    "cutByAmount": "{{amount}}가 차면 {{n}}을 감합니다",
+    "cutByNum": "{{num}}건이 차면 {{n}}을 감합니다",
+    "defaultErrorCodeMsg": "인터넷 이상 상황, 새로고침하여 다시 시도하세요",
+    "discountByAmount": "{{amount}}가 차면 {{n}}할을 누릴수 있습니다",
+    "discountByNum": "{{num}}을 사면 {{n}}할을 누릴수 있습니다",
+    "freeShipping": "무료배송",
+    "noComment": "평가가 없습니다",
+    "noProductDesc": "아직 상품 묘사가 없습니다",
+    "optional": "필수 입력항이 아닙니다",
+    "orderAgain": "다시 주문하기",
+    "overLength": "입력 길이가 제한을 초과했고 정확하게 입력하세요",
+    "priceStart": "{{n}}부터",
+    "productCommentTitle": "상품 평가 （{{n}}）",
+    "productDetail": "상품 정보",
+    "productFailure": "당신이 선택한 상품은 실효되었습니다. 다시 선택하세요",
+    "productNoSelect": "상품 사이즈를 선택하세요",
+    "selectedProductSoldOut": "선택한 상품 재고가 부족합니다",
+    "soleOutSelectAgain": "지금 상품 재고가 부족합니다. 다시 선택하세요",
+    "submit": "제출"
+  },
+  "order": {
+    "after-order-status": {
+      "cancelled": "취소됨",
+      "completed": "완성됨",
+      "confirmed": "확인함",
+      "customer-canceled": "고객 취소",
+      "customer-rejected": "고객 거절",
+      "delivery-progress": "확인했습니다",
+      "merchant-cancellation": "가게 취소",
+      "processing": "처리중"
+    },
+    "after-sale-type": {
+      "refund": "환불",
+      "return-and-refund": "반품환불"
+    },
+    "breadcrumb": {
+      "order": "주문",
+      "order-detail": "주문 상세정보",
+      "title": "주문"
+    },
+    "customer-info": "고객정보",
+    "delivery-statusType": {
+      "arrived": "도착함",
+      "cancel-delivery": "출하 취소",
+      "cancelled": "취소됨",
+      "delivery-partial": "일부 출하",
+      "delivery-return": "환불됨",
+      "picked-up": "수취함",
+      "problem": "문제건, 잃어버린 것 등은 인공이 개입해야 함",
+      "shipped": "출하함",
+      "shipping": "출하중",
+      "stocking": "물건준비중"
+    },
+    "detail": {
+      "cancel-btn": "주문 취소",
+      "communication": {
+        "title": "소통하는 주문"
+      },
+      "coms": {
+        "operationLog": {
+          "PayDealLog": {
+            "amount": "금액",
+            "createTime": "지불 발기 시간",
+            "dealId": "지불 유수번호",
+            "payName": "지불 경로",
+            "status": "상태",
+            "title": "이미 {payName}로 {amount} 의 지불을 처리했습니다",
+            "updateTime": "결과로 돌아간 시간"
+          }
+        }
+      },
+      "order-info": {
+        "canceled": "취소됨",
+        "confirmed": "확인함",
+        "finished": "완성됨",
+        "processing": "처리중"
+      },
+      "order-status": {
+        "button": {
+          "refresh": "새로고침"
+        },
+        "cancel": {
+          "desc": "당신의 주문이 {{cancelTime}}으로 취소되었습니다. 만약 문제가 있다면 우리에게 연락주세요",
+          "title": "당신의 주문이 취소되었습니다"
+        },
+        "pay": {
+          "go-pay": "<common>지불 </common><amount>{{orderAmount}}</amount>",
+          "title": "지불을 기다립니다"
+        },
+        "pedding": {
+          "desc": "당신의 지불 청구를 제출했고 {{- payChannelDesc}} 의 돌아가기 지불 결과를 기다리세요",
+          "title": "지금 지불중..."
+        },
+        "pickedUp": {
+          "desc": "주문하신 상품은 {{weekDate}}에 {{address1}}에서 픽업되었습니다.",
+          "title": "주문이 접수되었습니다."
+        },
+        "readyForPickup": {
+          "desc": "주문 접수 시 주문 확인서를 지참해주세요.",
+          "title": "주문을 픽업할 준비가 되었습니다."
+        },
+        "redirect": {
+          "desc": "자동 방향 리셋이 없으면, 브러시이 페이지를 새로 만듭니다",
+          "title": "재정립 중이니 기다려 주세요"
+        },
+        "success": {
+          "desc": "확인서를 당신의 {{buyerContact}} 에 보냈습니다. 확인하세요",
+          "title": "당신의 주문을 확인했습니다"
+        }
+      },
+      "packages": {
+        "amount": {
+          "channel-surcharge": "지불 수수료",
+          "deduct-voucher": "혜택코드 금액",
+          "discount": "혜택코드 할인",
+          "discount-amount-name": "상춤 자체정의 할인",
+          "express": "운비",
+          "express-surcharge": "운비세금",
+          "preferential": "혜택",
+          "subtotal": "상품 소계",
+          "tax": "상품 세금",
+          "tip": "팁",
+          "total": "총"
+        },
+        "contact-us": "도움이 필요한가요? 우리에게 연락하세요: {{email}}",
+        "contact-us-title": "우리에게 연락하기",
+        "logistics": {
+          "blank-trace": "아래 링크를 클릭하여 당신 택배를 스토킹하세요:",
+          "detail": "상세정보",
+          "no-data": "현재 물류 정보가 없습니다",
+          "no-data2": "아직 발송 정보가 없고 잠시후 검색하세요",
+          "tab-title": "택배 {{index}}"
+        },
+        "order-note-title": "주문 비주",
+        "order-num": "{{num}}개 택배",
+        "payment-deal": {
+          "amount": "금액",
+          "create-time": "창건",
+          "deal-id": "지불 유수번호",
+          "name": "지불 경로",
+          "status": "상태",
+          "title": "지불 상세정보",
+          "update-time": "업그레이드"
+        },
+        "payment-info": {
+          "address": "주문 주소",
+          "detail": "상세정보",
+          "method": "지불 방식",
+          "status": "지불 상태"
+        },
+        "payment-title": "지불",
+        "send-to-Line": "LINE에 보내기",
+        "send-to-Messenger": "Messenger에 보내기",
+        "shippings": {
+          "fee": "운비",
+          "method": "배송 방식",
+          "status": "배송 상태"
+        },
+        "status": {
+          "pedding": {
+            "desc": "우리는 이 물품 운송준비 중입니다",
+            "title": "출하 준비중"
+          },
+          "success": {
+            "desc": "우리는 당신의 주문을 받았고 준비를 마쳤습니다. 이 패이지로 돌아가서 주문 상태를 확인하세요"
+          }
+        },
+        "sub-title": "택배 스토킹",
+        "subscriptions-title": "구독",
+        "title": "정보",
+        "unshipped-order-num": "현재 ({{num}}항) 처리"
+      }
+    },
+    "help-tips": "도움이 필요하나요? 우리한테 연락주세요: {{email}}",
+    "oms-status": {
+      "arrived": "도착함",
+      "cancelled": "출하 취소",
+      "executing": "집행중",
+      "picked": "검수함",
+      "prepare-pick": "수취 준비",
+      "problem": "문제건",
+      "returned": "환불됨",
+      "returning": "환불중",
+      "shipped": "출하함"
+    },
+    "order-at": "구매 시간:",
+    "order-date": "주문 시간",
+    "order-list": {
+      "empty-tip": "현재 주문 기록이 없고 쇼핑하러 가세요",
+      "empty-title": "이미지",
+      "item-total": "총 {{transPackages}} 개 상품",
+      "item-total-plural": "총 {{transPackages}} 개 상춤",
+      "load-more": "올려서 더욱 많이 보세요",
+      "no-more": "더욱 많은 정보가 없습니다",
+      "package-item": "Package {{num}}（{{item}} items）",
+      "package-more": "{{num}} 이상",
+      "pay-now": "지불하기",
+      "sub-order": "자 주문",
+      "track": "스토킹"
+    },
+    "order-status": {
+      "cancelled": "취소됨",
+      "completed": "완성됨",
+      "confirmed": "확인함",
+      "customer-canceled": "고객 취소",
+      "merchant-cancellation": "상가 취소",
+      "processing": "처리중"
+    },
+    "pay-status": {
+      "abolished": "폐기됨",
+      "already-paid": "지불함",
+      "failed": "지불 실패",
+      "partial-payment": "일부 지불",
+      "partial-refund": "일부 환불",
+      "paying": "지불중",
+      "refund-failed": "환불 실패",
+      "refunded": "환불됨",
+      "refunding": "환불중",
+      "timed-out": "지불 시간초과",
+      "unpaid": "지불하지 않늠"
+    },
+    "refund-methods": {
+      "merchant": "가게에서 받기",
+      "self": "자체로 보내기"
+    },
+    "refund-type": {
+      "origin": "원래대로 돌려보내기",
+      "other": "기타"
+    },
+    "seq-no": "번호 {{id}}"
+  },
+  "payments-name": {
+    "COD": "물건을 받고 지불합니다",
+    "Paypal": "Paypal",
+    "third-part": "신용카드"
+  },
+  "paypal": {
+    "error-expired": "상품이 실효되었습니다",
+    "error-login-limit": "주문전에 아이디 등록하세요",
+    "error-network-error": "인터넷 이상",
+    "error-product-limit": "상품이 이미 제한을 초과했습니다",
+    "error-shop-not-exit": "가게가 존재하지 않음",
+    "error-sold-out": "이미 상품 제한 수량을 초과했습니다"
+  },
+  "productDetail": {
+    "activityToast": {
+      "price-limit": "이 상품 혜택 가격은 {{num}}건을 구매할 때만 가능하고",
+      "product-limit": "최다 동시에 {{stock}}건을 구매할 때의 혜택가격 상품",
+      "title-limit": "다음 상품은 구매 제한을 초과했기 수량을 수정하"
+    },
+    "addCart": "추가",
+    "bulkDiscount": {
+      "title": "더 많이 구매하시면 더 많이 절약할수있습니다"
+    },
+    "commentsTitle": "개 평론",
+    "default-placeholder": "{{attrName}}을 선택하세요",
+    "goOtherChannels": "기타 구매 방법",
+    "goOutsideOfAmazon": "아마존 외에서 쇼핑하기",
+    "goToAmazon": "아마존에서 쇼핑하기",
+    "goToAmazonByLink": "아마존에서 쇼핑하기",
+    "goToRakuten": "롯데",
+    "goToRakutenByLink": "롯데에서 쇼핑하기",
+    "goToYahoo": "야후",
+    "goToYahooByLink": "야후에서 쇼핑하기",
+    "inquiry": {
+      "cancel": "취소",
+      "email": "이메일",
+      "emailEmptyErr": "이메일을 입력하세요",
+      "emailFormatErr": "정확한 이메일을 입력하세요",
+      "inquiryTips1": "당신의 문의 내용을 입력하세요. 빨리 회신하겠습니다",
+      "inquiryTips2": "더욱 많은 댓글 정보를 남기시면 더욱 잘 맞는 서비스를 제공하겠습니다",
+      "inquiryTitle": "상품 문의",
+      "message": "댓글",
+      "messageEmptyErr": "댓글을 남겨주세요",
+      "messageLengthErr": "댓글 갈이는 1500자를 넘으면 안됩니다",
+      "mobile": "전화번호",
+      "name": "성명",
+      "optional": "선택 가능",
+      "region": "국가/지역",
+      "submit": "제출",
+      "submitFailed": "제출 실패, 다시 시도하세요",
+      "submitSuccess": "제출 성공"
+    },
+    "morePaymentOptions": "더 많은 지불 옵션",
+    "moreSpuImgBtn": "많이 보여드리도록 하겠습니다",
+    "network": {
+      "message2": "제품 정보가 없으니 다시 시도하세요"
+    },
+    "no-logistics-and-payment-information": "물류와 지불빙식 정보 없음",
+    "no-product-introduction": "상품 소개 없음",
+    "previewLinkToast": "링크는 이 작업을 지지하지 않습니다",
+    "recentlyViewedProducts": "최근 둘러본 상품",
+    "recommendTitle": "당신이 좋아할것",
+    "tabPanel": {
+      "comments": {
+        "empty": "상품 평가 없음",
+        "error": "상품 평가 획득 실패, 다시 시도하세요"
+      },
+      "desc": "묘사 정보가 없음",
+      "descFs": "데이터 획득 실패, 다시 시도하세요",
+      "pay": {
+        "text1": "지불 방식",
+        "text2": "지불 방식 없음",
+        "text3": "물류 지불 정보 없음"
+      },
+      "ship": {
+        "sh": {
+          "text1": "배송 방식"
+        },
+        "text2": "물류 방식 없음"
+      }
+    },
+    "tabs": {
+      "comments": "평론",
+      "description": "묘사",
+      "shippingPayment": "물류와 지불"
+    },
+    "thumbSwiper": {
+      "image": {
+        "alt": "상품 이미지"
+      },
+      "share": {
+        "text": "공유하기"
+      }
+    },
+    "toAmazon": "아마존"
+  },
+  "productList": {
+    "all": {
+      "h1Title": "상품"
+    },
+    "container": {
+      "empty": {
+        "desc": "지금 분류에는 상품이 없습니다",
+        "description": "필요하시면 가게에 문의하세요",
+        "title": "죄송합니다, 상품이 없습니다"
+      },
+      "from": "{{price}}에서",
+      "listItem": {
+        "addToCart": "바구니에 담기",
+        "off": "- {{value}}%",
+        "sale": "판매",
+        "save": "{{{priceDom}}} 혜택",
+        "saveByJs": "{{priceDom}} 혜택",
+        "saveRatio": "{{price}}% OFF",
+        "sold": {
+          "out": "상품 판매"
+        },
+        "soldOut": "품절입니다.",
+        "toDetail": "상세정보 보기"
+      },
+      "moreProductNum": "상품 개수는 {{num}} 개",
+      "network": {
+        "message": "아직 상품 데이터가 없습니다. 잠시후 시도하세요"
+      },
+      "oneProductNum": "상품 개수 {{num}} 개",
+      "productsNum": "{{num}} 제품",
+      "show": "보여 주다",
+      "sort": {
+        "newest": "최신 출시",
+        "option1": "출시시간(새로운 것부터 낡은것)",
+        "option2": "출시시간(낡은 것부터 새로운 것)",
+        "option3": "가격(높은 것부터 낮은 것)",
+        "option4": "가격(낮은 것부터 높은 것)",
+        "priceHighToLow": "가격이 높은것부터 낮은 순으로",
+        "priceLowToHigh": "가격이 낮은것부터 높은순으로",
+        "recommend": "추천",
+        "sales": "핫템",
+        "text1": "전체 상품",
+        "text2": "배열 방식"
+      },
+      "tradePopup": {
+        "addToCart": "바구니에 담기",
+        "error1": "이 제품은 {{stock}}개 남았고 구매 수량을 조절하세요",
+        "error2": "이 제품은 {{saleMax}}개만 구매가능하고 구매 수량을 조절하세요!",
+        "error3": "구매수량을 선택하세요!",
+        "error4": "제품 사이즈를 선택하세요!",
+        "error5": "상품이 판매되었습니다",
+        "error6": "상품을 내렸습니다"
+      },
+      "viewAs": "보기 방법"
+    },
+    "filterMenu": {
+      "filter": "선택",
+      "less": "태그를 줄입니다",
+      "more": "태그를 추가합니다.",
+      "price": "가격"
+    },
+    "gategoryMenu": {
+      "catalog": "상품 리스트",
+      "menuitem": "전체 상품"
+    },
+    "noProduct": "분류 아래 상품이 없습니다."
+  },
+  "productSearch": {
+    "container": {
+      "sort": {
+        "option1": "출시 시간(새로운 것부터 낡은것)",
+        "option2": "출시 시간(낡은 것부터 새로운 것)",
+        "option3": "가격(높은 것부터 낮은 것)",
+        "option4": "가격(낮은 것부터 높은 것)"
+      }
+    },
+    "empty": {
+      "title1": "스펠링이 맞는지 확인하시기 바랍니다",
+      "title2": "간결한 관건 단어로 다시 검색하세요"
+    },
+    "search": {
+      "backHome": "첫 페이지로 돌아가기",
+      "noRelatedResultFound": "상관 기록을 찾지 못했습니다",
+      "results": "{{count}} 개 기록",
+      "resultsFoundFor": "\"{{keyword}}\" 의 {{count}} 개 기록을 찾았습니다",
+      "searchNoResults": "당신이 검색한 \"{{keyword}}\" 는 아무런 기록이 없습니다"
+    },
+    "serachTitle": {
+      "text1": "상관 결과를 찾지 못했습니다"
+    },
+    "sortName": "배열 방식:",
+    "title": "검색."
+  },
+  "promotion": {
+    "activity-benefit": "활동 혜택",
+    "activity-introduction": "활동 소개",
+    "activity-scope": "활동 범위",
+    "all-product": "모든 상품",
+    "all-user": "모든 사용자",
+    "all-vip": "모든 회원",
+    "bundle": {
+      "desc": "이런 상품을 구매하면 할인 <italic>{{value}}</italic>을 향수할수 있습니다",
+      "title": "상품 묶어두가"
+    },
+    "buy-again": "<0>{{value}}</0>을 더 구매",
+    "buy-again-piece": "{{value}}개 더 구매",
+    "coupon": "쿠폰",
+    "discount-benefit": "{{discount}}할 혜택",
+    "discounted": "이미 혜택 <0>{{value}}</0>",
+    "flash-sale": "제한 시간 판매",
+    "flash-sale-limit": "매사람마다 {{value}} 건 살수 있습니다",
+    "free-shipping": "무료 배송",
+    "full-amount": "<0>{{value}}</0>참",
+    "full-discount": "할인",
+    "full-discount-benefit": "할인혜택",
+    "full-piece": "{{value}}건 참",
+    "full-reduction": "할인",
+    "full-reduction-benefit": "할인 혜택",
+    "get-discount-1": "{{value}} 할인을 누림",
+    "get-discount-2": "{{value}} % 혜택을 누림",
+    "item-num": "제 {{value}}건",
+    "label-vip": "{{label}}회원",
+    "level-vip": "{{level}}급 회원",
+    "member-price": "회원가",
+    "more-combo": "더욱 많은 세트",
+    "only-one-sku": "현재 상품이 한개 규격만 있습니다",
+    "other-customer": "고객 (주문하지 않은 사용자)",
+    "percent-piece-step1": "<children>은 </children><more>{{price}}</more><children>건 이상을 구매하고 </children><more>{{percent}}</more>을 절약했습니다",
+    "percent-piece-step2": "<children>은 이미 </children><normal>{{percent}}</normal><children>！</children><white /><children> 을 절약했고 </children><more>{{price}}</more><children>건 이상 구매하면 </children><more>{{morePercent}}</more> 을 절약할 수 있다.",
+    "percent-piece-step3": "<children>축하드립니다！ 당신은 </children><normal>{{percent}}</normal><children>！</children>을 절약했습니다.",
+    "percent-price-step1": "<children>은 </children><more>{{price}}</more><children> 혹은 더 사면</children><more>{{percent}}</more>을 절약할 수 있습니다",
+    "percent-price-step2": "<children>은 이미</children><normal>{{percent}}</normal><children>！</children><white /><children>을 절약했고 </children><more>{{price}}</more><children>을 더 사면</children><more>{{morePercent}}</more>을 절약할 수 있습니다.",
+    "percent-price-step3": "<children>축하드립니다！ 당신은 </children><normal>{{percent}}</normal><children>！</children>을 절약했습니다",
+    "permanent": "영구적으로 유효합니다",
+    "piece-unit": "건",
+    "price-piece-step1": "<children>은 </children><more>{{morePrice}}</more><children>건 이상 구매했고 </children><more>{{totalPrice}}</more>을 절약했습니다",
+    "price-piece-step2": "<children>은 이미 </children><normal>{{price}}</normal><children>！</children><white /><children> 을 절약했고 </children><more>{{morePrice}}</more><children>건 이산 더 사면 </children><more>{{totalPrice}}</more>을 절약할 수 있습니다",
+    "price-piece-step3": "<children>축하드립니다！ 당신은</children><normal>{{price}}</normal><children>！</children>을 절약했습니다",
+    "price-price-step1": "<children>이 </children><more>{{morePrice}}</more><children>혹느 더 사면 </children><more>{{totalPrice}}</more>절약할 수 있습니다",
+    "price-price-step2": "<children>은 </children><normal>{{price}}</normal><children>！</children><white /><children> 을 절약했고 </children><more>{{morePrice}}</more><children>을 더 사면 </children><more>{{totalPrice}}</more>알 절약할 수 있습니다",
+    "price-price-step3": "<children>축하드립니다! 당신은ㅊ</children><normal>{{price}}</normal><children>！</children>을 잘약했습니다",
+    "price-unit": "원",
+    "reduce": "<0>{{value}}</0> 감소",
+    "reduce-again": "<0>{{value}}</0> 더 감소",
+    "reduce1": "{{value}}감소",
+    "select-combo": "세트 선택",
+    "select-product": "상품 선택",
+    "select-sku": "상품 규격 선택",
+    "selected-count-activity-product": "이미 {{selectCount}}개의 이 활동에 참가하는 상품을 선택했습니다",
+    "still-lacking": "<0>{{value}}</0> 모자람",
+    "terms-and-conditions": "조항 세책",
+    "whole-full-amount-discount": "<italic>{{condition}}</italic>건 사면 <italic>{{content}}</italic>% 절약",
+    "whole-full-amount-reduce": "<italic>{{condition}}</italic>건 사면 <italic>{{content}}</italic> 절약",
+    "whole-full-piece-discount": "<italic>{{condition}}</italic>사면 <italic>{{content}}</italic>% 절약",
+    "whole-full-piece-reduce": "<italic>{{condition}}</italic>사면<italic>{{content}}</italic> 절약"
+  },
+  "sales": {
+    "bundle": {
+      "saveTip": "함께 구매하면 {{amount}}를 절약할 수 있습니다",
+      "title": "함께 자주 구매되는 것"
+    },
+    "customer-purchase-limit": "매 사람 제한 {{count}}건",
+    "customer-purchase-limit-each-item": "1인당 상품당 {{count}}건 구매가 제한됩니다.",
+    "discount-coupon": {
+      "applied": "이미 사용",
+      "apply": "애플리케이션",
+      "applyFail": "적용에 실패했습니다",
+      "applySuccess": "할인코드 적용이 완료되었습니다",
+      "coupon-content": {
+        "discount1": "{discount} 감소",
+        "discount2": "무료 배송",
+        "level": "{{level}} 사용 가능합니다",
+        "shippingRateBelow": "운임이 {value}보다 낮습니다.",
+        "specified": "고객이 사용할 수 있도록 지정합니다",
+        "threshold": "{threshold}을 삽니다.",
+        "until": "유효기간 {{endTime}} 까지입니다."
+      },
+      "coupon-label": "혜택코드 혜택:",
+      "couponNoFound": "할인코드가 존재하지 않습니다",
+      "popupLabel": "점포 쿠폰:"
+    },
+    "flash-sale-text": "시간제한 판촉",
+    "flash-sale-tips": "구매 제한:{{count}}건",
+    "gift": {
+      "gotAll": "축하합니다! {{saved}}개의 사은품을 받으셨습니다!",
+      "noReceived": "축하합니다! {{willSave}} 사은품을 선택하실 수 있습니다",
+      "notMetAmount": "재구매 {{threshold}}, 최대 {{willSave}} 사은품 받을 수 있습니다",
+      "notMetQuantity": "{{threshold}} 상품을 재구매하시면 최대 {{willSave}} 사은품을 받으실 수 있습니다",
+      "select": "선택",
+      "spendMoreMoneyGetMore": "축하합니다! {{saved}} 개의 사은품을 받았습니다!재구매 {{threshold}}, 최대 {{willSave}} 사은품 받을 수 있습니다",
+      "spendMoreQuantityGetMore": "축하합니다! {{saved}} 개의 사은품을 받았습니다!{{threshold}} 상품을 재구매하시면 최대 {{willSave}} 사은품을 받으실 수 있습니다"
+    },
+    "hot-sale": "절찬 판매중",
+    "promotion": {
+      "reminder": {
+        "benefit1": {
+          "threshold0": {
+            "step1": "{{threshold}} 사거나 {{willSave}} 더욱 많이 절약",
+            "step2": "이미 {{saved}} 절약했습니다!{{br}}{{threshold}} 더 사면 {{willSave}} 을 절약",
+            "step3": "축하합니다! 당신은 {{saved}} 을 절약했습니다!"
+          },
+          "threshold1": {
+            "step1": "{{threshold}} 건 이상 구매했을 때 {{willSave}} 을 절약",
+            "step2": "이미 {{saved}} 절약했습니다!{{br}}{{threshold}} 더 사면 {{willSave}} 을 절약",
+            "step3": "축하합니다! 당신은 {{saved}} 을 절약했습니다!"
+          }
+        },
+        "benefit11": {
+          "threshold1": {
+            "step1": {
+              "nextFree": "{{threshold}} 건을 더 사면 그중의 한 건은 무료입니다",
+              "normal": "{{threshold}} 건을 더 사면 그중의 한 건은 {{willSave}} 을 감면할 수 있습니다"
+            },
+            "step2": {
+              "free": "축하합니다！그중하나는 무료입니다",
+              "nextFree": "축하합니다! 이미 {{saved}} 감면했습니다!{{br}}{{threshold}} 더 사면 그중의 한건은 무료입니다",
+              "normal": "축하합니다! 이미 {{saved}} 을 감면했습니다!{{br}}{{threshold}} 더 사면 그 중의 한건은 {{willSave}} 을 감면합니다"
+            },
+            "step3": {
+              "free": "축하합니다！그중하나는 무료입니다",
+              "normal": "축하합니다！그중 하나는 감면입니다 {{saved}}"
+            }
+          }
+        },
+        "benefit2": {
+          "threshold0": {
+            "step1": "{{threshold}} 사거나 {{willSave}} 더욱 많이 절약",
+            "step2": "이미 {{saved}} 절약했습니다!{{br}} {{threshold}} 더 사면 {{willSave}} 을 절약",
+            "step3": "축하합니다! 당신은 {{saved}} 을 절약했습니다!"
+          },
+          "threshold1": {
+            "step1": "{{threshold}} 건 이상 구매했을 때 {{willSave}} 을 절약",
+            "step2": "이미 {{saved}} 절약했습니다!{{br}}{{threshold}} 더 사면 {{willSave}} 을 절약",
+            "step3": "축하합니다! 당신은 {{saved}} 을 절약했습니다!"
+          }
+        },
+        "benefit3": {
+          "threshold0": {
+            "step1": {
+              "unlimited": "{{threshold}}을 더 사면 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>를 누릴 수 있다!",
+              "upperLimit": "{{threshold}}을 더 사면 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>를 누릴 수 있다! (운임면제금액한도{{upperLimit}})"
+            },
+            "step3": {
+              "unlimited": "축하합니다! 얻으셨습니다 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>!",
+              "upperLimit": "축하합니다! 얻으셨습니다 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>! (운임면제금액한도{{upperLimit}})"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "unlimited": "{{threshold}}을 더 사서 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>를 즐기다!",
+              "upperLimit": "{{threshold}}을 더 사서 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>를 즐기다! (운임면제금액한도{{upperLimit}})"
+            },
+            "step3": {
+              "unlimited": "축하합니다! 얻으셨습니다 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>!",
+              "upperLimit": "축하합니다! 얻으셨습니다 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>! (운임면제금액한도{{upperLimit}})"
+            }
+          }
+        },
+        "benefit9": {
+          "threshold1": {
+            "step1": "{{threshold}}건만 더 구매하면 이 중 {{willSave}}건은 무료입니다",
+            "step2": "축하합니다! 이미 {{saved}}건을 공짜로 받았습니다!{{threshold}}건을 더 구매하면 이 중 {{willSave}}건은 무료입니다",
+            "step3": "축하합니다! 이 중 {{saved}}건은 이미 무료입니다"
+          }
+        }
+      },
+      "tags-label": "감소:",
+      "tags": {
+        "benefit1": {
+          "threshold0": "{{threshold}} 건 사면 {{save}} 절약",
+          "threshold1": "{{threshold}} 사면 {{save}} 절약"
+        },
+        "benefit11": {
+          "threshold1": {
+            "free": "{{threshold}} 건 사면그 중에 한건은 무료",
+            "normal": "{{threshold}} 건 사면그 중에 한건은 {{save}} 절약"
+          }
+        },
+        "benefit2": {
+          "threshold0": "{{threshold}} 건 사면 {{save}} 절약",
+          "threshold1": "{{threshold}} 사면 {{save}} 절약"
+        }
+      }
+    },
+    "selected-count-activity-product": "{{selectCount}}건의 이 활동에 참여하는 상품을 선택했습니다",
+    "sold": "이미 {{count}} 판매"
+  },
+  "subscription": {
+    "not-subscript-via-line-facebook": "아직 LINE혹은 Facebook로 주문통지를 구독할수 없습니다",
+    "subscript-via-line-facebook": "으로 주문 통지를 구독하세요"
+  },
+  "tips": {
+    "address-no-logistics": "현재 주소는 사용 가능한 물류 방식이 없습니다",
+    "and": "와",
+    "bind-change-email": "이메일을 귀속/귀속 변경",
+    "bind-change-mobile-phone-number": "핸드폰 번호를 귀속/귀속변경",
+    "bind-success": "귀속 성공",
+    "cancel-apply-sent": "취소 신청을 보냈습니다",
+    "cancel-order-fail": "주문 취소 실패, 다시 시도하세요",
+    "cancel-reason-feedback": "취소한 원인을 알려주시면 더 열심히 할것입니다! 취소 성공되면 환불을 진행할 것입니다. 또 오실것을 환영합니다!",
+    "cancel-success-notice": "취소 성공 후 메일로 통지합니다. 감사합니다!",
+    "change-binding-after-verification": "검증 완성후 귀속/귀속 변경{{value}}",
+    "change-heart": "마음 바꾸기",
+    "change-item": "구매 항목을 개변하고 싶습니다",
+    "continue-as-a-guest": "계속 방문객의 신분으로 방문하기",
+    "country-address-fail": "이 주소 소속 국가 가게는 더이상 지불 출하하지 않고 수동으로 선택하세요",
+    "enter-address-first": "우선 주소를 입력하세요",
+    "enter-bank-card-number": "은행카드 번호를 입력하세요!",
+    "enter-bank-name": "은행카드 명칭을 입력하세요!",
+    "enter-email": "이메일을 입력하세요",
+    "enter-name": "이름을 입력하세요!",
+    "enter-tel-number": "전화번호를 입력하세요",
+    "error-obtaining-support-logistics-country": "물류를 지지하는 국가 획득에 오류가 생겼습니다",
+    "expand-order-summary": "주문 종합을 전개하세요",
+    "fail-contact": "시도에 실패하면 하단의 \"판매자와 고객 주문 정보\"에서 우리에게 연락주세요",
+    "fill-cancel-reason": "주문을 취소한 원인을 입력하세요",
+    "forget-password": "비밀번호 잊어버렸습니다",
+    "get-checkout-config-fail": "결산 배치 획득 오류",
+    "get-checkout-detail-fail": "결산 상세정보 획득에 실패",
+    "i-agree-with-the-shop": "가게를 동의합니다",
+    "image-size-less-than": "이미지 크기는 {{max}}mb보다 작아야 합니다",
+    "img-name-too-long": "입력한 이미지 명칭이 너무 깁니다~",
+    "img-size-too-large": "죄송합니다. 이미지 파일 크기가 제한을 초과했습니다!",
+    "incorrect-delivery-or-payment-information": "배송 혹은 지불 정보를 잘못 썻습니다",
+    "login": "로그인",
+    "logistics-no-pre-selection": "현재 물류는 앞의 선택을 지지하지 않습니다",
+    "logistics-pre-selection": "햔재 물류는 앞의 선택을 지지합니다",
+    "max-upload-image": "최다 {{max}}장 업로드",
+    "max-upload-img": "죄송합니다! 최다 {{maxNum}}장을 업로드할서 있습니다",
+    "more-than-0-int": "0보다 큰 완수를 입력하세요",
+    "need-phone-number-to-deliver": "주문정보에 관하여 필요하면 전화 통화로 연결하세요",
+    "no-logistics-available": "사용가능한 물류방식이 없습니다",
+    "no-order-information-please-confirm": "주문 정보를 획득하지 못했고 주문 번호가 맞는지 확인하세요",
+    "no-order-number-please-confirm": "주문 번호를 획득하지 못했고 주문 번호가 맞는지 확인하세요",
+    "or-use-the-following-method-to-log-in": "혹은 다음 방식으로 로그인",
+    "order-creation-exception": "주문 창건 이상",
+    "other-reason": "기타 원인",
+    "password-can-be-changed-after-verification": "검증 완성후 비밀번호를 수정할 수 있습니다",
+    "pay-params-error": "지불 파라미터 획득 실패, 다시 시도하세요",
+    "paypal-country-fail": "Paypal 소속 아이디 국가는 지불 출하 국가에 속하지 않고 수동으로 선택하세요",
+    "please-complete-the-payment-method-content": "완전한 지불방식 내용을 입력하세요",
+    "please-read-and-agree-to-the-user-agreement-first": "사용자 협의를 읽고 동의하세요",
+    "poroceed-to-checkout": "결산하기",
+    "price-more-expensive": "가격이 다른 곳보다 비쌉니다",
+    "product-abnormal-back-to-cart": "상품 상태 이상, 바구니로 돌아가서 다시 시도하세요",
+    "put-up-order-summary": "저문 종합을 가져가세요",
+    "register": "등록",
+    "repeat-buy": "중복 구매",
+    "reset-password": "당신은 아이디{{account}} 비밀번호를 재설정중입니다",
+    "sale-too-slow": "출하가 너무 늦습니다",
+    "select-cancel-reason": "취소 원인을 선택하세요",
+    "select-return-product-first": "우선 환불할 상품을 입력하세요",
+    "set-new-password": "새로운 비밀번호 설정",
+    "sku-change-tips": "상춤 상태가 변경되어 다시 물류/지불방식을 확인하세요",
+    "sure-cancel-order": "주문을 취소하시겠습니까?",
+    "update-password": "비밀번호 수정",
+    "update-success": "수정 성공",
+    "upload-image-fail": "이미지 {{name}} 업로드 실패",
+    "user-agreement": "사용자 협의",
+    "verification-code-has-been-sent-to-your-account": "검증번호를 당신의 아이디에 발송했습니다",
+    "verify-account-to-reset-password": "당신의 아이디를 검증하고 비밀번호를 재설정하세요"
+  },
+  "title": {
+    "policy": {
+      "privacy": "개인정보 정책",
+      "refund": "환불 정책",
+      "service": "서비스 조항",
+      "shipping": "배송 정책"
+    }
+  },
+  "trade": {
+    "activity-price-limit": "이 상품 혜택 가격은 X건을 구매할 때만 가능하고",
+    "activity-product-limit": "최다 동시에 {{stock}}건을 구매할 때의 혜택가격 상품",
+    "activity-title-limit": "다음 상품은 구매 제한을 초과했습니다. 계속 결산하시겠습니까?",
+    "add-to-cart-fail": "죄송합니다! 바구니에 넣지 못했습니다, 다시 시도하세여!",
+    "after-sale-order": "애프터 주문",
+    "agree-user-terms-first": "우선 사용자 조항을 동의하세요",
+    "and": "및",
+    "apply-refund": "환줄 신청",
+    "apply-time": "신청 시간",
+    "at-least-comment-one-before-submit": "최서 한개 평점을 선택한 후 제출해야 합니다",
+    "audit-refuse": "신청이 통과되지 않음",
+    "back-prev-step": "돌아가서 정보 입력",
+    "back-prev-step2": "돌아가서 물류 선택",
+    "backout-apply": "취소 신청",
+    "backout-refund-apply": "환불 신청 취소",
+    "bad-userinfo": "사용자 정보 이상",
+    "bad-userinfo-or-in-blocklist": "사용자 정보 이상 혹은 사용자가 블랙리스트에 있습니다",
+    "billing-address-abnormal": "계산서 주소 이상",
+    "billing-address": {
+      "desc": "당신의 지불방식에 맞는 주소를 입력하세요",
+      "input-email": "당신이 선택한 지불 방식에 근거하여 당신은 이메일 주소를 제공하여 계산서 발송에 편리하게 합니다",
+      "option-another": "다른 주소를 사용하세요",
+      "option-same": "발송 주소와 같습니다",
+      "title": "계산서 주소"
+    },
+    "buy-number-greater-then-stock": "수량은 반드시 1보다 크고 재고보다 작아야 합니다!",
+    "can-get": "획득 가능",
+    "can-not-empty": "비워둘수 없음",
+    "can-not-submit-order": "주문을 내릴수 없습니다",
+    "can-refund-number": "환불 가능한 수량",
+    "cancel-order": "주문 취소",
+    "choose-refund-product": "환불 상품을 선택하세요",
+    "choose-refund-reason": "환불 원인을 선택하세요",
+    "choose-store": "가게 수정",
+    "come-way-return": "원래대로 환불",
+    "comment-order": "주문 평가",
+    "comment-product": "상품 평가하기",
+    "complete-payment": "지불 완성",
+    "confirm-email-send-to-you": "확인메시지가 당신의 메일에 발송되었습니다",
+    "confirm-refund": "환불 확인",
+    "contact": "연락방식",
+    "coupon": "혜택",
+    "coupon-code": "혜택코드",
+    "coupon-code-offer": "혜택코드 혜택",
+    "coupon-mutra-discount": "이 혜택코드는 다른 도매나 혜택과 동시에 사용할 수 없습니다",
+    "create-order-time": "주문 결제 시간",
+    "customerInfo": {
+      "pickupLocation": {
+        "title": "짐을 싣는 곳"
+      }
+    },
+    "damage": "상품을 배송하는 과정에 파손됐다",
+    "delete-invalid-product": "실효 상품 지우기",
+    "delivery-address-abnormal": "수하 주소 이상",
+    "delivery-fee": "배송비",
+    "delivery-tax": "배송 세금",
+    "delivery-to-home": "집까지 배달",
+    "delivery-way": "배송 방식",
+    "enter-a-tip-on-more-than": "{{amount}} 를 초과하지 않는 금액을 입력하세요",
+    "express-bill-pic": "물류 사진",
+    "express-bills-sn": "물류 번호",
+    "express-company": "물류회사",
+    "fail-get-product-back-cart": "상품 결산 정보를 받을 수 없습니다. 바구니에 돌아가서 다시 제출하세요",
+    "fast-checkout": "빠른 결제",
+    "field-can-not-longer-than": "{{field}}는 {{length}}길이를 초과하면 안된다",
+    "fill-info": "정보 입력",
+    "fill-logistics": "물류 정보 입력",
+    "fill-refund-info": "환불 자료 입력",
+    "find-store": "가게선택",
+    "footer-all-rights-reserved": "Copyright © {{year}} {{name}}. All rights reserved.",
+    "free": "무료",
+    "free-shipping": "무료 배송",
+    "get-the-order": "주문 채우기",
+    "give-stars": "평점",
+    "go-login": "로그인하기",
+    "go-on-shopping": "계속 쇼핑하기",
+    "go-pay": "지불하기",
+    "has-number-products": "{{number}}개 상품이 있습니다",
+    "has-removed": "이미 삭제",
+    "i-agree-website": "사이트 동의",
+    "i-want-recieve-discount-info": "최신 정보 및 혜택 방안 받아보기",
+    "invalid-product": "실효 상품",
+    "is-paying": "지금 지불중",
+    "item": "제품",
+    "jump-to-pay-longtips": "\"주문완성\"을 클릭하면 {{payChannel}}에서 안전하게 지불합니다",
+    "leave-your-words": "당신의 사용 느낌을 남기고 다른 구매자에게 참고를 제공하세요~",
+    "logistics-package": "물류 박스",
+    "man-money-reduce": "{{money}}되면 감소",
+    "man-money-share": "{{money}}되면 누릴수 있습니다",
+    "man-piece-reduce": "{{count}}되면 감소",
+    "man-piece-share": "{{count}}이 되면 누릴수 있습니다",
+    "max-refund": "최대 환불 가능 금액",
+    "must-agree-policy": "반드시 동의해야만 환불정책이 계속됩니다!",
+    "must-choose": "반드시 선택",
+    "must-fill": "반드시 입력",
+    "must-select": "반드시 선택",
+    "need-choose-delivery-way": "모든 온층은 배송방식을 선택해야 합니다",
+    "need-pay": "지불해야 될 금액",
+    "next-step": "다음",
+    "next-step-calc": "다음 계산",
+    "next-step-payment": "지불방식 선택하기",
+    "next-step-shipment": "물류 선택하기",
+    "next-time-use-shopping-money": "다음 쇼핑에서 가능한 할인",
+    "no-pay-way": "사용 가능한 지불방식이 없습니다",
+    "not-as-expected": "상품이 예상과 다르다",
+    "not-support-paypal": "지금 가게는 PayPal을 지원하지 않습니다",
+    "now-can-not-comment": "평가가 없습니다!",
+    "number-refund-product": "{{number}}개 환불 상품",
+    "off-shelf": "이미 내림",
+    "only-refund": "환급만 합니다",
+    "optional-fill": "선택 입력",
+    "optional-support-jpg": "선택가능, JPG/PNG지지",
+    "or-fill-info": "혹은",
+    "order-created-but-data-fail": "주문 창건 성공, 하지만 데이터 이상...",
+    "order-detail": "주문 상세정보",
+    "order-detail-query-fail": "주문 상세 정보 검색 이상",
+    "order-info": "주문 정보",
+    "order-meno": "주문 비주",
+    "order-status": "주문 상태",
+    "other-delivery": "다른 배송 방식",
+    "other-info": "기타 정보",
+    "other-reason": "기타 원인",
+    "others": "기타",
+    "over-limit-number": "상춤 제한 구매수 초과",
+    "passport-id-card-placeholder": "신분증/여권(선택 입력)",
+    "passport-id-card-tip": "수취인의 진실한 신분등번호와 여권번호를 입력하세요",
+    "pay-failed-err-code": {
+      "3d-overtime": "3Ds 신분 검증이 완성되지 않았고 다시 시도하세요",
+      "buyer-account-abnormal": "계좌 문제로 당신의 지불을 처리할 수 없습니다. 다시 시도하거나 다른 지불 방식을 선택하세요",
+      "card-expired": "카드 기한이 지나서 당신의 지불을 처리할 수 없습니다. 다시 시도하거나 다른 지불 방식을 선택하세요",
+      "change-card": "당신의 지불은 처리할 수 없습니다. 은행카드를 교체하거나 다른 지불 방식을 선택하세요",
+      "default": "모종의 원인으로 당신의 지불을 처리할 수 없습니다. 다시 시도하거나 다른 지불 방식을 선택하세요",
+      "insufficient-balance": "잔액 부족으로 당신의 지불을 처리할 수 없습니다. 다시 시도하거나 다른 지불 방식을 선택하세요",
+      "invalid-card-number": "카드 무효로 지나서 당신의 지불을 처리할 수 없습니다. 다시 시도하거나 다른 지불 방식을 선택하세요",
+      "overpayment": "주문 금액이 한도를 초과하여 당신의 지불을 처리할 수 없습니다. 다시 시도하거나 다른 지불 방식을 선택하세요",
+      "pin-over-times": "비밀번호 입력 차수가 한도를 초과했고 당신의 지불을 처리할 수 없습니다. 다른 지불 방식으로 바꾸어 다시 시도하세요",
+      "user-cancel": "지불이 취소되었습니다. 계속하려면 다시 시도하세요",
+      "wrong-password": "비밀번호가 틀려서 당신의 지불을 처리할 수 없습니다. 다시 시도하거나 다른 지불 방식을 선택하세요"
+    },
+    "pay-fee": "지불 수수료",
+    "pay-way": "지불 방식",
+    "pay-way-logo-and-more": "더보기",
+    "payment-security-description": "모든 거래는 모두 안전하고 비밀 보장됩니다",
+    "pic-upload-fail": "이미지 {{name}}업로드 실패",
+    "pick-address": "수거 주소",
+    "please-choose-area": "지역을 선택하세요",
+    "please-choose-delivery-way": "배송 방식을 선택하세요",
+    "please-choose-pay-way": "지불 방식을 선택하세요",
+    "please-choose-refund-account": "환불 계좌를 선택하세요",
+    "please-choose-refund-express": "환불 물류를 선택하세요!",
+    "please-choose-refund-type": "환불 유형을 선택하세요",
+    "please-choose-store": "가게를 선택하세요",
+    "please-fill-80charact-refund-reason": "80자 이내로 환불 원인을 입력하세요",
+    "please-fill-express-bills-sn": "물류 번호를 입력하세요",
+    "please-fill-express-company": "물류회사를 입력하세요",
+    "please-fill-meno": "비주를 입력하세요",
+    "please-fill-refund-reason": "환불 원인을 입력하세요",
+    "please-input-field": "{{field}}을 입력하세요",
+    "please-input-legal-passport-id-card": "유효한 신분증/여권을 입력하세요",
+    "please-pay-within": "지불 시간제한",
+    "pod-link": "보려면 클릭",
+    "pod-pic": "맞춤 미리보기",
+    "point-discount": "포인트 할인",
+    "point-discount-desc": "당신은 {{deductMemberPointNum}} 포인트를 사용하여 {{deductMemberPointAmount}}를 할인할 수 있습니다.",
+    "point-discount-remark": "{{value}}포인트 소비",
+    "policy": {
+      "privacy-policy": "개인정보 정책",
+      "refund-policy": "환불 정책"
+    },
+    "private-policy": "개인정보 정책",
+    "product-amount": "상품 총가격",
+    "product-fee": "상품 비용",
+    "product-offline": "상품을 내렸습니다",
+    "product-package": "상품 포장",
+    "product-preview": "상품 보기",
+    "product-remain-please-re-choose": "상품이 {{stock}}개 남았습니다. 구매수량을 다시 선택하세요",
+    "product-removed": "상품이 삭제되었습니다",
+    "product-sold-out": "상품이 판매됨",
+    "product-tax": "상품 세금",
+    "quantity": "수량",
+    "recieve-address-unavailable-rechoose": "수하 주소는 가능한 배송 방식이 없으므로 다시 선택하세요",
+    "reciever-fullname": "수취인 이름",
+    "reciever-info": "수하 정보",
+    "reciever-name": "수취인 성",
+    "reciever-to": "수하 정보",
+    "refund-account": "환불 계좌",
+    "refund-amount": "환불 금액",
+    "refund-amount-bigger-zero": "환불 금액은 반드시 0보다 커야 합니다",
+    "refund-amount-can-over": "환불 금액은 최대 환불 가능 금액보다 크면 안됩니다",
+    "refund-detail": "환불명세",
+    "refund-express": "환불 물류",
+    "refund-logistics-info": "환불 물류 정보",
+    "refund-number": "화불 수량",
+    "refund-order-number": "환불 번호",
+    "refund-order-stataus": "환불 상태",
+    "refund-person": "환불인",
+    "refund-policy": "환불 정책",
+    "refund-reason": "환불 원인",
+    "refund-reason-less-60": "환불 원인은 60자가 넘으면 안됩니다!",
+    "refund-type": "환불 유형",
+    "refund-way": "환불 방식",
+    "refund-way-intro": "환불 방식 소개",
+    "refunding": "환불중",
+    "remove-product": "상품 제거",
+    "return-and-refund": "반품환불",
+    "return-apply-fail-SKU": "신청한 상품 수량이 초과했습니다!",
+    "return-apply-fail-max-amount": "환불 금액은 최대 환불 금액을 초과하면 안됩니다",
+    "return-apply-fail-min-amount": "환불할 때 환불 금액은 반드시 0원보다 커야 합니다",
+    "return-to-selection-goods": "환불 상품 선택",
+    "see-detail": "주문 상세정보 보기",
+    "see-origin-order": "원래 주문 보기",
+    "see-refund-progress": "환불 진척 보기",
+    "self-mention": "스스로 찾아가기",
+    "service-fee": "수수료",
+    "service-terms": "서비스 조항",
+    "ship-to": "까지 배송",
+    "shop-list": "쇼핑 리스트 （{{count}}개）",
+    "shopping-gold-trade-off": "쇼핑금액 구매",
+    "shopping-list": "바구니",
+    "shopping-money": "구매금액",
+    "shopping-money-deduction": "구매금액 할인",
+    "sku-changed-title": "{{num}}상품이 변경되었는데 계속 계산하시겠습니까?",
+    "sku-limit-title": "다음 상품은 구매 제한을 초과했고 수량을 수정하세요",
+    "sku-not-match": "상품 사이즈가 부합되지 않는다",
+    "slpayment": {
+      "cardHolderNameErrorTips": "다시 검사하세요",
+      "cardHolderNamePlaceHolder": "카드 소유자 이름",
+      "cardNumber": {
+        "errorTips": "정확한 카드번호를 입력하세요",
+        "placeholder": "신용카드 번호",
+        "tips": "모든 거래는 안전하고 비밀이 보장됩니다"
+      },
+      "cardholdername": "카드 소유자 이름",
+      "cvv": {
+        "errorTips": "다시 검사하세요",
+        "placeholder": "CVV",
+        "tips": "일반적으로 카드 뒤면에 있습니다"
+      },
+      "expiryDate": {
+        "errorTips": "정확한 유효기간을 입력하세요"
+      },
+      "footer": "당신은 지금 SHOPLINE Payments로 계좌이체를 하고 계십니다. 지불을 완성하면 동의한다는 것을 표시합니다",
+      "service": "SHOPLINE Payments 서비스 조항"
+    },
+    "sold-out": "품절",
+    "some-discount-limit-to-pay-and-delivery": "부분 할인 한정 물류방식/지불방식을 누릴수 있습니다",
+    "sorry-all-sku-unusable": "죄송합니다, 모든 상품이 실효되었고 주문을 내릴수 없습니다",
+    "sorry-limit-re-choose": "죄송합니다! 모든 제한 구매수량은 {{promotionRemainStock}}개이고 수량을 조절하세요",
+    "sorry-product-not-available-re-reorder": "죄송합니다! 당신이 구매한 상품중에 일부 상품을 내려 실효되었고 다시 확인하고 제출하세요",
+    "sorry-rechoose-longtips": "죄송합니다, 선택한 상품은 실효되었고 다시 선택하세요",
+    "start-refund": "환불 요청",
+    "stock-not-enough": "상품 재고 부족",
+    "sub-total": "소계",
+    "submit-order": "주문 완성",
+    "summary": "합계",
+    "supermarket-self-pick": "가게에 직접 가지러 가기",
+    "sure-remove-this-product": "이 상품을 제거하시겠습니까?",
+    "tip": {
+      "add-tip": "팁 추가"
+    },
+    "total": "총",
+    "total-num": "총가격",
+    "use-customer-info": "고객 정보 사용",
+    "use-member-account-can": "회원 신분으로 빨리 결제하시겠습니까? 즉시 가능",
+    "use-shopping-deduction": "{{num}}구매금으로 할인할수 있습니다",
+    "user-cancel-apply": "사용자 취소 신청",
+    "will-discount": "예상 혜택",
+    "wrong-product": "상품을 잘못 보냈다",
+    "you-are-paying-wait-result": "당신의 지불 청구가 제출되었고 {{payChannel}}돌아가 결과를 기다리는중입니다",
+    "your-apply-auditing-sure-backout": "당신의 환불 신청이 심사중이고 환불을 취소하시겠습니까?",
+    "your-delivery-need-choose-store": "모든 배송방식은 가게 정보를 선택해야 합니다",
+    "your-order-created": "당신의 주문이 성립되었습니다",
+    "your-order-not-pay": "당신의 주문이 지불되지 않았습니다",
+    "your-refund-order-created": "당신의 환불이 성립되었습니다"
+  },
+  "user": {
+    "account": "계좌",
+    "code": "검증번호",
+    "codeError": "검증암호를 입력하세요",
+    "confirm": "확인",
+    "email": "이메일",
+    "emailEmptyError": "이메일을 입력하세요",
+    "emailError": "정확한 격식의 이메일을 입력하세요. 50자 이내여야 합니다",
+    "noData": "아직 데이터가 없습니다",
+    "password": "비밀번호",
+    "passwordEmptyError": "비밀번호를 입력하세요",
+    "passwordError": "8-20자리 비밀번호를 설정하세요. 크고작은 자모와 수자를 포함해야 합니다",
+    "passwordMemberError": "6-18자리 비밀번호를 설정하세요",
+    "phone": "핸드폰 번호",
+    "phoneEmptyError": "핸드폰 번호를 입력하세요",
+    "phoneError": "정확한 격식의 핸드폰 번호를 입력하세요",
+    "primevalNewPasswordError": "비밀번호는 원래 비밀번호와 같을 수 없습니다",
+    "primevalPassword": "원래 비밀번호",
+    "primevalPasswordError": "원래 비밀번호를 입력하세요",
+    "repeatPassword": "비밀번호 중복",
+    "repeatPasswordEmptyError": "비밀번호를 다시 입력하세요",
+    "repeatPasswordError": "두번 입력한 비밀번호가 일치하지 않습니다",
+    "resend": "다시 발송",
+    "send": "발송",
+    "sendError": "우선 검증번호를 발송하세요",
+    "signIn": "로그인",
+    "signUp": "등록",
+    "subscription-text": "이메일을 등록하여 업데이트, 독점 혜택 등의 정보를 얻습니다",
+    "udbResponse": {
+      "err-1": "파라미터가 부족합니다",
+      "err-13": "stoken 시간초과",
+      "err-4": "파라미터 무효",
+      "err-5": "불법 작업",
+      "err-999": "원거리 조절 실패",
+      "err1001": "비밀번호 오류",
+      "err1002": "사용자가 존재하지 않습니다",
+      "err1003": "당신의 아이디 이상으로 사용 금지되었습니다. 상가와 연락하여 해제하세요",
+      "err1004": "메시지 여러번 발송",
+      "err1005": "검증번호 시간 초과",
+      "err1006": "검증번호 오류",
+      "err1007": "검증번호 오류 회수가 너무 많음",
+      "err1008": "제3자 경초를 배치하지 않음",
+      "err1009": "제3자 검증 실패",
+      "err1010": "메시지/이메일 템플릿 렌더링 실패",
+      "err1017": "계좌번호는 위험이 존재합니다",
+      "err2001": "핸드폰 번호 이미 등록됨",
+      "err2002": "이메일 이미 등록됨",
+      "err2003": "여러번 검증번호 발송",
+      "err2004": "검증번호 시간 초과",
+      "err2005": "검증번호 오류",
+      "err2006": "검증번호를 이미 여러번 사용하여 다른 검증번호를 사용하세요",
+      "err2007": "메시지/메일 템플릿 렌더링 실패",
+      "err2016": "계좌번호는 위험이 존재합니다",
+      "err3001": "Cookie 검증 통과되지 않음",
+      "err3002": "핸드폰/이메일을 귀속하지 않은 사용자가 비밀번호 수정을 시도합니다",
+      "err3003": "여러번 검증번호 발송",
+      "err3004": "검증번호 시간초과",
+      "err3005": "검증번호 오류",
+      "err3006": "검증번호를 이미 여러번 사용하여 다른 검증번호를 사용하세요",
+      "err3007": "핸드폰 번호 등록되지 않음",
+      "err3008": "이메일 등록되지 않음",
+      "err3009": "핸드폰 번호 이미 귀속됨",
+      "err3010": "이메일 이미 귀속됨",
+      "err3014": "메시지/이메일 템플릿 렌더링 실패",
+      "udbResponse": "당신의 아이디 이상으로 사용 금지되었습니다. 상가와 연락하여 해제하세요"
+    },
+    "username": "이메일/핸드폰 번호",
+    "usernameEmptyError": "이메일 혹은 핸드폰 번호를 입력하세요"
+  },
+  "userCenter": {
+    "account": {
+      "account-binding": "아이디 귀속",
+      "account-info": "아이디 정보",
+      "account-subscription-email": "이메일에 보내기",
+      "account-subscription-line": "Line 애플리케이션에 보내기",
+      "account-subscription-messenger": "Messenger에 보내기",
+      "account-subscription-phone": "핸드폰에 보내기",
+      "bind": "귀속",
+      "change-password": "비밀번호 변경",
+      "email": "이메일",
+      "general-member": "일반 회원",
+      "member-level": "회원 레벨",
+      "memberLevelCom": {
+        "defaultLevel": "일반 회원",
+        "discountInterest": "쇼핑하기",
+        "expire": "만기 시간 {{time}}",
+        "modalTitle": "레벨 권익 설명",
+        "tableTitleGrade": "회원 레벨",
+        "tableTitleInterest": "회원 권익",
+        "upgradeSuccessText": "축하합니다 업그레이드 되었습니다",
+        "upgradeText0": "<italic>{{money}}</italic>을 소비한후 {{nextLevelName}}로 업그레이드 할 수 있습니다",
+        "upgradeText1": "한번에 <italic>{{money}}</italic>를 구매하면 {{nextLevelName}}까지 업그레이드 할수 있습니다"
+      },
+      "modify-email": "이메일 수정",
+      "modify-phone": "핸드폰 수정",
+      "password": "비밀번호",
+      "phone": "핸드폰",
+      "reset-password-error": "우선 이메일 혹인 핸드폰을 귀속하세요",
+      "subscription-notification": "구독 일림",
+      "unsubscribed": "구독 취소됨",
+      "username": "사용자이름",
+      "username-message": "사용자 이름을 입력하세요!",
+      "username-placeholder": "당신의 사용자 이름을 입력하세요"
+    },
+    "address": {
+      "add": "새로운 주소 추가하기",
+      "address": "주소",
+      "default": "묵인",
+      "delete-address": "주소 삭제",
+      "full-tip": "5개 주소를 저장했고 추가할수 없습니다",
+      "no-data": "현재 발송 주소가 없습니다",
+      "ok": "확정"
+    },
+    "buy-record-entry": "구매한 상품",
+    "cancel": "취소",
+    "edit": "편집",
+    "editAddress": {
+      "address1-message": "512글자보다 적습니다!",
+      "address2-message": "512글자보다 적습니다",
+      "city-message": "당신이 속한 시를 선택하세요!",
+      "contact-message": "당신의 연락 이름을 입력하세요",
+      "country-message": "당신이 속한 국가/지역을 선택하세요!",
+      "default": "묵인 주소로 설정",
+      "district-message": "당신이 속한 지역을 선택하세요!",
+      "edit": "배송 주소 편집",
+      "firstName-placeholder": "이름(선택 가능)",
+      "lastName-message": "당신의 성씨를 입력하세요!",
+      "lastName-placeholder": "성씨",
+      "name-placeholder": "명칭",
+      "phone-label": "핸드폰",
+      "phone-message": "당신의 핸드폰번호를 입력하세요!",
+      "postcode-message": "32글자보다 적습니다!",
+      "province-message": "당신이 속한 성을 선택하세요!"
+    },
+    "message": {
+      "inputPlaceholder": "댓글을 남기겠습니까?",
+      "message": "메시지",
+      "send": "발송"
+    },
+    "orders": "주문",
+    "personal-info": "개인정보",
+    "personal": {
+      "birthday-date": "생일",
+      "date": "날짜",
+      "gender": "성별",
+      "gender-female": "여",
+      "gender-male": "남",
+      "gender-secret": "비밀",
+      "personal-information": "개인 정보",
+      "select-date": "날짜 선택",
+      "select-date-cancel": "취소",
+      "select-date-ok": "확인",
+      "select-date-placeholder": "선택",
+      "unknown": "알수 없음"
+    },
+    "point": {
+      "actionTypeDesc": {
+        "addPoint": "새로 증가된 구매금",
+        "deductFreezePoint": "구매금 동결 심사 삭제",
+        "deductPoint": "구매금 빼기",
+        "expirePoint": "도래된 구매금",
+        "freezePoint": "동결 구매금",
+        "releaseFreezePoint": "구매금 동결 해제",
+        "reverseAddPoint": "구매금 구하기",
+        "reverseDeductPoint": "구매금 말장"
+      },
+      "date": "{{year}}년{{month}}월{{date}}일，{{day}}",
+      "day0": "일요일",
+      "day1": "월요일",
+      "day2": "화요일",
+      "day3": "수요일",
+      "day4": "목요일",
+      "day5": "금요일",
+      "day6": "토요일",
+      "empty-btn-link": "어떻게 구매금을 획득하고 사용하나요?",
+      "empty-mainText": "당신은 구매금을 획득하지 못했습니다",
+      "mainview-dedection": "현재 최고 신용도는 <italic>{{money}}</italic>",
+      "mainview-link": "규칙 이해",
+      "mainview-save": "{{historyTotalUsedScore}}구매비용을 사용하여 당신은 이미 <italic>{{historyTotalUsedDeduction}}</italic>을 절약했습니다",
+      "modal-title": "구매금 설명",
+      "month1": "1",
+      "month10": "10",
+      "month11": "11",
+      "month12": "12",
+      "month2": "2",
+      "month3": "3",
+      "month4": "4",
+      "month5": "5",
+      "month6": "6",
+      "month7": "7",
+      "month8": "8",
+      "month9": "9",
+      "ok-btn": "확인",
+      "title": "구매금",
+      "unuseHistoryScore": "당신은 구매금을 사용하여 지출을 절약하지 않았습니다"
+    },
+    "pointList": {
+      "breadcrumb1": "정보",
+      "breadcrumb2": "구매 가격",
+      "empty": "현재 누적 기록이 없습니다",
+      "empty2": "더욱 많은 기록이 없습니다",
+      "loaded": "로딩됨",
+      "loading": "로딩중...",
+      "order": "주문 보기:",
+      "total": "평가（{{total}}）"
+    },
+    "refunds": "환불",
+    "save": "저장",
+    "sign-out": "로그아웃",
+    "subscription": {
+      "email": "이메일",
+      "line": "LINE",
+      "messenger": "Messenger",
+      "modal": {
+        "cancel-text": "구독 취소",
+        "eamil-title": "이메일을 통해 구독한 판촉 정보를 받을수 있습니다",
+        "ok-text": "구독",
+        "phone-title": "핸드폰을 통해 구독한 판촉 정보를 접수합니다",
+        "save": "저장"
+      },
+      "not-sub": "구독하지 않음",
+      "phone": "핸드폰",
+      "subed": "구독 성공",
+      "title": "구독",
+      "unsub": {
+        "content": "구독 취소후 당신은 새로운 판촉 정보를 받을 수 없습니다",
+        "ok-text": "구독 취소",
+        "title": "구독 취소"
+      }
+    },
+    "unsubscribeFeedback": {
+      "text": "당신은 아무런 영업 메시지도 받지 않을 것이고 나중에 아무때나 구독할 수 있습니다"
+    }
+  },
+  "validate": {
+    "coupon-code-cannot-exceed-25-length": "혜택코드는 25길이를 초과할수 없습니다",
+    "discount-code-can-not-accumulate": "상품은 이미 하나의 할인 이벤트가 존재하므로 다른 혜택과 겹칠 수 없습니다",
+    "discount-code-error": "혜택코드 입력 오류",
+    "discount-code-user-invalid": "{{discountCode}}입력 정확, 하지만 상품 가격 혹은 수량 오류",
+    "enter-correct-email": "정확한 격식의 이메일을 입력하세요",
+    "enter-correct-phone-number": "정확한 격식의 전화번호를 입력하세요",
+    "mutual-excluded-by-time-limited": "제한시간 할인과 혜택 번호 활동을 서로 갈라놓기",
+    "phone-number-less-than-100": "핸드폰 번호는 100 글자를 초과하면 안됩니다",
+    "shipping_plan_unavailable": "{{discountCode}} 혜택 번호는 이 물류 방식에 적합하지 않습니다"
+  },
+  "widget": {
+    "order": {
+      "pending-order": "주문 처리 대기중"
+    }
+  }
+}

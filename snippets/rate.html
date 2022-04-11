@@ -1,0 +1,47 @@
+{{!--
+  评分组件
+  @param max Number 最大分数
+  @param value Number 当前分数
+  @param class String 自定义样式类
+  @param star-color String 星星颜色
+--}}
+
+{{ assign 'rates' (JSONparse "[{\"value\":1},{\"value\":2},{\"value\":3},{\"value\":4},{\"value\":5}]") }}
+{{ assign 'maxRate' (default max 5) }}
+{{ assign 'currentValue' (default value 0) }}
+{{ assign 'currentColor' (default color '#000000') }}
+
+<ul class="rate {{ class }}" style="color: {{ currentColor }}">
+  {{#with this as |global|}}
+    {{#each rates}}
+      {{ assign 'currentRate' this.value }}
+      {{ assign 'isExceed' (if global.currentValue '>' currentRate) }}
+      {{ assign 'isLess' (if global.currentValue '<' currentRate) }}
+      {{ assign 'isEqual' (if global.currentValue '==' currentRate) }}
+      {{ assign 'ieExceedBefore' (if global.currentValue '>' (add currentRate -1)) }}
+      {{ assign 'isBetween' (and isLess ieExceedBefore) }}
+      {{ assign 'decimal' 0 }}
+
+      {{#if (or isEqual isExceed)}}
+        {{ assign 'decimal' 100 }}
+      {{else}}
+        {{#if isBetween}}
+          {{ assign 'decimal' 50 }}
+        {{else}}
+          {{ assign 'decimal' 0 }}
+        {{/if}}
+      {{/if}}
+
+      {{#if currentRate '<=' global.maxRate}}
+        <li class="rate__item">
+          <span class="rate__icon">
+            {{ snippet 'icons/icon_star' }}
+          </span>
+          <span class="rate__icon rate__decimal" style="width: {{ decimal }}%">
+            {{ snippet 'icons/icon_star' }}
+          </span>
+        </li>
+      {{/if}}
+    {{/each}}
+  {{/with}}
+</ul>

@@ -1,0 +1,53 @@
+{{!-- id: product-search 商品搜索页面的输入框 --}}
+{{!-- id: header-drawer 页头点击搜索图标弹出的输入框 --}}
+{{!-- id: pc-header pc端页头输入框 --}}
+{{!-- id: mb-header 移动端输入框 --}}
+{{#if searchBar}}
+  <div class="searchbar__input--container">
+    {{#if suggestMenu}}
+      {{assign 'childNode' (get suggestMenu navigations) }}
+      <ul id="suggest-menu-list">
+        {{assign 'navItem' (navLink childNode request.uri.query request.locale all_collections)}}
+        <li>
+          <a class="body2" {{{navItem.hrefAttr}}}>{{childNode.name}}</a>
+        </li>
+        {{#each childNode.nodeTree}}
+          {{assign 'navItem' (navLink this ../request.uri.query ../request.locale ../all_collections)}}
+          <li>
+            <a class="body3" {{{navItem.hrefAttr}}}>{{navItem.name}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+    <input autocomplete="off" data-id={{id}} id="{{append id '__input'}}" maxlength="255" type="search" value placeholder="{{t 'header.searchInputPlaceholder'}}"
+      class="searchbar--input body3">
+    <div class="header__search--predicate">
+      <ul id="{{append id '__suggest-list'}}" class="searchbar__suggest--list"></ul>
+    </div>
+  </div>
+{{else}}
+  <div class="header__search--container">
+    <div class="header__search">
+      <div class="container">
+        {{!-- <div class="header__search--form-wrapper"> --}}
+          <div class="header__search--form">
+            <button data-id="header-drawer" type="button" class="header__search--btn j-stage-force-search">
+              {{ snippet 'icons/icon_header_search' }}
+            </button>
+            <input autocomplete="off" data-id="header-drawer" id="header-drawer__input" maxlength="255" type="search" value placeholder="{{t 'header.searchInputPlaceholder'}}"
+              class="header__search--input body3">
+          </div>
+          <button type="button" class="header__search--btn header__cancel--btn j-stage-search-close">
+            {{ snippet 'icons/icon_header_close' }}
+          </button>
+        {{!-- </div> --}}
+      </div>
+    </div>
+    <div id="header-search-predicate" class="header__search--predicate">
+      <div class="container">
+        <ul id="header-drawer__suggest-list" class="header__suggest--list">
+        </ul>
+      </div>
+    </div>
+  </div>
+{{/if}}

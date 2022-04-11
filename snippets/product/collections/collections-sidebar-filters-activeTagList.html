@@ -1,0 +1,32 @@
+<!-- 当前选中的标签列表 -->
+{{assign 'currentUrl' (JSONparse (JSONstringify request.uri))}}
+
+{{!-- 移除 temp_hidding_filter 参数 --}}
+{{#if tags.length '<=' 1}}
+  {{#with currentUrl}}
+    {{assign 'tempQuery' query}}
+    {{assign 'query' (JSONparse '{}')}}
+    {{#each tempQuery}}
+      {{#if @key '!=' 'temp_hidding_filter'}}
+        {{object_set ../query @key this}}
+      {{/if}}
+    {{/each}}
+  {{/with}}
+{{/if}}
+{{!-- /移除 temp_hidding_filter 参数 --}}
+
+{{#if (isFalsey (isEmpty tags))}}
+<ul class="product_sidebar-activeTagList">
+  {{#each tags as |tag| }}
+    <li class="product_sidebar-activeTagList-item tag-remove body4" data-tag="{{tag}}" data-href="{{product_collections_tag_link tag 'remove' ../currentUrl}}">
+      <div class="product_sidebar-activeTagList-item-content">
+        <span>{{tag}}</span>
+        <svg class="product_sidebar-activeTagList-item-iconClose" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 1L1 9" stroke="currentColor" stroke-linecap="round"/>
+          <path d="M1 1L9 9" stroke="currentColor" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </li>
+  {{/each}}
+</ul>
+{{/if}}

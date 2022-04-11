@@ -1,0 +1,64 @@
+{{assign 'user_center' '/user/signIn'}}
+{{assign 'user_center_text' (t "user.signIn") }}
+{{assign 'show_cart_point_class' ''}}
+
+{{#if request.is_login}}
+  {{assign 'user_center' '/user/center'}}
+  {{assign 'user_center_text' (t "user.account") }}
+{{/if}}
+
+{{!-- 
+{{#if cartInfo.count}}
+  {{assign 'show_cart_point_class' 'header__cart--active'}}
+{{/if}}
+ --}}
+
+{{#has btns "user" }}
+  <a href="{{user_center}}" class="header__btn {{ classnames }}">
+    <div class="header__btn-content">
+      <div class="header__btn-icon">
+        {{ snippet 'icons/icon_header_user' maskID=maskID }}
+      </div>
+    </div>
+  </a>
+{{/has}}
+
+
+{{#has btns "search"}}
+  <a class="header__btn {{ classnames }} j-stage-header-search">
+    {{ snippet 'icons/icon_header_search' }}
+  </a>
+{{/has}}
+
+
+{{#has btns "menu"}}
+  <button type="button" class="header__btn header__btn--menu {{ classnames }}" data-type="toggle">
+    <div class="header__btn--open">{{ snippet 'icons/icon_menu' }}</div>
+    <div class="header__btn--close">{{ snippet 'icons/icon_header_close' }}</div>
+  </button>
+{{/has}}
+
+{{#has btns 'cart'}}
+  <div class="header__btn header__cart {{show_cart_point_class}} {{ classnames }}" id="stage-header-cart" data-type="toggle">
+    <div class="header__btn--open">
+      <div class="header__btn-content">
+        <div class="header__btn-icon">
+        <span>
+          {{ snippet 'icons/icon_header_cart' }}
+        </span>
+          <div class="header__cart-point body6 notranslate"></div>
+        </div>
+      </div>
+    </div>
+    <div class="header__btn--close">
+      <div class="header__btn-content">
+        <p class="header__btn-text body4">{{ uppercase (t "common.close")  }}</p>
+        <div class="header__btn-icon">
+        <span>
+          {{ snippet 'icons/icon_header_close' }}
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/has}}

@@ -1,0 +1,16 @@
+<div class="footer__image footer__image--{{this.settings.align}}-align">          
+  <div class="footer__image-inner" style="width: {{default this.settings.image_width 100}}px" >
+    {{#if this.settings.image.url}}
+      {{assign 'ratio' (append (default (get 'ratio' (img_size image.url)) 100) '%')}}
+      <div class="footer__image-wrapper" style="padding-bottom: {{ratio}}">
+        <img class="lozad" data-sizes="auto" data-src="{{this.settings.image.url}}" />
+      </div>          
+    {{else}}
+      <div class="footer__image__default-wrapper">
+        <div class="footer__image__default-image">
+          {{ snippet 'icons/icon_image' }}
+        </div>
+      </div>
+    {{/if}}
+  </div>        
+</div>

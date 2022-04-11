@@ -1,0 +1,32 @@
+{{ assign 'texture' (get (append 'color_scheme_' color_scheme '_texture') theme.settings) }}
+
+{{#if (isTruthy texture) }}
+  {{#if (boolean texture '==' 'swirl')}}
+    <div class="scheme-swirl"></div>
+  {{else if (boolean texture '==' 'darken')}}
+    <div class="scheme-darken"></div>
+  {{else}}
+    <!-- NOTE: assets_url 目前不支持字符串拼接 -->
+    {{#if (eq texture 'marble') }}
+      <img class="scheme-image lozad"
+        data-srcset="
+          {{assets_url 'images/texture/marble_360.png'}} 360w,
+          {{assets_url 'images/texture/marble_540.png'}} 540w,
+          {{assets_url 'images/texture/marble_720.png'}} 720w,
+          {{assets_url 'images/texture/marble_900.png'}} 900w,
+          {{assets_url 'images/texture/marble_1080.png'}} 1080w
+        "
+      />
+    {{else if (eq texture 'paper')}}
+      <img class="scheme-image lozad"
+        data-srcset="
+          {{assets_url 'images/texture/paper_360.png'}} 360w,
+          {{assets_url 'images/texture/paper_540.png'}} 540w,
+          {{assets_url 'images/texture/paper_720.png'}} 720w,
+          {{assets_url 'images/texture/paper_900.png'}} 900w,
+          {{assets_url 'images/texture/paper_1080.png'}} 1080w
+        "
+      />
+    {{/if}}
+  {{/if}}
+{{/if}}

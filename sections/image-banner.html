@@ -1,0 +1,443 @@
+{{ assign 'blocks' section.blocks }}
+{{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
+{{ assign 'banner1' section.settings.banner1 }}
+{{ assign 'banner2' section.settings.banner2 }}
+{{ assign 'banner_height_size' section.settings.banner_height_size }}
+{{ assign 'override_banner_height' section.settings.override_banner_height }}
+{{ assign 'pc_position' section.settings.pc_text_position }}
+{{ assign 'show_textarea' section.settings.pc_show_textarea }}
+{{ assign 'alpha_range' section.settings.alpha_range }}
+{{ assign 'color_scheme' section.settings.color_scheme }}
+{{ assign 'mobile_flatten' section.settings.mobile_banner_flatten }}
+{{ assign 'show_mobile_textarea' section.settings.m_show_textarea }}
+{{ assign 'blocksLength' (default (length blocks) 0) }}
+
+{{ assign 'banner-ratio' '0' }}
+{{#if (isTruthy override_banner_height)}}
+  {{#if banner1.url}}
+    {{ assign 'banner-ratio' (append (default (get 'ratio' (img_size banner1.url)) 100) '%') }}
+  {{/if}}
+  {{#if banner2.url}}
+      {{#if (isFalsey banner-ratio)}}
+        {{ assign 'banner-ratio' (append (default (get 'ratio' (img_size banner2.url)) 100) '%') }}
+      {{/if}}   
+  {{/if}}
+{{/if}}
+
+
+{{ inline_stylesheet 'image-banner/index.min.css' }}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'image-banner/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'image-banner/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
+<div class="image-banner-loaded" data-section-type="image-banner" data-section-id="{{ section.id }}">
+   {{!-- pc 端 --}}
+  <div class="stage-image-banner d-md-block d-none"  >
+    <div class="banner-container">     
+        {{#if banner1.url}}                
+          <div class="banner-item-wrapper banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}          
+          ">
+            <div style="padding-bottom: {{ banner-ratio }};">
+              <img class="lozad banner-item banner-pc-item" id="banner1" data-sizes="auto" data-src="{{ banner1.url }}"/>    
+            </div>          
+          </div>
+        {{/if}}
+        {{#if banner2.url}}      
+          <div class="banner-item-wrapper 
+          banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}
+          "          
+            >
+            <div style="padding-bottom: {{ banner-ratio }};">
+              <img class="lozad banner-item banner-pc-item" id="banner2"  data-sizes="auto" data-src="{{ banner2.url }}"/>    
+            </div>          
+          </div>
+        {{/if}}
+        {{#and (isFalsey banner1.url) (isFalsey banner2.url)}} 
+          {{ snippet 'icons/icon_slideshow_placeholder' class='d-none d-md-block default-image' }}
+        {{/and}}
+      <div class="mask" style="opacity: {{ alpha_range }}%"></div>
+    </div>  
+    {{!-- 
+      1.无文本框时配色不生效
+      2.设置有文本框时无配色，则显示白色背景
+    --}}
+    {{#if blocksLength '>' 0}} 
+    <div class=" g-6 content content--pos-{{ pc_position }} ">    
+      <div class="container ">
+        <div class="wrapper 
+        {{#if (isFalsey show_textarea)}}wrapper--default--shadow{{/if}} 
+        {{#if show_textarea}} 
+          color-scheme-{{ color_scheme }} 
+        {{else}} 
+          wrapper--default-scheme 
+        {{/if}} 
+        ">
+          {{#each blocks}}
+            {{#if (trim type) '===' 'title'}}   
+            <p class="title title-font title--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</p>       
+            {{/if}}
+            
+            {{#if (trim type) '===' 'desc'}}
+            <p class="desc body1">{{ settings.description }}</p>  
+            {{/if}}
+            {{#if (trim type) '===' 'button'}}
+            {{ assign 'outline_button' settings.outline_button }}
+            {{ assign 'outline_button_2' settings.outline_button_2 }}
+            <div class="control-wrap">
+              <div class="control">
+                {{#if settings.button_text}}
+                  {{ assign 'link_item' (useLink settings.link global.request.uri.query) }}              
+                  <a {{{ link_item.hrefAttr }}} class="btn btn-lg {{#if (isTruthy outline_button)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.button_text }}</a>
+                {{/if}}
+                {{#if settings.link_text_2}}
+                  {{ assign 'link_2_item' (useLink settings.link_2 global.request.uri.query) }}
+                  <a {{{ link_2_item.hrefAttr }}} class="btn btn-lg {{#if (isTruthy outline_button_2)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.link_text_2 }}</a>
+                {{/if}}
+              </div>
+            </div>
+            
+            {{/if}}    
+          {{/each}}
+        </div>  
+      </div>    
+    </div>     
+    {{/if}}  
+    <div class="stage-image-banner-loading"><p class="progress-bar"></p></div>
+  </div>
+
+  {{!-- m 端 --}}
+  <div class="stage-image-banner d-md-none {{#if (isTruthy mobile_flatten)}}stage-image-banner--m-flatten{{else}}stage-image-banner--m-normal {{/if}}" data-section-type="image-banner" data-section-id="{{ section.id }}">    
+    <div class="banner-container" > 
+      {{#and (isFalsey banner1.url) (isFalsey banner2.url)}} 
+          {{ snippet 'icons/icon_slideshow_mobile_placeholder' class='d-md-none default-image' }}
+        {{/and}}    
+        {{#if banner1.url}}                
+          <div class="banner-item-wrapper first-banner          
+            banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}          
+          ">
+            <div style="padding-bottom: {{ banner-ratio }};">
+              <img class="lozad banner-item banner-mobile-item" id="banner1" data-sizes="auto" data-src="{{ banner1.url }}"/>    
+            </div>          
+          </div>
+        {{/if}}
+
+        {{#if blocksLength '>' 0}} 
+        <div class=" g-6 content content--pos-{{ pc_position }} {{#if (isTruthy show_mobile_textarea)}}content-m--normal-flow{{else}}content-m-no-bg{{/if}} ">            
+          <div class="d-md-none wrapper container
+          {{#if (isFalsey show_textarea)}}wrapper--default--shadow{{/if}}         
+          {{#if show_mobile_textarea}} color-scheme-{{ color_scheme }} 
+          {{else}} wrapper--default-scheme {{/if}}
+          ">
+            {{#each blocks}}
+              {{#if (trim type) '===' 'title'}}   
+              <p class="title title-font title--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</p>       
+              {{/if}}
+              
+              {{#if (trim type) '===' 'desc'}}
+              <p class="desc body1">{{ settings.description }}</p>  
+              {{/if}}
+              {{#if (trim type) '===' 'button'}}
+              {{ assign 'outline_button' settings.outline_button }}
+              {{ assign 'outline_button_2' settings.outline_button_2 }}
+              <div class="control-wrap">
+                <div class="control">
+                  {{#if settings.button_text}}
+                    {{ assign 'link_item' (useLink settings.link global.request.uri.query) }}              
+                    <a {{{ link_item.hrefAttr }}} class="btn {{#if (isTruthy outline_button)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.button_text }}</a>
+                  {{/if}}
+                  {{#if settings.link_text_2}}
+                    {{ assign 'link_2_item' (useLink settings.link_2 global.request.uri.query) }}
+                    <a {{{ link_2_item.hrefAttr }}} class="btn {{#if (isTruthy outline_button_2)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.link_text_2 }}</a>
+                  {{/if}}
+                </div>
+              </div>
+              
+              {{/if}}    
+            {{/each}}
+          </div>  
+        </div>     
+        {{/if}}
+
+        {{#if banner2.url}}      
+          <div class="banner-item-wrapper second-banner        
+          banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}
+          ">
+            <div style="padding-bottom: {{ banner-ratio }};">
+              <img class="lozad banner-item banner-mobile-item" id="banner2"  data-sizes="auto" data-src="{{ banner2.url }}"/>    
+            </div>          
+          </div>
+        {{/if}}
+        {{!-- 开启文字在图片下方，不显示--}}
+        {{#if (boolean (isTruthy show_mobile_textarea) '&&' (boolean (boolean banner1.url) '||' (boolean banner2.url)))}}
+        {{else}} <div class="mask" style="opacity: {{ alpha_range }}%"></div> {{/if}}    
+    </div>
+  </div>
+  <div class="stage-image-banner-loading">
+    <p class="progress-bar"></p> 
+  </div>
+</div >
+ 
+
+
+{{#schema}}
+{
+  "name": "t:sections.image-banner.name",
+  "settings": [
+    {
+      "id": "banner1",
+      "type": "image_picker",
+      "label": "t:sections.image-banner.settings.banner1.label"
+    },
+    {
+      "id": "banner2",
+      "type": "image_picker",
+      "label": "t:sections.image-banner.settings.banner2.label"
+    },
+    {
+      "id": "banner_height_size",
+      "type": "select",
+      "label": "t:sections.image-banner.settings.banner_height_size.label",
+      "info": "t:sections.image-banner.settings.banner_height_size.info",
+      "options": [
+        {
+          "value": "low",
+          "label": "t:sections.image-banner.settings.banner_height_size.options__0.label"
+        },
+        {
+          "label": "t:sections.image-banner.settings.banner_height_size.options__1.label",
+          "value": "middle"
+        },
+        {
+          "value": "high",
+          "label": "t:sections.image-banner.settings.banner_height_size.options__2.label"
+        }
+      ],
+      "default": "middle"
+    },
+    {
+      "id": "override_banner_height",
+      "type": "switch",
+      "label": "t:sections.image-banner.settings.override_banner_height.label",
+      "info": "t:sections.image-banner.settings.override_banner_height.info",
+      "default": false
+    },
+    {
+      "id": "pc_text_position",
+      "type": "select",
+      "label": "t:sections.image-banner.settings.pc_text_position.label",
+      "options": [
+        {
+          "label": "t:sections.image-banner.settings.pc_text_position.options__0.label",
+          "value": "left"
+        },
+        {
+          "label": "t:sections.image-banner.settings.pc_text_position.options__1.label",
+          "value": "center"
+        },
+        {
+          "label": "t:sections.image-banner.settings.pc_text_position.options__2.label",
+          "value": "right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "id": "pc_show_textarea",
+      "type": "switch",
+      "label": "t:sections.image-banner.settings.pc_show_textarea.label",
+      "default": false
+    },
+    {
+      "id": "alpha_range",
+      "label": "t:sections.image-banner.settings.alpha_range.label",
+      "type": "range",
+      "default": "30",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "default": "none",
+      "label": "t:sections.image-banner.settings.color_scheme.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.image-banner.settings.color_scheme.options__0.label"
+        },
+        {
+          "label": "t:sections.image-banner.settings.color_scheme.options__1.label",
+          "value": "1"
+        },
+        {
+          "label": "t:sections.image-banner.settings.color_scheme.options__2.label",
+          "value": "2"
+        },
+        {
+          "label": "t:sections.image-banner.settings.color_scheme.options__3.label",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.image-banner.settings.group_header__0.label",
+      "id": "group_header__0"
+    },
+    {
+      "id": "mobile_banner_flatten",
+      "type": "switch",
+      "label": "t:sections.image-banner.settings.mobile_banner_flatten.label",
+      "default": true
+    },
+    {
+      "id": "m_show_textarea",
+      "type": "switch",
+      "label": "t:sections.image-banner.settings.under_image.label",
+      "default": true
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "limit": 1,
+      "icon": "title",
+      "type": "title",
+      "name": "t:sections.image-banner.blocks.title.name",
+      "settings": [
+        {
+          "type": "textarea",
+          "limit": 500,
+          "id": "title",
+          "label": "t:sections.image-banner.blocks.title.settings.title.label",
+          "default": "Two Line\nTitle Slide"
+        },
+        {
+          "type": "select",
+          "id": "title_size",
+          "label": "t:sections.image-banner.blocks.title.settings.title_size.label",
+          "options": [
+            {
+              "value": "medium",
+              "label": "t:sections.image-banner.blocks.title.settings.title_size.options__0.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.image-banner.blocks.title.settings.title_size.options__1.label"
+            }
+          ],
+          "default": "medium"
+        }
+      ]
+    },
+    {
+      "limit": 1,
+      "icon": "paragraph",
+      "type": "desc",
+      "name": "t:sections.image-banner.blocks.desc.name",
+      "settings": [
+        {
+          "id": "description",
+          "type": "text",
+          "default": "And optional subtext",
+          "label": "t:sections.image-banner.blocks.desc.settings.description.label"
+        }
+      ]
+    },
+    {
+      "limit": 1,
+      "icon": "button",
+      "type": "button",
+      "name": "t:sections.image-banner.blocks.button.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "t:sections.image-banner.blocks.button.settings.button_text.label",
+          "default": "Shop this"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.image-banner.blocks.button.settings.link.label"
+        },
+        {
+          "id": "outline_button",
+          "type": "switch",
+          "default": false,
+          "label": "t:sections.image-banner.blocks.button.settings.outline_button.label"
+        },
+        {
+          "type": "text",
+          "id": "link_text_2",
+          "label": "t:sections.image-banner.blocks.button.settings.link_text_2.label",
+          "default": "Shop all"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "t:sections.image-banner.blocks.button.settings.link_2.label"
+        },
+        {
+          "id": "outline_button_2",
+          "type": "switch",
+          "default": false,
+          "label": "t:sections.image-banner.blocks.button.settings.outline_button_2.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-banner.presets.presets__0.name",
+      "category": "t:sections.image-banner.presets.presets__0.category",
+      "settings": {
+        "banner1": "",
+        "banner2": "",
+        "banner_height_size": "middle",
+        "override_banner_height": false,
+        "pc_text_position": "center",
+        "pc_show_textarea": false,
+        "alpha_range": "30",
+        "color_scheme": "none",
+        "mobile_banner_flatten": true,
+        "m_show_textarea": true
+      },
+      "blocks": [
+        {
+          "type": "title",
+          "settings": {
+            "title": "Two Line\nTitle Slide",
+            "title_size": "medium"
+          }
+        },
+        {
+          "type": "desc",
+          "settings": {
+            "description": "And optional subtext"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "button_text": "Shop this",
+            "link": "",
+            "outline_button": false,
+            "link_text_2": "Shop all",
+            "link_2": "",
+            "outline_button_2": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{{/schema}}

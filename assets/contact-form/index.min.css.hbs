@@ -1,0 +1,191 @@
+input{
+  -webkit-appearance:none;
+}
+.contact-form__title{
+  margin-bottom:30px;
+  text-align:center;
+}
+.contact-form .base-input{
+  background-color:unset;
+}
+.color-scheme-none .contact-form .base-input .placeholder,.color-scheme-none .contact-form .base-input input,.color-scheme-none .contact-form .base-input textarea{
+  color:{{ theme.settings.color_text }};
+}
+.contact-form .contact-form__submit{
+  margin-left:auto;
+  margin-right:auto;
+  min-width:180px;
+  width:auto;
+}
+@media (max-width:749.98px){
+  .contact-form #contact-form__submit{
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+.contact-form .errClass .base-input:after{
+  border-color:#f04949;
+}
+.contact-form .contact-form__textarea textarea{
+  height:160px;
+}
+.base-input{
+  -webkit-box-orient:horizontal;
+  -webkit-box-direction:normal;
+  -webkit-box-pack:justify;
+  -webkit-box-align:center;
+  -webkit-align-items:center;
+          align-items:center;
+  background-color:#fff;
+  box-sizing:border-box;
+  color:#2c2c2c;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-flex-flow:row nowrap;
+          flex-flow:row nowrap;
+  font-size:14px;
+  -webkit-justify-content:space-between;
+          justify-content:space-between;
+  line-height:1.4;
+  position:relative;
+  -webkit-transition:all .3s;
+  transition:all .3s;
+  width:100%;
+}
+
+.base-input:after{
+  border:1px solid #ddddd8;
+  border-radius:4px;
+  bottom:0;
+  content:"";
+  left:0;
+  pointer-events:none;
+  position:absolute;
+  right:0;
+  top:0;
+  -webkit-transition:border-color .3s;
+  transition:border-color .3s;
+  z-index:1;
+}
+
+.base-input-area.is-textarea .base-input__inpEle:not(:placeholder-shown)+.placeholder,.base-input:focus-within .placeholder,.base-input__inpEle:not(:placeholder-shown)+.placeholder,.base-input__selectEle:not(:placeholder-shown)+.placeholder{
+  -webkit-transform:scale(.8) translateY(-100%);
+          transform:scale(.8) translateY(-100%);
+  white-space:nowrap;
+  word-break:normal;
+}
+
+.base-input input:focus,.base-input textarea:focus{
+  outline:0;
+}
+
+.base-input:focus-within:after,.base-input:focus:after{
+  border-color:#2c2c2c;
+  border-width:2px;
+}
+
+.base-input.is-focus:after,.base-input:focus-within:after,.base-input:focus:after{
+  border-width:2px;
+}
+
+.base-input.is-disabled{
+  cursor:not-allowed;
+}
+
+.base-input.is-disabled input,.base-input.is-disabled select,.base-input.is-disabled textarea{
+  background-color:rgba(44, 44, 44, .06) !important;
+  border-color:#d8d8d8 !important;
+  color:rgba(44, 44, 44, .4);
+  cursor:not-allowed;
+  pointer-events:none;
+}
+
+.base-input-area{
+  -webkit-box-flex:1;
+  -webkit-box-align:center;
+  -webkit-align-items:center;
+          align-items:center;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-flex:1;
+          flex:1;
+  position:relative;
+}
+
+.base-input .base-input-area input,.base-input .base-input-area select,.base-input .base-input-area textarea{
+  background:none;
+  border:none;
+  border-radius:4px;
+  box-shadow:none !important;
+  color:#2c2c2c;
+  line-height:1.15;
+  padding:24px 6px 8px 16px;
+  width:100%;
+}
+
+.base-input .base-input-area select{
+  appearance:none;
+  -webkit-appearance:none;
+  padding-right:30px;
+  position:relative;
+}
+
+.base-input-area input::-webkit-input-placeholder,.base-input-area textarea::-webkit-input-placeholder{
+  font-size:0;
+}
+
+.base-input-area input::placeholder,.base-input-area textarea::placeholder{
+  font-size:0;
+}
+
+.base-input-area .placeholder{
+  color:#2c2c2c;
+  left:16px;
+  opacity:.6;
+  pointer-events:none;
+  position:absolute;
+  right:0;
+  top:50%;
+  -webkit-transform:translateY(-50%);
+          transform:translateY(-50%);
+  -webkit-transform-origin:left top;
+          transform-origin:left top;
+  -webkit-transition:-webkit-transform .3s ease;
+  transition:-webkit-transform .3s ease;
+  transition:transform .3s ease;
+  transition:transform .3s ease, -webkit-transform .3s ease;
+  word-break:break-word;
+  z-index:4;
+}
+
+.base-input-area.is-textarea{
+  padding-top:24px;
+}
+.base-input-area.is-textarea textarea{
+  padding-top:0;
+  resize:vertical;
+}
+.base-input-area.is-textarea .placeholder{
+  top:22px;
+}
+
+.base-input__addonAfter{
+  -webkit-box-align:center;
+  -webkit-align-items:center;
+          align-items:center;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  height:100%;
+  position:absolute;
+  right:6px;
+  z-index:1;
+}
+
+.base-input__staticAddonAfter{
+  padding-bottom:6px;
+  padding-right:6px;
+  padding-top:6px;
+}

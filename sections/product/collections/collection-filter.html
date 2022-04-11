@@ -1,0 +1,116 @@
+{{assign 'child_category_list' (navigation_to_category all_collections navigations.head sortationId )}}
+
+
+<section class="product-list-filter">
+  {{snippet 'product/collections/collections-menu' settings=section.settings blocks=(product_blocks_order_translate section 'blocks' 'block_order')}}
+</section>
+
+{{#schema}}
+{
+  "name": "t:sections.product_collections_collection-filter.name",
+  "settings": [
+    {
+      "type": "switch",
+      "id": "filter_enable",
+      "label": "t:sections.product_collections_collection-filter.settings.filter_enable.label",
+      "default": true
+    },
+    {
+      "type": "switch",
+      "id": "support_multiple",
+      "label": "t:sections.product_collections_collection-filter.settings.support_multiple.label",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tag_filter",
+      "icon": "product",
+      "name": "t:sections.product_collections_collection-filter.blocks.tag_filter.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag_filter_title",
+          "label": "t:sections.product_collections_collection-filter.blocks.tag_filter.settings.tag_filter_title.label",
+          "default": "Filters"
+        },
+        {
+          "type": "tag_picker",
+          "id": "tag_data",
+          "label": "t:sections.product_collections_collection-filter.blocks.tag_filter.settings.tag_data.label",
+          "default": {
+            "group": "1",
+            "tags": []
+          }
+        },
+        {
+          "type": "switch",
+          "id": "default_fold",
+          "label": "t:sections.product_collections_collection-filter.blocks.tag_filter.settings.default_fold.label",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "child_category",
+      "icon": "productCategories",
+      "name": "t:sections.product_collections_collection-filter.blocks.child_category.name",
+      "settings": [
+        {
+          "type": "group_header",
+          "label": "t:sections.product_collections_collection-filter.blocks.child_category.settings.group_header__0.label",
+          "info": "t:sections.product_collections_collection-filter.blocks.child_category.settings.group_header__0.info",
+          "id": "group_header__0"
+        },
+        {
+          "type": "switch",
+          "id": "show_level3_title",
+          "label": "t:sections.product_collections_collection-filter.blocks.child_category.settings.show_level3_title.label",
+          "default": false
+        },
+        {
+          "type": "switch",
+          "id": "show_product_num",
+          "label": "t:sections.product_collections_collection-filter.blocks.child_category.settings.show_product_num.label",
+          "default": false
+        },
+        {
+          "type": "switch",
+          "id": "default_fold",
+          "label": "t:sections.product_collections_collection-filter.blocks.child_category.settings.default_fold.label",
+          "default": false
+        }
+      ],
+      "limit": 1
+    },
+    {
+      "type": "menu",
+      "icon": "navigation",
+      "name": "t:sections.product_collections_collection-filter.blocks.menu.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "t:sections.product_collections_collection-filter.blocks.menu.settings.menu_title.label"
+        },
+        {
+          "type": "menu_picker",
+          "id": "menu_selector",
+          "label": "t:sections.product_collections_collection-filter.blocks.menu.settings.menu_selector.label"
+        },
+        {
+          "type": "switch",
+          "id": "default_fold",
+          "label": "t:sections.product_collections_collection-filter.blocks.menu.settings.default_fold.label"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "default": {
+    "settings": {
+      "filter_enable": true
+    }
+  }
+}
+{{/schema}}
