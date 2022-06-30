@@ -14,14 +14,95 @@
     <img class="activity__poster-pc d-none d-md-block" src="{{ activity.bannerPicUrl }}" />
   {{/if}}
 </div>
+{{!-- 活动横幅 --}}
+{{ assign 'now' (dayjs method='valueOf')}}
+{{ assign 'salesCustom' (object_create)}}
+{{#if activity.salesEnvCustomInfo}}
+  {{ assign 'salesCustom' activity.salesEnvCustomInfo.landingPageConfig}}
+{{/if}}
+{{#if (and (compare salesCustom.bannerActivated  '===' 'true') (or (compare activity.promotionSubType '===' 3) (compare now '<' activity.endTime)))}}
+  {{ assign 'cellStyle' (append 'background-color:' salesCustom.countDownBgColor ';color:' salesCustom.countDownTextColor ';')}}
+  <div class="activity__countdown" style="background-color:{{salesCustom.bannerBgColor}};color:{{salesCustom.bannerTextColor}};">
+    {{#if (or salesCustom.bannerText (and (compare salesCustom.showCountDown '===' 'true') (compare now '<' activity.endTime)))}}
+      <div class="countdown-content">
+        {{!-- 文案 --}}
+        <span class="wrapAnywhere">{{salesCustom.bannerText}}</span>
+        {{!-- 倒计时 --}}
+        {{#if (and (compare salesCustom.showCountDown '===' 'true') (compare now '<' activity.endTime))}}
+          <span class="countdown-cells notranslate" style="color:{{salesCustom.countDownBgColor}};">{{#if salesCustom.countDownUnit '===' 'mode1'}}<span class="time-cell day"
+                style="{{cellStyle}}">0</span><span class="daySplit">:</span>{{/if}}<span class="time-cell hour" style="{{cellStyle}}">00</span>:<span class="time-cell minute"
+              style="{{cellStyle}}">00</span>:<span class="time-cell second" style="{{cellStyle}}">00</span>
+          </span>
+        {{/if}}
+      </div>
+    {{/if}}
+    {{#if activity.promotionSubType '===' 3}}
+      {{!-- 优惠码 --}}
+      {{ assign 'benefitCondition' (itemAt activity.benefitConditions 0)}}
+      <div class="activity__countdown-coupon" style="color:{{salesCustom.discountCodeBgColor}}">
+        <i class="coupon-left-icon">
+          <svg width="12" height="43" viewBox="0 0 12 43" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 0C1.79086 0 0 2.75025 0 6.14286V16.5857C2.20914 16.5857 4 18.1074 4 21.5C4 24.8926 2.20914 26.4143 0 26.4143V36.8571C0 40.2497 1.79086 43 4 43H12V0H4Z"
+              fill="currentColor" />
+          </svg>
+        </i>
+        <i class="coupon-right-icon">
+          <svg width="12" height="43" viewBox="0 0 12 43" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M8 43C10.2091 43 12 40.2497 12 36.8571L12 26.4143C9.79086 26.4143 8 24.8926 8 21.5C8 18.1074 9.79086 16.5857 12 16.5857L12 6.14286C12 2.75025 10.2091 -1.56562e-07 8 -3.49691e-07L3.75918e-06 -1.04907e-06L0 43L8 43Z"
+              fill="currentColor" />
+          </svg>
+        </i>
+        <div class="coupon-content" style="background-color:{{salesCustom.discountCodeBgColor}};color:{{salesCustom.discountCodeTextColor}};">
+          <div class="coupon-left">
+            {{#if (compare activity.benefitType '===' 1)}}
+              {{!-- 金额 --}}
+              {{!-- sales.activityBanner.benefit: "{discount} OFF" --}}
+              {{ assign 'benefit' (noTranslationHTML (t 'sales.activityBanner.benefit' benefit=(javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(currency_convert benefitCondition.benefit.benefitAmount))))}}
+              {{!-- {{ assign 'benefit' (javascript_template '<span data-amount="${amount}">${amountStr}</span> OFF' amount=benefitCondition.benefit.benefitAmount amountStr=(currency_convert benefitCondition.benefit.benefitAmount))}} --}}
+            {{else if (compare activity.benefitType '===' 2)}}
+              {{!-- 折扣 --}}
+              {{assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
+              {{ assign 'benefit' (noTranslationHTML (t 'sales.activityBanner.benefit' benefit=percentage))}}
+              {{!-- {{ assign 'benefit' (javascript_template '${discount}% OFF' discount=benefitCondition.benefit.offPercent)}} --}}
+            {{else if (compare activity.benefitType '===' 3)}}
+              {{!-- 免运费 --}}
+              {{!-- sales.activityBanner.freeShipping: ''Free Shippin' --}}
+              {{ assign 'benefit' (t 'sales.activityBanner.freeShipping')}}
+              {{!-- {{ assign 'benefit' 'Free Shipping'}} --}}
+            {{/if}}
+            <span class="benefit wrapAnywhere">{{benefit}}</span>
+            {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
+              {{!-- 金额门槛 --}}
+              {{!-- sales.activityBanner.threshold: "orders over {threshold}" --}}
+              {{ assign 'threshold' (noTranslationHTML (t "sales.activityBanner.threshold" threshold=(javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))))}}
+              {{!-- {{ assign 'threshold' (javascript_template 'orders over <span data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))}} --}}
+            {{else}}
+              {{!-- 件数门槛 --}}
+              {{ assign 'threshold' (noTranslationHTML (t "sales.activityBanner.threshold" threshold=benefitCondition.benefitEvent.minThreshold))}}
+              {{!-- {{ assign 'threshold' (javascript_template 'orders over ${piece}' piece=benefitCondition.benefitEvent.minThreshold)}} --}}
+            {{/if}}
+            {{#if (compare benefitCondition.benefitEvent.type '!==' -1)}}
+              <span class="condition wrapAnywhere">{{threshold}}</span>
+            {{/if}}
+          </div>
+          {{!-- sales.activityBanner.copyText: "COPY" --}}
+          <button class="coupon_copy wrapAnywhere"
+            style="background-color:{{salesCustom.copyBtnBgColor}};color:{{salesCustom.copyBtnTextColor}};">{{t "sales.activityBanner.copyText"}}</button>
+          {{!-- <button class="coupon_copy" style="background-color:{{salesCustom.copyBtnBgColor}};color:{{salesCustom.copyBtnTextColor}};">COPY</button> --}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+{{/if}}
 {{!-- 活动信息 --}}
 <div class="container activity__info">
   {{!-- 活动标题 --}}
-  <h1 class="title2 activity__title">
+  <h1 class="title2 activity__title wrapAnywhere">
     {{ activity.defaultActivityName }}
   </h1>
   {{!-- 活动规则 --}}
-  <div class="body3 activity__rules">{{ trim activity.defaultActivityRule }}</div>
+  <div class="body3 activity__rules wrapAnywhere">{{ trim activity.defaultActivityRule }}</div>
   {{#if activity.promotionSubType '===' 1}}
     <div class="activity__limit">
       {{#if (and activity.userLimitedType (compare activity.acquirePerUserLimit '>' 0))}}
@@ -34,33 +115,28 @@
               <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
                 d="M8.25 16.5L8.25 7.5H8.75C9.30228 7.5 9.75 7.94772 9.75 8.5V15.5C9.75 16.0523 9.30228 16.5 8.75 16.5H8.25Z" fill="currentColor" />
             </svg>
-          </i>
-          {{#if activity.userLimitedType '===' 2}}
-            {{!-- 每人每款商品限购 --}}
-            {{t 'sales.customer-purchase-limit-each-item' count=activity.acquirePerUserLimit}}
-          {{else}}
-            {{!-- 每人每活动限购 --}}
-            {{t 'sales.customer-purchase-limit' count=activity.acquirePerUserLimit}}
-          {{/if}}
+          </i>{{#if activity.userLimitedType '===' 2}}{{!-- 每人每款商品限购 --}}{{t 'sales.customer-purchase-limit-each-item' count=activity.acquirePerUserLimit}}{{else}}{{!-- 每人每活动限购 --}}{{t 'sales.customer-purchase-limit' count=activity.acquirePerUserLimit}}{{/if}}
         </div>
       {{/if}}
-      <div class="body3 activity__limit-time">
-        <i>
-          <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="9.5" cy="9" r="6.9375" stroke="currentColor" stroke-width="1.125" />
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M8.9375 4.87488H9.3125C9.72671 4.87488 10.0625 5.21066 10.0625 5.62488V8.43745H12.875C13.2892 8.43745 13.625 8.77324 13.625 9.18745V9.56245H8.9375V4.87488Z"
-              fill="currentColor" />
-          </svg>
-        </i>
-        <span class="activity__limit-time-text">{{dayjs method='format' init=activity.startTime format='YYYY-MM-DD HH:mm'}}{{#if activity.endTime}} - {{dayjs method='format' init=activity.endTime format='YYYY-MM-DD HH:mm'}}{{/if}}</span>
-      </div>
+      {{#if salesCustom.isShowActivityTime '!==' 'false'}}
+        <div class="body3 activity__limit-time">
+          <i>
+            <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="9.5" cy="9" r="6.9375" stroke="currentColor" stroke-width="1.125" />
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M8.9375 4.87488H9.3125C9.72671 4.87488 10.0625 5.21066 10.0625 5.62488V8.43745H12.875C13.2892 8.43745 13.625 8.77324 13.625 9.18745V9.56245H8.9375V4.87488Z"
+                fill="currentColor" />
+            </svg>
+          </i><span class="activity__limit-time-text">{{dayjs method='format' init=activity.startTime format='YYYY-MM-DD HH:mm'}}{{#if activity.endTime}} -
+              {{dayjs method='format' init=activity.endTime format='YYYY-MM-DD HH:mm'}}{{/if}}</span>
+        </div>
+      {{/if}}
     </div>
   {{/if}}
   {{!-- 活动标签 --}}
-  {{#if activity.benefitConditions.length}}
+  {{#if (and activity.benefitConditions.length (compare activity.promotionSubType '!==' 3))}}
     <div class="activity__tags">
-      {{ snippet 'sales/promotion-tags' benefitType=activity.benefitType benefitConditions=activity.benefitConditions  template = activity.discountStyleText}}
+      {{ snippet 'sales/promotion-tags' benefitType=activity.benefitType benefitConditions=activity.benefitConditions  template=activity.discountStyleText}}
     </div>
   {{/if}}
 </div>

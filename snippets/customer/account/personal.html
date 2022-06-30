@@ -1,0 +1,46 @@
+{{#snippet 'customer/base/sl-card' title=(t 'userCenter.personal.personal-information') id="customer-center-personal" editable="true"}}
+  <div class="personal">
+    <div class="personal-item">
+      <div class="personal-item__title">{{ t 'userCenter.personal.birthday-date' }}</div>
+      <div class="personal-item__content">
+        <div data-show="detail" id="customer-center-personal-birthday">
+          {{#if customer.userInfoDTO.birthday}}
+            {{ dayjs method='format' init=customer.userInfoDTO.birthday format='YYYY-MM-DD' }}
+          {{else}}
+            {{ t 'userCenter.personal.gender-secret' }}
+          {{/if}}
+        </div>
+        <div data-show="edit">
+          {{snippet 'customer/base/sl-datepicker' id="personal-birthday-input" placeholder=(t 'userCenter.personal.select-date') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="personal-item">
+      <div class="personal-item__title">{{ t 'userCenter.personal.gender' }}</div>
+      <div class="personal-item__content">
+        <div data-show="detail" id="customer-center-personal-gender">
+          {{#if customer.userInfoDTO.gender 1}}
+            {{ t 'userCenter.personal.gender-male' }}
+          {{else if customer.userInfoDTO.gender 2}}
+            {{ t 'userCenter.personal.gender-female' }}
+          {{else}}
+            {{ t 'userCenter.personal.gender-secret' }}
+          {{/if}}
+        </div>
+        <div data-show="edit">
+          {{#snippet 'customer/base/sl-radio' checked=(compare customer.userInfoDTO.gender '===' 1) name="personal-gender" value=1 }}
+            <span>{{ t 'userCenter.personal.gender-male' }}</span>
+          {{/snippet}}
+          {{#snippet 'customer/base/sl-radio' checked=(compare customer.userInfoDTO.gender '===' 2) name="personal-gender" value=2 }}
+            <span>{{ t 'userCenter.personal.gender-female' }}</span>
+          {{/snippet}}
+          {{#snippet 'customer/base/sl-radio' checked=(or (compare customer.userInfoDTO.gender '===' 0) (compare customer.userInfoDTO.gender '===' 3)) name="personal-gender" value=3 }}
+            <span>{{ t 'userCenter.personal.gender-secret' }}</span>
+          {{/snippet}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/snippet}}
+

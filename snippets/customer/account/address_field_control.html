@@ -1,0 +1,31 @@
+<div sl-form-item-name="{{templateKey}}" style="{{controlStyle}} {{controlHideStyle}}" class="{{controlClass}}">
+  <div class="sl-input">
+    <div class="sl-input__area">
+      {{#if selectAttrs}}
+      {{#with selectAttrs}}
+      <select name="{{key}}" value="{{value}}" placeholder="{{label}}" class="sl-input__selectEle">
+        <option value="--no-value--" disabled {{cond value '' 'selected'}}>{{label}}</option>
+        {{#each options}}
+        <option value="{{value}}">{{text}}</option>
+        {{/each}}
+      </select>
+      <i class="select-icon">
+        {{ include 'snippets/icons/icon_arrow_down'}}
+      </i>
+      {{/with}}
+      {{/if}}
+      {{#if inputAttrs}}
+      {{#with inputAttrs}}
+      {{#if hidden}}
+      <input type="hidden" name="{{key}}" value="{{value}}" placeholder="{{label}}" class="sl-input__inpEle"  />
+      {{else}}
+      <input type="text" name="{{key}}" value="{{value}}" placeholder="{{label}}" class="sl-input__inpEle" />
+      {{/if}}
+      {{/with}}
+      {{/if}}
+      <span class="placeholder">
+        {{label}}
+      </span>
+    </div>
+  </div>
+</div>

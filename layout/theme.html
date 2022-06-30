@@ -23,6 +23,7 @@
     <link rel="shortcut icon" href="{{ theme.settings.favicon_image }}" type="image/png">
   {{/if}}
   {{#slot 'before_head'}}{{/slot}}
+  <link rel="stylesheet" href="{{ assets_url 'vendor/prepare.min.css' }}" />
   <link rel="stylesheet" href="{{ assets_url 'vendor/global.min.css' }}" />
   {{ content_for_header }}
 
@@ -37,9 +38,21 @@
 
   {{#is_modern_browser}}
     <script src="{{ assets_url 'commons/base/script-load.min.modern.js' }}" ></script>
+    <script src="{{ assets_url 'commons/pre-script.min.modern.js' }}" ></script>
   {{else}}
     <script src="{{ assets_url 'commons/base/script-load.min.js' }}" ></script>
+    <script src="{{ assets_url 'commons/pre-script.min.js' }}" ></script>
   {{/is_modern_browser}}
+  
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'vendor/global.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'vendor/global.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+
   {{#slot 'head'}}{{/slot}}
 
   {{ preload_state 'storeInfo' 'tradeSettleConfig' 'tradeCollectionConfig' }}
@@ -48,11 +61,10 @@
   {{ preload_state 'request' }}
   {{ preload_state 'theme.settings.cart_open_type' 'theme.settings.superscript_decimals' }}
   {{ preload_state 'cartInfo' 'payChannelInfo' }}
-
 </head>
 
 <body class="template--le template__{{ replace template '/' '-' }}"
-  data-button_style="{{ theme.settings.button_style }}"
+  data-button_style="radius"
   data-type_title_uppercase="{{ theme.settings.type_title_uppercase }}"
   data-type_navigation_uppercase="{{ theme.settings.type_navigation_uppercase }}"
   >
@@ -66,13 +78,6 @@
   {{ preload_state 'templateAlias' }}
   {{!-- mini购物车上报专用 --}}
   {{ preload_state 'variants' }}
-  {{#slot 'pre_script'}}
-    {{#is_modern_browser}}
-      <script src="{{ assets_url 'commons/pre-script.min.modern.js' }}" ></script>
-    {{else}}
-      <script src="{{ assets_url 'commons/pre-script.min.js' }}" ></script>
-    {{/is_modern_browser}}
-  {{/slot}}
 
   <script>
     window.__I18N__ = window.__I18N__ || {};
@@ -88,6 +93,11 @@
     window.__I18N__['comment'] = {{{ JSONstringify (t 'comment') }}};
     window.__I18N__['collection'] = {{{ JSONstringify (t 'collection') }}}
     window.__I18N__['contactForm'] = {{{ JSONstringify (t 'contactForm') }}}
+    window.__I18N__['user'] = {{{ JSONstringify (t 'user') }}}
+    window.__I18N__['tips'] = {{{ JSONstringify (t 'tips') }}}
+    window.__I18N__['userCenter'] = {{{ JSONstringify (t 'userCenter') }}}
+    window.__I18N__['customer'] = {{{ JSONstringify (t 'customer') }}}
+    window.__I18N__['general'] = {{{ JSONstringify (t 'general') }}}
   </script>
   {{#if storeInfo.languageSetting.enableSelector}}
     {{ snippet 'gte' }}
@@ -96,16 +106,16 @@
 
   {{ preload_state 'currencyConfig.referenceCurrencies' }}
   {{#is_modern_browser}}
-    <script src="{{ assets_url 'vendor/global.min.modern.js' }}"></script>
+    <script src="{{ assets_url 'vendor/prepare.min.modern.js' }}"></script>
   {{else}}
-    <script src="{{ assets_url 'vendor/global.min.js' }}"></script>
+    <script src="{{ assets_url 'vendor/prepare.min.js' }}"></script>
   {{/is_modern_browser}}
   {{#slot 'script'}}{{/slot}}
   {{#slot 'page_view'}}{{/slot}}
   {{ sales_widgets_script }}
   {{!-- 自定义代码底部 --}}
   {{ content_for_footer }}
-
+  <div data-ssr-plugin-body-bottom></div>
 
 </body>
 

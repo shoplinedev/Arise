@@ -1,0 +1,35 @@
+{{ assign 'id' (default id 'reset-password-reset')}}
+
+<form class="customer__form" id="{{ id }}" style="display: none;">
+  {{#formItem "password" "class='customer__form-item'"}}
+    {{#snippet
+      'customer/base/sl-input'
+      name="password"
+      type="password"
+      placeholder=(t 'user.password')
+      class="form-item--password"
+    }}
+      {{#child 'suffix'}}
+        {{snippet 'icons/icon_close_eye'}}
+      {{/child}}
+    {{/snippet}}
+  {{/formItem}}
+
+  {{#formItem "repeatPassword" "class='customer__form-item'"}}
+    {{#snippet
+      'customer/base/sl-input'
+      name="repeatPassword"
+      type="password"
+      placeholder=(t 'user.repeatPassword')
+      class="form-item--password"
+    }}
+      {{#child 'suffix'}}
+        {{snippet 'icons/icon_close_eye'}}
+      {{/child}}
+    {{/snippet}}
+  {{/formItem}}
+
+  {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button" block=true shape="square" attrs="type='button'" }}
+    {{t 'user.confirm'}}
+  {{/snippet}}
+</form>

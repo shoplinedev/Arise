@@ -3,7 +3,7 @@
 	{{assign 'is_nested' true}}
 {{/if}}
 
-<div id="{{id}}" class="stage-drawer {{classes}} {{#if debug '===' 1}}stage-drawer--is-open{{/if}} {{#if is_nested}}stage-drawer-nested{{/if}}" data-position="{{position}}"
+<div id="{{id}}" class="stage-drawer global-drawer-border-shadow {{classes}} {{#if debug '===' 1}}stage-drawer--is-open{{/if}} {{#if is_nested}}stage-drawer-nested{{/if}}" data-position="{{position}}"
 	{{#if type '===' 'cart'}}data-cart{{/if}} data-level={{level}}>
 	<div class="drawer--content">
 		<div class="drawer__header--fixed">

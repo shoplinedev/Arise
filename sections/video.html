@@ -10,7 +10,9 @@
   
 {{ assign 'full_width' section.settings.full_width }}
 
-<section class="video__container color-scheme-{{ section.settings.color_scheme }}{{#if full_width}} video__full-width{{/if}} section-gap{{#if section.settings.color_scheme '!==' ''}}--padding{{/if}}">
+{{ snippet 'global-border-shadow-style' color_scheme=section.settings.color_scheme sectionId=section.id type='media' }}
+
+<section class="__sl-custom-track-stage-video video__container color-scheme-{{ section.settings.color_scheme }}{{#if full_width}} video__full-width{{/if}} section-gap{{#if section.settings.color_scheme '!==' ''}}--padding{{/if}}">
   <div class="video__section {{#if (isFalsey full_width)}}container{{/if}}">
     {{#if section.settings.title}}
       <h2 class="video__title title4 section-title text-center {{#if full_width}}container{{/if}}">{{ section.settings.title }}</h2>
@@ -23,7 +25,7 @@
       }
     {{/style}}
     <div
-      class="video video--{{ section.id }} video--r16-9"
+      class="video video--{{ section.id }} video--r16-9 global-media-border-shadow"
       data-id="{{ section.id }}"
       data-section-id="{{ section.id }}"
       data-section-type="video"
@@ -94,6 +96,12 @@
       "placeholder": "https://www.youtube.com/watch?v=V7BEzkRBp_g",
       "info": "t:sections.video.settings.url.info",
       "label": "t:sections.video.settings.url.label"
+    },
+    {
+      "type": "switch",
+      "id": "loop",
+      "label": "t:sections.video.settings.loop.label",
+      "default": false
     },
     {
       "type": "image_picker",
@@ -182,6 +190,7 @@
       "category": "t:sections.video.presets.presets__0.category",
       "settings": {
         "title": "Video",
+        "loop": false,
         "background_position": "center",
         "color_scheme": "",
         "full_width": false,

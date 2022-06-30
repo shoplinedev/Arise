@@ -25,7 +25,7 @@
       {{ assign 'linkUrl' (append global.pathPrefixParam '/' (default id '')) }}
     {{/if}}
 
-    <div class="simple-blog">
+    <div class="simple-blog __sl-custom-track-stage-blog-item">
       {{#if global.showCover}}
         <a class="simple-blog__image-wrapper" href="{{ linkUrl }}" title="{{ title }}">
           {{#snippet
@@ -34,6 +34,7 @@
             image-class="simple-blog__image"
             empty-scale=0.75
             scale=global.coverRatio
+            pcSize=global.pcSize
             custom-empty=true
           }}
             {{#child 'empty'}}

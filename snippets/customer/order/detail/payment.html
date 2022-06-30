@@ -1,0 +1,40 @@
+<div class="detail-payment common-title">
+  {{snippet 'customer/order/detail/title' title=(t 'order.detail.packages.payment-title')}}
+  <div class="content">
+    <div class="content-pay">
+      <div class="content-pay-label">
+        {{t 'order.detail.packages.payment-info.method'}}
+      </div>
+      <div class="content-pay-value">
+        {{snippet 'customer/order/detail/payment-method' payMethod=pageData.payInfo.payMethodName}}
+      </div>
+    </div>
+    <div class="content-pay">
+      <div class="content-pay-label">
+        {{t 'order.detail.packages.payment-info.status'}}
+      </div>
+      <div class="content-pay-value">
+        {{#each pageData.paymentInfoList}}
+          <p key="{{orderSeq}}" class="content-pay-value-status">
+            <span>
+              {{snippet 'customer/order/detail/payment-method' payMethod=payChannelName}} -
+            </span>
+            <span class="notranslate" data-amount="{{payAmount}}"> {{currency_convert payAmount}}</span>
+            <a data-pay-seq="{{paySeq}}" data-index="{{index}}" class="content-pay-value-status-detail">
+              {{t 'order.detail.packages.payment-info.detail'}}
+            </a>
+          </p>
+        {{/each}}
+        {{snippet 'customer/order/detail/payment-voucher' pageData=this}}
+      </div>
+    </div>
+    <div class="content-pay">
+      <div class="content-pay-label">
+        {{t 'order.detail.packages.payment-info.address'}}
+      </div>
+      <div id="contentPayValueAddress" class="content-pay-value">
+        {{!-- 账单地址占位符 --}}
+      </div>
+    </div>
+  </div>
+</div>

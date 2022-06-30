@@ -8,7 +8,7 @@ blogs:
 {{ assign 'blogData' (get_blogs_data collectionId all_blogs section.settings.limit) }}
 
 <div class="color-scheme-{{section.settings.color_scheme}} section-gap{{#if (isTruthy section.settings.color_scheme '!==' 'none') }}--padding{{/if}}">
-  <div class="blogs__main container">
+  <div class="__sl-custom-track-stage-blog blogs__main container">
     <div class="blogs__head {{#if (not section.settings.title)}}blogs__head--no-title{{/if}}">
       {{#if section.settings.title}}
         <div class="blogs__title title5">{{ section.settings.title }}</div>
@@ -18,7 +18,7 @@ blogs:
 
     {{#with this as |global|}}
       <div class="blogs__list-wrapper">
-        <ul class="blogs__list blogs__list--{{ global.section.settings.layout }}">
+        <ul class="row row-cols-1 {{#if global.section.settings.layout '==' 'grid' }}row-cols-md-3{{/if}} blogs__list blogs__list--{{ global.section.settings.layout }}">
           {{#each blogData.blogs}}
             <li class="blogs__item ">
               {{
@@ -30,6 +30,7 @@ blogs:
                 showCover=global.section.settings.is_show_cover
                 coverRatio=global.section.settings.image_ratio
                 showDesc=global.section.settings.is_show_desc
+                pcSize="1/3"
                 btn_text=(t 'blogList.container.readBtnText')
               }}
             </li>

@@ -29,26 +29,136 @@
     "activity-price-limit": "此商品優惠價僅支持購買{{num}}件",
     "activity-product-limit": "最多可同時購買{{stock}} 件優惠價商品",
     "activity-title-limit": "以下商品超過購買限制，是否繼續結賬？",
+    "cart": {
+      "cancel": "取消",
+      "confirm": "確定",
+      "continue": "繼續",
+      "got_it": "知道了",
+      "return_to_cart": "返回購物車"
+    },
     "checkout-error": "購物車中至少有一個無法購買的產品。請調整購物車品項以結帳。",
+    "checkout_proceeding": {
+      "checkout_proceed": "以下商品超過購買限制，是否繼續結賬？"
+    },
+    "contact": {
+      "discounts_cannot_stack": "限時折扣和優惠碼活動互斥"
+    },
+    "discount": {
+      "coupon_code_amount": "優惠代碼折扣",
+      "coupon_code_exceed_not_25_characters": "優惠代碼不可超過 25 個字元",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} 優惠碼不適用當前物流方式",
+      "discount_code_invalid": "你購物車內的商品不適用於{{discountCode}}優惠碼",
+      "discount_codes_cannot_stack": "商品已經存在一個優惠活動，不可與其他優惠疊加",
+      "enter_a_valid_discount_code": "請輸入有效的優惠碼",
+      "expected_discount": "預估折扣"
+    },
+    "discount_item": {
+      "buy_limit5": "最多可同時購買{{stock}} 件優惠價商品"
+    },
+    "discount_price": {
+      "buy_limit3": "此商品優惠價僅支持購買{{stock}}件"
+    },
     "get": "取得",
     "go-shopping": "前往選購",
+    "item": {
+      "add_limit1": "最多可新增 100 項產品",
+      "add_limit2": "最多可添加999件商品至購物車",
+      "removed": "已下架",
+      "sold_out": "售完"
+    },
     "login-description": "已經是會員？登入後，管理訂單更方便！",
     "login-membership": "免費會員資格",
     "most-100-sku": "最多可新增 100 項產品",
     "most-buy-999": "最多可添加999件商品至購物車",
     "not-participation-offers": "不參與優惠",
+    "notices": {
+      "change_password_after_verification": "您可以在驗證後變更密碼",
+      "excess_product": "以下商品超過購買限制，請修改數量",
+      "insufficient_product_inventory": "產品庫存不足",
+      "network": "網路錯誤",
+      "product_expired": "此產品已過期",
+      "product_limit": "已超過此產品限制",
+      "product_selected_invalid": "很抱歉，您選取的產品無法購買。請重新選取",
+      "store_nonexistent": "此商店不存在"
+    },
+    "order": {
+      "authorized": "已授權",
+      "canceled": "已取消",
+      "canceled_order": "已取消",
+      "click_to_track": "請按一下下方連結以追蹤您的包裹：",
+      "deleted": "已刪除",
+      "invalid_order_number": "無效訂單號",
+      "no_more_info": "沒有其他資訊",
+      "pay_amount": "支付金額",
+      "payment_voucher_confirmation": "知道了",
+      "receiver_account": "收款賬戶",
+      "reference_number": "流水號",
+      "sequence": "編號 {{id}}",
+      "shipping_address": "運送地址",
+      "time": "訂購於：",
+      "total_amount": "共 {{transPackages}} 個品項",
+      "total_item_amount": "共 {{transPackages}} 個品項",
+      "try_again": "上傳失敗，請重試",
+      "try_later": "憑證校驗服務繁忙，請稍後再試",
+      "upload_image_within_10_m_b": "請提供10MB以下的JPG，PNG，GIF圖片",
+      "upload_time": "上傳時間",
+      "voucher_amount_limit": "最多支持上傳5個憑證"
+    },
+    "payment": {
+      "channel": "付款渠道",
+      "create_time": "創建於",
+      "paid": "已付款",
+      "partially_paid": "部分付款",
+      "paying": "付款中",
+      "payment_details": "付款詳情",
+      "reference_number": "付款序列號",
+      "status": "狀態",
+      "subtotal_price": "小計",
+      "sum": "金額",
+      "total": "總計",
+      "unpaid": "未付款",
+      "update_time": "更新於"
+    },
+    "policy": {
+      "privacy_policy": "隱私政策"
+    },
+    "product-no-exists": "商品不存在",
+    "refund": {
+      "click_to_view": "點擊查看",
+      "custom_preview": "定製預覽"
+    },
     "render-add-items": "您的購物車目前是空的。",
     "render-empty-status": "您的購物車是空的",
+    "shipping": {
+      "no_info": "尚無配送資訊，請稍後查看。",
+      "package_tracking": "包裹追蹤",
+      "partially_shipped": "部分出貨",
+      "preparing_order": "正在準備產品",
+      "shipped_order": "已運送"
+    },
     "shopping-fees": "購物費用",
     "shopping-money": "折扣，將在下一個步驟計算稅金和運費",
     "shopping-money-step": "將在下一個步驟計算稅金和運費",
+    "shpping": {
+      "service_terms": "服務條款"
+    },
     "stock-limit": "剩餘{{stock}}件",
+    "taxIncluded": {
+      "textTag": "已包含稅費"
+    },
+    "tips": {
+      "change_binding_after_verification": "您可以在驗證後連結/變更 {{value}}",
+      "reset_password": "您正要重設帳戶 {{account}} 的密碼"
+    },
     "view-link": "點擊查看",
     "view-pic": "定製預覽",
     "view-shopping-cart": "檢視購物車",
     "added-to-cart": "已加入購物車",
     "cart-subtotal": "購物車總金額",
     "view-cart": "查看購物車"
+  },
+  "cascade": {
+    "choose": ""
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "謝謝您聯繫我們，我們將盡快回复您。"
   },
+  "customer": {
+    "account": {
+      "add-email": "新增郵箱",
+      "add-phone": "新增手機號",
+      "deadline": "出於業務報告的目的，您的訂單仍將可見。您的賬戶數據將於{{time}}被刪除，您可在該日期之前取消此過程",
+      "gender_female": "女性",
+      "gender_male": "男性",
+      "gender_secret": "保密",
+      "not_set": "未設置",
+      "reset_password_error_hint": "請先綁定電子郵件或行動電話",
+      "verify_email_message": "在進行註銷操作前，我們需要驗證您的身份\n您的郵箱{{email}}將收到驗證碼郵件",
+      "verify_phone_message": "在進行註銷操作前，我們需要驗證您的身份\n您的手機{{phone}}將收到驗證短信"
+    },
+    "address": {
+      "add_address": "新增地址",
+      "common_max": "少於 {{max}} 个字符！",
+      "common_min": "大於 {{min}} 个字符！",
+      "edit_last_name_hint": "請輸入您的姓氏！",
+      "edit_phone_hint": "請輸入您的行動電話！",
+      "mobile-errorMessage": "請輸入正確的電話號碼",
+      "no_adress_data": "目前沒有運送地址"
+    },
+    "common": {
+      "back-to-user-center": "返回使用者中心",
+      "cancel": "取消",
+      "confirm": "確定",
+      "email": "電子郵件",
+      "email2": "郵件",
+      "enter-email": "請輸入使用者名稱",
+      "enter-mobile-phone": "請輸入行動電話號碼",
+      "member-login": "會員登入",
+      "mobile": "電話號碼",
+      "mobile-phone": "行動電話號碼"
+    },
+    "email": {
+      "mail_common": "郵件"
+    },
+    "general": {
+      "apr": "四月",
+      "april": "四月",
+      "aug": "八月",
+      "august": "八月",
+      "bind_success": "已連結",
+      "cancel_mobile_button": "取消",
+      "clear_button": "清除",
+      "confirm_button": "確定",
+      "date_format": "yyyy-MM-dd",
+      "dec": "十二月",
+      "december": "十二月",
+      "email_empty_hint": "請輸入電子郵件地址",
+      "email_error_hint": "請輸入有效格式的電子郵件地址 (少於 50 個字元)",
+      "enter_verification_code": "請輸入驗證碼",
+      "error_message_1001": "密碼錯誤",
+      "error_message_1002": "使用者不存在",
+      "error_message_1003": "帳戶暫時受到鎖定",
+      "error_message_1004": "操作頻繁，請稍後重試",
+      "error_message_1005": "代碼過期",
+      "error_message_1006": "代碼錯誤",
+      "error_message_1007": "驗證碼操作頻繁，請重新獲取驗證碼",
+      "error_message_1008": "未配置第三方渠道登錄",
+      "error_message_1009": "調用第三方接口失敗",
+      "error_message_1010": "發送失敗",
+      "error_message_1011": "賬號未激活",
+      "error_message_1012": "服務異常",
+      "error_message_1013": "服務異常",
+      "error_message_1014": "校驗驗證碼失敗",
+      "error_message_1015": "請校驗動態驗證碼",
+      "error_message_1016": "服務異常",
+      "error_message_1017": "該賬號存在風險",
+      "error_message_1018": "郵箱已綁定",
+      "error_message_1020": "登錄超時",
+      "error_message_1021": "登錄超時",
+      "error_message_1022": "賬號已綁定",
+      "error_message_1023": "服務異常",
+      "error_message_1024": "服務異常",
+      "error_message_2": "服務異常",
+      "error_message_2001": "該手機已經註冊",
+      "error_message_2002": "該電子郵件已經註冊",
+      "error_message_2003": "請勿太頻繁嘗試",
+      "error_message_2004": "代碼過期",
+      "error_message_2005": "代碼錯誤",
+      "error_message_2006": "驗證次數過多，請取得另一組代碼",
+      "error_message_2007": "服務異常，稍後重試",
+      "error_message_2016": "賬號有風險",
+      "error_message_3": "服務異常",
+      "error_message_3001": "服務異常，稍後重試",
+      "error_message_3002": "不正當操作",
+      "error_message_3003": "請勿太頻繁嘗試",
+      "error_message_3004": "代碼過期",
+      "error_message_3005": "代碼錯誤",
+      "error_message_3006": "驗證次數過多，請取得另一組代碼",
+      "error_message_3007": "該手機不存在",
+      "error_message_3008": "該電子郵件不存在",
+      "error_message_3009": "該手機已和其他帳戶綁定",
+      "error_message_3010": "該電子郵件已和其他帳戶綁定",
+      "error_message_3014": "傳送代碼失敗",
+      "error_message_4": "服務異常",
+      "error_message_5": "服務異常",
+      "error_message_6": "服務異常",
+      "feb": "二月",
+      "february": "二月",
+      "first_day": "1",
+      "fr": "五",
+      "fri": "五",
+      "friday": "週五",
+      "image_size_less_than_tips": "影像應小於 {{max}} MB",
+      "jan": "一月",
+      "january": "一月",
+      "jul": "七月",
+      "july": "七月",
+      "jun": "六月",
+      "june": "六月",
+      "mar": "三月",
+      "march": "三月",
+      "max_image_upload_tips": "您最多可以上傳 {{max}} 張影像",
+      "may": "五月",
+      "may_short": "五月",
+      "mo": "一",
+      "mon": "一",
+      "monday": "週一",
+      "network_error_message": "沒有網絡",
+      "nov": "十一月",
+      "november": "十一月",
+      "oct": "十月",
+      "october": "十月",
+      "okay_common": "確定",
+      "password_empty_hint": "請輸入密碼",
+      "phone_empty_message": "請輸入行動電話號碼",
+      "phone_error_message": "請輸入有效格式的行動電話號碼",
+      "phone_number_error_message": "請輸入正確的電話號碼",
+      "repeat_passport_error": "您輸入的密碼不相符",
+      "resend": "再次傳送",
+      "sa": "六",
+      "sat": "六",
+      "saturday": "週六",
+      "select__date": "選取日期",
+      "send": "傳送",
+      "send_error": "請先傳送驗證碼",
+      "send_verification_code_hint": "請再次輸入密碼",
+      "sep": "九月",
+      "september": "九月",
+      "set_password": "請設定最小長度 6 個字元且最大長度 18 個字元的密碼。",
+      "su": "日",
+      "sun": "日",
+      "sunday": "週日",
+      "th": "四",
+      "thu": "四",
+      "thursday": "週四",
+      "time_format": "HH:mm",
+      "today": "今天",
+      "tu": "二",
+      "tue": "二",
+      "tuesday": "週二",
+      "user_agreement_tip": "請先閱讀及同意使用者合約",
+      "username_empty_hint": "請輸入電子郵件地址或行動電話號碼",
+      "verification_code_sent_tip": "已傳送驗證碼至您的帳戶",
+      "we": "三",
+      "wed": "三",
+      "wednesday": "週三"
+    },
+    "network-err-msg": "沒有網絡",
+    "phone": {
+      "mobile_common": "電話號碼"
+    },
+    "subscription": {
+      "unsubscribe_success": "訂閱已取消，即將跳轉至主頁"
+    },
+    "tips": {
+      "and": "和",
+      "bind-change-email": "連結/變更電子郵件",
+      "bind-change-mobile-phone-number": "連結/變更行動電話號碼",
+      "bind-success": "已連結",
+      "change-binding-after-verification": "您可以在驗證後連結/變更 {{value}}",
+      "continue-as-a-guest": "繼續以訪客身份訪問",
+      "forget-password": "忘記密碼",
+      "i-agree-with-the-shop": "我同意",
+      "login": "登入",
+      "or-use-the-following-method-to-log-in": "或使用下列方式登入",
+      "password-can-be-changed-after-verification": "您可以在驗證後變更密碼",
+      "please-read-and-agree-to-the-user-agreement-first": "請先閱讀及同意使用者合約",
+      "poroceed-to-checkout": "進行結算",
+      "register": "註冊",
+      "reset-password": "您正要重設帳戶 {{account}} 的密碼",
+      "set-new-password": "設定新密碼",
+      "update-password": "變更密碼",
+      "update-success": "已變更",
+      "verification-code-has-been-sent-to-your-account": "已傳送驗證碼至您的帳戶",
+      "verify-account-to-reset-password": "請驗證您的帳戶和重設密碼"
+    },
+    "trade": {
+      "go-login": "前往登入"
+    },
+    "unsubscribe": {
+      "btn": "取消訂閱",
+      "reason": {
+        "other": {
+          "length": "最多輸入300個字",
+          "placeholder": "輸入內容"
+        }
+      },
+      "reason1": "我不想接收此類郵件",
+      "reason2": "我收到的郵件數量過多",
+      "reason3": "我未訂閱過此類郵件",
+      "reason4": "郵件內容與我無關",
+      "reason5": "郵件內容過長",
+      "reason6": "其他",
+      "subtitle": "我們對您的離開感到遺憾！ 請告訴我們您取消訂閱的原因：",
+      "success": "訂閱已取消，即將跳轉至主頁",
+      "title": "取消訂閱"
+    }
+  },
   "footer": {
     "copyright": "版權所有",
     "followus": "追蹤我們",
@@ -221,10 +542,25 @@
       "title": "我們重視您的隱私"
     }
   },
+  "general": {
+    "404": {
+      "button": "繼續購物",
+      "subtext": "您要查找的頁面不存在。",
+      "title": "404頁面不存在"
+    },
+    "general": {
+      "accept": "接受",
+      "decline": "拒絕",
+      "link": "隱私政策",
+      "tips": "為了給您提供更好的體驗，我們使用cookie去記錄您的登陸狀態，收集統計數據，為您提供感興趣的內容。點擊“接受”允許cookie的使用。或是查看我們的“隱私政策”。",
+      "title": "我們重視您的隱私"
+    }
+  },
   "header": {
     "cart": "購物車",
     "center": "會員中心",
-    "login": "登陸",
+    "emptyPlaceholder": "",
+    "login": "登錄",
     "logout": "登出",
     "navItemAll": "全部",
     "noCurrencyFallback": "未找到相關貨幣",
@@ -347,7 +683,7 @@
           "title": "付款擱置中"
         },
         "pedding": {
-          "desc": "已送出您的付款要求，目前正等候 {{- payChannelDesc}} 傳回付款結果",
+          "desc": "已送出您的付款要求，目前正等候 {{payChannelDesc}} 傳回付款結果",
           "title": "付款處理中..."
         },
         "pickedUp": {
@@ -365,6 +701,25 @@
         "success": {
           "desc": "訂單信息已發送至{{buyerContact}}，注意查收",
           "title": "您的訂單已確認"
+        }
+      },
+      "orderstatus": {
+        "PayAmount": "支付金額",
+        "ReceiverAccount": "收款賬戶",
+        "ReferenceNumber": "流水號",
+        "UploadTime": "上傳時間",
+        "action": {
+          "UploadVoucher": "上傳憑證"
+        },
+        "feedback": {
+          "CountLimit": "最多支持上傳5個憑證",
+          "InvalidOrderNumber": "無效訂單號",
+          "SizeLimte": "請提供10MB以下的JPG，PNG，GIF圖片",
+          "SystemBusy": "憑證校驗服務繁忙，請稍後再試",
+          "UploadFail": "上傳失敗，請重試"
+        },
+        "notice": {
+          "UploadVoucher": "請上傳並確認支付憑證"
         }
       },
       "packages": {
@@ -428,9 +783,24 @@
         "subscriptions-title": "訂閱",
         "title": "資訊",
         "unshipped-order-num": "處理中 ({{num}} 個品項)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "匯款成功",
+          "WaittingforPayment": "待付款"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "知道了"
+          }
+        }
+      },
+      "taxFee": "稅費"
     },
     "help-tips": "需要幫助？請聯繫我們：{{email}}",
+    "includeTax": {
+      "totalLine": "包含{{price}}稅費"
+    },
     "oms-status": {
       "arrived": "已送達",
       "cancelled": "取消出貨",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "已失效",
       "already-paid": "已付款",
+      "authorized": "已授權",
       "failed": "付款失敗",
       "partial-payment": "部分付款",
       "partial-refund": "已部分退款",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "尚無物流及付款方式資訊",
     "no-product-introduction": "尚無產品介紹",
     "previewLinkToast": "預覽連結不支援此操作",
+    "productTax": "內含稅費",
     "recentlyViewedProducts": "最近瀏覽商品",
     "recommendTitle": "建議",
+    "skuLoadingTips": "款式信息加載中，請稍後...",
     "tabPanel": {
       "comments": {
         "empty": "尚無產品評論",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "商品"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "此類別中沒有產品",
@@ -677,6 +1051,35 @@
     "sortName": "排序方式：",
     "title": "搜索"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "添加圖片",
+      "didnot_bought_cannot_reviewed": "對不起，您沒有購買過本商品，所以無法發表評價",
+      "didnot_bought_sign_in_first": "購買過本商品的用戶可評價，請先登錄哦",
+      "enter_at_least_one_character": "請輸入至少1個文字",
+      "error_submit_again": "系統出了點問題，請您重新嘗試提交~",
+      "first_review": "快來發表第一個評論吧",
+      "image_uploading": "圖片上傳中，請稍後提交",
+      "maximum_image_quantity": "最多可添加{{total}}張圖片",
+      "maximum_image_size": "圖片大小最多{{size}}兆",
+      "no_review": "暫無評論",
+      "only_supports__image_format": "僅支持上傳.jpg .jpeg .png .bmp格式的圖片",
+      "ratings": "評分",
+      "sign_in": "去登錄",
+      "submit": "提交",
+      "thanks_for_your_review": "謝謝你的評價",
+      "write_a_review": "發表評價",
+      "write_a_review_for_the_product": "請輸入您對商品的評價感想"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "此商品優惠價僅支持購買{{num}}件",
+      "activity_toast_product__limit": "最多可同時購買{{stock}}件優惠價商品",
+      "activity_toast_title__limit": "以下商品超過購買限制",
+      "go_to_amazon_by_link": "前往 Amazon",
+      "go_to_rakuten_by_link": "前往 LOTTE",
+      "go_to_yahoo_by_link": "前往 Yahoo"
+    }
+  },
   "promotion": {
     "activity-benefit": "活動優惠",
     "activity-introduction": "活動介紹",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "買<italic>{{condition}}</italic>件節省<italic>{{content}}</italic>"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "減免{{offPercent}}%",
+            "unlocked": "已解鎖減免{{offPercent}}%！"
+          },
+          "free": {
+            "locked": "免費商品",
+            "unlocked": "已解鎖免費商品！"
+          },
+          "unlocked": {
+            "tip": "您現在可以享受商品優惠"
+          }
+        },
+        "threshold": "購買{{threshold}}"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}}折",
+      "copySuccessText": "折扣碼複製成功",
+      "copyText": "複製",
+      "freeShipping": "免運費",
+      "threshold": "滿{{threshold}}"
+    },
+    "autoCoupon": {
+      "shopMore": "更多"
+    },
     "bundle": {
       "saveTip": "一起購買可節省 {{amount}}",
       "title": "經常一起購買"
     },
     "customer-purchase-limit": "每人限購{{count}}件",
     "customer-purchase-limit-each-item": "每人每款商品限購{{count}}件",
+    "discount-coupon-banner": {
+      "getCode": "獲取折扣券"
+    },
     "discount-coupon": {
       "applied": "已應用",
       "apply": "套用",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "熱賣中",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "再買{{threshold}}件，其中一件享受免費",
+        "b11_t1_s1_normal": "再買{{threshold}}件，其中一件可減免{{willSave}}",
+        "b11_t1_s2_free": "恭喜！ 其中一件已免費",
+        "b11_t1_s2_next_free": "恭喜！ 已減免{{saved}}！{{br}}再買{{threshold}}件，其中一件享受免費",
+        "b11_t1_s2_normal": "恭喜！已減免{{saved}}！{{br}}再買{{threshold}}件，其中一件可減免{{willSave}}",
+        "b11_t1_s3_free": "恭喜！ 其中一件已免費",
+        "b11_t1_s3_normal": "恭喜！其中一件已減免{{saved}}",
+        "b1_t0_s1": "買{{threshold}}更多省{{willSave}}",
+        "b1_t0_s2": "已省{{saved}}！{{br}}買{{threshold}}以上省{{willSave}}",
+        "b1_t0_s3": "恭喜你！您節省了{{saved}}！",
+        "b1_t1_s1": "買{{threshold}} 件以上省{{willSave}}",
+        "b1_t1_s2": "已省{{saved}}！{{br}}買{{threshold}}件以上省{{willSave}}",
+        "b1_t1_s3": "恭喜你！您節省了{{saved}}！",
+        "b2_t0_s1": "買{{threshold}} 或更多节省{{willSave}}",
+        "b2_t0_s2": "已省{{saved}}！{{br}}買{{threshold}}以上省{{willSave}}",
+        "b2_t0_s3": "恭喜你！您節省了{{saved}}！",
+        "b2_t1_s1": "買{{threshold}}件以上，省{{willSave}}",
+        "b2_t1_s2": "已省{{saved}}！{{br}}買{{threshold}}件以上省 {{willSave}}",
+        "b2_t1_s3": "恭喜你！您節省了{{saved}}！",
+        "b3_t0_s1_unlimited": "再買 {{threshold}}，可享 <span class=\"custom-sale-color\" style=\"font-size:14px;\">免運費</span>!",
+        "b3_t0_s1_upper_limit": "再買 {{threshold}}，可享 <span class=\"custom-sale-color\" style=\"font-size:14px;\">免運費</span>! （免運費金額上限{{upperLimit}}）",
+        "b3_t0_s3_unlimited": "恭喜！ 您已獲得 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>!",
+        "b3_t0_s3_upper_limit": "恭喜！ 您已獲得 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>! (免運費金額上限{{upperLimit}})",
+        "b3_t1_s1_unlimited": "再買 {{threshold}}件，享 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>!",
+        "b3_t1_s1_upper_limit": "再買 {{threshold}}件，享 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>! (免運費金額上限{{upperLimit}})",
+        "b3_t1_s3_unlimited": "恭喜！ 您已獲得 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>!",
+        "b3_t1_s3_upper_limit": "恭喜！ 您已獲得 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>! (免運費金額上限{{upperLimit}})",
+        "b9_t1_s1": "再買{{threshold}}件，其中{{willSave}}件免費",
+        "b9_t1_s2": "恭喜！已得{{saved}}件免費！再購買{{threshold}}件，其中{{willSave}}件免費",
+        "b9_t1_s3": "恭喜！其中{{saved}}件已免費"
+      },
+      "discount_tag": {
+        "b11_t1_free": "買{{threshold}}件，其中一件享受免費",
+        "b11_t1_normal": "買{{threshold}}件，其中一件可減免{{save}}",
+        "b1_t0": "買{{threshold}}節省{{save}}",
+        "b1_t1": "買{{threshold}}件節省{{save}}",
+        "b2_t0": "買{{threshold}}節省{{save}}",
+        "b2_t1": "買{{threshold}}件節省{{save}}"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "恭喜！ 其中一件已免費",
               "normal": "恭喜！其中一件已減免{{saved}}"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "恭喜，您可以享受{{benefitCount}}件商品免費",
+                "normal": "恭喜，您可以享受{{benefitCount}}件商品減免{{willSave}}"
+              },
+              "free": "買{{threshold}}，享受{{benefitCount}}件商品免費",
+              "normal": "買{{threshold}}，{{benefitCount}}件商品可減免{{willSave}}"
+            },
+            "step3": {
+              "free": "恭喜！您已獲得其中{{benefitCount}}件商品免費!",
+              "normal": "恭喜！您已獲得其中{{benefitCount}}件商品減免{{saved}}!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "恭喜，您可以享受{{benefitCount}}件商品免費",
+                "normal": "恭喜，您可以享受{{benefitCount}}件商品減免{{willSave}}"
+              },
+              "free": "買{{threshold}}件，享受{{benefitCount}}件商品免費",
+              "normal": "買{{threshold}}件，{{benefitCount}}件商品可減免{{willSave}}"
+            },
+            "step3": {
+              "free": "恭喜！您已獲得其中{{benefitCount}}件商品免費!",
+              "normal": "恭喜！您已獲得其中{{benefitCount}}件商品減免{{saved}}!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "付款方式",
     "pay-way-logo-and-more": "更多",
     "payment-security-description": "所有交易均安全，並已加密。",
+    "payments-name": {
+      "COD": "貨到付款",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "信用卡"
+    },
     "pic-upload-fail": "無法上傳 {{name}} 影像",
     "pick-address": "收貨地址",
     "please-choose-area": "請選取地區",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "產品已售完",
     "product-tax": "商品稅",
     "quantity": "數量",
+    "receiver-info": "運送地址",
     "recieve-address-unavailable-rechoose": "沒有可用於運送至收件者地址的方式。請返回以重新選取",
     "reciever-fullname": "收件者名字",
     "reciever-info": "運送地址",
@@ -1223,12 +1734,30 @@
     "user-cancel-apply": "使用者撤銷要求",
     "will-discount": "預估折扣",
     "wrong-product": "產品錯誤",
-    "you-are-paying-wait-result": "已送出您的付款要求。來自 {{- payChannel}} 的付款結果擱置中",
+    "you-are-paying-wait-result": "已送出您的付款要求。來自 {{payChannel}} 的付款結果擱置中",
     "your-apply-auditing-sure-backout": "正在審核您的退貨要求。撤銷要求？",
     "your-delivery-need-choose-store": "所有運送方式都需要商店資訊",
     "your-order-created": "已送出您的訂單",
     "your-order-not-pay": "您尚未完成訂單付款",
     "your-refund-order-created": "已經送出您的退貨訂單"
+  },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "優惠代碼不可超過 25 個字元",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} 優惠碼不適用當前物流方式",
+      "discount_code_invalid": "你購物車內的商品不適用於{{discountCode}}優惠碼",
+      "discount_codes_cannot_stack": "商品已經存在一個優惠活動，不可與其他優惠疊加",
+      "discounts_cannot_stack": "限時折扣和優惠碼活動互斥",
+      "enter_a_valid_discount_code": "請輸入有效的優惠碼",
+      "free_shipping": "包郵",
+      "order_seller_discount": "商家自定義折扣",
+      "order_tax": "稅費",
+      "order_tip": "小費",
+      "payment_subtotal_cost": "小計",
+      "point_discount": "積分折扣",
+      "shipping_fee": "運送",
+      "trade_coupon_discount": "優惠"
+    }
   },
   "user": {
     "account": "賬戶",
@@ -1259,31 +1788,43 @@
     "signUp": "註冊",
     "subscription-text": "註冊電子郵件以獲取更新和獨家優惠等信息",
     "udbResponse": {
-      "err-1": "參數為空",
-      "err-13": "工作階段逾時",
-      "err-4": "參數無效",
-      "err-5": "不正當操作",
-      "err-999": "系統錯誤",
+      "err-1": "服務異常",
+      "err-13": "服務異常",
+      "err-4": "服務異常",
+      "err-5": "服務異常",
+      "err-999": "服務異常",
       "err1001": "密碼錯誤",
       "err1002": "使用者不存在",
       "err1003": "帳戶暫時受到鎖定",
-      "err1004": "請勿太頻繁嘗試",
+      "err1004": "操作頻繁，請稍後重試",
       "err1005": "代碼過期",
       "err1006": "代碼錯誤",
-      "err1007": "驗證次數過多，請取得另一組代碼",
-      "err1008": "尚未設定第三方 ID 或管道",
-      "err1009": "第三方驗證失敗",
-      "err1010": "傳送代碼失敗",
-      "err1017": "賬號有風險",
+      "err1007": "驗證碼操作頻繁，請重新獲取驗證碼",
+      "err1008": "未配置第三方渠道登錄",
+      "err1009": "調用第三方接口失敗",
+      "err1010": "發送失敗",
+      "err1011": "賬號未激活",
+      "err1012": "服務異常",
+      "err1013": "服務異常",
+      "err1014": "校驗驗證碼失敗",
+      "err1015": "請校驗動態驗證碼",
+      "err1016": "服務異常",
+      "err1017": "該賬號存在風險",
+      "err1018": "郵箱已綁定",
+      "err1020": "登錄超時",
+      "err1021": "登錄超時",
+      "err1022": "賬號已綁定",
+      "err1023": "服務異常",
+      "err1024": "服務異常",
       "err2001": "該手機已經註冊",
       "err2002": "該電子郵件已經註冊",
       "err2003": "請勿太頻繁嘗試",
       "err2004": "代碼過期",
       "err2005": "代碼錯誤",
       "err2006": "驗證次數過多，請取得另一組代碼",
-      "err2007": "傳送代碼失敗",
+      "err2007": "服務異常，稍後重試",
       "err2016": "賬號有風險",
-      "err3001": "Cookie 無效",
+      "err3001": "服務異常，稍後重試",
       "err3002": "不正當操作",
       "err3003": "請勿太頻繁嘗試",
       "err3004": "代碼過期",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "帳戶綁定",
-      "account-info": "帳戶資訊",
+      "account-info": "賬戶",
       "account-subscription-email": "傳送至電子郵件",
       "account-subscription-line": "傳送至 Line 應用程式",
       "account-subscription-messenger": "傳送至 Messenger",
@@ -1310,7 +1851,9 @@
       "bind": "綁定",
       "change-password": "變更密碼",
       "email": "電子郵件",
+      "firstName": "名字",
       "general-member": "一般會員",
+      "lastName": "姓氏",
       "member-level": "會員等級",
       "memberLevelCom": {
         "defaultLevel": "一般會員",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "修改電子郵件",
       "modify-phone": "修改電話",
+      "nicknameEmptyError": "First Name 和 Last Name 不能都為空",
+      "notSet": "未設置",
       "password": "密碼",
       "phone": "行動電話",
       "reset-password-error": "請先綁定電子郵件或行動電話",
       "subscription-notification": "訂閱通知",
       "unsubscribed": "已取消訂閱",
-      "username": "使用者名稱",
-      "username-message": "請輸入您的使用者名稱！",
-      "username-placeholder": "請輸入您的使用者名稱"
+      "username": "姓名",
+      "username-message": "請輸入您的名稱",
+      "username-placeholder": "請輸入您的名稱"
     },
     "address": {
       "add": "新增地址",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "已購買的產品",
     "cancel": "取消",
+    "datePicker": {
+      "mobile": {
+        "cancel": "取消",
+        "confirm": "確定",
+        "title": "選取日期"
+      },
+      "pc": {
+        "clear": "清除",
+        "dateFormat": "yyyy-MM-dd",
+        "days0": "週日",
+        "days1": "週一",
+        "days2": "週二",
+        "days3": "週三",
+        "days4": "週四",
+        "days5": "週五",
+        "days6": "週六",
+        "daysMin0": "日",
+        "daysMin1": "一",
+        "daysMin2": "二",
+        "daysMin3": "三",
+        "daysMin4": "四",
+        "daysMin5": "五",
+        "daysMin6": "六",
+        "daysShort0": "日",
+        "daysShort1": "一",
+        "daysShort2": "二",
+        "daysShort3": "三",
+        "daysShort4": "四",
+        "daysShort5": "五",
+        "daysShort6": "六",
+        "firstDay": "1",
+        "months0": "一月",
+        "months1": "二月",
+        "months10": "十一月",
+        "months11": "十二月",
+        "months2": "三月",
+        "months3": "四月",
+        "months4": "五月",
+        "months5": "六月",
+        "months6": "七月",
+        "months7": "八月",
+        "months8": "九月",
+        "months9": "十月",
+        "monthsShort0": "一月",
+        "monthsShort1": "二月",
+        "monthsShort10": "十一月",
+        "monthsShort11": "十二月",
+        "monthsShort2": "三月",
+        "monthsShort3": "四月",
+        "monthsShort4": "五月",
+        "monthsShort5": "六月",
+        "monthsShort6": "七月",
+        "monthsShort7": "八月",
+        "monthsShort8": "九月",
+        "monthsShort9": "十月",
+        "timeFormat": "HH:mm",
+        "today": "今天"
+      }
+    },
+    "deleteAccount": {
+      "address": "地址",
+      "card": "信用卡號",
+      "deadline": "出於業務報告的目的，您的訂單仍將可見。您的賬戶數據將於{{time}}被刪除，您可在該日期之前取消此過程",
+      "email": "電子郵件",
+      "ip": "IP地址",
+      "name": "名稱",
+      "nextStep": "下一步",
+      "notify": "您可申請註銷此賬戶。賬戶註銷後，任何用於識別此賬戶的信息將被刪除，包括：",
+      "revoke": "取消註銷",
+      "revokeMessage": "賬號處於註銷中，賬戶數據將於{{time}}被刪除，您可在該日期之前撤銷此註銷流程",
+      "timeout": "操作超時，請重新驗證",
+      "title": "註銷賬戶",
+      "verifyEmailMessage": "在進行註銷操作前，我們需要驗證您的身份\n您的郵箱{{email}}將收到驗證碼郵件",
+      "verifyPhoneMessage": "在進行註銷操作前，我們需要驗證您的身份\n您的手機{{phone}}將收到驗證短信"
+    },
     "edit": "編輯",
     "editAddress": {
       "address1-message": "少於 512 個字元！",
       "address2-message": "少於 512 個字元！",
       "city-message": "請選取您所在城市！",
+      "common-max": "少於 {{max}} 个字符！",
+      "common-min": "大於 {{min}} 个字符！",
       "contact-message": "請輸入您的聯絡人姓名！",
       "country-message": "請選取您所在國家/地區！",
       "default": "設為預設地址",
@@ -1440,6 +2062,7 @@
     "save": "儲存",
     "sign-out": "登出",
     "subscription": {
+      "desc": "可以獲取店舖的最新活動消息",
       "email": "電子郵件",
       "line": "LINE",
       "messenger": "Messenger",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "您將不再收到任何營銷信息，之後可以隨時訂閱"
+      "text": "您將不再收到任何營銷信息，之後可以隨時訂閱",
+      "title": "已從郵件列表 <italic>{{name}}</italic> 中取消訂閱"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "待處理的訂單"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

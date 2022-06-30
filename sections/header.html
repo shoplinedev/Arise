@@ -6,16 +6,20 @@
 
 {{!-- 侧边栏导航 --}}
 {{#snippet 'global_drawer' id="menu-drawer" position='left'}}
-  {{#child 'head'}}
-    {{snippet 'header-btns' btns='user' classnames='menu-drawer__header'}}
-  {{/child}}
+  {{#if section.settings.show_user_entry}}
+    {{#child 'head'}}
+      {{snippet 'header-btns' btns='user' classnames='menu-drawer__header'}}
+    {{/child}}
+  {{/if}}
   {{#child}}
     {{snippet 'drawer-menu' main_menu=main_menu drawer_position='left' blockObj=blockObj}}
   {{/child}}
 {{/snippet}}
 
+{{ snippet 'global-border-shadow-style' color_scheme=section.settings.color_scheme sectionId=section.id type='modal' }}
+
 {{!-- header --}}
-<div class="header-sticky-wrapper" data-color-scheme="{{section.settings.color_scheme}}">
+<div class="header-sticky-wrapper __sl-custom-track-stage-header" data-color-scheme="{{section.settings.color_scheme}}">
 	<div id="stage-headerWrapper" class="header__wrapper">
     <header class="header__main" id="stage-header" data-sticky={{boolean section.settings.header_style}} data-section-id="{{section.id}}">
       {{snippet 'header/header-layout-left-down' blockObj=blockObj settings=section.settings  main_menu=main_menu}}

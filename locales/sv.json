@@ -29,26 +29,136 @@
     "activity-price-limit": "Du kan bara köpa {{num}} delar av denna produkt med rabatter",
     "activity-product-limit": "Du kan köpa så många produkter som möjligt {{stock}} med rabatter samtidigt",
     "activity-title-limit": "Nedan överskrider produkterna köpgränsen, gå alltid till kassan?",
+    "cart": {
+      "cancel": "Avbryt",
+      "confirm": "Okej",
+      "continue": "Fortsätta",
+      "got_it": "Jag förstod väl",
+      "return_to_cart": "Tillbaka till karta"
+    },
     "checkout-error": "Det finns minst en produkt som inte finns i inköpsKARTA. Justera artiklarna i KARTA för kassan.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Nedan överskrider produkterna köpgränsen, gå alltid till kassan?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "En minskning har tillämpats på denna beställning. Kan inte lägga till ytterligare en reduktion."
+    },
+    "discount": {
+      "coupon_code_amount": "Kupong",
+      "coupon_code_exceed_not_25_characters": "Kampanjkoden får inte överstiga 25 tecken",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} Kupongen är giltig för leveransmetoden",
+      "discount_code_invalid": "{{discountCode}} anges korrekt, men priset eller mängden på varorna uppfyller inte kraven",
+      "discount_codes_cannot_stack": "Det är redan ett favoritevenemang för produkten, som inte kan användas i samband med andra favoritevenemang",
+      "enter_a_valid_discount_code": "Minskningskoden anges felaktigt",
+      "expected_discount": "Rabatt"
+    },
+    "discount_item": {
+      "buy_limit5": "Du kan köpa så många produkter som möjligt {{stock}} med rabatter samtidigt"
+    },
+    "discount_price": {
+      "buy_limit3": "Du kan bara köpa {{stock}} delar av denna produkt med rabatter"
+    },
     "get": "Få rabatt",
     "go-shopping": "FORTSÄTT DIN KÖP",
+    "item": {
+      "add_limit1": "Lägg till upp till 100 artiklar",
+      "add_limit2": "Den maximala mängden för samma produkt är 999 stycken",
+      "removed": "OGILTIG",
+      "sold_out": "SLUTSÅLT"
+    },
     "login-description": "Redan medlem? Anslutning kan vara bekvämare för att hantera kontrollen!",
     "login-membership": "Gratis medlemskap",
     "most-100-sku": "Lägg till upp till 100 artiklar",
     "most-buy-999": "Den maximala mängden för samma produkt är 999 stycken",
     "not-participation-offers": "Icke-deltagande rabatter",
+    "notices": {
+      "change_password_after_verification": "Du kan ändra lösenordet efter verifiering",
+      "excess_product": "Nedanstående produkter överskrider köpgränsen, ändra mängden",
+      "insufficient_product_inventory": "Otillräcklig produktinventar",
+      "network": "Nätverksfel",
+      "product_expired": "Produkten är föråldrad",
+      "product_limit": "Produktgränsen har överskridits",
+      "product_selected_invalid": "Tyvärr kan den produkt du har valt inte köpas. Vänligen återfört",
+      "store_nonexistent": "Butiken finns inte"
+    },
+    "order": {
+      "authorized": "Auktoriserad",
+      "canceled": "Ringde tillbaka",
+      "canceled_order": "Ringde tillbaka",
+      "click_to_track": "Följ ditt paket genom att klicka på länken nedan:",
+      "deleted": "OGILTIG",
+      "invalid_order_number": "ogiltigt ordernummer",
+      "no_more_info": "Ingen mer information",
+      "pay_amount": "betala belopp",
+      "payment_voucher_confirmation": "Jag fattar",
+      "receiver_account": "mottagarkonto",
+      "reference_number": "referensnummer",
+      "sequence": "Nr.{{id}}",
+      "shipping_address": "Leveransadress",
+      "time": "Beställd från:",
+      "total_amount": "{{transPackages}} punkt totalt",
+      "total_item_amount": "{{transPackages}} punkterna totalt",
+      "try_again": "Uppladdningen misslyckades. Var god försök igen.",
+      "try_later": "systemet är upptaget, försök igen senare.",
+      "upload_image_within_10_m_b": "Ladda upp JPG, PNG, GIF-bilder inom 10 MB",
+      "upload_time": "uppladdningstid",
+      "voucher_amount_limit": "Du kan bara ladda upp upp till 5 kuponger."
+    },
+    "payment": {
+      "channel": "Betalningskanal",
+      "create_time": "Skapad",
+      "paid": "Betald",
+      "partially_paid": "Delvis betalad",
+      "paying": "Betalning",
+      "payment_details": "Betalningsinformation",
+      "reference_number": "Transaktionsreferensnummer",
+      "status": "Stat",
+      "subtotal_price": "Totalt",
+      "sum": "Amountv",
+      "total": "Totalet",
+      "unpaid": "Jag betalar inte",
+      "update_time": "Uppdaterad"
+    },
+    "policy": {
+      "privacy_policy": "Sekretesspolicy"
+    },
+    "product-no-exists": "Produkten finns inte",
+    "refund": {
+      "click_to_view": "Klicka för att se",
+      "custom_preview": "Personlig översikt"
+    },
     "render-add-items": "Din köpkorg är tom.",
     "render-empty-status": "Ingen artikel i din köpkorg",
+    "shipping": {
+      "no_info": "Ingen leveransinformation för närvarande, kontrollera senare.",
+      "package_tracking": "Följt av Paket",
+      "partially_shipped": "Delvis leveransen",
+      "preparing_order": "Produktförberedelse",
+      "shipped_order": "Levereras"
+    },
     "shopping-fees": "köpkostnader",
     "shopping-money": "rabatten, Skatter och frakt kommer att beräknas i nästa steg",
     "shopping-money-step": "Skatter och fraktkostnader beräknade i kassan",
+    "shpping": {
+      "service_terms": "Servicevillkor"
+    },
     "stock-limit": "{{stock}} delar i stock",
+    "taxIncluded": {
+      "textTag": "Skatt ingår"
+    },
+    "tips": {
+      "change_binding_after_verification": "Kan aktivera / ändra {{value}} efter verifiering",
+      "reset_password": "Du återställer Lösenord för kontot {{account}}"
+    },
     "view-link": "Klicka för att se",
     "view-pic": "Personlig översikt",
     "view-shopping-cart": "Se Inköpskorg",
     "added-to-cart": "Tillagd i din korg",
     "cart-subtotal": "Kärra delsumma",
     "view-cart": "Visa varukorg"
+  },
+  "cascade": {
+    "choose": "Prosimo, izberite eno od možnosti"
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Tack för att du kontaktar oss, vi återkommer till dig så snart som möjligt."
   },
+  "customer": {
+    "account": {
+      "add-email": "Lägg till e-post",
+      "add-phone": "Lägg till ett mobilnummer",
+      "deadline": "För företagsrapportens skull kommer din beställning fortfarande att vara synlig. Dina kontouppgifter kommer att raderas vid {{time}}, du kan avbryta processen före det datumet",
+      "gender_female": "Kvinna",
+      "gender_male": "Man",
+      "gender_secret": "Håll det hemligt",
+      "not_set": "Inte inställt",
+      "reset_password_error_hint": "Aktivera först e-postmeddelandet eller mobiltelefonen",
+      "verify_email_message": "Före avslutning av konto måste vi verifiera er identitet\nEtt verifieringsmail kommer skickas till er epost {{email}}",
+      "verify_phone_message": "Före avslutning av kontot måste vi verifiera din identitet\nVi kommer skicka ett verifieringsmedelande till er mobilnummer {{phone}}"
+    },
+    "address": {
+      "add_address": "Lägg Till en ny Adress",
+      "common_max": "",
+      "common_min": "fler än {{min}} tecken",
+      "edit_last_name_hint": "Ange ditt efternamn snälla!",
+      "edit_phone_hint": "Ange din mobiltelefon!",
+      "mobile-errorMessage": "Ange ett giltigt telefonnummer",
+      "no_adress_data": "Det finns ingen leveransadress just nu"
+    },
+    "common": {
+      "back-to-user-center": "Återgå Till Användningscentret",
+      "cancel": "Avbryt",
+      "confirm": "Okej",
+      "email": "E-postadress",
+      "email2": "Mail",
+      "enter-email": "Ange din e-postadress",
+      "enter-mobile-phone": "Ange mobilnumret",
+      "member-login": "Medlemsregistrering",
+      "mobile": "Telefonnummer",
+      "mobile-phone": "Cellnummer"
+    },
+    "email": {
+      "mail_common": "Mail"
+    },
+    "general": {
+      "apr": "apr.",
+      "april": "april",
+      "aug": "aug.",
+      "august": "augusti",
+      "bind_success": "Ansluten",
+      "cancel_mobile_button": "avbryt",
+      "clear_button": "Avbryt",
+      "confirm_button": "Okej",
+      "date_format": "MM/dd/yyyy",
+      "dec": "dec.",
+      "december": "december",
+      "email_empty_hint": "Ange e-postadressen",
+      "email_error_hint": "Ange en e-postadress i giltigt format och mindre än 50 tecken",
+      "enter_verification_code": "Ange verifieringskoden",
+      "error_message_1001": "Lösenordsfel",
+      "error_message_1002": "Användaren existerar inte",
+      "error_message_1003": "Ditt konto har inaktiverats efter en avvikelse; Vänligen kontakta säljaren för att upphäva förbudet",
+      "error_message_1004": "Ofta drift , försök igen senare",
+      "error_message_1005": "Utgått kod",
+      "error_message_1006": "Kodfel",
+      "error_message_1007": "Bekräftelseskoddrift är vanligt. Få verifieringskoden igen",
+      "error_message_1008": "Tredjeparts kanalloggning är inte konfigurerad",
+      "error_message_1009": "Tredjeparts Gränssnitts Samtal misslyckades",
+      "error_message_1010": "Misslyckad överföring",
+      "error_message_1011": "Konto är inte aktiverat",
+      "error_message_1012": "Service Undantag",
+      "error_message_1013": "Service Undantag",
+      "error_message_1014": "Bekräftelsekoden misslyckades",
+      "error_message_1015": "Bekräfta den dynamiska autentiseringskoden",
+      "error_message_1016": "Service Undantag",
+      "error_message_1017": "Det här kontot är exponerat",
+      "error_message_1018": "Postlådan är redan bunden i",
+      "error_message_1020": "Inloggningen var tidskrävande",
+      "error_message_1021": "Inloggningen var tidskrävande",
+      "error_message_1022": "Kontonumret är bindande",
+      "error_message_1023": "Service Undantag",
+      "error_message_1024": "Service Undantag",
+      "error_message_2": "Service Undantag",
+      "error_message_2001": "Mobiltelefonen sparades",
+      "error_message_2002": "E-postmeddelandet har sparats",
+      "error_message_2003": "Försök inte så ofta",
+      "error_message_2004": "Utgått kod",
+      "error_message_2005": "Kodfel",
+      "error_message_2006": "För många verifieringstider, få en annan kod",
+      "error_message_2007": "Undantag i tjänsten, försök igen senare",
+      "error_message_2016": "Konto i fara",
+      "error_message_3": "Service Undantag",
+      "error_message_3001": "Undantag i tjänsten, försök igen senare",
+      "error_message_3002": "Användare som inte är relaterade till mobiltelefoner / postlådor försöker ändra sitt lösenord",
+      "error_message_3003": "Försök inte så ofta",
+      "error_message_3004": "Utgått kod",
+      "error_message_3005": "Kodfel",
+      "error_message_3006": "För många verifieringstider, få en annan kod",
+      "error_message_3007": "Mobiltelefonen finns inte",
+      "error_message_3008": "E-post finns inte",
+      "error_message_3009": "Mobiltelefonen har anslutits av andra konton",
+      "error_message_3010": "E-postmeddelandet länkades av andra konton",
+      "error_message_3014": "Det gick inte att returnera textmeddelande / e-postmeddelanden",
+      "error_message_4": "Service Undantag",
+      "error_message_5": "Service Undantag",
+      "error_message_6": "Service Undantag",
+      "feb": "feb.",
+      "february": "februari",
+      "first_day": "0",
+      "fr": "fr",
+      "fri": "fre",
+      "friday": "fredag",
+      "image_size_less_than_tips": "Bilderna ska vara mindre än {{max}} MB",
+      "jan": "jan.",
+      "january": "januari",
+      "jul": "juli",
+      "july": "juli",
+      "jun": "juni",
+      "june": "juni",
+      "mar": "mars",
+      "march": "mars",
+      "max_image_upload_tips": "Du kan ladda ner så många bilder som möjligt {{max}}",
+      "may": "maj",
+      "may_short": "maj",
+      "mo": "må",
+      "mon": "mån",
+      "monday": "måndag",
+      "network_error_message": "Inget internet",
+      "nov": "nov.",
+      "november": "november",
+      "oct": "okt.",
+      "october": "oktober",
+      "okay_common": "OKEJ",
+      "password_empty_hint": "Ange lösenord",
+      "phone_empty_message": "Ange mobilnumret",
+      "phone_error_message": "Ange ett giltigt mobilnummer",
+      "phone_number_error_message": "Ange ett giltigt telefonnummer",
+      "repeat_passport_error": "De lösenord du angav matchar inte",
+      "resend": "Återvänd",
+      "sa": "lö",
+      "sat": "lör",
+      "saturday": "lördag",
+      "select__date": "Välj ett Datum",
+      "send": "Att skicka",
+      "send_error": "Skicka först verifieringskoden",
+      "send_verification_code_hint": "Ange lösenord igen",
+      "sep": "sep.",
+      "september": "september",
+      "set_password": "Ta bort ett lösenord med en längd på minst 6 tecken och en maximal längd på 18 tecken",
+      "su": "sö",
+      "sun": "sön",
+      "sunday": "söndag",
+      "th": "to",
+      "thu": "tors",
+      "thursday": "torsdag",
+      "time_format": "hh:mm aa",
+      "today": "I dag",
+      "tu": "ti",
+      "tue": "tis",
+      "tuesday": "tisdag",
+      "user_agreement_tip": "Läs och acceptera användningsvillkoren först",
+      "username_empty_hint": "Ange e-postadressen eller mobilnumret",
+      "verification_code_sent_tip": "Verifieringskoden har skickats till ditt konto",
+      "we": "on",
+      "wed": "ons",
+      "wednesday": "onsdag"
+    },
+    "network-err-msg": "Inget internet",
+    "phone": {
+      "mobile_common": "Telefonnummer"
+    },
+    "subscription": {
+      "unsubscribe_success": "Prenumerationen avbryts, du kommer att omdirigeras till hemsidan"
+    },
+    "tips": {
+      "and": "och",
+      "bind-change-email": "Anslut / Ändra ett e-postmeddelande",
+      "bind-change-mobile-phone-number": "Anslut/ Ändra ett mobilnummer",
+      "bind-success": "Ansluten",
+      "change-binding-after-verification": "Kan aktivera / ändra {{value}} efter verifiering",
+      "continue-as-a-guest": "Fortsätt som gäst",
+      "forget-password": "Lösenord glömt",
+      "i-agree-with-the-shop": "Jag håller med",
+      "login": "LOGGA IN",
+      "or-use-the-following-method-to-log-in": "Eller börja sintura med följande metoder",
+      "password-can-be-changed-after-verification": "Du kan ändra lösenordet efter verifiering",
+      "please-read-and-agree-to-the-user-agreement-first": "Läs och acceptera användningsvillkoren först",
+      "poroceed-to-checkout": "Fortsätt till utcheckningen",
+      "register": "Skriva på",
+      "reset-password": "Du återställer Lösenord för kontot {{account}}",
+      "set-new-password": "Återställ lösenord",
+      "update-password": "Ändra lösenord",
+      "update-success": "Modifierad",
+      "verification-code-has-been-sent-to-your-account": "Verifieringskoden har skickats till ditt konto",
+      "verify-account-to-reset-password": "Kontrollera ditt konto och återställ ditt lösenord"
+    },
+    "trade": {
+      "go-login": "Gå prenumerera"
+    },
+    "unsubscribe": {
+      "btn": "Avsluta prenumerationen",
+      "reason": {
+        "other": {
+          "length": "Ange upp till 300 tecken",
+          "placeholder": "Mata in innehåll"
+        }
+      },
+      "reason1": "Jag kommer inte längre att få dessa e-postmeddelanden",
+      "reason2": "Jag får många e-post",
+      "reason3": "Jag prenumererade inte på den här listan",
+      "reason4": "E-post är inte relevanta för mig",
+      "reason5": "Innehållet i e-post är mycket omfattande",
+      "reason6": "Övrigt",
+      "subtitle": "Vi är ledsna att du går! Låt oss veta varför du avregistrerad:",
+      "success": "Prenumerationen avbryts, du kommer att omdirigeras till hemsidan",
+      "title": "Avsluta prenumerationen"
+    }
+  },
   "footer": {
     "copyright": "Alla Rättigheter Förbehållna",
     "followus": "FÖLJ OSS",
@@ -221,9 +542,24 @@
       "title": "Din integritet är viktig för oss"
     }
   },
+  "general": {
+    "404": {
+      "button": "Fortsätt handla",
+      "subtext": "Sidan du letar efter finns inte.",
+      "title": "404 Sidan hittades inte"
+    },
+    "general": {
+      "accept": "Acceptera",
+      "decline": "Vägra",
+      "link": "Integritetpolicy",
+      "tips": "För att förbättra din upplevelse använder vi cookies för att memorera anslutningsinformation, samla in statistik och erbjuda innehåll som passar dina intressen. Klicka på \"Acceptera\" för att acceptera cookies eller se vår \"Integritetpolicy\".",
+      "title": "Din integritet är viktig för oss"
+    }
+  },
   "header": {
     "cart": "Din Korg",
     "center": "Mitt",
+    "emptyPlaceholder": "",
     "login": "Logga in",
     "logout": "Logga ut",
     "navItemAll": "Allt",
@@ -367,6 +703,25 @@
           "title": "Din beställning bekräftas"
         }
       },
+      "orderstatus": {
+        "PayAmount": "betala belopp",
+        "ReceiverAccount": "mottagarkonto",
+        "ReferenceNumber": "referensnummer",
+        "UploadTime": "uppladdningstid",
+        "action": {
+          "UploadVoucher": "Ladda upp kupong"
+        },
+        "feedback": {
+          "CountLimit": "Du kan bara ladda upp upp till 5 kuponger.",
+          "InvalidOrderNumber": "ogiltigt ordernummer",
+          "SizeLimte": "Ladda upp JPG, PNG, GIF-bilder inom 10 MB",
+          "SystemBusy": "systemet är upptaget, försök igen senare.",
+          "UploadFail": "Uppladdningen misslyckades. Var god försök igen."
+        },
+        "notice": {
+          "UploadVoucher": "Ladda upp banköverföringskupongen så bekräftar vi."
+        }
+      },
       "packages": {
         "amount": {
           "channel-surcharge": "Betalningsprovision",
@@ -428,9 +783,24 @@
         "subscriptions-title": "Prenumerationer",
         "title": "Information",
         "unshipped-order-num": "Behandling ({{num}} punkterna)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "Betalningen har överförts",
+          "WaittingforPayment": "Väntar på utbetalning"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "Jag fattar"
+          }
+        }
+      },
+      "taxFee": "Beskatta"
     },
     "help-tips": "Behöver hjälp? Kontakta oss: {{email}}",
+    "includeTax": {
+      "totalLine": "Inklusive {{price}} i skatter"
+    },
     "oms-status": {
       "arrived": "Har kommit",
       "cancelled": "Avbryta leveransen",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Avbruten",
       "already-paid": "Betald",
+      "authorized": "Auktoriserad",
       "failed": "Betalningen misslyckades",
       "partial-payment": "Delvis betalad",
       "partial-refund": "Delvis återbetalas",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "Det finns fortfarande ingen information om logistik och betalningsmetoder",
     "no-product-introduction": "Det finns fortfarande ingen produktlansering",
     "previewLinkToast": "Åtgärden för länköversikten stöds inte",
+    "productTax": "skatt ingår",
     "recentlyViewedProducts": "Senaste Konsulterade Produkter",
     "recommendTitle": "Du kanske också gillar",
+    "skuLoadingTips": "Laddar variantinformation, vänta...",
     "tabPanel": {
       "comments": {
         "empty": "Det finns fortfarande ingen produktutvaluering",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "produkter"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "Inga produkter i denna kategori",
@@ -677,6 +1051,35 @@
     "sortName": "Beställd av:",
     "title": "Sök"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Lägg till en bild",
+      "didnot_bought_cannot_reviewed": "Tyvärr har du inte köpt den här produkten ännu, så du kan inte lämna en åsikt",
+      "didnot_bought_sign_in_first": "Kunder som har köpt den här produkten kan lämna sin åsikt, vänligen underteckna först",
+      "enter_at_least_one_character": "Ange minst ett ord",
+      "error_submit_again": "På grund av ett systemfel kan din åsikt inte behandlas, försök igen~",
+      "first_review": "publicera den första kommentaren nu",
+      "image_uploading": "Ladda ner, skicka senare",
+      "maximum_image_quantity": "Du kan lägga till ett maximalt antal bilder {{total}}",
+      "maximum_image_size": "Den maximala bildstorleken är {{size}} Mo",
+      "no_review": "Inga kommentarer än",
+      "only_supports__image_format": "Stöder bara att ladda ner filen .jpg .jpeg .png .bmp",
+      "ratings": "Anteckningar",
+      "sign_in": "Logga in",
+      "submit": "Att skicka",
+      "thanks_for_your_review": "Tack för din åsikt",
+      "write_a_review": "Skriva en recension",
+      "write_a_review_for_the_product": "Ange din åsikt om denna produkt"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Den maximala tillåtna mängden för denna begränsade produkt är {{num}}",
+      "activity_toast_product__limit": "Köp begränsat till {{stock}} kampanjprodukt",
+      "activity_toast_title__limit": "Nedan överskrider produkterna köpgränsen",
+      "go_to_amazon_by_link": "Köp på Amazon",
+      "go_to_rakuten_by_link": "Köp på LOTTE",
+      "go_to_yahoo_by_link": "Köp på Yahoo"
+    }
+  },
   "promotion": {
     "activity-benefit": "Evenemangserbjudanden",
     "activity-introduction": "Introduktion till evenemanget",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "<italic>{{content}}</italic> av för <italic>{{condition}}</italic>"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "Få {{offPercent}}% rabatt",
+            "unlocked": "{{offPercent}}% rabatt olåst!"
+          },
+          "free": {
+            "locked": "Gratis erbjudande",
+            "unlocked": "Gratis erbjudandet är olåst!"
+          },
+          "unlocked": {
+            "tip": "Nu kan du få rabatt på produkten"
+          }
+        },
+        "threshold": "Köp {{threshold}}"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}} av",
+      "copySuccessText": "Kupongkoden kopieras",
+      "copyText": "Kopiera",
+      "freeShipping": "Fri frakt",
+      "threshold": "Förfrågningar ovan {{threshold}}"
+    },
+    "autoCoupon": {
+      "shopMore": "Mer"
+    },
     "bundle": {
       "saveTip": "Spara {{amount}} för att köpa tillsammans",
       "title": "Ofta köpt tillsammans"
     },
     "customer-purchase-limit": "Köpgräns på {{count}} per person",
     "customer-purchase-limit-each-item": "Köpgräns för {{count}} per produkt per person",
+    "discount-coupon-banner": {
+      "getCode": "Få rabattkuponger"
+    },
     "discount-coupon": {
       "applied": "Tillämpad",
       "apply": "Applicera",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "Stor försäljning!",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "Köp {{threshold}} ytterligare artiklar, njut av en av punkterna gratis",
+        "b11_t1_s1_normal": "Köp {{threshold}} ytterligare artiklar, njut av {{willSave}} AV på en av punkterna",
+        "b11_t1_s2_free": "Grattis! njut av en av punkterna gratis",
+        "b11_t1_s2_next_free": "Grattis! {{saved}} Inspelad, {{br}} Köp {{threshold}} ytterligare punkterna, njut av en av punkterna gratis!",
+        "b11_t1_s2_normal": "Grattis! {{saved}} Inspelad, {{br}} Köp {{threshold}} ytterligare artiklar, njut av {{willSave}} AV på en av punkterna",
+        "b11_t1_s3_free": "Grattis! njut av en av punkterna gratis",
+        "b11_t1_s3_normal": "Grattis! dra nytta av {{saved}} AV på en av artiklarna",
+        "b1_t0_s1": "Köp {{threshold}} mer för att spara {{willSave}}",
+        "b1_t0_s2": "Spara {{saved}} nu! {{br}} Köp {{threshold}} mer för att spara {{willSave}}",
+        "b1_t0_s3": "Grattis! Du har sparat {{saved}}!",
+        "b1_t1_s1": "Köp {{threshold}} mer för att spara {{willSave}}",
+        "b1_t1_s2": "Spara {{saved}} nu! {{br}} Köp {{threshold}} mer för att spara {{willSave}}",
+        "b1_t1_s3": "Grattis! Du har sparat {{saved}}！",
+        "b2_t0_s1": "Köp {{threshold}} mer för att få {{willSave}} AV",
+        "b2_t0_s2": "Spara {{saved}} nu! {{br}} Köp {{threshold}} mer för att få {{willSave}} AV",
+        "b2_t0_s3": "Grattis! Du har sparat {{saved}}!",
+        "b2_t1_s1": "Köp {{threshold}} mer för att få {{willSave}} AV",
+        "b2_t1_s2": "Spara {{saved}} nu! {{br}} Köp {{threshold}} mer för att få {{willSave}} AV",
+        "b2_t1_s3": "Grattis! Du har sparat {{saved}}!",
+        "b3_t0_s1_unlimited": "Kjøp {{threshold}} igjen og nyt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>!",
+        "b3_t0_s1_upper_limit": "Kjøp {{threshold}} igjen og nyt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>! (Maksimal gratis fraktverdi {{upperLimit}})",
+        "b3_t0_s3_unlimited": "Gratulerer ! Du har kjøpt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>!",
+        "b3_t0_s3_upper_limit": "Gratulerer ! Du har kjøpt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>! (Maksimal gratis fraktverdi {{upperLimit}})",
+        "b3_t1_s1_unlimited": "Kjøp {{threshold}} mer og nyt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>!",
+        "b3_t1_s1_upper_limit": "Kjøp {{threshold}} mer og nyt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>! (Maksimal gratis fraktverdi {{upperLimit}})",
+        "b3_t1_s3_unlimited": "Gratulerer ! Du har kjøpt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>!",
+        "b3_t1_s3_upper_limit": "Gratulerer ! Du har kjøpt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>! (Maksimal gratis fraktverdi {{upperLimit}})",
+        "b9_t1_s1": "Köp {{threshold}} fler bitar, varav {{willSave}} bitar är gratis",
+        "b9_t1_s2": "Grattis! {{saved}} bitar erhållna gratis! Köp {{threshold}} fler bitar, varav {{willSave}} bitar är gratis",
+        "b9_t1_s3": "Grattis! {{saved}} av dem är gratis"
+      },
+      "discount_tag": {
+        "b11_t1_free": "Köp {{threshold}} artiklar och njut av en av artiklarna gratis",
+        "b11_t1_normal": "Köp {{threshold}} artiklar och njut av {{save}} AV på en av punkterna",
+        "b1_t0": "Köp {{threshold}} spara {{save}}",
+        "b1_t1": "Köp {{threshold}} Få {{save}} AV",
+        "b2_t0": "Köp {{threshold}} spara {{save}}",
+        "b2_t1": "Köp {{threshold}} Få {{save}} AV"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "Grattis! njut av en av punkterna gratis",
               "normal": "Grattis! dra nytta av {{saved}} AV på en av artiklarna"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Grattis, du kan njuta av {{benefitCount}} saker GRATIS",
+                "normal": "Grattis, du kan få {{willSave}} rabatt för {{benefitCount}} saker"
+              },
+              "free": "Köp {{threshold}} njut av {{benefitCount}} saker GRATIS",
+              "normal": "Köp {{threshold}} dra nytta av rabatt {{willSave}} för {{benefitCount}} saker"
+            },
+            "step3": {
+              "free": "Grattis! Du har {{benefitCount}} GRATIS saker!",
+              "normal": "Grattis! Du har {{saved}} rabatt {{benefitCount}} saker!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Grattis, du kan njuta av {{benefitCount}} saker GRATIS",
+                "normal": "Grattis, du kan få {{willSave}} rabatt för {{benefitCount}} saker"
+              },
+              "free": "Köp {{threshold}}, njut av {{benefitCount}} GRATIS saker",
+              "normal": "Köp {{threshold}}, dra nytta av rabatt {{willSave}} för {{benefitCount}} saker"
+            },
+            "step3": {
+              "free": "Grattis! Du har {{benefitCount}} GRATIS saker!",
+              "normal": "Grattis! Du har {{saved}} rabatt {{benefitCount}} saker!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Betalningsmetod",
     "pay-way-logo-and-more": "och mer",
     "payment-security-description": "Alla operationer är säkra och krypterade.",
+    "payments-name": {
+      "COD": "Leverans mot återbetalning",
+      "Paypal": "PayPal",
+      "adjustPay": "manual",
+      "third-part": "Kreditkort"
+    },
     "pic-upload-fail": "Nedladdningen av bilden misslyckades {{name}}",
     "pick-address": "Samlingsadress",
     "please-choose-area": "Välj ett område",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "Produkten är slut",
     "product-tax": "Varuskatt",
     "quantity": "MÄNGDEN",
+    "receiver-info": "Leveransadress",
     "recieve-address-unavailable-rechoose": "Det finns ingen leveransmetod tillgänglig för mottagarens adress. Vänligen ompröva",
     "reciever-fullname": "Mottagarens fullständiga namn",
     "reciever-info": "Leveransadress",
@@ -1230,6 +1741,24 @@
     "your-order-not-pay": "Du har ännu inte slutfört betalningen av din beställning",
     "your-refund-order-created": "Din returorder har gjorts"
   },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "Kampanjkoden får inte överstiga 25 tecken",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} Kupongen är giltig för leveransmetoden",
+      "discount_code_invalid": "{{discountCode}} anges korrekt, men priset eller mängden på varorna uppfyller inte kraven",
+      "discount_codes_cannot_stack": "Det är redan ett favoritevenemang för produkten, som inte kan användas i samband med andra favoritevenemang",
+      "discounts_cannot_stack": "En minskning har tillämpats på denna beställning. Kan inte lägga till ytterligare en reduktion.",
+      "enter_a_valid_discount_code": "Minskningskoden anges felaktigt",
+      "free_shipping": "gratis leverans",
+      "order_seller_discount": "Ytterligare rabatt från säljaren",
+      "order_tax": "Beskatta",
+      "order_tip": "Dricks",
+      "payment_subtotal_cost": "Totalt",
+      "point_discount": "Leverans av poäng",
+      "shipping_fee": "Sjöfart",
+      "trade_coupon_discount": "Kupong"
+    }
+  },
   "user": {
     "account": "KONTO",
     "code": "Verifieringskoden",
@@ -1259,31 +1788,43 @@
     "signUp": "SKRIVA PÅ",
     "subscription-text": "Registrera mig för e-post för att få uppdateringar, tillgång till exklusiva erbjudanden och mer.",
     "udbResponse": {
-      "err-1": "Tomma parametrar",
-      "err-13": "stoken tiden här ute",
-      "err-4": "Ogiltiga parametrar",
-      "err-5": "Olaglig operation",
-      "err-999": "Fjärrsamtal misslyckades",
+      "err-1": "Service Undantag",
+      "err-13": "Service Undantag",
+      "err-4": "Service Undantag",
+      "err-5": "Service Undantag",
+      "err-999": "Service Undantag",
       "err1001": "Lösenordsfel",
       "err1002": "Användaren existerar inte",
       "err1003": "Ditt konto har inaktiverats efter en avvikelse; Vänligen kontakta säljaren för att upphäva förbudet",
-      "err1004": "Skicka ett textmeddelande i flera gånger",
+      "err1004": "Ofta drift , försök igen senare",
       "err1005": "Utgått kod",
       "err1006": "Kodfel",
-      "err1007": "För ofta fel i verifieringskoden",
-      "err1008": "Den tredje ID eller kanalen har inte konfigurerats",
-      "err1009": "Validering av tredje part misslyckades",
-      "err1010": "Det gick inte att returnera textmeddelande / e-postmeddelanden",
-      "err1017": "Konto i fara",
+      "err1007": "Bekräftelseskoddrift är vanligt. Få verifieringskoden igen",
+      "err1008": "Tredjeparts kanalloggning är inte konfigurerad",
+      "err1009": "Tredjeparts Gränssnitts Samtal misslyckades",
+      "err1010": "Misslyckad överföring",
+      "err1011": "Konto är inte aktiverat",
+      "err1012": "Service Undantag",
+      "err1013": "Service Undantag",
+      "err1014": "Bekräftelsekoden misslyckades",
+      "err1015": "Bekräfta den dynamiska autentiseringskoden",
+      "err1016": "Service Undantag",
+      "err1017": "Det här kontot är exponerat",
+      "err1018": "Postlådan är redan bunden i",
+      "err1020": "Inloggningen var tidskrävande",
+      "err1021": "Inloggningen var tidskrävande",
+      "err1022": "Kontonumret är bindande",
+      "err1023": "Service Undantag",
+      "err1024": "Service Undantag",
       "err2001": "Mobiltelefonen sparades",
       "err2002": "E-postmeddelandet har sparats",
       "err2003": "Försök inte så ofta",
       "err2004": "Utgått kod",
       "err2005": "Kodfel",
       "err2006": "För många verifieringstider, få en annan kod",
-      "err2007": "Det gick inte att returnera textmeddelande / e-postmeddelanden",
+      "err2007": "Undantag i tjänsten, försök igen senare",
       "err2016": "Konto i fara",
-      "err3001": "Ogiltig cookie",
+      "err3001": "Undantag i tjänsten, försök igen senare",
       "err3002": "Användare som inte är relaterade till mobiltelefoner / postlådor försöker ändra sitt lösenord",
       "err3003": "Försök inte så ofta",
       "err3004": "Utgått kod",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Kontolänk",
-      "account-info": "Kontoupplysning",
+      "account-info": "Kontoen",
       "account-subscription-email": "Skicka till e-post",
       "account-subscription-line": "Skicka till Line App",
       "account-subscription-messenger": "Skicka till messenger",
@@ -1310,7 +1851,9 @@
       "bind": "Obligatorisk",
       "change-password": "Ändra lösenordet",
       "email": "E-post",
+      "firstName": "Namn",
       "general-member": "Allmän medlem",
+      "lastName": "Efternamn",
       "member-level": "Medlemsnivå",
       "memberLevelCom": {
         "defaultLevel": "Allmän medlem",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "Ändra e-postmeddelandet",
       "modify-phone": "Ändra Telefonen",
+      "nicknameEmptyError": "Både Namn och Efternamn kan inte lämnas tomma",
+      "notSet": "Inte inställt",
       "password": "Lösenord",
       "phone": "Mobiltelefon",
       "reset-password-error": "Aktivera först e-postmeddelandet eller mobiltelefonen",
       "subscription-notification": "Prenumerationsmeddelande",
       "unsubscribed": "Inte registrerad",
-      "username": "Användarnamn",
-      "username-message": "Ange ditt användarnamn!",
-      "username-placeholder": "Ange ditt användarnamn"
+      "username": "Namn",
+      "username-message": "Ange ditt namn",
+      "username-placeholder": "Ange ditt namn"
     },
     "address": {
       "add": "Lägg Till en ny Adress",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Produkter köpta",
     "cancel": "AVBRYT",
+    "datePicker": {
+      "mobile": {
+        "cancel": "avbryt",
+        "confirm": "Okej",
+        "title": "Välj ett Datum"
+      },
+      "pc": {
+        "clear": "Avbryt",
+        "dateFormat": "MM/dd/yyyy",
+        "days0": "söndag",
+        "days1": "måndag",
+        "days2": "tisdag",
+        "days3": "onsdag",
+        "days4": "torsdag",
+        "days5": "fredag",
+        "days6": "lördag",
+        "daysMin0": "sö",
+        "daysMin1": "må",
+        "daysMin2": "ti",
+        "daysMin3": "on",
+        "daysMin4": "to",
+        "daysMin5": "fr",
+        "daysMin6": "lö",
+        "daysShort0": "sön",
+        "daysShort1": "mån",
+        "daysShort2": "tis",
+        "daysShort3": "ons",
+        "daysShort4": "tors",
+        "daysShort5": "fre",
+        "daysShort6": "lör",
+        "firstDay": "0",
+        "months0": "januari",
+        "months1": "februari",
+        "months10": "november",
+        "months11": "december",
+        "months2": "mars",
+        "months3": "april",
+        "months4": "maj",
+        "months5": "juni",
+        "months6": "juli",
+        "months7": "augusti",
+        "months8": "september",
+        "months9": "oktober",
+        "monthsShort0": "jan.",
+        "monthsShort1": "feb.",
+        "monthsShort10": "nov.",
+        "monthsShort11": "dec.",
+        "monthsShort2": "mars",
+        "monthsShort3": "apr.",
+        "monthsShort4": "maj",
+        "monthsShort5": "juni",
+        "monthsShort6": "juli",
+        "monthsShort7": "aug.",
+        "monthsShort8": "sep.",
+        "monthsShort9": "okt.",
+        "timeFormat": "hh:mm aa",
+        "today": "I dag"
+      }
+    },
+    "deleteAccount": {
+      "address": "Adress",
+      "card": "Kreditkort Nr.",
+      "deadline": "För företagsrapportens skull kommer din beställning fortfarande att vara synlig. Dina kontouppgifter kommer att raderas vid {{time}}, du kan avbryta processen före det datumet",
+      "email": "Epost",
+      "ip": "IP adress",
+      "name": "Namn",
+      "nextStep": "Nästa",
+      "notify": "Du kan ansöka om att avsluta detta konto. När kontot en gång har avslutas kommer all information för identifiering av detta konto raderas, inkluderar:",
+      "revoke": "Avbryt avslutning",
+      "revokeMessage": "Det här kontot håller på att stängas, kontodata kommer att raderas vid {{time}}, du kan avbryta processen före det datumet",
+      "timeout": "Driften avbröts, Kontrollera att din igen",
+      "title": "Avsluta konto",
+      "verifyEmailMessage": "Före avslutning av konto måste vi verifiera er identitet\nEtt verifieringsmail kommer skickas till er epost {{email}}",
+      "verifyPhoneMessage": "Före avslutning av kontot måste vi verifiera din identitet\nVi kommer skicka ett verifieringsmedelande till er mobilnummer {{phone}}"
+    },
     "edit": "Redigera",
     "editAddress": {
       "address1-message": "Mindre än 512 tecken!",
       "address2-message": "Mindre än 512 tecken!",
       "city-message": "Välj ditt stad!",
+      "common-max": "",
+      "common-min": "fler än {{min}} tecken",
       "contact-message": "Ange ditt namn!",
       "country-message": "Välj ditt land snälla!",
       "default": "Ställ in som standardadress",
@@ -1440,6 +2062,7 @@
     "save": "SPARA",
     "sign-out": "Logga Ut",
     "subscription": {
+      "desc": "Få de senaste nyheterna om butiken",
       "email": "E-post",
       "line": "LINJE",
       "messenger": "Budbärare",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "Du kommer inte att få fler marknadsföringsuppdateringar från oss. Du kan prenumerera igen när som helst"
+      "text": "Du kommer inte att få fler marknadsföringsuppdateringar från oss. Du kan prenumerera igen när som helst",
+      "title": "Du har avslutat prenumerationen på e-postlistan <italic>{{name}}</italic>"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Pågående ordning"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

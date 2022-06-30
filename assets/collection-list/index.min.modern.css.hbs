@@ -13,7 +13,7 @@
   background-color:#fff;
 }
 .collection-item .collection-item-image-wrapper{
-  overflow:hidden;
+  border-radius:{{ append (cond (lte theme.settings.card_border_radius 0) 0 (add theme.settings.card_border_radius theme.settings.card_border_thickness))  'px' }};
   position:relative;
   -webkit-transform:translateZ(0);
           transform:translateZ(0);
@@ -28,11 +28,56 @@
 [data-edges=rounded] .collection-item .collection-item-image-wrapper{
   border-radius:15px;
 }
-
+.collection-item .collection-item-image-wrapper.collection-item-image-wrapper-circle,.collection-item .collection-item-image-wrapper.collection-item-image-wrapper-circle .collection-item-image,.collection-item .collection-item-image-wrapper.collection-item-image-wrapper-circle .collection-item-image .product-process-image,.collection-item .collection-item-image-wrapper.collection-item-image-wrapper-circle .collection-item-image:after,.collection-item .collection-item-image-wrapper.collection-item-image-wrapper-circle .collection-item-image:before,.collection-item .collection-item-image-wrapper.collection-item-image-wrapper-circle .product-process-image img{
+  border-radius:50%;
+}
 .collection-item .collection-item-image-wrapper .collection-item-image{
   background:rgba(0, 0, 0, .03);
+  padding:{{ append theme.settings.card_border_thickness 'px' }};
   -webkit-transition:all .8s ease;
   transition:all .8s ease;
+}
+.color-scheme-1 .collection-item .collection-item-image-wrapper .collection-item-image:after{
+  box-shadow:0 0 0 {{ append theme.settings.card_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.card_border_opacity 100) }};
+}
+
+.color-scheme-2 .collection-item .collection-item-image-wrapper .collection-item-image:after{
+  box-shadow:0 0 0 {{ append theme.settings.card_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.card_border_opacity 100) }};
+}
+
+.color-scheme-3 .collection-item .collection-item-image-wrapper .collection-item-image:after{
+  box-shadow:0 0 0 {{ append theme.settings.card_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.card_border_opacity 100) }};
+}
+
+.collection-item .collection-item-image-wrapper .collection-item-image{
+  border-radius:{{ append (cond (lte theme.settings.card_border_radius 0) 0 (add theme.settings.card_border_radius theme.settings.card_border_thickness))  'px' }};
+  position:relative;
+}
+.collection-item .collection-item-image-wrapper .collection-item-image:before{
+  border-radius:{{ append (cond (lte theme.settings.card_border_radius 0) 0 (add theme.settings.card_border_radius theme.settings.card_border_thickness))  'px' }};
+  bottom:0;
+  box-shadow:{{ append theme.settings.card_shadow_offset_x 'px' }} {{ append theme.settings.card_shadow_offset_y 'px' }} {{ append theme.settings.card_shadow_blur 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.card_shadow_opacity 100) }};
+  content:"";
+  left:0;
+  pointer-events:none;
+  position:absolute;
+  right:0;
+  top:0;
+}
+.collection-item .collection-item-image-wrapper .collection-item-image:after{
+  border-radius:{{ append theme.settings.card_border_radius 'px' }};
+  bottom:{{ append theme.settings.card_border_thickness 'px' }};
+  box-shadow:0 0 0 {{ append theme.settings.card_border_thickness 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.card_border_opacity 100) }};
+  content:"";
+  left:{{ append theme.settings.card_border_thickness 'px' }};
+  pointer-events:none;
+  position:absolute;
+  right:{{ append theme.settings.card_border_thickness 'px' }};
+  top:{{ append theme.settings.card_border_thickness 'px' }};
+  z-index:1;
+}
+.collection-item .collection-item-image-wrapper .collection-item-image .product-process-image,.collection-item .collection-item-image-wrapper .collection-item-image img{
+  border-radius:{{ append theme.settings.card_border_radius 'px' }};
 }
 .collection-item .collection-item-image-wrapper .collection-item-mask{
   background:#000;
@@ -156,7 +201,7 @@ input{
   display:-webkit-box;
   display:-webkit-flex;
   display:flex;
-  opacity:0;
+  opacity:.01;
   -webkit-transition:opacity .4s ease;
   transition:opacity .4s ease;
 }
@@ -305,6 +350,9 @@ input{
   .colletionlist.slice_in_mobile .colletionlist__slide-container .collection-item{
     display:inline-block;
     width:136px;
+  }
+  .colletionlist.slice_in_mobile .colletionlist__slide-container::-webkit-scrollbar{
+    display:none;
   }
   .colletionlist__cagetegory .collection-item{
     margin-bottom:20px;

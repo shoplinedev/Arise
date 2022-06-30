@@ -2,10 +2,2562 @@
 
 (self["webpackChunkArise"] = self["webpackChunkArise"] || []).push([ [ "proofing" ], {
     "./src/assets/proofing/main.js": () => {},
+    "../shared/browser/node_modules/@sentry/hub/esm/hub.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            Hub: () => Hub,
+            getCurrentHub: () => getCurrentHub,
+            getMainCarrier: () => getMainCarrier
+        });
+        var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var misc = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
+        var time = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
+        var esm_logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+        var env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var esm_global = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
+        var esm_scope = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/scope.js");
+        var object = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
+        var Session = function() {
+            function Session(context) {
+                this.errors = 0;
+                this.sid = (0, misc.uuid4)();
+                this.duration = 0;
+                this.status = "ok";
+                this.init = true;
+                this.ignoreDuration = false;
+                var startingTime = (0, time.timestampInSeconds)();
+                this.timestamp = startingTime;
+                this.started = startingTime;
+                if (context) this.update(context);
+            }
+            Session.prototype.update = function(context) {
+                if (void 0 === context) context = {};
+                if (context.user) {
+                    if (!this.ipAddress && context.user.ip_address) this.ipAddress = context.user.ip_address;
+                    if (!this.did && !context.did) this.did = context.user.id || context.user.email || context.user.username;
+                }
+                this.timestamp = context.timestamp || (0, time.timestampInSeconds)();
+                if (context.ignoreDuration) this.ignoreDuration = context.ignoreDuration;
+                if (context.sid) this.sid = 32 === context.sid.length ? context.sid : (0, misc.uuid4)();
+                if (void 0 !== context.init) this.init = context.init;
+                if (!this.did && context.did) this.did = "" + context.did;
+                if ("number" === typeof context.started) this.started = context.started;
+                if (this.ignoreDuration) this.duration = void 0; else if ("number" === typeof context.duration) this.duration = context.duration; else {
+                    var duration = this.timestamp - this.started;
+                    this.duration = duration >= 0 ? duration : 0;
+                }
+                if (context.release) this.release = context.release;
+                if (context.environment) this.environment = context.environment;
+                if (!this.ipAddress && context.ipAddress) this.ipAddress = context.ipAddress;
+                if (!this.userAgent && context.userAgent) this.userAgent = context.userAgent;
+                if ("number" === typeof context.errors) this.errors = context.errors;
+                if (context.status) this.status = context.status;
+            };
+            Session.prototype.close = function(status) {
+                if (status) this.update({
+                    status
+                }); else if ("ok" === this.status) this.update({
+                    status: "exited"
+                }); else this.update();
+            };
+            Session.prototype.toJSON = function() {
+                return (0, object.dropUndefinedKeys)({
+                    sid: "" + this.sid,
+                    init: this.init,
+                    started: new Date(1e3 * this.started).toISOString(),
+                    timestamp: new Date(1e3 * this.timestamp).toISOString(),
+                    status: this.status,
+                    errors: this.errors,
+                    did: "number" === typeof this.did || "string" === typeof this.did ? "" + this.did : void 0,
+                    duration: this.duration,
+                    attrs: {
+                        release: this.release,
+                        environment: this.environment,
+                        ip_address: this.ipAddress,
+                        user_agent: this.userAgent
+                    }
+                });
+            };
+            return Session;
+        }();
+        var API_VERSION = 4;
+        var DEFAULT_BREADCRUMBS = 100;
+        var Hub = function() {
+            function Hub(client, scope, _version) {
+                if (void 0 === scope) scope = new esm_scope.Scope;
+                if (void 0 === _version) _version = API_VERSION;
+                this._version = _version;
+                this._stack = [ {} ];
+                this.getStackTop().scope = scope;
+                if (client) this.bindClient(client);
+            }
+            Hub.prototype.isOlderThan = function(version) {
+                return this._version < version;
+            };
+            Hub.prototype.bindClient = function(client) {
+                var top = this.getStackTop();
+                top.client = client;
+                if (client && client.setupIntegrations) client.setupIntegrations();
+            };
+            Hub.prototype.pushScope = function() {
+                var scope = esm_scope.Scope.clone(this.getScope());
+                this.getStack().push({
+                    client: this.getClient(),
+                    scope
+                });
+                return scope;
+            };
+            Hub.prototype.popScope = function() {
+                if (this.getStack().length <= 1) return false;
+                return !!this.getStack().pop();
+            };
+            Hub.prototype.withScope = function(callback) {
+                var scope = this.pushScope();
+                try {
+                    callback(scope);
+                } finally {
+                    this.popScope();
+                }
+            };
+            Hub.prototype.getClient = function() {
+                return this.getStackTop().client;
+            };
+            Hub.prototype.getScope = function() {
+                return this.getStackTop().scope;
+            };
+            Hub.prototype.getStack = function() {
+                return this._stack;
+            };
+            Hub.prototype.getStackTop = function() {
+                return this._stack[this._stack.length - 1];
+            };
+            Hub.prototype.captureException = function(exception, hint) {
+                var eventId = this._lastEventId = hint && hint.event_id ? hint.event_id : (0, misc.uuid4)();
+                var finalHint = hint;
+                if (!hint) {
+                    var syntheticException = void 0;
+                    try {
+                        throw new Error("Sentry syntheticException");
+                    } catch (exception) {
+                        syntheticException = exception;
+                    }
+                    finalHint = {
+                        originalException: exception,
+                        syntheticException
+                    };
+                }
+                this._invokeClient("captureException", exception, (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, finalHint), {
+                    event_id: eventId
+                }));
+                return eventId;
+            };
+            Hub.prototype.captureMessage = function(message, level, hint) {
+                var eventId = this._lastEventId = hint && hint.event_id ? hint.event_id : (0, misc.uuid4)();
+                var finalHint = hint;
+                if (!hint) {
+                    var syntheticException = void 0;
+                    try {
+                        throw new Error(message);
+                    } catch (exception) {
+                        syntheticException = exception;
+                    }
+                    finalHint = {
+                        originalException: message,
+                        syntheticException
+                    };
+                }
+                this._invokeClient("captureMessage", message, level, (0, tslib_es6.__assign)((0, 
+                tslib_es6.__assign)({}, finalHint), {
+                    event_id: eventId
+                }));
+                return eventId;
+            };
+            Hub.prototype.captureEvent = function(event, hint) {
+                var eventId = hint && hint.event_id ? hint.event_id : (0, misc.uuid4)();
+                if ("transaction" !== event.type) this._lastEventId = eventId;
+                this._invokeClient("captureEvent", event, (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, hint), {
+                    event_id: eventId
+                }));
+                return eventId;
+            };
+            Hub.prototype.lastEventId = function() {
+                return this._lastEventId;
+            };
+            Hub.prototype.addBreadcrumb = function(breadcrumb, hint) {
+                var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
+                if (!scope || !client) return;
+                var _b = client.getOptions && client.getOptions() || {}, _c = _b.beforeBreadcrumb, beforeBreadcrumb = void 0 === _c ? null : _c, _d = _b.maxBreadcrumbs, maxBreadcrumbs = void 0 === _d ? DEFAULT_BREADCRUMBS : _d;
+                if (maxBreadcrumbs <= 0) return;
+                var timestamp = (0, time.dateTimestampInSeconds)();
+                var mergedBreadcrumb = (0, tslib_es6.__assign)({
+                    timestamp
+                }, breadcrumb);
+                var finalBreadcrumb = beforeBreadcrumb ? (0, esm_logger.consoleSandbox)((function() {
+                    return beforeBreadcrumb(mergedBreadcrumb, hint);
+                })) : mergedBreadcrumb;
+                if (null === finalBreadcrumb) return;
+                scope.addBreadcrumb(finalBreadcrumb, maxBreadcrumbs);
+            };
+            Hub.prototype.setUser = function(user) {
+                var scope = this.getScope();
+                if (scope) scope.setUser(user);
+            };
+            Hub.prototype.setTags = function(tags) {
+                var scope = this.getScope();
+                if (scope) scope.setTags(tags);
+            };
+            Hub.prototype.setExtras = function(extras) {
+                var scope = this.getScope();
+                if (scope) scope.setExtras(extras);
+            };
+            Hub.prototype.setTag = function(key, value) {
+                var scope = this.getScope();
+                if (scope) scope.setTag(key, value);
+            };
+            Hub.prototype.setExtra = function(key, extra) {
+                var scope = this.getScope();
+                if (scope) scope.setExtra(key, extra);
+            };
+            Hub.prototype.setContext = function(name, context) {
+                var scope = this.getScope();
+                if (scope) scope.setContext(name, context);
+            };
+            Hub.prototype.configureScope = function(callback) {
+                var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
+                if (scope && client) callback(scope);
+            };
+            Hub.prototype.run = function(callback) {
+                var oldHub = makeMain(this);
+                try {
+                    callback(this);
+                } finally {
+                    makeMain(oldHub);
+                }
+            };
+            Hub.prototype.getIntegration = function(integration) {
+                var client = this.getClient();
+                if (!client) return null;
+                try {
+                    return client.getIntegration(integration);
+                } catch (_oO) {
+                    (0, env.isDebugBuild)() && esm_logger.logger.warn("Cannot retrieve integration " + integration.id + " from the current Hub");
+                    return null;
+                }
+            };
+            Hub.prototype.startSpan = function(context) {
+                return this._callExtensionMethod("startSpan", context);
+            };
+            Hub.prototype.startTransaction = function(context, customSamplingContext) {
+                return this._callExtensionMethod("startTransaction", context, customSamplingContext);
+            };
+            Hub.prototype.traceHeaders = function() {
+                return this._callExtensionMethod("traceHeaders");
+            };
+            Hub.prototype.captureSession = function(endSession) {
+                if (void 0 === endSession) endSession = false;
+                if (endSession) return this.endSession();
+                this._sendSessionUpdate();
+            };
+            Hub.prototype.endSession = function() {
+                var layer = this.getStackTop();
+                var scope = layer && layer.scope;
+                var session = scope && scope.getSession();
+                if (session) session.close();
+                this._sendSessionUpdate();
+                if (scope) scope.setSession();
+            };
+            Hub.prototype.startSession = function(context) {
+                var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
+                var _b = client && client.getOptions() || {}, release = _b.release, environment = _b.environment;
+                var global = (0, esm_global.getGlobalObject)();
+                var userAgent = (global.navigator || {}).userAgent;
+                var session = new Session((0, tslib_es6.__assign)((0, tslib_es6.__assign)((0, tslib_es6.__assign)({
+                    release,
+                    environment
+                }, scope && {
+                    user: scope.getUser()
+                }), userAgent && {
+                    userAgent
+                }), context));
+                if (scope) {
+                    var currentSession = scope.getSession && scope.getSession();
+                    if (currentSession && "ok" === currentSession.status) currentSession.update({
+                        status: "exited"
+                    });
+                    this.endSession();
+                    scope.setSession(session);
+                }
+                return session;
+            };
+            Hub.prototype._sendSessionUpdate = function() {
+                var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
+                if (!scope) return;
+                var session = scope.getSession && scope.getSession();
+                if (session) if (client && client.captureSession) client.captureSession(session);
+            };
+            Hub.prototype._invokeClient = function(method) {
+                var _a;
+                var args = [];
+                for (var _i = 1; _i < arguments.length; _i++) args[_i - 1] = arguments[_i];
+                var _b = this.getStackTop(), scope = _b.scope, client = _b.client;
+                if (client && client[method]) (_a = client)[method].apply(_a, (0, tslib_es6.__spread)(args, [ scope ]));
+            };
+            Hub.prototype._callExtensionMethod = function(method) {
+                var args = [];
+                for (var _i = 1; _i < arguments.length; _i++) args[_i - 1] = arguments[_i];
+                var carrier = getMainCarrier();
+                var sentry = carrier.__SENTRY__;
+                if (sentry && sentry.extensions && "function" === typeof sentry.extensions[method]) return sentry.extensions[method].apply(this, args);
+                (0, env.isDebugBuild)() && esm_logger.logger.warn("Extension method " + method + " couldn't be found, doing nothing.");
+            };
+            return Hub;
+        }();
+        function getMainCarrier() {
+            var carrier = (0, esm_global.getGlobalObject)();
+            carrier.__SENTRY__ = carrier.__SENTRY__ || {
+                extensions: {},
+                hub: void 0
+            };
+            return carrier;
+        }
+        function makeMain(hub) {
+            var registry = getMainCarrier();
+            var oldHub = getHubFromCarrier(registry);
+            setHubOnCarrier(registry, hub);
+            return oldHub;
+        }
+        function getCurrentHub() {
+            var registry = getMainCarrier();
+            if (!hasHubOnCarrier(registry) || getHubFromCarrier(registry).isOlderThan(API_VERSION)) setHubOnCarrier(registry, new Hub);
+            if ((0, node.isNodeEnv)()) return getHubFromActiveDomain(registry);
+            return getHubFromCarrier(registry);
+        }
+        function getHubFromActiveDomain(registry) {
+            try {
+                var sentry = getMainCarrier().__SENTRY__;
+                var activeDomain = sentry && sentry.extensions && sentry.extensions.domain && sentry.extensions.domain.active;
+                if (!activeDomain) return getHubFromCarrier(registry);
+                if (!hasHubOnCarrier(activeDomain) || getHubFromCarrier(activeDomain).isOlderThan(API_VERSION)) {
+                    var registryHubTopStack = getHubFromCarrier(registry).getStackTop();
+                    setHubOnCarrier(activeDomain, new Hub(registryHubTopStack.client, esm_scope.Scope.clone(registryHubTopStack.scope)));
+                }
+                return getHubFromCarrier(activeDomain);
+            } catch (_Oo) {
+                return getHubFromCarrier(registry);
+            }
+        }
+        function hasHubOnCarrier(carrier) {
+            return !!(carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub);
+        }
+        function getHubFromCarrier(carrier) {
+            if (carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub) return carrier.__SENTRY__.hub;
+            carrier.__SENTRY__ = carrier.__SENTRY__ || {};
+            carrier.__SENTRY__.hub = new Hub;
+            return carrier.__SENTRY__.hub;
+        }
+        function setHubOnCarrier(carrier, hub) {
+            if (!carrier) return false;
+            carrier.__SENTRY__ = carrier.__SENTRY__ || {};
+            carrier.__SENTRY__.hub = hub;
+            return true;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/hub/esm/scope.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            Scope: () => Scope,
+            addGlobalEventProcessor: () => addGlobalEventProcessor
+        });
+        var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/syncpromise.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var MAX_BREADCRUMBS = 100;
+        var Scope = function() {
+            function Scope() {
+                this._notifyingListeners = false;
+                this._scopeListeners = [];
+                this._eventProcessors = [];
+                this._breadcrumbs = [];
+                this._user = {};
+                this._tags = {};
+                this._extra = {};
+                this._contexts = {};
+                this._sdkProcessingMetadata = {};
+            }
+            Scope.clone = function(scope) {
+                var newScope = new Scope;
+                if (scope) {
+                    newScope._breadcrumbs = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(scope._breadcrumbs);
+                    newScope._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, scope._tags);
+                    newScope._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, scope._extra);
+                    newScope._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, scope._contexts);
+                    newScope._user = scope._user;
+                    newScope._level = scope._level;
+                    newScope._span = scope._span;
+                    newScope._session = scope._session;
+                    newScope._transactionName = scope._transactionName;
+                    newScope._fingerprint = scope._fingerprint;
+                    newScope._eventProcessors = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(scope._eventProcessors);
+                    newScope._requestSession = scope._requestSession;
+                }
+                return newScope;
+            };
+            Scope.prototype.addScopeListener = function(callback) {
+                this._scopeListeners.push(callback);
+            };
+            Scope.prototype.addEventProcessor = function(callback) {
+                this._eventProcessors.push(callback);
+                return this;
+            };
+            Scope.prototype.setUser = function(user) {
+                this._user = user || {};
+                if (this._session) this._session.update({
+                    user
+                });
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.getUser = function() {
+                return this._user;
+            };
+            Scope.prototype.getRequestSession = function() {
+                return this._requestSession;
+            };
+            Scope.prototype.setRequestSession = function(requestSession) {
+                this._requestSession = requestSession;
+                return this;
+            };
+            Scope.prototype.setTags = function(tags) {
+                this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), tags);
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.setTag = function(key, value) {
+                var _a;
+                this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), (_a = {}, 
+                _a[key] = value, _a));
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.setExtras = function(extras) {
+                this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), extras);
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.setExtra = function(key, extra) {
+                var _a;
+                this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), (_a = {}, 
+                _a[key] = extra, _a));
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.setFingerprint = function(fingerprint) {
+                this._fingerprint = fingerprint;
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.setLevel = function(level) {
+                this._level = level;
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.setTransactionName = function(name) {
+                this._transactionName = name;
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.setTransaction = function(name) {
+                return this.setTransactionName(name);
+            };
+            Scope.prototype.setContext = function(key, context) {
+                var _a;
+                if (null === context) delete this._contexts[key]; else this._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
+                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), (_a = {}, _a[key] = context, 
+                _a));
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.setSpan = function(span) {
+                this._span = span;
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.getSpan = function() {
+                return this._span;
+            };
+            Scope.prototype.getTransaction = function() {
+                var span = this.getSpan();
+                return span && span.transaction;
+            };
+            Scope.prototype.setSession = function(session) {
+                if (!session) delete this._session; else this._session = session;
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.getSession = function() {
+                return this._session;
+            };
+            Scope.prototype.update = function(captureContext) {
+                if (!captureContext) return this;
+                if ("function" === typeof captureContext) {
+                    var updatedScope = captureContext(this);
+                    return updatedScope instanceof Scope ? updatedScope : this;
+                }
+                if (captureContext instanceof Scope) {
+                    this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), captureContext._tags);
+                    this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), captureContext._extra);
+                    this._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), captureContext._contexts);
+                    if (captureContext._user && Object.keys(captureContext._user).length) this._user = captureContext._user;
+                    if (captureContext._level) this._level = captureContext._level;
+                    if (captureContext._fingerprint) this._fingerprint = captureContext._fingerprint;
+                    if (captureContext._requestSession) this._requestSession = captureContext._requestSession;
+                } else if ((0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.isPlainObject)(captureContext)) {
+                    captureContext = captureContext;
+                    this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), captureContext.tags);
+                    this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), captureContext.extra);
+                    this._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), captureContext.contexts);
+                    if (captureContext.user) this._user = captureContext.user;
+                    if (captureContext.level) this._level = captureContext.level;
+                    if (captureContext.fingerprint) this._fingerprint = captureContext.fingerprint;
+                    if (captureContext.requestSession) this._requestSession = captureContext.requestSession;
+                }
+                return this;
+            };
+            Scope.prototype.clear = function() {
+                this._breadcrumbs = [];
+                this._tags = {};
+                this._extra = {};
+                this._user = {};
+                this._contexts = {};
+                this._level = void 0;
+                this._transactionName = void 0;
+                this._fingerprint = void 0;
+                this._requestSession = void 0;
+                this._span = void 0;
+                this._session = void 0;
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.addBreadcrumb = function(breadcrumb, maxBreadcrumbs) {
+                var maxCrumbs = "number" === typeof maxBreadcrumbs ? Math.min(maxBreadcrumbs, MAX_BREADCRUMBS) : MAX_BREADCRUMBS;
+                if (maxCrumbs <= 0) return this;
+                var mergedBreadcrumb = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({
+                    timestamp: (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_2__.dateTimestampInSeconds)()
+                }, breadcrumb);
+                this._breadcrumbs = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(this._breadcrumbs, [ mergedBreadcrumb ]).slice(-maxCrumbs);
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.clearBreadcrumbs = function() {
+                this._breadcrumbs = [];
+                this._notifyScopeListeners();
+                return this;
+            };
+            Scope.prototype.applyToEvent = function(event, hint) {
+                if (this._extra && Object.keys(this._extra).length) event.extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
+                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), event.extra);
+                if (this._tags && Object.keys(this._tags).length) event.tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
+                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), event.tags);
+                if (this._user && Object.keys(this._user).length) event.user = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
+                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._user), event.user);
+                if (this._contexts && Object.keys(this._contexts).length) event.contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
+                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), event.contexts);
+                if (this._level) event.level = this._level;
+                if (this._transactionName) event.transaction = this._transactionName;
+                if (this._span) {
+                    event.contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({
+                        trace: this._span.getTraceContext()
+                    }, event.contexts);
+                    var transactionName = this._span.transaction && this._span.transaction.name;
+                    if (transactionName) event.tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({
+                        transaction: transactionName
+                    }, event.tags);
+                }
+                this._applyFingerprint(event);
+                event.breadcrumbs = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(event.breadcrumbs || [], this._breadcrumbs);
+                event.breadcrumbs = event.breadcrumbs.length > 0 ? event.breadcrumbs : void 0;
+                event.sdkProcessingMetadata = this._sdkProcessingMetadata;
+                return this._notifyEventProcessors((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(getGlobalEventProcessors(), this._eventProcessors), event, hint);
+            };
+            Scope.prototype.setSDKProcessingMetadata = function(newData) {
+                this._sdkProcessingMetadata = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
+                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._sdkProcessingMetadata), newData);
+                return this;
+            };
+            Scope.prototype._notifyEventProcessors = function(processors, event, hint, index) {
+                var _this = this;
+                if (void 0 === index) index = 0;
+                return new _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.SyncPromise((function(resolve, reject) {
+                    var processor = processors[index];
+                    if (null === event || "function" !== typeof processor) resolve(event); else {
+                        var result = processor((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, event), hint);
+                        if ((0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.isThenable)(result)) void result.then((function(final) {
+                            return _this._notifyEventProcessors(processors, final, hint, index + 1).then(resolve);
+                        })).then(null, reject); else void _this._notifyEventProcessors(processors, result, hint, index + 1).then(resolve).then(null, reject);
+                    }
+                }));
+            };
+            Scope.prototype._notifyScopeListeners = function() {
+                var _this = this;
+                if (!this._notifyingListeners) {
+                    this._notifyingListeners = true;
+                    this._scopeListeners.forEach((function(callback) {
+                        callback(_this);
+                    }));
+                    this._notifyingListeners = false;
+                }
+            };
+            Scope.prototype._applyFingerprint = function(event) {
+                event.fingerprint = event.fingerprint ? Array.isArray(event.fingerprint) ? event.fingerprint : [ event.fingerprint ] : [];
+                if (this._fingerprint) event.fingerprint = event.fingerprint.concat(this._fingerprint);
+                if (event.fingerprint && !event.fingerprint.length) delete event.fingerprint;
+            };
+            return Scope;
+        }();
+        function getGlobalEventProcessors() {
+            var global = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.getGlobalObject)();
+            global.__SENTRY__ = global.__SENTRY__ || {};
+            global.__SENTRY__.globalEventProcessors = global.__SENTRY__.globalEventProcessors || [];
+            return global.__SENTRY__.globalEventProcessors;
+        }
+        function addGlobalEventProcessor(callback) {
+            getGlobalEventProcessors().push(callback);
+        }
+    },
+    "../shared/browser/node_modules/@sentry/tracing/esm/constants.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            FINISH_REASON_TAG: () => FINISH_REASON_TAG,
+            IDLE_TRANSACTION_FINISH_REASONS: () => IDLE_TRANSACTION_FINISH_REASONS
+        });
+        var FINISH_REASON_TAG = "finishReason";
+        var IDLE_TRANSACTION_FINISH_REASONS = [ "heartbeatFailed", "idleTimeout", "documentHidden" ];
+    },
+    "../shared/browser/node_modules/@sentry/tracing/esm/hubextensions.js": (module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            addExtensionMethods: () => addExtensionMethods,
+            startIdleTransaction: () => startIdleTransaction
+        });
+        var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var hub = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
+        var env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+        var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
+        var instrument = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/instrument.js");
+        var utils = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/utils.js");
+        function registerErrorInstrumentation() {
+            (0, instrument.addInstrumentationHandler)("error", errorCallback);
+            (0, instrument.addInstrumentationHandler)("unhandledrejection", errorCallback);
+        }
+        function errorCallback() {
+            var activeTransaction = (0, utils.getActiveTransaction)();
+            if (activeTransaction) {
+                var status_1 = "internal_error";
+                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Transaction: " + status_1 + " -> Global error occured");
+                activeTransaction.setStatus(status_1);
+            }
+        }
+        var idletransaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js");
+        var esm_transaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/transaction.js");
+        module = __webpack_require__.hmd(module);
+        function traceHeaders() {
+            var scope = this.getScope();
+            if (scope) {
+                var span = scope.getSpan();
+                if (span) return {
+                    "sentry-trace": span.toTraceparent()
+                };
+            }
+            return {};
+        }
+        function sample(transaction, options, samplingContext) {
+            if (!(0, utils.hasTracingEnabled)(options)) {
+                transaction.sampled = false;
+                return transaction;
+            }
+            if (void 0 !== transaction.sampled) {
+                transaction.setMetadata({
+                    transactionSampling: {
+                        method: "explicitly_set"
+                    }
+                });
+                return transaction;
+            }
+            var sampleRate;
+            if ("function" === typeof options.tracesSampler) {
+                sampleRate = options.tracesSampler(samplingContext);
+                transaction.setMetadata({
+                    transactionSampling: {
+                        method: "client_sampler",
+                        rate: Number(sampleRate)
+                    }
+                });
+            } else if (void 0 !== samplingContext.parentSampled) {
+                sampleRate = samplingContext.parentSampled;
+                transaction.setMetadata({
+                    transactionSampling: {
+                        method: "inheritance"
+                    }
+                });
+            } else {
+                sampleRate = options.tracesSampleRate;
+                transaction.setMetadata({
+                    transactionSampling: {
+                        method: "client_rate",
+                        rate: Number(sampleRate)
+                    }
+                });
+            }
+            if (!isValidSampleRate(sampleRate)) {
+                (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Discarding transaction because of invalid sample rate.");
+                transaction.sampled = false;
+                return transaction;
+            }
+            if (!sampleRate) {
+                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Discarding transaction because " + ("function" === typeof options.tracesSampler ? "tracesSampler returned 0 or false" : "a negative sampling decision was inherited or tracesSampleRate is set to 0"));
+                transaction.sampled = false;
+                return transaction;
+            }
+            transaction.sampled = Math.random() < sampleRate;
+            if (!transaction.sampled) {
+                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Discarding transaction because it's not included in the random sample (sampling rate = " + Number(sampleRate) + ")");
+                return transaction;
+            }
+            (0, env.isDebugBuild)() && logger.logger.log("[Tracing] starting " + transaction.op + " transaction - " + transaction.name);
+            return transaction;
+        }
+        function isValidSampleRate(rate) {
+            if (isNaN(rate) || !("number" === typeof rate || "boolean" === typeof rate)) {
+                (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be a boolean or a number between 0 and 1. Got " + JSON.stringify(rate) + " of type " + JSON.stringify(typeof rate) + ".");
+                return false;
+            }
+            if (rate < 0 || rate > 1) {
+                (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be between 0 and 1. Got " + rate + ".");
+                return false;
+            }
+            return true;
+        }
+        function _startTransaction(transactionContext, customSamplingContext) {
+            var client = this.getClient();
+            var options = client && client.getOptions() || {};
+            var transaction = new esm_transaction.Transaction(transactionContext, this);
+            transaction = sample(transaction, options, (0, tslib_es6.__assign)({
+                parentSampled: transactionContext.parentSampled,
+                transactionContext
+            }, customSamplingContext));
+            if (transaction.sampled) transaction.initSpanRecorder(options._experiments && options._experiments.maxSpans);
+            return transaction;
+        }
+        function startIdleTransaction(hub, transactionContext, idleTimeout, onScope, customSamplingContext) {
+            var client = hub.getClient();
+            var options = client && client.getOptions() || {};
+            var transaction = new idletransaction.IdleTransaction(transactionContext, hub, idleTimeout, onScope);
+            transaction = sample(transaction, options, (0, tslib_es6.__assign)({
+                parentSampled: transactionContext.parentSampled,
+                transactionContext
+            }, customSamplingContext));
+            if (transaction.sampled) transaction.initSpanRecorder(options._experiments && options._experiments.maxSpans);
+            return transaction;
+        }
+        function _addTracingExtensions() {
+            var carrier = (0, hub.getMainCarrier)();
+            if (!carrier.__SENTRY__) return;
+            carrier.__SENTRY__.extensions = carrier.__SENTRY__.extensions || {};
+            if (!carrier.__SENTRY__.extensions.startTransaction) carrier.__SENTRY__.extensions.startTransaction = _startTransaction;
+            if (!carrier.__SENTRY__.extensions.traceHeaders) carrier.__SENTRY__.extensions.traceHeaders = traceHeaders;
+        }
+        function _autoloadDatabaseIntegrations() {
+            var carrier = (0, hub.getMainCarrier)();
+            if (!carrier.__SENTRY__) return;
+            var packageToIntegrationMapping = {
+                mongodb: function() {
+                    var integration = (0, node.dynamicRequire)(module, "./integrations/node/mongo");
+                    return new integration.Mongo;
+                },
+                mongoose: function() {
+                    var integration = (0, node.dynamicRequire)(module, "./integrations/node/mongo");
+                    return new integration.Mongo({
+                        mongoose: true
+                    });
+                },
+                mysql: function() {
+                    var integration = (0, node.dynamicRequire)(module, "./integrations/node/mysql");
+                    return new integration.Mysql;
+                },
+                pg: function() {
+                    var integration = (0, node.dynamicRequire)(module, "./integrations/node/postgres");
+                    return new integration.Postgres;
+                }
+            };
+            var mappedPackages = Object.keys(packageToIntegrationMapping).filter((function(moduleName) {
+                return !!(0, node.loadModule)(moduleName);
+            })).map((function(pkg) {
+                try {
+                    return packageToIntegrationMapping[pkg]();
+                } catch (e) {
+                    return;
+                }
+            })).filter((function(p) {
+                return p;
+            }));
+            if (mappedPackages.length > 0) carrier.__SENTRY__.integrations = (0, tslib_es6.__spread)(carrier.__SENTRY__.integrations || [], mappedPackages);
+        }
+        function addExtensionMethods() {
+            _addTracingExtensions();
+            if ((0, node.isNodeEnv)()) _autoloadDatabaseIntegrations();
+            registerErrorInstrumentation();
+        }
+    },
+    "../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            DEFAULT_IDLE_TIMEOUT: () => DEFAULT_IDLE_TIMEOUT,
+            IdleTransaction: () => IdleTransaction
+        });
+        var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+        var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/constants.js");
+        var _span__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/span.js");
+        var _transaction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/transaction.js");
+        var DEFAULT_IDLE_TIMEOUT = 1e3;
+        var HEARTBEAT_INTERVAL = 5e3;
+        var IdleTransactionSpanRecorder = function(_super) {
+            (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(IdleTransactionSpanRecorder, _super);
+            function IdleTransactionSpanRecorder(_pushActivity, _popActivity, transactionSpanId, maxlen) {
+                if (void 0 === transactionSpanId) transactionSpanId = "";
+                var _this = _super.call(this, maxlen) || this;
+                _this._pushActivity = _pushActivity;
+                _this._popActivity = _popActivity;
+                _this.transactionSpanId = transactionSpanId;
+                return _this;
+            }
+            IdleTransactionSpanRecorder.prototype.add = function(span) {
+                var _this = this;
+                if (span.spanId !== this.transactionSpanId) {
+                    span.finish = function(endTimestamp) {
+                        span.endTimestamp = "number" === typeof endTimestamp ? endTimestamp : (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
+                        _this._popActivity(span.spanId);
+                    };
+                    if (void 0 === span.endTimestamp) this._pushActivity(span.spanId);
+                }
+                _super.prototype.add.call(this, span);
+            };
+            return IdleTransactionSpanRecorder;
+        }(_span__WEBPACK_IMPORTED_MODULE_2__.SpanRecorder);
+        var IdleTransaction = function(_super) {
+            (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(IdleTransaction, _super);
+            function IdleTransaction(transactionContext, _idleHub, _idleTimeout, _onScope) {
+                if (void 0 === _idleTimeout) _idleTimeout = DEFAULT_IDLE_TIMEOUT;
+                if (void 0 === _onScope) _onScope = false;
+                var _this = _super.call(this, transactionContext, _idleHub) || this;
+                _this._idleHub = _idleHub;
+                _this._idleTimeout = _idleTimeout;
+                _this._onScope = _onScope;
+                _this.activities = {};
+                _this._heartbeatCounter = 0;
+                _this._finished = false;
+                _this._beforeFinishCallbacks = [];
+                if (_idleHub && _onScope) {
+                    clearActiveTransaction(_idleHub);
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Setting idle transaction on scope. Span ID: " + _this.spanId);
+                    _idleHub.configureScope((function(scope) {
+                        return scope.setSpan(_this);
+                    }));
+                }
+                _this._initTimeout = setTimeout((function() {
+                    if (!_this._finished) _this.finish();
+                }), _this._idleTimeout);
+                return _this;
+            }
+            IdleTransaction.prototype.finish = function(endTimestamp) {
+                var e_1, _a;
+                var _this = this;
+                if (void 0 === endTimestamp) endTimestamp = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
+                this._finished = true;
+                this.activities = {};
+                if (this.spanRecorder) {
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] finishing IdleTransaction", new Date(1e3 * endTimestamp).toISOString(), this.op);
+                    try {
+                        for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(this._beforeFinishCallbacks), _c = _b.next(); !_c.done; _c = _b.next()) {
+                            var callback = _c.value;
+                            callback(this, endTimestamp);
+                        }
+                    } catch (e_1_1) {
+                        e_1 = {
+                            error: e_1_1
+                        };
+                    } finally {
+                        try {
+                            if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                        } finally {
+                            if (e_1) throw e_1.error;
+                        }
+                    }
+                    this.spanRecorder.spans = this.spanRecorder.spans.filter((function(span) {
+                        if (span.spanId === _this.spanId) return true;
+                        if (!span.endTimestamp) {
+                            span.endTimestamp = endTimestamp;
+                            span.setStatus("cancelled");
+                            (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] cancelling span since transaction ended early", JSON.stringify(span, void 0, 2));
+                        }
+                        var keepSpan = span.startTimestamp < endTimestamp;
+                        if (!keepSpan) (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] discarding Span since it happened after Transaction was finished", JSON.stringify(span, void 0, 2));
+                        return keepSpan;
+                    }));
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] flushing IdleTransaction");
+                } else (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] No active IdleTransaction");
+                if (this._onScope) clearActiveTransaction(this._idleHub);
+                return _super.prototype.finish.call(this, endTimestamp);
+            };
+            IdleTransaction.prototype.registerBeforeFinishCallback = function(callback) {
+                this._beforeFinishCallbacks.push(callback);
+            };
+            IdleTransaction.prototype.initSpanRecorder = function(maxlen) {
+                var _this = this;
+                if (!this.spanRecorder) {
+                    var pushActivity = function(id) {
+                        if (_this._finished) return;
+                        _this._pushActivity(id);
+                    };
+                    var popActivity = function(id) {
+                        if (_this._finished) return;
+                        _this._popActivity(id);
+                    };
+                    this.spanRecorder = new IdleTransactionSpanRecorder(pushActivity, popActivity, this.spanId, maxlen);
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Starting heartbeat");
+                    this._pingHeartbeat();
+                }
+                this.spanRecorder.add(this);
+            };
+            IdleTransaction.prototype._pushActivity = function(spanId) {
+                if (this._initTimeout) {
+                    clearTimeout(this._initTimeout);
+                    this._initTimeout = void 0;
+                }
+                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] pushActivity: " + spanId);
+                this.activities[spanId] = true;
+                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
+            };
+            IdleTransaction.prototype._popActivity = function(spanId) {
+                var _this = this;
+                if (this.activities[spanId]) {
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] popActivity " + spanId);
+                    delete this.activities[spanId];
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
+                }
+                if (0 === Object.keys(this.activities).length) {
+                    var timeout = this._idleTimeout;
+                    var end_1 = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)() + timeout / 1e3;
+                    setTimeout((function() {
+                        if (!_this._finished) {
+                            _this.setTag(_constants__WEBPACK_IMPORTED_MODULE_5__.FINISH_REASON_TAG, _constants__WEBPACK_IMPORTED_MODULE_5__.IDLE_TRANSACTION_FINISH_REASONS[1]);
+                            _this.finish(end_1);
+                        }
+                    }), timeout);
+                }
+            };
+            IdleTransaction.prototype._beat = function() {
+                if (this._finished) return;
+                var heartbeatString = Object.keys(this.activities).join("");
+                if (heartbeatString === this._prevHeartbeatString) this._heartbeatCounter += 1; else this._heartbeatCounter = 1;
+                this._prevHeartbeatString = heartbeatString;
+                if (this._heartbeatCounter >= 3) {
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] Transaction finished because of no change for 3 heart beats");
+                    this.setStatus("deadline_exceeded");
+                    this.setTag(_constants__WEBPACK_IMPORTED_MODULE_5__.FINISH_REASON_TAG, _constants__WEBPACK_IMPORTED_MODULE_5__.IDLE_TRANSACTION_FINISH_REASONS[0]);
+                    this.finish();
+                } else this._pingHeartbeat();
+            };
+            IdleTransaction.prototype._pingHeartbeat = function() {
+                var _this = this;
+                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("pinging Heartbeat -> current counter: " + this._heartbeatCounter);
+                setTimeout((function() {
+                    _this._beat();
+                }), HEARTBEAT_INTERVAL);
+            };
+            return IdleTransaction;
+        }(_transaction__WEBPACK_IMPORTED_MODULE_6__.Transaction);
+        function clearActiveTransaction(hub) {
+            if (hub) {
+                var scope = hub.getScope();
+                if (scope) {
+                    var transaction = scope.getTransaction();
+                    if (transaction) scope.setSpan(void 0);
+                }
+            }
+        }
+    },
+    "../shared/browser/node_modules/@sentry/tracing/esm/span.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            SpanRecorder: () => SpanRecorder,
+            Span: () => Span
+        });
+        var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
+        var SpanRecorder = function() {
+            function SpanRecorder(maxlen) {
+                if (void 0 === maxlen) maxlen = 1e3;
+                this.spans = [];
+                this._maxlen = maxlen;
+            }
+            SpanRecorder.prototype.add = function(span) {
+                if (this.spans.length > this._maxlen) span.spanRecorder = void 0; else this.spans.push(span);
+            };
+            return SpanRecorder;
+        }();
+        var Span = function() {
+            function Span(spanContext) {
+                this.traceId = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_0__.uuid4)();
+                this.spanId = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_0__.uuid4)().substring(16);
+                this.startTimestamp = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
+                this.tags = {};
+                this.data = {};
+                if (!spanContext) return this;
+                if (spanContext.traceId) this.traceId = spanContext.traceId;
+                if (spanContext.spanId) this.spanId = spanContext.spanId;
+                if (spanContext.parentSpanId) this.parentSpanId = spanContext.parentSpanId;
+                if ("sampled" in spanContext) this.sampled = spanContext.sampled;
+                if (spanContext.op) this.op = spanContext.op;
+                if (spanContext.description) this.description = spanContext.description;
+                if (spanContext.data) this.data = spanContext.data;
+                if (spanContext.tags) this.tags = spanContext.tags;
+                if (spanContext.status) this.status = spanContext.status;
+                if (spanContext.startTimestamp) this.startTimestamp = spanContext.startTimestamp;
+                if (spanContext.endTimestamp) this.endTimestamp = spanContext.endTimestamp;
+            }
+            Span.prototype.child = function(spanContext) {
+                return this.startChild(spanContext);
+            };
+            Span.prototype.startChild = function(spanContext) {
+                var childSpan = new Span((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, spanContext), {
+                    parentSpanId: this.spanId,
+                    sampled: this.sampled,
+                    traceId: this.traceId
+                }));
+                childSpan.spanRecorder = this.spanRecorder;
+                if (childSpan.spanRecorder) childSpan.spanRecorder.add(childSpan);
+                childSpan.transaction = this.transaction;
+                return childSpan;
+            };
+            Span.prototype.setTag = function(key, value) {
+                var _a;
+                this.tags = (0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, this.tags), (_a = {}, 
+                _a[key] = value, _a));
+                return this;
+            };
+            Span.prototype.setData = function(key, value) {
+                var _a;
+                this.data = (0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, this.data), (_a = {}, 
+                _a[key] = value, _a));
+                return this;
+            };
+            Span.prototype.setStatus = function(value) {
+                this.status = value;
+                return this;
+            };
+            Span.prototype.setHttpStatus = function(httpStatus) {
+                this.setTag("http.status_code", String(httpStatus));
+                var spanStatus = spanStatusfromHttpCode(httpStatus);
+                if ("unknown_error" !== spanStatus) this.setStatus(spanStatus);
+                return this;
+            };
+            Span.prototype.isSuccess = function() {
+                return "ok" === this.status;
+            };
+            Span.prototype.finish = function(endTimestamp) {
+                this.endTimestamp = "number" === typeof endTimestamp ? endTimestamp : (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
+            };
+            Span.prototype.toTraceparent = function() {
+                var sampledString = "";
+                if (void 0 !== this.sampled) sampledString = this.sampled ? "-1" : "-0";
+                return this.traceId + "-" + this.spanId + sampledString;
+            };
+            Span.prototype.toContext = function() {
+                return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.dropUndefinedKeys)({
+                    data: this.data,
+                    description: this.description,
+                    endTimestamp: this.endTimestamp,
+                    op: this.op,
+                    parentSpanId: this.parentSpanId,
+                    sampled: this.sampled,
+                    spanId: this.spanId,
+                    startTimestamp: this.startTimestamp,
+                    status: this.status,
+                    tags: this.tags,
+                    traceId: this.traceId
+                });
+            };
+            Span.prototype.updateWithContext = function(spanContext) {
+                var _a, _b, _c, _d, _e;
+                this.data = (_a = spanContext.data, null !== _a && void 0 !== _a ? _a : {});
+                this.description = spanContext.description;
+                this.endTimestamp = spanContext.endTimestamp;
+                this.op = spanContext.op;
+                this.parentSpanId = spanContext.parentSpanId;
+                this.sampled = spanContext.sampled;
+                this.spanId = (_b = spanContext.spanId, null !== _b && void 0 !== _b ? _b : this.spanId);
+                this.startTimestamp = (_c = spanContext.startTimestamp, null !== _c && void 0 !== _c ? _c : this.startTimestamp);
+                this.status = spanContext.status;
+                this.tags = (_d = spanContext.tags, null !== _d && void 0 !== _d ? _d : {});
+                this.traceId = (_e = spanContext.traceId, null !== _e && void 0 !== _e ? _e : this.traceId);
+                return this;
+            };
+            Span.prototype.getTraceContext = function() {
+                return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.dropUndefinedKeys)({
+                    data: Object.keys(this.data).length > 0 ? this.data : void 0,
+                    description: this.description,
+                    op: this.op,
+                    parent_span_id: this.parentSpanId,
+                    span_id: this.spanId,
+                    status: this.status,
+                    tags: Object.keys(this.tags).length > 0 ? this.tags : void 0,
+                    trace_id: this.traceId
+                });
+            };
+            Span.prototype.toJSON = function() {
+                return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.dropUndefinedKeys)({
+                    data: Object.keys(this.data).length > 0 ? this.data : void 0,
+                    description: this.description,
+                    op: this.op,
+                    parent_span_id: this.parentSpanId,
+                    span_id: this.spanId,
+                    start_timestamp: this.startTimestamp,
+                    status: this.status,
+                    tags: Object.keys(this.tags).length > 0 ? this.tags : void 0,
+                    timestamp: this.endTimestamp,
+                    trace_id: this.traceId
+                });
+            };
+            return Span;
+        }();
+        function spanStatusfromHttpCode(httpStatus) {
+            if (httpStatus < 400 && httpStatus >= 100) return "ok";
+            if (httpStatus >= 400 && httpStatus < 500) switch (httpStatus) {
+              case 401:
+                return "unauthenticated";
+
+              case 403:
+                return "permission_denied";
+
+              case 404:
+                return "not_found";
+
+              case 409:
+                return "already_exists";
+
+              case 413:
+                return "failed_precondition";
+
+              case 429:
+                return "resource_exhausted";
+
+              default:
+                return "invalid_argument";
+            }
+            if (httpStatus >= 500 && httpStatus < 600) switch (httpStatus) {
+              case 501:
+                return "unimplemented";
+
+              case 503:
+                return "unavailable";
+
+              case 504:
+                return "deadline_exceeded";
+
+              default:
+                return "internal_error";
+            }
+            return "unknown_error";
+        }
+    },
+    "../shared/browser/node_modules/@sentry/tracing/esm/transaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            Transaction: () => Transaction
+        });
+        var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _sentry_hub__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+        var _sentry_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
+        var _span__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/span.js");
+        var Transaction = function(_super) {
+            (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(Transaction, _super);
+            function Transaction(transactionContext, hub) {
+                var _this = _super.call(this, transactionContext) || this;
+                _this._measurements = {};
+                _this._hub = (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_1__.getCurrentHub)();
+                if ((0, _sentry_utils__WEBPACK_IMPORTED_MODULE_2__.isInstanceOf)(hub, _sentry_hub__WEBPACK_IMPORTED_MODULE_1__.Hub)) _this._hub = hub;
+                _this.name = transactionContext.name || "";
+                _this.metadata = transactionContext.metadata || {};
+                _this._trimEnd = transactionContext.trimEnd;
+                _this.transaction = _this;
+                return _this;
+            }
+            Transaction.prototype.setName = function(name) {
+                this.name = name;
+            };
+            Transaction.prototype.initSpanRecorder = function(maxlen) {
+                if (void 0 === maxlen) maxlen = 1e3;
+                if (!this.spanRecorder) this.spanRecorder = new _span__WEBPACK_IMPORTED_MODULE_3__.SpanRecorder(maxlen);
+                this.spanRecorder.add(this);
+            };
+            Transaction.prototype.setMeasurements = function(measurements) {
+                this._measurements = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, measurements);
+            };
+            Transaction.prototype.setMetadata = function(newMetadata) {
+                this.metadata = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this.metadata), newMetadata);
+            };
+            Transaction.prototype.finish = function(endTimestamp) {
+                var _this = this;
+                if (void 0 !== this.endTimestamp) return;
+                if (!this.name) {
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.warn("Transaction has no name, falling back to `<unlabeled transaction>`.");
+                    this.name = "<unlabeled transaction>";
+                }
+                _super.prototype.finish.call(this, endTimestamp);
+                if (true !== this.sampled) {
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Discarding transaction because its trace was not chosen to be sampled.");
+                    var client = this._hub.getClient();
+                    var transport = client && client.getTransport && client.getTransport();
+                    if (transport && transport.recordLostEvent) transport.recordLostEvent("sample_rate", "transaction");
+                    return;
+                }
+                var finishedSpans = this.spanRecorder ? this.spanRecorder.spans.filter((function(s) {
+                    return s !== _this && s.endTimestamp;
+                })) : [];
+                if (this._trimEnd && finishedSpans.length > 0) this.endTimestamp = finishedSpans.reduce((function(prev, current) {
+                    if (prev.endTimestamp && current.endTimestamp) return prev.endTimestamp > current.endTimestamp ? prev : current;
+                    return prev;
+                })).endTimestamp;
+                var transaction = {
+                    contexts: {
+                        trace: this.getTraceContext()
+                    },
+                    spans: finishedSpans,
+                    start_timestamp: this.startTimestamp,
+                    tags: this.tags,
+                    timestamp: this.endTimestamp,
+                    transaction: this.name,
+                    type: "transaction",
+                    sdkProcessingMetadata: this.metadata
+                };
+                var hasMeasurements = Object.keys(this._measurements).length > 0;
+                if (hasMeasurements) {
+                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Measurements] Adding measurements to transaction", JSON.stringify(this._measurements, void 0, 2));
+                    transaction.measurements = this._measurements;
+                }
+                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Finishing " + this.op + " transaction: " + this.name + ".");
+                return this._hub.captureEvent(transaction);
+            };
+            Transaction.prototype.toContext = function() {
+                var spanContext = _super.prototype.toContext.call(this);
+                return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_6__.dropUndefinedKeys)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
+                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, spanContext), {
+                    name: this.name,
+                    trimEnd: this._trimEnd
+                }));
+            };
+            Transaction.prototype.updateWithContext = function(transactionContext) {
+                var _a;
+                _super.prototype.updateWithContext.call(this, transactionContext);
+                this.name = (_a = transactionContext.name, null !== _a && void 0 !== _a ? _a : "");
+                this._trimEnd = transactionContext.trimEnd;
+                return this;
+            };
+            return Transaction;
+        }(_span__WEBPACK_IMPORTED_MODULE_3__.Span);
+    },
+    "../shared/browser/node_modules/@sentry/tracing/esm/utils.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            hasTracingEnabled: () => hasTracingEnabled,
+            getActiveTransaction: () => getActiveTransaction,
+            msToSec: () => msToSec,
+            secToMs: () => secToMs
+        });
+        var _sentry_hub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
+        function hasTracingEnabled(maybeOptions) {
+            var client = (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_0__.getCurrentHub)().getClient();
+            var options = maybeOptions || client && client.getOptions();
+            return !!options && ("tracesSampleRate" in options || "tracesSampler" in options);
+        }
+        function getActiveTransaction(maybeHub) {
+            var hub = maybeHub || (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_0__.getCurrentHub)();
+            var scope = hub.getScope();
+            return scope && scope.getTransaction();
+        }
+        function msToSec(time) {
+            return time / 1e3;
+        }
+        function secToMs(time) {
+            return 1e3 * time;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/browser.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            htmlTreeAsString: () => htmlTreeAsString,
+            getLocationHref: () => getLocationHref
+        });
+        var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+        function htmlTreeAsString(elem, keyAttrs) {
+            try {
+                var currentElem = elem;
+                var MAX_TRAVERSE_HEIGHT = 5;
+                var MAX_OUTPUT_LEN = 80;
+                var out = [];
+                var height = 0;
+                var len = 0;
+                var separator = " > ";
+                var sepLength = separator.length;
+                var nextStr = void 0;
+                while (currentElem && height++ < MAX_TRAVERSE_HEIGHT) {
+                    nextStr = _htmlElementAsString(currentElem, keyAttrs);
+                    if ("html" === nextStr || height > 1 && len + out.length * sepLength + nextStr.length >= MAX_OUTPUT_LEN) break;
+                    out.push(nextStr);
+                    len += nextStr.length;
+                    currentElem = currentElem.parentNode;
+                }
+                return out.reverse().join(separator);
+            } catch (_oO) {
+                return "<unknown>";
+            }
+        }
+        function _htmlElementAsString(el, keyAttrs) {
+            var elem = el;
+            var out = [];
+            var className;
+            var classes;
+            var key;
+            var attr;
+            var i;
+            if (!elem || !elem.tagName) return "";
+            out.push(elem.tagName.toLowerCase());
+            var keyAttrPairs = keyAttrs && keyAttrs.length ? keyAttrs.filter((function(keyAttr) {
+                return elem.getAttribute(keyAttr);
+            })).map((function(keyAttr) {
+                return [ keyAttr, elem.getAttribute(keyAttr) ];
+            })) : null;
+            if (keyAttrPairs && keyAttrPairs.length) keyAttrPairs.forEach((function(keyAttrPair) {
+                out.push("[" + keyAttrPair[0] + '="' + keyAttrPair[1] + '"]');
+            })); else {
+                if (elem.id) out.push("#" + elem.id);
+                className = elem.className;
+                if (className && (0, _is__WEBPACK_IMPORTED_MODULE_0__.isString)(className)) {
+                    classes = className.split(/\s+/);
+                    for (i = 0; i < classes.length; i++) out.push("." + classes[i]);
+                }
+            }
+            var allowedAttrs = [ "type", "name", "title", "alt" ];
+            for (i = 0; i < allowedAttrs.length; i++) {
+                key = allowedAttrs[i];
+                attr = elem.getAttribute(key);
+                if (attr) out.push("[" + key + '="' + attr + '"]');
+            }
+            return out.join("");
+        }
+        function getLocationHref() {
+            var global = (0, _global__WEBPACK_IMPORTED_MODULE_1__.getGlobalObject)();
+            try {
+                return global.document.location.href;
+            } catch (oO) {
+                return "";
+            }
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/env.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            isDebugBuild: () => isDebugBuild,
+            isBrowserBundle: () => isBrowserBundle
+        });
+        var __SENTRY_DEBUG__ = true;
+        function isDebugBuild() {
+            return __SENTRY_DEBUG__;
+        }
+        function isBrowserBundle() {
+            return "undefined" !== typeof __SENTRY_BROWSER_BUNDLE__ && !!__SENTRY_BROWSER_BUNDLE__;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/global.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            getGlobalObject: () => getGlobalObject
+        });
+        var _node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
+        var fallbackGlobalObject = {};
+        function getGlobalObject() {
+            return (0, _node__WEBPACK_IMPORTED_MODULE_0__.isNodeEnv)() ? __webpack_require__.g : "undefined" !== typeof window ? window : "undefined" !== typeof self ? self : fallbackGlobalObject;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/instrument.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            addInstrumentationHandler: () => addInstrumentationHandler
+        });
+        var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var _is__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+        var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+        var _object__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
+        var _stacktrace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/stacktrace.js");
+        var _supports__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/supports.js");
+        var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
+        var handlers = {};
+        var instrumented = {};
+        function instrument(type) {
+            if (instrumented[type]) return;
+            instrumented[type] = true;
+            switch (type) {
+              case "console":
+                instrumentConsole();
+                break;
+
+              case "dom":
+                instrumentDOM();
+                break;
+
+              case "xhr":
+                instrumentXHR();
+                break;
+
+              case "fetch":
+                instrumentFetch();
+                break;
+
+              case "history":
+                instrumentHistory();
+                break;
+
+              case "error":
+                instrumentError();
+                break;
+
+              case "unhandledrejection":
+                instrumentUnhandledRejection();
+                break;
+
+              default:
+                (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("unknown instrumentation type:", type);
+                return;
+            }
+        }
+        function addInstrumentationHandler(type, callback) {
+            handlers[type] = handlers[type] || [];
+            handlers[type].push(callback);
+            instrument(type);
+        }
+        function triggerHandlers(type, data) {
+            var e_1, _a;
+            if (!type || !handlers[type]) return;
+            try {
+                for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__values)(handlers[type] || []), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var handler = _c.value;
+                    try {
+                        handler(data);
+                    } catch (e) {
+                        (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.error("Error while triggering instrumentation handler.\nType: " + type + "\nName: " + (0, 
+                        _stacktrace__WEBPACK_IMPORTED_MODULE_4__.getFunctionName)(handler) + "\nError:", e);
+                    }
+                }
+            } catch (e_1_1) {
+                e_1 = {
+                    error: e_1_1
+                };
+            } finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                } finally {
+                    if (e_1) throw e_1.error;
+                }
+            }
+        }
+        function instrumentConsole() {
+            if (!("console" in global)) return;
+            _logger__WEBPACK_IMPORTED_MODULE_2__.CONSOLE_LEVELS.forEach((function(level) {
+                if (!(level in global.console)) return;
+                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global.console, level, (function(originalConsoleMethod) {
+                    return function() {
+                        var args = [];
+                        for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                        triggerHandlers("console", {
+                            args,
+                            level
+                        });
+                        if (originalConsoleMethod) originalConsoleMethod.apply(global.console, args);
+                    };
+                }));
+            }));
+        }
+        function instrumentFetch() {
+            if (!(0, _supports__WEBPACK_IMPORTED_MODULE_6__.supportsNativeFetch)()) return;
+            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global, "fetch", (function(originalFetch) {
+                return function() {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                    var handlerData = {
+                        args,
+                        fetchData: {
+                            method: getFetchMethod(args),
+                            url: getFetchUrl(args)
+                        },
+                        startTimestamp: Date.now()
+                    };
+                    triggerHandlers("fetch", (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, handlerData));
+                    return originalFetch.apply(global, args).then((function(response) {
+                        triggerHandlers("fetch", (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, handlerData), {
+                            endTimestamp: Date.now(),
+                            response
+                        }));
+                        return response;
+                    }), (function(error) {
+                        triggerHandlers("fetch", (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, handlerData), {
+                            endTimestamp: Date.now(),
+                            error
+                        }));
+                        throw error;
+                    }));
+                };
+            }));
+        }
+        function getFetchMethod(fetchArgs) {
+            if (void 0 === fetchArgs) fetchArgs = [];
+            if ("Request" in global && (0, _is__WEBPACK_IMPORTED_MODULE_7__.isInstanceOf)(fetchArgs[0], Request) && fetchArgs[0].method) return String(fetchArgs[0].method).toUpperCase();
+            if (fetchArgs[1] && fetchArgs[1].method) return String(fetchArgs[1].method).toUpperCase();
+            return "GET";
+        }
+        function getFetchUrl(fetchArgs) {
+            if (void 0 === fetchArgs) fetchArgs = [];
+            if ("string" === typeof fetchArgs[0]) return fetchArgs[0];
+            if ("Request" in global && (0, _is__WEBPACK_IMPORTED_MODULE_7__.isInstanceOf)(fetchArgs[0], Request)) return fetchArgs[0].url;
+            return String(fetchArgs[0]);
+        }
+        function instrumentXHR() {
+            if (!("XMLHttpRequest" in global)) return;
+            var xhrproto = XMLHttpRequest.prototype;
+            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(xhrproto, "open", (function(originalOpen) {
+                return function() {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                    var xhr = this;
+                    var url = args[1];
+                    var xhrInfo = xhr.__sentry_xhr__ = {
+                        method: (0, _is__WEBPACK_IMPORTED_MODULE_7__.isString)(args[0]) ? args[0].toUpperCase() : args[0],
+                        url: args[1]
+                    };
+                    if ((0, _is__WEBPACK_IMPORTED_MODULE_7__.isString)(url) && "POST" === xhrInfo.method && url.match(/sentry_key/)) xhr.__sentry_own_request__ = true;
+                    var onreadystatechangeHandler = function() {
+                        if (4 === xhr.readyState) {
+                            try {
+                                xhrInfo.status_code = xhr.status;
+                            } catch (e) {}
+                            triggerHandlers("xhr", {
+                                args,
+                                endTimestamp: Date.now(),
+                                startTimestamp: Date.now(),
+                                xhr
+                            });
+                        }
+                    };
+                    if ("onreadystatechange" in xhr && "function" === typeof xhr.onreadystatechange) (0, 
+                    _object__WEBPACK_IMPORTED_MODULE_5__.fill)(xhr, "onreadystatechange", (function(original) {
+                        return function() {
+                            var readyStateArgs = [];
+                            for (var _i = 0; _i < arguments.length; _i++) readyStateArgs[_i] = arguments[_i];
+                            onreadystatechangeHandler();
+                            return original.apply(xhr, readyStateArgs);
+                        };
+                    })); else xhr.addEventListener("readystatechange", onreadystatechangeHandler);
+                    return originalOpen.apply(xhr, args);
+                };
+            }));
+            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(xhrproto, "send", (function(originalSend) {
+                return function() {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                    if (this.__sentry_xhr__ && void 0 !== args[0]) this.__sentry_xhr__.body = args[0];
+                    triggerHandlers("xhr", {
+                        args,
+                        startTimestamp: Date.now(),
+                        xhr: this
+                    });
+                    return originalSend.apply(this, args);
+                };
+            }));
+        }
+        var lastHref;
+        function instrumentHistory() {
+            if (!(0, _supports__WEBPACK_IMPORTED_MODULE_6__.supportsHistory)()) return;
+            var oldOnPopState = global.onpopstate;
+            global.onpopstate = function() {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                var to = global.location.href;
+                var from = lastHref;
+                lastHref = to;
+                triggerHandlers("history", {
+                    from,
+                    to
+                });
+                if (oldOnPopState) try {
+                    return oldOnPopState.apply(this, args);
+                } catch (_oO) {}
+            };
+            function historyReplacementFunction(originalHistoryFunction) {
+                return function() {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                    var url = args.length > 2 ? args[2] : void 0;
+                    if (url) {
+                        var from = lastHref;
+                        var to = String(url);
+                        lastHref = to;
+                        triggerHandlers("history", {
+                            from,
+                            to
+                        });
+                    }
+                    return originalHistoryFunction.apply(this, args);
+                };
+            }
+            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global.history, "pushState", historyReplacementFunction);
+            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global.history, "replaceState", historyReplacementFunction);
+        }
+        var debounceDuration = 1e3;
+        var debounceTimerID;
+        var lastCapturedEvent;
+        function shouldShortcircuitPreviousDebounce(previous, current) {
+            if (!previous) return true;
+            if (previous.type !== current.type) return true;
+            try {
+                if (previous.target !== current.target) return true;
+            } catch (e) {}
+            return false;
+        }
+        function shouldSkipDOMEvent(event) {
+            if ("keypress" !== event.type) return false;
+            try {
+                var target = event.target;
+                if (!target || !target.tagName) return true;
+                if ("INPUT" === target.tagName || "TEXTAREA" === target.tagName || target.isContentEditable) return false;
+            } catch (e) {}
+            return true;
+        }
+        function makeDOMEventHandler(handler, globalListener) {
+            if (void 0 === globalListener) globalListener = false;
+            return function(event) {
+                if (!event || lastCapturedEvent === event) return;
+                if (shouldSkipDOMEvent(event)) return;
+                var name = "keypress" === event.type ? "input" : event.type;
+                if (void 0 === debounceTimerID) {
+                    handler({
+                        event,
+                        name,
+                        global: globalListener
+                    });
+                    lastCapturedEvent = event;
+                } else if (shouldShortcircuitPreviousDebounce(lastCapturedEvent, event)) {
+                    handler({
+                        event,
+                        name,
+                        global: globalListener
+                    });
+                    lastCapturedEvent = event;
+                }
+                clearTimeout(debounceTimerID);
+                debounceTimerID = global.setTimeout((function() {
+                    debounceTimerID = void 0;
+                }), debounceDuration);
+            };
+        }
+        function instrumentDOM() {
+            if (!("document" in global)) return;
+            var triggerDOMHandler = triggerHandlers.bind(null, "dom");
+            var globalDOMEventHandler = makeDOMEventHandler(triggerDOMHandler, true);
+            global.document.addEventListener("click", globalDOMEventHandler, false);
+            global.document.addEventListener("keypress", globalDOMEventHandler, false);
+            [ "EventTarget", "Node" ].forEach((function(target) {
+                var proto = global[target] && global[target].prototype;
+                if (!proto || !proto.hasOwnProperty || !proto.hasOwnProperty("addEventListener")) return;
+                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(proto, "addEventListener", (function(originalAddEventListener) {
+                    return function(type, listener, options) {
+                        if ("click" === type || "keypress" == type) try {
+                            var el = this;
+                            var handlers_1 = el.__sentry_instrumentation_handlers__ = el.__sentry_instrumentation_handlers__ || {};
+                            var handlerForType = handlers_1[type] = handlers_1[type] || {
+                                refCount: 0
+                            };
+                            if (!handlerForType.handler) {
+                                var handler = makeDOMEventHandler(triggerDOMHandler);
+                                handlerForType.handler = handler;
+                                originalAddEventListener.call(this, type, handler, options);
+                            }
+                            handlerForType.refCount += 1;
+                        } catch (e) {}
+                        return originalAddEventListener.call(this, type, listener, options);
+                    };
+                }));
+                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(proto, "removeEventListener", (function(originalRemoveEventListener) {
+                    return function(type, listener, options) {
+                        if ("click" === type || "keypress" == type) try {
+                            var el = this;
+                            var handlers_2 = el.__sentry_instrumentation_handlers__ || {};
+                            var handlerForType = handlers_2[type];
+                            if (handlerForType) {
+                                handlerForType.refCount -= 1;
+                                if (handlerForType.refCount <= 0) {
+                                    originalRemoveEventListener.call(this, type, handlerForType.handler, options);
+                                    handlerForType.handler = void 0;
+                                    delete handlers_2[type];
+                                }
+                                if (0 === Object.keys(handlers_2).length) delete el.__sentry_instrumentation_handlers__;
+                            }
+                        } catch (e) {}
+                        return originalRemoveEventListener.call(this, type, listener, options);
+                    };
+                }));
+            }));
+        }
+        var _oldOnErrorHandler = null;
+        function instrumentError() {
+            _oldOnErrorHandler = global.onerror;
+            global.onerror = function(msg, url, line, column, error) {
+                triggerHandlers("error", {
+                    column,
+                    error,
+                    line,
+                    msg,
+                    url
+                });
+                if (_oldOnErrorHandler) return _oldOnErrorHandler.apply(this, arguments);
+                return false;
+            };
+        }
+        var _oldOnUnhandledRejectionHandler = null;
+        function instrumentUnhandledRejection() {
+            _oldOnUnhandledRejectionHandler = global.onunhandledrejection;
+            global.onunhandledrejection = function(e) {
+                triggerHandlers("unhandledrejection", e);
+                if (_oldOnUnhandledRejectionHandler) return _oldOnUnhandledRejectionHandler.apply(this, arguments);
+                return true;
+            };
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/is.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            isError: () => isError,
+            isErrorEvent: () => isErrorEvent,
+            isDOMError: () => isDOMError,
+            isDOMException: () => isDOMException,
+            isString: () => isString,
+            isPrimitive: () => isPrimitive,
+            isPlainObject: () => isPlainObject,
+            isEvent: () => isEvent,
+            isElement: () => isElement,
+            isRegExp: () => isRegExp,
+            isThenable: () => isThenable,
+            isSyntheticEvent: () => isSyntheticEvent,
+            isInstanceOf: () => isInstanceOf
+        });
+        var objectToString = Object.prototype.toString;
+        function isError(wat) {
+            switch (objectToString.call(wat)) {
+              case "[object Error]":
+              case "[object Exception]":
+              case "[object DOMException]":
+                return true;
+
+              default:
+                return isInstanceOf(wat, Error);
+            }
+        }
+        function isBuiltin(wat, ty) {
+            return objectToString.call(wat) === "[object " + ty + "]";
+        }
+        function isErrorEvent(wat) {
+            return isBuiltin(wat, "ErrorEvent");
+        }
+        function isDOMError(wat) {
+            return isBuiltin(wat, "DOMError");
+        }
+        function isDOMException(wat) {
+            return isBuiltin(wat, "DOMException");
+        }
+        function isString(wat) {
+            return isBuiltin(wat, "String");
+        }
+        function isPrimitive(wat) {
+            return null === wat || "object" !== typeof wat && "function" !== typeof wat;
+        }
+        function isPlainObject(wat) {
+            return isBuiltin(wat, "Object");
+        }
+        function isEvent(wat) {
+            return "undefined" !== typeof Event && isInstanceOf(wat, Event);
+        }
+        function isElement(wat) {
+            return "undefined" !== typeof Element && isInstanceOf(wat, Element);
+        }
+        function isRegExp(wat) {
+            return isBuiltin(wat, "RegExp");
+        }
+        function isThenable(wat) {
+            return Boolean(wat && wat.then && "function" === typeof wat.then);
+        }
+        function isSyntheticEvent(wat) {
+            return isPlainObject(wat) && "nativeEvent" in wat && "preventDefault" in wat && "stopPropagation" in wat;
+        }
+        function isInstanceOf(wat, base) {
+            try {
+                return wat instanceof base;
+            } catch (_e) {
+                return false;
+            }
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/logger.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            CONSOLE_LEVELS: () => CONSOLE_LEVELS,
+            consoleSandbox: () => consoleSandbox,
+            logger: () => logger
+        });
+        var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
+        var PREFIX = "Sentry Logger ";
+        var CONSOLE_LEVELS = [ "debug", "info", "warn", "error", "log", "assert" ];
+        function consoleSandbox(callback) {
+            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
+            if (!("console" in global)) return callback();
+            var originalConsole = global.console;
+            var wrappedLevels = {};
+            CONSOLE_LEVELS.forEach((function(level) {
+                if (level in global.console && originalConsole[level].__sentry_original__) {
+                    wrappedLevels[level] = originalConsole[level];
+                    originalConsole[level] = originalConsole[level].__sentry_original__;
+                }
+            }));
+            var result = callback();
+            Object.keys(wrappedLevels).forEach((function(level) {
+                originalConsole[level] = wrappedLevels[level];
+            }));
+            return result;
+        }
+        var Logger = function() {
+            function Logger() {
+                this._enabled = false;
+            }
+            Logger.prototype.disable = function() {
+                this._enabled = false;
+            };
+            Logger.prototype.enable = function() {
+                this._enabled = true;
+            };
+            Logger.prototype.log = function() {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                if (!this._enabled) return;
+                consoleSandbox((function() {
+                    var _a;
+                    (_a = global.console).log.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Log]:" ], args));
+                }));
+            };
+            Logger.prototype.warn = function() {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                if (!this._enabled) return;
+                consoleSandbox((function() {
+                    var _a;
+                    (_a = global.console).warn.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Warn]:" ], args));
+                }));
+            };
+            Logger.prototype.error = function() {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                if (!this._enabled) return;
+                consoleSandbox((function() {
+                    var _a;
+                    (_a = global.console).error.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Error]:" ], args));
+                }));
+            };
+            return Logger;
+        }();
+        var sentryGlobal = global.__SENTRY__ || {};
+        var logger = sentryGlobal.logger || new Logger;
+        if ((0, _env__WEBPACK_IMPORTED_MODULE_2__.isDebugBuild)()) {
+            sentryGlobal.logger = logger;
+            global.__SENTRY__ = sentryGlobal;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/misc.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            uuid4: () => uuid4,
+            parseUrl: () => parseUrl,
+            getEventDescription: () => getEventDescription,
+            addExceptionTypeValue: () => addExceptionTypeValue,
+            addExceptionMechanism: () => addExceptionMechanism,
+            checkOrSetAlreadyCaught: () => checkOrSetAlreadyCaught
+        });
+        var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var _object__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
+        function uuid4() {
+            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
+            var crypto = global.crypto || global.msCrypto;
+            if (!(void 0 === crypto) && crypto.getRandomValues) {
+                var arr = new Uint16Array(8);
+                crypto.getRandomValues(arr);
+                arr[3] = 4095 & arr[3] | 16384;
+                arr[4] = 16383 & arr[4] | 32768;
+                var pad = function(num) {
+                    var v = num.toString(16);
+                    while (v.length < 4) v = "0" + v;
+                    return v;
+                };
+                return pad(arr[0]) + pad(arr[1]) + pad(arr[2]) + pad(arr[3]) + pad(arr[4]) + pad(arr[5]) + pad(arr[6]) + pad(arr[7]);
+            }
+            return "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, (function(c) {
+                var r = 16 * Math.random() | 0;
+                var v = "x" === c ? r : 3 & r | 8;
+                return v.toString(16);
+            }));
+        }
+        function parseUrl(url) {
+            if (!url) return {};
+            var match = url.match(/^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/);
+            if (!match) return {};
+            var query = match[6] || "";
+            var fragment = match[8] || "";
+            return {
+                host: match[4],
+                path: match[5],
+                protocol: match[2],
+                relative: match[5] + query + fragment
+            };
+        }
+        function getFirstException(event) {
+            return event.exception && event.exception.values ? event.exception.values[0] : void 0;
+        }
+        function getEventDescription(event) {
+            var message = event.message, eventId = event.event_id;
+            if (message) return message;
+            var firstException = getFirstException(event);
+            if (firstException) {
+                if (firstException.type && firstException.value) return firstException.type + ": " + firstException.value;
+                return firstException.type || firstException.value || eventId || "<unknown>";
+            }
+            return eventId || "<unknown>";
+        }
+        function addExceptionTypeValue(event, value, type) {
+            var exception = event.exception = event.exception || {};
+            var values = exception.values = exception.values || [];
+            var firstException = values[0] = values[0] || {};
+            if (!firstException.value) firstException.value = value || "";
+            if (!firstException.type) firstException.type = type || "Error";
+        }
+        function addExceptionMechanism(event, newMechanism) {
+            var firstException = getFirstException(event);
+            if (!firstException) return;
+            var defaultMechanism = {
+                type: "generic",
+                handled: true
+            };
+            var currentMechanism = firstException.mechanism;
+            firstException.mechanism = (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0, 
+            tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, defaultMechanism), currentMechanism), newMechanism);
+            if (newMechanism && "data" in newMechanism) {
+                var mergedData = (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, currentMechanism && currentMechanism.data), newMechanism.data);
+                firstException.mechanism.data = mergedData;
+            }
+        }
+        function checkOrSetAlreadyCaught(exception) {
+            if (exception && exception.__sentry_captured__) return true;
+            try {
+                (0, _object__WEBPACK_IMPORTED_MODULE_2__.addNonEnumerableProperty)(exception, "__sentry_captured__", true);
+            } catch (err) {}
+            return false;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/node.js": (module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            isNodeEnv: () => isNodeEnv,
+            dynamicRequire: () => dynamicRequire,
+            loadModule: () => loadModule
+        });
+        var _env__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        module = __webpack_require__.hmd(module);
+        function isNodeEnv() {
+            return !(0, _env__WEBPACK_IMPORTED_MODULE_0__.isBrowserBundle)() && "[object process]" === Object.prototype.toString.call("undefined" !== typeof process ? process : 0);
+        }
+        function dynamicRequire(mod, request) {
+            return mod.require(request);
+        }
+        function loadModule(moduleName) {
+            var mod;
+            try {
+                mod = dynamicRequire(module, moduleName);
+            } catch (e) {}
+            try {
+                var cwd = dynamicRequire(module, "process").cwd;
+                mod = dynamicRequire(module, cwd() + "/node_modules/" + moduleName);
+            } catch (e) {}
+            return mod;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/object.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            fill: () => fill,
+            addNonEnumerableProperty: () => addNonEnumerableProperty,
+            markFunctionWrapped: () => markFunctionWrapped,
+            getOriginalFunction: () => getOriginalFunction,
+            urlEncode: () => urlEncode,
+            getWalkSource: () => getWalkSource,
+            extractExceptionKeysForMessage: () => extractExceptionKeysForMessage,
+            dropUndefinedKeys: () => dropUndefinedKeys
+        });
+        var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/browser.js");
+        var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+        var _string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/string.js");
+        function fill(source, name, replacementFactory) {
+            if (!(name in source)) return;
+            var original = source[name];
+            var wrapped = replacementFactory(original);
+            if ("function" === typeof wrapped) try {
+                markFunctionWrapped(wrapped, original);
+            } catch (_Oo) {}
+            source[name] = wrapped;
+        }
+        function addNonEnumerableProperty(obj, name, value) {
+            Object.defineProperty(obj, name, {
+                value,
+                writable: true,
+                configurable: true
+            });
+        }
+        function markFunctionWrapped(wrapped, original) {
+            var proto = original.prototype || {};
+            wrapped.prototype = original.prototype = proto;
+            addNonEnumerableProperty(wrapped, "__sentry_original__", original);
+        }
+        function getOriginalFunction(func) {
+            return func.__sentry_original__;
+        }
+        function urlEncode(object) {
+            return Object.keys(object).map((function(key) {
+                return encodeURIComponent(key) + "=" + encodeURIComponent(object[key]);
+            })).join("&");
+        }
+        function getWalkSource(value) {
+            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isError)(value)) {
+                var error = value;
+                var err = {
+                    message: error.message,
+                    name: error.name,
+                    stack: error.stack
+                };
+                for (var i in error) if (Object.prototype.hasOwnProperty.call(error, i)) err[i] = error[i];
+                return err;
+            }
+            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isEvent)(value)) {
+                var event_1 = value;
+                var source = {};
+                source.type = event_1.type;
+                try {
+                    source.target = (0, _is__WEBPACK_IMPORTED_MODULE_0__.isElement)(event_1.target) ? (0, 
+                    _browser__WEBPACK_IMPORTED_MODULE_1__.htmlTreeAsString)(event_1.target) : Object.prototype.toString.call(event_1.target);
+                } catch (_oO) {
+                    source.target = "<unknown>";
+                }
+                try {
+                    source.currentTarget = (0, _is__WEBPACK_IMPORTED_MODULE_0__.isElement)(event_1.currentTarget) ? (0, 
+                    _browser__WEBPACK_IMPORTED_MODULE_1__.htmlTreeAsString)(event_1.currentTarget) : Object.prototype.toString.call(event_1.currentTarget);
+                } catch (_oO) {
+                    source.currentTarget = "<unknown>";
+                }
+                if ("undefined" !== typeof CustomEvent && (0, _is__WEBPACK_IMPORTED_MODULE_0__.isInstanceOf)(value, CustomEvent)) source.detail = event_1.detail;
+                for (var attr in event_1) if (Object.prototype.hasOwnProperty.call(event_1, attr)) source[attr] = event_1[attr];
+                return source;
+            }
+            return value;
+        }
+        function extractExceptionKeysForMessage(exception, maxLength) {
+            if (void 0 === maxLength) maxLength = 40;
+            var keys = Object.keys(getWalkSource(exception));
+            keys.sort();
+            if (!keys.length) return "[object has no keys]";
+            if (keys[0].length >= maxLength) return (0, _string__WEBPACK_IMPORTED_MODULE_2__.truncate)(keys[0], maxLength);
+            for (var includedKeys = keys.length; includedKeys > 0; includedKeys--) {
+                var serialized = keys.slice(0, includedKeys).join(", ");
+                if (serialized.length > maxLength) continue;
+                if (includedKeys === keys.length) return serialized;
+                return (0, _string__WEBPACK_IMPORTED_MODULE_2__.truncate)(serialized, maxLength);
+            }
+            return "";
+        }
+        function dropUndefinedKeys(val) {
+            var e_1, _a;
+            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isPlainObject)(val)) {
+                var obj = val;
+                var rv = {};
+                try {
+                    for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__values)(Object.keys(obj)), _c = _b.next(); !_c.done; _c = _b.next()) {
+                        var key = _c.value;
+                        if ("undefined" !== typeof obj[key]) rv[key] = dropUndefinedKeys(obj[key]);
+                    }
+                } catch (e_1_1) {
+                    e_1 = {
+                        error: e_1_1
+                    };
+                } finally {
+                    try {
+                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                    } finally {
+                        if (e_1) throw e_1.error;
+                    }
+                }
+                return rv;
+            }
+            if (Array.isArray(val)) return val.map(dropUndefinedKeys);
+            return val;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/stacktrace.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            createStackParser: () => createStackParser,
+            getFunctionName: () => getFunctionName
+        });
+        var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var STACKTRACE_LIMIT = 50;
+        function createStackParser() {
+            var parsers = [];
+            for (var _i = 0; _i < arguments.length; _i++) parsers[_i] = arguments[_i];
+            var sortedParsers = parsers.sort((function(a, b) {
+                return a[0] - b[0];
+            })).map((function(p) {
+                return p[1];
+            }));
+            return function(stack, skipFirst) {
+                var e_1, _a, e_2, _b;
+                if (void 0 === skipFirst) skipFirst = 0;
+                var frames = [];
+                try {
+                    for (var _c = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(stack.split("\n").slice(skipFirst)), _d = _c.next(); !_d.done; _d = _c.next()) {
+                        var line = _d.value;
+                        try {
+                            for (var sortedParsers_1 = (e_2 = void 0, (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(sortedParsers)), sortedParsers_1_1 = sortedParsers_1.next(); !sortedParsers_1_1.done; sortedParsers_1_1 = sortedParsers_1.next()) {
+                                var parser = sortedParsers_1_1.value;
+                                var frame = parser(line);
+                                if (frame) {
+                                    frames.push(frame);
+                                    break;
+                                }
+                            }
+                        } catch (e_2_1) {
+                            e_2 = {
+                                error: e_2_1
+                            };
+                        } finally {
+                            try {
+                                if (sortedParsers_1_1 && !sortedParsers_1_1.done && (_b = sortedParsers_1.return)) _b.call(sortedParsers_1);
+                            } finally {
+                                if (e_2) throw e_2.error;
+                            }
+                        }
+                    }
+                } catch (e_1_1) {
+                    e_1 = {
+                        error: e_1_1
+                    };
+                } finally {
+                    try {
+                        if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+                    } finally {
+                        if (e_1) throw e_1.error;
+                    }
+                }
+                return stripSentryFramesAndReverse(frames);
+            };
+        }
+        function stripSentryFramesAndReverse(stack) {
+            if (!stack.length) return [];
+            var localStack = stack;
+            var firstFrameFunction = localStack[0].function || "";
+            var lastFrameFunction = localStack[localStack.length - 1].function || "";
+            if (-1 !== firstFrameFunction.indexOf("captureMessage") || -1 !== firstFrameFunction.indexOf("captureException")) localStack = localStack.slice(1);
+            if (-1 !== lastFrameFunction.indexOf("sentryWrapped")) localStack = localStack.slice(0, -1);
+            return localStack.slice(0, STACKTRACE_LIMIT).map((function(frame) {
+                return (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, frame), {
+                    filename: frame.filename || localStack[0].filename,
+                    function: frame.function || "?"
+                });
+            })).reverse();
+        }
+        var defaultFunctionName = "<anonymous>";
+        function getFunctionName(fn) {
+            try {
+                if (!fn || "function" !== typeof fn) return defaultFunctionName;
+                return fn.name || defaultFunctionName;
+            } catch (e) {
+                return defaultFunctionName;
+            }
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/string.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            truncate: () => truncate,
+            safeJoin: () => safeJoin,
+            isMatchingPattern: () => isMatchingPattern
+        });
+        var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+        function truncate(str, max) {
+            if (void 0 === max) max = 0;
+            if ("string" !== typeof str || 0 === max) return str;
+            return str.length <= max ? str : str.substr(0, max) + "...";
+        }
+        function safeJoin(input, delimiter) {
+            if (!Array.isArray(input)) return "";
+            var output = [];
+            for (var i = 0; i < input.length; i++) {
+                var value = input[i];
+                try {
+                    output.push(String(value));
+                } catch (e) {
+                    output.push("[value cannot be serialized]");
+                }
+            }
+            return output.join(delimiter);
+        }
+        function isMatchingPattern(value, pattern) {
+            if (!(0, _is__WEBPACK_IMPORTED_MODULE_0__.isString)(value)) return false;
+            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isRegExp)(pattern)) return pattern.test(value);
+            if ("string" === typeof pattern) return -1 !== value.indexOf(pattern);
+            return false;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/supports.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            supportsFetch: () => supportsFetch,
+            isNativeFetch: () => isNativeFetch,
+            supportsNativeFetch: () => supportsNativeFetch,
+            supportsReferrerPolicy: () => supportsReferrerPolicy,
+            supportsHistory: () => supportsHistory
+        });
+        var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+        function supportsFetch() {
+            if (!("fetch" in (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)())) return false;
+            try {
+                new Headers;
+                new Request("");
+                new Response;
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+        function isNativeFetch(func) {
+            return func && /^function fetch\(\)\s+\{\s+\[native code\]\s+\}$/.test(func.toString());
+        }
+        function supportsNativeFetch() {
+            if (!supportsFetch()) return false;
+            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
+            if (isNativeFetch(global.fetch)) return true;
+            var result = false;
+            var doc = global.document;
+            if (doc && "function" === typeof doc.createElement) try {
+                var sandbox = doc.createElement("iframe");
+                sandbox.hidden = true;
+                doc.head.appendChild(sandbox);
+                if (sandbox.contentWindow && sandbox.contentWindow.fetch) result = isNativeFetch(sandbox.contentWindow.fetch);
+                doc.head.removeChild(sandbox);
+            } catch (err) {
+                (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ", err);
+            }
+            return result;
+        }
+        function supportsReferrerPolicy() {
+            if (!supportsFetch()) return false;
+            try {
+                new Request("_", {
+                    referrerPolicy: "origin"
+                });
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+        function supportsHistory() {
+            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
+            var chrome = global.chrome;
+            var isChromePackagedApp = chrome && chrome.app && chrome.app.runtime;
+            var hasHistoryApi = "history" in global && !!global.history.pushState && !!global.history.replaceState;
+            return !isChromePackagedApp && hasHistoryApi;
+        }
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/syncpromise.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            resolvedSyncPromise: () => resolvedSyncPromise,
+            rejectedSyncPromise: () => rejectedSyncPromise,
+            SyncPromise: () => SyncPromise
+        });
+        var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+        function resolvedSyncPromise(value) {
+            return new SyncPromise((function(resolve) {
+                resolve(value);
+            }));
+        }
+        function rejectedSyncPromise(reason) {
+            return new SyncPromise((function(_, reject) {
+                reject(reason);
+            }));
+        }
+        var SyncPromise = function() {
+            function SyncPromise(executor) {
+                var _this = this;
+                this._state = 0;
+                this._handlers = [];
+                this._resolve = function(value) {
+                    _this._setResult(1, value);
+                };
+                this._reject = function(reason) {
+                    _this._setResult(2, reason);
+                };
+                this._setResult = function(state, value) {
+                    if (0 !== _this._state) return;
+                    if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isThenable)(value)) {
+                        void value.then(_this._resolve, _this._reject);
+                        return;
+                    }
+                    _this._state = state;
+                    _this._value = value;
+                    _this._executeHandlers();
+                };
+                this._executeHandlers = function() {
+                    if (0 === _this._state) return;
+                    var cachedHandlers = _this._handlers.slice();
+                    _this._handlers = [];
+                    cachedHandlers.forEach((function(handler) {
+                        if (handler[0]) return;
+                        if (1 === _this._state) handler[1](_this._value);
+                        if (2 === _this._state) handler[2](_this._value);
+                        handler[0] = true;
+                    }));
+                };
+                try {
+                    executor(this._resolve, this._reject);
+                } catch (e) {
+                    this._reject(e);
+                }
+            }
+            SyncPromise.prototype.then = function(onfulfilled, onrejected) {
+                var _this = this;
+                return new SyncPromise((function(resolve, reject) {
+                    _this._handlers.push([ false, function(result) {
+                        if (!onfulfilled) resolve(result); else try {
+                            resolve(onfulfilled(result));
+                        } catch (e) {
+                            reject(e);
+                        }
+                    }, function(reason) {
+                        if (!onrejected) reject(reason); else try {
+                            resolve(onrejected(reason));
+                        } catch (e) {
+                            reject(e);
+                        }
+                    } ]);
+                    _this._executeHandlers();
+                }));
+            };
+            SyncPromise.prototype.catch = function(onrejected) {
+                return this.then((function(val) {
+                    return val;
+                }), onrejected);
+            };
+            SyncPromise.prototype.finally = function(onfinally) {
+                var _this = this;
+                return new SyncPromise((function(resolve, reject) {
+                    var val;
+                    var isRejected;
+                    return _this.then((function(value) {
+                        isRejected = false;
+                        val = value;
+                        if (onfinally) onfinally();
+                    }), (function(reason) {
+                        isRejected = true;
+                        val = reason;
+                        if (onfinally) onfinally();
+                    })).then((function() {
+                        if (isRejected) {
+                            reject(val);
+                            return;
+                        }
+                        resolve(val);
+                    }));
+                }));
+            };
+            return SyncPromise;
+        }();
+    },
+    "../shared/browser/node_modules/@sentry/utils/esm/time.js": (module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            dateTimestampInSeconds: () => dateTimestampInSeconds,
+            timestampInSeconds: () => timestampInSeconds,
+            timestampWithMs: () => timestampWithMs,
+            browserPerformanceTimeOrigin: () => browserPerformanceTimeOrigin
+        });
+        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var _node__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
+        module = __webpack_require__.hmd(module);
+        var dateTimestampSource = {
+            nowSeconds: function() {
+                return Date.now() / 1e3;
+            }
+        };
+        function getBrowserPerformance() {
+            var performance = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)().performance;
+            if (!performance || !performance.now) return;
+            var timeOrigin = Date.now() - performance.now();
+            return {
+                now: function() {
+                    return performance.now();
+                },
+                timeOrigin
+            };
+        }
+        function getNodePerformance() {
+            try {
+                var perfHooks = (0, _node__WEBPACK_IMPORTED_MODULE_1__.dynamicRequire)(module, "perf_hooks");
+                return perfHooks.performance;
+            } catch (_) {
+                return;
+            }
+        }
+        var platformPerformance = (0, _node__WEBPACK_IMPORTED_MODULE_1__.isNodeEnv)() ? getNodePerformance() : getBrowserPerformance();
+        var timestampSource = void 0 === platformPerformance ? dateTimestampSource : {
+            nowSeconds: function() {
+                return (platformPerformance.timeOrigin + platformPerformance.now()) / 1e3;
+            }
+        };
+        var dateTimestampInSeconds = dateTimestampSource.nowSeconds.bind(dateTimestampSource);
+        var timestampInSeconds = timestampSource.nowSeconds.bind(timestampSource);
+        var timestampWithMs = timestampInSeconds;
+        var browserPerformanceTimeOrigin = function() {
+            var performance = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)().performance;
+            if (!performance || !performance.now) {
+                "none";
+                return;
+            }
+            var threshold = 3600 * 1e3;
+            var performanceNow = performance.now();
+            var dateNow = Date.now();
+            var timeOriginDelta = performance.timeOrigin ? Math.abs(performance.timeOrigin + performanceNow - dateNow) : threshold;
+            var timeOriginIsReliable = timeOriginDelta < threshold;
+            var navigationStart = performance.timing && performance.timing.navigationStart;
+            var hasNavigationStart = "number" === typeof navigationStart;
+            var navigationStartDelta = hasNavigationStart ? Math.abs(navigationStart + performanceNow - dateNow) : threshold;
+            var navigationStartIsReliable = navigationStartDelta < threshold;
+            if (timeOriginIsReliable || navigationStartIsReliable) if (timeOriginDelta <= navigationStartDelta) {
+                "timeOrigin";
+                return performance.timeOrigin;
+            } else {
+                "navigationStart";
+                return navigationStart;
+            }
+            "dateNow";
+            return dateNow;
+        }();
+    },
+    "../shared/browser/node_modules/tslib/tslib.es6.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            __extends: () => __extends,
+            __assign: () => __assign,
+            __rest: () => __rest,
+            __values: () => __values,
+            __read: () => __read,
+            __spread: () => __spread
+        });
+        var extendStatics = function(d, b) {
+            extendStatics = Object.setPrototypeOf || {
+                __proto__: []
+            } instanceof Array && function(d, b) {
+                d.__proto__ = b;
+            } || function(d, b) {
+                for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+            };
+            return extendStatics(d, b);
+        };
+        function __extends(d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = null === b ? Object.create(b) : (__.prototype = b.prototype, new __);
+        }
+        var __assign = function() {
+            __assign = Object.assign || function(t) {
+                for (var s, i = 1, n = arguments.length; i < n; i++) {
+                    s = arguments[i];
+                    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                }
+                return t;
+            };
+            return __assign.apply(this, arguments);
+        };
+        function __rest(s, e) {
+            var t = {};
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+            if (null != s && "function" === typeof Object.getOwnPropertySymbols) {
+                var i = 0;
+                for (p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+            }
+            return t;
+        }
+        function __values(o) {
+            var s = "function" === typeof Symbol && Symbol.iterator, m = s && o[s], i = 0;
+            if (m) return m.call(o);
+            if (o && "number" === typeof o.length) return {
+                next: function() {
+                    if (o && i >= o.length) o = void 0;
+                    return {
+                        value: o && o[i++],
+                        done: !o
+                    };
+                }
+            };
+            throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+        }
+        function __read(o, n) {
+            var m = "function" === typeof Symbol && o[Symbol.iterator];
+            if (!m) return o;
+            var r, e, i = m.call(o), ar = [];
+            try {
+                while ((void 0 === n || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+            } catch (error) {
+                e = {
+                    error
+                };
+            } finally {
+                try {
+                    if (r && !r.done && (m = i["return"])) m.call(i);
+                } finally {
+                    if (e) throw e.error;
+                }
+            }
+            return ar;
+        }
+        function __spread() {
+            for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+            return ar;
+        }
+    },
     "../shared/browser/utils/sentry.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
-        var esm_hub = __webpack_require__("../shared/node_modules/@sentry/hub/esm/hub.js");
-        var esm_env = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        var esm_logger = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
+        var esm_hub = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
+        var esm_env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var esm_logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
         function initAndBind(clientClass, options) {
             if (true === options.debug) if ((0, esm_env.isDebugBuild)()) esm_logger.logger.enable(); else console.warn("[Sentry] Cannot initialize SDK with `debug` option using a non-debug bundle.");
             var hub = (0, esm_hub.getCurrentHub)();
@@ -14,9 +2566,9 @@
             var client = new clientClass(options);
             hub.bindClient(client);
         }
-        var tslib_es6 = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var misc = __webpack_require__("../shared/node_modules/@sentry/utils/esm/misc.js");
-        var string = __webpack_require__("../shared/node_modules/@sentry/utils/esm/string.js");
+        var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var misc = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
+        var string = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/string.js");
         var DEFAULT_IGNORE_ERRORS = [ /^Script error\.?$/, /^Javascript error: Script error\.? on line 0$/ ];
         var InboundFilters = function() {
             function InboundFilters(_options) {
@@ -137,7 +2689,7 @@
                 return null;
             }
         }
-        var object = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
+        var object = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
         var originalFunctionToString;
         var FunctionToString = function() {
             function FunctionToString() {
@@ -155,10 +2707,10 @@
             FunctionToString.id = "FunctionToString";
             return FunctionToString;
         }();
-        var esm_global = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var instrument = __webpack_require__("../shared/node_modules/@sentry/utils/esm/instrument.js");
+        var esm_global = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var instrument = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/instrument.js");
         var SDK_VERSION = "6.19.2";
-        var esm_scope = __webpack_require__("../shared/node_modules/@sentry/hub/esm/scope.js");
+        var esm_scope = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/scope.js");
         var setPrototypeOf = Object.setPrototypeOf || ({
             __proto__: []
         } instanceof Array ? setProtoOf : mixinProperties);
@@ -246,9 +2798,9 @@
             validateDsn(components);
             return components;
         }
-        var is = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-        var syncpromise = __webpack_require__("../shared/node_modules/@sentry/utils/esm/syncpromise.js");
-        var time = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
+        var is = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+        var syncpromise = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/syncpromise.js");
+        var time = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
         function memoBuilder() {
             var hasWeakSet = "function" === typeof WeakSet;
             var inner = hasWeakSet ? new WeakSet : [];
@@ -273,7 +2825,7 @@
             }
             return [ memoize, unmemoize ];
         }
-        var esm_stacktrace = __webpack_require__("../shared/node_modules/@sentry/utils/esm/stacktrace.js");
+        var esm_stacktrace = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/stacktrace.js");
         function normalize(input, depth, maxProperties) {
             if (void 0 === depth) depth = +1 / 0;
             if (void 0 === maxProperties) maxProperties = +1 / 0;
@@ -965,7 +3517,7 @@
             Severity["Debug"] = "debug";
             Severity["Critical"] = "critical";
         })(Severity || (Severity = {}));
-        var supports = __webpack_require__("../shared/node_modules/@sentry/utils/esm/supports.js");
+        var supports = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/supports.js");
         var UNKNOWN_FUNCTION = "?";
         var OPERA10_PRIORITY = 10;
         var OPERA11_PRIORITY = 20;
@@ -1645,7 +4197,7 @@
             var injectionPoint = helpers_global.document.head || helpers_global.document.body;
             if (injectionPoint) injectionPoint.appendChild(script);
         }
-        var browser = __webpack_require__("../shared/node_modules/@sentry/utils/esm/browser.js");
+        var browser = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/browser.js");
         var enums_SeverityLevels = [ "fatal", "error", "warning", "log", "info", "debug", "critical" ];
         function isSupportedSeverity(level) {
             return -1 !== enums_SeverityLevels.indexOf(level);
@@ -2259,9 +4811,11 @@
                 if (!(void 0 === from || from === to)) startSessionOnHub((0, esm_hub.getCurrentHub)());
             }));
         }
-        var hubextensions = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/hubextensions.js");
-        var idletransaction = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/idletransaction.js");
-        var utils = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/utils.js");
+        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
+        var get_default = __webpack_require__.n(get);
+        var hubextensions = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/hubextensions.js");
+        var idletransaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js");
+        var utils = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/utils.js");
         var TRACEPARENT_REGEXP = new RegExp("^[ \\t]*" + "([0-9a-f]{32})?" + "-?([0-9a-f]{16})?" + "-?([01])?" + "[ \\t]*$");
         function extractTraceparentData(traceparent) {
             var matches = traceparent.match(TRACEPARENT_REGEXP);
@@ -2276,7 +4830,7 @@
             }
             return;
         }
-        var constants = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/constants.js");
+        var constants = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/constants.js");
         var backgroundtab_global = (0, esm_global.getGlobalObject)();
         function registerBackgroundTabDetection() {
             if (backgroundtab_global && backgroundtab_global.document) backgroundtab_global.document.addEventListener("visibilitychange", (function() {
@@ -2291,7 +4845,7 @@
                 }
             })); else (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] Could not set up background tab detection due to lack of global document");
         }
-        var node = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
+        var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
         var bindReporter = function(callback, metric, reportAllChanges) {
             var prevValue;
             return function(forceReport) {
@@ -2933,7 +5487,7 @@
             BOTTOM: "bottom"
         };
         function getErrorLine(error) {
-            if (!(null !== error && void 0 !== error && error.stack)) return;
+            if (!(error && error.stack)) return;
             const stack = error.stack.toString().split(/\r\n|\n/);
             const frameRE = /:(\d+):(?:\d+)[^\d]*$/;
             let firstTrace;
@@ -2954,14 +5508,13 @@
             };
         }
         try {
-            var _window$Shopline, _window$Shopline$even;
             const {APP_ENV, SENTRY_TRACES_SAMPLE_RATE} = (0, get_env["default"])();
             let sampleRate = Number(SENTRY_TRACES_SAMPLE_RATE);
             if (Number.isNaN(sampleRate)) sampleRate = 0;
             const options = {
                 debug: false,
                 environment: APP_ENV,
-                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_e11a14d02"}`,
+                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_c84a649d4"}`,
                 dsn: (0, get_env["default"])(void 0 || "SENTRY_DSN") || "",
                 autoSessionTracking: false,
                 ignoreErrors: [ "ReportingObserver [deprecation]" ],
@@ -2969,11 +5522,12 @@
                 tracesSampleRate: sampleRate,
                 integrations: [ new BrowserTracing ],
                 beforeSend(event, hint) {
-                    var _event$exception, _event$exception$valu, _event$exception$valu2, _traceFrames$, _traceFrames$find, _traceFrames$2;
                     const error = hint.originalException;
-                    const traceFrames = (null === event || void 0 === event ? void 0 : null === (_event$exception = event.exception) || void 0 === _event$exception ? void 0 : null === (_event$exception$valu = _event$exception.values[0]) || void 0 === _event$exception$valu ? void 0 : null === (_event$exception$valu2 = _event$exception$valu.stacktrace) || void 0 === _event$exception$valu2 ? void 0 : _event$exception$valu2.frames) || [];
-                    const errorLine = getErrorLine(error) || (null === (_traceFrames$ = traceFrames[0]) || void 0 === _traceFrames$ ? void 0 : _traceFrames$.lineno);
-                    const errorFile = (null === (_traceFrames$find = traceFrames.find((frame => frame.lineno === errorLine))) || void 0 === _traceFrames$find ? void 0 : _traceFrames$find.filename) || (null === (_traceFrames$2 = traceFrames[0]) || void 0 === _traceFrames$2 ? void 0 : _traceFrames$2.filename);
+                    const frames = event && event.exception && event.exception.values && event.exception.values[0] && event.exception.values[0].stacktrace && event.exception.values[0].stacktrace.frames;
+                    const traceFrames = frames || [];
+                    const errorLine = getErrorLine(error) || traceFrames[0] && traceFrames[0].lineno;
+                    const file = traceFrames.find((frame => frame.lineno === errorLine));
+                    const errorFile = get_default()(file, "filename", void 0) || get_default()(traceFrames[0], "filename", void 0);
                     if (errorFile === window.location.href) {
                         if ("undefined" !== typeof window.__CUSTOM_HEADER_START__ && "undefined" !== typeof window.__CUSTOM_HEADER_END__) {
                             const isHeadError = errorLine >= +window.__CUSTOM_HEADER_START__ && errorLine <= +window.__CUSTOM_HEADER_END__;
@@ -2987,9 +5541,9 @@
                     return event;
                 },
                 beforeBreadcrumb(breadcrumb, hint) {
-                    var _hint$xhr;
-                    if ("xhr" === breadcrumb.category && null !== hint && void 0 !== hint && null !== (_hint$xhr = hint.xhr) && void 0 !== _hint$xhr && _hint$xhr.response) try {
-                        const trace_id = hint.xhr.response.match(/trace_id":"(\S*?)"/)[1] || "";
+                    const response = get_default()(hint, "xhr.response", void 0);
+                    if ("xhr" === breadcrumb.category && response) try {
+                        const trace_id = response.match(/trace_id":"(\S*?)"/)[1] || "";
                         return {
                             ...breadcrumb,
                             data: {
@@ -3005,2566 +5559,17 @@
             };
             if (-1 === sampleRate) delete options.tracesSampleRate;
             init(options);
-            null === (_window$Shopline = window.Shopline) || void 0 === _window$Shopline ? void 0 : null === (_window$Shopline$even = _window$Shopline.event) || void 0 === _window$Shopline$even ? void 0 : _window$Shopline$even.on("Sentry::CaptureMessage", ((...data) => {
+            const eventOn = get_default()(window, "Shopline.event", void 0);
+            if (eventOn) eventOn.on("Sentry::CaptureMessage", ((...data) => {
                 captureMessage(...data);
             }));
         } catch (e) {
             console.error(e);
         }
-    },
-    "../shared/node_modules/@sentry/hub/esm/hub.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            Hub: () => Hub,
-            getCurrentHub: () => getCurrentHub,
-            getMainCarrier: () => getMainCarrier
-        });
-        var tslib_es6 = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var misc = __webpack_require__("../shared/node_modules/@sentry/utils/esm/misc.js");
-        var time = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
-        var esm_logger = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-        var env = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        var esm_global = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var node = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
-        var esm_scope = __webpack_require__("../shared/node_modules/@sentry/hub/esm/scope.js");
-        var object = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
-        var Session = function() {
-            function Session(context) {
-                this.errors = 0;
-                this.sid = (0, misc.uuid4)();
-                this.duration = 0;
-                this.status = "ok";
-                this.init = true;
-                this.ignoreDuration = false;
-                var startingTime = (0, time.timestampInSeconds)();
-                this.timestamp = startingTime;
-                this.started = startingTime;
-                if (context) this.update(context);
-            }
-            Session.prototype.update = function(context) {
-                if (void 0 === context) context = {};
-                if (context.user) {
-                    if (!this.ipAddress && context.user.ip_address) this.ipAddress = context.user.ip_address;
-                    if (!this.did && !context.did) this.did = context.user.id || context.user.email || context.user.username;
-                }
-                this.timestamp = context.timestamp || (0, time.timestampInSeconds)();
-                if (context.ignoreDuration) this.ignoreDuration = context.ignoreDuration;
-                if (context.sid) this.sid = 32 === context.sid.length ? context.sid : (0, misc.uuid4)();
-                if (void 0 !== context.init) this.init = context.init;
-                if (!this.did && context.did) this.did = "" + context.did;
-                if ("number" === typeof context.started) this.started = context.started;
-                if (this.ignoreDuration) this.duration = void 0; else if ("number" === typeof context.duration) this.duration = context.duration; else {
-                    var duration = this.timestamp - this.started;
-                    this.duration = duration >= 0 ? duration : 0;
-                }
-                if (context.release) this.release = context.release;
-                if (context.environment) this.environment = context.environment;
-                if (!this.ipAddress && context.ipAddress) this.ipAddress = context.ipAddress;
-                if (!this.userAgent && context.userAgent) this.userAgent = context.userAgent;
-                if ("number" === typeof context.errors) this.errors = context.errors;
-                if (context.status) this.status = context.status;
-            };
-            Session.prototype.close = function(status) {
-                if (status) this.update({
-                    status
-                }); else if ("ok" === this.status) this.update({
-                    status: "exited"
-                }); else this.update();
-            };
-            Session.prototype.toJSON = function() {
-                return (0, object.dropUndefinedKeys)({
-                    sid: "" + this.sid,
-                    init: this.init,
-                    started: new Date(1e3 * this.started).toISOString(),
-                    timestamp: new Date(1e3 * this.timestamp).toISOString(),
-                    status: this.status,
-                    errors: this.errors,
-                    did: "number" === typeof this.did || "string" === typeof this.did ? "" + this.did : void 0,
-                    duration: this.duration,
-                    attrs: {
-                        release: this.release,
-                        environment: this.environment,
-                        ip_address: this.ipAddress,
-                        user_agent: this.userAgent
-                    }
-                });
-            };
-            return Session;
-        }();
-        var API_VERSION = 4;
-        var DEFAULT_BREADCRUMBS = 100;
-        var Hub = function() {
-            function Hub(client, scope, _version) {
-                if (void 0 === scope) scope = new esm_scope.Scope;
-                if (void 0 === _version) _version = API_VERSION;
-                this._version = _version;
-                this._stack = [ {} ];
-                this.getStackTop().scope = scope;
-                if (client) this.bindClient(client);
-            }
-            Hub.prototype.isOlderThan = function(version) {
-                return this._version < version;
-            };
-            Hub.prototype.bindClient = function(client) {
-                var top = this.getStackTop();
-                top.client = client;
-                if (client && client.setupIntegrations) client.setupIntegrations();
-            };
-            Hub.prototype.pushScope = function() {
-                var scope = esm_scope.Scope.clone(this.getScope());
-                this.getStack().push({
-                    client: this.getClient(),
-                    scope
-                });
-                return scope;
-            };
-            Hub.prototype.popScope = function() {
-                if (this.getStack().length <= 1) return false;
-                return !!this.getStack().pop();
-            };
-            Hub.prototype.withScope = function(callback) {
-                var scope = this.pushScope();
-                try {
-                    callback(scope);
-                } finally {
-                    this.popScope();
-                }
-            };
-            Hub.prototype.getClient = function() {
-                return this.getStackTop().client;
-            };
-            Hub.prototype.getScope = function() {
-                return this.getStackTop().scope;
-            };
-            Hub.prototype.getStack = function() {
-                return this._stack;
-            };
-            Hub.prototype.getStackTop = function() {
-                return this._stack[this._stack.length - 1];
-            };
-            Hub.prototype.captureException = function(exception, hint) {
-                var eventId = this._lastEventId = hint && hint.event_id ? hint.event_id : (0, misc.uuid4)();
-                var finalHint = hint;
-                if (!hint) {
-                    var syntheticException = void 0;
-                    try {
-                        throw new Error("Sentry syntheticException");
-                    } catch (exception) {
-                        syntheticException = exception;
-                    }
-                    finalHint = {
-                        originalException: exception,
-                        syntheticException
-                    };
-                }
-                this._invokeClient("captureException", exception, (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, finalHint), {
-                    event_id: eventId
-                }));
-                return eventId;
-            };
-            Hub.prototype.captureMessage = function(message, level, hint) {
-                var eventId = this._lastEventId = hint && hint.event_id ? hint.event_id : (0, misc.uuid4)();
-                var finalHint = hint;
-                if (!hint) {
-                    var syntheticException = void 0;
-                    try {
-                        throw new Error(message);
-                    } catch (exception) {
-                        syntheticException = exception;
-                    }
-                    finalHint = {
-                        originalException: message,
-                        syntheticException
-                    };
-                }
-                this._invokeClient("captureMessage", message, level, (0, tslib_es6.__assign)((0, 
-                tslib_es6.__assign)({}, finalHint), {
-                    event_id: eventId
-                }));
-                return eventId;
-            };
-            Hub.prototype.captureEvent = function(event, hint) {
-                var eventId = hint && hint.event_id ? hint.event_id : (0, misc.uuid4)();
-                if ("transaction" !== event.type) this._lastEventId = eventId;
-                this._invokeClient("captureEvent", event, (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, hint), {
-                    event_id: eventId
-                }));
-                return eventId;
-            };
-            Hub.prototype.lastEventId = function() {
-                return this._lastEventId;
-            };
-            Hub.prototype.addBreadcrumb = function(breadcrumb, hint) {
-                var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
-                if (!scope || !client) return;
-                var _b = client.getOptions && client.getOptions() || {}, _c = _b.beforeBreadcrumb, beforeBreadcrumb = void 0 === _c ? null : _c, _d = _b.maxBreadcrumbs, maxBreadcrumbs = void 0 === _d ? DEFAULT_BREADCRUMBS : _d;
-                if (maxBreadcrumbs <= 0) return;
-                var timestamp = (0, time.dateTimestampInSeconds)();
-                var mergedBreadcrumb = (0, tslib_es6.__assign)({
-                    timestamp
-                }, breadcrumb);
-                var finalBreadcrumb = beforeBreadcrumb ? (0, esm_logger.consoleSandbox)((function() {
-                    return beforeBreadcrumb(mergedBreadcrumb, hint);
-                })) : mergedBreadcrumb;
-                if (null === finalBreadcrumb) return;
-                scope.addBreadcrumb(finalBreadcrumb, maxBreadcrumbs);
-            };
-            Hub.prototype.setUser = function(user) {
-                var scope = this.getScope();
-                if (scope) scope.setUser(user);
-            };
-            Hub.prototype.setTags = function(tags) {
-                var scope = this.getScope();
-                if (scope) scope.setTags(tags);
-            };
-            Hub.prototype.setExtras = function(extras) {
-                var scope = this.getScope();
-                if (scope) scope.setExtras(extras);
-            };
-            Hub.prototype.setTag = function(key, value) {
-                var scope = this.getScope();
-                if (scope) scope.setTag(key, value);
-            };
-            Hub.prototype.setExtra = function(key, extra) {
-                var scope = this.getScope();
-                if (scope) scope.setExtra(key, extra);
-            };
-            Hub.prototype.setContext = function(name, context) {
-                var scope = this.getScope();
-                if (scope) scope.setContext(name, context);
-            };
-            Hub.prototype.configureScope = function(callback) {
-                var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
-                if (scope && client) callback(scope);
-            };
-            Hub.prototype.run = function(callback) {
-                var oldHub = makeMain(this);
-                try {
-                    callback(this);
-                } finally {
-                    makeMain(oldHub);
-                }
-            };
-            Hub.prototype.getIntegration = function(integration) {
-                var client = this.getClient();
-                if (!client) return null;
-                try {
-                    return client.getIntegration(integration);
-                } catch (_oO) {
-                    (0, env.isDebugBuild)() && esm_logger.logger.warn("Cannot retrieve integration " + integration.id + " from the current Hub");
-                    return null;
-                }
-            };
-            Hub.prototype.startSpan = function(context) {
-                return this._callExtensionMethod("startSpan", context);
-            };
-            Hub.prototype.startTransaction = function(context, customSamplingContext) {
-                return this._callExtensionMethod("startTransaction", context, customSamplingContext);
-            };
-            Hub.prototype.traceHeaders = function() {
-                return this._callExtensionMethod("traceHeaders");
-            };
-            Hub.prototype.captureSession = function(endSession) {
-                if (void 0 === endSession) endSession = false;
-                if (endSession) return this.endSession();
-                this._sendSessionUpdate();
-            };
-            Hub.prototype.endSession = function() {
-                var layer = this.getStackTop();
-                var scope = layer && layer.scope;
-                var session = scope && scope.getSession();
-                if (session) session.close();
-                this._sendSessionUpdate();
-                if (scope) scope.setSession();
-            };
-            Hub.prototype.startSession = function(context) {
-                var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
-                var _b = client && client.getOptions() || {}, release = _b.release, environment = _b.environment;
-                var global = (0, esm_global.getGlobalObject)();
-                var userAgent = (global.navigator || {}).userAgent;
-                var session = new Session((0, tslib_es6.__assign)((0, tslib_es6.__assign)((0, tslib_es6.__assign)({
-                    release,
-                    environment
-                }, scope && {
-                    user: scope.getUser()
-                }), userAgent && {
-                    userAgent
-                }), context));
-                if (scope) {
-                    var currentSession = scope.getSession && scope.getSession();
-                    if (currentSession && "ok" === currentSession.status) currentSession.update({
-                        status: "exited"
-                    });
-                    this.endSession();
-                    scope.setSession(session);
-                }
-                return session;
-            };
-            Hub.prototype._sendSessionUpdate = function() {
-                var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
-                if (!scope) return;
-                var session = scope.getSession && scope.getSession();
-                if (session) if (client && client.captureSession) client.captureSession(session);
-            };
-            Hub.prototype._invokeClient = function(method) {
-                var _a;
-                var args = [];
-                for (var _i = 1; _i < arguments.length; _i++) args[_i - 1] = arguments[_i];
-                var _b = this.getStackTop(), scope = _b.scope, client = _b.client;
-                if (client && client[method]) (_a = client)[method].apply(_a, (0, tslib_es6.__spread)(args, [ scope ]));
-            };
-            Hub.prototype._callExtensionMethod = function(method) {
-                var args = [];
-                for (var _i = 1; _i < arguments.length; _i++) args[_i - 1] = arguments[_i];
-                var carrier = getMainCarrier();
-                var sentry = carrier.__SENTRY__;
-                if (sentry && sentry.extensions && "function" === typeof sentry.extensions[method]) return sentry.extensions[method].apply(this, args);
-                (0, env.isDebugBuild)() && esm_logger.logger.warn("Extension method " + method + " couldn't be found, doing nothing.");
-            };
-            return Hub;
-        }();
-        function getMainCarrier() {
-            var carrier = (0, esm_global.getGlobalObject)();
-            carrier.__SENTRY__ = carrier.__SENTRY__ || {
-                extensions: {},
-                hub: void 0
-            };
-            return carrier;
-        }
-        function makeMain(hub) {
-            var registry = getMainCarrier();
-            var oldHub = getHubFromCarrier(registry);
-            setHubOnCarrier(registry, hub);
-            return oldHub;
-        }
-        function getCurrentHub() {
-            var registry = getMainCarrier();
-            if (!hasHubOnCarrier(registry) || getHubFromCarrier(registry).isOlderThan(API_VERSION)) setHubOnCarrier(registry, new Hub);
-            if ((0, node.isNodeEnv)()) return getHubFromActiveDomain(registry);
-            return getHubFromCarrier(registry);
-        }
-        function getHubFromActiveDomain(registry) {
-            try {
-                var sentry = getMainCarrier().__SENTRY__;
-                var activeDomain = sentry && sentry.extensions && sentry.extensions.domain && sentry.extensions.domain.active;
-                if (!activeDomain) return getHubFromCarrier(registry);
-                if (!hasHubOnCarrier(activeDomain) || getHubFromCarrier(activeDomain).isOlderThan(API_VERSION)) {
-                    var registryHubTopStack = getHubFromCarrier(registry).getStackTop();
-                    setHubOnCarrier(activeDomain, new Hub(registryHubTopStack.client, esm_scope.Scope.clone(registryHubTopStack.scope)));
-                }
-                return getHubFromCarrier(activeDomain);
-            } catch (_Oo) {
-                return getHubFromCarrier(registry);
-            }
-        }
-        function hasHubOnCarrier(carrier) {
-            return !!(carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub);
-        }
-        function getHubFromCarrier(carrier) {
-            if (carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub) return carrier.__SENTRY__.hub;
-            carrier.__SENTRY__ = carrier.__SENTRY__ || {};
-            carrier.__SENTRY__.hub = new Hub;
-            return carrier.__SENTRY__.hub;
-        }
-        function setHubOnCarrier(carrier, hub) {
-            if (!carrier) return false;
-            carrier.__SENTRY__ = carrier.__SENTRY__ || {};
-            carrier.__SENTRY__.hub = hub;
-            return true;
-        }
-    },
-    "../shared/node_modules/@sentry/hub/esm/scope.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            Scope: () => Scope,
-            addGlobalEventProcessor: () => addGlobalEventProcessor
-        });
-        var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/syncpromise.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var MAX_BREADCRUMBS = 100;
-        var Scope = function() {
-            function Scope() {
-                this._notifyingListeners = false;
-                this._scopeListeners = [];
-                this._eventProcessors = [];
-                this._breadcrumbs = [];
-                this._user = {};
-                this._tags = {};
-                this._extra = {};
-                this._contexts = {};
-                this._sdkProcessingMetadata = {};
-            }
-            Scope.clone = function(scope) {
-                var newScope = new Scope;
-                if (scope) {
-                    newScope._breadcrumbs = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(scope._breadcrumbs);
-                    newScope._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, scope._tags);
-                    newScope._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, scope._extra);
-                    newScope._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, scope._contexts);
-                    newScope._user = scope._user;
-                    newScope._level = scope._level;
-                    newScope._span = scope._span;
-                    newScope._session = scope._session;
-                    newScope._transactionName = scope._transactionName;
-                    newScope._fingerprint = scope._fingerprint;
-                    newScope._eventProcessors = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(scope._eventProcessors);
-                    newScope._requestSession = scope._requestSession;
-                }
-                return newScope;
-            };
-            Scope.prototype.addScopeListener = function(callback) {
-                this._scopeListeners.push(callback);
-            };
-            Scope.prototype.addEventProcessor = function(callback) {
-                this._eventProcessors.push(callback);
-                return this;
-            };
-            Scope.prototype.setUser = function(user) {
-                this._user = user || {};
-                if (this._session) this._session.update({
-                    user
-                });
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.getUser = function() {
-                return this._user;
-            };
-            Scope.prototype.getRequestSession = function() {
-                return this._requestSession;
-            };
-            Scope.prototype.setRequestSession = function(requestSession) {
-                this._requestSession = requestSession;
-                return this;
-            };
-            Scope.prototype.setTags = function(tags) {
-                this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), tags);
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.setTag = function(key, value) {
-                var _a;
-                this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), (_a = {}, 
-                _a[key] = value, _a));
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.setExtras = function(extras) {
-                this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), extras);
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.setExtra = function(key, extra) {
-                var _a;
-                this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), (_a = {}, 
-                _a[key] = extra, _a));
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.setFingerprint = function(fingerprint) {
-                this._fingerprint = fingerprint;
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.setLevel = function(level) {
-                this._level = level;
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.setTransactionName = function(name) {
-                this._transactionName = name;
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.setTransaction = function(name) {
-                return this.setTransactionName(name);
-            };
-            Scope.prototype.setContext = function(key, context) {
-                var _a;
-                if (null === context) delete this._contexts[key]; else this._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), (_a = {}, _a[key] = context, 
-                _a));
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.setSpan = function(span) {
-                this._span = span;
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.getSpan = function() {
-                return this._span;
-            };
-            Scope.prototype.getTransaction = function() {
-                var span = this.getSpan();
-                return span && span.transaction;
-            };
-            Scope.prototype.setSession = function(session) {
-                if (!session) delete this._session; else this._session = session;
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.getSession = function() {
-                return this._session;
-            };
-            Scope.prototype.update = function(captureContext) {
-                if (!captureContext) return this;
-                if ("function" === typeof captureContext) {
-                    var updatedScope = captureContext(this);
-                    return updatedScope instanceof Scope ? updatedScope : this;
-                }
-                if (captureContext instanceof Scope) {
-                    this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), captureContext._tags);
-                    this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), captureContext._extra);
-                    this._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), captureContext._contexts);
-                    if (captureContext._user && Object.keys(captureContext._user).length) this._user = captureContext._user;
-                    if (captureContext._level) this._level = captureContext._level;
-                    if (captureContext._fingerprint) this._fingerprint = captureContext._fingerprint;
-                    if (captureContext._requestSession) this._requestSession = captureContext._requestSession;
-                } else if ((0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.isPlainObject)(captureContext)) {
-                    captureContext = captureContext;
-                    this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), captureContext.tags);
-                    this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), captureContext.extra);
-                    this._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), captureContext.contexts);
-                    if (captureContext.user) this._user = captureContext.user;
-                    if (captureContext.level) this._level = captureContext.level;
-                    if (captureContext.fingerprint) this._fingerprint = captureContext.fingerprint;
-                    if (captureContext.requestSession) this._requestSession = captureContext.requestSession;
-                }
-                return this;
-            };
-            Scope.prototype.clear = function() {
-                this._breadcrumbs = [];
-                this._tags = {};
-                this._extra = {};
-                this._user = {};
-                this._contexts = {};
-                this._level = void 0;
-                this._transactionName = void 0;
-                this._fingerprint = void 0;
-                this._requestSession = void 0;
-                this._span = void 0;
-                this._session = void 0;
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.addBreadcrumb = function(breadcrumb, maxBreadcrumbs) {
-                var maxCrumbs = "number" === typeof maxBreadcrumbs ? Math.min(maxBreadcrumbs, MAX_BREADCRUMBS) : MAX_BREADCRUMBS;
-                if (maxCrumbs <= 0) return this;
-                var mergedBreadcrumb = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({
-                    timestamp: (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_2__.dateTimestampInSeconds)()
-                }, breadcrumb);
-                this._breadcrumbs = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(this._breadcrumbs, [ mergedBreadcrumb ]).slice(-maxCrumbs);
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.clearBreadcrumbs = function() {
-                this._breadcrumbs = [];
-                this._notifyScopeListeners();
-                return this;
-            };
-            Scope.prototype.applyToEvent = function(event, hint) {
-                if (this._extra && Object.keys(this._extra).length) event.extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), event.extra);
-                if (this._tags && Object.keys(this._tags).length) event.tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), event.tags);
-                if (this._user && Object.keys(this._user).length) event.user = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._user), event.user);
-                if (this._contexts && Object.keys(this._contexts).length) event.contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), event.contexts);
-                if (this._level) event.level = this._level;
-                if (this._transactionName) event.transaction = this._transactionName;
-                if (this._span) {
-                    event.contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({
-                        trace: this._span.getTraceContext()
-                    }, event.contexts);
-                    var transactionName = this._span.transaction && this._span.transaction.name;
-                    if (transactionName) event.tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({
-                        transaction: transactionName
-                    }, event.tags);
-                }
-                this._applyFingerprint(event);
-                event.breadcrumbs = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(event.breadcrumbs || [], this._breadcrumbs);
-                event.breadcrumbs = event.breadcrumbs.length > 0 ? event.breadcrumbs : void 0;
-                event.sdkProcessingMetadata = this._sdkProcessingMetadata;
-                return this._notifyEventProcessors((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(getGlobalEventProcessors(), this._eventProcessors), event, hint);
-            };
-            Scope.prototype.setSDKProcessingMetadata = function(newData) {
-                this._sdkProcessingMetadata = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._sdkProcessingMetadata), newData);
-                return this;
-            };
-            Scope.prototype._notifyEventProcessors = function(processors, event, hint, index) {
-                var _this = this;
-                if (void 0 === index) index = 0;
-                return new _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.SyncPromise((function(resolve, reject) {
-                    var processor = processors[index];
-                    if (null === event || "function" !== typeof processor) resolve(event); else {
-                        var result = processor((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, event), hint);
-                        if ((0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.isThenable)(result)) void result.then((function(final) {
-                            return _this._notifyEventProcessors(processors, final, hint, index + 1).then(resolve);
-                        })).then(null, reject); else void _this._notifyEventProcessors(processors, result, hint, index + 1).then(resolve).then(null, reject);
-                    }
-                }));
-            };
-            Scope.prototype._notifyScopeListeners = function() {
-                var _this = this;
-                if (!this._notifyingListeners) {
-                    this._notifyingListeners = true;
-                    this._scopeListeners.forEach((function(callback) {
-                        callback(_this);
-                    }));
-                    this._notifyingListeners = false;
-                }
-            };
-            Scope.prototype._applyFingerprint = function(event) {
-                event.fingerprint = event.fingerprint ? Array.isArray(event.fingerprint) ? event.fingerprint : [ event.fingerprint ] : [];
-                if (this._fingerprint) event.fingerprint = event.fingerprint.concat(this._fingerprint);
-                if (event.fingerprint && !event.fingerprint.length) delete event.fingerprint;
-            };
-            return Scope;
-        }();
-        function getGlobalEventProcessors() {
-            var global = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.getGlobalObject)();
-            global.__SENTRY__ = global.__SENTRY__ || {};
-            global.__SENTRY__.globalEventProcessors = global.__SENTRY__.globalEventProcessors || [];
-            return global.__SENTRY__.globalEventProcessors;
-        }
-        function addGlobalEventProcessor(callback) {
-            getGlobalEventProcessors().push(callback);
-        }
-    },
-    "../shared/node_modules/@sentry/tracing/esm/constants.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            FINISH_REASON_TAG: () => FINISH_REASON_TAG,
-            IDLE_TRANSACTION_FINISH_REASONS: () => IDLE_TRANSACTION_FINISH_REASONS
-        });
-        var FINISH_REASON_TAG = "finishReason";
-        var IDLE_TRANSACTION_FINISH_REASONS = [ "heartbeatFailed", "idleTimeout", "documentHidden" ];
-    },
-    "../shared/node_modules/@sentry/tracing/esm/hubextensions.js": (module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            addExtensionMethods: () => addExtensionMethods,
-            startIdleTransaction: () => startIdleTransaction
-        });
-        var tslib_es6 = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var hub = __webpack_require__("../shared/node_modules/@sentry/hub/esm/hub.js");
-        var env = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        var logger = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-        var node = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
-        var instrument = __webpack_require__("../shared/node_modules/@sentry/utils/esm/instrument.js");
-        var utils = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/utils.js");
-        function registerErrorInstrumentation() {
-            (0, instrument.addInstrumentationHandler)("error", errorCallback);
-            (0, instrument.addInstrumentationHandler)("unhandledrejection", errorCallback);
-        }
-        function errorCallback() {
-            var activeTransaction = (0, utils.getActiveTransaction)();
-            if (activeTransaction) {
-                var status_1 = "internal_error";
-                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Transaction: " + status_1 + " -> Global error occured");
-                activeTransaction.setStatus(status_1);
-            }
-        }
-        var idletransaction = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/idletransaction.js");
-        var esm_transaction = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/transaction.js");
-        module = __webpack_require__.hmd(module);
-        function traceHeaders() {
-            var scope = this.getScope();
-            if (scope) {
-                var span = scope.getSpan();
-                if (span) return {
-                    "sentry-trace": span.toTraceparent()
-                };
-            }
-            return {};
-        }
-        function sample(transaction, options, samplingContext) {
-            if (!(0, utils.hasTracingEnabled)(options)) {
-                transaction.sampled = false;
-                return transaction;
-            }
-            if (void 0 !== transaction.sampled) {
-                transaction.setMetadata({
-                    transactionSampling: {
-                        method: "explicitly_set"
-                    }
-                });
-                return transaction;
-            }
-            var sampleRate;
-            if ("function" === typeof options.tracesSampler) {
-                sampleRate = options.tracesSampler(samplingContext);
-                transaction.setMetadata({
-                    transactionSampling: {
-                        method: "client_sampler",
-                        rate: Number(sampleRate)
-                    }
-                });
-            } else if (void 0 !== samplingContext.parentSampled) {
-                sampleRate = samplingContext.parentSampled;
-                transaction.setMetadata({
-                    transactionSampling: {
-                        method: "inheritance"
-                    }
-                });
-            } else {
-                sampleRate = options.tracesSampleRate;
-                transaction.setMetadata({
-                    transactionSampling: {
-                        method: "client_rate",
-                        rate: Number(sampleRate)
-                    }
-                });
-            }
-            if (!isValidSampleRate(sampleRate)) {
-                (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Discarding transaction because of invalid sample rate.");
-                transaction.sampled = false;
-                return transaction;
-            }
-            if (!sampleRate) {
-                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Discarding transaction because " + ("function" === typeof options.tracesSampler ? "tracesSampler returned 0 or false" : "a negative sampling decision was inherited or tracesSampleRate is set to 0"));
-                transaction.sampled = false;
-                return transaction;
-            }
-            transaction.sampled = Math.random() < sampleRate;
-            if (!transaction.sampled) {
-                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Discarding transaction because it's not included in the random sample (sampling rate = " + Number(sampleRate) + ")");
-                return transaction;
-            }
-            (0, env.isDebugBuild)() && logger.logger.log("[Tracing] starting " + transaction.op + " transaction - " + transaction.name);
-            return transaction;
-        }
-        function isValidSampleRate(rate) {
-            if (isNaN(rate) || !("number" === typeof rate || "boolean" === typeof rate)) {
-                (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be a boolean or a number between 0 and 1. Got " + JSON.stringify(rate) + " of type " + JSON.stringify(typeof rate) + ".");
-                return false;
-            }
-            if (rate < 0 || rate > 1) {
-                (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be between 0 and 1. Got " + rate + ".");
-                return false;
-            }
-            return true;
-        }
-        function _startTransaction(transactionContext, customSamplingContext) {
-            var client = this.getClient();
-            var options = client && client.getOptions() || {};
-            var transaction = new esm_transaction.Transaction(transactionContext, this);
-            transaction = sample(transaction, options, (0, tslib_es6.__assign)({
-                parentSampled: transactionContext.parentSampled,
-                transactionContext
-            }, customSamplingContext));
-            if (transaction.sampled) transaction.initSpanRecorder(options._experiments && options._experiments.maxSpans);
-            return transaction;
-        }
-        function startIdleTransaction(hub, transactionContext, idleTimeout, onScope, customSamplingContext) {
-            var client = hub.getClient();
-            var options = client && client.getOptions() || {};
-            var transaction = new idletransaction.IdleTransaction(transactionContext, hub, idleTimeout, onScope);
-            transaction = sample(transaction, options, (0, tslib_es6.__assign)({
-                parentSampled: transactionContext.parentSampled,
-                transactionContext
-            }, customSamplingContext));
-            if (transaction.sampled) transaction.initSpanRecorder(options._experiments && options._experiments.maxSpans);
-            return transaction;
-        }
-        function _addTracingExtensions() {
-            var carrier = (0, hub.getMainCarrier)();
-            if (!carrier.__SENTRY__) return;
-            carrier.__SENTRY__.extensions = carrier.__SENTRY__.extensions || {};
-            if (!carrier.__SENTRY__.extensions.startTransaction) carrier.__SENTRY__.extensions.startTransaction = _startTransaction;
-            if (!carrier.__SENTRY__.extensions.traceHeaders) carrier.__SENTRY__.extensions.traceHeaders = traceHeaders;
-        }
-        function _autoloadDatabaseIntegrations() {
-            var carrier = (0, hub.getMainCarrier)();
-            if (!carrier.__SENTRY__) return;
-            var packageToIntegrationMapping = {
-                mongodb: function() {
-                    var integration = (0, node.dynamicRequire)(module, "./integrations/node/mongo");
-                    return new integration.Mongo;
-                },
-                mongoose: function() {
-                    var integration = (0, node.dynamicRequire)(module, "./integrations/node/mongo");
-                    return new integration.Mongo({
-                        mongoose: true
-                    });
-                },
-                mysql: function() {
-                    var integration = (0, node.dynamicRequire)(module, "./integrations/node/mysql");
-                    return new integration.Mysql;
-                },
-                pg: function() {
-                    var integration = (0, node.dynamicRequire)(module, "./integrations/node/postgres");
-                    return new integration.Postgres;
-                }
-            };
-            var mappedPackages = Object.keys(packageToIntegrationMapping).filter((function(moduleName) {
-                return !!(0, node.loadModule)(moduleName);
-            })).map((function(pkg) {
-                try {
-                    return packageToIntegrationMapping[pkg]();
-                } catch (e) {
-                    return;
-                }
-            })).filter((function(p) {
-                return p;
-            }));
-            if (mappedPackages.length > 0) carrier.__SENTRY__.integrations = (0, tslib_es6.__spread)(carrier.__SENTRY__.integrations || [], mappedPackages);
-        }
-        function addExtensionMethods() {
-            _addTracingExtensions();
-            if ((0, node.isNodeEnv)()) _autoloadDatabaseIntegrations();
-            registerErrorInstrumentation();
-        }
-    },
-    "../shared/node_modules/@sentry/tracing/esm/idletransaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            DEFAULT_IDLE_TIMEOUT: () => DEFAULT_IDLE_TIMEOUT,
-            IdleTransaction: () => IdleTransaction
-        });
-        var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-        var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/constants.js");
-        var _span__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/span.js");
-        var _transaction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/transaction.js");
-        var DEFAULT_IDLE_TIMEOUT = 1e3;
-        var HEARTBEAT_INTERVAL = 5e3;
-        var IdleTransactionSpanRecorder = function(_super) {
-            (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(IdleTransactionSpanRecorder, _super);
-            function IdleTransactionSpanRecorder(_pushActivity, _popActivity, transactionSpanId, maxlen) {
-                if (void 0 === transactionSpanId) transactionSpanId = "";
-                var _this = _super.call(this, maxlen) || this;
-                _this._pushActivity = _pushActivity;
-                _this._popActivity = _popActivity;
-                _this.transactionSpanId = transactionSpanId;
-                return _this;
-            }
-            IdleTransactionSpanRecorder.prototype.add = function(span) {
-                var _this = this;
-                if (span.spanId !== this.transactionSpanId) {
-                    span.finish = function(endTimestamp) {
-                        span.endTimestamp = "number" === typeof endTimestamp ? endTimestamp : (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
-                        _this._popActivity(span.spanId);
-                    };
-                    if (void 0 === span.endTimestamp) this._pushActivity(span.spanId);
-                }
-                _super.prototype.add.call(this, span);
-            };
-            return IdleTransactionSpanRecorder;
-        }(_span__WEBPACK_IMPORTED_MODULE_2__.SpanRecorder);
-        var IdleTransaction = function(_super) {
-            (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(IdleTransaction, _super);
-            function IdleTransaction(transactionContext, _idleHub, _idleTimeout, _onScope) {
-                if (void 0 === _idleTimeout) _idleTimeout = DEFAULT_IDLE_TIMEOUT;
-                if (void 0 === _onScope) _onScope = false;
-                var _this = _super.call(this, transactionContext, _idleHub) || this;
-                _this._idleHub = _idleHub;
-                _this._idleTimeout = _idleTimeout;
-                _this._onScope = _onScope;
-                _this.activities = {};
-                _this._heartbeatCounter = 0;
-                _this._finished = false;
-                _this._beforeFinishCallbacks = [];
-                if (_idleHub && _onScope) {
-                    clearActiveTransaction(_idleHub);
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Setting idle transaction on scope. Span ID: " + _this.spanId);
-                    _idleHub.configureScope((function(scope) {
-                        return scope.setSpan(_this);
-                    }));
-                }
-                _this._initTimeout = setTimeout((function() {
-                    if (!_this._finished) _this.finish();
-                }), _this._idleTimeout);
-                return _this;
-            }
-            IdleTransaction.prototype.finish = function(endTimestamp) {
-                var e_1, _a;
-                var _this = this;
-                if (void 0 === endTimestamp) endTimestamp = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
-                this._finished = true;
-                this.activities = {};
-                if (this.spanRecorder) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] finishing IdleTransaction", new Date(1e3 * endTimestamp).toISOString(), this.op);
-                    try {
-                        for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(this._beforeFinishCallbacks), _c = _b.next(); !_c.done; _c = _b.next()) {
-                            var callback = _c.value;
-                            callback(this, endTimestamp);
-                        }
-                    } catch (e_1_1) {
-                        e_1 = {
-                            error: e_1_1
-                        };
-                    } finally {
-                        try {
-                            if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                        } finally {
-                            if (e_1) throw e_1.error;
-                        }
-                    }
-                    this.spanRecorder.spans = this.spanRecorder.spans.filter((function(span) {
-                        if (span.spanId === _this.spanId) return true;
-                        if (!span.endTimestamp) {
-                            span.endTimestamp = endTimestamp;
-                            span.setStatus("cancelled");
-                            (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] cancelling span since transaction ended early", JSON.stringify(span, void 0, 2));
-                        }
-                        var keepSpan = span.startTimestamp < endTimestamp;
-                        if (!keepSpan) (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] discarding Span since it happened after Transaction was finished", JSON.stringify(span, void 0, 2));
-                        return keepSpan;
-                    }));
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] flushing IdleTransaction");
-                } else (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] No active IdleTransaction");
-                if (this._onScope) clearActiveTransaction(this._idleHub);
-                return _super.prototype.finish.call(this, endTimestamp);
-            };
-            IdleTransaction.prototype.registerBeforeFinishCallback = function(callback) {
-                this._beforeFinishCallbacks.push(callback);
-            };
-            IdleTransaction.prototype.initSpanRecorder = function(maxlen) {
-                var _this = this;
-                if (!this.spanRecorder) {
-                    var pushActivity = function(id) {
-                        if (_this._finished) return;
-                        _this._pushActivity(id);
-                    };
-                    var popActivity = function(id) {
-                        if (_this._finished) return;
-                        _this._popActivity(id);
-                    };
-                    this.spanRecorder = new IdleTransactionSpanRecorder(pushActivity, popActivity, this.spanId, maxlen);
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Starting heartbeat");
-                    this._pingHeartbeat();
-                }
-                this.spanRecorder.add(this);
-            };
-            IdleTransaction.prototype._pushActivity = function(spanId) {
-                if (this._initTimeout) {
-                    clearTimeout(this._initTimeout);
-                    this._initTimeout = void 0;
-                }
-                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] pushActivity: " + spanId);
-                this.activities[spanId] = true;
-                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
-            };
-            IdleTransaction.prototype._popActivity = function(spanId) {
-                var _this = this;
-                if (this.activities[spanId]) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] popActivity " + spanId);
-                    delete this.activities[spanId];
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
-                }
-                if (0 === Object.keys(this.activities).length) {
-                    var timeout = this._idleTimeout;
-                    var end_1 = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)() + timeout / 1e3;
-                    setTimeout((function() {
-                        if (!_this._finished) {
-                            _this.setTag(_constants__WEBPACK_IMPORTED_MODULE_5__.FINISH_REASON_TAG, _constants__WEBPACK_IMPORTED_MODULE_5__.IDLE_TRANSACTION_FINISH_REASONS[1]);
-                            _this.finish(end_1);
-                        }
-                    }), timeout);
-                }
-            };
-            IdleTransaction.prototype._beat = function() {
-                if (this._finished) return;
-                var heartbeatString = Object.keys(this.activities).join("");
-                if (heartbeatString === this._prevHeartbeatString) this._heartbeatCounter += 1; else this._heartbeatCounter = 1;
-                this._prevHeartbeatString = heartbeatString;
-                if (this._heartbeatCounter >= 3) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] Transaction finished because of no change for 3 heart beats");
-                    this.setStatus("deadline_exceeded");
-                    this.setTag(_constants__WEBPACK_IMPORTED_MODULE_5__.FINISH_REASON_TAG, _constants__WEBPACK_IMPORTED_MODULE_5__.IDLE_TRANSACTION_FINISH_REASONS[0]);
-                    this.finish();
-                } else this._pingHeartbeat();
-            };
-            IdleTransaction.prototype._pingHeartbeat = function() {
-                var _this = this;
-                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("pinging Heartbeat -> current counter: " + this._heartbeatCounter);
-                setTimeout((function() {
-                    _this._beat();
-                }), HEARTBEAT_INTERVAL);
-            };
-            return IdleTransaction;
-        }(_transaction__WEBPACK_IMPORTED_MODULE_6__.Transaction);
-        function clearActiveTransaction(hub) {
-            if (hub) {
-                var scope = hub.getScope();
-                if (scope) {
-                    var transaction = scope.getTransaction();
-                    if (transaction) scope.setSpan(void 0);
-                }
-            }
-        }
-    },
-    "../shared/node_modules/@sentry/tracing/esm/span.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            SpanRecorder: () => SpanRecorder,
-            Span: () => Span
-        });
-        var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/misc.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
-        var SpanRecorder = function() {
-            function SpanRecorder(maxlen) {
-                if (void 0 === maxlen) maxlen = 1e3;
-                this.spans = [];
-                this._maxlen = maxlen;
-            }
-            SpanRecorder.prototype.add = function(span) {
-                if (this.spans.length > this._maxlen) span.spanRecorder = void 0; else this.spans.push(span);
-            };
-            return SpanRecorder;
-        }();
-        var Span = function() {
-            function Span(spanContext) {
-                this.traceId = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_0__.uuid4)();
-                this.spanId = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_0__.uuid4)().substring(16);
-                this.startTimestamp = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
-                this.tags = {};
-                this.data = {};
-                if (!spanContext) return this;
-                if (spanContext.traceId) this.traceId = spanContext.traceId;
-                if (spanContext.spanId) this.spanId = spanContext.spanId;
-                if (spanContext.parentSpanId) this.parentSpanId = spanContext.parentSpanId;
-                if ("sampled" in spanContext) this.sampled = spanContext.sampled;
-                if (spanContext.op) this.op = spanContext.op;
-                if (spanContext.description) this.description = spanContext.description;
-                if (spanContext.data) this.data = spanContext.data;
-                if (spanContext.tags) this.tags = spanContext.tags;
-                if (spanContext.status) this.status = spanContext.status;
-                if (spanContext.startTimestamp) this.startTimestamp = spanContext.startTimestamp;
-                if (spanContext.endTimestamp) this.endTimestamp = spanContext.endTimestamp;
-            }
-            Span.prototype.child = function(spanContext) {
-                return this.startChild(spanContext);
-            };
-            Span.prototype.startChild = function(spanContext) {
-                var childSpan = new Span((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, spanContext), {
-                    parentSpanId: this.spanId,
-                    sampled: this.sampled,
-                    traceId: this.traceId
-                }));
-                childSpan.spanRecorder = this.spanRecorder;
-                if (childSpan.spanRecorder) childSpan.spanRecorder.add(childSpan);
-                childSpan.transaction = this.transaction;
-                return childSpan;
-            };
-            Span.prototype.setTag = function(key, value) {
-                var _a;
-                this.tags = (0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, this.tags), (_a = {}, 
-                _a[key] = value, _a));
-                return this;
-            };
-            Span.prototype.setData = function(key, value) {
-                var _a;
-                this.data = (0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, this.data), (_a = {}, 
-                _a[key] = value, _a));
-                return this;
-            };
-            Span.prototype.setStatus = function(value) {
-                this.status = value;
-                return this;
-            };
-            Span.prototype.setHttpStatus = function(httpStatus) {
-                this.setTag("http.status_code", String(httpStatus));
-                var spanStatus = spanStatusfromHttpCode(httpStatus);
-                if ("unknown_error" !== spanStatus) this.setStatus(spanStatus);
-                return this;
-            };
-            Span.prototype.isSuccess = function() {
-                return "ok" === this.status;
-            };
-            Span.prototype.finish = function(endTimestamp) {
-                this.endTimestamp = "number" === typeof endTimestamp ? endTimestamp : (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
-            };
-            Span.prototype.toTraceparent = function() {
-                var sampledString = "";
-                if (void 0 !== this.sampled) sampledString = this.sampled ? "-1" : "-0";
-                return this.traceId + "-" + this.spanId + sampledString;
-            };
-            Span.prototype.toContext = function() {
-                return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.dropUndefinedKeys)({
-                    data: this.data,
-                    description: this.description,
-                    endTimestamp: this.endTimestamp,
-                    op: this.op,
-                    parentSpanId: this.parentSpanId,
-                    sampled: this.sampled,
-                    spanId: this.spanId,
-                    startTimestamp: this.startTimestamp,
-                    status: this.status,
-                    tags: this.tags,
-                    traceId: this.traceId
-                });
-            };
-            Span.prototype.updateWithContext = function(spanContext) {
-                var _a, _b, _c, _d, _e;
-                this.data = (_a = spanContext.data, null !== _a && void 0 !== _a ? _a : {});
-                this.description = spanContext.description;
-                this.endTimestamp = spanContext.endTimestamp;
-                this.op = spanContext.op;
-                this.parentSpanId = spanContext.parentSpanId;
-                this.sampled = spanContext.sampled;
-                this.spanId = (_b = spanContext.spanId, null !== _b && void 0 !== _b ? _b : this.spanId);
-                this.startTimestamp = (_c = spanContext.startTimestamp, null !== _c && void 0 !== _c ? _c : this.startTimestamp);
-                this.status = spanContext.status;
-                this.tags = (_d = spanContext.tags, null !== _d && void 0 !== _d ? _d : {});
-                this.traceId = (_e = spanContext.traceId, null !== _e && void 0 !== _e ? _e : this.traceId);
-                return this;
-            };
-            Span.prototype.getTraceContext = function() {
-                return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.dropUndefinedKeys)({
-                    data: Object.keys(this.data).length > 0 ? this.data : void 0,
-                    description: this.description,
-                    op: this.op,
-                    parent_span_id: this.parentSpanId,
-                    span_id: this.spanId,
-                    status: this.status,
-                    tags: Object.keys(this.tags).length > 0 ? this.tags : void 0,
-                    trace_id: this.traceId
-                });
-            };
-            Span.prototype.toJSON = function() {
-                return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.dropUndefinedKeys)({
-                    data: Object.keys(this.data).length > 0 ? this.data : void 0,
-                    description: this.description,
-                    op: this.op,
-                    parent_span_id: this.parentSpanId,
-                    span_id: this.spanId,
-                    start_timestamp: this.startTimestamp,
-                    status: this.status,
-                    tags: Object.keys(this.tags).length > 0 ? this.tags : void 0,
-                    timestamp: this.endTimestamp,
-                    trace_id: this.traceId
-                });
-            };
-            return Span;
-        }();
-        function spanStatusfromHttpCode(httpStatus) {
-            if (httpStatus < 400 && httpStatus >= 100) return "ok";
-            if (httpStatus >= 400 && httpStatus < 500) switch (httpStatus) {
-              case 401:
-                return "unauthenticated";
-
-              case 403:
-                return "permission_denied";
-
-              case 404:
-                return "not_found";
-
-              case 409:
-                return "already_exists";
-
-              case 413:
-                return "failed_precondition";
-
-              case 429:
-                return "resource_exhausted";
-
-              default:
-                return "invalid_argument";
-            }
-            if (httpStatus >= 500 && httpStatus < 600) switch (httpStatus) {
-              case 501:
-                return "unimplemented";
-
-              case 503:
-                return "unavailable";
-
-              case 504:
-                return "deadline_exceeded";
-
-              default:
-                return "internal_error";
-            }
-            return "unknown_error";
-        }
-    },
-    "../shared/node_modules/@sentry/tracing/esm/transaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            Transaction: () => Transaction
-        });
-        var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var _sentry_hub__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/hub/esm/hub.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
-        var _span__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/span.js");
-        var Transaction = function(_super) {
-            (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(Transaction, _super);
-            function Transaction(transactionContext, hub) {
-                var _this = _super.call(this, transactionContext) || this;
-                _this._measurements = {};
-                _this._hub = (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_1__.getCurrentHub)();
-                if ((0, _sentry_utils__WEBPACK_IMPORTED_MODULE_2__.isInstanceOf)(hub, _sentry_hub__WEBPACK_IMPORTED_MODULE_1__.Hub)) _this._hub = hub;
-                _this.name = transactionContext.name || "";
-                _this.metadata = transactionContext.metadata || {};
-                _this._trimEnd = transactionContext.trimEnd;
-                _this.transaction = _this;
-                return _this;
-            }
-            Transaction.prototype.setName = function(name) {
-                this.name = name;
-            };
-            Transaction.prototype.initSpanRecorder = function(maxlen) {
-                if (void 0 === maxlen) maxlen = 1e3;
-                if (!this.spanRecorder) this.spanRecorder = new _span__WEBPACK_IMPORTED_MODULE_3__.SpanRecorder(maxlen);
-                this.spanRecorder.add(this);
-            };
-            Transaction.prototype.setMeasurements = function(measurements) {
-                this._measurements = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, measurements);
-            };
-            Transaction.prototype.setMetadata = function(newMetadata) {
-                this.metadata = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this.metadata), newMetadata);
-            };
-            Transaction.prototype.finish = function(endTimestamp) {
-                var _this = this;
-                if (void 0 !== this.endTimestamp) return;
-                if (!this.name) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.warn("Transaction has no name, falling back to `<unlabeled transaction>`.");
-                    this.name = "<unlabeled transaction>";
-                }
-                _super.prototype.finish.call(this, endTimestamp);
-                if (true !== this.sampled) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Discarding transaction because its trace was not chosen to be sampled.");
-                    var client = this._hub.getClient();
-                    var transport = client && client.getTransport && client.getTransport();
-                    if (transport && transport.recordLostEvent) transport.recordLostEvent("sample_rate", "transaction");
-                    return;
-                }
-                var finishedSpans = this.spanRecorder ? this.spanRecorder.spans.filter((function(s) {
-                    return s !== _this && s.endTimestamp;
-                })) : [];
-                if (this._trimEnd && finishedSpans.length > 0) this.endTimestamp = finishedSpans.reduce((function(prev, current) {
-                    if (prev.endTimestamp && current.endTimestamp) return prev.endTimestamp > current.endTimestamp ? prev : current;
-                    return prev;
-                })).endTimestamp;
-                var transaction = {
-                    contexts: {
-                        trace: this.getTraceContext()
-                    },
-                    spans: finishedSpans,
-                    start_timestamp: this.startTimestamp,
-                    tags: this.tags,
-                    timestamp: this.endTimestamp,
-                    transaction: this.name,
-                    type: "transaction",
-                    sdkProcessingMetadata: this.metadata
-                };
-                var hasMeasurements = Object.keys(this._measurements).length > 0;
-                if (hasMeasurements) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Measurements] Adding measurements to transaction", JSON.stringify(this._measurements, void 0, 2));
-                    transaction.measurements = this._measurements;
-                }
-                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Finishing " + this.op + " transaction: " + this.name + ".");
-                return this._hub.captureEvent(transaction);
-            };
-            Transaction.prototype.toContext = function() {
-                var spanContext = _super.prototype.toContext.call(this);
-                return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_6__.dropUndefinedKeys)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, spanContext), {
-                    name: this.name,
-                    trimEnd: this._trimEnd
-                }));
-            };
-            Transaction.prototype.updateWithContext = function(transactionContext) {
-                var _a;
-                _super.prototype.updateWithContext.call(this, transactionContext);
-                this.name = (_a = transactionContext.name, null !== _a && void 0 !== _a ? _a : "");
-                this._trimEnd = transactionContext.trimEnd;
-                return this;
-            };
-            return Transaction;
-        }(_span__WEBPACK_IMPORTED_MODULE_3__.Span);
-    },
-    "../shared/node_modules/@sentry/tracing/esm/utils.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            hasTracingEnabled: () => hasTracingEnabled,
-            getActiveTransaction: () => getActiveTransaction,
-            msToSec: () => msToSec,
-            secToMs: () => secToMs
-        });
-        var _sentry_hub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/hub/esm/hub.js");
-        function hasTracingEnabled(maybeOptions) {
-            var client = (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_0__.getCurrentHub)().getClient();
-            var options = maybeOptions || client && client.getOptions();
-            return !!options && ("tracesSampleRate" in options || "tracesSampler" in options);
-        }
-        function getActiveTransaction(maybeHub) {
-            var hub = maybeHub || (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_0__.getCurrentHub)();
-            var scope = hub.getScope();
-            return scope && scope.getTransaction();
-        }
-        function msToSec(time) {
-            return time / 1e3;
-        }
-        function secToMs(time) {
-            return 1e3 * time;
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/browser.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            htmlTreeAsString: () => htmlTreeAsString,
-            getLocationHref: () => getLocationHref
-        });
-        var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-        function htmlTreeAsString(elem, keyAttrs) {
-            try {
-                var currentElem = elem;
-                var MAX_TRAVERSE_HEIGHT = 5;
-                var MAX_OUTPUT_LEN = 80;
-                var out = [];
-                var height = 0;
-                var len = 0;
-                var separator = " > ";
-                var sepLength = separator.length;
-                var nextStr = void 0;
-                while (currentElem && height++ < MAX_TRAVERSE_HEIGHT) {
-                    nextStr = _htmlElementAsString(currentElem, keyAttrs);
-                    if ("html" === nextStr || height > 1 && len + out.length * sepLength + nextStr.length >= MAX_OUTPUT_LEN) break;
-                    out.push(nextStr);
-                    len += nextStr.length;
-                    currentElem = currentElem.parentNode;
-                }
-                return out.reverse().join(separator);
-            } catch (_oO) {
-                return "<unknown>";
-            }
-        }
-        function _htmlElementAsString(el, keyAttrs) {
-            var elem = el;
-            var out = [];
-            var className;
-            var classes;
-            var key;
-            var attr;
-            var i;
-            if (!elem || !elem.tagName) return "";
-            out.push(elem.tagName.toLowerCase());
-            var keyAttrPairs = keyAttrs && keyAttrs.length ? keyAttrs.filter((function(keyAttr) {
-                return elem.getAttribute(keyAttr);
-            })).map((function(keyAttr) {
-                return [ keyAttr, elem.getAttribute(keyAttr) ];
-            })) : null;
-            if (keyAttrPairs && keyAttrPairs.length) keyAttrPairs.forEach((function(keyAttrPair) {
-                out.push("[" + keyAttrPair[0] + '="' + keyAttrPair[1] + '"]');
-            })); else {
-                if (elem.id) out.push("#" + elem.id);
-                className = elem.className;
-                if (className && (0, _is__WEBPACK_IMPORTED_MODULE_0__.isString)(className)) {
-                    classes = className.split(/\s+/);
-                    for (i = 0; i < classes.length; i++) out.push("." + classes[i]);
-                }
-            }
-            var allowedAttrs = [ "type", "name", "title", "alt" ];
-            for (i = 0; i < allowedAttrs.length; i++) {
-                key = allowedAttrs[i];
-                attr = elem.getAttribute(key);
-                if (attr) out.push("[" + key + '="' + attr + '"]');
-            }
-            return out.join("");
-        }
-        function getLocationHref() {
-            var global = (0, _global__WEBPACK_IMPORTED_MODULE_1__.getGlobalObject)();
-            try {
-                return global.document.location.href;
-            } catch (oO) {
-                return "";
-            }
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/env.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            isDebugBuild: () => isDebugBuild,
-            isBrowserBundle: () => isBrowserBundle
-        });
-        var __SENTRY_DEBUG__ = true;
-        function isDebugBuild() {
-            return __SENTRY_DEBUG__;
-        }
-        function isBrowserBundle() {
-            return "undefined" !== typeof __SENTRY_BROWSER_BUNDLE__ && !!__SENTRY_BROWSER_BUNDLE__;
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/global.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            getGlobalObject: () => getGlobalObject
-        });
-        var _node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
-        var fallbackGlobalObject = {};
-        function getGlobalObject() {
-            return (0, _node__WEBPACK_IMPORTED_MODULE_0__.isNodeEnv)() ? __webpack_require__.g : "undefined" !== typeof window ? window : "undefined" !== typeof self ? self : fallbackGlobalObject;
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/instrument.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            addInstrumentationHandler: () => addInstrumentationHandler
-        });
-        var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var _is__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-        var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-        var _object__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
-        var _stacktrace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/stacktrace.js");
-        var _supports__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/supports.js");
-        var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-        var handlers = {};
-        var instrumented = {};
-        function instrument(type) {
-            if (instrumented[type]) return;
-            instrumented[type] = true;
-            switch (type) {
-              case "console":
-                instrumentConsole();
-                break;
-
-              case "dom":
-                instrumentDOM();
-                break;
-
-              case "xhr":
-                instrumentXHR();
-                break;
-
-              case "fetch":
-                instrumentFetch();
-                break;
-
-              case "history":
-                instrumentHistory();
-                break;
-
-              case "error":
-                instrumentError();
-                break;
-
-              case "unhandledrejection":
-                instrumentUnhandledRejection();
-                break;
-
-              default:
-                (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("unknown instrumentation type:", type);
-                return;
-            }
-        }
-        function addInstrumentationHandler(type, callback) {
-            handlers[type] = handlers[type] || [];
-            handlers[type].push(callback);
-            instrument(type);
-        }
-        function triggerHandlers(type, data) {
-            var e_1, _a;
-            if (!type || !handlers[type]) return;
-            try {
-                for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__values)(handlers[type] || []), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var handler = _c.value;
-                    try {
-                        handler(data);
-                    } catch (e) {
-                        (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.error("Error while triggering instrumentation handler.\nType: " + type + "\nName: " + (0, 
-                        _stacktrace__WEBPACK_IMPORTED_MODULE_4__.getFunctionName)(handler) + "\nError:", e);
-                    }
-                }
-            } catch (e_1_1) {
-                e_1 = {
-                    error: e_1_1
-                };
-            } finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                } finally {
-                    if (e_1) throw e_1.error;
-                }
-            }
-        }
-        function instrumentConsole() {
-            if (!("console" in global)) return;
-            _logger__WEBPACK_IMPORTED_MODULE_2__.CONSOLE_LEVELS.forEach((function(level) {
-                if (!(level in global.console)) return;
-                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global.console, level, (function(originalConsoleMethod) {
-                    return function() {
-                        var args = [];
-                        for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                        triggerHandlers("console", {
-                            args,
-                            level
-                        });
-                        if (originalConsoleMethod) originalConsoleMethod.apply(global.console, args);
-                    };
-                }));
-            }));
-        }
-        function instrumentFetch() {
-            if (!(0, _supports__WEBPACK_IMPORTED_MODULE_6__.supportsNativeFetch)()) return;
-            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global, "fetch", (function(originalFetch) {
-                return function() {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                    var handlerData = {
-                        args,
-                        fetchData: {
-                            method: getFetchMethod(args),
-                            url: getFetchUrl(args)
-                        },
-                        startTimestamp: Date.now()
-                    };
-                    triggerHandlers("fetch", (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, handlerData));
-                    return originalFetch.apply(global, args).then((function(response) {
-                        triggerHandlers("fetch", (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, handlerData), {
-                            endTimestamp: Date.now(),
-                            response
-                        }));
-                        return response;
-                    }), (function(error) {
-                        triggerHandlers("fetch", (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, handlerData), {
-                            endTimestamp: Date.now(),
-                            error
-                        }));
-                        throw error;
-                    }));
-                };
-            }));
-        }
-        function getFetchMethod(fetchArgs) {
-            if (void 0 === fetchArgs) fetchArgs = [];
-            if ("Request" in global && (0, _is__WEBPACK_IMPORTED_MODULE_7__.isInstanceOf)(fetchArgs[0], Request) && fetchArgs[0].method) return String(fetchArgs[0].method).toUpperCase();
-            if (fetchArgs[1] && fetchArgs[1].method) return String(fetchArgs[1].method).toUpperCase();
-            return "GET";
-        }
-        function getFetchUrl(fetchArgs) {
-            if (void 0 === fetchArgs) fetchArgs = [];
-            if ("string" === typeof fetchArgs[0]) return fetchArgs[0];
-            if ("Request" in global && (0, _is__WEBPACK_IMPORTED_MODULE_7__.isInstanceOf)(fetchArgs[0], Request)) return fetchArgs[0].url;
-            return String(fetchArgs[0]);
-        }
-        function instrumentXHR() {
-            if (!("XMLHttpRequest" in global)) return;
-            var xhrproto = XMLHttpRequest.prototype;
-            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(xhrproto, "open", (function(originalOpen) {
-                return function() {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                    var xhr = this;
-                    var url = args[1];
-                    var xhrInfo = xhr.__sentry_xhr__ = {
-                        method: (0, _is__WEBPACK_IMPORTED_MODULE_7__.isString)(args[0]) ? args[0].toUpperCase() : args[0],
-                        url: args[1]
-                    };
-                    if ((0, _is__WEBPACK_IMPORTED_MODULE_7__.isString)(url) && "POST" === xhrInfo.method && url.match(/sentry_key/)) xhr.__sentry_own_request__ = true;
-                    var onreadystatechangeHandler = function() {
-                        if (4 === xhr.readyState) {
-                            try {
-                                xhrInfo.status_code = xhr.status;
-                            } catch (e) {}
-                            triggerHandlers("xhr", {
-                                args,
-                                endTimestamp: Date.now(),
-                                startTimestamp: Date.now(),
-                                xhr
-                            });
-                        }
-                    };
-                    if ("onreadystatechange" in xhr && "function" === typeof xhr.onreadystatechange) (0, 
-                    _object__WEBPACK_IMPORTED_MODULE_5__.fill)(xhr, "onreadystatechange", (function(original) {
-                        return function() {
-                            var readyStateArgs = [];
-                            for (var _i = 0; _i < arguments.length; _i++) readyStateArgs[_i] = arguments[_i];
-                            onreadystatechangeHandler();
-                            return original.apply(xhr, readyStateArgs);
-                        };
-                    })); else xhr.addEventListener("readystatechange", onreadystatechangeHandler);
-                    return originalOpen.apply(xhr, args);
-                };
-            }));
-            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(xhrproto, "send", (function(originalSend) {
-                return function() {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                    if (this.__sentry_xhr__ && void 0 !== args[0]) this.__sentry_xhr__.body = args[0];
-                    triggerHandlers("xhr", {
-                        args,
-                        startTimestamp: Date.now(),
-                        xhr: this
-                    });
-                    return originalSend.apply(this, args);
-                };
-            }));
-        }
-        var lastHref;
-        function instrumentHistory() {
-            if (!(0, _supports__WEBPACK_IMPORTED_MODULE_6__.supportsHistory)()) return;
-            var oldOnPopState = global.onpopstate;
-            global.onpopstate = function() {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                var to = global.location.href;
-                var from = lastHref;
-                lastHref = to;
-                triggerHandlers("history", {
-                    from,
-                    to
-                });
-                if (oldOnPopState) try {
-                    return oldOnPopState.apply(this, args);
-                } catch (_oO) {}
-            };
-            function historyReplacementFunction(originalHistoryFunction) {
-                return function() {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                    var url = args.length > 2 ? args[2] : void 0;
-                    if (url) {
-                        var from = lastHref;
-                        var to = String(url);
-                        lastHref = to;
-                        triggerHandlers("history", {
-                            from,
-                            to
-                        });
-                    }
-                    return originalHistoryFunction.apply(this, args);
-                };
-            }
-            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global.history, "pushState", historyReplacementFunction);
-            (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global.history, "replaceState", historyReplacementFunction);
-        }
-        var debounceDuration = 1e3;
-        var debounceTimerID;
-        var lastCapturedEvent;
-        function shouldShortcircuitPreviousDebounce(previous, current) {
-            if (!previous) return true;
-            if (previous.type !== current.type) return true;
-            try {
-                if (previous.target !== current.target) return true;
-            } catch (e) {}
-            return false;
-        }
-        function shouldSkipDOMEvent(event) {
-            if ("keypress" !== event.type) return false;
-            try {
-                var target = event.target;
-                if (!target || !target.tagName) return true;
-                if ("INPUT" === target.tagName || "TEXTAREA" === target.tagName || target.isContentEditable) return false;
-            } catch (e) {}
-            return true;
-        }
-        function makeDOMEventHandler(handler, globalListener) {
-            if (void 0 === globalListener) globalListener = false;
-            return function(event) {
-                if (!event || lastCapturedEvent === event) return;
-                if (shouldSkipDOMEvent(event)) return;
-                var name = "keypress" === event.type ? "input" : event.type;
-                if (void 0 === debounceTimerID) {
-                    handler({
-                        event,
-                        name,
-                        global: globalListener
-                    });
-                    lastCapturedEvent = event;
-                } else if (shouldShortcircuitPreviousDebounce(lastCapturedEvent, event)) {
-                    handler({
-                        event,
-                        name,
-                        global: globalListener
-                    });
-                    lastCapturedEvent = event;
-                }
-                clearTimeout(debounceTimerID);
-                debounceTimerID = global.setTimeout((function() {
-                    debounceTimerID = void 0;
-                }), debounceDuration);
-            };
-        }
-        function instrumentDOM() {
-            if (!("document" in global)) return;
-            var triggerDOMHandler = triggerHandlers.bind(null, "dom");
-            var globalDOMEventHandler = makeDOMEventHandler(triggerDOMHandler, true);
-            global.document.addEventListener("click", globalDOMEventHandler, false);
-            global.document.addEventListener("keypress", globalDOMEventHandler, false);
-            [ "EventTarget", "Node" ].forEach((function(target) {
-                var proto = global[target] && global[target].prototype;
-                if (!proto || !proto.hasOwnProperty || !proto.hasOwnProperty("addEventListener")) return;
-                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(proto, "addEventListener", (function(originalAddEventListener) {
-                    return function(type, listener, options) {
-                        if ("click" === type || "keypress" == type) try {
-                            var el = this;
-                            var handlers_1 = el.__sentry_instrumentation_handlers__ = el.__sentry_instrumentation_handlers__ || {};
-                            var handlerForType = handlers_1[type] = handlers_1[type] || {
-                                refCount: 0
-                            };
-                            if (!handlerForType.handler) {
-                                var handler = makeDOMEventHandler(triggerDOMHandler);
-                                handlerForType.handler = handler;
-                                originalAddEventListener.call(this, type, handler, options);
-                            }
-                            handlerForType.refCount += 1;
-                        } catch (e) {}
-                        return originalAddEventListener.call(this, type, listener, options);
-                    };
-                }));
-                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(proto, "removeEventListener", (function(originalRemoveEventListener) {
-                    return function(type, listener, options) {
-                        if ("click" === type || "keypress" == type) try {
-                            var el = this;
-                            var handlers_2 = el.__sentry_instrumentation_handlers__ || {};
-                            var handlerForType = handlers_2[type];
-                            if (handlerForType) {
-                                handlerForType.refCount -= 1;
-                                if (handlerForType.refCount <= 0) {
-                                    originalRemoveEventListener.call(this, type, handlerForType.handler, options);
-                                    handlerForType.handler = void 0;
-                                    delete handlers_2[type];
-                                }
-                                if (0 === Object.keys(handlers_2).length) delete el.__sentry_instrumentation_handlers__;
-                            }
-                        } catch (e) {}
-                        return originalRemoveEventListener.call(this, type, listener, options);
-                    };
-                }));
-            }));
-        }
-        var _oldOnErrorHandler = null;
-        function instrumentError() {
-            _oldOnErrorHandler = global.onerror;
-            global.onerror = function(msg, url, line, column, error) {
-                triggerHandlers("error", {
-                    column,
-                    error,
-                    line,
-                    msg,
-                    url
-                });
-                if (_oldOnErrorHandler) return _oldOnErrorHandler.apply(this, arguments);
-                return false;
-            };
-        }
-        var _oldOnUnhandledRejectionHandler = null;
-        function instrumentUnhandledRejection() {
-            _oldOnUnhandledRejectionHandler = global.onunhandledrejection;
-            global.onunhandledrejection = function(e) {
-                triggerHandlers("unhandledrejection", e);
-                if (_oldOnUnhandledRejectionHandler) return _oldOnUnhandledRejectionHandler.apply(this, arguments);
-                return true;
-            };
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/is.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            isError: () => isError,
-            isErrorEvent: () => isErrorEvent,
-            isDOMError: () => isDOMError,
-            isDOMException: () => isDOMException,
-            isString: () => isString,
-            isPrimitive: () => isPrimitive,
-            isPlainObject: () => isPlainObject,
-            isEvent: () => isEvent,
-            isElement: () => isElement,
-            isRegExp: () => isRegExp,
-            isThenable: () => isThenable,
-            isSyntheticEvent: () => isSyntheticEvent,
-            isInstanceOf: () => isInstanceOf
-        });
-        var objectToString = Object.prototype.toString;
-        function isError(wat) {
-            switch (objectToString.call(wat)) {
-              case "[object Error]":
-              case "[object Exception]":
-              case "[object DOMException]":
-                return true;
-
-              default:
-                return isInstanceOf(wat, Error);
-            }
-        }
-        function isBuiltin(wat, ty) {
-            return objectToString.call(wat) === "[object " + ty + "]";
-        }
-        function isErrorEvent(wat) {
-            return isBuiltin(wat, "ErrorEvent");
-        }
-        function isDOMError(wat) {
-            return isBuiltin(wat, "DOMError");
-        }
-        function isDOMException(wat) {
-            return isBuiltin(wat, "DOMException");
-        }
-        function isString(wat) {
-            return isBuiltin(wat, "String");
-        }
-        function isPrimitive(wat) {
-            return null === wat || "object" !== typeof wat && "function" !== typeof wat;
-        }
-        function isPlainObject(wat) {
-            return isBuiltin(wat, "Object");
-        }
-        function isEvent(wat) {
-            return "undefined" !== typeof Event && isInstanceOf(wat, Event);
-        }
-        function isElement(wat) {
-            return "undefined" !== typeof Element && isInstanceOf(wat, Element);
-        }
-        function isRegExp(wat) {
-            return isBuiltin(wat, "RegExp");
-        }
-        function isThenable(wat) {
-            return Boolean(wat && wat.then && "function" === typeof wat.then);
-        }
-        function isSyntheticEvent(wat) {
-            return isPlainObject(wat) && "nativeEvent" in wat && "preventDefault" in wat && "stopPropagation" in wat;
-        }
-        function isInstanceOf(wat, base) {
-            try {
-                return wat instanceof base;
-            } catch (_e) {
-                return false;
-            }
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/logger.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            CONSOLE_LEVELS: () => CONSOLE_LEVELS,
-            consoleSandbox: () => consoleSandbox,
-            logger: () => logger
-        });
-        var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-        var PREFIX = "Sentry Logger ";
-        var CONSOLE_LEVELS = [ "debug", "info", "warn", "error", "log", "assert" ];
-        function consoleSandbox(callback) {
-            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-            if (!("console" in global)) return callback();
-            var originalConsole = global.console;
-            var wrappedLevels = {};
-            CONSOLE_LEVELS.forEach((function(level) {
-                if (level in global.console && originalConsole[level].__sentry_original__) {
-                    wrappedLevels[level] = originalConsole[level];
-                    originalConsole[level] = originalConsole[level].__sentry_original__;
-                }
-            }));
-            var result = callback();
-            Object.keys(wrappedLevels).forEach((function(level) {
-                originalConsole[level] = wrappedLevels[level];
-            }));
-            return result;
-        }
-        var Logger = function() {
-            function Logger() {
-                this._enabled = false;
-            }
-            Logger.prototype.disable = function() {
-                this._enabled = false;
-            };
-            Logger.prototype.enable = function() {
-                this._enabled = true;
-            };
-            Logger.prototype.log = function() {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                if (!this._enabled) return;
-                consoleSandbox((function() {
-                    var _a;
-                    (_a = global.console).log.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Log]:" ], args));
-                }));
-            };
-            Logger.prototype.warn = function() {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                if (!this._enabled) return;
-                consoleSandbox((function() {
-                    var _a;
-                    (_a = global.console).warn.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Warn]:" ], args));
-                }));
-            };
-            Logger.prototype.error = function() {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                if (!this._enabled) return;
-                consoleSandbox((function() {
-                    var _a;
-                    (_a = global.console).error.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Error]:" ], args));
-                }));
-            };
-            return Logger;
-        }();
-        var sentryGlobal = global.__SENTRY__ || {};
-        var logger = sentryGlobal.logger || new Logger;
-        if ((0, _env__WEBPACK_IMPORTED_MODULE_2__.isDebugBuild)()) {
-            sentryGlobal.logger = logger;
-            global.__SENTRY__ = sentryGlobal;
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/misc.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            uuid4: () => uuid4,
-            parseUrl: () => parseUrl,
-            getEventDescription: () => getEventDescription,
-            addExceptionTypeValue: () => addExceptionTypeValue,
-            addExceptionMechanism: () => addExceptionMechanism,
-            checkOrSetAlreadyCaught: () => checkOrSetAlreadyCaught
-        });
-        var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var _object__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
-        function uuid4() {
-            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-            var crypto = global.crypto || global.msCrypto;
-            if (!(void 0 === crypto) && crypto.getRandomValues) {
-                var arr = new Uint16Array(8);
-                crypto.getRandomValues(arr);
-                arr[3] = 4095 & arr[3] | 16384;
-                arr[4] = 16383 & arr[4] | 32768;
-                var pad = function(num) {
-                    var v = num.toString(16);
-                    while (v.length < 4) v = "0" + v;
-                    return v;
-                };
-                return pad(arr[0]) + pad(arr[1]) + pad(arr[2]) + pad(arr[3]) + pad(arr[4]) + pad(arr[5]) + pad(arr[6]) + pad(arr[7]);
-            }
-            return "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, (function(c) {
-                var r = 16 * Math.random() | 0;
-                var v = "x" === c ? r : 3 & r | 8;
-                return v.toString(16);
-            }));
-        }
-        function parseUrl(url) {
-            if (!url) return {};
-            var match = url.match(/^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/);
-            if (!match) return {};
-            var query = match[6] || "";
-            var fragment = match[8] || "";
-            return {
-                host: match[4],
-                path: match[5],
-                protocol: match[2],
-                relative: match[5] + query + fragment
-            };
-        }
-        function getFirstException(event) {
-            return event.exception && event.exception.values ? event.exception.values[0] : void 0;
-        }
-        function getEventDescription(event) {
-            var message = event.message, eventId = event.event_id;
-            if (message) return message;
-            var firstException = getFirstException(event);
-            if (firstException) {
-                if (firstException.type && firstException.value) return firstException.type + ": " + firstException.value;
-                return firstException.type || firstException.value || eventId || "<unknown>";
-            }
-            return eventId || "<unknown>";
-        }
-        function addExceptionTypeValue(event, value, type) {
-            var exception = event.exception = event.exception || {};
-            var values = exception.values = exception.values || [];
-            var firstException = values[0] = values[0] || {};
-            if (!firstException.value) firstException.value = value || "";
-            if (!firstException.type) firstException.type = type || "Error";
-        }
-        function addExceptionMechanism(event, newMechanism) {
-            var firstException = getFirstException(event);
-            if (!firstException) return;
-            var defaultMechanism = {
-                type: "generic",
-                handled: true
-            };
-            var currentMechanism = firstException.mechanism;
-            firstException.mechanism = (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0, 
-            tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, defaultMechanism), currentMechanism), newMechanism);
-            if (newMechanism && "data" in newMechanism) {
-                var mergedData = (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, currentMechanism && currentMechanism.data), newMechanism.data);
-                firstException.mechanism.data = mergedData;
-            }
-        }
-        function checkOrSetAlreadyCaught(exception) {
-            if (exception && exception.__sentry_captured__) return true;
-            try {
-                (0, _object__WEBPACK_IMPORTED_MODULE_2__.addNonEnumerableProperty)(exception, "__sentry_captured__", true);
-            } catch (err) {}
-            return false;
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/node.js": (module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            isNodeEnv: () => isNodeEnv,
-            dynamicRequire: () => dynamicRequire,
-            loadModule: () => loadModule
-        });
-        var _env__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        module = __webpack_require__.hmd(module);
-        function isNodeEnv() {
-            return !(0, _env__WEBPACK_IMPORTED_MODULE_0__.isBrowserBundle)() && "[object process]" === Object.prototype.toString.call("undefined" !== typeof process ? process : 0);
-        }
-        function dynamicRequire(mod, request) {
-            return mod.require(request);
-        }
-        function loadModule(moduleName) {
-            var mod;
-            try {
-                mod = dynamicRequire(module, moduleName);
-            } catch (e) {}
-            try {
-                var cwd = dynamicRequire(module, "process").cwd;
-                mod = dynamicRequire(module, cwd() + "/node_modules/" + moduleName);
-            } catch (e) {}
-            return mod;
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/object.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            fill: () => fill,
-            addNonEnumerableProperty: () => addNonEnumerableProperty,
-            markFunctionWrapped: () => markFunctionWrapped,
-            getOriginalFunction: () => getOriginalFunction,
-            urlEncode: () => urlEncode,
-            getWalkSource: () => getWalkSource,
-            extractExceptionKeysForMessage: () => extractExceptionKeysForMessage,
-            dropUndefinedKeys: () => dropUndefinedKeys
-        });
-        var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var _browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/browser.js");
-        var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-        var _string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/string.js");
-        function fill(source, name, replacementFactory) {
-            if (!(name in source)) return;
-            var original = source[name];
-            var wrapped = replacementFactory(original);
-            if ("function" === typeof wrapped) try {
-                markFunctionWrapped(wrapped, original);
-            } catch (_Oo) {}
-            source[name] = wrapped;
-        }
-        function addNonEnumerableProperty(obj, name, value) {
-            Object.defineProperty(obj, name, {
-                value,
-                writable: true,
-                configurable: true
-            });
-        }
-        function markFunctionWrapped(wrapped, original) {
-            var proto = original.prototype || {};
-            wrapped.prototype = original.prototype = proto;
-            addNonEnumerableProperty(wrapped, "__sentry_original__", original);
-        }
-        function getOriginalFunction(func) {
-            return func.__sentry_original__;
-        }
-        function urlEncode(object) {
-            return Object.keys(object).map((function(key) {
-                return encodeURIComponent(key) + "=" + encodeURIComponent(object[key]);
-            })).join("&");
-        }
-        function getWalkSource(value) {
-            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isError)(value)) {
-                var error = value;
-                var err = {
-                    message: error.message,
-                    name: error.name,
-                    stack: error.stack
-                };
-                for (var i in error) if (Object.prototype.hasOwnProperty.call(error, i)) err[i] = error[i];
-                return err;
-            }
-            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isEvent)(value)) {
-                var event_1 = value;
-                var source = {};
-                source.type = event_1.type;
-                try {
-                    source.target = (0, _is__WEBPACK_IMPORTED_MODULE_0__.isElement)(event_1.target) ? (0, 
-                    _browser__WEBPACK_IMPORTED_MODULE_1__.htmlTreeAsString)(event_1.target) : Object.prototype.toString.call(event_1.target);
-                } catch (_oO) {
-                    source.target = "<unknown>";
-                }
-                try {
-                    source.currentTarget = (0, _is__WEBPACK_IMPORTED_MODULE_0__.isElement)(event_1.currentTarget) ? (0, 
-                    _browser__WEBPACK_IMPORTED_MODULE_1__.htmlTreeAsString)(event_1.currentTarget) : Object.prototype.toString.call(event_1.currentTarget);
-                } catch (_oO) {
-                    source.currentTarget = "<unknown>";
-                }
-                if ("undefined" !== typeof CustomEvent && (0, _is__WEBPACK_IMPORTED_MODULE_0__.isInstanceOf)(value, CustomEvent)) source.detail = event_1.detail;
-                for (var attr in event_1) if (Object.prototype.hasOwnProperty.call(event_1, attr)) source[attr] = event_1[attr];
-                return source;
-            }
-            return value;
-        }
-        function extractExceptionKeysForMessage(exception, maxLength) {
-            if (void 0 === maxLength) maxLength = 40;
-            var keys = Object.keys(getWalkSource(exception));
-            keys.sort();
-            if (!keys.length) return "[object has no keys]";
-            if (keys[0].length >= maxLength) return (0, _string__WEBPACK_IMPORTED_MODULE_2__.truncate)(keys[0], maxLength);
-            for (var includedKeys = keys.length; includedKeys > 0; includedKeys--) {
-                var serialized = keys.slice(0, includedKeys).join(", ");
-                if (serialized.length > maxLength) continue;
-                if (includedKeys === keys.length) return serialized;
-                return (0, _string__WEBPACK_IMPORTED_MODULE_2__.truncate)(serialized, maxLength);
-            }
-            return "";
-        }
-        function dropUndefinedKeys(val) {
-            var e_1, _a;
-            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isPlainObject)(val)) {
-                var obj = val;
-                var rv = {};
-                try {
-                    for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__values)(Object.keys(obj)), _c = _b.next(); !_c.done; _c = _b.next()) {
-                        var key = _c.value;
-                        if ("undefined" !== typeof obj[key]) rv[key] = dropUndefinedKeys(obj[key]);
-                    }
-                } catch (e_1_1) {
-                    e_1 = {
-                        error: e_1_1
-                    };
-                } finally {
-                    try {
-                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                    } finally {
-                        if (e_1) throw e_1.error;
-                    }
-                }
-                return rv;
-            }
-            if (Array.isArray(val)) return val.map(dropUndefinedKeys);
-            return val;
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/stacktrace.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            createStackParser: () => createStackParser,
-            getFunctionName: () => getFunctionName
-        });
-        var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var STACKTRACE_LIMIT = 50;
-        function createStackParser() {
-            var parsers = [];
-            for (var _i = 0; _i < arguments.length; _i++) parsers[_i] = arguments[_i];
-            var sortedParsers = parsers.sort((function(a, b) {
-                return a[0] - b[0];
-            })).map((function(p) {
-                return p[1];
-            }));
-            return function(stack, skipFirst) {
-                var e_1, _a, e_2, _b;
-                if (void 0 === skipFirst) skipFirst = 0;
-                var frames = [];
-                try {
-                    for (var _c = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(stack.split("\n").slice(skipFirst)), _d = _c.next(); !_d.done; _d = _c.next()) {
-                        var line = _d.value;
-                        try {
-                            for (var sortedParsers_1 = (e_2 = void 0, (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(sortedParsers)), sortedParsers_1_1 = sortedParsers_1.next(); !sortedParsers_1_1.done; sortedParsers_1_1 = sortedParsers_1.next()) {
-                                var parser = sortedParsers_1_1.value;
-                                var frame = parser(line);
-                                if (frame) {
-                                    frames.push(frame);
-                                    break;
-                                }
-                            }
-                        } catch (e_2_1) {
-                            e_2 = {
-                                error: e_2_1
-                            };
-                        } finally {
-                            try {
-                                if (sortedParsers_1_1 && !sortedParsers_1_1.done && (_b = sortedParsers_1.return)) _b.call(sortedParsers_1);
-                            } finally {
-                                if (e_2) throw e_2.error;
-                            }
-                        }
-                    }
-                } catch (e_1_1) {
-                    e_1 = {
-                        error: e_1_1
-                    };
-                } finally {
-                    try {
-                        if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-                    } finally {
-                        if (e_1) throw e_1.error;
-                    }
-                }
-                return stripSentryFramesAndReverse(frames);
-            };
-        }
-        function stripSentryFramesAndReverse(stack) {
-            if (!stack.length) return [];
-            var localStack = stack;
-            var firstFrameFunction = localStack[0].function || "";
-            var lastFrameFunction = localStack[localStack.length - 1].function || "";
-            if (-1 !== firstFrameFunction.indexOf("captureMessage") || -1 !== firstFrameFunction.indexOf("captureException")) localStack = localStack.slice(1);
-            if (-1 !== lastFrameFunction.indexOf("sentryWrapped")) localStack = localStack.slice(0, -1);
-            return localStack.slice(0, STACKTRACE_LIMIT).map((function(frame) {
-                return (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, frame), {
-                    filename: frame.filename || localStack[0].filename,
-                    function: frame.function || "?"
-                });
-            })).reverse();
-        }
-        var defaultFunctionName = "<anonymous>";
-        function getFunctionName(fn) {
-            try {
-                if (!fn || "function" !== typeof fn) return defaultFunctionName;
-                return fn.name || defaultFunctionName;
-            } catch (e) {
-                return defaultFunctionName;
-            }
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/string.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            truncate: () => truncate,
-            safeJoin: () => safeJoin,
-            isMatchingPattern: () => isMatchingPattern
-        });
-        var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-        function truncate(str, max) {
-            if (void 0 === max) max = 0;
-            if ("string" !== typeof str || 0 === max) return str;
-            return str.length <= max ? str : str.substr(0, max) + "...";
-        }
-        function safeJoin(input, delimiter) {
-            if (!Array.isArray(input)) return "";
-            var output = [];
-            for (var i = 0; i < input.length; i++) {
-                var value = input[i];
-                try {
-                    output.push(String(value));
-                } catch (e) {
-                    output.push("[value cannot be serialized]");
-                }
-            }
-            return output.join(delimiter);
-        }
-        function isMatchingPattern(value, pattern) {
-            if (!(0, _is__WEBPACK_IMPORTED_MODULE_0__.isString)(value)) return false;
-            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isRegExp)(pattern)) return pattern.test(value);
-            if ("string" === typeof pattern) return -1 !== value.indexOf(pattern);
-            return false;
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/supports.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            supportsFetch: () => supportsFetch,
-            isNativeFetch: () => isNativeFetch,
-            supportsNativeFetch: () => supportsNativeFetch,
-            supportsReferrerPolicy: () => supportsReferrerPolicy,
-            supportsHistory: () => supportsHistory
-        });
-        var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-        function supportsFetch() {
-            if (!("fetch" in (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)())) return false;
-            try {
-                new Headers;
-                new Request("");
-                new Response;
-                return true;
-            } catch (e) {
-                return false;
-            }
-        }
-        function isNativeFetch(func) {
-            return func && /^function fetch\(\)\s+\{\s+\[native code\]\s+\}$/.test(func.toString());
-        }
-        function supportsNativeFetch() {
-            if (!supportsFetch()) return false;
-            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-            if (isNativeFetch(global.fetch)) return true;
-            var result = false;
-            var doc = global.document;
-            if (doc && "function" === typeof doc.createElement) try {
-                var sandbox = doc.createElement("iframe");
-                sandbox.hidden = true;
-                doc.head.appendChild(sandbox);
-                if (sandbox.contentWindow && sandbox.contentWindow.fetch) result = isNativeFetch(sandbox.contentWindow.fetch);
-                doc.head.removeChild(sandbox);
-            } catch (err) {
-                (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ", err);
-            }
-            return result;
-        }
-        function supportsReferrerPolicy() {
-            if (!supportsFetch()) return false;
-            try {
-                new Request("_", {
-                    referrerPolicy: "origin"
-                });
-                return true;
-            } catch (e) {
-                return false;
-            }
-        }
-        function supportsHistory() {
-            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-            var chrome = global.chrome;
-            var isChromePackagedApp = chrome && chrome.app && chrome.app.runtime;
-            var hasHistoryApi = "history" in global && !!global.history.pushState && !!global.history.replaceState;
-            return !isChromePackagedApp && hasHistoryApi;
-        }
-    },
-    "../shared/node_modules/@sentry/utils/esm/syncpromise.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            resolvedSyncPromise: () => resolvedSyncPromise,
-            rejectedSyncPromise: () => rejectedSyncPromise,
-            SyncPromise: () => SyncPromise
-        });
-        var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-        function resolvedSyncPromise(value) {
-            return new SyncPromise((function(resolve) {
-                resolve(value);
-            }));
-        }
-        function rejectedSyncPromise(reason) {
-            return new SyncPromise((function(_, reject) {
-                reject(reason);
-            }));
-        }
-        var SyncPromise = function() {
-            function SyncPromise(executor) {
-                var _this = this;
-                this._state = 0;
-                this._handlers = [];
-                this._resolve = function(value) {
-                    _this._setResult(1, value);
-                };
-                this._reject = function(reason) {
-                    _this._setResult(2, reason);
-                };
-                this._setResult = function(state, value) {
-                    if (0 !== _this._state) return;
-                    if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isThenable)(value)) {
-                        void value.then(_this._resolve, _this._reject);
-                        return;
-                    }
-                    _this._state = state;
-                    _this._value = value;
-                    _this._executeHandlers();
-                };
-                this._executeHandlers = function() {
-                    if (0 === _this._state) return;
-                    var cachedHandlers = _this._handlers.slice();
-                    _this._handlers = [];
-                    cachedHandlers.forEach((function(handler) {
-                        if (handler[0]) return;
-                        if (1 === _this._state) handler[1](_this._value);
-                        if (2 === _this._state) handler[2](_this._value);
-                        handler[0] = true;
-                    }));
-                };
-                try {
-                    executor(this._resolve, this._reject);
-                } catch (e) {
-                    this._reject(e);
-                }
-            }
-            SyncPromise.prototype.then = function(onfulfilled, onrejected) {
-                var _this = this;
-                return new SyncPromise((function(resolve, reject) {
-                    _this._handlers.push([ false, function(result) {
-                        if (!onfulfilled) resolve(result); else try {
-                            resolve(onfulfilled(result));
-                        } catch (e) {
-                            reject(e);
-                        }
-                    }, function(reason) {
-                        if (!onrejected) reject(reason); else try {
-                            resolve(onrejected(reason));
-                        } catch (e) {
-                            reject(e);
-                        }
-                    } ]);
-                    _this._executeHandlers();
-                }));
-            };
-            SyncPromise.prototype.catch = function(onrejected) {
-                return this.then((function(val) {
-                    return val;
-                }), onrejected);
-            };
-            SyncPromise.prototype.finally = function(onfinally) {
-                var _this = this;
-                return new SyncPromise((function(resolve, reject) {
-                    var val;
-                    var isRejected;
-                    return _this.then((function(value) {
-                        isRejected = false;
-                        val = value;
-                        if (onfinally) onfinally();
-                    }), (function(reason) {
-                        isRejected = true;
-                        val = reason;
-                        if (onfinally) onfinally();
-                    })).then((function() {
-                        if (isRejected) {
-                            reject(val);
-                            return;
-                        }
-                        resolve(val);
-                    }));
-                }));
-            };
-            return SyncPromise;
-        }();
-    },
-    "../shared/node_modules/@sentry/utils/esm/time.js": (module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            dateTimestampInSeconds: () => dateTimestampInSeconds,
-            timestampInSeconds: () => timestampInSeconds,
-            timestampWithMs: () => timestampWithMs,
-            browserPerformanceTimeOrigin: () => browserPerformanceTimeOrigin
-        });
-        var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var _node__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
-        module = __webpack_require__.hmd(module);
-        var dateTimestampSource = {
-            nowSeconds: function() {
-                return Date.now() / 1e3;
-            }
-        };
-        function getBrowserPerformance() {
-            var performance = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)().performance;
-            if (!performance || !performance.now) return;
-            var timeOrigin = Date.now() - performance.now();
-            return {
-                now: function() {
-                    return performance.now();
-                },
-                timeOrigin
-            };
-        }
-        function getNodePerformance() {
-            try {
-                var perfHooks = (0, _node__WEBPACK_IMPORTED_MODULE_1__.dynamicRequire)(module, "perf_hooks");
-                return perfHooks.performance;
-            } catch (_) {
-                return;
-            }
-        }
-        var platformPerformance = (0, _node__WEBPACK_IMPORTED_MODULE_1__.isNodeEnv)() ? getNodePerformance() : getBrowserPerformance();
-        var timestampSource = void 0 === platformPerformance ? dateTimestampSource : {
-            nowSeconds: function() {
-                return (platformPerformance.timeOrigin + platformPerformance.now()) / 1e3;
-            }
-        };
-        var dateTimestampInSeconds = dateTimestampSource.nowSeconds.bind(dateTimestampSource);
-        var timestampInSeconds = timestampSource.nowSeconds.bind(timestampSource);
-        var timestampWithMs = timestampInSeconds;
-        var browserPerformanceTimeOrigin = function() {
-            var performance = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)().performance;
-            if (!performance || !performance.now) {
-                "none";
-                return;
-            }
-            var threshold = 3600 * 1e3;
-            var performanceNow = performance.now();
-            var dateNow = Date.now();
-            var timeOriginDelta = performance.timeOrigin ? Math.abs(performance.timeOrigin + performanceNow - dateNow) : threshold;
-            var timeOriginIsReliable = timeOriginDelta < threshold;
-            var navigationStart = performance.timing && performance.timing.navigationStart;
-            var hasNavigationStart = "number" === typeof navigationStart;
-            var navigationStartDelta = hasNavigationStart ? Math.abs(navigationStart + performanceNow - dateNow) : threshold;
-            var navigationStartIsReliable = navigationStartDelta < threshold;
-            if (timeOriginIsReliable || navigationStartIsReliable) if (timeOriginDelta <= navigationStartDelta) {
-                "timeOrigin";
-                return performance.timeOrigin;
-            } else {
-                "navigationStart";
-                return navigationStart;
-            }
-            "dateNow";
-            return dateNow;
-        }();
-    },
-    "../shared/node_modules/tslib/tslib.es6.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-        __webpack_require__.d(__webpack_exports__, {
-            __extends: () => __extends,
-            __assign: () => __assign,
-            __rest: () => __rest,
-            __values: () => __values,
-            __read: () => __read,
-            __spread: () => __spread
-        });
-        var extendStatics = function(d, b) {
-            extendStatics = Object.setPrototypeOf || {
-                __proto__: []
-            } instanceof Array && function(d, b) {
-                d.__proto__ = b;
-            } || function(d, b) {
-                for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-            };
-            return extendStatics(d, b);
-        };
-        function __extends(d, b) {
-            extendStatics(d, b);
-            function __() {
-                this.constructor = d;
-            }
-            d.prototype = null === b ? Object.create(b) : (__.prototype = b.prototype, new __);
-        }
-        var __assign = function() {
-            __assign = Object.assign || function(t) {
-                for (var s, i = 1, n = arguments.length; i < n; i++) {
-                    s = arguments[i];
-                    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-                }
-                return t;
-            };
-            return __assign.apply(this, arguments);
-        };
-        function __rest(s, e) {
-            var t = {};
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-            if (null != s && "function" === typeof Object.getOwnPropertySymbols) {
-                var i = 0;
-                for (p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-            }
-            return t;
-        }
-        function __values(o) {
-            var s = "function" === typeof Symbol && Symbol.iterator, m = s && o[s], i = 0;
-            if (m) return m.call(o);
-            if (o && "number" === typeof o.length) return {
-                next: function() {
-                    if (o && i >= o.length) o = void 0;
-                    return {
-                        value: o && o[i++],
-                        done: !o
-                    };
-                }
-            };
-            throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-        }
-        function __read(o, n) {
-            var m = "function" === typeof Symbol && o[Symbol.iterator];
-            if (!m) return o;
-            var r, e, i = m.call(o), ar = [];
-            try {
-                while ((void 0 === n || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-            } catch (error) {
-                e = {
-                    error
-                };
-            } finally {
-                try {
-                    if (r && !r.done && (m = i["return"])) m.call(i);
-                } finally {
-                    if (e) throw e.error;
-                }
-            }
-            return ar;
-        }
-        function __spread() {
-            for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-            return ar;
-        }
     }
 }, __webpack_require__ => {
     var __webpack_exec__ = moduleId => __webpack_require__(__webpack_require__.s = moduleId);
-    __webpack_exec__("../shared/browser/utils/sentry.js"), __webpack_exec__("./src/assets/proofing/main.js");
+    __webpack_require__.O(0, [ "vendor" ], (() => (__webpack_exec__("../shared/browser/utils/sentry.js"), 
+    __webpack_exec__("./src/assets/proofing/main.js"))));
+    __webpack_require__.O();
 } ]);

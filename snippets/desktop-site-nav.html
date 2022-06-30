@@ -19,7 +19,7 @@
     {{/if}}
     <li data-float="{{#if showImg1}}{{menu_block.settings.image_1_position}}{{/if}}{{#if showImg2}}{{menu_block.settings.image_2_position}}{{/if}}" data-site-nav-menu-id="{{this.id}}" class="d-site--nav__item  {{#if has_dropdown}}site-nav--has-dropdown{{/if}} {{#if is_megamenu}}site-nav--is-megamenu{{/if}}">
         {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
-        <a class="site-nav__link d-site--nav__underline navigation-font-size  {{#if has_dropdown}}site-nav__link--has-dropdown{{/if}}"
+        <a class="__sl-custom-track-stage-navItem site-nav__link d-site--nav__underline navigation-font-size  {{#if has_dropdown}}site-nav__link--has-dropdown{{/if}}"
            {{{navItem.hrefAttr}}}>
             {{navItem.name}}
             {{#if has_dropdown}}
@@ -38,12 +38,12 @@
                             <div class="nav-grid__item">
                                 {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
                                 <div class="body2 fw-blod">
-                                    <a data-node-id="{{this.id}}" {{{navItem.hrefAttr}}} class="site-nav__dropdown-link site-nav__node site-nav__dropdown-link--top-level">{{ navItem.name }}</a>
+                                    <a data-node-id="{{this.id}}" {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem site-nav__dropdown-link site-nav__node site-nav__dropdown-link--top-level">{{ navItem.name }}</a>
                                 </div>
                                 {{#each this.childNodes}}
                                 {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
                                 <div>
-                                    <a data-node-id="{{this.id}}"  class="site-nav__dropdown-link site-nav__node body3" {{{navItem.hrefAttr}}}>{{navItem.name}}</a>
+                                    <a data-node-id="{{this.id}}"  class="__sl-custom-track-stage-navItem site-nav__dropdown-link site-nav__node body3" {{{navItem.hrefAttr}}}>{{navItem.name}}</a>
                                 </div>
                                 {{/each}}
                             </div>
@@ -57,12 +57,12 @@
 
         {{#unless is_megamenu}}
             {{#if has_dropdown}}
-                <div class="site-nav__dropdown unmegamenu-container">
+                <div class="site-nav__dropdown unmegamenu-container global-modal-border-shadow">
                     <ul class="text-left">
                         {{#each this.childNodes}}
                         <li class="{{#if has_sub_dropdown}}site-nav__deep-dropdown-trigger{{/if}}">
                             {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
-                            <a {{{navItem.hrefAttr}}} class="body3 site-nav__dropdown-link site-nav__dropdown-link--second-level">
+                            <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body3 site-nav__dropdown-link site-nav__dropdown-link--second-level">
                                 {{navItem.name}}
                             </a>
                         </li>

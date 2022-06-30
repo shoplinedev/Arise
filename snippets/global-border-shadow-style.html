@@ -1,0 +1,73 @@
+{{assign 'color' (get (append 'color_scheme_' color_scheme '_text') theme.settings)}}
+
+{{#if (isTruthy color) }}
+  {{assign 'color_text'  theme.settings.color_text}}
+  {{#style}}
+
+  {{#if type '===' 'media' }}
+    {{assign 'color_border' (rgba color (divide theme.settings.media_border_opacity 100)) }}
+    {{assign 'color_shadow' (rgba color_text (divide theme.settings.media_shadow_opacity 100)) }}
+    #shopline-section-{{sectionId}} .global-media-border-shadow {
+    overflow: hidden;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: {{theme.settings.media_border_thickness}}px !important;
+    border-color: {{color_border}};
+    border-radius: {{theme.settings.media_border_radius}}px;
+    box-shadow: {{theme.settings.media_shadow_offset_x}}px {{theme.settings.media_shadow_offset_y}}px {{theme.settings.media_shadow_blur}}px {{color_shadow}};
+    }
+  {{/if}}
+
+  {{#if type '===' 'content' }}
+    {{assign 'color_border' (rgba color (divide theme.settings.content_border_opacity 100)) }}
+    {{assign 'color_shadow' (rgba color_text (divide theme.settings.content_shadow_opacity 100)) }}
+    #shopline-section-{{sectionId}} .global-content-border-shadow {
+    overflow: hidden;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: {{theme.settings.content_border_thickness}}px !important;
+    border-color: {{color_border}};
+    border-radius: {{theme.settings.content_border_radius}}px;
+    box-shadow: {{theme.settings.content_shadow_offset_x}}px {{theme.settings.content_shadow_offset_y}}px {{theme.settings.content_shadow_blur}}px {{color_shadow}};
+    }
+  {{/if}}
+
+  {{#if type '===' 'modal' }}
+    {{assign 'color_border' (rgba color (divide theme.settings.menu_modal_border_opacity 100)) }}
+    {{assign 'color_shadow' (rgba color_text (divide theme.settings.menu_modal_shadow_opacity 100)) }}
+    #shopline-section-{{sectionId}} .global-modal-border-shadow {
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: {{theme.settings.menu_modal_border_thickness}}px !important;
+    border-color: {{color_border}};
+    border-radius: {{theme.settings.menu_modal_border_radius}}px;
+    box-shadow: {{theme.settings.menu_modal_shadow_offset_x}}px {{theme.settings.menu_modal_shadow_offset_y}}px {{theme.settings.menu_modal_shadow_blur}}px {{color_shadow}};
+    }
+  {{/if}}
+
+  {{#if type '===' 'drawer' }}
+    {{assign 'color_border' (rgba color (divide theme.settings.drawer_border_opacity 100)) }}
+    {{assign 'color_shadow' (rgba color_text (divide theme.settings.drawer_shadow_opacity 100)) }}
+    #shopline-section-{{sectionId}} .global-drawer-border-shadow {
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0 {{theme.settings.drawer_border_thickness}}px 0 0;
+    border-color: {{color_border}};
+    filter: drop-shadow({{theme.settings.drawer_shadow_offset_x}}px {{theme.settings.drawer_shadow_offset_y}}px {{theme.settings.drawer_shadow_blur}}px {{color_shadow}})
+    }
+  {{/if}}
+
+  {{#if type '===' 'card' }}
+    {{assign 'color_border' (rgba color (divide theme.settings.card_border_opacity 100)) }}
+    {{assign 'color_shadow' (rgba color_text (divide theme.settings.card_shadow_opacity 100)) }}
+    #shopline-section-{{sectionId}} .global-card-border-shadow {
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0 {{theme.settings.card_border_thickness}}px 0 0;
+    border-color: {{color_border}};
+    filter: drop-shadow({{theme.settings.card_shadow_offset_x}}px {{theme.settings.card_shadow_offset_y}}px {{theme.settings.card_shadow_blur}}px {{color_shadow}})
+    }
+  {{/if}}
+
+  {{/style}}
+{{/if}}

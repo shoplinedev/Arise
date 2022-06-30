@@ -1,0 +1,10 @@
+{{!-- 非移动端-自动折扣弹窗 --}}
+<div class="sales__autoCouponModal-container">
+  <div class="sales__autoCouponModal-list">
+    {{#each list}}
+      <div class="sales__autoCouponModal-listItem">
+        {{ snippet 'sales/auto-coupon/auto-coupon-item' benefitCondition=this benefitType=../benefitType template=../template  }}
+      </div>
+    {{/each}}
+  </div>
+</div>

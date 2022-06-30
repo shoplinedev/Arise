@@ -37,6 +37,7 @@ imgRealWidth 图片真实占位宽度
   {{/if}}
 
   {{assign 'product_item_image_src' imageList.[0] }}
+  {{assign 'product_item_image_alt' (default altList.[0] '')}}
 
 {{else}}
   {{!-- 如果图片为空 --}}
@@ -45,6 +46,7 @@ imgRealWidth 图片真实占位宽度
 {{!-- 下一张图片链接,如果没有下一张图片,不去处理 --}}
 {{#if imageList.[1]}}
   {{assign 'product_item_next_image_src' imageList.[1] }} 
+  {{assign 'product_item_next_image_alt' (default altList.[1] '')}}
 {{else}}
   {{assign 'product_item_next_image_src' false }} 
 {{/if}}
@@ -61,8 +63,10 @@ imgRealWidth 图片真实占位宽度
 {{/if}}
 {{assign 'recommendConfig' plugins.recommend.recommendConfig}}
 
+{{assign 'showPrice' true}}
 {{#if itemType '===' 'recommend'}}
   {{assign 'soldOut' false}}
+  {{assign 'showPrice' recommendConfig.showPrice}}
   {{assign 'product_mobile_title_show' recommendConfig.showProductTitleOnMobile}}
   {{#if (boolean (boolean recommendType '===' 'miniCart') '||' (boolean recommendType '===' 'cart'))}}
     {{assign 'product_quick_view' false}}
@@ -84,7 +88,19 @@ imgRealWidth 图片真实占位宽度
 
 <div class="product-item__wrapper">
   <div class="product-item__inner-wrap js-product-inner-wrap" data-hover-z-index="{{hoverZIndex}}" data-no-hover-ani-effect="{{noHoverAniEffect}}">
-    <a data-id="{{spuSeq}}" data-sku-id="{{reportSkuId}}" data-index="{{ index }}" data-status="{{ soldOut }}" data-name="{{ title }}" data-price="{{ productMinPrice }}" class="product-item js-product-item {{className}}" href="{{#if (isFalsey uniqueKey) }}javascript:;{{else}}/products/{{ uniqueKey }}{{/if}}" class="col"  data-plugin-product-item-a>
+    <a
+      data-id="{{spuSeq}}"
+      data-sku-id="{{reportSkuId}}"
+      data-index="{{ index }}"
+      data-status="{{ soldOut }}"
+      data-name="{{ title }}"
+      data-price="{{ productMinPrice }}"
+      data-module-type="{{ moduleType }}"
+      class="product-item js-product-item {{className}} __sl-custom-track-product-item-{{ spuSeq }}"
+      href="{{#if (isFalsey uniqueKey) }}javascript:;{{else}}/products/{{ uniqueKey }}{{/if}}"
+      class="col"
+      data-plugin-product-item-a
+    >
       <div class="product-item-image-wrapper {{#if isImageRounded}}rounded{{/if}}">
         <div class="product-item__image-content">
           {{!-- 如果没有下一张图片，不展示hover效果 --}}
@@ -96,6 +112,7 @@ imgRealWidth 图片真实占位宽度
                 imageRatio=finalRatio
                 imageFit=imageFit 
                 src=product_item_next_image_src 
+                alt=product_item_next_image_alt
                 placeholderHeight=placeholderHeight 
               }}
             </div>
@@ -107,6 +124,7 @@ imgRealWidth 图片真实占位宽度
               imageRatio=finalRatio 
               imageFit=imageFit  
               src=product_item_image_src 
+              alt=product_item_image_alt
               placeholderHeight=placeholderHeight 
             }}
           </div>
@@ -114,33 +132,68 @@ imgRealWidth 图片真实占位宽度
           {{#if soldOut '!==' undefined}}
             {{!-- 询盘（inquiry）不展示tag --}}
             {{#if (isFalsey inquiry) }}
-              {{#if soldOut}}
-                <span class="product-item-soldout-tag body4 product-item-hidden-in-grid">{{t 'productList.container.listItem.soldOut'}}</span>
-              {{else}}
-                {{#if theme.settings.product_discount}}
-                  {{!-- 没有优惠不展示sale tag --}}
-                  {{#if (boolean originPrice '&&' (boolean discount_text '>' 0))}}
-                    <span class="product-item-sale-tag body4 product-item-hidden-in-grid">
-                      {{#if theme.settings.product_discount_style '===' 'number'}}
-                        {{#currency_convert_price discount_text}}
-                          {{#if fraction '===' '00'}}
-                            {{#if symbolOrder '==' 'prefix'}}
-                              {{assign 'priceVal' (append currencySymbol integer) }}
+            <div class="product-item-card-wrapper cart-position-{{theme.settings.product_discount_position}}">
+              <div class="product-item-card-content">
+                {{#if soldOut}}
+                  <span class="product-item-soldout-tag body4 product-item-hidden-in-grid">{{t 'productList.container.listItem.soldOut'}}</span>
+                {{else}}
+                  {{#if (boolean theme.settings.product_discount '&&' showPrice) }}
+                    {{!-- 没有优惠不展示sale tag --}}
+                    {{#if (boolean originPrice '&&' (boolean discount_text '>' 0))}}
+                      <span class="product-item-sale-tag body4 product-item-hidden-in-grid">
+                        {{#if theme.settings.product_discount_style '===' 'number'}}
+                          {{#currency_convert_price discount_text}}
+                            {{#if fraction '===' '00'}}
+                              {{#if symbolOrder '==' 'prefix'}}
+                                {{assign 'priceVal' (append currencySymbol integer) }}
+                              {{else}}
+                                {{assign 'priceVal' (append integer currencySymbol) }}
+                              {{/if}}
                             {{else}}
-                              {{assign 'priceVal' (append integer currencySymbol) }}
+                              {{assign 'priceVal' (currency_convert discount_text) }}
                             {{/if}}
-                          {{else}}
-                            {{assign 'priceVal' (currency_convert discount_text) }}
-                          {{/if}}
-                          {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
-                        {{/currency_convert_price}}
-                      {{else}}
-                         {{t 'productList.container.listItem.saveRatio' price=discount_text }}
-                      {{/if}}
-                    </span>
+                            {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
+                          {{/currency_convert_price}}
+                        {{else}}
+                          {{t 'productList.container.listItem.saveRatio' price=discount_text }}
+                        {{/if}}
+                      </span>
+                    {{/if}}
                   {{/if}}
                 {{/if}}
-              {{/if}}
+              </div>
+            </div>
+            {{/if}}
+          {{/if}}
+        </div>
+        <div class="product-item__actions js-product-item__actions">
+          {{#if (boolean (isFalsey forbiddenBtn) '&&' (isFalsey inquiry)) }}
+            {{!-- 询盘（inquiry）不展示加车按钮 && 手机设备不显示，包括横屏 --}}
+            {{!-- 支持快速加入购物车 && 商品未售罄 --}}
+            {{#if (boolean product_add_to_cart '&&' (isFalsey soldOut) "&&" (isFalsey request.is_mobile) ) }}
+              <button
+                type="button"
+                data-query="{{ previewQuery }}"
+                data-spu-seq='{{spuSeq}}'
+                data-unique-key='{{uniqueKey}}'
+                data-index="{{ index }}"
+                class="btn btn-primary product-item__btn product-item__quick-add js-product-item-quick-add">
+                <span>
+                  {{t 'productList.container.tradePopup.addToCart'}}
+                </span>
+                <i>&nbsp;</i>
+              </button>
+            {{/if}}
+            {{!-- 列表页售罄 --}}
+            {{#if (and (isFalsey inquiry) (isTruthy soldOut))}}
+              <button
+                type="button"
+                data-spu-seq='{{spuSeq}}'
+                data-unique-key='{{uniqueKey}}'
+                data-index="{{ index }}"
+                class="btn product-item__btn product-item__quick-add product-item__sold-out js-product-item-sold-out">
+                {{t 'productList.container.listItem.soldOut'}}
+              </button>
             {{/if}}
           {{/if}}
         </div>
@@ -157,18 +210,10 @@ imgRealWidth 图片真实占位宽度
               {{description}}
             </div>
           {{/if}}
-          {{#if (boolean (isFalsey inquiry) '&&' (boolean  spuCommentSummary '&&' (boolean spuCommentSummary.score '>' 0)))}}
-            <div class="product-item-comment-info">
-              {{{rate value=spuCommentSummary.score}}}
-              <div class="comment-total">
-                ({{spuCommentSummary.total}})
-              </div>
-            </div>
-          {{/if}}
         </div>
-
+        <div data-ssr-product-item-price-top></div>
         {{!-- 询盘（inquiry）不展示价格 --}}
-        {{#if (isFalsey inquiry) }}
+        {{#if (boolean (isFalsey inquiry) '&&' showPrice) }}
           <div class="product-item-price">
             {{!-- 当原价大于售价时，显示原价 --}}
             {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice)) }}
@@ -176,9 +221,9 @@ imgRealWidth 图片真实占位宽度
                 <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-list">
                   {{#currency_convert_price originPrice}}
                     {{#if symbolOrder '==' 'prefix'}}
-                      <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
+                      <span>{{ currencySymbol }}</span><span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup></span>
                     {{else}}
-                      <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
+                      <span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup></span><span>{{ currencySymbol }}</span>
                     {{/if}}
                   {{/currency_convert_price}}
                 </span>
@@ -195,9 +240,9 @@ imgRealWidth 图片真实占位宽度
                 <span data-product-item-price="{{productMinPrice}}" class="notranslate">
                   {{#currency_convert_price productMinPrice}}
                     {{#if symbolOrder '==' 'prefix'}}
-                      <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
+                      <span>{{ currencySymbol }}</span><span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup></span>
                     {{else}}
-                      <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
+                      <span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup></span><span>{{ currencySymbol }}</span>
                     {{/if}}
                   {{/currency_convert_price}}
                 </span>
@@ -217,9 +262,9 @@ imgRealWidth 图片真实占位宽度
                 <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-grid">
                   {{#currency_convert_price originPrice}}
                     {{#if symbolOrder '==' 'prefix'}}
-                      <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
+                      <span>{{ currencySymbol }}</span><span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup></span>
                     {{else}}
-                      <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
+                      <span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup></span><span>{{ currencySymbol }}</span>
                     {{/if}}
                   {{/currency_convert_price}}
                 </span>
@@ -236,7 +281,7 @@ imgRealWidth 图片真实占位宽度
                       <span class="product-item-soldout-tag body4" style="position: static;">{{t 'productList.container.listItem.soldOut'}}</span>
                     </span>
                   {{else}}
-                    {{#if theme.settings.product_discount}}
+                    {{#if (boolean theme.settings.product_discount '&&' showPrice) }}
                       {{!-- 没有优惠不展示sale tag --}}
                       <span class="product-item-hidden-in-list product-item-tag-panel">
                         {{#if (boolean originPrice '&&' (boolean discount_text '>' 0))}}
@@ -266,37 +311,9 @@ imgRealWidth 图片真实占位宽度
               {{/if}}
             {{/if}}
 
-            <div class="product-item__actions js-product-item__actions">
-              {{#if (boolean (isFalsey forbiddenBtn) '&&' (isFalsey inquiry)) }}
-                {{!-- 询盘（inquiry）不展示加车按钮 && 手机设备不显示，包括横屏 --}}
-                {{!-- 支持快速加入购物车 && 商品未售罄 --}}
-                {{#if (boolean product_add_to_cart '&&' (isFalsey soldOut) "&&" (isFalsey request.is_mobile) ) }}
-                  <button
-                    type="button"
-                    data-query="{{ previewQuery }}"
-                    data-spu-seq='{{spuSeq}}'
-                    data-unique-key='{{uniqueKey}}'
-                    class="btn btn-primary product-item__btn product-item__quick-add js-product-item-quick-add">
-                    <span>
-                      {{t 'productList.container.tradePopup.addToCart'}}
-                    </span>
-                    <i>&nbsp;</i>
-                  </button>
-                {{/if}}
-                {{!-- 列表页售罄 --}}
-                {{#if (and (isFalsey inquiry) (isTruthy soldOut))}}
-                  <button
-                    type="button"
-                    data-spu-seq='{{spuSeq}}'
-                    data-unique-key='{{uniqueKey}}'
-                    class="btn product-item__btn product-item__quick-add product-item__sold-out js-product-item-sold-out">
-                    {{t 'productList.container.listItem.soldOut'}}
-                  </button>
-                {{/if}}
-              {{/if}}
-            </div>
           </div>
         {{/if}}
+        <div data-ssr-product-item-price-bottom></div>
       </div>
     </a>
   </div>

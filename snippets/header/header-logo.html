@@ -13,18 +13,20 @@
   {{assign 'header_logo_size_mobile' '200' }}
 {{/unless}}
 
-{{ assign 'url' (append request.uri.domain  request.uri.url) }}
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "Organization",
-    "name": "{{ storeInfo.name }}",
-    "url": "{{url}}",
-    {{#if this.settings.logo.url}}
-      "logo": "{{this.settings.logo.url}}"
-    {{/if }}
-  }
-</script>
+{{#if templateAlias '===' 'Home' }}
+  {{ assign 'url' (append request.uri.domain  request.uri.url) }}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Organization",
+      "name": "{{ storeInfo.name }}",
+      "url": "{{url}}",
+      {{#if this.settings.logo.url}}
+        "logo": "{{this.settings.logo.url}}"
+      {{/if }}
+    }
+  </script>
+{{/if}}
 
 {{#if has_logo}}
     {{#with this as |global|}}

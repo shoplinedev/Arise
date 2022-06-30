@@ -1,5 +1,12 @@
+{{assign 'ele' 'div'}}
+{{#if (trim this.settings.link)}} 
+  {{assign 'ele' 'a'}}
+{{/if}}
+
+{{assign 'link_item' (useLink this.settings.link)}}
+
 <div class="footer__image footer__image--{{this.settings.align}}-align">          
-  <div class="footer__image-inner" style="width: {{default this.settings.image_width 100}}px" >
+  <{{ele}} {{{link_item.hrefAttr}}} class="footer__image-inner" style="width: {{default this.settings.image_width 100}}px" >
     {{#if this.settings.image.url}}
       {{assign 'ratio' (append (default (get 'ratio' (img_size image.url)) 100) '%')}}
       <div class="footer__image-wrapper" style="padding-bottom: {{ratio}}">
@@ -12,5 +19,5 @@
         </div>
       </div>
     {{/if}}
-  </div>        
+  </{{ele}}>        
 </div>

@@ -24,8 +24,8 @@ input{
   }
 }
 .row{
-  --sl-gutter-x:22px;
-  --sl-gutter-y:0;
+  --sl-gutter-x:{{ append theme.settings.grid_horizontal_space "px" }};
+  --sl-gutter-y:{{ append theme.settings.grid_vertical_space "px" }};
   display:-webkit-box;
   display:-webkit-flex;
   display:flex;
@@ -1592,8 +1592,8 @@ input{
 
 @media (max-width:749.98px){
   .row{
-    --sl-gutter-x:10px;
-    --sl-gutter-y:0;
+    --sl-gutter-x:{{ append (divide theme.settings.grid_horizontal_space 2) "px" }};
+    --sl-gutter-y:{{ append (divide theme.settings.grid_vertical_space 2) "px" }};
     display:-webkit-box;
     display:-webkit-flex;
     display:flex;

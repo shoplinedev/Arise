@@ -1,0 +1,81 @@
+{{ assign 'isMobile' request.is_mobile}}
+{{ assign 'benefitType' autoDiscountActivityItem.benefitType }}
+{{ assign 'benefitConditions' autoDiscountActivityItem.benefitConditions }}
+{{ assign 'productDetailConfig' autoDiscountActivityItem.salesEnvCustomInfo.productDetailConfig }}
+{{ assign "config" (sales_promotion_tag_translate benefitConditions benefitType)}}
+{{#each benefitConditions}}
+  {{!-- 添加benefitCondition字段 --}}
+  {{assign 'benefitCondition' this.benefitEvent}}
+{{/each}}
+
+{{assign 'linkType' productDetailConfig.linkType}}
+{{!-- 默认linkType为activityPage --}}
+{{#not linkType}}
+  {{assign 'linkType' 'activityPage'}}
+{{/not}}
+{{assign 'bannerBgImg' productDetailConfig.bannerBgImg}}
+{{assign 'btnTextColor' productDetailConfig.btnTextColor}}
+{{assign 'bannerBgColor' productDetailConfig.bannerBgColor}}
+{{assign 'bannerTextColor' productDetailConfig.bannerTextColor}}
+
+{{! 给颜色配置默认值}}
+{{#if (isFalsey btnTextColor)}}
+  {{assign 'btnTextColor' '#2C2C2C'}}
+{{/if}}
+{{#if (isFalsey bannerBgColor)}}
+  {{assign 'bannerBgColor' '#FDF7F7'}}
+{{/if}}
+{{#if (isFalsey bannerTextColor)}}
+  {{assign 'bannerTextColor' '#C20000'}}
+{{/if}}
+
+{{assign 'seoHandleItem' (itemAt autoDiscountActivityItem.seoHandleList 0)}}
+{{assign 'linkUrl' productDetailConfig.customLink}}
+{{#if (and (compare linkType '===' 'activityPage') seoHandleItem)}}
+  {{assign 'linkUrl' (append '/activity/' seoHandleItem)}}
+{{/if}}
+
+<div class="sales__autoCouponBanner-container sales__autoCouponBanner-container-hook"
+  style="{{#if bannerBgImg}}background-image:url({{bannerBgImg}}){{else}}background:{{bannerBgColor}}{{/if}}">
+  <div class="sales__autoCouponBanner-left" id="salesAutoCouponBannerLeftHook" style="color:{{bannerTextColor}}">
+    {{! 标签图标 }}
+    <svg class="sales__autoCouponBanner-tagIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M20.3335 11.4792L19.5002 4.50008L12.521 3.66675L3.18705 13.0007C2.99179 13.196 2.99179 13.5125 3.18705 13.7078L10.2924 20.8132C10.4877 21.0085 10.8043 21.0085 10.9995 20.8132L20.3335 11.4792Z"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path opacity="0.5"
+        d="M13.5 8.49988C13.5 7.67145 14.1716 6.99988 15 6.99988C15.8284 6.99988 16.5 7.67145 16.5 8.49988C16.5 9.32831 15.8284 9.99988 15 9.99988C14.1716 9.99988 13.5 9.32831 13.5 8.49988Z"
+        fill="currentColor" />
+    </svg>
+    {{#each benefitConditions}}
+      {{#if @index "<" 2}}
+        <span class="sales__autoCouponBanner-couponItem sales__autoCouponBanner-couponItem-hook">
+          <span>
+            {{ snippet 'sales/auto-coupon/auto-coupon-item' benefitCondition=this benefitType=../benefitType template=../template  }}
+          </span>
+          <span class="sales__autoCouponBanner-couponItemDivide"></span>
+        </span>
+      {{/if}}
+    {{/each}}
+    {{! 下箭头图标 }}
+    <svg class="sales__autoCouponBanner-downIcon sales__autoCouponBanner-downIcon-hook" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M8.7585 4H3.24134C2.7068 4 2.4391 4.64629 2.81708 5.02426L5.57565 7.78284C5.80997 8.01716 6.18987 8.01716 6.42418 7.78284L9.18276 5.02426C9.56074 4.64629 9.29304 4 8.7585 4Z"
+        fill="currentColor" />
+    </svg>
+    {{!-- PC-弹窗 --}}
+    {{ snippet 'sales/auto-coupon/auto-coupon-modal' list=benefitConditions benefitType=benefitType template=template}}
+  </div>
+  {{#if linkUrl}}
+    <a href="{{linkUrl}}" class="sales__autoCouponBanner-shopMoreWrap" style="color:{{btnTextColor}}">
+      <span class="sales__autoCouponBanner-shopMoreText sales__autoCouponBanner-shopMoreText-hook"
+        style="{{#if isMobile}}display:none;{{/if}}">{{t 'sales.autoCoupon.shopMore'}}</span>
+      {{! 右箭头图标 }}
+      <svg class="sales__autoCouponBanner-shopMoreIcon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.5 11L8.5 6L3.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+    </a>
+  {{/if}}
+  {{!-- 移动端弹窗 --}}
+  {{snippet 'sales/auto-coupon/auto-coupon-drawer' list=benefitConditions benefitType=benefitType template=template color=bannerTextColor }}
+</div>

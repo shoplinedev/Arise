@@ -15,16 +15,16 @@
 
 {{#style}}
   [data-section-id="{{ section.id }}"] .testimonials__swiper {
-    width: calc((100% / 3 * {{ block_length }}) + (20px / 3 * {{ block_length }}));
+    width: calc((100% / 3 * {{ block_length }}) + ({{ theme.settings.grid_vertical_space }}px / 3 * {{ block_length }}));
   }
   @media (max-width: 749.98px) {
     [data-section-id="{{ section.id }}"] .testimonials__swiper {
-      width: calc((100% + 20px) * {{ block_length }});
+      width: calc((100% + {{ theme.settings.grid_vertical_space }}px) * {{ block_length }});
     }
   }
 {{/style}}
 
-<div class="testimonials__wrapper color-scheme-{{ section.settings.color_scheme }} section-gap{{#if section.settings.color_scheme '!==' ''}}--padding{{/if}}">
+<div class="__sl-custom-track-stage-testimonials testimonials__wrapper color-scheme-{{ section.settings.color_scheme }} section-gap{{#if section.settings.color_scheme '!==' ''}}--padding{{/if}}">
   <div
     class="testimonials container"
     data-section-type="testimonials"

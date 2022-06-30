@@ -1,0 +1,26 @@
+{{ layout none }}
+
+{{ assign 'isMobile' request.is_mobile}}
+{{ assign 'modalId' (default request.uri.query.modalId 'login-modal') }}
+
+<div class="login-modal" id="login-modal-container">
+  {{#if isMobile}}
+    <div class="login-modal__tabs">
+      <div class="login-modal__tab-item active" data-type="login">
+        <span>{{t 'user.signIn'}}</span>
+      </div> 
+      <div class="login-modal__tab-item" data-type="register">
+        <span>{{t 'user.signUp'}}</span>
+      </div> 
+    </div>
+  {{/if}}
+
+  <div class="login-container">
+    {{ snippet 'customer/login' id=(append modalId '-signIn') showType="modal" noTitle=isMobile }}
+  </div>
+  <div class="register-container" style="display: {{cond isMobile 'none' ''}};">
+    {{ snippet 'customer/register' id=(append modalId '-signUp') showType="modal" noTitle=isMobile }}
+  </div>
+</div>
+
+<script id="customerLoginModalScriptUrl" src="{{assets_url 'customer/login-modal/index.min.js'}}"></script>

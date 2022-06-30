@@ -1,0 +1,108 @@
+{{!-- 只有一个折扣券时，直接展示到前台 --}}
+
+{{! couponTemplate '2'为自定义，'1'为提供的模板}}
+{{assign 'couponTemplate' salesEnvCustomInfo.productDetailConfig.couponTemplate}}
+
+{{!-- templateType:'template1'|'template2'|'customTemplate'，默认就是template1 --}}
+{{assign 'templateType' 'template1'}}
+{{#if couponTemplate '===' '2'}}
+  {{assign 'templateType' 'customTemplate'}}
+{{else if discountCodeDisplayStyle '===' "discountCodeStyle1"}}
+  {{assign 'templateType' 'template1'}}
+{{else if discountCodeDisplayStyle '===' "discountCodeStyle2"}}
+  {{assign 'templateType' 'template2'}}
+{{/if}}
+
+{{ assign 'productDetailConfig' salesEnvCustomInfo.productDetailConfig}}
+
+{{assign 'containerStyle' ''}}
+{{#if productDetailConfig.discountBgImg}}
+  {{assign 'containerStyle' (append 'background-image:url(' productDetailConfig.discountBgImg ');')}}
+{{else if productDetailConfig.discountCodeBgColor}}
+  {{assign 'containerStyle' (append 'background:' productDetailConfig.discountCodeBgColor ';')}}
+{{/if}}
+
+{{assign 'textColorStyle' ''}}
+{{#if productDetailConfig.textColor}}
+  {{assign 'textColorStyle' (append 'color:' productDetailConfig.textColor ';')}}
+{{/if}}
+
+{{assign 'textColorOpStyle' ''}}
+{{#if productDetailConfig.textColor}}
+  {{assign 'textColorOpStyle' (append 'color:' (rgba productDetailConfig.textColor 0.7) ';')}}
+{{/if}}
+
+{{! 按钮样式需要区分是否应用，所以使用style}}
+{{assign 'customTempClassTemplate' '<style>
+.sales__discountCouponOnlyOne-container.customTemplate .sales__discountCouponOnlyOne-applyBtn {
+{bg}{color}
+}
+.sales__discountCouponOnlyOne-container.sales-discount-coupon--apply.customTemplate .sales__discountCouponOnlyOne-applyBtn {
+{color_apply}{bd_apply}
+}
+.sales__discountCouponOnlyOne-container.customTemplate .sales__discountCouponOnlyOne-left {
+  {borderColor}
+}
+</style>'}}
+
+{{#if productDetailConfig.btnBgColor}}
+  {{assign 'customTempClassTemplate' (replace customTempClassTemplate '{bg}' (append 'background-color:' productDetailConfig.btnBgColor ';'))}}
+  {{assign 'customTempClassTemplate' (replace customTempClassTemplate '{color_apply}' (append 'color:' productDetailConfig.btnBgColor ';background:transparent;'))}}
+  {{assign 'customTempClassTemplate' (replace customTempClassTemplate '{bd_apply}' (append 'border:1px solid ' productDetailConfig.btnBgColor ';'))}}
+  {{assign 'customTempClassTemplate' (replace customTempClassTemplate '{borderColor}' (append 'border-right-color:' (rgba productDetailConfig.btnBgColor 0.7) '!important;'))}}
+{{else}}
+  {{assign 'customTempClassTemplate' (replace customTempClassTemplate '{bg}' '')}}
+  {{assign 'customTempClassTemplate' (replace customTempClassTemplate '{color_apply}' '')}}
+  {{assign 'customTempClassTemplate' (replace customTempClassTemplate '{bd_apply}' '')}}
+{{/if}}
+
+{{#if productDetailConfig.btnTextColor}}
+  {{assign 'customTempClassTemplate' (replace customTempClassTemplate '{color}' (append 'color:' productDetailConfig.btnTextColor ';'))}}
+{{else}}
+  {{assign 'customTempClassTemplate' (replace customTempClassTemplate '{color}' '')}}
+{{/if}}
+
+{{assign 'discountCodeTextStyle' ''}}
+{{#if productDetailConfig.discountCodeTextColor}}
+  {{assign 'discountCodeTextStyle' (append 'color:' productDetailConfig.discountCodeTextColor ';')}}
+{{/if}}
+{{!-- 插入样式 --}}
+{{noTranslationHTML customTempClassTemplate}}
+
+{{ assign 'currentActivityInfoItem' (itemAt activityCustomInfo 0)}}
+<div class="sales__discountCouponOnlyOne-container sales__discountCouponOnlyOne-container-hook {{templateType}}" style="{{containerStyle}}" data-discount-code="{{discountCode}}">
+  <div class=" sales__discountCouponOnlyOne-left">
+    <div class="sales__discountCouponOnlyOne-leftTop">
+      {{#if __customThresholdText}}
+        <span class="sales__discountCouponOnlyOne-threshold" style="{{textColorStyle}}">{{noTranslationHTML __customThresholdText}},&nbsp;</span>
+      {{/if}}
+      {{#if __customDiscountText}}
+        <span class="sales__discountCouponOnlyOne-discount" style="{{textColorStyle}}">{{noTranslationHTML __customDiscountText}}</span>
+      {{/if}}
+    </div>
+    <div class="sales__discountCouponOnlyOne-leftBottom">
+      {{!-- 过期时间 --}}
+      {{#if endTime}}
+        <span class="sales__discountCouponOnlyOne-otherInfoItem"
+          style="{{textColorOpStyle}}">{{t 'sales.discount-coupon.coupon-content.until' endTime=(dayjs method='format' init=endTime format='MMM D,YYYY') }}</span>
+      {{/if}}
+      {{!-- 特定客户 --}}
+      {{#if targetUserType}}
+        {{#if (or (compare targetUserType '==' 6) (compare targetUserType '==' 5))}}
+          <span class="sales__discountCouponOnlyOne-otherInfoItem" style="{{textColorOpStyle}}">{{t 'sales.discount-coupon.coupon-content.specified'}}</span>
+        {{else if targetUserType '==' 2}}
+          <span class="sales__discountCouponOnlyOne-otherInfoItem"
+            style="{{textColorOpStyle}}">{{t 'sales.discount-coupon.coupon-content.level' level=currentActivityInfoItem.level}}</span>
+        {{/if}}
+      {{/if}}
+    </div>
+    {{!-- 移动端-应用时显示 --}}
+    <div class="notranslate sales__discountCouponOnlyOne-discountCode sales__discountCouponOnlyOne-discountCode-hook" style="{{discountCodeTextStyle}}">{{discountCode}}</div>
+  </div>
+  <div class="sales__discountCouponOnlyOne-right">
+    <div class="sales__discountCouponOnlyOne-applyBtn sales__discountCouponOnlyOne-applyBtn-hook" data-discount-code="{{discountCode}}"
+      data-apply="{{t 'sales.discount-coupon.apply'}}" data-applied="{{t 'sales.discount-coupon.applied'}}">{{t 'sales.discount-coupon.apply'}}</div>
+    {{!-- PC端-应用时显示 --}}
+    <div class="notranslate sales__discountCouponOnlyOne-discountCode sales__discountCouponOnlyOne-discountCode-hook" style="{{discountCodeTextStyle}}">{{discountCode}}</div>
+  </div>
+</div>

@@ -29,26 +29,136 @@
     "activity-price-limit": "Anda hanya boleh membeli {{num}} unit produk ini dengan diskaun",
     "activity-product-limit": "Anda boleh membeli paling banyak {{stock}} produk dengan diskaun pada masa yang sama",
     "activity-title-limit": "Produk di bawah melebihi had pembelian, masih meneruskan ke semak keluar?",
+    "cart": {
+      "cancel": "Batal",
+      "confirm": "OK",
+      "continue": "Teruskan",
+      "got_it": "Saya faham",
+      "return_to_cart": "Kembali ke kart"
+    },
     "checkout-error": "Terdapat sekurang-kurangnya satu produk yang tidak tersedia dalam kart membeli-belah. Sila laraskan item kart untuk menyemak keluar.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Produk di bawah melebihi had pembelian, masih meneruskan ke semak keluar?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "Diskaun telah digunakan kepada pesanan ini. Anda tidak boleh menambahkan diskaun lain."
+    },
+    "discount": {
+      "coupon_code_amount": "Kupon",
+      "coupon_code_exceed_not_25_characters": "Kod kupon tidak boleh melebihi 25 aksara",
+      "coupon_invalid_for_the_shipping_method": "Kupon {{discountCode}} sah untuk kaedah penghantaran",
+      "discount_code_invalid": "{{discountCode}} dimasukkan dengan betul tetapi harga atau kuantiti barangan tidak memenuhi keperluan",
+      "discount_codes_cannot_stack": "Telah terdapat acara keutamaan bagi produk, yang tidak boleh digunakan bersama-sama dengan acara keutamaan lain",
+      "enter_a_valid_discount_code": "Masukkan kupon yang sah",
+      "expected_discount": "Diskaun"
+    },
+    "discount_item": {
+      "buy_limit5": "Anda boleh membeli paling banyak {{stock}} produk dengan diskaun pada masa yang sama"
+    },
+    "discount_price": {
+      "buy_limit3": "Anda hanya boleh membeli {{stock}} unit bagi produk ini dengan diskaun"
+    },
     "get": "Dapatkan diskaun",
     "go-shopping": "TERUSKAN MEMBELI-BELAH",
+    "item": {
+      "add_limit1": "Tambah sehingga 100 item",
+      "add_limit2": "Kuantiti maksimum bagi produk tunggal ialah 999 unit",
+      "removed": "TIDAK SAH",
+      "sold_out": "HABIS DIJUAL"
+    },
     "login-description": "Telah menjadi ahli? Log masuk boleh memudahkan pengurusan pesanan!",
     "login-membership": "Keahlian percuma",
     "most-100-sku": "Tambah sehingga 100 item",
     "most-buy-999": "Kuantiti maksimum bagi produk tunggal ialah 999 unit",
     "not-participation-offers": "Bukan diskaun penyertaan",
+    "notices": {
+      "change_password_after_verification": "Anda boleh mengubah kata laluan selepas penentusahan",
+      "excess_product": "Produk di bawah melebihi had pembelian, sila ubah kuantiti",
+      "insufficient_product_inventory": "Inventori produk tidak mencukupi",
+      "network": "Ralat Rangkaian",
+      "product_expired": "Produk telah tamat tempoh",
+      "product_limit": "Telah melebihi had produk",
+      "product_selected_invalid": "Maaf, produk yang anda pilih tidak sah untuk dibeli. Sila pilih semula",
+      "store_nonexistent": "Kedai tersebut tidak wujud"
+    },
+    "order": {
+      "authorized": "diberi kuasa",
+      "canceled": "Dibatalkan",
+      "canceled_order": "Dibatalkan",
+      "click_to_track": "Sila jejak pakej anda dengan mengklik pautan di bawah:",
+      "deleted": "TIDAK SAH",
+      "invalid_order_number": "nombor pesanan tidak sah",
+      "no_more_info": "Tiada maklumat lanjut",
+      "pay_amount": "membayar jumlah",
+      "payment_voucher_confirmation": "faham",
+      "receiver_account": "akaun penerima",
+      "reference_number": "nombor rujukan",
+      "sequence": "No.{{id}}",
+      "shipping_address": "Alamat penghantaran",
+      "time": "Dipesan pada:",
+      "total_amount": "{{transPackages}} item secara keseluruhan",
+      "total_item_amount": "{{transPackages}} item secara keseluruhan",
+      "try_again": "Muatnaik gagal. Sila cuba lagi.",
+      "try_later": "sistem sibuk, sila cuba lagi kemudian.",
+      "upload_image_within_10_m_b": "Sila muat naik imej JPG, PNG, GIF dalam 10MB",
+      "upload_time": "masa muat naik",
+      "voucher_amount_limit": "Anda hanya boleh memuat naik sehingga 5 baucar."
+    },
+    "payment": {
+      "channel": "Saluran bayaran",
+      "create_time": "Dicipta",
+      "paid": "Dibayar",
+      "partially_paid": "Dibayar separa",
+      "paying": "Membayar",
+      "payment_details": "Butiran Bayaran",
+      "reference_number": "Nombor rujukan transaksi",
+      "status": "Status",
+      "subtotal_price": "Subjumlah",
+      "sum": "Amaun",
+      "total": "Jumlah",
+      "unpaid": "Belum bayar",
+      "update_time": "Dikemas Kini"
+    },
+    "policy": {
+      "privacy_policy": "Dasar Privasi Tapak Web"
+    },
+    "product-no-exists": "Barang tak ada",
+    "refund": {
+      "click_to_view": "Klik untuk lihat",
+      "custom_preview": "Ulasan tersuai"
+    },
     "render-add-items": "Kart anda kosong sekarang.",
     "render-empty-status": "Tiada item dalam kart anda",
+    "shipping": {
+      "no_info": "Tiada maklumat penghantaran lagi, sila semak kemudian.",
+      "package_tracking": "Penjejakan Pakej",
+      "partially_shipped": "Penghantaran separa",
+      "preparing_order": "Menyediakan produk",
+      "shipped_order": "Dihantar"
+    },
     "shopping-fees": "yuran membeli-belah",
     "shopping-money": "diskaun, Cukai dan penghantaran akan dikira dalam langkah seterusnya",
     "shopping-money-step": "Cukai dan penghantaran dikira semasa semakan keluar",
+    "shpping": {
+      "service_terms": "Terma Perkhidmatan"
+    },
     "stock-limit": "{{stock}} unit dalam stok",
+    "taxIncluded": {
+      "textTag": "Termasuk cukai"
+    },
+    "tips": {
+      "change_binding_after_verification": "Anda boleh menyambungkan/mengubah {{value}} selepas penentusahan",
+      "reset_password": "Anda menetapkan semula kata laluan untuk akaun {{account}}"
+    },
     "view-link": "Klik untuk lihat",
     "view-pic": "Ulasan tersuai",
     "view-shopping-cart": "Lihat Kart Membeli-Belah",
     "added-to-cart": "Ditambahkan pada kart anda",
     "cart-subtotal": "Subjumlah kart",
     "view-cart": "Lihat kart"
+  },
+  "cascade": {
+    "choose": "Atlasiet opciju"
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Terima kasih kerana menghubungi kami, kami akan menghubungi anda secepat mungkin."
   },
+  "customer": {
+    "account": {
+      "add-email": "Tambah e-mel",
+      "add-phone": "Tambah nombor mudah alih",
+      "deadline": "Bagi tujuan laporan perniagaan, pesanan anda akan masih kelihatan. Data akaun anda akan dihapuskan pada {{time}}, anda masih boleh membatalkan proses sebelum tarikh tersebut",
+      "gender_female": "Perempuan",
+      "gender_male": "Lelaki",
+      "gender_secret": "Simpan rahsia",
+      "not_set": "Tidak ditetapkan",
+      "reset_password_error_hint": "Sila ikat e-mel dan telefon bimbit dahulu",
+      "verify_email_message": "Sebelum menutup akaun, kami perlu mengesahkan identiti anda\nE-mel anda {{email}} akan menerima satu e-mel pengesahan",
+      "verify_phone_message": "Sebelum menutup akaun, kami perlu mengesahkan identiti anda\nTelefon mudah alih anda {{phone}} akan menerima satu mesej pengesahan"
+    },
+    "address": {
+      "add_address": "Tambah Alamat Baharu",
+      "common_max": "",
+      "common_min": "lebih besar daripada {{min}} aksara",
+      "edit_last_name_hint": "Sila masukkan nama akhir anda!",
+      "edit_phone_hint": "Sila masukkan telefon bimbit anda!",
+      "mobile-errorMessage": "Sila masukkan nombor telefon yang sah",
+      "no_adress_data": "Pada masa ini, tiada alamat serahan"
+    },
+    "common": {
+      "back-to-user-center": "Kembali ke Pusat Pengguna",
+      "cancel": "Batal",
+      "confirm": "OK",
+      "email": "Alamat E-mel",
+      "email2": "Mel",
+      "enter-email": "Sila masukkan alamat e-mel anda",
+      "enter-mobile-phone": "Sila masukkan nombor telefon bimbit",
+      "member-login": "Daftar masuk ahli",
+      "mobile": "Nombor telefon",
+      "mobile-phone": "Nombor telefon bimbit"
+    },
+    "email": {
+      "mail_common": "Mel"
+    },
+    "general": {
+      "apr": "Apr",
+      "april": "April",
+      "aug": "Ogo",
+      "august": "Ogos",
+      "bind_success": "Disambungkan",
+      "cancel_mobile_button": "batal",
+      "clear_button": "Padam",
+      "confirm_button": "Ok",
+      "date_format": "MM/dd/yyyy",
+      "dec": "Dis",
+      "december": "Disember",
+      "email_empty_hint": "Sila masukkan alamat e-mel",
+      "email_error_hint": "Sila masukkan alamat e-mel dengan format yang sah dan kurang daripada 50 aksara",
+      "enter_verification_code": "Sila masukkan kod penentusahan",
+      "error_message_1001": "Ralat kata laluan",
+      "error_message_1002": "Pengguna tidak wujud",
+      "error_message_1003": "Akaun anda dinyahdayakan kerana ketidaknormalan; Sila hubungi peniaga untuk melepaskan pengharaman",
+      "error_message_1004": "Beroperasi dengan kerap. Sila cuba semula kemudian",
+      "error_message_1005": "Kod tamat tempoh",
+      "error_message_1006": "Ralat kod",
+      "error_message_1007": "Pengoperasikan kod pengesahan dengan kerap. Sila dapatkan semula kod pengesahan",
+      "error_message_1008": "Log masuk tanpa mengkonfigurasi saluran pihak ketiga",
+      "error_message_1009": "Gagal memuat antara muka pihak ketiga",
+      "error_message_1010": "Gagal menghantar",
+      "error_message_1011": "Nombor akaun tidak diaktifkan",
+      "error_message_1012": "Pengecualian perkhidmatan",
+      "error_message_1013": "Pengecualian perkhidmatan",
+      "error_message_1014": "Gagal mengesahkan kod pengesahan",
+      "error_message_1015": "Sila sahkan kod pengesahan dinamik",
+      "error_message_1016": "Pengecualian perkhidmatan",
+      "error_message_1017": "Terdapat risiko bagi nombor akaun tersebut",
+      "error_message_1018": "Peti surat telah terikat",
+      "error_message_1020": "Masa log masuk telah tamat",
+      "error_message_1021": "Masa log masuk telah tamat",
+      "error_message_1022": "Nombor akaun telah terikat",
+      "error_message_1023": "Pengecualian perkhidmatan",
+      "error_message_1024": "Pengecualian perkhidmatan",
+      "error_message_2": "Pengecualian perkhidmatan",
+      "error_message_2001": "Telefon bimbit telah didaftarkan",
+      "error_message_2002": "E-mel telah didaftarkan",
+      "error_message_2003": "Jangan cuba terlalu kerap",
+      "error_message_2004": "Kod tamat tempoh",
+      "error_message_2005": "Ralat kod",
+      "error_message_2006": "Terlalu banyak kali penentusahan, sila dapatkan kod yang lain",
+      "error_message_2007": "Pengecualian perkhidmatan, sila cuba lagi kemudian",
+      "error_message_2016": "Akaun berisiko",
+      "error_message_3": "Pengecualian perkhidmatan",
+      "error_message_3001": "Pengecualian perkhidmatan, sila cuba lagi kemudian",
+      "error_message_3002": "Pengguna yang tidak terikat kepada telefon bimbit/peti mel cuba mengubah kata laluan mereka",
+      "error_message_3003": "Jangan cuba terlalu kerap",
+      "error_message_3004": "Kod tamat tempoh",
+      "error_message_3005": "Ralat kod",
+      "error_message_3006": "Terlalu banyak kali penentusahan, sila dapatkan kod yang lain",
+      "error_message_3007": "Telefon bimbit tidak wujud",
+      "error_message_3008": "E-mel tidak wujud",
+      "error_message_3009": "Telefon bimbit telah diikat dengan akaun lain",
+      "error_message_3010": "E-mel telah diikat dengan akaun lain",
+      "error_message_3014": "Pemaparan mesej teks/templat mel gagal",
+      "error_message_4": "Pengecualian perkhidmatan",
+      "error_message_5": "Pengecualian perkhidmatan",
+      "error_message_6": "Pengecualian perkhidmatan",
+      "feb": "Feb",
+      "february": "Februari",
+      "first_day": "0",
+      "fr": "Jum",
+      "fri": "Jum",
+      "friday": "Jumaat",
+      "image_size_less_than_tips": "Imej sepatutnya lebih kecil daripada {{max}} MB",
+      "jan": "Jan",
+      "january": "Januari",
+      "jul": "Jul",
+      "july": "Julai",
+      "jun": "Jun",
+      "june": "Jun",
+      "mar": "Mac",
+      "march": "Mac",
+      "max_image_upload_tips": "Anda boleh memuat naik maksimum {{max}} imej",
+      "may": "Mei",
+      "may_short": "Mei",
+      "mo": "Isn",
+      "mon": "Isn",
+      "monday": "Isnin",
+      "network_error_message": "Tiada internet",
+      "nov": "Nov",
+      "november": "November",
+      "oct": "Okt",
+      "october": "Oktober",
+      "okay_common": "OK",
+      "password_empty_hint": "Sila masukkan kata laluan",
+      "phone_empty_message": "Sila masukkan nombor telefon bimbit",
+      "phone_error_message": "Sila masukkan nombor telefon bimbit dengan format yang sah",
+      "phone_number_error_message": "Sila masukkan nombor telefon yang sah",
+      "repeat_passport_error": "Kata laluan yang anda masukkan tidak sepadan",
+      "resend": "Hantar semula",
+      "sa": "Sab",
+      "sat": "Sab",
+      "saturday": "Sabtu",
+      "select__date": "Pilih Tarikh",
+      "send": "Hantar",
+      "send_error": "Sila hantar kod penentusahan dahulu",
+      "send_verification_code_hint": "Sila masukkan kata laluan sekali lagi",
+      "sep": "Sep",
+      "september": "September",
+      "set_password": "Sila tetapkan kata laluan. dengan panjang minimum 6 aksara dan panjang maksimum 18 aksara",
+      "su": "Ahd",
+      "sun": "Ahd",
+      "sunday": "Ahad",
+      "th": "Kha",
+      "thu": "Kha",
+      "thursday": "Khamis",
+      "time_format": "hh:mm aa",
+      "today": "Hari ini",
+      "tu": "Sel",
+      "tue": "Sel",
+      "tuesday": "Selasa",
+      "user_agreement_tip": "Sila baca dan bersetuju dengan dasar dahulu",
+      "username_empty_hint": "Sila masukkan alamat e-mel atau nombor telefon bimbit",
+      "verification_code_sent_tip": "Kod penentusahan telah dihantar ke akaun anda",
+      "we": "Rab",
+      "wed": "Rab",
+      "wednesday": "Rabu"
+    },
+    "network-err-msg": "Tiada internet",
+    "phone": {
+      "mobile_common": "Nombor telefon"
+    },
+    "subscription": {
+      "unsubscribe_success": "Langganan dibatalkan, akan diarahkan semula ke halaman utama"
+    },
+    "tips": {
+      "and": "dan",
+      "bind-change-email": "Sambungkan/Ubah e-mel",
+      "bind-change-mobile-phone-number": "Sambungkan/Ubah nombor telefon bimbit",
+      "bind-success": "Disambungkan",
+      "change-binding-after-verification": "Anda boleh menyambungkan/mengubah {{value}} selepas penentusahan",
+      "continue-as-a-guest": "Teruskan sebagai tetamu",
+      "forget-password": "Terlupa kata laluan",
+      "i-agree-with-the-shop": "Saya bersetuju dengan",
+      "login": "DAFTAR MASUK",
+      "or-use-the-following-method-to-log-in": "Atau daftar masuk dengan kaedah yang berikut",
+      "password-can-be-changed-after-verification": "Anda boleh mengubah kata laluan selepas penentusahan",
+      "please-read-and-agree-to-the-user-agreement-first": "Sila baca dan bersetuju dengan dasar dahulu",
+      "poroceed-to-checkout": "Teruskan ke pembayaran",
+      "register": "Daftar",
+      "reset-password": "Anda menetapkan semula kata laluan untuk akaun {{account}}",
+      "set-new-password": "Tetapkan semula kata laluan",
+      "update-password": "Ubah kata laluan",
+      "update-success": "Diubah",
+      "verification-code-has-been-sent-to-your-account": "Kod penentusahan telah dihantar ke akaun anda",
+      "verify-account-to-reset-password": "Sila tentu sahkan akaun anda dan tetapkan semula kata laluan"
+    },
+    "trade": {
+      "go-login": "Pergi ke daftar masuk"
+    },
+    "unsubscribe": {
+      "btn": "Berhenti melanggan",
+      "reason": {
+        "other": {
+          "length": "Masukkan sehingga 300 aksara",
+          "placeholder": "Kandungan input"
+        }
+      },
+      "reason1": "Saya tidak mahu menerima e-mel ini lagi",
+      "reason2": "Saya menerima terlalu banyak e-mel",
+      "reason3": "Saya tidak melanggan senarai ini",
+      "reason4": "E-mel tidak berkaitan dengan saya",
+      "reason5": "Kandungan e-mel terlalu panjang",
+      "reason6": "Lain-lain",
+      "subtitle": "Kami kesal melihat anda pergi! Sila beritahu kami kenapa anda berhenti melanggan:",
+      "success": "Langganan dibatalkan, akan diarahkan semula ke halaman utama",
+      "title": "Berhenti melanggan"
+    }
+  },
   "footer": {
     "copyright": "Hak Cipta Terpelihara",
     "followus": "IKUTI KAMI",
@@ -221,9 +542,24 @@
       "title": "Kami menghargai privasi anda"
     }
   },
+  "general": {
+    "404": {
+      "button": "Teruskan membeli-belah",
+      "subtext": "Halaman yang anda cari tidak wujud.",
+      "title": "404 halaman tidak dijumpai"
+    },
+    "general": {
+      "accept": "Terima",
+      "decline": "Tolak",
+      "link": "Dasar Privasi",
+      "tips": "Untuk memberi anda pengalaman yang lebih baik, kami menggunakan kuki untuk merakam status log masuk anda, mengumpul statistik, dan memberi kandungan yang menarik untuk anda. Klik \"Terima\" untuk membenarkan penggunaan kuki. Atau semak \"Dasar Privasi\" kami.",
+      "title": "Kami menghargai privasi anda"
+    }
+  },
   "header": {
     "cart": "Kart Anda",
     "center": "Tengah",
+    "emptyPlaceholder": "",
     "login": "Log Masuk",
     "logout": "Log Keluar",
     "navItemAll": "Semua",
@@ -367,6 +703,25 @@
           "title": "Pesanan anda disahkan"
         }
       },
+      "orderstatus": {
+        "PayAmount": "membayar jumlah",
+        "ReceiverAccount": "akaun penerima",
+        "ReferenceNumber": "nombor rujukan",
+        "UploadTime": "masa muat naik",
+        "action": {
+          "UploadVoucher": "Muat naik Baucar"
+        },
+        "feedback": {
+          "CountLimit": "Anda hanya boleh memuat naik sehingga 5 baucar.",
+          "InvalidOrderNumber": "nombor pesanan tidak sah",
+          "SizeLimte": "Sila muat naik imej JPG, PNG, GIF dalam 10MB",
+          "SystemBusy": "sistem sibuk, sila cuba lagi kemudian.",
+          "UploadFail": "Muatnaik gagal. Sila cuba lagi."
+        },
+        "notice": {
+          "UploadVoucher": "Sila muat naik baucar pindahan bank dan kami akan mengesahkan."
+        }
+      },
       "packages": {
         "amount": {
           "channel-surcharge": "Komisen bayaran",
@@ -428,9 +783,24 @@
         "subscriptions-title": "Langganan",
         "title": "Maklumat",
         "unshipped-order-num": "Memproses ({{num}} item)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "Pembayaran berjaya dipindahkan",
+          "WaittingforPayment": "Menunggu pembayaran"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "faham"
+          }
+        }
+      },
+      "taxFee": "Cukai"
     },
     "help-tips": "Perlukan bantuan? Sila hubungi kami: {{email}}",
+    "includeTax": {
+      "totalLine": "Termasuk {{price}} dalam cukai"
+    },
     "oms-status": {
       "arrived": "Tiba",
       "cancelled": "Batalkan penghantaran",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Dibatalkan",
       "already-paid": "Dibayar",
+      "authorized": "diberi kuasa",
       "failed": "Bayaran gagal",
       "partial-payment": "Dibayar separa",
       "partial-refund": "Dibayar balik separa",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "Tiada maklumat kaedah logistik dan bayaran lagi",
     "no-product-introduction": "Tiada pengenalan produk lagi",
     "previewLinkToast": "Operasi untuk pratonton pautan tidak disokong",
+    "productTax": "termasuk cukai",
     "recentlyViewedProducts": "Produk Dipaparkan Baru-baru Ini",
     "recommendTitle": "Anda juga mungkin menyukai",
+    "skuLoadingTips": "Memuatkan maklumat varian, sila tunggu...",
     "tabPanel": {
       "comments": {
         "empty": "Tiada ulasan produk lagi",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "produk"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "Tiada produk dalam kategori ini",
@@ -677,6 +1051,35 @@
     "sortName": "Isih ikut:",
     "title": "Cari"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Tambah imej",
+      "didnot_bought_cannot_reviewed": "Maaf, anda belum pernah membeli produk ini, jadi anda tidak boleh meninggalkan ulasan",
+      "didnot_bought_sign_in_first": "Pelanggan yang telah membeli produk ini boleh meninggalkan ulasan, sila daftar masuk terlebih dahulu",
+      "enter_at_least_one_character": "Sila masukkan sekurang-kurangnya satu perkataan",
+      "error_submit_again": "Disebabkan ralat sistem, ulasan anda tidak boleh diproses, sila cuba lagi~",
+      "first_review": "siarkan komen pertama sekarang",
+      "image_uploading": "Memuat naik, sila serahkan kemudian",
+      "maximum_image_quantity": "Anda boleh menambahkan paling banyak {{total}} imej",
+      "maximum_image_size": "Saiz imej maksimum ialah {{size}} MB",
+      "no_review": "Tiada komen lagi",
+      "only_supports__image_format": "Hanya menyokong muat naik fail .jpg .jpeg .png .bmp",
+      "ratings": "Penarafan",
+      "sign_in": "Daftar masuk",
+      "submit": "Serahkan",
+      "thanks_for_your_review": "Terima kasih atas ulasan anda",
+      "write_a_review": "Tuliskan ulasan",
+      "write_a_review_for_the_product": "Sila masukkan ulasan anda tentang produk ini"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Kuantiti maksimum dibenarkan untuk produk terhad ini ialah {{num}}",
+      "activity_toast_product__limit": "Pembelian dihadkan kepada {{stock}} produk promosi",
+      "activity_toast_title__limit": "Produk di bawah melebihi had pembelian",
+      "go_to_amazon_by_link": "Beli dalam Amazon",
+      "go_to_rakuten_by_link": "Beli dalam LOTTE",
+      "go_to_yahoo_by_link": "Beli dalam Yahoo"
+    }
+  },
   "promotion": {
     "activity-benefit": "Tawaran peristiwa",
     "activity-introduction": "Pengenalan peristiwa",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "<italic>{{content}}</italic> diskaun untuk <italic>{{condition}}</italic> unit"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "Dapatkan potongan {{offPercent}}%",
+            "unlocked": "Potongan {{offPercent}}% telah dibuka!"
+          },
+          "free": {
+            "locked": "Tawaran percuma",
+            "unlocked": "Tawaran percuma telah dibuka!"
+          },
+          "unlocked": {
+            "tip": "Anda kini boleh menikmati diskaun produk"
+          }
+        },
+        "threshold": "Beli {{threshold}}"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}} tutup",
+      "copySuccessText": "Kod kupon telah berjaya disalin",
+      "copyText": "Salinan",
+      "freeShipping": "Penghantaran Percuma",
+      "threshold": "Pesanan melebihi {{threshold}}"
+    },
+    "autoCoupon": {
+      "shopMore": "Lagi"
+    },
     "bundle": {
       "saveTip": "Jimat {{amount}} untuk pembelian bersama",
       "title": "Beli bersama dengan kerap"
     },
     "customer-purchase-limit": "Had pembelian {{count}} bagi setiap orang",
     "customer-purchase-limit-each-item": "Had pembelian {{count}} setiap produk setiap orang",
+    "discount-coupon-banner": {
+      "getCode": "Dapatkan kupon diskaun"
+    },
     "discount-coupon": {
       "applied": "Digunakan",
       "apply": "Gunakan",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "Jualan hangat!",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "Beli {{threshold}} item lagi, nikmati item percuma pada salah satu item",
+        "b11_t1_s1_normal": "Beli {{threshold}} item lagi, nikmati {{willSave}} DISKAUN pada salah satu item",
+        "b11_t1_s2_free": "Tahniah! nikmati item percuma pada salah satu item",
+        "b11_t1_s2_next_free": "Tahniah! {{saved}} Dijimatkan, {{br}} Beli {{threshold}} item lagi, nikmati item percuma pada salah satu item",
+        "b11_t1_s2_normal": "Tahniah! {{saved}} Dijimatkan, {{br}} Beli {{threshold}} lagi item, nikmati {{willSave}} DISKAUN pada salah satu item",
+        "b11_t1_s3_free": "Tahniah! nikmati item percuma pada salah satu item",
+        "b11_t1_s3_normal": "Tahniah! nikmati {{saved}} DISKAUN pada salah satu item",
+        "b1_t0_s1": "Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
+        "b1_t0_s2": "Sudah jimat {{saved}}! {{br}}Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
+        "b1_t0_s3": "Tahniah! Anda telah menjimatkan {{saved}}!",
+        "b1_t1_s1": "Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
+        "b1_t1_s2": "Sudah jimat {{saved}}! {{br}}Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
+        "b1_t1_s3": "Tahniah! Anda telah menjimatkan {{saved}}!",
+        "b2_t0_s1": "Beli {{threshold}} lagi untuk mendapatkan {{willSave}} DISKAUN",
+        "b2_t0_s2": "Sudah jimat {{saved}}! {{br}}Beli {{threshold}} lagi untuk mendapatkan {{willSave}} DISKAUN",
+        "b2_t0_s3": "Tahniah! Anda telah menjimatkan {{saved}}!",
+        "b2_t1_s1": "Beli {{threshold}} lagi untuk mendapatkan {{willSave}} DISKAUN",
+        "b2_t1_s2": "Sudah jimat {{saved}}! {{br}}Beli {{threshold}} lagi untuk mendapatkan {{willSave}} DISKAUN",
+        "b2_t1_s3": "Tahniah! Anda telah menjimatkan {{saved}}!",
+        "b3_t0_s1_unlimited": "Beli {{threshold}} lagi dan nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>!",
+        "b3_t0_s1_upper_limit": "Beli {{threshold}} lagi dan nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>! (Amaun penghantaran percuma maksimum {{upperLimit}})",
+        "b3_t0_s3_unlimited": "Tahniah! Anda Memerlukan <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>!",
+        "b3_t0_s3_upper_limit": "Tahniah! Anda Memerlukan <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>! (Amaun penghantaran percuma maksimum {{upperLimit}})",
+        "b3_t1_s1_unlimited": "Beli {{threshold}} lagi dan nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>!",
+        "b3_t1_s1_upper_limit": "Beli {{threshold}} lagi dan nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>! (Amaun penghantaran percuma maksimum {{upperLimit}})",
+        "b3_t1_s3_unlimited": "Tahniah! Anda Memerlukan <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>!",
+        "b3_t1_s3_upper_limit": "Tahniah! Anda Memerlukan <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>! (Amaun penghantaran percuma maksimum {{upperLimit}})",
+        "b9_t1_s1": "Beli tambahan {{threshold}} unit, di mana sebanyak {{willSave}} unit adalah percuma",
+        "b9_t1_s2": "Tahniah! {{saved}} unit telah diperoleh secara percuma! Beli tambahan {{threshold}} unit, di mana sebanyak {{willSave}} unit adalah percuma",
+        "b9_t1_s3": "Tahniah! {{saved}} daripadanya adalah percuma"
+      },
+      "discount_tag": {
+        "b11_t1_free": "Beli {{threshold}} item, nikmati item percuma pada salah satu item",
+        "b11_t1_normal": "Beli {{threshold}} item, nikmati {{save}} DISKAUN pada salah satu item",
+        "b1_t0": "Beli {{threshold}} jimat {{save}}",
+        "b1_t1": "Beli {{threshold}} Dapat {{save}} DISKAUN",
+        "b2_t0": "Beli {{threshold}} jimat {{save}}",
+        "b2_t1": "Beli {{threshold}} Dapat {{save}} DISKAUN"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "Tahniah! nikmati item percuma pada salah satu item",
               "normal": "Tahniah! nikmati {{saved}} DISKAUN pada salah satu item"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Tahniah, anda boleh menikmati {{benefitCount}} item secara PERCUMA",
+                "normal": "Tahniah, anda boleh menikmati potongan sebanyak {{willSave}} bagi {{benefitCount}} item"
+              },
+              "free": "Beli {{threshold}}, nikmati {{benefitCount}} item secara PERCUMA",
+              "normal": "Beli {{threshold}}, nikmati potongan sebanyak {{willSave}} bagi {{benefitCount}} item"
+            },
+            "step3": {
+              "free": "Tahniah! Anda telah mendapat {{benefitCount}} item secara PERCUMA!",
+              "normal": "Tahniah! Anda telah mendapat potongan sebanyak {{saved}} bagi {{benefitCount}} item!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Tahniah, anda boleh menikmati {{benefitCount}} item secara PERCUMA",
+                "normal": "Tahniah, anda boleh menikmati potongan sebanyak {{willSave}} bagi {{benefitCount}} item"
+              },
+              "free": "Beli {{threshold}}, nikmati {{benefitCount}} item secara PERCUMA",
+              "normal": "Beli {{threshold}}, nikmati potongan sebanyak {{willSave}} bagi {{benefitCount}} item"
+            },
+            "step3": {
+              "free": "Tahniah! Anda telah mendapat {{benefitCount}} item secara PERCUMA!",
+              "normal": "Tahniah! Anda telah mendapat potongan sebanyak {{saved}} bagi {{benefitCount}} item!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Kaedah Bayaran",
     "pay-way-logo-and-more": "dan banyak lagi",
     "payment-security-description": "Semua transaksi adalah selamat dan disulitkan.",
+    "payments-name": {
+      "COD": "Bayar tunai waktu terima",
+      "Paypal": "PayPal",
+      "adjustPay": "manual",
+      "third-part": "Kad Kredit"
+    },
     "pic-upload-fail": "Gagal memuat naik imej {{name}}",
     "pick-address": "Alamat pengumpulan",
     "please-choose-area": "Sila pilih kawasan",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "Produk habis dijual",
     "product-tax": "Cukai komoditi",
     "quantity": "KUANTITI",
+    "receiver-info": "Alamat penghantaran",
     "recieve-address-unavailable-rechoose": "Tiada kaedah penghantaran yang tersedia untuk alamat penerima. Sila kembali untuk memilih semula",
     "reciever-fullname": "Nama penuh pengguna",
     "reciever-info": "Alamat penghantaran",
@@ -1230,6 +1741,24 @@
     "your-order-not-pay": "Anda belum melengkapkan bayaran untuk pesanan anda",
     "your-refund-order-created": "Pesanan pengembalian anda telah dibuat"
   },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "Kod kupon tidak boleh melebihi 25 aksara",
+      "coupon_invalid_for_the_shipping_method": "Kupon {{discountCode}} sah untuk kaedah penghantaran",
+      "discount_code_invalid": "{{discountCode}} dimasukkan dengan betul tetapi harga atau kuantiti barangan tidak memenuhi keperluan",
+      "discount_codes_cannot_stack": "Telah terdapat acara keutamaan bagi produk, yang tidak boleh digunakan bersama-sama dengan acara keutamaan lain",
+      "discounts_cannot_stack": "Diskaun telah digunakan kepada pesanan ini. Anda tidak boleh menambahkan diskaun lain.",
+      "enter_a_valid_discount_code": "Masukkan kupon yang sah",
+      "free_shipping": "penghantaranpercuma",
+      "order_seller_discount": "Diskaun tambahan penjual",
+      "order_tax": "Cukai",
+      "order_tip": "Tip",
+      "payment_subtotal_cost": "Subjumlah",
+      "point_discount": "Diskaun mata",
+      "shipping_fee": "Penghantaran",
+      "trade_coupon_discount": "Kupon"
+    }
+  },
   "user": {
     "account": "AKAUN",
     "code": "Kod penentusahan",
@@ -1259,31 +1788,43 @@
     "signUp": "DAFTAR",
     "subscription-text": "Daftar saya untuk e-mel untuk menerima kemas kini, akses kepada tawaran eksklusif dan banyak lagi.",
     "udbResponse": {
-      "err-1": "Parameter tidak diisi",
-      "err-13": "Tamat masa stoken",
-      "err-4": "Parameter tidak sah",
-      "err-5": "Operasi tidak sah",
-      "err-999": "Panggilan jauh gagal",
+      "err-1": "Pengecualian perkhidmatan",
+      "err-13": "Pengecualian perkhidmatan",
+      "err-4": "Pengecualian perkhidmatan",
+      "err-5": "Pengecualian perkhidmatan",
+      "err-999": "Pengecualian perkhidmatan",
       "err1001": "Ralat kata laluan",
       "err1002": "Pengguna tidak wujud",
       "err1003": "Akaun anda dinyahdayakan kerana ketidaknormalan; Sila hubungi peniaga untuk melepaskan pengharaman",
-      "err1004": "Hantar mesej teks beberapa kali",
+      "err1004": "Beroperasi dengan kerap. Sila cuba semula kemudian",
       "err1005": "Kod tamat tempoh",
       "err1006": "Ralat kod",
-      "err1007": "Terlalu banyak kali ralat kod penentusahan",
-      "err1008": "ThirdId atau saluran tidak dikonfigurasikan",
-      "err1009": "Pengesahan pihak ketiga gagal",
-      "err1010": "Pemaparan mesej teks/templat mel gagal",
-      "err1017": "Akaun berisiko",
+      "err1007": "Pengoperasikan kod pengesahan dengan kerap. Sila dapatkan semula kod pengesahan",
+      "err1008": "Log masuk tanpa mengkonfigurasi saluran pihak ketiga",
+      "err1009": "Gagal memuat antara muka pihak ketiga",
+      "err1010": "Gagal menghantar",
+      "err1011": "Nombor akaun tidak diaktifkan",
+      "err1012": "Pengecualian perkhidmatan",
+      "err1013": "Pengecualian perkhidmatan",
+      "err1014": "Gagal mengesahkan kod pengesahan",
+      "err1015": "Sila sahkan kod pengesahan dinamik",
+      "err1016": "Pengecualian perkhidmatan",
+      "err1017": "Terdapat risiko bagi nombor akaun tersebut",
+      "err1018": "Peti surat telah terikat",
+      "err1020": "Masa log masuk telah tamat",
+      "err1021": "Masa log masuk telah tamat",
+      "err1022": "Nombor akaun telah terikat",
+      "err1023": "Pengecualian perkhidmatan",
+      "err1024": "Pengecualian perkhidmatan",
       "err2001": "Telefon bimbit telah didaftarkan",
       "err2002": "E-mel telah didaftarkan",
       "err2003": "Jangan cuba terlalu kerap",
       "err2004": "Kod tamat tempoh",
       "err2005": "Ralat kod",
       "err2006": "Terlalu banyak kali penentusahan, sila dapatkan kod yang lain",
-      "err2007": "Pemaparan mesej teks/templat mel gagal",
+      "err2007": "Pengecualian perkhidmatan, sila cuba lagi kemudian",
       "err2016": "Akaun berisiko",
-      "err3001": "Kuki tidak sah",
+      "err3001": "Pengecualian perkhidmatan, sila cuba lagi kemudian",
       "err3002": "Pengguna yang tidak terikat kepada telefon bimbit/peti mel cuba mengubah kata laluan mereka",
       "err3003": "Jangan cuba terlalu kerap",
       "err3004": "Kod tamat tempoh",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Pengikatan Akaun",
-      "account-info": "Maklumat Akaun",
+      "account-info": "Akaun",
       "account-subscription-email": "Hantar ke e-mel",
       "account-subscription-line": "Hantar ke Aplikasi Line",
       "account-subscription-messenger": "Hantar ke messenger",
@@ -1310,7 +1851,9 @@
       "bind": "Mengikat",
       "change-password": "Ubah kata laluan",
       "email": "E-mel",
+      "firstName": "Nama",
       "general-member": "Ahli umum",
+      "lastName": "Nama keluarga",
       "member-level": "Tahap keahlian",
       "memberLevelCom": {
         "defaultLevel": "Ahli umum",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "Ubah Suai E-mel",
       "modify-phone": "Ubai Suai Telefon",
+      "nicknameEmptyError": "Nama Pertama dan Nama Keluarga tidak boleh ditinggalkan kosong",
+      "notSet": "Tidak ditetapkan",
       "password": "Kata laluan",
       "phone": "Telefon Bimbit",
       "reset-password-error": "Sila ikat e-mel dan telefon bimbit dahulu",
       "subscription-notification": "Pemberitahuan Langganan",
       "unsubscribed": "Dihentikan Langganan",
-      "username": "Nama pengguna",
-      "username-message": "Sila masukkan nama pengguna anda!",
-      "username-placeholder": "Sila masukkan nama pengguna anda"
+      "username": "Nama",
+      "username-message": "Sila masukkan nama anda",
+      "username-placeholder": "Sila masukkan nama anda"
     },
     "address": {
       "add": "Tambah Alamat Baharu",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Produk yang dibeli",
     "cancel": "BATAL",
+    "datePicker": {
+      "mobile": {
+        "cancel": "batal",
+        "confirm": "Ok",
+        "title": "Pilih Tarikh"
+      },
+      "pc": {
+        "clear": "Padam",
+        "dateFormat": "MM/dd/yyyy",
+        "days0": "Ahad",
+        "days1": "Isnin",
+        "days2": "Selasa",
+        "days3": "Rabu",
+        "days4": "Khamis",
+        "days5": "Jumaat",
+        "days6": "Sabtu",
+        "daysMin0": "Ahd",
+        "daysMin1": "Isn",
+        "daysMin2": "Sel",
+        "daysMin3": "Rab",
+        "daysMin4": "Kha",
+        "daysMin5": "Jum",
+        "daysMin6": "Sab",
+        "daysShort0": "Ahd",
+        "daysShort1": "Isn",
+        "daysShort2": "Sel",
+        "daysShort3": "Rab",
+        "daysShort4": "Kha",
+        "daysShort5": "Jum",
+        "daysShort6": "Sab",
+        "firstDay": "0",
+        "months0": "Januari",
+        "months1": "Februari",
+        "months10": "November",
+        "months11": "Disember",
+        "months2": "Mac",
+        "months3": "April",
+        "months4": "Mei",
+        "months5": "Jun",
+        "months6": "Julai",
+        "months7": "Ogos",
+        "months8": "September",
+        "months9": "Oktober",
+        "monthsShort0": "Jan",
+        "monthsShort1": "Feb",
+        "monthsShort10": "Nov",
+        "monthsShort11": "Dis",
+        "monthsShort2": "Mac",
+        "monthsShort3": "Apr",
+        "monthsShort4": "Mei",
+        "monthsShort5": "Jun",
+        "monthsShort6": "Jul",
+        "monthsShort7": "Ogo",
+        "monthsShort8": "Sep",
+        "monthsShort9": "Okt",
+        "timeFormat": "hh:mm aa",
+        "today": "Hari ini"
+      }
+    },
+    "deleteAccount": {
+      "address": "Alamat",
+      "card": "No. kad kredit",
+      "deadline": "Bagi tujuan laporan perniagaan, pesanan anda akan masih kelihatan. Data akaun anda akan dihapuskan pada {{time}}, anda masih boleh membatalkan proses sebelum tarikh tersebut",
+      "email": "E-mel",
+      "ip": "Alamat IP",
+      "name": "Nama",
+      "nextStep": "Seterusnya",
+      "notify": "Anda boleh memohon untuk menutup akaun ini. Sebaik sahaja ditutup, sebarang maklumat untuk mengenal pasti akaun ini akan dihapuskan, termasuk:",
+      "revoke": "Membatalkan penutupan",
+      "revokeMessage": "Akaun ini sedang dalam proses penutupan, data akaun akan dihapuskan pada {{time}}, anda masih boleh membatalkan proses sebelum tarikh tersebut",
+      "timeout": "Operasi habis waktunya, silakan autentikasi lagi",
+      "title": "Tutup akaun",
+      "verifyEmailMessage": "Sebelum menutup akaun, kami perlu mengesahkan identiti anda\nE-mel anda {{email}} akan menerima satu e-mel pengesahan",
+      "verifyPhoneMessage": "Sebelum menutup akaun, kami perlu mengesahkan identiti anda\nTelefon mudah alih anda {{phone}} akan menerima satu mesej pengesahan"
+    },
     "edit": "Edit",
     "editAddress": {
       "address1-message": "Kurang daripada 512 aksara!",
       "address2-message": "Kurang daripada 512 aksara!",
       "city-message": "Sila pilih bandar anda!",
+      "common-max": "",
+      "common-min": "lebih besar daripada {{min}} aksara",
       "contact-message": "Sila masukkan nama anda!",
       "country-message": "Sila pilih negara anda!",
       "default": "Tetapkan sebagai alamat lalai",
@@ -1440,6 +2062,7 @@
     "save": "SIMPAN",
     "sign-out": "Daftar Keluar",
     "subscription": {
+      "desc": "Dapatkan berita terkini tentang kedai",
       "email": "E-mel",
       "line": "LINE",
       "messenger": "Messenger",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "Anda tidak akan menerima sebarang kemas kini pemasaran lagi daripada kami. Anda boleh melanggan semula pada bila-bila masa"
+      "text": "Anda tidak akan menerima sebarang kemas kini pemasaran lagi daripada kami. Anda boleh melanggan semula pada bila-bila masa",
+      "title": "Anda telah menyahlanggan senarai mel <italic>{{name}}</italic>"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Pesanan belum selesai"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

@@ -29,26 +29,136 @@
     "activity-price-limit": "Uz popuste možete kupiti samo {{num}} komada ovog proizvoda",
     "activity-product-limit": "Uz popuste istovremeno možete kupiti najviše {{stock}} proizvod(a)",
     "activity-title-limit": "Proizvodi ispod premašuju ograničenje kupnje, ipak nastaviti s plaćanjem?",
+    "cart": {
+      "cancel": "Otkaži",
+      "confirm": "Uredu",
+      "continue": "Nastavi",
+      "got_it": "Shvatio sam",
+      "return_to_cart": "Vratite se u košaricu"
+    },
     "checkout-error": "U košarici je barem jedan nedostupan proizvod. Molimo podesite artikle iz korpe za naplatu.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Proizvodi ispod premašuju ograničenje kupnje, ipak nastaviti s plaćanjem?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "Na ovu narudžbu primijenjen je popust. Ne možete dodati još jedan popust"
+    },
+    "discount": {
+      "coupon_code_amount": "Kupon",
+      "coupon_code_exceed_not_25_characters": "Kod kupona ne smije biti duži od 25 znaka.",
+      "coupon_invalid_for_the_shipping_method": "Kupon {{discountCode}} vrijedi za način dostave",
+      "discount_code_invalid": "{{discountCode}} je ispravno upisan, ali cijena ili količina robe ne zadovoljava uvjete",
+      "discount_codes_cannot_stack": "Ovo je već preferencijalni događaj za proizvod koji se ne može koristiti zajedno s drugim preferencijalnim događajima",
+      "enter_a_valid_discount_code": "Kod za popust je pogrešno upisan",
+      "expected_discount": "Popust"
+    },
+    "discount_item": {
+      "buy_limit5": "Uz popuste istovremeno možete kupiti najviše {{stock}} proizvod(a)"
+    },
+    "discount_price": {
+      "buy_limit3": "Sa popustom možete kupiti {{stock}} komad(a) ovog proizvoda"
+    },
     "get": "Ostvarite popust",
     "go-shopping": "NASTAVI KUPNJU",
+    "item": {
+      "add_limit1": "Dodaj do 100 stavki",
+      "add_limit2": "Maksimalna količina jdnog proizvoda je 999 komada",
+      "removed": "NEVAŽEĆI",
+      "sold_out": "PRODANO"
+    },
     "login-description": "Već ste član? Prijava može biti praktičnija za upravljanje nalogom!",
     "login-membership": "Besplatno članstvo",
     "most-100-sku": "Dodaj do 100 stavki",
     "most-buy-999": "Maksimalna količina jdnog proizvoda je 999 komada",
     "not-participation-offers": "Popust bez sudjelovanja",
+    "notices": {
+      "change_password_after_verification": "Možete promijeniti lozinku nakon provjere",
+      "excess_product": "Proizvodi ispod premašuju ograničenje kupnje, molimo promijenite količinu",
+      "insufficient_product_inventory": "Nedovoljna zaliha proizvoda",
+      "network": "Pogreška mreže",
+      "product_expired": "Proizvod je istekao",
+      "product_limit": "Ograničenje proizvoda je prekoračeno",
+      "product_selected_invalid": "Nažalost, proizvod koji ste odabrali je nevažeći za kupnju. Molimo ponovno odaberite",
+      "store_nonexistent": "Trgovina ne postoji"
+    },
+    "order": {
+      "authorized": "Ovlašteni",
+      "canceled": "Otkazano",
+      "canceled_order": "Otkazano",
+      "click_to_track": "Pratite svoj paket klikom na link ispod:",
+      "deleted": "NEVAŽEĆI",
+      "invalid_order_number": "nevažeći broj narudžbe",
+      "no_more_info": "Nema više informacija",
+      "pay_amount": "platiti iznos",
+      "payment_voucher_confirmation": "shvaćam",
+      "receiver_account": "račun primatelja",
+      "reference_number": "poziv na broj",
+      "sequence": "Br.{{id}}",
+      "shipping_address": "Dostavna adresa",
+      "time": "Poručeno u:",
+      "total_amount": "{{transPackages}} stavka ukupno",
+      "total_item_amount": "{{transPackages}} stavki ukupno",
+      "try_again": "Prijenos nije uspio. Molim te pokušaj ponovno.",
+      "try_later": "sustav je zauzet, pokušajte ponovo kasnije.",
+      "upload_image_within_10_m_b": "Prenesite JPG, PNG, GIF slike unutar 10 MB",
+      "upload_time": "vrijeme učitavanja",
+      "voucher_amount_limit": "Možete učitati najviše 5 bonova."
+    },
+    "payment": {
+      "channel": "Kanal plaćanja",
+      "create_time": "Osmišljeno",
+      "paid": "Plaćeno",
+      "partially_paid": "Djelomično plaćeno",
+      "paying": "Plaćanje",
+      "payment_details": "Pojedinosti plaćanja",
+      "reference_number": "Referentni broj transakcije",
+      "status": "Status",
+      "subtotal_price": "Međuzbroj",
+      "sum": "Iznos",
+      "total": "Ukupno",
+      "unpaid": "Neplaćeno",
+      "update_time": "Ažurirano"
+    },
+    "policy": {
+      "privacy_policy": "politika privatnosti"
+    },
+    "product-no-exists": "Roba ne postoji",
+    "refund": {
+      "click_to_view": "Kliknite za pregled",
+      "custom_preview": "Prilagođeni pregled"
+    },
     "render-add-items": "Vaša košarica je trenutno prazna.",
     "render-empty-status": "Nema artikala u vašoj košarici",
+    "shipping": {
+      "no_info": "Još uvijek nema informacija o isporuci, molimo provjerite kasnije.",
+      "package_tracking": "Praćenje paketa",
+      "partially_shipped": "Djelomična isporuka",
+      "preparing_order": "Priprema proizvoda",
+      "shipped_order": "Isporučeno"
+    },
     "shopping-fees": "Naknade za kupovinu",
     "shopping-money": "Popust, porezi i dostava će biti izračunati u sljedećem koraku",
     "shopping-money-step": "Porezi i dostava se računaju na blagajni",
+    "shpping": {
+      "service_terms": "Uvjeti pružanja usluge"
+    },
     "stock-limit": "{{stock}} komadi na stanju",
+    "taxIncluded": {
+      "textTag": "Uključen porez"
+    },
+    "tips": {
+      "change_binding_after_verification": "Možete se povezati/promijeniti {{value}} nakon potvrde",
+      "reset_password": "Poništavate lozinku za račun {{account}}"
+    },
     "view-link": "Kliknite za pregled",
     "view-pic": "Prilagođeni pregled",
     "view-shopping-cart": "Pogledaj Košaricu",
     "added-to-cart": "Dodano u vašu košaricu",
     "cart-subtotal": "Međuzbroj košarice",
     "view-cart": "Pogledaj košaricu"
+  },
+  "cascade": {
+    "choose": "कृपया एक विकल्प चुनें"
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Hvala Vam što ste nas kontaktirali. Javit ćemo Vam se u  najkraćem mogućem roku."
   },
+  "customer": {
+    "account": {
+      "add-email": "Dodajte e-poštu",
+      "add-phone": "Dodajte broj mobitela",
+      "deadline": "Za potrebe poslovnog izvješća, vaša će narudžba i dalje biti vidljiva. Ovaj račun je u postupku zatvaranja, podaci o računu će biti obrisani u {{time}}, možete otkazati postupak zatvaranja prije tog datuma",
+      "gender_female": "Žensko",
+      "gender_male": "Muško",
+      "gender_secret": "Ostaje tajno",
+      "not_set": "Nije podešeno",
+      "reset_password_error_hint": "Molimo prvo povežite email ili mobitel",
+      "verify_email_message": "Prije zatvaranja računa, trebamo potvrditi vaš identitet\nE-poruku za potvrdu ćete dobiti na vašu e-poštu {{email}}",
+      "verify_phone_message": "Prije zatvaranja računa, trebamo potvrditi vaš identitet\nPoruku za potvrdu ćete dobiti na vaš mobitel {{phone}}"
+    },
+    "address": {
+      "add_address": "Dodaj Novu Adresu",
+      "common_max": "",
+      "common_min": "veći od {{min}} znakova",
+      "edit_last_name_hint": "Molimo unesite svoje prezime!",
+      "edit_phone_hint": "Molimo unesite broj mobitela",
+      "mobile-errorMessage": "Molimo unesite valjan broj telefona",
+      "no_adress_data": "Trenutno nema adrese za dostavu"
+    },
+    "common": {
+      "back-to-user-center": "Povratak u korisnički centar",
+      "cancel": "Otkaži",
+      "confirm": "Uredu",
+      "email": "Email adresa",
+      "email2": "Pošta",
+      "enter-email": "Molim upišite svoju adresu e-pošte",
+      "enter-mobile-phone": "Molim upišite broj mobitela",
+      "member-login": "Prijava članova",
+      "mobile": "Broj telefona",
+      "mobile-phone": "Broj mobitela"
+    },
+    "email": {
+      "mail_common": "Pošta"
+    },
+    "general": {
+      "apr": "tra",
+      "april": "travanj",
+      "aug": "kol",
+      "august": "kolovoz",
+      "bind_success": "Povezano",
+      "cancel_mobile_button": "otkaži",
+      "clear_button": "Očisti",
+      "confirm_button": "Uredu",
+      "date_format": "dd.MM.yyyy",
+      "dec": "pro",
+      "december": "prosinac",
+      "email_empty_hint": "Unesite adresu e-pošte",
+      "email_error_hint": "Molimo unesite email adresu valjanog formata i sa manje od 50 znakova.",
+      "enter_verification_code": "Molimo unesite kod za verifikaciju",
+      "error_message_1001": "Pogreška lozinke",
+      "error_message_1002": "Nepostojeći korisnik",
+      "error_message_1003": "Vaš račun je onemogućen zbog nepravilnosti; kontaktirajte trgovca kako biste uklonili zabranu",
+      "error_message_1004": "Operacije su prečeste. Molimo Vas pokušajte ponovo kasnije",
+      "error_message_1005": "Istekao kod",
+      "error_message_1006": "Pogreška koda",
+      "error_message_1007": "Kontrolni kod se često koristi. Molimo Vas zatražite novi   kontrolni kod",
+      "error_message_1008": "Prijavite se bez konfiguriranja kanala treće strane",
+      "error_message_1009": "Neuspješno pozivanje sučelja treće strane",
+      "error_message_1010": "Slanje nije uspjelo",
+      "error_message_1011": "Broj računa nije aktiviran",
+      "error_message_1012": "Iznimke usluga",
+      "error_message_1013": "Iznimke usluga",
+      "error_message_1014": "Provjera kontrolnog koda nije uspjela",
+      "error_message_1015": "Molimo Vas provjerite dinamički kontrolni kod",
+      "error_message_1016": "Iznimke usluga",
+      "error_message_1017": "Postoji rizik za broj računa",
+      "error_message_1018": "Poštanski sandučić je uvezan",
+      "error_message_1020": "Isteklo je vrijeme za prijavu",
+      "error_message_1021": "Isteklo je vrijeme za prijavu",
+      "error_message_1022": "Broj računa je uvezan",
+      "error_message_1023": "Iznimke usluga",
+      "error_message_1024": "Iznimke usluga",
+      "error_message_2": "Iznimke usluga",
+      "error_message_2001": "Mobitel je registriran",
+      "error_message_2002": "E-mail je registriran",
+      "error_message_2003": "Nemojte pokušavati tako često",
+      "error_message_2004": "Istekao kod",
+      "error_message_2005": "Pogreška koda",
+      "error_message_2006": "Previše puta provjere, molimo uzmite drugi kod",
+      "error_message_2007": "Iznimka usluge, pokušajte ponovo kasnije",
+      "error_message_2016": "Račun pod rizikom",
+      "error_message_3": "Iznimke usluga",
+      "error_message_3001": "Iznimka usluge, pokušajte ponovo kasnije",
+      "error_message_3002": "Korisnici koji nisu vezani za mobilne telefone/ poštanske sandučiće pokušavaju promijeniti svoje lozinke",
+      "error_message_3003": "Nemojte pokušavati tako često",
+      "error_message_3004": "Istekao kod",
+      "error_message_3005": "Pogreška koda",
+      "error_message_3006": "Previše puta provjere, molimo uzmite drugi kod",
+      "error_message_3007": "Mobitel ne postoji",
+      "error_message_3008": "E-mail ne postoji",
+      "error_message_3009": "Mobitel je vezan drugim nalozima",
+      "error_message_3010": "E-mail je vezan drugim nalozima",
+      "error_message_3014": "Renderiranje predloška tekstualne poruke/e-pošte nije uspjelo",
+      "error_message_4": "Iznimke usluga",
+      "error_message_5": "Iznimke usluga",
+      "error_message_6": "Iznimke usluga",
+      "feb": "velj",
+      "february": "veljača",
+      "first_day": "0",
+      "fr": "pet",
+      "fri": "pet",
+      "friday": "petak",
+      "image_size_less_than_tips": "Slike bi trebale biti manje od {{max}} MB",
+      "jan": "sij",
+      "january": "siječanj",
+      "jul": "srp",
+      "july": "srpanj",
+      "jun": "lip",
+      "june": "lipanj",
+      "mar": "ožu",
+      "march": "ožujak",
+      "max_image_upload_tips": "Možete otprijemiti najviše {{max}} slika",
+      "may": "svibanj",
+      "may_short": "svi",
+      "mo": "pon",
+      "mon": "pon",
+      "monday": "ponedjeljak",
+      "network_error_message": "Nema interneta",
+      "nov": "stu",
+      "november": "studeni",
+      "oct": "lis",
+      "october": "listopad",
+      "okay_common": "UREDU",
+      "password_empty_hint": "Molimo unesite lozinku",
+      "phone_empty_message": "Molim upišite broj mobitela",
+      "phone_error_message": "Unesite broj mobilnog telefona valjanog formata",
+      "phone_number_error_message": "Molimo unesite valjan broj telefona",
+      "repeat_passport_error": "Lozinke koje ste uneli ne odgovaraju",
+      "resend": "Ponovo pošalji",
+      "sa": "sub",
+      "sat": "sub",
+      "saturday": "subota",
+      "select__date": "Odaberi Datum",
+      "send": "Pošalji",
+      "send_error": "Molimo najpre pošaljite kontrolni kod",
+      "send_verification_code_hint": "Molimo unesite lozinku ponovo",
+      "sep": "ruj",
+      "september": "rujan",
+      "set_password": "Molimo postavite lozinku sa minimalnom dužinom od 6 znakova i sa maksimalnom dužinom od 18 znakova.",
+      "su": "ned",
+      "sun": "ned",
+      "sunday": "nedjelja",
+      "th": "čet",
+      "thu": "čet",
+      "thursday": "četvrtak",
+      "time_format": "hh:mm aa",
+      "today": "Danas",
+      "tu": "uto",
+      "tue": "uto",
+      "tuesday": "utorak",
+      "user_agreement_tip": "Prvo pročitajte i prihvatite korisnički ugovor",
+      "username_empty_hint": "Molimo unesite e-mail adresu ili broj mobitela",
+      "verification_code_sent_tip": "Kontrolni kod je poslan na vaš račun",
+      "we": "sri",
+      "wed": "sri",
+      "wednesday": "srijeda"
+    },
+    "network-err-msg": "Nema interneta",
+    "phone": {
+      "mobile_common": "Broj telefona"
+    },
+    "subscription": {
+      "unsubscribe_success": "Pretplata je otkazana, bit će preusmjerena na početnu stranicu"
+    },
+    "tips": {
+      "and": "i",
+      "bind-change-email": "Povežite se/promijenite e-poštu",
+      "bind-change-mobile-phone-number": "Povežite/promijenite broj mobilnog telefona",
+      "bind-success": "Povezano",
+      "change-binding-after-verification": "Možete se povezati/promijeniti {{value}} nakon potvrde",
+      "continue-as-a-guest": "Nastavite kao gost",
+      "forget-password": "Zaboravljena lozinka",
+      "i-agree-with-the-shop": "pristajem na",
+      "login": "PRIJAVITE SE",
+      "or-use-the-following-method-to-log-in": "Ili se prijavite pomoću sljedeće metode",
+      "password-can-be-changed-after-verification": "Možete promijeniti lozinku nakon provjere",
+      "please-read-and-agree-to-the-user-agreement-first": "Prvo pročitajte i prihvatite korisnički ugovor",
+      "poroceed-to-checkout": "Nastavite na blagajnu",
+      "register": "Upišite se",
+      "reset-password": "Poništavate lozinku za račun {{account}}",
+      "set-new-password": "Resetiranje lozinke",
+      "update-password": "Promijenite lozinku",
+      "update-success": "Promijenjeno",
+      "verification-code-has-been-sent-to-your-account": "Kontrolni kod je poslan na vaš račun",
+      "verify-account-to-reset-password": "Molimo potvrdite svoj račun i poništite lozinku"
+    },
+    "trade": {
+      "go-login": "Idi na prijavu"
+    },
+    "unsubscribe": {
+      "btn": "Odjavljen",
+      "reason": {
+        "other": {
+          "length": "Unesite do 300 riječi",
+          "placeholder": "Unesi"
+        }
+      },
+      "reason1": "Ne želim više primati ove e-mailove",
+      "reason2": "Primam previše e-mailova",
+      "reason3": "Nisam se pretplatio na ovaj popis",
+      "reason4": "E-mailovi za mene nisu relevantni",
+      "reason5": "Sadržaj e-mailova je predugačak",
+      "reason6": "Ostalo",
+      "subtitle": "Žao nam je što odlazite! Obavijestite nas zašto ste otkazali pretplatu:",
+      "success": "Pretplata je otkazana, bit će preusmjerena na početnu stranicu",
+      "title": "Odjavljen"
+    }
+  },
   "footer": {
     "copyright": "Sva prava pridržana.",
     "followus": "ZAPRATITE NAS",
@@ -221,9 +542,24 @@
       "title": "Mi brinemo o vašoj privatnost"
     }
   },
+  "general": {
+    "404": {
+      "button": "Nastaviti s kupovinom",
+      "subtext": "Stranica koju ste tražili ne postoji.",
+      "title": "404 stranica nije pronađena"
+    },
+    "general": {
+      "accept": "Prihvatiti",
+      "decline": "Odbiti",
+      "link": "Politika privatnosti",
+      "tips": "U cilju poboljšanja vašeg iskustva, koristimo kolačiće za pamćenje podataka o prijavi, prikupljanje statistike i isporuku sadržaja prilagođenog vašim interesima. Kliknite Prihvatiti za „prihvaćanje“ kolačića ili pogledajte našu „Politiku privatnosti“.",
+      "title": "Mi brinemo o vašoj privatnost"
+    }
+  },
   "header": {
     "cart": "Vaša košarica",
     "center": "Centar",
+    "emptyPlaceholder": "",
     "login": "Prijava",
     "logout": "Odjava",
     "navItemAll": "Sve",
@@ -367,6 +703,25 @@
           "title": "Vaša narudžba je potvrđena"
         }
       },
+      "orderstatus": {
+        "PayAmount": "platiti iznos",
+        "ReceiverAccount": "račun primatelja",
+        "ReferenceNumber": "poziv na broj",
+        "UploadTime": "vrijeme učitavanja",
+        "action": {
+          "UploadVoucher": "Prenesite vaučer"
+        },
+        "feedback": {
+          "CountLimit": "Možete učitati najviše 5 bonova.",
+          "InvalidOrderNumber": "nevažeći broj narudžbe",
+          "SizeLimte": "Prenesite JPG, PNG, GIF slike unutar 10 MB",
+          "SystemBusy": "sustav je zauzet, pokušajte ponovo kasnije.",
+          "UploadFail": "Prijenos nije uspio. Molim te pokušaj ponovno."
+        },
+        "notice": {
+          "UploadVoucher": "Prenesite vaučer za bankovni prijenos i mi ćemo potvrditi."
+        }
+      },
       "packages": {
         "amount": {
           "channel-surcharge": "Provizija za plaćanje",
@@ -428,9 +783,24 @@
         "subscriptions-title": "Pretplate",
         "title": "Informacija",
         "unshipped-order-num": "Obrada ({{num}} stavki)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "Plaćanje je uspješno preneseno",
+          "WaittingforPayment": "Čeka se plaćanje"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "shvaćam"
+          }
+        }
+      },
+      "taxFee": "Porez"
     },
     "help-tips": "Trebate pomoć? Molimo da nas kontaktirate: {{email}}",
+    "includeTax": {
+      "totalLine": "Uključujući {{price}} u poreze"
+    },
     "oms-status": {
       "arrived": "Stiglo",
       "cancelled": "Otkazati pošiljku",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Poništeno",
       "already-paid": "Plaćeno",
+      "authorized": "Ovlašteni",
       "failed": "Plaćanje neuspjelo",
       "partial-payment": "Djelomično plaćeno",
       "partial-refund": "Djelomično vraćeno",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "Još nema informacija o logistici i načinima plaćanja",
     "no-product-introduction": "Još nema predstavljanja proizvoda",
     "previewLinkToast": "Operacija za pregled veze nije podržana",
+    "productTax": "porez uključen",
     "recentlyViewedProducts": "Nedavno Gledani Proizvodi",
     "recommendTitle": "Možda vam se također svidi",
+    "skuLoadingTips": "Učitavanje informacija o varijanti, pričekajte...",
     "tabPanel": {
       "comments": {
         "empty": "Još nema recenzija proizvoda",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "proizvodi"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "Nema proizvoda u ovoj kategoriji",
@@ -677,6 +1051,35 @@
     "sortName": "Poredaj po :",
     "title": "Traži"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Dodaj sliku",
+      "didnot_bought_cannot_reviewed": "Žao nam je, još uvijek niste kupili ovaj proizvod, tako da ne možete ostaviti recenziju",
+      "didnot_bought_sign_in_first": "Kupci koji su kupili ovaj proizvod mogu ostaviti recenziju, molimo da se prvo prijavite",
+      "enter_at_least_one_character": "Molimo unesite barem riječ",
+      "error_submit_again": "Zbog greške sustava vaš pregled nije moguće obraditi, molimo pokušajte ponovo~",
+      "first_review": "Budite sada prvi koji će objaviti komentar!",
+      "image_uploading": "Učitavanje, molimo podnijesite kasnije",
+      "maximum_image_quantity": "Možete dodati najviše {{total}} sika",
+      "maximum_image_size": "Maksimalna veličina slike je {{size}} MB",
+      "no_review": "Još uvijek nema komentara",
+      "only_supports__image_format": "Podržava samo prijenos .jpg .jpeg .png .bmp datoteke",
+      "ratings": "Ocene",
+      "sign_in": "Prijavite se",
+      "submit": "Podnijeti",
+      "thanks_for_your_review": "Hvala Vam na vašoj ocjeni",
+      "write_a_review": "Napišite ocjenu",
+      "write_a_review_for_the_product": "Molimo unesite svoju recenziju o ovom proizvodu"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Maksimalna dozvoljena količina za ovaj ograničen proizvod je {{num}}",
+      "activity_toast_product__limit": "Kupnja je ograničena na {{stock}} promotivnih proizvoda",
+      "activity_toast_title__limit": "Proizvodi ispod premašuju ograničenje kupnje",
+      "go_to_amazon_by_link": "Kupujte u Amazonu",
+      "go_to_rakuten_by_link": "Kupujte u LOTTE-u",
+      "go_to_yahoo_by_link": "Kupujte u Yahoo-u"
+    }
+  },
   "promotion": {
     "activity-benefit": "Ponude događaja",
     "activity-introduction": "Uvod u događaj",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "<italic>{{content}}</italic> umanjen za <italic>{{condition}}</italic> komada"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "Ostvarite {{offPercent}}% popusta",
+            "unlocked": "{{offPercent}}% popusta je otključano!"
+          },
+          "free": {
+            "locked": "Besplatna ponuda",
+            "unlocked": "Besplatna ponuda je otključana!"
+          },
+          "unlocked": {
+            "tip": "Sada možete uživati u popustu na proizvod"
+          }
+        },
+        "threshold": "Kupite {{threshold}}"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}} isključeno",
+      "copySuccessText": "Kod kupona je uspješno kopiran",
+      "copyText": "Kopirati",
+      "freeShipping": "Besplatna dostava",
+      "threshold": "Narudžbe iznad {{threshold}}"
+    },
+    "autoCoupon": {
+      "shopMore": "Više"
+    },
     "bundle": {
       "saveTip": "Uštedite {{amount}} za zbirnu kupnju",
       "title": "Često kupovano skupa"
     },
     "customer-purchase-limit": "Ograničenje kupnje {{count}} po osobi",
     "customer-purchase-limit-each-item": "Ograničenje kupnje od {{count}} po proizvodu po osobi",
+    "discount-coupon-banner": {
+      "getCode": "Nabavite kupone za popust"
+    },
     "discount-coupon": {
       "applied": "Primijenjeno",
       "apply": "Primjena",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "Rasprodaja!",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "Kupi još {{threshold}} stavki, uživaj gratis jednu od njih!",
+        "b11_t1_s1_normal": "Kupi još {{threshold}} stavki, uživaj {{willSave}} UMANJENJA na jednu od stavki!",
+        "b11_t1_s2_free": "Čestitamo! Uživajte gratis na jednu od stavki!",
+        "b11_t1_s2_next_free": "Čestitamo! {{saved}} Ušteđeno, {{br}} Kupi još {{threshold}} stavki, uživaj gratis jednu od njih!",
+        "b11_t1_s2_normal": "Čestitamo! {{saved}}Ušteđeno, {{br}} Kupi još {{threshold}} stavki, uživaj {{willSave}} UMANJENJA na jednu od njih!",
+        "b11_t1_s3_free": "Čestitamo! Uživajte gratis na jednu od stavki!",
+        "b11_t1_s3_normal": "Čestitamo! Uživaj {{saved}} UMANJENJA na jednu od stavki!",
+        "b1_t0_s1": "Kupi {{threshold}} više za uštedu {{willSave}}",
+        "b1_t0_s2": "Uštedi čak {{saved}}! {{br}}Kupi {{threshold}} više za uštedu {{willSave}}",
+        "b1_t0_s3": "Čestitamo! Uštedjeli ste {{saved}}!",
+        "b1_t1_s1": "Kupi {{threshold}} više za uštedu {{willSave}}",
+        "b1_t1_s2": "Uštedi čak {{saved}}! {{br}}Kupi {{threshold}} više za uštedu {{willSave}}",
+        "b1_t1_s3": "Čestitamo! Uštedjeli ste {{saved}}!",
+        "b2_t0_s1": "Kupi {{threshold}} više za dobit {{willSave}} UMANJENJA",
+        "b2_t0_s2": "Uštedi čak {{saved}}! {{br}}Kupi {{threshold}} više za dobit {{willSave}} UMANJENJA",
+        "b2_t0_s3": "Čestitamo! Uštedjeli ste {{saved}}!",
+        "b2_t1_s1": "Kupi {{threshold}} više za dobit {{willSave}} UMANJENJA",
+        "b2_t1_s2": "Uštedi čak {{saved}}! {{br}}Kupi {{threshold}} više za dobit {{willSave}} UMANJENJA",
+        "b2_t1_s3": "Čestitamo! Uštedjeli ste {{saved}}!",
+        "b3_t0_s1_unlimited": "Kupite {{threshold}} ponovo i uživajte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>!",
+        "b3_t0_s1_upper_limit": "Kupite {{threshold}} ponovo i uživajte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>! (Maksimalna količina za besplatnu isporuku {{upperLimit}})",
+        "b3_t0_s3_unlimited": "Čestitamo! Vi imate <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>!",
+        "b3_t0_s3_upper_limit": "Čestitamo! Vi imate <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>! (Maksimalna količina za besplatnu isporuku {{upperLimit}})",
+        "b3_t1_s1_unlimited": "Kupite {{threshold}} više i uživajte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>!",
+        "b3_t1_s1_upper_limit": "Kupite {{threshold}} više i uživajte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>! (Maksimalna količina za besplatnu isporuku {{upperLimit}})",
+        "b3_t1_s3_unlimited": "Čestitamo! Vi imate <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>!",
+        "b3_t1_s3_upper_limit": "Čestitamo! Vi imate <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>! (Maksimalna količina za besplatnu isporuku {{upperLimit}})",
+        "b9_t1_s1": "Kupite {{threshold}} više dijela/dijelova, od kojih su {{willSave}} dijela/dijelova besplatna/besplatni",
+        "b9_t1_s2": "Čestitamo! Dobili ste {{saved}} dijela/dijelova besplatno! Kupite {{threshold}} više dijela/ dijelova od kojih su {{willSave}} dijela/dijelova besplatni",
+        "b9_t1_s3": "Čestitamo! {{saved}} njih su besplatni"
+      },
+      "discount_tag": {
+        "b11_t1_free": "Kupi {{threshold}} stavki, uživaj gratis na jednu od njih!",
+        "b11_t1_normal": "Kupi {{threshold}} stavki, uživaj {{save}} UMANJENJE na jednu od stavki!",
+        "b1_t0": "Kupi {{threshold}} uštedi {{save}}",
+        "b1_t1": "Kupi {{threshold}} Uzmi {{save}} UMANJENO",
+        "b2_t0": "Kupi {{threshold}} uštedi {{save}}",
+        "b2_t1": "Kupi {{threshold}} UZMI {{save}} UMANJENO"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "Čestitamo! Uživajte gratis na jednu od stavki!",
               "normal": "Čestitamo! Uživaj {{saved}} UMANJENJA na jednu od stavki!"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Čestitamo, možete uživati u {{benefitCount}} artiklima besplatno",
+                "normal": "Čestitamo, možete uživati {{willSave}} u popustu za {{benefitCount}} artikle"
+              },
+              "free": "Kupite {{threshold}}, uživajte {{benefitCount}} u artiklima besplatno",
+              "normal": "Kupite {{threshold}}, uživajte u {{willSave}} popustu za {{benefitCount}} artikle"
+            },
+            "step3": {
+              "free": "Čestitamo! Dobili ste {{benefitCount}} artikle besplatno!",
+              "normal": "Čestitamo! Dobili ste {{saved}} popust na {{benefitCount}} artikle!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Čestitamo, možete uživati u {{benefitCount}} artiklima besplatno",
+                "normal": "Čestitamo, možete uživati {{willSave}} u popustu za {{benefitCount}} artikle"
+              },
+              "free": "Kupite {{threshold}}, uživajte {{benefitCount}} u artiklima besplatno",
+              "normal": "Kupite {{threshold}}, uživajte u {{willSave}} popustu za {{benefitCount}} artikle"
+            },
+            "step3": {
+              "free": "Čestitamo! Dobili ste {{benefitCount}} artikle besplatno!",
+              "normal": "Čestitamo! Dobili ste {{saved}} popust na {{benefitCount}} artikle!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Način plaćanja",
     "pay-way-logo-and-more": "i još",
     "payment-security-description": "Sve transakcije su zaštićene i šifrirane.",
+    "payments-name": {
+      "COD": "Pouzećem",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "Kreditnom karticom"
+    },
     "pic-upload-fail": "Prijenos slike {{name}} nije uspio",
     "pick-address": "Adresa za preuzimanje",
     "please-choose-area": "Molimo odaberite područje",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "Proizvod je rasprodan",
     "product-tax": "Porez na robu",
     "quantity": "KOLIČINA",
+    "receiver-info": "Dostavna adresa",
     "recieve-address-unavailable-rechoose": "Nema dostupnog načina dostave na adresu primatelja. Molimo vratite se na ponovni odabir",
     "reciever-fullname": "Puno ime primatelja",
     "reciever-info": "Dostavna adresa",
@@ -1230,6 +1741,24 @@
     "your-order-not-pay": "Niste dovršili plaćanje za svoju narudžbu",
     "your-refund-order-created": "Vaša narudžba za povrat je poslana"
   },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "Kod kupona ne smije biti duži od 25 znaka.",
+      "coupon_invalid_for_the_shipping_method": "Kupon {{discountCode}} vrijedi za način dostave",
+      "discount_code_invalid": "{{discountCode}} je ispravno upisan, ali cijena ili količina robe ne zadovoljava uvjete",
+      "discount_codes_cannot_stack": "Ovo je već preferencijalni događaj za proizvod koji se ne može koristiti zajedno s drugim preferencijalnim događajima",
+      "discounts_cannot_stack": "Na ovu narudžbu primijenjen je popust. Ne možete dodati još jedan popust",
+      "enter_a_valid_discount_code": "Kod za popust je pogrešno upisan",
+      "free_shipping": "Besplatna dostava",
+      "order_seller_discount": "Dodatni popust prodavatelju",
+      "order_tax": "Porez",
+      "order_tip": "Napojnica",
+      "payment_subtotal_cost": "Međuzbroj",
+      "point_discount": "Popust na bodove",
+      "shipping_fee": "Dostava",
+      "trade_coupon_discount": "Kupon"
+    }
+  },
   "user": {
     "account": "NALOG",
     "code": "Kod za verifikaciju",
@@ -1259,31 +1788,43 @@
     "signUp": "UPIŠITE SE",
     "subscription-text": "Prijavite me na e-poštu da primam ažuriranja, pristup ekskluzivnim ponudama i još mnogo toga.",
     "udbResponse": {
-      "err-1": "Parametri su prazni",
-      "err-13": "stoken vrijeme je pauzirano",
-      "err-4": "Parametri su nevažeći",
-      "err-5": "Nezakonita radnja",
-      "err-999": "Daljinsko pozivanje nije uspjelo",
+      "err-1": "Iznimke usluga",
+      "err-13": "Iznimke usluga",
+      "err-4": "Iznimke usluga",
+      "err-5": "Iznimke usluga",
+      "err-999": "Iznimke usluga",
       "err1001": "Pogreška lozinke",
       "err1002": "Nepostojeći korisnik",
       "err1003": "Vaš račun je onemogućen zbog nepravilnosti; kontaktirajte trgovca kako biste uklonili zabranu",
-      "err1004": "Pošaljite tekstualnu poruku više puta",
+      "err1004": "Operacije su prečeste. Molimo Vas pokušajte ponovo kasnije",
       "err1005": "Istekao kod",
       "err1006": "Pogreška koda",
-      "err1007": "Previše puta je došlo do pogreške verifikacionog koda",
-      "err1008": "Nije konfiguriran treći ID ili kanal",
-      "err1009": "Provjera valjanosti treće strane nije uspjela",
-      "err1010": "Renderiranje predloška tekstualne poruke/e-pošte nije uspjelo",
-      "err1017": "Račun pod rizikom",
+      "err1007": "Kontrolni kod se često koristi. Molimo Vas zatražite novi   kontrolni kod",
+      "err1008": "Prijavite se bez konfiguriranja kanala treće strane",
+      "err1009": "Neuspješno pozivanje sučelja treće strane",
+      "err1010": "Slanje nije uspjelo",
+      "err1011": "Broj računa nije aktiviran",
+      "err1012": "Iznimke usluga",
+      "err1013": "Iznimke usluga",
+      "err1014": "Provjera kontrolnog koda nije uspjela",
+      "err1015": "Molimo Vas provjerite dinamički kontrolni kod",
+      "err1016": "Iznimke usluga",
+      "err1017": "Postoji rizik za broj računa",
+      "err1018": "Poštanski sandučić je uvezan",
+      "err1020": "Isteklo je vrijeme za prijavu",
+      "err1021": "Isteklo je vrijeme za prijavu",
+      "err1022": "Broj računa je uvezan",
+      "err1023": "Iznimke usluga",
+      "err1024": "Iznimke usluga",
       "err2001": "Mobitel je registriran",
       "err2002": "E-mail je registriran",
       "err2003": "Nemojte pokušavati tako često",
       "err2004": "Istekao kod",
       "err2005": "Pogreška koda",
       "err2006": "Previše puta provjere, molimo uzmite drugi kod",
-      "err2007": "Renderiranje predloška tekstualne poruke/e-pošte nije uspjelo",
+      "err2007": "Iznimka usluge, pokušajte ponovo kasnije",
       "err2016": "Račun pod rizikom",
-      "err3001": "Nevažeči kolačić",
+      "err3001": "Iznimka usluge, pokušajte ponovo kasnije",
       "err3002": "Korisnici koji nisu vezani za mobilne telefone/ poštanske sandučiće pokušavaju promijeniti svoje lozinke",
       "err3003": "Nemojte pokušavati tako često",
       "err3004": "Istekao kod",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Uvezivanje Naloga",
-      "account-info": "Informacije o nalogu",
+      "account-info": "Račun",
       "account-subscription-email": "Pošalji na email",
       "account-subscription-line": "Pošalji na linijsku aplikaciju",
       "account-subscription-messenger": "Pošaljite messengeru",
@@ -1310,7 +1851,9 @@
       "bind": "Obvezujući",
       "change-password": "Promijeni lozinku",
       "email": "E-mail",
+      "firstName": "Ime",
       "general-member": "Generalni član",
+      "lastName": "Prezime",
       "member-level": "Nivo članstva",
       "memberLevelCom": {
         "defaultLevel": "Generalni član",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "Izmijenite Email",
       "modify-phone": "Izmijenite Telefon",
+      "nicknameEmptyError": "Ime i prezime ne mogu ostati prazni",
+      "notSet": "Nije podešeno",
       "password": "Lozinka",
       "phone": "Mobitel",
       "reset-password-error": "Molimo prvo povežite email ili mobitel",
       "subscription-notification": "Obavjest o pretplati",
       "unsubscribed": "Odjavljeno",
-      "username": "Korisničko ime",
-      "username-message": "Molimo unesite svoje korisničko ime!",
-      "username-placeholder": "Molimo unesite svoje korisničko ime"
+      "username": "Ime",
+      "username-message": "Molimo unesite svoje ime",
+      "username-placeholder": "Molimo unesite svoje ime"
     },
     "address": {
       "add": "Dodaj Novu Adresu",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Kupljeni proizvodi",
     "cancel": "OTKAŽI",
+    "datePicker": {
+      "mobile": {
+        "cancel": "otkaži",
+        "confirm": "Uredu",
+        "title": "Odaberi Datum"
+      },
+      "pc": {
+        "clear": "Očisti",
+        "dateFormat": "dd.MM.yyyy",
+        "days0": "nedjelja",
+        "days1": "ponedjeljak",
+        "days2": "utorak",
+        "days3": "srijeda",
+        "days4": "četvrtak",
+        "days5": "petak",
+        "days6": "subota",
+        "daysMin0": "ned",
+        "daysMin1": "pon",
+        "daysMin2": "uto",
+        "daysMin3": "sri",
+        "daysMin4": "čet",
+        "daysMin5": "pet",
+        "daysMin6": "sub",
+        "daysShort0": "ned",
+        "daysShort1": "pon",
+        "daysShort2": "uto",
+        "daysShort3": "sri",
+        "daysShort4": "čet",
+        "daysShort5": "pet",
+        "daysShort6": "sub",
+        "firstDay": "0",
+        "months0": "siječanj",
+        "months1": "veljača",
+        "months10": "studeni",
+        "months11": "prosinac",
+        "months2": "ožujak",
+        "months3": "travanj",
+        "months4": "svibanj",
+        "months5": "lipanj",
+        "months6": "srpanj",
+        "months7": "kolovoz",
+        "months8": "rujan",
+        "months9": "listopad",
+        "monthsShort0": "sij",
+        "monthsShort1": "velj",
+        "monthsShort10": "stu",
+        "monthsShort11": "pro",
+        "monthsShort2": "ožu",
+        "monthsShort3": "tra",
+        "monthsShort4": "svi",
+        "monthsShort5": "lip",
+        "monthsShort6": "srp",
+        "monthsShort7": "kol",
+        "monthsShort8": "ruj",
+        "monthsShort9": "lis",
+        "timeFormat": "hh:mm aa",
+        "today": "Danas"
+      }
+    },
+    "deleteAccount": {
+      "address": "Adresu",
+      "card": "Broj kreditne kartice",
+      "deadline": "Za potrebe poslovnog izvješća, vaša će narudžba i dalje biti vidljiva. Ovaj račun je u postupku zatvaranja, podaci o računu će biti obrisani u {{time}}, možete otkazati postupak zatvaranja prije tog datuma",
+      "email": "E-poštu",
+      "ip": "IP adresu",
+      "name": "Ime",
+      "nextStep": "Sljedeće",
+      "notify": "Možete podnijeti zahtjev za zatvaranje ovog računa. Nakon zatvaranja računa, sve informacije za identifikaciju ovog računa bit će izbrisane, uključujući:",
+      "revoke": "Otkažite zatvaranje",
+      "revokeMessage": "Ovaj račun je u postupku zatvaranja, podaci o računu bit će izbrisani u {{time}}, možete otkazati postupak prije tog datuma",
+      "timeout": "Vrijeme operacije je isteklo, provjerite ponovo",
+      "title": "Zatvori račun",
+      "verifyEmailMessage": "Prije zatvaranja računa, trebamo potvrditi vaš identitet\nE-poruku za potvrdu ćete dobiti na vašu e-poštu {{email}}",
+      "verifyPhoneMessage": "Prije zatvaranja računa, trebamo potvrditi vaš identitet\nPoruku za potvrdu ćete dobiti na vaš mobitel {{phone}}"
+    },
     "edit": "Uredi",
     "editAddress": {
       "address1-message": "Manje od 512 znaka!",
       "address2-message": "Manje od 512 znaka!",
       "city-message": "Molimo odaberete svoj grad!",
+      "common-max": "",
+      "common-min": "veći od {{min}} znakova",
       "contact-message": "Molimo unesite svoje ime",
       "country-message": "Molimo odaberete svoju zemlju!",
       "default": "Postavite kao zadanu adresu",
@@ -1440,6 +2062,7 @@
     "save": "SAČUVAJ",
     "sign-out": "Odjavi se",
     "subscription": {
+      "desc": "Saznajte najnovije vijesti o trgovini",
       "email": "E-mail",
       "line": "LINIJA",
       "messenger": "Messenger",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "Od nas više nećete primati marketinška ažuriranja. Možete se ponovo pretplatiti u bilo kojem trenutku"
+      "text": "Od nas više nećete primati marketinška ažuriranja. Možete se ponovo pretplatiti u bilo kojem trenutku",
+      "title": "Otkazali ste pretplatu na <italic>{{name}}</italic> mailing listu"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Narudžba na čekanju"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

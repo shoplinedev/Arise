@@ -1,0 +1,57 @@
+{{#partial 'head'}}
+  <link rel="stylesheet" href="{{ assets_url 'customer/address/index.min.css' }}" />
+{{/partial}}
+
+{{#partial 'script'}}
+  <script src="{{ assets_url 'customer/address/index.min.js' }}"></script>
+{{/partial}}
+
+{{ trade_checkout_receiverInfo pageType="customerAddressInfo" action="loadStringTemplate" target="customer_address_template" }}
+{{ preload_state 'customer_address_template' }}
+
+{{ assign 'addressSeq' request.uri.params.addressSeq }}
+{{ assign 'isEdit' (isTruthy addressSeq) }}
+
+{{#if isEdit}}
+  {{ preload_state 'customer_edit_address' }}
+{{else}}
+  {{ assign 'customer_edit_address' (object_create)}}
+{{/if}}
+
+<div class="address" id="customer-address">
+  <h1 class="address__title">{{t 'userCenter.editAddress.edit'}}</h1>
+
+  <form class="address-form">
+    {{!-- 地址组件控件容器 --}}
+    <div class="address-form__row row address-component-form" id="customer-address-component">
+      {{#trade_checkout_receiverInfo pageType="customerAddressInfo"}}
+      {{#each controls}}
+      {{ include 'snippets/customer/account/address_field_control'}}
+      {{/each}}
+      {{/trade_checkout_receiverInfo}}
+    </div>
+
+    {{!-- 地址组件浏览器填充容器 --}}
+    <div class="address-form__row row address-component-form__autofill" id="customer-address-autofill-renderer"></div>
+
+    <div class="address-form__footer">
+      {{#formItem "def"}}
+        {{#snippet 'customer/base/sl-checkbox' checked=customer_edit_address.def }}
+          <span>{{ t 'userCenter.editAddress.default' }}</span>
+        {{/snippet}}
+      {{/formItem}}
+
+      <div class="address-form__btns">
+        <a href="/user/center" class="address-form__btn address-form__btn--cancel">
+          {{#snippet 'customer/base/sl-button' attrs="type='button'" ghost=true block=true }}
+            {{t 'userCenter.cancel'}}
+          {{/snippet}}
+        </a>
+        
+        {{#snippet 'customer/base/sl-button' class="address-form__btn address-form__btn--save submit-button" attrs="type='button'" }}
+          {{t 'userCenter.save'}}
+        {{/snippet}}
+      </div>
+    </div>
+  </form>
+</div>

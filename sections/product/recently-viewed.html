@@ -11,16 +11,16 @@
 {{ inline_stylesheet 'product/recently-viewed/index.min.css' }}
 
 {{ assign 'show_product_number' section.settings.show_product_number }}
-<div class="section-gap container" 
+<div class="{{#isFalsey (boolean hiddenMount)}}section-gap container{{/isFalsey}}" 
   data-section-type="recently-viewed"
   data-section-id="{{ section.id }}"
 >
   <input type="hidden" data-recently-product-section-id={{ section.id }}>
-  {{#if hiddenMount}}
+  {{#if (boolean hiddenMount '&&' historyBrowseProducts.length)}}
     <div class="product-detail-block-space"></div>
     <div class="product-list product-recently-viewed">
       <div class="product-list-title product-section-title title4">{{ t 'productDetail.recentlyViewedProducts' }}</div>
-      {{ snippet 'product/commons/product-item-list' forbiddenBtn=true listData=(first historyBrowseProducts show_product_number) className='__sl-custom-track-product-recently-viewed-item' }}
+      {{ snippet 'product/commons/product-item-list' colNum=section.settings.pc_cols mbColNum=section.settings.md_cols forbiddenBtn=true listData=(first historyBrowseProducts show_product_number) className='__sl-custom-track-product-recently-viewed-item' }}
     </div>
     {{else}}
     <div id="recently-viewed-products"></div>
@@ -39,6 +39,31 @@
       "max": 10,
       "step": 1,
       "default": 6
+    },
+    {
+      "id": "pc_cols",
+      "type": "range",
+      "label": "t:sections.product_recently-viewed.settings.pc_cols.label",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "id": "md_cols",
+      "type": "select",
+      "label": "t:sections.product_recently-viewed.settings.md_cols.label",
+      "options": [
+        {
+          "value": 1,
+          "label": "t:sections.product_recently-viewed.settings.md_cols.options__0.label"
+        },
+        {
+          "value": 2,
+          "label": "t:sections.product_recently-viewed.settings.md_cols.options__1.label"
+        }
+      ],
+      "default": 2
     },
     {
       "type": "group_header",
@@ -99,6 +124,8 @@
   "default": {
     "settings": {
       "show_product_number": 6,
+      "pc_cols": 4,
+      "md_cols": 2,
       "product_image_ratio": "0",
       "product_fill_type": "contain",
       "product_hover_show_next": false

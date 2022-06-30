@@ -3,7 +3,7 @@
 {{assign '_collections' (cond (isArray collectionData) collectionData (JSONparse '[]'))}}
 
 
-<div class="row g-4 row-cols-1 row-cols-md-3">
+<div class="row row-cols-1 row-cols-md-3">
   {{#each _collections}}
     {{snippet 'product/commons/collection-item' sortationData=this imageRatio=../section.settings.collection_image_ratio imageFit=../section.settings.collection_fill_type}}
   {{/each}}

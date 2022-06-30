@@ -1,0 +1,35 @@
+<div class="subscription-item" data-type={{ key }} {{ cond (boolean data.state '==' 1) 'data-subscribed' '' }}>
+  <div class="subscription-item__wrapper">
+    <span class="subscription-item__title">{{ t (append 'userCenter.subscription.' key) }}</span>
+
+    {{!-- 订阅按钮 --}}
+    {{#if key 'messenger'}}
+      <div id="customer-center-messenger-btn" class="subscription-item__btn"></div>
+      <button id="customer-center-messenger-loading" style="display: none;" class="btn btn-outline-primary btn-sm btn--loading disabled"></button>
+    {{else}}
+      <button class="btn btn-outline-primary btn-sm subscription-item__btn" type="button">{{ t 'userCenter.subscription.modal.ok-text' }}</button>
+    {{/if}}
+    {{!-- 已订阅 --}}
+    <div class="subscription-item__subscribed">
+      <span>{{ t 'userCenter.subscription.subed' }}</span>
+      {{snippet 'icons/icon_complete'}}
+    </div>
+    {{!-- 编辑 --}}
+    <div class="subscription-item__edit">
+      {{assign 'showEdit' false }}
+      {{#if key 'phone' }}
+        {{assign 'showEdit' true }}
+      {{else if key 'email' }}
+        {{assign 'showEdit' true }}
+      {{/if}}
+
+      {{#if showEdit}}
+        {{snippet 'icons/icon_edit'}}
+        <span>{{ t 'userCenter.edit' }}</span>
+      {{else}}
+        {{snippet 'icons/icon_cancel'}}
+        <span>{{ t 'userCenter.subscription.unsub.ok-text' }}</span>
+      {{/if}}
+    </div>
+  </div>
+</div>

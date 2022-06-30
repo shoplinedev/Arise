@@ -7,7 +7,6 @@ input{
   display:-webkit-box;
   display:-webkit-flex;
   display:flex;
-  overflow-x:hidden;
 }
 @media (min-width:750px){
   .image-with-text--align-top,.image-with-text--align-top .image-with-text__info-wrap{
@@ -24,6 +23,14 @@ input{
     -webkit-box-align:end;
     -webkit-align-items:flex-end;
             align-items:flex-end;
+  }
+  .image-with-text--stretch{
+    -webkit-box-align:stretch;
+    -webkit-align-items:stretch;
+            align-items:stretch;
+  }
+  .image-with-text--overlap .image-with-text__info-wrap{
+    padding:50px 0;
   }
   .image-with-text--overlap .image-with-text__info{
     position:relative;
@@ -69,6 +76,11 @@ input{
 }
 .image-with-text__img-wrap--low{
   height:350px;
+}
+@media (min-width:750px){
+  .image-with-text--stretch .image-with-text__img-wrap--high,.image-with-text--stretch .image-with-text__img-wrap--low{
+    height:auto;
+  }
 }
 .image-with-text__img-wrap--auto{
   height:auto;
@@ -123,11 +135,6 @@ input{
   margin-top:20px;
 }
 .image-with-text__title{
-  font-family:Arimo;
-  font-style:normal;
-  font-weight:700;
-  letter-spacing:0;
-  line-height:1.2;
   margin-bottom:20px !important;
   margin-top:20px;
 }
@@ -154,6 +161,9 @@ input{
   height:100%;
   width:100%;
 }
+.image-with-text__info>:first-child{
+  margin-top:0;
+}
 
 @media (max-width:749.98px){
   .image-with-text{
@@ -166,7 +176,6 @@ input{
     display:flex;
     -webkit-flex-direction:column;
             flex-direction:column;
-    overflow-x:hidden;
   }
   .image-with-text--overlap .image-with-text__info-wrap{
     margin-top:-36px;

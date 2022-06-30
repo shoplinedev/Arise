@@ -257,6 +257,9 @@
         }
       },
       "settings": {
+        "full_screen": {
+          "label": "Hiển thị toàn bộ màn hình theo chiều rộng"
+        },
         "html": {
           "label": "HTML"
         }
@@ -366,6 +369,18 @@
         "group_header__1": {
           "label": "Hình sản phẩm"
         },
+        "md_cols": {
+          "label": "Số cột trên điện thoại di động",
+          "options__0": {
+            "label": "Cột 1"
+          },
+          "options__1": {
+            "label": "2 cột"
+          }
+        },
+        "pc_cols": {
+          "label": "Số cột đầu cuối máy tính"
+        },
         "product_categories": {
           "label": "Phân loại sản phẩm"
         },
@@ -423,6 +438,14 @@
           "settings": {
             "html": {
               "label": "HTML"
+            }
+          }
+        },
+        "plainText": {
+          "name": "Văn bản",
+          "settings": {
+            "plainText": {
+              "label": "Văn bản"
             }
           }
         },
@@ -491,6 +514,20 @@
             }
           }
         },
+        "image": {
+          "name": "Hình ảnh",
+          "settings": {
+            "image": {
+              "label": "Hình ảnh"
+            },
+            "image_width": {
+              "label": "Độ rộng hình ảnh"
+            },
+            "link": {
+              "label": "Link chuyển đổi"
+            }
+          }
+        },
         "menu": {
           "name": "Hướng dẫn nhanh chóng",
           "settings": {
@@ -502,8 +539,7 @@
             }
           }
         },
-        "undefined": {
-          "name": "Hình ảnh",
+        "select": {
           "settings": {
             "align": {
               "label": "Bố cục",
@@ -516,12 +552,6 @@
               "options__2": {
                 "label": "Ở bên phải"
               }
-            },
-            "image": {
-              "label": "Hình ảnh"
-            },
-            "image_width": {
-              "label": "Độ rộng hình ảnh"
             }
           }
         }
@@ -621,6 +651,10 @@
         },
         "main_menu_link_list": {
           "label": "hướng dẫn trình đơn"
+        },
+        "mega_menu_images": {
+          "info": "[Xem hướng dẫn cài đặt siêu menu như thế nào](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
+          "label": "Hiển thị hình ảnh siêu menu"
         },
         "mobile_logo_width": {
           "label": "Độ rộng LOGO giao diện điện thoại"
@@ -763,13 +797,31 @@
         "pc_text_position": {
           "label": "Vị trí văn bản",
           "options__0": {
-            "label": "Ở bên trái"
+            "label": "Phía trên bên trái"
           },
           "options__1": {
-            "label": "Căn giữa"
+            "label": "Phía trên chính giữa"
           },
           "options__2": {
-            "label": "Ở bên phải"
+            "label": "Phía trên bên phải"
+          },
+          "options__3": {
+            "label": "Mặt phải"
+          },
+          "options__4": {
+            "label": "Chính giữa"
+          },
+          "options__5": {
+            "label": "Bên phải"
+          },
+          "options__6": {
+            "label": "Phía dưới bên trái"
+          },
+          "options__7": {
+            "label": "Phía dưới chính giữa"
+          },
+          "options__8": {
+            "label": "Phía dưới bên phải"
           }
         },
         "under_image": {
@@ -1330,6 +1382,14 @@
             }
           }
         },
+        "plainText": {
+          "name": "Văn bản",
+          "settings": {
+            "plainText": {
+              "label": "Văn bản"
+            }
+          }
+        },
         "price": {
           "name": "Giá"
         },
@@ -1533,6 +1593,18 @@
         "group_header__0": {
           "label": "Hình sản phẩm"
         },
+        "md_cols": {
+          "label": "Số cột trên điện thoại di động",
+          "options__0": {
+            "label": "Cột 1"
+          },
+          "options__1": {
+            "label": "2 cột"
+          }
+        },
+        "pc_cols": {
+          "label": "Số cột đầu cuối máy tính"
+        },
         "product_fill_type": {
           "label": "Cách lấp đầy hình ảnh hàng hóa",
           "options__0": {
@@ -1573,6 +1645,18 @@
       "settings": {
         "group_header__0": {
           "label": "Hình sản phẩm"
+        },
+        "md_cols": {
+          "label": "Số cột trên điện thoại di động",
+          "options__0": {
+            "label": "Cột 1"
+          },
+          "options__1": {
+            "label": "2 cột"
+          }
+        },
+        "pc_cols": {
+          "label": "Số cột đầu cuối máy tính"
         },
         "product_fill_type": {
           "label": "Cách lấp đầy hình ảnh hàng hóa",
@@ -2078,6 +2162,18 @@
         "jump_link": {
           "label": "Link chuyển đổi"
         },
+        "md_cols": {
+          "label": "Số cột trên điện thoại di động",
+          "options__0": {
+            "label": "Cột 1"
+          },
+          "options__1": {
+            "label": "2 cột"
+          }
+        },
+        "pc_cols": {
+          "label": "Số cột đầu cuối máy tính"
+        },
         "show_block_bg": {
           "label": "Nền",
           "options__0": {
@@ -2158,6 +2254,9 @@
         "full_width": {
           "label": "Chiều rộng toàn màn hình"
         },
+        "loop": {
+          "label": "Vòng"
+        },
         "title": {
           "label": "Tiêu đề"
         },
@@ -2169,6 +2268,70 @@
     }
   },
   "settings_schema": {
+    "button": {
+      "name": "Nút bấm",
+      "settings": {
+        "btn_border_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "btn_border_radius": {
+          "label": "Bán kính góc tròn"
+        },
+        "btn_border_thickness": {
+          "label": "Độ dày"
+        },
+        "btn_shadow_blur": {
+          "label": "Mờ"
+        },
+        "btn_shadow_offset_x": {
+          "label": "Dịch chuyển chiều ngang"
+        },
+        "btn_shadow_offset_y": {
+          "label": "Dịch chuyển theo chiều dọc"
+        },
+        "btn_shadow_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "group_header__0": {
+          "label": "Khung viền"
+        },
+        "group_header__1": {
+          "label": "Bóng"
+        }
+      }
+    },
+    "card": {
+      "name": "Thẻ",
+      "settings": {
+        "card_border_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "card_border_radius": {
+          "label": "Bán kính góc tròn"
+        },
+        "card_border_thickness": {
+          "label": "Độ dày"
+        },
+        "card_shadow_blur": {
+          "label": "Mờ"
+        },
+        "card_shadow_offset_x": {
+          "label": "Dịch chuyển chiều ngang"
+        },
+        "card_shadow_offset_y": {
+          "label": "Dịch chuyển theo chiều dọc"
+        },
+        "card_shadow_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "group_header__0": {
+          "label": "Khung viền"
+        },
+        "group_header__1": {
+          "label": "Bóng"
+        }
+      }
+    },
     "cart": {
       "name": "Giỏ hàng",
       "settings": {
@@ -2445,6 +2608,38 @@
         }
       }
     },
+    "content_container": {
+      "name": "Nơi chứa nội dung",
+      "settings": {
+        "content_border_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "content_border_radius": {
+          "label": "Bán kính góc tròn"
+        },
+        "content_border_thickness": {
+          "label": "Độ dày"
+        },
+        "content_shadow_blur": {
+          "label": "Mờ"
+        },
+        "content_shadow_offset_x": {
+          "label": "Dịch chuyển chiều ngang"
+        },
+        "content_shadow_offset_y": {
+          "label": "Dịch chuyển theo chiều dọc"
+        },
+        "content_shadow_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "group_header__0": {
+          "label": "Khung viền"
+        },
+        "group_header__1": {
+          "label": "Bóng"
+        }
+      }
+    },
     "design": {
       "name": "Thiết kế",
       "settings": {
@@ -2492,6 +2687,67 @@
         },
         "superscript_decimals": {
           "label": "Hiển thị thu nhỏ số thập phân giá bán lẻ"
+        }
+      }
+    },
+    "drawer": {
+      "name": "Ngăn kéo",
+      "settings": {
+        "drawer_border_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "drawer_border_thickness": {
+          "label": "Độ dày"
+        },
+        "drawer_shadow_blur": {
+          "label": "Mờ"
+        },
+        "drawer_shadow_offset_x": {
+          "label": "Dịch chuyển chiều ngang"
+        },
+        "drawer_shadow_offset_y": {
+          "label": "Dịch chuyển theo chiều dọc"
+        },
+        "drawer_shadow_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "group_header__0": {
+          "label": "Khung viền"
+        },
+        "group_header__1": {
+          "label": "Bóng"
+        }
+      }
+    },
+    "dropdown_modal": {
+      "name": "Menu thả xuống và cửa sổ bật lên",
+      "settings": {
+        "group_header__0": {
+          "label": "Khung viền"
+        },
+        "group_header__1": {
+          "label": "Bóng"
+        },
+        "menu_modal_border_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "menu_modal_border_radius": {
+          "label": "Bán kính góc tròn"
+        },
+        "menu_modal_border_thickness": {
+          "label": "Độ dày"
+        },
+        "menu_modal_shadow_blur": {
+          "label": "Mờ"
+        },
+        "menu_modal_shadow_offset_x": {
+          "label": "Dịch chuyển chiều ngang"
+        },
+        "menu_modal_shadow_offset_y": {
+          "label": "Dịch chuyển theo chiều dọc"
+        },
+        "menu_modal_shadow_opacity": {
+          "label": "Độ không trong suốt"
         }
       }
     },
@@ -2561,14 +2817,88 @@
         }
       }
     },
+    "input": {
+      "name": "Hộp nhập liệu",
+      "settings": {
+        "group_header__0": {
+          "label": "Khung viền"
+        },
+        "group_header__1": {
+          "label": "Bóng"
+        },
+        "input_border_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "input_border_radius": {
+          "label": "Bán kính góc tròn"
+        },
+        "input_border_thickness": {
+          "label": "Độ dày"
+        },
+        "input_shadow_blur": {
+          "label": "Mờ"
+        },
+        "input_shadow_offset_x": {
+          "label": "Dịch chuyển chiều ngang"
+        },
+        "input_shadow_offset_y": {
+          "label": "Dịch chuyển theo chiều dọc"
+        },
+        "input_shadow_opacity": {
+          "label": "Độ không trong suốt"
+        }
+      }
+    },
     "layout": {
       "name": "Bố cục",
       "settings": {
+        "grid_horizontal_space": {
+          "label": "Khoảng cách theo chiều ngang"
+        },
+        "grid_vertical_space": {
+          "label": "Khoảng cách theo chiều dọc"
+        },
+        "group_header__0": {
+          "info": "Ảnh hưởng đến các thành phần kiểu loại mạng lưới và  bố cục sản phẩm/phân loại",
+          "label": "Lưới"
+        },
         "page_width": {
           "label": "Chiều rộng trang"
         },
         "section_vertical_gap": {
           "label": "Khoảng cách theo chiều dọc giữa các thành phần"
+        }
+      }
+    },
+    "media_file": {
+      "name": "Tập tin media",
+      "settings": {
+        "group_header__0": {
+          "label": "Khung viền"
+        },
+        "group_header__1": {
+          "label": "Bóng"
+        },
+        "media_border_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "media_border_radius": {
+          "label": "Bán kính góc tròn"
+        },
+        "media_border_thickness": {
+          "label": "Độ dày"
+        },
+        "media_shadow_blur": {
+          "label": "Mờ"
+        },
+        "media_shadow_offset_x": {
+          "label": "Dịch chuyển chiều ngang"
+        },
+        "media_shadow_offset_y": {
+          "label": "Dịch chuyển theo chiều dọc"
+        },
+        "media_shadow_opacity": {
+          "label": "Độ không trong suốt"
         }
       }
     },
@@ -2592,6 +2922,9 @@
         "share_to_pinterest": {
           "label": "Chia sẻ đến Pinterest"
         },
+        "share_to_tumblr": {
+          "label": "Chia sẻ đến Tumblr"
+        },
         "share_to_twitter": {
           "label": "Chia sẻ đến Twitter"
         },
@@ -2603,6 +2936,9 @@
         },
         "social_instagram_link": {
           "label": "Instagram"
+        },
+        "social_linkedin_link": {
+          "label": "Linkedin"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -2633,6 +2969,24 @@
         "product_discount": {
           "label": "Hiển thị ưu đãi"
         },
+        "product_discount_position": {
+          "label": "Vị trí nhãn ưu đãi",
+          "options__0": {
+            "label": "Phía trên bên trái"
+          },
+          "options__1": {
+            "label": "Phía trên bên phải"
+          },
+          "options__2": {
+            "label": "Phía dưới bên trái"
+          },
+          "options__3": {
+            "label": "Phía dưới bên phải"
+          }
+        },
+        "product_discount_radius": {
+          "label": "Bán kính góc  tròn nhãn ưu đãi"
+        },
         "product_discount_style": {
           "label": "Hình thức ưu đãi",
           "options__0": {
@@ -2656,6 +3010,38 @@
           "options__2": {
             "label": "Bày ra tối đa 2 hàng"
           }
+        }
+      }
+    },
+    "sku": {
+      "name": "Bộ chọn nhiều thuộc tính",
+      "settings": {
+        "group_header__0": {
+          "label": "Khung viền"
+        },
+        "group_header__1": {
+          "label": "Bóng"
+        },
+        "sku_selector_border_opacity": {
+          "label": "Độ không trong suốt"
+        },
+        "sku_selector_border_radius": {
+          "label": "Bán kính góc tròn"
+        },
+        "sku_selector_border_thickness": {
+          "label": "Độ dày"
+        },
+        "sku_selector_shadow_blur": {
+          "label": "Mờ"
+        },
+        "sku_selector_shadow_offset_x": {
+          "label": "Dịch chuyển chiều ngang"
+        },
+        "sku_selector_shadow_offset_y": {
+          "label": "Dịch chuyển theo chiều dọc"
+        },
+        "sku_selector_shadow_opacity": {
+          "label": "Độ không trong suốt"
         }
       }
     }

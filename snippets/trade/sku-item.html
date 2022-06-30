@@ -24,6 +24,7 @@
        data-sku-attrs="{{join data.skuAttr ','}}"
        data-price="{{data.price}}"
        data-sale-price="{{data.salePrice}}"
+       data-item-no="{{data.itemNo}}"
     >
     {{#unless data.image}}
       <div class="trade-cart-sku-item-image-fallback"></div>
@@ -82,6 +83,9 @@
         {{/if}}
       </div>
       {{/if}}
+      {{!-- 单个商品底部 --}}
+      <div class="slot-cart slot-cart-item-info" data-slot-cart-item-info></div>
+
     {{#if (boolean data.priceType '===' 2)}}
       <span class="flash-sale" data-flash-sale-data="{{JSONstringify data}}" data-flash-sale-item-id="{{trade_cart_type}}{{append '-card-sku-item-' (numToString data.groupId) '-' data.spuId '-' data.skuId '-' (numToString data.priceType)}}"></span>
     {{/if}}
@@ -103,18 +107,22 @@
               <span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount={{data.salePrice}}>{{itemAt salePriceArr 0}}<sup
                   class="body6">{{ itemAt salePriceArr 1 }}</sup></span>
             {{/if}}
-            <span class="notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price {{cond (boolean data.priceType '===' 2) 'trade-cart-sku-item-info-amount-and-limited-discount' ''}}" data-amount={{data.price}}>{{itemAt priceArr 0}}
-              <sup class="body6">{{ itemAt priceArr 1 }}</sup>
+            <span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price {{cond (boolean data.priceType '===' 2) 'trade-cart-sku-item-info-amount-and-limited-discount' ''}}" data-amount={{data.price}}><span>{{itemAt priceArr 0}}
+              <sup class="body6">{{ itemAt priceArr 1 }}</sup></span>
               {{#if (toInt data.priceType) '==' 1}}
                 <span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>
               {{/if}}
+              {{!-- 实际价格右侧插槽 --}}
+              <span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>
             </span>
           {{else}}
             {{#if (toInt data.salePrice) '>' (toInt data.price)}}
               <span class="trade-cart-sku-item-info-amount-through notranslate" data-amount={{data.salePrice}}>{{currency_convert data.salePrice}}</span>
             {{/if}}
-            <span class="notranslate trade-cart-sku-item-info-amount-sale-price {{cond (boolean data.priceType '===' 2) 'trade-cart-sku-item-info-amount-and-limited-discount' ''}}" data-amount={{data.price}}>
+            <span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price {{cond (boolean data.priceType '===' 2) 'trade-cart-sku-item-info-amount-and-limited-discount' ''}}" data-amount={{data.price}}>
               {{currency_convert data.price}}{{#if (toInt data.priceType) '==' 1}}<span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>{{/if}}
+              {{!-- 实际价格右侧插槽 --}}
+              <span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>
             </span>
           {{/if}}
           
@@ -137,6 +145,8 @@
         {{/if}}
       </div>
     </div>
+    {{!-- 商品编辑底部插槽 --}}
+    <div class="slot-cart slot-cart-num-editor-end" data-slot-cart-num-editor-end></div>
       {{#if (or (compare (boolean data.businessFlag) '===' false ) (and data.businessFlag (boolean data.businessFlag.singleDelete '===' true )) )}}
         <div class="trade-cart-sku-item-remove">
           <button class="trade-cart-sku-item-remove-button body3 btn-link">{{t 'common.remove'}}</button>

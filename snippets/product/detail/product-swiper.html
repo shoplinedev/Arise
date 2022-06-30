@@ -178,13 +178,13 @@
                 </div>
               {{else}}
                 <div class="imageItem" style="padding-bottom: {{ append (default (get 'ratio' (img_size firstItem.resource)) 100) '%' }}" data-index="0">
-                  <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.resource width=1800 }}" alt="">
+                  <img  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.resource width=1800 }}" alt="{{ firstItem.alt }}">
                 </div>
               {{/if}}
             </div>
             <div class="product_pc_skuImage_flatten" style="display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
               {{#if coverImgObj.url}}
-                <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="">
+                <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}" >
               {{/if}}
             </div>
           </div>
@@ -224,7 +224,7 @@
       <div class="product_productImages_tile product-detail-empty-image {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">
         <div class="product_pc_skuImage_flatten" style="width: 100%; position:absolute; display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
           {{#if coverImgObj.url}}
-            <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="">
+            <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}">
           {{/if}}
         </div>
       </div>
@@ -269,12 +269,14 @@
                   {{/and}}
                   {{#if ../productImageScale }}
                     <div class="scaleImageIcon">
-                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <div class="scaleImageIconSvg">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="13" cy="12" r="7.5" />
 <path d="M18.5 17.5L23 22.5" stroke-linecap="round" />
 </svg>
 
-                    </div>  
+                      </div>
+                    </div>
                   {{/if}}
                 </div>
               </div>
@@ -303,11 +305,13 @@
                   {{/and}}
                   {{#if ../productImageScale }}
                     <div class="scaleImageIcon">
-                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <div class="scaleImageIconSvg">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="13" cy="12" r="7.5" />
 <path d="M18.5 17.5L23 22.5" stroke-linecap="round" />
 </svg>
 
+                      </div>
                     </div>  
                   {{/if}}
                 </div>
@@ -370,7 +374,7 @@
                 {{#if this.type '==' 'VIDEO'}}
                   <img class="lozad" data-sizes="auto" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
                 {{else}}
-                  <img class="lozad" data-sizes="auto" data-src="{{ this.resource }}" alt="">
+                  <img class="lozad" data-sizes="auto" data-src="{{ this.resource }}" alt="{{ this.alt }}">
                 {{/if}}
               </div>
             </div>

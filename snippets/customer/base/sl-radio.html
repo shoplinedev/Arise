@@ -1,0 +1,9 @@
+{{ assign 'checkedAttr' (cond checked 'checked' '')}}
+
+<label class="sl-radio__wrapper">
+  <span class="sl-radio">
+    <input type="radio" class="sl-radio__input" {{checkedAttr}} name={{name}} value={{value}}>
+    <span class="sl-radio__inner"></span>
+  </span>
+  {{ slot_content }}
+</label>

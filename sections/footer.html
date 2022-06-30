@@ -17,8 +17,8 @@
   {{assign 'footInlineClass' 'footer__block-social-container__center'}}
 {{/if}}
 
-<footer id="stage-footer" class="color-scheme-{{color_scheme}}">
-  <div class="footer__wrapper">
+<footer id="stage-footer" class="__sl-custom-track-stage-footer color-scheme-{{color_scheme}}">
+  <div class="footer__wrapper entry-line">
     <div class="footer__body container g-4 g-md-5">
       <div class="footer__block-container row row-cols-md-{{col}} {{#if col '===' 1}}footer__block-container--text-center{{/if}}">
         {{#with section as |section|}}
@@ -237,17 +237,30 @@
     {
       "type": "image",
       "icon": "image",
-      "name": "t:sections.footer.blocks.undefined.name",
+      "name": "t:sections.footer.blocks.image.name",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.footer.blocks.undefined.settings.image.label"
+          "label": "t:sections.footer.blocks.image.settings.image.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": {
+            "zh-hans-cn": "跳转链接",
+            "en": "URL",
+            "id": "lompat link",
+            "th": "ลิงก์กระโดดข้าม",
+            "vi": "Link chuyển đổi",
+            "ms": "Pautan lompat",
+            "zh-hant-tw": "跳轉鏈接"
+          }
         },
         {
           "id": "image_width",
           "type": "range",
-          "label": "t:sections.footer.blocks.undefined.settings.image_width.label",
+          "label": "t:sections.footer.blocks.image.settings.image_width.label",
           "min": 50,
           "max": 200,
           "step": 10,
@@ -257,19 +270,19 @@
         {
           "type": "select",
           "id": "align",
-          "label": "t:sections.footer.blocks.undefined.settings.align.label",
+          "label": "t:sections.footer.blocks.select.settings.align.label",
           "options": [
             {
               "value": "left",
-              "label": "t:sections.footer.blocks.undefined.settings.align.options__0.label"
+              "label": "t:sections.footer.blocks.select.settings.align.options__0.label"
             },
             {
               "value": "center",
-              "label": "t:sections.footer.blocks.undefined.settings.align.options__1.label"
+              "label": "t:sections.footer.blocks.select.settings.align.options__1.label"
             },
             {
               "value": "right",
-              "label": "t:sections.footer.blocks.undefined.settings.align.options__2.label"
+              "label": "t:sections.footer.blocks.select.settings.align.options__2.label"
             }
           ],
           "default": "center"

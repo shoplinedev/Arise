@@ -29,20 +29,127 @@
     "activity-price-limit": "El precio preferencial de este artículo solo admite comprar {{num}} piezas",
     "activity-product-limit": "Puedes comprar simultáneamente {{stock}} artículos de precio preferencial como máximo",
     "activity-title-limit": "Los siguientes artículos exceden la restricción de compra, ¿continúa pagando?",
+    "cart": {
+      "cancel": "Cancelar",
+      "confirm": "De acuerdo",
+      "continue": "Continuar",
+      "got_it": "Ya lo tengo",
+      "return_to_cart": "Volver al carrito"
+    },
     "checkout-error": "Hay al menos un artículo no disponible en el carrito. Ajusta los artículos en el carrito para procesar el pago.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Los siguientes artículos exceden la restricción de compra, ¿continúa pagando?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "Exclusión mutua del descuento por tiempo limitado y el código de cupón"
+    },
+    "discount": {
+      "coupon_code_amount": "Descuento de código de cupón",
+      "coupon_code_exceed_not_25_characters": "El código de cupón no puede exceder los 25 caracteres",
+      "coupon_invalid_for_the_shipping_method": "Código de cupón {{discountCode}} no está aplicable a la forma de logística actual",
+      "discount_code_invalid": "Los artículos en tu carrito no son aplicables al código de descuento {{discountCode}}",
+      "discount_codes_cannot_stack": "El producto ya tiene una promoción de venta, no se puede superponer con otras ofertas",
+      "enter_a_valid_discount_code": "Introduce un código de descuento válido",
+      "expected_discount": "Descuento estimado"
+    },
+    "discount_item": {
+      "buy_limit5": "Puedes comprar simultáneamente {{stock}} artículos de precio preferencial como máximo"
+    },
+    "discount_price": {
+      "buy_limit3": "El precio preferencial de este artículo solo admite comprar {{stock}} piezas"
+    },
     "get": "Obtener descuento",
     "go-shopping": "Ir de compras",
+    "item": {
+      "add_limit1": "Agrega hasta 100 artículos",
+      "add_limit2": "Se puede agregar hasta 999 artículos al carrito",
+      "removed": "Fuera de la estantería",
+      "sold_out": "Agotado"
+    },
     "login-description": "¿Ya eres usuario? ¡Inicia sesión para administrar de manera más conveniente los pedidos!",
     "login-membership": "Membresía gratuita",
     "most-100-sku": "Agrega hasta 100 artículos",
     "most-buy-999": "Se puede agregar hasta 999 artículos al carrito",
     "not-participation-offers": "No participar en la oferta",
+    "notices": {
+      "change_password_after_verification": "Puedes modificar la contraseña después de la verificación",
+      "excess_product": "Los siguientes artículos exceden la restricción de compra, modifica el número",
+      "insufficient_product_inventory": "Insuficiente inventario",
+      "network": "Error de la red",
+      "product_expired": "El artículo ha sido inválido",
+      "product_limit": "Ha excedido el límite del artículo",
+      "product_selected_invalid": "Perdón, el artículo que eligió es inválido para comprar. Elige de nuevo",
+      "store_nonexistent": "La tienda no existe"
+    },
+    "order": {
+      "authorized": "Autorizado",
+      "canceled": "Cancelado",
+      "canceled_order": "Cancelado",
+      "click_to_track": "Rastrea tu paquete clicando en el siguiente enlace:",
+      "deleted": "Eliminado",
+      "invalid_order_number": "número de pedido no válido",
+      "no_more_info": "No más información",
+      "pay_amount": "cantidad de pago",
+      "payment_voucher_confirmation": "Entiendo",
+      "receiver_account": "cuenta receptora",
+      "reference_number": "número de referencia",
+      "sequence": "No. {{id}}",
+      "shipping_address": "Dirección de envío",
+      "time": "Ordenado en:",
+      "total_amount": "{{transPackages}} artículo(s) en total",
+      "total_item_amount": "{{transPackages}} artículo(s) en total",
+      "try_again": "Subida fallida. Inténtalo de nuevo.",
+      "try_later": "el sistema está ocupado, inténtelo de nuevo más tarde.",
+      "upload_image_within_10_m_b": "Cargue imágenes JPG, PNG, GIF dentro de los 10 MB",
+      "upload_time": "tiempo de carga",
+      "voucher_amount_limit": "Solo puedes cargar hasta 5 cupones."
+    },
+    "payment": {
+      "channel": "Canal de pago",
+      "create_time": "Creado en",
+      "paid": "Pagado",
+      "partially_paid": "Reembolsado parcialmente",
+      "paying": "Pagando",
+      "payment_details": "Detalles del pago",
+      "reference_number": "Número de serie de pago",
+      "status": "Estado",
+      "subtotal_price": "Subtotal",
+      "sum": "Importe",
+      "total": "Total",
+      "unpaid": "No pagado",
+      "update_time": "Actualizado en"
+    },
+    "policy": {
+      "privacy_policy": "Política de privacidad"
+    },
+    "product-no-exists": "El artículo no existe",
+    "refund": {
+      "click_to_view": "Click para ver",
+      "custom_preview": "Vista previa personalizada"
+    },
     "render-add-items": "Su carrito está vacío.",
     "render-empty-status": "No hay artículos en tu carrito",
+    "shipping": {
+      "no_info": "Actualmente no hay información de envío, consulta más tarde.",
+      "package_tracking": "Rastreo de paquete",
+      "partially_shipped": "Enviado parcialmente",
+      "preparing_order": "Preparando los artículos",
+      "shipped_order": "Enviado"
+    },
     "shopping-fees": "Tarifa de compra",
     "shopping-money": "Los impuestos y los costos de envío se calcularán en el siguiente paso",
     "shopping-money-step": "Los impuestos y los costos de envío se calcularán en el siguiente paso",
+    "shpping": {
+      "service_terms": "Términos de Servicios"
+    },
     "stock-limit": "Queda {{stock}} artículo(s)",
+    "taxIncluded": {
+      "textTag": "Impuesto incluido"
+    },
+    "tips": {
+      "change_binding_after_verification": "Puedes vincular/cambiar {{value}} después de la verificación",
+      "reset_password": "Estás restableciendo la contraseña para la cuenta {{account}}"
+    },
     "view-link": "Click para ver",
     "view-pic": "Vista previa personalizada",
     "view-shopping-cart": "Ver el carrito",
@@ -50,9 +157,12 @@
     "cart-subtotal": "Suma total en el carrito",
     "view-cart": "Ver el carrito"
   },
+  "cascade": {
+    "choose": "Please select an option"
+  },
   "checkout": {
     "delivery-method": {
-      "store-pickup": "Levantar"
+      "store-pickup": "Recoger"
     },
     "info-preview": {
       "store-pickup__info": "Recogida en la tienda • {{locationName}} • Gratis",
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Gracias por comunicarte con nosotros, te responderemos lo antes posible"
   },
+  "customer": {
+    "account": {
+      "add-email": "Agregar correo de electrónico",
+      "add-phone": "Agregar número de teléfono",
+      "deadline": "A efectos de informes comerciales, su pedido seguirá siendo visible. Los datos de su cuenta se eliminarán a {{time}} y puede cancelar este proceso antes de esta fecha",
+      "gender_female": "Femenino",
+      "gender_male": "Masculino",
+      "gender_secret": "Mantener secreto",
+      "not_set": "No configurado",
+      "reset_password_error_hint": "Primero vincula el correo electrónico o el teléfono móvil",
+      "verify_email_message": "Necesitamos verificar su identidad antes de que pueda cancelar su cuenta.Su dirección de correo electrónico {{email}} recibirá un código de verificación",
+      "verify_phone_message": "Necesitamos verificar su identidad antes de que pueda cancelar su cuenta.Su teléfono móvil {{phone}} recibirá un mensaje de texto de verificación"
+    },
+    "address": {
+      "add_address": "Agregar nueva dirección",
+      "common_max": "¡Menos de {{max}} caracteres!",
+      "common_min": "¡Mas que {{min}} caracteres!",
+      "edit_last_name_hint": "¡Introduce tu apellido!",
+      "edit_phone_hint": "¡Introduce tu número de celular!",
+      "mobile-errorMessage": "Introduce un número de celular válido",
+      "no_adress_data": "Actualmente no hay dirección de envío"
+    },
+    "common": {
+      "back-to-user-center": "Volver al centro de usuarios",
+      "cancel": "Cancelar",
+      "confirm": "De acuerdo",
+      "email": "Correo electrónico",
+      "email2": "E-mail",
+      "enter-email": "Por favor, introduce tu correo electrónico",
+      "enter-mobile-phone": "Por favor, introduce tu número de celular",
+      "member-login": "Acceso con miembro",
+      "mobile": "Teléfono móvil",
+      "mobile-phone": "Número de celular"
+    },
+    "email": {
+      "mail_common": "E-mail"
+    },
+    "general": {
+      "apr": "Abr",
+      "april": "Abril",
+      "aug": "Ago",
+      "august": "Agosto",
+      "bind_success": "Vinculado",
+      "cancel_mobile_button": "Cancelar",
+      "clear_button": "Limpiar",
+      "confirm_button": "De acuerdo",
+      "date_format": "dd/MM/yyyy",
+      "dec": "Dic",
+      "december": "Diciembre",
+      "email_empty_hint": "Por favor, introduce tu correo electrónico",
+      "email_error_hint": "Por favor introduce un correo electrónico de formato correcto y con menos de 50 caracteres",
+      "enter_verification_code": "Por favor introduce el código de verificación",
+      "error_message_1001": "Contraseña incorrecta",
+      "error_message_1002": "El usuario no existe",
+      "error_message_1003": "Tu cuenta ha sido inhabilitada debido a una excepción, comunícate con el vendedor para levantar la prohibición",
+      "error_message_1004": "Ha intentado demasiadas veces, inténtelo más tarde",
+      "error_message_1005": "El código de verificación ha caducado",
+      "error_message_1006": "Error del código de verificación",
+      "error_message_1007": "El código de verificación ha sido utilizado demasiadas veces, obtenga un nuevo código de verificación",
+      "error_message_1008": "No está configurado el acceso al canal de terceros",
+      "error_message_1009": "No se puede verificar la tercera parte",
+      "error_message_1010": "No se puede enviar",
+      "error_message_1011": "Cuenta no activada",
+      "error_message_1012": "Error de servicio",
+      "error_message_1013": "Error de servicio",
+      "error_message_1014": "No se puede verificar el código de verificación",
+      "error_message_1015": "Verifique el código de verificación dinámico",
+      "error_message_1016": "Error de servicio",
+      "error_message_1017": "Esta cuenta está en riesgo",
+      "error_message_1018": "El correo electrónico está conectado",
+      "error_message_1020": "Tiempo de acceso expirado",
+      "error_message_1021": "Tiempo de acceso expirado",
+      "error_message_1022": "La cuenta está vinculada",
+      "error_message_1023": "Error de servicio",
+      "error_message_1024": "Error de servicio",
+      "error_message_2": "Error de servicio",
+      "error_message_2001": "El número de celular ha sido registrado",
+      "error_message_2002": "El correo electrónico ha sido registrado",
+      "error_message_2003": "Demasiadas veces de verificación",
+      "error_message_2004": "El código de verificación ha caducado",
+      "error_message_2005": "Error del código de verificación",
+      "error_message_2006": "Demasiadas veces de verificación, obtén otro código de verificación",
+      "error_message_2007": "Error de servicio, inténtelo más tarde",
+      "error_message_2016": "La cuenta está en riesgo",
+      "error_message_3": "Error de servicio",
+      "error_message_3001": "Error de servicio, inténtelo más tarde",
+      "error_message_3002": "El usuario que no ha vinculado su teléfono/correo electrónico intenta modificar la contraseña",
+      "error_message_3003": "Demasiadas veces de verificación",
+      "error_message_3004": "El código de verificación ha caducado",
+      "error_message_3005": "Error del código de verificación",
+      "error_message_3006": "Demasiadas veces de verificación, obtén otro código de verificación",
+      "error_message_3007": "El número de celular no existe",
+      "error_message_3008": "El correo electrónico no existe",
+      "error_message_3009": "El número de celular ha sido vinculado por otra cuenta",
+      "error_message_3010": "El correo electrónico ha sido vinculado por otra cuenta",
+      "error_message_3014": "Error al enviar el código",
+      "error_message_4": "Error de servicio",
+      "error_message_5": "Error de servicio",
+      "error_message_6": "Error de servicio",
+      "feb": "Feb",
+      "february": "Febrero",
+      "first_day": "1",
+      "fr": "Vi",
+      "fri": "Vie",
+      "friday": "Viernes",
+      "image_size_less_than_tips": "Las imágenes deben tener un tamaño inferior a {{max}} MB",
+      "jan": "Ene",
+      "january": "Enero",
+      "jul": "Jul",
+      "july": "Julio",
+      "jun": "Jun",
+      "june": "Junio",
+      "mar": "Mar",
+      "march": "Marzo",
+      "max_image_upload_tips": "Puede cargar un máximo de {{max}} imágenes",
+      "may": "Mayo",
+      "may_short": "May",
+      "mo": "Lu",
+      "mon": "Lun",
+      "monday": "Lunes",
+      "network_error_message": "Sin red",
+      "nov": "Nov",
+      "november": "Noviembre",
+      "oct": "Oct",
+      "october": "Octubre",
+      "okay_common": "De acuerdo",
+      "password_empty_hint": "Por favor introduce la contraseña",
+      "phone_empty_message": "Por favor, introduce tu número de celular",
+      "phone_error_message": "Por favor introduce un número de celular de formato correcto",
+      "phone_number_error_message": "Introduce un número de celular válido",
+      "repeat_passport_error": "Las dos contraseñas introducidas no son consistentes",
+      "resend": "Reenviar",
+      "sa": "Sa",
+      "sat": "Sab",
+      "saturday": "Sábado",
+      "select__date": "Selecciona la fecha",
+      "send": "Enviar",
+      "send_error": "Primero envía el código de verificación",
+      "send_verification_code_hint": "Introduce otra vez la contraseña",
+      "sep": "Sep",
+      "september": "Septiembre",
+      "set_password": "Por favor configura la contraseña de 6 a 18 caracteres",
+      "su": "Do",
+      "sun": "Dom",
+      "sunday": "Domingo",
+      "th": "Ju",
+      "thu": "Jue",
+      "thursday": "Jueves",
+      "time_format": "hh:mm aa",
+      "today": "Hoy",
+      "tu": "Ma",
+      "tue": "Mar",
+      "tuesday": "Martes",
+      "user_agreement_tip": "Por favor lee y acepta los Términos del Usuario",
+      "username_empty_hint": "Por favor introduce el correo electrónico y el número de celular",
+      "verification_code_sent_tip": "Se ha enviado el código de verificación a tu cuenta",
+      "we": "Mi",
+      "wed": "Mie",
+      "wednesday": "Miércoles"
+    },
+    "network-err-msg": "Sin red",
+    "phone": {
+      "mobile_common": "Teléfono móvil"
+    },
+    "subscription": {
+      "unsubscribe_success": "Se ha cancelado la suscripción, redirigirá pronto a la página de inicio"
+    },
+    "tips": {
+      "and": "y",
+      "bind-change-email": "Vincular/Cambiar el correo electrónico",
+      "bind-change-mobile-phone-number": "Vincular/Cambiar el número de celular",
+      "bind-success": "Vinculado",
+      "change-binding-after-verification": "Puedes vincular/cambiar {{value}} después de la verificación",
+      "continue-as-a-guest": "Continúa accediendo como visitante",
+      "forget-password": "Olvidar la contraseña",
+      "i-agree-with-the-shop": "Estoy de acuerdo con",
+      "login": "Iniciar sesión",
+      "or-use-the-following-method-to-log-in": "O inicias sesión con los siguientes métodos",
+      "password-can-be-changed-after-verification": "Puedes modificar la contraseña después de la verificación",
+      "please-read-and-agree-to-the-user-agreement-first": "Por favor lee y acepta los Términos del Usuario",
+      "poroceed-to-checkout": "Proceder al pago",
+      "register": "Registrarse",
+      "reset-password": "Estás restableciendo la contraseña para la cuenta {{account}}",
+      "set-new-password": "Restablecer la contraseña",
+      "update-password": "Modificar la contraseña",
+      "update-success": "Modificado",
+      "verification-code-has-been-sent-to-your-account": "Se ha enviado el código de verificación a tu cuenta",
+      "verify-account-to-reset-password": "Verifica tu cuenta para restablecer la contraseña"
+    },
+    "trade": {
+      "go-login": "Ir a iniciar sesión"
+    },
+    "unsubscribe": {
+      "btn": "Darse de baja",
+      "reason": {
+        "other": {
+          "length": "Introducir hasta 300 palabras",
+          "placeholder": "Introducir contenido"
+        }
+      },
+      "reason1": "No deseo recibir estos correos",
+      "reason2": "He recibido demasiados correos",
+      "reason3": "No me he suscrito a estos correos",
+      "reason4": "Los contenidos de email no tienen nada que ver conmigo",
+      "reason5": "Los contenidos de email son demasiado largos",
+      "reason6": "Otros",
+      "subtitle": "¡Lamentamos verlo partir! Cuéntenos por qué canceló la suscripción:",
+      "success": "Se ha cancelado la suscripción, redirigirá pronto a la página de inicio",
+      "title": "Darse de baja"
+    }
+  },
   "footer": {
     "copyright": "Todos los derechos reservados",
     "followus": "Síguenos",
@@ -221,9 +542,24 @@
       "title": "Valoramos su privacidad"
     }
   },
+  "general": {
+    "404": {
+      "button": "Continúa comprando",
+      "subtext": "La página que está buscando no existe",
+      "title": "404 página no encontrada"
+    },
+    "general": {
+      "accept": "Aceptar",
+      "decline": "Rechazar",
+      "link": "Política de Privacidad",
+      "tips": "Para brindarle mejor experiencia, utilizamos cookies para recordar su estado de inicio de sesión, recopilar datos estadísticos y ofrecerle los contenidos interesados. Haga clic en “Aceptar” para permitir el uso de cookies. O consulte nuestra “Política de Privacidad”. ",
+      "title": "Valoramos su privacidad"
+    }
+  },
   "header": {
     "cart": "Carrito",
     "center": "Centro",
+    "emptyPlaceholder": "",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "navItemAll": "Todo",
@@ -347,7 +683,7 @@
           "title": "Pago pendiente"
         },
         "pedding": {
-          "desc": "Tu solicitud de pago se ha enviado, esperando que {{- payChannelDesc}} devuelva el resultado de pago",
+          "desc": "Tu solicitud de pago se ha enviado, esperando que {{payChannelDesc}} devuelva el resultado de pago",
           "title": "Pagando..."
         },
         "pickedUp": {
@@ -365,6 +701,25 @@
         "success": {
           "desc": "La información del pedido se ha enviado a {{buyerContact}}, por favor nota",
           "title": "Tu pedido ha sido confirmado"
+        }
+      },
+      "orderstatus": {
+        "PayAmount": "cantidad de pago",
+        "ReceiverAccount": "cuenta receptora",
+        "ReferenceNumber": "número de referencia",
+        "UploadTime": "tiempo de carga",
+        "action": {
+          "UploadVoucher": "Subir cupón"
+        },
+        "feedback": {
+          "CountLimit": "Solo puedes cargar hasta 5 cupones.",
+          "InvalidOrderNumber": "número de pedido no válido",
+          "SizeLimte": "Cargue imágenes JPG, PNG, GIF dentro de los 10 MB",
+          "SystemBusy": "el sistema está ocupado, inténtelo de nuevo más tarde.",
+          "UploadFail": "Subida fallida. Inténtalo de nuevo."
+        },
+        "notice": {
+          "UploadVoucher": "Cargue el comprobante de la transferencia bancaria y lo confirmaremos."
         }
       },
       "packages": {
@@ -428,9 +783,24 @@
         "subscriptions-title": "Suscríbete",
         "title": "Información",
         "unshipped-order-num": "Procesando ({{num}} artículos)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "Pago transferido con éxito",
+          "WaittingforPayment": "A la espera del pago"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "Entiendo"
+          }
+        }
+      },
+      "taxFee": "Impuesto"
     },
     "help-tips": "¿Necesitas ayuda? Ponte en contacto con nosotros: {{email}}",
+    "includeTax": {
+      "totalLine": "Incluyendo {{price}} en impuestos"
+    },
     "oms-status": {
       "arrived": "Llegado",
       "cancelled": "Cancelar el envío",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Anulado",
       "already-paid": "Pagado",
+      "authorized": "Autorizado",
       "failed": "Pago fallido",
       "partial-payment": "Reembolsado parcialmente",
       "partial-refund": "Reembolsado parcialmente",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "No hay información de métodos de envío y pago",
     "no-product-introduction": "No hay presentación del artículo ahora",
     "previewLinkToast": "No se admite la operación para la previsualización de URL.",
+    "productTax": "impuesto incluido",
     "recentlyViewedProducts": "Artículos que has visto",
     "recommendTitle": "Quizá también te gusten",
+    "skuLoadingTips": "Cargando información de la variante, por favor espere...",
     "tabPanel": {
       "comments": {
         "empty": "No hay reseña del artículo ahora",
@@ -588,13 +961,14 @@
     "all": {
       "h1Title": "Artículos"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "No hay artículo en esta categoría",
         "description": "En caso necesario, contacta con el vendedor para consultar",
         "title": "Perdón, no hay artículo ahora"
       },
-      "from": "De {{price}}",
+      "from": "Desde {{price}}",
       "listItem": {
         "addToCart": "Agregar al carrito",
         "off": "- {{value}}%",
@@ -677,6 +1051,35 @@
     "sortName": "Ordenado por::",
     "title": "Buscar"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Añadir fotos",
+      "didnot_bought_cannot_reviewed": "Perdón, no compraste este artículo, por lo tanto no puedes publicar reseña",
+      "didnot_bought_sign_in_first": "Los usuarios que compraron este artículo pueden valorar, inicia sesión primero",
+      "enter_at_least_one_character": "Por favor ingrese al menos 1 texto",
+      "error_submit_again": "Surge algún problema en el sistema, trata de presentar de nuevo",
+      "first_review": "ven a publicar la primera reseña",
+      "image_uploading": "Subiendo imagen, envía más tarde",
+      "maximum_image_quantity": "Se puede añadir hasta {{total}} fotos",
+      "maximum_image_size": "{{size}}M como máximo para el tamaño de imagen",
+      "no_review": "No hay reseñas ahora",
+      "only_supports__image_format": "Solo admite imágenes de formato de .jpg .jpeg .png .bmp",
+      "ratings": "Calificación",
+      "sign_in": "Ir a iniciar sesión",
+      "submit": "Enviar",
+      "thanks_for_your_review": "Gracias por tu reseña",
+      "write_a_review": "Publicar reseña",
+      "write_a_review_for_the_product": "Introduce tu opinión sobre el artículo"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "El precio preferencial de este artículo solo admite comprar {{num}} piezas",
+      "activity_toast_product__limit": "Puedes comprar simultáneamente {{stock}} artículos de precio preferencial como máximo",
+      "activity_toast_title__limit": "Los siguientes artículos exceden la restricción de compra",
+      "go_to_amazon_by_link": "Comprar en Amazon",
+      "go_to_rakuten_by_link": "Comprar en LOTTE",
+      "go_to_yahoo_by_link": "Comprar en Yahoo"
+    }
+  },
   "promotion": {
     "activity-benefit": "Ofertas del evento",
     "activity-introduction": "Presentación del evento",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "Ahorrará <italic>{{content}}</italic> al comprar <italic>{{condition}}</italic> artículos"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "Un ahorro de {{offPercent}}%",
+            "unlocked": "¡Un ahorro de {{offPercent}}% desbloqueado!"
+          },
+          "free": {
+            "locked": "Artículo gratuito",
+            "unlocked": "¡Artículo gratuito desbloqueado!"
+          },
+          "unlocked": {
+            "tip": "Ahora puede disfrutar de una oferta en los artículos"
+          }
+        },
+        "threshold": "Comprar {{threshold}}"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}} de descuento",
+      "copySuccessText": "Se ha copiado con éxito el código de cupón",
+      "copyText": "Copiar",
+      "freeShipping": "Envío gratuito",
+      "threshold": "Pedido más de {{threshold}}"
+    },
+    "autoCoupon": {
+      "shopMore": "Comprar más"
+    },
     "bundle": {
       "saveTip": "Ahorrará {{amount}} al comprar juntos",
       "title": "Los clientes que compraron este artículo también compraron"
     },
     "customer-purchase-limit": "Límite de compra {{count}} por persona",
     "customer-purchase-limit-each-item": "Limitación de compra de {{count}} piezas por persona y modelo",
+    "discount-coupon-banner": {
+      "getCode": "Obtener cupón"
+    },
     "discount-coupon": {
       "applied": "Aplicado",
       "apply": "Aplicar",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "A la venta",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "Compra {{threshold}} artículos adicionales, disfruta gratis de uno de los artículos",
+        "b11_t1_s1_normal": "Compra {{threshold}} artículos adicionales, obtén {{willSave}} de reducción en uno de los artículos",
+        "b11_t1_s2_free": "¡Felicidades! Uno de los artículos ha sido gratuito",
+        "b11_t1_s2_next_free": "¡Felicidades! Se ha reducido {{saved}}, {{br}}compra {{threshold}} artículos adicionales, disfruta gratis de uno de los artículos",
+        "b11_t1_s2_normal": "¡Felicidades! Se ha reducido {{saved}}, {{br}}compra {{threshold}} artículos adicionales, obtén {{willSave}} de reducción en uno de los artículos",
+        "b11_t1_s3_free": "¡Felicidades! Uno de los artículos ha sido gratuito",
+        "b11_t1_s3_normal": "¡Felicidades! Se ha reducido {{saved}} en uno de los artículos",
+        "b1_t0_s1": "Ahorrará {{willSave}} al comprar {{threshold}} o más",
+        "b1_t0_s2": "¡Ha ahorrado {{saved}}! {{br}}Ahorrará {{willSave}} al comprar {{threshold}} más",
+        "b1_t0_s3": "¡Felicidades! ¡Has ahorrado {{saved}}!",
+        "b1_t1_s1": "Ahorrará {{willSave}} al comprar más de {{threshold}} artículos",
+        "b1_t1_s2": "¡Ha ahorrado {{saved}}! {{br}}Ahorrará {{willSave}} al comprar más de {{threshold}} artículos adicionales",
+        "b1_t1_s3": "¡Felicidades! ¡Has ahorrado {{saved}}!",
+        "b2_t0_s1": "Ahorrará {{willSave}} al comprar {{threshold}} o más",
+        "b2_t0_s2": "¡Ha ahorrado {{saved}}! {{br}}Ahorrará {{willSave}} al comprar {{threshold}} más",
+        "b2_t0_s3": "¡Felicidades! ¡Has ahorrado {{saved}}!",
+        "b2_t1_s1": "Ahorrará {{willSave}} al comprar más de {{threshold}} artículos",
+        "b2_t1_s2": "¡Ha ahorrado {{saved}}! {{br}}Ahorrará {{willSave}} al comprar más de {{threshold}} artículos adicionales",
+        "b2_t1_s3": "¡Felicidades! ¡Has ahorrado {{saved}}!",
+        "b3_t0_s1_unlimited": "Comprar {{threshold}} más, disfrutará de <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Envío gratis</span>!",
+        "b3_t0_s1_upper_limit": "Comprar {{threshold}} más, disfrutará de <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Envío gratis</span>! (Importe máximo para envío gratuito {{upperLimit}})",
+        "b3_t0_s3_unlimited": "¡Felicidades! Ha obtenido <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Envío gratis</span>!",
+        "b3_t0_s3_upper_limit": "¡Felicidades! Ha obtenido <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Envío gratis</span>! (Importe máximo para envío gratuito {{upperLimit}})",
+        "b3_t1_s1_unlimited": "Comprar {{threshold}} piezas más, disfrutar de <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Envío gratis</span>!",
+        "b3_t1_s1_upper_limit": "Comprar {{threshold}} piezas más, disfrutar de <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Envío gratis</span>! (Importe máximo para envío gratuito {{upperLimit}})",
+        "b3_t1_s3_unlimited": "¡Felicidades! Ha obtenido <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Envío gratis</span>!",
+        "b3_t1_s3_upper_limit": "¡Felicidades! Ha obtenido <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Envío gratis</span>! (Importe máximo para envío gratuito {{upperLimit}})",
+        "b9_t1_s1": "Compra {{threshold}} piezas más, {{willSave}} piezas serán gratuitas",
+        "b9_t1_s2": "¡Felicidades! ¡Las {{saved}} piezas son gratuitas! Compra {{threshold}} piezas más, {{willSave}} piezas serán gratuitas",
+        "b9_t1_s3": "¡Felicidades! ¡Las {{saved}} piezas han sido gratuitas!"
+      },
+      "discount_tag": {
+        "b11_t1_free": "Compra {{threshold}} artículos, disfruta gratis de uno de los artículos",
+        "b11_t1_normal": "Compra {{threshold}} artículos, obtén {{save}} de reducción en uno de los artículos",
+        "b1_t0": "Ahorrará {{save}} al comprar {{threshold}}",
+        "b1_t1": "Ahorrará {{save}} al comprar {{threshold}} artículos",
+        "b2_t0": "Ahorrará {{save}} al comprar {{threshold}}",
+        "b2_t1": "Ahorrará {{save}} al comprar {{threshold}} artículos"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "¡Felicidades! Uno de los artículos ha sido gratuito",
               "normal": "¡Felicidades! Se ha reducido {{saved}} en uno de los artículos"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Felicidades, puede disfrutar de {{benefitCount}} artículos GRATIS",
+                "normal": "Felicidades, puede disfrutar de un ahorro de {{willSave}} por {{benefitCount}} artículos"
+              },
+              "free": "Compra {{threshold}}, disfruta de {{benefitCount}} artículos GRATIS",
+              "normal": "Compra {{threshold}}, disfruta de un ahorro de {{willSave}} por {{benefitCount}} artículos"
+            },
+            "step3": {
+              "free": "¡Felicidades! ¡Obtiene {{benefitCount}} piezas de estos artículos GRATIS!",
+              "normal": "¡Felicidades! ¡Obtiene un ahorro de {{saved}} por {{benefitCount}} piezas de estos artículos!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Felicidades, puede disfrutar de {{benefitCount}} artículos GRATIS",
+                "normal": "Felicidades, puede disfrutar de un ahorro de {{willSave}} por {{benefitCount}} artículos"
+              },
+              "free": "Compra {{threshold}}, disfruta de {{benefitCount}} artículos GRATIS",
+              "normal": "Compra {{threshold}} artículos, disfruta de un ahorro de {{willSave}} por {{benefitCount}} artículos"
+            },
+            "step3": {
+              "free": "¡Felicidades! ¡Obtiene {{benefitCount}} piezas de estos artículos GRATIS!",
+              "normal": "¡Felicidades! ¡Obtiene un ahorro de {{saved}} por {{benefitCount}} piezas de estos artículos!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Método de pago",
     "pay-way-logo-and-more": "Más",
     "payment-security-description": "Todas las transacciones son seguras y encriptadas",
+    "payments-name": {
+      "COD": "Pago contra entrega",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "Tarjeta de crédito"
+    },
     "pic-upload-fail": "No se pudieron cargar la imagen {{name}}",
     "pick-address": "Dirección de recogida",
     "please-choose-area": "Por favor, elige una región",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "Los artículos están agotados",
     "product-tax": "Impuesto sobre el consumo",
     "quantity": "Cantidad",
+    "receiver-info": "Dirección de envío",
     "recieve-address-unavailable-rechoose": "No hay disponible método de envío para la dirección del destinatario, regresa a elegir de nuevo",
     "reciever-fullname": "Nombre del destinatario",
     "reciever-info": "Información del destinatario",
@@ -1223,12 +1734,30 @@
     "user-cancel-apply": "El usuario revocó la solicitud",
     "will-discount": "Descuento estimado",
     "wrong-product": "Artículo equivocado",
-    "you-are-paying-wait-result": "Tu solicitud de pago se ha enviado, esperando que {{- payChannel}} devuelva el resultado de pago",
+    "you-are-paying-wait-result": "Tu solicitud de pago se ha enviado, esperando que {{payChannel}} devuelva el resultado de pago",
     "your-apply-auditing-sure-backout": "Tu solicitud de devolución está en revisión, ¿estás seguro de que deseas revocar la solicitud?",
     "your-delivery-need-choose-store": "La información de la tienda es necesaria para el método de envío elegido",
     "your-order-created": "Tu pedido ha sido ordenado",
     "your-order-not-pay": "No has completado el pago por tu pedido",
     "your-refund-order-created": "Se ha realizado tu pedido de devolución"
+  },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "El código de cupón no puede exceder los 25 caracteres",
+      "coupon_invalid_for_the_shipping_method": "Código de cupón {{discountCode}} no está aplicable a la forma de logística actual",
+      "discount_code_invalid": "Los artículos en tu carrito no son aplicables al código de descuento {{discountCode}}",
+      "discount_codes_cannot_stack": "El producto ya tiene una promoción de venta, no se puede superponer con otras ofertas",
+      "discounts_cannot_stack": "Exclusión mutua del descuento por tiempo limitado y el código de cupón",
+      "enter_a_valid_discount_code": "Introduce un código de descuento válido",
+      "free_shipping": "Envío gratis",
+      "order_seller_discount": "Descuento personalizado por el vendedor",
+      "order_tax": "Impuesto",
+      "order_tip": "Propina",
+      "payment_subtotal_cost": "Subtotal",
+      "point_discount": "Descuento de puntos",
+      "shipping_fee": "Costo de envío",
+      "trade_coupon_discount": "Cupón"
+    }
   },
   "user": {
     "account": "CUENTA",
@@ -1259,31 +1788,43 @@
     "signUp": "Registrarse",
     "subscription-text": "Registra el correo electrónico para obtener actualizaciones, promociones exclusivas y otra información",
     "udbResponse": {
-      "err-1": "Falta de parámetros",
-      "err-13": "Sesión expirada",
-      "err-4": "Parámetros inválidos",
-      "err-5": "Operación ilegal",
-      "err-999": "Error del sistema",
+      "err-1": "Error de servicio",
+      "err-13": "Error de servicio",
+      "err-4": "Error de servicio",
+      "err-5": "Error de servicio",
+      "err-999": "Error de servicio",
       "err1001": "Contraseña incorrecta",
       "err1002": "El usuario no existe",
       "err1003": "Tu cuenta ha sido inhabilitada debido a una excepción, comunícate con el vendedor para levantar la prohibición",
-      "err1004": "No trates con tanta frecuencia",
+      "err1004": "Ha intentado demasiadas veces, inténtelo más tarde",
       "err1005": "El código de verificación ha caducado",
       "err1006": "Error del código de verificación",
-      "err1007": "Demasiadas veces de verificación",
-      "err1008": "No se ha configurado ningún canal de terceros",
-      "err1009": "Error de la verificación de terceros",
-      "err1010": "Error al enviar el código",
-      "err1017": "La cuenta está en riesgo",
+      "err1007": "El código de verificación ha sido utilizado demasiadas veces, obtenga un nuevo código de verificación",
+      "err1008": "No está configurado el acceso al canal de terceros",
+      "err1009": "No se puede verificar la tercera parte",
+      "err1010": "No se puede enviar",
+      "err1011": "Cuenta no activada",
+      "err1012": "Error de servicio",
+      "err1013": "Error de servicio",
+      "err1014": "No se puede verificar el código de verificación",
+      "err1015": "Verifique el código de verificación dinámico",
+      "err1016": "Error de servicio",
+      "err1017": "Esta cuenta está en riesgo",
+      "err1018": "El correo electrónico está conectado",
+      "err1020": "Tiempo de acceso expirado",
+      "err1021": "Tiempo de acceso expirado",
+      "err1022": "La cuenta está vinculada",
+      "err1023": "Error de servicio",
+      "err1024": "Error de servicio",
       "err2001": "El número de celular ha sido registrado",
       "err2002": "El correo electrónico ha sido registrado",
       "err2003": "Demasiadas veces de verificación",
       "err2004": "El código de verificación ha caducado",
       "err2005": "Error del código de verificación",
       "err2006": "Demasiadas veces de verificación, obtén otro código de verificación",
-      "err2007": "Error al enviar el código",
+      "err2007": "Error de servicio, inténtelo más tarde",
       "err2016": "La cuenta está en riesgo",
-      "err3001": "Cookie inválido",
+      "err3001": "Error de servicio, inténtelo más tarde",
       "err3002": "El usuario que no ha vinculado su teléfono/correo electrónico intenta modificar la contraseña",
       "err3003": "Demasiadas veces de verificación",
       "err3004": "El código de verificación ha caducado",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Vincular la cuenta",
-      "account-info": "Información de la cuenta",
+      "account-info": "Cuenta",
       "account-subscription-email": "Enviar al correo electrónico",
       "account-subscription-line": "Enviar a LINE",
       "account-subscription-messenger": "Enviar a Messenger",
@@ -1310,7 +1851,9 @@
       "bind": "Vincular",
       "change-password": "Modificar la contraseña",
       "email": "Correo electrónico",
+      "firstName": "Nombre",
       "general-member": "Miembro general",
+      "lastName": "Apellido",
       "member-level": "Nivel de membresía",
       "memberLevelCom": {
         "defaultLevel": "Miembro general",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "Modificar el correo electrónico",
       "modify-phone": "Teléfono móvil",
+      "nicknameEmptyError": "El nombre y el apellido no pueden estar vacíos",
+      "notSet": "No configurado",
       "password": "Contraseña",
       "phone": "Teléfono móvil",
       "reset-password-error": "Primero vincula el correo electrónico o el teléfono móvil",
       "subscription-notification": "Notificación de suscripción",
       "unsubscribed": "Ha cancelado la suscripción",
-      "username": "Nombre de usuario",
-      "username-message": "¡Introduce tu nombre de usuario!",
-      "username-placeholder": "Introduce tu nombre de usuario"
+      "username": "Nombre",
+      "username-message": "Ingrese su nombre",
+      "username-placeholder": "Ingrese su nombre"
     },
     "address": {
       "add": "Agregar nueva dirección",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Artículos comprados",
     "cancel": "Cancelar",
+    "datePicker": {
+      "mobile": {
+        "cancel": "Cancelar",
+        "confirm": "De acuerdo",
+        "title": "Selecciona la fecha"
+      },
+      "pc": {
+        "clear": "Limpiar",
+        "dateFormat": "dd/MM/yyyy",
+        "days0": "Domingo",
+        "days1": "Lunes",
+        "days2": "Martes",
+        "days3": "Miércoles",
+        "days4": "Jueves",
+        "days5": "Viernes",
+        "days6": "Sábado",
+        "daysMin0": "Do",
+        "daysMin1": "Lu",
+        "daysMin2": "Ma",
+        "daysMin3": "Mi",
+        "daysMin4": "Ju",
+        "daysMin5": "Vi",
+        "daysMin6": "Sa",
+        "daysShort0": "Dom",
+        "daysShort1": "Lun",
+        "daysShort2": "Mar",
+        "daysShort3": "Mie",
+        "daysShort4": "Jue",
+        "daysShort5": "Vie",
+        "daysShort6": "Sab",
+        "firstDay": "1",
+        "months0": "Enero",
+        "months1": "Febrero",
+        "months10": "Noviembre",
+        "months11": "Diciembre",
+        "months2": "Marzo",
+        "months3": "Abril",
+        "months4": "Mayo",
+        "months5": "Junio",
+        "months6": "Julio",
+        "months7": "Agosto",
+        "months8": "Septiembre",
+        "months9": "Octubre",
+        "monthsShort0": "Ene",
+        "monthsShort1": "Feb",
+        "monthsShort10": "Nov",
+        "monthsShort11": "Dic",
+        "monthsShort2": "Mar",
+        "monthsShort3": "Abr",
+        "monthsShort4": "May",
+        "monthsShort5": "Jun",
+        "monthsShort6": "Jul",
+        "monthsShort7": "Ago",
+        "monthsShort8": "Sep",
+        "monthsShort9": "Oct",
+        "timeFormat": "hh:mm aa",
+        "today": "Hoy"
+      }
+    },
+    "deleteAccount": {
+      "address": "Dirección",
+      "card": "Número de tarjeta de crédito",
+      "deadline": "A efectos de informes comerciales, su pedido seguirá siendo visible. Los datos de su cuenta se eliminarán a {{time}} y puede cancelar este proceso antes de esta fecha",
+      "email": "Email",
+      "ip": "Dirección IP",
+      "name": "Nombre",
+      "nextStep": "Siguiente paso",
+      "notify": "Puede solicitar la cancelación de esta cuenta. Una vez cancelada la cuenta, se borrará toda la información utilizada para identificarla, incluyendo:",
+      "revoke": "Anular la cancelación",
+      "revokeMessage": "La cuenta está en proceso de cancelación, los datos de la cuenta se borrarán a {{time}} y puede revocar este proceso de cancelación antes de esta fecha",
+      "timeout": "Operación expirada, verifique de nuevo",
+      "title": "Cancelar cuenta",
+      "verifyEmailMessage": "Necesitamos verificar su identidad antes de que pueda cancelar su cuenta.Su dirección de correo electrónico {{email}} recibirá un código de verificación",
+      "verifyPhoneMessage": "Necesitamos verificar su identidad antes de que pueda cancelar su cuenta.Su teléfono móvil {{phone}} recibirá un mensaje de texto de verificación"
+    },
     "edit": "Editar",
     "editAddress": {
       "address1-message": "¡Menos de 512 caracteres!",
       "address2-message": "¡Menos de 512 caracteres!",
       "city-message": "¡Elige tu ciudad!",
+      "common-max": "¡Menos de {{max}} caracteres!",
+      "common-min": "¡Mas que {{min}} caracteres!",
       "contact-message": "¡Introduce tu nombre de contacto!",
       "country-message": "¡Elige tu país/región!",
       "default": "Establecer como la dirección predeterminada",
@@ -1440,6 +2062,7 @@
     "save": "Guardar",
     "sign-out": "Cerrar sesión",
     "subscription": {
+      "desc": "Puede obtener las últimas noticias de promoción de la tienda",
       "email": "Correo electrónico",
       "line": "LINE",
       "messenger": "Messenger",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "No recibirás ninguna actualización de marketing de nosotros. Puedes suscribir de nuevo en todo momento"
+      "text": "No recibirás ninguna actualización de marketing de nosotros. Puedes suscribir de nuevo en todo momento",
+      "title": "Has dado de baja desde la lista de correo de <italic>{{name}}</italic>"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Pedido pendiente"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

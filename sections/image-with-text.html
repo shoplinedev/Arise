@@ -26,55 +26,61 @@
 </script>
   
 
+{{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='media' }}
+
+{{ assign 'ignoreImageHeight' false }}
+{{!-- 如果开了配色或者重叠 则无视图片高度的配置，都是自适应 --}}
+{{#or (boolean color_scheme '!=' 'none') image_overlap_display}}
+  {{ assign 'ignoreImageHeight' true }}
+{{/or}}
 <div class="container" >
-  <div class="image-with-text 
+  <div class="image-with-text __sl-custom-track-stage-imageWithText
     image-with-text--align-{{ pc_box_align }}
     img-w-{{ pc_image_width }}
-    pos-{{ pc_image_position }}        
+    pos-{{ pc_image_position }} {{#if ignoreImageHeight}}image-with-text--stretch{{/if}}
     {{#if (isTruthy image_overlap_display)}}image-with-text--overlap{{/if}}
     ">
-    <a class="image-with-text__img-wrap image-with-text__img-wrap--{{ image_height }}">
+    <a class="__sl-custom-track-stage-imageWithText-button image-with-text__img-wrap image-with-text__img-wrap--{{ image_height }} global-media-border-shadow">
       {{ snippet 'global-image' image=image image-class='image-with-text__img' empty-image-class='image-with-text__empty-img' pcSize='1/3' }}
     </a>
     <div class="image-with-text__info-wrap
-      {{#if (isFalsey image_overlap_display)}}color-scheme-{{ color_scheme }}{{/if}}      
+      {{#if (isFalsey image_overlap_display)}}color-scheme-{{ color_scheme }}{{/if}}
       ">
-      {{#if (boolean blockLength '>' 0)}} 
+      {{#if (boolean blockLength '>' 0)}}
       <div class="image-with-text__info-reference">
-        <div class="image-with-text__info 
+        <div class="image-with-text__info
           {{#if (isTruthy image_overlap_display)}}color-scheme-{{ color_scheme }} image-with-text__info--overlap-pc-{{ pc_image_position }}{{/if}}
-          
           image-with-text__info--align-{{ pc_text_align }}
-          image-with-text__info--m-align-{{ mobile_text_align }}        
+          image-with-text__info--m-align-{{ mobile_text_align }}
         ">
           {{#each blocks}}
             {{#if (trim type) '===' 'title'}}
-              <h3 class="image-with-text__title image-with-text__title--size-{{ settings.title_size }}">{{ settings.title }}</h3>  
+              <h3 class="title3 image-with-text__title image-with-text__title--size-{{ settings.title_size }}">{{ settings.title }}</h3>
             {{/if}}
-            {{#if (trim type) '===' 'content'}} 
+            {{#if (trim type) '===' 'content'}}
               <div class="body3 image-with-text__content">{{{ settings.content }}}</div>
             {{/if}}
-            {{#if (trim type) '===' 'sub_title'}} 
-              <div class="image-with-text__sub-title image-with-text__sub-title--size-{{ settings.text_size }} ls-30p">{{{ settings.text }}}</div>  
+            {{#if (trim type) '===' 'sub_title'}}
+              <div class="body3 image-with-text__sub-title image-with-text__sub-title--size-{{ settings.text_size }} ls-30p">{{{ settings.text }}}</div>
             {{/if}}
-            {{#if (trim type) '===' 'button'}} 
+            {{#if (trim type) '===' 'button'}}
               {{#if (trim settings.button_text)}}
                 {{ assign 'link_obj' (useLink settings.link ../query) }}
-                <a {{{ link_obj.hrefAttr }}} class="image-with-text__btn btn btn-primary">
+                <a {{{ link_obj.hrefAttr }}} class="image-with-text__btn btn btn-primary __sl-custom-track-stage-imageWithText-button">
                   {{ settings.button_text }}
                 </a>
               {{/if}}
             {{/if}}
-          {{/each}}  
+          {{/each}}
         </div>
-      </div>        
+      </div>
       {{/if}}
-      
-      
-    </div>    
+
+
+    </div>
   </div>
 </div>
-  
+
 
 {{#schema}}
 {

@@ -6,6 +6,7 @@ fallbacksSrc: 为指定的兜底图，默认无兜底图
 fallbacksBgColor: 为指定的兜底图背景色值，默认无
 placeholderHeight: number 传入占位高度 默认为 200
 closeLazy: 关闭懒加载 默认false
+alt: 图片alt
 --}}
 
 {{assign '_imageRatio' '100'}}
@@ -30,6 +31,7 @@ closeLazy: 关闭懒加载 默认false
   <img {{!-- 如果图片地址为空，直接走占位符逻辑，图片透明度为零 --}}
      style="{{#if (isFalsey src)}}opacity: 0;{{/if}}{{#if imagePosition }}object-position: {{imagePosition}};{{/if}} object-fit: {{_imageFit}};{{#if _imageRatio '===' '0'}} height:{{_placeholderHeight}}px {{/if}}"
      class="lozad"
+     alt="{{alt}}"
      data-sizes="auto"
      data-src="{{src}}"
      onload="this.parentElement.style.opacity=1;this.className+=' sl-img-loaded';{{#if _imageRatio '===' '0'}}this.style.height='auto';{{/if}}" {{#if fallbacksSrc}}

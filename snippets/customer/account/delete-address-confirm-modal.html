@@ -1,0 +1,12 @@
+{{#snippet
+  'product/commons/base-modal'
+  modalId=id
+  containerClassName="customer-center-modal__container delete-address-confirm-modal"
+}}
+  <p class="delete-address-confirm__desc">{{t 'userCenter.address.delete-address'}}</p>
+
+  <div class="delete-address-confirm__footer">
+    <button class="btn btn-outline-primary btn-sm cancel-button" type="button">{{ t 'common.cancel' }}</button>
+    <button class="btn btn-primary btn-sm submit-button" type="button">{{ t 'common.confirm' }}</button>
+  </div>
+{{/snippet}}

@@ -21,7 +21,7 @@
 
     {{#with this as |global|}}
       <div class="blogs__list-wrapper">
-        <ul class="blogs__list blogs__list--{{ global.section.settings.layout }}">
+        <ul class="row row-cols-1 {{#if global.section.settings.layout '==' 'grid' }}row-cols-md-3{{/if}} blogs__list blogs__list--{{ global.section.settings.layout }}">
           {{#each blogs}}
             <li class="blogs__item">
               {{

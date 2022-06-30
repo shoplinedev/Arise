@@ -1,31 +1,21 @@
 (() => {
-    "use strict";
     var __webpack_modules__ = {
-        "../shared/browser/utils/get-env.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            __webpack_require__.d(__webpack_exports__, {
-                default: () => getEnv
-            });
-            function getEnv(key) {
-                const ENV = window.__ENV__ || {};
-                if (key) return ENV[key];
-                return ENV;
-            }
-        },
-        "../shared/node_modules/@sentry/hub/esm/hub.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/hub/esm/hub.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 Hub: () => Hub,
                 getCurrentHub: () => getCurrentHub,
                 getMainCarrier: () => getMainCarrier
             });
-            var tslib_es6 = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var misc = __webpack_require__("../shared/node_modules/@sentry/utils/esm/misc.js");
-            var time = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
-            var esm_logger = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-            var env = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-            var esm_global = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-            var node = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
-            var esm_scope = __webpack_require__("../shared/node_modules/@sentry/hub/esm/scope.js");
-            var object = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
+            var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var misc = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
+            var time = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
+            var esm_logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+            var env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+            var esm_global = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+            var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
+            var esm_scope = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/scope.js");
+            var object = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
             var Session = function() {
                 function Session(context) {
                     this.errors = 0;
@@ -371,16 +361,17 @@
                 return true;
             }
         },
-        "../shared/node_modules/@sentry/hub/esm/scope.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/hub/esm/scope.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 Scope: () => Scope,
                 addGlobalEventProcessor: () => addGlobalEventProcessor
             });
-            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/syncpromise.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
+            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/syncpromise.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
             var MAX_BREADCRUMBS = 100;
             var Scope = function() {
                 function Scope() {
@@ -634,7 +625,8 @@
                 getGlobalEventProcessors().push(callback);
             }
         },
-        "../shared/node_modules/@sentry/tracing/esm/constants.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/tracing/esm/constants.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 FINISH_REASON_TAG: () => FINISH_REASON_TAG,
                 IDLE_TRANSACTION_FINISH_REASONS: () => IDLE_TRANSACTION_FINISH_REASONS
@@ -642,18 +634,19 @@
             var FINISH_REASON_TAG = "finishReason";
             var IDLE_TRANSACTION_FINISH_REASONS = [ "heartbeatFailed", "idleTimeout", "documentHidden" ];
         },
-        "../shared/node_modules/@sentry/tracing/esm/hubextensions.js": (module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/tracing/esm/hubextensions.js": (module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 addExtensionMethods: () => addExtensionMethods,
                 startIdleTransaction: () => startIdleTransaction
             });
-            var tslib_es6 = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var hub = __webpack_require__("../shared/node_modules/@sentry/hub/esm/hub.js");
-            var env = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-            var logger = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-            var node = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
-            var instrument = __webpack_require__("../shared/node_modules/@sentry/utils/esm/instrument.js");
-            var utils = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/utils.js");
+            var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var hub = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
+            var env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+            var logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+            var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
+            var instrument = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/instrument.js");
+            var utils = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/utils.js");
             function registerErrorInstrumentation() {
                 (0, instrument.addInstrumentationHandler)("error", errorCallback);
                 (0, instrument.addInstrumentationHandler)("unhandledrejection", errorCallback);
@@ -666,8 +659,8 @@
                     activeTransaction.setStatus(status_1);
                 }
             }
-            var idletransaction = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/idletransaction.js");
-            var esm_transaction = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/transaction.js");
+            var idletransaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js");
+            var esm_transaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/transaction.js");
             module = __webpack_require__.hmd(module);
             function traceHeaders() {
                 var scope = this.getScope();
@@ -817,18 +810,19 @@
                 registerErrorInstrumentation();
             }
         },
-        "../shared/node_modules/@sentry/tracing/esm/idletransaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 DEFAULT_IDLE_TIMEOUT: () => DEFAULT_IDLE_TIMEOUT,
                 IdleTransaction: () => IdleTransaction
             });
-            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-            var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/constants.js");
-            var _span__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/span.js");
-            var _transaction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/transaction.js");
+            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+            var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/constants.js");
+            var _span__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/span.js");
+            var _transaction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/transaction.js");
             var DEFAULT_IDLE_TIMEOUT = 1e3;
             var HEARTBEAT_INTERVAL = 5e3;
             var IdleTransactionSpanRecorder = function(_super) {
@@ -997,15 +991,16 @@
                 }
             }
         },
-        "../shared/node_modules/@sentry/tracing/esm/span.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/tracing/esm/span.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 SpanRecorder: () => SpanRecorder,
                 Span: () => Span
             });
-            var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/misc.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
+            var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
             var SpanRecorder = function() {
                 function SpanRecorder(maxlen) {
                     if (void 0 === maxlen) maxlen = 1e3;
@@ -1182,17 +1177,18 @@
                 return "unknown_error";
             }
         },
-        "../shared/node_modules/@sentry/tracing/esm/transaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/tracing/esm/transaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 Transaction: () => Transaction
             });
-            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var _sentry_hub__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/hub/esm/hub.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
-            var _span__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/span.js");
+            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var _sentry_hub__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+            var _sentry_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
+            var _span__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/span.js");
             var Transaction = function(_super) {
                 (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(Transaction, _super);
                 function Transaction(transactionContext, hub) {
@@ -1280,14 +1276,15 @@
                 return Transaction;
             }(_span__WEBPACK_IMPORTED_MODULE_3__.Span);
         },
-        "../shared/node_modules/@sentry/tracing/esm/utils.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/tracing/esm/utils.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 hasTracingEnabled: () => hasTracingEnabled,
                 getActiveTransaction: () => getActiveTransaction,
                 msToSec: () => msToSec,
                 secToMs: () => secToMs
             });
-            var _sentry_hub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/hub/esm/hub.js");
+            var _sentry_hub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
             function hasTracingEnabled(maybeOptions) {
                 var client = (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_0__.getCurrentHub)().getClient();
                 var options = maybeOptions || client && client.getOptions();
@@ -1305,13 +1302,14 @@
                 return 1e3 * time;
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/browser.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/browser.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 htmlTreeAsString: () => htmlTreeAsString,
                 getLocationHref: () => getLocationHref
             });
-            var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
+            var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
             function htmlTreeAsString(elem, keyAttrs) {
                 try {
                     var currentElem = elem;
@@ -1377,7 +1375,8 @@
                 }
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/env.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/env.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 isDebugBuild: () => isDebugBuild,
                 isBrowserBundle: () => isBrowserBundle
@@ -1390,28 +1389,30 @@
                 return "undefined" !== typeof __SENTRY_BROWSER_BUNDLE__ && !!__SENTRY_BROWSER_BUNDLE__;
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/global.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/global.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 getGlobalObject: () => getGlobalObject
             });
-            var _node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
+            var _node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
             var fallbackGlobalObject = {};
             function getGlobalObject() {
                 return (0, _node__WEBPACK_IMPORTED_MODULE_0__.isNodeEnv)() ? __webpack_require__.g : "undefined" !== typeof window ? window : "undefined" !== typeof self ? self : fallbackGlobalObject;
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/instrument.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/instrument.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 addInstrumentationHandler: () => addInstrumentationHandler
             });
-            var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-            var _is__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-            var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
-            var _object__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
-            var _stacktrace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/stacktrace.js");
-            var _supports__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/supports.js");
+            var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+            var _is__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+            var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+            var _object__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
+            var _stacktrace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/stacktrace.js");
+            var _supports__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/supports.js");
             var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
             var handlers = {};
             var instrumented = {};
@@ -1753,7 +1754,8 @@
                 };
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/is.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/is.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 isError: () => isError,
                 isErrorEvent: () => isErrorEvent,
@@ -1825,15 +1827,16 @@
                 }
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/logger.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/logger.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 CONSOLE_LEVELS: () => CONSOLE_LEVELS,
                 consoleSandbox: () => consoleSandbox,
                 logger: () => logger
             });
-            var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
+            var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
             var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
             var PREFIX = "Sentry Logger ";
             var CONSOLE_LEVELS = [ "debug", "info", "warn", "error", "log", "assert" ];
@@ -1900,7 +1903,8 @@
                 global.__SENTRY__ = sentryGlobal;
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/misc.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/misc.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 uuid4: () => uuid4,
                 parseUrl: () => parseUrl,
@@ -1909,9 +1913,9 @@
                 addExceptionMechanism: () => addExceptionMechanism,
                 checkOrSetAlreadyCaught: () => checkOrSetAlreadyCaught
             });
-            var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-            var _object__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
+            var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+            var _object__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
             function uuid4() {
                 var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
                 var crypto = global.crypto || global.msCrypto;
@@ -1989,13 +1993,14 @@
                 return false;
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/node.js": (module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/node.js": (module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 isNodeEnv: () => isNodeEnv,
                 dynamicRequire: () => dynamicRequire,
                 loadModule: () => loadModule
             });
-            var _env__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
+            var _env__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
             module = __webpack_require__.hmd(module);
             function isNodeEnv() {
                 return !(0, _env__WEBPACK_IMPORTED_MODULE_0__.isBrowserBundle)() && "[object process]" === Object.prototype.toString.call("undefined" !== typeof process ? process : 0);
@@ -2015,7 +2020,8 @@
                 return mod;
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/object.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/object.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 fill: () => fill,
                 addNonEnumerableProperty: () => addNonEnumerableProperty,
@@ -2026,10 +2032,10 @@
                 extractExceptionKeysForMessage: () => extractExceptionKeysForMessage,
                 dropUndefinedKeys: () => dropUndefinedKeys
             });
-            var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-            var _browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/browser.js");
-            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-            var _string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/string.js");
+            var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+            var _browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/browser.js");
+            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+            var _string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/string.js");
             function fill(source, name, replacementFactory) {
                 if (!(name in source)) return;
                 var original = source[name];
@@ -2133,12 +2139,13 @@
                 return val;
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/stacktrace.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/stacktrace.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 createStackParser: () => createStackParser,
                 getFunctionName: () => getFunctionName
             });
-            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
+            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
             var STACKTRACE_LIMIT = 50;
             function createStackParser() {
                 var parsers = [];
@@ -2214,13 +2221,14 @@
                 }
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/string.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/string.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 truncate: () => truncate,
                 safeJoin: () => safeJoin,
                 isMatchingPattern: () => isMatchingPattern
             });
-            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
+            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
             function truncate(str, max) {
                 if (void 0 === max) max = 0;
                 if ("string" !== typeof str || 0 === max) return str;
@@ -2246,7 +2254,8 @@
                 return false;
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/supports.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/supports.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 supportsFetch: () => supportsFetch,
                 isNativeFetch: () => isNativeFetch,
@@ -2254,9 +2263,9 @@
                 supportsReferrerPolicy: () => supportsReferrerPolicy,
                 supportsHistory: () => supportsHistory
             });
-            var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-            var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
+            var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+            var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
             function supportsFetch() {
                 if (!("fetch" in (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)())) return false;
                 try {
@@ -2307,13 +2316,14 @@
                 return !isChromePackagedApp && hasHistoryApi;
             }
         },
-        "../shared/node_modules/@sentry/utils/esm/syncpromise.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/syncpromise.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 resolvedSyncPromise: () => resolvedSyncPromise,
                 rejectedSyncPromise: () => rejectedSyncPromise,
                 SyncPromise: () => SyncPromise
             });
-            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
+            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
             function resolvedSyncPromise(value) {
                 return new SyncPromise((function(resolve) {
                     resolve(value);
@@ -2411,15 +2421,16 @@
                 return SyncPromise;
             }();
         },
-        "../shared/node_modules/@sentry/utils/esm/time.js": (module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sentry/utils/esm/time.js": (module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 dateTimestampInSeconds: () => dateTimestampInSeconds,
                 timestampInSeconds: () => timestampInSeconds,
                 timestampWithMs: () => timestampWithMs,
                 browserPerformanceTimeOrigin: () => browserPerformanceTimeOrigin
             });
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-            var _node__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
+            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+            var _node__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
             module = __webpack_require__.hmd(module);
             var dateTimestampSource = {
                 nowSeconds: function() {
@@ -2480,7 +2491,87 @@
                 return dateNow;
             }();
         },
-        "../shared/node_modules/tslib/tslib.es6.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/lodash/_baseGet.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var castPath = __webpack_require__("../shared/browser/node_modules/lodash/_castPath.js"), toKey = __webpack_require__("../shared/browser/node_modules/lodash/_toKey.js");
+            function baseGet(object, path) {
+                path = castPath(path, object);
+                var index = 0, length = path.length;
+                while (null != object && index < length) object = object[toKey(path[index++])];
+                return index && index == length ? object : void 0;
+            }
+            module.exports = baseGet;
+        },
+        "../shared/browser/node_modules/lodash/_castPath.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isKey = __webpack_require__("../shared/browser/node_modules/lodash/_isKey.js"), stringToPath = __webpack_require__("../shared/browser/node_modules/lodash/_stringToPath.js"), toString = __webpack_require__("../shared/browser/node_modules/lodash/toString.js");
+            function castPath(value, object) {
+                if (isArray(value)) return value;
+                return isKey(value, object) ? [ value ] : stringToPath(toString(value));
+            }
+            module.exports = castPath;
+        },
+        "../shared/browser/node_modules/lodash/_isKey.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isSymbol = __webpack_require__("../shared/browser/node_modules/lodash/isSymbol.js");
+            var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/, reIsPlainProp = /^\w*$/;
+            function isKey(value, object) {
+                if (isArray(value)) return false;
+                var type = typeof value;
+                if ("number" == type || "symbol" == type || "boolean" == type || null == value || isSymbol(value)) return true;
+                return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || null != object && value in Object(object);
+            }
+            module.exports = isKey;
+        },
+        "../shared/browser/node_modules/lodash/_memoizeCapped.js": module => {
+            function identity(value) {
+                return value;
+            }
+            module.exports = identity;
+        },
+        "../shared/browser/node_modules/lodash/_stringToPath.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var memoizeCapped = __webpack_require__("../shared/browser/node_modules/lodash/_memoizeCapped.js");
+            var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+            var reEscapeChar = /\\(\\)?/g;
+            var stringToPath = memoizeCapped((function(string) {
+                var result = [];
+                if (46 === string.charCodeAt(0)) result.push("");
+                string.replace(rePropName, (function(match, number, quote, subString) {
+                    result.push(quote ? subString.replace(reEscapeChar, "$1") : number || match);
+                }));
+                return result;
+            }));
+            module.exports = stringToPath;
+        },
+        "../shared/browser/node_modules/lodash/_toKey.js": module => {
+            function identity(value) {
+                return value;
+            }
+            module.exports = identity;
+        },
+        "../shared/browser/node_modules/lodash/get.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var baseGet = __webpack_require__("../shared/browser/node_modules/lodash/_baseGet.js");
+            function get(object, path, defaultValue) {
+                var result = null == object ? void 0 : baseGet(object, path);
+                return void 0 === result ? defaultValue : result;
+            }
+            module.exports = get;
+        },
+        "../shared/browser/node_modules/lodash/isArray.js": module => {
+            var isArray = Array.isArray;
+            module.exports = isArray;
+        },
+        "../shared/browser/node_modules/lodash/isSymbol.js": module => {
+            function stubFalse() {
+                return false;
+            }
+            module.exports = stubFalse;
+        },
+        "../shared/browser/node_modules/lodash/toString.js": module => {
+            function identity(value) {
+                return value;
+            }
+            module.exports = identity;
+        },
+        "../shared/browser/node_modules/tslib/tslib.es6.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
             __webpack_require__.d(__webpack_exports__, {
                 __extends: () => __extends,
                 __assign: () => __assign,
@@ -2562,6 +2653,17 @@
                 for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
                 return ar;
             }
+        },
+        "../shared/browser/utils/get-env.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
+            __webpack_require__.d(__webpack_exports__, {
+                default: () => getEnv
+            });
+            function getEnv(key) {
+                const ENV = window.__ENV__ || {};
+                if (key) return ENV[key];
+                return ENV;
+            }
         }
     };
     var __webpack_module_cache__ = {};
@@ -2577,6 +2679,15 @@
         module.loaded = true;
         return module.exports;
     }
+    (() => {
+        __webpack_require__.n = module => {
+            var getter = module && module.__esModule ? () => module["default"] : () => module;
+            __webpack_require__.d(getter, {
+                a: getter
+            });
+            return getter;
+        };
+    })();
     (() => {
         __webpack_require__.d = (exports, definition) => {
             for (var key in definition) if (__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) Object.defineProperty(exports, key, {
@@ -2612,9 +2723,10 @@
         __webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
     })();
     (() => {
-        var esm_hub = __webpack_require__("../shared/node_modules/@sentry/hub/esm/hub.js");
-        var esm_env = __webpack_require__("../shared/node_modules/@sentry/utils/esm/env.js");
-        var esm_logger = __webpack_require__("../shared/node_modules/@sentry/utils/esm/logger.js");
+        "use strict";
+        var esm_hub = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
+        var esm_env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var esm_logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
         function initAndBind(clientClass, options) {
             if (true === options.debug) if ((0, esm_env.isDebugBuild)()) esm_logger.logger.enable(); else console.warn("[Sentry] Cannot initialize SDK with `debug` option using a non-debug bundle.");
             var hub = (0, esm_hub.getCurrentHub)();
@@ -2623,9 +2735,9 @@
             var client = new clientClass(options);
             hub.bindClient(client);
         }
-        var tslib_es6 = __webpack_require__("../shared/node_modules/tslib/tslib.es6.js");
-        var misc = __webpack_require__("../shared/node_modules/@sentry/utils/esm/misc.js");
-        var string = __webpack_require__("../shared/node_modules/@sentry/utils/esm/string.js");
+        var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var misc = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
+        var string = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/string.js");
         var DEFAULT_IGNORE_ERRORS = [ /^Script error\.?$/, /^Javascript error: Script error\.? on line 0$/ ];
         var InboundFilters = function() {
             function InboundFilters(_options) {
@@ -2746,7 +2858,7 @@
                 return null;
             }
         }
-        var object = __webpack_require__("../shared/node_modules/@sentry/utils/esm/object.js");
+        var object = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
         var originalFunctionToString;
         var FunctionToString = function() {
             function FunctionToString() {
@@ -2764,10 +2876,10 @@
             FunctionToString.id = "FunctionToString";
             return FunctionToString;
         }();
-        var esm_global = __webpack_require__("../shared/node_modules/@sentry/utils/esm/global.js");
-        var instrument = __webpack_require__("../shared/node_modules/@sentry/utils/esm/instrument.js");
+        var esm_global = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
+        var instrument = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/instrument.js");
         var SDK_VERSION = "6.19.2";
-        var esm_scope = __webpack_require__("../shared/node_modules/@sentry/hub/esm/scope.js");
+        var esm_scope = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/scope.js");
         var setPrototypeOf = Object.setPrototypeOf || ({
             __proto__: []
         } instanceof Array ? setProtoOf : mixinProperties);
@@ -2855,9 +2967,9 @@
             validateDsn(components);
             return components;
         }
-        var is = __webpack_require__("../shared/node_modules/@sentry/utils/esm/is.js");
-        var syncpromise = __webpack_require__("../shared/node_modules/@sentry/utils/esm/syncpromise.js");
-        var time = __webpack_require__("../shared/node_modules/@sentry/utils/esm/time.js");
+        var is = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
+        var syncpromise = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/syncpromise.js");
+        var time = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
         function memoBuilder() {
             var hasWeakSet = "function" === typeof WeakSet;
             var inner = hasWeakSet ? new WeakSet : [];
@@ -2882,7 +2994,7 @@
             }
             return [ memoize, unmemoize ];
         }
-        var esm_stacktrace = __webpack_require__("../shared/node_modules/@sentry/utils/esm/stacktrace.js");
+        var esm_stacktrace = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/stacktrace.js");
         function normalize(input, depth, maxProperties) {
             if (void 0 === depth) depth = +1 / 0;
             if (void 0 === maxProperties) maxProperties = +1 / 0;
@@ -3574,7 +3686,7 @@
             Severity["Debug"] = "debug";
             Severity["Critical"] = "critical";
         })(Severity || (Severity = {}));
-        var supports = __webpack_require__("../shared/node_modules/@sentry/utils/esm/supports.js");
+        var supports = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/supports.js");
         var UNKNOWN_FUNCTION = "?";
         var OPERA10_PRIORITY = 10;
         var OPERA11_PRIORITY = 20;
@@ -4254,7 +4366,7 @@
             var injectionPoint = helpers_global.document.head || helpers_global.document.body;
             if (injectionPoint) injectionPoint.appendChild(script);
         }
-        var browser = __webpack_require__("../shared/node_modules/@sentry/utils/esm/browser.js");
+        var browser = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/browser.js");
         var enums_SeverityLevels = [ "fatal", "error", "warning", "log", "info", "debug", "critical" ];
         function isSupportedSeverity(level) {
             return -1 !== enums_SeverityLevels.indexOf(level);
@@ -4868,9 +4980,11 @@
                 if (!(void 0 === from || from === to)) startSessionOnHub((0, esm_hub.getCurrentHub)());
             }));
         }
-        var hubextensions = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/hubextensions.js");
-        var idletransaction = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/idletransaction.js");
-        var utils = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/utils.js");
+        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
+        var get_default = __webpack_require__.n(get);
+        var hubextensions = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/hubextensions.js");
+        var idletransaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js");
+        var utils = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/utils.js");
         var TRACEPARENT_REGEXP = new RegExp("^[ \\t]*" + "([0-9a-f]{32})?" + "-?([0-9a-f]{16})?" + "-?([01])?" + "[ \\t]*$");
         function extractTraceparentData(traceparent) {
             var matches = traceparent.match(TRACEPARENT_REGEXP);
@@ -4885,7 +4999,7 @@
             }
             return;
         }
-        var constants = __webpack_require__("../shared/node_modules/@sentry/tracing/esm/constants.js");
+        var constants = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/constants.js");
         var backgroundtab_global = (0, esm_global.getGlobalObject)();
         function registerBackgroundTabDetection() {
             if (backgroundtab_global && backgroundtab_global.document) backgroundtab_global.document.addEventListener("visibilitychange", (function() {
@@ -4900,7 +5014,7 @@
                 }
             })); else (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] Could not set up background tab detection due to lack of global document");
         }
-        var node = __webpack_require__("../shared/node_modules/@sentry/utils/esm/node.js");
+        var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
         var bindReporter = function(callback, metric, reportAllChanges) {
             var prevValue;
             return function(forceReport) {
@@ -5542,7 +5656,7 @@
             BOTTOM: "bottom"
         };
         function getErrorLine(error) {
-            if (!(null !== error && void 0 !== error && error.stack)) return;
+            if (!(error && error.stack)) return;
             const stack = error.stack.toString().split(/\r\n|\n/);
             const frameRE = /:(\d+):(?:\d+)[^\d]*$/;
             let firstTrace;
@@ -5563,14 +5677,13 @@
             };
         }
         try {
-            var _window$Shopline, _window$Shopline$even;
             const {APP_ENV, SENTRY_TRACES_SAMPLE_RATE} = (0, get_env["default"])();
             let sampleRate = Number(SENTRY_TRACES_SAMPLE_RATE);
             if (Number.isNaN(sampleRate)) sampleRate = 0;
             const options = {
                 debug: false,
                 environment: APP_ENV,
-                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_e11a14d02"}`,
+                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_c84a649d4"}`,
                 dsn: (0, get_env["default"])(void 0 || "SENTRY_DSN") || "",
                 autoSessionTracking: false,
                 ignoreErrors: [ "ReportingObserver [deprecation]" ],
@@ -5578,11 +5691,12 @@
                 tracesSampleRate: sampleRate,
                 integrations: [ new BrowserTracing ],
                 beforeSend(event, hint) {
-                    var _event$exception, _event$exception$valu, _event$exception$valu2, _traceFrames$, _traceFrames$find, _traceFrames$2;
                     const error = hint.originalException;
-                    const traceFrames = (null === event || void 0 === event ? void 0 : null === (_event$exception = event.exception) || void 0 === _event$exception ? void 0 : null === (_event$exception$valu = _event$exception.values[0]) || void 0 === _event$exception$valu ? void 0 : null === (_event$exception$valu2 = _event$exception$valu.stacktrace) || void 0 === _event$exception$valu2 ? void 0 : _event$exception$valu2.frames) || [];
-                    const errorLine = getErrorLine(error) || (null === (_traceFrames$ = traceFrames[0]) || void 0 === _traceFrames$ ? void 0 : _traceFrames$.lineno);
-                    const errorFile = (null === (_traceFrames$find = traceFrames.find((frame => frame.lineno === errorLine))) || void 0 === _traceFrames$find ? void 0 : _traceFrames$find.filename) || (null === (_traceFrames$2 = traceFrames[0]) || void 0 === _traceFrames$2 ? void 0 : _traceFrames$2.filename);
+                    const frames = event && event.exception && event.exception.values && event.exception.values[0] && event.exception.values[0].stacktrace && event.exception.values[0].stacktrace.frames;
+                    const traceFrames = frames || [];
+                    const errorLine = getErrorLine(error) || traceFrames[0] && traceFrames[0].lineno;
+                    const file = traceFrames.find((frame => frame.lineno === errorLine));
+                    const errorFile = get_default()(file, "filename", void 0) || get_default()(traceFrames[0], "filename", void 0);
                     if (errorFile === window.location.href) {
                         if ("undefined" !== typeof window.__CUSTOM_HEADER_START__ && "undefined" !== typeof window.__CUSTOM_HEADER_END__) {
                             const isHeadError = errorLine >= +window.__CUSTOM_HEADER_START__ && errorLine <= +window.__CUSTOM_HEADER_END__;
@@ -5596,9 +5710,9 @@
                     return event;
                 },
                 beforeBreadcrumb(breadcrumb, hint) {
-                    var _hint$xhr;
-                    if ("xhr" === breadcrumb.category && null !== hint && void 0 !== hint && null !== (_hint$xhr = hint.xhr) && void 0 !== _hint$xhr && _hint$xhr.response) try {
-                        const trace_id = hint.xhr.response.match(/trace_id":"(\S*?)"/)[1] || "";
+                    const response = get_default()(hint, "xhr.response", void 0);
+                    if ("xhr" === breadcrumb.category && response) try {
+                        const trace_id = response.match(/trace_id":"(\S*?)"/)[1] || "";
                         return {
                             ...breadcrumb,
                             data: {
@@ -5614,7 +5728,8 @@
             };
             if (-1 === sampleRate) delete options.tracesSampleRate;
             init(options);
-            null === (_window$Shopline = window.Shopline) || void 0 === _window$Shopline ? void 0 : null === (_window$Shopline$even = _window$Shopline.event) || void 0 === _window$Shopline$even ? void 0 : _window$Shopline$even.on("Sentry::CaptureMessage", ((...data) => {
+            const eventOn = get_default()(window, "Shopline.event", void 0);
+            if (eventOn) eventOn.on("Sentry::CaptureMessage", ((...data) => {
                 captureMessage(...data);
             }));
         } catch (e) {
@@ -5622,6 +5737,7 @@
         }
     })();
     (() => {
+        "use strict";
         function userHdReport() {
             const isSignIn = "/user/signIn" === window.location.pathname;
             const isSignUp = "/user/signUp" === window.location.pathname;

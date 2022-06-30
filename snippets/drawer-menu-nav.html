@@ -14,7 +14,7 @@
                 {{!--{{assign 'is_open' (is_nav_active this global.request.uri.path)}}--}}
                 {{#if has_dropdown}}
                     <div class="nav-pd mobile-nav__has-sublist">
-                        <a {{{navItem.hrefAttr}}} class="body3 mobile-nav__link mobile-nav__link--top-level" id="Label-{{ this.id }}">
+                        <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body3 mobile-nav__link mobile-nav__link--top-level" id="Label-{{ this.id }}">
                             {{ navItem.name }}
                         </a>
                         <div class="mobile-nav__toggle">
@@ -28,7 +28,7 @@
                 {{/if}}
 
                 {{#unless has_dropdown}}
-                    <a {{{navItem.hrefAttr}}} class="nav-pd body3 mobile-nav__link mobile-nav__link--top-level">{{ navItem.name }}</a>
+                    <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem nav-pd body3 mobile-nav__link mobile-nav__link--top-level">{{ navItem.name }}</a>
                 {{/unless}}
 
 
@@ -48,7 +48,7 @@
 
                                     <li class="mobile-nav__item">
                                         <div class="mobile-nav__child-item nav-pd">
-                                            <a class="body5 mobile-nav__link" id="Sublabel-{{ this.id }}" {{{navItem.hrefAttr}}}>
+                                            <a class="__sl-custom-track-stage-navItem body5 mobile-nav__link" id="Sublabel-{{ this.id }}" {{{navItem.hrefAttr}}}>
                                                 {{navItem.name}}
                                             </a>
 
@@ -69,7 +69,7 @@
                                                         {{#each this.childNodes}}
                                                             {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
                                                             <li class="mobile-nav__item nav-pd">
-                                                                <a {{{navItem.hrefAttr}}} class="body5 mobile-nav__link">
+                                                                <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body5 mobile-nav__link">
                                                                     {{ navItem.name }}
                                                                 </a>
                                                             </li>

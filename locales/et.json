@@ -29,26 +29,136 @@
     "activity-price-limit": "Seda toodet saad soodushinnaga osta ainult {{num}} tükki",
     "activity-product-limit": "Soodushinnaga saad korraga osta kuni {{stock}} toodet",
     "activity-title-limit": "Allolevad tooted ületavad ostulimiiti, kas soovid siiski kassasse suunduda?",
+    "cart": {
+      "cancel": "Tühista",
+      "confirm": "Nõus",
+      "continue": "Jätka",
+      "got_it": "Sain aru",
+      "return_to_cart": "Tagasi ostukorvi"
+    },
     "checkout-error": "Ostukorvis on vähemalt üks toode, mis ei ole saadaval. Kohanda ostukorvi sisu, et kassasse suunduda.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Allolevad tooted ületavad ostulimiiti, kas soovid siiski kassasse suunduda?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "Sellele tellimusele rakendati allahindlust. Teisi soodustusi lisada ei saa."
+    },
+    "discount": {
+      "coupon_code_amount": "Kupong",
+      "coupon_code_exceed_not_25_characters": "Kupongikood ei tohi ületada 25 tähemärki.",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} kupong kehtib tarneviisile",
+      "discount_code_invalid": "{{discountCode}} on sisestatud õigesti, kuid toodete hind või kogus ei vasta nõuetele.",
+      "discount_codes_cannot_stack": "Tootel on juba soodustus, seega ei saa seda kasutada koos teiste soodustustega",
+      "enter_a_valid_discount_code": "Allahindluse kood on sisestatud valesti",
+      "expected_discount": "Soodushind"
+    },
+    "discount_item": {
+      "buy_limit5": "Soodushinnaga saad korraga osta kuni {{stock}} toodet"
+    },
+    "discount_price": {
+      "buy_limit3": "Seda toodet saad soodushinnaga osta ainult {{stock}} tükki"
+    },
     "get": "Saage allahindlust",
     "go-shopping": "JÄTKA OSTMIST",
+    "item": {
+      "add_limit1": "Lisa kuni 100 toodet",
+      "add_limit2": "Ühe toote maksimaalne kogus on 999 tk",
+      "removed": "KEHTETU",
+      "sold_out": "VÄLJA MÜÜDUD"
+    },
     "login-description": "Kas oled juba liige? Sisselogimine võib olla tellimuse haldamiseks mugavam viis.",
     "login-membership": "Tasuta liikmesus",
     "most-100-sku": "Lisa kuni 100 toodet",
     "most-buy-999": "Ühe toote maksimaalne kogus on 999 tk",
     "not-participation-offers": "Mitteosalev soodushind",
+    "notices": {
+      "change_password_after_verification": "Pärast kinnituse saamist saad parooli ära muuta",
+      "excess_product": "Allolevad tooted ületavad ostulimiiti, muuda kogust",
+      "insufficient_product_inventory": "Ebapiisav tootevaru",
+      "network": "Võrguviga",
+      "product_expired": "Toode on aegunud",
+      "product_limit": "Tootelimiit on ületatud",
+      "product_selected_invalid": "Kahjuks on sinu valitud toode ostmiseks kehtetu. Vali uuesti",
+      "store_nonexistent": "Poodi pole olemas"
+    },
+    "order": {
+      "authorized": "Volitatud",
+      "canceled": "Tühistatud",
+      "canceled_order": "Tühistatud",
+      "click_to_track": "Jälgi oma pakki, klõpsates alloleval lingil:",
+      "deleted": "KEHTETU",
+      "invalid_order_number": "kehtetu tellimuse number",
+      "no_more_info": "Rohkem teavet pole",
+      "pay_amount": "maksta summa",
+      "payment_voucher_confirmation": "Sain aru",
+      "receiver_account": "saaja konto",
+      "reference_number": "viitenumber",
+      "sequence": "Nr {{id}}",
+      "shipping_address": "Kohaletoimetamise aadress",
+      "time": "Tellitud:",
+      "total_amount": "{{transPackages}} toode kokku",
+      "total_item_amount": "{{transPackages}} toodet kokku",
+      "try_again": "Üleslaadimine ebaõnnestus. Palun proovi uuesti.",
+      "try_later": "süsteem on hõivatud, proovige hiljem uuesti.",
+      "upload_image_within_10_m_b": "Laadige üles JPG-, PNG-, GIF-kujutised 10 MB ulatuses",
+      "upload_time": "üleslaadimise aeg",
+      "voucher_amount_limit": "Saate üles laadida kuni 5 vautšerit."
+    },
+    "payment": {
+      "channel": "Maksekanal",
+      "create_time": "Loodud",
+      "paid": "Tasutud",
+      "partially_paid": "Osaliselt tasutud",
+      "paying": "Maksmine",
+      "payment_details": "Makse üksikasjad",
+      "reference_number": "Tehingu viitenumber",
+      "status": "Staatus",
+      "subtotal_price": "Vahesum.",
+      "sum": "Summa",
+      "total": "Kokku",
+      "unpaid": "Tasumata",
+      "update_time": "Uuendatud"
+    },
+    "policy": {
+      "privacy_policy": "Privaatsuspoliitika"
+    },
+    "product-no-exists": "Kaupu pole olemas",
+    "refund": {
+      "click_to_view": "Klõpsa vaatamiseks",
+      "custom_preview": "Kohandatud eelvaade"
+    },
     "render-add-items": "Sinu ostukorv on praegu tühi.",
     "render-empty-status": "Ostukorv on tühi",
+    "shipping": {
+      "no_info": "Tarneteavet pole veel, kontrolli hiljem.",
+      "package_tracking": "Paki jälgimine",
+      "partially_shipped": "Osaline saadetis",
+      "preparing_order": "Toodete ettevalmistamine",
+      "shipped_order": "Kohale toimetatud"
+    },
     "shopping-fees": "ostlemistasud",
     "shopping-money": "soodustus, maksud ja saatmiskulud arvutatakse järgmises etapis",
     "shopping-money-step": "Maksud ja saatmiskulud arvutatakse kassas",
+    "shpping": {
+      "service_terms": "Kasutustingimused"
+    },
     "stock-limit": "Laos {{stock}} tükki",
+    "taxIncluded": {
+      "textTag": "Sisaldab maksu"
+    },
+    "tips": {
+      "change_binding_after_verification": "Saad pärast kinnitamist {{value}} ühendada/muuta",
+      "reset_password": "Oled lähtestamas konto {{account}} parooli"
+    },
     "view-link": "Klõpsa vaatamiseks",
     "view-pic": "Kohandatud eelvaade",
     "view-shopping-cart": "Vaata ostukorvi",
     "added-to-cart": "Lisatud sinu ostukorvi",
     "cart-subtotal": "Ostukorvi vahesumma",
     "view-cart": "Vaata ostukorvi"
+  },
+  "cascade": {
+    "choose": "Elija una opción"
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Täname, et võtsite meiega ühendust ja me vastame teile niipea kui võimalik."
   },
+  "customer": {
+    "account": {
+      "add-email": "Meilisõnumite lisamine",
+      "add-phone": "Mobiilinumbri lisamine",
+      "deadline": "Kommertsaruannete loomiseks on teie tellimus alati nähtav. Teie konto andmed kustutatakse {{time}}, saate protsessi enne seda kuupäeva tühistada",
+      "gender_female": "Naine",
+      "gender_male": "Mees",
+      "gender_secret": "Hoia saladuses",
+      "not_set": "Pole seatud",
+      "reset_password_error_hint": "Kõigepealt seo e-kiri või mobiiltelefon",
+      "verify_email_message": "Enne konto sulgemist peame kontrollima teie identiteeti\nTeie e-posti aadress {{email}} saab kontrollimeili",
+      "verify_phone_message": "Enne konto sulgemist peame kontrollima teie identiteeti\nTeie mobiiltelefon {{phone}} saab sõnumi"
+    },
+    "address": {
+      "add_address": "Lisa uus aadress",
+      "common_max": "",
+      "common_min": "rohkem kui {{min}} tähemärki",
+      "edit_last_name_hint": "Sisesta oma perekonnanimi.",
+      "edit_phone_hint": "Sisesta oma mobiiltelefoni number",
+      "mobile-errorMessage": "Sisesta kehtiv telefoninumber",
+      "no_adress_data": "Praegu pole ühtegi tarneaadressi"
+    },
+    "common": {
+      "back-to-user-center": "Tagasi kasutajakeskusesse",
+      "cancel": "Tühista",
+      "confirm": "Nõus",
+      "email": "E-posti aadress",
+      "email2": "Post",
+      "enter-email": "Sisesta e-posti aadress",
+      "enter-mobile-phone": "Sisesta mobiiltelefoni number",
+      "member-login": "Liikme sisselogimine",
+      "mobile": "Telefoninumber",
+      "mobile-phone": "Mobiiltelefoni number"
+    },
+    "email": {
+      "mail_common": "Post"
+    },
+    "general": {
+      "apr": "apr",
+      "april": "aprill",
+      "aug": "aug",
+      "august": "august",
+      "bind_success": "Ühendatud",
+      "cancel_mobile_button": "Tühista",
+      "clear_button": "Tühista",
+      "confirm_button": "NÕUS",
+      "date_format": "dd.MM.yyyy",
+      "dec": "dets",
+      "december": "detsember",
+      "email_empty_hint": "Sisesta e-posti aadress",
+      "email_error_hint": "Sisesta kehtivas vormingus ja alla 50 tähemärgi pikkune e-posti aadress",
+      "enter_verification_code": "Sisesta kinnituskood",
+      "error_message_1001": "Parooli viga",
+      "error_message_1002": "Kasutajat pole olemas",
+      "error_message_1003": "Konto oli ajutiselt lukustatud",
+      "error_message_1004": "Pange see sageli tööle. Proovige hiljem uuesti",
+      "error_message_1005": "Kood on aegunud",
+      "error_message_1006": "Koodiviga",
+      "error_message_1007": "Käitage kontrollkood sageli. Palun laadige kontrollkood",
+      "error_message_1008": "Ühendage ilma kolmandate osapoolte kanaleid konfigureerimata",
+      "error_message_1009": "Ärge helistage kolmandale liidesele",
+      "error_message_1010": "Ära saada",
+      "error_message_1011": "Konto numbrit ei aktiveerita",
+      "error_message_1012": "Teenuse erandid",
+      "error_message_1013": "Teenuse erandid",
+      "error_message_1014": "Ärge kontrollige kontrollkoodi",
+      "error_message_1015": "Kontrollige dünaamilist valideerimiskoodi",
+      "error_message_1016": "Teenuse erandid",
+      "error_message_1017": "Konto numbri jaoks on oht",
+      "error_message_1018": "Postkast oli lingitud",
+      "error_message_1020": "Ühenduse aeg",
+      "error_message_1021": "Ühenduse aeg",
+      "error_message_1022": "Konto number on lingitud",
+      "error_message_1023": "Teenuse erandid",
+      "error_message_1024": "Teenuse erandid",
+      "error_message_2": "Teenuse erandid",
+      "error_message_2001": "Mobiil on registreeritud",
+      "error_message_2002": "E-posti aadress on registreeritud",
+      "error_message_2003": "Ära proovi nii sageli",
+      "error_message_2004": "Kood on aegunud",
+      "error_message_2005": "Koodiviga",
+      "error_message_2006": "Liiga palju kinnitusi, hangi muu kood",
+      "error_message_2007": "Teenuse erand, proovige hiljem uuesti",
+      "error_message_2016": "Kontod on ohus",
+      "error_message_3": "Teenuse erandid",
+      "error_message_3001": "Teenuse erand, proovige hiljem uuesti",
+      "error_message_3002": "Kasutajad, kes pole seotud mobiiltelefoni/e-postiga peavad proovima muuta oma salasõnu",
+      "error_message_3003": "Ära proovi nii sageli",
+      "error_message_3004": "Kood on aegunud",
+      "error_message_3005": "Koodiviga",
+      "error_message_3006": "Liiga palju kinnitusi, hangi muu kood",
+      "error_message_3007": "Mobiili pole olemas",
+      "error_message_3008": "E-posti aadressit pole olemas",
+      "error_message_3009": "Mobiil on seotud teiste kontodega",
+      "error_message_3010": "E-posti aadress on seotud teiste kontodega",
+      "error_message_3014": "Koodi saatmine ebaõnnestus",
+      "error_message_4": "Teenuse erandid",
+      "error_message_5": "Teenuse erandid",
+      "error_message_6": "Teenuse erandid",
+      "feb": "veebr",
+      "february": "veebruar",
+      "first_day": "0",
+      "fr": "R",
+      "fri": "reede.",
+      "friday": "reede",
+      "image_size_less_than_tips": "Pildid peaksid olema väiksemad kui {{max}} MB",
+      "jan": "jaan",
+      "january": "jaanuar",
+      "jul": "juuli",
+      "july": "juuli",
+      "jun": "juuni",
+      "june": "juuni",
+      "mar": "märts",
+      "march": "märts",
+      "max_image_upload_tips": "Saad üles laadida kuni {{max}} pilti",
+      "may": "mai",
+      "may_short": "mai",
+      "mo": "E",
+      "mon": "esmasp.",
+      "monday": "esmaspäev",
+      "network_error_message": "Internetti pole",
+      "nov": "nov",
+      "november": "november",
+      "oct": "okt",
+      "october": "oktoober",
+      "okay_common": "NÕUS",
+      "password_empty_hint": "Sisesta parool",
+      "phone_empty_message": "Sisesta mobiiltelefoni number",
+      "phone_error_message": "Sisesta mobiiltelefoni number kehtivas vormingus",
+      "phone_number_error_message": "Sisesta kehtiv telefoninumber",
+      "repeat_passport_error": "Sisestatud paroolid ei ühti",
+      "resend": "Saada uuesti",
+      "sa": "L",
+      "sat": "laup.",
+      "saturday": "laupäev",
+      "select__date": "Vali kuupäev",
+      "send": "Saada",
+      "send_error": "Saada kõigepealt kinnituskood",
+      "send_verification_code_hint": "Sisesta parool uuesti",
+      "sep": "sept",
+      "september": "september",
+      "set_password": "Määra parool, mille pikkus on vähemalt 6 tähemärki ja kõige rohkem 18 tähemärki.",
+      "su": "P",
+      "sun": "pühap.",
+      "sunday": "pühapäev",
+      "th": "N",
+      "thu": "neljap.",
+      "thursday": "neljapäev",
+      "time_format": "hh:mm aa",
+      "today": "Täna",
+      "tu": "T",
+      "tue": "teisip.",
+      "tuesday": "teisipäev",
+      "user_agreement_tip": "Tutvu kõigepealt kasutuslepinguga ja nõustu sellega",
+      "username_empty_hint": "Sisesta e-posti aadress või mobiiltelefoni number",
+      "verification_code_sent_tip": "Kinnituskood on sinu kontole saadetud",
+      "we": "K",
+      "wed": "kolmap.",
+      "wednesday": "kolmapäev"
+    },
+    "network-err-msg": "Internetti pole",
+    "phone": {
+      "mobile_common": "Telefoninumber"
+    },
+    "subscription": {
+      "unsubscribe_success": "Tellimus on tühistatud. Sa hüppad avalehele"
+    },
+    "tips": {
+      "and": "ja",
+      "bind-change-email": "Ühenda/muuda e-posti aadressi",
+      "bind-change-mobile-phone-number": "Ühenda/muuda mobiiltelefoni numbrit",
+      "bind-success": "Ühendatud",
+      "change-binding-after-verification": "Saad pärast kinnitamist {{value}} ühendada/muuta",
+      "continue-as-a-guest": "Jätkake külalisena",
+      "forget-password": "Parool ununenud",
+      "i-agree-with-the-shop": "Nõustun järgmisega:",
+      "login": "LOGI SISSE",
+      "or-use-the-following-method-to-log-in": "Või logi sisse järgmisi meetodeid kasutades",
+      "password-can-be-changed-after-verification": "Pärast kinnituse saamist saad parooli ära muuta",
+      "please-read-and-agree-to-the-user-agreement-first": "Tutvu kõigepealt kasutuslepinguga ja nõustu sellega",
+      "poroceed-to-checkout": "Liikuge kassasse",
+      "register": "Registreeru",
+      "reset-password": "Oled lähtestamas konto {{account}} parooli",
+      "set-new-password": "Lähtesta parool",
+      "update-password": "Muuda salasõna",
+      "update-success": "Muudetud",
+      "verification-code-has-been-sent-to-your-account": "Kinnituskood on sinu kontole saadetud",
+      "verify-account-to-reset-password": "Kinnita oma konto ja lähtesta parool"
+    },
+    "trade": {
+      "go-login": "Mine ja logi sisse"
+    },
+    "unsubscribe": {
+      "btn": "Loobu tellimusest",
+      "reason": {
+        "other": {
+          "length": "Sisestage kuni 300 sõna",
+          "placeholder": "Sisestussisu"
+        }
+      },
+      "reason1": "Ma ei taha enam neid e-kirju saada",
+      "reason2": "Ma saan liiga palju e-kirju",
+      "reason3": "Ma ei tellinud seda nimekirja.",
+      "reason4": "E-kirjad ei ole minu jaoks olulised",
+      "reason5": "E-posti sisu on liiga pikk",
+      "reason6": "Muu",
+      "subtitle": "Meil on kahju näha teid lahkumas! Palun andke meile teada, miks te tellimusest loobusite:",
+      "success": "Tellimus on tühistatud. Sa hüppad avalehele",
+      "title": "Loobu tellimusest"
+    }
+  },
   "footer": {
     "copyright": "Kõik õigused kaitstud.",
     "followus": "JÄLGI MEID",
@@ -221,9 +542,24 @@
       "title": "Me hoolime teie privaatsusest"
     }
   },
+  "general": {
+    "404": {
+      "button": "Jätka ostlemist",
+      "subtext": "Lehte, mida otsisite, pole olemas.",
+      "title": "404 lehekülge ei leitud"
+    },
+    "general": {
+      "accept": "Aktsepteerida",
+      "decline": "Langus",
+      "link": "Privaatsuspoliitika",
+      "tips": "Teie kasutuskogemuse parandamiseks kasutame küpsiseid sisselogimisandmete meeldejätmiseks, statistika kogumiseks ja teie huvidele kohandatud sisu edastamiseks. Küpsiste aktsepteerimiseks või meie privaatsuspoliitika vaatamiseks klõpsake nuppu Aktsepteeri.",
+      "title": "Me hoolime teie privaatsusest"
+    }
+  },
   "header": {
     "cart": "Sinu ostukorv",
     "center": "Keskus",
+    "emptyPlaceholder": "",
     "login": "Sisselogimine",
     "logout": "Väljalogimine",
     "navItemAll": "Kõik",
@@ -367,6 +703,25 @@
           "title": "Sinu tellimus on kinnitatud"
         }
       },
+      "orderstatus": {
+        "PayAmount": "maksta summa",
+        "ReceiverAccount": "saaja konto",
+        "ReferenceNumber": "viitenumber",
+        "UploadTime": "üleslaadimise aeg",
+        "action": {
+          "UploadVoucher": "Laadige vautšer üles"
+        },
+        "feedback": {
+          "CountLimit": "Saate üles laadida kuni 5 vautšerit.",
+          "InvalidOrderNumber": "kehtetu tellimuse number",
+          "SizeLimte": "Laadige üles JPG-, PNG-, GIF-kujutised 10 MB ulatuses",
+          "SystemBusy": "süsteem on hõivatud, proovige hiljem uuesti.",
+          "UploadFail": "Üleslaadimine ebaõnnestus. Palun proovi uuesti."
+        },
+        "notice": {
+          "UploadVoucher": "Palun laadige pangaülekande vautšer üles ja me kinnitame."
+        }
+      },
       "packages": {
         "amount": {
           "channel-surcharge": "Makse vahendustasu",
@@ -428,9 +783,24 @@
         "subscriptions-title": "Tellimised",
         "title": "Teave",
         "unshipped-order-num": "Töötlemine ({{num}} toodet)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "Makse edastamine õnnestus",
+          "WaittingforPayment": "Ootan makset"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "Sain aru"
+          }
+        }
+      },
+      "taxFee": "Maksud"
     },
     "help-tips": "Kas vajad abi? Võta meiega ühendust: {{email}}",
+    "includeTax": {
+      "totalLine": "Sisaldab {{price}} makse"
+    },
     "oms-status": {
       "arrived": "Saabunud",
       "cancelled": "Tühista saadetis",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Tühistatud",
       "already-paid": "Tasutud",
+      "authorized": "Volitatud",
       "failed": "Makse ebaõnnestus",
       "partial-payment": "Osaliselt tasutud",
       "partial-refund": "Osaliselt tagastatud",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "Logistika- ja makseviiside teavet veel pole",
     "no-product-introduction": "Tootetutvustusi veel pole",
     "previewLinkToast": "Toimingut lingi eelvaateks ei toetata",
+    "productTax": "käibemaks",
     "recentlyViewedProducts": "Hiljuti vaadatud tooted",
     "recommendTitle": "Sulle võib meeldida ka",
+    "skuLoadingTips": "Variantide teabe laadimine, palun oodake...",
     "tabPanel": {
       "comments": {
         "empty": "Tootearvustusi veel pole",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "toodet"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "Selles kategoorias pole ühtegi toodet",
@@ -677,6 +1051,35 @@
     "sortName": "Sorteeri:",
     "title": "Otsing"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Lisa pilt",
+      "didnot_bought_cannot_reviewed": "Kahjuks ei ole sa seda toodet varem tellinud, nii et sa ei saa arvustust jätta",
+      "didnot_bought_sign_in_first": "Selle toote ostnud kliendid saavad jätta arvustuse; logi kõigepealt sisse",
+      "enter_at_least_one_character": "Sisesta vähemalt sõna",
+      "error_submit_again": "Süsteemivea tõttu ei saa sinu arvustust töödelda; proovi uuesti~",
+      "first_review": "postita esimene kommentaar nüüd!",
+      "image_uploading": "Üleslaadimine, esita hiljem",
+      "maximum_image_quantity": "Saad lisada kuni {{total}} pilti",
+      "maximum_image_size": "Pildi maksimaalne suurus on {{size}} MB",
+      "no_review": "Kommentaare veel pole",
+      "only_supports__image_format": "Toetab ainult .jpg- .jpeg- .png- .bmp-failide üleslaadimist",
+      "ratings": "Hinnangud",
+      "sign_in": "Logi sisse",
+      "submit": "Esita",
+      "thanks_for_your_review": "Täname arvustuse eest",
+      "write_a_review": "Kirjuta arvustus",
+      "write_a_review_for_the_product": "Sisesta arvustus selle toote kohta"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Selle piiratud toote maksimaalne lubatud kogus on {{num}}",
+      "activity_toast_product__limit": "Ost on piiratud {{stock}} kampaaniatootega",
+      "activity_toast_title__limit": "Allolevad tooted ületavad ostulimiiti",
+      "go_to_amazon_by_link": "Osta Amazonist",
+      "go_to_rakuten_by_link": "Osta LOTTEst",
+      "go_to_yahoo_by_link": "Osta Yahoost"
+    }
+  },
   "promotion": {
     "activity-benefit": "Ürituse pakkumised",
     "activity-introduction": "Ürituse tutvustus",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "<italic>{{content}}</italic> allahindlust <italic>{{condition}}</italic> tüki ostmise korral"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "Hankige {{offPercent}}% allahindlust",
+            "unlocked": "{{offPercent}}% allahindlust lukustamata!"
+          },
+          "free": {
+            "locked": "Tasuta pakkumine",
+            "unlocked": "Tasuta pakkumine on lukustamata!"
+          },
+          "unlocked": {
+            "tip": "Saate nautida toote allahindlust"
+          }
+        },
+        "threshold": "Osta {{threshold}}"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}} maha",
+      "copySuccessText": "Kupongi kood kopeeritakse edukalt",
+      "copyText": "Koopia",
+      "freeShipping": "Tasuta saatmine",
+      "threshold": "Tellimused üle {{threshold}}"
+    },
+    "autoCoupon": {
+      "shopMore": "Rohkem"
+    },
     "bundle": {
       "saveTip": "Säästa koos ostmisel {{amount}}",
       "title": "Ostetakse sageli koos"
     },
     "customer-purchase-limit": "Ostulimiit {{count}} inimese kohta",
     "customer-purchase-limit-each-item": "Ostulimiit {{count}} toote kohta inimese kohta",
+    "discount-coupon-banner": {
+      "getCode": "Hangi sooduskupongid"
+    },
     "discount-coupon": {
       "applied": "Rakendatud",
       "apply": "Rakenda",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "Kuum allahindlus!",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "Osta veel {{threshold}} toodet ja saad ühe tasuta.",
+        "b11_t1_s1_normal": "Osta veel {{threshold}} toodet ja saad ühelt {{willSave}} ALLAHINDLUST.",
+        "b11_t1_s2_free": "Õnnitlused! Saad ühe toote tasuta.",
+        "b11_t1_s2_next_free": "Õnnitlused! {{saved}} Salvestatud, {{br}}osta veel {{threshold}} toodet ja saad ühe toote tasuta.",
+        "b11_t1_s2_normal": "Õnnitlused! {{saved}} Salvestatud, {{br}}osta veel {{threshold}} toodet ja saad ühelt tootelt {{willSave}} ALLAHINDLUST.",
+        "b11_t1_s3_free": "Õnnitlused! Saad ühe toote tasuta.",
+        "b11_t1_s3_normal": "Õnnitlused! Saad ühelt tootelt {{saved}} ALLAHINDLUST.",
+        "b1_t0_s1": "Osta veel {{threshold}}, et säästa {{willSave}}",
+        "b1_t0_s2": "Säästa juba {{saved}}! {{br}}Osta {{threshold}} rohkem, et säästa {{willSave}}",
+        "b1_t0_s3": "Õnnitlused! Oled säästnud {{saved}}.",
+        "b1_t1_s1": "Osta veel {{threshold}}, et säästa {{willSave}}",
+        "b1_t1_s2": "Säästa juba {{saved}}! {{br}}Osta {{threshold}} rohkem, et säästa {{willSave}}",
+        "b1_t1_s3": "Õnnitlused! Oled säästnud {{saved}}!",
+        "b2_t0_s1": "Osta veel {{threshold}}, et saada {{willSave}} ALLAHINDLUST",
+        "b2_t0_s2": "Säästa juba {{saved}}! {{br}}Osta {{threshold}} rohkem, et saada {{willSave}} ALLAHINDLUST",
+        "b2_t0_s3": "Õnnitlused! Oled säästnud {{saved}}.",
+        "b2_t1_s1": "Osta veel {{threshold}}, et saada {{willSave}} ALLAHINDLUST",
+        "b2_t1_s2": "Säästa juba {{saved}}! {{br}}Osta {{threshold}} rohkem, et saada {{willSave}} ALLAHINDLUST",
+        "b2_t1_s3": "Õnnitlused! Oled säästnud {{saved}}.",
+        "b3_t0_s1_unlimited": "Osta {{threshold}} uuesti ja naudi <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>!",
+        "b3_t0_s1_upper_limit": "Osta {{threshold}} uuesti ja naudi <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>! (Maksimaalne tasuta veosumma {{upperLimit}})",
+        "b3_t0_s3_unlimited": "õnnitlused! Sa oled saanud <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>!",
+        "b3_t0_s3_upper_limit": "õnnitlused! Sa oled saanud <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>! (Maksimaalne tasuta veosumma {{upperLimit}})",
+        "b3_t1_s1_unlimited": "Osta {{threshold}} rohkem tükki ja naudi <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>!",
+        "b3_t1_s1_upper_limit": "Osta {{threshold}} rohkem tükki ja naudi <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>! (Maksimaalne tasuta veosumma {{upperLimit}})",
+        "b3_t1_s3_unlimited": "õnnitlused! Sa oled saanud <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>!",
+        "b3_t1_s3_upper_limit": "õnnitlused! Sa oled saanud <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>! (Maksimaalne tasuta veosumma {{upperLimit}})",
+        "b9_t1_s1": "Ostke veel {{threshold}} tükki, ning saate {{willSave}} tükki tasuta",
+        "b9_t1_s2": "Palju õnne! {{saved}} tükki saadi tasuta! Ostke veel {{threshold}} tükki, ning saate {{willSave}} tükki tasuta",
+        "b9_t1_s3": "Palju õnne! {{saved}} tükki neist on tasuta"
+      },
+      "discount_tag": {
+        "b11_t1_free": "Osta {{threshold}} toodet ja saad ühe tasuta.",
+        "b11_t1_normal": "Osta {{threshold}} toodet, saad ühelt tootelt {{save}} ALLAHINDLUST.",
+        "b1_t0": "Osta {{threshold}}, et säästa {{save}}",
+        "b1_t1": "Osta {{threshold}} Saa {{save}} ALLAHINDLUST",
+        "b2_t0": "Osta {{threshold}}, et säästa {{save}}",
+        "b2_t1": "Osta {{threshold}} SAA {{save}} ALLAHINDLUST"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "Õnnitlused! Saad ühe toote tasuta.",
               "normal": "Õnnitlused! Saad ühelt tootelt {{saved}} ALLAHINDLUST."
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Palju õnne, saate nautida {{benefitCount}} üksusi TASUTA",
+                "normal": "Palju õnne, saate nautida {{willSave}} allahindlust {{benefitCount}} üksustel"
+              },
+              "free": "Osta {{threshold}}, nautida{{benefitCount}} üksused TASUTA",
+              "normal": "Osta {{threshold}}, nautida {{willSave}} allahindlus {{benefitCount}} üksused"
+            },
+            "step3": {
+              "free": "Palju õnne! Teil on {{benefitCount}} TASUTA üksused!",
+              "normal": "Palju õnne! Teil on {{saved}} allahindlust {{benefitCount}} üksused!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Palju õnne, saate nautida {{benefitCount}} üksusi TASUTA",
+                "normal": "Palju õnne, saate nautida {{willSave}} allahindlust {{benefitCount}} üksustel"
+              },
+              "free": "Ostke {{threshold}}, nautida {{benefitCount}}TASUTA kaupade jaoks",
+              "normal": "Ostke {{threshold}}, nautida {{willSave}} allahindlust {{benefitCount}} kaupadele"
+            },
+            "step3": {
+              "free": "Palju õnne! Teil on {{benefitCount}} TASUTA üksused!",
+              "normal": "Palju õnne! Teil on {{saved}} allahindlust {{benefitCount}} üksused!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Makse",
     "pay-way-logo-and-more": "ja rohkem",
     "payment-security-description": "Kõik tehingud on turvalised ja krüpteeritud.",
+    "payments-name": {
+      "COD": "Tasumine kättesaamisel",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "Krediitkaart"
+    },
     "pic-upload-fail": "Pildi {{name}} üleslaadimine ebaõnnestus",
     "pick-address": "Kauba väljaandmise aadress",
     "please-choose-area": "Vali piirkond",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "Toode on välja müüdud",
     "product-tax": "Kaubamaks",
     "quantity": "KOGUS",
+    "receiver-info": "Kohaletoimetamise aadress",
     "recieve-address-unavailable-rechoose": "Saaja aadressile pole tarneviise saadaval. Mine tagasi, et uuesti valida",
     "reciever-fullname": "Saaja täisnimi",
     "reciever-info": "Kohaletoimetamise aadress",
@@ -1230,6 +1741,24 @@
     "your-order-not-pay": "Sa pole tellimuse eest tasumist lõpetanud",
     "your-refund-order-created": "Sinu tagastustellimus on esitatud"
   },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "Kupongikood ei tohi ületada 25 tähemärki.",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} kupong kehtib tarneviisile",
+      "discount_code_invalid": "{{discountCode}} on sisestatud õigesti, kuid toodete hind või kogus ei vasta nõuetele.",
+      "discount_codes_cannot_stack": "Tootel on juba soodustus, seega ei saa seda kasutada koos teiste soodustustega",
+      "discounts_cannot_stack": "Sellele tellimusele rakendati allahindlust. Teisi soodustusi lisada ei saa.",
+      "enter_a_valid_discount_code": "Allahindluse kood on sisestatud valesti",
+      "free_shipping": "tasuta saatmine",
+      "order_seller_discount": "Müüja täiendav soodustus",
+      "order_tax": "Maksud",
+      "order_tip": "Nõuanne",
+      "payment_subtotal_cost": "Vahesum.",
+      "point_discount": "Soodustus punktidelt",
+      "shipping_fee": "Saatmine",
+      "trade_coupon_discount": "Kupong"
+    }
+  },
   "user": {
     "account": "KONTO",
     "code": "Kinnituskood",
@@ -1259,31 +1788,43 @@
     "signUp": "REGISTREERU",
     "subscription-text": "Registreeruge mulle e-kirjade saamiseks, et saada värskendusi, juurdepääsu eksklusiivsetele pakkumistele ja palju muud.",
     "udbResponse": {
-      "err-1": "Parameetrid on tühjad",
-      "err-13": "stoken luba aegus",
-      "err-4": "Parameetrid on kehtetud",
-      "err-5": "Lubamatu toiming",
-      "err-999": "Kaugkõne ei õnnestunud",
+      "err-1": "Teenuse erandid",
+      "err-13": "Teenuse erandid",
+      "err-4": "Teenuse erandid",
+      "err-5": "Teenuse erandid",
+      "err-999": "Teenuse erandid",
       "err1001": "Parooli viga",
       "err1002": "Kasutajat pole olemas",
       "err1003": "Konto oli ajutiselt lukustatud",
-      "err1004": "Saada tekstisõnum aegadeks",
+      "err1004": "Pange see sageli tööle. Proovige hiljem uuesti",
       "err1005": "Kood on aegunud",
       "err1006": "Koodiviga",
-      "err1007": "Kinnituskoodi viga liiga mitmel korral",
-      "err1008": "ThirdID (kolmas ID) või kanal pole konfigureeritud",
-      "err1009": "Kolmanda poole valideerimine ebaõnnestus",
-      "err1010": "Tekstisõnumi/e-posti pohja muutmine nurjus",
-      "err1017": "Kontod on ohus",
+      "err1007": "Käitage kontrollkood sageli. Palun laadige kontrollkood",
+      "err1008": "Ühendage ilma kolmandate osapoolte kanaleid konfigureerimata",
+      "err1009": "Ärge helistage kolmandale liidesele",
+      "err1010": "Ära saada",
+      "err1011": "Konto numbrit ei aktiveerita",
+      "err1012": "Teenuse erandid",
+      "err1013": "Teenuse erandid",
+      "err1014": "Ärge kontrollige kontrollkoodi",
+      "err1015": "Kontrollige dünaamilist valideerimiskoodi",
+      "err1016": "Teenuse erandid",
+      "err1017": "Konto numbri jaoks on oht",
+      "err1018": "Postkast oli lingitud",
+      "err1020": "Ühenduse aeg",
+      "err1021": "Ühenduse aeg",
+      "err1022": "Konto number on lingitud",
+      "err1023": "Teenuse erandid",
+      "err1024": "Teenuse erandid",
       "err2001": "Mobiil on registreeritud",
       "err2002": "E-posti aadress on registreeritud",
       "err2003": "Ära proovi nii sageli",
       "err2004": "Kood on aegunud",
       "err2005": "Koodiviga",
       "err2006": "Liiga palju kinnitusi, hangi muu kood",
-      "err2007": "Tekstisõnumi/e-posti pohja muutmine nurjus",
+      "err2007": "Teenuse erand, proovige hiljem uuesti",
       "err2016": "Kontod on ohus",
-      "err3001": "Kehtetu küpsis",
+      "err3001": "Teenuse erand, proovige hiljem uuesti",
       "err3002": "Kasutajad, kes pole seotud mobiiltelefoni/e-postiga peavad proovima muuta oma salasõnu",
       "err3003": "Ära proovi nii sageli",
       "err3004": "Kood on aegunud",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Konto sidumine",
-      "account-info": "Kontoteave",
+      "account-info": "Konto",
       "account-subscription-email": "Saada e-posti aadressile",
       "account-subscription-line": "Saada rakendusse Line",
       "account-subscription-messenger": "Saada messengerisse",
@@ -1310,7 +1851,9 @@
       "bind": "Sidumine",
       "change-password": "Muuda salasõna",
       "email": "E-posti",
+      "firstName": "Nimi",
       "general-member": "Tavaliige",
+      "lastName": "Perekonnanimi",
       "member-level": "Liikmesuse tase",
       "memberLevelCom": {
         "defaultLevel": "Tavaliige",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "Muuda e-kirja",
       "modify-phone": "Muuda telefoni",
+      "nicknameEmptyError": "Esimesti ja perekonnanime ei saa tühjaks jätta",
+      "notSet": "Pole seatud",
       "password": "Parool",
       "phone": "Mobiiltelefon",
       "reset-password-error": "Kõigepealt seo e-kiri või mobiiltelefon",
       "subscription-notification": "Tellimise teavitus",
       "unsubscribed": "Tellimus on tühistatud",
-      "username": "Kasutajanimi",
-      "username-message": "Sisesta oma kasutajanimi.",
-      "username-placeholder": "Sisesta oma kasutajanimi"
+      "username": "Nimi",
+      "username-message": "Palun sisestage oma nimi.",
+      "username-placeholder": "Palun sisestage oma nimi."
     },
     "address": {
       "add": "Lisa uus aadress",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Ostetud tooted",
     "cancel": "TÜHISTA",
+    "datePicker": {
+      "mobile": {
+        "cancel": "Tühista",
+        "confirm": "NÕUS",
+        "title": "Vali kuupäev"
+      },
+      "pc": {
+        "clear": "Tühista",
+        "dateFormat": "dd.MM.yyyy",
+        "days0": "pühapäev",
+        "days1": "esmaspäev",
+        "days2": "teisipäev",
+        "days3": "kolmapäev",
+        "days4": "neljapäev",
+        "days5": "reede",
+        "days6": "laupäev",
+        "daysMin0": "P",
+        "daysMin1": "E",
+        "daysMin2": "T",
+        "daysMin3": "K",
+        "daysMin4": "N",
+        "daysMin5": "R",
+        "daysMin6": "L",
+        "daysShort0": "pühap.",
+        "daysShort1": "esmasp.",
+        "daysShort2": "teisip.",
+        "daysShort3": "kolmap.",
+        "daysShort4": "neljap.",
+        "daysShort5": "reede.",
+        "daysShort6": "laup.",
+        "firstDay": "0",
+        "months0": "jaanuar",
+        "months1": "veebruar",
+        "months10": "november",
+        "months11": "detsember",
+        "months2": "märts",
+        "months3": "aprill",
+        "months4": "mai",
+        "months5": "juuni",
+        "months6": "juuli",
+        "months7": "august",
+        "months8": "september",
+        "months9": "oktoober",
+        "monthsShort0": "jaan",
+        "monthsShort1": "veebr",
+        "monthsShort10": "nov",
+        "monthsShort11": "dets",
+        "monthsShort2": "märts",
+        "monthsShort3": "apr",
+        "monthsShort4": "mai",
+        "monthsShort5": "juuni",
+        "monthsShort6": "juuli",
+        "monthsShort7": "aug",
+        "monthsShort8": "sept",
+        "monthsShort9": "okt",
+        "timeFormat": "hh:mm aa",
+        "today": "Täna"
+      }
+    },
+    "deleteAccount": {
+      "address": "Aadress",
+      "card": "Krediitkaardi number",
+      "deadline": "Kommertsaruannete loomiseks on teie tellimus alati nähtav. Teie konto andmed kustutatakse {{time}}, saate protsessi enne seda kuupäeva tühistada",
+      "email": "E-post",
+      "ip": "IP-aadress",
+      "name": "Nimi",
+      "nextStep": "Edasi",
+      "notify": "Selle konto sulgemist saate taotleda. Kui see konto tuvastatakse, kustutatakse kogu teave, eriti:",
+      "revoke": "Tühistamine",
+      "revokeMessage": "See konto on suletud, konto andmed kustutatakse {{time}}, protseduuri saate enne seda kuupäeva tühistada",
+      "timeout": "Toiming aegus, kinnitage uuesti",
+      "title": "Sulgemisarve",
+      "verifyEmailMessage": "Enne konto sulgemist peame kontrollima teie identiteeti\nTeie e-posti aadress {{email}} saab kontrollimeili",
+      "verifyPhoneMessage": "Enne konto sulgemist peame kontrollima teie identiteeti\nTeie mobiiltelefon {{phone}} saab sõnumi"
+    },
     "edit": "Muuda",
     "editAddress": {
       "address1-message": "Vähem kui 512 tähemärki！",
       "address2-message": "Vähem kui 512 tähemärki！",
       "city-message": "Vali oma linn!",
+      "common-max": "",
+      "common-min": "rohkem kui {{min}} tähemärki",
       "contact-message": "Sisesta oma nimi",
       "country-message": "Vali oma riik!",
       "default": "Määra vaikeaadressiks",
@@ -1440,6 +2062,7 @@
     "save": "SALVESTA",
     "sign-out": "Logi välja",
     "subscription": {
+      "desc": "Hankige uusimaid uudiseid poe kohta",
       "email": "E-posti",
       "line": "LINE",
       "messenger": "Messenger",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "Te ei saa meilt enam turundusuuendusi. Saate igal ajal uuesti tellida"
+      "text": "Te ei saa meilt enam turundusuuendusi. Saate igal ajal uuesti tellida",
+      "title": "Olete loobunud meililisti <italic>{{name}}</italic> tellimusest"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Ootel tellimus"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

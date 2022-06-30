@@ -257,6 +257,9 @@
         }
       },
       "settings": {
+        "full_screen": {
+          "label": "แสดงความกว้างเต็มหน้าจอ"
+        },
         "html": {
           "label": "HTML"
         }
@@ -366,6 +369,18 @@
         "group_header__1": {
           "label": "ภาพสินค้า"
         },
+        "md_cols": {
+          "label": "จำนวนคอลัมน์บนมือถือ",
+          "options__0": {
+            "label": "1 คอลัมน์"
+          },
+          "options__1": {
+            "label": "2 คอลัมน์"
+          }
+        },
+        "pc_cols": {
+          "label": "จำนวนคอลัมน์บนคอมพิวเตอร์"
+        },
         "product_categories": {
           "label": "หมวดหมู่"
         },
@@ -423,6 +438,14 @@
           "settings": {
             "html": {
               "label": "HTML"
+            }
+          }
+        },
+        "plainText": {
+          "name": "ข้อความ",
+          "settings": {
+            "plainText": {
+              "label": "ข้อความ"
             }
           }
         },
@@ -491,6 +514,20 @@
             }
           }
         },
+        "image": {
+          "name": "รูปภาพ",
+          "settings": {
+            "image": {
+              "label": "รูปภาพ"
+            },
+            "image_width": {
+              "label": "ความกว้างของภาพ"
+            },
+            "link": {
+              "label": "ลิงก์กระโดดข้าม"
+            }
+          }
+        },
         "menu": {
           "name": "การนำทางอย่างรวดเร็ว",
           "settings": {
@@ -502,8 +539,7 @@
             }
           }
         },
-        "undefined": {
-          "name": "รูปภาพ",
+        "select": {
           "settings": {
             "align": {
               "label": "เลย์เอาต์",
@@ -516,12 +552,6 @@
               "options__2": {
                 "label": "ชิดขวา"
               }
-            },
-            "image": {
-              "label": "รูปภาพ"
-            },
-            "image_width": {
-              "label": "ความกว้างของภาพ"
             }
           }
         }
@@ -621,6 +651,10 @@
         },
         "main_menu_link_list": {
           "label": "เมนูนำทาง"
+        },
+        "mega_menu_images": {
+          "info": "[ดูวิธีตั้งค่าบทแนะนำเมนูสุดยอด](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
+          "label": "แสดงภาพเมนูสุดยอด"
         },
         "mobile_logo_width": {
           "label": "ความกว้างของ LOGO บนโทรศัพท์มือถือ"
@@ -763,13 +797,31 @@
         "pc_text_position": {
           "label": "ตำแหน่งข้อความ",
           "options__0": {
-            "label": "ชิดซ้าย"
+            "label": "บนซ้าย"
           },
           "options__1": {
-            "label": "ศูนย์กลาง"
+            "label": "ด้านบนโดยตรง"
           },
           "options__2": {
-            "label": "ชิดขวา"
+            "label": "บนขวา"
+          },
+          "options__3": {
+            "label": "ด้านซ้าย"
+          },
+          "options__4": {
+            "label": "กลาง"
+          },
+          "options__5": {
+            "label": "ด้านขวา"
+          },
+          "options__6": {
+            "label": "ล่างซ้าย"
+          },
+          "options__7": {
+            "label": "ด้านล่างโดยตรง"
+          },
+          "options__8": {
+            "label": "ล่างขวา"
           }
         },
         "under_image": {
@@ -1330,6 +1382,14 @@
             }
           }
         },
+        "plainText": {
+          "name": "ข้อความ",
+          "settings": {
+            "plainText": {
+              "label": "ข้อความ"
+            }
+          }
+        },
         "price": {
           "name": "ราคา"
         },
@@ -1533,6 +1593,18 @@
         "group_header__0": {
           "label": "ภาพสินค้า"
         },
+        "md_cols": {
+          "label": "จำนวนคอลัมน์บนมือถือ",
+          "options__0": {
+            "label": "1 คอลัมน์"
+          },
+          "options__1": {
+            "label": "2 คอลัมน์"
+          }
+        },
+        "pc_cols": {
+          "label": "จำนวนคอลัมน์บนคอมพิวเตอร์"
+        },
         "product_fill_type": {
           "label": "วิธีการเติมภาพสินค้า",
           "options__0": {
@@ -1573,6 +1645,18 @@
       "settings": {
         "group_header__0": {
           "label": "ภาพสินค้า"
+        },
+        "md_cols": {
+          "label": "จำนวนคอลัมน์บนมือถือ",
+          "options__0": {
+            "label": "1 คอลัมน์"
+          },
+          "options__1": {
+            "label": "2 คอลัมน์"
+          }
+        },
+        "pc_cols": {
+          "label": "จำนวนคอลัมน์บนคอมพิวเตอร์"
         },
         "product_fill_type": {
           "label": "วิธีการเติมภาพสินค้า",
@@ -2078,6 +2162,18 @@
         "jump_link": {
           "label": "ลิงก์กระโดดข้าม"
         },
+        "md_cols": {
+          "label": "จำนวนคอลัมน์บนมือถือ",
+          "options__0": {
+            "label": "1 คอลัมน์"
+          },
+          "options__1": {
+            "label": "2 คอลัมน์"
+          }
+        },
+        "pc_cols": {
+          "label": "จำนวนคอลัมน์บนคอมพิวเตอร์"
+        },
         "show_block_bg": {
           "label": "พื้นหลัง",
           "options__0": {
@@ -2158,6 +2254,9 @@
         "full_width": {
           "label": "ความกว้างเต็มหน้าจอ"
         },
+        "loop": {
+          "label": "เล่นวนซ้ำ"
+        },
         "title": {
           "label": "หัวข้อ"
         },
@@ -2169,6 +2268,70 @@
     }
   },
   "settings_schema": {
+    "button": {
+      "name": "ปุ่ม",
+      "settings": {
+        "btn_border_opacity": {
+          "label": "ความทึบ"
+        },
+        "btn_border_radius": {
+          "label": "รัศมีมุม"
+        },
+        "btn_border_thickness": {
+          "label": "ความหนา"
+        },
+        "btn_shadow_blur": {
+          "label": "เบลอ"
+        },
+        "btn_shadow_offset_x": {
+          "label": "ออฟเซตแนวนอน"
+        },
+        "btn_shadow_offset_y": {
+          "label": "ออฟเซตแนวตั้ง"
+        },
+        "btn_shadow_opacity": {
+          "label": "ความทึบ"
+        },
+        "group_header__0": {
+          "label": "กรอบ"
+        },
+        "group_header__1": {
+          "label": "เงา"
+        }
+      }
+    },
+    "card": {
+      "name": "การ์ด",
+      "settings": {
+        "card_border_opacity": {
+          "label": "ความทึบ"
+        },
+        "card_border_radius": {
+          "label": "รัศมีมุม"
+        },
+        "card_border_thickness": {
+          "label": "ความหนา"
+        },
+        "card_shadow_blur": {
+          "label": "เบลอ"
+        },
+        "card_shadow_offset_x": {
+          "label": "ออฟเซตแนวนอน"
+        },
+        "card_shadow_offset_y": {
+          "label": "ออฟเซตแนวตั้ง"
+        },
+        "card_shadow_opacity": {
+          "label": "ความทึบ"
+        },
+        "group_header__0": {
+          "label": "กรอบ"
+        },
+        "group_header__1": {
+          "label": "เงา"
+        }
+      }
+    },
     "cart": {
       "name": "ตะกร้าสินค้า",
       "settings": {
@@ -2445,6 +2608,38 @@
         }
       }
     },
+    "content_container": {
+      "name": "ที่บรรจุเนื้อหา",
+      "settings": {
+        "content_border_opacity": {
+          "label": "ความทึบ"
+        },
+        "content_border_radius": {
+          "label": "รัศมีมุม"
+        },
+        "content_border_thickness": {
+          "label": "ความหนา"
+        },
+        "content_shadow_blur": {
+          "label": "เบลอ"
+        },
+        "content_shadow_offset_x": {
+          "label": "ออฟเซตแนวนอน"
+        },
+        "content_shadow_offset_y": {
+          "label": "ออฟเซตแนวตั้ง"
+        },
+        "content_shadow_opacity": {
+          "label": "ความทึบ"
+        },
+        "group_header__0": {
+          "label": "กรอบ"
+        },
+        "group_header__1": {
+          "label": "เงา"
+        }
+      }
+    },
     "design": {
       "name": "ออกแบบ",
       "settings": {
@@ -2492,6 +2687,67 @@
         },
         "superscript_decimals": {
           "label": "แสดงการทำให้ทศนิยมของราคาขายให้เล็กลง"
+        }
+      }
+    },
+    "drawer": {
+      "name": "ลิ้นชัก",
+      "settings": {
+        "drawer_border_opacity": {
+          "label": "ความทึบ"
+        },
+        "drawer_border_thickness": {
+          "label": "ความหนา"
+        },
+        "drawer_shadow_blur": {
+          "label": "เบลอ"
+        },
+        "drawer_shadow_offset_x": {
+          "label": "ออฟเซตแนวนอน"
+        },
+        "drawer_shadow_offset_y": {
+          "label": "ออฟเซตแนวตั้ง"
+        },
+        "drawer_shadow_opacity": {
+          "label": "ความทึบ"
+        },
+        "group_header__0": {
+          "label": "กรอบ"
+        },
+        "group_header__1": {
+          "label": "เงา"
+        }
+      }
+    },
+    "dropdown_modal": {
+      "name": "เมนูแบบเลื่อนลงและป๊อปอัป",
+      "settings": {
+        "group_header__0": {
+          "label": "กรอบ"
+        },
+        "group_header__1": {
+          "label": "เงา"
+        },
+        "menu_modal_border_opacity": {
+          "label": "ความทึบ"
+        },
+        "menu_modal_border_radius": {
+          "label": "รัศมีมุม"
+        },
+        "menu_modal_border_thickness": {
+          "label": "ความหนา"
+        },
+        "menu_modal_shadow_blur": {
+          "label": "เบลอ"
+        },
+        "menu_modal_shadow_offset_x": {
+          "label": "ออฟเซตแนวนอน"
+        },
+        "menu_modal_shadow_offset_y": {
+          "label": "ออฟเซตแนวตั้ง"
+        },
+        "menu_modal_shadow_opacity": {
+          "label": "ความทึบ"
         }
       }
     },
@@ -2561,14 +2817,88 @@
         }
       }
     },
+    "input": {
+      "name": "กล่องใส่ข้อมูล",
+      "settings": {
+        "group_header__0": {
+          "label": "กรอบ"
+        },
+        "group_header__1": {
+          "label": "เงา"
+        },
+        "input_border_opacity": {
+          "label": "ความทึบ"
+        },
+        "input_border_radius": {
+          "label": "รัศมีมุม"
+        },
+        "input_border_thickness": {
+          "label": "ความหนา"
+        },
+        "input_shadow_blur": {
+          "label": "เบลอ"
+        },
+        "input_shadow_offset_x": {
+          "label": "ออฟเซตแนวนอน"
+        },
+        "input_shadow_offset_y": {
+          "label": "ออฟเซตแนวตั้ง"
+        },
+        "input_shadow_opacity": {
+          "label": "ความทึบ"
+        }
+      }
+    },
     "layout": {
       "name": "เลย์เอาต์",
       "settings": {
+        "grid_horizontal_space": {
+          "label": "ระยะห่างแนวนอน"
+        },
+        "grid_vertical_space": {
+          "label": "ระยะห่างแนวตั้ง"
+        },
+        "group_header__0": {
+          "info": "ส่วนประกอบและสินค้า/เค้าโครงหมวดหมที่ส่งผลต่อรูปแบบกริด",
+          "label": "ตะแกรง"
+        },
         "page_width": {
           "label": "ความกว้างของหน้า"
         },
         "section_vertical_gap": {
           "label": "ระยะห่างแนวตั้งระหว่างส่วนประกอบ"
+        }
+      }
+    },
+    "media_file": {
+      "name": "ไฟล์สื่อ",
+      "settings": {
+        "group_header__0": {
+          "label": "กรอบ"
+        },
+        "group_header__1": {
+          "label": "เงา"
+        },
+        "media_border_opacity": {
+          "label": "ความทึบ"
+        },
+        "media_border_radius": {
+          "label": "รัศมีมุม"
+        },
+        "media_border_thickness": {
+          "label": "ความหนา"
+        },
+        "media_shadow_blur": {
+          "label": "เบลอ"
+        },
+        "media_shadow_offset_x": {
+          "label": "ออฟเซตแนวนอน"
+        },
+        "media_shadow_offset_y": {
+          "label": "ออฟเซตแนวตั้ง"
+        },
+        "media_shadow_opacity": {
+          "label": "ความทึบ"
         }
       }
     },
@@ -2592,6 +2922,9 @@
         "share_to_pinterest": {
           "label": "แบ่งปันไปที่ Pinterest"
         },
+        "share_to_tumblr": {
+          "label": "แบ่งปันไปที่ Tumblr"
+        },
         "share_to_twitter": {
           "label": "แบ่งปันไปที่ Twitter"
         },
@@ -2603,6 +2936,9 @@
         },
         "social_instagram_link": {
           "label": "Instagram"
+        },
+        "social_linkedin_link": {
+          "label": "Linkedin"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -2633,6 +2969,24 @@
         "product_discount": {
           "label": "แสดงส่วนลด"
         },
+        "product_discount_position": {
+          "label": "ตำแหน่งของแท็กส่วนลด",
+          "options__0": {
+            "label": "บนซ้าย"
+          },
+          "options__1": {
+            "label": "บนขวา"
+          },
+          "options__2": {
+            "label": "ล่างซ้าย"
+          },
+          "options__3": {
+            "label": "ล่างขวา"
+          }
+        },
+        "product_discount_radius": {
+          "label": "รัศมีมุมของแท็กส่วนลด"
+        },
         "product_discount_style": {
           "label": "รูปแบบส่วนลด",
           "options__0": {
@@ -2656,6 +3010,38 @@
           "options__2": {
             "label": "แสดงได้ถึง 2 แถว"
           }
+        }
+      }
+    },
+    "sku": {
+      "name": "ตัวเลือกคุณลักษณะหลายรายการ",
+      "settings": {
+        "group_header__0": {
+          "label": "กรอบ"
+        },
+        "group_header__1": {
+          "label": "เงา"
+        },
+        "sku_selector_border_opacity": {
+          "label": "ความทึบ"
+        },
+        "sku_selector_border_radius": {
+          "label": "รัศมีมุม"
+        },
+        "sku_selector_border_thickness": {
+          "label": "ความหนา"
+        },
+        "sku_selector_shadow_blur": {
+          "label": "เบลอ"
+        },
+        "sku_selector_shadow_offset_x": {
+          "label": "ออฟเซตแนวนอน"
+        },
+        "sku_selector_shadow_offset_y": {
+          "label": "ออฟเซตแนวตั้ง"
+        },
+        "sku_selector_shadow_opacity": {
+          "label": "ความทึบ"
         }
       }
     }

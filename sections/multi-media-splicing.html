@@ -11,7 +11,9 @@
 
 {{ assign 'settings' section.settings }}
 
-<section class="multi-media-splicing__wrapper color-scheme-{{ settings.color_scheme }} section-gap{{#if settings.color_scheme '!==' ''}}--padding{{/if}}">
+{{ snippet 'global-border-shadow-style' color_scheme=settings.color_scheme sectionId=section.id type='card' }}
+
+<section class="__sl-custom-track-stage-multiMediaSplicing multi-media-splicing__wrapper color-scheme-{{ settings.color_scheme }} section-gap{{#if settings.color_scheme '!==' ''}}--padding{{/if}}">
   <div
     class="container"
     data-section-type="multi-media-splicing"
@@ -20,7 +22,7 @@
       <h2 class="multi-media-splicing__title title5">{{ settings.title }}</h2>
     {{/if}}
 
-    <div class="multi-media-splicing__block multi-media-block__{{ length section.block_order }} multi-media-splicing__layout-{{ settings.desktop_layout }} multi-media-{{ settings.mobile_layout }}__layout-mobile">
+    <div class="global-grid-row-gap global-grid-column-gap multi-media-splicing__block multi-media-block__{{ length section.block_order }} multi-media-splicing__layout-{{ settings.desktop_layout }} multi-media-{{ settings.mobile_layout }}__layout-mobile">
       {{ assign 'blockSize' (length section.block_order) }}
       {{#each section.block_order as | blockId |}}
         {{#with (lookup ../section.blocks blockId)}}
@@ -49,7 +51,7 @@
           {{/if}}{{/if}}
 
           {{#if (trim type) '===' 'video'}}
-            <div class="multi-media-splicing__card collage-video collage-image__{{ settings.image_padding }} {{ card_class }}">
+            <div class="__sl-custom-track-stage-multiMediaSplicing-item multi-media-splicing__card collage-video collage-image__{{ settings.image_padding }} {{ card_class }} global-card-border-shadow">
               <section
                 class="video__container video-padding__{{ settings.image_padding }}"
               >
@@ -113,9 +115,9 @@
                           >
                           </div>
                         {{else}}
-                          {{#if (isFalsey settings.cover_image '&&' settings.cover_image.url)}}
+                          {{#not (boolean settings.cover_image '&&' settings.cover_image.url)}}
                             {{ snippet 'icons/icon_video_placeholder' }}
-                          {{/if}}
+                          {{/not}}
                         {{/contains}}
                       {{/contains}}
                     </div>
@@ -135,16 +137,18 @@
               {{#if ../../settings.color_scheme}}
                 {{ assign 'backgroundColor' (get (append 'color_scheme_' ../../settings.color_scheme '_bg') ../../theme.settings) }}
               {{/if}}
-              {{#if (isEmpty product)}}
-                {{ assign 'product_spu' (get '1' (product_mock_data 2 1)) }}
-              {{/if}}
               {{ assign 'images' (get 'images' product_spu) }}
+              {{#if (isEmpty product)}}
+                {{ assign 'product_spu' (get '0' (product_mock_data 2 1)) }}
+                {{ assign 'backgroundColor' '#f3f3f3' }}
+                {{ assign 'images' (get 'imageList' product_spu) }}
+              {{/if}}
               {{#if (isFalsey images.[0])}}
                 {{ assign 'hasImageClass' 'multi-media-splicing__no-image' }}
                 {{ assign 'backgroundColor' '#f3f3f3' }}
               {{/if}}
               <div class="multi-media-splicing__content multi-media-splicing__procontent {{ hasImageClass }}">
-                {{ snippet 'product/commons/product-item' section=this spu=product_spu imageList=images forbiddenBtn=true noHoverAniEffect=true imageFit=imageFit backgroundColor=backgroundColor }}
+                {{ snippet 'product/commons/product-item' moduleType='multi-media-splicing' section=this spu=product_spu imageList=images forbiddenBtn=true noHoverAniEffect=true imageFit=imageFit backgroundColor=backgroundColor }}
               </div>
             </div>
           {{else}}{{#if (trim type) '===' 'collection'}}
@@ -162,7 +166,7 @@
               </div>
             </div>
           {{else}}{{#if (trim type) '===' 'image'}}
-            <div class="multi-media-splicing__card collage-image collage-image__{{ settings.image_padding }} {{ card_class }}">
+            <div class="multi-media-splicing__card collage-image collage-image__{{ settings.image_padding }} {{ card_class }} global-card-border-shadow">
               <div class="multi-media-splicing__content">
                 <div class="collage-image__wrapper">
                   {{#if settings.image.url}}

@@ -29,26 +29,136 @@
     "activity-price-limit": "İndirimli fiyatlarla bu üründen yalnızca {{num}} adet satın alabilirsiniz",
     "activity-product-limit": "İndirimli fiyatlardan aynı anda en fazla {{stock}} ürün satın alabilirsiniz.",
     "activity-title-limit": "Aşağıdaki ürünler satın alma limitini aşıyor, yine de ödemeye devam edilsin mi?",
+    "cart": {
+      "cancel": "İptal",
+      "confirm": "Tamam",
+      "continue": "Devam et",
+      "got_it": "Anladım",
+      "return_to_cart": "Sepete dön"
+    },
     "checkout-error": "Alışveriş sepetinde en az bir adet mevcut olmayan ürün var. Lütfen ödeme için alışveriş sepetindeki öğeleri ayarlayın.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Aşağıdaki ürünler satın alma limitini aşıyor, yine de ödemeye devam edilsin mi?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "Bu siparişe indirim uygulandı. Başka indirim ekleyemezsiniz"
+    },
+    "discount": {
+      "coupon_code_amount": "Kupon",
+      "coupon_code_exceed_not_25_characters": "Kupon kodu 25 karakteri aşamaz.",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} kuponu, kargo yöntemi için geçerlidir",
+      "discount_code_invalid": "{{discountCode}} doğru girildi ama ürün fiyatı ya da miktarı gereklilikleri karşılamıyor",
+      "discount_codes_cannot_stack": "Ürün için hali hazırda diğer ayrıcalıklı etkinliklerle birlikte kullanılamayan bir ayrıcalıklı etkinlik var",
+      "enter_a_valid_discount_code": "İndirim kodu yanlış girildi",
+      "expected_discount": "İndirim"
+    },
+    "discount_item": {
+      "buy_limit5": "İndirimli fiyatlardan aynı anda en fazla {{stock}} ürün satın alabilirsiniz."
+    },
+    "discount_price": {
+      "buy_limit3": "İndirimli fiyatları kullanarak bu üründen yalnızca {{stock}} adet satın alabilirsiniz"
+    },
     "get": "İndirim alın",
     "go-shopping": "ALIŞVERİŞE DEVAM",
+    "item": {
+      "add_limit1": "100 öğeye kadar ekleme yapın",
+      "add_limit2": "Tek bir ürün için eklenebilecek maksimum miktar 999 adettir",
+      "removed": "GEÇERSİZ",
+      "sold_out": "TÜMÜ SATILDI"
+    },
     "login-description": "Zaten üye misiniz? Giriş yapmak, siparişi yönetmek için daha uygun olabilir!",
     "login-membership": "Ücretsiz üyelik",
     "most-100-sku": "100 öğeye kadar ekleme yapın",
     "most-buy-999": "Tek bir ürün için eklenebilecek maksimum miktar 999 adettir",
     "not-participation-offers": "Değiştirilemeyen indirim",
+    "notices": {
+      "change_password_after_verification": "Doğrulamadan sonra parolayı değiştirebilirsiniz",
+      "excess_product": "Aşağıdaki ürünler satın alma limitini aşıyor, lütfen miktarı değiştirin",
+      "insufficient_product_inventory": "Ürün envanteri yetersiz",
+      "network": "Ağ Hatası",
+      "product_expired": "Ürünün süresi doldu",
+      "product_limit": "Ürün limiti aşıldı",
+      "product_selected_invalid": "Üzgünüz, seçtiğiniz ürün satın alınamayacak geçersiz bir ürün. Lütfen yeniden seçin",
+      "store_nonexistent": "Mağaza mevcut değil"
+    },
+    "order": {
+      "authorized": "Yetkili",
+      "canceled": "İptal edildi",
+      "canceled_order": "İptal edildi",
+      "click_to_track": "Lütfen aşağıdaki bağlantıya tıklayarak paketinizi izleyin:",
+      "deleted": "GEÇERSİZ",
+      "invalid_order_number": "geçersiz sipariş numarası",
+      "no_more_info": "Daha fazla bilgi yok",
+      "pay_amount": "Ödeme miktarı",
+      "payment_voucher_confirmation": "Anladım",
+      "receiver_account": "alıcı hesabı",
+      "reference_number": "referans numarası",
+      "sequence": "No.{{id}}",
+      "shipping_address": "Kargo adresi",
+      "time": "Sipariş verme:",
+      "total_amount": "Toplamda {{transPackages}} öğe",
+      "total_item_amount": "Toplamda {{transPackages}} öğe",
+      "try_again": "Yükleme başarısız. Lütfen tekrar deneyin.",
+      "try_later": "sistem meşgul, lütfen daha sonra tekrar deneyin.",
+      "upload_image_within_10_m_b": "Lütfen JPG, PNG, GIF resimlerini 10MB içinde yükleyin",
+      "upload_time": "yükleme zamanı",
+      "voucher_amount_limit": "En fazla 5 kupon yükleyebilirsiniz."
+    },
+    "payment": {
+      "channel": "Ödeme kanalı",
+      "create_time": "Oluşturuldu",
+      "paid": "Ödendi",
+      "partially_paid": "Kısmen ödendi",
+      "paying": "Ödeme",
+      "payment_details": "Ödeme Detayı",
+      "reference_number": "İşlem referans numarası",
+      "status": "Durum",
+      "subtotal_price": "Ara toplam",
+      "sum": "Miktar",
+      "total": "Toplam",
+      "unpaid": "Ödenmedi",
+      "update_time": "Güncellendi"
+    },
+    "policy": {
+      "privacy_policy": "Gizlilik Politikası"
+    },
+    "product-no-exists": "Ürünler mevcut değil",
+    "refund": {
+      "click_to_view": "Görüntülemek için tıklayın",
+      "custom_preview": "Özel önizleme"
+    },
     "render-add-items": "Sepetiniz şu anda boş.",
     "render-empty-status": "Sepetinizde öğe yok",
+    "shipping": {
+      "no_info": "Henüz teslimat bilgisi yok, lütfen daha sonra kontrol edin.",
+      "package_tracking": "Paket Takibi",
+      "partially_shipped": "Kısmi gönderim",
+      "preparing_order": "Ürünler hazırlanıyor",
+      "shipped_order": "Teslim edildi"
+    },
     "shopping-fees": "alışveriş ücretleri",
     "shopping-money": "indirim, Vergiler ve kargo bir sonraki adımda hesaplanacaktır",
     "shopping-money-step": "Ödeme anında hesaplanan vergiler ve kargo ücreti",
+    "shpping": {
+      "service_terms": "Hizmet Kullanım Şartları"
+    },
     "stock-limit": "{{stock}} adet stokta",
+    "taxIncluded": {
+      "textTag": "Vergi dahil"
+    },
+    "tips": {
+      "change_binding_after_verification": "Doğrulamadan sonra {{value}} bağlayabilir/değiştirebilirsiniz",
+      "reset_password": "{{account}} hesabının parolasını sıfırlıyorsunuz"
+    },
     "view-link": "Görüntülemek için tıklayın",
     "view-pic": "Özel önizleme",
     "view-shopping-cart": "Alışveriş Sepetini Görüntüle",
     "added-to-cart": "Sepetinize eklendi",
     "cart-subtotal": "Sepet ara toplamı",
     "view-cart": "Sepeti görüntüle"
+  },
+  "cascade": {
+    "choose": "โปรดเลือกหนึ่งตัวเลือก"
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Bizimle iletişime geçtiğiniz için teşekkür ederiz, mümkün olan en kısa sürede size dönüş yapacağız."
   },
+  "customer": {
+    "account": {
+      "add-email": "E-postayı girin",
+      "add-phone": "Cep numarasını girin",
+      "deadline": "İşletme raporlaması amacıyla sipariş bilgileriniz görünür olmaya devam edecektir. Hesap verileriniz {{time}} tarihinde silinecektir, bu tarihten önce işlemi iptal edebilirsiniz",
+      "gender_female": "Kadın",
+      "gender_male": "Erkek",
+      "gender_secret": "Sır tut",
+      "not_set": "Ayarlanmadı",
+      "reset_password_error_hint": "Lütfen önce e-postayı veya cep telefonunu bağlayın",
+      "verify_email_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{email}} e-posta adresinize bir doğrulama e-postası alacaksınız",
+      "verify_phone_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{phone}} numaralı cep telefonunuza bir doğrulama mesajı alacaksınız"
+    },
+    "address": {
+      "add_address": "Yeni Adres Ekle",
+      "common_max": "",
+      "common_min": "{{min}} karakterden büyük",
+      "edit_last_name_hint": "Lütfen soyadınızı giriN!",
+      "edit_phone_hint": "Lütfen cep telefonunuzu girin",
+      "mobile-errorMessage": "Geçerli bir telefon numarası girin",
+      "no_adress_data": "Şu anda teslimat adresi yok"
+    },
+    "common": {
+      "back-to-user-center": "Kullanıcı Merkezine Geri Dön",
+      "cancel": "İptal",
+      "confirm": "Tamam",
+      "email": "E-posta Adresi",
+      "email2": "Posta",
+      "enter-email": "Lütfen e-posta adresinizi girin",
+      "enter-mobile-phone": "Lütfen cep telefonu numarasını girin",
+      "member-login": "Üye girişi",
+      "mobile": "Telefon numarası",
+      "mobile-phone": "Cep telefonu numarası"
+    },
+    "email": {
+      "mail_common": "Posta"
+    },
+    "general": {
+      "apr": "Nsn",
+      "april": "Nisan",
+      "aug": "Ağt",
+      "august": "Ağustos",
+      "bind_success": "Bağlandı",
+      "cancel_mobile_button": "İptal",
+      "clear_button": "Temizle",
+      "confirm_button": "Tamam",
+      "date_format": "dd.MM.yyyy",
+      "dec": "Arl",
+      "december": "Aralık",
+      "email_empty_hint": "Lütfen e-posta adresini girin",
+      "email_error_hint": "Lütfen geçerli biçimde ve 50 karakterden kısa bir e-posta adresi girin",
+      "enter_verification_code": "Lütfen doğrulama kodunu giriniz",
+      "error_message_1001": "Parola hatası",
+      "error_message_1002": "Kullanıcı mevcut değil",
+      "error_message_1003": "Hesabınız anormal durumdan dolayı devredışı bırakıldı; lütfen yasağın kaldırılması için satıcı ile iletişime geçin",
+      "error_message_1004": "Çok sık deneme yapıldı. Lütfen sonra tekrar deneyin",
+      "error_message_1005": "Kodun süresi doldu",
+      "error_message_1006": "Kod hatası",
+      "error_message_1007": "Doğrulama kodu ile çok sık deneme yapıldı. Lütfen doğrulama kodunu tekrar alın",
+      "error_message_1008": "Üçüncü taraf kanalları yapılandırmadan giriş yapın",
+      "error_message_1009": "Üçüncü taraf arayüzü çağrılamadı",
+      "error_message_1010": "Gönderilemedi",
+      "error_message_1011": "Hesap numarası aktifleştirilmedi",
+      "error_message_1012": "Servis istisnaları",
+      "error_message_1013": "Servis istisnaları",
+      "error_message_1014": "Doğrulama kodu doğrulanamadı",
+      "error_message_1015": "Lütfen dinamik doğrulama kodunu doğrulayın",
+      "error_message_1016": "Servis istisnaları",
+      "error_message_1017": "Hesap numarasında bir risk var",
+      "error_message_1018": "Posta kutusu bağlandı",
+      "error_message_1020": "Giriş zaman aşımı",
+      "error_message_1021": "Giriş zaman aşımı",
+      "error_message_1022": "Hesap numarası bağlandı",
+      "error_message_1023": "Servis istisnaları",
+      "error_message_1024": "Servis istisnaları",
+      "error_message_2": "Servis istisnaları",
+      "error_message_2001": "Cep numarası kaydedildi",
+      "error_message_2002": "E-posta kaydedildi",
+      "error_message_2003": "Bu kadar sık deneme yapmayın",
+      "error_message_2004": "Kodun süresi doldu",
+      "error_message_2005": "Kod hatası",
+      "error_message_2006": "Çok fazla doğrulama girişiminde bulunuldu, lütfen başka bir kod alın",
+      "error_message_2007": "Servis istisnası, sonra tekrar deneyin",
+      "error_message_2016": "Hesap risk altında",
+      "error_message_3": "Servis istisnaları",
+      "error_message_3001": "Servis istisnası, sonra tekrar deneyin",
+      "error_message_3002": "Parolalarını değiştirmeye çalıştıkları cep telefonları/posta kutuları bağlı olmayan kullanıcılar",
+      "error_message_3003": "Bu kadar sık deneme yapmayın",
+      "error_message_3004": "Kodun süresi doldu",
+      "error_message_3005": "Kod hatası",
+      "error_message_3006": "Çok fazla doğrulama girişiminde bulunuldu, lütfen başka bir kod alın",
+      "error_message_3007": "Cep numarası mevcut değil",
+      "error_message_3008": "E-posta mevcut değil",
+      "error_message_3009": "Cep numarası diğer hesaplar tarafından bağlandı",
+      "error_message_3010": "E-posta başka hesaplar tarafından bağlandı",
+      "error_message_3014": "Metin mesajı/posta şablonu görselleştirme başarısız",
+      "error_message_4": "Servis istisnaları",
+      "error_message_5": "Servis istisnaları",
+      "error_message_6": "Servis istisnaları",
+      "feb": "Şbt",
+      "february": "Şubat",
+      "first_day": "1",
+      "fr": "Cu",
+      "fri": "Cum",
+      "friday": "Cuma",
+      "image_size_less_than_tips": "Resimler {{max}} MB'tan küçük olmalıdır",
+      "jan": "Oca",
+      "january": "Ocak",
+      "jul": "Tmz",
+      "july": "Temmuz",
+      "jun": "Hzr",
+      "june": "Haziran",
+      "mar": "Mrt",
+      "march": "Mart",
+      "max_image_upload_tips": "En fazla {{max}} resim yükleyebilirsiniz",
+      "may": "Mayıs",
+      "may_short": "Mys",
+      "mo": "Pt",
+      "mon": "Pts",
+      "monday": "Pazartesi",
+      "network_error_message": "İnternet yok",
+      "nov": "Ksm",
+      "november": "Kasım",
+      "oct": "Ekm",
+      "october": "Ekim",
+      "okay_common": "TAMAM",
+      "password_empty_hint": "Lütfen parola girin",
+      "phone_empty_message": "Lütfen cep telefonu numarasını girin",
+      "phone_error_message": "Lütfen geçerli formatta bir cep telefonu numarası girin",
+      "phone_number_error_message": "Geçerli bir telefon numarası girin",
+      "repeat_passport_error": "Girdiğiniz parolalar eşleşmedi",
+      "resend": "Yeniden gönder",
+      "sa": "Ct",
+      "sat": "Cts",
+      "saturday": "Cumartesi",
+      "select__date": "Tarih seç",
+      "send": "Gönder",
+      "send_error": "Lütfen önce doğrulama kodunu gönderin",
+      "send_verification_code_hint": "Lütfen parolayı tekrar girin",
+      "sep": "Eyl",
+      "september": "Eylül",
+      "set_password": "Lütfen minimum 6 karakter, maksimum ise 18 karakter uzunluğunda bir parola belirleyin.",
+      "su": "Pa",
+      "sun": "Pzr",
+      "sunday": "Pazar",
+      "th": "Pe",
+      "thu": "Per",
+      "thursday": "Perşembe",
+      "time_format": "hh:mm aa",
+      "today": "Bugün",
+      "tu": "Sl",
+      "tue": "Sl",
+      "tuesday": "Salı",
+      "user_agreement_tip": "Lütfen önce kullanıcı sözleşmesini okuyun ve kabul edin",
+      "username_empty_hint": "Lütfen e-posta adresini veya cep telefonu numarası girin",
+      "verification_code_sent_tip": "Doğrulama kodu hesabınıza gönderildi",
+      "we": "Ça",
+      "wed": "Çar",
+      "wednesday": "Çarşamba"
+    },
+    "network-err-msg": "İnternet yok",
+    "phone": {
+      "mobile_common": "Telefon numarası"
+    },
+    "subscription": {
+      "unsubscribe_success": "Abonelik iptal edildi, ana sayfaya yönlendirilecek"
+    },
+    "tips": {
+      "and": "ve",
+      "bind-change-email": "Bir e-postayı bağlayın/değiştirin",
+      "bind-change-mobile-phone-number": "Bir cep telefonu numarasını bağlayın/değiştirin",
+      "bind-success": "Bağlandı",
+      "change-binding-after-verification": "Doğrulamadan sonra {{value}} bağlayabilir/değiştirebilirsiniz",
+      "continue-as-a-guest": "misafir olarak devam et",
+      "forget-password": "Parolanızı mı unuttunuz",
+      "i-agree-with-the-shop": "Katılıyorum",
+      "login": "OTURUM AÇ",
+      "or-use-the-following-method-to-log-in": "Veya aşağıdaki yöntemlerle oturum açın",
+      "password-can-be-changed-after-verification": "Doğrulamadan sonra parolayı değiştirebilirsiniz",
+      "please-read-and-agree-to-the-user-agreement-first": "Lütfen önce kullanıcı sözleşmesini okuyun ve kabul edin",
+      "poroceed-to-checkout": "Çıkışa doğru devam et",
+      "register": "Üye ol",
+      "reset-password": "{{account}} hesabının parolasını sıfırlıyorsunuz",
+      "set-new-password": "Parolayı sıfırla",
+      "update-password": "Parola değiştir",
+      "update-success": "Değiştirildi",
+      "verification-code-has-been-sent-to-your-account": "Doğrulama kodu hesabınıza gönderildi",
+      "verify-account-to-reset-password": "Lütfen hesabınızı doğrulayın ve parolanızı sıfırlayın"
+    },
+    "trade": {
+      "go-login": "Oturum açmaya git"
+    },
+    "unsubscribe": {
+      "btn": "Abonelikten çık",
+      "reason": {
+        "other": {
+          "length": "300 kelimeye kadar girin",
+          "placeholder": "Giriş"
+        }
+      },
+      "reason1": "Bu emailleri artık almak istemiyorum",
+      "reason2": "Çok fazla email alıyorum",
+      "reason3": "Bu listeye abone olmadım",
+      "reason4": "Emailler ilgimi çekmiyor",
+      "reason5": "Email içeriği çok uzun değil",
+      "reason6": "Diğer",
+      "subtitle": "Gittiğimiz için üzgünüz! Abonelikten neden çıktığınızı belirtmenizi rica ederiz:",
+      "success": "Abonelik iptal edildi, ana sayfaya yönlendirilecek",
+      "title": "Abonelikten çık"
+    }
+  },
   "footer": {
     "copyright": "Tüm Hakları Saklıdır.",
     "followus": "BİZİ TAKİP EDİN",
@@ -221,9 +542,24 @@
       "title": "Gizliliğine önem veriyoruz"
     }
   },
+  "general": {
+    "404": {
+      "button": "Alışverişe devam et",
+      "subtext": "Aradığınız sayfa mevcut değil.",
+      "title": "404 sayfa bulunamadı"
+    },
+    "general": {
+      "accept": "Kabul et",
+      "decline": "Reddet",
+      "link": "Gizlilik Politikası",
+      "tips": "Kullanıcı deneyimini daha iyi bir hale getirebilmek amacıyla giriş bilgilerinin hatırlanabilmesi, istatistiklerin toplanabilmesi ve ilgi alanlarınıza uygun olarak belirlenmiş içeriklerin sunulabilmesi için çerezleri kullanıyoruz. Çerezleri kabul etmek için \"Kabul et\" tuşuna tıklayın ya da \"Gizlilik Politikası\" ilkelerimize bakın.",
+      "title": "Gizliliğine önem veriyoruz"
+    }
+  },
   "header": {
     "cart": "Sepetiniz",
     "center": "Merkez",
+    "emptyPlaceholder": "",
     "login": "Giriş",
     "logout": "Çıkış",
     "navItemAll": "Tümü",
@@ -367,6 +703,25 @@
           "title": "Siparişiniz onaylandı"
         }
       },
+      "orderstatus": {
+        "PayAmount": "Ödeme miktarı",
+        "ReceiverAccount": "alıcı hesabı",
+        "ReferenceNumber": "referans numarası",
+        "UploadTime": "yükleme zamanı",
+        "action": {
+          "UploadVoucher": "Kupon Yükle"
+        },
+        "feedback": {
+          "CountLimit": "En fazla 5 kupon yükleyebilirsiniz.",
+          "InvalidOrderNumber": "geçersiz sipariş numarası",
+          "SizeLimte": "Lütfen JPG, PNG, GIF resimlerini 10MB içinde yükleyin",
+          "SystemBusy": "sistem meşgul, lütfen daha sonra tekrar deneyin.",
+          "UploadFail": "Yükleme başarısız. Lütfen tekrar deneyin."
+        },
+        "notice": {
+          "UploadVoucher": "Lütfen banka havalesi fişini yükleyin, onaylayalım."
+        }
+      },
       "packages": {
         "amount": {
           "channel-surcharge": "Ödeme komisyonu",
@@ -428,9 +783,24 @@
         "subscriptions-title": "Abonelikler",
         "title": "Bilgiler",
         "unshipped-order-num": "İşleniyor ({{num}} öğe)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "Ödeme başarıyla aktarıldı",
+          "WaittingforPayment": "Ödeme için bekleniyor"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "Anladım"
+          }
+        }
+      },
+      "taxFee": "Vergi"
     },
     "help-tips": "Yardım mı lazım? Lütfen bizimle iletişime geçin: {{email}}",
+    "includeTax": {
+      "totalLine": "Vergilere {{price}} dahil"
+    },
     "oms-status": {
       "arrived": "Ulaştı",
       "cancelled": "Gönderimi iptal et",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Geçersiz",
       "already-paid": "Ödendi",
+      "authorized": "Yetkili",
       "failed": "Ödeme başarısız",
       "partial-payment": "Kısmen ödendi",
       "partial-refund": "Kısmen geri ödendi",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "Henüz lojistik ve ödeme yöntemleri bilgileri yok",
     "no-product-introduction": "Henüz ürün tanıtımı yok",
     "previewLinkToast": "Bağlantı önizleme işlemi desteklenmiyor",
+    "productTax": "vergi dahil",
     "recentlyViewedProducts": "Son Görüntülenen Ürünler",
     "recommendTitle": "Şunlar da hoşunuza gidebilir",
+    "skuLoadingTips": "Varyant bilgileri yükleniyor, lütfen bekleyin...",
     "tabPanel": {
       "comments": {
         "empty": "Henüz ürün değerlendirmesi yok",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "ürünleri"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "Bu kategoride ürün yok",
@@ -677,6 +1051,35 @@
     "sortName": "Sırala:",
     "title": "Ara"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Resim ekle",
+      "didnot_bought_cannot_reviewed": "Üzgünüz, bu ürünü daha önce satın almadınız, bu nedenle yorum bırakamazsınız",
+      "didnot_bought_sign_in_first": "Bu ürünü satın alan müşteriler yorum bırakabilir, lütfen önce oturum açın",
+      "enter_at_least_one_character": "Lütfen en az bir kelime girin",
+      "error_submit_again": "Sistem hatası nedeniyle değerlendirmeniz işlenemiyor, lütfen tekrar deneyin~",
+      "first_review": "İlk yorumu şimdi gönder!",
+      "image_uploading": "Yükleniyor, lütfen daha sonra gönderin",
+      "maximum_image_quantity": "En fazla {{total}} resim ekleyebilirsiniz",
+      "maximum_image_size": "Maksimum resim boyutu {{size}} MB",
+      "no_review": "Henüz yorum yok",
+      "only_supports__image_format": "Yalnızca .jpg .jpeg .png .bmp dosyalarının yüklenmesini desteklemektedir",
+      "ratings": "Derecelendirmeler",
+      "sign_in": "Oturum aç",
+      "submit": "Gönder",
+      "thanks_for_your_review": "Değerlendirmeniz için teşekkürler",
+      "write_a_review": "Bir değerlendirme yapın",
+      "write_a_review_for_the_product": "Lütfen bu ürünle ilgili yorumunuzu giriniz"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Bu sınırlı ürün için izin verilen maksimum miktar {{num}}",
+      "activity_toast_product__limit": "Satın alma, {{stock}} promosyon ürünüyle sınırlıdır",
+      "activity_toast_title__limit": "Aşağıdaki ürünler satın alma limitini aşıyor",
+      "go_to_amazon_by_link": "Amazon'da satın alın",
+      "go_to_rakuten_by_link": "LOTTE'de satın alın",
+      "go_to_yahoo_by_link": "Yahoo'da satın alın"
+    }
+  },
   "promotion": {
     "activity-benefit": "Etkinlik teklifleri",
     "activity-introduction": "Etkinlik tanıtımı",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "<italic>{{condition}}</italic> parça için <italic>{{content}}</italic> indirim"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "%{{offPercent}} indirim alın",
+            "unlocked": "%{0} indirim kilidi açıldı!"
+          },
+          "free": {
+            "locked": "Ücretsiz teklif",
+            "unlocked": "Ücretsiz teklif kilidi açıldı!"
+          },
+          "unlocked": {
+            "tip": "Şu anda ürün indiriminin keyfini çıkarabilirsiniz"
+          }
+        },
+        "threshold": "{{threshold}} satın alın"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}} kapali",
+      "copySuccessText": "Kupon kodu başarıyla kopyalandı",
+      "copyText": "Kopya",
+      "freeShipping": "Ücretsiz Kargo",
+      "threshold": "{{threshold}} üzerindeki siparişler"
+    },
+    "autoCoupon": {
+      "shopMore": "Daha"
+    },
     "bundle": {
       "saveTip": "Birlikte satın alarak {{amount}} tasarruf edin",
       "title": "Sıklıkla birlikte satın alınan"
     },
     "customer-purchase-limit": "Kişi başına satın alma limiti {{count}}",
     "customer-purchase-limit-each-item": "Kişi başı ürün başına satın alma limiti {{count}}",
+    "discount-coupon-banner": {
+      "getCode": "Indirim kuponları alın"
+    },
     "discount-coupon": {
       "applied": "Uygulandı",
       "apply": "Uygula",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "Canlı satış!",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "{{threshold}} öğe daha satın alın, öğelerden birini ücretsiz almanın keyfini çıkarın",
+        "b11_t1_s1_normal": "{{threshold}} öğe daha satın alın, öğelerden birinde {{willSave}} indirimin keyfini çıkarın",
+        "b11_t1_s2_free": "Tebrikler! Öğelerden birini ücretsiz almanın keyfini çıkarın!",
+        "b11_t1_s2_next_free": "Tebrikler! {{saved}} tasarruf edildi, {{br}}{{threshold}} öğe daha satın alın, öğelerden birini ücretsiz almanın keyfini çıkarın!",
+        "b11_t1_s2_normal": "Tebrikler! {{saved}} tasarruf edildi, {{br}}{{threshold}} öğe daha satın alın, öğelerden birinde {{willSave}} indirimin keyfini çıkarın",
+        "b11_t1_s3_free": "Tebrikler! Öğelerden birini ücretsiz almanın keyfini çıkarın!",
+        "b11_t1_s3_normal": "Tebrikler! Öğelerden birinde {{saved}} indirimin keyfini çıkarın!",
+        "b1_t0_s1": "{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
+        "b1_t0_s2": "Şu ana kadar {{saved}} tararruf edildi! {{br}}{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
+        "b1_t0_s3": "Tebrikler! {{saved}} tasarruf ettiniz!",
+        "b1_t1_s1": "{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
+        "b1_t1_s2": "Şu ana kadar {{saved}} tararruf edildi! {{br}}{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
+        "b1_t1_s3": "Tebrikler! {{saved}} tasarruf ettiniz!",
+        "b2_t0_s1": "{{willSave}} indirim kazanmak için {{threshold}} daha satın alın",
+        "b2_t0_s2": "Şu ana kadar {{saved}} tararruf edildi! {{br}}{{willSave}} indirim kazanmak için {{threshold}} daha satın alın",
+        "b2_t0_s3": "Tebrikler! {{saved}} tasarruf ettiniz!",
+        "b2_t1_s1": "{{willSave}} indirim kazanmak için {{threshold}} daha satın alın",
+        "b2_t1_s2": "Şu ana kadar {{saved}} tararruf edildi! {{br}}{{willSave}} indirim kazanmak için {{threshold}} daha satın alın",
+        "b2_t1_s3": "Tebrikler! {{saved}} tasarruf ettiniz!",
+        "b3_t0_s1_unlimited": "Tekrar {{threshold}} satın alın ve <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo</span> keyfi çıkarın!",
+        "b3_t0_s1_upper_limit": "Tekrar {{threshold}} satın alın ve <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo</span> keyfi çıkarın! (Maksimum ücretsiz kargo tutarı {{upperLimit}})",
+        "b3_t0_s3_unlimited": "Tebrikler! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo sahibisiniz</span>!",
+        "b3_t0_s3_upper_limit": "Tebrikler! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo sahibisiniz</span>! (Maksimum ücretsiz kargo tutarı {{upperLimit}})",
+        "b3_t1_s1_unlimited": "Daha fazla {{threshold}} satın alın ve <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo</span> keyfi çıkarın!",
+        "b3_t1_s1_upper_limit": "Daha fazla {{threshold}} satın alın ve <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo</span> keyfi çıkarın! (Maksimum ücretsiz kargo tutarı {{upperLimit}})",
+        "b3_t1_s3_unlimited": "Tebrikler! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo sahibisiniz</span>!",
+        "b3_t1_s3_upper_limit": "Tebrikler! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo sahibisiniz</span>! (Maksimum ücretsiz kargo tutarı {{upperLimit}})",
+        "b9_t1_s1": "{{threshold}} adet daha satın alın, {{willSave}} adeti ücretsiz olsun",
+        "b9_t1_s2": "Tebrikler! {{saved}} adet ücretsiz aldınız! {{threshold}} adet daha satın alın, {{willSave}} adeti ücretsiz olsun",
+        "b9_t1_s3": "Tebrikler! {{saved}} adeti ücretsiz"
+      },
+      "discount_tag": {
+        "b11_t1_free": "{{threshold}} öğe satın alın, öğelerden birini ücretsiz almanın keyfini çıkarın",
+        "b11_t1_normal": "{{threshold}} öğe satın alın, öğelerden birinde {{save}} indirimin keyfini çıkarın",
+        "b1_t0": "{{threshold}} satın alın, {{save}} tasarruf edin",
+        "b1_t1": "{{threshold}} satın alın, {{save}} indirim kazanın",
+        "b2_t0": "{{threshold}} satın alın, {{save}} tasarruf edin",
+        "b2_t1": "{{threshold}} satın alın, {{save}} indirim kazanın"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "Tebrikler! Öğelerden birini ücretsiz almanın keyfini çıkarın!",
               "normal": "Tebrikler! Öğelerden birinde {{saved}} indirimin keyfini çıkarın!"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Tebrikler, {{benefitCount}} öğenin ücretsiz keyfini çıkarın",
+                "normal": "Tebrikler, {{benefitCount}} öğe için {{willSave}} indirim keyfini çıkarın"
+              },
+              "free": "{{threshold}} satın alın, {{benefitCount}} öğenin ücretsiz keyfini çıkarın",
+              "normal": "{{threshold}} satın alın, {{benefitCount}} öğe için {{willSave}} indirim keyfini çıkarın"
+            },
+            "step3": {
+              "free": "Tebrikler! ücretsiz {{benefitCount}} öğe aldınız!",
+              "normal": "Tebrikler! {{benefitCount}} öğe için {{saved}} indirim aldınız!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Tebrikler, {{benefitCount}} öğenin ücretsiz keyfini çıkarın",
+                "normal": "Tebrikler, {{benefitCount}} öğe için {{willSave}} indirim keyfini çıkarın"
+              },
+              "free": "{{threshold}} satın alın, {{benefitCount}} öğenin ücretsiz keyfini çıkarın",
+              "normal": "{{threshold}} satın alın, {{benefitCount}} öğe için {{willSave}} indirim keyfini çıkarın"
+            },
+            "step3": {
+              "free": "Tebrikler! ücretsiz {{benefitCount}} öğe aldınız!",
+              "normal": "Tebrikler! {{benefitCount}} öğe için {{saved}} indirim aldınız!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Ödeme yöntemi",
     "pay-way-logo-and-more": "ve daha fazlası",
     "payment-security-description": "Tüm işlemler güvenli ve şifrelidir.",
+    "payments-name": {
+      "COD": "Kapıda ödeme",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "Kredi Kartı"
+    },
     "pic-upload-fail": "Resim {{name}} yüklenemedi",
     "pick-address": "Koleksiyon adresi",
     "please-choose-area": "Lütfen bir alan seçin",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "Ürün tükendi",
     "product-tax": "Mal vergisi",
     "quantity": "MİKTAR",
+    "receiver-info": "Kargo adresi",
     "recieve-address-unavailable-rechoose": "Alıcının adresi için uygun teslimat yöntemi yok. Lütfen yeniden seçmek için geri dönün",
     "reciever-fullname": "Alıcının tam adı",
     "reciever-info": "Kargo adresi",
@@ -1230,6 +1741,24 @@
     "your-order-not-pay": "Siparişiniz için ödeme işlemini tamamlamadınız",
     "your-refund-order-created": "İade siparişiniz verildi"
   },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "Kupon kodu 25 karakteri aşamaz.",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} kuponu, kargo yöntemi için geçerlidir",
+      "discount_code_invalid": "{{discountCode}} doğru girildi ama ürün fiyatı ya da miktarı gereklilikleri karşılamıyor",
+      "discount_codes_cannot_stack": "Ürün için hali hazırda diğer ayrıcalıklı etkinliklerle birlikte kullanılamayan bir ayrıcalıklı etkinlik var",
+      "discounts_cannot_stack": "Bu siparişe indirim uygulandı. Başka indirim ekleyemezsiniz",
+      "enter_a_valid_discount_code": "İndirim kodu yanlış girildi",
+      "free_shipping": "ücretsiz kargo",
+      "order_seller_discount": "Satıcı ekstra indirimi",
+      "order_tax": "Vergi",
+      "order_tip": "Bahşiş",
+      "payment_subtotal_cost": "Ara toplam",
+      "point_discount": "Puan indirimi",
+      "shipping_fee": "Kargo",
+      "trade_coupon_discount": "Kupon"
+    }
+  },
   "user": {
     "account": "HESAP",
     "code": "Doğrulama kodu",
@@ -1259,31 +1788,43 @@
     "signUp": "ÜYE OL",
     "subscription-text": "Güncellemeleri almak, özel fırsatlara erişmek ve daha fazlası için e-posta almak için beni kaydedin.",
     "udbResponse": {
-      "err-1": "Parametreler boş",
-      "err-13": "stoken zaman aşımına uğradı",
-      "err-4": "Parametreler geçersiz",
-      "err-5": "Geçersiz işlem",
-      "err-999": "Uzaktan arama başarısız",
+      "err-1": "Servis istisnaları",
+      "err-13": "Servis istisnaları",
+      "err-4": "Servis istisnaları",
+      "err-5": "Servis istisnaları",
+      "err-999": "Servis istisnaları",
       "err1001": "Parola hatası",
       "err1002": "Kullanıcı mevcut değil",
       "err1003": "Hesabınız anormal durumdan dolayı devredışı bırakıldı; lütfen yasağın kaldırılması için satıcı ile iletişime geçin",
-      "err1004": "Birden fazla metin mesajı gönderin",
+      "err1004": "Çok sık deneme yapıldı. Lütfen sonra tekrar deneyin",
       "err1005": "Kodun süresi doldu",
       "err1006": "Kod hatası",
-      "err1007": "Çok fazla doğrulama kodu hatası gerçekleşti",
-      "err1008": "Üçüncü Kimlik veya kanal yapılandırılmamış",
-      "err1009": "Üçüncü taraf doğrulaması başarısız",
-      "err1010": "Metin mesajı/posta şablonu görselleştirme başarısız",
-      "err1017": "Hesap risk altında",
+      "err1007": "Doğrulama kodu ile çok sık deneme yapıldı. Lütfen doğrulama kodunu tekrar alın",
+      "err1008": "Üçüncü taraf kanalları yapılandırmadan giriş yapın",
+      "err1009": "Üçüncü taraf arayüzü çağrılamadı",
+      "err1010": "Gönderilemedi",
+      "err1011": "Hesap numarası aktifleştirilmedi",
+      "err1012": "Servis istisnaları",
+      "err1013": "Servis istisnaları",
+      "err1014": "Doğrulama kodu doğrulanamadı",
+      "err1015": "Lütfen dinamik doğrulama kodunu doğrulayın",
+      "err1016": "Servis istisnaları",
+      "err1017": "Hesap numarasında bir risk var",
+      "err1018": "Posta kutusu bağlandı",
+      "err1020": "Giriş zaman aşımı",
+      "err1021": "Giriş zaman aşımı",
+      "err1022": "Hesap numarası bağlandı",
+      "err1023": "Servis istisnaları",
+      "err1024": "Servis istisnaları",
       "err2001": "Cep numarası kaydedildi",
       "err2002": "E-posta kaydedildi",
       "err2003": "Bu kadar sık deneme yapmayın",
       "err2004": "Kodun süresi doldu",
       "err2005": "Kod hatası",
       "err2006": "Çok fazla doğrulama girişiminde bulunuldu, lütfen başka bir kod alın",
-      "err2007": "Metin mesajı/posta şablonu görselleştirme başarısız",
+      "err2007": "Servis istisnası, sonra tekrar deneyin",
       "err2016": "Hesap risk altında",
-      "err3001": "Çerez geçersiz",
+      "err3001": "Servis istisnası, sonra tekrar deneyin",
       "err3002": "Parolalarını değiştirmeye çalıştıkları cep telefonları/posta kutuları bağlı olmayan kullanıcılar",
       "err3003": "Bu kadar sık deneme yapmayın",
       "err3004": "Kodun süresi doldu",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Hesap Bağlama",
-      "account-info": "Hesap Bilgileri",
+      "account-info": "Hesap",
       "account-subscription-email": "E-postaya gönder",
       "account-subscription-line": "Line Uygulamasına gönder",
       "account-subscription-messenger": "Messenger'a gönder",
@@ -1310,7 +1851,9 @@
       "bind": "Bağlama",
       "change-password": "Parolayı değiştir",
       "email": "E-posta",
+      "firstName": "Ad",
       "general-member": "Genel üye",
+      "lastName": "Soyad",
       "member-level": "Üyelik seviyesi",
       "memberLevelCom": {
         "defaultLevel": "Genel üye",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "E-postayı Değiştir",
       "modify-phone": "Telefonu Değiştir",
+      "nicknameEmptyError": "Ad ile Soyad bilgilerinin ikisi de boş bırakılamaz",
+      "notSet": "Ayarlanmadı",
       "password": "Parola",
       "phone": "Cep telefonu",
       "reset-password-error": "Lütfen önce e-postayı veya cep telefonunu bağlayın",
       "subscription-notification": "Abonelik Bildirimi",
       "unsubscribed": "Abonelikten çıkıldı",
-      "username": "Kullanıcı adı",
-      "username-message": "Lütfen kullanıcı adınızı girin!",
-      "username-placeholder": "Lütfen kullanıcı adınızı girin"
+      "username": "Ad",
+      "username-message": "Lütfen adınızı girin",
+      "username-placeholder": "Lütfen adınızı girin"
     },
     "address": {
       "add": "Yeni Adres Ekle",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Satın alınan ürünler",
     "cancel": "İPTAL",
+    "datePicker": {
+      "mobile": {
+        "cancel": "İptal",
+        "confirm": "Tamam",
+        "title": "Tarih seç"
+      },
+      "pc": {
+        "clear": "Temizle",
+        "dateFormat": "dd.MM.yyyy",
+        "days0": "Pazar",
+        "days1": "Pazartesi",
+        "days2": "Salı",
+        "days3": "Çarşamba",
+        "days4": "Perşembe",
+        "days5": "Cuma",
+        "days6": "Cumartesi",
+        "daysMin0": "Pa",
+        "daysMin1": "Pt",
+        "daysMin2": "Sl",
+        "daysMin3": "Ça",
+        "daysMin4": "Pe",
+        "daysMin5": "Cu",
+        "daysMin6": "Ct",
+        "daysShort0": "Pzr",
+        "daysShort1": "Pts",
+        "daysShort2": "Sl",
+        "daysShort3": "Çar",
+        "daysShort4": "Per",
+        "daysShort5": "Cum",
+        "daysShort6": "Cts",
+        "firstDay": "1",
+        "months0": "Ocak",
+        "months1": "Şubat",
+        "months10": "Kasım",
+        "months11": "Aralık",
+        "months2": "Mart",
+        "months3": "Nisan",
+        "months4": "Mayıs",
+        "months5": "Haziran",
+        "months6": "Temmuz",
+        "months7": "Ağustos",
+        "months8": "Eylül",
+        "months9": "Ekim",
+        "monthsShort0": "Oca",
+        "monthsShort1": "Şbt",
+        "monthsShort10": "Ksm",
+        "monthsShort11": "Arl",
+        "monthsShort2": "Mrt",
+        "monthsShort3": "Nsn",
+        "monthsShort4": "Mys",
+        "monthsShort5": "Hzr",
+        "monthsShort6": "Tmz",
+        "monthsShort7": "Ağt",
+        "monthsShort8": "Eyl",
+        "monthsShort9": "Ekm",
+        "timeFormat": "hh:mm aa",
+        "today": "Bugün"
+      }
+    },
+    "deleteAccount": {
+      "address": "Adres",
+      "card": "Kredi kartı numarası",
+      "deadline": "İşletme raporlaması amacıyla sipariş bilgileriniz görünür olmaya devam edecektir. Hesap verileriniz {{time}} tarihinde silinecektir, bu tarihten önce işlemi iptal edebilirsiniz",
+      "email": "E-posta",
+      "ip": "IP adresi",
+      "name": "Ad",
+      "nextStep": "Sonraki",
+      "notify": "Bu hesabı kapatmak için başvurabilirsiniz. Kapatıldığında, bu hesabı tanımlamak için kullanılacak tüm bilgiler silinecektir, bu bilgilere şunlar dahildir:",
+      "revoke": "Kapatmayı iptal edin",
+      "revokeMessage": "Bu hesap kapatılmak üzere işleme alınmış durumdadır, hesap verileriniz {{time}} tarihinde silinecektir, bu tarihten önce işlemi iptal edebilirsiniz",
+      "timeout": "İşlem zaman aşımına uğradı, lütfen tekrar doğrulayın",
+      "title": "Hesabı kapat",
+      "verifyEmailMessage": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{email}} e-posta adresinize bir doğrulama e-postası alacaksınız",
+      "verifyPhoneMessage": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{phone}} numaralı cep telefonunuza bir doğrulama mesajı alacaksınız"
+    },
     "edit": "Düzenle",
     "editAddress": {
       "address1-message": "512 karakterden daha az!",
       "address2-message": "512 karakterden daha az!",
       "city-message": "Lütfen ilinizi seçin!",
+      "common-max": "",
+      "common-min": "{{min}} karakterden büyük",
       "contact-message": "Lütfen adınızı girin",
       "country-message": "Lütfen ülkenizi seçin!",
       "default": "Varsayılan adres olarak ayarla",
@@ -1440,6 +2062,7 @@
     "save": "KAYDET",
     "sign-out": "Oturumu Kapat",
     "subscription": {
+      "desc": "Mağazadan en güncel haberleri alın",
       "email": "E-posta",
       "line": "LINE",
       "messenger": "Messenger",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "Bizden daha fazla pazarlama güncellemesi almayacaksınız. İstediğiniz zaman tekrar abone olabilirsiniz"
+      "text": "Bizden daha fazla pazarlama güncellemesi almayacaksınız. İstediğiniz zaman tekrar abone olabilirsiniz",
+      "title": "<italic>{{name}}</italic> posta listesinden çıktınız"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Bekleyen sipariş"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

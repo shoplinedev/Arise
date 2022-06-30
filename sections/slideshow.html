@@ -16,6 +16,7 @@
 <div
   data-section-type="slideshow"
   data-section-id="{{ section.id }}"
+  class="__sl-custom-track-stage-slideshow"
 >
   {{#if (obj_size section.blocks) '>' 0}}
     {{ assign 'natural_height_ratio' 0 }}
@@ -51,7 +52,7 @@
                 {{!-- 配了pc的图片， m端图片没配， 用pc的scale --}}
                 {{ assign 'natural_mobile_height_ratio' (multiply (divide this.settings.image.height this.settings.image.width) 100) }}
               {{/if}}{{/if}}
-              
+
               {{#if (boolean this.settings.image.url '||' this.settings.image_mobile.url)}}
                 {{#style}}
                   @media only screen and (max-width: 749px) {
@@ -66,7 +67,7 @@
         {{/forIn}}
       {{/with}}
     {{/if}}
-    
+
     <div
       class="slideshow-wrapper flickity-viewport {{#if natural_height}}natural--{{ section.id }} is-natural{{/if}} {{#if natural_mobile_height}}natural-mobile--{{ section.id }} is-natural-mobile{{/if}}"
     >
@@ -102,12 +103,20 @@
                 }
 
                 {{#if button_alpha '>' 0}}
-                  .slideshow__slide--{{ @key }} .btn-lg {
+                  #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .btn-lg {
                     background-color: {{ this.settings.color_accent }};
                     border: none;
                     color: #fff;
                     {{#if (color_extract this.settings.color_accent 'lightness') '>' 40}}
                       color: #000 !important;
+                    {{/if}}
+                  }
+
+                  #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .btn-primary::after {
+                    {{#if (color_extract this.settings.color_accent 'lightness') '>' 40}}
+                    box-shadow:0 0 0 {{ global.theme.settings.btn_border_thickness }}px {{ rgba '#000000' (subtract 1 (divide global.theme.settings.btn_border_opacity 100)) }};
+                    {{else}}
+                    box-shadow:0 0 0 {{ global.theme.settings.btn_border_thickness }}px {{ rgba '#ffffff' (subtract 1 (divide global.theme.settings.btn_border_opacity 100)) }};
                     {{/if}}
                   }
                 {{/if}}
@@ -129,7 +138,7 @@
                 {{#eq ele 'a'}}
                   {{{ ele_link_item.hrefAttr }}}
                 {{/eq}}
-                class="slideshow__slide swiper-slide slideshow__slide--{{ @key }} slideshow__slide--index{{ @index }}"
+                class="slideshow__slide swiper-slide slideshow__slide--{{ @key }} slideshow__slide--index{{ @index }}  __sl-custom-track-stage-slideshow-wrapper"
               >
                 <div class="hero__image-wrapper">
                   {{#if global.section.settings.parallax}}
@@ -166,7 +175,7 @@
                           onload="this.className += ' is-img-loaded'"
                         />
                       {{/if}}
-                      
+
                     {{else}}
                       {{ snippet 'icons/icon_slideshow_placeholder' class='d-none d-md-block' }}
                       {{ snippet 'icons/icon_slideshow_mobile_placeholder' class='d-md-none' }}
@@ -185,7 +194,11 @@
                   <div class="hero__text-wrap">
                     <div class="container">
                       <div class="hero__text-content {{ this.settings.text_align }}">
-                        <div class="hero__text-shadow">
+                        <div class="
+                        {{#if (isFalsey has_image)}}
+                          hero__text-shadow
+                        {{/if}}
+                        ">
                           {{#if this.settings.top_subheading}}
                             <div class="hero__top-subtitle body3">
                               <div class="animation-cropper">
@@ -194,7 +207,7 @@
                             </div>
                           {{/if}}
                           {{#if this.settings.title}}
-                          
+
                             <h2 class="title1 hero__title {{#if global.theme.settings.type_title_uppercase}}is-uppercase{{/if}}">
                               <div class="animation-cropper">
                                 <div class="animation-contents">{{ newline_to_br this.settings.title }}</div>
@@ -218,10 +231,10 @@
                           {{#if has_link}}
                             <div class="hero__link">
                               {{#if this.settings.link_text}}
-                                <a {{{ link_item.hrefAttr }}} class="btn btn-lg btn-primary body2 {{#contains this.settings.color_accent 'rgba(0,0,0,0)'}}btn--inverse{{/contains}}">{{ this.settings.link_text }}</a>
+                                <a {{{ link_item.hrefAttr }}} class="btn btn-lg btn-primary body2 __sl-custom-track-stage-slideshow-button {{#contains this.settings.color_accent 'rgba(0,0,0,0)'}}btn--inverse{{/contains}}">{{ this.settings.link_text }}</a>
                               {{/if}}
                               {{#if this.settings.link_text_2}}
-                                <a {{{ link_2_item.hrefAttr }}} class="btn btn-lg btn-primary body2 {{#contains this.settings.color_accent 'rgba(0,0,0,0)'}}btn--inverse{{/contains}}">{{ this.settings.link_text_2 }}</a>
+                                <a {{{ link_2_item.hrefAttr }}} class="btn btn-lg btn-primary body2 __sl-custom-track-stage-slideshow-button {{#contains this.settings.color_accent 'rgba(0,0,0,0)'}}btn--inverse{{/contains}}">{{ this.settings.link_text_2 }}</a>
                               {{/if}}
                             </div>
                           {{/if}}

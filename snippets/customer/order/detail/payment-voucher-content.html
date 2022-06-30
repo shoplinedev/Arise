@@ -1,0 +1,34 @@
+<div class="sl_section--small trade-checkout-payment-voucher block-bg-color">
+  <span data-dataList="{{JSONstringify dataList}}" data-url="{{url}}" data-paySuccess="{{paySuccess}}" data-no_need_to_upload="{{noNeedToUpload}}" data-description="{{description}}"></span>
+    {{#if paySuccess}}
+        <div class="trade-checkout-payment-voucher_title">{{t 'order.detail.paymentvoucher.Status.TransferredSuccessful'}}</div>
+        <div class="trade-transfer-voucher-wrapper">{{snippet 'customer/order/detail/transfer-voucher' noNeedToUpload=noNeedToUpload dataList=dataList}}</div>
+    {{else}}
+        <div class="trade-checkout-payment-voucher_title">{{t 'order.detail.paymentvoucher.Status.WaittingforPayment'}}</div>
+        {{#if description }}
+            <div class="trade-checkout-payment-voucher_desc">{{ description}}</div>
+        {{/if}}
+        {{#if url }}
+            <img class="trade-checkout-payment-voucher_img" src="{{ url }}"/>
+        {{/if}}
+        {{#if (boolean url '||'description) }}     
+            <div class="trade-checkout-payment-voucher_line"></div>  
+        {{/if}}  
+        {{#unless  (boolean dataList.length '>' 4)}}
+            <div class="trade-checkout-payment-voucher_desc">{{t 'order.detail.orderstatus.notice.UploadVoucher'}}</div>
+        {{/unless}}
+        <div class="trade-transfer-voucher-wrapper">
+
+        {{#if dataList}}
+            {{snippet 'customer/order/detail/transfer-voucher' noNeedToUpload=noNeedToUpload dataList=dataList}}
+        {{/if}}
+        </div>
+        
+        {{#if (boolean dataList.length '>' 4)}}
+            <div class="trade-transfer-voucher_limit-tip hide">{{t 'order.detail.orderstatus.feedback.CountLimit'}}</div>
+        {{/if}}
+        {{#unless noNeedToUpload}}
+            {{snippet 'customer/order/detail/voucher-upload' type="button" hide=(boolean dataList.length '>' 0)}}
+        {{/unless}}
+    {{/if}}
+</div>

@@ -2,11 +2,12 @@
 
 (self["webpackChunkArise"] = self["webpackChunkArise"] || []).push([ [ "contact-form" ], {
     "./src/assets/stage/contact-form/index.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
-        var _yy_sl_theme_shared_utils_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/form/index.js");
-        var _yy_sl_theme_shared_utils_request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/request.js");
-        var _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/utils/i18n.js");
-        var _yy_sl_theme_shared_utils_sectionsLoad__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/utils/sectionsLoad/index.js");
-        var _commons_components_toast__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./src/assets/commons/components/toast/index.js");
+        var utils_form = __webpack_require__("../shared/browser/utils/form/index.js");
+        var request = __webpack_require__("../shared/browser/utils/request.js");
+        var i18n = __webpack_require__("../shared/browser/utils/i18n.js");
+        const EMAIL_VALID_REGEXP = /^[0-9a-zA-Z\+]+[0-9a-zA-Z\.\-\+\_]*[0-9a-zA-Z\+]+@[0-9a-zA-Z\u4e00-\u9fa5]+(\-?[0-9a-zA-Z\u4e00-\u9fa5]+)*(\.[0-9a-zA-Z\u4e00-\u9fa5]+)+$|^[0-9a-zA-Z\+]+[0-9a-zA-Z\.\-\+\_]*[0-9a-zA-Z\+]+@[0-9a-zA-Z\u4e00-\u9fa5]+(\-?[0-9a-zA-Z\u4e00-\u9fa5]+)*(\.[0-9a-zA-Z\u4e00-\u9fa5]+\-[0-9a-zA-Z\u4e00-\u9fa5]+)+$|^[0-9a-zA-Z\+]+[0-9a-zA-Z\.\-\+\_]*[0-9a-zA-Z\+]+@[0-9a-zA-Z\u4e00-\u9fa5]+(\-?[0-9a-zA-Z\u4e00-\u9fa5]+)*(\.[0-9a-zA-Z\u4e00-\u9fa5]+(\-[0-9a-zA-Z\u4e00-\u9fa5]+)*)+$|^[0-9a-zA-Z\+]+@[0-9a-zA-Z\u4e00-\u9fa5]+(\-?[0-9a-zA-Z\u4e00-\u9fa5]+)*(\.[0-9a-zA-Z\u4e00-\u9fa5]+)+$|^[0-9a-zA-Z\+]+@[0-9a-zA-Z\u4e00-\u9fa5]+(\-?[0-9a-zA-Z\u4e00-\u9fa5]+)*(\.[0-9a-zA-Z\u4e00-\u9fa5]+\-[0-9a-zA-Z\u4e00-\u9fa5]+)+$|^[0-9a-zA-Z\+]+@[0-9a-zA-Z\u4e00-\u9fa5]+(\-?[0-9a-zA-Z\u4e00-\u9fa5]+)*(\.[0-9a-zA-Z\u4e00-\u9fa5]+(\-[0-9a-zA-Z\u4e00-\u9fa5]+)*)+$/;
+        var sectionsLoad = __webpack_require__("../shared/browser/utils/sectionsLoad/index.js");
+        var toast = __webpack_require__("./src/assets/commons/components/toast/index.js");
         function _defineProperty(obj, key, value) {
             if (key in obj) Object.defineProperty(obj, key, {
                 value,
@@ -16,9 +17,9 @@
             }); else obj[key] = value;
             return obj;
         }
-        const emailRE = /^[A-Za-z0-9_./;+]+([A-Za-z0-9_./;+]+)*@([A-Za-z0-9]+\.)+[A-Za-z]{2,6}$/;
+        const emailRE = EMAIL_VALID_REGEXP;
         const SEND_API = "/merchant/form/contactUs";
-        const toast = new _commons_components_toast__WEBPACK_IMPORTED_MODULE_3__["default"]({
+        const contact_form_toast = new toast["default"]({
             content: "content",
             className: "contact-form__toast",
             duration: 5e3
@@ -30,10 +31,10 @@
             name: "email",
             value: "",
             rules: [ {
-                message: (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_4__.t)("productDetail.inquiry.emailEmptyErr"),
+                message: (0, i18n.t)("productDetail.inquiry.emailEmptyErr"),
                 required: true
             }, {
-                message: (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_4__.t)("productDetail.inquiry.emailFormatErr"),
+                message: (0, i18n.t)("productDetail.inquiry.emailFormatErr"),
                 pattern: emailRE
             } ]
         }, {
@@ -51,7 +52,7 @@
                 this.container = container;
                 const sectionId = container.data("section-id");
                 this.submitBtn = container.find(".contact-form__submit");
-                this.contactForm = _yy_sl_theme_shared_utils_form__WEBPACK_IMPORTED_MODULE_0__["default"].takeForm(`contact-form-${sectionId}`);
+                this.contactForm = utils_form["default"].takeForm(`contact-form-${sectionId}`);
                 this.contactForm.init();
                 this.contactForm.setFields(fields);
                 this.initSubmitBtn();
@@ -69,11 +70,11 @@
                     await this.validateForm();
                     const contactData = this.contactForm.getFieldsValue();
                     try {
-                        await _yy_sl_theme_shared_utils_request__WEBPACK_IMPORTED_MODULE_1__["default"].post(SEND_API, contactData);
-                        toast.open((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_4__.t)(`contactForm.sendSuccess`));
+                        await request["default"].post(SEND_API, contactData);
+                        contact_form_toast.open((0, i18n.t)(`contactForm.sendSuccess`));
                         this.contactForm.setFields(fields);
                     } catch (error) {
-                        toast.open("Network Error");
+                        contact_form_toast.open("Network Error");
                     }
                 }));
             }
@@ -83,23 +84,13 @@
             }
         }
         _defineProperty(ContactForm, "type", "contact-form");
-        (0, _yy_sl_theme_shared_utils_sectionsLoad__WEBPACK_IMPORTED_MODULE_2__.registrySectionConstructor)(ContactForm.type, ContactForm);
+        (0, sectionsLoad.registrySectionConstructor)(ContactForm.type, ContactForm);
     },
     "../shared/browser/utils/form/form.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         __webpack_require__.d(__webpack_exports__, {
-            ValidateTrigger: () => ValidateTrigger,
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
         var _yy_sl_theme_shared_utils_event_bus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/event-bus.js");
-        function _defineProperty(obj, key, value) {
-            if (key in obj) Object.defineProperty(obj, key, {
-                value,
-                enumerable: true,
-                configurable: true,
-                writable: true
-            }); else obj[key] = value;
-            return obj;
-        }
         const ValidateTrigger = {
             ONCHANGE: "onChange",
             MANUAL: "manual",
@@ -110,61 +101,24 @@
         const formItemName = "sl-form-item-name";
         const REQUIRED_SYMBOL = Symbol("required");
         class CustomForm {
-            constructor(fid, {onDestory} = {
+            constructor(fid = "", {onDestory} = {
                 onDestory: () => {}
             }) {
-                _defineProperty(this, "fid", "");
-                _defineProperty(this, "onDestory", (fid => {}));
-                _defineProperty(this, "formEntity", null);
-                _defineProperty(this, "validateRecord", {});
-                _defineProperty(this, "config", {
+                this.fid = fid;
+                this.onDestory = onDestory;
+                this.formEntity = null;
+                this.validateRecord = {};
+                this.config = {
                     validateTrigger: ValidateTrigger.MANUAL,
                     requiredErrMsg: `这是必填字段!`,
                     defaultErrMsg: "请输入合法的值",
                     errContainerClss: "errClass",
                     validateWhenInit: false,
                     emitChangeWhenInit: false
-                });
-                _defineProperty(this, "canValidate", false);
-                _defineProperty(this, "canEmitChange", true);
-                _defineProperty(this, "hadInit", false);
-                _defineProperty(this, "el", null);
-                _defineProperty(this, "eventBus", null);
-                _defineProperty(this, "on", null);
-                _defineProperty(this, "emit", null);
-                _defineProperty(this, "handleFormInputEvent", (e => {
-                    if (!this.fid) return;
-                    const target = e.target;
-                    const parentNode = this.recursionFindParent(target, formItemName);
-                    if (!parentNode) return;
-                    const targetName = parentNode.getAttribute(formItemName);
-                    if (targetName) {
-                        this.canValidate = true;
-                        if (this.isRadioOrCheckbox(target, [ "checkbox" ])) this.setLocalsValue(targetName, target.checked); else this.setLocalsValue(targetName, target.value);
-                    }
-                }));
-                _defineProperty(this, "setLocalsValue", ((name, value) => {
-                    var _this$formEntity;
-                    const changedValue = {
-                        [name]: value
-                    };
-                    const allValues = Object.assign(null === (_this$formEntity = this.formEntity) || void 0 === _this$formEntity ? void 0 : _this$formEntity.data, changedValue);
-                    let validateResultPro = null;
-                    if (this.canValidate && this.config.validateTrigger === ValidateTrigger.ONCHANGE) validateResultPro = this.validateFields([ name ]);
-                    if (this.canEmitChange) this.eventBus.emit("valuesChange", {
-                        changedValue,
-                        allValues,
-                        validateResult: validateResultPro
-                    });
-                }));
-                _defineProperty(this, "setErrFields", ((target, errFields, name, errMsg) => {
-                    if (!target) errFields.push({
-                        name,
-                        messages: [ errMsg ]
-                    }); else target.messages.push(errMsg);
-                }));
-                this.fid = fid;
-                this.onDestory = onDestory;
+                };
+                this.canValidate = false;
+                this.canEmitChange = true;
+                this.hadInit = false;
                 this.el = document.querySelector(`#${fid}`);
                 const eventBus = new _yy_sl_theme_shared_utils_event_bus__WEBPACK_IMPORTED_MODULE_0__.SL_EventEmitter;
                 this.eventBus = eventBus;
@@ -191,12 +145,12 @@
             initFormConfig(config) {
                 if (config) {
                     Object.assign(this.config, config);
-                    if (null !== config && void 0 !== config && config.validateWhenInit) this.canValidate = true;
-                    if (null !== config && void 0 !== config && config.emitChangeWhenInit) this.canEmitChange = true;
+                    if (config && config.validateWhenInit) this.canValidate = true;
+                    if (config && config.emitChangeWhenInit) this.canEmitChange = true;
                 }
             }
             initEventListener(el) {
-                el.addEventListener("input", this.handleFormInputEvent);
+                el.addEventListener("input", (e => this.handleFormInputEvent(e)));
                 const formItems = el.querySelectorAll(`[${formItemName}]`);
                 formItems.forEach((el => {
                     const inp = el.querySelector("input,textarea");
@@ -219,17 +173,22 @@
                             if (this.config.validateTrigger === ValidateTrigger.ONBLUR) this.validateFields([ targetName ]);
                             if (this.config.blurSucHandler || this.config.blurErrHandler) this.validateFields([ targetName ], false).then((res => {
                                 if (!res) return;
-                                if (res.pass) {
-                                    var _this$config$blurSucH, _this$config;
-                                    null === (_this$config$blurSucH = (_this$config = this.config).blurSucHandler) || void 0 === _this$config$blurSucH ? void 0 : _this$config$blurSucH.call(_this$config, targetName, target.value, this.formEntity.data);
-                                } else {
-                                    var _this$config2;
-                                    null === (_this$config2 = this.config) || void 0 === _this$config2 ? void 0 : _this$config2.blurErrHandler(res);
-                                }
+                                if (res.pass) this.config && this.config.blurSucHandler && this.config.blurSucHandler(targetName, target.value, this.formEntity.data); else this.config && this.config.blurErrHandler && this.config.blurErrHandler(res);
                             }));
                         }));
                     }
                 }));
+            }
+            handleFormInputEvent(e) {
+                if (!this.fid) return;
+                const target = e.target;
+                const parentNode = this.recursionFindParent(target, formItemName);
+                if (!parentNode) return;
+                const targetName = parentNode.getAttribute(formItemName);
+                if (targetName) {
+                    this.canValidate = true;
+                    if (this.isRadioOrCheckbox(target, [ "checkbox" ])) this.setLocalsValue(targetName, target.checked); else this.setLocalsValue(targetName, target.value);
+                }
             }
             recursionFindParent(el, attr) {
                 const parent = el.parentElement;
@@ -251,7 +210,7 @@
                         const child = formItem.querySelector("input,select,textarea");
                         const attrs = child.getAttributeNames();
                         const childAttrs = attrs.reduce(((acc, curAttr) => {
-                            if ("value" === curAttr) initialData[name] = child.getAttribute(curAttr);
+                            if ("value" === curAttr) initialData[name] = child.getAttribute(curAttr) || child.value;
                             return {
                                 ...acc,
                                 [curAttr]: child.getAttribute(curAttr)
@@ -281,7 +240,7 @@
                 if (target) target.rules = rules || [];
             }
             isRadioOrCheckbox(target, nodeTypeList = [ "radio", "checkbox" ]) {
-                const nodeType = null === target || void 0 === target ? void 0 : target.getAttribute("type");
+                const nodeType = target && target.getAttribute("type");
                 if (!nodeType) return false;
                 return "input" === target.nodeName.toLocaleLowerCase() && nodeTypeList.includes(nodeType);
             }
@@ -293,12 +252,25 @@
                     } else if (!target.name || target.name === name) target.value = null !== value && void 0 !== value ? value : "";
                 }));
             }
+            setLocalsValue(name, value) {
+                const changedValue = {
+                    [name]: value
+                };
+                const allValues = Object.assign(this.formEntity && this.formEntity.data, changedValue);
+                let validateResultPro = null;
+                if (this.canValidate && this.config.validateTrigger === ValidateTrigger.ONCHANGE) validateResultPro = this.validateFields([ name ]);
+                if (this.canEmitChange) this.eventBus.emit("valuesChange", {
+                    changedValue,
+                    allValues,
+                    validateResult: validateResultPro
+                });
+            }
             flattenRulesList(list) {
                 return list.reduce(((acc, field) => {
-                    const subRules = (null === field || void 0 === field ? void 0 : field.rules.map((rule => ({
+                    const subRules = field && field.rules.map((rule => ({
                         ...rule,
                         name: field.name
-                    })))) || [];
+                    }))) || [];
                     return [ ...acc, ...subRules ];
                 }), []);
             }
@@ -328,18 +300,23 @@
                     const target = this.el.querySelector(`[cf-${this.fid}-${name}]`);
                     if (target) target.remove();
                     if (this.config.errContainerClss) {
-                        var _formItemWrapper$clas, _formItemWrapper$clas2;
                         const formItemWrapper = this.el.querySelector(`[${formItemName}=${name}]`);
-                        null === (_formItemWrapper$clas = formItemWrapper.classList) || void 0 === _formItemWrapper$clas ? void 0 : null === (_formItemWrapper$clas2 = _formItemWrapper$clas.remove) || void 0 === _formItemWrapper$clas2 ? void 0 : _formItemWrapper$clas2.call(_formItemWrapper$clas, this.config.errContainerClss);
+                        formItemWrapper && formItemWrapper.classList && formItemWrapper.classList.remove && formItemWrapper.classList.remove(this.config.errContainerClss);
                     }
                 }));
+            }
+            setErrFields(target, errFields, name, errMsg) {
+                if (!target) errFields.push({
+                    name,
+                    messages: [ errMsg ]
+                }); else target.messages.push(errMsg);
             }
             setFields(fields, callback, needEmit = true, needValidate = false) {
                 try {
                     this.canValidate = needValidate;
                     this.canEmitChange = needEmit;
                     this.setValues(fields);
-                    null === callback || void 0 === callback ? void 0 : callback();
+                    callback && callback();
                 } catch (e) {
                     console.warn(`${this.fid} set fields fail,`, e);
                 } finally {
@@ -356,15 +333,13 @@
                 return this.formEntity.data[fieldName];
             }
             getFieldsValue() {
-                var _this$formEntity2;
                 this.init();
-                return null === (_this$formEntity2 = this.formEntity) || void 0 === _this$formEntity2 ? void 0 : _this$formEntity2.data;
+                return this.formEntity && this.formEntity.data;
             }
             async getLegalFieldsValue() {
-                var _this$formEntity3, _result$errFields;
                 const result = await this.validateFields([], false);
-                if (null !== result && void 0 !== result && result.pass) return null === (_this$formEntity3 = this.formEntity) || void 0 === _this$formEntity3 ? void 0 : _this$formEntity3.data;
-                const unPassFields = null === (_result$errFields = result.errFields) || void 0 === _result$errFields ? void 0 : _result$errFields.map((field => field.name));
+                if (result && result.pass) return this.formEntity && this.formEntity.data;
+                const unPassFields = result && result.errFields && result.errFields.map((field => field.name));
                 return Object.entries(this.formEntity.data).reduce(((acc, [k, v]) => {
                     if (unPassFields.includes(k)) return acc;
                     return {
@@ -377,11 +352,8 @@
                 if (!this.formEntity) return null;
                 const {childrenProps} = this.formEntity;
                 const data = JSON.parse(JSON.stringify(this.formEntity.data));
-                const needValidateFieldsName = null !== fields && void 0 !== fields && fields.length ? fields : Object.keys(this.formEntity.data);
-                const needValidatefields = childrenProps.filter((prop => {
-                    var _prop$rules;
-                    return (null === (_prop$rules = prop.rules) || void 0 === _prop$rules ? void 0 : _prop$rules.length) > 0 && (null === needValidateFieldsName || void 0 === needValidateFieldsName ? void 0 : needValidateFieldsName.includes(prop.name));
-                }));
+                const needValidateFieldsName = fields && fields.length ? fields : Object.keys(this.formEntity.data);
+                const needValidatefields = childrenProps.filter((prop => prop.rules && prop.rules.length > 0 && needValidateFieldsName && needValidateFieldsName.includes(prop.name)));
                 const validateList = [];
                 const needValidateRules = this.flattenRulesList(needValidatefields);
                 try {
@@ -403,8 +375,7 @@
                     const result = validateResult[i];
                     const target = errFields.find((err => err.name === name));
                     if (isPromiseFulfilledResult(result)) if (result.value === REQUIRED_SYMBOL) {
-                        var _needValidateRules$i;
-                        const requiredErrMsg = (null === (_needValidateRules$i = needValidateRules[i]) || void 0 === _needValidateRules$i ? void 0 : _needValidateRules$i.message) || this.config.requiredErrMsg;
+                        const requiredErrMsg = needValidateRules[i] && needValidateRules[i].message || this.config.requiredErrMsg;
                         if (!target) errFields.push({
                             name,
                             messages: [ requiredErrMsg ]
@@ -420,7 +391,7 @@
                 if (handleError) {
                     this.removeErrList(successFields);
                     this.setErrMsgIntoDom(errFields);
-                    if (errFields.length) this.config.validateTrigger = ValidateTrigger.ONCHANGE;
+                    if (errFields.length) this.config.validateTrigger = this.config.validateTriggerAfterValidationFailed || ValidateTrigger.ONCHANGE;
                 }
                 return errFields.length ? {
                     pass: false,
@@ -433,13 +404,12 @@
                 this.removeErrList(fields);
             }
             destroy() {
-                var _this$onDestory;
                 this.el.removeEventListener("input", this.handleFormInputEvent);
                 this.hadInit = false;
                 this.el = null;
                 this.eventBus = null;
                 this.formEntity = null;
-                null === (_this$onDestory = this.onDestory) || void 0 === _this$onDestory ? void 0 : _this$onDestory.call(this, this.fid);
+                this.onDestory && this.onDestory(this.fid);
                 this.fid = null;
             }
         }
@@ -475,5 +445,6 @@
     }
 }, __webpack_require__ => {
     var __webpack_exec__ = moduleId => __webpack_require__(__webpack_require__.s = moduleId);
-    __webpack_exec__("./src/assets/stage/contact-form/index.js");
+    __webpack_require__.O(0, [ "vendor" ], (() => __webpack_exec__("./src/assets/stage/contact-form/index.js")));
+    __webpack_require__.O();
 } ]);

@@ -29,26 +29,136 @@
     "activity-price-limit": "Se slevami můžete zakoupit pouze {{num}} kusů tohoto produktu",
     "activity-product-limit": "Můžete si současně koupit maximálně {{stock}} produktů se slevami",
     "activity-title-limit": "Níže uvedené produkty překračují nákupní limit, přesto pokračovat k pokladně?",
+    "cart": {
+      "cancel": "Zrušení",
+      "confirm": "OK",
+      "continue": "Pokračovat",
+      "got_it": "Mám to",
+      "return_to_cart": "Zpět do košíku"
+    },
     "checkout-error": "V nákupním košíku je alespoň jeden nedostupný produkt. Upravte položky košíku k pokladně.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Níže uvedené produkty překračují nákupní limit, přesto pokračovat k pokladně?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "Na tuto objednávku byla uplatněna sleva. Další slevu nelze přidat."
+    },
+    "discount": {
+      "coupon_code_amount": "Kupón",
+      "coupon_code_exceed_not_25_characters": "Kód kupónu nesmí přesáhnout 25 znaků",
+      "coupon_invalid_for_the_shipping_method": "Kupón {{discountCode}} je platný pro daný způsob dopravy",
+      "discount_code_invalid": "{{discountCode}} byl správně zadán, ale cena nebo množství zboží nesplňuje požadavky",
+      "discount_codes_cannot_stack": "Pro produkt již existuje preferenční událost, kterou nelze použít společně s jinými preferenčními akcemi",
+      "enter_a_valid_discount_code": "Slevový kód je zadán nesprávně",
+      "expected_discount": "Sleva"
+    },
+    "discount_item": {
+      "buy_limit5": "Můžete si současně koupit maximálně {{stock}} produktů se slevami"
+    },
+    "discount_price": {
+      "buy_limit3": "Se slevami můžete zakoupit pouze {{stock}} kusy tohoto produktu"
+    },
     "get": "Získejte slevu",
     "go-shopping": "POKRAČOVAT V NÁKUPU",
+    "item": {
+      "add_limit1": "Přidejte až 100 položek",
+      "add_limit2": "Maximální množství jednoho produktu je 999 kusů",
+      "removed": "NEPLATNÝ",
+      "sold_out": "VYPRODÁNO"
+    },
     "login-description": "Jste již členem? Přihlášení může být pro správu objednávky pohodlnější!",
     "login-membership": "Členství zdarma",
     "most-100-sku": "Přidejte až 100 položek",
     "most-buy-999": "Maximální množství jednoho produktu je 999 kusů",
     "not-participation-offers": "Sleva bez účasti",
+    "notices": {
+      "change_password_after_verification": "Heslo můžete změnit po ověření",
+      "excess_product": "Níže uvedené produkty překračují nákupní limit, změňte prosím množství",
+      "insufficient_product_inventory": "Nedostatečný inventář produktů",
+      "network": "Chyba Sítě",
+      "product_expired": "Platnost produktu vypršela",
+      "product_limit": "Limit produktu byl překročen",
+      "product_selected_invalid": "Omlouváme se, produkt, který jste vybrali, je neplatný pro nákup. Prosím, vyberte znovu",
+      "store_nonexistent": "Obchod neexistuje"
+    },
+    "order": {
+      "authorized": "Autorizovaný",
+      "canceled": "Zrušeno",
+      "canceled_order": "Zrušeno",
+      "click_to_track": "Sledujte prosím svůj balíček kliknutím na odkaz níže:",
+      "deleted": "NEPLATNÝ",
+      "invalid_order_number": "neplatné číslo objednávky",
+      "no_more_info": "Žádné další informace",
+      "pay_amount": "zaplatit částku",
+      "payment_voucher_confirmation": "Mám to",
+      "receiver_account": "účet příjemce",
+      "reference_number": "referenční číslo",
+      "sequence": "Č.{{id}}",
+      "shipping_address": "Dodací adresa",
+      "time": "Objednáno na:",
+      "total_amount": "Celkem {{transPackages}} položky",
+      "total_item_amount": "Celkem {{transPackages}} položek",
+      "try_again": "Nahrávání selhalo. Prosím zkuste to znovu.",
+      "try_later": "systém je zaneprázdněn, zkuste to znovu později.",
+      "upload_image_within_10_m_b": "Nahrajte obrázky JPG, PNG, GIF do 10 MB",
+      "upload_time": "čas nahrání",
+      "voucher_amount_limit": "Můžete nahrát maximálně 5 voucherů."
+    },
+    "payment": {
+      "channel": "Platební kanál",
+      "create_time": "Vytvořeno",
+      "paid": "Zaplaceno",
+      "partially_paid": "Částečně zaplaceno",
+      "paying": "Placení",
+      "payment_details": "Detail Platby",
+      "reference_number": "Referenční číslo transakce",
+      "status": "Postavení",
+      "subtotal_price": "Mezisoučet",
+      "sum": "Množství",
+      "total": "Celkový",
+      "unpaid": "Nezaplaceno",
+      "update_time": "Aktualizováno"
+    },
+    "policy": {
+      "privacy_policy": "Zásady Ochrany Osobních Údajů"
+    },
+    "product-no-exists": "Produkt neexistuje",
+    "refund": {
+      "click_to_view": "Klikněte pro zobrazení",
+      "custom_preview": "Vlastní náhled"
+    },
     "render-add-items": "Váš nákupní košík je momentálně prázdný.",
     "render-empty-status": "Žádné položky ve Vašem košíku",
+    "shipping": {
+      "no_info": "Zatím žádné informace o doručení, zkontrolujte prosím později.",
+      "package_tracking": "Sledování Zásilek",
+      "partially_shipped": "Částečná zásilka",
+      "preparing_order": "Příprava produktů",
+      "shipped_order": "Doručeno"
+    },
     "shopping-fees": "nákupní poplatky",
     "shopping-money": "sleva, daně a doprava budou vypočítány v dalším kroku",
     "shopping-money-step": "Daně a doprava vypočítané při pokladně",
+    "shpping": {
+      "service_terms": "Podmínka"
+    },
     "stock-limit": "{{stock}} kusů skladem",
+    "taxIncluded": {
+      "textTag": "Včetně daně"
+    },
+    "tips": {
+      "change_binding_after_verification": "Po ověření se můžete připojit / změnit {{value}}",
+      "reset_password": "Resetujete heslo pro účet {{account}}"
+    },
     "view-link": "Klikněte pro zobrazení",
     "view-pic": "Vlastní náhled",
     "view-shopping-cart": "Zobrazit Nákupní Košík",
     "added-to-cart": "Přidáno do košíku",
     "cart-subtotal": "Mezisoučet košíku",
     "view-cart": "Prohlédnout košík"
+  },
+  "cascade": {
+    "choose": "Моля, изберете опция"
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Děkujeme, že jste nás kontaktovali, ozveme se vám co nejdříve."
   },
+  "customer": {
+    "account": {
+      "add-email": "Přidat e-mail",
+      "add-phone": "Přidejte mobilní číslo",
+      "deadline": "Pro účely obchodní zprávy bude vaše objednávka stále viditelná. Data vašeho účtu budou smazána na {{time}}, proces můžete zrušit před tímto datem",
+      "gender_female": "Žena",
+      "gender_male": "Muž",
+      "gender_secret": "Udržet tajemství",
+      "not_set": "Nebylo nastaveno",
+      "reset_password_error_hint": "Nejprve prosím svažte e-mail nebo mobilní telefon",
+      "verify_email_message": "Před uzavřením účtu, musíme ověřit vaši totožnost\nVáš e-mail {{email}} obdrží ověřovací e-mail",
+      "verify_phone_message": "Před uzavřením účtu, musíme ověřit vaši totožnost\nVáš mobilní telefon {{phone}} obdrží ověřovací zprávu"
+    },
+    "address": {
+      "add_address": "Přidat Novou Adresu",
+      "common_max": "",
+      "common_min": "větší než {{min}} znaků",
+      "edit_last_name_hint": "Zadejte prosím své příjmení!",
+      "edit_phone_hint": "Zadejte prosím svůj mobilní telefon!",
+      "mobile-errorMessage": "Vložte prosím platné telefonní číslo",
+      "no_adress_data": "V současné době neexistuje žádná doručovací adresa"
+    },
+    "common": {
+      "back-to-user-center": "Zpět na Uživatelské Centrum",
+      "cancel": "Zrušení",
+      "confirm": "OK",
+      "email": "E-mailová Adresa",
+      "email2": "Mail",
+      "enter-email": "Zadejte prosím svou e-mailovou adresu",
+      "enter-mobile-phone": "Zadejte prosím číslo mobilního telefonu",
+      "member-login": "Přihlášení člena",
+      "mobile": "Telefonní číslo",
+      "mobile-phone": "Číslo mobilního telefonu"
+    },
+    "email": {
+      "mail_common": "Mail"
+    },
+    "general": {
+      "apr": "Dub",
+      "april": "Duben",
+      "aug": "Srp",
+      "august": "Srpen",
+      "bind_success": "Připojeno",
+      "cancel_mobile_button": "zrušení",
+      "clear_button": "Vymazat",
+      "confirm_button": "Ok",
+      "date_format": "dd.MM.yyyy",
+      "dec": "Pro",
+      "december": "Prosinec",
+      "email_empty_hint": "Zadejte e-mailovou adresu",
+      "email_error_hint": "Zadejte e-mailovou adresu v platném formátu a kratší než 50 znaků",
+      "enter_verification_code": "Prosím zadejte ověřovací kód",
+      "error_message_1001": "Chyba hesla",
+      "error_message_1002": "Uživatel neexistuje",
+      "error_message_1003": "Váš účet je deaktivován z důvodu abnormality; Obraťte se na obchodníka a uvolněte pásmo",
+      "error_message_1004": "Časté operace, zkuste to prosím znovu později",
+      "error_message_1005": "Platnost kódu vypršela",
+      "error_message_1006": "Chyba kódu",
+      "error_message_1007": "Operace ověřovacího kódu je častá, získejte ověřovací kód znovu",
+      "error_message_1008": "Přihlášení ke kanálu třetí strany není nakonfigurované",
+      "error_message_1009": "Volání rozhraní třetí strany se nezdařilo",
+      "error_message_1010": "Nepodařilo se odeslat",
+      "error_message_1011": "Účet není aktivován",
+      "error_message_1012": "Výjimka služby",
+      "error_message_1013": "Výjimka služby",
+      "error_message_1014": "Ověřovací kód se nezdařil",
+      "error_message_1015": "Ověřte kód dynamického ověřování",
+      "error_message_1016": "Výjimka služby",
+      "error_message_1017": "Tento účet je ohrožen",
+      "error_message_1018": "Poštovní schránka je již svázána",
+      "error_message_1020": "Vypršel časový limit přihlášení",
+      "error_message_1021": "Vypršel časový limit přihlášení",
+      "error_message_1022": "Číslo účtu je vázáno",
+      "error_message_1023": "Výjimka služby",
+      "error_message_1024": "Výjimka služby",
+      "error_message_2": "Výjimka služby",
+      "error_message_2001": "Mobil byl zaregistrován",
+      "error_message_2002": "E-mail byl zaregistrován",
+      "error_message_2003": "Nezkoušejte to tak často",
+      "error_message_2004": "Platnost kódu vypršela",
+      "error_message_2005": "Chyba kódu",
+      "error_message_2006": "Příliš mnohonásobné ověření, získejte prosím jiný kód",
+      "error_message_2007": "Výjimka služby, zkuste to znovu později",
+      "error_message_2016": "Účet v ohrožení",
+      "error_message_3": "Výjimka služby",
+      "error_message_3001": "Výjimka služby, zkuste to znovu později",
+      "error_message_3002": "Uživatelé, kteří nejsou vázáni na mobilní telefony / poštovní schránky, se snaží změnit svá hesla",
+      "error_message_3003": "Nezkoušejte to tak často",
+      "error_message_3004": "Platnost kódu vypršela",
+      "error_message_3005": "Chyba kódu",
+      "error_message_3006": "Příliš mnohonásobné ověření, získejte prosím jiný kód",
+      "error_message_3007": "Mobil neexistuje",
+      "error_message_3008": "Email neexistuje",
+      "error_message_3009": "Mobil byl vázán jinými účty",
+      "error_message_3010": "E-mail byl svázán s jinými účty",
+      "error_message_3014": "Vykreslení šablony textových zpráv/ e-mailů se nezdařilo",
+      "error_message_4": "Výjimka služby",
+      "error_message_5": "Výjimka služby",
+      "error_message_6": "Výjimka služby",
+      "feb": "Úno",
+      "february": "Únor",
+      "first_day": "1",
+      "fr": "Pá",
+      "fri": "Pá",
+      "friday": "Pátek",
+      "image_size_less_than_tips": "Obrázky by měly být menší než {{max}} MB",
+      "jan": "Led",
+      "january": "Leden",
+      "jul": "Čvc",
+      "july": "Červenec",
+      "jun": "Čvn",
+      "june": "Červen",
+      "mar": "Bře",
+      "march": "Březen",
+      "max_image_upload_tips": "Můžete nahrát maximálně {{max}} obrázků",
+      "may": "Květen",
+      "may_short": "Kvě",
+      "mo": "Po",
+      "mon": "Po",
+      "monday": "Pondělí",
+      "network_error_message": "Žádný internet",
+      "nov": "Lis",
+      "november": "Listopad",
+      "oct": "Říj",
+      "october": "Říjen",
+      "okay_common": "OK",
+      "password_empty_hint": "Prosím vložte heslo",
+      "phone_empty_message": "Zadejte prosím číslo mobilního telefonu",
+      "phone_error_message": "Zadejte prosím číslo mobilního telefonu v platném formátu",
+      "phone_number_error_message": "Vložte prosím platné telefonní číslo",
+      "repeat_passport_error": "Zadaná hesla se neshodují",
+      "resend": "Přeposlat",
+      "sa": "So",
+      "sat": "So",
+      "saturday": "Sobota",
+      "select__date": "Vyberte Datum",
+      "send": "Poslat",
+      "send_error": "Nejprve prosím zašlete ověřovací kód",
+      "send_verification_code_hint": "Zadejte heslo znovu",
+      "sep": "Zář",
+      "september": "Září",
+      "set_password": "Nastavte si heslo s minimální délkou 6 znaků a maximální délkou 18 znaků",
+      "su": "Ne",
+      "sun": "Ne",
+      "sunday": "Neděle",
+      "th": "Čt",
+      "thu": "Čt",
+      "thursday": "Čtvrtek",
+      "time_format": "HH:mm",
+      "today": "Dnes",
+      "tu": "Út",
+      "tue": "Út",
+      "tuesday": "Úterý",
+      "user_agreement_tip": "Nejprve si prosím přečtěte a souhlaste s uživatelskou smlouvou",
+      "username_empty_hint": "Zadejte e-mailovou adresu nebo číslo mobilního telefonu",
+      "verification_code_sent_tip": "Na váš účet byl odeslán ověřovací kód",
+      "we": "St",
+      "wed": "St",
+      "wednesday": "Středa"
+    },
+    "network-err-msg": "Žádný internet",
+    "phone": {
+      "mobile_common": "Telefonní číslo"
+    },
+    "subscription": {
+      "unsubscribe_success": "Předplatné zrušeno, bude Přesměrováno na domovskou stránku"
+    },
+    "tips": {
+      "and": "a",
+      "bind-change-email": "Připojit/Změnit e-mail",
+      "bind-change-mobile-phone-number": "Připojení/Změna čísla mobilního telefonu",
+      "bind-success": "Připojeno",
+      "change-binding-after-verification": "Po ověření se můžete připojit / změnit {{value}}",
+      "continue-as-a-guest": "Pokračujte jako host",
+      "forget-password": "Zapomenout heslo",
+      "i-agree-with-the-shop": "Souhlasím s",
+      "login": "PŘIHLÁSIT",
+      "or-use-the-following-method-to-log-in": "Nebo se přihlaste pomocí následujících metod",
+      "password-can-be-changed-after-verification": "Heslo můžete změnit po ověření",
+      "please-read-and-agree-to-the-user-agreement-first": "Nejprve si prosím přečtěte a souhlaste s uživatelskou smlouvou",
+      "poroceed-to-checkout": "Pokračujte k pokladně",
+      "register": "Zaregistrovat",
+      "reset-password": "Resetujete heslo pro účet {{account}}",
+      "set-new-password": "Obnovit heslo",
+      "update-password": "Změnit heslo",
+      "update-success": "Změněno",
+      "verification-code-has-been-sent-to-your-account": "Na váš účet byl odeslán ověřovací kód",
+      "verify-account-to-reset-password": "Ověřte prosím svůj účet a resetujte heslo"
+    },
+    "trade": {
+      "go-login": "Přejděte k přihlášení"
+    },
+    "unsubscribe": {
+      "btn": "Odhlásit odběr",
+      "reason": {
+        "other": {
+          "length": "Zadejte až 300 znaků",
+          "placeholder": "Vstupní obsah"
+        }
+      },
+      "reason1": "Už nechci dostávat tyto e-maily",
+      "reason2": "Dostávám příliš mnoho e-mailů",
+      "reason3": "Nepřihlásil jsem se k odběru tohoto seznamu",
+      "reason4": "E-maily pro mě nejsou relevantní",
+      "reason5": "Obsah e-mailu je příliš dlouhý",
+      "reason6": "Jiný",
+      "subtitle": "Je nám líto, že odcházíte! Dejte nám prosím vědět, proč jste se odhlásili:",
+      "success": "Předplatné zrušeno, bude Přesměrováno na domovskou stránku",
+      "title": "Odhlásit odběr"
+    }
+  },
   "footer": {
     "copyright": "Všechna Práva Vyhrazena",
     "followus": "SLEDUJTE NÁS",
@@ -221,9 +542,24 @@
       "title": "Vaše soukromí je pro nás důležité"
     }
   },
+  "general": {
+    "404": {
+      "button": "Pokračovat v nákupu",
+      "subtext": "Stránka, kterou jste hledali, neexistuje.",
+      "title": "404 Stránka nebyla nalezena"
+    },
+    "general": {
+      "accept": "Přijmout",
+      "decline": "Odmítnout",
+      "link": "Zásady ochrany osobních údajů",
+      "tips": "Abychom vylepšili vaše prostředí, používáme cookies k zapamatování informací o připojení, shromažďování statistik a nabízení obsahu, který vyhovuje vašim zájmům. Kliknutím na „Přijmout“ přijměte cookies nebo si přečtěte naše „zásady ochrany osobních údajů“.",
+      "title": "Vaše soukromí je pro nás důležité"
+    }
+  },
   "header": {
     "cart": "Váš Košík",
     "center": "Centrum",
+    "emptyPlaceholder": "",
     "login": "Přihlášení",
     "logout": "Odhlášení",
     "navItemAll": "Všechen",
@@ -367,6 +703,25 @@
           "title": "Vaše objednávka je potvrzena"
         }
       },
+      "orderstatus": {
+        "PayAmount": "zaplatit částku",
+        "ReceiverAccount": "účet příjemce",
+        "ReferenceNumber": "referenční číslo",
+        "UploadTime": "čas nahrání",
+        "action": {
+          "UploadVoucher": "Nahrajte voucher"
+        },
+        "feedback": {
+          "CountLimit": "Můžete nahrát maximálně 5 voucherů.",
+          "InvalidOrderNumber": "neplatné číslo objednávky",
+          "SizeLimte": "Nahrajte obrázky JPG, PNG, GIF do 10 MB",
+          "SystemBusy": "systém je zaneprázdněn, zkuste to znovu později.",
+          "UploadFail": "Nahrávání selhalo. Prosím zkuste to znovu."
+        },
+        "notice": {
+          "UploadVoucher": "Nahrajte prosím poukaz na bankovní převod a my potvrdíme."
+        }
+      },
       "packages": {
         "amount": {
           "channel-surcharge": "Platební provize",
@@ -428,9 +783,24 @@
         "subscriptions-title": "Předplatné",
         "title": "Informace",
         "unshipped-order-num": "Zpracovává se ({{num}} položek)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "Platba byla úspěšně převedena",
+          "WaittingforPayment": "Čekání na platbu"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "Mám to"
+          }
+        }
+      },
+      "taxFee": "Daň"
     },
     "help-tips": "Potřebujete pomoc? Prosím kontaktujte nás: {{email}}",
+    "includeTax": {
+      "totalLine": "Včetně {{price}} v daních"
+    },
     "oms-status": {
       "arrived": "Přišel",
       "cancelled": "Zrušit zásilku",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Bylo zrušeno",
       "already-paid": "Zaplaceno",
+      "authorized": "Autorizovaný",
       "failed": "Platba selhala",
       "partial-payment": "Částečně zaplaceno",
       "partial-refund": "Částečně vráceno",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "Jsou ještě informace o logistice a platebních metodách",
     "no-product-introduction": "Je zavedení produktu ještě",
     "previewLinkToast": "Operace pro náhled odkazu není podporována",
+    "productTax": "inclusief belasting",
     "recentlyViewedProducts": "Nedávno Prohlížené Výrobky",
     "recommendTitle": "Mohlo by se vám také líbit",
+    "skuLoadingTips": "Načítání informací o variantě, čekejte prosím...",
     "tabPanel": {
       "comments": {
         "empty": "Ještě není recenze o produktu",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "produktů"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "Žádný produkt v této kategorii",
@@ -677,6 +1051,35 @@
     "sortName": "Seřadit podle:",
     "title": "Vyhledávání"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Přidejte obrázek",
+      "didnot_bought_cannot_reviewed": "Omlouváme se, tento produkt jste si ještě nezakoupili, takže nemůžete zanechat recenzi",
+      "didnot_bought_sign_in_first": "Zákazníci, kteří si zakoupili tento produkt, mohou zanechat recenzi, nejprve se prosím přihlaste",
+      "enter_at_least_one_character": "Zadejte prosím alespoň slovo",
+      "error_submit_again": "Kvůli systémové chybě nelze vaši recenzi zpracovat, zkuste to prosím znovu~",
+      "first_review": "napište první komentář hned teď",
+      "image_uploading": "Nahrávání, odešlete prosím později",
+      "maximum_image_quantity": "Můžete přidat maximálně {{total}} obrázků",
+      "maximum_image_size": "Maximální velikost obrázku je {{size}} MB",
+      "no_review": "Zatím žádné komentáře",
+      "only_supports__image_format": "Podporuje pouze nahrávání souboru .jpg .jpeg .png .bmp",
+      "ratings": "Hodnocení",
+      "sign_in": "Přihlásit",
+      "submit": "Odeslat",
+      "thanks_for_your_review": "Děkujeme za vaši recenzi",
+      "write_a_review": "Napsat recenzi",
+      "write_a_review_for_the_product": "Zadejte prosím své hodnocení tohoto produktu"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Maximální povolené množství pro tento omezený produkt je {{num}}",
+      "activity_toast_product__limit": "Nákup omezen na {{stock}} propagační produkt",
+      "activity_toast_title__limit": "Níže uvedené produkty překračují nákupní limit",
+      "go_to_amazon_by_link": "Koupit v Amazon",
+      "go_to_rakuten_by_link": "Koupit na platformě LOTTE",
+      "go_to_yahoo_by_link": "Koupit platformě Yahoo"
+    }
+  },
   "promotion": {
     "activity-benefit": "Nabídka akcí",
     "activity-introduction": "Úvod k události",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "Sleva <italic>{{content}}</italic> na <italic>{{condition}}</italic> kusů"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "Získejte {{offPercent}}% slevy",
+            "unlocked": "{{offPercent}}% slevy je odemčeno！"
+          },
+          "free": {
+            "locked": "Nabídka zdarma",
+            "unlocked": "Nabídka zdarma je odemčena！"
+          },
+          "unlocked": {
+            "tip": "Nyní, užijte si produktovou slevu"
+          }
+        },
+        "threshold": "Kupte si {{threshold}}"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}} vypnuto",
+      "copySuccessText": "Kód kupónu je úspěšně zkopírován",
+      "copyText": "Kopie",
+      "freeShipping": "Doprava Zdarma",
+      "threshold": "Objednávky nad {{threshold}}"
+    },
+    "autoCoupon": {
+      "shopMore": "Více"
+    },
     "bundle": {
       "saveTip": "Ušetřete {{amount}} za společný nákup",
       "title": "Často Koupeno Společně"
     },
     "customer-purchase-limit": "Limit nákupu {{count}} za osobu",
     "customer-purchase-limit-each-item": "Nákupní limit {{count}} na produkt na osobu",
+    "discount-coupon-banner": {
+      "getCode": "Získat slevové kupóny"
+    },
     "discount-coupon": {
       "applied": "Aplikované ",
       "apply": "Použít",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "Žhavá sleva!",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "Kupte {{threshold}} dalších položek a užijte si jednu z položek zdarma",
+        "b11_t1_s1_normal": "Kupte {{threshold}} dalších položek a užijte si SLEVU {{willSave}} na jednu z položek",
+        "b11_t1_s2_free": "Gratulujeme! užijte si zdarma jednu z položek",
+        "b11_t1_s2_next_free": "Gratulujeme! {{saved}} Uloženo, {{br}} Kupte {{threshold}} dalších položek a užijte si jednu z položek zdarma",
+        "b11_t1_s2_normal": "Gratulujeme! {{saved}} Uloženo, {{br}} Kupte {{threshold}} dalších položek a užijte si SLEVU {{willSave}} na jednu z položek",
+        "b11_t1_s3_free": "Gratulujeme! užijte si zdarma jednu z položek",
+        "b11_t1_s3_normal": "Gratulujeme! užijte si SLEVU {{saved}} na jednu z položek",
+        "b1_t0_s1": "Kupte ještě {{threshold}} a ušetřete {{willSave}}",
+        "b1_t0_s2": "Ušetřete již {{saved}}! {{br}}Kupte ještě {{threshold}} a ušetřete {{willSave}}",
+        "b1_t0_s3": "Gratulujeme! Uložili jste {{saved}}!",
+        "b1_t1_s1": "Kupte ještě {{threshold}} a ušetřete {{willSave}}",
+        "b1_t1_s2": "Ušetřete již {{saved}}! {{br}}Kupte ještě {{threshold}} a ušetřete {{willSave}}",
+        "b1_t1_s3": "Gratulujeme! Uložili jste {{saved}}!",
+        "b2_t0_s1": "Nakupte ještě {{threshold}} a získejte SLEVU {{willSave}}",
+        "b2_t0_s2": "Ušetřete již {{saved}}! {{br}}Nakupte ještě {{threshold}} a získejte SLEVU {{willSave}}",
+        "b2_t0_s3": "Gratulujeme! Uložili jste {{saved}}!",
+        "b2_t1_s1": "Nakupte ještě {{threshold}} a získejte SLEVU {{willSave}}",
+        "b2_t1_s2": "Ušetřete již {{saved}}! {{br}}Nakupte ještě {{threshold}} a získejte SLEVU {{willSave}}",
+        "b2_t1_s3": "Gratulujeme! Uložili jste {{saved}}!",
+        "b3_t0_s1_unlimited": "Kupte si {{threshold}} znovu a užijte si <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>!",
+        "b3_t0_s1_upper_limit": "Kupte si {{threshold}} znovu a užijte si <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>! (Maximální hodnota dopravy zdarma {{upperLimit}})",
+        "b3_t0_s3_unlimited": "Blahopřejeme! Získali jste <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>!",
+        "b3_t0_s3_upper_limit": "Blahopřejeme! Získali jste <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>! (Maximální hodnota dopravy zdarma {{upperLimit}})",
+        "b3_t1_s1_unlimited": "Kupte si {{threshold}} více a užijte si <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>!",
+        "b3_t1_s1_upper_limit": "Kupte si {{threshold}} více a užijte si <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>! (Maximální hodnota dopravy zdarma {{upperLimit}})",
+        "b3_t1_s3_unlimited": "Blahopřejeme! Získali jste <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>!",
+        "b3_t1_s3_upper_limit": "Blahopřejeme! Získali jste <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>! (Maximální hodnota dopravy zdarma {{upperLimit}})",
+        "b9_t1_s1": "Koupit {{threshold}} více kusů, z nichž {{willSave}} kusy jsou zdarma",
+        "b9_t1_s2": "Gratuluji! {{saved}} kusy získáte zdarma! Koupit {{threshold}} více kusů, z nichž {{willSave}} kusy jsou zdarma",
+        "b9_t1_s3": "Gratuluji! {{saved}} z nich máte zdarma"
+      },
+      "discount_tag": {
+        "b11_t1_free": "Kupte {{threshold}} položek a užijte si jednu z položek zdarma",
+        "b11_t1_normal": "Kupte {{threshold}} položek a užijte si SLEVU {{save}} na jednu z položek",
+        "b1_t0": "Koupit {{threshold}} ušetřit {{save}}",
+        "b1_t1": "Kupte {{threshold}} a získejte SLEVU {{save}}",
+        "b2_t0": "Koupit {{threshold}} ušetřit {{save}}",
+        "b2_t1": "Kupte {{threshold}} a získejte SLEVU {{save}}"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "Gratulujeme! užijte si zdarma jednu z položek",
               "normal": "Gratulujeme! užijte si SLEVU {{saved}} na jednu z položek"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Gratulujeme, užijte si {{benefitCount}} položek ZDARMA",
+                "normal": "Gratulujeme, užijte si {{willSave}} off pro {{benefitCount}} položek"
+              },
+              "free": "Kupte si {{threshold}}, užijte si {{benefitCount}} položek ZDARMA",
+              "normal": "Kupte si {{threshold}}, využijte {{willSave}} slevu pro {{benefitCount}} položek"
+            },
+            "step3": {
+              "free": "Gratuluji! Máte {{benefitCount}} položky ZDARMA!",
+              "normal": "Gratuluji! Máte slevu {{saved}} na {{benefitCount}} položek!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Gratulujeme, užijte si {{benefitCount}} položek ZDARMA",
+                "normal": "Gratulujeme, užijte si {{willSave}} off pro {{benefitCount}} položek"
+              },
+              "free": "Kupte si {{threshold}}, užijte si {{benefitCount}} položek zdarma",
+              "normal": "Kupte si {{threshold}}, využijte {{willSave}} slevu pro {{benefitCount}} položek"
+            },
+            "step3": {
+              "free": "Gratuluji! Máte {{benefitCount}} položky ZDARMA!",
+              "normal": "Gratuluji! Máte slevu {{saved}} na {{benefitCount}} položek!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Způsob Platby",
     "pay-way-logo-and-more": "a další",
     "payment-security-description": "Všechny transakce jsou bezpečné a šifrované.",
+    "payments-name": {
+      "COD": "Dobírka",
+      "Paypal": "PayPal",
+      "adjustPay": "manual",
+      "third-part": "Kreditní Karta"
+    },
     "pic-upload-fail": "Nepodařilo se nahrát obrázek {{name}}",
     "pick-address": "Adresa odběru",
     "please-choose-area": "Vyberte oblast",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "Produkt je vyprodaný",
     "product-tax": "Komoditní daň",
     "quantity": "MNOŽSTVÍ",
+    "receiver-info": "Dodací adresa",
     "recieve-address-unavailable-rechoose": "Není k dispozici způsob doručení na adresu příjemce. Vraťte se prosím k opětovnému výběru",
     "reciever-fullname": "Celé jméno příjemce",
     "reciever-info": "Dodací adresa",
@@ -1230,6 +1741,24 @@
     "your-order-not-pay": "Nedokončili jste platbu za objednávku",
     "your-refund-order-created": "Vaše objednávka vrácení byla zadána"
   },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "Kód kupónu nesmí přesáhnout 25 znaků",
+      "coupon_invalid_for_the_shipping_method": "Kupón {{discountCode}} je platný pro daný způsob dopravy",
+      "discount_code_invalid": "{{discountCode}} byl správně zadán, ale cena nebo množství zboží nesplňuje požadavky",
+      "discount_codes_cannot_stack": "Pro produkt již existuje preferenční událost, kterou nelze použít společně s jinými preferenčními akcemi",
+      "discounts_cannot_stack": "Na tuto objednávku byla uplatněna sleva. Další slevu nelze přidat.",
+      "enter_a_valid_discount_code": "Slevový kód je zadán nesprávně",
+      "free_shipping": "doprava zdarma",
+      "order_seller_discount": "Prodejce extra sleva",
+      "order_tax": "Daň",
+      "order_tip": "Spropitné",
+      "payment_subtotal_cost": "Mezisoučet",
+      "point_discount": "Bodová sleva",
+      "shipping_fee": "Doprava",
+      "trade_coupon_discount": "Kupón"
+    }
+  },
   "user": {
     "account": "ÚČET",
     "code": "Ověřovací kód",
@@ -1259,31 +1788,43 @@
     "signUp": "ZAREGISTROVAT",
     "subscription-text": "Přihlaste se k odběru e-mailů, abyste mohli dostávat aktualizace, přístup k exkluzivním nabídkám a další.",
     "udbResponse": {
-      "err-1": "Parametry prázdné",
-      "err-13": "Platnost stoken vypršela",
-      "err-4": "Parametry jsou neplatné",
-      "err-5": "Nelegální provoz",
-      "err-999": "Vzdálené volání selhalo",
+      "err-1": "Výjimka služby",
+      "err-13": "Výjimka služby",
+      "err-4": "Výjimka služby",
+      "err-5": "Výjimka služby",
+      "err-999": "Výjimka služby",
       "err1001": "Chyba hesla",
       "err1002": "Uživatel neexistuje",
       "err1003": "Váš účet je deaktivován z důvodu abnormality; Obraťte se na obchodníka a uvolněte pásmo",
-      "err1004": "Odeslat textovou zprávu pro časy",
+      "err1004": "Časté operace, zkuste to prosím znovu později",
       "err1005": "Platnost kódu vypršela",
       "err1006": "Chyba kódu",
-      "err1007": "Příliš mnohokrát chyby ověřovacího kódu",
-      "err1008": "Třetí ID nebo kanál nebyl nakonfigurován",
-      "err1009": "Ověření třetí stranou se nezdařilo",
-      "err1010": "Vykreslení šablony textových zpráv/ e-mailů se nezdařilo",
-      "err1017": "Účet v ohrožení",
+      "err1007": "Operace ověřovacího kódu je častá, získejte ověřovací kód znovu",
+      "err1008": "Přihlášení ke kanálu třetí strany není nakonfigurované",
+      "err1009": "Volání rozhraní třetí strany se nezdařilo",
+      "err1010": "Nepodařilo se odeslat",
+      "err1011": "Účet není aktivován",
+      "err1012": "Výjimka služby",
+      "err1013": "Výjimka služby",
+      "err1014": "Ověřovací kód se nezdařil",
+      "err1015": "Ověřte kód dynamického ověřování",
+      "err1016": "Výjimka služby",
+      "err1017": "Tento účet je ohrožen",
+      "err1018": "Poštovní schránka je již svázána",
+      "err1020": "Vypršel časový limit přihlášení",
+      "err1021": "Vypršel časový limit přihlášení",
+      "err1022": "Číslo účtu je vázáno",
+      "err1023": "Výjimka služby",
+      "err1024": "Výjimka služby",
       "err2001": "Mobil byl zaregistrován",
       "err2002": "E-mail byl zaregistrován",
       "err2003": "Nezkoušejte to tak často",
       "err2004": "Platnost kódu vypršela",
       "err2005": "Chyba kódu",
       "err2006": "Příliš mnohonásobné ověření, získejte prosím jiný kód",
-      "err2007": "Vykreslení šablony textových zpráv/ e-mailů se nezdařilo",
+      "err2007": "Výjimka služby, zkuste to znovu později",
       "err2016": "Účet v ohrožení",
-      "err3001": "Soubor cookie je neplatný",
+      "err3001": "Výjimka služby, zkuste to znovu později",
       "err3002": "Uživatelé, kteří nejsou vázáni na mobilní telefony / poštovní schránky, se snaží změnit svá hesla",
       "err3003": "Nezkoušejte to tak často",
       "err3004": "Platnost kódu vypršela",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Vázání Účtu",
-      "account-info": "Informace o Účtu",
+      "account-info": "Účet",
       "account-subscription-email": "Odeslat na email",
       "account-subscription-line": "Odeslat do Aplikace Line",
       "account-subscription-messenger": "Odeslat do messengeru",
@@ -1310,7 +1851,9 @@
       "bind": "Vazba",
       "change-password": "Změňte heslo",
       "email": "E-mailové",
+      "firstName": "Jméno",
       "general-member": "Generální člen",
+      "lastName": "Příjmení",
       "member-level": "Úroveň členství",
       "memberLevelCom": {
         "defaultLevel": "Generální člen",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "Upravit E-mail",
       "modify-phone": "Upravit Telefon",
+      "nicknameEmptyError": "Křestní jméno i příjmení nelze ponechat prázdné",
+      "notSet": "Nebylo nastaveno",
       "password": "Heslo",
       "phone": "Mobilní Telefon",
       "reset-password-error": "Nejprve prosím svažte e-mail nebo mobilní telefon",
       "subscription-notification": "Oznámení o Předplatném",
       "unsubscribed": "Odhlášeno z odběru",
-      "username": "Uživatelské jméno",
-      "username-message": "Zadejte prosím své uživatelské jméno!",
-      "username-placeholder": "Zadejte prosím své uživatelské jméno"
+      "username": "Jméno",
+      "username-message": "Prosím, zadejte svoje jméno",
+      "username-placeholder": "Prosím, zadejte svoje jméno"
     },
     "address": {
       "add": "Přidat Novou Adresu",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Zakoupené produkty",
     "cancel": "ZRUŠENÍ",
+    "datePicker": {
+      "mobile": {
+        "cancel": "zrušení",
+        "confirm": "Ok",
+        "title": "Vyberte Datum"
+      },
+      "pc": {
+        "clear": "Vymazat",
+        "dateFormat": "dd.MM.yyyy",
+        "days0": "Neděle",
+        "days1": "Pondělí",
+        "days2": "Úterý",
+        "days3": "Středa",
+        "days4": "Čtvrtek",
+        "days5": "Pátek",
+        "days6": "Sobota",
+        "daysMin0": "Ne",
+        "daysMin1": "Po",
+        "daysMin2": "Út",
+        "daysMin3": "St",
+        "daysMin4": "Čt",
+        "daysMin5": "Pá",
+        "daysMin6": "So",
+        "daysShort0": "Ne",
+        "daysShort1": "Po",
+        "daysShort2": "Út",
+        "daysShort3": "St",
+        "daysShort4": "Čt",
+        "daysShort5": "Pá",
+        "daysShort6": "So",
+        "firstDay": "1",
+        "months0": "Leden",
+        "months1": "Únor",
+        "months10": "Listopad",
+        "months11": "Prosinec",
+        "months2": "Březen",
+        "months3": "Duben",
+        "months4": "Květen",
+        "months5": "Červen",
+        "months6": "Červenec",
+        "months7": "Srpen",
+        "months8": "Září",
+        "months9": "Říjen",
+        "monthsShort0": "Led",
+        "monthsShort1": "Úno",
+        "monthsShort10": "Lis",
+        "monthsShort11": "Pro",
+        "monthsShort2": "Bře",
+        "monthsShort3": "Dub",
+        "monthsShort4": "Kvě",
+        "monthsShort5": "Čvn",
+        "monthsShort6": "Čvc",
+        "monthsShort7": "Srp",
+        "monthsShort8": "Zář",
+        "monthsShort9": "Říj",
+        "timeFormat": "HH:mm",
+        "today": "Dnes"
+      }
+    },
+    "deleteAccount": {
+      "address": "Adresa",
+      "card": "Č. kreditní karty",
+      "deadline": "Pro účely obchodní zprávy bude vaše objednávka stále viditelná. Data vašeho účtu budou smazána na {{time}}, proces můžete zrušit před tímto datem",
+      "email": "E-mail",
+      "ip": "IP adresa",
+      "name": "Jméno",
+      "nextStep": "Další",
+      "notify": "Můžete požádat o uzavření tohoto účtu. Po uzavření budou všechny informace pro identifikaci tohoto účtu smazány, včetně:",
+      "revoke": "Zrušit uzavření",
+      "revokeMessage": "Tento účet je v procesu uzavření, data účtu budou smazána na {{time}}, proces můžete zrušit před tímto datem",
+      "timeout": "Časový limit operace vypršel, zkontrolujte to znovu",
+      "title": "Zavřít účet",
+      "verifyEmailMessage": "Před uzavřením účtu, musíme ověřit vaši totožnost\nVáš e-mail {{email}} obdrží ověřovací e-mail",
+      "verifyPhoneMessage": "Před uzavřením účtu, musíme ověřit vaši totožnost\nVáš mobilní telefon {{phone}} obdrží ověřovací zprávu"
+    },
     "edit": "Upravit",
     "editAddress": {
       "address1-message": "Méně než 512 znaků!",
       "address2-message": "Méně než 512 znaků!",
       "city-message": "Vyberte prosím své město!",
+      "common-max": "",
+      "common-min": "větší než {{min}} znaků",
       "contact-message": "Zadejte prosím své jméno!",
       "country-message": "Vyberte prosím svou zemi!",
       "default": "Nastavit jako výchozí adresu",
@@ -1440,6 +2062,7 @@
     "save": "ULOŽIT",
     "sign-out": "Odhlásit Se",
     "subscription": {
+      "desc": "Získejte nejnovější zprávy o obchodě",
       "email": "E-mailové",
       "line": "LINE",
       "messenger": "Messenger",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "Nebudete od nás dostávat žádné další marketingové novinky. Kdykoli se můžete znovu přihlásit"
+      "text": "Nebudete od nás dostávat žádné další marketingové novinky. Kdykoli se můžete znovu přihlásit",
+      "title": "Odhlásili jste se z e-mailové konference <italic>{{name}}</italic>"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Čekající objednávka"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

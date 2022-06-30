@@ -1,4 +1,4 @@
-<div class="container">
+<div class="{{#unless section.settings.full_screen}}container{{/unless}} __sl-custom-track-stage-customHtml">
     {{{section.settings.html}}}
 </div>
 {{#schema}}
@@ -6,6 +6,12 @@
   "name": "t:sections.custom-html.name",
   "class": "section-gap",
   "settings": [
+    {
+      "id": "full_screen",
+      "type": "switch",
+      "label": "t:sections.custom-html.settings.full_screen.label",
+      "default": false
+    },
     {
       "id": "html",
       "type": "textarea",
@@ -23,7 +29,8 @@
       "name": "t:sections.custom-html.presets.presets__0.name",
       "category": "t:sections.custom-html.presets.presets__0.category",
       "settings": {
-        "html": "<div style=\"text-align:center;\"><h2>Use HTML to format your text so it can be easily read.</h2>This text can be used to share information about your brand with customers.</div>"
+        "html": "<div style=\"text-align:center;\"><h2>Use HTML to format your text so it can be easily read.</h2>This text can be used to share information about your brand with customers.</div>",
+        "ful_screen": false
       }
     }
   ]

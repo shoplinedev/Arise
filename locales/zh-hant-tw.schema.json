@@ -257,6 +257,9 @@
         }
       },
       "settings": {
+        "full_screen": {
+          "label": "寬度全屏顯示"
+        },
         "html": {
           "label": "HTML"
         }
@@ -366,6 +369,18 @@
         "group_header__1": {
           "label": "商品圖"
         },
+        "md_cols": {
+          "label": "移動端列數",
+          "options__0": {
+            "label": "1列"
+          },
+          "options__1": {
+            "label": "2列"
+          }
+        },
+        "pc_cols": {
+          "label": "電腦端列數"
+        },
         "product_categories": {
           "label": "商品分類"
         },
@@ -423,6 +438,14 @@
           "settings": {
             "html": {
               "label": "HTML"
+            }
+          }
+        },
+        "plainText": {
+          "name": "文本",
+          "settings": {
+            "plainText": {
+              "label": "文本"
             }
           }
         },
@@ -491,6 +514,20 @@
             }
           }
         },
+        "image": {
+          "name": "圖片",
+          "settings": {
+            "image": {
+              "label": "圖片"
+            },
+            "image_width": {
+              "label": "圖片寬度"
+            },
+            "link": {
+              "label": "跳轉鏈接"
+            }
+          }
+        },
         "menu": {
           "name": "快速導航",
           "settings": {
@@ -502,8 +539,7 @@
             }
           }
         },
-        "undefined": {
-          "name": "圖片",
+        "select": {
           "settings": {
             "align": {
               "label": "佈局",
@@ -516,12 +552,6 @@
               "options__2": {
                 "label": "居右"
               }
-            },
-            "image": {
-              "label": "圖片"
-            },
-            "image_width": {
-              "label": "圖片寬度"
             }
           }
         }
@@ -621,6 +651,10 @@
         },
         "main_menu_link_list": {
           "label": "導航菜單"
+        },
+        "mega_menu_images": {
+          "info": "[查看如何設置超級菜單教程](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
+          "label": "顯示超級菜單圖片"
         },
         "mobile_logo_width": {
           "label": "手機端LOGO寬度"
@@ -763,13 +797,31 @@
         "pc_text_position": {
           "label": "文本位置",
           "options__0": {
-            "label": "居左"
+            "label": "左上方"
           },
           "options__1": {
-            "label": "居中"
+            "label": "正上方"
           },
           "options__2": {
-            "label": "居右"
+            "label": "右上方"
+          },
+          "options__3": {
+            "label": "左側"
+          },
+          "options__4": {
+            "label": "正中"
+          },
+          "options__5": {
+            "label": "右側"
+          },
+          "options__6": {
+            "label": "左下方"
+          },
+          "options__7": {
+            "label": "正下方"
+          },
+          "options__8": {
+            "label": "右下方"
           }
         },
         "under_image": {
@@ -1330,6 +1382,14 @@
             }
           }
         },
+        "plainText": {
+          "name": "文本",
+          "settings": {
+            "plainText": {
+              "label": "文本"
+            }
+          }
+        },
         "price": {
           "name": "價格"
         },
@@ -1533,6 +1593,18 @@
         "group_header__0": {
           "label": "商品圖"
         },
+        "md_cols": {
+          "label": "移動端列數",
+          "options__0": {
+            "label": "1列"
+          },
+          "options__1": {
+            "label": "2列"
+          }
+        },
+        "pc_cols": {
+          "label": "電腦端列數"
+        },
         "product_fill_type": {
           "label": "商品圖填充方式",
           "options__0": {
@@ -1573,6 +1645,18 @@
       "settings": {
         "group_header__0": {
           "label": "商品圖"
+        },
+        "md_cols": {
+          "label": "移動端列數",
+          "options__0": {
+            "label": "1列"
+          },
+          "options__1": {
+            "label": "2列"
+          }
+        },
+        "pc_cols": {
+          "label": "電腦端列數"
         },
         "product_fill_type": {
           "label": "商品圖填充方式",
@@ -2078,6 +2162,18 @@
         "jump_link": {
           "label": "跳轉鏈接"
         },
+        "md_cols": {
+          "label": "移動端列數",
+          "options__0": {
+            "label": "1列"
+          },
+          "options__1": {
+            "label": "2列"
+          }
+        },
+        "pc_cols": {
+          "label": "電腦端列數"
+        },
         "show_block_bg": {
           "label": "背景",
           "options__0": {
@@ -2158,6 +2254,9 @@
         "full_width": {
           "label": "寬度全屏"
         },
+        "loop": {
+          "label": "循環播放"
+        },
         "title": {
           "label": "標題"
         },
@@ -2169,6 +2268,70 @@
     }
   },
   "settings_schema": {
+    "button": {
+      "name": "按鈕",
+      "settings": {
+        "btn_border_opacity": {
+          "label": "不透明度"
+        },
+        "btn_border_radius": {
+          "label": "圓角半徑"
+        },
+        "btn_border_thickness": {
+          "label": "厚度"
+        },
+        "btn_shadow_blur": {
+          "label": "模糊"
+        },
+        "btn_shadow_offset_x": {
+          "label": "水平偏移"
+        },
+        "btn_shadow_offset_y": {
+          "label": "垂直偏移"
+        },
+        "btn_shadow_opacity": {
+          "label": "不透明度"
+        },
+        "group_header__0": {
+          "label": "邊框"
+        },
+        "group_header__1": {
+          "label": "陰影"
+        }
+      }
+    },
+    "card": {
+      "name": "卡片",
+      "settings": {
+        "card_border_opacity": {
+          "label": "不透明度"
+        },
+        "card_border_radius": {
+          "label": "圓角半徑"
+        },
+        "card_border_thickness": {
+          "label": "厚度"
+        },
+        "card_shadow_blur": {
+          "label": "模糊"
+        },
+        "card_shadow_offset_x": {
+          "label": "水平偏移"
+        },
+        "card_shadow_offset_y": {
+          "label": "垂直偏移"
+        },
+        "card_shadow_opacity": {
+          "label": "不透明度"
+        },
+        "group_header__0": {
+          "label": "邊框"
+        },
+        "group_header__1": {
+          "label": "陰影"
+        }
+      }
+    },
     "cart": {
       "name": "購物車",
       "settings": {
@@ -2445,6 +2608,38 @@
         }
       }
     },
+    "content_container": {
+      "name": "內容容器",
+      "settings": {
+        "content_border_opacity": {
+          "label": "不透明度"
+        },
+        "content_border_radius": {
+          "label": "圓角半徑"
+        },
+        "content_border_thickness": {
+          "label": "厚度"
+        },
+        "content_shadow_blur": {
+          "label": "模糊"
+        },
+        "content_shadow_offset_x": {
+          "label": "水平偏移"
+        },
+        "content_shadow_offset_y": {
+          "label": "垂直偏移"
+        },
+        "content_shadow_opacity": {
+          "label": "不透明度"
+        },
+        "group_header__0": {
+          "label": "邊框"
+        },
+        "group_header__1": {
+          "label": "陰影"
+        }
+      }
+    },
     "design": {
       "name": "設計",
       "settings": {
@@ -2492,6 +2687,67 @@
         },
         "superscript_decimals": {
           "label": "售價小數位縮小展示"
+        }
+      }
+    },
+    "drawer": {
+      "name": "抽屜",
+      "settings": {
+        "drawer_border_opacity": {
+          "label": "不透明度"
+        },
+        "drawer_border_thickness": {
+          "label": "厚度"
+        },
+        "drawer_shadow_blur": {
+          "label": "模糊"
+        },
+        "drawer_shadow_offset_x": {
+          "label": "水平偏移"
+        },
+        "drawer_shadow_offset_y": {
+          "label": "垂直偏移"
+        },
+        "drawer_shadow_opacity": {
+          "label": "不透明度"
+        },
+        "group_header__0": {
+          "label": "邊框"
+        },
+        "group_header__1": {
+          "label": "陰影"
+        }
+      }
+    },
+    "dropdown_modal": {
+      "name": "下拉菜單和彈窗",
+      "settings": {
+        "group_header__0": {
+          "label": "邊框"
+        },
+        "group_header__1": {
+          "label": "陰影"
+        },
+        "menu_modal_border_opacity": {
+          "label": "不透明度"
+        },
+        "menu_modal_border_radius": {
+          "label": "圓角半徑"
+        },
+        "menu_modal_border_thickness": {
+          "label": "厚度"
+        },
+        "menu_modal_shadow_blur": {
+          "label": "模糊"
+        },
+        "menu_modal_shadow_offset_x": {
+          "label": "水平偏移"
+        },
+        "menu_modal_shadow_offset_y": {
+          "label": "垂直偏移"
+        },
+        "menu_modal_shadow_opacity": {
+          "label": "不透明度"
         }
       }
     },
@@ -2561,14 +2817,88 @@
         }
       }
     },
+    "input": {
+      "name": "輸入框",
+      "settings": {
+        "group_header__0": {
+          "label": "邊框"
+        },
+        "group_header__1": {
+          "label": "陰影"
+        },
+        "input_border_opacity": {
+          "label": "不透明度"
+        },
+        "input_border_radius": {
+          "label": "圓角半徑"
+        },
+        "input_border_thickness": {
+          "label": "厚度"
+        },
+        "input_shadow_blur": {
+          "label": "模糊"
+        },
+        "input_shadow_offset_x": {
+          "label": "水平偏移"
+        },
+        "input_shadow_offset_y": {
+          "label": "垂直偏移"
+        },
+        "input_shadow_opacity": {
+          "label": "不透明度"
+        }
+      }
+    },
     "layout": {
       "name": "佈局",
       "settings": {
+        "grid_horizontal_space": {
+          "label": "水平間距"
+        },
+        "grid_vertical_space": {
+          "label": "垂直間距"
+        },
+        "group_header__0": {
+          "info": "影響範圍包含部分網格樣式的組件和商品列表及分類列表",
+          "label": "網格"
+        },
         "page_width": {
           "label": "頁面寬度"
         },
         "section_vertical_gap": {
           "label": "組件間垂直間距"
+        }
+      }
+    },
+    "media_file": {
+      "name": "媒體文件",
+      "settings": {
+        "group_header__0": {
+          "label": "邊框"
+        },
+        "group_header__1": {
+          "label": "陰影"
+        },
+        "media_border_opacity": {
+          "label": "不透明度"
+        },
+        "media_border_radius": {
+          "label": "圓角半徑"
+        },
+        "media_border_thickness": {
+          "label": "厚度"
+        },
+        "media_shadow_blur": {
+          "label": "模糊"
+        },
+        "media_shadow_offset_x": {
+          "label": "水平偏移"
+        },
+        "media_shadow_offset_y": {
+          "label": "垂直偏移"
+        },
+        "media_shadow_opacity": {
+          "label": "不透明度"
         }
       }
     },
@@ -2592,6 +2922,9 @@
         "share_to_pinterest": {
           "label": "分享到Pinterest"
         },
+        "share_to_tumblr": {
+          "label": "分享到Tumblr"
+        },
         "share_to_twitter": {
           "label": "分享到Twitter"
         },
@@ -2603,6 +2936,9 @@
         },
         "social_instagram_link": {
           "label": "Instagram"
+        },
+        "social_linkedin_link": {
+          "label": "Linkedin"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -2633,6 +2969,24 @@
         "product_discount": {
           "label": "展示優惠"
         },
+        "product_discount_position": {
+          "label": "優惠標籤位置",
+          "options__0": {
+            "label": "左上方"
+          },
+          "options__1": {
+            "label": "右上方"
+          },
+          "options__2": {
+            "label": "左下方"
+          },
+          "options__3": {
+            "label": "右下方"
+          }
+        },
+        "product_discount_radius": {
+          "label": "優惠標籤圓角半徑"
+        },
         "product_discount_style": {
           "label": "優惠樣式",
           "options__0": {
@@ -2656,6 +3010,38 @@
           "options__2": {
             "label": "最多展示2行"
           }
+        }
+      }
+    },
+    "sku": {
+      "name": "多屬性選擇器",
+      "settings": {
+        "group_header__0": {
+          "label": "邊框"
+        },
+        "group_header__1": {
+          "label": "陰影"
+        },
+        "sku_selector_border_opacity": {
+          "label": "不透明度"
+        },
+        "sku_selector_border_radius": {
+          "label": "圓角半徑"
+        },
+        "sku_selector_border_thickness": {
+          "label": "厚度"
+        },
+        "sku_selector_shadow_blur": {
+          "label": "模糊"
+        },
+        "sku_selector_shadow_offset_x": {
+          "label": "水平偏移"
+        },
+        "sku_selector_shadow_offset_y": {
+          "label": "垂直偏移"
+        },
+        "sku_selector_shadow_opacity": {
+          "label": "不透明度"
         }
       }
     }

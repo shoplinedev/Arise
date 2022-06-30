@@ -14,7 +14,7 @@
  --}}
 
 {{#has btns "user" }}
-  <a href="{{user_center}}" class="header__btn {{ classnames }}">
+  <a href="{{user_center}}" class="__sl-custom-track-stage-header-user header__btn {{ classnames }}">
     <div class="header__btn-content">
       <div class="header__btn-icon">
         {{ snippet 'icons/icon_header_user' maskID=maskID }}
@@ -40,7 +40,7 @@
 
 {{#has btns 'cart'}}
   <div class="header__btn header__cart {{show_cart_point_class}} {{ classnames }}" id="stage-header-cart" data-type="toggle">
-    <div class="header__btn--open">
+    <div class="header__btn--open __sl-custom-track-stage-header-cart">
       <div class="header__btn-content">
         <div class="header__btn-icon">
         <span>

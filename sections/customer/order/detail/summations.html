@@ -1,0 +1,35 @@
+<div id="customer-order-summations" class="customer_order_summations">
+  {{#trade_with_summations pageType=pageType pageData=pageData}}
+    <div class="customer_order_summations-top">
+      <div class="customer_order_summations-top_box">
+        {{#each summations}}
+          {{include
+            'snippets/customer/order/detail/summations_fee'
+            label=(cond customLabel customLabel (t label))
+            key=key
+            value=value
+            showWithZeroValue=showWithZeroValue
+            showReduce=showReduce
+            suffixCls=suffixCls
+            freeShipTxt=(t freeShipTxt)
+            pageData=@root.pageData
+          }}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    {{!-- 费用合计 --}}
+    {{include
+      'snippets/customer/order/detail/summations_fee'
+      label=(t 'trade.summary')
+      key='settleSumAmount'
+      value=@root.pageData.priceInfo.orderAmount
+      showWithZeroValue=true
+      prefixCls=(append (cond @root.pageData.basicInfo.taxesIncluded 'pointAmountLabel ' '') 'settleSumAmount')
+      suffixCls=(append (cond @root.pageData.basicInfo.taxesIncluded 'pointAmount ' '') 'settleSumAmount')
+    pageData=@root.pageData
+    }}
+  {{/trade_with_summations}}
+</div>

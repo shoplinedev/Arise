@@ -6,6 +6,75 @@
   {{/if}}
 {{/partial}}
 
+{{ preload_state 'sortation.sortation.title' }}
+{{#partial 'page_view'}}
+  {{ assign 'top_ten_products_list' (array-slice products.list 0 10) }}
+  {{ assign 'products_list' products.list }}
+  <script>
+  !function () {
+    var sortBy = {
+      1: 'default',
+      2: 'default',
+      3: 'newestToOldest',
+      4: 'priceLowToHigh',
+      5: 'priceHighToLow',
+    };
+
+    window.HdSdk.shopTracker.report('60006260', {
+      event_name: 'view',
+      page: 'product_list',
+      display_iterm_sum: 48,
+      sort_by: sortBy['{{ request.uri.query.sort_type }}'] || 'default',
+      pro_list_type: "{{ cond request.uri.params.uniqueKey 'category' 'all_product' }}",
+      iframe_id: '1'
+    })
+    // 第三方埋点
+    window.SL_EventBus.emit('global:thirdPartReport', {
+      GA: [
+        [
+          'event',
+          'view_item_list',
+          {
+            items: [{{#forEach products_list}}{id: '{{ reportSkuId }}', name: '{{ title }}', price: '{{ currency_format productMinPrice }}', list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}All Products{{/if}}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
+          },
+        ],
+      ],
+      GA4: [
+        [
+          'event',
+          'view_item_list',
+          {
+            items: [{{#forEach products_list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_name: '{{ title }}', price: '{{ currency_format productMinPrice }}', item_list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}All Products{{/if}}', index: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
+          },
+        ],
+      ],
+      GAR: [
+      [
+         'event',
+          'view_item_list',
+          {
+            items: [{{#forEach top_ten_products_list}}{id: '{{ reportSkuId }}', google_business_vertical: 'retail'}{{#unless isLast}},{{/unless}}{{/forEach}}]
+          }
+       ]
+      ],
+      GARemarketing: [
+      [
+         'event',
+          'view_item_list',
+          {
+            ecomm_prodid: [{{#forEach top_ten_products_list}}'{{ reportSkuId }}'{{#unless isLast}},{{/unless}}{{/forEach}}], 
+            ecomm_pagetype: {{#if sortationId}}'category'{{else}}'other'{{/if}},
+            ecomm_pcat: {{#if sortationId}}'{{ sortation.sortation.title }}'{{else}}'All Products'{{/if}},
+            ecomm_category : {{#if sortationId}}'{{ sortationId }}'{{else}}''{{/if}},
+          }
+       ]
+      ],
+    });
+  }()
+</script>
+{{/partial}}
+
+
 {{#partial 'seo-meta'}}
   {{!-- 单个分类页 商品列表页 --}}
   {{#if (isTruthy sortation)}}
@@ -21,7 +90,7 @@
     {{else}}{{#if page_image}}
       {{ assign 'image' page_image }}
     {{else}}
-      {{ assign 'image' theme.settings.checkout_image.url }}
+      {{ assign 'image' theme.settings.co_checkout_image.url }}
     {{/if}}{{/if}}
     {{ assign 'card' 'summary_large_image' }}
     {{ assign 'type' 'collection' }}
@@ -33,7 +102,7 @@
     {{#if page_image}}
       {{ assign 'image' page_image }}
     {{else}}
-      {{ assign 'image' theme.settings.checkout_image.url }}
+      {{ assign 'image' theme.settings.co_checkout_image.url }}
     {{/if}}
     {{ assign 'seoTitle' 'Products' }}
     {{ assign 'seoDescription' '' }}

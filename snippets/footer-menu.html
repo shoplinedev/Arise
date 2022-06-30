@@ -15,7 +15,7 @@
             {{ assign 'allProducts' global.all_products}}
             {{ assign 'navDetail' (navLink navItem query locale allCollections allProducts ) }}
             <dd>
-              <a {{{navDetail.hrefAttr}}} rel="noreferrer">{{navDetail.name}}</a>
+              <a class="__sl-custom-track-stage-navItem" {{{navDetail.hrefAttr}}} rel="noreferrer">{{navDetail.name}}</a>
             </dd>
           {{/each}}
         </dl>
@@ -46,7 +46,7 @@
                 {{ assign 'allProducts' global.all_products}}
                 {{ assign 'navDetail' (navLink navItem query locale allCollections allProducts ) }}
                 <dd>
-                  <a {{{navDetail.hrefAttr}}} rel="noreferrer">{{navDetail.name}}</a>
+                  <a class="__sl-custom-track-stage-navItem" {{{navDetail.hrefAttr}}} rel="noreferrer">{{navDetail.name}}</a>
                 </dd>
               {{/each}}
             </dl>

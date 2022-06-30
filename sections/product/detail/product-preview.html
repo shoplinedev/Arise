@@ -1,5 +1,7 @@
 ---
-product_comment_config:
+product_comment: 
+  is_plugin: true
+product_activity_config:
   enable: true
 ---
 
@@ -10,6 +12,124 @@ product_comment_config:
 {{ preload_state 'theme' }}
 {{ preload_state 'productComment' }}
 
+<!-- 判断是否预览环境 -->
+{{#if templateAlias '===' 'PreviewProductsDetail'}}
+  {{ assign 'isPreviewProduct' true }}
+{{else}}
+  {{ assign 'isPreviewProduct' false }}
+{{/if}}
+
+{{!--判断是否要默认不选中sku--}}
+{{ assign 'notChooseSku' (boolean product.spu.inquiry '||' (boolean (boolean product.sku.skuList.length '>' 1) '&&' (isFalsey section.settings.default_selected_sku))) }}
+{{!-- sku选中相关数据 --}}
+{{ assign 'initSku' (product_default_sku product.sku.skuList product.spu.soldOut request.uri.query.sku true notChooseSku isPreviewProduct) }}
+{{ assign 'shareInfo' (product_share_info product.productSeo product.spu request.uri storeInfo) }}
+{{ assign 'microdata' (product_microdata initSku.selectSku product.sku product.spu request.uri storeInfo.currency) }}
+{{!-- 是否批量购买 --}}
+{{ assign 'isBatchBuy' (and (isTruthy b2b.moqPlan.batchBuy) (boolean b2b.moqPlan.applyType '===' 2)) }}
+{{!-- 是否售罄 --}}
+{{ assign 'isSoldOut' (or product.spu.soldOut initSku.selectSku.soldOut) }}
+{{!-- 是否无规格/单规格 --}}
+{{ assign 'isSigleSku' (boolean product.sku.skuList.length '<' 2) }}
+
+{{#partial 'page_view'}}
+  {{!-- <script type="application/ld+json"> --}}
+  {{!-- {{{JSONstringify microdata}}} --}}
+  {{!-- </script> --}}
+  {{!-- 替换原来的 ld+json --}}
+  {{ assign 'pluginComment' plugins.comment }}
+  {{assign 'spu' product.spu}}
+
+{{assign 'discount_text' null}}
+
+{{assign 'image' (arrayify (first spu.images 3))}}
+{{#if initSku.selectSku }}
+  {{assign 'sku' (cond initSku.selectSku.itemNo initSku.selectSku.itemNo initSku.selectSku.skuSeq) }}
+  {{assign 'discount_text' initSku.selectSku.price}}
+{{else if initSku.firstSku}}
+  {{assign 'sku' (cond initSku.firstSku.itemNo initSku.firstSku.itemNo initSku.firstSku.skuSeq) }}
+  {{assign 'discount_text' initSku.firstSku.price}}
+{{else if (isTruthy sku.skuList.[0])}}
+  {{assign 'sku' (cond sku.skuList.[0].itemNo sku.skuList.[0].itemNo sku.skuList.[0].skuSeq) }}
+  {{assign 'discount_text' sku.skuList.[0].price}}
+{{/if}}
+{{ assign 'brand' (default spu.brand '')}}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ spu.title }}",
+    "image": ["{{image}}"],
+    "description": "{{ productDesc.description }}",
+    "sku": "{{sku}}",
+    "productID": "{{spu.spuSeq}}",
+    "brand": {
+      "@type": "Brand",
+      "name": "{{brand}}"
+    },
+    {{#if pluginComment.total}}
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{pluginComment.score}}",
+      "reviewCount": "{{pluginComment.total}}"
+    },
+    {{/if}}
+    "offers": {
+      "@type": "Offer",
+      {{#if (isFalsey spu.inquiry)}}
+        "url": "{{shareInfo.url}}",
+        "priceCurrency": "{{currencyCode}}",
+        "price":  "{{ currency_format discount_text }}",
+        "availability": 
+        {{#if (isTruthy  spu.soldOut)}}
+          "https://schema.org/SoldOut"
+        {{else}}
+          "https://schema.org/InStock"
+        {{/if }}
+      {{else}}
+        "url": "{{shareInfo.url}}"
+      {{/if}}
+
+    }
+  }
+ 
+  </script>
+<script>
+  // 第三方埋点
+  window.SL_EventBus.emit('global:thirdPartReport', {
+    FBPixel: [
+      [
+        'track',
+        'ViewContent',
+        {
+          content_ids: [{{{ JSONstringify product.spu.spuSeq }}}],
+          content_name: {{{ JSONstringify (default product.spu.title '') }}},
+          content_category: '',
+          content_type: 'product_group',
+          currency: {{{ JSONstringify (default storeInfo.currency '') }}},
+          value: {{{ JSONstringify (currency_format (default initSku.selectSku.price initSku.firstSku.price '')) }}},
+        },
+        {
+          eventID: 'viewContent{{ serverEventId }}'
+        }
+      ],
+    ],
+  });
+</script>
+<script>
+  window.HdSdk.shopTracker.report('60006253', {
+    event_name: 'view',
+    page: 'pdp',
+    pdp_product_id: '{{ product.spu.spuSeq }}',
+    page_title: '{{ shareInfo.title }}',
+    page_des: {{{ JSONstringify shareInfo.description }}},
+    page_kw: '{{ default product.productSeo.key }}',
+    pic_rank: 1,
+    iframe_id: 1,
+    sellected_variantion_id: "{{#if isBatchBuy}}null{{else}}{{#if isSigleSku}}{{ initSku.firstSku.skuSeq }}{{else}}{{#if isSoldOut}}null{{else}}{{#if initSku.selectSku.skuSeq}}{{ initSku.selectSku.skuSeq }}{{else}}null{{/if}}{{/if}}{{/if}}{{/if}}"
+  });
+</script>
+{{/partial}}
 
 <div class="section-gap product-preview-section"
   data-section-type="product-preview"
@@ -33,70 +153,15 @@ product_comment_config:
   <div class="section-gap">
     <div class="container" id="bundle-detail_down"></div>
   </div>
-  {{!-- 评论受总开关影响 --}}
-  {{#if productCommentConfig.disable_comment '===' '0'}}
-    <div class="section-gap">
-      {{!-- 评价 --}}
-      {{#if (or comments mobileComments)}}
-      <div class="container" id="product-comment-container">
-        {{#if comments}}
-        <div class="product-comment-pc">
-          {{ snippet 'product/detail/comment/Pc/index' }}
-        </div>
-        {{/if}}
-        {{#if mobileComments}}
-        <div class="product-comment-mobile">
-          {{ snippet 'product/detail/comment/Mobile/index' }}
-        </div>
-        {{/if}}
-      </div>
-      {{/if}}
-      {{!-- 请勿在评论按钮和评论区域加其他dom ，否者会影响样式！！--}}
-      {{!-- 评价下方的添加评论按钮 --}}
-      <div class="container section-gap" id="product-comment-container">
-        {{ assign 'hasPcComment' (boolean comments) }}
-        <div class="comment-leave-review">
-  {{#unless hasPcComment}}
-  <div class="comment-no-comment-tips">
-    <p class="comment-no-comment-tips--title">
-      {{t 'comment.no-comment-title-tip'}}
-    </p>
-    <p class="comment-no-comment-tips--first">
-      {{t "comment.no-comment-first-tip"}}
-    </p>
+
+  {{!-- 评论 考虑到可能改造成block先给个空标签 --}}
+  <div class="container">
+    <div data-ssr-plugin-product-comment></div>
   </div>
-  {{/unless}}
-  <div class="comment-leave-pc-main">
-    <div class="comment-leave-pc-btns" >
-       <button class="btn btn-primary btn-lg comment-leave-review-btn">
-        {{t 'comment.write-review'}}
-      </button>
-    </div>
-    <div class="product-comment-leave-pc"></div>
-  </div>
-  <div class="comment-leave-mobile-btns">
-    <button class="btn btn-primary btn-lg comment-leave-review-btn--mobile">
-      {{t 'comment.write-review'}}
-    </button>
-  </div>
-  
-</div>
-      </div>
-      {{!-- 评价下方的添加评论按钮end  --}}
-    </div>
-  {{/if}}
+  {{!-- 评论end --}}
+
   {{!-- 推荐商品 --}}
   {{ snippet 'product/product-recommend' }}
-  {{#if (compare (length comments.list) '>' 0)}}
-    {{#snippet 'product/commons/base-modal' closable=false modalId='product-comment-detail' animationType='fadeIn'}}
-      {{ snippet 'product/detail/comment/Pc/previewModal' }}
-    {{/snippet}}
-  {{/if}}
-  {{#if (compare (length mobileComments.list) '>' 3)}}
-    {{#snippet 'product/commons/base-modal' closable=false modalId='product-comment-more' animationType='popup'}}
-      {{ snippet 'product/detail/comment/MobileDetail/index' }}
-    {{/snippet}}
-  {{/if}}
 {{/if}}
 
 
@@ -507,6 +572,19 @@ product_comment_config:
           "id": "html",
           "limit": 0,
           "label": "t:sections.product_detail_product-preview.blocks.html.settings.html.label"
+        }
+      ]
+    },
+    {
+      "type": "plainText",
+      "icon": "normal",
+      "name": "t:sections.product_detail_product-preview.blocks.plainText.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "plainText",
+          "limit": 0,
+          "label": "t:sections.product_detail_product-preview.blocks.plainText.settings.plainText.label"
         }
       ]
     }

@@ -4,7 +4,7 @@
     {{#each summations}}
       {{include
         'snippets/trade/trade_summations_fee'
-        label=(t label)
+        label=(cond customLabel customLabel (t label))
         key=key
         value=value
         showWithZeroValue=showWithZeroValue
@@ -17,4 +17,7 @@
       }}
     {{/each}}
   {{/trade_with_summations}}
+  {{#if tradeSettleConfig.taxesIncluded}}
+      <div class="trade_summations_taxes">{{ t 'cart.taxIncluded.textTag' }}</div>
+  {{/if}}
 </div>

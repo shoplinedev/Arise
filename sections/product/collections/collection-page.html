@@ -28,64 +28,11 @@ history_browse_products:
 {{ assign 'itemNumByRow' 4 }}
 {{ assign 'slice_products_list' products.list }}
 {{ assign 'gripType' 'small_grid' }}
+{{ assign 'productSortation' (object_create id=sortationId sortation=sortation) }}
+{{ preload_state 'products' }}
+{{ preload_state 'productSortation' }}
 
-{{#partial 'page_view'}}
-  {{ assign 'top_ten_products_list' (array-slice products.list 0 10) }}
-  <script>
-  !function () {
-    var sortBy = {
-      1: 'default',
-      2: 'default',
-      3: 'newestToOldest',
-      4: 'priceLowToHigh',
-      5: 'priceHighToLow',
-    };
-
-    window.HdSdk.shopTracker.report('60006260', {
-      event_name: 'view',
-      page: 'product_list',
-      display_iterm_sum: 48,
-      sort_by: sortBy['{{ request.uri.query.sort_type }}'] || 'default',
-      pro_list_type: "{{ cond request.uri.params.uniqueKey 'category' 'all_product' }}",
-      iframe_id: '1'
-    })
-    // 第三方埋点
-    window.SL_EventBus.emit('global:thirdPartReport', {
-      GA: [
-        [
-          'event',
-          'view_item_list',
-          {
-            items: [{{#forEach top_ten_products_list}}{id: '{{ reportSkuId }}', name: '{{ title }}', price: '{{ currency_format productMinPrice }}', list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}All Products{{/if}}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
-          },
-        ],
-      ],
-      GAR: [
-      [
-         'event',
-          'view_item_list',
-          {
-            items: [{{#forEach top_ten_products_list}}{id: '{{ reportSkuId }}', google_business_vertical: 'retail'}{{#unless isLast}},{{/unless}}{{/forEach}}]
-          }
-       ]
-      ],
-      GARemarketing: [
-      [
-         'event',
-          'view_item_list',
-          {
-            ecomm_prodid: [{{#forEach top_ten_products_list}}'{{ reportSkuId }}'{{#unless isLast}},{{/unless}}{{/forEach}}], 
-            ecomm_pagetype: {{#if sortationId}}'category'{{else}}'other'{{/if}},
-            ecomm_pcat: {{#if sortationId}}'{{ sortation.sortation.title }}'{{else}}'All Products'{{/if}},
-            ecomm_category : {{#if sortationId}}'{{ sortationId }}'{{else}}''{{/if}},
-          }
-       ]
-      ],
-    });
-  }()
-</script>
-{{/partial}}
-<div  id="collectionsAjaxInner">
+<div id="collectionsAjaxInner">
   <div 
     class="container section-gap product-list-main" 
     data-section-type="collections-page"
@@ -94,7 +41,7 @@ history_browse_products:
     <div class="row g-4">
       <div class="product-list-main-box">
         <div class="product-collection-page-con">
-          <div class="product-list-list" data-ssr-product-list-left>
+          <div class="product-list-list __sl-custom-track-{{ cond productSortation.id productSortation.id 'all-products' }}" data-ssr-product-list-left>
             <div class="product-list-description-category-top">
               {{#if (boolean (boolean section.settings.category_desc_position '===' 'top') '&&' sortationId)}}
                 {{#if (length (trim sortation.sortation.description)) '>' 0}}

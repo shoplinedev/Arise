@@ -1,0 +1,18 @@
+{{ assign 'classes' (arrayify class)}}
+{{ assign 'type' (default type 'text') }}
+
+<div class="sl-input {{join classes ' '}}">
+  <div class="sl-input__area {{ cond (boolean type '===' 'textarea') 'is-textarea' ''  }}">
+    {{#if type '===' 'textarea'}}
+      <textarea type="text" name="{{ name }}" placeholder="{{placeholder}}" class="sl-input__inpEle" {{{attrs}}}>{{ value }}</textarea>
+    {{else}}
+      <input type="{{ type }}" name="{{ name }}" placeholder="{{placeholder}}" class="sl-input__inpEle" value="{{value}}" {{{attrs}}} />
+    {{/if}}
+    <span class="placeholder">
+      {{placeholder}}
+    </span>
+  </div>
+  <div class="sl-input__suffix">
+    {{slot_content 'suffix'}}
+  </div>
+</div>

@@ -1,15 +1,15 @@
 <div class="{{#if type "==" '1'}} percentage vertical{{else }}percentage horizontal{{/if}} {{#if color "==" '1'}}red{{else }}orange{{/if}}">
   {{#if type "==" '2'}}
-    <div class="msg">
-       {{t "sales.sold" count=sold}}
+    <div class="msg" style="color:{{salesCustom.progressBarTextColor}};">
+      {{noTranslationHTML (t "sales.sold" count=(javascript_template '<strong>${sold}</strong>' sold=sold))}}
     </div>
   {{/if}}
-  <div class="percentOut">
-    <div class="percent flash-sale-percent"></div>
+  <div class="percentOut" style="background-color:{{rgba salesCustom.progressBarBgColor 0.2}}">
+    <div class="percent flash-sale-percent" style="background-color:{{salesCustom.progressBarBgColor}}; width:{{multiply (divide sold total) 100}}%;"></div>
   </div>
   {{#if type "==" '1'}}
-    <div class="msg">
-       {{t "sales.sold" count=sold}}
+    <div class="msg" style="color:{{salesCustom.progressBarTextColor}};">
+      {{noTranslationHTML (t "sales.sold" count=(javascript_template '<strong>${sold}</strong>' sold=sold))}}
     </div>
   {{/if}}
 </div>

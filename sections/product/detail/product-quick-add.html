@@ -9,7 +9,7 @@
 {{/if}}
 
 {{!-- sku选中相关数据 --}}
-{{ assign 'initSku' (product_default_sku product.sku.skuList product.spu.soldOut request.uri.query.sku (if theme.settings.product_sku_style 'select') product.spu.inquiry isPreviewProduct) }}
+{{ assign 'initSku' (product_default_sku product.sku.skuList product.spu.soldOut request.uri.query.sku true product.spu.inquiry isPreviewProduct) }}
 {{assign 'productPrice' (product_sku_price (default initSku.selectSku initSku.minPriceSku))}}
 {{assign 'showMemberMark' (default initSku.selectSku.showMemberMark initSku.minPriceSku.showMemberMark)}}
 
@@ -54,6 +54,8 @@
           </span>
         {{/if}}
         <span class="product-price-vip_{{id}} vipPrice {{cond showMemberMark '' 'hide'}}" data-vip-tag="big"></span>
+        {{!-- (含税费) --}}
+        {{ snippet 'product/detail/product-tax' }}
         <span
           class="originPrice notranslate fw-bold product-price-item product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
           {{#if (boolean theme.settings.superscript_decimals) }}

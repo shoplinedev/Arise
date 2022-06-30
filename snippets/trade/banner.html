@@ -28,9 +28,10 @@
      <button class="btn trade-cart-banner-summations-footer-view-cart body3 text_bold" onclick="window.location.href='/cart'"> {{t 'cart.view-cart'}} (<span
          class="trade-cart-banner-summations-footer-cart-total"></span>)</button>
      <div class="sidebar__trade-cart-checkout">
-       <button type="button" data-sl-module="button__trade-cart-checkout" class="trade-cart-banner-summations-footer-checkout text_bold body3 btn" id="mini-cart-spb-slibing"
+       <button type="button" data-sl-module="button__trade-cart-checkout" class="btn trade-cart-banner-summations-footer-checkout text_bold body3" id="mini-cart-spb-slibing"
          style="width: 100%;">
          {{ t 'common.checkout' }}
+         {{snippet 'btn-loading-spinner'}}
        </button>
      </div>
    </footer>

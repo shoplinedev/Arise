@@ -1,0 +1,94 @@
+{{ assign 'id' (default id 'customer-register')}}
+{{!-- showType: page 页面，modal 弹窗 --}}
+{{ assign 'showType' (default showType 'page')}}
+
+{{ preload_state 'customer_address' }}
+{{ preload_state 'shop' }}
+{{ preload_state 'policyList' }}
+
+{{ assign 'customizePaths' (pluck policyList 'customizePath')}}
+
+{{ assign 'hasPrivacyPolicy' (inArray customizePaths '/policies/privacy-policy')}}
+{{ assign 'hasTermsOfService' (inArray customizePaths '/policies/terms-of-service')}}
+
+{{ assign 'types' (split shop.store_register_config.types ',')}}
+
+<div class="customer sign-up" id="{{ id }}">
+  <h2 class="customer__title">{{t 'user.signUp'}}</h2>
+  {{!-- <p class="customer__error">{{t 'user.udbResponse.err2002'}}</p> --}}
+
+  <form class="customer__form">
+    {{snippet 'customer/form-item/username' types=(split shop.store_register_config.types ',') }}
+
+    {{#formItem "password" "class='customer__form-item'"}}
+      {{#snippet
+        'customer/base/sl-input'
+        attrs='autocomplete="new-password" maxlength="255"'
+        name="password"
+        type="password"
+        placeholder=(t 'user.password')
+        class="form-item--password"
+      }}
+        {{#child 'suffix'}}
+          {{snippet 'icons/icon_close_eye'}}
+        {{/child}}
+      {{/snippet}}
+    {{/formItem}}
+
+    {{#if shop.store_register_config.checkTag}}
+      {{#formItem "verifycode" "class='customer__form-item'"}}
+        {{#snippet
+          'customer/base/sl-input'
+          attrs='autocomplete="off"'
+          name="verifycode"
+          type="text"
+          placeholder=(t 'user.code')
+        }}
+          {{#child 'suffix'}}
+            <button class="btn btn-link customer__send-btn customer__form-item--send" disabled>{{ t 'user.send' }}</button>
+          {{/child}}
+        {{/snippet}}
+      {{/formItem}}
+    {{/if}}
+
+    <p class="customer__error"></p>
+
+    {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button" block=true attrs="type='button'" }}
+      {{t 'user.signUp'}}
+    {{/snippet}}
+
+    {{#if (isFalsey (isEmpty customizePaths))}}
+      {{#formItem "policy" "class='customer__form-item sign-up__terms'"}}
+        {{#snippet 'customer/base/sl-checkbox' checked=false }}
+          <span>{{ t 'tips.i-agree-with-the-shop' }}</span>
+          {{#if hasPrivacyPolicy}}
+            <a href="javascript:void(0);" class="sign-up__link sign-up__privacy-policy" data-path="/policies/privacy-policy">{{ t 'trade.policy.privacy-policy' }}</a>
+          {{/if}}
+          {{#if hasTermsOfService}}
+            <span>{{ t 'tips.and' }}</span>
+            <a href="javascript:void(0);" class="sign-up__link sign-up__service-terms" data-path="/policies/terms-of-service">{{ t 'trade.service-terms' }}</a>
+          {{/if}}
+        {{/snippet}}
+      {{/formItem}}
+    {{/if}}
+
+    {{#if (or (inArray types 'email') (inArray types 'username'))}}
+      {{#formItem "subscription" "class='customer__form-item sign-up__subscription'"}}
+        {{#snippet 'customer/base/sl-checkbox' checked=true }}
+          {{ t 'user.subscription-text' }}
+        {{/snippet}}
+      {{/formItem}}
+    {{/if}}
+  </form>
+
+  {{#if showType 'page'}}
+    {{!-- 弹窗不显示这个跳转链接 --}}
+    <div class="sign-up__footer-link text-center">
+      <a href="/user/signIn{{{get 'search' (urlParse request.uri.url 'json')}}}" class="sign-up__link">{{ t 'trade.go-login' }}</a>
+    </div>
+  {{/if}}
+</div>
+
+{{!-- 用户条款弹窗 --}}
+{{ assign 'modalId' (append id '-modal')}}
+{{#snippet 'product/commons/base-modal' modalId=modalId animationType="fade"}}{{/snippet}}

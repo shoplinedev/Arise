@@ -1,0 +1,18 @@
+<div class="customer-message-input" id="customer-message-input">
+  <textarea
+    class="msg-input-area"
+    placeholder="{{ t 'userCenter.message.inputPlaceholder' }}"
+  ></textarea>
+  <div class="msg-input-control">
+    <div class="msg-input-upload">
+      {{ snippet 'customer/base/sl-upload' id="customer-message-upload" }}
+
+      <div class="msg-input-upload__preview">
+        <div class="msg-input-upload__preview--close">
+          {{ snippet 'icons/icon_close_round' }}
+        </div>
+      </div>
+    </div>
+    <div class="msg-input-send">{{ t 'userCenter.message.send' }}</div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+{{ assign 'id' (default id 'reset-password-verify')}}
+
+<form class="customer__form" id="{{ id }}">
+  {{#formItem "verifycode" "class='customer__form-item'"}}
+    {{#snippet
+      'customer/base/sl-input'
+      attrs='autocomplete="off"'
+      name="verifycode"
+      type="text"
+      placeholder=(t 'user.code')
+    }}
+      {{#child 'suffix'}}
+        <button class="btn btn-link customer__send-btn customer__form-item--send" disabled>{{ t 'user.send' }}</button>
+      {{/child}}
+    {{/snippet}}
+  {{/formItem}}
+
+  <p class="customer__error"></p>
+
+  {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button" block=true attrs="type='button'" }}
+    {{t 'user.confirm'}}
+  {{/snippet}}
+</form>

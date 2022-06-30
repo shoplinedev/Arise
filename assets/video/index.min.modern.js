@@ -2,7 +2,14 @@
 
 (self["webpackChunkArise"] = self["webpackChunkArise"] || []).push([ [ "video" ], {
     "./src/assets/stage/video/index.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
-        var sectionsLoad = __webpack_require__("../shared/browser/utils/sectionsLoad/index.js");
+        var _yy_sl_theme_shared_utils_sectionsLoad__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/sectionsLoad/index.js");
+        var _utils_video__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/assets/stage/video/utils/video.js");
+        (0, _yy_sl_theme_shared_utils_sectionsLoad__WEBPACK_IMPORTED_MODULE_0__.registrySectionConstructor)(_utils_video__WEBPACK_IMPORTED_MODULE_1__["default"].type, _utils_video__WEBPACK_IMPORTED_MODULE_1__["default"]);
+    },
+    "./src/assets/stage/video/utils/video.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => Video
+        });
         class Player {}
         const libraries = {
             youtubeSdk: {
@@ -72,7 +79,8 @@
                 iv_load_policy: 3,
                 modestbranding: 1,
                 playsinline: 1,
-                rel: 0
+                rel: 0,
+                loop: false
             },
             events: {
                 onReady: event => {
@@ -94,6 +102,8 @@
                     ...videoOptions,
                     ...options
                 };
+                this.options.playerVars.loop = options.loop;
+                if (this.options.playerVars.loop) this.options.playerVars.playlist = `${options.videoId}`;
                 if (window.__YOUTUBE_IFRAME_API_LOADED__) this.init(); else {
                     utils_LibraryLoader.load("youtubeSdk");
                     window.SL_EventBus.on("stage:youTubeReady", this.init.bind(this));
@@ -246,6 +256,7 @@
                         ratio: aspectRatios[0] / aspectRatios[1],
                         autoplay: settings.autoplay ? 1 : 0,
                         muted: !!settings.quiet,
+                        loop: settings.loop,
                         events
                     });
                     break;
@@ -256,6 +267,7 @@
                         ratio: aspectRatios[0] / aspectRatios[1],
                         autoplay: !!settings.autoplay,
                         muted: !!settings.quiet,
+                        loop: settings.loop,
                         events
                     });
                 }
@@ -294,9 +306,9 @@
             }
         }
         _defineProperty(Video, "type", "video");
-        (0, sectionsLoad.registrySectionConstructor)(Video.type, Video);
     }
 }, __webpack_require__ => {
     var __webpack_exec__ = moduleId => __webpack_require__(__webpack_require__.s = moduleId);
-    __webpack_exec__("./src/assets/stage/video/index.js");
+    __webpack_require__.O(0, [ "vendor" ], (() => __webpack_exec__("./src/assets/stage/video/index.js")));
+    __webpack_require__.O();
 } ]);

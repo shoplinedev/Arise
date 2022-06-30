@@ -7,7 +7,15 @@
 <link rel="stylesheet" href="{{ assets_url 'user/index.min.css' }}"/>
 {{/partial}}
 
-<div id="app" class="user__wrapper"></div>
+{{ assign 'useContainerList' (split 'OrderList' ',')}}
+
+{{#if (inArray useContainerList templateAlias)}}
+  {{#snippet 'customer/user-center-container' }}
+    <div id="app" class="user__wrapper"></div>
+  {{/snippet}}
+{{else}}
+  <div id="app" class="user__wrapper"></div>
+{{/if}}
 
 {{#partial 'script'}}
   <script src="{{ assets_url 'user/index.min.js' }}"></script>

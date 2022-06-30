@@ -1,0 +1,16 @@
+{{ assign 'id' (default id 'customer-password') }}
+
+{{ preload_state 'customer_address' }}
+{{ preload_state 'shop' }}
+
+<div class="customer" id={{ id }}>
+  <h2 class="customer__title">{{t 'tips.forget-password'}}</h1>
+    <p class="customer__tips password-reset-tips">{{t 'tips.verify-account-to-reset-password'}}</p>
+
+    {{ snippet 'customer/password-new/password-verify' id=(append id '-verify') }}
+    {{ snippet 'customer/password-new/password-set' id=(append id '-set') }}
+
+    <div class="password__buttons">
+      <a href="/user/signIn{{{get 'search' (urlParse request.uri.url 'json')}}}">{{t 'common.member-login'}}</a>
+    </div>
+</div>

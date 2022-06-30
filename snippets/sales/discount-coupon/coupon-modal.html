@@ -6,11 +6,7 @@
   <div class="sales-coupon-modal__list">
     {{#each discountCodeActivityList}}
       <div class="sales-coupon-modal__list-item">
-        {{#if this.discountCodeDisplayStyle '===' "discountCodeStyle1"}}
-          {{snippet 'sales/discount-coupon/coupon-item/coupon-card1'}}
-        {{else if discountCodeDisplayStyle '===' "discountCodeStyle2"}}
-          {{snippet 'sales/discount-coupon/coupon-item/coupon-card2'}}
-        {{/if}}
+        {{snippet 'sales/discount-coupon/coupon-card/index' item=this id=@index}}
       </div>
     {{/each}}
   </div>

@@ -20,7 +20,7 @@
   {{#if banner2.url}}
       {{#if (isFalsey banner-ratio)}}
         {{ assign 'banner-ratio' (append (default (get 'ratio' (img_size banner2.url)) 100) '%') }}
-      {{/if}}   
+      {{/if}}
   {{/if}}
 {{/if}}
 
@@ -36,55 +36,60 @@
 </script>
   
 
-<div class="image-banner-loaded" data-section-type="image-banner" data-section-id="{{ section.id }}">
+{{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='content' }}
+
+<div class="__sl-custom-track-stage-imageBanner" data-section-type="image-banner" data-section-id="{{ section.id }}">
    {{!-- pc 端 --}}
-  <div class="stage-image-banner d-md-block d-none"  >
-    <div class="banner-container">     
-        {{#if banner1.url}}                
-          <div class="banner-item-wrapper banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}          
-          ">
+  <div class="stage-image-banner {{#or banner1.url banner2.url}}image-banner-loaded{{/or}} d-md-block d-none">
+    <div class="banner-container">
+        {{#if banner1.url}}
+          <div class="banner-item-wrapper banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}">
             <div style="padding-bottom: {{ banner-ratio }};">
-              <img class="lozad banner-item banner-pc-item" id="banner1" data-sizes="auto" data-src="{{ banner1.url }}"/>    
-            </div>          
+              <img class="lozad banner-item banner-pc-item" id="banner1" data-sizes="auto" data-src="{{ banner1.url }}"
+                {{!-- 避免依赖 js 控制图片显示 --}}
+                onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
+            </div>
           </div>
         {{/if}}
-        {{#if banner2.url}}      
-          <div class="banner-item-wrapper 
-          banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}
-          "          
-            >
+        {{#if banner2.url}}
+          <div class="banner-item-wrapper banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}">
             <div style="padding-bottom: {{ banner-ratio }};">
-              <img class="lozad banner-item banner-pc-item" id="banner2"  data-sizes="auto" data-src="{{ banner2.url }}"/>    
-            </div>          
+              <img class="lozad banner-item banner-pc-item" id="banner2"  data-sizes="auto" data-src="{{ banner2.url }}"
+                {{!-- 避免依赖 js 控制图片显示 --}}
+                onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
+            </div>
           </div>
         {{/if}}
-        {{#and (isFalsey banner1.url) (isFalsey banner2.url)}} 
+        {{#and (isFalsey banner1.url) (isFalsey banner2.url)}}
           {{ snippet 'icons/icon_slideshow_placeholder' class='d-none d-md-block default-image' }}
         {{/and}}
       <div class="mask" style="opacity: {{ alpha_range }}%"></div>
-    </div>  
-    {{!-- 
+    </div>
+    {{!--
       1.无文本框时配色不生效
       2.设置有文本框时无配色，则显示白色背景
     --}}
-    {{#if blocksLength '>' 0}} 
-    <div class=" g-6 content content--pos-{{ pc_position }} ">    
-      <div class="container ">
-        <div class="wrapper 
-        {{#if (isFalsey show_textarea)}}wrapper--default--shadow{{/if}} 
-        {{#if show_textarea}} 
-          color-scheme-{{ color_scheme }} 
-        {{else}} 
-          wrapper--default-scheme 
-        {{/if}} 
+    {{#if blocksLength '>' 0}}
+    <div class="content content--pos-{{ pc_position }}">
+      {{!-- 这里需要将container padding 改写成上下左右都有 --}}
+      <div class="container" style="padding: var(--sl-gutter-x, .75rem);">
+        <div class="wrapper
+        {{#and (isFalsey show_textarea) (isFalsey banner1.url) (isFalsey banner2.url)}}wrapper--default--shadow{{/and}}
+        {{#if show_textarea}}
+          color-scheme-{{ color_scheme }}
+          global-content-border-shadow
+        {{else}}
+          wrapper--default-scheme
+        {{/if}}
+
         ">
           {{#each blocks}}
-            {{#if (trim type) '===' 'title'}}   
-            <p class="title title-font title--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</p>       
+            {{#if (trim type) '===' 'title'}}
+            <p class="title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</p>
             {{/if}}
-            
+
             {{#if (trim type) '===' 'desc'}}
-            <p class="desc body1">{{ settings.description }}</p>  
+            <p class="desc body1">{{ settings.description }}</p>
             {{/if}}
             {{#if (trim type) '===' 'button'}}
             {{ assign 'outline_button' settings.outline_button }}
@@ -92,55 +97,57 @@
             <div class="control-wrap">
               <div class="control">
                 {{#if settings.button_text}}
-                  {{ assign 'link_item' (useLink settings.link global.request.uri.query) }}              
-                  <a {{{ link_item.hrefAttr }}} class="btn btn-lg {{#if (isTruthy outline_button)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.button_text }}</a>
+                  {{ assign 'link_item' (useLink settings.link global.request.uri.query) }}
+                  <a {{{ link_item.hrefAttr }}} class="__sl-custom-track-stage-imageBanner-button btn btn-lg {{#if (isTruthy outline_button)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.button_text }}</a>
                 {{/if}}
                 {{#if settings.link_text_2}}
                   {{ assign 'link_2_item' (useLink settings.link_2 global.request.uri.query) }}
-                  <a {{{ link_2_item.hrefAttr }}} class="btn btn-lg {{#if (isTruthy outline_button_2)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.link_text_2 }}</a>
+                  <a {{{ link_2_item.hrefAttr }}} class="__sl-custom-track-stage-imageBanner-button btn btn-lg {{#if (isTruthy outline_button_2)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.link_text_2 }}</a>
                 {{/if}}
               </div>
             </div>
-            
-            {{/if}}    
+
+            {{/if}}
           {{/each}}
-        </div>  
-      </div>    
-    </div>     
-    {{/if}}  
+        </div>
+      </div>
+    </div>
+    {{/if}}
     <div class="stage-image-banner-loading"><p class="progress-bar"></p></div>
   </div>
 
   {{!-- m 端 --}}
-  <div class="stage-image-banner d-md-none {{#if (isTruthy mobile_flatten)}}stage-image-banner--m-flatten{{else}}stage-image-banner--m-normal {{/if}}" data-section-type="image-banner" data-section-id="{{ section.id }}">    
-    <div class="banner-container" > 
-      {{#and (isFalsey banner1.url) (isFalsey banner2.url)}} 
+  <div class="stage-image-banner {{#or banner1.url banner2.url}}image-banner-loaded{{/or}} d-md-none {{#if (isTruthy mobile_flatten)}}stage-image-banner--m-flatten{{else}}stage-image-banner--m-normal {{/if}}" data-section-type="image-banner" data-section-id="{{ section.id }}">
+    <div class="banner-container" >
+      {{#and (isFalsey banner1.url) (isFalsey banner2.url)}}
           {{ snippet 'icons/icon_slideshow_mobile_placeholder' class='d-md-none default-image' }}
-        {{/and}}    
-        {{#if banner1.url}}                
-          <div class="banner-item-wrapper first-banner          
-            banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}          
+        {{/and}}
+        {{#if banner1.url}}
+          <div class="banner-item-wrapper first-banner
+            banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}
           ">
             <div style="padding-bottom: {{ banner-ratio }};">
-              <img class="lozad banner-item banner-mobile-item" id="banner1" data-sizes="auto" data-src="{{ banner1.url }}"/>    
-            </div>          
+              <img class="lozad banner-item banner-mobile-item" id="banner1" data-sizes="auto" data-src="{{ banner1.url }}"
+                {{!-- 避免依赖 js 控制图片显示 --}}
+                onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
+            </div>
           </div>
         {{/if}}
 
-        {{#if blocksLength '>' 0}} 
-        <div class=" g-6 content content--pos-{{ pc_position }} {{#if (isTruthy show_mobile_textarea)}}content-m--normal-flow{{else}}content-m-no-bg{{/if}} ">            
+        {{#if blocksLength '>' 0}}
+        <div class=" g-6 content content--pos-{{ pc_position }} {{#if (isTruthy show_mobile_textarea)}}content-m--normal-flow{{else}}content-m-no-bg{{/if}} ">
           <div class="d-md-none wrapper container
-          {{#if (isFalsey show_textarea)}}wrapper--default--shadow{{/if}}         
-          {{#if show_mobile_textarea}} color-scheme-{{ color_scheme }} 
+          {{#and (isFalsey show_mobile_textarea) (isFalsey banner1.url) (isFalsey banner2.url)}}wrapper--default--shadow{{/and}}
+          {{#if show_mobile_textarea}} color-scheme-{{ color_scheme }}
           {{else}} wrapper--default-scheme {{/if}}
           ">
             {{#each blocks}}
-              {{#if (trim type) '===' 'title'}}   
-              <p class="title title-font title--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</p>       
+              {{#if (trim type) '===' 'title'}}
+              <p class="title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</p>
               {{/if}}
-              
+
               {{#if (trim type) '===' 'desc'}}
-              <p class="desc body1">{{ settings.description }}</p>  
+              <p class="desc body1">{{ settings.description }}</p>
               {{/if}}
               {{#if (trim type) '===' 'button'}}
               {{ assign 'outline_button' settings.outline_button }}
@@ -148,41 +155,43 @@
               <div class="control-wrap">
                 <div class="control">
                   {{#if settings.button_text}}
-                    {{ assign 'link_item' (useLink settings.link global.request.uri.query) }}              
-                    <a {{{ link_item.hrefAttr }}} class="btn {{#if (isTruthy outline_button)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.button_text }}</a>
+                    {{ assign 'link_item' (useLink settings.link global.request.uri.query) }}
+                    <a {{{ link_item.hrefAttr }}} class="__sl-custom-track-stage-imageBanner-button btn {{#if (isTruthy outline_button)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.button_text }}</a>
                   {{/if}}
                   {{#if settings.link_text_2}}
                     {{ assign 'link_2_item' (useLink settings.link_2 global.request.uri.query) }}
-                    <a {{{ link_2_item.hrefAttr }}} class="btn {{#if (isTruthy outline_button_2)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.link_text_2 }}</a>
+                    <a {{{ link_2_item.hrefAttr }}} class="__sl-custom-track-stage-imageBanner-button btn {{#if (isTruthy outline_button_2)}}btn-extra{{else}}btn-primary{{/if}}">{{ settings.link_text_2 }}</a>
                   {{/if}}
                 </div>
               </div>
-              
-              {{/if}}    
+
+              {{/if}}
             {{/each}}
-          </div>  
-        </div>     
+          </div>
+        </div>
         {{/if}}
 
-        {{#if banner2.url}}      
-          <div class="banner-item-wrapper second-banner        
+        {{#if banner2.url}}
+          <div class="banner-item-wrapper second-banner
           banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}
           ">
             <div style="padding-bottom: {{ banner-ratio }};">
-              <img class="lozad banner-item banner-mobile-item" id="banner2"  data-sizes="auto" data-src="{{ banner2.url }}"/>    
-            </div>          
+              <img class="lozad banner-item banner-mobile-item" id="banner2"  data-sizes="auto" data-src="{{ banner2.url }}"
+                {{!-- 避免依赖 js 控制图片显示 --}}
+                onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
+            </div>
           </div>
         {{/if}}
         {{!-- 开启文字在图片下方，不显示--}}
         {{#if (boolean (isTruthy show_mobile_textarea) '&&' (boolean (boolean banner1.url) '||' (boolean banner2.url)))}}
-        {{else}} <div class="mask" style="opacity: {{ alpha_range }}%"></div> {{/if}}    
+        {{else}} <div class="mask" style="opacity: {{ alpha_range }}%"></div> {{/if}}
+    </div>
+    <div class="stage-image-banner-loading">
+      <p class="progress-bar"></p>
     </div>
   </div>
-  <div class="stage-image-banner-loading">
-    <p class="progress-bar"></p> 
-  </div>
 </div >
- 
+
 
 
 {{#schema}}
@@ -234,15 +243,39 @@
       "options": [
         {
           "label": "t:sections.image-banner.settings.pc_text_position.options__0.label",
-          "value": "left"
+          "value": "left-top"
         },
         {
           "label": "t:sections.image-banner.settings.pc_text_position.options__1.label",
-          "value": "center"
+          "value": "top"
         },
         {
           "label": "t:sections.image-banner.settings.pc_text_position.options__2.label",
+          "value": "right-top"
+        },
+        {
+          "label": "t:sections.image-banner.settings.pc_text_position.options__3.label",
+          "value": "left"
+        },
+        {
+          "label": "t:sections.image-banner.settings.pc_text_position.options__4.label",
+          "value": "center"
+        },
+        {
+          "label": "t:sections.image-banner.settings.pc_text_position.options__5.label",
           "value": "right"
+        },
+        {
+          "label": "t:sections.image-banner.settings.pc_text_position.options__6.label",
+          "value": "left-bottom"
+        },
+        {
+          "label": "t:sections.image-banner.settings.pc_text_position.options__7.label",
+          "value": "bottom"
+        },
+        {
+          "label": "t:sections.image-banner.settings.pc_text_position.options__8.label",
+          "value": "right-bottom"
         }
       ],
       "default": "center"
@@ -372,7 +405,7 @@
         {
           "id": "outline_button",
           "type": "switch",
-          "default": false,
+          "default": true,
           "label": "t:sections.image-banner.blocks.button.settings.outline_button.label"
         },
         {
@@ -389,7 +422,7 @@
         {
           "id": "outline_button_2",
           "type": "switch",
-          "default": false,
+          "default": true,
           "label": "t:sections.image-banner.blocks.button.settings.outline_button_2.label"
         }
       ]
@@ -430,10 +463,10 @@
           "settings": {
             "button_text": "Shop this",
             "link": "",
-            "outline_button": false,
+            "outline_button": true,
             "link_text_2": "Shop all",
             "link_2": "",
-            "outline_button_2": false
+            "outline_button_2": true
           }
         }
       ]

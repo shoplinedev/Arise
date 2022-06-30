@@ -29,26 +29,136 @@
     "activity-price-limit": "Kupon produk ini hanya mendukung beli {{num}} buah",
     "activity-product-limit": "Pada waktu bersamaan maksimum dapat beli {{stock}} produk dengan harga diskon",
     "activity-title-limit": "Produk yang berikut melewati batasan pembelian, apakah yakin membayar lanjut?",
+    "cart": {
+      "cancel": "Batal",
+      "confirm": "Konfirmasi",
+      "continue": "Lanjut",
+      "got_it": "Saya sudah tahu",
+      "return_to_cart": "Kembali troli"
+    },
     "checkout-error": "Setidaknya satu item dalam troli tidak dapat dibeli. Silakan sesuaikan item di keranjang belanja untuk pembayaran.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Produk yang berikut melewati batasan pembelian, apakah yakin membayar lanjut?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "Pergabungan diskon terbatas waktu dan promo kegiatan kupon"
+    },
+    "discount": {
+      "coupon_code_amount": "Diskon kode kupon",
+      "coupon_code_exceed_not_25_characters": "Panjang kode kupon tidak boleh melebihi 25",
+      "coupon_invalid_for_the_shipping_method": "Kode kupon {{discountCode}} tidak berlaku untuk metode pengiriman saat ini",
+      "discount_code_invalid": "{{discountCode}} dimasukkan benar, tetapi harga atau jumlah produk tidak sesuai persyaratan",
+      "discount_codes_cannot_stack": "Sudah ada diskon untuk produk ini, tidak dapat digabungkan dengan diskon lain",
+      "enter_a_valid_discount_code": "Kode kupon salah dimasukkan",
+      "expected_discount": "Diskon yang diharapkan"
+    },
+    "discount_item": {
+      "buy_limit5": "Pada waktu bersamaan maksimum dapat beli {{stock}} produk dengan harga diskon"
+    },
+    "discount_price": {
+      "buy_limit3": "Kupon produk ini hanya mendukung beli {{stock}} buah"
+    },
     "get": "Dapat diskon",
     "go-shopping": "ke berbelanja",
+    "item": {
+      "add_limit1": "Maksimum tambah 100 produk",
+      "add_limit2": "Maksimal dapat menambahkan hingga 999 produk ke troli",
+      "removed": "Telah dihapus",
+      "sold_out": "Kosong"
+    },
     "login-description": "Sudah adalah anggota? Setelah login lebih nyaman kelola pesanan!",
     "login-membership": "Anggota gratis",
     "most-100-sku": "Maksimum tambah 100 produk",
     "most-buy-999": "Maksimal dapat menambahkan hingga 999 produk ke troli",
     "not-participation-offers": "Tidak berpartisipasi dalam penawaran",
+    "notices": {
+      "change_password_after_verification": "Setelah verifikasi kata sandi dapat diubah",
+      "excess_product": "Produk yang berikut melewati batasan pembelian, silakan mengubah jumlahnya",
+      "insufficient_product_inventory": "Stok produk tidak mencukupi",
+      "network": "Internet abnormal",
+      "product_expired": "Produk telah kedaluwarsa",
+      "product_limit": "Telah melebihi jumlah batasan",
+      "product_selected_invalid": "Maaf, produk yang Anda pilih telah kedaluwarsa sehingga tidak bisa dibeli, silakan pilih lagi",
+      "store_nonexistent": "Toko tidak ada"
+    },
+    "order": {
+      "authorized": "Berwenang",
+      "canceled": "Sudah batal",
+      "canceled_order": "Sudah batal",
+      "click_to_track": "Silakan klik tautan di bawah ini untuk melacak paket Anda:",
+      "deleted": "Terhapus",
+      "invalid_order_number": "nomor pesanan tidak valid",
+      "no_more_info": "Tanpa informasi lebih banyak",
+      "pay_amount": "jumlah pembayaran",
+      "payment_voucher_confirmation": "Mengerti",
+      "receiver_account": "akun penerima",
+      "reference_number": "nomor referensi",
+      "sequence": "Nomor {{id}}",
+      "shipping_address": "Informasi tanda terima",
+      "time": "Waktu pesan:",
+      "total_amount": "Total {{transPackages}} buah produk",
+      "total_item_amount": "Total {{transPackages}} buah produk",
+      "try_again": "Gagal mengunggah. Silakan coba lagi.",
+      "try_later": "sistem sibuk, silakan coba lagi nanti.",
+      "upload_image_within_10_m_b": "Harap unggah gambar JPG, PNG, GIF dalam 10MB",
+      "upload_time": "waktu unggah",
+      "voucher_amount_limit": "Anda hanya dapat mengunggah hingga 5 voucher."
+    },
+    "payment": {
+      "channel": "Saluran pembayaran",
+      "create_time": "Didirikan pada",
+      "paid": "Sudah bayar",
+      "partially_paid": "Pembayaran sebagian",
+      "paying": "Dalam proses pembayaran",
+      "payment_details": "Detail pembayaran",
+      "reference_number": "Nomor seri pembayaran",
+      "status": "Status",
+      "subtotal_price": "Total produk",
+      "sum": "Jumlah",
+      "total": "Total",
+      "unpaid": "Belum bayar",
+      "update_time": "Diperbarui pada"
+    },
+    "policy": {
+      "privacy_policy": "Kebijakan privasi"
+    },
+    "product-no-exists": "Produk tidak ada",
+    "refund": {
+      "click_to_view": "Klik untuk melihat",
+      "custom_preview": "Pratinjau khusus"
+    },
     "render-add-items": "Saat ini troli Anda kosong",
     "render-empty-status": "Troli Anda tidak ada produk",
+    "shipping": {
+      "no_info": "Belum ada informasi pengiriman, silakan periksa nanti.",
+      "package_tracking": "Lacak paket",
+      "partially_shipped": "Pengiriman sebagian",
+      "preparing_order": "Dalam proses persediaan produk",
+      "shipped_order": "Sudah kirim"
+    },
     "shopping-fees": "Biaya belanja",
     "shopping-money": "Selanjutnya menghitung pajak dan biaya pengiriman",
     "shopping-money-step": "Selanjutnya menghitung pajak dan biaya pengiriman",
+    "shpping": {
+      "service_terms": "persyaratan layanan situs web"
+    },
     "stock-limit": "Sisa {{stock}} buah",
+    "taxIncluded": {
+      "textTag": "Termasuk pajak"
+    },
+    "tips": {
+      "change_binding_after_verification": "Setelah verifikasi bisa mengikat/mengubah mengikat{{value}}",
+      "reset_password": "Anda sedang setel kata sandi untuk akun {{account}}"
+    },
     "view-link": "Klik untuk melihat",
     "view-pic": "Pratinjau khusus",
     "view-shopping-cart": "Lihat troli",
     "added-to-cart": "Telah ditambahkan ke troli",
     "cart-subtotal": "Total uang di troli",
     "view-cart": "Lihat troli"
+  },
+  "cascade": {
+    "choose": "Kérjük, válasszon egy opciót"
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Terimakasih Anda hubungi kami, kami akan respon Anda dengan cepat"
   },
+  "customer": {
+    "account": {
+      "add-email": "Menambahkan email",
+      "add-phone": "Menambahkan nomor telepon",
+      "deadline": "Untuk tujuan laporan bisnis, pesanan Anda tetap terlihat. Data akun Anda akan dihapus pada{{time}}, Anda dapat membatalkan proses ini sebelum tanggal ini",
+      "gender_female": "Perempuan",
+      "gender_male": "Laki-laki",
+      "gender_secret": "Jaga rahasia",
+      "not_set": "Belum diatur",
+      "reset_password_error_hint": "Silakan mengikat email atau telepon dulu",
+      "verify_email_message": "Kami perlu memverifikasi identitas Anda sebelum kami melakukan operasi penghapusan\nAlamat email Anda {{email}} akan menerima email kode verifikasi",
+      "verify_phone_message": "Kami perlu memverifikasi identitas Anda sebelum kami melakukan operasi penghapusan\nTelepon Anda {{phone}} akan menerima email kode verifikasi"
+    },
+    "address": {
+      "add_address": "Tambah alamat baru",
+      "common_max": "Kurang dari {{max}} karakter",
+      "common_min": "Lebih dari {{min}} karakter",
+      "edit_last_name_hint": "Silakan masukkan nama keluaraga Anda",
+      "edit_phone_hint": "Silakan masukkan nomor telepon Anda",
+      "mobile-errorMessage": "Silahkan masukkan nomor telepon yang sah",
+      "no_adress_data": "Saat ini belum ada alamat pengiriman"
+    },
+    "common": {
+      "back-to-user-center": "Kembali pusat pengguna",
+      "cancel": "Batal",
+      "confirm": "Konfirmasi",
+      "email": "Email",
+      "email2": "Email",
+      "enter-email": "Silakan masukkan email",
+      "enter-mobile-phone": "Silakan masukkan nomor HP",
+      "member-login": "Login anggota",
+      "mobile": "HP",
+      "mobile-phone": "Nomor HP"
+    },
+    "email": {
+      "mail_common": "Email"
+    },
+    "general": {
+      "apr": "Apr",
+      "april": "April",
+      "aug": "Ags",
+      "august": "Agustus",
+      "bind_success": "Mengikat berhasil",
+      "cancel_mobile_button": "Batal",
+      "clear_button": "Bersih",
+      "confirm_button": "Konfirmasi",
+      "date_format": "dd/MM/yyyy",
+      "dec": "Des",
+      "december": "Desember",
+      "email_empty_hint": "Silakan masukkan email",
+      "email_error_hint": "Silakan masukkan email format yang benar, dalam 50 karakter",
+      "enter_verification_code": "Silakan masukkan kode verifikasi",
+      "error_message_1001": "Kata sandi salah",
+      "error_message_1002": "Pengguna tidak ada",
+      "error_message_1003": "Akun Anda dilarang karena abnormal, silakan hubungi penjual untuk mencabut larangan",
+      "error_message_1004": "Operasi terlalu sering, silakan coba lagi nanti",
+      "error_message_1005": "Kode verifikasi telah kedaluwarsa",
+      "error_message_1006": "Kode verifikasi salah",
+      "error_message_1007": "Operasi kode verifikasi terlalu sering, silakan dapatkan kode verifikasi lagi",
+      "error_message_1008": "Belum konfigurasi login saluran pihak ketiga",
+      "error_message_1009": "Gagal mengatur antarmuka pihak ketiga",
+      "error_message_1010": "Gagal mengirim",
+      "error_message_1011": "Akun belum diaktifkan",
+      "error_message_1012": "Layanan abnormal",
+      "error_message_1013": "Layanan abnormal",
+      "error_message_1014": "Verifikasi kode verifikasi gagal",
+      "error_message_1015": "Silakan verifikasi kode verifikasi dinamis",
+      "error_message_1016": "Layanan abnormal",
+      "error_message_1017": "Akun ini dalam keadaan berbahaya",
+      "error_message_1018": "Email yang terikat",
+      "error_message_1020": "Waktu masuk habis",
+      "error_message_1021": "Waktu masuk habis",
+      "error_message_1022": "Akun yang terikat",
+      "error_message_1023": "Layanan abnormal",
+      "error_message_1024": "Layanan abnormal",
+      "error_message_2": "Layanan abnormal",
+      "error_message_2001": "Nomor telepon sudah didaftar",
+      "error_message_2002": "Email sudah didaftar",
+      "error_message_2003": "Kirim kode verifikasi beberapa kali",
+      "error_message_2004": "Kode verifikasi telah kedaluwarsa",
+      "error_message_2005": "Kode verifikasi salah",
+      "error_message_2006": "Kode verifikasi digunakan banyak kali, silakan menggunakan kode verifikasi yang lain",
+      "error_message_2007": "Layanan abnormal, silakan coba lagi nanti",
+      "error_message_2016": "Akun berisiko",
+      "error_message_3": "Layanan abnormal",
+      "error_message_3001": "Layanan abnormal, silakan coba lagi nanti",
+      "error_message_3002": "Pengguna yang belum mengikat telepon/email coba mengubah kata sandi",
+      "error_message_3003": "Kirim kode verifikasi beberapa kali",
+      "error_message_3004": "Kode verifikasi telah kedaluwarsa",
+      "error_message_3005": "Kode verifikasi salah",
+      "error_message_3006": "Kode verifikasi digunakan banyak kali, silakan menggunakan kode verifikasi yang lain",
+      "error_message_3007": "Nomor telepon belum didaftar",
+      "error_message_3008": "Email belum didaftar",
+      "error_message_3009": "Nomor telepon telah diikat",
+      "error_message_3010": "Email telah diikat",
+      "error_message_3014": "Verifikasi SMS/templat email gagal",
+      "error_message_4": "Layanan abnormal",
+      "error_message_5": "Layanan abnormal",
+      "error_message_6": "Layanan abnormal",
+      "feb": "Feb",
+      "february": "Februari",
+      "first_day": "1",
+      "fr": "Jum",
+      "fri": "Jum",
+      "friday": "Jumat",
+      "image_size_less_than_tips": "Ukuran gambar kecil dari {{max}}mb",
+      "jan": "Jan",
+      "january": "Januari",
+      "jul": "Jul",
+      "july": "Juli",
+      "jun": "Jun",
+      "june": "Juni",
+      "mar": "Mar",
+      "march": "Maret",
+      "max_image_upload_tips": "Maksimum unggah {{max}} lembar",
+      "may": "Mei",
+      "may_short": "Mei",
+      "mo": "Sen",
+      "mon": "Sen",
+      "monday": "Senin",
+      "network_error_message": "Tidak ada jaringan",
+      "nov": "Nov",
+      "november": "November",
+      "oct": "Okt",
+      "october": "Oktober",
+      "okay_common": "Konfirmasi",
+      "password_empty_hint": "Silakan masukkan kata sandi",
+      "phone_empty_message": "Silakan masukkan nomor telepon",
+      "phone_error_message": "Silakan masukkan nomor telepon dalam format yang benar",
+      "phone_number_error_message": "Silahkan masukkan nomor telepon yang sah",
+      "repeat_passport_error": "Dua kali kata sandi yang dimasukkan tidak sama",
+      "resend": "Kirim lagi",
+      "sa": "Sab",
+      "sat": "Sab",
+      "saturday": "Sabtu",
+      "select__date": "Silakan pilih tanggal",
+      "send": "Kirim",
+      "send_error": "Silakan kirim kode verifikasi",
+      "send_verification_code_hint": "Silakan masukkan kata sandi lagi",
+      "sep": "Sep",
+      "september": "September",
+      "set_password": "Silakan setel kata sandi dengan 6-18 digit",
+      "su": "Min",
+      "sun": "Min",
+      "sunday": "Minggu",
+      "th": "Kam",
+      "thu": "Kam",
+      "thursday": "Kamis",
+      "time_format": "HH:mm",
+      "today": "Hari ini",
+      "tu": "Sel",
+      "tue": "Sel",
+      "tuesday": "Selasa",
+      "user_agreement_tip": "Silahkan baca dan setuju perjanjian pengguna",
+      "username_empty_hint": "Silakan masukkan email atau nomor telepon",
+      "verification_code_sent_tip": "Kode verifikasi telah dikirim ke akun Anda",
+      "we": "Rab",
+      "wed": "Rab",
+      "wednesday": "Rabu"
+    },
+    "network-err-msg": "Tidak ada jaringan",
+    "phone": {
+      "mobile_common": "HP"
+    },
+    "subscription": {
+      "unsubscribe_success": "Langganan telah dibatalkan, akan melompat ke halaman beranda"
+    },
+    "tips": {
+      "and": "dan",
+      "bind-change-email": "Mengikat/mengubah mengikat email",
+      "bind-change-mobile-phone-number": "Mengikat/mengubah mengikat nomor telepon",
+      "bind-success": "Mengikat berhasil",
+      "change-binding-after-verification": "Setelah verifikasi bisa mengikat/mengubah mengikat",
+      "continue-as-a-guest": "Terus mengakses sebagai tamu",
+      "forget-password": "Lupa kata sandi",
+      "i-agree-with-the-shop": "Saya setutu perjanjian toko",
+      "login": "Login",
+      "or-use-the-following-method-to-log-in": "Atau menggunakan metode yang berikut untuk login",
+      "password-can-be-changed-after-verification": "Setelah verifikasi kata sandi dapat diubah",
+      "please-read-and-agree-to-the-user-agreement-first": "Silahkan baca dan setuju perjanjian pengguna",
+      "poroceed-to-checkout": "Lanjutkan untuk pembayaran",
+      "register": "Daftar",
+      "reset-password": "Anda sedang setel kata sandi untuk akun {{account}}",
+      "set-new-password": "Setel kata sandi baru",
+      "update-password": "Ganti kata sandi",
+      "update-success": "Ubah berhasil",
+      "verification-code-has-been-sent-to-your-account": "Kode verifikasi telah dikirim ke akun Anda",
+      "verify-account-to-reset-password": "Salakan verifikasi kan akun Anda untuk setel kata sandi"
+    },
+    "trade": {
+      "go-login": "Pergi login"
+    },
+    "unsubscribe": {
+      "btn": "Batal pesan",
+      "reason": {
+        "other": {
+          "length": "Maksimal masukkan 300 kata",
+          "placeholder": "Masukkan isi"
+        }
+      },
+      "reason1": "Saya tidak ingin menerima email semacam ini",
+      "reason2": "Terlalu banyak email yang diterima saya",
+      "reason3": "Saya tidak berlangganan email semacam itu",
+      "reason4": "Konten email tidak ada hubungan dengan saya",
+      "reason5": "Konten email terlalu panjang",
+      "reason6": "Lain",
+      "subtitle": "Kami menyesal melihat Anda pergi! Tolong sampaikan kami mengapa Anda berhenti berlangganan:",
+      "success": "Langganan telah dibatalkan, akan melompat ke halaman beranda",
+      "title": "Batal pesan"
+    }
+  },
   "footer": {
     "copyright": "Kepemilikan hak cipta",
     "followus": "Memperhatikan kami",
@@ -221,9 +542,24 @@
       "title": "Kami menghargai privasi Anda"
     }
   },
+  "general": {
+    "404": {
+      "button": "Lanjutkan belanja",
+      "subtext": "Halaman yang Anda cari tidak ada",
+      "title": "Halaman 404 tidak ada"
+    },
+    "general": {
+      "accept": "Terima",
+      "decline": "Tolak",
+      "link": "Kebijakan privasi",
+      "tips": "Untuk memberi Anda pengalaman yang lebih baik, kami menggunakan cookie untuk merekam status login Anda, mengumpulkan data statistik, demi konten menarik. Klik \"terima\" untuk mengizinkan pakai cookie. Atau lihat \"kebijakan privasi\" kami.",
+      "title": "Kami menghargai privasi Anda"
+    }
+  },
   "header": {
     "cart": "Troli",
     "center": "Manajemen akun",
+    "emptyPlaceholder": "",
     "login": "Login",
     "logout": "Keluar",
     "navItemAll": "Semua",
@@ -347,7 +683,7 @@
           "title": "Tunggu bayar"
         },
         "pedding": {
-          "desc": "Permintaan pembayaran Anda telah dikirim, silakan tunggu {{- payChannelDesc}} kembalikan hasil pembayaran",
+          "desc": "Permintaan pembayaran Anda telah dikirim, silakan tunggu {{payChannelDesc}} kembalikan hasil pembayaran",
           "title": "Sedang bayar..."
         },
         "pickedUp": {
@@ -365,6 +701,25 @@
         "success": {
           "desc": "Informasi pesanan telah dikirim ke {{buyerContact}} Anda, silakan konfirmasi.",
           "title": "Pesanan Anda terkonfirmasi"
+        }
+      },
+      "orderstatus": {
+        "PayAmount": "jumlah pembayaran",
+        "ReceiverAccount": "akun penerima",
+        "ReferenceNumber": "nomor referensi",
+        "UploadTime": "waktu unggah",
+        "action": {
+          "UploadVoucher": "Unggah Voucher"
+        },
+        "feedback": {
+          "CountLimit": "Anda hanya dapat mengunggah hingga 5 voucher.",
+          "InvalidOrderNumber": "nomor pesanan tidak valid",
+          "SizeLimte": "Harap unggah gambar JPG, PNG, GIF dalam 10MB",
+          "SystemBusy": "sistem sibuk, silakan coba lagi nanti.",
+          "UploadFail": "Gagal mengunggah. Silakan coba lagi."
+        },
+        "notice": {
+          "UploadVoucher": "Silakan unggah voucher transfer bank dan kami akan mengkonfirmasi."
         }
       },
       "packages": {
@@ -428,9 +783,24 @@
         "subscriptions-title": "Pesan",
         "title": "Informasi",
         "unshipped-order-num": "Sedang memproses ({{num}} buah item)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "Pembayaran berhasil ditransfer",
+          "WaittingforPayment": "menunggu pembayaran"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "Mengerti"
+          }
+        }
+      },
+      "taxFee": "Pajak"
     },
     "help-tips": "Jika perlu bantuan? Silakan hubungi kami: {{email}}",
+    "includeTax": {
+      "totalLine": "Termasuk {{price}} dalam pajak"
+    },
     "oms-status": {
       "arrived": "Sudah sampai toko",
       "cancelled": "Batal pengiriman",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Terhapus",
       "already-paid": "Sudah bayar",
+      "authorized": "Berwenang",
       "failed": "Gagal bayar",
       "partial-payment": "Pembayaran sebagian",
       "partial-refund": "Pengembalian dana sebagian",
@@ -486,7 +857,7 @@
       "origin": "Pengembalian jalan asli",
       "other": "Lain"
     },
-    "seq-no": "{{id}} Nomor {{id}}"
+    "seq-no": "Nomor {{id}}"
   },
   "payments-name": {
     "COD": "Bayar di tempat (COD)",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "Tidak ada informasi pengiriman dan pembayaran",
     "no-product-introduction": "Tidak ada perkenalan produk",
     "previewLinkToast": "Tautan pratinjau tidak mendukung operasi ini",
+    "productTax": "termasuk pajak",
     "recentlyViewedProducts": "Produk yang baru dilihat",
     "recommendTitle": "Anda mungkin suka lagi",
+    "skuLoadingTips": "Memuat informasi varian, harap tunggu...",
     "tabPanel": {
       "comments": {
         "empty": "Tidak ada komentar produk",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "Produk"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "Saat ini tidak ada produk dalam kategori",
@@ -677,6 +1051,35 @@
     "sortName": "Metode penyortiran:",
     "title": "Mencari"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Tambah gambar",
+      "didnot_bought_cannot_reviewed": "Maaf, Anda tidak pernah membeli barang ini, sehingga tidak bisa memposting ulasan",
+      "didnot_bought_sign_in_first": "Pengguna yang pernah beli barang ini baru bisa memposting ulasan,",
+      "enter_at_least_one_character": "Harap masukkan setidaknya 1 teks",
+      "error_submit_again": "Sistemnya ada masalah, silakan Anda coba kirim lagi~",
+      "first_review": "Silakan masukkan komen yang pertama Anda",
+      "image_uploading": "Gambar sedang diunggah, silakan kirim nanti",
+      "maximum_image_quantity": "Maksimum dapat tambahkan {{total}} gambar",
+      "maximum_image_size": "Ukuran gambar hingga {{size}} megabit",
+      "no_review": "Tidak ada komen",
+      "only_supports__image_format": "Hanya mendukung mengunggah gambar format .jpg .jpeg .png .bmp",
+      "ratings": "Skor",
+      "sign_in": "Ke login",
+      "submit": "Kirim",
+      "thanks_for_your_review": "Terima kasih atas ulasan Anda",
+      "write_a_review": "Memposting ulasan",
+      "write_a_review_for_the_product": "Silakan masukkan komen Anda tentang produk"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Kupon produk ini hanya mendukung beli {{num}} buah",
+      "activity_toast_product__limit": "Pada waktu bersamaan maksimum dapat beli {{stock}} produk dengan harga diskon",
+      "activity_toast_title__limit": "Beli Lebih Banyak Hemat Lebih Banyak!",
+      "go_to_amazon_by_link": "Berbelanja ke Amazon",
+      "go_to_rakuten_by_link": "Berbelanja ke LOTTE",
+      "go_to_yahoo_by_link": "Berbelanja ke Yahoo"
+    }
+  },
   "promotion": {
     "activity-benefit": "Diskon aktivitas",
     "activity-introduction": "Pengenalan aktivitas",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "Beli <italic>{{condition}}</italic> buah dapat hemat <italic>{{content}}</italic>"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "diskon {{offPercent}}%",
+            "unlocked": "{{offPercent}}% diskon dibuka!"
+          },
+          "free": {
+            "locked": "Produk gratis",
+            "unlocked": "Produk gratis yang dibuka!"
+          },
+          "unlocked": {
+            "tip": "Anda sekarang dapat menikmati diskon produk"
+          }
+        },
+        "threshold": "Beli {{threshold}}"
+      }
+    },
+    "activityBanner": {
+      "benefit": "Diskon {{benefit}}",
+      "copySuccessText": "Kode diskon berhasil disalin",
+      "copyText": "Salin",
+      "freeShipping": "Pengiriman gratis",
+      "threshold": "Penuhi {{threshold}}"
+    },
+    "autoCoupon": {
+      "shopMore": "Lebih banyak"
+    },
     "bundle": {
       "saveTip": "Beli bersama dapat hemat {{amount}}",
       "title": "Sering dibeli bersama"
     },
     "customer-purchase-limit": "Batas pembelian {{count}} per orang",
     "customer-purchase-limit-each-item": "Batasan pembelian {{count}} buah per orang.",
+    "discount-coupon-banner": {
+      "getCode": "Dapat kupon"
+    },
     "discount-coupon": {
       "applied": "Telah menggunakan",
       "apply": "Aplikasi",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "Panas dijual",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "Beli {{threshold}} buah lagi, salah satunya gratis",
+        "b11_t1_s1_normal": "Beli {{threshold}} buah lagi, salah satunya dapat dikurangi {{willSave}}",
+        "b11_t1_s2_free": "Selamat! Salah satunya telah kurangi",
+        "b11_t1_s2_next_free": "Selamat! Telah kurangi {{saved}}!{{br}} beli {{threshold}} buah lagi，salah satunya gratis",
+        "b11_t1_s2_normal": "Selamat! Telah kurangi {{saved}}!{{br}} beli {{threshold}} buah lagi，salah satunya dapat dikurangi {{willSave}}",
+        "b11_t1_s3_free": "Selamat! Salah satunya telah kurangi",
+        "b11_t1_s3_normal": "Salah satunya telah kurangi {{saved}}",
+        "b1_t0_s1": "Beli {{threshold}} atau lebih dapat hemat {{willSave}}",
+        "b1_t0_s2": "Telah hemat {{saved}}!{{br}}beli lagi {{threshold}} dapat hemat {{willSave}}",
+        "b1_t0_s3": "Selamat Anda! Anda dapat hemat {{saved}}!",
+        "b1_t1_s1": "Beli lebih dari {{threshold}} buah, hemat {{willSave}}",
+        "b1_t1_s2": "Telah hemat {{saved}}!{{br}}beli {{threshold}} buah lagi,hemat {{willSave}}",
+        "b1_t1_s3": "Selamat Anda! Anda dapat hemat {{saved}}!",
+        "b2_t0_s1": "Beli {{threshold}} atau lebih dapat hemat {{willSave}}",
+        "b2_t0_s2": "Telah hemat {{saved}}!{{br}}beli lagi {{threshold}} dapat hemat {{willSave}}",
+        "b2_t0_s3": "Selamat Anda! Anda dapat hemat {{saved}}!",
+        "b2_t1_s1": "Beli lebih dari {{threshold}} buah, hemat {{willSave}}",
+        "b2_t1_s2": "Telah hemat {{saved}}!{{br}}beli {{threshold}} buah lagi,hemat {{willSave}}",
+        "b2_t1_s3": "Selamat Anda! Anda dapat hemat {{saved}}!",
+        "b3_t0_s1_unlimited": "Beli {{threshold}} lagi，nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>!",
+        "b3_t0_s1_upper_limit": "Beli {{threshold}} lagi，nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>! (Jumlah pengiriman gratis hingga batas{{upperLimit}})",
+        "b3_t0_s3_unlimited": "Selamat! Anda dapat <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>!",
+        "b3_t0_s3_upper_limit": "Selamat! Anda dapat <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>! (Jumlah pengiriman gratis hingga batas{{upperLimit}})",
+        "b3_t1_s1_unlimited": "Beli {{threshold}} buah lagi, nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>!",
+        "b3_t1_s1_upper_limit": "Beli {{threshold}} buah lagi, nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>! (Jumlah pengiriman gratis hingga batas{{upperLimit}})",
+        "b3_t1_s3_unlimited": "Selamat! Anda dapat <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>!",
+        "b3_t1_s3_upper_limit": "Selamat! Anda dapat <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>! (Jumlah pengiriman gratis hingga batas{{upperLimit}})",
+        "b9_t1_s1": "Beli {{threshold}} di antaranya {{willSave}} gratis",
+        "b9_t1_s2": "Selamat! Sudah dapatkan {{saved}}yang gratis! Beli {{threshold}} lebih banyak, kemudian {{willSave}} gratis",
+        "b9_t1_s3": "Selamat! Sudah ada {{saved}}item yang gratis"
+      },
+      "discount_tag": {
+        "b11_t1_free": "Beli {{threshold}} buah, salah satunya gratis",
+        "b11_t1_normal": "Beli {{threshold}} buah, salah satunya dapat dikurangi {{save}}",
+        "b1_t0": "Beli {{threshold}} dapat hemat {{save}}",
+        "b1_t1": "Beli {{threshold}} buah dapat hemat {{save}}",
+        "b2_t0": "Beli {{threshold}} dapat hemat {{save}}",
+        "b2_t1": "Beli {{threshold}} buah dapat hemat {{save}}"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "Selamat! Salah satunya telah kurangi",
               "normal": "Salah satunya telah kurangi {{saved}}"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Selamat, Anda bisa nikmati {{benefitCount}} produk yang gratis",
+                "normal": "Selamat, Anda bisa {{benefitCount}} produk dapat diskon {{willSave}}"
+              },
+              "free": "Beli {{threshold}}, nikmati {{benefitCount}} produk yang gratis",
+              "normal": "Beli {{threshold}}, {{benefitCount}} produk dapat diskon {{willSave}}"
+            },
+            "step3": {
+              "free": "Selamat, Anda telah mendapat {{benefitCount}} produk yang gratis antaranya!",
+              "normal": "Selamat, Anda telah mendapat diskon {{saved}} dalam {{benefitCount}} produk!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Selamat, Anda bisa nikmati {{benefitCount}} produk yang gratis",
+                "normal": "Selamat, Anda bisa {{benefitCount}} produk dapat diskon{{willSave}}"
+              },
+              "free": "Beli {{threshold}} buah, nikmati {{benefitCount}} produk yang gratis",
+              "normal": "Beli {{threshold}} buah, {{benefitCount}} produk dapat diskon {{willSave}}"
+            },
+            "step3": {
+              "free": "Selamat, Anda telah mendapat {{benefitCount}} produk yang gratis antaranya!",
+              "normal": "Selamat, Anda telah mendapat diskon {{saved}} dalam {{benefitCount}} produk!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Metode pembayaran",
     "pay-way-logo-and-more": "Lebih banyak",
     "payment-security-description": "Semua transaksi aman dan terenkripsi.",
+    "payments-name": {
+      "COD": "Bayar di tempat (COD)",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "kartu kredit"
+    },
     "pic-upload-fail": "Gambar {{name}} gagal diunggah",
     "pick-address": "Alamat penjemputan",
     "please-choose-area": "Silakan pilih area",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "Produk sudah terjual habis",
     "product-tax": "Pajak produk",
     "quantity": "Jumlah",
+    "receiver-info": "Informasi tanda terima",
     "recieve-address-unavailable-rechoose": "Di alamat menerima barang tidak ada metode pengiriman yang berlaku, silakan kembali pilih lagi",
     "reciever-fullname": "nama penerima",
     "reciever-info": "Informasi tanda terima",
@@ -1230,6 +1741,24 @@
     "your-order-not-pay": "Pesanan Anda belem bayar",
     "your-refund-order-created": "Pesanan pengembalian Anda sudah terjadi"
   },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "Panjang kode kupon tidak boleh melebihi 25",
+      "coupon_invalid_for_the_shipping_method": "Kode kupon {{discountCode}} tidak berlaku untuk metode pengiriman saat ini",
+      "discount_code_invalid": "{{discountCode}} dimasukkan benar, tetapi harga atau jumlah produk tidak sesuai persyaratan",
+      "discount_codes_cannot_stack": "Sudah ada diskon untuk produk ini, tidak dapat digabungkan dengan diskon lain",
+      "discounts_cannot_stack": "Pergabungan diskon terbatas waktu dan promo kegiatan kupon",
+      "enter_a_valid_discount_code": "Kode kupon salah dimasukkan",
+      "free_shipping": "Ongkos kirim gratis",
+      "order_seller_discount": "Diskon penjual",
+      "order_tax": "Pajak",
+      "order_tip": "Tip",
+      "payment_subtotal_cost": "Biaya produk",
+      "point_discount": "Diskon poin",
+      "shipping_fee": "Biaya pengiriman",
+      "trade_coupon_discount": "Diskon"
+    }
+  },
   "user": {
     "account": "AKUN",
     "code": "kode verifikasi",
@@ -1259,31 +1788,43 @@
     "signUp": "Daftar",
     "subscription-text": "Mendaftarkan email untuk dapatkan informasi terbaru dan informasi promo, dll.",
     "udbResponse": {
-      "err-1": "Maing kurang parameter",
-      "err-13": "stoke telah kedaluwarsa",
-      "err-4": "Parameter tidak vilad",
-      "err-5": "Operasi ilegal",
-      "err-999": "Panggilan jarak jauh gagal",
+      "err-1": "Layanan abnormal",
+      "err-13": "Layanan abnormal",
+      "err-4": "Layanan abnormal",
+      "err-5": "Layanan abnormal",
+      "err-999": "Layanan abnormal",
       "err1001": "Kata sandi salah",
       "err1002": "Pengguna tidak ada",
       "err1003": "Akun Anda dilarang karena abnormal, silakan hubungi penjual untuk mencabut larangan",
-      "err1004": "Kirim SMS beberapa kali",
+      "err1004": "Operasi terlalu sering, silakan coba lagi nanti",
       "err1005": "Kode verifikasi telah kedaluwarsa",
       "err1006": "Kode verifikasi salah",
-      "err1007": "Terlalu banyak kali kode verifikasi yang salah",
-      "err1008": "Belum dikonfigurasi saluran pihak ketiga",
-      "err1009": "Verifikasi pihak ketiga gagal",
-      "err1010": "Verifikasi SMS/templat email gagal",
-      "err1017": "Akun berisiko",
+      "err1007": "Operasi kode verifikasi terlalu sering, silakan dapatkan kode verifikasi lagi",
+      "err1008": "Belum konfigurasi login saluran pihak ketiga",
+      "err1009": "Gagal mengatur antarmuka pihak ketiga",
+      "err1010": "Gagal mengirim",
+      "err1011": "Akun belum diaktifkan",
+      "err1012": "Layanan abnormal",
+      "err1013": "Layanan abnormal",
+      "err1014": "Verifikasi kode verifikasi gagal",
+      "err1015": "Silakan verifikasi kode verifikasi dinamis",
+      "err1016": "Layanan abnormal",
+      "err1017": "Akun ini dalam keadaan berbahaya",
+      "err1018": "Email yang terikat",
+      "err1020": "Waktu masuk habis",
+      "err1021": "Waktu masuk habis",
+      "err1022": "Akun yang terikat",
+      "err1023": "Layanan abnormal",
+      "err1024": "Layanan abnormal",
       "err2001": "Nomor telepon sudah didaftar",
       "err2002": "Email sudah didaftar",
       "err2003": "Kirim kode verifikasi beberapa kali",
       "err2004": "Kode verifikasi telah kedaluwarsa",
       "err2005": "Kode verifikasi salah",
       "err2006": "Kode verifikasi digunakan banyak kali, silakan menggunakan kode verifikasi yang lain",
-      "err2007": "Verifikasi SMS/templat email gagal",
+      "err2007": "Layanan abnormal, silakan coba lagi nanti",
       "err2016": "Akun berisiko",
-      "err3001": "Verifikasi cookie gagal",
+      "err3001": "Layanan abnormal, silakan coba lagi nanti",
       "err3002": "Pengguna yang belum mengikat telepon/email coba mengubah kata sandi",
       "err3003": "Kirim kode verifikasi beberapa kali",
       "err3004": "Kode verifikasi telah kedaluwarsa",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Pengikatan akun",
-      "account-info": "Informasi akun",
+      "account-info": "Akun",
       "account-subscription-email": "Kirim ke email",
       "account-subscription-line": "Kirim ke aplikasi Line",
       "account-subscription-messenger": "Messenger Kirim ke Messenger",
@@ -1310,7 +1851,9 @@
       "bind": "Mengikat",
       "change-password": "Mengubah kata sandi",
       "email": "Email",
+      "firstName": "Nama",
       "general-member": "Anggota biasa",
+      "lastName": "Nama keluarga",
       "member-level": "Tingkat anggota",
       "memberLevelCom": {
         "defaultLevel": "Anggota biasa",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "Mengubah email",
       "modify-phone": "Ubah HP",
+      "nicknameEmptyError": "Nama dan Nama keluarga tidak boleh kosong",
+      "notSet": "Belum diatur",
       "password": "Kata sandi",
       "phone": "HP",
       "reset-password-error": "Silakan mengikat email atau telepon dulu",
       "subscription-notification": "Notifikasi pesan",
       "unsubscribed": "Telah batal pesan",
-      "username": "Nama pengguna",
-      "username-message": "Silakan masukkan nama pengguna Anda!",
-      "username-placeholder": "Silakan masukkan nama pengguna Anda"
+      "username": "Nama",
+      "username-message": "Silakan masukkan nama Anda",
+      "username-placeholder": "Silakan masukkan nama Anda"
     },
     "address": {
       "add": "Tambah alamat baru",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Produk yang dibeli",
     "cancel": "Batal",
+    "datePicker": {
+      "mobile": {
+        "cancel": "Batal",
+        "confirm": "Konfirmasi",
+        "title": "Silakan pilih tanggal"
+      },
+      "pc": {
+        "clear": "Bersih",
+        "dateFormat": "dd/MM/yyyy",
+        "days0": "Minggu",
+        "days1": "Senin",
+        "days2": "Selasa",
+        "days3": "Rabu",
+        "days4": "Kamis",
+        "days5": "Jumat",
+        "days6": "Sabtu",
+        "daysMin0": "Min",
+        "daysMin1": "Sen",
+        "daysMin2": "Sel",
+        "daysMin3": "Rab",
+        "daysMin4": "Kam",
+        "daysMin5": "Jum",
+        "daysMin6": "Sab",
+        "daysShort0": "Min",
+        "daysShort1": "Sen",
+        "daysShort2": "Sel",
+        "daysShort3": "Rab",
+        "daysShort4": "Kam",
+        "daysShort5": "Jum",
+        "daysShort6": "Sab",
+        "firstDay": "1",
+        "months0": "Januari",
+        "months1": "Februari",
+        "months10": "November",
+        "months11": "Desember",
+        "months2": "Maret",
+        "months3": "April",
+        "months4": "Mei",
+        "months5": "Juni",
+        "months6": "Juli",
+        "months7": "Agustus",
+        "months8": "September",
+        "months9": "Oktober",
+        "monthsShort0": "Jan",
+        "monthsShort1": "Feb",
+        "monthsShort10": "Nov",
+        "monthsShort11": "Des",
+        "monthsShort2": "Mar",
+        "monthsShort3": "Apr",
+        "monthsShort4": "Mei",
+        "monthsShort5": "Jun",
+        "monthsShort6": "Jul",
+        "monthsShort7": "Ags",
+        "monthsShort8": "Sep",
+        "monthsShort9": "Okt",
+        "timeFormat": "HH:mm",
+        "today": "Hari ini"
+      }
+    },
+    "deleteAccount": {
+      "address": "Alamat",
+      "card": "Nomor kartu kredit",
+      "deadline": "Untuk tujuan laporan bisnis, pesanan Anda tetap terlihat. Data akun Anda akan dihapus pada{{time}}, Anda dapat membatalkan proses ini sebelum tanggal ini",
+      "email": "Email",
+      "ip": "Alamat IP",
+      "name": "Nama",
+      "nextStep": "Langkah selanjutnya",
+      "notify": "Anda dapat mengajukan untuk membatalkan akun ini. Setelah pembatalan akun, informasi apa pun yang digunakan untuk mengidentifikasi akun ini akan dihapus, termasuk:",
+      "revoke": "Batalkan pembatalan",
+      "revokeMessage": "Akun sedang dalam proses dibatalkan, data akun akan dihapus pada {{time}}, Anda dapat membatalkan proses pembatalan sebelum tanggal ini",
+      "timeout": "Operasi habis waktunya, silakan autentikasi lagi",
+      "title": "Batalkan akun",
+      "verifyEmailMessage": "Kami perlu memverifikasi identitas Anda sebelum kami melakukan operasi penghapusan\nAlamat email Anda {{email}} akan menerima email kode verifikasi",
+      "verifyPhoneMessage": "Kami perlu memverifikasi identitas Anda sebelum kami melakukan operasi penghapusan\nTelepon Anda {{phone}} akan menerima email kode verifikasi"
+    },
     "edit": "Edit",
     "editAddress": {
       "address1-message": "Kurang dari 512 karakter",
       "address2-message": "Kurang dari 512 karakter",
       "city-message": "Silakan pilih kota Anda",
+      "common-max": "Kurang dari {{max}} karakter",
+      "common-min": "Lebih dari {{min}} karakter",
       "contact-message": "Silakan masukkan nama kontak Anda",
       "country-message": "Silakan pilih negara/wilayah Anda",
       "default": "Atur menjadi alamat default",
@@ -1396,7 +2018,7 @@
         "reverseAddPoint": "Koin belanja untuk mengoreksi transfer yang salah",
         "reverseDeductPoint": "Koin belanja untuk menghapuskan transfer yang gagal"
       },
-      "date": "{{year}} \n  \n  Tahun {{month}} Bulan {{date}} Tanggal，{{day}}",
+      "date": "{{year}} Tahun {{month}} Bulan {{date}} Tanggal，{{day}}",
       "day0": "Minggu",
       "day1": "Senin",
       "day2": "Selasa",
@@ -1440,6 +2062,7 @@
     "save": "Simpan",
     "sign-out": "Keluar dari login",
     "subscription": {
+      "desc": "Bisa mendapatkan berita promosi terbaru toko",
       "email": "Email",
       "line": "LINE",
       "messenger": "Messenger",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "Anda tidak akan menerima informasi pemasaran apapun, kemudian bisa memesan kapan saja"
+      "text": "Anda tidak akan menerima informasi pemasaran apapun, kemudian bisa memesan kapan saja",
+      "title": "Sudah batal pesan pada <italic>{{name}}</italic> di daftar email"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Pesanan tunggu diproses"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

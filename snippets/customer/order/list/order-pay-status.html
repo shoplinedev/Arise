@@ -1,0 +1,16 @@
+{{#if (boolean status '==' 100)}}
+  {{!-- 付款中 --}}
+  {{t 'order.pay-status.paying'}}
+{{else if (boolean status '==' 110)}}
+  {{!-- 已授权 --}}
+  {{ t 'order.pay-status.authorized'}}
+{{else if (boolean status '==' 150)}}
+  {{!-- 部分支付 --}}
+  {{ t 'order.pay-status.partial-payment'}}
+{{else if (boolean status '==' 200)}}
+  {{!-- 支付成功 --}}
+  {{ t 'order.pay-status.already-paid'}}
+{{else}}
+  {{!-- 未付款 --}}
+  {{t 'order.pay-status.unpaid'}}
+{{/if}}

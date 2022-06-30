@@ -1,0 +1,2 @@
+{{ assign "config" (sales_promotion_tag_translate benefitCondition benefitType)}}
+{{ noTranslationHTML (replace (replace template '{condition}' config.params.threshold.string) '{discount}' config.params.save.string)}}

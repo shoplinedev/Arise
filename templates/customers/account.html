@@ -1,0 +1,34 @@
+{{#partial 'head'}}
+  <link rel="stylesheet" href="{{ assets_url 'customer/account/index.min.css' }}" />
+{{/partial}}
+
+{{#partial 'script'}}
+  <script src="{{ assets_url 'customer/account/index.min.js' }}"></script>
+{{/partial}}
+
+{{ preload_state 'customer_address' }}
+{{ preload_state 'customer' }}
+
+{{!-- 注销展示状态(1.不显示, 2.正常展示 3.待删除（+删除时间）) --}}
+{{ assign 'deleteAcccountStatus' customer.customerLogoutFrontDto.logoutStatus}}
+{{ assign 'isDeleteAccounting' (boolean deleteAcccountStatus '===' 3)}}
+
+{{#snippet 'customer/user-center-container' }}
+  {{#if isDeleteAccounting}}
+    <div class="account__notify">
+      <p>{{t 'userCenter.deleteAccount.revokeMessage' time=(dayjs method='format' init=customer.customerLogoutFrontDto.eraseTime format='YYYY-MM-DD' ) }}</p>
+      <button class="btn revoke-button">{{t 'userCenter.deleteAccount.revoke' }}</button>
+    </div>
+  {{/if}}
+
+  <div class="customer-information">
+    <div class="customer-information-list">
+      {{ snippet 'customer/account/account' userInfo=customer.userInfoDTO deleteAcccountStatus=deleteAcccountStatus }}
+      {{ snippet 'customer/account/subscription/index' }}
+      {{ snippet 'customer/account/personal' }}
+    </div>
+    <div class="customer-information-list">
+      {{ snippet 'customer/account/address' addressList=customer.userAddressList }}
+    </div>
+  </div>
+{{/snippet}}

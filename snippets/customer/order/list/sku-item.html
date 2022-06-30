@@ -1,0 +1,90 @@
+{{#with data}}
+  <div class="customer-order-sku-item" data-id="{{orderSeq}}">
+    <div class="wrapper">
+      <div class="customer-order-sku-item-header">
+        <div>
+          {{!-- 单号 --}}
+          <span class="seq">{{t 'order.seq-no'  id=appOrderSeq }}</span>
+          {{!-- 时间 --}}
+          <div class="create-time">
+            <span>{{t 'order.order-at'}}</span>
+            <span class="hide" data-date-format="YYYY-MM-DD HH:mm A" data-date="{{createTime}}">{{dayjs method='format' init=createTime format='YYYY-MM-DD HH:mm A'}}</span>
+          </div>
+        </div>
+        {{!-- 状态，目前只有「已取消」才需要展示 --}}
+        {{#if (boolean bizOrderStatus '==' 400)}}
+          <span class="status cancelled">
+            {{t 'order.order-status.cancelled'}}
+          </span>
+        {{/if}}
+      </div>
+      <div class="customer-order-sku-item-content">
+        <div class="item-info">
+          <div class="sku-item-image">
+            {{#if productImage}}
+              <img class="lozad" data-src="{{ productImage }}" />
+            {{else}}
+              <div class="sku-item-image-fallback"></div>
+            {{/if}}
+          </div>
+
+          <div class="product-total">
+            {{#if (boolean productNum '>' 1)}}
+              <span>{{t 'order.order-list.item-total-plural' transPackages=productNum }}</span>
+            {{else}}
+              <span>{{t 'order.order-list.item-total' transPackages=productNum }}</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="pay-status-pc {{#if @root.request.is_mobile}}hide{{/if}}">
+          {{!-- 支付状态 --}}
+          <p class="status-box">
+            <span class="svg-wrapper">
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <rect x="2" y="3.5" width="12" height="10" rx="0.5" stroke="currentColor" />
+                  <path d="M2 6.5H14" stroke="currentColor" />
+                  <path d="M8.6665 11.8335C8.6665 11.2812 9.11422 10.8335 9.6665 10.8335H11.6665C12.2188 10.8335 12.6665 11.2812 12.6665 11.8335H8.6665Z" fill="currentColor" />
+                </g>
+              </svg>
+            </span>
+            <span class="status-info">
+              {{snippet 'customer/order/list/order-pay-status' status=bizPayStatus}}
+            </span>
+          </p>
+          {{!-- 发货状态 --}}
+          <p class="status-box">
+            <span class="svg-wrapper">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <path
+                    d="M2 12V7.07819C2 6.59438 2.26208 6.14853 2.6848 5.91321L5.85714 4.14721V3.33333C5.85714 2.59695 6.4541 2 7.19048 2H12.6667C13.403 2 14 2.59695 14 3.33333V12"
+                    stroke="currentColor" />
+                  <path d="M8 4V7H4" stroke="currentColor" />
+                  <circle cx="5.5" cy="12.5" r="1.5" stroke="currentColor" />
+                  <circle cx="10.5" cy="12.5" r="1.5" stroke="currentColor" />
+                </g>
+              </svg></span>
+            <span class="status-info">
+              {{snippet 'customer/order/list/order-delivery-status' status=bizDeliveryStatus}}
+            </span>
+          </p>
+        </div>
+
+        <div class="pay-status-mobile {{#unless @root.request.is_mobile}}hide{{/unless}}">
+          <span>{{snippet 'customer/order/list/order-pay-status' status=bizPayStatus}}</span>
+          <span class="point"></span>
+          <span>{{snippet 'customer/order/list/order-delivery-status' status=bizDeliveryStatus}}</span>
+        </div>
+
+        <div class="total-info">
+          <p>
+            <span>{{t 'trade.total'}}</span>
+            <span class="total notranslate" data-amount="{{orderAmount}}"> {{currency_convert orderAmount}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/with}}

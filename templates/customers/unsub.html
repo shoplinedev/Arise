@@ -1,0 +1,56 @@
+{{#partial 'head'}}
+  <link rel="stylesheet" href="{{ assets_url 'customer/unsub/index.min.css' }}" />
+{{/partial}}
+
+{{#partial 'script'}}
+  <script src="{{ assets_url 'customer/unsub/index.min.js' }}"></script>
+{{/partial}}
+
+<div class="unsub-container" id="customer-unsubscribe">
+  <div class="unsub-wrap">
+    <h1>{{t 'customer.unsubscribe.title'}}</h1>
+    <h4>{{t 'customer.unsubscribe.subtitle'}}</h4>
+    <div class="unsub-reason">
+      <div class="unsub-reason__item">
+        {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=1 }}
+          <span>{{t 'customer.unsubscribe.reason1'}}</span>
+        {{/snippet}}
+      </div>
+      <div class="unsub-reason__item">
+        {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=2 }}
+          <span>{{t 'customer.unsubscribe.reason2'}}</span>
+        {{/snippet}}
+      </div>
+      <div class="unsub-reason__item">
+        {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=3 }}
+          <span>{{t 'customer.unsubscribe.reason3'}}</span>
+        {{/snippet}}
+      </div>
+      <div class="unsub-reason__item">
+        {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=4 }}
+          <span>{{t 'customer.unsubscribe.reason4'}}</span>
+        {{/snippet}}
+      </div>
+      <div class="unsub-reason__item">
+        {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=5 }}
+          <span>{{t 'customer.unsubscribe.reason5'}}</span>
+        {{/snippet}}
+      </div>
+      <div class="unsub-reason__item">
+        {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=6 }}
+          <span>{{t 'customer.unsubscribe.reason6'}}</span>
+        {{/snippet}}
+        <div class="unsubscribe-textarea">
+          <textarea placeholder="{{t 'customer.unsubscribe.reason.other.placeholder'}}"></textarea>
+          <div class="unsubscribe-textarea__error">{{t 'customer.unsubscribe.reason.other.length'}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="unsub-submit">
+      {{#snippet 'customer/base/sl-button' attrs='disabled="disabled"' class="submit-button" }}
+        {{t 'customer.unsubscribe.btn'}}
+      {{/snippet}}
+    </div>
+  </div>
+</div>

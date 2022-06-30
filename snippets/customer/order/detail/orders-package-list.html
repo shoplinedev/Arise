@@ -1,0 +1,22 @@
+<div>
+  {{!-- 接受 ordersPackageList ，ordersPackageList 包含多个发货单 --}}
+  {{! 已经有发货商品 }}
+  {{#if ordersPackageList}}
+    <!-- 已发货 -->
+    {{#each ordersPackageList}}
+      {{!-- 一个发货单，包含多个商品 --}}
+      {{snippet 'customer/order/detail/goods' ordersPackageItem=this index=@index unshippedItemInfo=null }}
+    {{/each}}
+    <!-- 未发货 -->
+    {{#if unshippedItemInfo}}
+    {{#if unshippedItemInfo.unShippedItemList}}
+      {{snippet 'customer/order/detail/goods' unshippedItemInfo=unshippedItemInfo ordersPackageItem=null }}
+    {{/if}}
+    {{/if}}
+  {{else}}
+    {{! 未有发货商品 }}
+    {{#if unshippedItemInfo}}
+      {{snippet 'customer/order/detail/goods' unshippedItemInfo=unshippedItemInfo}}
+    {{/if}}
+  {{/if}}
+</div>

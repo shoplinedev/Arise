@@ -10,15 +10,6 @@
 </script>
   
 
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'cart/miniCart.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'cart/miniCart.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
-
 {{ preload_state 'cartInfo' 'variants' }}
 
 <div class="trade_cart_empty_wrapper{{#if cartInfo.count '!=' 0}} hide{{/if}}">
@@ -34,6 +25,8 @@
   </div>
   <div class="container trade_cart">
     <main class="main_wrapper" role="main">
+      {{!-- 商品列表头部插槽 --}}
+      <div class="slot-cart slot-cart-list-header" data-slot-cart-list-header></div>
       {{ snippet 'trade/sku-card-list' data=cartInfo is-mobile=request.is_mobile main=true }}
     </main>
     <div class="container trade_cart_recently-viewed-product">{{ section 'product/detail/recently-viewed-products' }}</div>
@@ -44,11 +37,15 @@
         {{ snippet 'trade/coupon' trade_cart_type='main' }}
         {{!-- 金额汇总 --}}
         {{ snippet 'trade/summations' }}
+        {{!-- 结账信息底部插槽 --}}
+        <div class="slot-cart slot-cart-calculation-end" data-slot-cart-calculation-end></div>
         {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_top' }}
         {{ snippet 'trade/cart-checkout' id='cart-spb' trade_cart_type='main' }}
         {{ snippet 'trade/cart-continue-btn' is_empty=false }}
         {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_bottom' }}
         {{ snippet 'trade/cart-checkout-error' trade_cart_type='main' }}
+        {{!-- 结算模块底部插槽 --}}
+        <div class="slot-cart slot-cart-checkout-end" data-slot-cart-checkout-end></div>
       </div>
       {{ snippet 'trade/safety-logo' }}
     </aside>
@@ -56,15 +53,21 @@
   <div class="cart__stick_container">
     {{!-- 金额汇总 --}}
     {{ snippet 'trade/summations' }}
+    {{!-- 结账信息底部插槽 --}}
+    <div class="slot-cart slot-cart-calculation-end" data-slot-cart-calculation-end></div>
     {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_top' }}
     {{ snippet 'trade/cart-checkout' id='cart-spb-fixed' trade_cart_type='main' }}
     {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_bottom' }}
     {{ snippet 'trade/cart-checkout-error' trade_cart_type='main' }}
+    {{!-- 结算模块底部插槽 --}}
+    <div class="slot-cart slot-cart-checkout-end slot-cart-checkout-end_top" data-slot-cart-checkout-end></div>
   </div>
   {{ snippet 'trade/commons/base-modal' modalId='sku-filter' }}
 </div>
+{{!-- 商品列表底部插槽 --}}
+<div class="slot-cart slot-cart-list-end" data-slot-cart-list-end></div>
 {{!-- 商品推荐插件 --}}
-{{ snippet 'product/product-recommend.html' }}
+{{ snippet 'product/product-recommend' }}
 
 {{#schema}}
 {

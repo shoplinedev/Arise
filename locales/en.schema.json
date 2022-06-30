@@ -257,6 +257,9 @@
         }
       },
       "settings": {
+        "full_screen": {
+          "label": "Full width display"
+        },
         "html": {
           "label": "HTML"
         }
@@ -366,6 +369,18 @@
         "group_header__1": {
           "label": "Product image"
         },
+        "md_cols": {
+          "label": "Number of columns",
+          "options__0": {
+            "label": "1 row"
+          },
+          "options__1": {
+            "label": "2 rows"
+          }
+        },
+        "pc_cols": {
+          "label": "No. of rows on PC"
+        },
         "product_categories": {
           "label": "Collection list"
         },
@@ -423,6 +438,14 @@
           "settings": {
             "html": {
               "label": "HTML"
+            }
+          }
+        },
+        "plainText": {
+          "name": "Text",
+          "settings": {
+            "plainText": {
+              "label": "Text"
             }
           }
         },
@@ -491,6 +514,20 @@
             }
           }
         },
+        "image": {
+          "name": "Image",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "image_width": {
+              "label": "Image width"
+            },
+            "link": {
+              "label": "URL"
+            }
+          }
+        },
         "menu": {
           "name": "Fast navigation",
           "settings": {
@@ -502,8 +539,7 @@
             }
           }
         },
-        "undefined": {
-          "name": "Image",
+        "select": {
           "settings": {
             "align": {
               "label": "Layout",
@@ -516,12 +552,6 @@
               "options__2": {
                 "label": "Right"
               }
-            },
-            "image": {
-              "label": "Image"
-            },
-            "image_width": {
-              "label": "Image width"
             }
           }
         }
@@ -621,6 +651,10 @@
         },
         "main_menu_link_list": {
           "label": "Navigation menu"
+        },
+        "mega_menu_images": {
+          "info": "[How to set up super menu](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
+          "label": "Display super menu image"
         },
         "mobile_logo_width": {
           "label": "Mobile Logo width"
@@ -763,13 +797,31 @@
         "pc_text_position": {
           "label": "Text position",
           "options__0": {
-            "label": "Left"
+            "label": "Upper left"
           },
           "options__1": {
-            "label": "Center"
+            "label": "Above"
           },
           "options__2": {
+            "label": "Upper right"
+          },
+          "options__3": {
+            "label": "Left"
+          },
+          "options__4": {
+            "label": "Center"
+          },
+          "options__5": {
             "label": "Right"
+          },
+          "options__6": {
+            "label": "Bottom left"
+          },
+          "options__7": {
+            "label": "Below"
+          },
+          "options__8": {
+            "label": "Bottom right"
           }
         },
         "under_image": {
@@ -1330,6 +1382,14 @@
             }
           }
         },
+        "plainText": {
+          "name": "Text",
+          "settings": {
+            "plainText": {
+              "label": "Text"
+            }
+          }
+        },
         "price": {
           "name": "Price"
         },
@@ -1533,6 +1593,18 @@
         "group_header__0": {
           "label": "Product image"
         },
+        "md_cols": {
+          "label": "Number of columns",
+          "options__0": {
+            "label": "1 row"
+          },
+          "options__1": {
+            "label": "2 rows"
+          }
+        },
+        "pc_cols": {
+          "label": "No. of rows on PC"
+        },
         "product_fill_type": {
           "label": "Product image filling style",
           "options__0": {
@@ -1573,6 +1645,18 @@
       "settings": {
         "group_header__0": {
           "label": "Product image"
+        },
+        "md_cols": {
+          "label": "Number of columns",
+          "options__0": {
+            "label": "1 row"
+          },
+          "options__1": {
+            "label": "2 rows"
+          }
+        },
+        "pc_cols": {
+          "label": "No. of rows on PC"
         },
         "product_fill_type": {
           "label": "Filling mode of product image",
@@ -2078,6 +2162,18 @@
         "jump_link": {
           "label": "URL"
         },
+        "md_cols": {
+          "label": "Number of columns",
+          "options__0": {
+            "label": "1 row"
+          },
+          "options__1": {
+            "label": "2 rows"
+          }
+        },
+        "pc_cols": {
+          "label": "No. of rows on PC"
+        },
         "show_block_bg": {
           "label": "Background",
           "options__0": {
@@ -2158,6 +2254,9 @@
         "full_width": {
           "label": "Full screen width"
         },
+        "loop": {
+          "label": "Loop"
+        },
         "title": {
           "label": "Title"
         },
@@ -2169,6 +2268,70 @@
     }
   },
   "settings_schema": {
+    "button": {
+      "name": "Button",
+      "settings": {
+        "btn_border_opacity": {
+          "label": "Opacity"
+        },
+        "btn_border_radius": {
+          "label": "Corner radius"
+        },
+        "btn_border_thickness": {
+          "label": "Thickness"
+        },
+        "btn_shadow_blur": {
+          "label": "Blur"
+        },
+        "btn_shadow_offset_x": {
+          "label": "Vertical offset"
+        },
+        "btn_shadow_offset_y": {
+          "label": "Horizontal offset"
+        },
+        "btn_shadow_opacity": {
+          "label": "Opacity"
+        },
+        "group_header__0": {
+          "label": "Border"
+        },
+        "group_header__1": {
+          "label": "Shadow"
+        }
+      }
+    },
+    "card": {
+      "name": "Cards",
+      "settings": {
+        "card_border_opacity": {
+          "label": "Opacity"
+        },
+        "card_border_radius": {
+          "label": "Corner radius"
+        },
+        "card_border_thickness": {
+          "label": "Thickness"
+        },
+        "card_shadow_blur": {
+          "label": "Blur"
+        },
+        "card_shadow_offset_x": {
+          "label": "Vertical offset"
+        },
+        "card_shadow_offset_y": {
+          "label": "Horizontal offset"
+        },
+        "card_shadow_opacity": {
+          "label": "Opacity"
+        },
+        "group_header__0": {
+          "label": "Border"
+        },
+        "group_header__1": {
+          "label": "Shadow"
+        }
+      }
+    },
     "cart": {
       "name": "Cart",
       "settings": {
@@ -2445,6 +2608,38 @@
         }
       }
     },
+    "content_container": {
+      "name": "Content Containers",
+      "settings": {
+        "content_border_opacity": {
+          "label": "Opacity"
+        },
+        "content_border_radius": {
+          "label": "Corner radius"
+        },
+        "content_border_thickness": {
+          "label": "Thickness"
+        },
+        "content_shadow_blur": {
+          "label": "Blur"
+        },
+        "content_shadow_offset_x": {
+          "label": "Vertical offset"
+        },
+        "content_shadow_offset_y": {
+          "label": "Horizontal offset"
+        },
+        "content_shadow_opacity": {
+          "label": "Opacity"
+        },
+        "group_header__0": {
+          "label": "Border"
+        },
+        "group_header__1": {
+          "label": "Shadow"
+        }
+      }
+    },
     "design": {
       "name": "Design",
       "settings": {
@@ -2492,6 +2687,67 @@
         },
         "superscript_decimals": {
           "label": "Zoom out display for decimals of the selling price"
+        }
+      }
+    },
+    "drawer": {
+      "name": "Drawer",
+      "settings": {
+        "drawer_border_opacity": {
+          "label": "Opacity"
+        },
+        "drawer_border_thickness": {
+          "label": "Thickness"
+        },
+        "drawer_shadow_blur": {
+          "label": "Blur"
+        },
+        "drawer_shadow_offset_x": {
+          "label": "Vertical offset"
+        },
+        "drawer_shadow_offset_y": {
+          "label": "Horizontal offset"
+        },
+        "drawer_shadow_opacity": {
+          "label": "Opacity"
+        },
+        "group_header__0": {
+          "label": "Border"
+        },
+        "group_header__1": {
+          "label": "Shadow"
+        }
+      }
+    },
+    "dropdown_modal": {
+      "name": "Dropdowns and Pop-ups",
+      "settings": {
+        "group_header__0": {
+          "label": "Border"
+        },
+        "group_header__1": {
+          "label": "Shadow"
+        },
+        "menu_modal_border_opacity": {
+          "label": "Opacity"
+        },
+        "menu_modal_border_radius": {
+          "label": "Corner radius"
+        },
+        "menu_modal_border_thickness": {
+          "label": "Thickness"
+        },
+        "menu_modal_shadow_blur": {
+          "label": "Blur"
+        },
+        "menu_modal_shadow_offset_x": {
+          "label": "Vertical offset"
+        },
+        "menu_modal_shadow_offset_y": {
+          "label": "Horizontal offset"
+        },
+        "menu_modal_shadow_opacity": {
+          "label": "Opacity"
         }
       }
     },
@@ -2561,14 +2817,88 @@
         }
       }
     },
+    "input": {
+      "name": "Input box",
+      "settings": {
+        "group_header__0": {
+          "label": "Border"
+        },
+        "group_header__1": {
+          "label": "Shadow"
+        },
+        "input_border_opacity": {
+          "label": "Opacity"
+        },
+        "input_border_radius": {
+          "label": "Corner radius"
+        },
+        "input_border_thickness": {
+          "label": "Thickness"
+        },
+        "input_shadow_blur": {
+          "label": "Blur"
+        },
+        "input_shadow_offset_x": {
+          "label": "Vertical offset"
+        },
+        "input_shadow_offset_y": {
+          "label": "Horizontal offset"
+        },
+        "input_shadow_opacity": {
+          "label": "Opacity"
+        }
+      }
+    },
     "layout": {
       "name": "Layout",
       "settings": {
+        "grid_horizontal_space": {
+          "label": "Horizontal spacing"
+        },
+        "grid_vertical_space": {
+          "label": "Vertical spacing"
+        },
+        "group_header__0": {
+          "info": "Component and product/category layout which could change the grid style",
+          "label": "Grid"
+        },
         "page_width": {
           "label": "Page width"
         },
         "section_vertical_gap": {
           "label": "Vertical interval of components"
+        }
+      }
+    },
+    "media_file": {
+      "name": "Media",
+      "settings": {
+        "group_header__0": {
+          "label": "Border"
+        },
+        "group_header__1": {
+          "label": "Shadow"
+        },
+        "media_border_opacity": {
+          "label": "Opacity"
+        },
+        "media_border_radius": {
+          "label": "Corner radius"
+        },
+        "media_border_thickness": {
+          "label": "Thickness"
+        },
+        "media_shadow_blur": {
+          "label": "Blur"
+        },
+        "media_shadow_offset_x": {
+          "label": "Vertical offset"
+        },
+        "media_shadow_offset_y": {
+          "label": "Horizontal offset"
+        },
+        "media_shadow_opacity": {
+          "label": "Opacity"
         }
       }
     },
@@ -2592,6 +2922,9 @@
         "share_to_pinterest": {
           "label": "Share to Pinterest"
         },
+        "share_to_tumblr": {
+          "label": "Share to Tumblr"
+        },
         "share_to_twitter": {
           "label": "Share to Twitter"
         },
@@ -2603,6 +2936,9 @@
         },
         "social_instagram_link": {
           "label": "Instagram"
+        },
+        "social_linkedin_link": {
+          "label": "Linkedin"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -2633,6 +2969,24 @@
         "product_discount": {
           "label": "Display the discount"
         },
+        "product_discount_position": {
+          "label": "Position of discount tag",
+          "options__0": {
+            "label": "Upper left"
+          },
+          "options__1": {
+            "label": "Upper right"
+          },
+          "options__2": {
+            "label": "Bottom left"
+          },
+          "options__3": {
+            "label": "Bottom right"
+          }
+        },
+        "product_discount_radius": {
+          "label": "Corner radius of discount tag"
+        },
         "product_discount_style": {
           "label": "Discount style",
           "options__0": {
@@ -2656,6 +3010,38 @@
           "options__2": {
             "label": "Display at most 2 lines"
           }
+        }
+      }
+    },
+    "sku": {
+      "name": "Variant Pills",
+      "settings": {
+        "group_header__0": {
+          "label": "Border"
+        },
+        "group_header__1": {
+          "label": "Shadow"
+        },
+        "sku_selector_border_opacity": {
+          "label": "Opacity"
+        },
+        "sku_selector_border_radius": {
+          "label": "Corner radius"
+        },
+        "sku_selector_border_thickness": {
+          "label": "Thickness"
+        },
+        "sku_selector_shadow_blur": {
+          "label": "Blur"
+        },
+        "sku_selector_shadow_offset_x": {
+          "label": "Vertical offset"
+        },
+        "sku_selector_shadow_offset_y": {
+          "label": "Horizontal offset"
+        },
+        "sku_selector_shadow_opacity": {
+          "label": "Opacity"
         }
       }
     }

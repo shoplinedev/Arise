@@ -42,7 +42,7 @@ collection_products:
 {{/or}}  
 
 <div class="color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}">
-  <div class="colletionlist container {{ limitWidthStyle }} {{#if (isTruthy slice_in_mobile)}}slice_in_mobile{{/if}}">
+  <div class="__sl-custom-track-stage-colletionlist colletionlist container {{ limitWidthStyle }} {{#if (isTruthy slice_in_mobile)}}slice_in_mobile{{/if}}">
     <h2 class="section-title colletionlist__title title4 text-center">{{ title }}</h2>
     <div class="colletionlist__slide-container {{#if (isTruthy slice_in_mobile)}}slice_in_mobile container{{/if}}">
       <div class="colletionlist__cagetegory row row-cols-{{ col }} ">

@@ -14,12 +14,18 @@
 {{/if}}
 
 {{#if templateAlias '===' 'Products'}}
-    {{ snippet 'product/collections/product-common'}}
+    {{ snippet 'product/collections/collections-common'}}
 {{/if}}
 
 {{#if templateAlias '===' 'AllCollections'}}
-      {{ snippet 'product/collections-all/collections-all-common'}}
+    {{ snippet 'product/collections-all/collections-all-common'}}
 {{/if}}
+
+{{#if templateAlias '===' 'ProductsSearch'}}
+    {{ snippet 'product/search/search-common'}}
+{{/if}}
+
+
 
 {{#if templateAlias '===' '404'}}
   {{ snippet '404-common'}}

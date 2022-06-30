@@ -1,0 +1,77 @@
+<div class="goods-item-good">
+  <div class="goods-item-good-img">
+    {{#if images}}
+      <img class="lozad goods-item-good-img-big" src="{{first images 1}}" alt="" />
+    {{else}}
+      {{! 商品默认图片 }}
+      <div class="goods-item-good-img-default goods-item-good-img-click">
+        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M4.25806 6.54827C4.25806 7.38985 4.9513 8.07208 5.80645 8.07208C6.6616 8.07208 7.35484 7.38985 7.35484 6.54827C7.35484 5.70669 6.6616 5.02446 5.80645 5.02446C4.9513 5.02446 4.25806 5.70669 4.25806 6.54827Z"
+            fill="#D9D9D9" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 2.73875C0 1.68678 0.866545 0.833984 1.93548 0.833984H22.0645C23.1335 0.833984 24 1.68678 24 2.73875V19.5007C24 20.5526 23.1335 21.4054 22.0645 21.4054H1.93548C0.866544 21.4054 0 20.5526 0 19.5007V2.73875ZM2.32258 3.1197V19.1197H21.6774V3.1197H2.32258Z"
+            fill="#D9D9D9" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M16.6756 9.62307L22.1143 14.9754L23.7566 13.3592L18.0341 7.72746C17.2587 6.96437 15.9946 6.98703 15.2479 7.7774L10.0372 13.2933L7.91441 11.2537C7.1363 10.5061 5.88522 10.5359 5.14479 11.3197L0.310778 16.4368L2.0118 17.9931L6.57572 13.1619L8.69849 15.2015C9.4766 15.9492 10.7277 15.9194 11.4681 15.1356L16.6756 9.62307Z"
+            fill="#D9D9D9" />
+        </svg>
+      </div>
+    {{/if}}
+    {{#if bindProductImages}}
+      <img src="{{first bindProductImages 1}}" alt="" class="lozad goods-item-good-img-small" />
+    {{/if}}
+  </div>
+  <div class="goods-item-good-content">
+    <div class="goods-item-good-title">
+      {{title}}
+    </div>
+    <div class="goods-item-good-common goods-item-good-attribute">
+      {{#if attributes}}
+        {{#each attributes}}
+          {{truncate attributeValue 255}}
+          {{#unless @last}}
+            /
+          {{/unless}}
+        {{/each}}
+      {{/if}}
+    </div>
+    {{! 遍历 pod 商品的属性 }}
+    {{#each propertyInfoList}}
+      {{#if type '==' 'text'}}
+        <div class="goods-item-good-common">
+          {{name}}: {{value}}
+        </div>
+      {{else if type '==' 'link'}}
+        <div>
+          <span class="goods-item-good-common">
+            {{name}}:
+          </span>
+          <a target="_blank" href={{first urls 1}} class="goods-item-good-watch">
+            {{! 点击查看 }}
+            {{t 'trade.pod-link'}}
+          </a>
+        </div>
+      {{else if type '==' 'picture'}}
+        <div>
+          <span class="goods-item-good-common">
+            {{name}}:
+          </span>
+          <a class="goods-item-good-preview" data-urls="{{urls}}">
+            {{! 定制预览 }}
+            {{t 'trade.pod-pic'}}
+          </a>
+        </div>
+      {{/if}}
+    {{/each}}
+    {{! 预售商品的属性 }}
+    {{#each customProductTips}}
+      <div class="goods-item-good-common">
+        {{this}}
+      </div>
+    {{/each}}
+    <div class="goods-item-good-price notranslate">
+      <span data-amount="{{productPrice}}">{{currency_convert productPrice}}</span><span> X {{productNum}}</span>
+    </div>
+  </div>
+</div>

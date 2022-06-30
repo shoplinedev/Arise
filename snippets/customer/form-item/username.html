@@ -1,0 +1,26 @@
+{{ assign 'type' 'username' }}
+
+{{#if (isFalsey (inArray types 'email'))}}
+  {{ assign 'type' 'phone'}}
+{{else if (isFalsey (inArray types 'mobile'))}}
+  {{ assign 'type' 'email'}}
+{{/if}}
+
+{{ assign 'autocomplete' (cond (eq type 'phone') 'phone' 'email')}}
+{{ assign 'attrs' (javascript_template 'autocomplete="${autocomplete}" maxlength="255"' autocomplete=autocomplete)}}
+
+{{#switch type}}
+  {{#case 'username'}} {{ assign 'placeholder' (t 'user.username')}} {{/case}}
+  {{#case 'phone'}} {{ assign 'placeholder' (t 'user.phone')}} {{/case}}
+  {{#case 'email'}} {{ assign 'placeholder' (t 'user.email')}} {{/case}}
+{{/switch}}
+
+{{#formItem type "class='sign-in__form-item'"}}
+  {{snippet 
+    'customer/base/sl-input'
+    attrs=attrs
+    name=type
+    type=type
+    placeholder=placeholder
+  }}
+{{/formItem}}

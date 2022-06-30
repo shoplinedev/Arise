@@ -15,7 +15,7 @@
 
 <div class="{{#if (isTruthy section.settings.show_background)}}section-gap--padding {{ prefix }}--background-wrapped{{else}}{{ prefix }}--no-background{{/if}}"  style="{{#if (isTruthy section.settings.show_background)}}background-color: {{ rgba theme.settings.color_text 0.05 }};{{/if}}">
   <div id="{{ prefix }}--{{ section.id }}" 
-    class='container {{#if (isTruthy notEmpty)}}not-empty{{/if}} {{ prefix }}--wrapped section-gap{{#if (isTruthy section.settings.show_background)}}--padding{{/if}}' data-section-type="featured-product" data-section-id="{{ section.id }}" data-state-path="product_{{ section.settings.product_id }}" data-product-id="{{ section.settings.product_id }}">
+    class='__sl-custom-track-stage-featuredProduct container {{#if (isTruthy notEmpty)}}not-empty{{/if}} {{ prefix }}--wrapped section-gap{{#if (isTruthy section.settings.show_background)}}--padding{{/if}}' data-section-type="featured-product" data-section-id="{{ section.id }}" data-state-path="product_{{ section.settings.product_id }}" data-product-id="{{ section.settings.product_id }}">
     {{#if (isTruthy notEmpty)}}
       {{ snippet 'product/detail/product-preview' moduleName='featuredProduct' id=section.id statePrefix=(append 'product_' section.settings.product_id) product=product description=product.desc section=section statePath=(append 'product_' section.settings.product_id) }}
     {{else}}
@@ -169,6 +169,19 @@
           "id": "html",
           "limit": 0,
           "label": "t:sections.featured-product.blocks.html.settings.html.label"
+        }
+      ]
+    },
+    {
+      "type": "plainText",
+      "icon": "normal",
+      "name": "t:sections.featured-product.blocks.plainText.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "plainText",
+          "limit": 0,
+          "label": "t:sections.featured-product.blocks.plainText.settings.plainText.label"
         }
       ]
     }

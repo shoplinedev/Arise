@@ -257,6 +257,9 @@
         }
       },
       "settings": {
+        "full_screen": {
+          "label": "Paparan skrin penuh"
+        },
         "html": {
           "label": "HTML"
         }
@@ -366,6 +369,18 @@
         "group_header__1": {
           "label": "Gambar produk"
         },
+        "md_cols": {
+          "label": "Bilangan lajur di mudah alih",
+          "options__0": {
+            "label": "1 lajur"
+          },
+          "options__1": {
+            "label": "2 lajur"
+          }
+        },
+        "pc_cols": {
+          "label": "Bilangan lajur pada bahagian komputer"
+        },
         "product_categories": {
           "label": "Produk kategori"
         },
@@ -423,6 +438,14 @@
           "settings": {
             "html": {
               "label": "HTML"
+            }
+          }
+        },
+        "plainText": {
+          "name": "Teks",
+          "settings": {
+            "plainText": {
+              "label": "Teks"
             }
           }
         },
@@ -491,6 +514,20 @@
             }
           }
         },
+        "image": {
+          "name": "Gambar",
+          "settings": {
+            "image": {
+              "label": "Gambar"
+            },
+            "image_width": {
+              "label": "Lebar gambar"
+            },
+            "link": {
+              "label": "Pautan lompat"
+            }
+          }
+        },
         "menu": {
           "name": "Navigasi pantas",
           "settings": {
@@ -502,8 +539,7 @@
             }
           }
         },
-        "undefined": {
-          "name": "Gambar",
+        "select": {
           "settings": {
             "align": {
               "label": "susun atur",
@@ -516,12 +552,6 @@
               "options__2": {
                 "label": "Sebelah kanan"
               }
-            },
-            "image": {
-              "label": "Gambar"
-            },
-            "image_width": {
-              "label": "Lebar gambar"
             }
           }
         }
@@ -621,6 +651,10 @@
         },
         "main_menu_link_list": {
           "label": "Menu navigasi"
+        },
+        "mega_menu_images": {
+          "info": "[lihat tutorial untuk menetapkan menu super](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
+          "label": "Tunjuk gambar menu super"
         },
         "mobile_logo_width": {
           "label": "Lebar LOGO versi mudah alih"
@@ -763,13 +797,31 @@
         "pc_text_position": {
           "label": "Kedudukan teks",
           "options__0": {
-            "label": "Sebelah kiri"
+            "label": "Atas kiri"
           },
           "options__1": {
-            "label": "Berpusat"
+            "label": "Atas tengah"
           },
           "options__2": {
-            "label": "Sebelah kanan"
+            "label": "Atas kanan"
+          },
+          "options__3": {
+            "label": "Sebelah kiri"
+          },
+          "options__4": {
+            "label": "Tengah"
+          },
+          "options__5": {
+            "label": "Sisi kanan"
+          },
+          "options__6": {
+            "label": "Bawah kiri"
+          },
+          "options__7": {
+            "label": "Bawah tengah"
+          },
+          "options__8": {
+            "label": "Bawah kanan"
           }
         },
         "under_image": {
@@ -1330,6 +1382,14 @@
             }
           }
         },
+        "plainText": {
+          "name": "Teks",
+          "settings": {
+            "plainText": {
+              "label": "Teks"
+            }
+          }
+        },
         "price": {
           "name": "Harga"
         },
@@ -1533,6 +1593,18 @@
         "group_header__0": {
           "label": "Gambar produk"
         },
+        "md_cols": {
+          "label": "Bilangan lajur di mudah alih",
+          "options__0": {
+            "label": "1 lajur"
+          },
+          "options__1": {
+            "label": "2 lajur"
+          }
+        },
+        "pc_cols": {
+          "label": "Bilangan lajur pada bahagian komputer"
+        },
         "product_fill_type": {
           "label": "Kaedah pengisian peta komoditi",
           "options__0": {
@@ -1573,6 +1645,18 @@
       "settings": {
         "group_header__0": {
           "label": "Gambar produk"
+        },
+        "md_cols": {
+          "label": "Bilangan lajur di mudah alih",
+          "options__0": {
+            "label": "1 lajur"
+          },
+          "options__1": {
+            "label": "2 lajur"
+          }
+        },
+        "pc_cols": {
+          "label": "Bilangan lajur pada bahagian komputer"
         },
         "product_fill_type": {
           "label": "Kaedah pengisian peta komoditi",
@@ -2078,6 +2162,18 @@
         "jump_link": {
           "label": "Pautan lompat"
         },
+        "md_cols": {
+          "label": "Bilangan lajur di mudah alih",
+          "options__0": {
+            "label": "1 lajur"
+          },
+          "options__1": {
+            "label": "2 lajur"
+          }
+        },
+        "pc_cols": {
+          "label": "Bilangan lajur pada bahagian komputer"
+        },
         "show_block_bg": {
           "label": "latar belakang",
           "options__0": {
@@ -2158,6 +2254,9 @@
         "full_width": {
           "label": "Kelebaran skrin penuh"
         },
+        "loop": {
+          "label": "Main secara ulang"
+        },
         "title": {
           "label": "Tajuk"
         },
@@ -2169,6 +2268,70 @@
     }
   },
   "settings_schema": {
+    "button": {
+      "name": "Butang",
+      "settings": {
+        "btn_border_opacity": {
+          "label": "Kelegapan"
+        },
+        "btn_border_radius": {
+          "label": "Jejari sudut"
+        },
+        "btn_border_thickness": {
+          "label": "Ketebalan"
+        },
+        "btn_shadow_blur": {
+          "label": "Kabur"
+        },
+        "btn_shadow_offset_x": {
+          "label": "Bergerak secara mendatar"
+        },
+        "btn_shadow_offset_y": {
+          "label": "Bergerak secara menegak"
+        },
+        "btn_shadow_opacity": {
+          "label": "Kelegapan"
+        },
+        "group_header__0": {
+          "label": "Bingkai tepi"
+        },
+        "group_header__1": {
+          "label": "Bayang"
+        }
+      }
+    },
+    "card": {
+      "name": "Kad",
+      "settings": {
+        "card_border_opacity": {
+          "label": "Kelegapan"
+        },
+        "card_border_radius": {
+          "label": "Jejari sudut"
+        },
+        "card_border_thickness": {
+          "label": "Ketebalan"
+        },
+        "card_shadow_blur": {
+          "label": "Kabur"
+        },
+        "card_shadow_offset_x": {
+          "label": "Bergerak secara mendatar"
+        },
+        "card_shadow_offset_y": {
+          "label": "Bergerak secara menegak"
+        },
+        "card_shadow_opacity": {
+          "label": "Kelegapan"
+        },
+        "group_header__0": {
+          "label": "Bingkai tepi"
+        },
+        "group_header__1": {
+          "label": "Bayang"
+        }
+      }
+    },
     "cart": {
       "name": "Kart",
       "settings": {
@@ -2445,6 +2608,38 @@
         }
       }
     },
+    "content_container": {
+      "name": "Tempat kandungan",
+      "settings": {
+        "content_border_opacity": {
+          "label": "Kelegapan"
+        },
+        "content_border_radius": {
+          "label": "Jejari sudut"
+        },
+        "content_border_thickness": {
+          "label": "Ketebalan"
+        },
+        "content_shadow_blur": {
+          "label": "Kabur"
+        },
+        "content_shadow_offset_x": {
+          "label": "Bergerak secara mendatar"
+        },
+        "content_shadow_offset_y": {
+          "label": "Bergerak secara menegak"
+        },
+        "content_shadow_opacity": {
+          "label": "Kelegapan"
+        },
+        "group_header__0": {
+          "label": "Bingkai tepi"
+        },
+        "group_header__1": {
+          "label": "Bayang"
+        }
+      }
+    },
     "design": {
       "name": "Reka",
       "settings": {
@@ -2492,6 +2687,67 @@
         },
         "superscript_decimals": {
           "label": "Paparan perpuluhan harga jualan"
+        }
+      }
+    },
+    "drawer": {
+      "name": "Laci",
+      "settings": {
+        "drawer_border_opacity": {
+          "label": "Kelegapan"
+        },
+        "drawer_border_thickness": {
+          "label": "Ketebalan"
+        },
+        "drawer_shadow_blur": {
+          "label": "Kabur"
+        },
+        "drawer_shadow_offset_x": {
+          "label": "Bergerak secara mendatar"
+        },
+        "drawer_shadow_offset_y": {
+          "label": "Bergerak secara menegak"
+        },
+        "drawer_shadow_opacity": {
+          "label": "Kelegapan"
+        },
+        "group_header__0": {
+          "label": "Bingkai tepi"
+        },
+        "group_header__1": {
+          "label": "Bayang"
+        }
+      }
+    },
+    "dropdown_modal": {
+      "name": "Tarik bawah untuk menu dan tetingkap timbul",
+      "settings": {
+        "group_header__0": {
+          "label": "Bingkai tepi"
+        },
+        "group_header__1": {
+          "label": "Bayang"
+        },
+        "menu_modal_border_opacity": {
+          "label": "Kelegapan"
+        },
+        "menu_modal_border_radius": {
+          "label": "Jejari sudut"
+        },
+        "menu_modal_border_thickness": {
+          "label": "Ketebalan"
+        },
+        "menu_modal_shadow_blur": {
+          "label": "Kabur"
+        },
+        "menu_modal_shadow_offset_x": {
+          "label": "Bergerak secara mendatar"
+        },
+        "menu_modal_shadow_offset_y": {
+          "label": "Bergerak secara menegak"
+        },
+        "menu_modal_shadow_opacity": {
+          "label": "Kelegapan"
         }
       }
     },
@@ -2561,14 +2817,88 @@
         }
       }
     },
+    "input": {
+      "name": "Kotak masukan",
+      "settings": {
+        "group_header__0": {
+          "label": "Bingkai tepi"
+        },
+        "group_header__1": {
+          "label": "Bayang"
+        },
+        "input_border_opacity": {
+          "label": "Kelegapan"
+        },
+        "input_border_radius": {
+          "label": "Jejari sudut"
+        },
+        "input_border_thickness": {
+          "label": "Ketebalan"
+        },
+        "input_shadow_blur": {
+          "label": "Kabur"
+        },
+        "input_shadow_offset_x": {
+          "label": "Bergerak secara mendatar"
+        },
+        "input_shadow_offset_y": {
+          "label": "Bergerak secara menegak"
+        },
+        "input_shadow_opacity": {
+          "label": "Kelegapan"
+        }
+      }
+    },
     "layout": {
       "name": "susun atur",
       "settings": {
+        "grid_horizontal_space": {
+          "label": "Jarak mendatar"
+        },
+        "grid_vertical_space": {
+          "label": "Jarak menegak"
+        },
+        "group_header__0": {
+          "info": "Mempengaruhi komponen gaya grid dan susun atur produkk / ktegori",
+          "label": "Grid"
+        },
         "page_width": {
           "label": "Kelebaran halaman"
         },
         "section_vertical_gap": {
           "label": "Jarak menegak antara komponen"
+        }
+      }
+    },
+    "media_file": {
+      "name": "Fail media",
+      "settings": {
+        "group_header__0": {
+          "label": "Bingkai tepi"
+        },
+        "group_header__1": {
+          "label": "Bayang"
+        },
+        "media_border_opacity": {
+          "label": "Kelegapan"
+        },
+        "media_border_radius": {
+          "label": "Jejari sudut"
+        },
+        "media_border_thickness": {
+          "label": "Ketebalan"
+        },
+        "media_shadow_blur": {
+          "label": "Kabur"
+        },
+        "media_shadow_offset_x": {
+          "label": "Bergerak secara mendatar"
+        },
+        "media_shadow_offset_y": {
+          "label": "Bergerak secara menegak"
+        },
+        "media_shadow_opacity": {
+          "label": "Kelegapan"
         }
       }
     },
@@ -2592,6 +2922,9 @@
         "share_to_pinterest": {
           "label": "Kongsi ke Pinterest"
         },
+        "share_to_tumblr": {
+          "label": "Kongsi ke Tumblr"
+        },
         "share_to_twitter": {
           "label": "Kongsi ke Twitter"
         },
@@ -2603,6 +2936,9 @@
         },
         "social_instagram_link": {
           "label": "Instagram"
+        },
+        "social_linkedin_link": {
+          "label": "Linkedin"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -2633,6 +2969,24 @@
         "product_discount": {
           "label": "Paparkan diskaun"
         },
+        "product_discount_position": {
+          "label": "Lokasi label tawaran",
+          "options__0": {
+            "label": "Atas kiri"
+          },
+          "options__1": {
+            "label": "Atas kanan"
+          },
+          "options__2": {
+            "label": "Bawah kiri"
+          },
+          "options__3": {
+            "label": "Bawah kanan"
+          }
+        },
+        "product_discount_radius": {
+          "label": "Menawarkan jejari sudut label"
+        },
         "product_discount_style": {
           "label": "Gaya diskaun",
           "options__0": {
@@ -2656,6 +3010,38 @@
           "options__2": {
             "label": "Tunjukkan paling banyak 2 baris"
           }
+        }
+      }
+    },
+    "sku": {
+      "name": "Mesin berbilang pilihan",
+      "settings": {
+        "group_header__0": {
+          "label": "Bingkai tepi"
+        },
+        "group_header__1": {
+          "label": "Bayang"
+        },
+        "sku_selector_border_opacity": {
+          "label": "Kelegapan"
+        },
+        "sku_selector_border_radius": {
+          "label": "Jejari sudut"
+        },
+        "sku_selector_border_thickness": {
+          "label": "Ketebalan"
+        },
+        "sku_selector_shadow_blur": {
+          "label": "Kabur"
+        },
+        "sku_selector_shadow_offset_x": {
+          "label": "Bergerak secara mendatar"
+        },
+        "sku_selector_shadow_offset_y": {
+          "label": "Bergerak secara menegak"
+        },
+        "sku_selector_shadow_opacity": {
+          "label": "Kelegapan"
         }
       }
     }

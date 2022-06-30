@@ -29,26 +29,136 @@
     "activity-price-limit": "Ebből a termékből csak {{num}} darabot vásárolhat a kedvezménnyel",
     "activity-product-limit": "Egyszerre legfeljebb {{stock}} terméket vásárolhat a kedvezménnyel",
     "activity-title-limit": "Az alábbi termékek elérik a vásárlási korlátot, mégis folytatja a fizetést?",
+    "cart": {
+      "cancel": "Mégse",
+      "confirm": "OK",
+      "continue": "Folytatás",
+      "got_it": "Megkaptam",
+      "return_to_cart": "Vissza a kosárhoz"
+    },
     "checkout-error": "Legalább egy termék nem elérhető a kosárban. Kérjük, módosítsa a kosár tételeit a fizetéshez.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Az alábbi termékek elérik a vásárlási korlátot, mégis folytatja a fizetést?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "Kedvezményt adtunk erre a rendelésre. Nem adhat hozzá másik kedvezményt"
+    },
+    "discount": {
+      "coupon_code_amount": "Kupon",
+      "coupon_code_exceed_not_25_characters": "Az kupon kód nem haladhatja meg a 25 karaktert",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} kupon érvényesíthető a szállítási módhoz",
+      "discount_code_invalid": "A {{discountCode}} helyesen van megadva, de az áru ára vagy mennyisége nem felel meg a követelményeknek",
+      "discount_codes_cannot_stack": "A termékhez már tartozik egy kedvezmény, amely nem használható fel másik kedvezménnyel együtt.",
+      "enter_a_valid_discount_code": "A kedvezmény kódja hibásan van megadva",
+      "expected_discount": "Kedvezmény"
+    },
+    "discount_item": {
+      "buy_limit5": "Egyszerre legfeljebb {{stock}} terméket vásárolhat a kedvezménnyel"
+    },
+    "discount_price": {
+      "buy_limit3": "Ebből a termékből csak {{stock}} darabot vásárolhat a kedvezményekkel"
+    },
     "get": "Kapjon kedvezményt",
     "go-shopping": "VÁSÁRLÁS FOLYTATÁSA",
+    "item": {
+      "add_limit1": "Akár 100 tétel hozzáadása",
+      "add_limit2": "Maximális mennyiség egy termékből 999 db",
+      "removed": "ÉRVÉNYTELEN",
+      "sold_out": "ELFOGYOTT"
+    },
     "login-description": "Már tag? Bejelentkezve kényelmesebben kezelheti a rendelést!",
     "login-membership": "Ingyenes tagság",
     "most-100-sku": "Akár 100 tétel hozzáadása",
     "most-buy-999": "Maximális mennyiség egy termékből 999 db",
     "not-participation-offers": "Nem használható kedvezmény",
+    "notices": {
+      "change_password_after_verification": "Az ellenőrzés után módosíthatja a jelszót",
+      "excess_product": "Az alábbi termékek elérik a vásárlási korlátot, kérjük, módosítsa a mennyiséget",
+      "insufficient_product_inventory": "Nincs elegendő termékkészlet",
+      "network": "Hálózati hiba",
+      "product_expired": "A termék lejárt",
+      "product_limit": "Túllépte a termékkorlátot",
+      "product_selected_invalid": "Sajnáljuk, a kiválasztott termék nem vásárolható meg. Kérjük, válassza ki újra",
+      "store_nonexistent": "Az üzlet nem létezik"
+    },
+    "order": {
+      "authorized": "Felhatalmazott",
+      "canceled": "Törölve",
+      "canceled_order": "Törölve",
+      "click_to_track": "A lenti linkre kattintva követheti csomagját:",
+      "deleted": "ÉRVÉNYTELEN",
+      "invalid_order_number": "érvénytelen rendelési szám",
+      "no_more_info": "Nincs több információ",
+      "pay_amount": "fizetési összeget",
+      "payment_voucher_confirmation": "Megvan",
+      "receiver_account": "fogadószámla",
+      "reference_number": "Referenciaszám",
+      "sequence": "Sz.{{id}}",
+      "shipping_address": "Szállítási cím",
+      "time": "Megrendelve:",
+      "total_amount": "Összesen {{transPackages}} tétel",
+      "total_item_amount": "Összesen {{transPackages}} tétel",
+      "try_again": "Feltöltés sikertelen. Kérlek próbáld újra.",
+      "try_later": "a rendszer foglalt, próbálja újra később.",
+      "upload_image_within_10_m_b": "Kérjük, töltsön fel JPG, PNG, GIF képeket 10 MB-on belül",
+      "upload_time": "feltöltési idő",
+      "voucher_amount_limit": "Legfeljebb 5 utalványt tölthet fel."
+    },
+    "payment": {
+      "channel": "Fizetési csatorna",
+      "create_time": "Létrehozva",
+      "paid": "Fizetve",
+      "partially_paid": "Részben fizetve",
+      "paying": "Fizetés",
+      "payment_details": "Fizetés adatai",
+      "reference_number": "Tranzakció hivatkozási száma",
+      "status": "Állapot",
+      "subtotal_price": "Részösszeg",
+      "sum": "Összeg",
+      "total": "Összesen",
+      "unpaid": "Nincs fizetve",
+      "update_time": "Frissítve"
+    },
+    "policy": {
+      "privacy_policy": "az Adatvédelmi szabályzatát"
+    },
+    "product-no-exists": "A termék nem létezik",
+    "refund": {
+      "click_to_view": "Kattintson a megtekintéséhez",
+      "custom_preview": "Egyedi előnézet"
+    },
     "render-add-items": "Az Ön kosara most üres.",
     "render-empty-status": "Nincsenek áruk a kosárban",
+    "shipping": {
+      "no_info": "Nincs még szállítási információ, kérjük, később ellenőrizze.",
+      "package_tracking": "Csomagkövetés",
+      "partially_shipped": "Részleges szállítás",
+      "preparing_order": "A termékek előkészítése",
+      "shipped_order": "Kiszállítva"
+    },
     "shopping-fees": "szállítási díjak",
     "shopping-money": "kedvezményt, az adókat és a szállítási költséget a következő lépésben számítjuk ki",
     "shopping-money-step": "Az adókat és a szállítási költséget fizetésnél számítják ki",
+    "shpping": {
+      "service_terms": "Szolgáltatási feltételeit"
+    },
     "stock-limit": "{{stock}} darab van raktáron",
+    "taxIncluded": {
+      "textTag": "Tartalmazza az adót"
+    },
+    "tips": {
+      "change_binding_after_verification": "Az ellenőrzés után csatolhatja/módosíthatja a(z) {{value}}-t",
+      "reset_password": "Visszaállítja a(z) {{account}} fiók jelszavát"
+    },
     "view-link": "Kattintson a megtekintéséhez",
     "view-pic": "Egyedi előnézet",
     "view-shopping-cart": "Kosár megtekintése",
     "added-to-cart": "Hozzáadva a kosárához",
     "cart-subtotal": "Kosár részösszeg",
     "view-cart": "Kosár megtekintése"
+  },
+  "cascade": {
+    "choose": "Molimo Vas odaberite opciju"
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Köszönjük, hogy felvette velünk a kapcsolatot, a lehető leghamarabb fel fogjuk venni Önnel a kapcsolatot. "
   },
+  "customer": {
+    "account": {
+      "add-email": "E-mail hozzáadása",
+      "add-phone": "Mobiltelefonszám hozzáadása",
+      "deadline": "Üzleti jelentés céljából a rendelése továbbra is látható lesz. Az Ön fiókadatait a következő időpontban töröljük: {{time}}, a folyamatot ezen időpont előtt megszakíthatja",
+      "gender_female": "Nő",
+      "gender_male": "Férfi",
+      "gender_secret": "Titoktartás",
+      "not_set": "Nincs beállítva",
+      "reset_password_error_hint": "Kérjük, csatoljon e-mailt vagy a mobiltelefont",
+      "verify_email_message": "A fiók lezárása előtt ellenőriznünk kell személyazonosságát\nAz Ön e-mail-címére {{email}} küldünk egy ellenőrző e-mailt",
+      "verify_phone_message": "A fiók lezárása előtt ellenőriznünk kell személyazonosságát\nAz Ön mobiltelefonjára {{phone}} küldünk egy ellenőrző üzenetet"
+    },
+    "address": {
+      "add_address": "Új cím hozzáadása",
+      "common_max": "",
+      "common_min": "nagyobb, mint {{min}} karakter",
+      "edit_last_name_hint": "Kérjük, adja meg a vezetéknevét!",
+      "edit_phone_hint": "Kérjük, adja meg mobiltelefonját!",
+      "mobile-errorMessage": "Kérjük, adjon meg egy érvényes telefonszámot",
+      "no_adress_data": "Jelenleg, nincs szállítási cím megadva"
+    },
+    "common": {
+      "back-to-user-center": "Vissza a Felhasználói központba",
+      "cancel": "Mégse",
+      "confirm": "OK",
+      "email": "E-mail cím",
+      "email2": "Levél",
+      "enter-email": "Kérjük, adja meg e-mail címét",
+      "enter-mobile-phone": "Kérjük, adja meg mobiltelefonszámot",
+      "member-login": "Bejelentkezés tagoknak",
+      "mobile": "Telefonszám",
+      "mobile-phone": "Mobiltelefonszám"
+    },
+    "email": {
+      "mail_common": "Levél"
+    },
+    "general": {
+      "apr": "Ápr",
+      "april": "Április",
+      "aug": "Aug",
+      "august": "Augusztus",
+      "bind_success": "Csatlakoztatva",
+      "cancel_mobile_button": "Mégse",
+      "clear_button": "Törlés",
+      "confirm_button": "OK",
+      "date_format": "yyyy-MM-dd",
+      "dec": "Dec",
+      "december": "December",
+      "email_empty_hint": "Kérjük, adja meg az e-mail címet",
+      "email_error_hint": "Kérjük, adjon meg egy érvényes formátumú e-mail címet, amely kevesebb, mint 50 karakterből áll",
+      "enter_verification_code": "Kérjük, adja meg az ellenőrző kódot",
+      "error_message_1001": "Jelszó hiba",
+      "error_message_1002": "A felhasználó nem létezik",
+      "error_message_1003": "Rendellenesség miatt fiókja le lett tiltva; kérjük, lépjen kapcsolatba a kereskedővel a tilalom feloldása érdekében",
+      "error_message_1004": "Gyakori műveletek. Kérjük, később próbálja meg újra",
+      "error_message_1005": "Kód lejárt",
+      "error_message_1006": "Kód hiba",
+      "error_message_1007": "Gyakran használja az ellenőrző kódot. Kérjük, kérjen újra ellenőrző kódot",
+      "error_message_1008": "Bejelentkezés harmadik fél csatornáinak konfigurálása nélkül",
+      "error_message_1009": "Nem sikerült felhívni harmadik fél interfészét",
+      "error_message_1010": "Nem sikerült elküldeni",
+      "error_message_1011": "A fiókszám nincs aktiválva",
+      "error_message_1012": "Szolgáltatás kivételek",
+      "error_message_1013": "Szolgáltatás kivételek",
+      "error_message_1014": "Nem sikerült ellenőrizni az ellenőrző kódot",
+      "error_message_1015": "Kérjük, ellenőrizze a dinamikus ellenőrző kódot",
+      "error_message_1016": "Szolgáltatás kivételek",
+      "error_message_1017": "A fiókszám veszélyben van",
+      "error_message_1018": "A postafiók csatlakoztatva van",
+      "error_message_1020": "Bejelentkezés időtúllépés",
+      "error_message_1021": "Bejelentkezés időtúllépés",
+      "error_message_1022": "A fiókszám csatlakoztatva van",
+      "error_message_1023": "Szolgáltatás kivételek",
+      "error_message_1024": "Szolgáltatás kivételek",
+      "error_message_2": "Szolgáltatás kivételek",
+      "error_message_2001": "A mobil regisztrálva van",
+      "error_message_2002": "Az email regisztrálva lett",
+      "error_message_2003": "Ne próbálkozzon ilyan gyakran",
+      "error_message_2004": "Kód lejárt",
+      "error_message_2005": "Kód hiba",
+      "error_message_2006": "Túl gyakori ellenőrzés, kérjük, kérjen másik kódot",
+      "error_message_2007": "Szolgáltatás kimaradás. Kérjük, később próbálja újra.",
+      "error_message_2016": "A fiók veszélyben van",
+      "error_message_3": "Szolgáltatás kivételek",
+      "error_message_3001": "Szolgáltatás kimaradás. Kérjük, később próbálja újra.",
+      "error_message_3002": "Mobiltelefonhoz/postafiókhoz nem kötött felhasználók próbálják meg megváltoztatni a jelszavaikat",
+      "error_message_3003": "Ne próbálkozzon ilyan gyakran",
+      "error_message_3004": "Kód lejárt",
+      "error_message_3005": "Kód hiba",
+      "error_message_3006": "Túl gyakori ellenőrzés, kérjük, kérjen másik kódot",
+      "error_message_3007": "A mobil nem létezik",
+      "error_message_3008": "Az e-mail nem létezik",
+      "error_message_3009": "A mobil más fiókokhoz lett csatolva",
+      "error_message_3010": "Az e-mail más fiókokhoz lett csatolva",
+      "error_message_3014": "Szöveges üzenet/levél sablon megjelenítés nem sikerült",
+      "error_message_4": "Szolgáltatás kivételek",
+      "error_message_5": "Szolgáltatás kivételek",
+      "error_message_6": "Szolgáltatás kivételek",
+      "feb": "Feb",
+      "february": "Február",
+      "first_day": "1",
+      "fr": "P",
+      "fri": "Pé",
+      "friday": "Péntek",
+      "image_size_less_than_tips": "A képeknek {{max}} MB-nál kisebbnek kell lenniük",
+      "jan": "Jan",
+      "january": "Január",
+      "jul": "Júl",
+      "july": "Július",
+      "jun": "Jún",
+      "june": "Június",
+      "mar": "Már",
+      "march": "Március",
+      "max_image_upload_tips": "Legfeljebb {{max}} képet tölthet fel",
+      "may": "Május",
+      "may_short": "Máj",
+      "mo": "H",
+      "mon": "Hé",
+      "monday": "Hétfő",
+      "network_error_message": "Nincs hálózat",
+      "nov": "Nov",
+      "november": "November",
+      "oct": "Okt",
+      "october": "Október",
+      "okay_common": "OK",
+      "password_empty_hint": "Kérjük, írja be a jelszót",
+      "phone_empty_message": "Kérjük, adja meg mobiltelefonszámot",
+      "phone_error_message": "Kérjük, adjon meg egy érvényes formátumú mobiltelefonszámot",
+      "phone_number_error_message": "Kérjük, adjon meg egy érvényes telefonszámot",
+      "repeat_passport_error": "A megadott jelszavak nem egyeznek",
+      "resend": "Küldje újra",
+      "sa": "Sz",
+      "sat": "Szo",
+      "saturday": "Szombat",
+      "select__date": "Dátum választás",
+      "send": "Küldés",
+      "send_error": "Kérjük, először küldje el az ellenőrző kódot",
+      "send_verification_code_hint": "Írja be a jelszót újra",
+      "sep": "Szep",
+      "september": "Szeptember",
+      "set_password": "Kérjük, állítson be egy minimum 6 karakter hosszúságú és legfeljebb 18 karakter hosszúságú jelszót",
+      "su": "V",
+      "sun": "Va",
+      "sunday": "Vasárnap",
+      "th": "Cs",
+      "thu": "Cs",
+      "thursday": "Csütörtök",
+      "time_format": "hh:mm aa",
+      "today": "Ma",
+      "tu": "K",
+      "tue": "Ke",
+      "tuesday": "Kedd",
+      "user_agreement_tip": "Kérjük, először olvassa el és fogadja el a felhasználói szerződést",
+      "username_empty_hint": "Kérjük, adja meg e-mail címét vagy mobiltelefonszámát",
+      "verification_code_sent_tip": "Az ellenőrző kódot elküldtük fiókjába",
+      "we": "Sz",
+      "wed": "Sze",
+      "wednesday": "Szerda"
+    },
+    "network-err-msg": "Nincs hálózat",
+    "phone": {
+      "mobile_common": "Telefonszám"
+    },
+    "subscription": {
+      "unsubscribe_success": "A feliratkozást töröltük és hamarosan átirányítjuk a kezdőoldalra"
+    },
+    "tips": {
+      "and": "és",
+      "bind-change-email": "E-mail csatolása/módosítása",
+      "bind-change-mobile-phone-number": "Mobiltelefonszám csatolása/módosítása",
+      "bind-success": "Csatlakoztatva",
+      "change-binding-after-verification": "Az ellenőrzés után csatolhatja/módosíthatja a(z) {{value}}-t",
+      "continue-as-a-guest": "Továbbra is vendégként",
+      "forget-password": "Elfelejtett jelszó",
+      "i-agree-with-the-shop": "Elfogadom az",
+      "login": "BEJELENTKEZÉS",
+      "or-use-the-following-method-to-log-in": "Vagy jelentkezzen be a következő módokkal",
+      "password-can-be-changed-after-verification": "Az ellenőrzés után módosíthatja a jelszót",
+      "please-read-and-agree-to-the-user-agreement-first": "Kérjük, először olvassa el és fogadja el a felhasználói szerződést",
+      "poroceed-to-checkout": "Tovább a kijelentkezéshez",
+      "register": "Regisztráció",
+      "reset-password": "Visszaállítja a(z) {{account}} fiók jelszavát",
+      "set-new-password": "Jelszó visszaállítása",
+      "update-password": "Jelszó változtatás",
+      "update-success": "Módosítva",
+      "verification-code-has-been-sent-to-your-account": "Az ellenőrző kódot elküldtük fiókjába",
+      "verify-account-to-reset-password": "Kérjük, ellenőrizze fiókját, és állítsa vissza a jelszavát"
+    },
+    "trade": {
+      "go-login": "Tovább a bejelentkezéshez"
+    },
+    "unsubscribe": {
+      "btn": "Leiratkozás",
+      "reason": {
+        "other": {
+          "length": "Legfeljebb 300 karaktert írjon",
+          "placeholder": "Bemeneti tartalom"
+        }
+      },
+      "reason1": "Nem szeretnék e-maileket kapni",
+      "reason2": "Túl sok e-mailt kaptam",
+      "reason3": "Nem iratkoztam fel ilyen e-mailekre",
+      "reason4": "Ezek az e-mailek nem aktuálisak számomra",
+      "reason5": "Az e-mail tartalma túl hosszú",
+      "reason6": "Egyéb",
+      "subtitle": "Sajnáljuk, hogy távozik! Kérjük, mondja el, hogy miért iratkozik le:",
+      "success": "A feliratkozást töröltük és hamarosan átirányítjuk a kezdőoldalra",
+      "title": "Leiratkozás"
+    }
+  },
   "footer": {
     "copyright": "Minden jog fenntartva.",
     "followus": "KÖVESSEN MINKET",
@@ -221,9 +542,24 @@
       "title": "Vigyázunk személyes adataira"
     }
   },
+  "general": {
+    "404": {
+      "button": "Folytasd a vásárlást",
+      "subtext": "A keresett oldal nem létezik.",
+      "title": "404 oldal nem található"
+    },
+    "general": {
+      "accept": "Elfogadás",
+      "decline": "Elutasítás",
+      "link": "Adatvédelmi szabályzatát",
+      "tips": "A felhasználói élmény javítása érdekében sütiket használunk a bejelentkezési adatok megjegyzéséhez, statisztikák gyűjtéséhez és az Ön érdeklődésére szabott tartalmak biztosításához. A sütik elfogadásához kattintson az „Elfogadás” gombra vagy tekintse meg az „Adatvédelmi szabályzatunkat”.",
+      "title": "Vigyázunk személyes adataira"
+    }
+  },
   "header": {
     "cart": "Az Ön kosara",
     "center": "Központ",
+    "emptyPlaceholder": "",
     "login": "Bejelentkezés",
     "logout": "Kijelentkezés",
     "navItemAll": "Összes",
@@ -367,6 +703,25 @@
           "title": "Rendelését visszaigazoltuk"
         }
       },
+      "orderstatus": {
+        "PayAmount": "fizetési összeget",
+        "ReceiverAccount": "fogadószámla",
+        "ReferenceNumber": "Referenciaszám",
+        "UploadTime": "feltöltési idő",
+        "action": {
+          "UploadVoucher": "Utalvány feltöltése"
+        },
+        "feedback": {
+          "CountLimit": "Legfeljebb 5 utalványt tölthet fel.",
+          "InvalidOrderNumber": "érvénytelen rendelési szám",
+          "SizeLimte": "Kérjük, töltsön fel JPG, PNG, GIF képeket 10 MB-on belül",
+          "SystemBusy": "a rendszer foglalt, próbálja újra később.",
+          "UploadFail": "Feltöltés sikertelen. Kérlek próbáld újra."
+        },
+        "notice": {
+          "UploadVoucher": "Kérjük, töltse fel a banki átutalásos utalványt és mi megerősítjük."
+        }
+      },
       "packages": {
         "amount": {
           "channel-surcharge": "Fizetési jutalék",
@@ -428,9 +783,24 @@
         "subscriptions-title": "Feliratkozások",
         "title": "Információ",
         "unshipped-order-num": "Feldolgozás alatt ({{num}} tétel)"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "A fizetés sikeresen átutalva",
+          "WaittingforPayment": "fizetésre vár"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "Megvan"
+          }
+        }
+      },
+      "taxFee": "Adó"
     },
     "help-tips": "Segítségre van szüksége? Kérjük, lépjen velünk kapcsolatba: {{email}}",
+    "includeTax": {
+      "totalLine": "Tartalmazza a {{price}} adót"
+    },
     "oms-status": {
       "arrived": "Megérkezett",
       "cancelled": "Szállítás törlése",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Érvénytelen",
       "already-paid": "Fizetve",
+      "authorized": "Felhatalmazott",
       "failed": "A fizetés sikertelen",
       "partial-payment": "Részben fizetve",
       "partial-refund": "Részben visszatérítve",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "Még nincs logisztikai és fizetési információ",
     "no-product-introduction": "Még nem történt meg a termék bevezetése",
     "previewLinkToast": "A hivatkozás előnézet nem támogatott",
+    "productTax": "tartalmazza az adót",
     "recentlyViewedProducts": "Nemrég megtekintett termékek",
     "recommendTitle": "Ezeket is tetszhetnek",
+    "skuLoadingTips": "Változat információinak betöltése, kérjük, várjon...",
     "tabPanel": {
       "comments": {
         "empty": "Még nincs termékértékelés",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "termék"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "Ebben a kategóriában nincs termék",
@@ -677,6 +1051,35 @@
     "sortName": "Rendezés:",
     "title": "Keresés"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Kép hozzáadása",
+      "didnot_bought_cannot_reviewed": "Sajnáljuk, még nem vásárolta meg ezt a terméket, ezért nem írhat értékelést",
+      "didnot_bought_sign_in_first": "A terméket megvásárló ügyfelek, értékelést írhatnak. Kérjük, először jelentkezzen be",
+      "enter_at_least_one_character": "Kérjük, írjon be legalább egy szót írjon be",
+      "error_submit_again": "A rendszerhiba miatt a értékelését nem tudjuk feldolgozni, kérjük, próbálja újra~",
+      "first_review": "Tegye közzé most az első hozzászólást",
+      "image_uploading": "Feltöltés. Kérjük, később küldje be",
+      "maximum_image_quantity": "Legfeljebb {{total}} képet adhat hozzá",
+      "maximum_image_size": "A kép maximális mérete {{size}} MB",
+      "no_review": "Még nincsenek hozzászólások",
+      "only_supports__image_format": "Csak a .jpg .jpeg .png .bmp fájl feltöltését támogatja",
+      "ratings": "Értékelések",
+      "sign_in": "BEJELENTKEZÉS",
+      "submit": "Elküldés",
+      "thanks_for_your_review": "Köszönjük az értékelést",
+      "write_a_review": "Írjon értékelést",
+      "write_a_review_for_the_product": "Kérjük, írjon értékelést erről a termékről"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Ennél a korlátozott terméknél a megengedett maximális mennyiség {{num}}",
+      "activity_toast_product__limit": "A vásárlás korlátozott {{stock}} promóciós termékre",
+      "activity_toast_title__limit": "Az alábbi termékek túllépik a vásárlási korlátot",
+      "go_to_amazon_by_link": "Vásároljon az Amazonon",
+      "go_to_rakuten_by_link": "Vásároljon a LOTTE-n",
+      "go_to_yahoo_by_link": "Vásároljon a Yahoo-n"
+    }
+  },
   "promotion": {
     "activity-benefit": "Esemény ajánlatok",
     "activity-introduction": "Esemény bemutatása",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "<italic>{{content}}</italic> kedvezmény <italic>{{condition}}</italic> darabra"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "Szerezzen {{offPercent}}% kedvezményt",
+            "unlocked": "{{offPercent}}% kedvezmény érhető el!"
+          },
+          "free": {
+            "locked": "Ingyenes tétel",
+            "unlocked": "Az ingyenes tétel elérhető!"
+          },
+          "unlocked": {
+            "tip": "Most termékkedvezményben részesülhet"
+          }
+        },
+        "threshold": "Vásároljon {{threshold}} értékben"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}} kedvezmény",
+      "copySuccessText": "A kuponkód másolása sikeres",
+      "copyText": "Másolás",
+      "freeShipping": "Ingyenes szállítás",
+      "threshold": "Rendelések {{threshold}} felett"
+    },
+    "autoCoupon": {
+      "shopMore": "Több"
+    },
     "bundle": {
       "saveTip": "Ha együtt vásárol, {{amount}} összeget takarít meg",
       "title": "Gyakran együtt vásárolják"
     },
     "customer-purchase-limit": "Vásárlási korlát {{count}} személyenként",
     "customer-purchase-limit-each-item": "{{count}} vásárlási korlátja termékenként és személyenként",
+    "discount-coupon-banner": {
+      "getCode": "Szerezzen promóciós kuponokat"
+    },
     "discount-coupon": {
       "applied": "Alkalmazott",
       "apply": "Alkalmaz",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "Óriási leárazás!",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "Vásároljon további {{threshold}} terméket, és az egyik terméket ingyen kapja",
+        "b11_t1_s1_normal": "Vásároljon további {{threshold}} terméket, és {{willSave}} KEDVEZMÉNYT kap valamelyik termékre",
+        "b11_t1_s2_free": "Gratulálunk! Az egyik terméket ingyen kapja",
+        "b11_t1_s2_next_free": "Gratulálunk! {{saved}} megtakarítás, {{br}} Vásároljon további {{threshold}} terméket, és az egyik terméket ingyen kapja",
+        "b11_t1_s2_normal": "Gratulálunk! {{saved}} megtakarítás, {{br}}Vásároljon további {{threshold}} terméket, és {{willSave}} KEDVEZMÉNYT kap valamelyik termékre",
+        "b11_t1_s3_free": "Gratulálunk! Az egyik terméket ingyen kapja",
+        "b11_t1_s3_normal": "Gratulálunk! {{saved}} kedvezményt kap valamelyik termékre",
+        "b1_t0_s1": "Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
+        "b1_t0_s2": "Már{{saved}} összeget takarított meg! {{br}}Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
+        "b1_t0_s3": "Gratulálunk! {saved}} összeget takarított meg!",
+        "b1_t1_s1": "Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
+        "b1_t1_s2": "Már{{saved}} összeget takarított meg! {{br}}Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
+        "b1_t1_s3": "Gratulálunk! {{saved}} összeget takarított meg!",
+        "b2_t0_s1": "Vásároljon további {{threshold}} összegben és {{willSave}} KEDVEZMÉNYT kap",
+        "b2_t0_s2": "Már{{saved}} összeget takarított meg! {{br}}Vásároljon további {{threshold}} összegben és {{willSave}} KEDVEZMÉNYT kap",
+        "b2_t0_s3": "Gratulálunk! {{saved}} összeget takarított meg!",
+        "b2_t1_s1": "Vásároljon további {{threshold}} összegben és {{willSave}} KEDVEZMÉNYT kap",
+        "b2_t1_s2": "Már{{saved}} összeget takarított meg! {{br}}Vásároljon további {{threshold}} összegben és {{willSave}} KEDVEZMÉNYT kap",
+        "b2_t1_s3": "Gratulálunk! {{saved}} összeget takarított meg!",
+        "b3_t0_s1_unlimited": "Vásároljon újra {{threshold}}-t, és kapjon <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span>!",
+        "b3_t0_s1_upper_limit": "Vásároljon újra {{threshold}}-t, és kapjon <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span>! (Maximális ingyenes szállítási összeg {{upperLimit}})",
+        "b3_t0_s3_unlimited": "Gratulálunk! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span> kapott!",
+        "b3_t0_s3_upper_limit": "Gratulálunk! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span> kapott! (Maximális ingyenes szállítási összeg {{upperLimit}})",
+        "b3_t1_s1_unlimited": "Vásároljon {{threshold}}-t, kapjon <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span>!",
+        "b3_t1_s1_upper_limit": "Vásároljon {{threshold}}-t, kapjon <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span>! (Maximális ingyenes szállítási összeg {{upperLimit}})",
+        "b3_t1_s3_unlimited": "Gratulálunk! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span> kapott!",
+        "b3_t1_s3_upper_limit": "Gratulálunk! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span> kapott! (Maximális ingyenes szállítási összeg {{upperLimit}})",
+        "b9_t1_s1": "Vegyen további {{threshold}} darabot, amelyből {{willSave}} darab ingyenes",
+        "b9_t1_s2": "Gratulálunk! {{saved}} darabot ingyen kapott! Vegyen további {{threshold}} darabot, amelyből {{willSave}} darab ingyenes",
+        "b9_t1_s3": "Gratulálunk! Ebből {{saved}} ingyenes"
+      },
+      "discount_tag": {
+        "b11_t1_free": "Vásároljon {{threshold}} terméket, és az egyik terméket ingyen kapja!",
+        "b11_t1_normal": "Vásároljon {{threshold}} terméket, és {{save}} KEDVEZMÉNYT kap valamelyik termékre",
+        "b1_t0": "Vásároljon {{threshold}} összegben és spóroljon {{save}}",
+        "b1_t1": "Vásároljon {{threshold}} összegben és {{save}} KEDVEZMÉNYT kap",
+        "b2_t0": "Vásároljon {{threshold}} összegben és spóroljon {{save}}",
+        "b2_t1": "Vásároljon {{threshold}} ÖSSZEGBEN ÉS {{save}} KEDVEZMÉNYT kap"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "Gratulálunk! Az egyik terméket ingyen kapja",
               "normal": "Gratulálunk! {{saved}} kedvezményt kap valamelyik termékre"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Gratulálunk, {{benefitCount}} tételt ingyen kap",
+                "normal": "Gratulálunk, {{benefitCount}} tételre {{willSave}} kedvezményt kap"
+              },
+              "free": "Vásároljon {{threshold}} értékben, és {{benefitCount}} tételt ingyen kap",
+              "normal": "Vásároljon {{threshold}} értékben, és {{benefitCount}} tételre {{willSave}} kedvezményt kap"
+            },
+            "step3": {
+              "free": "Gratulálunk! {{benefitCount}} tételt kapott ingyen!",
+              "normal": "Gratulálunk! {{benefitCount}} tételre {{saved}} kedvezményt kapott!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Gratulálunk, {{benefitCount}} tételt ingyen kap",
+                "normal": "Gratulálunk, {{benefitCount}} tételre {{willSave}} kedvezményt kap"
+              },
+              "free": "Vásároljon {{threshold}} tételt, és {{benefitCount}} tételt ingyen kap",
+              "normal": "Vásároljon {{threshold}} tételt, és {{benefitCount}} tételre {{willSave}} kedvezményt kap"
+            },
+            "step3": {
+              "free": "Gratulálunk! {{benefitCount}} tételt kapott ingyen!",
+              "normal": "Gratulálunk! {{benefitCount}} tételre {{saved}} kedvezményt kapott!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Fizetési mód",
     "pay-way-logo-and-more": "és több",
     "payment-security-description": "Minden tranzakció biztonságos és titkosított.",
+    "payments-name": {
+      "COD": "Készpénzben átvételkor",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "Hitelkártya"
+    },
     "pic-upload-fail": "A kép feltöltése nem sikerült {{name}}",
     "pick-address": "Feladás címe",
     "please-choose-area": "Kérjük, válasszon egy területet",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "A termék elfogyott",
     "product-tax": "Áru adó",
     "quantity": "MENNYISÉG",
+    "receiver-info": "Szállítási cím",
     "recieve-address-unavailable-rechoose": "Nem áll rendelkezésre szállítási mód a címzett címére. Kérjük, térjen vissza az újraválasztáshoz",
     "reciever-fullname": "A címzett teljes neve",
     "reciever-info": "Szállítási cím",
@@ -1230,6 +1741,24 @@
     "your-order-not-pay": "Még nem fizette ki a rendelését",
     "your-refund-order-created": "Leadta visszaküldési megrendelését"
   },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "Az kupon kód nem haladhatja meg a 25 karaktert",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} kupon érvényesíthető a szállítási módhoz",
+      "discount_code_invalid": "A {{discountCode}} helyesen van megadva, de az áru ára vagy mennyisége nem felel meg a követelményeknek",
+      "discount_codes_cannot_stack": "A termékhez már tartozik egy kedvezmény, amely nem használható fel másik kedvezménnyel együtt.",
+      "discounts_cannot_stack": "Kedvezményt adtunk erre a rendelésre. Nem adhat hozzá másik kedvezményt",
+      "enter_a_valid_discount_code": "A kedvezmény kódja hibásan van megadva",
+      "free_shipping": "ingyenes szállítás",
+      "order_seller_discount": "Eladói extra kedvezmény",
+      "order_tax": "Adó",
+      "order_tip": "Borravaló",
+      "payment_subtotal_cost": "Részösszeg",
+      "point_discount": "Pontkedvezmény",
+      "shipping_fee": "Szállítás",
+      "trade_coupon_discount": "Kupon"
+    }
+  },
   "user": {
     "account": "FIÓK",
     "code": "Ellenőrző kód",
@@ -1259,31 +1788,43 @@
     "signUp": "REGISZTRÁCIÓ",
     "subscription-text": "Iratkozzon fel e-mailekre, hogy értesítéseket kaphassak, exkluzív ajánlatokhoz férhessenek hozzá és még sok minden mást kaphassak.",
     "udbResponse": {
-      "err-1": "A paraméterek üresek",
-      "err-13": "stoken időtúllépés",
-      "err-4": "A paraméterek érvénytelenek",
-      "err-5": "Illegális működés",
-      "err-999": "Sikertelen távoli hívás",
+      "err-1": "Szolgáltatás kivételek",
+      "err-13": "Szolgáltatás kivételek",
+      "err-4": "Szolgáltatás kivételek",
+      "err-5": "Szolgáltatás kivételek",
+      "err-999": "Szolgáltatás kivételek",
       "err1001": "Jelszó hiba",
       "err1002": "A felhasználó nem létezik",
       "err1003": "Rendellenesség miatt fiókja le lett tiltva; kérjük, lépjen kapcsolatba a kereskedővel a tilalom feloldása érdekében",
-      "err1004": "Szöveges üzenetek küldése időpontokban",
+      "err1004": "Gyakori műveletek. Kérjük, később próbálja meg újra",
       "err1005": "Kód lejárt",
       "err1006": "Kód hiba",
-      "err1007": "Túl gyakori ellenőrző kód hiba",
-      "err1008": "A harmadik azonosító vagy csatorna nincs konfigurálva",
-      "err1009": "Harmadik fél megerősítése nem sikerült",
-      "err1010": "Szöveges üzenet/levél sablon megjelenítés nem sikerült",
-      "err1017": "A fiók veszélyben van",
+      "err1007": "Gyakran használja az ellenőrző kódot. Kérjük, kérjen újra ellenőrző kódot",
+      "err1008": "Bejelentkezés harmadik fél csatornáinak konfigurálása nélkül",
+      "err1009": "Nem sikerült felhívni harmadik fél interfészét",
+      "err1010": "Nem sikerült elküldeni",
+      "err1011": "A fiókszám nincs aktiválva",
+      "err1012": "Szolgáltatás kivételek",
+      "err1013": "Szolgáltatás kivételek",
+      "err1014": "Nem sikerült ellenőrizni az ellenőrző kódot",
+      "err1015": "Kérjük, ellenőrizze a dinamikus ellenőrző kódot",
+      "err1016": "Szolgáltatás kivételek",
+      "err1017": "A fiókszám veszélyben van",
+      "err1018": "A postafiók csatlakoztatva van",
+      "err1020": "Bejelentkezés időtúllépés",
+      "err1021": "Bejelentkezés időtúllépés",
+      "err1022": "A fiókszám csatlakoztatva van",
+      "err1023": "Szolgáltatás kivételek",
+      "err1024": "Szolgáltatás kivételek",
       "err2001": "A mobil regisztrálva van",
       "err2002": "Az email regisztrálva lett",
       "err2003": "Ne próbálkozzon ilyan gyakran",
       "err2004": "Kód lejárt",
       "err2005": "Kód hiba",
       "err2006": "Túl gyakori ellenőrzés, kérjük, kérjen másik kódot",
-      "err2007": "Szöveges üzenet/levél sablon megjelenítés nem sikerült",
+      "err2007": "Szolgáltatás kimaradás. Kérjük, később próbálja újra.",
       "err2016": "A fiók veszélyben van",
-      "err3001": "A cookie érvénytelen",
+      "err3001": "Szolgáltatás kimaradás. Kérjük, később próbálja újra.",
       "err3002": "Mobiltelefonhoz/postafiókhoz nem kötött felhasználók próbálják meg megváltoztatni a jelszavaikat",
       "err3003": "Ne próbálkozzon ilyan gyakran",
       "err3004": "Kód lejárt",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Fiók összekapcsolása",
-      "account-info": "Fiókadatok",
+      "account-info": "Fiók",
       "account-subscription-email": "Küldés e-mailbe",
       "account-subscription-line": "Küldés Line alkalmazásba",
       "account-subscription-messenger": "Küldés Messengerbe",
@@ -1310,7 +1851,9 @@
       "bind": "Összekapcsolás",
       "change-password": "Jelszó módosítása",
       "email": "E-mail",
+      "firstName": "Név",
       "general-member": "Átalános tag",
+      "lastName": "Vezetéknév",
       "member-level": "Tagsági szint",
       "memberLevelCom": {
         "defaultLevel": "Átalános tag",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "E-mail módosítása",
       "modify-phone": "Telefon módosítása",
+      "nicknameEmptyError": "Sem a keresztnév, sem a vezetéknév nem maradhat üres",
+      "notSet": "Nincs beállítva",
       "password": "Jelszó",
       "phone": "Mobiltelefon",
       "reset-password-error": "Kérjük, csatoljon e-mailt vagy a mobiltelefont",
       "subscription-notification": "Előfizetés értesítés",
       "unsubscribed": "Leiratkozva",
-      "username": "Felhasználónév",
-      "username-message": "Kérjük, adja meg felhasználónevét!",
-      "username-placeholder": "Kérjük, adja meg felhasználónevét"
+      "username": "Név",
+      "username-message": "Kéjük, adja meg a nevét",
+      "username-placeholder": "Kéjük, adja meg a nevét"
     },
     "address": {
       "add": "Új cím hozzáadása",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Megvásárolt termékek",
     "cancel": "MÉGSE",
+    "datePicker": {
+      "mobile": {
+        "cancel": "Mégse",
+        "confirm": "OK",
+        "title": "Dátum választás"
+      },
+      "pc": {
+        "clear": "Törlés",
+        "dateFormat": "yyyy-MM-dd",
+        "days0": "Vasárnap",
+        "days1": "Hétfő",
+        "days2": "Kedd",
+        "days3": "Szerda",
+        "days4": "Csütörtök",
+        "days5": "Péntek",
+        "days6": "Szombat",
+        "daysMin0": "V",
+        "daysMin1": "H",
+        "daysMin2": "K",
+        "daysMin3": "Sz",
+        "daysMin4": "Cs",
+        "daysMin5": "P",
+        "daysMin6": "Sz",
+        "daysShort0": "Va",
+        "daysShort1": "Hé",
+        "daysShort2": "Ke",
+        "daysShort3": "Sze",
+        "daysShort4": "Cs",
+        "daysShort5": "Pé",
+        "daysShort6": "Szo",
+        "firstDay": "1",
+        "months0": "Január",
+        "months1": "Február",
+        "months10": "November",
+        "months11": "December",
+        "months2": "Március",
+        "months3": "Április",
+        "months4": "Május",
+        "months5": "Június",
+        "months6": "Július",
+        "months7": "Augusztus",
+        "months8": "Szeptember",
+        "months9": "Október",
+        "monthsShort0": "Jan",
+        "monthsShort1": "Feb",
+        "monthsShort10": "Nov",
+        "monthsShort11": "Dec",
+        "monthsShort2": "Már",
+        "monthsShort3": "Ápr",
+        "monthsShort4": "Máj",
+        "monthsShort5": "Jún",
+        "monthsShort6": "Júl",
+        "monthsShort7": "Aug",
+        "monthsShort8": "Szep",
+        "monthsShort9": "Okt",
+        "timeFormat": "hh:mm aa",
+        "today": "Ma"
+      }
+    },
+    "deleteAccount": {
+      "address": "Cím",
+      "card": "Hitelkártya szám",
+      "deadline": "Üzleti jelentés céljából a rendelése továbbra is látható lesz. Az Ön fiókadatait a következő időpontban töröljük: {{time}}, a folyamatot ezen időpont előtt megszakíthatja",
+      "email": "E-mail",
+      "ip": "IP cím",
+      "name": "Név",
+      "nextStep": "Tovább",
+      "notify": "Kérheti a fiók lezárását. A lezárás után, a fiókot azonosító összes információt törölni fogjuk beleértve a következőket:",
+      "revoke": "Lezárás megszakítása",
+      "revokeMessage": "Ennek a fióknak a lezárása folyamatban van, az Ön fiókadatait a következő időpontban töröljük: {{time}}, a folyamatot ezen időpont előtt megszakíthatja",
+      "timeout": "A művelet időtúllépése, újraértékelése",
+      "title": "Fiók lezárása",
+      "verifyEmailMessage": "A fiók lezárása előtt ellenőriznünk kell személyazonosságát\nAz Ön e-mail-címére {{email}} küldünk egy ellenőrző e-mailt",
+      "verifyPhoneMessage": "A fiók lezárása előtt ellenőriznünk kell személyazonosságát\nAz Ön mobiltelefonjára {{phone}} küldünk egy ellenőrző üzenetet"
+    },
     "edit": "Szerkesztés",
     "editAddress": {
       "address1-message": "Kevesebb, mint 512 karakter!",
       "address2-message": "Kevesebb, mint 512 karakter!",
       "city-message": "Kérjük, válassza ki a várost!",
+      "common-max": "",
+      "common-min": "nagyobb, mint {{min}} karakter",
       "contact-message": "Kérjük, adja meg nevet!",
       "country-message": "Kérjük, válassza ki az országot!",
       "default": "Alapértelemzett cím beállítása",
@@ -1440,6 +2062,7 @@
     "save": "MENTÉS",
     "sign-out": "Kijelentkezés",
     "subscription": {
+      "desc": "Értesülhet az üzlet tevékenységéről szóló legújabb hírekről",
       "email": "E-mail",
       "line": "LINE",
       "messenger": "Messenger",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "Nem fog több marketing frissítést kapni tőlünk. Bármikor újra előfizethetsz"
+      "text": "Nem fog több marketing frissítést kapni tőlünk. Bármikor újra előfizethetsz",
+      "title": "Leiratkozott a(z) <italic>{{name}}</italic> levelezőlistáról"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Függőben lévő rendelés"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

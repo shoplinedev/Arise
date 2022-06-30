@@ -1,0 +1,58 @@
+{{ preload_state 'customer.orders' }}
+
+{{#partial 'head'}}
+  <link rel="stylesheet" href="{{assets_url 'customer/order/list/index.min.css'}}" />
+{{/partial}}
+
+{{#partial 'script'}}
+  <script src="{{assets_url 'customer/order/list/index.min.js'}}"></script>
+{{/partial}}
+
+{{!-- 个人中心公共布局 --}}
+{{#snippet 'customer/user-center-container' }}
+  {{!-- 订单列表主体 --}}
+  {{#with customer.orders}}
+    <div class="customer-order-list">
+      <main class="main-wrapper" role="main">
+        {{#if (length list)}}
+          {{#each list}}
+            {{include 'snippets/customer/order/list/sku-item' data=this}}
+          {{/each}}
+        {{else}}
+          {{!-- 无订单数据 --}}
+          <div class="empty">
+            <p class="empty-title">
+              {{t 'order.order-list.empty-tip'}}
+            </p>
+            <button class="btn btn-primary go-shipping-btn">
+              {{t 'trade.go-on-shopping' }}
+            </button>
+          </div>
+        {{/if}}
+      </main>
+      {{#if (length list)}}
+        <div class="load-more">
+          <div class="loading-container hide">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2" stroke="currentColor" stroke-width="3" />
+            </svg>
+          </div>
+        </div>
+
+        {{#if lastPage}}
+          <p class="no-more">
+            - {{t 'order.order-list.no-more'}} -
+          </p>
+        {{/if}}
+      {{/if}}
+
+    </div>
+  {{/with}}
+
+{{/snippet}}
+
+<script>
+    window.__I18N__ = window.__I18N__ || {};
+    window.__I18N__['order'] = {{{ JSONstringify (t 'order') }}};
+    window.__I18N__['trade'] = {{{ JSONstringify (t 'trade') }}};
+</script>

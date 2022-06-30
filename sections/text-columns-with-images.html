@@ -1,4 +1,3 @@
-{{ assign 'data' (getTextColumnList section.blocks section.block_order) }}
 {{ assign 'image_width' section.settings.image_width }}
 {{ assign 'image_ratio' section.settings.image_ratio }}
 {{ assign 'text_align' section.settings.text_align }}
@@ -13,6 +12,13 @@
 
 {{ assign 'noSpacing' 'false' }}
 
+{{ assign 'pcCols' section.settings.pc_cols }}
+{{ assign 'mdCols' section.settings.md_cols }}
+{{!-- 如果只配置了一个block 无视配置的列数，永远一列 --}}
+{{#if (boolean (length blocks) '==' 1)}}
+  {{ assign 'pcCols' 1 }}
+  {{ assign 'mdCols' 1 }}
+{{/if}}
 {{ assign 'image_style' 'square' }}
 {{#if image_ratio '===' 'circle'}}
   {{ assign 'image_style' 'round' }}
@@ -22,6 +28,16 @@
 {{#and (boolean color_scheme '===' 'none') (boolean (isFalsey show_block_bg))}}
   {{ assign 'noSpacing' 'true' }}
 {{/and}}
+
+{{!-- 有 border 的时候强制增加 padding --}}
+{{#and (boolean theme.settings.content_border_thickness '>=' 1)}}
+{{ assign 'noSpacing' 'false' }}
+{{/and}}
+
+{{!-- 有 shadow 的时候强制增加 padding --}}
+{{#if (boolean theme.settings.content_shadow_opacity '>=' 1)}}
+{{ assign 'noSpacing' 'false' }}
+{{/if}}
 
 {{ inline_stylesheet 'text-columns-with-images/index.min.css' }}
 
@@ -34,7 +50,9 @@
 </script>
   
 
-<div class="text-columns-with-images   
+{{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='content' }}
+
+<div class="text-columns-with-images __sl-custom-track-stage-textColumnsWithImages
   color-scheme-{{ color_scheme }}
   section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}
   "
@@ -42,9 +60,9 @@
     data-section-id="{{ section.id }}"
     >
     {{ snippet 'texture' color_scheme=section.settings.color_scheme width='200' }}
-    <div class="container color-scheme-{{ color_scheme }} g-md-5 
-        {{#if show_touch}} g-0 
-        {{else}}{{#if show_block_bg}} g-2 
+    <div class="container color-scheme-{{ color_scheme }} g-md-5
+        {{#if show_touch}} g-0
+        {{else}}{{#if show_block_bg}} g-2
         {{else}} g-4
         {{/if}}{{/if}}
       "
@@ -52,72 +70,51 @@
         {{#if section.settings.title}}
             <div class="text-columns-with-images__title section-title title4 text-center">{{ section.settings.title }}</div>
         {{/if}}
-
-        {{!-- pc --}}
-        <div class="d-none d-md-block">                               
-            {{#if data.wrapNum '!==' 0}}
-                <div class="text-columns-with-images__wrapper text-columns-with-images__wrapper--center row row-cols-1 row-cols-md-{{ data.rowNum }} row-cols-lg-{{ data.rowNum }}">
-                    {{#each data.rowList}}
-                        {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}
-                    {{/each}}
-                </div>
-                <div class="text-columns-with-images__wrapper text-columns-with-images__wrapper--center row row-cols-1 row-cols-md-{{ data.wrapNum }} row-cols-lg-{{ data.rowWrap }}">
-                    {{#each data.wrapList}}
-                        {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}
-                    {{/each}}
-                </div>
-            {{else}}
-                <div class="text-columns-with-images__wrapper text-columns-with-images__wrapper--center row row-cols-1 row-cols-md-{{ data.rowNum }} row-cols-lg-{{ data.rowNum }}">
-                    {{#each data.rowList}}
-                        {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}
-                    {{/each}}
-                </div>
-            {{/if}}
-                {{!-- {{ snippet 'text-columns-with-images-item'                 
-                  image_style=../image_style 
-                  image_width=../image_width 
-                  image_ratio=../image_ratio 
-                  noSpacing=../noSpacing 
-                  showMask=../show_block_bg
-                  color_scheme=../color_scheme
-                  text_align=../text_align
-                  jump_link=../jump_link
-                }}          --}}
+        {{ assign 'isMobileRowsMode' false }}
+        {{#and (isFalsey show_touch) (boolean mdCols '==' 2)}} 
+          {{ assign 'isMobileRowsMode' true }}
+        {{/and}}
+        {{ assign 'container-wrapper-cls' '' }}
+        {{#if (isFalsey show_block_bg)}} 
+          {{ assign 'container-wrapper-cls' 'mobile-rows-no-mask' }}
+        {{/if}}
+          <div class="{{#if show_touch}}d-none d-md-flex{{/if}} text-columns-with-images__wrapper row row-cols-{{ mdCols }} row-cols-md-{{ pcCols }}" style="{{#if (boolean pcCols '==' 1)}}justify-content:center;{{/if}}">                                  
+            {{#each blocks}}
+              <div class="text-columns-with-images__inner d-none d-md-flex">
+                {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align }}
+              </div>
+              
+              <div class="text-columns-with-images__inner d-md-none d-block {{ ../container-wrapper-cls }}">                
+                {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align isMobileRowsMode=../isMobileRowsMode }}
+              </div>  
+            {{/each}}
           </div>
 
-        {{!-- mobile --}}
-        {{#if show_touch}}
+          {{#if show_touch}}
           <div class="d-md-none">
             <div class="swiper-container text-columns-images-swiper-container" data-no-spacing="{{ noSpacing }}" style="width: 100%;">
               <div class="swiper-wrapper">
                 
-                  {{#each blocks}}            
+                  {{#each blocks}}
                   <div class="swiper-slide">
-                    {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}    
-                  </div>                            
+                    {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}
+                  </div>
                   {{/each}}
-                
-              </div>        
-              <div class="pagination"></div>       
-            </div>     
-            
-          </div>    
-        {{else}}
-          <div class="d-md-none">
-            <div class="text-columns-with-images__wrapper d-flex">
-            {{#each blocks}}            
-              {{ snippet 'text-columns-with-images-item' classes='test' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align }}            
-            {{/each}}
-            </div>                    
+
+              </div>
+              <div class="pagination"></div>
+            </div>
+
           </div>
-        {{/if}}
+          {{/if}}
+
         {{ assign 'linkObj' (useLink jump_link) }}
-        {{#if (trim button_text)}} 
-          <div class="text-columns-with-images__control">
+        {{#if (trim button_text)}}
+          <div class="text-columns-with-images__control {{#and (isTruthy isMobileRowsMode) (isFalsey show_block_bg)}}no-margin-top{{/and}}">            
             <a {{{ linkObj.hrefAttr }}}  class="btn btn-primary fw-bold ">{{ button_text }}</a>
           </div>
         {{/if}}
-        
+
     </div>
 </div>
 
@@ -177,6 +174,15 @@
       ]
     },
     {
+      "id": "pc_cols",
+      "type": "range",
+      "label": "t:sections.text-columns-with-images.settings.pc_cols.label",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
       "id": "text_align",
       "type": "text_align",
       "label": "t:sections.text-columns-with-images.settings.text_align.label",
@@ -215,6 +221,22 @@
       "id": "jump_link",
       "type": "url",
       "label": "t:sections.text-columns-with-images.settings.jump_link.label"
+    },
+    {
+      "id": "md_cols",
+      "type": "select",
+      "label": "t:sections.text-columns-with-images.settings.md_cols.label",
+      "default": 1,
+      "options": [
+        {
+          "value": 1,
+          "label": "t:sections.text-columns-with-images.settings.md_cols.options__0.label"
+        },
+        {
+          "value": 2,
+          "label": "t:sections.text-columns-with-images.settings.md_cols.options__1.label"
+        }
+      ]
     },
     {
       "id": "show_touch",
@@ -333,7 +355,9 @@
         "button_text": "Button",
         "jump_link": "",
         "show_touch": false,
-        "color_scheme": "none"
+        "color_scheme": "none",
+        "pc_cols": 3,
+        "md_cols": 1
       }
     }
   ]

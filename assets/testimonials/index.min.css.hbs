@@ -43,6 +43,7 @@ input{
 
 .testimonials__arrow--text{
   color:{{ theme.settings.color_text }};
+  display:inline-block;
 }
 .color-scheme-1 .testimonials__arrow--text,[data-color-scheme="1"] .testimonials__arrow--text{
   color:{{ rgba  theme.settings.color_scheme_1_text  1 }};
@@ -57,11 +58,13 @@ input{
 }
 
 .testimonials__arrow--left{
-  color:{{ theme.settings.color_text }};
   margin-right:23px;
 }
-.testimonials__arrow--right{
+.testimonials__arrow--left,.testimonials__arrow--right{
   color:{{ theme.settings.color_text }};
+  display:inline-block;
+}
+.testimonials__arrow--right{
   margin-left:23px;
 }
 .testimonials__arrow--disabled{

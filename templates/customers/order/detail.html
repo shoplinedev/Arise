@@ -1,0 +1,33 @@
+{{ preload_state 'customer.order' }}
+
+{{#partial 'head'}}
+  <link rel="stylesheet" href="{{assets_url 'customer/order/detail/index.min.css'}}" />
+{{/partial}}
+
+{{#partial 'script'}}
+  <script src="{{assets_url 'customer/order/detail/index.min.js'}}"></script>
+{{/partial}}
+
+<div class="customer-order-detail">
+  {{snippet 'customer/order/detail/breadcrumb'}}
+  <main class="main-wrapper" role="main">
+    {{#with customer.order}}
+      <div class="detail-status-bar"></div>
+      {{snippet 'customer/order/detail/information'}}
+      {{snippet 'customer/order/detail/orders-package-list' ordersPackageList=ordersPackageList unshippedItemInfo=unshippedItemInfo }}
+      {{section 'customer/order/detail/summations' pageData=this pageType="orderDetail" settleSumAmount=settleSumAmount }}
+      {{snippet 'customer/order/detail/payment' pageData=this}}
+      {{#if otherInfo.buyerRemark}}
+        {{snippet 'customer/order/detail/order-remark' content=otherInfo.buyerRemark}}
+      {{/if}}
+      {{snippet 'customer/order/detail/contact-us'}}
+    {{/with}}
+  </main>
+</div>
+
+<script>
+    window.__I18N__ = window.__I18N__ || {};
+    window.__I18N__['order'] = {{{ JSONstringify (t 'order') }}};
+    window.__I18N__['trade'] = {{{ JSONstringify (t 'trade') }}};
+    window.__I18N__['payments-name'] = {{{ JSONstringify (t 'payments-name') }}};
+</script>

@@ -1,0 +1,21 @@
+{{ assign 'classes' (arrayify class)}}
+
+{{#if (isTruthy block)}}
+  {{ array-push classes 'col-24'}}
+{{/if}}
+
+{{#if (isTruthy ghost)}}
+  {{ array-push classes 'sl-btn--ghost'}}
+{{/if}}
+
+{{#if (isTruthy link)}}
+  {{ array-push classes 'btn-link'}}
+{{/if}}
+
+{{#if (isTruthy loading)}}
+  {{ array-push classes 'btn--loading'}}
+{{/if}}
+
+<button class="sl-btn btn btn-primary {{join classes ' '}}" {{{attrs}}}>
+  {{ slot_content }}
+</button>

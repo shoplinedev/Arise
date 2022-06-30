@@ -29,7 +29,7 @@
 	{{#if global.currency_selector}}
 		<div class="locale-currency {{#if is_dropdown}}is_dropdown{{/if}}" data-position={{position}} data-currency>
 			<div class="dropdown__disclosure">
-				<button class="j-stage-currency" type="button">
+				<button class="j-stage-currency __sl-custom-track-stage-currency" type="button">
 					<span class="body5 notranslate">{{#if global.show_currency_symbol}}{{global.initialCurrency.currencySymbol}}{{/if}} {{global.initialCurrency.currencyCode}}</span>
 					{{ snippet 'icons/icon_arrow_down' classes="dropdown__icon--arrow" }}
 				</button>
@@ -67,7 +67,7 @@
 	{{#if global.locale_selector}}
 		<div class="locale-currency notranslate {{#if is_dropdown}}is_dropdown{{/if}}" data-locale data-position={{position}}>
 			<div class="dropdown__disclosure">
-				<button class="j-stage-locale" type="button">
+				<button class="j-stage-locale __sl-custom-track-stage-locale" type="button">
 					<span class="body5">{{nameOfLocale global.request.locale}}</span>
 					{{ snippet 'icons/icon_arrow_down' classes="dropdown__icon--arrow"}}
 				</button>

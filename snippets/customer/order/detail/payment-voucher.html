@@ -1,0 +1,13 @@
+{{! 是否已上传过凭证}}
+{{assign 'has_upload_payment_voucher' (boolean customer.order.basicInfo.voucherInfoList '&&' (boolean customer.order.basicInfo.voucherInfoList.length '>' 0))}}
+{{!assign 'has_upload_payment_voucher' true}}
+{{! 是否支付成功}}
+{{assign 'pay_success' (boolean customer.order.basicInfo.bizPayStatus '===' 200)}}
+{{!assign 'pay_success' true}}
+{{! 支付成功 || 状态为不需要上传 || (已上传 && 上传图片数>=5张)时不展示上传按钮}}
+{{assign 'no_need_to_upload' (boolean pay_success '||' (boolean customer.order.basicInfo.voucherStatus '===' 0) '||' (boolean customer.order.basicInfo.voucherInfoList '&&' (boolean customer.order.basicInfo.voucherInfoList.length '>=' 5)))}}
+{{!assign 'no_need_to_upload' false}}
+<span data-has_upload_payment_voucher="{{has_upload_payment_voucher}}" data-no_need_to_upload="{{no_need_to_upload}}"></span>
+{{#or has_upload_payment_voucher (not no_need_to_upload)}}
+    {{snippet 'customer/order/detail/payment-voucher-content' dataList=customer.order.basicInfo.voucherInfoList paySuccess=pay_success noNeedToUpload=no_need_to_upload url=customer.order.basicInfo.paymentVoucherInfo.url description=customer.order.basicInfo.paymentVoucherInfo.description}}
+{{/or}}

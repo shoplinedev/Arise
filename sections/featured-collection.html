@@ -51,32 +51,20 @@ collection_products:
 {{/if}}
 {{ assign 'showButton' (and (isTruthy button_text) (boolean listLength '>=' products_num)) }}
 
-{{ assign 'full_item' '' }}
-{{#and (boolean listLength '<' 5)}}
-{{ assign 'full_item' 'fc-fix-full-item' }}
-{{/and}}
-
-<div class="{{ prefix }} {{ prefix }}-{{ section.id }}" data-slice_in_mobile="{{ section.settings.slice_in_mobile }}">
+<div class="__sl-custom-track-stage-featuredCollection {{ prefix }} {{ prefix }}-{{ section.id }}" data-slice_in_mobile="{{ section.settings.slice_in_mobile }}">
   <div class='container {{ prefix }}--container'>
     {{#if title}}
       <h2 class="section-title title4 {{ prefix }}__title text-center">{{ title }}</h2>
     {{/if}}
     <div class="{{ prefix }}__list">
       <div 
-       class="{{ prefix }}__list-container length-{{ listLength }} {{#if slice_in_mobile}} slice_in_mobile{{/if}} {{ full_item }}">
+       class="row row-cols-{{ section.settings.md_cols }} row-cols-md-{{ section.settings.pc_cols }} {{ prefix }}__list-container {{#if slice_in_mobile}} slice_in_mobile{{/if}}">
         {{#each list}}
           <div class='{{ ../prefix }}__item-wrap'>
-            {{ assign 'pcSize' '1/4' }}
-            {{ assign 'padSize' '1/5' }}
-            {{#and (boolean ../listLength '<' 5)}}
-              {{ assign 'pcSize' (append '1/' ../listLength) }}
-              {{ assign 'padSize' (append '1/' ../listLength) }}
-            {{/and}}
-            {{ assign 'imgsizes' (append '(max-width: 749px) 200px,(max-width: 959px) calc(100vw * ' pcSize '),(min-width: 960px) calc(100vw * ' padSize '),(min-width: 1480px) calc(100vw * ' padSize ')') }}
             {{#if ../forbiddenBtn}}
-              {{ snippet 'product/commons/product-item' section=../section sizes=imgsizes padSize=padSize pcSize=pcSize mSize='200px' hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width backgroundColor='#f3f3f3' }} 
+              {{ snippet 'product/commons/product-item' moduleType='featured-collection' section=../section hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width backgroundColor='#f3f3f3' }} 
             {{else}}
-              {{ snippet 'product/commons/product-item' section=../section sizes=imgsizes padSize=padSize pcSize=pcSize mSize='200px' hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width }}
+              {{ snippet 'product/commons/product-item' moduleType='featured-collection' section=../section hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width }}
             {{/if}}
           </div>
         {{/each}}
@@ -123,6 +111,31 @@ collection_products:
       "max": 12,
       "step": 2,
       "default": 4
+    },
+    {
+      "id": "pc_cols",
+      "type": "range",
+      "label": "t:sections.featured-collection.settings.pc_cols.label",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "id": "md_cols",
+      "type": "select",
+      "label": "t:sections.featured-collection.settings.md_cols.label",
+      "options": [
+        {
+          "value": 1,
+          "label": "t:sections.featured-collection.settings.md_cols.options__0.label"
+        },
+        {
+          "value": 2,
+          "label": "t:sections.featured-collection.settings.md_cols.options__1.label"
+        }
+      ],
+      "default": 2
     },
     {
       "id": "slice_in_mobile",
@@ -201,6 +214,8 @@ collection_products:
         "title": "Featured collection",
         "product_categories": "",
         "products_num": 4,
+        "pc_cols": 4,
+        "md_cols": 2,
         "slice_in_mobile": true,
         "button_text": "View all",
         "product_image_ratio": "0",

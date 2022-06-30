@@ -2,7 +2,9 @@
   <title>{{ activity.defaultActivityName }} - {{ storeInfo.name }}</title>
 {{/partial}}
 
-{{ assign 'activitySeo' (JSONparse activity.defaultSeo) }}
+{{#if activity.defaultSeo}}
+  {{ assign 'activitySeo' (JSONparse activity.defaultSeo) }}
+{{/if}}
 {{#partial 'seo-meta'}}
   {{!-- 下面的变量命名需要保持一致 具体参数参考下方参数 --}}
   {{ assign 'ogTitle' activitySeo.title }}
@@ -13,7 +15,7 @@
   {{else}}{{#if page_image}}
     {{ assign 'image' page_image }}
   {{else}}
-    {{ assign 'image' theme.settings.checkout_image.url }}
+    {{ assign 'image' theme.settings.co_checkout_image.url }}
   {{/if}}{{/if}}
   {{ assign 'seoTitle' (append activitySeo.title ' - ' storeInfo.name) }}
   {{ assign 'seoDescription' (default activitySeo.desc '') }}

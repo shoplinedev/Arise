@@ -16,6 +16,7 @@
 {{!-- 分类图片处理 --}}
 {{assign 'product' (default (itemAt _sortation.productList 0) (JSONparse '{}'))}}
 {{assign 'productImage' (itemAt product.imageList 0)}}
+{{assign 'productImageAlt' (itemAt product.altList 0)}}
 {{assign 'sortationImage' sortationData.sortationCoverImg}}
 {{#if (is gridImage 'product')}}
   {{assign 'sortationCoverImg' (cond productImage productImage sortationImage)}}
@@ -24,6 +25,8 @@
 {{/if}}
 
 {{assign 'titleColor' (default titleColor theme.settings.color_text)}}
+
+{{assign 'sortationCoverImgAlt' (cond sortationData.sortationCoverImgAlt sortationData.sortationCoverImgAlt productImageAlt)}}
 {{!-- /分类图片处理 --}}
 {{assign 'defaultImg' (split 'https://img.myshopline.com/image/shopline/ff8b7961d80d4f3db2329083ea5872c5.png,https://img.myshopline.com/image/shopline/e034d68bed0940e48221f9689aba4851.png,https://img.myshopline.com/image/shopline/b46b403a492046b490d239399ae2744a.png' ',')}}
 {{assign 'randomIndex' (random 0 2)}}
@@ -31,22 +34,24 @@
 {{assign 'imageRatio' (default imageRatio '100') }}
 {{assign 'imageFit' (default imageFit 'cover') }}
 
-<a data-sortation-id="{{_sortation.sortationId}}" class="collection-item col"
+
+<a data-sortation-id="{{_sortation.sortationId}}" class="__sl-custom-track-collection-item collection-item col"
   href="{{#if (isFalsey _sortation.uniqueKey) }}javascript:;{{else}}/collections/{{ _sortation.uniqueKey }}{{/if}}">
-  <div class="collection-item-image-wrapper" {{#if (is gridShape 'circle')}}style="border-radius: 50%;"{{/if}}>
+  <div class="collection-item-image-wrapper {{#if (is gridShape 'circle')}}collection-item-image-wrapper-circle{{/if}}" >
     <div class="collection-item-image">
       {{snippet
         'product/commons/product-process-image'
         imageRatio=imageRatio
         imageFit=imageFit
         src=(cond sortationCoverImg sortationCoverImg 'xxx')
+        alt=sortationCoverImgAlt
         fallbacksSrc=(itemAt defaultImg randomIndex)
         fallbacksBgColor="#f3f3f3"
         imagePosition=(join (split bgDisplayPosition '_') ' ')
       }}
     </div>
   </div>
-    <div class="collection-item-under-title body3" style="font-weight: 600;color: {{titleColor}}">
+    <div class="collection-item-under-title body3" style="color: {{titleColor}}">
       {{#if (isTruthy showTitle)}}
         {{showTitle}}
       {{else}}

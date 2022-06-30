@@ -1,0 +1,54 @@
+{{ assign 'currentActivityInfoItem' (itemAt activityCustomInfo 0)}}
+{{! 优惠券样式2}}
+<div class="d-flex sales-discount-coupon-card2__container sales-discount-coupon-hook" data-discount-code="{{discountCode}}">
+  <div class="d-flex sales-discount-coupon-card2__left">
+    <div class="sales-discount-coupon-card2__left-bg">
+      <svg  width="100%" height="100%" viewBox="0 0 199 96" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M0 0H199V96H0V94C2.20914 94 4 92.2091 4 90C4 87.7909 2.20914 86 0 86V82C2.20914 82 4 80.2091 4 78C4 75.7909 2.20914 74 0 74V70C2.20914 70 4 68.2091 4 66C4 63.7909 2.20914 62 0 62V58C2.20914 58 4 56.2091 4 54C4 51.7909 2.20914 50 0 50V46C2.20914 46 4 44.2091 4 42C4 39.7909 2.20914 38 0 38V34C2.20914 34 4 32.2091 4 30C4 27.7909 2.20914 26 0 26V22C2.20914 22 4 20.2091 4 18C4 15.7909 2.20914 14 0 14V10C2.20914 10 4 8.20914 4 6C4 3.79086 2.20914 2 0 2V0Z"
+          fill="white" />
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M0 0H199V96H0V94C2.20914 94 4 92.2091 4 90C4 87.7909 2.20914 86 0 86V82C2.20914 82 4 80.2091 4 78C4 75.7909 2.20914 74 0 74V70C2.20914 70 4 68.2091 4 66C4 63.7909 2.20914 62 0 62V58C2.20914 58 4 56.2091 4 54C4 51.7909 2.20914 50 0 50V46C2.20914 46 4 44.2091 4 42C4 39.7909 2.20914 38 0 38V34C2.20914 34 4 32.2091 4 30C4 27.7909 2.20914 26 0 26V22C2.20914 22 4 20.2091 4 18C4 15.7909 2.20914 14 0 14V10C2.20914 10 4 8.20914 4 6C4 3.79086 2.20914 2 0 2V0Z"
+          fill="currentColor" />
+      </svg>
+    </div>
+    {{#if __customThresholdText}}
+      <div class="sales-discount-coupon-card2__threshold">
+        {{noTranslationHTML __customThresholdText}}
+      </div>
+    {{/if}}
+    {{#if __customDiscountText}}
+      <div class="sales-discount-coupon-card2__discount {{#if benefitType '===' 3}}sales-discount-coupon-card2__discount--bold{{/if}}">
+        {{noTranslationHTML __customDiscountText}}
+      </div>
+    {{/if}}
+    {{#if prerequisiteShippingPriceRange '>' 0}}
+      <div class="sales-discount-coupon-card2__below">
+        {{noTranslationHTML __customShippingPriceRangeText}}
+      </div>
+    {{/if}}
+    {{#if targetUserType}}
+      {{#if targetUserType '==' 6}}
+        <div class="sales-discount-coupon-card2__customers">{{t 'sales.discount-coupon.coupon-content.specified'}}</div>
+      {{else}}
+        {{#if targetUserType '==' 5}}
+          <div class="sales-discount-coupon-card2__customers">{{t 'sales.discount-coupon.coupon-content.specified'}}</div>
+        {{else}}
+          {{#if targetUserType '==' 2}}
+            <div class="sales-discount-coupon-card2__customers">{{t 'sales.discount-coupon.coupon-content.level' level=currentActivityInfoItem.level}}</div>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    {{/if}}
+    {{#if endTime}}
+      <div class="sales-discount-coupon-card2__expire">
+        {{t 'sales.discount-coupon.coupon-content.until' endTime=(dayjs method='format' init=endTime format='MMM D,YYYY') }}
+      </div>
+    {{/if}}
+  </div>
+  <div class="sales-discount-coupon-card2__right d-flex">
+    <div class="sales-discount-coupon-card2__code-name notranslate">{{discountCode}}</div>
+    <div class="text-uppercase fw-bold sales-discount-coupon-card2__button sales-discount-coupon-card-btn-hook" data-apply="{{t 'sales.discount-coupon.apply'}}"
+      data-applied="{{t 'sales.discount-coupon.applied'}}">{{t 'sales.discount-coupon.apply'}}</div>
+  </div>
+</div>

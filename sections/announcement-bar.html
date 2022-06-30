@@ -31,7 +31,7 @@
         {{#if (isTruthy settings.notice_link_text)}}
           <div class="announcement-swiper-slide color-scheme-{{ settings.notice_style }}">
             {{ assign 'linkItem' (useLink settings.notice_link request.uri.query) }}
-            <div class="container body4 {{#if linkItem.finalSrc}}announcement-haslink{{/if}}">
+            <div class="__sl-custom-track-stage-header-announcementItem container body4 {{#if linkItem.finalSrc}}announcement-haslink{{/if}}">
               <a {{{ linkItem.hrefAttr }}} class="announcement__text">{{ settings.notice_link_text }}</a>
             </div>
           </div>

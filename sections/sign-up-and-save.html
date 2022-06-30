@@ -15,10 +15,9 @@
   {{/is_modern_browser}}
 </script>
   
-<div class="stage-newsletter">
+<div class="stage-newsletter __sl-custom-track-stage-newsletter" data-section-type="sign-up-and-save" data-section-id="{{ section.id }}">
     <div class="section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}} container{{#if show_newsletter_full}}-fluid{{/if}} color-scheme-{{ color_scheme }}">
       <div class="newsletter">
-          <div class="newsletter__backgroundMask"></div>
           {{#each blocks}}
             {{#if (trim type) '===' 'title'}}
               <div class="newsletter__title">
@@ -30,9 +29,11 @@
             {{/if}}
             {{#if (trim type) '===' 'button'}}
               <div class="newsletter__btnGroup">
-                <input class="newsletter__input" placeholder="{{ settings.placeholder }}"></input>
+                <div class="newsletter__input--wrapper">
+                  <input class="newsletter__input __sl-custom-track-stage-newsletter-input" placeholder="{{ settings.placeholder }}"></input>
+                </div>
               
-                <button class="newsletter__btn btn btn-primary fw-bold {{#isFalsey (trim settings.button_text)}}has-icon{{/isFalsey}}">
+                <button class="__sl-custom-track-stage-newsletter-button newsletter__btn btn btn-primary fw-bold {{#isFalsey (trim settings.button_text)}}has-icon{{/isFalsey}}">
                   <span>{{ settings.button_text }}</span>
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <rect x="1.5" y="3.5" width="17" height="13" rx="0.5" />

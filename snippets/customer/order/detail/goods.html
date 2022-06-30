@@ -1,0 +1,49 @@
+{{!-- TODO: hbs 这里包含了商品列表和物流信息，应该改成package才对 --}}
+<div class="detail-goods">
+  {{#if unshippedItemInfo}}
+    <div class="detail-status">
+      {{t 'order.detail.packages.unshipped-order-num' num=unshippedItemInfo.productSumNum}}
+    </div>
+    {{#if unshippedItemInfo.unShippedItemList}}
+      {{#each unshippedItemInfo.unShippedItemList}}
+        <div class="goods-item">
+          {{snippet 'customer/order/detail/goods-item' productInfo=this }}
+        </div>
+      {{/each}}
+    {{/if}}
+  {{else}}
+    {{#if ordersItemList}}
+      <div class="detail-status">
+        {{t 'order.order-list.package-item' item=productSumNum num=(add index 1) }}
+      </div>
+    {{/if}}
+    <!-- 物流信息 -->
+    {{#if expressCode}}
+      <div class="detail-logistic">
+        <div class="detail-logistic-number">
+          {{expressCompany}} #{{expressCode}}
+        </div>
+        <div>
+          <button class="detail-logistic-track btn btn-outline-primary btn-sm" data-index="{{index}}">
+            {{t 'order.order-list.track'}}
+          </button>
+        </div>
+      </div>
+    {{else}}
+      <div class="detail-logistic">
+        <div>
+          <button class="detail-logistic-track btn btn-outline-primary btn-sm" data-index="{{index}}">
+            {{t 'order.order-list.track'}}
+          </button>
+        </div>
+      </div>
+    {{/if}}
+    {{#if ordersItemList}}
+      {{#each ordersItemList}}
+        <div class="goods-item">
+          {{snippet 'customer/order/detail/goods-item' productInfo=this }}
+        </div>
+      {{/each}}
+    {{/if}}
+  {{/if}}
+</div>

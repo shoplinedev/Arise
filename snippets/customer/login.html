@@ -1,0 +1,89 @@
+{{ assign 'id' (default id 'customer-login')}}
+{{!-- showType: page 页面，modal 弹窗 --}}
+{{ assign 'showType' (default showType 'page')}}
+
+{{ preload_state 'customer_address' }}
+{{ preload_state 'shop' }}
+
+{{ assign 'thirdParty' shop.store_register_config.thirdLoginConfigVos}}
+
+{{!-- 弹窗链接跳转不带参数 --}}
+{{ assign 'search' (cond (eq showType 'page') (get 'search' (urlParse request.uri.url)) '')}}
+
+<div class="customer sign-in" data-track-page="128" id="{{ id }}">
+  <h2 class="customer__title">{{t 'user.signIn'}}</h2>
+  <p class="sign-in__has-registered"></p>
+
+  <form class="customer__form">
+    {{snippet 'customer/form-item/username' types=(split shop.store_register_config.types ',') }}
+
+    {{#formItem "password" "class='customer__form-item'"}}
+      {{#snippet
+        'customer/base/sl-input'
+        attrs='autocomplete="new-password" maxlength="255"'
+        name="password"
+        type="password"
+        placeholder=(t 'user.password')
+        class="form-item--password"
+      }}
+        {{#child 'suffix'}}
+          {{snippet 'icons/icon_close_eye'}}
+        {{/child}}
+      {{/snippet}}
+    {{/formItem}}
+
+    <p class="customer__error"></p>
+
+    {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button" block=true attrs="type='button'" }}
+      {{t 'user.signIn'}}
+    {{/snippet}}
+  </form>
+
+  <div class="sign-in__buttons" data-track-module="-999" data-track-action_type="102">
+    <a class="__sl-track_click" data-track-eventid="1031" data-track-component="125" href="/user/passwordNew{{{search}}}">{{t 'tips.forget-password'}}?</a>
+
+    {{#if showType 'page'}}
+      {{!-- 弹窗不显示这个跳转链接 --}}
+      <a class="__sl-track_click" data-track-eventid="1032" data-track-component="126" href="/user/signUp{{{search}}}">{{t 'tips.register' }}</a>
+    {{/if}}
+  </div>
+
+  {{!-- 第三方登录 --}}
+  {{#if (isTruthy thirdParty)}}
+    <div class="sign-in__third">
+      <div class="sign-in__divid">
+        <span>{{t 'tips.or-use-the-following-method-to-log-in'}}</span>
+      </div>
+
+      <div class="sign-in__third-buttons">
+        {{ assign 'types' (split shop.store_register_config.types ',')}}
+        {{#each thirdParty}}
+          {{#if (inArray ../types name)}}
+            <a class="sign-in__third-button" href="{{ callbackUrl }}" data-name={{name}}>
+              {{!-- 线上 {{ snippet (append 'icons/icon_' name) }} 写法不生效 --}}
+              {{#if name '===' 'facebook'}}
+                {{ snippet 'icons/icon_facebook' }}
+              {{else if name '===' 'line'}}
+                {{ snippet 'icons/icon_line' }}
+              {{else if name '===' 'google'}}
+                {{ snippet 'icons/icon_google' }}
+              {{/if}}
+            </a>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{!-- 继续以第三方身份访问 --}}
+  {{#if (is request.uri.query.isAllowedContinue '1')}}
+    <div class="sign-in__guest">
+      <div class="sign-in__divid">
+        <span>{{t 'tips.poroceed-to-checkout'}}</span>
+      </div>
+      {{#snippet 'customer/base/sl-button' class="sign-in__guest-button" block=true ghost=true attrs="type='button'" }}
+        {{t 'tips.continue-as-a-guest'}}
+      {{/snippet}}
+    </div>
+  {{/if}}
+</div>

@@ -19,15 +19,8 @@ input{
           flex-direction:column;
   -webkit-justify-content:center;
           justify-content:center;
-  overflow:hidden;
   position:relative;
   z-index:3;
-}
-.newsletter__backgroundMask{
-  height:100%;
-  position:absolute;
-  width:100vw;
-  z-index:-1;
 }
 .newsletter__title h2{
   text-align:center !important;
@@ -37,31 +30,83 @@ input{
   text-align:center;
 }
 .newsletter__btnGroup{
-  -webkit-box-align:center;
-  -webkit-align-items:center;
-          align-items:center;
+  -webkit-box-align:stretch;
+  -webkit-align-items:stretch;
+          align-items:stretch;
   display:-webkit-box;
   display:-webkit-flex;
   display:flex;
-  height:43px;
   margin-top:15px;
 }
-.newsletter__input{
+@media (max-width:749.98px){
+  .newsletter__btnGroup{
+    padding-left:var(--sl-gutter-x, .75rem);
+    padding-right:var(--sl-gutter-x, .75rem);
+  }
+}
+.newsletter__input--wrapper{
   background-color:{{ theme.settings.color_page_background }};
-  border:1px solid {{ theme.settings.color_entry_line }};
-  border-radius:4px;
   color:{{ theme.settings.color_text }};
-  height:100%;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  height:auto;
   margin-right:10px;
   outline:none;
-  padding:8px 12px;
+  width:100%;
   width:260px;
 }
-.newsletter__input::-webkit-input-placeholder{
+.newsletter__input--wrapper::-webkit-input-placeholder{
   color:currentColor;
 }
-.newsletter__input::placeholder{
+.newsletter__input--wrapper::placeholder{
   color:currentColor;
+}
+.color-scheme-1 .newsletter__input--wrapper:after{
+  box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }};
+}
+
+.color-scheme-2 .newsletter__input--wrapper:after{
+  box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }};
+}
+
+.color-scheme-3 .newsletter__input--wrapper:after{
+  box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }};
+}
+
+.newsletter__input--wrapper{
+  border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+  position:relative;
+}
+.newsletter__input--wrapper:before{
+  border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+  bottom:0;
+  box-shadow:{{ append theme.settings.input_shadow_offset_x 'px' }} {{ append theme.settings.input_shadow_offset_y 'px' }} {{ append theme.settings.input_shadow_blur 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_shadow_opacity 100) }};
+  content:"";
+  left:0;
+  pointer-events:none;
+  position:absolute;
+  right:0;
+  top:0;
+}
+.newsletter__input--wrapper:after{
+  border-radius:{{ append theme.settings.input_border_radius 'px' }};
+  bottom:{{ append theme.settings.input_border_thickness 'px' }};
+  box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }};
+  content:"";
+  left:{{ append theme.settings.input_border_thickness 'px' }};
+  pointer-events:none;
+  position:absolute;
+  right:{{ append theme.settings.input_border_thickness 'px' }};
+  top:{{ append theme.settings.input_border_thickness 'px' }};
+  z-index:1;
+}
+.newsletter__input{
+  border:initial;
+  border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+  height:100%;
+  padding:{{ append (add theme.settings.input_border_thickness 15.7) 'px' }} {{ append (add theme.settings.input_border_thickness 12) 'px' }};
+  width:100%;
 }
 .newsletter__btn{
   -webkit-box-align:center;
@@ -72,12 +117,11 @@ input{
   display:-webkit-box !important;
   display:-webkit-flex !important;
   display:flex !important;
-  height:100%;
+  height:auto;
   -webkit-justify-content:center;
           justify-content:center;
   line-height:1em;
   min-width:90px;
-  padding:13px 22px;
 }
 .newsletter__btn svg{
   stroke:currentColor;

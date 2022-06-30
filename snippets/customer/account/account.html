@@ -1,0 +1,176 @@
+{{ assign 'firstName' (default userInfo.firstName '') }}
+{{ assign 'lastName' (default userInfo.lastName '') }}
+{{ assign 'originNickname' (default userInfo.nickname '') }}
+{{ assign 'nickname' (default (trim (append firstName ' ' lastName)) originNickname) }}
+{{!-- 注销展示状态(1.不显示, 2.正常展示 3.待删除（+删除时间）) --}}
+{{!-- 有邮箱或者手机，且正常展示状态 --}}
+{{ assign 'hasDeleteAccount' (boolean (boolean (isTruthy userInfo.email) '||' (isTruthy userInfo.phone)) '&&' (boolean deleteAcccountStatus '===' 2)) }}
+
+{{#snippet 'customer/base/sl-card' title=(t 'userCenter.account.account-info') id='customer-center-account' editable='true'}}
+  <div class="account">
+    {{!-- 昵称 --}}
+    <div class="account-item">
+      <div class="account-item__content account-item__nickname">
+        <div class="account-item__value-content" data-show="detail">
+          <div class="account-item__title">{{ t 'userCenter.account.username' }}</div>
+          <div class="account-item__value notranslate">{{ cond nickname nickname (t 'userCenter.account.notSet') }}</div>
+        </div>
+        <div class="account-item__modify" data-show="edit">
+          <div class="account-item__name">
+            <div class="account-item__firstname">
+              <div class="account-item__title">{{ t 'userCenter.account.firstName' }}</div>
+              {{ snippet 'customer/base/sl-input' attrs='maxlength="255"' }}
+            </div>
+            <div class="account-item__lastname">
+              <div class="account-item__title">{{ t 'userCenter.account.lastName' }}</div>
+              {{ snippet 'customer/base/sl-input' attrs='maxlength="255"' }}
+            </div>
+          </div>
+          <div class="account-item__modify--error hide">
+            {{ t 'userCenter.account.nicknameEmptyError' }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- 邮箱 --}}
+    <div class="account-item">
+      <div class="account-item__title">{{ t 'userCenter.account.email' }}</div>
+      <div class="account-item__content">
+        {{#if userInfo.email}}
+          <span class="account-item__value notranslate">{{ userInfo.email }}</span>
+          <div class="account-item__modify" data-show="edit">
+            <a href="javascript:void(0)" data-type="email" data-path="/user/bind?mode=email">
+              {{ snippet 'icons/icon_edit' }}
+              <span class="account-item__modify-text">{{ t 'userCenter.account.modify-email' }}</span>
+            </a>
+          </div>
+        {{else}}
+          <a class="account-item__modify" href="javascript:void(0)" data-type="email" data-path="/user/bind?mode=email">
+            {{ snippet 'icons/icon_add' }}
+            <span class="account-item__modify-text">{{ t 'userCenter.account.bind' }}</span>
+          </a>
+        {{/if}}
+      </div>
+    </div>
+
+    {{!-- 手机号 --}}
+    <div class="account-item">
+      <div class="account-item__title">{{ t 'userCenter.account.phone' }}</div>
+      <div class="account-item__content">
+        {{#if userInfo.phone}}
+          <span class="account-item__value notranslate">{{ replace_by_regex userInfo.phone (toRegex (append '^00' userInfo.countryCode)) '' (append '+' userInfo.countryCode) }}</span>
+
+          <div class="account-item__modify" data-show="edit">
+            <a href="javascript:void(0)" data-type="phone" data-path="/user/bind?mode=phone">
+              {{ snippet 'icons/icon_edit' }}
+              <span class="account-item__modify-text">{{ t 'userCenter.account.modify-phone' }}</span>
+            </a>
+          </div>
+        {{else}}
+          <a class="account-item__modify" href="javascript:void(0)" data-type="phone" data-path="/user/bind?mode=phone">
+            {{ snippet 'icons/icon_add' }}
+            <span class="account-item__modify-text">{{ t 'userCenter.account.bind' }}</span>
+          </a>
+        {{/if}}
+      </div>
+    </div>
+
+    {{!-- 密码 --}}
+    <div class="account-item" data-show="edit">
+      <div class="account-item__title">{{ t 'userCenter.account.password' }}</div>
+      <div class="account-item__content">
+        <a class="account-item__modify" href="javascript:void(0)" data-type="password" data-path="/user/passwordReset">
+          {{ snippet 'icons/icon_edit' }}
+          <span class="account-item__modify-text">{{ t 'userCenter.account.change-password' }}</span>
+        </a>
+      </div>
+    </div>
+
+    {{#if userInfo.thirdInfoList}}
+      <div class="account-item">
+        <div class="account-item__title">{{ t 'userCenter.account.account-binding' }}</div>
+        <div class="account-item__content">
+          {{#each userInfo.thirdInfoList}}
+            <div class="account-item__info">
+              {{#if loginSource '===' 'facebook'}}
+                {{ snippet 'icons/icon_facebook' }}
+              {{else}}{{#if loginSource '===' 'line'}}
+                {{ snippet 'icons/icon_line' }}
+              {{else}}{{#if loginSource '===' 'google'}}
+                {{ snippet 'icons/icon_google' }}
+              {{/if}}{{/if}}{{/if}}
+              <p class="third__nickname">{{ nickname }}</p>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+
+    {{!-- 删除账户 --}}
+    {{#if hasDeleteAccount}}
+      <div class="account-item account-item__delete" data-show="edit">
+        <div class="account-item__content">
+          <a class="account-item__modify" href="javascript:void(0)" data-type="delete" data-path="/user/passwordReset">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.71258 3.26547C6.79815 2.49211 7.45383 1.89062 8.25 1.89062C9.04617 1.89062 9.70185 2.49211 9.78742 3.26547H6.71258ZM5.67752 3.26547C5.76605 1.92182 6.88395 0.859375 8.25 0.859375C9.61605 0.859375 10.734 1.92182 10.8225 3.26547H14.4375V4.29672H13.5781V14.0939V14.6095H13.0625H3.4375H2.92187V14.0939V4.29672H2.0625V3.26547H5.67752ZM3.95312 13.5783V4.29672H12.5469V13.5783H3.95312ZM6.35938 6.87484V10.9998H7.39062V6.87484H6.35938ZM9.10938 10.9998V6.87484H10.1406V10.9998H9.10938Z" fill="currentColor"/>
+</svg>
+
+            <span>{{ t 'userCenter.deleteAccount.title' }}</span>
+          </a>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+{{/snippet}}
+
+{{!-- 注销账户弹窗 --}}
+{{#if hasDeleteAccount}}
+  {{#snippet 'product/commons/base-modal' modalId='delete-account' containerClassName='delete-account-confirm-modal'}}
+    <div class="delete-account__title">{{ t 'userCenter.deleteAccount.title' }}</div>
+
+    <div class="delete-account__verify">
+      <p class="delete-account__desc"></p>
+
+      <form class="customer__form" id="delete-account-verify">
+        {{#formItem 'verifycode' "class='customer__form-item'"}}
+          {{#snippet 'customer/base/sl-input' attrs='autocomplete="off"' name='verifycode' type='text' placeholder=(t 'user.code')}}
+            {{#child 'suffix'}}
+              <button class="btn btn-link customer__send-btn customer__form-item--send">{{ t 'user.send' }}</button>
+            {{/child}}
+          {{/snippet}}
+        {{/formItem}}
+
+        <p class="customer__error"></p>
+
+        {{#snippet 'customer/base/sl-button' class='customer__form-item submit-button' block=true attrs="type='button'"}}
+          {{ t 'userCenter.deleteAccount.nextStep' }}
+        {{/snippet}}
+      </form>
+    </div>
+
+    <div class="delete-account__notice" style="display: none;">
+      <p class="delete-account__notify">{{ t 'userCenter.deleteAccount.notify' }}</p>
+
+      <ul class="delete-account__list">
+        <li>{{ t 'userCenter.deleteAccount.name' }}</li>
+        <li>{{ t 'userCenter.deleteAccount.address' }}</li>
+        <li>{{ t 'userCenter.deleteAccount.email' }}</li>
+        <li>{{ t 'userCenter.deleteAccount.ip' }}</li>
+        <li>{{ t 'userCenter.deleteAccount.card' }}</li>
+      </ul>
+
+      <p class="delete-account__deadline">{{ t 'userCenter.deleteAccount.deadline' }}</p>
+
+      <p class="delete-account__error hide">{{ t 'userCenter.deleteAccount.timeout' }}</p>
+
+      {{#snippet 'customer/base/sl-button' class='customer__form-item submit-button' block=true attrs="type='button'"}}
+        {{ t 'userCenter.deleteAccount.title' }}
+      {{/snippet}}
+    </div>
+
+    <div class="delete-account__cancel">
+      <span>{{ t 'customer.common.cancel' }}</span>
+    </div>
+  {{/snippet}}
+{{/if}}

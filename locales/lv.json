@@ -29,26 +29,136 @@
     "activity-price-limit": "Jūs varat iegādāties tikai {{num}} šī produkta gabalu (-us) ar atlaidēm",
     "activity-product-limit": "Jūs varat iegādāties ne vairāk kā {{stock}} produktu (-us) ar atlaidēm vienlaikus",
     "activity-title-limit": "Zemāk esošie produkti pārsniedz pirkuma limitu, vienmēr dodieties uz kases aparātu ?",
+    "cart": {
+      "cancel": "Atceltu",
+      "confirm": "LABI",
+      "continue": "Turpināt",
+      "got_it": "ES saprotu",
+      "return_to_cart": "Atgriezties grozā"
+    },
     "checkout-error": "Pirkumu grozā nav pieejams vismaz viens produkts. Lūdzu, pielāgojiet grozā esošās preces norēķiniem.",
+    "checkout_proceeding": {
+      "checkout_proceed": "Zemāk esošie produkti pārsniedz pirkuma limitu, vienmēr dodieties uz kases aparātu ?"
+    },
+    "contact": {
+      "discounts_cannot_stack": "Šim rīkojumam ir piemērots samazinājums. Jūs nevarat pievienot vēl vienu samazinājumu."
+    },
+    "discount": {
+      "coupon_code_amount": "Kupons",
+      "coupon_code_exceed_not_25_characters": "Kupona kods nedrīkst pārsniegt 25 rakstzīmes.",
+      "coupon_invalid_for_the_shipping_method": "Kupons {{discountCode}} ir derīgs nosūtīšanas metodei",
+      "discount_code_invalid": "{{discountCode}}ir ievadīts pareizi, taču preču cena vai daudzums neatbilst prasībām",
+      "discount_codes_cannot_stack": "Šim produktam jau ir atvieglota akcija, ko nevar izmantot kopā ar citiem atvieglotiem akcijām",
+      "enter_a_valid_discount_code": "Samazināšanas kods bija slikti saprotams",
+      "expected_discount": "Atlaide"
+    },
+    "discount_item": {
+      "buy_limit5": "Jūs varat iegādāties ne vairāk kā {{stock}} produktu (-us) ar atlaidēm vienlaikus"
+    },
+    "discount_price": {
+      "buy_limit3": "Jūs varat iegādāties tikai šī produkta (-us) {{stock}} gabalu (-us) ar atlaidēm"
+    },
     "get": "Saņemiet atlaidi",
     "go-shopping": "TURPINIET SAVAS IEGĀDES",
+    "item": {
+      "add_limit1": "Pievienojiet līdz 100 vienībām",
+      "add_limit2": "Tā paša produkta maksimālais daudzums ir 999 gabali",
+      "removed": "Nederīgu",
+      "sold_out": "PĀRDEVIES"
+    },
     "login-description": "Jau biedrs? Savienošana var būt ērtāka vadības vadībai!",
     "login-membership": "Bezmaksas dalība",
     "most-100-sku": "Pievienojiet līdz 100 vienībām",
     "most-buy-999": "Tā paša produkta maksimālais daudzums ir 999 gabali",
     "not-participation-offers": "Neiesaistītās atlaides",
+    "notices": {
+      "change_password_after_verification": "Pēc verifikācijas varat mainīt paroli",
+      "excess_product": "Zemāk esošie produkti pārsniedz pirkuma limitu, lūdzu, mainiet daudzumu",
+      "insufficient_product_inventory": "Nepietiekams produktu uzskaitījums",
+      "network": "Tīkla kļūda",
+      "product_expired": "Produkta derīguma termiņš ir beidzies",
+      "product_limit": "Produkta ierobežojums ir pārsniegts",
+      "product_selected_invalid": "Atvainojiet, jūsu izvēlētā produkta pirkšana nav derīga. Lūdzu, atkārtoti atlasiet",
+      "store_nonexistent": "Veikals neeksistē"
+    },
+    "order": {
+      "authorized": "Pilnvarots",
+      "canceled": "Atcelts",
+      "canceled_order": "Atcelts",
+      "click_to_track": "Lūdzu, sekojiet savam pakotnei, noklikšķinot uz zemāk esošās saites:",
+      "deleted": "Nederīgu",
+      "invalid_order_number": "nederīgs pasūtījuma numurs",
+      "no_more_info": "Vairs nav informācijas",
+      "pay_amount": "samaksas summa",
+      "payment_voucher_confirmation": "Sapratu",
+      "receiver_account": "saņēmēja konts",
+      "reference_number": "atsauces numurs",
+      "sequence": "Nē.{{id}}",
+      "shipping_address": "Piegādes adrese",
+      "time": "Pasūtīts:",
+      "total_amount": "{{transPackages}} vienība kopā",
+      "total_item_amount": "{{transPackages}} preces kopā",
+      "try_again": "Augšupielāde neizdevās. Lūdzu mēģiniet vēlreiz.",
+      "try_later": "sistēma aizņemta, lūdzu, vēlāk mēģiniet vēlreiz.",
+      "upload_image_within_10_m_b": "Lūdzu, augšupielādējiet JPG, PNG, GIF attēlus 10 MB",
+      "upload_time": "augšupielādes laiks",
+      "voucher_amount_limit": "Jūs varat augšupielādēt ne vairāk kā 5 kuponus."
+    },
+    "payment": {
+      "channel": "Maksāšanas kanāls",
+      "create_time": "Izveidots",
+      "paid": "Samaksāts",
+      "partially_paid": "Daļēji samaksāts",
+      "paying": "Maksājot",
+      "payment_details": "Sīkāka informācija par samaksu",
+      "reference_number": "Darījuma atsauces numurs",
+      "status": "Statuss",
+      "subtotal_price": "Kopējā",
+      "sum": "Summa",
+      "total": "Kopsumma",
+      "unpaid": "Neapmaksāts",
+      "update_time": "Atjaunināts"
+    },
+    "policy": {
+      "privacy_policy": "Konfidencialitātes politika"
+    },
+    "product-no-exists": "Preču neeksistē",
+    "refund": {
+      "click_to_view": "Noklikšķiniet, lai redzētu",
+      "custom_preview": "Personalizēts pārskats"
+    },
     "render-add-items": "Jūsu karte šobrīd ir tukša.",
     "render-empty-status": "Pirkumu grozā nav preču",
+    "shipping": {
+      "no_info": "Pagaidām nav piegādes informācijas, lūdzu, pārbaudiet vēlāk.",
+      "package_tracking": "Iepakojuma izsekošana",
+      "partially_shipped": "Daļēja piegāde",
+      "preparing_order": "Produktu sagatavošana",
+      "shipped_order": "Piegādāts"
+    },
     "shopping-fees": "pirkuma izmaksas",
     "shopping-money": "atlaide, nodokļi un nosūtīšana tiks aprēķināta nākamajā posmā",
     "shopping-money-step": "Nodokļi un piegāde aprēķināta kasē",
+    "shpping": {
+      "service_terms": "Lietošanas nosacījumi"
+    },
     "stock-limit": "{{stock}} rezerves daļas noliktavā",
+    "taxIncluded": {
+      "textTag": "Nodoklis iekļauts"
+    },
+    "tips": {
+      "change_binding_after_verification": "Pēc verifikācijas varat izveidot savienojumu / mainīt {{value}}",
+      "reset_password": "Jūs atiestatāt konta paroli {{account}}"
+    },
     "view-link": "Noklikšķiniet, lai redzētu",
     "view-pic": "Personalizēts pārskats",
     "view-shopping-cart": "Skatīt iepirkumu grozu",
     "added-to-cart": "Pievienots jūsu grozam",
     "cart-subtotal": "Groza starpsumma",
     "view-cart": "Parādiet groza"
+  },
+  "cascade": {
+    "choose": "Prašome pasirinkti parinktį"
   },
   "checkout": {
     "delivery-method": {
@@ -204,6 +314,217 @@
   "contactForm": {
     "sendSuccess": "Paldies, ka sazinājāties ar mums, un mēs atbildēsim jums pēc iespējas ātrāk."
   },
+  "customer": {
+    "account": {
+      "add-email": "E-pasta pievienošana",
+      "add-phone": "Pievienot mobilā tālruņa numuru",
+      "deadline": "Jūsu pasūtījums joprojām būs redzams biznesa pārskata nolūkos. Jūsu konta dati tiks dzēsti {{time}}, jūs varat atcelt procesu pirms šī datuma",
+      "gender_female": "Mātīte",
+      "gender_male": "Vīriešu",
+      "gender_secret": "Paturēt noslēpumā",
+      "not_set": "Nav iestatīts",
+      "reset_password_error_hint": "Lūdzu, vispirms saistiet e-pastu vai mobilo tālruni",
+      "verify_email_message": "Pirms konta slēgšanas mums ir jāpārbauda jūsu identitāte\nJūsu e-pasts {{email}} saņems verifikācijas e-pastu",
+      "verify_phone_message": "Pirms konta slēgšanas mums ir jāpārbauda jūsu identitāte\nJūsu mobilais tālrunis {{phone}} saņems verifikācijas ziņojumu"
+    },
+    "address": {
+      "add_address": "Pievienojiet jaunu adresi",
+      "common_max": "",
+      "common_min": "vairāk nekā {{min}} rakstzīmes",
+      "edit_last_name_hint": "Lūdzu, ievadiet savu uzvārdu!",
+      "edit_phone_hint": "Lūdzu, ievadiet savu mobilo tālruni",
+      "mobile-errorMessage": "lūdzu, ievadiet derīgu tālruņa numuru",
+      "no_adress_data": "Pašlaik piegādes adreses nav"
+    },
+    "common": {
+      "back-to-user-center": "Atpakaļ uz Lietotāju centrs",
+      "cancel": "Atceltu",
+      "confirm": "LABI",
+      "email": "E-pasta adrese",
+      "email2": "Pasta",
+      "enter-email": "Lūdzu, ievadiet savu e-pasta adresi",
+      "enter-mobile-phone": "Lūdzu, ievadiet mobilā tālruņa numuru",
+      "member-login": "Dalībnieka pierakstīšanās",
+      "mobile": "tālruņa numurs",
+      "mobile-phone": "mobilā tālruņa numurs"
+    },
+    "email": {
+      "mail_common": "Pasta"
+    },
+    "general": {
+      "apr": "apr.",
+      "april": "aprīlis",
+      "aug": "aug.",
+      "august": "augusts",
+      "bind_success": "Savienots",
+      "cancel_mobile_button": "Atcelts",
+      "clear_button": "Skaidrs",
+      "confirm_button": "LABI",
+      "date_format": "dd.MM.yyyy",
+      "dec": "dec.",
+      "december": "decembris",
+      "email_empty_hint": "Lūdzu, ievadiet e-pasta adresi",
+      "email_error_hint": "Lūdzu, ievadiet e-pasta adresi derīgā formātā ar mazāk nekā 50 rakstzīmēm",
+      "enter_verification_code": "Lūdzu ievadiet verifikācijas kodu",
+      "error_message_1001": "Parolis kļūda",
+      "error_message_1002": "Lietotājs neeksistē",
+      "error_message_1003": "Konts tika īslaicīgi bloķēts",
+      "error_message_1004": "Izmantojiet bieži. Lūdzu, atkārtojiet mēģinājumu vēlāk",
+      "error_message_1005": "Kods beidzās",
+      "error_message_1006": "Koda kļūda",
+      "error_message_1007": "Bieži izmantojiet verifikācijas kodu. Lūdzu, atgūstiet verifikācijas kodu",
+      "error_message_1008": "Pieteikšanās bez trešo pušu kanālu konfigurēšanas",
+      "error_message_1009": "Neizdodas izsaukt trešās puses saskarni",
+      "error_message_1010": "Neizdodas nosūtīt",
+      "error_message_1011": "Konta numurs nav aktivizēts",
+      "error_message_1012": "Pakalpojumu izņēmumi",
+      "error_message_1013": "Pakalpojumu izņēmumi",
+      "error_message_1014": "Nespēja pārbaudīt verifikācijas kodu",
+      "error_message_1015": "Lūdzu, pārbaudiet dinamisko verifikācijas kodu",
+      "error_message_1016": "Pakalpojumu izņēmumi",
+      "error_message_1017": "Pastāv konta numura risks",
+      "error_message_1018": "Pasts ir piesaistīts",
+      "error_message_1020": "Pieteikšanās laika limits",
+      "error_message_1021": "Pieteikšanās laika limits",
+      "error_message_1022": "Konta numurs ir piesaistīts",
+      "error_message_1023": "Pakalpojumu izņēmumi",
+      "error_message_1024": "Pakalpojumu izņēmumi",
+      "error_message_2": "Pakalpojumu izņēmumi",
+      "error_message_2001": "Mobilais tika reģistrēts",
+      "error_message_2002": "E-pasts ir saglabāts",
+      "error_message_2003": "Nemēģiniet tik bieži",
+      "error_message_2004": "Kods beidzās",
+      "error_message_2005": "Koda kļūda",
+      "error_message_2006": "Pārāk daudz verifikācijas laiku, lūdzu, iegūstiet citu kodu",
+      "error_message_2007": "Pakalpojuma izņēmums, mēģiniet vēlreiz vēlāk",
+      "error_message_2016": "Konti ir apdraudēti",
+      "error_message_3": "Pakalpojumu izņēmumi",
+      "error_message_3001": "Pakalpojuma izņēmums, mēģiniet vēlreiz vēlāk",
+      "error_message_3002": "Lietotāji, kas nav saistīti ar mobilajiem tālruņiem / pastkastēm, mēģina mainīt paroli",
+      "error_message_3003": "Nemēģiniet tik bieži",
+      "error_message_3004": "Kods beidzās",
+      "error_message_3005": "Koda kļūda",
+      "error_message_3006": "Pārāk daudz verifikācijas laiku, lūdzu, iegūstiet citu kodu",
+      "error_message_3007": "Klēpjdators neeksistē",
+      "error_message_3008": "E-pasts neeksistē",
+      "error_message_3009": "Mobilo savienojumu veidoja citi konti",
+      "error_message_3010": "E-pasts ir saistīts ar citiem kontiem",
+      "error_message_3014": "Neizdevās nosūtīt kodu",
+      "error_message_4": "Pakalpojumu izņēmumi",
+      "error_message_5": "Pakalpojumu izņēmumi",
+      "error_message_6": "Pakalpojumu izņēmumi",
+      "feb": "febr.",
+      "february": "februāris",
+      "first_day": "0",
+      "fr": "Pk",
+      "fri": "piektd.",
+      "friday": "piektdiena",
+      "image_size_less_than_tips": "Attēliem jābūt mazākiem par {{max}} MB",
+      "jan": "janv.",
+      "january": "janvāris",
+      "jul": "jūl.",
+      "july": "jūlijs",
+      "jun": "jūn.",
+      "june": "jūnijs",
+      "mar": "marts",
+      "march": "marts",
+      "max_image_upload_tips": "Jūs varat lejupielādēt līdz {{max}} Attēliem",
+      "may": "maijs",
+      "may_short": "maijs",
+      "mo": "P",
+      "mon": "pirmd.",
+      "monday": "pirmdiena",
+      "network_error_message": "Nav interneta",
+      "nov": "nov.",
+      "november": "novembris",
+      "oct": "okt.",
+      "october": "oktobris",
+      "okay_common": "LABI",
+      "password_empty_hint": "Lūdzu, ievadiet paroli",
+      "phone_empty_message": "Lūdzu, ievadiet mobilā tālruņa numuru",
+      "phone_error_message": "Lūdzu, ievadiet mobilā tālruņa numuru derīgā formātā",
+      "phone_number_error_message": "lūdzu, ievadiet derīgu tālruņa numuru",
+      "repeat_passport_error": "Ievadītās parolis neatbilst",
+      "resend": "Atgriezties",
+      "sa": "S",
+      "sat": "sestd.",
+      "saturday": "sestdiena",
+      "select__date": "Izvēlieties datumu",
+      "send": "Lai nosūtītu",
+      "send_error": "Lūdzu, vispirms nosūtiet verifikācijas kodu",
+      "send_verification_code_hint": "Lūdzu, vēlreiz ievadiet paroli",
+      "sep": "sept.",
+      "september": "septembris",
+      "set_password": "Lūdzu, definējiet paroli ar vismaz 6 rakstzīmju garumu un maksimālo 18 rakstzīmju garumu.",
+      "su": "Sv",
+      "sun": "svētd.",
+      "sunday": "svētdiena",
+      "th": "C",
+      "thu": "ceturtd.",
+      "thursday": "ceturtdiena",
+      "time_format": "hh:mm aa",
+      "today": "Šodien",
+      "tu": "O",
+      "tue": "otrd.",
+      "tuesday": "otrdiena",
+      "user_agreement_tip": "Lūdzu, vispirms izlasiet un pieņemiet lietošanas nosacījumus",
+      "username_empty_hint": "Lūdzu, ievadiet savu e-pasta adresi vai mobilā tālruņa numuru",
+      "verification_code_sent_tip": "Pārbaudes kods ir nosūtīts uz jūsu kontu",
+      "we": "T",
+      "wed": "trešd.",
+      "wednesday": "trešdiena"
+    },
+    "network-err-msg": "Nav interneta",
+    "phone": {
+      "mobile_common": "tālruņa numurs"
+    },
+    "subscription": {
+      "unsubscribe_success": "Abonements ir atcelts. Jūs pāriet uz sākumlapu"
+    },
+    "tips": {
+      "and": "un",
+      "bind-change-email": "Pievienojiet / mainiet e-pastu",
+      "bind-change-mobile-phone-number": "Pievienojiet / mainiet mobilā tālruņa numuru",
+      "bind-success": "Savienots",
+      "change-binding-after-verification": "Pēc verifikācijas varat izveidot savienojumu / mainīt {{value}}",
+      "continue-as-a-guest": "Turpiniet kā viesis",
+      "forget-password": "Aizmirsta paroli",
+      "i-agree-with-the-shop": "Es piekrītu",
+      "login": "PIERAKSTIETIES",
+      "or-use-the-following-method-to-log-in": "Vai pierakstieties , izmantojot šādas metodes",
+      "password-can-be-changed-after-verification": "Pēc verifikācijas varat mainīt paroli",
+      "please-read-and-agree-to-the-user-agreement-first": "Lūdzu, vispirms izlasiet un pieņemiet lietošanas nosacījumus",
+      "poroceed-to-checkout": "Dodieties uz izrakstīšanos",
+      "register": "Pierakstīšanās",
+      "reset-password": "Jūs atiestatāt konta paroli {{account}}",
+      "set-new-password": "Atiestatīt paroli",
+      "update-password": "Mainīt paroli",
+      "update-success": "Mainīja",
+      "verification-code-has-been-sent-to-your-account": "Pārbaudes kods ir nosūtīts uz jūsu kontu",
+      "verify-account-to-reset-password": "Lūdzu, pārbaudiet savu kontu un atiestatiet paroli"
+    },
+    "trade": {
+      "go-login": "Iet savienot"
+    },
+    "unsubscribe": {
+      "btn": "Anulēt abonementu",
+      "reason": {
+        "other": {
+          "length": "Ievadiet līdz 300 vārdiem",
+          "placeholder": "Ievades saturs"
+        }
+      },
+      "reason1": "Es vairs nevēlos saņemt šos e-pastus",
+      "reason2": "Man ir daudz e-pastu",
+      "reason3": "Es nebija abonēts šo sarakstu",
+      "reason4": "E-pasti man nav aktuāli",
+      "reason5": "E-pasta saturs ir ļoti plašs",
+      "reason6": "Citi",
+      "subtitle": "Mums žēl redzēt jūs ejam! Paziņojiet mums, kāpēc jūs atcēlāt abonēts:",
+      "success": "Abonements ir atcelts. Jūs pāriet uz sākumlapu",
+      "title": "Anulēt abonementu"
+    }
+  },
   "footer": {
     "copyright": "Visas tiesības ir aizsargātas.",
     "followus": "TURPMĀK ASV",
@@ -221,9 +542,24 @@
       "title": "Mums rūp jūsu privātums"
     }
   },
+  "general": {
+    "404": {
+      "button": "Turpināt iepirkties",
+      "subtext": "Lapa, kuru meklējāt, nepastāv.",
+      "title": "404 lapa nav atrasta"
+    },
+    "general": {
+      "accept": "Pieņemt",
+      "decline": "Noraidīt",
+      "link": "Privātuma politika",
+      "tips": "Lai uzlabotu jūsu pieredzi, mēs izmantojam sīkdatnes, lai atcerētos pieteikšanās informāciju, apkopotu statistiku un piegādātu saturu, kas pielāgots jūsu interesēm. Noklikšķiniet uz Akceptēt, lai akceptētu sīkfailus, vai skatiet mūsu konfidencialitātes politiku.",
+      "title": "Mums rūp jūsu privātums"
+    }
+  },
   "header": {
     "cart": "Jūsu grozs",
     "center": "Centrs",
+    "emptyPlaceholder": "",
     "login": "Pieteikšanās",
     "logout": "Atteikties",
     "navItemAll": "Viss",
@@ -367,6 +703,25 @@
           "title": "Jūsu pasūtījums ir apstiprināts"
         }
       },
+      "orderstatus": {
+        "PayAmount": "samaksas summa",
+        "ReceiverAccount": "saņēmēja konts",
+        "ReferenceNumber": "atsauces numurs",
+        "UploadTime": "augšupielādes laiks",
+        "action": {
+          "UploadVoucher": "Augšupielādēt kuponu"
+        },
+        "feedback": {
+          "CountLimit": "Jūs varat augšupielādēt ne vairāk kā 5 kuponus.",
+          "InvalidOrderNumber": "nederīgs pasūtījuma numurs",
+          "SizeLimte": "Lūdzu, augšupielādējiet JPG, PNG, GIF attēlus 10 MB",
+          "SystemBusy": "sistēma aizņemta, lūdzu, vēlāk mēģiniet vēlreiz.",
+          "UploadFail": "Augšupielāde neizdevās. Lūdzu mēģiniet vēlreiz."
+        },
+        "notice": {
+          "UploadVoucher": "Lūdzu, augšupielādējiet bankas pārskaitījuma kuponu, un mēs apstiprināsim."
+        }
+      },
       "packages": {
         "amount": {
           "channel-surcharge": "Maksājumu komisija",
@@ -428,9 +783,24 @@
         "subscriptions-title": "Abonēšana",
         "title": "Informācija",
         "unshipped-order-num": "Apstrāde ({{num}} preces"
-      }
+      },
+      "paymentvoucher": {
+        "Status": {
+          "TransferredSuccessful": "Maksājums veiksmīgi pārskaitīts",
+          "WaittingforPayment": "Gaida maksājumu"
+        },
+        "VoucherDetail": {
+          "Action": {
+            "Gotit": "Sapratu"
+          }
+        }
+      },
+      "taxFee": "Nodoklis"
     },
     "help-tips": "Vajadzīga palīdzība? Lūdzu, sazinieties ar mums : {{email}}",
+    "includeTax": {
+      "totalLine": "Ieskaitot {{price}} nodokļos"
+    },
     "oms-status": {
       "arrived": "Ierašanās",
       "cancelled": "Atcelt piegāde",
@@ -468,6 +838,7 @@
     "pay-status": {
       "abolished": "Anulēts",
       "already-paid": "Samaksāts",
+      "authorized": "Pilnvarots",
       "failed": "Maksājums neizdevās",
       "partial-payment": "Daļēji samaksāts",
       "partial-refund": "Daļēji atmaksa",
@@ -548,8 +919,10 @@
     "no-logistics-and-payment-information": "Pagaidām nav informācijas par loģistiku un norēķinu metodēm",
     "no-product-introduction": "Pagaidām nav neviena produkta izlaišanas",
     "previewLinkToast": "Saites pārskata darbība netiek atbalstīta",
+    "productTax": "iekļauts nodoklis",
     "recentlyViewedProducts": "Jaunākie produkti, ar kuriem konsultējās",
     "recommendTitle": "Jums varētu patikt arī",
+    "skuLoadingTips": "Notiek varianta informācijas ielāde, lūdzu, uzgaidiet...",
     "tabPanel": {
       "comments": {
         "empty": "Pagaidām nav viedokļa par produktu",
@@ -588,6 +961,7 @@
     "all": {
       "h1Title": "produkti"
     },
+    "container-tradePopup-error4": "",
     "container": {
       "empty": {
         "desc": "Šajā kategorijā nav neviena produkta",
@@ -677,6 +1051,35 @@
     "sortName": "Kārtot pēc:",
     "title": "Meklē"
   },
+  "products": {
+    "comment": {
+      "add_an_image": "Pievienojiet attēlu",
+      "didnot_bought_cannot_reviewed": "Atvainojiet, jūs vēl neesat iegādājies šo produktu, tāpēc jūs nevarat atstāt paziņojumu",
+      "didnot_bought_sign_in_first": "Klienti, kuri ir iegādājušies šo produktu, var atstāt komentāru, lūdzu, vispirms piesakieties",
+      "enter_at_least_one_character": "Lūdzu, ievadiet vismaz vienu vārdu",
+      "error_submit_again": "Sistēmas kļūdas dēļ jūsu viedokli nevar apstrādāt, lūdzu, mēģiniet vēlreiz~",
+      "first_review": "ievietojiet pirmo komentāru tagad!",
+      "image_uploading": "Lejupielādējiet, lūdzu, iesniedziet vēlāk",
+      "maximum_image_quantity": "Jūs varat pievienot ne vairāk kā {{total}} attēlus",
+      "maximum_image_size": "Maksimālais attēla izmērs ir {{size}} Mo",
+      "no_review": "vēl nav komentāru",
+      "only_supports__image_format": "Atbalsts tikai .jpg .jpeg .png .bmp faila lejupielādei",
+      "ratings": "Novērtējumi",
+      "sign_in": "Pierakstieties",
+      "submit": "Iesniegt",
+      "thanks_for_your_review": "Paldies par jūsu viedokli",
+      "write_a_review": "Uzrakstiet atsauksmi",
+      "write_a_review_for_the_product": "Lūdzu, ievadiet savu viedokli par šo produktu"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Maksimālais pieļaujamais daudzums šim ierobežotajam produktam ir {{num}}",
+      "activity_toast_product__limit": "Pirkums ir ierobežots ar {{stock}} reklāmas produktu",
+      "activity_toast_title__limit": "Zemāk esošie produkti pārsniedz pirkuma limitu",
+      "go_to_amazon_by_link": "Pērciet Amazon",
+      "go_to_rakuten_by_link": "Pērciet vietnē LOTTE",
+      "go_to_yahoo_by_link": "Pērciet vietnē Yahoo"
+    }
+  },
   "promotion": {
     "activity-benefit": "Pasākumu piedāvājumi",
     "activity-introduction": "Pasākuma prezentācija",
@@ -741,12 +1144,43 @@
     "whole-full-piece-reduce": "<italic>{{content}}</italic> iespēju <italic>{{condition}}</italic> gabali"
   },
   "sales": {
+    "activity": {
+      "productTabs": {
+        "benefit": {
+          "discount": {
+            "locked": "Saņemt {{offPercent}}% atlaidi",
+            "unlocked": "{{offPercent}}% atlaidi atbloķēta!"
+          },
+          "free": {
+            "locked": "Bezmaksas piedāvājums",
+            "unlocked": "Bezmaksas piedāvājums ir atbloķēts!"
+          },
+          "unlocked": {
+            "tip": "Jūs varat baudīt atlaidi produktam"
+          }
+        },
+        "threshold": "Pirkums {{threshold}}"
+      }
+    },
+    "activityBanner": {
+      "benefit": "{{benefit}} izslēgts",
+      "copySuccessText": "Kupona kods tiek veiksmīgi kopēts",
+      "copyText": "Kopija",
+      "freeShipping": "Bezmaksas piegāde",
+      "threshold": "Prasības virs {{threshold}}"
+    },
+    "autoCoupon": {
+      "shopMore": "Vairāk"
+    },
     "bundle": {
       "saveTip": "saglabāt {{amount}}, pērkot kopā",
       "title": "Produkti, ko bieži iegādājas kopā"
     },
     "customer-purchase-limit": "Pirkuma limits {{count}} vienai personai",
     "customer-purchase-limit-each-item": "Pirkšanas ierobežojums {{count}} katram produktam vienai personai",
+    "discount-coupon-banner": {
+      "getCode": "Saņemt atlaižu kuponus"
+    },
     "discount-coupon": {
       "applied": "Pielietots",
       "apply": "Lietot",
@@ -778,6 +1212,46 @@
     },
     "hot-sale": "Lieli pārdošanas apjomi!",
     "promotion": {
+      "cart_reminder": {
+        "b11_t1_s1_next_free": "Pērciet {{threshold}} vairāk preces, izbaudiet bez maksas vienā no preces!",
+        "b11_t1_s1_normal": "Pērciet {{threshold}} vairāk preces, izbaudiet {{willSave}} OFF vienā no preces!",
+        "b11_t1_s2_free": "Apsveicam!! baudiet vienu no rakstiem bez maksas!",
+        "b11_t1_s2_next_free": "Apsveicam! {{saved}} saglabāt, {{br}} Pērciet {{threshold}} papildu preces, baudiet vienu no vienumiem bez maksas !",
+        "b11_t1_s2_normal": "Apsveicam! {{saved}} saglabāt, {{br}}Pirkt {{threshold}} vairāk vienumu, baudīt {{willSave}} izslēgts par vienu no vienumiem!",
+        "b11_t1_s3_free": "Apsveicam!! baudiet vienu no rakstiem bez maksas!",
+        "b11_t1_s3_normal": "Apsveicam!! ieguvums no {{saved}} OFF vienā no rakstiem !",
+        "b1_t0_s1": "Pērciet {{threshold}} vairāk, lai saglabāt {{willSave}}",
+        "b1_t0_s2": "saglabāt jau {{saved}} ! {{br}} Pērciet {{threshold}} vairāk, lai saglabāt {{willSave}}",
+        "b1_t0_s3": "Apsveicam! Jūs esat saglabāt {{saved}} !",
+        "b1_t1_s1": "Pērciet {{threshold}} vairāk, lai saglabāt {{willSave}}",
+        "b1_t1_s2": "saglabāt jau {{saved}} ! {{br}} Pērciet {{threshold}} vairāk, lai saglabāt {{willSave}}",
+        "b1_t1_s3": "Apsveicam! Jūs esat saglabāt {{saved}}!",
+        "b2_t0_s1": "Pērciet {{threshold}} vairāk, lai izslēgts {{willSave}}",
+        "b2_t0_s2": "saglabāt jau {{saved}} ! {{br}}Pērciet {{threshold}} vairāk, lai izslēgts {{willSave}}",
+        "b2_t0_s3": "Apsveicam! Jūs esat saglabāt {{saved}} !",
+        "b2_t1_s1": "Pērciet {{threshold}} vairāk, lai izslēgts {{willSave}}",
+        "b2_t1_s2": "saglabāt jau {{saved}} ! {{br}}Pērciet {{threshold}} vairāk, lai izslēgts {{willSave}}",
+        "b2_t1_s3": "Apsveicam! Jūs esat saglabāt {{saved}} !",
+        "b3_t0_s1_unlimited": "Pirkt {{threshold}} vēlreiz un baudīt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>!",
+        "b3_t0_s1_upper_limit": "Pirkt {{threshold}} vēlreiz un baudīt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>! (Maksimālā bezmaksas kravas summa {{upperLimit}})",
+        "b3_t0_s3_unlimited": "Apsveicu! Jūs esat ieguvis <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>!",
+        "b3_t0_s3_upper_limit": "Apsveicu! Jūs esat ieguvis <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>! (Maksimālā bezmaksas kravas summa {{upperLimit}})",
+        "b3_t1_s1_unlimited": "Pērciet {{threshold}} vairāk gabalu un izbaudiet <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>!",
+        "b3_t1_s1_upper_limit": "Pērciet {{threshold}} vairāk gabalu un izbaudiet <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>! (Maksimālā bezmaksas kravas summa {{upperLimit}})",
+        "b3_t1_s3_unlimited": "Apsveicu! Jūs esat ieguvis <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>!",
+        "b3_t1_s3_upper_limit": "Apsveicu! Jūs esat ieguvis <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>! (Maksimālā bezmaksas kravas summa {{upperLimit}})",
+        "b9_t1_s1": "Iegādājieties vēl {{threshold}} gabalu, no kuriem {{willSave}} gabali ir bezmaksas",
+        "b9_t1_s2": "Apsveicam! {{saved}} gabali iegūti par brīvu! Iegādājieties vēl {{threshold}} gabalu, no kuriem {{willSave}} gabalu ir bez maksas",
+        "b9_t1_s3": "Apsveicam! {{saved}} no tiem ir bez maksas"
+      },
+      "discount_tag": {
+        "b11_t1_free": "Pērciet {{threshold}} preces, baudiet vienu no rakstiem bez preces!",
+        "b11_t1_normal": "Pērciet {{threshold}} preces., baudiet {{save}} IZSLĒGTS vienā no preces!",
+        "b1_t0": "Pērciet {{threshold}}, saglabāt {{save}}",
+        "b1_t1": "Pērciet {{threshold}} iegūt {{save}} IZSLĒGTS",
+        "b2_t0": "Pērciet {{threshold}}, saglabāt {{save}}",
+        "b2_t1": "Pērciet {{threshold}} IEGŪT {{save}} IZSLĒGTS"
+      },
       "reminder": {
         "benefit1": {
           "threshold0": {
@@ -805,6 +1279,36 @@
             "step3": {
               "free": "Apsveicam!! baudiet vienu no rakstiem bez maksas!",
               "normal": "Apsveicam!! ieguvums no {{saved}} OFF vienā no rakstiem !"
+            }
+          }
+        },
+        "benefit12": {
+          "threshold0": {
+            "step1": {
+              "achieve": {
+                "free": "Apsveicam, jūs varat baudīt {{benefitCount}} vienumus BEZMAKSAS",
+                "normal": "Apsveicam, varat baudīt {{willSave}} atlaidi {{benefitCount}} vienumiem"
+              },
+              "free": "Pērciet {{threshold}} ieprieciniet {{benefitCount}} vienumiem BEZ MAKSAS",
+              "normal": "Pērciet {{threshold}} baudīt {{willSave}} atlaidi {{benefitCount}} vienumiem"
+            },
+            "step3": {
+              "free": "Apsveicu! Jums ir {{benefitCount}} BEZMAKSAS vienumi!",
+              "normal": "Apsveicu! Jums ir {{saved}} atlaides {{benefitCount}}} vienumi!"
+            }
+          },
+          "threshold1": {
+            "step1": {
+              "achieve": {
+                "free": "Apsveicam, jūs varat baudīt {{benefitCount}} vienumus BEZMAKSAS",
+                "normal": "Apsveicam, varat baudīt {{willSave}} atlaidi {{benefitCount}} vienumiem"
+              },
+              "free": "Iegādājieties {{threshold}}, izbaudiet {{benefitCount}} BEZMAKSAS vienumiem",
+              "normal": "Pērciet {{threshold}}, izbaudiet {{willSave}} atlaidi {{benefitCount}} vienumiem"
+            },
+            "step3": {
+              "free": "Apsveicu! Jums ir {{benefitCount}} BEZMAKSAS vienumi!",
+              "normal": "Apsveicu! Jums ir {{saved}} atlaides {{benefitCount}}} vienumi!"
             }
           }
         },
@@ -1098,6 +1602,12 @@
     "pay-way": "Maksājums",
     "pay-way-logo-and-more": "un vēl",
     "payment-security-description": "Visas operācijas ir drošas un šifrētas.",
+    "payments-name": {
+      "COD": "Maksājums pēc piegādes",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "Kredītkarte"
+    },
     "pic-upload-fail": "Nevar lejupielādēt attēlu {{name}}",
     "pick-address": "Kolekcijas adrese",
     "please-choose-area": "Lūdzu, atlasiet apgabalu",
@@ -1135,6 +1645,7 @@
     "product-sold-out": "Produkts ir izsmelts",
     "product-tax": "Patēriņa nodoklis",
     "quantity": "DAUDZUMS",
+    "receiver-info": "Piegādes adrese",
     "recieve-address-unavailable-rechoose": "Uz saņēmēja adresi nav pieejama piegādes metode. Lūdzu, atgriezieties, lai atkārtoti izvēlētos",
     "reciever-fullname": "Saņēmēja pilns vārds",
     "reciever-info": "Piegādes adrese",
@@ -1230,6 +1741,24 @@
     "your-order-not-pay": "Jūs neesat samaksājis par pasūtījumu",
     "your-refund-order-created": "Jūsu atgriešanās pasūtījums ir veikts"
   },
+  "transaction": {
+    "general": {
+      "coupon_code_exceed_not_25_characters": "Kupona kods nedrīkst pārsniegt 25 rakstzīmes.",
+      "coupon_invalid_for_the_shipping_method": "Kupons {{discountCode}} ir derīgs nosūtīšanas metodei",
+      "discount_code_invalid": "{{discountCode}}ir ievadīts pareizi, taču preču cena vai daudzums neatbilst prasībām",
+      "discount_codes_cannot_stack": "Šim produktam jau ir atvieglota akcija, ko nevar izmantot kopā ar citiem atvieglotiem akcijām",
+      "discounts_cannot_stack": "Šim rīkojumam ir piemērots samazinājums. Jūs nevarat pievienot vēl vienu samazinājumu.",
+      "enter_a_valid_discount_code": "Samazināšanas kods bija slikti saprotams",
+      "free_shipping": "bezmaksas piegāde",
+      "order_seller_discount": "Papildu atlaide no pārdevēja",
+      "order_tax": "Nodoklis",
+      "order_tip": "Padoms",
+      "payment_subtotal_cost": "Kopējā",
+      "point_discount": "Piegādes vietas",
+      "shipping_fee": "Nosūtīšanas",
+      "trade_coupon_discount": "Kupons"
+    }
+  },
   "user": {
     "account": "KONTS",
     "code": "Pārbaudes kods",
@@ -1259,31 +1788,43 @@
     "signUp": "PIERAKSTĪŠANĀS",
     "subscription-text": "Reģistrējieties e-pastiem, lai saņemtu atjauninājumus, piekļuvi ekskluzīviem piedāvājumiem un daudz ko citu.",
     "udbResponse": {
-      "err-1": "Tukši parametri",
-      "err-13": "stoken noildzes",
-      "err-4": "Nederīgi parametri",
-      "err-5": "Nelikumīga darbība",
-      "err-999": "Tālvadības zvans neizdevās",
+      "err-1": "Pakalpojumu izņēmumi",
+      "err-13": "Pakalpojumu izņēmumi",
+      "err-4": "Pakalpojumu izņēmumi",
+      "err-5": "Pakalpojumu izņēmumi",
+      "err-999": "Pakalpojumu izņēmumi",
       "err1001": "Parolis kļūda",
       "err1002": "Lietotājs neeksistē",
       "err1003": "Konts tika īslaicīgi bloķēts",
-      "err1004": "Nosūtiet īsziņu stundām ilgi",
+      "err1004": "Izmantojiet bieži. Lūdzu, atkārtojiet mēģinājumu vēlāk",
       "err1005": "Kods beidzās",
       "err1006": "Koda kļūda",
-      "err1007": "Pārāk bieža verifikācijas koda kļūda",
-      "err1008": "Trešais identifikators vai kanāls nav konfigurēts",
-      "err1009": "Trešās puses neveiksmīga apstiprināšana",
-      "err1010": "Neizdevās atgriezt SMS / e-pasta modeļus",
-      "err1017": "Konti ir apdraudēti",
+      "err1007": "Bieži izmantojiet verifikācijas kodu. Lūdzu, atgūstiet verifikācijas kodu",
+      "err1008": "Pieteikšanās bez trešo pušu kanālu konfigurēšanas",
+      "err1009": "Neizdodas izsaukt trešās puses saskarni",
+      "err1010": "Neizdodas nosūtīt",
+      "err1011": "Konta numurs nav aktivizēts",
+      "err1012": "Pakalpojumu izņēmumi",
+      "err1013": "Pakalpojumu izņēmumi",
+      "err1014": "Nespēja pārbaudīt verifikācijas kodu",
+      "err1015": "Lūdzu, pārbaudiet dinamisko verifikācijas kodu",
+      "err1016": "Pakalpojumu izņēmumi",
+      "err1017": "Pastāv konta numura risks",
+      "err1018": "Pasts ir piesaistīts",
+      "err1020": "Pieteikšanās laika limits",
+      "err1021": "Pieteikšanās laika limits",
+      "err1022": "Konta numurs ir piesaistīts",
+      "err1023": "Pakalpojumu izņēmumi",
+      "err1024": "Pakalpojumu izņēmumi",
       "err2001": "Mobilais tika reģistrēts",
       "err2002": "E-pasts ir saglabāts",
       "err2003": "Nemēģiniet tik bieži",
       "err2004": "Kods beidzās",
       "err2005": "Koda kļūda",
       "err2006": "Pārāk daudz verifikācijas laiku, lūdzu, iegūstiet citu kodu",
-      "err2007": "Neizdevās atgriezt SMS / e-pasta modeļus",
+      "err2007": "Pakalpojuma izņēmums, mēģiniet vēlreiz vēlāk",
       "err2016": "Konti ir apdraudēti",
-      "err3001": "Nederīgs sīkfails",
+      "err3001": "Pakalpojuma izņēmums, mēģiniet vēlreiz vēlāk",
       "err3002": "Lietotāji, kas nav saistīti ar mobilajiem tālruņiem / pastkastēm, mēģina mainīt paroli",
       "err3003": "Nemēģiniet tik bieži",
       "err3004": "Kods beidzās",
@@ -1302,7 +1843,7 @@
   "userCenter": {
     "account": {
       "account-binding": "Konta saite",
-      "account-info": "Informācija par kontu",
+      "account-info": "Konts",
       "account-subscription-email": "Nosūtīt uz e-pastu",
       "account-subscription-line": "Nosūtīt tiešsaistes Line App",
       "account-subscription-messenger": "Nosūtīt messenger",
@@ -1310,7 +1851,9 @@
       "bind": "Saistoši",
       "change-password": "Mainiet paroli",
       "email": "E-pasta",
+      "firstName": "Nosaukums",
       "general-member": "Ģenerālbiedrs",
+      "lastName": "Uzvārds",
       "member-level": "Dalības līmenis",
       "memberLevelCom": {
         "defaultLevel": "Ģenerālbiedrs",
@@ -1325,14 +1868,16 @@
       },
       "modify-email": "Rediģēt e-pastu",
       "modify-phone": "Rediģēt tālruni",
+      "nicknameEmptyError": "Gan vārdu, gan uzvārdu nevar atstāt tukšu",
+      "notSet": "Nav iestatīts",
       "password": "Paroli",
       "phone": "Mobilais telefons",
       "reset-password-error": "Lūdzu, vispirms saistiet e-pastu vai mobilo tālruni",
       "subscription-notification": "Paziņojums par abonēšanu",
       "unsubscribed": "Neaprakstīts",
-      "username": "Lietotājvārds",
-      "username-message": "Lūdzu, ievadiet savu lietotājvārdu !",
-      "username-placeholder": "Lūdzu, ievadiet savu lietotājvārdu"
+      "username": "Vārds",
+      "username-message": "Lūdzu, ievadiet savu vārdu",
+      "username-placeholder": "Lūdzu, ievadiet savu vārdu"
     },
     "address": {
       "add": "Pievienojiet jaunu adresi",
@@ -1345,11 +1890,88 @@
     },
     "buy-record-entry": "Iegādātie produkti",
     "cancel": "Atcelt",
+    "datePicker": {
+      "mobile": {
+        "cancel": "Atcelts",
+        "confirm": "LABI",
+        "title": "Izvēlieties datumu"
+      },
+      "pc": {
+        "clear": "Skaidrs",
+        "dateFormat": "dd.MM.yyyy",
+        "days0": "svētdiena",
+        "days1": "pirmdiena",
+        "days2": "otrdiena",
+        "days3": "trešdiena",
+        "days4": "ceturtdiena",
+        "days5": "piektdiena",
+        "days6": "sestdiena",
+        "daysMin0": "Sv",
+        "daysMin1": "P",
+        "daysMin2": "O",
+        "daysMin3": "T",
+        "daysMin4": "C",
+        "daysMin5": "Pk",
+        "daysMin6": "S",
+        "daysShort0": "svētd.",
+        "daysShort1": "pirmd.",
+        "daysShort2": "otrd.",
+        "daysShort3": "trešd.",
+        "daysShort4": "ceturtd.",
+        "daysShort5": "piektd.",
+        "daysShort6": "sestd.",
+        "firstDay": "0",
+        "months0": "janvāris",
+        "months1": "februāris",
+        "months10": "novembris",
+        "months11": "decembris",
+        "months2": "marts",
+        "months3": "aprīlis",
+        "months4": "maijs",
+        "months5": "jūnijs",
+        "months6": "jūlijs",
+        "months7": "augusts",
+        "months8": "septembris",
+        "months9": "oktobris",
+        "monthsShort0": "janv.",
+        "monthsShort1": "febr.",
+        "monthsShort10": "nov.",
+        "monthsShort11": "dec.",
+        "monthsShort2": "marts",
+        "monthsShort3": "apr.",
+        "monthsShort4": "maijs",
+        "monthsShort5": "jūn.",
+        "monthsShort6": "jūl.",
+        "monthsShort7": "aug.",
+        "monthsShort8": "sept.",
+        "monthsShort9": "okt.",
+        "timeFormat": "hh:mm aa",
+        "today": "Šodien"
+      }
+    },
+    "deleteAccount": {
+      "address": "Adrese",
+      "card": "Kredītkartes Nr.",
+      "deadline": "Jūsu pasūtījums joprojām būs redzams biznesa pārskata nolūkos. Jūsu konta dati tiks dzēsti {{time}}, jūs varat atcelt procesu pirms šī datuma",
+      "email": "E-pasts",
+      "ip": "IP adrese",
+      "name": "Nosaukums",
+      "nextStep": "Nākamais",
+      "notify": "Varat pieteikties šī konta slēgšanai. Pēc konta slēgšanas tiks dzēsta visa informācija, kas ļauj identificēt šo kontu, tostarp:",
+      "revoke": "Atcelt slēgšanu",
+      "revokeMessage": "Šis konts tiek slēgts, konta dati tiks dzēsti {{time}}, jūs varat atcelt šo procesu pirms šī datuma",
+      "timeout": "Iestājies taimauts operācijai, lūdzu, pārbaudiet vēlreiz",
+      "title": "Aizvērt kontu",
+      "verifyEmailMessage": "Pirms konta slēgšanas mums ir jāpārbauda jūsu identitāte\nJūsu e-pasts {{email}} saņems verifikācijas e-pastu",
+      "verifyPhoneMessage": "Pirms konta slēgšanas mums ir jāpārbauda jūsu identitāte\nJūsu mobilais tālrunis {{phone}} saņems verifikācijas ziņojumu"
+    },
     "edit": "Rediģēt",
     "editAddress": {
       "address1-message": "Mazāk par 512 rakstzīmēm !",
       "address2-message": "Mazāk par 512 rakstzīmēm !",
       "city-message": "Lūdzu, atlasiet savu pilsētu!",
+      "common-max": "",
+      "common-min": "vairāk nekā {{min}} rakstzīmes",
       "contact-message": "Lūdzu, ievadiet savu vārdu",
       "country-message": "Lūdzu, atlasiet savu valsti!",
       "default": "Iestatiet kā noklusējuma adresi",
@@ -1440,6 +2062,7 @@
     "save": "saglabāt",
     "sign-out": "Izrakstīties",
     "subscription": {
+      "desc": "Saņemiet jaunākās ziņas par veikalu",
       "email": "E-pasta",
       "line": "LĪNIJA",
       "messenger": "Ziņotājs",
@@ -1461,7 +2084,8 @@
       }
     },
     "unsubscribeFeedback": {
-      "text": "Jūs vairs nesaņemsit no mums nekādus mārketinga atjauninājumus. Jebkurā laikā varat atkārtoti abonēt"
+      "text": "Jūs vairs nesaņemsit no mums nekādus mārketinga atjauninājumus. Jebkurā laikā varat atkārtoti abonēt",
+      "title": "Jūs esat anulējis <italic>{{name}}</italic> adresātu saraksta abonementu"
     }
   },
   "validate": {
@@ -1479,5 +2103,10 @@
     "order": {
       "pending-order": "Notiek kārtība"
     }
+  },
+  "test": {
+    "lang": "",
+    "lang2": "",
+    "lang3": ""
   }
 }

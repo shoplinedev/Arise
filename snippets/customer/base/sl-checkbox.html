@@ -1,0 +1,9 @@
+{{ assign 'checkedAttr' (cond checked 'checked' '')}}
+
+<label class="sl-checkbox__wrapper">
+  <span class="sl-checkbox">
+    <input type="checkbox" class="sl-checkbox__input" {{checkedAttr}}>
+    <span class="sl-checkbox__inner"></span>
+  </span>
+  <span class="body4 {{ labelClass }}">{{ slot_content }}</span>
+</label>

@@ -2,7 +2,7 @@
 {{assign 'button_text' this.section.settings.subscribe_letter_button_text}}
 {{assign 'placeholder' this.section.settings.subscribe_letter_placeholder}}
 
-<div class="footer__newsletter">
+<div class="footer__newsletter __sl-custom-track-stage-footer-newsletter">
   {{!-- {{ snippet 'footer-block-header' }} --}}
   {{#if title}}
     <div class="body3 footer_newsletter-title footer__block-title sl-richtext">{{{title}}}</div>
@@ -10,10 +10,12 @@
 
   <div class="footer__newsletter-input">
     <div class="footer__newsletter-input-wrapper">
-      <button class="btn btn-primary btn-sm">&nbsp;</button>
-      <input class="body4 entry-line" type="text" placeholder="{{placeholder}}">
+      <button class="btn btn-primary btn-sm __sl-custom-track-stage-footer-newsletter-button">&nbsp;</button>
+      <div class="footer__newsletter-input-base">
+        <input class="body4 entry-line __sl-custom-track-stage-footer-newsletter-input" type="text" placeholder="{{placeholder}}">
+      </div>
     </div>
-    <button class="footer__newsletter-btn btn btn-primary btn-sm {{#isFalsey (trim button_text)}}has-icon{{/isFalsey}}">
+    <button class="__sl-custom-track-stage-footer-newsletter-button footer__newsletter-btn btn btn-primary btn-sm {{#isFalsey (trim button_text)}}has-icon{{/isFalsey}}">
       <span>{{button_text}}</span>
       {{snippet 'icons/icon_subscription'}}
     </button>

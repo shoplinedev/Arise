@@ -32,24 +32,24 @@
         {{include 'snippets/icons/icon_close' size=10}}
       </div>
     </div>
-    {{#input
-      wrapperClass='trade_coupon'
-      value=''
-      placeholder=(t 'trade.coupon-code')}}
-    <div class="trade_coupon__btns">
-      {{!-- 首屏渲染禁用“应用”按钮 --}}
-      <button id="trade_coupon_btn"
-        class="trade_coupon__btns-apply is-disabled">
-        {{ t 'common.apply' }}
-      </button>
-      <button id="trade_coupon_loading_btn" class="trade_coupon__btns-loading is-disabled hide">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1.3999 7.00002C1.3999 10.0928 3.90711 12.6 6.9999 12.6C10.0927 12.6 12.5999 10.0928 12.5999 7.00002C12.5999 3.90723 10.0927 1.40002 6.9999 1.40002"
-            stroke="white" stroke-width="2.1" />
-        </svg>
-      </button>
+    <div class="trade_coupon_input_box">
+      {{#input
+        wrapperClass='trade_coupon'
+        value=''
+        placeholder=(t 'trade.coupon-code')}}
+      {{/input}}
+      <div class="trade_coupon__btns">
+        {{!-- 首屏渲染禁用“应用”按钮 --}}
+        <button id="trade_coupon_btn"
+          class="trade_coupon__btns-apply is-disabled">
+          {{ t 'common.apply' }}
+        </button>
+        <button id="trade_coupon_loading_btn" class="trade_coupon__btns-loading is-disabled hide">
+          {{ t 'common.apply' }}
+          {{ snippet 'icons/icon_coupon_btn_loading' }}
+        </button>
+      </div>
     </div>
-    {{/input}}
     <div class="error-tips hide"></div>
     {{!-- 这一层盒子用来限制flex自适应的宽 --}}
     <div class="trade_coupon__appliedCodeBox {{#if (boolean hasErr "||" (boolean  discountCode '===' null)) }}hide{{/if}}">

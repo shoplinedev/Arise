@@ -1,0 +1,24 @@
+{{assign 'show_more' (boolean dataList.length '>' 1)}}
+{{assign '__uploadTimeStr__' (t 'order.detail.orderstatus.UploadTime')}}
+{{assign '__referenceNumberStr__' (t 'order.detail.orderstatus.ReferenceNumber')}}
+{{assign '__receiverAccountStr__' (t 'order.detail.orderstatus.ReceiverAccount')}}
+{{assign '__payAmountStr__' (t 'order.detail.orderstatus.PayAmount')}}
+{{assign '__showMoreStr__' (t 'order.detail.orderstatus.action.ShowMore')}}
+
+{{#each dataList}}
+    <div class="trade-transfer-voucher ">
+        <div class="trade-transfer-voucher_img">
+            <img src="{{voucherUrl}}" alt="transfer voucher" 
+                data-time="{{dayjs method='format' init=uploadTime format='MMMM DD,YYYY h:mma'}}" 
+                data-reference="{{#if transRef}}{{transRef}}{{else}}-{{/if}}" 
+                data-receiver="{{receiverAccount}}" 
+                data-currency="{{currency}}"
+                data-amount="{{#if amount}}{{currency (multiply amount 100) code=currency}}{{else}}{{amount}}{{/if}}"
+            >
+        </div>
+    </div>
+{{/each}}
+
+{{#unless noNeedToUpload}}
+    {{snippet 'customer/order/detail/voucher-upload' type="icon" hide=(boolean dataList.length '==' 0)}}
+{{/unless}}

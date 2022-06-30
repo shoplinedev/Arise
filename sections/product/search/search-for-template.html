@@ -1,125 +1,72 @@
-{{ preload_state 'products' }}
 
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'product/search/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'product/search/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
-{{ inline_stylesheet 'product/search/index.min.css' }}
-
-{{#partial 'title'}}
-  <title>Search - {{ storeInfo.name }}</title>
-{{/partial}}
-
-{{#partial 'page_view'}}
-{{ assign 'top_ten_products_list' (array-slice products.list 0 10) }}
-<script>
-  !function () {
-    const params = (new URL(document.location))?.searchParams
-    const keyword = params.get('keyword');
-    if (!keyword) return;
-    // 第三方埋点
-    window.SL_EventBus.emit('global:thirdPartReport', {
-      GA: [
-        [
-          'event',
-          'view_search_results',
-          {
-            search_term: '{{ request.uri.query.keyword }}',
-            items: [{{#forEach products.list}}{id: '{{ reportSkuId }}', name: '{{ title }}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
-          }
-        ],
-      ],
-      FBPixel: [
-        [
-          'track',
-          'Search',
-          {
-            search_string: '{{ request.uri.query.keyword }}',
-          },
-          {
-            eventID: 'search{{ serverEventId }}'
-          }
-        ],
-      ],
-      GAR: [
-        [
-         'event',
-          'view_search_results',
-          {
-            items: [{{#forEach top_ten_products_list}}{id: '{{ reportSkuId }}', google_business_vertical: 'retail'}{{#unless isLast}},{{/unless}}{{/forEach}}]
-          }
-        ]
-      ],
-       GARemarketing: [
-       [
-         'event',
-          'view_search_results',
-          {
-            ecomm_prodid: [{{#forEach top_ten_products_list}}'{{ reportSkuId }}'{{#unless isLast}},{{/unless}}{{/forEach}}], 
-            ecomm_pagetype: 'searchresults',
-          }
-        ]
-      ],
-    });
-  }()
-</script>
-<script>
-  window.HdSdk.shopTracker.report('60006259', {
-    event_name: 'view',
-    page: '106',
-    search_type: '{{ default (get 'type' request.uri.query) '' }}',
-    iframe_id: 1
-  })
-</script>
-{{/partial}}
 
 {{!-- define computed props --}}
-{{ assign 'keyword' (get 'keyword' request.uri.query) }}
-{{ assign 'total' (get 'total' products) }}
-{{ assign 'count' (length products.list) }}
+{{assign 'keyword' (get 'keyword' request.uri.query)}}
+{{assign 'total' (get 'total' products)}}
+{{assign 'count' (length products.list)}}
 
 <main class="product-search__container section-gap">
   <div class="product-search__body container">
     <nav class="product-search__breadcrumb">
-      <a href="/" title="{{ t 'productSearch.search.backHome' }}">{{ t 'common.home' }}</a>
+      <a href="/" title="{{t 'productSearch.search.backHome'}}">{{t 'common.home'}}</a>
       <span class="product-search__breadcrumbDivider">/</span>
       <span class="product-search__searchText">
-        {{ t 'productSearch.title' }}
+        {{t "productSearch.title"}}
         {{#if (trim keyword)}}
-          ：{{{ t 'productSearch.search.resultsFoundFor' count=total keyword=keyword }}}
+          ：{{{t 'productSearch.search.resultsFoundFor' count=total keyword=keyword}}}
         {{/if}}
       </span>
     </nav>
     <header class="product-search__header">
-      <h2 class="product-search__headerTitle title2">{{ t 'productSearch.title' }}</h2>
+      <h2 class="product-search__headerTitle title2">{{t "productSearch.title"}}</h2>
     </header>
     <section class="product-search__form">
-        {{ snippet 'header-search-bar' id='product-search' }}
+        {{snippet 'header-search-bar' id="product-search" }}
     </section>
     <hr class="product-search__hr">
     <div class="product-search__results">
       <div class="product-search__header">
-        <h2 class="product-search__headerTitle title2">{{ t 'productSearch.search.results' count=total }}</h2>
+        <h2 class="product-search__headerTitle title2">{{t 'productSearch.search.results' count=total}}</h2>
         {{#if total '===' 0}}
-          <p class="product-search__searchText">{{{ t 'productSearch.search.searchNoResults' keyword=keyword }}}</p>
+          <p class="product-search__searchText">{{{t 'productSearch.search.searchNoResults' keyword=keyword}}}</p>
         {{/if}}
       </div>
     </div>
-    {{ snippet 'product/commons/product-item-list' listData=products.list pageSize=48 pageNum=products.pageNum total=products.total className='__sl-custom-track-product-item-search' }}
+    {{snippet 'product/commons/product-item-list' colNum=section.settings.pc_cols mbColNum=section.settings.md_cols listData=products.list pageSize=48 pageNum=products.pageNum total=products.total className='__sl-custom-track-product-item-search' }}
   </div>
 </main>
 {{!-- 推荐商品 --}}
-{{ snippet 'product/product-recommend' }}
+{{snippet 'product/product-recommend' }}
 
 {{#schema}}
 {
   "name": "t:sections.product_search_search-for-template.name",
   "settings": [
+    {
+      "id": "pc_cols",
+      "type": "range",
+      "label": "t:sections.product_search_search-for-template.settings.pc_cols.label",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "id": "md_cols",
+      "type": "select",
+      "label": "t:sections.product_search_search-for-template.settings.md_cols.label",
+      "options": [
+        {
+          "value": 1,
+          "label": "t:sections.product_search_search-for-template.settings.md_cols.options__0.label"
+        },
+        {
+          "value": 2,
+          "label": "t:sections.product_search_search-for-template.settings.md_cols.options__1.label"
+        }
+      ],
+      "default": 2
+    },
     {
       "type": "group_header",
       "label": "t:sections.product_search_search-for-template.settings.group_header__0.label",
@@ -178,6 +125,8 @@
   ],
   "default": {
     "settings": {
+      "pc_cols": 4,
+      "md_cols": 2,
       "display_type": "all",
       "product_image_ratio": "0",
       "product_fill_type": "contain",

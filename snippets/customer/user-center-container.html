@@ -1,0 +1,34 @@
+{{ assign 'isMobile' request.is_mobile }}
+
+{{!-- type 参数在匹配埋点时会用到 --}}
+{{ assign 'navbar' (JSONparse (append '[
+  {"type": "center","path":"/user/center","text":"' (t "userCenter.personal-info") '"},
+  {"type": "message","path":"/user/message","text":"' (t "userCenter.message.message") '"},
+  {"type": "orders","path":"/user/orders","text":"' (t "userCenter.orders") '"}
+]')) }}
+
+<div class="user-center__container" id="user-center">
+  <div class="navbar__container">
+    <div class="navbar">
+      {{#each navbar}}
+        {{#with this as |global|}}
+          <a href="{{ path }}" data-type="{{ type }}" class="navbar__item {{cond (eq @root.request.uri.path path) 'active' ''}}">{{ text }}</a>
+        {{/with}}
+      {{/each}}
+    </div>
+
+    {{#if (isFalsey isMobile)}}
+      <div class="user-center__btns">
+        <a href="javascript:void(0);" class="user-center__btn--link signout-link">{{t 'userCenter.sign-out'}}</a>
+      </div>
+    {{/if}}
+  </div>
+
+  {{slot_content}}
+
+  {{#if (isTruthy isMobile)}}
+    <div class="user-center__btns">
+      <a href="javascript:void(0);" class="user-center__btn--link signout-link">{{t 'userCenter.sign-out'}}</a>
+    </div>
+  {{/if}}
+</div>

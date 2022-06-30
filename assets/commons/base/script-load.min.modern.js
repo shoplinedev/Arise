@@ -1,17 +1,8 @@
 (() => {
     "use strict";
-    function _defineProperty(obj, key, value) {
-        if (key in obj) Object.defineProperty(obj, key, {
-            value,
-            enumerable: true,
-            configurable: true,
-            writable: true
-        }); else obj[key] = value;
-        return obj;
-    }
     class ScriptLoad {
         constructor() {
-            _defineProperty(this, "jsUrlList", {});
+            this.jsUrlList = {};
         }
         set(url) {
             if (this.jsUrlList[url]) return;
@@ -24,7 +15,8 @@
         static creatScriptTag(url) {
             const script = document.createElement("script");
             script.src = url;
-            script.defer = true;
+            script.defer = false;
+            script.async = false;
             script.onerror = err => {
                 console.error(`asset file ${url} loading error`, err);
             };
