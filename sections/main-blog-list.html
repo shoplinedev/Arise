@@ -1,7 +1,7 @@
 {{inline_stylesheet 'blog/list/index.min.css'}}
 
 <main class="blogs-container container">
-  {{ assign 'homeText' (t 'common.home') }}
+  {{ assign 'homeText' (t 'general.general.home') }}
   {{ assign 'title' (get 'title' blogs) }}
   {{ assign 'total' (default (get 'blogs.total' blogs) 0) }}
   {{ assign 'pageNum' (default (get 'blogs.pageNum' blogs) 0) }}
@@ -32,7 +32,7 @@
                 showCover=global.section.settings.is_show_cover
                 coverRatio=global.section.settings.cover_img_ratio
                 showDesc=global.section.settings.is_show_desc
-                btn_text=(t 'blogList.container.readBtnText')
+                btn_text=(t 'blog.blog_list.read_btn_text')
               }}
             </li>
           {{/each}}
@@ -43,8 +43,8 @@
     {{ snippet 'product/commons/pagination' mode='href' id="blogs-pagination" wrapperClass='blogs__pagination' total=total pageSize=pageSize current=pageNum request=request }}
   {{else}}
     <div class="blogs__empty">
-      <h2 class="blogs__empty-title title3">{{ t 'blogList.container.empty.title' }}</h2>
-      <p class="blogs__empty-desc body3">{{ t 'blogList.container.empty.desc' }}</p>
+      <h2 class="blogs__empty-title title3">{{ t 'blog.blog_list.title' }}</h2>
+      <p class="blogs__empty-desc body3">{{ t 'blog.blog_list.empty_desc' }}</p>
     </div>
   {{/if}}
 </main>

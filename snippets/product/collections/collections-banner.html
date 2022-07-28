@@ -18,7 +18,7 @@
     <div class="product-list-banner-box-bg" id="productListBanner-container">
       <div class="{{#if settings.parallax_scroll }}product-list-banner-box-bg-img{{else}}product-list-banner-box-bg-img--default{{/if}}" id="productListBanner-parallax" data-parallax-scroll="{{settings.parallax_scroll}}">
         {{#if sortation.sortationImg}}
-          <img {{{get 'responsiveAttr' (image_responsive sortation.sortationImg useLazyLoad=false ) }}} alt="">
+          <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  {{{get 'responsiveAttr' (image_responsive sortation.sortationImg useLazyLoad=false ) }}} alt="">
         {{/if}}
       </div>    
     </div>
@@ -32,7 +32,7 @@
   {{#if settings.show_category_name}}
     <div class="product-list-banner-box-title {{boxClass}}">
       <div class="container">
-        <a href="/" class="product-list-banner-box-title-url custom-body4">{{t 'common.home'}} /</a>
+        <a href="/" class="product-list-banner-box-title-url custom-body4">{{t 'general.general.home'}} /</a>
         <h1 class="product-list-banner-box-title-sortationTitle custom-title2 title2">{{sortation.title}}</h1>
       </div>
     </div>

@@ -7,10 +7,10 @@
       attrs='autocomplete="off"'
       name="verifycode"
       type="text"
-      placeholder=(t 'user.code')
+      placeholder=(t 'customer.general.verification_code')
     }}
       {{#child 'suffix'}}
-        <button class="btn btn-link customer__send-btn customer__form-item--send" disabled>{{ t 'user.send' }}</button>
+        <button class="btn btn-link customer__send-btn customer__form-item--send" disabled>{{ t 'customer.general.send' }}</button>
       {{/child}}
     {{/snippet}}
   {{/formItem}}
@@ -18,6 +18,6 @@
   <p class="customer__error"></p>
 
   {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button" block=true attrs="type='button'" }}
-    {{t 'user.confirm'}}
+    {{t 'customer.general.confirm'}}
   {{/snippet}}
 </form>

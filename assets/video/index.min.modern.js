@@ -146,7 +146,7 @@
         class VimeoPlayer extends Player {
             constructor(containerId, options) {
                 super();
-                this.el = $(containerId).get(0);
+                this.el = __SL_$__(containerId).get(0);
                 this.options = {
                     ...defaults,
                     ...options,

@@ -1,5 +1,5 @@
 {{ assign 'currentActivityInfoItem' (itemAt activityCustomInfo 0)}}
-{{! 优惠券样式2}}
+{{!-- 优惠券样式2 --}}
 <div class="d-flex sales-discount-coupon-card2__container sales-discount-coupon-hook" data-discount-code="{{discountCode}}">
   <div class="d-flex sales-discount-coupon-card2__left">
     <div class="sales-discount-coupon-card2__left-bg">
@@ -29,26 +29,24 @@
     {{/if}}
     {{#if targetUserType}}
       {{#if targetUserType '==' 6}}
-        <div class="sales-discount-coupon-card2__customers">{{t 'sales.discount-coupon.coupon-content.specified'}}</div>
-      {{else}}
-        {{#if targetUserType '==' 5}}
-          <div class="sales-discount-coupon-card2__customers">{{t 'sales.discount-coupon.coupon-content.specified'}}</div>
-        {{else}}
-          {{#if targetUserType '==' 2}}
-            <div class="sales-discount-coupon-card2__customers">{{t 'sales.discount-coupon.coupon-content.level' level=currentActivityInfoItem.level}}</div>
-          {{/if}}
-        {{/if}}
+        <div class="sales-discount-coupon-card2__customers">{{t 'sales.discount_coupon.specified_customer'}}</div>
+      {{/if}}
+      {{#if targetUserType '==' 5}}
+        <div class="sales-discount-coupon-card2__customers">{{t 'sales.discount_coupon.specified_customer'}}</div>
+      {{/if}}
+      {{#if targetUserType '==' 2}}
+        <div class="sales-discount-coupon-card2__customers">{{t 'sales.discount_coupon.coupon_content_level' level=currentActivityInfoItem.level}}</div>
       {{/if}}
     {{/if}}
     {{#if endTime}}
       <div class="sales-discount-coupon-card2__expire">
-        {{t 'sales.discount-coupon.coupon-content.until' endTime=(dayjs method='format' init=endTime format='MMM D,YYYY') }}
+        {{t 'sales.discount_coupon.active_date_until' endTime=(dayjs method='format' init=endTime format='MMM D,YYYY') }}
       </div>
     {{/if}}
   </div>
   <div class="sales-discount-coupon-card2__right d-flex">
     <div class="sales-discount-coupon-card2__code-name notranslate">{{discountCode}}</div>
-    <div class="text-uppercase fw-bold sales-discount-coupon-card2__button sales-discount-coupon-card-btn-hook" data-apply="{{t 'sales.discount-coupon.apply'}}"
-      data-applied="{{t 'sales.discount-coupon.applied'}}">{{t 'sales.discount-coupon.apply'}}</div>
+    <div class="text-uppercase fw-bold sales-discount-coupon-card2__button sales-discount-coupon-card-btn-hook" data-apply="{{t 'sales.discount_coupon.apply'}}"
+      data-applied="{{t 'sales.discount_coupon.applied'}}">{{t 'sales.discount_coupon.apply'}}</div>
   </div>
 </div>

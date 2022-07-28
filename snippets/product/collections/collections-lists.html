@@ -24,9 +24,9 @@
       <div class="product-list-filter-container">
         <div class="product-list-show-product-number-m body3" id="product-list-list-header-left-m">
           {{#if products.realTotal '>' 1}}
-              {{t 'productList.container.moreProductNum' num=products.realTotal}}
+              {{t 'products.product_list.more__product_num' num=products.realTotal}}
             {{else}}
-              {{t 'productList.container.oneProductNum' num=products.realTotal}}
+              {{t 'products.product_list.one_product_num' num=products.realTotal}}
             {{/if}}
         </div>
         {{#if section.settings.sorter_enable}}
@@ -47,7 +47,7 @@
     {{#if (boolean products.list.length '>' 0)}}
       {{snippet 'product/commons/product-item-list' effectPage="productList" gripType=gripType className='__sl-custom-track-product-list-item' colNum=itemNumByRow listData=slice_products_list pageSize=calc_page_size pageNum=products.pageNum total=products.total }}
     {{else}}
-      <span class="body3">{{t "productList.noProduct"}}</span>
+      <span class="body3">{{t "products.product_list.no_product"}}</span>
     {{/if}}
   </div>
   <div class="product-list-description-category">

@@ -2,7 +2,7 @@
 <div class="detail-goods">
   {{#if unshippedItemInfo}}
     <div class="detail-status">
-      {{t 'order.detail.packages.unshipped-order-num' num=unshippedItemInfo.productSumNum}}
+      {{t 'cart.shipping.processing_amount' num=unshippedItemInfo.productSumNum}}
     </div>
     {{#if unshippedItemInfo.unShippedItemList}}
       {{#each unshippedItemInfo.unShippedItemList}}
@@ -14,7 +14,7 @@
   {{else}}
     {{#if ordersItemList}}
       <div class="detail-status">
-        {{t 'order.order-list.package-item' item=productSumNum num=(add index 1) }}
+        {{t 'cart.order.package_amount' item=productSumNum num=(add index 1) }}
       </div>
     {{/if}}
     <!-- 物流信息 -->
@@ -25,7 +25,7 @@
         </div>
         <div>
           <button class="detail-logistic-track btn btn-outline-primary btn-sm" data-index="{{index}}">
-            {{t 'order.order-list.track'}}
+            {{t 'cart.order.tracking'}}
           </button>
         </div>
       </div>
@@ -33,7 +33,7 @@
       <div class="detail-logistic">
         <div>
           <button class="detail-logistic-track btn btn-outline-primary btn-sm" data-index="{{index}}">
-            {{t 'order.order-list.track'}}
+            {{t 'cart.order.tracking'}}
           </button>
         </div>
       </div>

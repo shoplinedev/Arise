@@ -1,5 +1,6 @@
 {{ assign 'natural_height' false }}
 {{ assign 'natural_mobile_height' false }}
+{{ assign 'transition_type' (get 'transition_type' section.settings 'simple') }}
 {{ inline_stylesheet 'slideshow/index.min.css' }}
 
 <script>
@@ -16,7 +17,7 @@
 <div
   data-section-type="slideshow"
   data-section-id="{{ section.id }}"
-  class="__sl-custom-track-stage-slideshow"
+  class="__sl-custom-track-stage-slideshow slideshow__transition--{{ transition_type }}"
 >
   {{#if (obj_size section.blocks) '>' 0}}
     {{ assign 'natural_height_ratio' 0 }}
@@ -119,6 +120,14 @@
                     box-shadow:0 0 0 {{ global.theme.settings.btn_border_thickness }}px {{ rgba '#ffffff' (subtract 1 (divide global.theme.settings.btn_border_opacity 100)) }};
                     {{/if}}
                   }
+
+                  #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .btn-primary:hover:after {
+                    {{#if (color_extract this.settings.color_accent 'lightness') '>' 40}}
+                    box-shadow:0 0 0 {{ append (add global.theme.settings.btn_border_thickness 1) 'px' }} {{ rgba '#000000' (subtract 1 (divide global.theme.settings.btn_border_opacity 100)) }}, 0 0 0 {{ add global.theme.settings.btn_border_thickness 1 }}px {{ rgba this.settings.color_accent 1 }};
+                    {{else}}
+                    box-shadow:0 0 0 {{ append (add global.theme.settings.btn_border_thickness 1) 'px' }} {{ rgba '#ffffff' (subtract 1 (divide global.theme.settings.btn_border_opacity 100)) }}, 0 0 0 {{ add global.theme.settings.btn_border_thickness 1 }}px {{ rgba this.settings.color_accent 1 }};
+                    {{/if}}
+                  }
                 {{/if}}
               {{/style}}
 
@@ -139,6 +148,9 @@
                   {{{ ele_link_item.hrefAttr }}}
                 {{/eq}}
                 class="slideshow__slide swiper-slide slideshow__slide--{{ @key }} slideshow__slide--index{{ @index }}  __sl-custom-track-stage-slideshow-wrapper"
+                {{#if ../transition_type '===' 'scale'}}
+                  style="background: url({{ img_url this.settings.image.url width=1 }})"
+                {{/if}}
               >
                 <div class="hero__image-wrapper">
                   {{#if global.section.settings.parallax}}
@@ -248,14 +260,6 @@
           {{/with}}
 
         </div>
-        {{#if section.settings.style '===' 'arrows'}}
-          <div class="flickity-button flickity-button--next">
-            {{ snippet 'icons/icon_strong_arrow_r' class='flickity-button__icon' }}
-          </div>
-          <div class="flickity-button flickity-button--prev">
-            {{ snippet 'icons/icon_strong_arrow_r' class='flickity-button__icon' }}
-          </div>
-        {{/if}}
         {{ assign 'pagination' false }}
         {{#if section.settings.style '===' 'dots'}}
           {{ assign 'pagination' true }}
@@ -276,6 +280,14 @@
         {{/if}}
       </div>
     </div>
+    {{#if section.settings.style '===' 'arrows'}}
+      <div class="flickity-button flickity-button--next">
+        {{ snippet 'icons/icon_strong_arrow_r' class='flickity-button__icon' }}
+      </div>
+      <div class="flickity-button flickity-button--prev">
+        {{ snippet 'icons/icon_strong_arrow_r' class='flickity-button__icon' }}
+      </div>
+    {{/if}}
   {{else}}
     <div class="placeholder-noblocks">This section doesn’t currently include any content. Add content to this section using the sidebar.</div>
   {{/if}}
@@ -398,6 +410,58 @@
       "max": 10,
       "step": 1,
       "unit": "t:sections.slideshow.settings.autoplay_speed.unit"
+    },
+    {
+      "type": "select",
+      "id": "transition_type",
+      "label": {
+        "zh-hans-cn": "过渡效果",
+        "en": "Transition effect",
+        "id": "Efek transisi",
+        "th": "เอฟเฟกต์การเปลี่ยนแปลง",
+        "vi": "Hiệu ứng quá độ",
+        "ms": "Kesan peralihan",
+        "zh-hant-tw": "過渡效果"
+      },
+      "default": "simple",
+      "options": [
+        {
+          "label": {
+            "zh-hans-cn": "简单",
+            "en": "Simple",
+            "id": "Mudah",
+            "th": "เรียบง่าย",
+            "vi": "Đơn giản",
+            "ms": "Mudah",
+            "zh-hant-tw": "簡單"
+          },
+          "value": "simple"
+        },
+        {
+          "label": {
+            "zh-hans-cn": "滑动",
+            "en": "Slide",
+            "id": "Luncur",
+            "th": "สไลด์",
+            "vi": "Lướt",
+            "ms": "Gelongsor",
+            "zh-hant-tw": "滑動"
+          },
+          "value": "slide"
+        },
+        {
+          "label": {
+            "zh-hans-cn": "缩放",
+            "en": "Zoom",
+            "id": "Zoom",
+            "th": "ซูม",
+            "vi": "Thu phóng",
+            "ms": "Penskalaan",
+            "zh-hant-tw": "縮放"
+          },
+          "value": "scale"
+        }
+      ]
     }
   ],
   "blocks": [
@@ -581,6 +645,7 @@
         "parallax": false,
         "style": "dots",
         "autoplay": true,
+        "transition_type": "simple",
         "autoplay_speed": 7
       },
       "blocks": [

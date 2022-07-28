@@ -1269,6 +1269,104 @@
                 };
             }));
         },
+        "./node_modules/js-cookie/src/js.cookie.js": (module, exports, __webpack_require__) => {
+            var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
+            (function(factory) {
+                var registeredInModuleLoader;
+                if (true) {
+                    !(__WEBPACK_AMD_DEFINE_FACTORY__ = factory, __WEBPACK_AMD_DEFINE_RESULT__ = "function" === typeof __WEBPACK_AMD_DEFINE_FACTORY__ ? __WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module) : __WEBPACK_AMD_DEFINE_FACTORY__, 
+                    void 0 !== __WEBPACK_AMD_DEFINE_RESULT__ && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+                    registeredInModuleLoader = true;
+                }
+                if (true) {
+                    module.exports = factory();
+                    registeredInModuleLoader = true;
+                }
+                if (!registeredInModuleLoader) {
+                    var OldCookies = window.Cookies;
+                    var api = window.Cookies = factory();
+                    api.noConflict = function() {
+                        window.Cookies = OldCookies;
+                        return api;
+                    };
+                }
+            })((function() {
+                function extend() {
+                    var i = 0;
+                    var result = {};
+                    for (;i < arguments.length; i++) {
+                        var attributes = arguments[i];
+                        for (var key in attributes) result[key] = attributes[key];
+                    }
+                    return result;
+                }
+                function decode(s) {
+                    return s.replace(/(%[0-9A-Z]{2})+/g, decodeURIComponent);
+                }
+                function init(converter) {
+                    function api() {}
+                    function set(key, value, attributes) {
+                        if ("undefined" === typeof document) return;
+                        attributes = extend({
+                            path: "/"
+                        }, api.defaults, attributes);
+                        if ("number" === typeof attributes.expires) attributes.expires = new Date(1 * new Date + 864e5 * attributes.expires);
+                        attributes.expires = attributes.expires ? attributes.expires.toUTCString() : "";
+                        try {
+                            var result = JSON.stringify(value);
+                            if (/^[\{\[]/.test(result)) value = result;
+                        } catch (e) {}
+                        value = converter.write ? converter.write(value, key) : encodeURIComponent(String(value)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+                        key = encodeURIComponent(String(key)).replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent).replace(/[\(\)]/g, escape);
+                        var stringifiedAttributes = "";
+                        for (var attributeName in attributes) {
+                            if (!attributes[attributeName]) continue;
+                            stringifiedAttributes += "; " + attributeName;
+                            if (true === attributes[attributeName]) continue;
+                            stringifiedAttributes += "=" + attributes[attributeName].split(";")[0];
+                        }
+                        return document.cookie = key + "=" + value + stringifiedAttributes;
+                    }
+                    function get(key, json) {
+                        if ("undefined" === typeof document) return;
+                        var jar = {};
+                        var cookies = document.cookie ? document.cookie.split("; ") : [];
+                        var i = 0;
+                        for (;i < cookies.length; i++) {
+                            var parts = cookies[i].split("=");
+                            var cookie = parts.slice(1).join("=");
+                            if (!json && '"' === cookie.charAt(0)) cookie = cookie.slice(1, -1);
+                            try {
+                                var name = decode(parts[0]);
+                                cookie = (converter.read || converter)(cookie, name) || decode(cookie);
+                                if (json) try {
+                                    cookie = JSON.parse(cookie);
+                                } catch (e) {}
+                                jar[name] = cookie;
+                                if (key === name) break;
+                            } catch (e) {}
+                        }
+                        return key ? jar[key] : jar;
+                    }
+                    api.set = set;
+                    api.get = function(key) {
+                        return get(key, false);
+                    };
+                    api.getJSON = function(key) {
+                        return get(key, true);
+                    };
+                    api.remove = function(key, attributes) {
+                        set(key, "", extend(attributes, {
+                            expires: -1
+                        }));
+                    };
+                    api.defaults = {};
+                    api.withConverter = init;
+                    return api;
+                }
+                return init((function() {}));
+            }));
+        },
         "./node_modules/lodash/_baseGetTag.js": module => {
             var objectProto = Object.prototype;
             var nativeObjectToString = objectProto.toString;
@@ -4294,74 +4392,418 @@
                 });
             }));
         },
-        "../shared/browser/node_modules/@sentry/hub/esm/hub.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "../shared/browser/node_modules/@sl/logger-sentry/lib/index.es.js": (module, __webpack_exports__, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(__webpack_exports__, {
-                Hub: () => Hub,
-                getCurrentHub: () => getCurrentHub,
-                getMainCarrier: () => getMainCarrier
+                default: () => U
             });
-            var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var misc = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
-            var time = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
-            var esm_logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
-            var env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
-            var esm_global = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
-            var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
-            var esm_scope = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/scope.js");
-            var object = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
-            var Session = function() {
-                function Session(context) {
-                    this.errors = 0;
-                    this.sid = (0, misc.uuid4)();
-                    this.duration = 0;
-                    this.status = "ok";
-                    this.init = true;
-                    this.ignoreDuration = false;
-                    var startingTime = (0, time.timestampInSeconds)();
-                    this.timestamp = startingTime;
-                    this.started = startingTime;
-                    if (context) this.update(context);
+            var _sl_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sl/logger/lib/index.es.js");
+            module = __webpack_require__.hmd(module);
+            var e = function() {
+                return e = Object.assign || function(t) {
+                    for (var e, n = 1, r = arguments.length; n < r; n++) for (var i in e = arguments[n]) Object.prototype.hasOwnProperty.call(e, i) && (t[i] = e[i]);
+                    return t;
+                }, e.apply(this, arguments);
+            };
+            function n(t, e) {
+                var n = "function" == typeof Symbol && t[Symbol.iterator];
+                if (!n) return t;
+                var r, i, s = n.call(t), o = [];
+                try {
+                    for (;(void 0 === e || e-- > 0) && !(r = s.next()).done; ) o.push(r.value);
+                } catch (t) {
+                    i = {
+                        error: t
+                    };
+                } finally {
+                    try {
+                        r && !r.done && (n = s.return) && n.call(s);
+                    } finally {
+                        if (i) throw i.error;
+                    }
                 }
-                Session.prototype.update = function(context) {
-                    if (void 0 === context) context = {};
-                    if (context.user) {
-                        if (!this.ipAddress && context.user.ip_address) this.ipAddress = context.user.ip_address;
-                        if (!this.did && !context.did) this.did = context.user.id || context.user.email || context.user.username;
+                return o;
+            }
+            function r() {
+                for (var t = [], e = 0; e < arguments.length; e++) t = t.concat(n(arguments[e]));
+                return t;
+            }
+            function i() {
+                return !("undefined" != typeof __SENTRY_BROWSER_BUNDLE__ && __SENTRY_BROWSER_BUNDLE__) && "[object process]" === Object.prototype.toString.call("undefined" != typeof process ? process : 0);
+            }
+            var s = {};
+            function o() {
+                return i() ? __webpack_require__.g : "undefined" != typeof window ? window : "undefined" != typeof self ? self : s;
+            }
+            function a(t, e, n) {
+                var r = n || o(), i = r.__SENTRY__ = r.__SENTRY__ || {};
+                return i[t] || (i[t] = e());
+            }
+            var c = Object.prototype.toString;
+            function u(t) {
+                return function(t, e) {
+                    return c.call(t) === "[object " + e + "]";
+                }(t, "Object");
+            }
+            function p(t) {
+                return Boolean(t && t.then && "function" == typeof t.then);
+            }
+            var h, f = "undefined" == typeof __SENTRY_DEBUG__ || __SENTRY_DEBUG__, _ = o(), l = [ "debug", "info", "warn", "error", "log", "assert" ];
+            function d(t) {
+                var e = o();
+                if (!("console" in e)) return t();
+                var n = e.console, r = {};
+                l.forEach((function(t) {
+                    var i = n[t] && n[t].__sentry_original__;
+                    t in e.console && i && (r[t] = n[t], n[t] = i);
+                }));
+                try {
+                    return t();
+                } finally {
+                    Object.keys(r).forEach((function(t) {
+                        n[t] = r[t];
+                    }));
+                }
+            }
+            function g() {
+                var t = !1, e = {
+                    enable: function() {
+                        t = !0;
+                    },
+                    disable: function() {
+                        t = !1;
                     }
-                    this.timestamp = context.timestamp || (0, time.timestampInSeconds)();
-                    if (context.ignoreDuration) this.ignoreDuration = context.ignoreDuration;
-                    if (context.sid) this.sid = 32 === context.sid.length ? context.sid : (0, misc.uuid4)();
-                    if (void 0 !== context.init) this.init = context.init;
-                    if (!this.did && context.did) this.did = "" + context.did;
-                    if ("number" === typeof context.started) this.started = context.started;
-                    if (this.ignoreDuration) this.duration = void 0; else if ("number" === typeof context.duration) this.duration = context.duration; else {
-                        var duration = this.timestamp - this.started;
-                        this.duration = duration >= 0 ? duration : 0;
-                    }
-                    if (context.release) this.release = context.release;
-                    if (context.environment) this.environment = context.environment;
-                    if (!this.ipAddress && context.ipAddress) this.ipAddress = context.ipAddress;
-                    if (!this.userAgent && context.userAgent) this.userAgent = context.userAgent;
-                    if ("number" === typeof context.errors) this.errors = context.errors;
-                    if (context.status) this.status = context.status;
                 };
-                Session.prototype.close = function(status) {
-                    if (status) this.update({
-                        status
-                    }); else if ("ok" === this.status) this.update({
+                return f ? l.forEach((function(n) {
+                    e[n] = function() {
+                        for (var e = [], i = 0; i < arguments.length; i++) e[i] = arguments[i];
+                        t && d((function() {
+                            var t;
+                            (t = _.console)[n].apply(t, r([ "Sentry Logger [" + n + "]:" ], e));
+                        }));
+                    };
+                })) : l.forEach((function(t) {
+                    e[t] = function() {};
+                })), e;
+            }
+            function v(t) {
+                var e, n;
+                if (u(t)) {
+                    var r = {};
+                    try {
+                        for (var i = function(t) {
+                            var e = "function" == typeof Symbol && Symbol.iterator, n = e && t[e], r = 0;
+                            if (n) return n.call(t);
+                            if (t && "number" == typeof t.length) return {
+                                next: function() {
+                                    return t && r >= t.length && (t = void 0), {
+                                        value: t && t[r++],
+                                        done: !t
+                                    };
+                                }
+                            };
+                            throw new TypeError(e ? "Object is not iterable." : "Symbol.iterator is not defined.");
+                        }(Object.keys(t)), s = i.next(); !s.done; s = i.next()) {
+                            var o = s.value;
+                            void 0 !== t[o] && (r[o] = v(t[o]));
+                        }
+                    } catch (t) {
+                        e = {
+                            error: t
+                        };
+                    } finally {
+                        try {
+                            s && !s.done && (n = i.return) && n.call(i);
+                        } finally {
+                            if (e) throw e.error;
+                        }
+                    }
+                    return r;
+                }
+                return Array.isArray(t) ? t.map(v) : t;
+            }
+            function y() {
+                var t = o(), e = t.crypto || t.msCrypto;
+                if (void 0 !== e && e.getRandomValues) {
+                    var n = new Uint16Array(8);
+                    e.getRandomValues(n), n[3] = 4095 & n[3] | 16384, n[4] = 16383 & n[4] | 32768;
+                    var r = function(t) {
+                        for (var e = t.toString(16); e.length < 4; ) e = "0" + e;
+                        return e;
+                    };
+                    return r(n[0]) + r(n[1]) + r(n[2]) + r(n[3]) + r(n[4]) + r(n[5]) + r(n[6]) + r(n[7]);
+                }
+                return "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, (function(t) {
+                    var e = 16 * Math.random() | 0;
+                    return ("x" === t ? e : 3 & e | 8).toString(16);
+                }));
+            }
+            h = f ? a("logger", g) : g();
+            var x, S = function() {
+                function t(t) {
+                    var e = this;
+                    this._state = 0, this._handlers = [], this._resolve = function(t) {
+                        e._setResult(1, t);
+                    }, this._reject = function(t) {
+                        e._setResult(2, t);
+                    }, this._setResult = function(t, n) {
+                        0 === e._state && (p(n) ? n.then(e._resolve, e._reject) : (e._state = t, e._value = n, 
+                        e._executeHandlers()));
+                    }, this._executeHandlers = function() {
+                        if (0 !== e._state) {
+                            var t = e._handlers.slice();
+                            e._handlers = [], t.forEach((function(t) {
+                                t[0] || (1 === e._state && t[1](e._value), 2 === e._state && t[2](e._value), t[0] = !0);
+                            }));
+                        }
+                    };
+                    try {
+                        t(this._resolve, this._reject);
+                    } catch (t) {
+                        this._reject(t);
+                    }
+                }
+                return t.prototype.then = function(e, n) {
+                    var r = this;
+                    return new t((function(t, i) {
+                        r._handlers.push([ !1, function(n) {
+                            if (e) try {
+                                t(e(n));
+                            } catch (t) {
+                                i(t);
+                            } else t(n);
+                        }, function(e) {
+                            if (n) try {
+                                t(n(e));
+                            } catch (t) {
+                                i(t);
+                            } else i(e);
+                        } ]), r._executeHandlers();
+                    }));
+                }, t.prototype.catch = function(t) {
+                    return this.then((function(t) {
+                        return t;
+                    }), t);
+                }, t.prototype.finally = function(e) {
+                    var n = this;
+                    return new t((function(t, r) {
+                        var i, s;
+                        return n.then((function(t) {
+                            s = !1, i = t, e && e();
+                        }), (function(t) {
+                            s = !0, i = t, e && e();
+                        })).then((function() {
+                            s ? r(i) : t(i);
+                        }));
+                    }));
+                }, t;
+            }();
+            !function(t) {
+                t.Fatal = "fatal", t.Error = "error", t.Warning = "warning", t.Log = "log", t.Info = "info", 
+                t.Debug = "debug", t.Critical = "critical";
+            }(x || (x = {}));
+            var m = {
+                nowSeconds: function() {
+                    return Date.now() / 1e3;
+                }
+            };
+            var b = i() ? function() {
+                try {
+                    return (t = module, e = "perf_hooks", t.require(e)).performance;
+                } catch (t) {
+                    return;
+                }
+                var t, e;
+            }() : function() {
+                var t = o().performance;
+                if (t && t.now) return {
+                    now: function() {
+                        return t.now();
+                    },
+                    timeOrigin: Date.now() - t.now()
+                };
+            }(), E = void 0 === b ? m : {
+                nowSeconds: function() {
+                    return (b.timeOrigin + b.now()) / 1e3;
+                }
+            }, w = m.nowSeconds.bind(m), k = E.nowSeconds.bind(E);
+            !function() {
+                var t = o().performance;
+                if (t && t.now) {
+                    var e = 36e5, n = t.now(), r = Date.now(), i = t.timeOrigin ? Math.abs(t.timeOrigin + n - r) : e, s = i < e, a = t.timing && t.timing.navigationStart, c = "number" == typeof a ? Math.abs(a + n - r) : e;
+                    (s || c < e) && i <= c && t.timeOrigin;
+                }
+            }();
+            var T = function() {
+                function t() {
+                    this._notifyingListeners = !1, this._scopeListeners = [], this._eventProcessors = [], 
+                    this._breadcrumbs = [], this._user = {}, this._tags = {}, this._extra = {}, this._contexts = {}, 
+                    this._sdkProcessingMetadata = {};
+                }
+                return t.clone = function(n) {
+                    var i = new t;
+                    return n && (i._breadcrumbs = r(n._breadcrumbs), i._tags = e({}, n._tags), i._extra = e({}, n._extra), 
+                    i._contexts = e({}, n._contexts), i._user = n._user, i._level = n._level, i._span = n._span, 
+                    i._session = n._session, i._transactionName = n._transactionName, i._fingerprint = n._fingerprint, 
+                    i._eventProcessors = r(n._eventProcessors), i._requestSession = n._requestSession), 
+                    i;
+                }, t.prototype.addScopeListener = function(t) {
+                    this._scopeListeners.push(t);
+                }, t.prototype.addEventProcessor = function(t) {
+                    return this._eventProcessors.push(t), this;
+                }, t.prototype.setUser = function(t) {
+                    return this._user = t || {}, this._session && this._session.update({
+                        user: t
+                    }), this._notifyScopeListeners(), this;
+                }, t.prototype.getUser = function() {
+                    return this._user;
+                }, t.prototype.getRequestSession = function() {
+                    return this._requestSession;
+                }, t.prototype.setRequestSession = function(t) {
+                    return this._requestSession = t, this;
+                }, t.prototype.setTags = function(t) {
+                    return this._tags = e(e({}, this._tags), t), this._notifyScopeListeners(), this;
+                }, t.prototype.setTag = function(t, n) {
+                    var r;
+                    return this._tags = e(e({}, this._tags), ((r = {})[t] = n, r)), this._notifyScopeListeners(), 
+                    this;
+                }, t.prototype.setExtras = function(t) {
+                    return this._extra = e(e({}, this._extra), t), this._notifyScopeListeners(), this;
+                }, t.prototype.setExtra = function(t, n) {
+                    var r;
+                    return this._extra = e(e({}, this._extra), ((r = {})[t] = n, r)), this._notifyScopeListeners(), 
+                    this;
+                }, t.prototype.setFingerprint = function(t) {
+                    return this._fingerprint = t, this._notifyScopeListeners(), this;
+                }, t.prototype.setLevel = function(t) {
+                    return this._level = t, this._notifyScopeListeners(), this;
+                }, t.prototype.setTransactionName = function(t) {
+                    return this._transactionName = t, this._notifyScopeListeners(), this;
+                }, t.prototype.setTransaction = function(t) {
+                    return this.setTransactionName(t);
+                }, t.prototype.setContext = function(t, n) {
+                    var r;
+                    return null === n ? delete this._contexts[t] : this._contexts = e(e({}, this._contexts), ((r = {})[t] = n, 
+                    r)), this._notifyScopeListeners(), this;
+                }, t.prototype.setSpan = function(t) {
+                    return this._span = t, this._notifyScopeListeners(), this;
+                }, t.prototype.getSpan = function() {
+                    return this._span;
+                }, t.prototype.getTransaction = function() {
+                    var t = this.getSpan();
+                    return t && t.transaction;
+                }, t.prototype.setSession = function(t) {
+                    return t ? this._session = t : delete this._session, this._notifyScopeListeners(), 
+                    this;
+                }, t.prototype.getSession = function() {
+                    return this._session;
+                }, t.prototype.update = function(n) {
+                    if (!n) return this;
+                    if ("function" == typeof n) {
+                        var r = n(this);
+                        return r instanceof t ? r : this;
+                    }
+                    return n instanceof t ? (this._tags = e(e({}, this._tags), n._tags), this._extra = e(e({}, this._extra), n._extra), 
+                    this._contexts = e(e({}, this._contexts), n._contexts), n._user && Object.keys(n._user).length && (this._user = n._user), 
+                    n._level && (this._level = n._level), n._fingerprint && (this._fingerprint = n._fingerprint), 
+                    n._requestSession && (this._requestSession = n._requestSession)) : u(n) && (this._tags = e(e({}, this._tags), n.tags), 
+                    this._extra = e(e({}, this._extra), n.extra), this._contexts = e(e({}, this._contexts), n.contexts), 
+                    n.user && (this._user = n.user), n.level && (this._level = n.level), n.fingerprint && (this._fingerprint = n.fingerprint), 
+                    n.requestSession && (this._requestSession = n.requestSession)), this;
+                }, t.prototype.clear = function() {
+                    return this._breadcrumbs = [], this._tags = {}, this._extra = {}, this._user = {}, 
+                    this._contexts = {}, this._level = void 0, this._transactionName = void 0, this._fingerprint = void 0, 
+                    this._requestSession = void 0, this._span = void 0, this._session = void 0, this._notifyScopeListeners(), 
+                    this;
+                }, t.prototype.addBreadcrumb = function(t, n) {
+                    var i = "number" == typeof n ? Math.min(n, 100) : 100;
+                    if (i <= 0) return this;
+                    var s = e({
+                        timestamp: w()
+                    }, t);
+                    return this._breadcrumbs = r(this._breadcrumbs, [ s ]).slice(-i), this._notifyScopeListeners(), 
+                    this;
+                }, t.prototype.clearBreadcrumbs = function() {
+                    return this._breadcrumbs = [], this._notifyScopeListeners(), this;
+                }, t.prototype.applyToEvent = function(t, n) {
+                    if (this._extra && Object.keys(this._extra).length && (t.extra = e(e({}, this._extra), t.extra)), 
+                    this._tags && Object.keys(this._tags).length && (t.tags = e(e({}, this._tags), t.tags)), 
+                    this._user && Object.keys(this._user).length && (t.user = e(e({}, this._user), t.user)), 
+                    this._contexts && Object.keys(this._contexts).length && (t.contexts = e(e({}, this._contexts), t.contexts)), 
+                    this._level && (t.level = this._level), this._transactionName && (t.transaction = this._transactionName), 
+                    this._span) {
+                        t.contexts = e({
+                            trace: this._span.getTraceContext()
+                        }, t.contexts);
+                        var i = this._span.transaction && this._span.transaction.name;
+                        i && (t.tags = e({
+                            transaction: i
+                        }, t.tags));
+                    }
+                    return this._applyFingerprint(t), t.breadcrumbs = r(t.breadcrumbs || [], this._breadcrumbs), 
+                    t.breadcrumbs = t.breadcrumbs.length > 0 ? t.breadcrumbs : void 0, t.sdkProcessingMetadata = this._sdkProcessingMetadata, 
+                    this._notifyEventProcessors(r(a("globalEventProcessors", (function() {
+                        return [];
+                    })), this._eventProcessors), t, n);
+                }, t.prototype.setSDKProcessingMetadata = function(t) {
+                    return this._sdkProcessingMetadata = e(e({}, this._sdkProcessingMetadata), t), this;
+                }, t.prototype._notifyEventProcessors = function(t, n, r, i) {
+                    var s = this;
+                    return void 0 === i && (i = 0), new S((function(o, a) {
+                        var c = t[i];
+                        if (null === n || "function" != typeof c) o(n); else {
+                            var u = c(e({}, n), r);
+                            p(u) ? u.then((function(e) {
+                                return s._notifyEventProcessors(t, e, r, i + 1).then(o);
+                            })).then(null, a) : s._notifyEventProcessors(t, u, r, i + 1).then(o).then(null, a);
+                        }
+                    }));
+                }, t.prototype._notifyScopeListeners = function() {
+                    var t = this;
+                    this._notifyingListeners || (this._notifyingListeners = !0, this._scopeListeners.forEach((function(e) {
+                        e(t);
+                    })), this._notifyingListeners = !1);
+                }, t.prototype._applyFingerprint = function(t) {
+                    t.fingerprint = t.fingerprint ? Array.isArray(t.fingerprint) ? t.fingerprint : [ t.fingerprint ] : [], 
+                    this._fingerprint && (t.fingerprint = t.fingerprint.concat(this._fingerprint)), 
+                    t.fingerprint && !t.fingerprint.length && delete t.fingerprint;
+                }, t;
+            }();
+            var L = function() {
+                function t(t) {
+                    this.errors = 0, this.sid = y(), this.duration = 0, this.status = "ok", this.init = !0, 
+                    this.ignoreDuration = !1;
+                    var e = k();
+                    this.timestamp = e, this.started = e, t && this.update(t);
+                }
+                return t.prototype.update = function(t) {
+                    if (void 0 === t && (t = {}), t.user && (!this.ipAddress && t.user.ip_address && (this.ipAddress = t.user.ip_address), 
+                    this.did || t.did || (this.did = t.user.id || t.user.email || t.user.username)), 
+                    this.timestamp = t.timestamp || k(), t.ignoreDuration && (this.ignoreDuration = t.ignoreDuration), 
+                    t.sid && (this.sid = 32 === t.sid.length ? t.sid : y()), void 0 !== t.init && (this.init = t.init), 
+                    !this.did && t.did && (this.did = "" + t.did), "number" == typeof t.started && (this.started = t.started), 
+                    this.ignoreDuration) this.duration = void 0; else if ("number" == typeof t.duration) this.duration = t.duration; else {
+                        var e = this.timestamp - this.started;
+                        this.duration = e >= 0 ? e : 0;
+                    }
+                    t.release && (this.release = t.release), t.environment && (this.environment = t.environment), 
+                    !this.ipAddress && t.ipAddress && (this.ipAddress = t.ipAddress), !this.userAgent && t.userAgent && (this.userAgent = t.userAgent), 
+                    "number" == typeof t.errors && (this.errors = t.errors), t.status && (this.status = t.status);
+                }, t.prototype.close = function(t) {
+                    t ? this.update({
+                        status: t
+                    }) : "ok" === this.status ? this.update({
                         status: "exited"
-                    }); else this.update();
-                };
-                Session.prototype.toJSON = function() {
-                    return (0, object.dropUndefinedKeys)({
+                    }) : this.update();
+                }, t.prototype.toJSON = function() {
+                    return v({
                         sid: "" + this.sid,
                         init: this.init,
                         started: new Date(1e3 * this.started).toISOString(),
                         timestamp: new Date(1e3 * this.timestamp).toISOString(),
                         status: this.status,
                         errors: this.errors,
-                        did: "number" === typeof this.did || "string" === typeof this.did ? "" + this.did : void 0,
+                        did: "number" == typeof this.did || "string" == typeof this.did ? "" + this.did : void 0,
                         duration: this.duration,
                         attrs: {
                             release: this.release,
@@ -4370,2420 +4812,370 @@
                             user_agent: this.userAgent
                         }
                     });
-                };
-                return Session;
-            }();
-            var API_VERSION = 4;
-            var DEFAULT_BREADCRUMBS = 100;
-            var Hub = function() {
-                function Hub(client, scope, _version) {
-                    if (void 0 === scope) scope = new esm_scope.Scope;
-                    if (void 0 === _version) _version = API_VERSION;
-                    this._version = _version;
-                    this._stack = [ {} ];
-                    this.getStackTop().scope = scope;
-                    if (client) this.bindClient(client);
+                }, t;
+            }(), O = "undefined" == typeof __SENTRY_DEBUG__ || __SENTRY_DEBUG__, N = function() {
+                function t(t, e, n) {
+                    void 0 === e && (e = new T), void 0 === n && (n = 4), this._version = n, this._stack = [ {} ], 
+                    this.getStackTop().scope = e, t && this.bindClient(t);
                 }
-                Hub.prototype.isOlderThan = function(version) {
-                    return this._version < version;
-                };
-                Hub.prototype.bindClient = function(client) {
-                    var top = this.getStackTop();
-                    top.client = client;
-                    if (client && client.setupIntegrations) client.setupIntegrations();
-                };
-                Hub.prototype.pushScope = function() {
-                    var scope = esm_scope.Scope.clone(this.getScope());
-                    this.getStack().push({
+                return t.prototype.isOlderThan = function(t) {
+                    return this._version < t;
+                }, t.prototype.bindClient = function(t) {
+                    this.getStackTop().client = t, t && t.setupIntegrations && t.setupIntegrations();
+                }, t.prototype.pushScope = function() {
+                    var t = T.clone(this.getScope());
+                    return this.getStack().push({
                         client: this.getClient(),
-                        scope
-                    });
-                    return scope;
-                };
-                Hub.prototype.popScope = function() {
-                    if (this.getStack().length <= 1) return false;
-                    return !!this.getStack().pop();
-                };
-                Hub.prototype.withScope = function(callback) {
-                    var scope = this.pushScope();
+                        scope: t
+                    }), t;
+                }, t.prototype.popScope = function() {
+                    return !(this.getStack().length <= 1) && !!this.getStack().pop();
+                }, t.prototype.withScope = function(t) {
+                    var e = this.pushScope();
                     try {
-                        callback(scope);
+                        t(e);
                     } finally {
                         this.popScope();
                     }
-                };
-                Hub.prototype.getClient = function() {
+                }, t.prototype.getClient = function() {
                     return this.getStackTop().client;
-                };
-                Hub.prototype.getScope = function() {
+                }, t.prototype.getScope = function() {
                     return this.getStackTop().scope;
-                };
-                Hub.prototype.getStack = function() {
+                }, t.prototype.getStack = function() {
                     return this._stack;
-                };
-                Hub.prototype.getStackTop = function() {
+                }, t.prototype.getStackTop = function() {
                     return this._stack[this._stack.length - 1];
-                };
-                Hub.prototype.captureException = function(exception, hint) {
-                    var eventId = this._lastEventId = hint && hint.event_id ? hint.event_id : (0, misc.uuid4)();
-                    var finalHint = hint;
-                    if (!hint) {
-                        var syntheticException = void 0;
+                }, t.prototype.captureException = function(t, n) {
+                    var r = this._lastEventId = n && n.event_id ? n.event_id : y(), i = n;
+                    if (!n) {
+                        var s = void 0;
                         try {
                             throw new Error("Sentry syntheticException");
-                        } catch (exception) {
-                            syntheticException = exception;
+                        } catch (t) {
+                            s = t;
                         }
-                        finalHint = {
-                            originalException: exception,
-                            syntheticException
+                        i = {
+                            originalException: t,
+                            syntheticException: s
                         };
                     }
-                    this._invokeClient("captureException", exception, (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, finalHint), {
-                        event_id: eventId
-                    }));
-                    return eventId;
-                };
-                Hub.prototype.captureMessage = function(message, level, hint) {
-                    var eventId = this._lastEventId = hint && hint.event_id ? hint.event_id : (0, misc.uuid4)();
-                    var finalHint = hint;
-                    if (!hint) {
-                        var syntheticException = void 0;
+                    return this._invokeClient("captureException", t, e(e({}, i), {
+                        event_id: r
+                    })), r;
+                }, t.prototype.captureMessage = function(t, n, r) {
+                    var i = this._lastEventId = r && r.event_id ? r.event_id : y(), s = r;
+                    if (!r) {
+                        var o = void 0;
                         try {
-                            throw new Error(message);
-                        } catch (exception) {
-                            syntheticException = exception;
+                            throw new Error(t);
+                        } catch (t) {
+                            o = t;
                         }
-                        finalHint = {
-                            originalException: message,
-                            syntheticException
+                        s = {
+                            originalException: t,
+                            syntheticException: o
                         };
                     }
-                    this._invokeClient("captureMessage", message, level, (0, tslib_es6.__assign)((0, 
-                    tslib_es6.__assign)({}, finalHint), {
-                        event_id: eventId
-                    }));
-                    return eventId;
-                };
-                Hub.prototype.captureEvent = function(event, hint) {
-                    var eventId = hint && hint.event_id ? hint.event_id : (0, misc.uuid4)();
-                    if ("transaction" !== event.type) this._lastEventId = eventId;
-                    this._invokeClient("captureEvent", event, (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, hint), {
-                        event_id: eventId
-                    }));
-                    return eventId;
-                };
-                Hub.prototype.lastEventId = function() {
+                    return this._invokeClient("captureMessage", t, n, e(e({}, s), {
+                        event_id: i
+                    })), i;
+                }, t.prototype.captureEvent = function(t, n) {
+                    var r = n && n.event_id ? n.event_id : y();
+                    return "transaction" !== t.type && (this._lastEventId = r), this._invokeClient("captureEvent", t, e(e({}, n), {
+                        event_id: r
+                    })), r;
+                }, t.prototype.lastEventId = function() {
                     return this._lastEventId;
-                };
-                Hub.prototype.addBreadcrumb = function(breadcrumb, hint) {
-                    var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
-                    if (!scope || !client) return;
-                    var _b = client.getOptions && client.getOptions() || {}, _c = _b.beforeBreadcrumb, beforeBreadcrumb = void 0 === _c ? null : _c, _d = _b.maxBreadcrumbs, maxBreadcrumbs = void 0 === _d ? DEFAULT_BREADCRUMBS : _d;
-                    if (maxBreadcrumbs <= 0) return;
-                    var timestamp = (0, time.dateTimestampInSeconds)();
-                    var mergedBreadcrumb = (0, tslib_es6.__assign)({
-                        timestamp
-                    }, breadcrumb);
-                    var finalBreadcrumb = beforeBreadcrumb ? (0, esm_logger.consoleSandbox)((function() {
-                        return beforeBreadcrumb(mergedBreadcrumb, hint);
-                    })) : mergedBreadcrumb;
-                    if (null === finalBreadcrumb) return;
-                    scope.addBreadcrumb(finalBreadcrumb, maxBreadcrumbs);
-                };
-                Hub.prototype.setUser = function(user) {
-                    var scope = this.getScope();
-                    if (scope) scope.setUser(user);
-                };
-                Hub.prototype.setTags = function(tags) {
-                    var scope = this.getScope();
-                    if (scope) scope.setTags(tags);
-                };
-                Hub.prototype.setExtras = function(extras) {
-                    var scope = this.getScope();
-                    if (scope) scope.setExtras(extras);
-                };
-                Hub.prototype.setTag = function(key, value) {
-                    var scope = this.getScope();
-                    if (scope) scope.setTag(key, value);
-                };
-                Hub.prototype.setExtra = function(key, extra) {
-                    var scope = this.getScope();
-                    if (scope) scope.setExtra(key, extra);
-                };
-                Hub.prototype.setContext = function(name, context) {
-                    var scope = this.getScope();
-                    if (scope) scope.setContext(name, context);
-                };
-                Hub.prototype.configureScope = function(callback) {
-                    var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
-                    if (scope && client) callback(scope);
-                };
-                Hub.prototype.run = function(callback) {
-                    var oldHub = makeMain(this);
+                }, t.prototype.addBreadcrumb = function(t, n) {
+                    var r = this.getStackTop(), i = r.scope, s = r.client;
+                    if (i && s) {
+                        var o = s.getOptions && s.getOptions() || {}, a = o.beforeBreadcrumb, c = void 0 === a ? null : a, u = o.maxBreadcrumbs, p = void 0 === u ? 100 : u;
+                        if (!(p <= 0)) {
+                            var h = w(), f = e({
+                                timestamp: h
+                            }, t), _ = c ? d((function() {
+                                return c(f, n);
+                            })) : f;
+                            null !== _ && i.addBreadcrumb(_, p);
+                        }
+                    }
+                }, t.prototype.setUser = function(t) {
+                    var e = this.getScope();
+                    e && e.setUser(t);
+                }, t.prototype.setTags = function(t) {
+                    var e = this.getScope();
+                    e && e.setTags(t);
+                }, t.prototype.setExtras = function(t) {
+                    var e = this.getScope();
+                    e && e.setExtras(t);
+                }, t.prototype.setTag = function(t, e) {
+                    var n = this.getScope();
+                    n && n.setTag(t, e);
+                }, t.prototype.setExtra = function(t, e) {
+                    var n = this.getScope();
+                    n && n.setExtra(t, e);
+                }, t.prototype.setContext = function(t, e) {
+                    var n = this.getScope();
+                    n && n.setContext(t, e);
+                }, t.prototype.configureScope = function(t) {
+                    var e = this.getStackTop(), n = e.scope, r = e.client;
+                    n && r && t(n);
+                }, t.prototype.run = function(t) {
+                    var e = C(this);
                     try {
-                        callback(this);
+                        t(this);
                     } finally {
-                        makeMain(oldHub);
+                        C(e);
                     }
-                };
-                Hub.prototype.getIntegration = function(integration) {
-                    var client = this.getClient();
-                    if (!client) return null;
+                }, t.prototype.getIntegration = function(t) {
+                    var e = this.getClient();
+                    if (!e) return null;
                     try {
-                        return client.getIntegration(integration);
-                    } catch (_oO) {
-                        (0, env.isDebugBuild)() && esm_logger.logger.warn("Cannot retrieve integration " + integration.id + " from the current Hub");
-                        return null;
+                        return e.getIntegration(t);
+                    } catch (e) {
+                        return O && h.warn("Cannot retrieve integration " + t.id + " from the current Hub"), 
+                        null;
                     }
-                };
-                Hub.prototype.startSpan = function(context) {
-                    return this._callExtensionMethod("startSpan", context);
-                };
-                Hub.prototype.startTransaction = function(context, customSamplingContext) {
-                    return this._callExtensionMethod("startTransaction", context, customSamplingContext);
-                };
-                Hub.prototype.traceHeaders = function() {
+                }, t.prototype.startSpan = function(t) {
+                    return this._callExtensionMethod("startSpan", t);
+                }, t.prototype.startTransaction = function(t, e) {
+                    return this._callExtensionMethod("startTransaction", t, e);
+                }, t.prototype.traceHeaders = function() {
                     return this._callExtensionMethod("traceHeaders");
-                };
-                Hub.prototype.captureSession = function(endSession) {
-                    if (void 0 === endSession) endSession = false;
-                    if (endSession) return this.endSession();
+                }, t.prototype.captureSession = function(t) {
+                    if (void 0 === t && (t = !1), t) return this.endSession();
                     this._sendSessionUpdate();
-                };
-                Hub.prototype.endSession = function() {
-                    var layer = this.getStackTop();
-                    var scope = layer && layer.scope;
-                    var session = scope && scope.getSession();
-                    if (session) session.close();
-                    this._sendSessionUpdate();
-                    if (scope) scope.setSession();
-                };
-                Hub.prototype.startSession = function(context) {
-                    var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
-                    var _b = client && client.getOptions() || {}, release = _b.release, environment = _b.environment;
-                    var global = (0, esm_global.getGlobalObject)();
-                    var userAgent = (global.navigator || {}).userAgent;
-                    var session = new Session((0, tslib_es6.__assign)((0, tslib_es6.__assign)((0, tslib_es6.__assign)({
-                        release,
-                        environment
-                    }, scope && {
-                        user: scope.getUser()
-                    }), userAgent && {
-                        userAgent
-                    }), context));
-                    if (scope) {
-                        var currentSession = scope.getSession && scope.getSession();
-                        if (currentSession && "ok" === currentSession.status) currentSession.update({
+                }, t.prototype.endSession = function() {
+                    var t = this.getStackTop(), e = t && t.scope, n = e && e.getSession();
+                    n && n.close(), this._sendSessionUpdate(), e && e.setSession();
+                }, t.prototype.startSession = function(t) {
+                    var n = this.getStackTop(), r = n.scope, i = n.client, s = i && i.getOptions() || {}, a = s.release, c = s.environment, u = (o().navigator || {}).userAgent, p = new L(e(e(e({
+                        release: a,
+                        environment: c
+                    }, r && {
+                        user: r.getUser()
+                    }), u && {
+                        userAgent: u
+                    }), t));
+                    if (r) {
+                        var h = r.getSession && r.getSession();
+                        h && "ok" === h.status && h.update({
                             status: "exited"
-                        });
-                        this.endSession();
-                        scope.setSession(session);
+                        }), this.endSession(), r.setSession(p);
                     }
-                    return session;
-                };
-                Hub.prototype._sendSessionUpdate = function() {
-                    var _a = this.getStackTop(), scope = _a.scope, client = _a.client;
-                    if (!scope) return;
-                    var session = scope.getSession && scope.getSession();
-                    if (session) if (client && client.captureSession) client.captureSession(session);
-                };
-                Hub.prototype._invokeClient = function(method) {
-                    var _a;
-                    var args = [];
-                    for (var _i = 1; _i < arguments.length; _i++) args[_i - 1] = arguments[_i];
-                    var _b = this.getStackTop(), scope = _b.scope, client = _b.client;
-                    if (client && client[method]) (_a = client)[method].apply(_a, (0, tslib_es6.__spread)(args, [ scope ]));
-                };
-                Hub.prototype._callExtensionMethod = function(method) {
-                    var args = [];
-                    for (var _i = 1; _i < arguments.length; _i++) args[_i - 1] = arguments[_i];
-                    var carrier = getMainCarrier();
-                    var sentry = carrier.__SENTRY__;
-                    if (sentry && sentry.extensions && "function" === typeof sentry.extensions[method]) return sentry.extensions[method].apply(this, args);
-                    (0, env.isDebugBuild)() && esm_logger.logger.warn("Extension method " + method + " couldn't be found, doing nothing.");
-                };
-                return Hub;
+                    return p;
+                }, t.prototype._sendSessionUpdate = function() {
+                    var t = this.getStackTop(), e = t.scope, n = t.client;
+                    if (e) {
+                        var r = e.getSession && e.getSession();
+                        r && n && n.captureSession && n.captureSession(r);
+                    }
+                }, t.prototype._invokeClient = function(t) {
+                    for (var e, n = [], i = 1; i < arguments.length; i++) n[i - 1] = arguments[i];
+                    var s = this.getStackTop(), o = s.scope, a = s.client;
+                    a && a[t] && (e = a)[t].apply(e, r(n, [ o ]));
+                }, t.prototype._callExtensionMethod = function(t) {
+                    for (var e = [], n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
+                    var r = R(), i = r.__SENTRY__;
+                    if (i && i.extensions && "function" == typeof i.extensions[t]) return i.extensions[t].apply(this, e);
+                    O && h.warn("Extension method " + t + " couldn't be found, doing nothing.");
+                }, t;
             }();
-            function getMainCarrier() {
-                var carrier = (0, esm_global.getGlobalObject)();
-                carrier.__SENTRY__ = carrier.__SENTRY__ || {
+            function R() {
+                var t = o();
+                return t.__SENTRY__ = t.__SENTRY__ || {
                     extensions: {},
                     hub: void 0
-                };
-                return carrier;
+                }, t;
             }
-            function makeMain(hub) {
-                var registry = getMainCarrier();
-                var oldHub = getHubFromCarrier(registry);
-                setHubOnCarrier(registry, hub);
-                return oldHub;
+            function C(t) {
+                var e = R(), n = M(e);
+                return D(e, t), n;
             }
-            function getCurrentHub() {
-                var registry = getMainCarrier();
-                if (!hasHubOnCarrier(registry) || getHubFromCarrier(registry).isOlderThan(API_VERSION)) setHubOnCarrier(registry, new Hub);
-                if ((0, node.isNodeEnv)()) return getHubFromActiveDomain(registry);
-                return getHubFromCarrier(registry);
-            }
-            function getHubFromActiveDomain(registry) {
-                try {
-                    var sentry = getMainCarrier().__SENTRY__;
-                    var activeDomain = sentry && sentry.extensions && sentry.extensions.domain && sentry.extensions.domain.active;
-                    if (!activeDomain) return getHubFromCarrier(registry);
-                    if (!hasHubOnCarrier(activeDomain) || getHubFromCarrier(activeDomain).isOlderThan(API_VERSION)) {
-                        var registryHubTopStack = getHubFromCarrier(registry).getStackTop();
-                        setHubOnCarrier(activeDomain, new Hub(registryHubTopStack.client, esm_scope.Scope.clone(registryHubTopStack.scope)));
-                    }
-                    return getHubFromCarrier(activeDomain);
-                } catch (_Oo) {
-                    return getHubFromCarrier(registry);
-                }
-            }
-            function hasHubOnCarrier(carrier) {
-                return !!(carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub);
-            }
-            function getHubFromCarrier(carrier) {
-                if (carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub) return carrier.__SENTRY__.hub;
-                carrier.__SENTRY__ = carrier.__SENTRY__ || {};
-                carrier.__SENTRY__.hub = new Hub;
-                return carrier.__SENTRY__.hub;
-            }
-            function setHubOnCarrier(carrier, hub) {
-                if (!carrier) return false;
-                carrier.__SENTRY__ = carrier.__SENTRY__ || {};
-                carrier.__SENTRY__.hub = hub;
-                return true;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/hub/esm/scope.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                Scope: () => Scope,
-                addGlobalEventProcessor: () => addGlobalEventProcessor
-            });
-            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/syncpromise.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
-            var MAX_BREADCRUMBS = 100;
-            var Scope = function() {
-                function Scope() {
-                    this._notifyingListeners = false;
-                    this._scopeListeners = [];
-                    this._eventProcessors = [];
-                    this._breadcrumbs = [];
-                    this._user = {};
-                    this._tags = {};
-                    this._extra = {};
-                    this._contexts = {};
-                    this._sdkProcessingMetadata = {};
-                }
-                Scope.clone = function(scope) {
-                    var newScope = new Scope;
-                    if (scope) {
-                        newScope._breadcrumbs = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(scope._breadcrumbs);
-                        newScope._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, scope._tags);
-                        newScope._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, scope._extra);
-                        newScope._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, scope._contexts);
-                        newScope._user = scope._user;
-                        newScope._level = scope._level;
-                        newScope._span = scope._span;
-                        newScope._session = scope._session;
-                        newScope._transactionName = scope._transactionName;
-                        newScope._fingerprint = scope._fingerprint;
-                        newScope._eventProcessors = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(scope._eventProcessors);
-                        newScope._requestSession = scope._requestSession;
-                    }
-                    return newScope;
-                };
-                Scope.prototype.addScopeListener = function(callback) {
-                    this._scopeListeners.push(callback);
-                };
-                Scope.prototype.addEventProcessor = function(callback) {
-                    this._eventProcessors.push(callback);
-                    return this;
-                };
-                Scope.prototype.setUser = function(user) {
-                    this._user = user || {};
-                    if (this._session) this._session.update({
-                        user
-                    });
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.getUser = function() {
-                    return this._user;
-                };
-                Scope.prototype.getRequestSession = function() {
-                    return this._requestSession;
-                };
-                Scope.prototype.setRequestSession = function(requestSession) {
-                    this._requestSession = requestSession;
-                    return this;
-                };
-                Scope.prototype.setTags = function(tags) {
-                    this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), tags);
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.setTag = function(key, value) {
-                    var _a;
-                    this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), (_a = {}, 
-                    _a[key] = value, _a));
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.setExtras = function(extras) {
-                    this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), extras);
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.setExtra = function(key, extra) {
-                    var _a;
-                    this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), (_a = {}, 
-                    _a[key] = extra, _a));
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.setFingerprint = function(fingerprint) {
-                    this._fingerprint = fingerprint;
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.setLevel = function(level) {
-                    this._level = level;
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.setTransactionName = function(name) {
-                    this._transactionName = name;
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.setTransaction = function(name) {
-                    return this.setTransactionName(name);
-                };
-                Scope.prototype.setContext = function(key, context) {
-                    var _a;
-                    if (null === context) delete this._contexts[key]; else this._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                    tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), (_a = {}, _a[key] = context, 
-                    _a));
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.setSpan = function(span) {
-                    this._span = span;
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.getSpan = function() {
-                    return this._span;
-                };
-                Scope.prototype.getTransaction = function() {
-                    var span = this.getSpan();
-                    return span && span.transaction;
-                };
-                Scope.prototype.setSession = function(session) {
-                    if (!session) delete this._session; else this._session = session;
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.getSession = function() {
-                    return this._session;
-                };
-                Scope.prototype.update = function(captureContext) {
-                    if (!captureContext) return this;
-                    if ("function" === typeof captureContext) {
-                        var updatedScope = captureContext(this);
-                        return updatedScope instanceof Scope ? updatedScope : this;
-                    }
-                    if (captureContext instanceof Scope) {
-                        this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), captureContext._tags);
-                        this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), captureContext._extra);
-                        this._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), captureContext._contexts);
-                        if (captureContext._user && Object.keys(captureContext._user).length) this._user = captureContext._user;
-                        if (captureContext._level) this._level = captureContext._level;
-                        if (captureContext._fingerprint) this._fingerprint = captureContext._fingerprint;
-                        if (captureContext._requestSession) this._requestSession = captureContext._requestSession;
-                    } else if ((0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.isPlainObject)(captureContext)) {
-                        captureContext = captureContext;
-                        this._tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), captureContext.tags);
-                        this._extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), captureContext.extra);
-                        this._contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), captureContext.contexts);
-                        if (captureContext.user) this._user = captureContext.user;
-                        if (captureContext.level) this._level = captureContext.level;
-                        if (captureContext.fingerprint) this._fingerprint = captureContext.fingerprint;
-                        if (captureContext.requestSession) this._requestSession = captureContext.requestSession;
-                    }
-                    return this;
-                };
-                Scope.prototype.clear = function() {
-                    this._breadcrumbs = [];
-                    this._tags = {};
-                    this._extra = {};
-                    this._user = {};
-                    this._contexts = {};
-                    this._level = void 0;
-                    this._transactionName = void 0;
-                    this._fingerprint = void 0;
-                    this._requestSession = void 0;
-                    this._span = void 0;
-                    this._session = void 0;
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.addBreadcrumb = function(breadcrumb, maxBreadcrumbs) {
-                    var maxCrumbs = "number" === typeof maxBreadcrumbs ? Math.min(maxBreadcrumbs, MAX_BREADCRUMBS) : MAX_BREADCRUMBS;
-                    if (maxCrumbs <= 0) return this;
-                    var mergedBreadcrumb = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({
-                        timestamp: (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_2__.dateTimestampInSeconds)()
-                    }, breadcrumb);
-                    this._breadcrumbs = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(this._breadcrumbs, [ mergedBreadcrumb ]).slice(-maxCrumbs);
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.clearBreadcrumbs = function() {
-                    this._breadcrumbs = [];
-                    this._notifyScopeListeners();
-                    return this;
-                };
-                Scope.prototype.applyToEvent = function(event, hint) {
-                    if (this._extra && Object.keys(this._extra).length) event.extra = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                    tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._extra), event.extra);
-                    if (this._tags && Object.keys(this._tags).length) event.tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                    tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._tags), event.tags);
-                    if (this._user && Object.keys(this._user).length) event.user = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                    tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._user), event.user);
-                    if (this._contexts && Object.keys(this._contexts).length) event.contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                    tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._contexts), event.contexts);
-                    if (this._level) event.level = this._level;
-                    if (this._transactionName) event.transaction = this._transactionName;
-                    if (this._span) {
-                        event.contexts = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({
-                            trace: this._span.getTraceContext()
-                        }, event.contexts);
-                        var transactionName = this._span.transaction && this._span.transaction.name;
-                        if (transactionName) event.tags = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({
-                            transaction: transactionName
-                        }, event.tags);
-                    }
-                    this._applyFingerprint(event);
-                    event.breadcrumbs = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(event.breadcrumbs || [], this._breadcrumbs);
-                    event.breadcrumbs = event.breadcrumbs.length > 0 ? event.breadcrumbs : void 0;
-                    event.sdkProcessingMetadata = this._sdkProcessingMetadata;
-                    return this._notifyEventProcessors((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__spread)(getGlobalEventProcessors(), this._eventProcessors), event, hint);
-                };
-                Scope.prototype.setSDKProcessingMetadata = function(newData) {
-                    this._sdkProcessingMetadata = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                    tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this._sdkProcessingMetadata), newData);
-                    return this;
-                };
-                Scope.prototype._notifyEventProcessors = function(processors, event, hint, index) {
-                    var _this = this;
-                    if (void 0 === index) index = 0;
-                    return new _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.SyncPromise((function(resolve, reject) {
-                        var processor = processors[index];
-                        if (null === event || "function" !== typeof processor) resolve(event); else {
-                            var result = processor((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, event), hint);
-                            if ((0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.isThenable)(result)) void result.then((function(final) {
-                                return _this._notifyEventProcessors(processors, final, hint, index + 1).then(resolve);
-                            })).then(null, reject); else void _this._notifyEventProcessors(processors, result, hint, index + 1).then(resolve).then(null, reject);
-                        }
-                    }));
-                };
-                Scope.prototype._notifyScopeListeners = function() {
-                    var _this = this;
-                    if (!this._notifyingListeners) {
-                        this._notifyingListeners = true;
-                        this._scopeListeners.forEach((function(callback) {
-                            callback(_this);
-                        }));
-                        this._notifyingListeners = false;
-                    }
-                };
-                Scope.prototype._applyFingerprint = function(event) {
-                    event.fingerprint = event.fingerprint ? Array.isArray(event.fingerprint) ? event.fingerprint : [ event.fingerprint ] : [];
-                    if (this._fingerprint) event.fingerprint = event.fingerprint.concat(this._fingerprint);
-                    if (event.fingerprint && !event.fingerprint.length) delete event.fingerprint;
-                };
-                return Scope;
-            }();
-            function getGlobalEventProcessors() {
-                var global = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.getGlobalObject)();
-                global.__SENTRY__ = global.__SENTRY__ || {};
-                global.__SENTRY__.globalEventProcessors = global.__SENTRY__.globalEventProcessors || [];
-                return global.__SENTRY__.globalEventProcessors;
-            }
-            function addGlobalEventProcessor(callback) {
-                getGlobalEventProcessors().push(callback);
-            }
-        },
-        "../shared/browser/node_modules/@sentry/tracing/esm/constants.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                FINISH_REASON_TAG: () => FINISH_REASON_TAG,
-                IDLE_TRANSACTION_FINISH_REASONS: () => IDLE_TRANSACTION_FINISH_REASONS
-            });
-            var FINISH_REASON_TAG = "finishReason";
-            var IDLE_TRANSACTION_FINISH_REASONS = [ "heartbeatFailed", "idleTimeout", "documentHidden" ];
-        },
-        "../shared/browser/node_modules/@sentry/tracing/esm/hubextensions.js": (module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                addExtensionMethods: () => addExtensionMethods,
-                startIdleTransaction: () => startIdleTransaction
-            });
-            var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var hub = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
-            var env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
-            var logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
-            var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
-            var instrument = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/instrument.js");
-            var utils = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/utils.js");
-            function registerErrorInstrumentation() {
-                (0, instrument.addInstrumentationHandler)("error", errorCallback);
-                (0, instrument.addInstrumentationHandler)("unhandledrejection", errorCallback);
-            }
-            function errorCallback() {
-                var activeTransaction = (0, utils.getActiveTransaction)();
-                if (activeTransaction) {
-                    var status_1 = "internal_error";
-                    (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Transaction: " + status_1 + " -> Global error occured");
-                    activeTransaction.setStatus(status_1);
-                }
-            }
-            var idletransaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js");
-            var esm_transaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/transaction.js");
-            module = __webpack_require__.hmd(module);
-            function traceHeaders() {
-                var scope = this.getScope();
-                if (scope) {
-                    var span = scope.getSpan();
-                    if (span) return {
-                        "sentry-trace": span.toTraceparent()
-                    };
-                }
-                return {};
-            }
-            function sample(transaction, options, samplingContext) {
-                if (!(0, utils.hasTracingEnabled)(options)) {
-                    transaction.sampled = false;
-                    return transaction;
-                }
-                if (void 0 !== transaction.sampled) {
-                    transaction.setMetadata({
-                        transactionSampling: {
-                            method: "explicitly_set"
-                        }
-                    });
-                    return transaction;
-                }
-                var sampleRate;
-                if ("function" === typeof options.tracesSampler) {
-                    sampleRate = options.tracesSampler(samplingContext);
-                    transaction.setMetadata({
-                        transactionSampling: {
-                            method: "client_sampler",
-                            rate: Number(sampleRate)
-                        }
-                    });
-                } else if (void 0 !== samplingContext.parentSampled) {
-                    sampleRate = samplingContext.parentSampled;
-                    transaction.setMetadata({
-                        transactionSampling: {
-                            method: "inheritance"
-                        }
-                    });
-                } else {
-                    sampleRate = options.tracesSampleRate;
-                    transaction.setMetadata({
-                        transactionSampling: {
-                            method: "client_rate",
-                            rate: Number(sampleRate)
-                        }
-                    });
-                }
-                if (!isValidSampleRate(sampleRate)) {
-                    (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Discarding transaction because of invalid sample rate.");
-                    transaction.sampled = false;
-                    return transaction;
-                }
-                if (!sampleRate) {
-                    (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Discarding transaction because " + ("function" === typeof options.tracesSampler ? "tracesSampler returned 0 or false" : "a negative sampling decision was inherited or tracesSampleRate is set to 0"));
-                    transaction.sampled = false;
-                    return transaction;
-                }
-                transaction.sampled = Math.random() < sampleRate;
-                if (!transaction.sampled) {
-                    (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Discarding transaction because it's not included in the random sample (sampling rate = " + Number(sampleRate) + ")");
-                    return transaction;
-                }
-                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] starting " + transaction.op + " transaction - " + transaction.name);
-                return transaction;
-            }
-            function isValidSampleRate(rate) {
-                if (isNaN(rate) || !("number" === typeof rate || "boolean" === typeof rate)) {
-                    (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be a boolean or a number between 0 and 1. Got " + JSON.stringify(rate) + " of type " + JSON.stringify(typeof rate) + ".");
-                    return false;
-                }
-                if (rate < 0 || rate > 1) {
-                    (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be between 0 and 1. Got " + rate + ".");
-                    return false;
-                }
-                return true;
-            }
-            function _startTransaction(transactionContext, customSamplingContext) {
-                var client = this.getClient();
-                var options = client && client.getOptions() || {};
-                var transaction = new esm_transaction.Transaction(transactionContext, this);
-                transaction = sample(transaction, options, (0, tslib_es6.__assign)({
-                    parentSampled: transactionContext.parentSampled,
-                    transactionContext
-                }, customSamplingContext));
-                if (transaction.sampled) transaction.initSpanRecorder(options._experiments && options._experiments.maxSpans);
-                return transaction;
-            }
-            function startIdleTransaction(hub, transactionContext, idleTimeout, onScope, customSamplingContext) {
-                var client = hub.getClient();
-                var options = client && client.getOptions() || {};
-                var transaction = new idletransaction.IdleTransaction(transactionContext, hub, idleTimeout, onScope);
-                transaction = sample(transaction, options, (0, tslib_es6.__assign)({
-                    parentSampled: transactionContext.parentSampled,
-                    transactionContext
-                }, customSamplingContext));
-                if (transaction.sampled) transaction.initSpanRecorder(options._experiments && options._experiments.maxSpans);
-                return transaction;
-            }
-            function _addTracingExtensions() {
-                var carrier = (0, hub.getMainCarrier)();
-                if (!carrier.__SENTRY__) return;
-                carrier.__SENTRY__.extensions = carrier.__SENTRY__.extensions || {};
-                if (!carrier.__SENTRY__.extensions.startTransaction) carrier.__SENTRY__.extensions.startTransaction = _startTransaction;
-                if (!carrier.__SENTRY__.extensions.traceHeaders) carrier.__SENTRY__.extensions.traceHeaders = traceHeaders;
-            }
-            function _autoloadDatabaseIntegrations() {
-                var carrier = (0, hub.getMainCarrier)();
-                if (!carrier.__SENTRY__) return;
-                var packageToIntegrationMapping = {
-                    mongodb: function() {
-                        var integration = (0, node.dynamicRequire)(module, "./integrations/node/mongo");
-                        return new integration.Mongo;
-                    },
-                    mongoose: function() {
-                        var integration = (0, node.dynamicRequire)(module, "./integrations/node/mongo");
-                        return new integration.Mongo({
-                            mongoose: true
-                        });
-                    },
-                    mysql: function() {
-                        var integration = (0, node.dynamicRequire)(module, "./integrations/node/mysql");
-                        return new integration.Mysql;
-                    },
-                    pg: function() {
-                        var integration = (0, node.dynamicRequire)(module, "./integrations/node/postgres");
-                        return new integration.Postgres;
-                    }
-                };
-                var mappedPackages = Object.keys(packageToIntegrationMapping).filter((function(moduleName) {
-                    return !!(0, node.loadModule)(moduleName);
-                })).map((function(pkg) {
+            function j() {
+                var t = R();
+                return A(t) && !M(t).isOlderThan(4) || D(t, new N), i() ? function(t) {
                     try {
-                        return packageToIntegrationMapping[pkg]();
+                        var e = R().__SENTRY__, n = e && e.extensions && e.extensions.domain && e.extensions.domain.active;
+                        if (!n) return M(t);
+                        if (!A(n) || M(n).isOlderThan(4)) {
+                            var r = M(t).getStackTop();
+                            D(n, new N(r.client, T.clone(r.scope)));
+                        }
+                        return M(n);
                     } catch (e) {
-                        return;
+                        return M(t);
                     }
-                })).filter((function(p) {
-                    return p;
-                }));
-                if (mappedPackages.length > 0) carrier.__SENTRY__.integrations = (0, tslib_es6.__spread)(carrier.__SENTRY__.integrations || [], mappedPackages);
+                }(t) : M(t);
             }
-            function addExtensionMethods() {
-                _addTracingExtensions();
-                if ((0, node.isNodeEnv)()) _autoloadDatabaseIntegrations();
-                registerErrorInstrumentation();
+            function A(t) {
+                return !!(t && t.__SENTRY__ && t.__SENTRY__.hub);
             }
-        },
-        "../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                DEFAULT_IDLE_TIMEOUT: () => DEFAULT_IDLE_TIMEOUT,
-                IdleTransaction: () => IdleTransaction
-            });
-            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
-            var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/constants.js");
-            var _span__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/span.js");
-            var _transaction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/transaction.js");
-            var DEFAULT_IDLE_TIMEOUT = 1e3;
-            var HEARTBEAT_INTERVAL = 5e3;
-            var IdleTransactionSpanRecorder = function(_super) {
-                (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(IdleTransactionSpanRecorder, _super);
-                function IdleTransactionSpanRecorder(_pushActivity, _popActivity, transactionSpanId, maxlen) {
-                    if (void 0 === transactionSpanId) transactionSpanId = "";
-                    var _this = _super.call(this, maxlen) || this;
-                    _this._pushActivity = _pushActivity;
-                    _this._popActivity = _popActivity;
-                    _this.transactionSpanId = transactionSpanId;
-                    return _this;
-                }
-                IdleTransactionSpanRecorder.prototype.add = function(span) {
-                    var _this = this;
-                    if (span.spanId !== this.transactionSpanId) {
-                        span.finish = function(endTimestamp) {
-                            span.endTimestamp = "number" === typeof endTimestamp ? endTimestamp : (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
-                            _this._popActivity(span.spanId);
-                        };
-                        if (void 0 === span.endTimestamp) this._pushActivity(span.spanId);
-                    }
-                    _super.prototype.add.call(this, span);
-                };
-                return IdleTransactionSpanRecorder;
-            }(_span__WEBPACK_IMPORTED_MODULE_2__.SpanRecorder);
-            var IdleTransaction = function(_super) {
-                (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(IdleTransaction, _super);
-                function IdleTransaction(transactionContext, _idleHub, _idleTimeout, _onScope) {
-                    if (void 0 === _idleTimeout) _idleTimeout = DEFAULT_IDLE_TIMEOUT;
-                    if (void 0 === _onScope) _onScope = false;
-                    var _this = _super.call(this, transactionContext, _idleHub) || this;
-                    _this._idleHub = _idleHub;
-                    _this._idleTimeout = _idleTimeout;
-                    _this._onScope = _onScope;
-                    _this.activities = {};
-                    _this._heartbeatCounter = 0;
-                    _this._finished = false;
-                    _this._beforeFinishCallbacks = [];
-                    if (_idleHub && _onScope) {
-                        clearActiveTransaction(_idleHub);
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Setting idle transaction on scope. Span ID: " + _this.spanId);
-                        _idleHub.configureScope((function(scope) {
-                            return scope.setSpan(_this);
-                        }));
-                    }
-                    _this._initTimeout = setTimeout((function() {
-                        if (!_this._finished) _this.finish();
-                    }), _this._idleTimeout);
-                    return _this;
-                }
-                IdleTransaction.prototype.finish = function(endTimestamp) {
-                    var e_1, _a;
-                    var _this = this;
-                    if (void 0 === endTimestamp) endTimestamp = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
-                    this._finished = true;
-                    this.activities = {};
-                    if (this.spanRecorder) {
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] finishing IdleTransaction", new Date(1e3 * endTimestamp).toISOString(), this.op);
-                        try {
-                            for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(this._beforeFinishCallbacks), _c = _b.next(); !_c.done; _c = _b.next()) {
-                                var callback = _c.value;
-                                callback(this, endTimestamp);
-                            }
-                        } catch (e_1_1) {
-                            e_1 = {
-                                error: e_1_1
-                            };
-                        } finally {
-                            try {
-                                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                            } finally {
-                                if (e_1) throw e_1.error;
-                            }
-                        }
-                        this.spanRecorder.spans = this.spanRecorder.spans.filter((function(span) {
-                            if (span.spanId === _this.spanId) return true;
-                            if (!span.endTimestamp) {
-                                span.endTimestamp = endTimestamp;
-                                span.setStatus("cancelled");
-                                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] cancelling span since transaction ended early", JSON.stringify(span, void 0, 2));
-                            }
-                            var keepSpan = span.startTimestamp < endTimestamp;
-                            if (!keepSpan) (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] discarding Span since it happened after Transaction was finished", JSON.stringify(span, void 0, 2));
-                            return keepSpan;
-                        }));
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] flushing IdleTransaction");
-                    } else (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] No active IdleTransaction");
-                    if (this._onScope) clearActiveTransaction(this._idleHub);
-                    return _super.prototype.finish.call(this, endTimestamp);
-                };
-                IdleTransaction.prototype.registerBeforeFinishCallback = function(callback) {
-                    this._beforeFinishCallbacks.push(callback);
-                };
-                IdleTransaction.prototype.initSpanRecorder = function(maxlen) {
-                    var _this = this;
-                    if (!this.spanRecorder) {
-                        var pushActivity = function(id) {
-                            if (_this._finished) return;
-                            _this._pushActivity(id);
-                        };
-                        var popActivity = function(id) {
-                            if (_this._finished) return;
-                            _this._popActivity(id);
-                        };
-                        this.spanRecorder = new IdleTransactionSpanRecorder(pushActivity, popActivity, this.spanId, maxlen);
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Starting heartbeat");
-                        this._pingHeartbeat();
-                    }
-                    this.spanRecorder.add(this);
-                };
-                IdleTransaction.prototype._pushActivity = function(spanId) {
-                    if (this._initTimeout) {
-                        clearTimeout(this._initTimeout);
-                        this._initTimeout = void 0;
-                    }
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] pushActivity: " + spanId);
-                    this.activities[spanId] = true;
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
-                };
-                IdleTransaction.prototype._popActivity = function(spanId) {
-                    var _this = this;
-                    if (this.activities[spanId]) {
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] popActivity " + spanId);
-                        delete this.activities[spanId];
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
-                    }
-                    if (0 === Object.keys(this.activities).length) {
-                        var timeout = this._idleTimeout;
-                        var end_1 = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)() + timeout / 1e3;
-                        setTimeout((function() {
-                            if (!_this._finished) {
-                                _this.setTag(_constants__WEBPACK_IMPORTED_MODULE_5__.FINISH_REASON_TAG, _constants__WEBPACK_IMPORTED_MODULE_5__.IDLE_TRANSACTION_FINISH_REASONS[1]);
-                                _this.finish(end_1);
-                            }
-                        }), timeout);
-                    }
-                };
-                IdleTransaction.prototype._beat = function() {
-                    if (this._finished) return;
-                    var heartbeatString = Object.keys(this.activities).join("");
-                    if (heartbeatString === this._prevHeartbeatString) this._heartbeatCounter += 1; else this._heartbeatCounter = 1;
-                    this._prevHeartbeatString = heartbeatString;
-                    if (this._heartbeatCounter >= 3) {
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] Transaction finished because of no change for 3 heart beats");
-                        this.setStatus("deadline_exceeded");
-                        this.setTag(_constants__WEBPACK_IMPORTED_MODULE_5__.FINISH_REASON_TAG, _constants__WEBPACK_IMPORTED_MODULE_5__.IDLE_TRANSACTION_FINISH_REASONS[0]);
-                        this.finish();
-                    } else this._pingHeartbeat();
-                };
-                IdleTransaction.prototype._pingHeartbeat = function() {
-                    var _this = this;
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("pinging Heartbeat -> current counter: " + this._heartbeatCounter);
-                    setTimeout((function() {
-                        _this._beat();
-                    }), HEARTBEAT_INTERVAL);
-                };
-                return IdleTransaction;
-            }(_transaction__WEBPACK_IMPORTED_MODULE_6__.Transaction);
-            function clearActiveTransaction(hub) {
-                if (hub) {
-                    var scope = hub.getScope();
-                    if (scope) {
-                        var transaction = scope.getTransaction();
-                        if (transaction) scope.setSpan(void 0);
-                    }
-                }
+            function M(t) {
+                return a("hub", (function() {
+                    return new N;
+                }), t);
             }
-        },
-        "../shared/browser/node_modules/@sentry/tracing/esm/span.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                SpanRecorder: () => SpanRecorder,
-                Span: () => Span
-            });
-            var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
-            var SpanRecorder = function() {
-                function SpanRecorder(maxlen) {
-                    if (void 0 === maxlen) maxlen = 1e3;
-                    this.spans = [];
-                    this._maxlen = maxlen;
-                }
-                SpanRecorder.prototype.add = function(span) {
-                    if (this.spans.length > this._maxlen) span.spanRecorder = void 0; else this.spans.push(span);
-                };
-                return SpanRecorder;
-            }();
-            var Span = function() {
-                function Span(spanContext) {
-                    this.traceId = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_0__.uuid4)();
-                    this.spanId = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_0__.uuid4)().substring(16);
-                    this.startTimestamp = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
-                    this.tags = {};
-                    this.data = {};
-                    if (!spanContext) return this;
-                    if (spanContext.traceId) this.traceId = spanContext.traceId;
-                    if (spanContext.spanId) this.spanId = spanContext.spanId;
-                    if (spanContext.parentSpanId) this.parentSpanId = spanContext.parentSpanId;
-                    if ("sampled" in spanContext) this.sampled = spanContext.sampled;
-                    if (spanContext.op) this.op = spanContext.op;
-                    if (spanContext.description) this.description = spanContext.description;
-                    if (spanContext.data) this.data = spanContext.data;
-                    if (spanContext.tags) this.tags = spanContext.tags;
-                    if (spanContext.status) this.status = spanContext.status;
-                    if (spanContext.startTimestamp) this.startTimestamp = spanContext.startTimestamp;
-                    if (spanContext.endTimestamp) this.endTimestamp = spanContext.endTimestamp;
-                }
-                Span.prototype.child = function(spanContext) {
-                    return this.startChild(spanContext);
-                };
-                Span.prototype.startChild = function(spanContext) {
-                    var childSpan = new Span((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, spanContext), {
-                        parentSpanId: this.spanId,
-                        sampled: this.sampled,
-                        traceId: this.traceId
-                    }));
-                    childSpan.spanRecorder = this.spanRecorder;
-                    if (childSpan.spanRecorder) childSpan.spanRecorder.add(childSpan);
-                    childSpan.transaction = this.transaction;
-                    return childSpan;
-                };
-                Span.prototype.setTag = function(key, value) {
-                    var _a;
-                    this.tags = (0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, this.tags), (_a = {}, 
-                    _a[key] = value, _a));
-                    return this;
-                };
-                Span.prototype.setData = function(key, value) {
-                    var _a;
-                    this.data = (0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, this.data), (_a = {}, 
-                    _a[key] = value, _a));
-                    return this;
-                };
-                Span.prototype.setStatus = function(value) {
-                    this.status = value;
-                    return this;
-                };
-                Span.prototype.setHttpStatus = function(httpStatus) {
-                    this.setTag("http.status_code", String(httpStatus));
-                    var spanStatus = spanStatusfromHttpCode(httpStatus);
-                    if ("unknown_error" !== spanStatus) this.setStatus(spanStatus);
-                    return this;
-                };
-                Span.prototype.isSuccess = function() {
-                    return "ok" === this.status;
-                };
-                Span.prototype.finish = function(endTimestamp) {
-                    this.endTimestamp = "number" === typeof endTimestamp ? endTimestamp : (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_1__.timestampWithMs)();
-                };
-                Span.prototype.toTraceparent = function() {
-                    var sampledString = "";
-                    if (void 0 !== this.sampled) sampledString = this.sampled ? "-1" : "-0";
-                    return this.traceId + "-" + this.spanId + sampledString;
-                };
-                Span.prototype.toContext = function() {
-                    return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.dropUndefinedKeys)({
-                        data: this.data,
-                        description: this.description,
-                        endTimestamp: this.endTimestamp,
-                        op: this.op,
-                        parentSpanId: this.parentSpanId,
-                        sampled: this.sampled,
-                        spanId: this.spanId,
-                        startTimestamp: this.startTimestamp,
-                        status: this.status,
-                        tags: this.tags,
-                        traceId: this.traceId
+            function D(t, e) {
+                return !!t && ((t.__SENTRY__ = t.__SENTRY__ || {}).hub = e, !0);
+            }
+            function P(t) {
+                for (var e = [], n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
+                var i = j();
+                if (i && i[t]) return i[t].apply(i, r(e));
+                throw new Error("No hub defined or " + t + " was not found on the hub, please open a bug report.");
+            }
+            function B(t, n) {
+                var r = new Error(t);
+                return P("captureMessage", t, "string" == typeof n ? n : void 0, e({
+                    originalException: t,
+                    syntheticException: r
+                }, "string" != typeof n ? {
+                    captureContext: n
+                } : void 0));
+            }
+            var I = function(t) {
+                var e = t.message, n = t.owner, r = t.action, i = t.status, s = t.errorLevel, o = t.data, a = [ {
+                    key: "owner",
+                    value: n
+                }, {
+                    key: "action",
+                    value: r
+                }, {
+                    key: "status",
+                    value: i
+                }, {
+                    key: "errorLevel",
+                    value: s
+                } ];
+                return "".concat(e).concat(a.map((function(t) {
+                    return e = t.key, n = t.value, "".concat(n ? "\n[".concat(e, ": ").concat(n, "]") : "");
+                    var e, n;
+                })).join("")).concat(o ? "\n".concat(JSON.stringify(o, null, 2)) : "");
+            }, Y = function(t, e) {
+                var n = e;
+                return n && n instanceof Error ? n.message = "".concat(null == e ? void 0 : e.message, ": ").concat(t) : n = t, 
+                n;
+            }, U = function(n) {
+                var r, i, s = n.level, o = n.data, a = n.owner, c = n.action, u = n.error, p = I(n), h = e({
+                    "event.owner": a,
+                    "event.action": c
+                }, n.tags), f = Y(p, u);
+                switch (s) {
+                  case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Info:
+                    P("addBreadcrumb", {
+                        category: n.owner,
+                        message: p,
+                        level: x.Info
                     });
-                };
-                Span.prototype.updateWithContext = function(spanContext) {
-                    var _a, _b, _c, _d, _e;
-                    this.data = (_a = spanContext.data, null !== _a && void 0 !== _a ? _a : {});
-                    this.description = spanContext.description;
-                    this.endTimestamp = spanContext.endTimestamp;
-                    this.op = spanContext.op;
-                    this.parentSpanId = spanContext.parentSpanId;
-                    this.sampled = spanContext.sampled;
-                    this.spanId = (_b = spanContext.spanId, null !== _b && void 0 !== _b ? _b : this.spanId);
-                    this.startTimestamp = (_c = spanContext.startTimestamp, null !== _c && void 0 !== _c ? _c : this.startTimestamp);
-                    this.status = spanContext.status;
-                    this.tags = (_d = spanContext.tags, null !== _d && void 0 !== _d ? _d : {});
-                    this.traceId = (_e = spanContext.traceId, null !== _e && void 0 !== _e ? _e : this.traceId);
-                    return this;
-                };
-                Span.prototype.getTraceContext = function() {
-                    return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.dropUndefinedKeys)({
-                        data: Object.keys(this.data).length > 0 ? this.data : void 0,
-                        description: this.description,
-                        op: this.op,
-                        parent_span_id: this.parentSpanId,
-                        span_id: this.spanId,
-                        status: this.status,
-                        tags: Object.keys(this.tags).length > 0 ? this.tags : void 0,
-                        trace_id: this.traceId
+                    break;
+
+                  case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Log:
+                    B(p, {
+                        extra: o,
+                        tags: h,
+                        level: x.Log
                     });
-                };
-                Span.prototype.toJSON = function() {
-                    return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.dropUndefinedKeys)({
-                        data: Object.keys(this.data).length > 0 ? this.data : void 0,
-                        description: this.description,
-                        op: this.op,
-                        parent_span_id: this.parentSpanId,
-                        span_id: this.spanId,
-                        start_timestamp: this.startTimestamp,
-                        status: this.status,
-                        tags: Object.keys(this.tags).length > 0 ? this.tags : void 0,
-                        timestamp: this.endTimestamp,
-                        trace_id: this.traceId
+                    break;
+
+                  case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Warn:
+                    B(p, {
+                        extra: o,
+                        tags: h,
+                        level: x.Warning
                     });
-                };
-                return Span;
-            }();
-            function spanStatusfromHttpCode(httpStatus) {
-                if (httpStatus < 400 && httpStatus >= 100) return "ok";
-                if (httpStatus >= 400 && httpStatus < 500) switch (httpStatus) {
-                  case 401:
-                    return "unauthenticated";
-
-                  case 403:
-                    return "permission_denied";
-
-                  case 404:
-                    return "not_found";
-
-                  case 409:
-                    return "already_exists";
-
-                  case 413:
-                    return "failed_precondition";
-
-                  case 429:
-                    return "resource_exhausted";
-
-                  default:
-                    return "invalid_argument";
-                }
-                if (httpStatus >= 500 && httpStatus < 600) switch (httpStatus) {
-                  case 501:
-                    return "unimplemented";
-
-                  case 503:
-                    return "unavailable";
-
-                  case 504:
-                    return "deadline_exceeded";
-
-                  default:
-                    return "internal_error";
-                }
-                return "unknown_error";
-            }
-        },
-        "../shared/browser/node_modules/@sentry/tracing/esm/transaction.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                Transaction: () => Transaction
-            });
-            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var _sentry_hub__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
-            var _sentry_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
-            var _span__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/span.js");
-            var Transaction = function(_super) {
-                (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(Transaction, _super);
-                function Transaction(transactionContext, hub) {
-                    var _this = _super.call(this, transactionContext) || this;
-                    _this._measurements = {};
-                    _this._hub = (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_1__.getCurrentHub)();
-                    if ((0, _sentry_utils__WEBPACK_IMPORTED_MODULE_2__.isInstanceOf)(hub, _sentry_hub__WEBPACK_IMPORTED_MODULE_1__.Hub)) _this._hub = hub;
-                    _this.name = transactionContext.name || "";
-                    _this.metadata = transactionContext.metadata || {};
-                    _this._trimEnd = transactionContext.trimEnd;
-                    _this.transaction = _this;
-                    return _this;
-                }
-                Transaction.prototype.setName = function(name) {
-                    this.name = name;
-                };
-                Transaction.prototype.initSpanRecorder = function(maxlen) {
-                    if (void 0 === maxlen) maxlen = 1e3;
-                    if (!this.spanRecorder) this.spanRecorder = new _span__WEBPACK_IMPORTED_MODULE_3__.SpanRecorder(maxlen);
-                    this.spanRecorder.add(this);
-                };
-                Transaction.prototype.setMeasurements = function(measurements) {
-                    this._measurements = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, measurements);
-                };
-                Transaction.prototype.setMetadata = function(newMetadata) {
-                    this.metadata = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, this.metadata), newMetadata);
-                };
-                Transaction.prototype.finish = function(endTimestamp) {
-                    var _this = this;
-                    if (void 0 !== this.endTimestamp) return;
-                    if (!this.name) {
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.warn("Transaction has no name, falling back to `<unlabeled transaction>`.");
-                        this.name = "<unlabeled transaction>";
-                    }
-                    _super.prototype.finish.call(this, endTimestamp);
-                    if (true !== this.sampled) {
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Discarding transaction because its trace was not chosen to be sampled.");
-                        var client = this._hub.getClient();
-                        var transport = client && client.getTransport && client.getTransport();
-                        if (transport && transport.recordLostEvent) transport.recordLostEvent("sample_rate", "transaction");
-                        return;
-                    }
-                    var finishedSpans = this.spanRecorder ? this.spanRecorder.spans.filter((function(s) {
-                        return s !== _this && s.endTimestamp;
-                    })) : [];
-                    if (this._trimEnd && finishedSpans.length > 0) this.endTimestamp = finishedSpans.reduce((function(prev, current) {
-                        if (prev.endTimestamp && current.endTimestamp) return prev.endTimestamp > current.endTimestamp ? prev : current;
-                        return prev;
-                    })).endTimestamp;
-                    var transaction = {
-                        contexts: {
-                            trace: this.getTraceContext()
-                        },
-                        spans: finishedSpans,
-                        start_timestamp: this.startTimestamp,
-                        tags: this.tags,
-                        timestamp: this.endTimestamp,
-                        transaction: this.name,
-                        type: "transaction",
-                        sdkProcessingMetadata: this.metadata
-                    };
-                    var hasMeasurements = Object.keys(this._measurements).length > 0;
-                    if (hasMeasurements) {
-                        (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Measurements] Adding measurements to transaction", JSON.stringify(this._measurements, void 0, 2));
-                        transaction.measurements = this._measurements;
-                    }
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Finishing " + this.op + " transaction: " + this.name + ".");
-                    return this._hub.captureEvent(transaction);
-                };
-                Transaction.prototype.toContext = function() {
-                    var spanContext = _super.prototype.toContext.call(this);
-                    return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_6__.dropUndefinedKeys)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, 
-                    tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, spanContext), {
-                        name: this.name,
-                        trimEnd: this._trimEnd
-                    }));
-                };
-                Transaction.prototype.updateWithContext = function(transactionContext) {
-                    var _a;
-                    _super.prototype.updateWithContext.call(this, transactionContext);
-                    this.name = (_a = transactionContext.name, null !== _a && void 0 !== _a ? _a : "");
-                    this._trimEnd = transactionContext.trimEnd;
-                    return this;
-                };
-                return Transaction;
-            }(_span__WEBPACK_IMPORTED_MODULE_3__.Span);
-        },
-        "../shared/browser/node_modules/@sentry/tracing/esm/utils.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                hasTracingEnabled: () => hasTracingEnabled,
-                getActiveTransaction: () => getActiveTransaction,
-                msToSec: () => msToSec,
-                secToMs: () => secToMs
-            });
-            var _sentry_hub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
-            function hasTracingEnabled(maybeOptions) {
-                var client = (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_0__.getCurrentHub)().getClient();
-                var options = maybeOptions || client && client.getOptions();
-                return !!options && ("tracesSampleRate" in options || "tracesSampler" in options);
-            }
-            function getActiveTransaction(maybeHub) {
-                var hub = maybeHub || (0, _sentry_hub__WEBPACK_IMPORTED_MODULE_0__.getCurrentHub)();
-                var scope = hub.getScope();
-                return scope && scope.getTransaction();
-            }
-            function msToSec(time) {
-                return time / 1e3;
-            }
-            function secToMs(time) {
-                return 1e3 * time;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/browser.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                htmlTreeAsString: () => htmlTreeAsString,
-                getLocationHref: () => getLocationHref
-            });
-            var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
-            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-            function htmlTreeAsString(elem, keyAttrs) {
-                try {
-                    var currentElem = elem;
-                    var MAX_TRAVERSE_HEIGHT = 5;
-                    var MAX_OUTPUT_LEN = 80;
-                    var out = [];
-                    var height = 0;
-                    var len = 0;
-                    var separator = " > ";
-                    var sepLength = separator.length;
-                    var nextStr = void 0;
-                    while (currentElem && height++ < MAX_TRAVERSE_HEIGHT) {
-                        nextStr = _htmlElementAsString(currentElem, keyAttrs);
-                        if ("html" === nextStr || height > 1 && len + out.length * sepLength + nextStr.length >= MAX_OUTPUT_LEN) break;
-                        out.push(nextStr);
-                        len += nextStr.length;
-                        currentElem = currentElem.parentNode;
-                    }
-                    return out.reverse().join(separator);
-                } catch (_oO) {
-                    return "<unknown>";
-                }
-            }
-            function _htmlElementAsString(el, keyAttrs) {
-                var elem = el;
-                var out = [];
-                var className;
-                var classes;
-                var key;
-                var attr;
-                var i;
-                if (!elem || !elem.tagName) return "";
-                out.push(elem.tagName.toLowerCase());
-                var keyAttrPairs = keyAttrs && keyAttrs.length ? keyAttrs.filter((function(keyAttr) {
-                    return elem.getAttribute(keyAttr);
-                })).map((function(keyAttr) {
-                    return [ keyAttr, elem.getAttribute(keyAttr) ];
-                })) : null;
-                if (keyAttrPairs && keyAttrPairs.length) keyAttrPairs.forEach((function(keyAttrPair) {
-                    out.push("[" + keyAttrPair[0] + '="' + keyAttrPair[1] + '"]');
-                })); else {
-                    if (elem.id) out.push("#" + elem.id);
-                    className = elem.className;
-                    if (className && (0, _is__WEBPACK_IMPORTED_MODULE_0__.isString)(className)) {
-                        classes = className.split(/\s+/);
-                        for (i = 0; i < classes.length; i++) out.push("." + classes[i]);
-                    }
-                }
-                var allowedAttrs = [ "type", "name", "title", "alt" ];
-                for (i = 0; i < allowedAttrs.length; i++) {
-                    key = allowedAttrs[i];
-                    attr = elem.getAttribute(key);
-                    if (attr) out.push("[" + key + '="' + attr + '"]');
-                }
-                return out.join("");
-            }
-            function getLocationHref() {
-                var global = (0, _global__WEBPACK_IMPORTED_MODULE_1__.getGlobalObject)();
-                try {
-                    return global.document.location.href;
-                } catch (oO) {
-                    return "";
-                }
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/env.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                isDebugBuild: () => isDebugBuild,
-                isBrowserBundle: () => isBrowserBundle
-            });
-            var __SENTRY_DEBUG__ = true;
-            function isDebugBuild() {
-                return __SENTRY_DEBUG__;
-            }
-            function isBrowserBundle() {
-                return "undefined" !== typeof __SENTRY_BROWSER_BUNDLE__ && !!__SENTRY_BROWSER_BUNDLE__;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/global.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                getGlobalObject: () => getGlobalObject
-            });
-            var _node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
-            var fallbackGlobalObject = {};
-            function getGlobalObject() {
-                return (0, _node__WEBPACK_IMPORTED_MODULE_0__.isNodeEnv)() ? __webpack_require__.g : "undefined" !== typeof window ? window : "undefined" !== typeof self ? self : fallbackGlobalObject;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/instrument.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                addInstrumentationHandler: () => addInstrumentationHandler
-            });
-            var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
-            var _is__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-            var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
-            var _object__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
-            var _stacktrace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/stacktrace.js");
-            var _supports__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/supports.js");
-            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-            var handlers = {};
-            var instrumented = {};
-            function instrument(type) {
-                if (instrumented[type]) return;
-                instrumented[type] = true;
-                switch (type) {
-                  case "console":
-                    instrumentConsole();
                     break;
 
-                  case "dom":
-                    instrumentDOM();
-                    break;
-
-                  case "xhr":
-                    instrumentXHR();
-                    break;
-
-                  case "fetch":
-                    instrumentFetch();
-                    break;
-
-                  case "history":
-                    instrumentHistory();
-                    break;
-
-                  case "error":
-                    instrumentError();
-                    break;
-
-                  case "unhandledrejection":
-                    instrumentUnhandledRejection();
+                  case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Error:
+                    r = f, i = {
+                        extra: o,
+                        tags: h,
+                        level: x.Error
+                    }, P("captureException", r, {
+                        captureContext: i,
+                        originalException: r,
+                        syntheticException: new Error("Sentry syntheticException")
+                    });
                     break;
 
                   default:
-                    (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("unknown instrumentation type:", type);
-                    return;
-                }
-            }
-            function addInstrumentationHandler(type, callback) {
-                handlers[type] = handlers[type] || [];
-                handlers[type].push(callback);
-                instrument(type);
-            }
-            function triggerHandlers(type, data) {
-                var e_1, _a;
-                if (!type || !handlers[type]) return;
-                try {
-                    for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__values)(handlers[type] || []), _c = _b.next(); !_c.done; _c = _b.next()) {
-                        var handler = _c.value;
-                        try {
-                            handler(data);
-                        } catch (e) {
-                            (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.error("Error while triggering instrumentation handler.\nType: " + type + "\nName: " + (0, 
-                            _stacktrace__WEBPACK_IMPORTED_MODULE_4__.getFunctionName)(handler) + "\nError:", e);
-                        }
-                    }
-                } catch (e_1_1) {
-                    e_1 = {
-                        error: e_1_1
-                    };
-                } finally {
-                    try {
-                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                    } finally {
-                        if (e_1) throw e_1.error;
-                    }
-                }
-            }
-            function instrumentConsole() {
-                if (!("console" in global)) return;
-                _logger__WEBPACK_IMPORTED_MODULE_2__.CONSOLE_LEVELS.forEach((function(level) {
-                    if (!(level in global.console)) return;
-                    (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global.console, level, (function(originalConsoleMethod) {
-                        return function() {
-                            var args = [];
-                            for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                            triggerHandlers("console", {
-                                args,
-                                level
-                            });
-                            if (originalConsoleMethod) originalConsoleMethod.apply(global.console, args);
-                        };
-                    }));
-                }));
-            }
-            function instrumentFetch() {
-                if (!(0, _supports__WEBPACK_IMPORTED_MODULE_6__.supportsNativeFetch)()) return;
-                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global, "fetch", (function(originalFetch) {
-                    return function() {
-                        var args = [];
-                        for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                        var handlerData = {
-                            args,
-                            fetchData: {
-                                method: getFetchMethod(args),
-                                url: getFetchUrl(args)
-                            },
-                            startTimestamp: Date.now()
-                        };
-                        triggerHandlers("fetch", (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, handlerData));
-                        return originalFetch.apply(global, args).then((function(response) {
-                            triggerHandlers("fetch", (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, handlerData), {
-                                endTimestamp: Date.now(),
-                                response
-                            }));
-                            return response;
-                        }), (function(error) {
-                            triggerHandlers("fetch", (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, handlerData), {
-                                endTimestamp: Date.now(),
-                                error
-                            }));
-                            throw error;
-                        }));
-                    };
-                }));
-            }
-            function getFetchMethod(fetchArgs) {
-                if (void 0 === fetchArgs) fetchArgs = [];
-                if ("Request" in global && (0, _is__WEBPACK_IMPORTED_MODULE_7__.isInstanceOf)(fetchArgs[0], Request) && fetchArgs[0].method) return String(fetchArgs[0].method).toUpperCase();
-                if (fetchArgs[1] && fetchArgs[1].method) return String(fetchArgs[1].method).toUpperCase();
-                return "GET";
-            }
-            function getFetchUrl(fetchArgs) {
-                if (void 0 === fetchArgs) fetchArgs = [];
-                if ("string" === typeof fetchArgs[0]) return fetchArgs[0];
-                if ("Request" in global && (0, _is__WEBPACK_IMPORTED_MODULE_7__.isInstanceOf)(fetchArgs[0], Request)) return fetchArgs[0].url;
-                return String(fetchArgs[0]);
-            }
-            function instrumentXHR() {
-                if (!("XMLHttpRequest" in global)) return;
-                var xhrproto = XMLHttpRequest.prototype;
-                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(xhrproto, "open", (function(originalOpen) {
-                    return function() {
-                        var args = [];
-                        for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                        var xhr = this;
-                        var url = args[1];
-                        var xhrInfo = xhr.__sentry_xhr__ = {
-                            method: (0, _is__WEBPACK_IMPORTED_MODULE_7__.isString)(args[0]) ? args[0].toUpperCase() : args[0],
-                            url: args[1]
-                        };
-                        if ((0, _is__WEBPACK_IMPORTED_MODULE_7__.isString)(url) && "POST" === xhrInfo.method && url.match(/sentry_key/)) xhr.__sentry_own_request__ = true;
-                        var onreadystatechangeHandler = function() {
-                            if (4 === xhr.readyState) {
-                                try {
-                                    xhrInfo.status_code = xhr.status;
-                                } catch (e) {}
-                                triggerHandlers("xhr", {
-                                    args,
-                                    endTimestamp: Date.now(),
-                                    startTimestamp: Date.now(),
-                                    xhr
-                                });
-                            }
-                        };
-                        if ("onreadystatechange" in xhr && "function" === typeof xhr.onreadystatechange) (0, 
-                        _object__WEBPACK_IMPORTED_MODULE_5__.fill)(xhr, "onreadystatechange", (function(original) {
-                            return function() {
-                                var readyStateArgs = [];
-                                for (var _i = 0; _i < arguments.length; _i++) readyStateArgs[_i] = arguments[_i];
-                                onreadystatechangeHandler();
-                                return original.apply(xhr, readyStateArgs);
-                            };
-                        })); else xhr.addEventListener("readystatechange", onreadystatechangeHandler);
-                        return originalOpen.apply(xhr, args);
-                    };
-                }));
-                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(xhrproto, "send", (function(originalSend) {
-                    return function() {
-                        var args = [];
-                        for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                        if (this.__sentry_xhr__ && void 0 !== args[0]) this.__sentry_xhr__.body = args[0];
-                        triggerHandlers("xhr", {
-                            args,
-                            startTimestamp: Date.now(),
-                            xhr: this
-                        });
-                        return originalSend.apply(this, args);
-                    };
-                }));
-            }
-            var lastHref;
-            function instrumentHistory() {
-                if (!(0, _supports__WEBPACK_IMPORTED_MODULE_6__.supportsHistory)()) return;
-                var oldOnPopState = global.onpopstate;
-                global.onpopstate = function() {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                    var to = global.location.href;
-                    var from = lastHref;
-                    lastHref = to;
-                    triggerHandlers("history", {
-                        from,
-                        to
-                    });
-                    if (oldOnPopState) try {
-                        return oldOnPopState.apply(this, args);
-                    } catch (_oO) {}
-                };
-                function historyReplacementFunction(originalHistoryFunction) {
-                    return function() {
-                        var args = [];
-                        for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                        var url = args.length > 2 ? args[2] : void 0;
-                        if (url) {
-                            var from = lastHref;
-                            var to = String(url);
-                            lastHref = to;
-                            triggerHandlers("history", {
-                                from,
-                                to
-                            });
-                        }
-                        return originalHistoryFunction.apply(this, args);
-                    };
-                }
-                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global.history, "pushState", historyReplacementFunction);
-                (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(global.history, "replaceState", historyReplacementFunction);
-            }
-            var debounceDuration = 1e3;
-            var debounceTimerID;
-            var lastCapturedEvent;
-            function shouldShortcircuitPreviousDebounce(previous, current) {
-                if (!previous) return true;
-                if (previous.type !== current.type) return true;
-                try {
-                    if (previous.target !== current.target) return true;
-                } catch (e) {}
-                return false;
-            }
-            function shouldSkipDOMEvent(event) {
-                if ("keypress" !== event.type) return false;
-                try {
-                    var target = event.target;
-                    if (!target || !target.tagName) return true;
-                    if ("INPUT" === target.tagName || "TEXTAREA" === target.tagName || target.isContentEditable) return false;
-                } catch (e) {}
-                return true;
-            }
-            function makeDOMEventHandler(handler, globalListener) {
-                if (void 0 === globalListener) globalListener = false;
-                return function(event) {
-                    if (!event || lastCapturedEvent === event) return;
-                    if (shouldSkipDOMEvent(event)) return;
-                    var name = "keypress" === event.type ? "input" : event.type;
-                    if (void 0 === debounceTimerID) {
-                        handler({
-                            event,
-                            name,
-                            global: globalListener
-                        });
-                        lastCapturedEvent = event;
-                    } else if (shouldShortcircuitPreviousDebounce(lastCapturedEvent, event)) {
-                        handler({
-                            event,
-                            name,
-                            global: globalListener
-                        });
-                        lastCapturedEvent = event;
-                    }
-                    clearTimeout(debounceTimerID);
-                    debounceTimerID = global.setTimeout((function() {
-                        debounceTimerID = void 0;
-                    }), debounceDuration);
-                };
-            }
-            function instrumentDOM() {
-                if (!("document" in global)) return;
-                var triggerDOMHandler = triggerHandlers.bind(null, "dom");
-                var globalDOMEventHandler = makeDOMEventHandler(triggerDOMHandler, true);
-                global.document.addEventListener("click", globalDOMEventHandler, false);
-                global.document.addEventListener("keypress", globalDOMEventHandler, false);
-                [ "EventTarget", "Node" ].forEach((function(target) {
-                    var proto = global[target] && global[target].prototype;
-                    if (!proto || !proto.hasOwnProperty || !proto.hasOwnProperty("addEventListener")) return;
-                    (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(proto, "addEventListener", (function(originalAddEventListener) {
-                        return function(type, listener, options) {
-                            if ("click" === type || "keypress" == type) try {
-                                var el = this;
-                                var handlers_1 = el.__sentry_instrumentation_handlers__ = el.__sentry_instrumentation_handlers__ || {};
-                                var handlerForType = handlers_1[type] = handlers_1[type] || {
-                                    refCount: 0
-                                };
-                                if (!handlerForType.handler) {
-                                    var handler = makeDOMEventHandler(triggerDOMHandler);
-                                    handlerForType.handler = handler;
-                                    originalAddEventListener.call(this, type, handler, options);
-                                }
-                                handlerForType.refCount += 1;
-                            } catch (e) {}
-                            return originalAddEventListener.call(this, type, listener, options);
-                        };
-                    }));
-                    (0, _object__WEBPACK_IMPORTED_MODULE_5__.fill)(proto, "removeEventListener", (function(originalRemoveEventListener) {
-                        return function(type, listener, options) {
-                            if ("click" === type || "keypress" == type) try {
-                                var el = this;
-                                var handlers_2 = el.__sentry_instrumentation_handlers__ || {};
-                                var handlerForType = handlers_2[type];
-                                if (handlerForType) {
-                                    handlerForType.refCount -= 1;
-                                    if (handlerForType.refCount <= 0) {
-                                        originalRemoveEventListener.call(this, type, handlerForType.handler, options);
-                                        handlerForType.handler = void 0;
-                                        delete handlers_2[type];
-                                    }
-                                    if (0 === Object.keys(handlers_2).length) delete el.__sentry_instrumentation_handlers__;
-                                }
-                            } catch (e) {}
-                            return originalRemoveEventListener.call(this, type, listener, options);
-                        };
-                    }));
-                }));
-            }
-            var _oldOnErrorHandler = null;
-            function instrumentError() {
-                _oldOnErrorHandler = global.onerror;
-                global.onerror = function(msg, url, line, column, error) {
-                    triggerHandlers("error", {
-                        column,
-                        error,
-                        line,
-                        msg,
-                        url
-                    });
-                    if (_oldOnErrorHandler) return _oldOnErrorHandler.apply(this, arguments);
-                    return false;
-                };
-            }
-            var _oldOnUnhandledRejectionHandler = null;
-            function instrumentUnhandledRejection() {
-                _oldOnUnhandledRejectionHandler = global.onunhandledrejection;
-                global.onunhandledrejection = function(e) {
-                    triggerHandlers("unhandledrejection", e);
-                    if (_oldOnUnhandledRejectionHandler) return _oldOnUnhandledRejectionHandler.apply(this, arguments);
-                    return true;
-                };
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/is.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                isError: () => isError,
-                isErrorEvent: () => isErrorEvent,
-                isDOMError: () => isDOMError,
-                isDOMException: () => isDOMException,
-                isString: () => isString,
-                isPrimitive: () => isPrimitive,
-                isPlainObject: () => isPlainObject,
-                isEvent: () => isEvent,
-                isElement: () => isElement,
-                isRegExp: () => isRegExp,
-                isThenable: () => isThenable,
-                isSyntheticEvent: () => isSyntheticEvent,
-                isInstanceOf: () => isInstanceOf
-            });
-            var objectToString = Object.prototype.toString;
-            function isError(wat) {
-                switch (objectToString.call(wat)) {
-                  case "[object Error]":
-                  case "[object Exception]":
-                  case "[object DOMException]":
-                    return true;
-
-                  default:
-                    return isInstanceOf(wat, Error);
-                }
-            }
-            function isBuiltin(wat, ty) {
-                return objectToString.call(wat) === "[object " + ty + "]";
-            }
-            function isErrorEvent(wat) {
-                return isBuiltin(wat, "ErrorEvent");
-            }
-            function isDOMError(wat) {
-                return isBuiltin(wat, "DOMError");
-            }
-            function isDOMException(wat) {
-                return isBuiltin(wat, "DOMException");
-            }
-            function isString(wat) {
-                return isBuiltin(wat, "String");
-            }
-            function isPrimitive(wat) {
-                return null === wat || "object" !== typeof wat && "function" !== typeof wat;
-            }
-            function isPlainObject(wat) {
-                return isBuiltin(wat, "Object");
-            }
-            function isEvent(wat) {
-                return "undefined" !== typeof Event && isInstanceOf(wat, Event);
-            }
-            function isElement(wat) {
-                return "undefined" !== typeof Element && isInstanceOf(wat, Element);
-            }
-            function isRegExp(wat) {
-                return isBuiltin(wat, "RegExp");
-            }
-            function isThenable(wat) {
-                return Boolean(wat && wat.then && "function" === typeof wat.then);
-            }
-            function isSyntheticEvent(wat) {
-                return isPlainObject(wat) && "nativeEvent" in wat && "preventDefault" in wat && "stopPropagation" in wat;
-            }
-            function isInstanceOf(wat, base) {
-                try {
-                    return wat instanceof base;
-                } catch (_e) {
-                    return false;
-                }
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/logger.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                CONSOLE_LEVELS: () => CONSOLE_LEVELS,
-                consoleSandbox: () => consoleSandbox,
-                logger: () => logger
-            });
-            var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
-            var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-            var PREFIX = "Sentry Logger ";
-            var CONSOLE_LEVELS = [ "debug", "info", "warn", "error", "log", "assert" ];
-            function consoleSandbox(callback) {
-                var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-                if (!("console" in global)) return callback();
-                var originalConsole = global.console;
-                var wrappedLevels = {};
-                CONSOLE_LEVELS.forEach((function(level) {
-                    if (level in global.console && originalConsole[level].__sentry_original__) {
-                        wrappedLevels[level] = originalConsole[level];
-                        originalConsole[level] = originalConsole[level].__sentry_original__;
-                    }
-                }));
-                var result = callback();
-                Object.keys(wrappedLevels).forEach((function(level) {
-                    originalConsole[level] = wrappedLevels[level];
-                }));
-                return result;
-            }
-            var Logger = function() {
-                function Logger() {
-                    this._enabled = false;
-                }
-                Logger.prototype.disable = function() {
-                    this._enabled = false;
-                };
-                Logger.prototype.enable = function() {
-                    this._enabled = true;
-                };
-                Logger.prototype.log = function() {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                    if (!this._enabled) return;
-                    consoleSandbox((function() {
-                        var _a;
-                        (_a = global.console).log.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Log]:" ], args));
-                    }));
-                };
-                Logger.prototype.warn = function() {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                    if (!this._enabled) return;
-                    consoleSandbox((function() {
-                        var _a;
-                        (_a = global.console).warn.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Warn]:" ], args));
-                    }));
-                };
-                Logger.prototype.error = function() {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                    if (!this._enabled) return;
-                    consoleSandbox((function() {
-                        var _a;
-                        (_a = global.console).error.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Error]:" ], args));
-                    }));
-                };
-                return Logger;
-            }();
-            var sentryGlobal = global.__SENTRY__ || {};
-            var logger = sentryGlobal.logger || new Logger;
-            if ((0, _env__WEBPACK_IMPORTED_MODULE_2__.isDebugBuild)()) {
-                sentryGlobal.logger = logger;
-                global.__SENTRY__ = sentryGlobal;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/misc.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                uuid4: () => uuid4,
-                parseUrl: () => parseUrl,
-                getEventDescription: () => getEventDescription,
-                addExceptionTypeValue: () => addExceptionTypeValue,
-                addExceptionMechanism: () => addExceptionMechanism,
-                checkOrSetAlreadyCaught: () => checkOrSetAlreadyCaught
-            });
-            var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
-            var _object__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
-            function uuid4() {
-                var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-                var crypto = global.crypto || global.msCrypto;
-                if (!(void 0 === crypto) && crypto.getRandomValues) {
-                    var arr = new Uint16Array(8);
-                    crypto.getRandomValues(arr);
-                    arr[3] = 4095 & arr[3] | 16384;
-                    arr[4] = 16383 & arr[4] | 32768;
-                    var pad = function(num) {
-                        var v = num.toString(16);
-                        while (v.length < 4) v = "0" + v;
-                        return v;
-                    };
-                    return pad(arr[0]) + pad(arr[1]) + pad(arr[2]) + pad(arr[3]) + pad(arr[4]) + pad(arr[5]) + pad(arr[6]) + pad(arr[7]);
-                }
-                return "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, (function(c) {
-                    var r = 16 * Math.random() | 0;
-                    var v = "x" === c ? r : 3 & r | 8;
-                    return v.toString(16);
-                }));
-            }
-            function parseUrl(url) {
-                if (!url) return {};
-                var match = url.match(/^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/);
-                if (!match) return {};
-                var query = match[6] || "";
-                var fragment = match[8] || "";
-                return {
-                    host: match[4],
-                    path: match[5],
-                    protocol: match[2],
-                    relative: match[5] + query + fragment
-                };
-            }
-            function getFirstException(event) {
-                return event.exception && event.exception.values ? event.exception.values[0] : void 0;
-            }
-            function getEventDescription(event) {
-                var message = event.message, eventId = event.event_id;
-                if (message) return message;
-                var firstException = getFirstException(event);
-                if (firstException) {
-                    if (firstException.type && firstException.value) return firstException.type + ": " + firstException.value;
-                    return firstException.type || firstException.value || eventId || "<unknown>";
-                }
-                return eventId || "<unknown>";
-            }
-            function addExceptionTypeValue(event, value, type) {
-                var exception = event.exception = event.exception || {};
-                var values = exception.values = exception.values || [];
-                var firstException = values[0] = values[0] || {};
-                if (!firstException.value) firstException.value = value || "";
-                if (!firstException.type) firstException.type = type || "Error";
-            }
-            function addExceptionMechanism(event, newMechanism) {
-                var firstException = getFirstException(event);
-                if (!firstException) return;
-                var defaultMechanism = {
-                    type: "generic",
-                    handled: true
-                };
-                var currentMechanism = firstException.mechanism;
-                firstException.mechanism = (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0, 
-                tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, defaultMechanism), currentMechanism), newMechanism);
-                if (newMechanism && "data" in newMechanism) {
-                    var mergedData = (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, currentMechanism && currentMechanism.data), newMechanism.data);
-                    firstException.mechanism.data = mergedData;
-                }
-            }
-            function checkOrSetAlreadyCaught(exception) {
-                if (exception && exception.__sentry_captured__) return true;
-                try {
-                    (0, _object__WEBPACK_IMPORTED_MODULE_2__.addNonEnumerableProperty)(exception, "__sentry_captured__", true);
-                } catch (err) {}
-                return false;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/node.js": (module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                isNodeEnv: () => isNodeEnv,
-                dynamicRequire: () => dynamicRequire,
-                loadModule: () => loadModule
-            });
-            var _env__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
-            module = __webpack_require__.hmd(module);
-            function isNodeEnv() {
-                return !(0, _env__WEBPACK_IMPORTED_MODULE_0__.isBrowserBundle)() && "[object process]" === Object.prototype.toString.call("undefined" !== typeof process ? process : 0);
-            }
-            function dynamicRequire(mod, request) {
-                return mod.require(request);
-            }
-            function loadModule(moduleName) {
-                var mod;
-                try {
-                    mod = dynamicRequire(module, moduleName);
-                } catch (e) {}
-                try {
-                    var cwd = dynamicRequire(module, "process").cwd;
-                    mod = dynamicRequire(module, cwd() + "/node_modules/" + moduleName);
-                } catch (e) {}
-                return mod;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/object.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                fill: () => fill,
-                addNonEnumerableProperty: () => addNonEnumerableProperty,
-                markFunctionWrapped: () => markFunctionWrapped,
-                getOriginalFunction: () => getOriginalFunction,
-                urlEncode: () => urlEncode,
-                getWalkSource: () => getWalkSource,
-                extractExceptionKeysForMessage: () => extractExceptionKeysForMessage,
-                dropUndefinedKeys: () => dropUndefinedKeys
-            });
-            var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var _browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/browser.js");
-            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-            var _string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/string.js");
-            function fill(source, name, replacementFactory) {
-                if (!(name in source)) return;
-                var original = source[name];
-                var wrapped = replacementFactory(original);
-                if ("function" === typeof wrapped) try {
-                    markFunctionWrapped(wrapped, original);
-                } catch (_Oo) {}
-                source[name] = wrapped;
-            }
-            function addNonEnumerableProperty(obj, name, value) {
-                Object.defineProperty(obj, name, {
-                    value,
-                    writable: true,
-                    configurable: true
-                });
-            }
-            function markFunctionWrapped(wrapped, original) {
-                var proto = original.prototype || {};
-                wrapped.prototype = original.prototype = proto;
-                addNonEnumerableProperty(wrapped, "__sentry_original__", original);
-            }
-            function getOriginalFunction(func) {
-                return func.__sentry_original__;
-            }
-            function urlEncode(object) {
-                return Object.keys(object).map((function(key) {
-                    return encodeURIComponent(key) + "=" + encodeURIComponent(object[key]);
-                })).join("&");
-            }
-            function getWalkSource(value) {
-                if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isError)(value)) {
-                    var error = value;
-                    var err = {
-                        message: error.message,
-                        name: error.name,
-                        stack: error.stack
-                    };
-                    for (var i in error) if (Object.prototype.hasOwnProperty.call(error, i)) err[i] = error[i];
-                    return err;
-                }
-                if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isEvent)(value)) {
-                    var event_1 = value;
-                    var source = {};
-                    source.type = event_1.type;
-                    try {
-                        source.target = (0, _is__WEBPACK_IMPORTED_MODULE_0__.isElement)(event_1.target) ? (0, 
-                        _browser__WEBPACK_IMPORTED_MODULE_1__.htmlTreeAsString)(event_1.target) : Object.prototype.toString.call(event_1.target);
-                    } catch (_oO) {
-                        source.target = "<unknown>";
-                    }
-                    try {
-                        source.currentTarget = (0, _is__WEBPACK_IMPORTED_MODULE_0__.isElement)(event_1.currentTarget) ? (0, 
-                        _browser__WEBPACK_IMPORTED_MODULE_1__.htmlTreeAsString)(event_1.currentTarget) : Object.prototype.toString.call(event_1.currentTarget);
-                    } catch (_oO) {
-                        source.currentTarget = "<unknown>";
-                    }
-                    if ("undefined" !== typeof CustomEvent && (0, _is__WEBPACK_IMPORTED_MODULE_0__.isInstanceOf)(value, CustomEvent)) source.detail = event_1.detail;
-                    for (var attr in event_1) if (Object.prototype.hasOwnProperty.call(event_1, attr)) source[attr] = event_1[attr];
-                    return source;
-                }
-                return value;
-            }
-            function extractExceptionKeysForMessage(exception, maxLength) {
-                if (void 0 === maxLength) maxLength = 40;
-                var keys = Object.keys(getWalkSource(exception));
-                keys.sort();
-                if (!keys.length) return "[object has no keys]";
-                if (keys[0].length >= maxLength) return (0, _string__WEBPACK_IMPORTED_MODULE_2__.truncate)(keys[0], maxLength);
-                for (var includedKeys = keys.length; includedKeys > 0; includedKeys--) {
-                    var serialized = keys.slice(0, includedKeys).join(", ");
-                    if (serialized.length > maxLength) continue;
-                    if (includedKeys === keys.length) return serialized;
-                    return (0, _string__WEBPACK_IMPORTED_MODULE_2__.truncate)(serialized, maxLength);
-                }
-                return "";
-            }
-            function dropUndefinedKeys(val) {
-                var e_1, _a;
-                if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isPlainObject)(val)) {
-                    var obj = val;
-                    var rv = {};
-                    try {
-                        for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__values)(Object.keys(obj)), _c = _b.next(); !_c.done; _c = _b.next()) {
-                            var key = _c.value;
-                            if ("undefined" !== typeof obj[key]) rv[key] = dropUndefinedKeys(obj[key]);
-                        }
-                    } catch (e_1_1) {
-                        e_1 = {
-                            error: e_1_1
-                        };
-                    } finally {
-                        try {
-                            if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                        } finally {
-                            if (e_1) throw e_1.error;
-                        }
-                    }
-                    return rv;
-                }
-                if (Array.isArray(val)) return val.map(dropUndefinedKeys);
-                return val;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/stacktrace.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                createStackParser: () => createStackParser,
-                getFunctionName: () => getFunctionName
-            });
-            var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-            var STACKTRACE_LIMIT = 50;
-            function createStackParser() {
-                var parsers = [];
-                for (var _i = 0; _i < arguments.length; _i++) parsers[_i] = arguments[_i];
-                var sortedParsers = parsers.sort((function(a, b) {
-                    return a[0] - b[0];
-                })).map((function(p) {
-                    return p[1];
-                }));
-                return function(stack, skipFirst) {
-                    var e_1, _a, e_2, _b;
-                    if (void 0 === skipFirst) skipFirst = 0;
-                    var frames = [];
-                    try {
-                        for (var _c = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(stack.split("\n").slice(skipFirst)), _d = _c.next(); !_d.done; _d = _c.next()) {
-                            var line = _d.value;
-                            try {
-                                for (var sortedParsers_1 = (e_2 = void 0, (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(sortedParsers)), sortedParsers_1_1 = sortedParsers_1.next(); !sortedParsers_1_1.done; sortedParsers_1_1 = sortedParsers_1.next()) {
-                                    var parser = sortedParsers_1_1.value;
-                                    var frame = parser(line);
-                                    if (frame) {
-                                        frames.push(frame);
-                                        break;
-                                    }
-                                }
-                            } catch (e_2_1) {
-                                e_2 = {
-                                    error: e_2_1
-                                };
-                            } finally {
-                                try {
-                                    if (sortedParsers_1_1 && !sortedParsers_1_1.done && (_b = sortedParsers_1.return)) _b.call(sortedParsers_1);
-                                } finally {
-                                    if (e_2) throw e_2.error;
-                                }
-                            }
-                        }
-                    } catch (e_1_1) {
-                        e_1 = {
-                            error: e_1_1
-                        };
-                    } finally {
-                        try {
-                            if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-                        } finally {
-                            if (e_1) throw e_1.error;
-                        }
-                    }
-                    return stripSentryFramesAndReverse(frames);
-                };
-            }
-            function stripSentryFramesAndReverse(stack) {
-                if (!stack.length) return [];
-                var localStack = stack;
-                var firstFrameFunction = localStack[0].function || "";
-                var lastFrameFunction = localStack[localStack.length - 1].function || "";
-                if (-1 !== firstFrameFunction.indexOf("captureMessage") || -1 !== firstFrameFunction.indexOf("captureException")) localStack = localStack.slice(1);
-                if (-1 !== lastFrameFunction.indexOf("sentryWrapped")) localStack = localStack.slice(0, -1);
-                return localStack.slice(0, STACKTRACE_LIMIT).map((function(frame) {
-                    return (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0, tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, frame), {
-                        filename: frame.filename || localStack[0].filename,
-                        function: frame.function || "?"
-                    });
-                })).reverse();
-            }
-            var defaultFunctionName = "<anonymous>";
-            function getFunctionName(fn) {
-                try {
-                    if (!fn || "function" !== typeof fn) return defaultFunctionName;
-                    return fn.name || defaultFunctionName;
-                } catch (e) {
-                    return defaultFunctionName;
-                }
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/string.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                truncate: () => truncate,
-                safeJoin: () => safeJoin,
-                isMatchingPattern: () => isMatchingPattern
-            });
-            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-            function truncate(str, max) {
-                if (void 0 === max) max = 0;
-                if ("string" !== typeof str || 0 === max) return str;
-                return str.length <= max ? str : str.substr(0, max) + "...";
-            }
-            function safeJoin(input, delimiter) {
-                if (!Array.isArray(input)) return "";
-                var output = [];
-                for (var i = 0; i < input.length; i++) {
-                    var value = input[i];
-                    try {
-                        output.push(String(value));
-                    } catch (e) {
-                        output.push("[value cannot be serialized]");
-                    }
-                }
-                return output.join(delimiter);
-            }
-            function isMatchingPattern(value, pattern) {
-                if (!(0, _is__WEBPACK_IMPORTED_MODULE_0__.isString)(value)) return false;
-                if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isRegExp)(pattern)) return pattern.test(value);
-                if ("string" === typeof pattern) return -1 !== value.indexOf(pattern);
-                return false;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/supports.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                supportsFetch: () => supportsFetch,
-                isNativeFetch: () => isNativeFetch,
-                supportsNativeFetch: () => supportsNativeFetch,
-                supportsReferrerPolicy: () => supportsReferrerPolicy,
-                supportsHistory: () => supportsHistory
-            });
-            var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
-            var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
-            function supportsFetch() {
-                if (!("fetch" in (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)())) return false;
-                try {
-                    new Headers;
-                    new Request("");
-                    new Response;
-                    return true;
-                } catch (e) {
-                    return false;
-                }
-            }
-            function isNativeFetch(func) {
-                return func && /^function fetch\(\)\s+\{\s+\[native code\]\s+\}$/.test(func.toString());
-            }
-            function supportsNativeFetch() {
-                if (!supportsFetch()) return false;
-                var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-                if (isNativeFetch(global.fetch)) return true;
-                var result = false;
-                var doc = global.document;
-                if (doc && "function" === typeof doc.createElement) try {
-                    var sandbox = doc.createElement("iframe");
-                    sandbox.hidden = true;
-                    doc.head.appendChild(sandbox);
-                    if (sandbox.contentWindow && sandbox.contentWindow.fetch) result = isNativeFetch(sandbox.contentWindow.fetch);
-                    doc.head.removeChild(sandbox);
-                } catch (err) {
-                    (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ", err);
-                }
-                return result;
-            }
-            function supportsReferrerPolicy() {
-                if (!supportsFetch()) return false;
-                try {
-                    new Request("_", {
-                        referrerPolicy: "origin"
-                    });
-                    return true;
-                } catch (e) {
-                    return false;
-                }
-            }
-            function supportsHistory() {
-                var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
-                var chrome = global.chrome;
-                var isChromePackagedApp = chrome && chrome.app && chrome.app.runtime;
-                var hasHistoryApi = "history" in global && !!global.history.pushState && !!global.history.replaceState;
-                return !isChromePackagedApp && hasHistoryApi;
-            }
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/syncpromise.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                resolvedSyncPromise: () => resolvedSyncPromise,
-                rejectedSyncPromise: () => rejectedSyncPromise,
-                SyncPromise: () => SyncPromise
-            });
-            var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-            function resolvedSyncPromise(value) {
-                return new SyncPromise((function(resolve) {
-                    resolve(value);
-                }));
-            }
-            function rejectedSyncPromise(reason) {
-                return new SyncPromise((function(_, reject) {
-                    reject(reason);
-                }));
-            }
-            var SyncPromise = function() {
-                function SyncPromise(executor) {
-                    var _this = this;
-                    this._state = 0;
-                    this._handlers = [];
-                    this._resolve = function(value) {
-                        _this._setResult(1, value);
-                    };
-                    this._reject = function(reason) {
-                        _this._setResult(2, reason);
-                    };
-                    this._setResult = function(state, value) {
-                        if (0 !== _this._state) return;
-                        if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isThenable)(value)) {
-                            void value.then(_this._resolve, _this._reject);
-                            return;
-                        }
-                        _this._state = state;
-                        _this._value = value;
-                        _this._executeHandlers();
-                    };
-                    this._executeHandlers = function() {
-                        if (0 === _this._state) return;
-                        var cachedHandlers = _this._handlers.slice();
-                        _this._handlers = [];
-                        cachedHandlers.forEach((function(handler) {
-                            if (handler[0]) return;
-                            if (1 === _this._state) handler[1](_this._value);
-                            if (2 === _this._state) handler[2](_this._value);
-                            handler[0] = true;
-                        }));
-                    };
-                    try {
-                        executor(this._resolve, this._reject);
-                    } catch (e) {
-                        this._reject(e);
-                    }
-                }
-                SyncPromise.prototype.then = function(onfulfilled, onrejected) {
-                    var _this = this;
-                    return new SyncPromise((function(resolve, reject) {
-                        _this._handlers.push([ false, function(result) {
-                            if (!onfulfilled) resolve(result); else try {
-                                resolve(onfulfilled(result));
-                            } catch (e) {
-                                reject(e);
-                            }
-                        }, function(reason) {
-                            if (!onrejected) reject(reason); else try {
-                                resolve(onrejected(reason));
-                            } catch (e) {
-                                reject(e);
-                            }
-                        } ]);
-                        _this._executeHandlers();
-                    }));
-                };
-                SyncPromise.prototype.catch = function(onrejected) {
-                    return this.then((function(val) {
-                        return val;
-                    }), onrejected);
-                };
-                SyncPromise.prototype.finally = function(onfinally) {
-                    var _this = this;
-                    return new SyncPromise((function(resolve, reject) {
-                        var val;
-                        var isRejected;
-                        return _this.then((function(value) {
-                            isRejected = false;
-                            val = value;
-                            if (onfinally) onfinally();
-                        }), (function(reason) {
-                            isRejected = true;
-                            val = reason;
-                            if (onfinally) onfinally();
-                        })).then((function() {
-                            if (isRejected) {
-                                reject(val);
-                                return;
-                            }
-                            resolve(val);
-                        }));
-                    }));
-                };
-                return SyncPromise;
-            }();
-        },
-        "../shared/browser/node_modules/@sentry/utils/esm/time.js": (module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                dateTimestampInSeconds: () => dateTimestampInSeconds,
-                timestampInSeconds: () => timestampInSeconds,
-                timestampWithMs: () => timestampWithMs,
-                browserPerformanceTimeOrigin: () => browserPerformanceTimeOrigin
-            });
-            var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
-            var _node__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
-            module = __webpack_require__.hmd(module);
-            var dateTimestampSource = {
-                nowSeconds: function() {
-                    return Date.now() / 1e3;
+                    console.error("不是期望的上报类型", s, p);
                 }
             };
-            function getBrowserPerformance() {
-                var performance = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)().performance;
-                if (!performance || !performance.now) return;
-                var timeOrigin = Date.now() - performance.now();
-                return {
-                    now: function() {
-                        return performance.now();
-                    },
-                    timeOrigin
-                };
-            }
-            function getNodePerformance() {
-                try {
-                    var perfHooks = (0, _node__WEBPACK_IMPORTED_MODULE_1__.dynamicRequire)(module, "perf_hooks");
-                    return perfHooks.performance;
-                } catch (_) {
-                    return;
-                }
-            }
-            var platformPerformance = (0, _node__WEBPACK_IMPORTED_MODULE_1__.isNodeEnv)() ? getNodePerformance() : getBrowserPerformance();
-            var timestampSource = void 0 === platformPerformance ? dateTimestampSource : {
-                nowSeconds: function() {
-                    return (platformPerformance.timeOrigin + platformPerformance.now()) / 1e3;
-                }
+        },
+        "../shared/browser/node_modules/@sl/logger/lib/index.es.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
+            __webpack_require__.d(__webpack_exports__, {
+                LogLevel: () => t,
+                LogStatus: () => o,
+                default: () => e
+            });
+            var n, o, t, i = function() {
+                return i = Object.assign || function(n) {
+                    for (var o, t = 1, i = arguments.length; t < i; t++) for (var r in o = arguments[t]) Object.prototype.hasOwnProperty.call(o, r) && (n[r] = o[r]);
+                    return n;
+                }, i.apply(this, arguments);
             };
-            var dateTimestampInSeconds = dateTimestampSource.nowSeconds.bind(dateTimestampSource);
-            var timestampInSeconds = timestampSource.nowSeconds.bind(timestampSource);
-            var timestampWithMs = timestampInSeconds;
-            var browserPerformanceTimeOrigin = function() {
-                var performance = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)().performance;
-                if (!performance || !performance.now) {
-                    "none";
-                    return;
-                }
-                var threshold = 3600 * 1e3;
-                var performanceNow = performance.now();
-                var dateNow = Date.now();
-                var timeOriginDelta = performance.timeOrigin ? Math.abs(performance.timeOrigin + performanceNow - dateNow) : threshold;
-                var timeOriginIsReliable = timeOriginDelta < threshold;
-                var navigationStart = performance.timing && performance.timing.navigationStart;
-                var hasNavigationStart = "number" === typeof navigationStart;
-                var navigationStartDelta = hasNavigationStart ? Math.abs(navigationStart + performanceNow - dateNow) : threshold;
-                var navigationStartIsReliable = navigationStartDelta < threshold;
-                if (timeOriginIsReliable || navigationStartIsReliable) if (timeOriginDelta <= navigationStartDelta) {
-                    "timeOrigin";
-                    return performance.timeOrigin;
-                } else {
-                    "navigationStart";
-                    return navigationStart;
-                }
-                "dateNow";
-                return dateNow;
-            }();
+            !function(n) {
+                n.P0 = "P0", n.P1 = "P1", n.P2 = "P2";
+            }(n || (n = {})), function(n) {
+                n.Start = "开始", n.Success = "成功", n.Failure = "失败";
+            }(o || (o = {})), function(n) {
+                n.Info = "info", n.Log = "log", n.Warn = "warn", n.Error = "error";
+            }(t || (t = {}));
+            var r = function n(o) {
+                var r = this;
+                this.options = {
+                    owner: "",
+                    action: "",
+                    transports: []
+                }, this.withOwner = function(o) {
+                    return new n(i(i({}, r.options), {
+                        owner: o
+                    }));
+                }, this.pipeOwner = function(o) {
+                    var t = "";
+                    return t = r.options.owner ? "".concat(r.options.owner, ".").concat(o) : o, new n(i(i({}, r.options), {
+                        owner: t
+                    }));
+                }, this.withAction = function(o) {
+                    return new n(i(i({}, r.options), {
+                        action: o
+                    }));
+                }, this.pipeTransport = function() {
+                    for (var o = [], t = 0; t < arguments.length; t++) o[t] = arguments[t];
+                    var e = r.options.transports.concat(o);
+                    return new n(i(i({}, r.options), {
+                        transports: e
+                    }));
+                }, this.report = function(n, o, t) {
+                    !function(n, o) {
+                        var t = n;
+                        o.forEach((function(n) {
+                            var o = n(t);
+                            o && (t = o);
+                        }));
+                    }(i(i({
+                        level: n,
+                        owner: r.options.owner,
+                        action: r.options.action
+                    }, t), {
+                        message: o
+                    }), r.options.transports);
+                }, this.info = function(n, o) {
+                    r.report(t.Info, n, o);
+                }, this.log = function(n, o) {
+                    r.report(t.Log, n, o);
+                }, this.warn = function(n, o) {
+                    r.report(t.Warn, n, o);
+                }, this.error = function(n, o) {
+                    r.report(t.Error, n, o);
+                }, this.options = i(i({}, this.options), o);
+            }, e = new r;
+            Object.defineProperty(e, "options", {
+                writable: !1,
+                configurable: !1
+            });
         },
         "../shared/browser/node_modules/axios/index.js": (module, __unused_webpack_exports, __webpack_require__) => {
             module.exports = __webpack_require__("../shared/browser/node_modules/axios/lib/axios.js");
@@ -9255,90 +7647,6 @@
             "use strict";
             module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, (x => `%${x.charCodeAt(0).toString(16).toUpperCase()}`));
         },
-        "../shared/browser/node_modules/tslib/tslib.es6.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                __extends: () => __extends,
-                __assign: () => __assign,
-                __rest: () => __rest,
-                __values: () => __values,
-                __read: () => __read,
-                __spread: () => __spread
-            });
-            var extendStatics = function(d, b) {
-                extendStatics = Object.setPrototypeOf || {
-                    __proto__: []
-                } instanceof Array && function(d, b) {
-                    d.__proto__ = b;
-                } || function(d, b) {
-                    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-                };
-                return extendStatics(d, b);
-            };
-            function __extends(d, b) {
-                extendStatics(d, b);
-                function __() {
-                    this.constructor = d;
-                }
-                d.prototype = null === b ? Object.create(b) : (__.prototype = b.prototype, new __);
-            }
-            var __assign = function() {
-                __assign = Object.assign || function(t) {
-                    for (var s, i = 1, n = arguments.length; i < n; i++) {
-                        s = arguments[i];
-                        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-                    }
-                    return t;
-                };
-                return __assign.apply(this, arguments);
-            };
-            function __rest(s, e) {
-                var t = {};
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-                if (null != s && "function" === typeof Object.getOwnPropertySymbols) {
-                    var i = 0;
-                    for (p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-                }
-                return t;
-            }
-            function __values(o) {
-                var s = "function" === typeof Symbol && Symbol.iterator, m = s && o[s], i = 0;
-                if (m) return m.call(o);
-                if (o && "number" === typeof o.length) return {
-                    next: function() {
-                        if (o && i >= o.length) o = void 0;
-                        return {
-                            value: o && o[i++],
-                            done: !o
-                        };
-                    }
-                };
-                throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-            }
-            function __read(o, n) {
-                var m = "function" === typeof Symbol && o[Symbol.iterator];
-                if (!m) return o;
-                var r, e, i = m.call(o), ar = [];
-                try {
-                    while ((void 0 === n || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-                } catch (error) {
-                    e = {
-                        error
-                    };
-                } finally {
-                    try {
-                        if (r && !r.done && (m = i["return"])) m.call(i);
-                    } finally {
-                        if (e) throw e.error;
-                    }
-                }
-                return ar;
-            }
-            function __spread() {
-                for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-                return ar;
-            }
-        },
         "../shared/browser/node_modules/uuid/index.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var v1 = __webpack_require__("../shared/browser/node_modules/uuid/v1.js");
             var v4 = __webpack_require__("../shared/browser/node_modules/uuid/v4.js");
@@ -9439,17 +7747,6 @@
             }
             module.exports = v4;
         },
-        "../shared/browser/utils/get-env.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                default: () => getEnv
-            });
-            function getEnv(key) {
-                const ENV = window.__ENV__ || {};
-                if (key) return ENV[key];
-                return ENV;
-            }
-        },
         "../shared/browser/node_modules/axios/package.json": module => {
             "use strict";
             module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
@@ -9513,3023 +7810,13 @@
     })();
     (() => {
         "use strict";
-        var esm_hub = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
-        var esm_env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
-        var esm_logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
-        function initAndBind(clientClass, options) {
-            if (true === options.debug) if ((0, esm_env.isDebugBuild)()) esm_logger.logger.enable(); else console.warn("[Sentry] Cannot initialize SDK with `debug` option using a non-debug bundle.");
-            var hub = (0, esm_hub.getCurrentHub)();
-            var scope = hub.getScope();
-            if (scope) scope.update(options.initialScope);
-            var client = new clientClass(options);
-            hub.bindClient(client);
-        }
-        var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-        var misc = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
-        var string = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/string.js");
-        var DEFAULT_IGNORE_ERRORS = [ /^Script error\.?$/, /^Javascript error: Script error\.? on line 0$/ ];
-        var InboundFilters = function() {
-            function InboundFilters(_options) {
-                if (void 0 === _options) _options = {};
-                this._options = _options;
-                this.name = InboundFilters.id;
-            }
-            InboundFilters.prototype.setupOnce = function(addGlobalEventProcessor, getCurrentHub) {
-                addGlobalEventProcessor((function(event) {
-                    var hub = getCurrentHub();
-                    if (hub) {
-                        var self_1 = hub.getIntegration(InboundFilters);
-                        if (self_1) {
-                            var client = hub.getClient();
-                            var clientOptions = client ? client.getOptions() : {};
-                            var options = _mergeOptions(self_1._options, clientOptions);
-                            return _shouldDropEvent(event, options) ? null : event;
-                        }
-                    }
-                    return event;
-                }));
-            };
-            InboundFilters.id = "InboundFilters";
-            return InboundFilters;
-        }();
-        function _mergeOptions(internalOptions, clientOptions) {
-            if (void 0 === internalOptions) internalOptions = {};
-            if (void 0 === clientOptions) clientOptions = {};
-            return {
-                allowUrls: (0, tslib_es6.__spread)(internalOptions.whitelistUrls || [], internalOptions.allowUrls || [], clientOptions.whitelistUrls || [], clientOptions.allowUrls || []),
-                denyUrls: (0, tslib_es6.__spread)(internalOptions.blacklistUrls || [], internalOptions.denyUrls || [], clientOptions.blacklistUrls || [], clientOptions.denyUrls || []),
-                ignoreErrors: (0, tslib_es6.__spread)(internalOptions.ignoreErrors || [], clientOptions.ignoreErrors || [], DEFAULT_IGNORE_ERRORS),
-                ignoreInternal: void 0 !== internalOptions.ignoreInternal ? internalOptions.ignoreInternal : true
-            };
-        }
-        function _shouldDropEvent(event, options) {
-            if (options.ignoreInternal && _isSentryError(event)) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to being internal Sentry Error.\nEvent: " + (0, 
-                misc.getEventDescription)(event));
-                return true;
-            }
-            if (_isIgnoredError(event, options.ignoreErrors)) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to being matched by `ignoreErrors` option.\nEvent: " + (0, 
-                misc.getEventDescription)(event));
-                return true;
-            }
-            if (_isDeniedUrl(event, options.denyUrls)) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to being matched by `denyUrls` option.\nEvent: " + (0, 
-                misc.getEventDescription)(event) + ".\nUrl: " + _getEventFilterUrl(event));
-                return true;
-            }
-            if (!_isAllowedUrl(event, options.allowUrls)) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to not being matched by `allowUrls` option.\nEvent: " + (0, 
-                misc.getEventDescription)(event) + ".\nUrl: " + _getEventFilterUrl(event));
-                return true;
-            }
-            return false;
-        }
-        function _isIgnoredError(event, ignoreErrors) {
-            if (!ignoreErrors || !ignoreErrors.length) return false;
-            return _getPossibleEventMessages(event).some((function(message) {
-                return ignoreErrors.some((function(pattern) {
-                    return (0, string.isMatchingPattern)(message, pattern);
-                }));
-            }));
-        }
-        function _isDeniedUrl(event, denyUrls) {
-            if (!denyUrls || !denyUrls.length) return false;
-            var url = _getEventFilterUrl(event);
-            return !url ? false : denyUrls.some((function(pattern) {
-                return (0, string.isMatchingPattern)(url, pattern);
-            }));
-        }
-        function _isAllowedUrl(event, allowUrls) {
-            if (!allowUrls || !allowUrls.length) return true;
-            var url = _getEventFilterUrl(event);
-            return !url ? true : allowUrls.some((function(pattern) {
-                return (0, string.isMatchingPattern)(url, pattern);
-            }));
-        }
-        function _getPossibleEventMessages(event) {
-            if (event.message) return [ event.message ];
-            if (event.exception) try {
-                var _a = event.exception.values && event.exception.values[0] || {}, _b = _a.type, type = void 0 === _b ? "" : _b, _c = _a.value, value = void 0 === _c ? "" : _c;
-                return [ "" + value, type + ": " + value ];
-            } catch (oO) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Cannot extract message for event " + (0, 
-                misc.getEventDescription)(event));
-                return [];
-            }
-            return [];
-        }
-        function _isSentryError(event) {
-            try {
-                return "SentryError" === event.exception.values[0].type;
-            } catch (e) {}
-            return false;
-        }
-        function _getLastValidUrl(frames) {
-            if (void 0 === frames) frames = [];
-            for (var i = frames.length - 1; i >= 0; i--) {
-                var frame = frames[i];
-                if (frame && "<anonymous>" !== frame.filename && "[native code]" !== frame.filename) return frame.filename || null;
-            }
-            return null;
-        }
-        function _getEventFilterUrl(event) {
-            try {
-                if (event.stacktrace) return _getLastValidUrl(event.stacktrace.frames);
-                var frames_1;
-                try {
-                    frames_1 = event.exception.values[0].stacktrace.frames;
-                } catch (e) {}
-                return frames_1 ? _getLastValidUrl(frames_1) : null;
-            } catch (oO) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Cannot extract url for event " + (0, 
-                misc.getEventDescription)(event));
-                return null;
-            }
-        }
-        var object = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
-        var originalFunctionToString;
-        var FunctionToString = function() {
-            function FunctionToString() {
-                this.name = FunctionToString.id;
-            }
-            FunctionToString.prototype.setupOnce = function() {
-                originalFunctionToString = Function.prototype.toString;
-                Function.prototype.toString = function() {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                    var context = (0, object.getOriginalFunction)(this) || this;
-                    return originalFunctionToString.apply(context, args);
-                };
-            };
-            FunctionToString.id = "FunctionToString";
-            return FunctionToString;
-        }();
-        var esm_global = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
-        var instrument = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/instrument.js");
-        var SDK_VERSION = "6.19.2";
-        var esm_scope = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/scope.js");
-        var setPrototypeOf = Object.setPrototypeOf || ({
-            __proto__: []
-        } instanceof Array ? setProtoOf : mixinProperties);
-        function setProtoOf(obj, proto) {
-            obj.__proto__ = proto;
-            return obj;
-        }
-        function mixinProperties(obj, proto) {
-            for (var prop in proto) if (!Object.prototype.hasOwnProperty.call(obj, prop)) obj[prop] = proto[prop];
-            return obj;
-        }
-        var SentryError = function(_super) {
-            (0, tslib_es6.__extends)(SentryError, _super);
-            function SentryError(message) {
-                var _newTarget = this.constructor;
-                var _this = _super.call(this, message) || this;
-                _this.message = message;
-                _this.name = _newTarget.prototype.constructor.name;
-                setPrototypeOf(_this, _newTarget.prototype);
-                return _this;
-            }
-            return SentryError;
-        }(Error);
-        var DSN_REGEX = /^(?:(\w+):)\/\/(?:(\w+)(?::(\w+))?@)([\w.-]+)(?::(\d+))?\/(.+)/;
-        function isValidProtocol(protocol) {
-            return "http" === protocol || "https" === protocol;
-        }
-        function dsnToString(dsn, withPassword) {
-            if (void 0 === withPassword) withPassword = false;
-            var host = dsn.host, path = dsn.path, pass = dsn.pass, port = dsn.port, projectId = dsn.projectId, protocol = dsn.protocol, publicKey = dsn.publicKey;
-            return protocol + "://" + publicKey + (withPassword && pass ? ":" + pass : "") + "@" + host + (port ? ":" + port : "") + "/" + (path ? path + "/" : path) + projectId;
-        }
-        function dsnFromString(str) {
-            var match = DSN_REGEX.exec(str);
-            if (!match) throw new SentryError("Invalid Sentry Dsn: " + str);
-            var _a = (0, tslib_es6.__read)(match.slice(1), 6), protocol = _a[0], publicKey = _a[1], _b = _a[2], pass = void 0 === _b ? "" : _b, host = _a[3], _c = _a[4], port = void 0 === _c ? "" : _c, lastPath = _a[5];
-            var path = "";
-            var projectId = lastPath;
-            var split = projectId.split("/");
-            if (split.length > 1) {
-                path = split.slice(0, -1).join("/");
-                projectId = split.pop();
-            }
-            if (projectId) {
-                var projectMatch = projectId.match(/^\d+/);
-                if (projectMatch) projectId = projectMatch[0];
-            }
-            return dsnFromComponents({
-                host,
-                pass,
-                path,
-                projectId,
-                port,
-                protocol,
-                publicKey
-            });
-        }
-        function dsnFromComponents(components) {
-            if ("user" in components && !("publicKey" in components)) components.publicKey = components.user;
-            return {
-                user: components.publicKey || "",
-                protocol: components.protocol,
-                publicKey: components.publicKey || "",
-                pass: components.pass || "",
-                host: components.host,
-                port: components.port || "",
-                path: components.path || "",
-                projectId: components.projectId
-            };
-        }
-        function validateDsn(dsn) {
-            if (!(0, esm_env.isDebugBuild)()) return;
-            var port = dsn.port, projectId = dsn.projectId, protocol = dsn.protocol;
-            var requiredComponents = [ "protocol", "publicKey", "host", "projectId" ];
-            requiredComponents.forEach((function(component) {
-                if (!dsn[component]) throw new SentryError("Invalid Sentry Dsn: " + component + " missing");
-            }));
-            if (!projectId.match(/^\d+$/)) throw new SentryError("Invalid Sentry Dsn: Invalid projectId " + projectId);
-            if (!isValidProtocol(protocol)) throw new SentryError("Invalid Sentry Dsn: Invalid protocol " + protocol);
-            if (port && isNaN(parseInt(port, 10))) throw new SentryError("Invalid Sentry Dsn: Invalid port " + port);
-            return true;
-        }
-        function makeDsn(from) {
-            var components = "string" === typeof from ? dsnFromString(from) : dsnFromComponents(from);
-            validateDsn(components);
-            return components;
-        }
-        var is = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-        var syncpromise = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/syncpromise.js");
-        var time = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
-        function memoBuilder() {
-            var hasWeakSet = "function" === typeof WeakSet;
-            var inner = hasWeakSet ? new WeakSet : [];
-            function memoize(obj) {
-                if (hasWeakSet) {
-                    if (inner.has(obj)) return true;
-                    inner.add(obj);
-                    return false;
-                }
-                for (var i = 0; i < inner.length; i++) {
-                    var value = inner[i];
-                    if (value === obj) return true;
-                }
-                inner.push(obj);
-                return false;
-            }
-            function unmemoize(obj) {
-                if (hasWeakSet) inner.delete(obj); else for (var i = 0; i < inner.length; i++) if (inner[i] === obj) {
-                    inner.splice(i, 1);
-                    break;
-                }
-            }
-            return [ memoize, unmemoize ];
-        }
-        var esm_stacktrace = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/stacktrace.js");
-        function normalize(input, depth, maxProperties) {
-            if (void 0 === depth) depth = +1 / 0;
-            if (void 0 === maxProperties) maxProperties = +1 / 0;
-            try {
-                return walk("", input, depth, maxProperties);
-            } catch (_oO) {
-                return "**non-serializable**";
-            }
-        }
-        function normalizeToSize(object, depth, maxSize) {
-            if (void 0 === depth) depth = 3;
-            if (void 0 === maxSize) maxSize = 100 * 1024;
-            var serialized = normalize(object, depth);
-            if (jsonSize(serialized) > maxSize) return normalizeToSize(object, depth - 1, maxSize);
-            return serialized;
-        }
-        function walk(key, value, depth, maxProperties, memo) {
-            if (void 0 === depth) depth = +1 / 0;
-            if (void 0 === maxProperties) maxProperties = +1 / 0;
-            if (void 0 === memo) memo = memoBuilder();
-            var _a = (0, tslib_es6.__read)(memo, 2), memoize = _a[0], unmemoize = _a[1];
-            if (0 === depth) return serializeValue(value);
-            if (null !== value && void 0 !== value && "function" === typeof value.toJSON) return value.toJSON();
-            var serializable = makeSerializable(value, key);
-            if ((0, is.isPrimitive)(serializable)) return serializable;
-            var source = (0, object.getWalkSource)(value);
-            var acc = Array.isArray(value) ? [] : {};
-            if (memoize(value)) return "[Circular ~]";
-            var propertyCount = 0;
-            for (var innerKey in source) {
-                if (!Object.prototype.hasOwnProperty.call(source, innerKey)) continue;
-                if (propertyCount >= maxProperties) {
-                    acc[innerKey] = "[MaxProperties ~]";
-                    break;
-                }
-                propertyCount += 1;
-                var innerValue = source[innerKey];
-                acc[innerKey] = walk(innerKey, innerValue, depth - 1, maxProperties, memo);
-            }
-            unmemoize(value);
-            return acc;
-        }
-        function serializeValue(value) {
-            if ("string" === typeof value) return value;
-            var type = Object.prototype.toString.call(value);
-            if ("[object Object]" === type) return "[Object]";
-            if ("[object Array]" === type) return "[Array]";
-            var serializable = makeSerializable(value);
-            return (0, is.isPrimitive)(serializable) ? serializable : type;
-        }
-        function makeSerializable(value, key) {
-            if ("domain" === key && value && "object" === typeof value && value._events) return "[Domain]";
-            if ("domainEmitter" === key) return "[DomainEmitter]";
-            if ("undefined" !== typeof __webpack_require__.g && value === __webpack_require__.g) return "[Global]";
-            if ("undefined" !== typeof window && value === window) return "[Window]";
-            if ("undefined" !== typeof document && value === document) return "[Document]";
-            if ((0, is.isSyntheticEvent)(value)) return "[SyntheticEvent]";
-            if ("number" === typeof value && value !== value) return "[NaN]";
-            if (void 0 === value) return "[undefined]";
-            if ("function" === typeof value) return "[Function: " + (0, esm_stacktrace.getFunctionName)(value) + "]";
-            if ("symbol" === typeof value) return "[" + String(value) + "]";
-            if ("bigint" === typeof value) return "[BigInt: " + String(value) + "]";
-            return value;
-        }
-        function utf8Length(value) {
-            return ~-encodeURI(value).split(/%..|./).length;
-        }
-        function jsonSize(value) {
-            return utf8Length(JSON.stringify(value));
-        }
-        var installedIntegrations = [];
-        function filterDuplicates(integrations) {
-            return integrations.reduce((function(acc, integrations) {
-                if (acc.every((function(accIntegration) {
-                    return integrations.name !== accIntegration.name;
-                }))) acc.push(integrations);
-                return acc;
-            }), []);
-        }
-        function getIntegrationsToSetup(options) {
-            var defaultIntegrations = options.defaultIntegrations && (0, tslib_es6.__spread)(options.defaultIntegrations) || [];
-            var userIntegrations = options.integrations;
-            var integrations = (0, tslib_es6.__spread)(filterDuplicates(defaultIntegrations));
-            if (Array.isArray(userIntegrations)) integrations = (0, tslib_es6.__spread)(integrations.filter((function(integrations) {
-                return userIntegrations.every((function(userIntegration) {
-                    return userIntegration.name !== integrations.name;
-                }));
-            })), filterDuplicates(userIntegrations)); else if ("function" === typeof userIntegrations) {
-                integrations = userIntegrations(integrations);
-                integrations = Array.isArray(integrations) ? integrations : [ integrations ];
-            }
-            var integrationsNames = integrations.map((function(i) {
-                return i.name;
-            }));
-            var alwaysLastToRun = "Debug";
-            if (-1 !== integrationsNames.indexOf(alwaysLastToRun)) integrations.push.apply(integrations, (0, 
-            tslib_es6.__spread)(integrations.splice(integrationsNames.indexOf(alwaysLastToRun), 1)));
-            return integrations;
-        }
-        function setupIntegration(integration) {
-            if (-1 !== installedIntegrations.indexOf(integration.name)) return;
-            integration.setupOnce(esm_scope.addGlobalEventProcessor, esm_hub.getCurrentHub);
-            installedIntegrations.push(integration.name);
-            (0, esm_env.isDebugBuild)() && esm_logger.logger.log("Integration installed: " + integration.name);
-        }
-        function setupIntegrations(options) {
-            var integrations = {};
-            getIntegrationsToSetup(options).forEach((function(integration) {
-                integrations[integration.name] = integration;
-                setupIntegration(integration);
-            }));
-            (0, object.addNonEnumerableProperty)(integrations, "initialized", true);
-            return integrations;
-        }
-        var ALREADY_SEEN_ERROR = "Not capturing exception because it's already been captured.";
-        var BaseClient = function() {
-            function BaseClient(backendClass, options) {
-                this._integrations = {};
-                this._numProcessing = 0;
-                this._backend = new backendClass(options);
-                this._options = options;
-                if (options.dsn) this._dsn = makeDsn(options.dsn);
-            }
-            BaseClient.prototype.captureException = function(exception, hint, scope) {
-                var _this = this;
-                if ((0, misc.checkOrSetAlreadyCaught)(exception)) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log(ALREADY_SEEN_ERROR);
-                    return;
-                }
-                var eventId = hint && hint.event_id;
-                this._process(this._getBackend().eventFromException(exception, hint).then((function(event) {
-                    return _this._captureEvent(event, hint, scope);
-                })).then((function(result) {
-                    eventId = result;
-                })));
-                return eventId;
-            };
-            BaseClient.prototype.captureMessage = function(message, level, hint, scope) {
-                var _this = this;
-                var eventId = hint && hint.event_id;
-                var promisedEvent = (0, is.isPrimitive)(message) ? this._getBackend().eventFromMessage(String(message), level, hint) : this._getBackend().eventFromException(message, hint);
-                this._process(promisedEvent.then((function(event) {
-                    return _this._captureEvent(event, hint, scope);
-                })).then((function(result) {
-                    eventId = result;
-                })));
-                return eventId;
-            };
-            BaseClient.prototype.captureEvent = function(event, hint, scope) {
-                if (hint && hint.originalException && (0, misc.checkOrSetAlreadyCaught)(hint.originalException)) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log(ALREADY_SEEN_ERROR);
-                    return;
-                }
-                var eventId = hint && hint.event_id;
-                this._process(this._captureEvent(event, hint, scope).then((function(result) {
-                    eventId = result;
-                })));
-                return eventId;
-            };
-            BaseClient.prototype.captureSession = function(session) {
-                if (!this._isEnabled()) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("SDK not enabled, will not capture session.");
-                    return;
-                }
-                if (!("string" === typeof session.release)) (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Discarded session because of missing or non-string release"); else {
-                    this._sendSession(session);
-                    session.update({
-                        init: false
-                    });
-                }
-            };
-            BaseClient.prototype.getDsn = function() {
-                return this._dsn;
-            };
-            BaseClient.prototype.getOptions = function() {
-                return this._options;
-            };
-            BaseClient.prototype.getTransport = function() {
-                return this._getBackend().getTransport();
-            };
-            BaseClient.prototype.flush = function(timeout) {
-                var _this = this;
-                return this._isClientDoneProcessing(timeout).then((function(clientFinished) {
-                    return _this.getTransport().close(timeout).then((function(transportFlushed) {
-                        return clientFinished && transportFlushed;
-                    }));
-                }));
-            };
-            BaseClient.prototype.close = function(timeout) {
-                var _this = this;
-                return this.flush(timeout).then((function(result) {
-                    _this.getOptions().enabled = false;
-                    return result;
-                }));
-            };
-            BaseClient.prototype.setupIntegrations = function() {
-                if (this._isEnabled() && !this._integrations.initialized) this._integrations = setupIntegrations(this._options);
-            };
-            BaseClient.prototype.getIntegration = function(integration) {
-                try {
-                    return this._integrations[integration.id] || null;
-                } catch (_oO) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Cannot retrieve integration " + integration.id + " from the current Client");
-                    return null;
-                }
-            };
-            BaseClient.prototype._updateSessionFromEvent = function(session, event) {
-                var e_1, _a;
-                var crashed = false;
-                var errored = false;
-                var exceptions = event.exception && event.exception.values;
-                if (exceptions) {
-                    errored = true;
-                    try {
-                        for (var exceptions_1 = (0, tslib_es6.__values)(exceptions), exceptions_1_1 = exceptions_1.next(); !exceptions_1_1.done; exceptions_1_1 = exceptions_1.next()) {
-                            var ex = exceptions_1_1.value;
-                            var mechanism = ex.mechanism;
-                            if (mechanism && false === mechanism.handled) {
-                                crashed = true;
-                                break;
-                            }
-                        }
-                    } catch (e_1_1) {
-                        e_1 = {
-                            error: e_1_1
-                        };
-                    } finally {
-                        try {
-                            if (exceptions_1_1 && !exceptions_1_1.done && (_a = exceptions_1.return)) _a.call(exceptions_1);
-                        } finally {
-                            if (e_1) throw e_1.error;
-                        }
-                    }
-                }
-                var sessionNonTerminal = "ok" === session.status;
-                var shouldUpdateAndSend = sessionNonTerminal && 0 === session.errors || sessionNonTerminal && crashed;
-                if (shouldUpdateAndSend) {
-                    session.update((0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, crashed && {
-                        status: "crashed"
-                    }), {
-                        errors: session.errors || Number(errored || crashed)
-                    }));
-                    this.captureSession(session);
-                }
-            };
-            BaseClient.prototype._sendSession = function(session) {
-                this._getBackend().sendSession(session);
-            };
-            BaseClient.prototype._isClientDoneProcessing = function(timeout) {
-                var _this = this;
-                return new syncpromise.SyncPromise((function(resolve) {
-                    var ticked = 0;
-                    var tick = 1;
-                    var interval = setInterval((function() {
-                        if (0 == _this._numProcessing) {
-                            clearInterval(interval);
-                            resolve(true);
-                        } else {
-                            ticked += tick;
-                            if (timeout && ticked >= timeout) {
-                                clearInterval(interval);
-                                resolve(false);
-                            }
-                        }
-                    }), tick);
-                }));
-            };
-            BaseClient.prototype._getBackend = function() {
-                return this._backend;
-            };
-            BaseClient.prototype._isEnabled = function() {
-                return false !== this.getOptions().enabled && void 0 !== this._dsn;
-            };
-            BaseClient.prototype._prepareEvent = function(event, scope, hint) {
-                var _this = this;
-                var _a = this.getOptions(), _b = _a.normalizeDepth, normalizeDepth = void 0 === _b ? 3 : _b, _c = _a.normalizeMaxBreadth, normalizeMaxBreadth = void 0 === _c ? 1e3 : _c;
-                var prepared = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, event), {
-                    event_id: event.event_id || (hint && hint.event_id ? hint.event_id : (0, misc.uuid4)()),
-                    timestamp: event.timestamp || (0, time.dateTimestampInSeconds)()
-                });
-                this._applyClientOptions(prepared);
-                this._applyIntegrationsMetadata(prepared);
-                var finalScope = scope;
-                if (hint && hint.captureContext) finalScope = esm_scope.Scope.clone(finalScope).update(hint.captureContext);
-                var result = (0, syncpromise.resolvedSyncPromise)(prepared);
-                if (finalScope) result = finalScope.applyToEvent(prepared, hint);
-                return result.then((function(evt) {
-                    if (evt) evt.sdkProcessingMetadata = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, evt.sdkProcessingMetadata), {
-                        normalizeDepth: normalize(normalizeDepth)
-                    });
-                    if ("number" === typeof normalizeDepth && normalizeDepth > 0) return _this._normalizeEvent(evt, normalizeDepth, normalizeMaxBreadth);
-                    return evt;
-                }));
-            };
-            BaseClient.prototype._normalizeEvent = function(event, depth, maxBreadth) {
-                if (!event) return null;
-                var normalized = (0, tslib_es6.__assign)((0, tslib_es6.__assign)((0, tslib_es6.__assign)((0, 
-                tslib_es6.__assign)((0, tslib_es6.__assign)({}, event), event.breadcrumbs && {
-                    breadcrumbs: event.breadcrumbs.map((function(b) {
-                        return (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, b), b.data && {
-                            data: normalize(b.data, depth, maxBreadth)
-                        });
-                    }))
-                }), event.user && {
-                    user: normalize(event.user, depth, maxBreadth)
-                }), event.contexts && {
-                    contexts: normalize(event.contexts, depth, maxBreadth)
-                }), event.extra && {
-                    extra: normalize(event.extra, depth, maxBreadth)
-                });
-                if (event.contexts && event.contexts.trace) normalized.contexts.trace = event.contexts.trace;
-                event.sdkProcessingMetadata = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, event.sdkProcessingMetadata), {
-                    baseClientNormalized: true
-                });
-                return normalized;
-            };
-            BaseClient.prototype._applyClientOptions = function(event) {
-                var options = this.getOptions();
-                var environment = options.environment, release = options.release, dist = options.dist, _a = options.maxValueLength, maxValueLength = void 0 === _a ? 250 : _a;
-                if (!("environment" in event)) event.environment = "environment" in options ? environment : "production";
-                if (void 0 === event.release && void 0 !== release) event.release = release;
-                if (void 0 === event.dist && void 0 !== dist) event.dist = dist;
-                if (event.message) event.message = (0, string.truncate)(event.message, maxValueLength);
-                var exception = event.exception && event.exception.values && event.exception.values[0];
-                if (exception && exception.value) exception.value = (0, string.truncate)(exception.value, maxValueLength);
-                var request = event.request;
-                if (request && request.url) request.url = (0, string.truncate)(request.url, maxValueLength);
-            };
-            BaseClient.prototype._applyIntegrationsMetadata = function(event) {
-                var integrationsArray = Object.keys(this._integrations);
-                if (integrationsArray.length > 0) {
-                    event.sdk = event.sdk || {};
-                    event.sdk.integrations = (0, tslib_es6.__spread)(event.sdk.integrations || [], integrationsArray);
-                }
-            };
-            BaseClient.prototype._sendEvent = function(event) {
-                this._getBackend().sendEvent(event);
-            };
-            BaseClient.prototype._captureEvent = function(event, hint, scope) {
-                return this._processEvent(event, hint, scope).then((function(finalEvent) {
-                    return finalEvent.event_id;
-                }), (function(reason) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error(reason);
-                    return;
-                }));
-            };
-            BaseClient.prototype._processEvent = function(event, hint, scope) {
-                var _this = this;
-                var _a = this.getOptions(), beforeSend = _a.beforeSend, sampleRate = _a.sampleRate;
-                var transport = this.getTransport();
-                function recordLostEvent(outcome, category) {
-                    if (transport.recordLostEvent) transport.recordLostEvent(outcome, category);
-                }
-                if (!this._isEnabled()) return (0, syncpromise.rejectedSyncPromise)(new SentryError("SDK not enabled, will not capture event."));
-                var isTransaction = "transaction" === event.type;
-                if (!isTransaction && "number" === typeof sampleRate && Math.random() > sampleRate) {
-                    recordLostEvent("sample_rate", "event");
-                    return (0, syncpromise.rejectedSyncPromise)(new SentryError("Discarding event because it's not included in the random sample (sampling rate = " + sampleRate + ")"));
-                }
-                return this._prepareEvent(event, scope, hint).then((function(prepared) {
-                    if (null === prepared) {
-                        recordLostEvent("event_processor", event.type || "event");
-                        throw new SentryError("An event processor returned null, will not send event.");
-                    }
-                    var isInternalException = hint && hint.data && true === hint.data.__sentry__;
-                    if (isInternalException || isTransaction || !beforeSend) return prepared;
-                    var beforeSendResult = beforeSend(prepared, hint);
-                    return _ensureBeforeSendRv(beforeSendResult);
-                })).then((function(processedEvent) {
-                    if (null === processedEvent) {
-                        recordLostEvent("before_send", event.type || "event");
-                        throw new SentryError("`beforeSend` returned `null`, will not send event.");
-                    }
-                    var session = scope && scope.getSession && scope.getSession();
-                    if (!isTransaction && session) _this._updateSessionFromEvent(session, processedEvent);
-                    _this._sendEvent(processedEvent);
-                    return processedEvent;
-                })).then(null, (function(reason) {
-                    if (reason instanceof SentryError) throw reason;
-                    _this.captureException(reason, {
-                        data: {
-                            __sentry__: true
-                        },
-                        originalException: reason
-                    });
-                    throw new SentryError("Event processing pipeline threw an error, original event will not be sent. Details have been sent as a new event.\nReason: " + reason);
-                }));
-            };
-            BaseClient.prototype._process = function(promise) {
-                var _this = this;
-                this._numProcessing += 1;
-                void promise.then((function(value) {
-                    _this._numProcessing -= 1;
-                    return value;
-                }), (function(reason) {
-                    _this._numProcessing -= 1;
-                    return reason;
-                }));
-            };
-            return BaseClient;
-        }();
-        function _ensureBeforeSendRv(rv) {
-            var nullErr = "`beforeSend` method has to return `null` or a valid event.";
-            if ((0, is.isThenable)(rv)) return rv.then((function(event) {
-                if (!((0, is.isPlainObject)(event) || null === event)) throw new SentryError(nullErr);
-                return event;
-            }), (function(e) {
-                throw new SentryError("beforeSend rejected with " + e);
-            })); else if (!((0, is.isPlainObject)(rv) || null === rv)) throw new SentryError(nullErr);
-            return rv;
-        }
-        var SENTRY_API_VERSION = "7";
-        (function() {
-            function API(dsn, metadata, tunnel) {
-                if (void 0 === metadata) metadata = {};
-                this.dsn = dsn;
-                this._dsnObject = makeDsn(dsn);
-                this.metadata = metadata;
-                this._tunnel = tunnel;
-            }
-            API.prototype.getDsn = function() {
-                return this._dsnObject;
-            };
-            API.prototype.forceEnvelope = function() {
-                return !!this._tunnel;
-            };
-            API.prototype.getBaseApiEndpoint = function() {
-                return getBaseApiEndpoint(this._dsnObject);
-            };
-            API.prototype.getStoreEndpoint = function() {
-                return getStoreEndpoint(this._dsnObject);
-            };
-            API.prototype.getStoreEndpointWithUrlEncodedAuth = function() {
-                return getStoreEndpointWithUrlEncodedAuth(this._dsnObject);
-            };
-            API.prototype.getEnvelopeEndpointWithUrlEncodedAuth = function() {
-                return getEnvelopeEndpointWithUrlEncodedAuth(this._dsnObject, this._tunnel);
-            };
-        })();
-        function initAPIDetails(dsn, metadata, tunnel) {
-            return {
-                initDsn: dsn,
-                metadata: metadata || {},
-                dsn: makeDsn(dsn),
-                tunnel
-            };
-        }
-        function getBaseApiEndpoint(dsn) {
-            var protocol = dsn.protocol ? dsn.protocol + ":" : "";
-            var port = dsn.port ? ":" + dsn.port : "";
-            return protocol + "//" + dsn.host + port + (dsn.path ? "/" + dsn.path : "") + "/api/";
-        }
-        function _getIngestEndpoint(dsn, target) {
-            return "" + getBaseApiEndpoint(dsn) + dsn.projectId + "/" + target + "/";
-        }
-        function _encodedAuth(dsn) {
-            return (0, object.urlEncode)({
-                sentry_key: dsn.publicKey,
-                sentry_version: SENTRY_API_VERSION
-            });
-        }
-        function getStoreEndpoint(dsn) {
-            return _getIngestEndpoint(dsn, "store");
-        }
-        function getStoreEndpointWithUrlEncodedAuth(dsn) {
-            return getStoreEndpoint(dsn) + "?" + _encodedAuth(dsn);
-        }
-        function _getEnvelopeEndpoint(dsn) {
-            return _getIngestEndpoint(dsn, "envelope");
-        }
-        function getEnvelopeEndpointWithUrlEncodedAuth(dsn, tunnel) {
-            return tunnel ? tunnel : _getEnvelopeEndpoint(dsn) + "?" + _encodedAuth(dsn);
-        }
-        function getReportDialogEndpoint(dsnLike, dialogOptions) {
-            var dsn = makeDsn(dsnLike);
-            var endpoint = getBaseApiEndpoint(dsn) + "embed/error-page/";
-            var encodedOptions = "dsn=" + dsnToString(dsn);
-            for (var key in dialogOptions) {
-                if ("dsn" === key) continue;
-                if ("user" === key) {
-                    if (!dialogOptions.user) continue;
-                    if (dialogOptions.user.name) encodedOptions += "&name=" + encodeURIComponent(dialogOptions.user.name);
-                    if (dialogOptions.user.email) encodedOptions += "&email=" + encodeURIComponent(dialogOptions.user.email);
-                } else encodedOptions += "&" + encodeURIComponent(key) + "=" + encodeURIComponent(dialogOptions[key]);
-            }
-            return endpoint + "?" + encodedOptions;
-        }
-        function createEnvelope(headers, items) {
-            if (void 0 === items) items = [];
-            return [ headers, items ];
-        }
-        function serializeEnvelope(envelope) {
-            var _a = (0, tslib_es6.__read)(envelope, 2), headers = _a[0], items = _a[1];
-            var serializedHeaders = JSON.stringify(headers);
-            return items.reduce((function(acc, item) {
-                var _a = (0, tslib_es6.__read)(item, 2), itemHeaders = _a[0], payload = _a[1];
-                var serializedPayload = (0, is.isPrimitive)(payload) ? String(payload) : JSON.stringify(payload);
-                return acc + "\n" + JSON.stringify(itemHeaders) + "\n" + serializedPayload;
-            }), serializedHeaders);
-        }
-        function getSdkMetadataForEnvelopeHeader(api) {
-            if (!api.metadata || !api.metadata.sdk) return;
-            var _a = api.metadata.sdk, name = _a.name, version = _a.version;
-            return {
-                name,
-                version
-            };
-        }
-        function enhanceEventWithSdkInfo(event, sdkInfo) {
-            if (!sdkInfo) return event;
-            event.sdk = event.sdk || {};
-            event.sdk.name = event.sdk.name || sdkInfo.name;
-            event.sdk.version = event.sdk.version || sdkInfo.version;
-            event.sdk.integrations = (0, tslib_es6.__spread)(event.sdk.integrations || [], sdkInfo.integrations || []);
-            event.sdk.packages = (0, tslib_es6.__spread)(event.sdk.packages || [], sdkInfo.packages || []);
-            return event;
-        }
-        function createSessionEnvelope(session, api) {
-            var sdkInfo = getSdkMetadataForEnvelopeHeader(api);
-            var envelopeHeaders = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({
-                sent_at: (new Date).toISOString()
-            }, sdkInfo && {
-                sdk: sdkInfo
-            }), !!api.tunnel && {
-                dsn: dsnToString(api.dsn)
-            });
-            var type = "aggregates" in session ? "sessions" : "session";
-            var envelopeItem = [ {
-                type
-            }, session ];
-            var envelope = createEnvelope(envelopeHeaders, [ envelopeItem ]);
-            return [ envelope, type ];
-        }
-        function sessionToSentryRequest(session, api) {
-            var _a = (0, tslib_es6.__read)(createSessionEnvelope(session, api), 2), envelope = _a[0], type = _a[1];
-            return {
-                body: serializeEnvelope(envelope),
-                type,
-                url: getEnvelopeEndpointWithUrlEncodedAuth(api.dsn, api.tunnel)
-            };
-        }
-        function createEventEnvelope(event, api) {
-            var sdkInfo = getSdkMetadataForEnvelopeHeader(api);
-            var eventType = event.type || "event";
-            var transactionSampling = (event.sdkProcessingMetadata || {}).transactionSampling;
-            var _a = transactionSampling || {}, samplingMethod = _a.method, sampleRate = _a.rate;
-            var envelopeHeaders = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({
-                event_id: event.event_id,
-                sent_at: (new Date).toISOString()
-            }, sdkInfo && {
-                sdk: sdkInfo
-            }), !!api.tunnel && {
-                dsn: dsnToString(api.dsn)
-            });
-            var eventItem = [ {
-                type: eventType,
-                sample_rates: [ {
-                    id: samplingMethod,
-                    rate: sampleRate
-                } ]
-            }, event ];
-            return createEnvelope(envelopeHeaders, [ eventItem ]);
-        }
-        function eventToSentryRequest(event, api) {
-            var sdkInfo = getSdkMetadataForEnvelopeHeader(api);
-            var eventType = event.type || "event";
-            var useEnvelope = "transaction" === eventType || !!api.tunnel;
-            var transactionSampling = (event.sdkProcessingMetadata || {}).transactionSampling;
-            var _a = transactionSampling || {}, samplingMethod = _a.method, sampleRate = _a.rate;
-            enhanceEventWithSdkInfo(event, api.metadata.sdk);
-            event.tags = event.tags || {};
-            event.extra = event.extra || {};
-            if (!(event.sdkProcessingMetadata && event.sdkProcessingMetadata.baseClientNormalized)) {
-                event.tags.skippedNormalization = true;
-                event.extra.normalizeDepth = event.sdkProcessingMetadata ? event.sdkProcessingMetadata.normalizeDepth : "unset";
-            }
-            delete event.sdkProcessingMetadata;
-            var body;
-            try {
-                body = JSON.stringify(event);
-            } catch (err) {
-                event.tags.JSONStringifyError = true;
-                event.extra.JSONStringifyError = err;
-                try {
-                    body = JSON.stringify(normalize(event));
-                } catch (newErr) {
-                    var innerErr = newErr;
-                    body = JSON.stringify({
-                        message: "JSON.stringify error after renormalization",
-                        extra: {
-                            message: innerErr.message,
-                            stack: innerErr.stack
-                        }
-                    });
-                }
-            }
-            var req = {
-                body,
-                type: eventType,
-                url: useEnvelope ? getEnvelopeEndpointWithUrlEncodedAuth(api.dsn, api.tunnel) : getStoreEndpointWithUrlEncodedAuth(api.dsn)
-            };
-            if (useEnvelope) {
-                var envelopeHeaders = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({
-                    event_id: event.event_id,
-                    sent_at: (new Date).toISOString()
-                }, sdkInfo && {
-                    sdk: sdkInfo
-                }), !!api.tunnel && {
-                    dsn: dsnToString(api.dsn)
-                });
-                var eventItem = [ {
-                    type: eventType,
-                    sample_rates: [ {
-                        id: samplingMethod,
-                        rate: sampleRate
-                    } ]
-                }, req.body ];
-                var envelope = createEnvelope(envelopeHeaders, [ eventItem ]);
-                req.body = serializeEnvelope(envelope);
-            }
-            return req;
-        }
-        var NoopTransport = function() {
-            function NoopTransport() {}
-            NoopTransport.prototype.sendEvent = function(_) {
-                return (0, syncpromise.resolvedSyncPromise)({
-                    reason: "NoopTransport: Event has been skipped because no Dsn is configured.",
-                    status: "skipped"
-                });
-            };
-            NoopTransport.prototype.close = function(_) {
-                return (0, syncpromise.resolvedSyncPromise)(true);
-            };
-            return NoopTransport;
-        }();
-        var BaseBackend = function() {
-            function BaseBackend(options) {
-                this._options = options;
-                if (!this._options.dsn) (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("No DSN provided, backend will not do anything.");
-                this._transport = this._setupTransport();
-            }
-            BaseBackend.prototype.eventFromException = function(_exception, _hint) {
-                throw new SentryError("Backend has to implement `eventFromException` method");
-            };
-            BaseBackend.prototype.eventFromMessage = function(_message, _level, _hint) {
-                throw new SentryError("Backend has to implement `eventFromMessage` method");
-            };
-            BaseBackend.prototype.sendEvent = function(event) {
-                if (this._newTransport && this._options.dsn && this._options._experiments && this._options._experiments.newTransport) {
-                    var api = initAPIDetails(this._options.dsn, this._options._metadata, this._options.tunnel);
-                    var env = createEventEnvelope(event, api);
-                    void this._newTransport.send(env).then(null, (function(reason) {
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Error while sending event:", reason);
-                    }));
-                } else void this._transport.sendEvent(event).then(null, (function(reason) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Error while sending event:", reason);
-                }));
-            };
-            BaseBackend.prototype.sendSession = function(session) {
-                if (!this._transport.sendSession) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Dropping session because custom transport doesn't implement sendSession");
-                    return;
-                }
-                if (this._newTransport && this._options.dsn && this._options._experiments && this._options._experiments.newTransport) {
-                    var api = initAPIDetails(this._options.dsn, this._options._metadata, this._options.tunnel);
-                    var _a = (0, tslib_es6.__read)(createSessionEnvelope(session, api), 1), env = _a[0];
-                    void this._newTransport.send(env).then(null, (function(reason) {
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Error while sending session:", reason);
-                    }));
-                } else void this._transport.sendSession(session).then(null, (function(reason) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Error while sending session:", reason);
-                }));
-            };
-            BaseBackend.prototype.getTransport = function() {
-                return this._transport;
-            };
-            BaseBackend.prototype._setupTransport = function() {
-                return new NoopTransport;
-            };
-            return BaseBackend;
-        }();
-        var Severity;
-        (function(Severity) {
-            Severity["Fatal"] = "fatal";
-            Severity["Error"] = "error";
-            Severity["Warning"] = "warning";
-            Severity["Log"] = "log";
-            Severity["Info"] = "info";
-            Severity["Debug"] = "debug";
-            Severity["Critical"] = "critical";
-        })(Severity || (Severity = {}));
-        var supports = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/supports.js");
-        var UNKNOWN_FUNCTION = "?";
-        var OPERA10_PRIORITY = 10;
-        var OPERA11_PRIORITY = 20;
-        var CHROME_PRIORITY = 30;
-        var WINJS_PRIORITY = 40;
-        var GECKO_PRIORITY = 50;
-        function createFrame(filename, func, lineno, colno) {
-            var frame = {
-                filename,
-                function: func,
-                in_app: true
-            };
-            if (void 0 !== lineno) frame.lineno = lineno;
-            if (void 0 !== colno) frame.colno = colno;
-            return frame;
-        }
-        var chromeRegex = /^\s*at (?:(.*?) ?\((?:address at )?)?((?:file|https?|blob|chrome-extension|address|native|eval|webpack|<anonymous>|[-a-z]+:|.*bundle|\/).*?)(?::(\d+))?(?::(\d+))?\)?\s*$/i;
-        var chromeEvalRegex = /\((\S*)(?::(\d+))(?::(\d+))\)/;
-        var chrome = function(line) {
-            var parts = chromeRegex.exec(line);
-            if (parts) {
-                var isEval = parts[2] && 0 === parts[2].indexOf("eval");
-                if (isEval) {
-                    var subMatch = chromeEvalRegex.exec(parts[2]);
-                    if (subMatch) {
-                        parts[2] = subMatch[1];
-                        parts[3] = subMatch[2];
-                        parts[4] = subMatch[3];
-                    }
-                }
-                var _a = (0, tslib_es6.__read)(extractSafariExtensionDetails(parts[1] || UNKNOWN_FUNCTION, parts[2]), 2), func = _a[0], filename = _a[1];
-                return createFrame(filename, func, parts[3] ? +parts[3] : void 0, parts[4] ? +parts[4] : void 0);
-            }
-            return;
-        };
-        var chromeStackParser = [ CHROME_PRIORITY, chrome ];
-        var geckoREgex = /^\s*(.*?)(?:\((.*?)\))?(?:^|@)?((?:file|https?|blob|chrome|webpack|resource|moz-extension|capacitor).*?:\/.*?|\[native code\]|[^@]*(?:bundle|\d+\.js)|\/[\w\-. /=]+)(?::(\d+))?(?::(\d+))?\s*$/i;
-        var geckoEvalRegex = /(\S+) line (\d+)(?: > eval line \d+)* > eval/i;
-        var gecko = function(line) {
-            var _a;
-            var parts = geckoREgex.exec(line);
-            if (parts) {
-                var isEval = parts[3] && parts[3].indexOf(" > eval") > -1;
-                if (isEval) {
-                    var subMatch = geckoEvalRegex.exec(parts[3]);
-                    if (subMatch) {
-                        parts[1] = parts[1] || "eval";
-                        parts[3] = subMatch[1];
-                        parts[4] = subMatch[2];
-                        parts[5] = "";
-                    }
-                }
-                var filename = parts[3];
-                var func = parts[1] || UNKNOWN_FUNCTION;
-                _a = (0, tslib_es6.__read)(extractSafariExtensionDetails(func, filename), 2), func = _a[0], 
-                filename = _a[1];
-                return createFrame(filename, func, parts[4] ? +parts[4] : void 0, parts[5] ? +parts[5] : void 0);
-            }
-            return;
-        };
-        var geckoStackParser = [ GECKO_PRIORITY, gecko ];
-        var winjsRegex = /^\s*at (?:((?:\[object object\])?.+) )?\(?((?:file|ms-appx|https?|webpack|blob):.*?):(\d+)(?::(\d+))?\)?\s*$/i;
-        var winjs = function(line) {
-            var parts = winjsRegex.exec(line);
-            return parts ? createFrame(parts[2], parts[1] || UNKNOWN_FUNCTION, +parts[3], parts[4] ? +parts[4] : void 0) : void 0;
-        };
-        var winjsStackParser = [ WINJS_PRIORITY, winjs ];
-        var opera10Regex = / line (\d+).*script (?:in )?(\S+)(?:: in function (\S+))?$/i;
-        var opera10 = function(line) {
-            var parts = opera10Regex.exec(line);
-            return parts ? createFrame(parts[2], parts[3] || UNKNOWN_FUNCTION, +parts[1]) : void 0;
-        };
-        var opera10StackParser = [ OPERA10_PRIORITY, opera10 ];
-        var opera11Regex = / line (\d+), column (\d+)\s*(?:in (?:<anonymous function: ([^>]+)>|([^)]+))\(.*\))? in (.*):\s*$/i;
-        var opera11 = function(line) {
-            var parts = opera11Regex.exec(line);
-            return parts ? createFrame(parts[5], parts[3] || parts[4] || UNKNOWN_FUNCTION, +parts[1], +parts[2]) : void 0;
-        };
-        var opera11StackParser = [ OPERA11_PRIORITY, opera11 ];
-        var extractSafariExtensionDetails = function(func, filename) {
-            var isSafariExtension = -1 !== func.indexOf("safari-extension");
-            var isSafariWebExtension = -1 !== func.indexOf("safari-web-extension");
-            return isSafariExtension || isSafariWebExtension ? [ -1 !== func.indexOf("@") ? func.split("@")[0] : UNKNOWN_FUNCTION, isSafariExtension ? "safari-extension:" + filename : "safari-web-extension:" + filename ] : [ func, filename ];
-        };
-        function exceptionFromError(ex) {
-            var frames = parseStackFrames(ex);
-            var exception = {
-                type: ex && ex.name,
-                value: extractMessage(ex)
-            };
-            if (frames.length) exception.stacktrace = {
-                frames
-            };
-            if (void 0 === exception.type && "" === exception.value) exception.value = "Unrecoverable error caught";
-            return exception;
-        }
-        function eventFromPlainObject(exception, syntheticException, isUnhandledRejection) {
-            var event = {
-                exception: {
-                    values: [ {
-                        type: (0, is.isEvent)(exception) ? exception.constructor.name : isUnhandledRejection ? "UnhandledRejection" : "Error",
-                        value: "Non-Error " + (isUnhandledRejection ? "promise rejection" : "exception") + " captured with keys: " + (0, 
-                        object.extractExceptionKeysForMessage)(exception)
-                    } ]
-                },
-                extra: {
-                    __serialized__: normalizeToSize(exception)
-                }
-            };
-            if (syntheticException) {
-                var frames_1 = parseStackFrames(syntheticException);
-                if (frames_1.length) event.stacktrace = {
-                    frames: frames_1
-                };
-            }
-            return event;
-        }
-        function eventFromError(ex) {
-            return {
-                exception: {
-                    values: [ exceptionFromError(ex) ]
-                }
-            };
-        }
-        function parseStackFrames(ex) {
-            var stacktrace = ex.stacktrace || ex.stack || "";
-            var popSize = getPopSize(ex);
-            try {
-                return (0, esm_stacktrace.createStackParser)(opera10StackParser, opera11StackParser, chromeStackParser, winjsStackParser, geckoStackParser)(stacktrace, popSize);
-            } catch (e) {}
-            return [];
-        }
-        var reactMinifiedRegexp = /Minified React error #\d+;/i;
-        function getPopSize(ex) {
-            if (ex) {
-                if ("number" === typeof ex.framesToPop) return ex.framesToPop;
-                if (reactMinifiedRegexp.test(ex.message)) return 1;
-            }
-            return 0;
-        }
-        function extractMessage(ex) {
-            var message = ex && ex.message;
-            if (!message) return "No error message";
-            if (message.error && "string" === typeof message.error.message) return message.error.message;
-            return message;
-        }
-        function eventFromException(exception, hint, attachStacktrace) {
-            var syntheticException = hint && hint.syntheticException || void 0;
-            var event = eventFromUnknownInput(exception, syntheticException, attachStacktrace);
-            (0, misc.addExceptionMechanism)(event);
-            event.level = Severity.Error;
-            if (hint && hint.event_id) event.event_id = hint.event_id;
-            return (0, syncpromise.resolvedSyncPromise)(event);
-        }
-        function eventFromMessage(message, level, hint, attachStacktrace) {
-            if (void 0 === level) level = Severity.Info;
-            var syntheticException = hint && hint.syntheticException || void 0;
-            var event = eventFromString(message, syntheticException, attachStacktrace);
-            event.level = level;
-            if (hint && hint.event_id) event.event_id = hint.event_id;
-            return (0, syncpromise.resolvedSyncPromise)(event);
-        }
-        function eventFromUnknownInput(exception, syntheticException, attachStacktrace, isUnhandledRejection) {
-            var event;
-            if ((0, is.isErrorEvent)(exception) && exception.error) {
-                var errorEvent = exception;
-                return eventFromError(errorEvent.error);
-            }
-            if ((0, is.isDOMError)(exception) || (0, is.isDOMException)(exception)) {
-                var domException = exception;
-                if ("stack" in exception) event = eventFromError(exception); else {
-                    var name_1 = domException.name || ((0, is.isDOMError)(domException) ? "DOMError" : "DOMException");
-                    var message = domException.message ? name_1 + ": " + domException.message : name_1;
-                    event = eventFromString(message, syntheticException, attachStacktrace);
-                    (0, misc.addExceptionTypeValue)(event, message);
-                }
-                if ("code" in domException) event.tags = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, event.tags), {
-                    "DOMException.code": "" + domException.code
-                });
-                return event;
-            }
-            if ((0, is.isError)(exception)) return eventFromError(exception);
-            if ((0, is.isPlainObject)(exception) || (0, is.isEvent)(exception)) {
-                var objectException = exception;
-                event = eventFromPlainObject(objectException, syntheticException, isUnhandledRejection);
-                (0, misc.addExceptionMechanism)(event, {
-                    synthetic: true
-                });
-                return event;
-            }
-            event = eventFromString(exception, syntheticException, attachStacktrace);
-            (0, misc.addExceptionTypeValue)(event, "" + exception, void 0);
-            (0, misc.addExceptionMechanism)(event, {
-                synthetic: true
-            });
-            return event;
-        }
-        function eventFromString(input, syntheticException, attachStacktrace) {
-            var event = {
-                message: input
-            };
-            if (attachStacktrace && syntheticException) {
-                var frames_2 = parseStackFrames(syntheticException);
-                if (frames_2.length) event.stacktrace = {
-                    frames: frames_2
-                };
-            }
-            return event;
-        }
-        function makePromiseBuffer(limit) {
-            var buffer = [];
-            function isReady() {
-                return void 0 === limit || buffer.length < limit;
-            }
-            function remove(task) {
-                return buffer.splice(buffer.indexOf(task), 1)[0];
-            }
-            function add(taskProducer) {
-                if (!isReady()) return (0, syncpromise.rejectedSyncPromise)(new SentryError("Not adding Promise due to buffer limit reached."));
-                var task = taskProducer();
-                if (-1 === buffer.indexOf(task)) buffer.push(task);
-                void task.then((function() {
-                    return remove(task);
-                })).then(null, (function() {
-                    return remove(task).then(null, (function() {}));
-                }));
-                return task;
-            }
-            function drain(timeout) {
-                return new syncpromise.SyncPromise((function(resolve, reject) {
-                    var counter = buffer.length;
-                    if (!counter) return resolve(true);
-                    var capturedSetTimeout = setTimeout((function() {
-                        if (timeout && timeout > 0) resolve(false);
-                    }), timeout);
-                    buffer.forEach((function(item) {
-                        void (0, syncpromise.resolvedSyncPromise)(item).then((function() {
-                            if (!--counter) {
-                                clearTimeout(capturedSetTimeout);
-                                resolve(true);
-                            }
-                        }), reject);
-                    }));
-                }));
-            }
-            return {
-                $: buffer,
-                add,
-                drain
-            };
-        }
-        function createClientReportEnvelope(discarded_events, dsn, timestamp) {
-            var clientReportItem = [ {
-                type: "client_report"
-            }, {
-                timestamp: timestamp || (0, time.dateTimestampInSeconds)(),
-                discarded_events
-            } ];
-            return createEnvelope(dsn ? {
-                dsn
-            } : {}, [ clientReportItem ]);
-        }
-        function eventStatusFromHttpCode(code) {
-            if (code >= 200 && code < 300) return "success";
-            if (429 === code) return "rate_limit";
-            if (code >= 400 && code < 500) return "invalid";
-            if (code >= 500) return "failed";
-            return "unknown";
-        }
-        var DEFAULT_RETRY_AFTER = 60 * 1e3;
-        function parseRetryAfterHeader(header, now) {
-            if (void 0 === now) now = Date.now();
-            var headerDelay = parseInt("" + header, 10);
-            if (!isNaN(headerDelay)) return 1e3 * headerDelay;
-            var headerDate = Date.parse("" + header);
-            if (!isNaN(headerDate)) return headerDate - now;
-            return DEFAULT_RETRY_AFTER;
-        }
-        function disabledUntil(limits, category) {
-            return limits[category] || limits.all || 0;
-        }
-        function isRateLimited(limits, category, now) {
-            if (void 0 === now) now = Date.now();
-            return disabledUntil(limits, category) > now;
-        }
-        function updateRateLimits(limits, headers, now) {
-            var e_1, _a, e_2, _b;
-            if (void 0 === now) now = Date.now();
-            var updatedRateLimits = (0, tslib_es6.__assign)({}, limits);
-            var rateLimitHeader = headers["x-sentry-rate-limits"];
-            var retryAfterHeader = headers["retry-after"];
-            if (rateLimitHeader) try {
-                for (var _c = (0, tslib_es6.__values)(rateLimitHeader.trim().split(",")), _d = _c.next(); !_d.done; _d = _c.next()) {
-                    var limit = _d.value;
-                    var parameters = limit.split(":", 2);
-                    var headerDelay = parseInt(parameters[0], 10);
-                    var delay = 1e3 * (!isNaN(headerDelay) ? headerDelay : 60);
-                    if (!parameters[1]) updatedRateLimits.all = now + delay; else try {
-                        for (var _e = (e_2 = void 0, (0, tslib_es6.__values)(parameters[1].split(";"))), _f = _e.next(); !_f.done; _f = _e.next()) {
-                            var category = _f.value;
-                            updatedRateLimits[category] = now + delay;
-                        }
-                    } catch (e_2_1) {
-                        e_2 = {
-                            error: e_2_1
-                        };
-                    } finally {
-                        try {
-                            if (_f && !_f.done && (_b = _e.return)) _b.call(_e);
-                        } finally {
-                            if (e_2) throw e_2.error;
-                        }
-                    }
-                }
-            } catch (e_1_1) {
-                e_1 = {
-                    error: e_1_1
-                };
-            } finally {
-                try {
-                    if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-                } finally {
-                    if (e_1) throw e_1.error;
-                }
-            } else if (retryAfterHeader) updatedRateLimits.all = now + parseRetryAfterHeader(retryAfterHeader, now);
-            return updatedRateLimits;
-        }
-        function forget(promise) {
-            void promise.then(null, (function(e) {
-                console.error(e);
-            }));
-        }
-        var global = (0, esm_global.getGlobalObject)();
-        var cachedFetchImpl;
-        function getNativeFetchImplementation() {
-            if (cachedFetchImpl) return cachedFetchImpl;
-            if ((0, supports.isNativeFetch)(global.fetch)) return cachedFetchImpl = global.fetch.bind(global);
-            var document = global.document;
-            var fetchImpl = global.fetch;
-            if (document && "function" === typeof document.createElement) try {
-                var sandbox = document.createElement("iframe");
-                sandbox.hidden = true;
-                document.head.appendChild(sandbox);
-                var contentWindow = sandbox.contentWindow;
-                if (contentWindow && contentWindow.fetch) fetchImpl = contentWindow.fetch;
-                document.head.removeChild(sandbox);
-            } catch (e) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ", e);
-            }
-            return cachedFetchImpl = fetchImpl.bind(global);
-        }
-        function sendReport(url, body) {
-            var isRealNavigator = "[object Navigator]" === Object.prototype.toString.call(global && global.navigator);
-            var hasSendBeacon = isRealNavigator && "function" === typeof global.navigator.sendBeacon;
-            if (hasSendBeacon) {
-                var sendBeacon = global.navigator.sendBeacon.bind(global.navigator);
-                return sendBeacon(url, body);
-            }
-            if ((0, supports.supportsFetch)()) {
-                var fetch_1 = getNativeFetchImplementation();
-                return forget(fetch_1(url, {
-                    body,
-                    method: "POST",
-                    credentials: "omit",
-                    keepalive: true
-                }));
-            }
-        }
-        function requestTypeToCategory(ty) {
-            var tyStr = ty;
-            return "event" === tyStr ? "error" : tyStr;
-        }
-        var base_global = (0, esm_global.getGlobalObject)();
-        var BaseTransport = function() {
-            function BaseTransport(options) {
-                var _this = this;
-                this.options = options;
-                this._buffer = makePromiseBuffer(30);
-                this._rateLimits = {};
-                this._outcomes = {};
-                this._api = initAPIDetails(options.dsn, options._metadata, options.tunnel);
-                this.url = getStoreEndpointWithUrlEncodedAuth(this._api.dsn);
-                if (this.options.sendClientReports && base_global.document) base_global.document.addEventListener("visibilitychange", (function() {
-                    if ("hidden" === base_global.document.visibilityState) _this._flushOutcomes();
-                }));
-            }
-            BaseTransport.prototype.sendEvent = function(event) {
-                return this._sendRequest(eventToSentryRequest(event, this._api), event);
-            };
-            BaseTransport.prototype.sendSession = function(session) {
-                return this._sendRequest(sessionToSentryRequest(session, this._api), session);
-            };
-            BaseTransport.prototype.close = function(timeout) {
-                return this._buffer.drain(timeout);
-            };
-            BaseTransport.prototype.recordLostEvent = function(reason, category) {
-                var _a;
-                if (!this.options.sendClientReports) return;
-                var key = requestTypeToCategory(category) + ":" + reason;
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("Adding outcome: " + key);
-                this._outcomes[key] = (_a = this._outcomes[key], null !== _a && void 0 !== _a ? _a : 0) + 1;
-            };
-            BaseTransport.prototype._flushOutcomes = function() {
-                if (!this.options.sendClientReports) return;
-                var outcomes = this._outcomes;
-                this._outcomes = {};
-                if (!Object.keys(outcomes).length) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("No outcomes to flush");
-                    return;
-                }
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("Flushing outcomes:\n" + JSON.stringify(outcomes, null, 2));
-                var url = getEnvelopeEndpointWithUrlEncodedAuth(this._api.dsn, this._api.tunnel);
-                var discardedEvents = Object.keys(outcomes).map((function(key) {
-                    var _a = (0, tslib_es6.__read)(key.split(":"), 2), category = _a[0], reason = _a[1];
-                    return {
-                        reason,
-                        category,
-                        quantity: outcomes[key]
-                    };
-                }));
-                var envelope = createClientReportEnvelope(discardedEvents, this._api.tunnel && dsnToString(this._api.dsn));
-                try {
-                    sendReport(url, serializeEnvelope(envelope));
-                } catch (e) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error(e);
-                }
-            };
-            BaseTransport.prototype._handleResponse = function(_a) {
-                var requestType = _a.requestType, response = _a.response, headers = _a.headers, resolve = _a.resolve, reject = _a.reject;
-                var status = eventStatusFromHttpCode(response.status);
-                this._rateLimits = updateRateLimits(this._rateLimits, headers);
-                if (this._isRateLimited(requestType) && (0, esm_env.isDebugBuild)()) (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Too many " + requestType + " requests, backing off until: " + this._disabledUntil(requestType));
-                if ("success" === status) {
-                    resolve({
-                        status
-                    });
-                    return;
-                }
-                reject(response);
-            };
-            BaseTransport.prototype._disabledUntil = function(requestType) {
-                var category = requestTypeToCategory(requestType);
-                return new Date(disabledUntil(this._rateLimits, category));
-            };
-            BaseTransport.prototype._isRateLimited = function(requestType) {
-                var category = requestTypeToCategory(requestType);
-                return isRateLimited(this._rateLimits, category);
-            };
-            return BaseTransport;
-        }();
-        var FetchTransport = function(_super) {
-            (0, tslib_es6.__extends)(FetchTransport, _super);
-            function FetchTransport(options, fetchImpl) {
-                if (void 0 === fetchImpl) fetchImpl = getNativeFetchImplementation();
-                var _this = _super.call(this, options) || this;
-                _this._fetch = fetchImpl;
-                return _this;
-            }
-            FetchTransport.prototype._sendRequest = function(sentryRequest, originalPayload) {
-                var _this = this;
-                if (this._isRateLimited(sentryRequest.type)) {
-                    this.recordLostEvent("ratelimit_backoff", sentryRequest.type);
-                    return Promise.reject({
-                        event: originalPayload,
-                        type: sentryRequest.type,
-                        reason: "Transport for " + sentryRequest.type + " requests locked till " + this._disabledUntil(sentryRequest.type) + " due to too many requests.",
-                        status: 429
-                    });
-                }
-                var options = {
-                    body: sentryRequest.body,
-                    method: "POST",
-                    referrerPolicy: (0, supports.supportsReferrerPolicy)() ? "origin" : ""
-                };
-                if (void 0 !== this.options.fetchParameters) Object.assign(options, this.options.fetchParameters);
-                if (void 0 !== this.options.headers) options.headers = this.options.headers;
-                return this._buffer.add((function() {
-                    return new syncpromise.SyncPromise((function(resolve, reject) {
-                        void _this._fetch(sentryRequest.url, options).then((function(response) {
-                            var headers = {
-                                "x-sentry-rate-limits": response.headers.get("X-Sentry-Rate-Limits"),
-                                "retry-after": response.headers.get("Retry-After")
-                            };
-                            _this._handleResponse({
-                                requestType: sentryRequest.type,
-                                response,
-                                headers,
-                                resolve,
-                                reject
-                            });
-                        })).catch(reject);
-                    }));
-                })).then(void 0, (function(reason) {
-                    if (reason instanceof SentryError) _this.recordLostEvent("queue_overflow", sentryRequest.type); else _this.recordLostEvent("network_error", sentryRequest.type);
-                    throw reason;
-                }));
-            };
-            return FetchTransport;
-        }(BaseTransport);
-        var XHRTransport = function(_super) {
-            (0, tslib_es6.__extends)(XHRTransport, _super);
-            function XHRTransport() {
-                return null !== _super && _super.apply(this, arguments) || this;
-            }
-            XHRTransport.prototype._sendRequest = function(sentryRequest, originalPayload) {
-                var _this = this;
-                if (this._isRateLimited(sentryRequest.type)) {
-                    this.recordLostEvent("ratelimit_backoff", sentryRequest.type);
-                    return Promise.reject({
-                        event: originalPayload,
-                        type: sentryRequest.type,
-                        reason: "Transport for " + sentryRequest.type + " requests locked till " + this._disabledUntil(sentryRequest.type) + " due to too many requests.",
-                        status: 429
-                    });
-                }
-                return this._buffer.add((function() {
-                    return new syncpromise.SyncPromise((function(resolve, reject) {
-                        var request = new XMLHttpRequest;
-                        request.onreadystatechange = function() {
-                            if (4 === request.readyState) {
-                                var headers = {
-                                    "x-sentry-rate-limits": request.getResponseHeader("X-Sentry-Rate-Limits"),
-                                    "retry-after": request.getResponseHeader("Retry-After")
-                                };
-                                _this._handleResponse({
-                                    requestType: sentryRequest.type,
-                                    response: request,
-                                    headers,
-                                    resolve,
-                                    reject
-                                });
-                            }
-                        };
-                        request.open("POST", sentryRequest.url);
-                        for (var header in _this.options.headers) if (Object.prototype.hasOwnProperty.call(_this.options.headers, header)) request.setRequestHeader(header, _this.options.headers[header]);
-                        request.send(sentryRequest.body);
-                    }));
-                })).then(void 0, (function(reason) {
-                    if (reason instanceof SentryError) _this.recordLostEvent("queue_overflow", sentryRequest.type); else _this.recordLostEvent("network_error", sentryRequest.type);
-                    throw reason;
-                }));
-            };
-            return XHRTransport;
-        }(BaseTransport);
-        var BrowserBackend = function(_super) {
-            (0, tslib_es6.__extends)(BrowserBackend, _super);
-            function BrowserBackend() {
-                return null !== _super && _super.apply(this, arguments) || this;
-            }
-            BrowserBackend.prototype.eventFromException = function(exception, hint) {
-                return eventFromException(exception, hint, this._options.attachStacktrace);
-            };
-            BrowserBackend.prototype.eventFromMessage = function(message, level, hint) {
-                if (void 0 === level) level = Severity.Info;
-                return eventFromMessage(message, level, hint, this._options.attachStacktrace);
-            };
-            BrowserBackend.prototype._setupTransport = function() {
-                if (!this._options.dsn) return _super.prototype._setupTransport.call(this);
-                var transportOptions = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, this._options.transportOptions), {
-                    dsn: this._options.dsn,
-                    tunnel: this._options.tunnel,
-                    sendClientReports: this._options.sendClientReports,
-                    _metadata: this._options._metadata
-                });
-                if (this._options.transport) return new this._options.transport(transportOptions);
-                if ((0, supports.supportsFetch)()) return new FetchTransport(transportOptions);
-                return new XHRTransport(transportOptions);
-            };
-            return BrowserBackend;
-        }(BaseBackend);
-        function callOnHub(method) {
-            var args = [];
-            for (var _i = 1; _i < arguments.length; _i++) args[_i - 1] = arguments[_i];
-            var hub = (0, esm_hub.getCurrentHub)();
-            if (hub && hub[method]) return hub[method].apply(hub, (0, tslib_es6.__spread)(args));
-            throw new Error("No hub defined or " + method + " was not found on the hub, please open a bug report.");
-        }
-        function captureException(exception, captureContext) {
-            var syntheticException = new Error("Sentry syntheticException");
-            return callOnHub("captureException", exception, {
-                captureContext,
-                originalException: exception,
-                syntheticException
-            });
-        }
-        function captureMessage(message, captureContext) {
-            var syntheticException = new Error(message);
-            var level = "string" === typeof captureContext ? captureContext : void 0;
-            var context = "string" !== typeof captureContext ? {
-                captureContext
-            } : void 0;
-            return callOnHub("captureMessage", message, level, (0, tslib_es6.__assign)({
-                originalException: message,
-                syntheticException
-            }, context));
-        }
-        function withScope(callback) {
-            callOnHub("withScope", callback);
-        }
-        var helpers_global = (0, esm_global.getGlobalObject)();
-        var ignoreOnError = 0;
-        function shouldIgnoreOnError() {
-            return ignoreOnError > 0;
-        }
-        function ignoreNextOnError() {
-            ignoreOnError += 1;
-            setTimeout((function() {
-                ignoreOnError -= 1;
-            }));
-        }
-        function wrap(fn, options, before) {
-            if (void 0 === options) options = {};
-            if ("function" !== typeof fn) return fn;
-            try {
-                var wrapper = fn.__sentry_wrapped__;
-                if (wrapper) return wrapper;
-                if ((0, object.getOriginalFunction)(fn)) return fn;
-            } catch (e) {
-                return fn;
-            }
-            var sentryWrapped = function() {
-                var args = Array.prototype.slice.call(arguments);
-                try {
-                    if (before && "function" === typeof before) before.apply(this, arguments);
-                    var wrappedArguments = args.map((function(arg) {
-                        return wrap(arg, options);
-                    }));
-                    return fn.apply(this, wrappedArguments);
-                } catch (ex) {
-                    ignoreNextOnError();
-                    withScope((function(scope) {
-                        scope.addEventProcessor((function(event) {
-                            if (options.mechanism) {
-                                (0, misc.addExceptionTypeValue)(event, void 0, void 0);
-                                (0, misc.addExceptionMechanism)(event, options.mechanism);
-                            }
-                            event.extra = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, event.extra), {
-                                arguments: args
-                            });
-                            return event;
-                        }));
-                        captureException(ex);
-                    }));
-                    throw ex;
-                }
-            };
-            try {
-                for (var property in fn) if (Object.prototype.hasOwnProperty.call(fn, property)) sentryWrapped[property] = fn[property];
-            } catch (_oO) {}
-            (0, object.markFunctionWrapped)(sentryWrapped, fn);
-            (0, object.addNonEnumerableProperty)(fn, "__sentry_wrapped__", sentryWrapped);
-            try {
-                var descriptor = Object.getOwnPropertyDescriptor(sentryWrapped, "name");
-                if (descriptor.configurable) Object.defineProperty(sentryWrapped, "name", {
-                    get: function() {
-                        return fn.name;
-                    }
-                });
-            } catch (_oO) {}
-            return sentryWrapped;
-        }
-        function injectReportDialog(options) {
-            if (void 0 === options) options = {};
-            if (!helpers_global.document) return;
-            if (!options.eventId) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Missing eventId option in showReportDialog call");
-                return;
-            }
-            if (!options.dsn) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Missing dsn option in showReportDialog call");
-                return;
-            }
-            var script = helpers_global.document.createElement("script");
-            script.async = true;
-            script.src = getReportDialogEndpoint(options.dsn, options);
-            if (options.onLoad) script.onload = options.onLoad;
-            var injectionPoint = helpers_global.document.head || helpers_global.document.body;
-            if (injectionPoint) injectionPoint.appendChild(script);
-        }
-        var browser = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/browser.js");
-        var enums_SeverityLevels = [ "fatal", "error", "warning", "log", "info", "debug", "critical" ];
-        function isSupportedSeverity(level) {
-            return -1 !== enums_SeverityLevels.indexOf(level);
-        }
-        function severityFromString(level) {
-            if ("warn" === level) return Severity.Warning;
-            if (isSupportedSeverity(level)) return level;
-            return Severity.Log;
-        }
-        var Breadcrumbs = function() {
-            function Breadcrumbs(options) {
-                this.name = Breadcrumbs.id;
-                this._options = (0, tslib_es6.__assign)({
-                    console: true,
-                    dom: true,
-                    fetch: true,
-                    history: true,
-                    sentry: true,
-                    xhr: true
-                }, options);
-            }
-            Breadcrumbs.prototype.addSentryBreadcrumb = function(event) {
-                if (!this._options.sentry) return;
-                (0, esm_hub.getCurrentHub)().addBreadcrumb({
-                    category: "sentry." + ("transaction" === event.type ? "transaction" : "event"),
-                    event_id: event.event_id,
-                    level: event.level,
-                    message: (0, misc.getEventDescription)(event)
-                }, {
-                    event
-                });
-            };
-            Breadcrumbs.prototype.setupOnce = function() {
-                if (this._options.console) (0, instrument.addInstrumentationHandler)("console", _consoleBreadcrumb);
-                if (this._options.dom) (0, instrument.addInstrumentationHandler)("dom", _domBreadcrumb(this._options.dom));
-                if (this._options.xhr) (0, instrument.addInstrumentationHandler)("xhr", _xhrBreadcrumb);
-                if (this._options.fetch) (0, instrument.addInstrumentationHandler)("fetch", _fetchBreadcrumb);
-                if (this._options.history) (0, instrument.addInstrumentationHandler)("history", _historyBreadcrumb);
-            };
-            Breadcrumbs.id = "Breadcrumbs";
-            return Breadcrumbs;
-        }();
-        function _domBreadcrumb(dom) {
-            function _innerDomBreadcrumb(handlerData) {
-                var target;
-                var keyAttrs = "object" === typeof dom ? dom.serializeAttribute : void 0;
-                if ("string" === typeof keyAttrs) keyAttrs = [ keyAttrs ];
-                try {
-                    target = handlerData.event.target ? (0, browser.htmlTreeAsString)(handlerData.event.target, keyAttrs) : (0, 
-                    browser.htmlTreeAsString)(handlerData.event, keyAttrs);
-                } catch (e) {
-                    target = "<unknown>";
-                }
-                if (0 === target.length) return;
-                (0, esm_hub.getCurrentHub)().addBreadcrumb({
-                    category: "ui." + handlerData.name,
-                    message: target
-                }, {
-                    event: handlerData.event,
-                    name: handlerData.name,
-                    global: handlerData.global
-                });
-            }
-            return _innerDomBreadcrumb;
-        }
-        function _consoleBreadcrumb(handlerData) {
-            var breadcrumb = {
-                category: "console",
-                data: {
-                    arguments: handlerData.args,
-                    logger: "console"
-                },
-                level: severityFromString(handlerData.level),
-                message: (0, string.safeJoin)(handlerData.args, " ")
-            };
-            if ("assert" === handlerData.level) if (false === handlerData.args[0]) {
-                breadcrumb.message = "Assertion failed: " + ((0, string.safeJoin)(handlerData.args.slice(1), " ") || "console.assert");
-                breadcrumb.data.arguments = handlerData.args.slice(1);
-            } else return;
-            (0, esm_hub.getCurrentHub)().addBreadcrumb(breadcrumb, {
-                input: handlerData.args,
-                level: handlerData.level
-            });
-        }
-        function _xhrBreadcrumb(handlerData) {
-            if (handlerData.endTimestamp) {
-                if (handlerData.xhr.__sentry_own_request__) return;
-                var _a = handlerData.xhr.__sentry_xhr__ || {}, method = _a.method, url = _a.url, status_code = _a.status_code, body = _a.body;
-                (0, esm_hub.getCurrentHub)().addBreadcrumb({
-                    category: "xhr",
-                    data: {
-                        method,
-                        url,
-                        status_code
-                    },
-                    type: "http"
-                }, {
-                    xhr: handlerData.xhr,
-                    input: body
-                });
-                return;
-            }
-        }
-        function _fetchBreadcrumb(handlerData) {
-            if (!handlerData.endTimestamp) return;
-            if (handlerData.fetchData.url.match(/sentry_key/) && "POST" === handlerData.fetchData.method) return;
-            if (handlerData.error) (0, esm_hub.getCurrentHub)().addBreadcrumb({
-                category: "fetch",
-                data: handlerData.fetchData,
-                level: Severity.Error,
-                type: "http"
-            }, {
-                data: handlerData.error,
-                input: handlerData.args
-            }); else (0, esm_hub.getCurrentHub)().addBreadcrumb({
-                category: "fetch",
-                data: (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, handlerData.fetchData), {
-                    status_code: handlerData.response.status
-                }),
-                type: "http"
-            }, {
-                input: handlerData.args,
-                response: handlerData.response
-            });
-        }
-        function _historyBreadcrumb(handlerData) {
-            var global = (0, esm_global.getGlobalObject)();
-            var from = handlerData.from;
-            var to = handlerData.to;
-            var parsedLoc = (0, misc.parseUrl)(global.location.href);
-            var parsedFrom = (0, misc.parseUrl)(from);
-            var parsedTo = (0, misc.parseUrl)(to);
-            if (!parsedFrom.path) parsedFrom = parsedLoc;
-            if (parsedLoc.protocol === parsedTo.protocol && parsedLoc.host === parsedTo.host) to = parsedTo.relative;
-            if (parsedLoc.protocol === parsedFrom.protocol && parsedLoc.host === parsedFrom.host) from = parsedFrom.relative;
-            (0, esm_hub.getCurrentHub)().addBreadcrumb({
-                category: "navigation",
-                data: {
-                    from,
-                    to
-                }
-            });
-        }
-        var BrowserClient = function(_super) {
-            (0, tslib_es6.__extends)(BrowserClient, _super);
-            function BrowserClient(options) {
-                if (void 0 === options) options = {};
-                var _this = this;
-                options._metadata = options._metadata || {};
-                options._metadata.sdk = options._metadata.sdk || {
-                    name: "sentry.javascript.browser",
-                    packages: [ {
-                        name: "npm:@sentry/browser",
-                        version: SDK_VERSION
-                    } ],
-                    version: SDK_VERSION
-                };
-                _this = _super.call(this, BrowserBackend, options) || this;
-                return _this;
-            }
-            BrowserClient.prototype.showReportDialog = function(options) {
-                if (void 0 === options) options = {};
-                var document = (0, esm_global.getGlobalObject)().document;
-                if (!document) return;
-                if (!this._isEnabled()) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Trying to call showReportDialog with Sentry Client disabled");
-                    return;
-                }
-                injectReportDialog((0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, options), {
-                    dsn: options.dsn || this.getDsn()
-                }));
-            };
-            BrowserClient.prototype._prepareEvent = function(event, scope, hint) {
-                event.platform = event.platform || "javascript";
-                return _super.prototype._prepareEvent.call(this, event, scope, hint);
-            };
-            BrowserClient.prototype._sendEvent = function(event) {
-                var integration = this.getIntegration(Breadcrumbs);
-                if (integration) integration.addSentryBreadcrumb(event);
-                _super.prototype._sendEvent.call(this, event);
-            };
-            return BrowserClient;
-        }(BaseClient);
-        var DEFAULT_EVENT_TARGET = [ "EventTarget", "Window", "Node", "ApplicationCache", "AudioTrackList", "ChannelMergerNode", "CryptoOperation", "EventSource", "FileReader", "HTMLUnknownElement", "IDBDatabase", "IDBRequest", "IDBTransaction", "KeyOperation", "MediaController", "MessagePort", "ModalWindow", "Notification", "SVGElementInstance", "Screen", "TextTrack", "TextTrackCue", "TextTrackList", "WebSocket", "WebSocketWorker", "Worker", "XMLHttpRequest", "XMLHttpRequestEventTarget", "XMLHttpRequestUpload" ];
-        var TryCatch = function() {
-            function TryCatch(options) {
-                this.name = TryCatch.id;
-                this._options = (0, tslib_es6.__assign)({
-                    XMLHttpRequest: true,
-                    eventTarget: true,
-                    requestAnimationFrame: true,
-                    setInterval: true,
-                    setTimeout: true
-                }, options);
-            }
-            TryCatch.prototype.setupOnce = function() {
-                var global = (0, esm_global.getGlobalObject)();
-                if (this._options.setTimeout) (0, object.fill)(global, "setTimeout", _wrapTimeFunction);
-                if (this._options.setInterval) (0, object.fill)(global, "setInterval", _wrapTimeFunction);
-                if (this._options.requestAnimationFrame) (0, object.fill)(global, "requestAnimationFrame", _wrapRAF);
-                if (this._options.XMLHttpRequest && "XMLHttpRequest" in global) (0, object.fill)(XMLHttpRequest.prototype, "send", _wrapXHR);
-                var eventTargetOption = this._options.eventTarget;
-                if (eventTargetOption) {
-                    var eventTarget = Array.isArray(eventTargetOption) ? eventTargetOption : DEFAULT_EVENT_TARGET;
-                    eventTarget.forEach(_wrapEventTarget);
-                }
-            };
-            TryCatch.id = "TryCatch";
-            return TryCatch;
-        }();
-        function _wrapTimeFunction(original) {
-            return function() {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                var originalCallback = args[0];
-                args[0] = wrap(originalCallback, {
-                    mechanism: {
-                        data: {
-                            function: (0, esm_stacktrace.getFunctionName)(original)
-                        },
-                        handled: true,
-                        type: "instrument"
-                    }
-                });
-                return original.apply(this, args);
-            };
-        }
-        function _wrapRAF(original) {
-            return function(callback) {
-                return original.apply(this, [ wrap(callback, {
-                    mechanism: {
-                        data: {
-                            function: "requestAnimationFrame",
-                            handler: (0, esm_stacktrace.getFunctionName)(original)
-                        },
-                        handled: true,
-                        type: "instrument"
-                    }
-                }) ]);
-            };
-        }
-        function _wrapXHR(originalSend) {
-            return function() {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                var xhr = this;
-                var xmlHttpRequestProps = [ "onload", "onerror", "onprogress", "onreadystatechange" ];
-                xmlHttpRequestProps.forEach((function(prop) {
-                    if (prop in xhr && "function" === typeof xhr[prop]) (0, object.fill)(xhr, prop, (function(original) {
-                        var wrapOptions = {
-                            mechanism: {
-                                data: {
-                                    function: prop,
-                                    handler: (0, esm_stacktrace.getFunctionName)(original)
-                                },
-                                handled: true,
-                                type: "instrument"
-                            }
-                        };
-                        var originalFunction = (0, object.getOriginalFunction)(original);
-                        if (originalFunction) wrapOptions.mechanism.data.handler = (0, esm_stacktrace.getFunctionName)(originalFunction);
-                        return wrap(original, wrapOptions);
-                    }));
-                }));
-                return originalSend.apply(this, args);
-            };
-        }
-        function _wrapEventTarget(target) {
-            var global = (0, esm_global.getGlobalObject)();
-            var proto = global[target] && global[target].prototype;
-            if (!proto || !proto.hasOwnProperty || !proto.hasOwnProperty("addEventListener")) return;
-            (0, object.fill)(proto, "addEventListener", (function(original) {
-                return function(eventName, fn, options) {
-                    try {
-                        if ("function" === typeof fn.handleEvent) fn.handleEvent = wrap(fn.handleEvent.bind(fn), {
-                            mechanism: {
-                                data: {
-                                    function: "handleEvent",
-                                    handler: (0, esm_stacktrace.getFunctionName)(fn),
-                                    target
-                                },
-                                handled: true,
-                                type: "instrument"
-                            }
-                        });
-                    } catch (err) {}
-                    return original.apply(this, [ eventName, wrap(fn, {
-                        mechanism: {
-                            data: {
-                                function: "addEventListener",
-                                handler: (0, esm_stacktrace.getFunctionName)(fn),
-                                target
-                            },
-                            handled: true,
-                            type: "instrument"
-                        }
-                    }), options ]);
-                };
-            }));
-            (0, object.fill)(proto, "removeEventListener", (function(originalRemoveEventListener) {
-                return function(eventName, fn, options) {
-                    var wrappedEventHandler = fn;
-                    try {
-                        var originalEventHandler = wrappedEventHandler && wrappedEventHandler.__sentry_wrapped__;
-                        if (originalEventHandler) originalRemoveEventListener.call(this, eventName, originalEventHandler, options);
-                    } catch (e) {}
-                    return originalRemoveEventListener.call(this, eventName, wrappedEventHandler, options);
-                };
-            }));
-        }
-        var GlobalHandlers = function() {
-            function GlobalHandlers(options) {
-                this.name = GlobalHandlers.id;
-                this._installFunc = {
-                    onerror: _installGlobalOnErrorHandler,
-                    onunhandledrejection: _installGlobalOnUnhandledRejectionHandler
-                };
-                this._options = (0, tslib_es6.__assign)({
-                    onerror: true,
-                    onunhandledrejection: true
-                }, options);
-            }
-            GlobalHandlers.prototype.setupOnce = function() {
-                Error.stackTraceLimit = 50;
-                var options = this._options;
-                for (var key in options) {
-                    var installFunc = this._installFunc[key];
-                    if (installFunc && options[key]) {
-                        globalHandlerLog(key);
-                        installFunc();
-                        this._installFunc[key] = void 0;
-                    }
-                }
-            };
-            GlobalHandlers.id = "GlobalHandlers";
-            return GlobalHandlers;
-        }();
-        function _installGlobalOnErrorHandler() {
-            (0, instrument.addInstrumentationHandler)("error", (function(data) {
-                var _a = (0, tslib_es6.__read)(getHubAndAttachStacktrace(), 2), hub = _a[0], attachStacktrace = _a[1];
-                if (!hub.getIntegration(GlobalHandlers)) return;
-                var msg = data.msg, url = data.url, line = data.line, column = data.column, error = data.error;
-                if (shouldIgnoreOnError() || error && error.__sentry_own_request__) return;
-                var event = void 0 === error && (0, is.isString)(msg) ? _eventFromIncompleteOnError(msg, url, line, column) : _enhanceEventWithInitialFrame(eventFromUnknownInput(error || msg, void 0, attachStacktrace, false), url, line, column);
-                event.level = Severity.Error;
-                addMechanismAndCapture(hub, error, event, "onerror");
-            }));
-        }
-        function _installGlobalOnUnhandledRejectionHandler() {
-            (0, instrument.addInstrumentationHandler)("unhandledrejection", (function(e) {
-                var _a = (0, tslib_es6.__read)(getHubAndAttachStacktrace(), 2), hub = _a[0], attachStacktrace = _a[1];
-                if (!hub.getIntegration(GlobalHandlers)) return;
-                var error = e;
-                try {
-                    if ("reason" in e) error = e.reason; else if ("detail" in e && "reason" in e.detail) error = e.detail.reason;
-                } catch (_oO) {}
-                if (shouldIgnoreOnError() || error && error.__sentry_own_request__) return true;
-                var event = (0, is.isPrimitive)(error) ? _eventFromRejectionWithPrimitive(error) : eventFromUnknownInput(error, void 0, attachStacktrace, true);
-                event.level = Severity.Error;
-                addMechanismAndCapture(hub, error, event, "onunhandledrejection");
-                return;
-            }));
-        }
-        function _eventFromRejectionWithPrimitive(reason) {
-            return {
-                exception: {
-                    values: [ {
-                        type: "UnhandledRejection",
-                        value: "Non-Error promise rejection captured with value: " + String(reason)
-                    } ]
-                }
-            };
-        }
-        function _eventFromIncompleteOnError(msg, url, line, column) {
-            var ERROR_TYPES_RE = /^(?:[Uu]ncaught (?:exception: )?)?(?:((?:Eval|Internal|Range|Reference|Syntax|Type|URI|)Error): )?(.*)$/i;
-            var message = (0, is.isErrorEvent)(msg) ? msg.message : msg;
-            var name = "Error";
-            var groups = message.match(ERROR_TYPES_RE);
-            if (groups) {
-                name = groups[1];
-                message = groups[2];
-            }
-            var event = {
-                exception: {
-                    values: [ {
-                        type: name,
-                        value: message
-                    } ]
-                }
-            };
-            return _enhanceEventWithInitialFrame(event, url, line, column);
-        }
-        function _enhanceEventWithInitialFrame(event, url, line, column) {
-            var e = event.exception = event.exception || {};
-            var ev = e.values = e.values || [];
-            var ev0 = ev[0] = ev[0] || {};
-            var ev0s = ev0.stacktrace = ev0.stacktrace || {};
-            var ev0sf = ev0s.frames = ev0s.frames || [];
-            var colno = isNaN(parseInt(column, 10)) ? void 0 : column;
-            var lineno = isNaN(parseInt(line, 10)) ? void 0 : line;
-            var filename = (0, is.isString)(url) && url.length > 0 ? url : (0, browser.getLocationHref)();
-            if (0 === ev0sf.length) ev0sf.push({
-                colno,
-                filename,
-                function: "?",
-                in_app: true,
-                lineno
-            });
-            return event;
-        }
-        function globalHandlerLog(type) {
-            (0, esm_env.isDebugBuild)() && esm_logger.logger.log("Global Handler attached: " + type);
-        }
-        function addMechanismAndCapture(hub, error, event, type) {
-            (0, misc.addExceptionMechanism)(event, {
-                handled: false,
-                type
-            });
-            hub.captureEvent(event, {
-                originalException: error
-            });
-        }
-        function getHubAndAttachStacktrace() {
-            var hub = (0, esm_hub.getCurrentHub)();
-            var client = hub.getClient();
-            var attachStacktrace = client && client.getOptions().attachStacktrace;
-            return [ hub, attachStacktrace ];
-        }
-        var DEFAULT_KEY = "cause";
-        var DEFAULT_LIMIT = 5;
-        var LinkedErrors = function() {
-            function LinkedErrors(options) {
-                if (void 0 === options) options = {};
-                this.name = LinkedErrors.id;
-                this._key = options.key || DEFAULT_KEY;
-                this._limit = options.limit || DEFAULT_LIMIT;
-            }
-            LinkedErrors.prototype.setupOnce = function() {
-                (0, esm_scope.addGlobalEventProcessor)((function(event, hint) {
-                    var self = (0, esm_hub.getCurrentHub)().getIntegration(LinkedErrors);
-                    return self ? _handler(self._key, self._limit, event, hint) : event;
-                }));
-            };
-            LinkedErrors.id = "LinkedErrors";
-            return LinkedErrors;
-        }();
-        function _handler(key, limit, event, hint) {
-            if (!event.exception || !event.exception.values || !hint || !(0, is.isInstanceOf)(hint.originalException, Error)) return event;
-            var linkedErrors = _walkErrorTree(limit, hint.originalException, key);
-            event.exception.values = (0, tslib_es6.__spread)(linkedErrors, event.exception.values);
-            return event;
-        }
-        function _walkErrorTree(limit, error, key, stack) {
-            if (void 0 === stack) stack = [];
-            if (!(0, is.isInstanceOf)(error[key], Error) || stack.length + 1 >= limit) return stack;
-            var exception = exceptionFromError(error[key]);
-            return _walkErrorTree(limit, error[key], key, (0, tslib_es6.__spread)([ exception ], stack));
-        }
-        var Dedupe = function() {
-            function Dedupe() {
-                this.name = Dedupe.id;
-            }
-            Dedupe.prototype.setupOnce = function(addGlobalEventProcessor, getCurrentHub) {
-                addGlobalEventProcessor((function(currentEvent) {
-                    var self = getCurrentHub().getIntegration(Dedupe);
-                    if (self) {
-                        try {
-                            if (dedupe_shouldDropEvent(currentEvent, self._previousEvent)) {
-                                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to being a duplicate of previously captured event.");
-                                return null;
-                            }
-                        } catch (_oO) {
-                            return self._previousEvent = currentEvent;
-                        }
-                        return self._previousEvent = currentEvent;
-                    }
-                    return currentEvent;
-                }));
-            };
-            Dedupe.id = "Dedupe";
-            return Dedupe;
-        }();
-        function dedupe_shouldDropEvent(currentEvent, previousEvent) {
-            if (!previousEvent) return false;
-            if (_isSameMessageEvent(currentEvent, previousEvent)) return true;
-            if (_isSameExceptionEvent(currentEvent, previousEvent)) return true;
-            return false;
-        }
-        function _isSameMessageEvent(currentEvent, previousEvent) {
-            var currentMessage = currentEvent.message;
-            var previousMessage = previousEvent.message;
-            if (!currentMessage && !previousMessage) return false;
-            if (currentMessage && !previousMessage || !currentMessage && previousMessage) return false;
-            if (currentMessage !== previousMessage) return false;
-            if (!_isSameFingerprint(currentEvent, previousEvent)) return false;
-            if (!_isSameStacktrace(currentEvent, previousEvent)) return false;
-            return true;
-        }
-        function _isSameExceptionEvent(currentEvent, previousEvent) {
-            var previousException = _getExceptionFromEvent(previousEvent);
-            var currentException = _getExceptionFromEvent(currentEvent);
-            if (!previousException || !currentException) return false;
-            if (previousException.type !== currentException.type || previousException.value !== currentException.value) return false;
-            if (!_isSameFingerprint(currentEvent, previousEvent)) return false;
-            if (!_isSameStacktrace(currentEvent, previousEvent)) return false;
-            return true;
-        }
-        function _isSameStacktrace(currentEvent, previousEvent) {
-            var currentFrames = _getFramesFromEvent(currentEvent);
-            var previousFrames = _getFramesFromEvent(previousEvent);
-            if (!currentFrames && !previousFrames) return true;
-            if (currentFrames && !previousFrames || !currentFrames && previousFrames) return false;
-            currentFrames = currentFrames;
-            previousFrames = previousFrames;
-            if (previousFrames.length !== currentFrames.length) return false;
-            for (var i = 0; i < previousFrames.length; i++) {
-                var frameA = previousFrames[i];
-                var frameB = currentFrames[i];
-                if (frameA.filename !== frameB.filename || frameA.lineno !== frameB.lineno || frameA.colno !== frameB.colno || frameA.function !== frameB.function) return false;
-            }
-            return true;
-        }
-        function _isSameFingerprint(currentEvent, previousEvent) {
-            var currentFingerprint = currentEvent.fingerprint;
-            var previousFingerprint = previousEvent.fingerprint;
-            if (!currentFingerprint && !previousFingerprint) return true;
-            if (currentFingerprint && !previousFingerprint || !currentFingerprint && previousFingerprint) return false;
-            currentFingerprint = currentFingerprint;
-            previousFingerprint = previousFingerprint;
-            try {
-                return !!(currentFingerprint.join("") === previousFingerprint.join(""));
-            } catch (_oO) {
-                return false;
-            }
-        }
-        function _getExceptionFromEvent(event) {
-            return event.exception && event.exception.values && event.exception.values[0];
-        }
-        function _getFramesFromEvent(event) {
-            var exception = event.exception;
-            if (exception) try {
-                return exception.values[0].stacktrace.frames;
-            } catch (_oO) {
-                return;
-            } else if (event.stacktrace) return event.stacktrace.frames;
-            return;
-        }
-        var useragent_global = (0, esm_global.getGlobalObject)();
-        var UserAgent = function() {
-            function UserAgent() {
-                this.name = UserAgent.id;
-            }
-            UserAgent.prototype.setupOnce = function() {
-                (0, esm_scope.addGlobalEventProcessor)((function(event) {
-                    if ((0, esm_hub.getCurrentHub)().getIntegration(UserAgent)) {
-                        if (!useragent_global.navigator && !useragent_global.location && !useragent_global.document) return event;
-                        var url = event.request && event.request.url || useragent_global.location && useragent_global.location.href;
-                        var referrer = (useragent_global.document || {}).referrer;
-                        var userAgent = (useragent_global.navigator || {}).userAgent;
-                        var headers = (0, tslib_es6.__assign)((0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, event.request && event.request.headers), referrer && {
-                            Referer: referrer
-                        }), userAgent && {
-                            "User-Agent": userAgent
-                        });
-                        var request = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, url && {
-                            url
-                        }), {
-                            headers
-                        });
-                        return (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, event), {
-                            request
-                        });
-                    }
-                    return event;
-                }));
-            };
-            UserAgent.id = "UserAgent";
-            return UserAgent;
-        }();
-        var defaultIntegrations = [ new InboundFilters, new FunctionToString, new TryCatch, new Breadcrumbs, new GlobalHandlers, new LinkedErrors, new Dedupe, new UserAgent ];
-        function init(options) {
-            if (void 0 === options) options = {};
-            if (void 0 === options.defaultIntegrations) options.defaultIntegrations = defaultIntegrations;
-            if (void 0 === options.release) {
-                var window_1 = (0, esm_global.getGlobalObject)();
-                if (window_1.SENTRY_RELEASE && window_1.SENTRY_RELEASE.id) options.release = window_1.SENTRY_RELEASE.id;
-            }
-            if (void 0 === options.autoSessionTracking) options.autoSessionTracking = true;
-            if (void 0 === options.sendClientReports) options.sendClientReports = true;
-            initAndBind(BrowserClient, options);
-            if (options.autoSessionTracking) startSessionTracking();
-        }
-        function startSessionOnHub(hub) {
-            hub.startSession({
-                ignoreDuration: true
-            });
-            hub.captureSession();
-        }
-        function startSessionTracking() {
-            var window = (0, esm_global.getGlobalObject)();
-            var document = window.document;
-            if ("undefined" === typeof document) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Session tracking in non-browser environment with @sentry/browser is not supported.");
-                return;
-            }
-            var hub = (0, esm_hub.getCurrentHub)();
-            if (!hub.captureSession) return;
-            startSessionOnHub(hub);
-            (0, instrument.addInstrumentationHandler)("history", (function(_a) {
-                var from = _a.from, to = _a.to;
-                if (!(void 0 === from || from === to)) startSessionOnHub((0, esm_hub.getCurrentHub)());
-            }));
-        }
-        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
-        var get_default = __webpack_require__.n(get);
-        var hubextensions = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/hubextensions.js");
-        var idletransaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js");
-        var utils = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/utils.js");
-        var TRACEPARENT_REGEXP = new RegExp("^[ \\t]*" + "([0-9a-f]{32})?" + "-?([0-9a-f]{16})?" + "-?([01])?" + "[ \\t]*$");
-        function extractTraceparentData(traceparent) {
-            var matches = traceparent.match(TRACEPARENT_REGEXP);
-            if (matches) {
-                var parentSampled = void 0;
-                if ("1" === matches[3]) parentSampled = true; else if ("0" === matches[3]) parentSampled = false;
-                return {
-                    traceId: matches[1],
-                    parentSampled,
-                    parentSpanId: matches[2]
-                };
-            }
-            return;
-        }
-        var constants = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/constants.js");
-        var backgroundtab_global = (0, esm_global.getGlobalObject)();
-        function registerBackgroundTabDetection() {
-            if (backgroundtab_global && backgroundtab_global.document) backgroundtab_global.document.addEventListener("visibilitychange", (function() {
-                var activeTransaction = (0, utils.getActiveTransaction)();
-                if (backgroundtab_global.document.hidden && activeTransaction) {
-                    var statusType = "cancelled";
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Transaction: " + statusType + " -> since tab moved to the background, op: " + activeTransaction.op);
-                    if (!activeTransaction.status) activeTransaction.setStatus(statusType);
-                    activeTransaction.setTag("visibilitychange", "document.hidden");
-                    activeTransaction.setTag(constants.FINISH_REASON_TAG, constants.IDLE_TRANSACTION_FINISH_REASONS[2]);
-                    activeTransaction.finish();
-                }
-            })); else (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] Could not set up background tab detection due to lack of global document");
-        }
-        var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
-        var bindReporter = function(callback, metric, reportAllChanges) {
-            var prevValue;
-            return function(forceReport) {
-                if (metric.value >= 0) if (forceReport || reportAllChanges) {
-                    metric.delta = metric.value - (prevValue || 0);
-                    if (metric.delta || void 0 === prevValue) {
-                        prevValue = metric.value;
-                        callback(metric);
-                    }
-                }
-            };
-        };
-        var generateUniqueID = function() {
-            return "v2-" + Date.now() + "-" + (Math.floor(Math.random() * (9e12 - 1)) + 1e12);
-        };
-        var initMetric = function(name, value) {
-            return {
-                name,
-                value: null !== value && void 0 !== value ? value : -1,
-                delta: 0,
-                entries: [],
-                id: generateUniqueID()
-            };
-        };
-        var observe = function(type, callback) {
-            try {
-                if (PerformanceObserver.supportedEntryTypes.includes(type)) {
-                    if ("first-input" === type && !("PerformanceEventTiming" in self)) return;
-                    var po = new PerformanceObserver((function(l) {
-                        return l.getEntries().map(callback);
-                    }));
-                    po.observe({
-                        type,
-                        buffered: true
-                    });
-                    return po;
-                }
-            } catch (e) {}
-            return;
-        };
-        var onHidden = function(cb, once) {
-            var onHiddenOrPageHide = function(event) {
-                if ("pagehide" === event.type || "hidden" === (0, esm_global.getGlobalObject)().document.visibilityState) {
-                    cb(event);
-                    if (once) {
-                        removeEventListener("visibilitychange", onHiddenOrPageHide, true);
-                        removeEventListener("pagehide", onHiddenOrPageHide, true);
-                    }
-                }
-            };
-            addEventListener("visibilitychange", onHiddenOrPageHide, true);
-            addEventListener("pagehide", onHiddenOrPageHide, true);
-        };
-        var getCLS = function(onReport, reportAllChanges) {
-            var metric = initMetric("CLS", 0);
-            var report;
-            var sessionValue = 0;
-            var sessionEntries = [];
-            var entryHandler = function(entry) {
-                if (entry && !entry.hadRecentInput) {
-                    var firstSessionEntry = sessionEntries[0];
-                    var lastSessionEntry = sessionEntries[sessionEntries.length - 1];
-                    if (sessionValue && 0 !== sessionEntries.length && entry.startTime - lastSessionEntry.startTime < 1e3 && entry.startTime - firstSessionEntry.startTime < 5e3) {
-                        sessionValue += entry.value;
-                        sessionEntries.push(entry);
-                    } else {
-                        sessionValue = entry.value;
-                        sessionEntries = [ entry ];
-                    }
-                    if (sessionValue > metric.value) {
-                        metric.value = sessionValue;
-                        metric.entries = sessionEntries;
-                        if (report) report();
-                    }
-                }
-            };
-            var po = observe("layout-shift", entryHandler);
-            if (po) {
-                report = bindReporter(onReport, metric, reportAllChanges);
-                onHidden((function() {
-                    po.takeRecords().map(entryHandler);
-                    report(true);
-                }));
-            }
-        };
-        var firstHiddenTime = -1;
-        var initHiddenTime = function() {
-            return "hidden" === (0, esm_global.getGlobalObject)().document.visibilityState ? 0 : 1 / 0;
-        };
-        var trackChanges = function() {
-            onHidden((function(_a) {
-                var timeStamp = _a.timeStamp;
-                firstHiddenTime = timeStamp;
-            }), true);
-        };
-        var getVisibilityWatcher = function() {
-            if (firstHiddenTime < 0) {
-                firstHiddenTime = initHiddenTime();
-                trackChanges();
-            }
-            return {
-                get firstHiddenTime() {
-                    return firstHiddenTime;
-                }
-            };
-        };
-        var getFID = function(onReport, reportAllChanges) {
-            var visibilityWatcher = getVisibilityWatcher();
-            var metric = initMetric("FID");
-            var report;
-            var entryHandler = function(entry) {
-                if (report && entry.startTime < visibilityWatcher.firstHiddenTime) {
-                    metric.value = entry.processingStart - entry.startTime;
-                    metric.entries.push(entry);
-                    report(true);
-                }
-            };
-            var po = observe("first-input", entryHandler);
-            if (po) {
-                report = bindReporter(onReport, metric, reportAllChanges);
-                onHidden((function() {
-                    po.takeRecords().map(entryHandler);
-                    po.disconnect();
-                }), true);
-            }
-        };
-        var reportedMetricIDs = {};
-        var getLCP = function(onReport, reportAllChanges) {
-            var visibilityWatcher = getVisibilityWatcher();
-            var metric = initMetric("LCP");
-            var report;
-            var entryHandler = function(entry) {
-                var value = entry.startTime;
-                if (value < visibilityWatcher.firstHiddenTime) {
-                    metric.value = value;
-                    metric.entries.push(entry);
-                }
-                if (report) report();
-            };
-            var po = observe("largest-contentful-paint", entryHandler);
-            if (po) {
-                report = bindReporter(onReport, metric, reportAllChanges);
-                var stopListening_1 = function() {
-                    if (!reportedMetricIDs[metric.id]) {
-                        po.takeRecords().map(entryHandler);
-                        po.disconnect();
-                        reportedMetricIDs[metric.id] = true;
-                        report(true);
-                    }
-                };
-                [ "keydown", "click" ].forEach((function(type) {
-                    addEventListener(type, stopListening_1, {
-                        once: true,
-                        capture: true
-                    });
-                }));
-                onHidden(stopListening_1, true);
-            }
-        };
-        var metrics_global = (0, esm_global.getGlobalObject)();
-        var MetricsInstrumentation = function() {
-            function MetricsInstrumentation(_reportAllChanges) {
-                if (void 0 === _reportAllChanges) _reportAllChanges = false;
-                this._reportAllChanges = _reportAllChanges;
-                this._measurements = {};
-                this._performanceCursor = 0;
-                if (!(0, node.isNodeEnv)() && metrics_global && metrics_global.performance && metrics_global.document) {
-                    if (metrics_global.performance.mark) metrics_global.performance.mark("sentry-tracing-init");
-                    this._trackCLS();
-                    this._trackLCP();
-                    this._trackFID();
-                }
-            }
-            MetricsInstrumentation.prototype.addPerformanceEntries = function(transaction) {
-                var _this = this;
-                if (!metrics_global || !metrics_global.performance || !metrics_global.performance.getEntries || !time.browserPerformanceTimeOrigin) return;
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Adding & adjusting spans using Performance API");
-                var timeOrigin = (0, utils.msToSec)(time.browserPerformanceTimeOrigin);
-                var responseStartTimestamp;
-                var requestStartTimestamp;
-                metrics_global.performance.getEntries().slice(this._performanceCursor).forEach((function(entry) {
-                    var startTime = (0, utils.msToSec)(entry.startTime);
-                    var duration = (0, utils.msToSec)(entry.duration);
-                    if ("navigation" === transaction.op && timeOrigin + startTime < transaction.startTimestamp) return;
-                    switch (entry.entryType) {
-                      case "navigation":
-                        addNavigationSpans(transaction, entry, timeOrigin);
-                        responseStartTimestamp = timeOrigin + (0, utils.msToSec)(entry.responseStart);
-                        requestStartTimestamp = timeOrigin + (0, utils.msToSec)(entry.requestStart);
-                        break;
-
-                      case "mark":
-                      case "paint":
-                      case "measure":
-                        var startTimestamp = addMeasureSpans(transaction, entry, startTime, duration, timeOrigin);
-                        var firstHidden = getVisibilityWatcher();
-                        var shouldRecord = entry.startTime < firstHidden.firstHiddenTime;
-                        if ("first-paint" === entry.name && shouldRecord) {
-                            (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding FP");
-                            _this._measurements["fp"] = {
-                                value: entry.startTime
-                            };
-                            _this._measurements["mark.fp"] = {
-                                value: startTimestamp
-                            };
-                        }
-                        if ("first-contentful-paint" === entry.name && shouldRecord) {
-                            (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding FCP");
-                            _this._measurements["fcp"] = {
-                                value: entry.startTime
-                            };
-                            _this._measurements["mark.fcp"] = {
-                                value: startTimestamp
-                            };
-                        }
-                        break;
-
-                      case "resource":
-                        var resourceName = entry.name.replace(metrics_global.location.origin, "");
-                        addResourceSpans(transaction, entry, resourceName, startTime, duration, timeOrigin);
-                    }
-                }));
-                this._performanceCursor = Math.max(performance.getEntries().length - 1, 0);
-                this._trackNavigator(transaction);
-                if ("pageload" === transaction.op) {
-                    var timeOrigin_1 = (0, utils.msToSec)(time.browserPerformanceTimeOrigin);
-                    if ("number" === typeof responseStartTimestamp) {
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding TTFB");
-                        this._measurements["ttfb"] = {
-                            value: 1e3 * (responseStartTimestamp - transaction.startTimestamp)
-                        };
-                        if ("number" === typeof requestStartTimestamp && requestStartTimestamp <= responseStartTimestamp) this._measurements["ttfb.requestTime"] = {
-                            value: 1e3 * (responseStartTimestamp - requestStartTimestamp)
-                        };
-                    }
-                    [ "fcp", "fp", "lcp" ].forEach((function(name) {
-                        if (!_this._measurements[name] || timeOrigin_1 >= transaction.startTimestamp) return;
-                        var oldValue = _this._measurements[name].value;
-                        var measurementTimestamp = timeOrigin_1 + (0, utils.msToSec)(oldValue);
-                        var normalizedValue = Math.abs(1e3 * (measurementTimestamp - transaction.startTimestamp));
-                        var delta = normalizedValue - oldValue;
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Normalized " + name + " from " + oldValue + " to " + normalizedValue + " (" + delta + ")");
-                        _this._measurements[name].value = normalizedValue;
-                    }));
-                    if (this._measurements["mark.fid"] && this._measurements["fid"]) _startChild(transaction, {
-                        description: "first input delay",
-                        endTimestamp: this._measurements["mark.fid"].value + (0, utils.msToSec)(this._measurements["fid"].value),
-                        op: "web.vitals",
-                        startTimestamp: this._measurements["mark.fid"].value
-                    });
-                    if (!("fcp" in this._measurements)) delete this._measurements.cls;
-                    transaction.setMeasurements(this._measurements);
-                    tagMetricInfo(transaction, this._lcpEntry, this._clsEntry);
-                    transaction.setTag("sentry_reportAllChanges", this._reportAllChanges);
-                }
-            };
-            MetricsInstrumentation.prototype._trackNavigator = function(transaction) {
-                var navigator = metrics_global.navigator;
-                if (!navigator) return;
-                var connection = navigator.connection;
-                if (connection) {
-                    if (connection.effectiveType) transaction.setTag("effectiveConnectionType", connection.effectiveType);
-                    if (connection.type) transaction.setTag("connectionType", connection.type);
-                    if (isMeasurementValue(connection.rtt)) this._measurements["connection.rtt"] = {
-                        value: connection.rtt
-                    };
-                    if (isMeasurementValue(connection.downlink)) this._measurements["connection.downlink"] = {
-                        value: connection.downlink
-                    };
-                }
-                if (isMeasurementValue(navigator.deviceMemory)) transaction.setTag("deviceMemory", String(navigator.deviceMemory));
-                if (isMeasurementValue(navigator.hardwareConcurrency)) transaction.setTag("hardwareConcurrency", String(navigator.hardwareConcurrency));
-            };
-            MetricsInstrumentation.prototype._trackCLS = function() {
-                var _this = this;
-                getCLS((function(metric) {
-                    var entry = metric.entries.pop();
-                    if (!entry) return;
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding CLS");
-                    _this._measurements["cls"] = {
-                        value: metric.value
-                    };
-                    _this._clsEntry = entry;
-                }));
-            };
-            MetricsInstrumentation.prototype._trackLCP = function() {
-                var _this = this;
-                getLCP((function(metric) {
-                    var entry = metric.entries.pop();
-                    if (!entry) return;
-                    var timeOrigin = (0, utils.msToSec)(time.browserPerformanceTimeOrigin);
-                    var startTime = (0, utils.msToSec)(entry.startTime);
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding LCP");
-                    _this._measurements["lcp"] = {
-                        value: metric.value
-                    };
-                    _this._measurements["mark.lcp"] = {
-                        value: timeOrigin + startTime
-                    };
-                    _this._lcpEntry = entry;
-                }), this._reportAllChanges);
-            };
-            MetricsInstrumentation.prototype._trackFID = function() {
-                var _this = this;
-                getFID((function(metric) {
-                    var entry = metric.entries.pop();
-                    if (!entry) return;
-                    var timeOrigin = (0, utils.msToSec)(time.browserPerformanceTimeOrigin);
-                    var startTime = (0, utils.msToSec)(entry.startTime);
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding FID");
-                    _this._measurements["fid"] = {
-                        value: metric.value
-                    };
-                    _this._measurements["mark.fid"] = {
-                        value: timeOrigin + startTime
-                    };
-                }));
-            };
-            return MetricsInstrumentation;
-        }();
-        function addNavigationSpans(transaction, entry, timeOrigin) {
-            [ "unloadEvent", "redirect", "domContentLoadedEvent", "loadEvent", "connect" ].forEach((function(event) {
-                addPerformanceNavigationTiming(transaction, entry, event, timeOrigin);
-            }));
-            addPerformanceNavigationTiming(transaction, entry, "secureConnection", timeOrigin, "TLS/SSL", "connectEnd");
-            addPerformanceNavigationTiming(transaction, entry, "fetch", timeOrigin, "cache", "domainLookupStart");
-            addPerformanceNavigationTiming(transaction, entry, "domainLookup", timeOrigin, "DNS");
-            addRequest(transaction, entry, timeOrigin);
-        }
-        function addMeasureSpans(transaction, entry, startTime, duration, timeOrigin) {
-            var measureStartTimestamp = timeOrigin + startTime;
-            var measureEndTimestamp = measureStartTimestamp + duration;
-            _startChild(transaction, {
-                description: entry.name,
-                endTimestamp: measureEndTimestamp,
-                op: entry.entryType,
-                startTimestamp: measureStartTimestamp
-            });
-            return measureStartTimestamp;
-        }
-        function addResourceSpans(transaction, entry, resourceName, startTime, duration, timeOrigin) {
-            if ("xmlhttprequest" === entry.initiatorType || "fetch" === entry.initiatorType) return;
-            var data = {};
-            if ("transferSize" in entry) data["Transfer Size"] = entry.transferSize;
-            if ("encodedBodySize" in entry) data["Encoded Body Size"] = entry.encodedBodySize;
-            if ("decodedBodySize" in entry) data["Decoded Body Size"] = entry.decodedBodySize;
-            var startTimestamp = timeOrigin + startTime;
-            var endTimestamp = startTimestamp + duration;
-            _startChild(transaction, {
-                description: resourceName,
-                endTimestamp,
-                op: entry.initiatorType ? "resource." + entry.initiatorType : "resource",
-                startTimestamp,
-                data
-            });
-        }
-        function addPerformanceNavigationTiming(transaction, entry, event, timeOrigin, description, eventEnd) {
-            var end = eventEnd ? entry[eventEnd] : entry[event + "End"];
-            var start = entry[event + "Start"];
-            if (!start || !end) return;
-            _startChild(transaction, {
-                op: "browser",
-                description: null !== description && void 0 !== description ? description : event,
-                startTimestamp: timeOrigin + (0, utils.msToSec)(start),
-                endTimestamp: timeOrigin + (0, utils.msToSec)(end)
-            });
-        }
-        function addRequest(transaction, entry, timeOrigin) {
-            _startChild(transaction, {
-                op: "browser",
-                description: "request",
-                startTimestamp: timeOrigin + (0, utils.msToSec)(entry.requestStart),
-                endTimestamp: timeOrigin + (0, utils.msToSec)(entry.responseEnd)
-            });
-            _startChild(transaction, {
-                op: "browser",
-                description: "response",
-                startTimestamp: timeOrigin + (0, utils.msToSec)(entry.responseStart),
-                endTimestamp: timeOrigin + (0, utils.msToSec)(entry.responseEnd)
-            });
-        }
-        function _startChild(transaction, _a) {
-            var startTimestamp = _a.startTimestamp, ctx = (0, tslib_es6.__rest)(_a, [ "startTimestamp" ]);
-            if (startTimestamp && transaction.startTimestamp > startTimestamp) transaction.startTimestamp = startTimestamp;
-            return transaction.startChild((0, tslib_es6.__assign)({
-                startTimestamp
-            }, ctx));
-        }
-        function isMeasurementValue(value) {
-            return "number" === typeof value && isFinite(value);
-        }
-        function tagMetricInfo(transaction, lcpEntry, clsEntry) {
-            if (lcpEntry) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding LCP Data");
-                if (lcpEntry.element) transaction.setTag("lcp.element", (0, browser.htmlTreeAsString)(lcpEntry.element));
-                if (lcpEntry.id) transaction.setTag("lcp.id", lcpEntry.id);
-                if (lcpEntry.url) transaction.setTag("lcp.url", lcpEntry.url.trim().slice(0, 200));
-                transaction.setTag("lcp.size", lcpEntry.size);
-            }
-            if (clsEntry && clsEntry.sources) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding CLS Data");
-                clsEntry.sources.forEach((function(source, index) {
-                    return transaction.setTag("cls.source." + (index + 1), (0, browser.htmlTreeAsString)(source.node));
-                }));
-            }
-        }
-        var DEFAULT_TRACING_ORIGINS = [ "localhost", /^\// ];
-        var defaultRequestInstrumentationOptions = {
-            traceFetch: true,
-            traceXHR: true,
-            tracingOrigins: DEFAULT_TRACING_ORIGINS
-        };
-        function instrumentOutgoingRequests(_options) {
-            var _a = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, defaultRequestInstrumentationOptions), _options), traceFetch = _a.traceFetch, traceXHR = _a.traceXHR, tracingOrigins = _a.tracingOrigins, shouldCreateSpanForRequest = _a.shouldCreateSpanForRequest;
-            var urlMap = {};
-            var defaultShouldCreateSpan = function(url) {
-                if (urlMap[url]) return urlMap[url];
-                var origins = tracingOrigins;
-                urlMap[url] = origins.some((function(origin) {
-                    return (0, string.isMatchingPattern)(url, origin);
-                })) && !(0, string.isMatchingPattern)(url, "sentry_key");
-                return urlMap[url];
-            };
-            var shouldCreateSpan = defaultShouldCreateSpan;
-            if ("function" === typeof shouldCreateSpanForRequest) shouldCreateSpan = function(url) {
-                return defaultShouldCreateSpan(url) && shouldCreateSpanForRequest(url);
-            };
-            var spans = {};
-            if (traceFetch) (0, instrument.addInstrumentationHandler)("fetch", (function(handlerData) {
-                fetchCallback(handlerData, shouldCreateSpan, spans);
-            }));
-            if (traceXHR) (0, instrument.addInstrumentationHandler)("xhr", (function(handlerData) {
-                xhrCallback(handlerData, shouldCreateSpan, spans);
-            }));
-        }
-        function fetchCallback(handlerData, shouldCreateSpan, spans) {
-            if (!(0, utils.hasTracingEnabled)() || !(handlerData.fetchData && shouldCreateSpan(handlerData.fetchData.url))) return;
-            if (handlerData.endTimestamp) {
-                var spanId = handlerData.fetchData.__span;
-                if (!spanId) return;
-                var span = spans[spanId];
-                if (span) {
-                    if (handlerData.response) span.setHttpStatus(handlerData.response.status); else if (handlerData.error) span.setStatus("internal_error");
-                    span.finish();
-                    delete spans[spanId];
-                }
-                return;
-            }
-            var activeTransaction = (0, utils.getActiveTransaction)();
-            if (activeTransaction) {
-                span = activeTransaction.startChild({
-                    data: (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, handlerData.fetchData), {
-                        type: "fetch"
-                    }),
-                    description: handlerData.fetchData.method + " " + handlerData.fetchData.url,
-                    op: "http.client"
-                });
-                handlerData.fetchData.__span = span.spanId;
-                spans[span.spanId] = span;
-                var request = handlerData.args[0] = handlerData.args[0];
-                var options = handlerData.args[1] = handlerData.args[1] || {};
-                var headers = options.headers;
-                if ((0, is.isInstanceOf)(request, Request)) headers = request.headers;
-                if (headers) if ("function" === typeof headers.append) headers.append("sentry-trace", span.toTraceparent()); else if (Array.isArray(headers)) headers = (0, 
-                tslib_es6.__spread)(headers, [ [ "sentry-trace", span.toTraceparent() ] ]); else headers = (0, 
-                tslib_es6.__assign)((0, tslib_es6.__assign)({}, headers), {
-                    "sentry-trace": span.toTraceparent()
-                }); else headers = {
-                    "sentry-trace": span.toTraceparent()
-                };
-                options.headers = headers;
-            }
-        }
-        function xhrCallback(handlerData, shouldCreateSpan, spans) {
-            if (!(0, utils.hasTracingEnabled)() || handlerData.xhr && handlerData.xhr.__sentry_own_request__ || !(handlerData.xhr && handlerData.xhr.__sentry_xhr__ && shouldCreateSpan(handlerData.xhr.__sentry_xhr__.url))) return;
-            var xhr = handlerData.xhr.__sentry_xhr__;
-            if (handlerData.endTimestamp) {
-                var spanId = handlerData.xhr.__sentry_xhr_span_id__;
-                if (!spanId) return;
-                var span = spans[spanId];
-                if (span) {
-                    span.setHttpStatus(xhr.status_code);
-                    span.finish();
-                    delete spans[spanId];
-                }
-                return;
-            }
-            var activeTransaction = (0, utils.getActiveTransaction)();
-            if (activeTransaction) {
-                span = activeTransaction.startChild({
-                    data: (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, xhr.data), {
-                        type: "xhr",
-                        method: xhr.method,
-                        url: xhr.url
-                    }),
-                    description: xhr.method + " " + xhr.url,
-                    op: "http.client"
-                });
-                handlerData.xhr.__sentry_xhr_span_id__ = span.spanId;
-                spans[handlerData.xhr.__sentry_xhr_span_id__] = span;
-                if (handlerData.xhr.setRequestHeader) try {
-                    handlerData.xhr.setRequestHeader("sentry-trace", span.toTraceparent());
-                } catch (_) {}
-            }
-        }
-        var router_global = (0, esm_global.getGlobalObject)();
-        function instrumentRoutingWithDefaults(customStartTransaction, startTransactionOnPageLoad, startTransactionOnLocationChange) {
-            if (void 0 === startTransactionOnPageLoad) startTransactionOnPageLoad = true;
-            if (void 0 === startTransactionOnLocationChange) startTransactionOnLocationChange = true;
-            if (!router_global || !router_global.location) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Could not initialize routing instrumentation due to invalid location");
-                return;
-            }
-            var startingUrl = router_global.location.href;
-            var activeTransaction;
-            if (startTransactionOnPageLoad) activeTransaction = customStartTransaction({
-                name: router_global.location.pathname,
-                op: "pageload"
-            });
-            if (startTransactionOnLocationChange) (0, instrument.addInstrumentationHandler)("history", (function(_a) {
-                var to = _a.to, from = _a.from;
-                if (void 0 === from && startingUrl && -1 !== startingUrl.indexOf(to)) {
-                    startingUrl = void 0;
-                    return;
-                }
-                if (from !== to) {
-                    startingUrl = void 0;
-                    if (activeTransaction) {
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Finishing current transaction with op: " + activeTransaction.op);
-                        activeTransaction.finish();
-                    }
-                    activeTransaction = customStartTransaction({
-                        name: router_global.location.pathname,
-                        op: "navigation"
-                    });
-                }
-            }));
-        }
-        var DEFAULT_MAX_TRANSACTION_DURATION_SECONDS = 600;
-        var DEFAULT_BROWSER_TRACING_OPTIONS = (0, tslib_es6.__assign)({
-            idleTimeout: idletransaction.DEFAULT_IDLE_TIMEOUT,
-            markBackgroundTransactions: true,
-            maxTransactionDuration: DEFAULT_MAX_TRANSACTION_DURATION_SECONDS,
-            routingInstrumentation: instrumentRoutingWithDefaults,
-            startTransactionOnLocationChange: true,
-            startTransactionOnPageLoad: true
-        }, defaultRequestInstrumentationOptions);
-        var BrowserTracing = function() {
-            function BrowserTracing(_options) {
-                this.name = BrowserTracing.id;
-                this._configuredIdleTimeout = void 0;
-                var tracingOrigins = defaultRequestInstrumentationOptions.tracingOrigins;
-                if (_options) {
-                    this._configuredIdleTimeout = _options.idleTimeout;
-                    if (_options.tracingOrigins && Array.isArray(_options.tracingOrigins) && 0 !== _options.tracingOrigins.length) tracingOrigins = _options.tracingOrigins; else (0, 
-                    esm_env.isDebugBuild)() && (this._emitOptionsWarning = true);
-                }
-                this.options = (0, tslib_es6.__assign)((0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, DEFAULT_BROWSER_TRACING_OPTIONS), _options), {
-                    tracingOrigins
-                });
-                var _metricOptions = this.options._metricOptions;
-                this._metrics = new MetricsInstrumentation(_metricOptions && _metricOptions._reportAllChanges);
-            }
-            BrowserTracing.prototype.setupOnce = function(_, getCurrentHub) {
-                var _this = this;
-                this._getCurrentHub = getCurrentHub;
-                if (this._emitOptionsWarning) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] You need to define `tracingOrigins` in the options. Set an array of urls or patterns to trace.");
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] We added a reasonable default for you: " + defaultRequestInstrumentationOptions.tracingOrigins);
-                }
-                var _a = this.options, instrumentRouting = _a.routingInstrumentation, startTransactionOnLocationChange = _a.startTransactionOnLocationChange, startTransactionOnPageLoad = _a.startTransactionOnPageLoad, markBackgroundTransactions = _a.markBackgroundTransactions, traceFetch = _a.traceFetch, traceXHR = _a.traceXHR, tracingOrigins = _a.tracingOrigins, shouldCreateSpanForRequest = _a.shouldCreateSpanForRequest;
-                instrumentRouting((function(context) {
-                    return _this._createRouteTransaction(context);
-                }), startTransactionOnPageLoad, startTransactionOnLocationChange);
-                if (markBackgroundTransactions) registerBackgroundTabDetection();
-                instrumentOutgoingRequests({
-                    traceFetch,
-                    traceXHR,
-                    tracingOrigins,
-                    shouldCreateSpanForRequest
-                });
-            };
-            BrowserTracing.prototype._createRouteTransaction = function(context) {
-                var _this = this;
-                if (!this._getCurrentHub) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] Did not create " + context.op + " transaction because _getCurrentHub is invalid.");
-                    return;
-                }
-                var _a = this.options, beforeNavigate = _a.beforeNavigate, idleTimeout = _a.idleTimeout, maxTransactionDuration = _a.maxTransactionDuration;
-                var parentContextFromHeader = "pageload" === context.op ? getHeaderContext() : void 0;
-                var expandedContext = (0, tslib_es6.__assign)((0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, context), parentContextFromHeader), {
-                    trimEnd: true
-                });
-                var modifiedContext = "function" === typeof beforeNavigate ? beforeNavigate(expandedContext) : expandedContext;
-                var finalContext = void 0 === modifiedContext ? (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, expandedContext), {
-                    sampled: false
-                }) : modifiedContext;
-                if (false === finalContext.sampled) (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Will not send " + finalContext.op + " transaction because of beforeNavigate.");
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Starting " + finalContext.op + " transaction on scope");
-                var hub = this._getCurrentHub();
-                var location = (0, esm_global.getGlobalObject)().location;
-                var idleTransaction = (0, hubextensions.startIdleTransaction)(hub, finalContext, idleTimeout, true, {
-                    location
-                });
-                idleTransaction.registerBeforeFinishCallback((function(transaction, endTimestamp) {
-                    _this._metrics.addPerformanceEntries(transaction);
-                    adjustTransactionDuration((0, utils.secToMs)(maxTransactionDuration), transaction, endTimestamp);
-                }));
-                idleTransaction.setTag("idleTimeout", this._configuredIdleTimeout);
-                return idleTransaction;
-            };
-            BrowserTracing.id = "BrowserTracing";
-            return BrowserTracing;
-        }();
-        function getHeaderContext() {
-            var header = getMetaContent("sentry-trace");
-            if (header) return extractTraceparentData(header);
-            return;
-        }
-        function getMetaContent(metaName) {
-            var el = (0, esm_global.getGlobalObject)().document.querySelector("meta[name=" + metaName + "]");
-            return el ? el.getAttribute("content") : null;
-        }
-        function adjustTransactionDuration(maxDuration, transaction, endTimestamp) {
-            var diff = endTimestamp - transaction.startTimestamp;
-            var isOutdatedTransaction = endTimestamp && (diff > maxDuration || diff < 0);
-            if (isOutdatedTransaction) {
-                transaction.setStatus("deadline_exceeded");
-                transaction.setTag("maxTransactionDurationExceeded", "true");
-            }
-        }
-        (0, hubextensions.addExtensionMethods)();
-        var get_env = __webpack_require__("../shared/browser/utils/get-env.js");
-        const errorTypesEnum = {
-            CUSTOM_CODES: "CUSTOM_CODES"
-        };
-        const errorPositionEnum = {
-            TOP: "top",
-            BOTTOM: "bottom"
-        };
-        function getErrorLine(error) {
-            if (!(error && error.stack)) return;
-            const stack = error.stack.toString().split(/\r\n|\n/);
-            const frameRE = /:(\d+):(?:\d+)[^\d]*$/;
-            let firstTrace;
-            let frame;
-            do {
-                frame = stack.shift();
-                firstTrace = frameRE.exec(frame);
-                if (!frame) break;
-            } while (!frameRE.exec(frame) || frame.includes("at <anonymous>") || 1 === +(firstTrace && firstTrace[1]));
-            const causeTrace = +(firstTrace && firstTrace[1] || "0");
-            return causeTrace;
-        }
-        function setEventErrorInfo(event, position) {
-            if (!event.contexts) event.contexts = {};
-            event.contexts.error_info = {
-                position,
-                error_type: errorTypesEnum.CUSTOM_CODES
-            };
-        }
-        try {
-            const {APP_ENV, SENTRY_TRACES_SAMPLE_RATE} = (0, get_env["default"])();
-            let sampleRate = Number(SENTRY_TRACES_SAMPLE_RATE);
-            if (Number.isNaN(sampleRate)) sampleRate = 0;
-            const options = {
-                debug: false,
-                environment: APP_ENV,
-                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_c84a649d4"}`,
-                dsn: (0, get_env["default"])(void 0 || "SENTRY_DSN") || "",
-                autoSessionTracking: false,
-                ignoreErrors: [ "ReportingObserver [deprecation]" ],
-                blacklistUrls: [ /^localhost/, /extensions\//i, /^chrome:\/\//i, /^chrome-extensions:\/\//i, /^safari-extension:\/\//i, /^file:\/\//i ],
-                tracesSampleRate: sampleRate,
-                integrations: [ new BrowserTracing ],
-                beforeSend(event, hint) {
-                    const error = hint.originalException;
-                    const frames = event && event.exception && event.exception.values && event.exception.values[0] && event.exception.values[0].stacktrace && event.exception.values[0].stacktrace.frames;
-                    const traceFrames = frames || [];
-                    const errorLine = getErrorLine(error) || traceFrames[0] && traceFrames[0].lineno;
-                    const file = traceFrames.find((frame => frame.lineno === errorLine));
-                    const errorFile = get_default()(file, "filename", void 0) || get_default()(traceFrames[0], "filename", void 0);
-                    if (errorFile === window.location.href) {
-                        if ("undefined" !== typeof window.__CUSTOM_HEADER_START__ && "undefined" !== typeof window.__CUSTOM_HEADER_END__) {
-                            const isHeadError = errorLine >= +window.__CUSTOM_HEADER_START__ && errorLine <= +window.__CUSTOM_HEADER_END__;
-                            if (isHeadError) setEventErrorInfo(event, errorPositionEnum.TOP);
-                        }
-                        if ("undefined" !== typeof window.__CUSTOM_FOOTER_START__) {
-                            const isFootError = errorLine >= +window.__CUSTOM_FOOTER_START__ && ("undefined" !== typeof window.__CUSTOM_FOOTER_END__ ? errorLine <= +window.__CUSTOM_FOOTER_END__ : true);
-                            if (isFootError) setEventErrorInfo(event, errorPositionEnum.BOTTOM);
-                        }
-                    }
-                    return event;
-                },
-                beforeBreadcrumb(breadcrumb, hint) {
-                    const response = get_default()(hint, "xhr.response", void 0);
-                    if ("xhr" === breadcrumb.category && response) try {
-                        const trace_id = response.match(/trace_id":"(\S*?)"/)[1] || "";
-                        return {
-                            ...breadcrumb,
-                            data: {
-                                ...breadcrumb.data,
-                                trace_id
-                            }
-                        };
-                    } catch (err) {
-                        return breadcrumb;
-                    }
-                    return breadcrumb;
-                }
-            };
-            if (-1 === sampleRate) delete options.tracesSampleRate;
-            init(options);
-            const eventOn = get_default()(window, "Shopline.event", void 0);
-            if (eventOn) eventOn.on("Sentry::CaptureMessage", ((...data) => {
-                captureMessage(...data);
-            }));
-        } catch (e) {
-            console.error(e);
-        }
-    })();
-    (() => {
-        "use strict";
         var browser = __webpack_require__("../shared/browser/node_modules/debug/src/browser.js");
         var browser_default = __webpack_require__.n(browser);
-        var get_env = __webpack_require__("../shared/browser/utils/get-env.js");
+        function getEnv(key) {
+            const ENV = window.__ENV__ || {};
+            if (key) return ENV[key];
+            return ENV;
+        }
         const isFunction = fn => "function" === typeof fn;
         const createLogger = (name, description) => {
             const logger = {
@@ -12539,7 +7826,7 @@
                 log: console.log
             };
             if ("undefined" === typeof window) return logger;
-            if ([ "product" ].includes((0, get_env["default"])().APP_ENV)) browser_default() && browser_default().disable();
+            if ([ "product" ].includes(getEnv().APP_ENV)) browser_default() && browser_default().disable();
             if (!isFunction(browser_default())) return;
             const desc = description ? ` - ${description}` : "";
             logger.error = browser_default()(`${name}:error${desc}`).bind(console);
@@ -12549,6 +7836,60 @@
             return logger;
         };
         const utils_createLogger = createLogger;
+        var js_cookie = __webpack_require__("./node_modules/js-cookie/src/js.cookie.js");
+        var js_cookie_default = __webpack_require__.n(js_cookie);
+        const Owner = {
+            MiniCart: "Checkouts.cart.mini",
+            MainCart: "Checkouts.cart.main",
+            Cart: "Checkouts.common.cart",
+            Coupon: "Checkouts.common.coupon",
+            Checkout: "Checkouts.checkout",
+            Processing: "Checkouts.processing",
+            Thankyou: "Checkouts.thankyou",
+            Order: "Checkouts.order",
+            ExpressCallback: "Checkouts.expressCallback",
+            Error: "Checkouts.error"
+        };
+        const ActionOwner = {
+            Cart: "Cart",
+            Checkout: "Checkout",
+            Processing: "Processing",
+            Thankyou: "Thankyou",
+            Order: "Order",
+            ExpressCallback: "ExpressCallback",
+            Error: "Error"
+        };
+        const commonAction = actionOwner => ({
+            [`Init${actionOwner}`]: `init${actionOwner}`,
+            [`Take${actionOwner}`]: `take${actionOwner}`,
+            [`Edit${actionOwner}`]: `edit${actionOwner}`,
+            [`CallingInterface${actionOwner}`]: `callingInterface${actionOwner}`,
+            [`CalculatePrice${actionOwner}`]: `calculatePrice${actionOwner}`,
+            [`Report${actionOwner}`]: `report${actionOwner}`
+        });
+        const CartActions = {
+            ...commonAction(ActionOwner.Cart),
+            OpenCart: "openCart",
+            Add2Cart: "add2Cart",
+            DeleteCart: "deleteCart",
+            ClearCart: "clearCart",
+            EditCoupon: "editCoupon"
+        };
+        const CheckoutActions = {
+            ...commonAction(ActionOwner.Checkout),
+            EditCoupon: "editCoupon",
+            ChangePage: "changePage",
+            CompleteOrder: "CompleteOrder"
+        };
+        const sentryReport_Action = {
+            ...CartActions,
+            ...CheckoutActions,
+            ...commonAction(ActionOwner.ExpressCallback),
+            ...commonAction(ActionOwner.Processing),
+            ...commonAction(ActionOwner.Thankyou),
+            ...commonAction(ActionOwner.Order),
+            ...commonAction(ActionOwner.Error)
+        };
         var eventemitter3 = __webpack_require__("../shared/browser/node_modules/eventemitter3/index.js");
         var eventemitter3_default = __webpack_require__.n(eventemitter3);
         if (!window.SL_EventBus) {
@@ -12788,7 +8129,7 @@
             const dataSourceFrom = dataSource && dataSource[from];
             return value * syntax_patch_nullishCoalescingOperator(dataSourceTo, 1) / syntax_patch_nullishCoalescingOperator(dataSourceFrom, 1);
         };
-        const convertFormat = (value, options = {}) => {
+        const currency_convertFormat = (value, options = {}) => {
             const fromDefault = state_selector_SL_State.get("storeInfo.currency");
             const toDefault = state_selector_SL_State.get("currencyCode");
             const locale = state_selector_SL_State.get("request.locale");
@@ -12973,7 +8314,7 @@
             getGroupSymbolByCode,
             getFormatParts,
             getConvertPrice,
-            convertFormat,
+            convertFormat: currency_convertFormat,
             covertCalc
         };
         const HD_EVENT_NAME = {
@@ -13027,13 +8368,13 @@
             if (void 0 === amount) return "";
             const num = Number(amount) || 0;
             if (type === TypeEnum.NUMBER) return num;
-            if (type === TypeEnum.AMOUNT) return `<span data-amount="${num}">${convertFormat(num)}</span>`;
+            if (type === TypeEnum.AMOUNT) return `<span data-amount="${num}">${currency_convertFormat(num)}</span>`;
             return "";
         }
         const getI18nKey = (step, configs, type) => {
-            if (1 === step) return type === TypeEnum.AMOUNT ? "sales.gift.notMetAmount" : "sales.gift.notMetQuantity";
-            if (2 === step) return configs.hasSelectedGiftQuantity <= 0 || type === TypeEnum.NONE ? "sales.gift.noReceived" : type === TypeEnum.AMOUNT ? "sales.gift.spendMoreMoneyGetMore" : "sales.gift.spendMoreQuantityGetMore";
-            if (3 === step) return configs.hasSelectedGiftQuantity <= 0 ? "sales.gift.noReceived" : "sales.gift.gotAll";
+            if (1 === step) return type === TypeEnum.AMOUNT ? "sales.gift.not_meet_amount_tip" : "sales.gift.not_meet_quantity_tip";
+            if (2 === step) return configs.hasSelectedGiftQuantity <= 0 || type === TypeEnum.NONE ? "sales.gift.select_gift_tip" : type === TypeEnum.AMOUNT ? "sales.gift.spend_more_money_get_more_tip" : "sales.gift.spend_more_quantity_get_more_tip";
+            if (3 === step) return configs.hasSelectedGiftQuantity <= 0 ? "sales.gift.select_gift_tip" : "sales.gift.got_all_gifts_tip";
             return "";
         };
         const getGiftConfig = (promotion, configs = {}) => {
@@ -13094,13 +8435,11 @@
             return `\n  <div class="cart-sku-list-promotion-module salesPluginGift__promotion" data-widget-scope="gift" data-activityseq="${promotion.activitySeq}" data-promotionseq="${promotion.promotionSeq}">\n    <div>\n      ${promotionTemplate}\n    </div>\n    <span class="cart-sku-list-promotion-module-arrow">\n      ${isPCMainCart ? i18n_t("sales.gift.select") : ""}\n      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n        <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />\n      </svg>\n    </span>\n  </div>\n  `;
         };
         const gift = getGiftContent;
-        const getPromotionReminder_nc = syntax_patch_nullishCoalescingOperator;
-        function getPromotionReminder_setWrapper(value, warper) {
-            return warper ? `<span class="notranslate ${warper.class}" style="font-size: 14px; font-weight: bold;${getPromotionReminder_nc(warper.style, "")}">${value}</span>` : value;
-        }
+        const shoppingPromotionReminder_nc = syntax_patch_nullishCoalescingOperator;
         const BenefitTypeEnum = {
             PRICE: 1,
             DISCOUNT: 2,
+            BUY_X_GET_Y: 12,
             NTH_PRICE: 11,
             FREELOWESTPRICE: 9,
             FREESHOPPING: 3
@@ -13109,85 +8448,106 @@
             PRICE: 0,
             NUMBER: 1
         };
-        function getPromotionReminder_formatBenefitNum(str, type) {
-            if (void 0 === str) return "";
-            const num = Number(str) || 0;
-            if (syntax_patch_get(type, "thresholdType") === ThresholdTypeEnum.NUMBER) return num;
-            if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.DISCOUNT || syntax_patch_get(type, "benefitType") === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
-            if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.PRICE || syntax_patch_get(type, "thresholdType") === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${convertFormat(num)}</span>`;
-            if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.FREELOWESTPRICE) return num;
-            return "";
+        function defaultSafeString(str) {
+            return str;
         }
-        function getShoppingReminderConfig(promotion, {lineBreak = false, warper} = {}) {
-            const {benefitType, promotionBenefitList = []} = getPromotionReminder_nc(promotion, {});
-            if (promotionBenefitList.length) {
-                const thresholdType = promotionBenefitList[0].type;
-                let current;
-                let next;
-                let step;
-                if (!syntax_patch_get(promotionBenefitList, [ 1 ])) if (promotionBenefitList[0].hit) {
-                    step = 3;
-                    current = syntax_patch_get(promotionBenefitList, [ 0 ]);
-                } else {
-                    step = 1;
-                    next = syntax_patch_get(promotionBenefitList, [ 0 ]);
-                } else if (promotionBenefitList[1].hit) {
-                    step = 3;
-                    current = syntax_patch_get(promotionBenefitList, [ 1 ]);
-                } else {
-                    step = 2;
-                    current = syntax_patch_get(promotionBenefitList, [ 0 ]);
-                    next = syntax_patch_get(promotionBenefitList, [ 1 ]);
+        function shoppingPromotionReminder_shoppingPromotionReminder(currency, safeString = defaultSafeString) {
+            function setWrapper(value, warper) {
+                return safeString(warper ? `<span class="notranslate ${warper.class}" style="font-size: 14px; font-weight: bold;${shoppingPromotionReminder_nc(warper.style, "")}"> ${value} </span>` : value);
+            }
+            function formatBenefitNum(str, type, options) {
+                if (void 0 === str) return "";
+                const num = Number(str) || 0;
+                if (syntax_patch_get(type, "thresholdType") === ThresholdTypeEnum.NUMBER) return num;
+                if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.DISCOUNT || syntax_patch_get(type, "benefitType") === BenefitTypeEnum.BUY_X_GET_Y || syntax_patch_get(type, "benefitType") === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
+                if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.PRICE || syntax_patch_get(type, "thresholdType") === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
+                if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.FREELOWESTPRICE) return num;
+                return "";
+            }
+            function getShoppingReminderConfig(promotion, configs = {}, options) {
+                const {lineBreak = false, warper} = configs;
+                const {benefitType, promotionBenefitList = []} = shoppingPromotionReminder_nc(promotion, {});
+                if (promotionBenefitList.length) {
+                    let current;
+                    let next;
+                    let step;
+                    if (!syntax_patch_get(promotionBenefitList, [ 1 ])) if (promotionBenefitList[0].hit) {
+                        step = 3;
+                        current = syntax_patch_get(promotionBenefitList, [ 0 ]);
+                    } else {
+                        step = 1;
+                        next = syntax_patch_get(promotionBenefitList, [ 0 ]);
+                    } else if (promotionBenefitList[1].hit) {
+                        step = 3;
+                        current = syntax_patch_get(promotionBenefitList, [ 1 ]);
+                    } else {
+                        step = 2;
+                        current = syntax_patch_get(promotionBenefitList, [ 0 ]);
+                        next = syntax_patch_get(promotionBenefitList, [ 1 ]);
+                    }
+                    const {extMap = {}, type: thresholdType} = current || next;
+                    const basePath = `sales.promotion.cart_reminder.b${benefitType}_t${thresholdType}_s${step}`;
+                    let completePath = basePath;
+                    const {meetThreshold} = extMap;
+                    if (benefitType === BenefitTypeEnum.BUY_X_GET_Y) if (1 === step && "true" === meetThreshold) if (0 === Number(syntax_patch_get(next, "benefit"))) completePath = `${basePath}_achieve_free`; else completePath = `${basePath}_achieve_normal`; else if (0 === Number(syntax_patch_get(current, "benefit")) || 0 === Number(syntax_patch_get(next, "benefit"))) completePath = `${basePath}_free`; else completePath = `${basePath}_normal`;
+                    if (benefitType === BenefitTypeEnum.NTH_PRICE) if (0 === Number(syntax_patch_get(current, "benefit"))) completePath = `${basePath}_free`; else if (0 === Number(syntax_patch_get(next, "benefit"))) completePath = `${basePath}_next_free`; else completePath = `${basePath}_normal`;
+                    const {prerequisiteShippingPriceRange} = extMap;
+                    if (benefitType === BenefitTypeEnum.FREESHOPPING) if (prerequisiteShippingPriceRange) completePath = `${basePath}_upper_limit`; else completePath = `${basePath}_unlimited`;
+                    const benefitCount = Number(shoppingPromotionReminder_nc(syntax_patch_get(current, "benefitCount"), syntax_patch_get(next, "benefitCount")));
+                    return {
+                        path: thresholdType > -1 ? completePath : " ",
+                        params: {
+                            saved: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? syntax_patch_get(current, "benefitCount") : syntax_patch_get(current, "benefit"), {
+                                benefitType
+                            }, options), {
+                                ...warper,
+                                class: `sales__promotionReminder-saved ${shoppingPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
+                            }),
+                            willSave: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? syntax_patch_get(next, "benefitCount") : syntax_patch_get(next, "benefit"), {
+                                benefitType
+                            }, options), {
+                                ...warper,
+                                class: `sales__promotionReminder-willSave custom-sale-color ${shoppingPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
+                            }),
+                            threshold: setWrapper(formatBenefitNum(syntax_patch_get(next, "amount"), {
+                                thresholdType
+                            }, options), {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${shoppingPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
+                            }),
+                            br: lineBreak ? setWrapper("<br/>") : setWrapper("<i></i>"),
+                            upperLimit: benefitType === BenefitTypeEnum.FREESHOPPING && prerequisiteShippingPriceRange ? currency && currency(prerequisiteShippingPriceRange, options) : void 0,
+                            benefitCount: benefitCount >= 0 ? setWrapper(benefitCount, {
+                                ...warper,
+                                class: `sales__promotionReminder--benefitCount ${shoppingPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
+                            }) : "",
+                            extMap
+                        },
+                        step
+                    };
                 }
-                const basePath = `sales.promotion.reminder.benefit${benefitType}.threshold${thresholdType}.step${step}`;
-                let completePath = basePath;
-                if (benefitType === BenefitTypeEnum.NTH_PRICE) if ("0" === syntax_patch_get(current, "benefit")) completePath = `${basePath}.free`; else if ("0" === syntax_patch_get(next, "benefit")) completePath = `${basePath}.nextFree`; else completePath = `${basePath}.normal`;
-                const prerequisiteShippingPriceRange = syntax_patch_get(promotionBenefitList, "[0].extMap.prerequisiteShippingPriceRange");
-                if (benefitType === BenefitTypeEnum.FREESHOPPING) if (prerequisiteShippingPriceRange) completePath = `${basePath}.upperLimit`; else completePath = `${basePath}.unlimited`;
                 return {
-                    path: completePath,
-                    params: {
-                        saved: getPromotionReminder_setWrapper(getPromotionReminder_formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? syntax_patch_get(current, "benefitCount") : syntax_patch_get(current, "benefit"), {
-                            benefitType
-                        }), {
-                            ...warper,
-                            class: `sales__promotionReminder-saved ${getPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
-                        }),
-                        willSave: getPromotionReminder_setWrapper(getPromotionReminder_formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? syntax_patch_get(next, "benefitCount") : syntax_patch_get(next, "benefit"), {
-                            benefitType
-                        }), {
-                            ...warper,
-                            class: `sales__promotionReminder-willSave custom-sale-color ${getPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
-                        }),
-                        threshold: getPromotionReminder_setWrapper(getPromotionReminder_formatBenefitNum(syntax_patch_get(next, "amount"), {
-                            thresholdType
-                        }), {
-                            ...warper,
-                            class: `sales__promotionReminder-threshold custom-sale-color ${getPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
-                        }),
-                        br: lineBreak ? getPromotionReminder_setWrapper("<br/>") : getPromotionReminder_setWrapper("<i></i>"),
-                        upperLimit: benefitType === BenefitTypeEnum.FREESHOPPING && prerequisiteShippingPriceRange ? convertFormat(prerequisiteShippingPriceRange) : void 0
-                    },
-                    step
+                    path: "",
+                    params: {},
+                    step: 0
                 };
             }
-            return {
-                path: "",
-                params: {},
-                step: 0
-            };
+            return getShoppingReminderConfig;
         }
-        const getPromotionReminder = getShoppingReminderConfig;
+        const sales_shoppingPromotionReminder = shoppingPromotionReminder_shoppingPromotionReminder;
+        const getPromotionReminder = sales_shoppingPromotionReminder(currency_convertFormat);
+        const reminder_getPromotionReminder = getPromotionReminder;
         const getPromotionBarContent = (promotion, rootWrapper) => {
             const isPCMainCart = rootWrapper.hasClass("main") && rootWrapper.hasClass("is-pc");
-            const config = getPromotionReminder(promotion, {
+            const config = reminder_getPromotionReminder(promotion, {
                 lineBreak: !isPCMainCart
             });
             const needJump = 3 !== syntax_patch_get(config, "step");
             const promotionTemplate = i18n_t(config.path, {
                 ...config.params || {}
             });
-            if (needJump) return `\n      <div class="cart-sku-list-promotion-module-can-jump">\n        <a href="/activity/${promotion.activitySeq}?type=pool" class="cart-sku-list-promotion-module-can-jump-wrapper">\n          <div>\n            ${promotionTemplate}\n          </div>\n          <div class="cart-sku-list-promotion-module-can-jump-arrow" style="font-size:0;">\n            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n              <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />\n            </svg>\n          </div>\n        </a>\n      </div>\n    `;
+            const {extMap = {}} = config.params;
+            if (needJump) return `\n      <div class="cart-sku-list-promotion-module-can-jump">\n        <a href="/activity/${promotion.activitySeq}?type=pool${"true" === extMap.meetThreshold ? "&query_product_type=2" : ""}" class="cart-sku-list-promotion-module-can-jump-wrapper">\n          <div>\n            ${promotionTemplate}\n          </div>\n          <div class="cart-sku-list-promotion-module-can-jump-arrow" style="font-size:0;">\n            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n              <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />\n            </svg>\n          </div>\n        </a>\n      </div>\n    `;
             return `\n    <div class="cart-sku-list-promotion-module">\n      <span>\n        ${promotionTemplate}\n      </span>\n    </div>\n  `;
         };
         const reminder = getPromotionBarContent;
@@ -13220,6 +8580,78 @@
             const content = getContent(...args);
             return `\n    <div class="cart-sku-list-promotion">\n      ${content}\n    </div>\n  `;
         };
+        var n, o, index_es_t, i = function() {
+            return i = Object.assign || function(n) {
+                for (var o, t = 1, i = arguments.length; t < i; t++) for (var r in o = arguments[t]) Object.prototype.hasOwnProperty.call(o, r) && (n[r] = o[r]);
+                return n;
+            }, i.apply(this, arguments);
+        };
+        !function(n) {
+            n.P0 = "P0", n.P1 = "P1", n.P2 = "P2";
+        }(n || (n = {})), function(n) {
+            n.Start = "开始", n.Success = "成功", n.Failure = "失败";
+        }(o || (o = {})), function(n) {
+            n.Info = "info", n.Log = "log", n.Warn = "warn", n.Error = "error";
+        }(index_es_t || (index_es_t = {}));
+        var r = function n(o) {
+            var r = this;
+            this.options = {
+                owner: "",
+                action: "",
+                transports: []
+            }, this.withOwner = function(o) {
+                return new n(i(i({}, r.options), {
+                    owner: o
+                }));
+            }, this.pipeOwner = function(o) {
+                var t = "";
+                return t = r.options.owner ? "".concat(r.options.owner, ".").concat(o) : o, new n(i(i({}, r.options), {
+                    owner: t
+                }));
+            }, this.withAction = function(o) {
+                return new n(i(i({}, r.options), {
+                    action: o
+                }));
+            }, this.pipeTransport = function() {
+                for (var o = [], t = 0; t < arguments.length; t++) o[t] = arguments[t];
+                var e = r.options.transports.concat(o);
+                return new n(i(i({}, r.options), {
+                    transports: e
+                }));
+            }, this.report = function(n, o, t) {
+                !function(n, o) {
+                    var t = n;
+                    o.forEach((function(n) {
+                        var o = n(t);
+                        o && (t = o);
+                    }));
+                }(i(i({
+                    level: n,
+                    owner: r.options.owner,
+                    action: r.options.action
+                }, t), {
+                    message: o
+                }), r.options.transports);
+            }, this.info = function(n, o) {
+                r.report(index_es_t.Info, n, o);
+            }, this.log = function(n, o) {
+                r.report(index_es_t.Log, n, o);
+            }, this.warn = function(n, o) {
+                r.report(index_es_t.Warn, n, o);
+            }, this.error = function(n, o) {
+                r.report(index_es_t.Error, n, o);
+            }, this.options = i(i({}, this.options), o);
+        }, e = new r;
+        Object.defineProperty(e, "options", {
+            writable: !1,
+            configurable: !1
+        });
+        var index_es = __webpack_require__("../shared/browser/node_modules/@sl/logger/lib/index.es.js");
+        var lib_index_es = __webpack_require__("../shared/browser/node_modules/@sl/logger-sentry/lib/index.es.js");
+        const newLogger = index_es["default"].pipeTransport(lib_index_es["default"]);
+        const sentry = newLogger;
+        const logger_newLogger = sentry.pipeOwner("trade");
+        const logger = logger_newLogger;
         var isPlainObject = __webpack_require__("./node_modules/lodash/isPlainObject.js");
         var isPlainObject_default = __webpack_require__.n(isPlainObject);
         const isBrowser = "undefined" !== typeof window && "undefined" !== typeof navigator;
@@ -13355,7 +8787,7 @@
             return `${dirname}/${filename.slice(0, lastDotIndex)}${clipper}${filename.slice(lastDotIndex)}`;
         }
         function convertPrice(price) {
-            const formattedPrice = convertFormat(price);
+            const formattedPrice = currency_convertFormat(price);
             const code = state_selector_SL_State.get("currencyCode");
             const lang = state_selector_SL_State.get("request.locale");
             const decimalSymbol = currency.getDecimalSymbolByCode(code, lang);
@@ -13621,10 +9053,6 @@
             LIMITED: 0,
             UNLIMITED: 1,
             OVERSOLD: 2
-        };
-        const limitedActiveEnum = {
-            LIMITED_ACTIVE_OVER: 1,
-            LIMITED_ACTIVE_SKU_OVER: 2
         };
         const cartLimitedEnum = {
             NORMAL_ITEM_MAX_NUM: [ "ITEM_MAX_NUM" ],
@@ -14228,8 +9656,8 @@
             }
             render() {
                 const template = toast_getTemplate(this.options, this.type || this.options.type);
-                this.$toast = $(template);
-                this.$target = $(this.options.target);
+                this.$toast = __SL_$__(template);
+                this.$target = __SL_$__(this.options.target);
                 const {$target} = this;
                 if ("static" === $target.css("position")) $target.css("position", "relative");
                 $target.append(this.$toast);
@@ -14647,8 +10075,8 @@
         }
         const cartHdReport = new CartHdReport;
         const report_cartHdReport = cartHdReport;
-        var js_cookie = __webpack_require__("../shared/browser/node_modules/js-cookie/src/js.cookie.js");
-        var js_cookie_default = __webpack_require__.n(js_cookie);
+        var src_js_cookie = __webpack_require__("../shared/browser/node_modules/js-cookie/src/js.cookie.js");
+        var src_js_cookie_default = __webpack_require__.n(src_js_cookie);
         const const_PageType = {
             Home: 0,
             ProductCategory: 1,
@@ -14688,7 +10116,7 @@
             RemoveFromCart: "remove_from_cart",
             ViewCart: "view_cart"
         };
-        const isProd = [ "product", "preview" ].includes((0, get_env["default"])().APP_ENV);
+        const isProd = [ "product", "preview" ].includes(getEnv().APP_ENV);
         const salvageURLMap = {
             stg: {
                 single: "https://websdkentmaster0923.myshoplinestg.com/action/event/salvage",
@@ -14708,7 +10136,7 @@
                 const params = {
                     ...data
                 };
-                if (params && !params.currency) params.currency = js_cookie_default().get("currency_code");
+                if (params && !params.currency) params.currency = src_js_cookie_default().get("currency_code");
                 return [ "event", eventType, params ];
             }
             clickForEnhancedEcom(page, clickType, params) {
@@ -14854,7 +10282,7 @@
             const params = {
                 ...data
             };
-            if (params && !params.currency) params.currency = js_cookie_default().get("currency_code");
+            if (params && !params.currency) params.currency = src_js_cookie_default().get("currency_code");
             return [ "event", "conversion", params ];
         };
         const clickAdsData = (page, type) => {
@@ -14906,7 +10334,7 @@
                     content_ids: params && params.skuId,
                     content_name: params && params.name,
                     value: params && params.price,
-                    currency: syntax_patch_nullishCoalescingOperator(params && params.currency, js_cookie.get("currency_code"))
+                    currency: syntax_patch_nullishCoalescingOperator(params && params.currency, src_js_cookie.get("currency_code"))
                 };
                 event = "AddToCart";
                 evid = {
@@ -14932,7 +10360,7 @@
         class TradeReport {
             constructor() {
                 this.eventBus = SL_EventBus;
-                this.storeCurrency = js_cookie.get("currency_code");
+                this.storeCurrency = src_js_cookie.get("currency_code");
                 this.hdPage = {
                     Cart: "cart",
                     MiniCart: "cart"
@@ -15008,7 +10436,7 @@
             const {eventID, ...extData} = resData;
             let price = 0;
             products.forEach((item => {
-                price += item.productPrice * item.productNum;
+                price += item.productPrice;
             }));
             const dataReportReq = setAddtoCart(price, window && window.SL_State.get("storeInfo.currency"), `addToCart${eventID}`, {
                 ...extra,
@@ -15019,11 +10447,11 @@
         const setIniiateCheckout = (seq, needReport) => {
             const resData = getNeedReportData(needReport);
             const {eventID} = resData;
-            const cookieMap = js_cookie.get();
+            const cookieMap = src_js_cookie.get();
             Object.keys(cookieMap).forEach((key => {
-                if (/^\d+_fb_data$/.test(key)) js_cookie.remove(key);
+                if (/^\d+_fb_data$/.test(key)) src_js_cookie.remove(key);
             }));
-            js_cookie.set(`${seq}_fb_data`, {
+            src_js_cookie.set(`${seq}_fb_data`, {
                 tp: eventID ? 2 : 1,
                 et: Date.now(),
                 ed: eventID || getEventID()
@@ -15039,8 +10467,19 @@
             sessionStorage.setItem(encode("checkout_track"), "[]");
         };
         new TradeReport;
+        const cartReport_logger = logger.pipeOwner(`${Owner.Cart} report/cartReport.js`);
+        const cartToken = js_cookie_default().get("t_cart");
         class CartReport extends TradeReport {
             setRemoveItemParams(params, extraItems) {
+                cartReport_logger.info(`normal 主站购物车 数据上报 设置移除商品params setRemoveItemParams`, {
+                    data: {
+                        cartToken,
+                        params,
+                        extraItems
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Start
+                });
                 const res = {
                     productItems: [],
                     value: 0
@@ -15076,6 +10515,16 @@
                     });
                 }));
                 res.value = null === currency || void 0 === currency ? void 0 : currency.formatCurrency(res.value || 0).toString();
+                cartReport_logger.info(`normal 主站购物车 数据上报 设置移除商品params setRemoveItemParams`, {
+                    data: {
+                        cartToken,
+                        params,
+                        extraItems,
+                        integratedParams: res
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Success
+                });
                 return res;
             }
             selectContent({skuId, name, price, skuAttrs, itemNo, ...rest}) {
@@ -15091,6 +10540,14 @@
                     actionType: ClickType.SelectContent,
                     value
                 };
+                cartReport_logger.info(`normal 主站购物车 数据上报 选中商品 selectContent`, {
+                    data: {
+                        cartToken,
+                        integratedParams: data
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Start
+                });
                 this.touch(data);
             }
             removeItem(params, extraItems) {
@@ -15099,12 +10556,40 @@
                         actionType: ClickType.RemoveFromCart,
                         value: this.setRemoveItemParams(params, extraItems)
                     };
+                    cartReport_logger.info(`normal 主站购物车 数据上报 移除商品 removeItem`, {
+                        data: {
+                            cartToken,
+                            params,
+                            extraItems,
+                            integratedParams: data
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Start
+                    });
                     this.touch(data);
                 } catch (e) {
+                    cartReport_logger.info(`normal 主站购物车 数据上报 移除商品 上报报错 removeItem`, {
+                        data: {
+                            cartToken,
+                            params,
+                            extraItems,
+                            error: e
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Start
+                    });
                     console.error(e);
                 }
             }
             viewCart(cartInfo) {
+                cartReport_logger.info(`mini 主站购物车 数据上报 viewCart`, {
+                    data: {
+                        cartToken,
+                        cartInfo
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
                 if (!cartInfo.activeItems) return;
                 const params = {
                     amount: null === currency || void 0 === currency ? void 0 : currency.formatCurrency(cartInfo.realAmount || 0),
@@ -15115,6 +10600,17 @@
                     params.items = [ ...params.items, ...activeItem.itemList ];
                     return activeItem;
                 }));
+                cartReport_logger.info(`mini 主站购物车 数据上报 viewCart`, {
+                    data: {
+                        cartToken,
+                        reportInfo: {
+                            ...params,
+                            actionType: ClickType.ViewCart
+                        }
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
                 this.reportViewCart({
                     params,
                     actionType: ClickType.ViewCart
@@ -15123,16 +10619,16 @@
         }
         const cartReport_cartReport = new CartReport;
         const report_cartReport = cartReport_cartReport;
-        let d = $("i[data-platform]");
+        let d = __SL_$__("i[data-platform]");
         if (!d.get(0)) {
-            d = $(`<i data-platform></i>`);
-            $(document.body).append(d);
+            d = __SL_$__(`<i data-platform></i>`);
+            __SL_$__(document.body).append(d);
         }
         function isMobile() {
-            let dom = $("i[data-platform]");
+            let dom = __SL_$__("i[data-platform]");
             if (!dom.get(0)) {
-                dom = $(`<i data-platform></i>`);
-                $(document.body).append(dom);
+                dom = __SL_$__(`<i data-platform></i>`);
+                __SL_$__(document.body).append(dom);
             }
             return "block" === dom.css("display");
         }
@@ -15150,7 +10646,7 @@
         }
         const helper_setStickyContAnimate = ({viewportSelector, containerSelector}) => {
             const inInput = state_selector_SL_State.get("cartInInputMode");
-            if (!commons_utils.helper.isUnderViewport($(viewportSelector).get(0)) && !inInput) $(containerSelector).slideDown(300).attr("isOpen", true); else $(containerSelector).slideUp(200).removeAttr("isOpen");
+            if (!commons_utils.helper.isUnderViewport(__SL_$__(viewportSelector).get(0)) && !inInput) __SL_$__(containerSelector).slideDown(300).attr("isOpen", true); else __SL_$__(containerSelector).slideUp(200).removeAttr("isOpen");
         };
         const helper_listenElementMutation = (target, callback, options = {
             childList: true
@@ -15167,16 +10663,25 @@
         };
         var _tradeSettleConfig$pa, _tradeSettleConfig$pa2, _tradeSettleConfig$af, _tradeSettleConfig$af2;
         const tradeSettleConfig = state_selector_SL_State.get("tradeSettleConfig");
+        const sticky_cart_logger = logger.pipeOwner(`${Owner.Cart} biz/sticky-cart/index.js`);
+        const sticky_cart_cartToken = js_cookie_default().get("t_cart");
         (null === tradeSettleConfig || void 0 === tradeSettleConfig ? void 0 : null === (_tradeSettleConfig$pa = tradeSettleConfig.paymentSecurity) || void 0 === _tradeSettleConfig$pa ? void 0 : null === (_tradeSettleConfig$pa2 = _tradeSettleConfig$pa.displayPosition) || void 0 === _tradeSettleConfig$pa2 ? void 0 : _tradeSettleConfig$pa2.includes("CART")) || null === tradeSettleConfig || void 0 === tradeSettleConfig || null === (_tradeSettleConfig$af = tradeSettleConfig.afterSaleGuarantee) || void 0 === _tradeSettleConfig$af || null === (_tradeSettleConfig$af2 = _tradeSettleConfig$af.displayPosition) || void 0 === _tradeSettleConfig$af2 || _tradeSettleConfig$af2.includes("CART");
         const initMainCartSticky = () => {
             if (isMobile()) {
-                $(window).on("scroll", utils_throttle(20, (() => {
+                sticky_cart_logger.info(`main 主站购物车 initMainCartSticky`, {
+                    data: {
+                        cartToken: sticky_cart_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Success
+                });
+                __SL_$__(window).on("scroll", utils_throttle(20, (() => {
                     helper_setStickyContAnimate({
                         viewportSelector: ".trade_cart .main_cart",
                         containerSelector: ".cart__stick_container"
                     });
                 })));
-                helper_listenElementMutation($(".trade-cart-sku-list").get(0), (() => {
+                helper_listenElementMutation(__SL_$__(".trade-cart-sku-list").get(0), (() => {
                     setTimeout((() => {
                         helper_setStickyContAnimate({
                             viewportSelector: ".trade_cart .main_cart",
@@ -15194,14 +10699,14 @@
         };
         let intersectionObserver;
         const handleHeaderVisibleToggle = isVisible => {
-            if (!isVisible) $(".mini-cart__drawer-slot").css("position", "fixed").css("top", 0); else $(".mini-cart__drawer-slot").css("position", "absolute").css("top", "");
+            if (!isVisible) __SL_$__(".mini-cart__drawer-slot").css("position", "fixed").css("top", 0); else __SL_$__(".mini-cart__drawer-slot").css("position", "absolute").css("top", "");
         };
         const listenHeaderIntersection = () => {
-            const isHeaderSticky = $("#stage-header").attr("data-sticky");
-            if ("true" !== isHeaderSticky) intersectionObserver = listenElementIntersection($(".header__main").get(0), handleHeaderVisibleToggle);
+            const isHeaderSticky = __SL_$__("#stage-header").attr("data-sticky");
+            if ("true" !== isHeaderSticky) intersectionObserver = listenElementIntersection(__SL_$__(".header__main").get(0), handleHeaderVisibleToggle);
         };
         const listenEditorSectionChange = () => {
-            $(document).on("shopline:section:load", (() => {
+            __SL_$__(document).on("shopline:section:load", (() => {
                 var _intersectionObserver;
                 null === (_intersectionObserver = intersectionObserver) || void 0 === _intersectionObserver ? void 0 : _intersectionObserver.disconnect();
                 listenHeaderIntersection();
@@ -15214,12 +10719,27 @@
             }), 0);
         };
         const toggleVisibility = (cartType, visibility) => {
+            sticky_cart_logger.info(`normal 主站购物车 切换展示 toggleVisibility`, {
+                data: {
+                    cartToken: sticky_cart_cartToken
+                },
+                action: sentryReport_Action.openCart,
+                status: o.Start
+            });
             if (!isMobile()) return;
             const selector = "main" === cartType ? ".cart__stick_container" : ".miniCart__stick_container";
-            const isOpen = $(selector).attr("isOpen");
+            const isOpen = __SL_$__(selector).attr("isOpen");
             if (!isOpen) return;
-            const visible = "boolean" === typeof visibility ? visibility : "block" !== $(selector).css("display");
-            $(selector)[visible ? "show" : "hide"]();
+            const visible = "boolean" === typeof visibility ? visibility : "block" !== __SL_$__(selector).css("display");
+            __SL_$__(selector)[visible ? "show" : "hide"]();
+            sticky_cart_logger.info(`normal 主站购物车 切换展示 toggleVisibility`, {
+                data: {
+                    cartToken: sticky_cart_cartToken,
+                    visible: visible ? "show" : "hide"
+                },
+                action: sentryReport_Action.openCart,
+                status: o.Success
+            });
         };
         function observer(data, action = {}) {
             return new Proxy(data, {
@@ -15239,9 +10759,24 @@
         }
         const model_observer = observer;
         const toastTypeEnum = {
-            stockLimit: "stock-limit",
-            activeStockLimit: "active-stock-limit"
+            stockLimit: "item.item_left",
+            activeStockLimit: "discount_price.buy_limit"
         };
+        function tActiveStockLimitWithMaxPurchaseReasonCode(code, stock) {
+            const tParams = {
+                stock
+            };
+            switch (code) {
+              case "LIMITED_ACTIVE_OVER":
+                return i18n_t("cart.discount_price.buy_limit2", tParams);
+
+              case "LIMITED_ACTIVE_SKU_OVER":
+                return i18n_t("cart.discount_price.buy_limit3", tParams);
+
+              default:
+                return i18n_t("cart.discount_price.buy_limit1", tParams);
+            }
+        }
         let currentValue;
         function skuPromotionVerify(key, nextValue) {
             const ctx = this.stepper;
@@ -15260,6 +10795,8 @@
             return nextValue;
         }
         const model_skuPromotionVerify = skuPromotionVerify;
+        const sku_stepper_logger = logger.pipeOwner(`${Owner.Cart} components/sku-stepper`);
+        const sku_stepper_cartToken = js_cookie_default().get("t_cart");
         const getCursorPosition = function(element) {
             var _document;
             let cursorPos = 0;
@@ -15315,15 +10852,31 @@
                 this.beforeValue = totalSkuNum;
             }
             init() {
+                sku_stepper_logger.info(`normal 主站购物车 skuStepper init`, {
+                    data: {
+                        cartToken: sku_stepper_cartToken,
+                        stepperInfo: this.stepper
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
                 this.$stepper = this.root.find(".cart-stepper");
                 this.$minusButton = this.$stepper.find(".cart-stepper-minus");
                 this.$plusButton = this.$stepper.find(".cart-stepper-plus");
                 this.$input = this.$stepper.find(".cart-stepper-input");
                 this.initEventListener();
                 this.render();
-                $(window).on("unload", (() => {
+                __SL_$__(window).on("unload", (() => {
                     this.unbind();
                 }));
+                sku_stepper_logger.info(`normal 主站购物车 skuStepper init`, {
+                    data: {
+                        cartToken: sku_stepper_cartToken,
+                        stepperInfo: this.stepper
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Success
+                });
             }
             unbind() {
                 var _this$$minusButton, _this$$plusButton, _this$$input;
@@ -15331,9 +10884,16 @@
                 null === (_this$$plusButton = this.$plusButton) || void 0 === _this$$plusButton ? void 0 : _this$$plusButton.off();
                 null === (_this$$input = this.$input) || void 0 === _this$$input ? void 0 : _this$$input.off();
             }
-            changeItemNum() {
-                this.stepper.setRendering(true);
+            changeItemNumReport() {
                 try {
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNumReport`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Start
+                    });
                     report_cartHdReport.updateItem({
                         spuId: this.stepper.spuId,
                         skuId: this.stepper.skuId,
@@ -15359,11 +10919,47 @@
                         report_cartHdReport.removeRp(params);
                     }
                     this.beforeValue = this.stepper.value;
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNumReport`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Success
+                    });
                 } catch (e) {
                     this.beforeValue = this.stepper.value;
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNumReport`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport_Action.EditCart,
+                        error: e
+                    });
                     console.error(e);
                 }
+            }
+            changeItemNum() {
+                sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNum`, {
+                    data: {
+                        cartToken: sku_stepper_cartToken,
+                        stepperInfo: this.stepper
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Start
+                });
+                this.stepper.setRendering(true);
+                this.changeItemNumReport();
                 cart_util.changeItemNum(this.stepper.spuId, this.stepper.skuId, this.stepper.value, this.stepper.groupId, this.stepper.productSource);
+                sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNum`, {
+                    data: {
+                        cartToken: sku_stepper_cartToken,
+                        stepperInfo: this.stepper
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Success
+                });
             }
             limitToastNum(num) {
                 if (num > 0) return num;
@@ -15372,11 +10968,9 @@
             toastLimit() {
                 const {maxPurchaseReasonCode, maxPurchaseTotalNum} = this.stepper;
                 if (cartLimitedEnum.NORMAL_ITEM_MAX_NUM.includes(maxPurchaseReasonCode)) {
-                    toast.open(i18n_t(`cart.most-buy-999`));
+                    toast.open(i18n_t(`cart.item.add_limit2`));
                     this.render();
-                } else if (cartLimitedEnum.ACTIVE_LIMITED.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.${toastTypeEnum.activeStockLimit}-${limitedActiveEnum[maxPurchaseReasonCode]}`, {
-                    stock: this.limitToastNum(maxPurchaseTotalNum)
-                })); else if (cartLimitedEnum.NORMAL_STOCK_OVER.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.${toastTypeEnum.stockLimit}`, {
+                } else if (cartLimitedEnum.ACTIVE_LIMITED.includes(maxPurchaseReasonCode)) toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(maxPurchaseReasonCode, this.limitToastNum(maxPurchaseTotalNum))); else if (cartLimitedEnum.NORMAL_STOCK_OVER.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.${toastTypeEnum.stockLimit}`, {
                     stock: this.limitToastNum(maxPurchaseTotalNum)
                 })); else if (cartLimitedEnum.ACTIVE_STOCK_OVER.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.${toastTypeEnum.stockLimit}`, {
                     stock: this.limitToastNum(maxPurchaseTotalNum)
@@ -15385,49 +10979,100 @@
             initEventListener() {
                 var _this$$minusButton2;
                 null === (_this$$minusButton2 = this.$minusButton) || void 0 === _this$$minusButton2 ? void 0 : _this$$minusButton2.on("click", (() => {
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper minusBtnClick`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Start
+                    });
                     this.setNeedForceFocus(false);
+                    const {stepper, groupTotalDiscountValue} = this;
                     if (this.stepper.isRendering()) return;
-                    const {maxPurchaseReasonCode, maxPurchaseTotalNum, maxPurchaseNum, value} = this.stepper;
-                    const stepValue = Math.max(value - this.getDiscountValue(), 1);
+                    const {maxPurchaseReasonCode, maxPurchaseTotalNum, maxPurchaseNum, value} = stepper;
+                    const stepValue = Math.max(value - groupTotalDiscountValue, 1);
                     if (stepValue > 0) {
                         if (stepValue > maxPurchaseNum) {
-                            if (cartLimitedEnum.ACTIVE.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.${toastTypeEnum.activeStockLimit}`, {
-                                stock: this.limitToastNum(maxPurchaseTotalNum)
-                            })); else toast.open(i18n_t(`cart.${toastTypeEnum.stockLimit}`, {
+                            if (cartLimitedEnum.ACTIVE.includes(maxPurchaseReasonCode)) toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(void 0, this.limitToastNum(maxPurchaseTotalNum))); else toast.open(i18n_t(`cart.${toastTypeEnum.stockLimit}`, {
                                 stock: this.limitToastNum(maxPurchaseTotalNum)
                             }));
                             if (1 === value) this.stepper.value = 0; else if (maxPurchaseNum > 0) this.stepper.value = maxPurchaseNum; else this.stepper.value = 1;
                             this.render();
                         } else this.stepper.value -= 1;
                         this.changeItemNum();
+                        sku_stepper_logger.info(`normal 主站购物车 skuStepper minusBtnClick`, {
+                            data: {
+                                cartToken: sku_stepper_cartToken,
+                                stepperInfo: this.stepper
+                            },
+                            action: sentryReport_Action.EditCart,
+                            status: o.Success
+                        });
                     }
                 }));
                 this.$plusButton.on("click", (() => {
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper plusBtnClick`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Start
+                    });
                     this.setNeedForceFocus(false);
                     if (this.stepper.isRendering()) return;
-                    const {value, maxPurchaseNum} = this.stepper;
-                    const stepValue = Math.max(value - this.getDiscountValue(), 1);
+                    const {groupTotalDiscountValue, stepper} = this;
+                    const {value, maxPurchaseNum} = stepper;
+                    const stepValue = Math.max(value - groupTotalDiscountValue, 1);
                     if (stepValue < maxPurchaseNum) {
                         this.stepper.value += 1;
                         this.changeItemNum();
                     } else if (stepValue === maxPurchaseNum) this.toastLimit(); else {
                         this.toastLimit();
                         if (stepValue > maxPurchaseNum) {
-                            this.stepper.value = maxPurchaseNum > 0 ? maxPurchaseNum + this.getDiscountValue() : 1;
+                            this.stepper.value = maxPurchaseNum > 0 ? maxPurchaseNum + groupTotalDiscountValue : 1;
                             this.render();
                             this.changeItemNum();
                         } else this.render();
                     }
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper plusBtnClick`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Success
+                    });
                 }));
                 this.$input.on("input", (e => {
                     var _e$target, _e$target$value;
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper input`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Start
+                    });
                     const input = null === (_e$target = e.target) || void 0 === _e$target ? void 0 : null === (_e$target$value = _e$target.value) || void 0 === _e$target$value ? void 0 : _e$target$value.match(/^\d*/);
+                    let inputVal = "";
                     if ("" !== (null === input || void 0 === input ? void 0 : input[0])) {
                         var _input$, _input$2;
                         const value = e.target.value ? Number(null === (_input$ = input[0]) || void 0 === _input$ ? void 0 : _input$.slice(0, Math.min(null === (_input$2 = input[0]) || void 0 === _input$2 ? void 0 : _input$2.length, 4))) : e.target.value;
                         this.stepper.value = value;
-                        this.setValue(value);
-                    } else this.setValue("");
+                        inputVal = value;
+                    }
+                    this.setValue(inputVal);
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper input`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper,
+                            inputVal
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Success
+                    });
                 }));
                 this.$input.on("focus", (() => {
                     this.setNeedForceFocus(true);
@@ -15444,6 +11089,15 @@
                     });
                 }));
                 this.$input.on("blur", (e => {
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper inputBlur`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper,
+                            currentStepper: e
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Start
+                    });
                     this.setNeedForceFocus(true);
                     toggleVisibility(this.cartType, true);
                     state_selector_SL_State.set("cartInInputMode", false);
@@ -15455,25 +11109,31 @@
                         this.changeItemNum();
                     } else {
                         this.stepper.value = value;
+                        const {groupTotalDiscountValue} = this;
                         const {maxPurchaseTotalNum, maxPurchaseNum, maxPurchaseReasonCode} = this.stepper;
-                        let totalValue = value + this.getDiscountValue();
+                        let totalValue = value + groupTotalDiscountValue;
                         const overFlag = totalValue > maxPurchaseNum;
-                        if (overFlag) if (cartLimitedEnum.NORMAL_ITEM_MAX_NUM.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.most-buy-999`)); else if (cartLimitedEnum.ACTIVE_LIMITED.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.${toastTypeEnum.activeStockLimit}-${limitedActiveEnum[maxPurchaseReasonCode]}`, {
-                            stock: this.limitToastNum(maxPurchaseTotalNum)
-                        })); else if (cartLimitedEnum.NORMAL_STOCK_OVER.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.${toastTypeEnum.stockLimit}`, {
+                        if (overFlag) if (cartLimitedEnum.NORMAL_ITEM_MAX_NUM.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.item.add_limit2`)); else if (cartLimitedEnum.ACTIVE_LIMITED.includes(maxPurchaseReasonCode)) toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(maxPurchaseReasonCode, this.limitToastNum(maxPurchaseTotalNum))); else if (cartLimitedEnum.NORMAL_STOCK_OVER.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.${toastTypeEnum.stockLimit}`, {
                             stock: this.limitToastNum(maxPurchaseTotalNum)
                         })); else if (cartLimitedEnum.ACTIVE_STOCK_OVER.includes(maxPurchaseReasonCode)) toast.open(i18n_t(`cart.${toastTypeEnum.stockLimit}`, {
                             stock: this.limitToastNum(maxPurchaseTotalNum)
-                        })); else toast.open(i18n_t(`cart.${toastTypeEnum.activeStockLimit}-${limitedActiveEnum[maxPurchaseReasonCode]}`, {
-                            stock: this.limitToastNum(maxPurchaseTotalNum)
-                        }));
+                        })); else toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(maxPurchaseReasonCode, this.limitToastNum(maxPurchaseTotalNum)));
                         if (this.stepper.preValue !== this.stepper.value || overFlag) {
-                            if (overFlag) totalValue = maxPurchaseNum > 0 ? maxPurchaseNum + this.getDiscountValue() : 1;
+                            if (overFlag) totalValue = maxPurchaseNum > 0 ? maxPurchaseNum + groupTotalDiscountValue : 1;
                             this.stepper.value = totalValue;
                             this.render();
                             this.changeItemNum();
                         } else this.setValue(this.stepper.preValue);
                     }
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper inputBlur`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper,
+                            currentStepper: e
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Success
+                    });
                 }));
             }
             getDiscountValue(groupById = true) {
@@ -15491,13 +11151,18 @@
                 const {skuId: stepperSkuId, spuId: stepperSpuId, groupId: stepperGroupId} = this.stepper;
                 otherSameSkuNum.forEach(((sku, skuIndex) => {
                     if (skuIndex !== currentIndex) {
-                        const {skuId, spuId, groupId} = sku;
-                        let sameItem = String(skuId) === String(stepperSkuId) && String(spuId) === String(stepperSpuId);
+                        const {skuId, spuId, groupId, num, parentSkuId} = sku;
+                        let sameItem = String(skuId) === String(stepperSkuId) && String(spuId) === String(stepperSpuId) && !parentSkuId;
                         if (groupById) sameItem = sameItem && String(groupId) === String(stepperGroupId);
-                        if (sameItem) discountValue += sku.num;
+                        if (sameItem) discountValue += num;
                     }
                 }));
-                return discountValue;
+                return {
+                    discountValue
+                };
+            }
+            get groupTotalDiscountValue() {
+                return this.getDiscountValue().discountValue;
             }
             setSingleDisabled(position, disabled) {
                 const prefix = ".cart-stepper-";
@@ -15517,8 +11182,9 @@
                 this.$stepper.find(".cart-stepper-input").val(value);
             }
             render() {
-                const {value, maxPurchaseNum} = this.stepper;
-                const stepValue = Math.max(value - this.getDiscountValue(), 1);
+                const {groupTotalDiscountValue, stepper} = this;
+                const {value, maxPurchaseNum} = stepper;
+                const stepValue = Math.max(value - groupTotalDiscountValue, 1);
                 this.setSingleDisabled("plus", maxPurchaseNum <= stepValue);
                 this.setStepperDisabled();
             }
@@ -15533,7 +11199,7 @@
             init() {
                 this.$removeButton = this.root.find(".trade-cart-sku-item-remove-button");
                 this.initEventListener();
-                $(window).on("unload", (() => {
+                __SL_$__(window).on("unload", (() => {
                     this.unbind();
                 }));
             }
@@ -15577,9 +11243,9 @@
                 this.cartActionHooks = cartActionHooks;
             }
             init() {
-                this.$removeAllButton = $(this.rootId);
+                this.$removeAllButton = __SL_$__(this.rootId);
                 this.initEventListener();
-                $(window).on("unload", (() => {
+                __SL_$__(window).on("unload", (() => {
                     this.unbind();
                 }));
             }
@@ -15959,7 +11625,7 @@
                 }), 1e3);
             }
             update() {
-                $(`#${this.parentId}`).find(`.cart__count-down--${this.parentId}`).text(this.leftTime.format);
+                __SL_$__(`#${this.parentId}`).find(`.cart__count-down--${this.parentId}`).text(this.leftTime.format);
             }
             get now() {
                 return Date.now();
@@ -15974,7 +11640,7 @@
                 const hours = duration.hours();
                 const minutes = duration.minutes() % 60 < 10 ? `0${duration.minutes() % 60}` : duration.minutes() % 60;
                 const seconds = duration.seconds() % 60 < 10 ? `0${duration.seconds() % 60}` : duration.seconds() % 60;
-                const dayText = dayValue => dayValue > 1 ? i18n_t("common.days") : i18n_t("common.day");
+                const dayText = dayValue => dayValue > 1 ? i18n_t("cart.cart.days") : i18n_t("cart.cart.day");
                 const renderDays = () => days > 0 ? `${days}${dayText(days)} ` : "";
                 return duration ? {
                     time: duration,
@@ -15983,7 +11649,7 @@
             }
             getComponent() {
                 this.countDown();
-                if (!this.leftTime.time) return $("<span></span>");
+                if (!this.leftTime.time) return __SL_$__("<span></span>");
                 return template({
                     label: "Flash Sale",
                     value: this.leftTime.format,
@@ -16003,10 +11669,10 @@
                 return html;
             }
             initFlashSale() {
-                const allFlashSaleEle = $("[data-flash-sale-item-id]");
+                const allFlashSaleEle = __SL_$__("[data-flash-sale-item-id]");
                 if (!allFlashSaleEle.length) return;
                 allFlashSaleEle.map(((_, ele) => {
-                    const curEle = $(ele);
+                    const curEle = __SL_$__(ele);
                     const data = curEle.data("flash-sale-data");
                     return curEle.html(this.renderFlashSale(curEle.attr("data-flash-sale-item-id"), data));
                 }));
@@ -16035,7 +11701,7 @@
                     "0111": 1,
                     "0112": 2
                 };
-                return `<div>${i18n_t(`cart.${toastTypeEnum.activeStockLimit}-${errorText[errorList[0]]}`, {
+                return `<div>${i18n_t(`cart.${toastTypeEnum.activeStockLimit}${errorText[errorList[0]]}`, {
                     stock: this.state.maxPurchaseTotalNum > 0 ? this.state.maxPurchaseTotalNum : "0"
                 })}</div>`;
             }
@@ -16051,10 +11717,10 @@
                 return html;
             }
             initPromotionLimited() {
-                const allFlashSaleEle = $("[data-promotion-limited-item-id]");
+                const allFlashSaleEle = __SL_$__("[data-promotion-limited-item-id]");
                 if (!allFlashSaleEle.length) return;
                 allFlashSaleEle.map(((_, ele) => {
-                    const curEle = $(ele);
+                    const curEle = __SL_$__(ele);
                     const data = curEle.data("promotion-limited-data");
                     return curEle.html(this.renderPromotionLimited(curEle.attr("data-promotion-limited-item-id"), data));
                 }));
@@ -16065,6 +11731,8 @@
             staticRender: (id, data) => render_model.renderPromotionLimited(id, data),
             initialModel: () => render_model.initPromotionLimited()
         };
+        const sku_card_logger = logger.pipeOwner(`${Owner.Cart} components/sku-card`);
+        const sku_card_cartToken = js_cookie_default().get("t_cart");
         const setCursorPosition = (originDomEle, pos) => {
             if (document.selection) {
                 const sel = originDomEle.createTextRange();
@@ -16092,19 +11760,27 @@
                 this.ctx = ctx;
                 this.tradeCartType = tradeCartType;
                 if ("main" === tradeCartType) this.scrollContent = document.documentElement; else {
-                    var _$;
-                    this.scrollContent = null === (_$ = $(".trade_mini_cart .trade_cart_not_empty_wrapper")) || void 0 === _$ ? void 0 : _$.get(0);
+                    var _SL_$__;
+                    this.scrollContent = null === (_SL_$__ = __SL_$__(".trade_mini_cart .trade_cart_not_empty_wrapper")) || void 0 === _SL_$__ ? void 0 : _SL_$__.get(0);
                 }
-                this.rootWrapper = $(`#${tradeCartType}-trade-cart-sku-list`);
+                this.rootWrapper = __SL_$__(`#${tradeCartType}-trade-cart-sku-list`);
                 this.cartData = state_selector_SL_State.get("cartInfo");
                 this.loadFailedImgSet = new Set;
                 this.preFocusedInputEle = null;
                 this.needForceFocus = false;
             }
             init() {
-                var _this$cartData, _this$cartData2;
-                this.activeItems = null === (_this$cartData = this.cartData) || void 0 === _this$cartData ? void 0 : _this$cartData.activeItems;
-                this.inactiveItems = null === (_this$cartData2 = this.cartData) || void 0 === _this$cartData2 ? void 0 : _this$cartData2.inactiveItems;
+                const {cartData = {}} = this;
+                sku_card_logger.info(`normal 主站购物车 SkuCard init`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        cartData
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
+                this.activeItems = null === cartData || void 0 === cartData ? void 0 : cartData.activeItems;
+                this.inactiveItems = null === cartData || void 0 === cartData ? void 0 : cartData.inactiveItems;
                 this.preprocessDiscountData();
                 this.reset();
                 this.listenPlatformChange();
@@ -16113,6 +11789,14 @@
                 this.listenSelectContentReport();
                 render.initialModel();
                 promotion_limited_render.initialModel();
+                sku_card_logger.info(`normal 主站购物车 SkuCard init`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        cartData
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Success
+                });
             }
             setPreFocusedInputEle(info) {
                 this.preFocusedInputEle = this.preFocusedInputEle || {};
@@ -16128,7 +11812,7 @@
                 const _that = this;
                 if (this.needForceFocus && this.preFocusedInputEle) {
                     const {id, pos} = _that.preFocusedInputEle;
-                    const inputEle = $(`#${id}`).find(".cart-stepper-input");
+                    const inputEle = __SL_$__(`#${id}`).find(".cart-stepper-input");
                     const originDomEle = inputEle.get(0);
                     inputEle.trigger("focus");
                     setCursorPosition(originDomEle, pos);
@@ -16137,39 +11821,111 @@
                 }
             }
             reset(isRerender) {
-                var _this$activeItems, _this$inactiveItems;
+                const {activeItems, inactiveItems} = this;
+                sku_card_logger.info(`normal 主站购物车 SkuCard reset`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        activeItems,
+                        inactiveItems
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Start
+                });
                 this.needUnbindEleList = [];
                 this.listenImageLoadEvent();
-                null === (_this$activeItems = this.activeItems) || void 0 === _this$activeItems ? void 0 : _this$activeItems.forEach(((activeItem, findex) => {
+                null === activeItems || void 0 === activeItems ? void 0 : activeItems.forEach(((activeItem, findex) => {
                     var _activeItem$itemList;
                     null === activeItem || void 0 === activeItem ? void 0 : null === (_activeItem$itemList = activeItem.itemList) || void 0 === _activeItem$itemList ? void 0 : _activeItem$itemList.forEach(((item, index) => {
-                        const {skuId, spuId, priceType, groupId} = item;
-                        const rootId = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${null !== priceType && void 0 !== priceType ? priceType : ""}`;
-                        const root = $(`#${rootId}`);
-                        if (!isRerender) jQuery((() => {
-                            this.initStepper(root, item, `${findex}-${index}`);
-                            this.initRemoveButton(root, item);
-                        })); else {
-                            this.initStepper(root, item, `${findex}-${index}`);
-                            this.initRemoveButton(root, item);
-                        }
+                        const {skuId, spuId, groupId, uniqueSeq, businessFlag = {}} = item;
+                        const {singleAdjustNum, singleDelete} = businessFlag || {};
+                        const rootId = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${uniqueSeq}`;
+                        const root = __SL_$__(`#${rootId}`);
+                        const renderEditBtn = () => {
+                            sku_card_logger.info(`normal 主站购物车 SkuCard reset activeItems initStepper/removeBtn`, {
+                                data: {
+                                    cartToken: sku_card_cartToken,
+                                    isRerender,
+                                    root,
+                                    item,
+                                    id: `${findex}-${index}`
+                                },
+                                action: sentryReport_Action.EditCart,
+                                status: o.Start
+                            });
+                            if (singleAdjustNum) this.initStepper(root, item, `${findex}-${index}`);
+                            if (singleDelete) this.initRemoveButton(root, item);
+                            sku_card_logger.info(`normal 主站购物车 SkuCard reset initStepper/removeBtn`, {
+                                data: {
+                                    cartToken: sku_card_cartToken,
+                                    isRerender,
+                                    root,
+                                    item,
+                                    id: `${findex}-${index}`
+                                },
+                                action: sentryReport_Action.EditCart,
+                                status: o.Success
+                            });
+                        };
+                        if (!isRerender) jQuery(renderEditBtn); else renderEditBtn();
                     }));
                 }));
-                null === (_this$inactiveItems = this.inactiveItems) || void 0 === _this$inactiveItems ? void 0 : _this$inactiveItems.forEach((item => {
-                    const {skuId, spuId, priceType, groupId} = item;
-                    const rootId = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${null !== priceType && void 0 !== priceType ? priceType : ""}`;
-                    const root = $(`#${rootId}`);
-                    if (!isRerender) jQuery((() => {
+                null === inactiveItems || void 0 === inactiveItems ? void 0 : inactiveItems.forEach((item => {
+                    const {skuId, spuId, groupId, uniqueSeq} = item;
+                    const rootId = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${uniqueSeq}`;
+                    const root = __SL_$__(`#${rootId}`);
+                    const renderRemoveBtn = () => {
+                        sku_card_logger.info(`normal 主站购物车 SkuCard reset inactiveItems initRemoveBtn`, {
+                            data: {
+                                cartToken: sku_card_cartToken,
+                                activeItems,
+                                inactiveItems
+                            },
+                            action: sentryReport_Action.EditCart,
+                            status: o.Start
+                        });
                         this.initRemoveButton(root, item);
-                    })); else this.initRemoveButton(root, item);
+                        sku_card_logger.info(`normal 主站购物车 SkuCard reset inactiveItems initRemoveBtn`, {
+                            data: {
+                                cartToken: sku_card_cartToken,
+                                activeItems,
+                                inactiveItems
+                            },
+                            action: sentryReport_Action.EditCart,
+                            status: o.Success
+                        });
+                    };
+                    if (!isRerender) jQuery(renderRemoveBtn); else renderRemoveBtn();
                 }));
-                if (!isRerender) jQuery((() => {
+                const renderClearBtn = () => {
+                    sku_card_logger.info(`normal 主站购物车 SkuCard reset inactiveItems initClearBtn`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            inactiveItems
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Start
+                    });
                     this.getDeviceInfo();
                     this.initRemoveAllButton(this.inactiveItems);
-                })); else {
-                    this.getDeviceInfo();
-                    this.initRemoveAllButton(this.inactiveItems);
-                }
+                    sku_card_logger.info(`normal 主站购物车 SkuCard reset inactiveItems initClearBtn`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            inactiveItems
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Success
+                    });
+                };
+                if (!isRerender) jQuery(renderClearBtn); else renderClearBtn();
+                sku_card_logger.info(`normal 主站购物车 SkuCard reset`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        activeItems,
+                        inactiveItems
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Success
+                });
             }
             getRendering() {
                 return this.rendering;
@@ -16180,22 +11936,44 @@
             listenImageLoadEvent() {
                 const _that = this;
                 this.rootWrapper.find(".trade-cart-sku-item-image-wrapper").each(((index, img) => {
-                    this.needUnbindEleList.push($(img));
-                    $(img).on("error", (function() {
-                        $(img).parent().children(".trade-cart-sku-item-image-fallback").removeClass("hide");
-                        $(img).addClass("hide");
-                        _that.loadFailedImgSet.add($(img).attr("origin-src"));
+                    this.needUnbindEleList.push(__SL_$__(img));
+                    __SL_$__(img).on("error", (function() {
+                        __SL_$__(img).parent().children(".trade-cart-sku-item-image-fallback").removeClass("hide");
+                        __SL_$__(img).addClass("hide");
+                        _that.loadFailedImgSet.add(__SL_$__(img).attr("origin-src"));
                     }));
                 }));
             }
             listenCartDataUpdate() {
+                sku_card_logger.info(`normal 主站购物车 SkuCard CartDataUpdate`, {
+                    data: {
+                        cartToken: sku_card_cartToken
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Start
+                });
                 service.cartEventBus.on(service.CartEventBusEnum.UPDATE, (data => {
+                    sku_card_logger.info(`normal 主站购物车 SkuCard CartDataUpdateListener`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            cartInfo: data
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Start
+                    });
                     const {scrollTop} = this.scrollContent;
                     this.reRender(data);
                     this.setRendering(false);
                     setTimeout((() => {
                         this.scrollContent.scrollTop = scrollTop;
                     }), 0);
+                    sku_card_logger.info(`normal 主站购物车 SkuCard CartDataUpdate`, {
+                        data: {
+                            cartToken: sku_card_cartToken
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Success
+                    });
                 }));
             }
             listenPlatformChange() {
@@ -16211,13 +11989,13 @@
                     }
                     this.getDeviceInfo();
                     if (this.preImageWidth !== this.imageWidth) cartSkuWrapper.find(".trade-cart-sku-item-image-wrapper").each(((index, img) => {
-                        $(img).prop("src", this.getImageUrl($(img).attr("origin-src")));
+                        __SL_$__(img).prop("src", this.getImageUrl(__SL_$__(img).attr("origin-src")));
                     }));
                 }));
             }
             listenSelectContentReport() {
                 this.rootWrapper.on("click", ".trade-cart-sku-item-image", (function() {
-                    const {productSource, skuId, name, skuAttrs, price, salePrice, itemNo, quantity} = $(this).data();
+                    const {productSource, skuId, name, skuAttrs, price, salePrice, itemNo, quantity} = __SL_$__(this).data();
                     if (1 === productSource) report_cartReport.selectContent({
                         skuId,
                         name,
@@ -16258,9 +12036,9 @@
                 }));
             }
             preprocessDiscountData() {
-                var _this$activeItems2;
+                var _this$activeItems;
                 this.skuNumMap = {};
-                null === (_this$activeItems2 = this.activeItems) || void 0 === _this$activeItems2 ? void 0 : _this$activeItems2.forEach((activeItems => {
+                null === (_this$activeItems = this.activeItems) || void 0 === _this$activeItems ? void 0 : _this$activeItems.forEach((activeItems => {
                     var _activeItems$itemList;
                     null === activeItems || void 0 === activeItems ? void 0 : null === (_activeItems$itemList = activeItems.itemList) || void 0 === _activeItems$itemList ? void 0 : _activeItems$itemList.forEach((item => {
                         const {spuId, skuId, groupId, num} = item;
@@ -16307,7 +12085,7 @@
                 if (skuProperties && skuProperties.length) skuProperties.forEach((data => {
                     const addonBefore = `<div class="trade-cart-sku-item-info-spec body3">\n        <div class="trade-cart-sku-item-info-spec-key">${encodeHTML(data.name)}:</div>\n        `;
                     let content = ``;
-                    if ("text" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value">${data.value}</div>`; else if ("picture" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-preview-btn" data-preview-list=${JSON.stringify(data.urls)}>${i18n_t("cart.view-pic")}</div>`; else if ("link" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-look-btn">\n                        <a class="body3" href='${data.urls ? data.urls[0] : ""}' target="_blank">${i18n_t("cart.view-link")}</a></div>`;
+                    if ("text" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value">${data.value}</div>`; else if ("picture" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-preview-btn" data-preview-list=${JSON.stringify(data.urls)}>${i18n_t("cart.cart.custom_preview")}</div>`; else if ("link" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-look-btn">\n                        <a class="body3" href='${data.urls ? data.urls[0] : ""}' target="_blank">${i18n_t("cart.cart.click_to_view")}</a></div>`;
                     const addonAfter = `\n        </div>`;
                     skuContent.push(`${addonBefore}${content}${addonAfter}`);
                 }));
@@ -16326,32 +12104,30 @@
             getInfoLeft(data, isInactive, indexStr) {
                 var _data$businessFlag;
                 if (data.businessFlag && false === (null === (_data$businessFlag = data.businessFlag) || void 0 === _data$businessFlag ? void 0 : _data$businessFlag.singleAdjustNum) || 0 === data.maxPurchaseTotalNum && cartLimitedEnum.NORMAL_STOCK_OVER.includes(data.maxPurchaseReasonCode) || isInactive) return `<div class="trade-cart-sku-item-info-sku-number body3">x<span>${data.num}</span></div>`;
-                return this.getStepper(data.num, indexStr);
+                return `<div class="trade-cart-sku-item-info-left-stepper">${this.getStepper(data.num, indexStr)}</div>`;
             }
             getRemoveButton(data) {
                 var _data$businessFlag2;
-                return !data.businessFlag || data.businessFlag && null !== (_data$businessFlag2 = data.businessFlag) && void 0 !== _data$businessFlag2 && _data$businessFlag2.singleDelete ? `<div class="trade-cart-sku-item-remove"><button class="trade-cart-sku-item-remove-button body3 btn-link">${i18n_t("common.remove")}</button></div>` : "";
-            }
-            getLimitedDiscountClass(data) {
-                return 2 === data.priceType ? "trade-cart-sku-item-info-amount-and-limited-discount" : "";
+                return !data.businessFlag || data.businessFlag && null !== (_data$businessFlag2 = data.businessFlag) && void 0 !== _data$businessFlag2 && _data$businessFlag2.singleDelete ? `<div class="trade-cart-sku-item-remove"><button class="trade-cart-sku-item-remove-button body3 btn-link">${i18n_t("cart.cart.remove")}</button></div>` : "";
             }
             getPriceInfo(data) {
+                const isShowScribingPrice = parseInt(data.promotionAmount, 10) > 0 && parseInt(data.productPrice, 10) > parseInt(data.price, 10);
                 if (useSuperScriptDecimals) {
-                    const {integer: salePriceInteger, decimal: salePriceDecimal} = convertPrice(data.salePrice);
+                    const {integer: productPriceInteger, decimal: productPriceDecimal} = convertPrice(data.productPrice);
                     const {integer: priceInteger, decimal: priceDecimal} = convertPrice(data.price);
-                    if (parseInt(data.salePrice, 10) > parseInt(data.price, 10)) return `<span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount=${data.salePrice}>${salePriceInteger}<sup class="body6">${salePriceDecimal}</sup></span><span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}><span>${priceInteger}<sup class="body6">${priceDecimal}</sup></span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+                    if (isShowScribingPrice) return `<span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount=${data.productPrice}>${productPriceInteger}<sup class="body6">${productPriceDecimal}</sup></span><span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}><span>${priceInteger}<sup class="body6">${priceDecimal}</sup></span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
                     return `<span class="trade-cart-sku-item-real-price notranslate body2 text_bold" data-amount=${data.price}><span>${priceInteger}<sup class="body6">${priceDecimal}</sup></span>${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
                 }
-                if (parseInt(data.salePrice, 10) > parseInt(data.price, 10)) return `<span class="trade-cart-sku-item-info-amount-through notranslate" data-amount=${data.salePrice}>${convertFormat(data.salePrice)}</span><span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price ${this.getLimitedDiscountClass(data)}" data-amount=${data.price}>${convertFormat(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
-                return `<span class="trade-cart-sku-item-real-price notranslate ${this.getLimitedDiscountClass(data)}" data-amount=${data.price}>${convertFormat(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+                if (isShowScribingPrice) return `<span class="trade-cart-sku-item-info-amount-through notranslate" data-amount=${data.productPrice}>${currency_convertFormat(data.productPrice)}</span><span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}>${currency_convertFormat(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+                return `<span class="trade-cart-sku-item-real-price notranslate" data-amount=${data.price}>${currency_convertFormat(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
             }
             getVipTag(data) {
                 return 1 === parseInt(data.priceType, 10) ? `<span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>` : "";
             }
             getPromotionAmountInfo(data) {
                 var _data$businessFlag3;
-                if (parseInt(data.promotionAmount, 10) > 0) return `\n      <div class="trade-cart-sku-item-info-discount body4">\n        <div>\n          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n            <path fill-rule="evenodd" clip-rule="evenodd"\n              d="M1.02892 5.44639C1.01074 5.59863 1.06342 5.7508 1.17184 5.85922L6.10552 10.7929C6.49605 11.1834 7.12921 11.1834 7.51974 10.7929L10.793 7.51962C11.1835 7.12909 11.1835 6.49593 10.793 6.1054L5.85934 1.17172C5.75092 1.0633 5.59875 1.01062 5.44651 1.0288L1.89069 1.45337C1.66152 1.48074 1.48086 1.6614 1.4535 1.89057L1.02892 5.44639ZM4.00013 3.00001C4.55241 3.00001 5.00013 3.44772 5.00013 4.00001C5.00013 4.55229 4.55241 5.00001 4.00013 5.00001C3.44785 5.00001 3.00013 4.55229 3.00013 4.00001C3.00013 3.44772 3.44785 3.00001 4.00013 3.00001Z"\n              />\n          </svg><span>&nbsp;${i18n_t("common.discount")}</span>\n        </div>\n        <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion" data-amount=${data.promotionAmount}>${convertFormat(data.promotionAmount)}</span><span>)</span></div>\n      </div>`;
-                if (data && null !== data && void 0 !== data && data.businessFlag && !(null !== data && void 0 !== data && null !== (_data$businessFlag3 = data.businessFlag) && void 0 !== _data$businessFlag3 && _data$businessFlag3.discountable)) return `<div class="trade-cart-sku-item-info-discount sale-color body4">${i18n_t("cart.not-participation-offers")}</div>`;
+                if (parseInt(data.promotionAmount, 10) > 0) return `\n      <div class="trade-cart-sku-item-info-discount body4">\n        <div>\n          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n            <path fill-rule="evenodd" clip-rule="evenodd"\n              d="M1.02892 5.44639C1.01074 5.59863 1.06342 5.7508 1.17184 5.85922L6.10552 10.7929C6.49605 11.1834 7.12921 11.1834 7.51974 10.7929L10.793 7.51962C11.1835 7.12909 11.1835 6.49593 10.793 6.1054L5.85934 1.17172C5.75092 1.0633 5.59875 1.01062 5.44651 1.0288L1.89069 1.45337C1.66152 1.48074 1.48086 1.6614 1.4535 1.89057L1.02892 5.44639ZM4.00013 3.00001C4.55241 3.00001 5.00013 3.44772 5.00013 4.00001C5.00013 4.55229 4.55241 5.00001 4.00013 5.00001C3.44785 5.00001 3.00013 4.55229 3.00013 4.00001C3.00013 3.44772 3.44785 3.00001 4.00013 3.00001Z"\n              />\n          </svg><span>&nbsp;${i18n_t("sales.general.discount_common")}</span>\n        </div>\n        <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion" data-amount=${data.promotionAmount}>${currency_convertFormat(data.promotionAmount)}</span><span>)</span></div>\n      </div>`;
+                if (data && null !== data && void 0 !== data && data.businessFlag && !(null !== data && void 0 !== data && null !== (_data$businessFlag3 = data.businessFlag) && void 0 !== _data$businessFlag3 && _data$businessFlag3.discountable)) return `<div class="trade-cart-sku-item-info-discount sale-color body4">${i18n_t("cart.promotion.no_promotion")}</div>`;
                 return "";
             }
             getImageFallbackIfNecessary(data) {
@@ -16369,13 +12145,13 @@
                 return ``;
             }
             getCardItemContent(data, isInactive, indexStr = "") {
-                var _data$groupId, _data$priceType, _data$groupId2;
                 const wrapperClassName = [ "trade-cart-sku-item" ];
                 if (0 === data.maxPurchaseTotalNum && cartLimitedEnum.NORMAL_STOCK_OVER.includes(data.maxPurchaseReasonCode)) wrapperClassName.push("sold-out");
                 if (isInactive) wrapperClassName.push("inactive");
-                const id = `${this.tradeCartType}-card-sku-item-${null !== (_data$groupId = data.groupId) && void 0 !== _data$groupId ? _data$groupId : ""}-${data.spuId}-${data.skuId}-${null !== (_data$priceType = data.priceType) && void 0 !== _data$priceType ? _data$priceType : ""}`;
-                const hasDiscount = parseInt(data.salePrice, 10) > parseInt(data.price, 10);
-                const content = `\n    <div class="${wrapperClassName.join(" ")}" id="${id}">\n      <a class="trade-cart-sku-item-image"\n         href="${1 === data.productSource ? `/products/${data.spuId}` : `javascript:void(0)`}"\n         data-product-source="${data.productSource}"\n         data-group-id="${null !== (_data$groupId2 = data.groupId) && void 0 !== _data$groupId2 ? _data$groupId2 : ""}"\n         data-name="${escape_default()(data.name)}"\n         data-sku-id="${data.skuId}"\n         data-spu-id="${data.spuId}"\n         data-sku-attrs="${escape_default()((data.skuAttr || []).join(","))}"\n         data-price="${data.price}"\n         data-sale-price="${data.salePrice}"\n         data-item-no="${data.itemNo}"\n       >\n          ${this.getImageFallbackIfNecessary(data)}\n          ${this.getImageAccessorial(data.bindProductImages)}\n          <div class="trade-cart-sku-item-image-sold-out body6">${i18n_t("productList.container.listItem.sold.out")}</div>\n      </a>\n      <div class="trade-cart-sku-item-info">\n          <div class="trade-cart-sku-item-info-title body3">${encodeHTML(data.name)}</div>\n          ${this.getCardItemAttrs(data)}\n          ${2 === data.priceType ? `<span class="flash-sale">${render.staticRender(id, data)}</span>` : ""}\n          <div class="trade-cart-sku-item-info-number">\n              <div class="trade-cart-sku-item-info-left">\n                  ${this.getInfoLeft(data, isInactive, indexStr)}\n                  ${Array.isArray(data.errorList) && data.errorList.length ? `<span class="promotion-limited">${promotion_limited_render.staticRender(id, data)}</span>` : ""}\n              </div>\n              <div class="trade-cart-sku-item-info-amount-and-discount">\n                  <div class="trade-cart-sku-item-info-amount body3 ${hasDiscount ? "has-discount" : ""}">\n                    ${this.getPriceInfo(data)}\n                  </div>\n                  ${this.getPromotionAmountInfo(data)}\n              </div>\n          </div>\n          <div class="slot-cart slot-cart-num-editor-end" data-slot-cart-num-editor-end></div>\n          ${this.getRemoveButton(data)}\n      </div>\n      <div class="trade-cart-sku-item-mask"></div>\n    </div>\n    <div class="slot-cart slot-cart-item-end" data-slot-cart-item-end></div>\n    `;
+                const {groupId, spuId, skuId, uniqueSeq, priceType, productSource, name, skuAttr, price, salePrice, itemNo, bindProductImages, errorList, promotionAmount} = data || {};
+                const id = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${uniqueSeq}`;
+                const hasDiscount = parseInt(promotionAmount, 10) > 0 && parseInt(salePrice, 10) > parseInt(price, 10);
+                const content = `\n    <div class="${wrapperClassName.join(" ")}" id="${id}">\n      <a class="trade-cart-sku-item-image"\n         href="${1 === productSource ? `/products/${spuId}` : `javascript:void(0)`}"\n         data-product-source="${productSource}"\n         data-group-id="${null !== groupId && void 0 !== groupId ? groupId : ""}"\n         data-name="${escape_default()(name)}"\n         data-sku-id="${skuId}"\n         data-spu-id="${spuId}"\n         data-sku-attrs="${escape_default()((skuAttr || []).join(","))}"\n         data-price="${price}"\n         data-sale-price="${salePrice}"\n         data-item-no="${itemNo}"\n       >\n          ${this.getImageFallbackIfNecessary(data)}\n          ${this.getImageAccessorial(bindProductImages)}\n          <div class="trade-cart-sku-item-image-sold-out body6">${i18n_t("products.product_list.product_sold_out")}</div>\n      </a>\n      <div class="trade-cart-sku-item-info">\n          <div class="trade-cart-sku-item-info-title body3">${encodeHTML(name)}</div>\n          ${this.getCardItemAttrs(data)}\n          ${2 === priceType ? `<span class="flash-sale">${render.staticRender(id, data)}</span>` : ""}\n          <div class="trade-cart-sku-item-info-number">\n              <div class="trade-cart-sku-item-info-left">\n                  ${this.getInfoLeft(data, isInactive, indexStr)}\n                  ${Array.isArray(errorList) && errorList.length ? `<span class="promotion-limited">${promotion_limited_render.staticRender(id, data)}</span>` : ""}\n              </div>\n              <div class="trade-cart-sku-item-info-amount-and-discount">\n                  <div class="trade-cart-sku-item-info-amount body3 ${hasDiscount ? "has-discount" : ""}">\n                    ${this.getPriceInfo(data)}\n                  </div>\n                  ${this.getPromotionAmountInfo(data)}\n              </div>\n          </div>\n          <div class="slot-cart slot-cart-num-editor-end" data-slot-cart-num-editor-end></div>\n          ${this.getRemoveButton(data)}\n      </div>\n      <div class="trade-cart-sku-item-mask"></div>\n    </div>\n    <div class="slot-cart slot-cart-item-end" data-slot-cart-item-end></div>\n    `;
                 this.templateContent.push(content);
             }
             generateActiveItemTemplate(activeItemData, findex) {
@@ -16385,21 +12161,29 @@
                 }));
             }
             generateInactiveItemTemplate(inactiveItems) {
-                this.templateContent.push(`<div class="trade-cart-sku-list-inactive-wrapper">\n      <div class="trade-cart-sku-list-inactive-wrapper-title body3">${i18n_t("trade.invalid-product")}</div>\n      <button class="trade-cart-sku-list-inactive-wrapper-remove-all body3 btn-link" id="${this.tradeCartType}-trade-cart-sku-list-inactive-wrapper-remove-all">${i18n_t("trade.delete-invalid-product")}</button>\n    </div>`);
+                this.templateContent.push(`<div class="trade-cart-sku-list-inactive-wrapper">\n      <div class="trade-cart-sku-list-inactive-wrapper-title body3">${i18n_t("cart.item.invalid_product")}</div>\n      <button class="trade-cart-sku-list-inactive-wrapper-remove-all body3 btn-link" id="${this.tradeCartType}-trade-cart-sku-list-inactive-wrapper-remove-all">${i18n_t("cart.item.remove_invalid_product")}</button>\n    </div>`);
                 inactiveItems.forEach((data => {
                     this.getCardItemContent(data, true);
                 }));
             }
             showEmptyCart(show) {
                 if (show) {
-                    $(".trade_cart_empty_wrapper").removeClass("hide");
-                    $(".trade_cart_not_empty_wrapper").addClass("hide");
+                    __SL_$__(".trade_cart_empty_wrapper").removeClass("hide");
+                    __SL_$__(".trade_cart_not_empty_wrapper").addClass("hide");
                 } else {
-                    $(".trade_cart_empty_wrapper").addClass("hide");
-                    $(".trade_cart_not_empty_wrapper").removeClass("hide");
+                    __SL_$__(".trade_cart_empty_wrapper").addClass("hide");
+                    __SL_$__(".trade_cart_not_empty_wrapper").removeClass("hide");
                 }
             }
             reRender(data) {
+                sku_card_logger.info(`normal 主站购物车 SkuCard reRender`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        cartInfo: data
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Start
+                });
                 if (0 === data.count) {
                     this.showEmptyCart(true);
                     return;
@@ -16434,7 +12218,23 @@
                     null === (_window$Shopline = window.Shopline) || void 0 === _window$Shopline ? void 0 : null === (_window$Shopline$even = _window$Shopline.event) || void 0 === _window$Shopline$even ? void 0 : _window$Shopline$even.emit("Cart::LineItemUpdate");
                     this.reset(true);
                     this.forceInputFocusIfNecessary();
+                    sku_card_logger.info(`normal 主站购物车 SkuCard reRender`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            cartInfo: data
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Success
+                    });
                 } catch (e) {
+                    sku_card_logger.info(`normal 主站购物车 SkuCard reRender`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            cartInfo: data
+                        },
+                        action: sentryReport_Action.EditCart,
+                        error: e
+                    });
                     console.log(e);
                 }
             }
@@ -16506,12 +12306,12 @@
         const calculationPosition = ($target, $tooltip) => {
             const offset = $target.offset();
             const width = $target.outerWidth();
-            const $doc = $(document);
+            const $doc = __SL_$__(document);
             const scrollTop = $doc.scrollTop();
             const scrollLeft = $doc.scrollLeft();
             let left;
             let x;
-            const screenWidth = $(window).width();
+            const screenWidth = __SL_$__(window).width();
             const offsetLeft = offset.left + width / 2 - scrollLeft;
             const tooltipWidth = $tooltip.outerWidth();
             if (offsetLeft <= tooltipWidth / 2) {
@@ -16536,7 +12336,7 @@
                     ...tooltip_defaultOptions,
                     ...options
                 };
-                this.$target = $(this.options.selector);
+                this.$target = __SL_$__(this.options.selector);
                 this.clickEventId = Math.random().toString(32).slice(-8);
                 this.$tooltips = [];
                 this.isShow = false;
@@ -16557,26 +12357,26 @@
             init() {
                 this.walk();
                 const calc = utils_throttle(20, (() => {
-                    this.$tooltips.forEach((tooltip => this.setPosition($(tooltip), this.$target)));
+                    this.$tooltips.forEach((tooltip => this.setPosition(__SL_$__(tooltip), this.$target)));
                 }));
-                $(document).scroll((() => {
+                __SL_$__(document).scroll((() => {
                     if (this.isShow) calc();
                 }));
             }
             walk() {
                 const template = tooltip_getTemplate(this.options);
                 this.$target.each(((index, item) => {
-                    const $item = $(item);
-                    const $tooltip = $(template);
+                    const $item = __SL_$__(item);
+                    const $tooltip = __SL_$__(template);
                     this.$tooltips.push($tooltip);
-                    $("body").append($tooltip);
+                    __SL_$__("body").append($tooltip);
                     this.bindEvents($tooltip, $item);
                 }));
             }
             bindEvents($tooltip, $target) {
                 const events = {
                     hover: () => {
-                        $(document).off(`.${this.clickEventId}`);
+                        __SL_$__(document).off(`.${this.clickEventId}`);
                         $target.hover((() => {
                             this.setPosition($tooltip, $target);
                             $tooltip.removeClass(tooltip_HIDDEN_CLASSNAME);
@@ -16588,8 +12388,8 @@
                     },
                     click: () => {
                         $target.off("mouseenter mouseleave");
-                        $(document).on(`click.${this.clickEventId}`, (event => {
-                            const $tar = $(event.target);
+                        __SL_$__(document).on(`click.${this.clickEventId}`, (event => {
+                            const $tar = __SL_$__(event.target);
                             if (!$tar.closest($target).length && !$target.hasClass(tooltip_HIDDEN_CLASSNAME)) {
                                 $tooltip.addClass(tooltip_HIDDEN_CLASSNAME);
                                 this.isShow = false;
@@ -16607,13 +12407,13 @@
                 if (void 0 !== title || null !== title) {
                     this.options.title = title;
                     this.$tooltips.forEach((item => {
-                        $(item).find(`.${tooltip_CONTENT_CLASSNAME}`).html(title);
+                        __SL_$__(item).find(`.${tooltip_CONTENT_CLASSNAME}`).html(title);
                     }));
                 }
                 if (trigger) {
                     this.options.trigger = trigger;
                     this.$target.each(((index, item) => {
-                        const $item = $(item);
+                        const $item = __SL_$__(item);
                         const $tooltip = this.$tooltips[index];
                         this.bindEvents($tooltip, $item);
                     }));
@@ -16631,20 +12431,20 @@
             }
             show(title) {
                 this.$tooltips.forEach((item => {
-                    $(item).removeClass(tooltip_HIDDEN_CLASSNAME).find(`.${tooltip_CONTENT_CLASSNAME}`).html(title);
+                    __SL_$__(item).removeClass(tooltip_HIDDEN_CLASSNAME).find(`.${tooltip_CONTENT_CLASSNAME}`).html(title);
                 }));
                 this.isShow = true;
             }
             hide() {
                 this.$tooltips.forEach((item => {
-                    $(item).addClass(tooltip_HIDDEN_CLASSNAME);
+                    __SL_$__(item).addClass(tooltip_HIDDEN_CLASSNAME);
                 }));
                 this.isShow = false;
             }
             destroy() {
                 this.isShow = false;
                 this.$tooltips.forEach((item => {
-                    $(item).remove();
+                    __SL_$__(item).remove();
                 }));
             }
         }
@@ -16712,6 +12512,8 @@
             }); else obj[key] = value;
             return obj;
         }
+        const trade_summations_logger = logger.pipeOwner(`${Owner.Cart} biz/trade-summations/index.js`);
+        const trade_summations_cartToken = js_cookie_default().get("t_cart");
         let tooltip;
         const info_tips_icon = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="cursor: pointer; {{style}}">\n<circle cx="6" cy="6" r="5.5" stroke="currentColor"/>\n<path d="M6 3V6.5" stroke="currentColor" stroke-linecap="round"/>\n<circle cx="6" cy="8.75" r="0.75" fill="currentColor"/>\n</svg>\n`;
         const trade_summations_useSuperScriptDecimals = state_selector_SL_State.get("theme.settings.superscript_decimals");
@@ -16719,7 +12521,7 @@
             constructor() {
                 trade_summations_defineProperty(this, "_data", {});
                 trade_summations_defineProperty(this, "getTriggerType", (platform => "pc" === platform ? "hover" : "click"));
-                trade_summations_defineProperty(this, "getEles", (key => $(`.trade_summations_fee[data-key="${key}"]`)));
+                trade_summations_defineProperty(this, "getEles", (key => __SL_$__(`.trade_summations_fee[data-key="${key}"]`)));
                 trade_summations_defineProperty(this, "_renderTooltip", (isMutra => {
                     if (tooltip) tooltip.destroy();
                     const platform = commons_utils.helper.getPlatform();
@@ -16728,9 +12530,9 @@
                     tooltip = new Tooltip({
                         selector,
                         trigger: this.getTriggerType(platform),
-                        title: i18n_t("trade.coupon-mutra-discount")
+                        title: i18n_t("cart.discount.use_coupon_alone")
                     });
-                    $(selector).html(info_tips_icon);
+                    __SL_$__(selector).html(info_tips_icon);
                 }));
                 trade_summations_defineProperty(this, "_keyList", []);
                 trade_summations_defineProperty(this, "getInitData", (() => {
@@ -16786,18 +12588,18 @@
                         pointAmountEl.removeClass("hide");
                     }
                     let formattedValue = deductMemberPointAmount;
-                    if ("number" === typeof deductMemberPointAmount || !deductMemberPointAmount) formattedValue = convertFormat(deductMemberPointAmount);
-                    descEl.html(i18n_t("trade.point-discount-desc", {
+                    if ("number" === typeof deductMemberPointAmount || !deductMemberPointAmount) formattedValue = currency_convertFormat(deductMemberPointAmount);
+                    descEl.html(i18n_t("cart.refund.deduct_point", {
                         deductMemberPointNum: `${null !== deductMemberPointNum && void 0 !== deductMemberPointNum ? deductMemberPointNum : 0}`,
                         deductMemberPointAmount: `<span class="deductMemberPointAmount">${formattedValue}</span>`
                     }));
-                    pointAmountEl.find(".trade_summations_remark").html(i18n_t("trade.point-discount-remark", {
+                    pointAmountEl.find(".trade_summations_remark").html(i18n_t("cart.refund.cost_points", {
                         value: `${null !== deductMemberPointNum && void 0 !== deductMemberPointNum ? deductMemberPointNum : 0}`
                     }));
                 }));
                 trade_summations_defineProperty(this, "toggleMemberPoint", (checked => {
-                    const pointsAmountDescEle = $(".trade_summations_fee__desc");
-                    const pointsAmountValueEle = $(".pointAmount");
+                    const pointsAmountDescEle = __SL_$__(".trade_summations_fee__desc");
+                    const pointsAmountValueEle = __SL_$__(".pointAmount");
                     if (!checked) {
                         pointsAmountValueEle.addClass("hide");
                         pointsAmountDescEle.removeClass("hide");
@@ -16821,7 +12623,7 @@
                     }
                     if ("codePromotionAmount" === key && "string" === typeof value) $matchedEles.find(`.trade_summations__amount-box`).text(value); else {
                         let formattedValue = value;
-                        if ("number" === typeof value) formattedValue = convertFormat(value);
+                        if ("number" === typeof value) formattedValue = currency_convertFormat(value);
                         if (trade_summations_useSuperScriptDecimals && "number" === typeof value) {
                             const {integer, decimal} = convertPrice(value);
                             $matchedEles.find(`.trade_summations__amount-box`).html(`${integer}<sup class="body6">${decimal}</sup>`);
@@ -16837,7 +12639,7 @@
                     let promotionDisplayValue = 0;
                     if (2 === discountBenefitType) {
                         promotionAvailable = true;
-                        promotionDisplayValue = i18n_t("trade.free-shipping");
+                        promotionDisplayValue = i18n_t("transaction.general.free_shipping");
                         promotionFreeShippingMatched = true;
                     } else if (null == discountBenefitType || 1 === discountBenefitType) {
                         promotionAvailable = promotionAmount > 0;
@@ -16849,13 +12651,13 @@
                             const discountCodeSumAmountEles = this.getEles("codePromotionAmount");
                             const freeShipping = 3 === (null === promotionCodeDTO || void 0 === promotionCodeDTO ? void 0 : promotionCodeDTO.discountCodeBenefitType);
                             if (freeShipping) {
-                                newAmount = i18n_t("trade.free-shipping");
+                                newAmount = i18n_t("transaction.general.free_shipping");
                                 discountCodeSumAmountEles.find(".trade_summations__amount_reduce").addClass("hide");
                             } else {
                                 newAmount = null !== promotionCodeDTO && void 0 !== promotionCodeDTO && promotionCodeDTO.codePromotionAmount ? +promotionCodeDTO.codePromotionAmount : 0;
                                 discountCodeSumAmountEles.find(".trade_summations__amount_reduce").removeClass("hide");
                             }
-                        } else if ("freeShipping" === key) newAmount = newAmount ? i18n_t("trade.free") : 0; else if ("deductMemberPointAmount" === key) {
+                        } else if ("freeShipping" === key) newAmount = newAmount ? i18n_t("cart.payment.free") : 0; else if ("deductMemberPointAmount" === key) {
                             var _memberPointInfo$dedu;
                             newAmount = null !== (_memberPointInfo$dedu = null === memberPointInfo || void 0 === memberPointInfo ? void 0 : memberPointInfo.deductMemberPointAmount) && void 0 !== _memberPointInfo$dedu ? _memberPointInfo$dedu : 0;
                         } else if ("totalAmount" === key) {
@@ -16882,6 +12684,13 @@
                     tooltip.hide();
                 }), 50));
                 trade_summations_defineProperty(this, "init", (() => {
+                    trade_summations_logger.info(`normal 主站购物车 SummationModule 初始化 init`, {
+                        data: {
+                            cartToken: trade_summations_cartToken
+                        },
+                        action: sentryReport_Action.InitCart,
+                        status: o.Start
+                    });
                     this.initEventListner();
                     this.getInitData();
                     this._renderTooltip();
@@ -16891,10 +12700,10 @@
                             trigger: this.getTriggerType(platform)
                         });
                     }));
-                    $(".trade_mini_cart").parent().on("scroll", this.scrollHideTips);
-                    $(".trade_cart").parent().on("scroll", this.scrollHideTips);
-                    $(".trade_cart_not_empty_wrapper").on("scroll", this.scrollHideTips);
-                    $(document).on("scroll", this.scrollHideTips);
+                    __SL_$__(".trade_mini_cart").parent().on("scroll", this.scrollHideTips);
+                    __SL_$__(".trade_cart").parent().on("scroll", this.scrollHideTips);
+                    __SL_$__(".trade_cart_not_empty_wrapper").on("scroll", this.scrollHideTips);
+                    __SL_$__(document).on("scroll", this.scrollHideTips);
                     utils_event_bus.on("trade:checkbox-trade_checkout_point_checkbox", this.toggleMemberPoint);
                 }));
             }
@@ -16903,6 +12712,18 @@
         const trade_summations = summationBus;
         var debounce = __webpack_require__("../shared/browser/node_modules/lodash/debounce.js");
         var debounce_default = __webpack_require__.n(debounce);
+        const loggerReport_Owner = {
+            Coupon: "coupon"
+        };
+        const loggerReport_Action = {
+            Init: "init",
+            Apply: "apply"
+        };
+        const sentrylogger = sentry.pipeOwner(loggerReport_Owner.Coupon);
+        const coupon_logger = sentry.pipeOwner(`${Owner.Coupon} biz-com/coupon/index.js`);
+        const coupon_cartToken = src_js_cookie_default().get("t_cart");
+        const checkoutToken = state_selector_SL_State.get("checkout");
+        console.log(sentryReport_Action, coupon_logger, coupon_cartToken, checkoutToken);
         const getEles = eleClass => document.querySelectorAll(eleClass);
         const coupon_isFn = object => "function" === typeof object;
         const getClosest = (ele, matchs) => {
@@ -16968,10 +12789,10 @@
                 this.changeErrorTipsDisplayStatus = (action, handleClose) => () => {
                     eachEles(this.couponErrorTipsEles, (ele => {
                         if ("show" === action) {
-                            $(ele).removeClass("hide");
+                            __SL_$__(ele).removeClass("hide");
                             this.applyCouponSucceed = false;
-                            $(ele).slideDown(100);
-                        } else $(ele).slideUp(100);
+                            __SL_$__(ele).slideDown(100);
+                        } else __SL_$__(ele).slideUp(100);
                     }));
                     if ("hide" === action && handleClose) {
                         this.applyCouponSucceed = true;
@@ -16984,39 +12805,41 @@
                 let errInfo;
                 switch (discountCodeUnavailable) {
                   case "DISCOUNT_CODE_INVALID":
-                    errInfo = i18n_t("validate.discount-code-error");
+                    errInfo = i18n_t("cart.discount.code_error");
                     break;
 
                   case "DISCOUNT_CODE_CAN_NOT_ACCUMULATE":
-                    errInfo = i18n_t("validate.discount-code-can-not-accumulate");
+                    errInfo = i18n_t("transaction.general.discount_codes_cannot_stack");
                     break;
 
                   case "DISCOUNT_CODE_NO_REACH":
-                    errInfo = i18n_t(`validate.discount-code-user-invalid`, {
+                    errInfo = i18n_t(`cart.discount.code_item_unmatched`, {
                         discountCode
                     });
                     break;
 
                   case "MUTUAL_EXCLUDED_BY_TIME_LIMITED":
-                    errInfo = i18n_t("validate.mutual-excluded-by-time-limited");
+                    errInfo = i18n_t("cart.discount.discounts_cannot_stack");
                     break;
 
                   case "DISCOUNT_CODE_TOO_LONG":
-                    errInfo = i18n_t("validate.coupon-code-cannot-exceed-64-length");
-                    if ("validate.coupon-code-cannot-exceed-64-length" === errInfo) {
-                        errInfo = i18n_t("validate.coupon-code-cannot-exceed-25-length");
-                        errInfo = errInfo.replace("25", "2~25");
+                    errInfo = i18n_t("transaction.general.coupon_code_exceed_not_64_characters");
+                    if ("transaction.general.coupon_code_exceed_not_64_characters" === errInfo) {
+                        errInfo = i18n_t("transaction.general.coupon_code_exceed_not_25_characters");
+                        if ("transaction.general.coupon_code_exceed_not_25_characters" === errInfo) errInfo = i18n_t("cart.discount.coupon_code_length_limit", {
+                            range: "2~25"
+                        }); else errInfo = errInfo.replace("25", "2~25");
                     } else errInfo = errInfo.replace("64", "2~25");
                     break;
 
                   case "MUTUAL_EXCLUDED_BY_LEVEL_PRICE":
-                    errInfo = i18n_t("validate.discount-code-user-invalid", {
+                    errInfo = i18n_t("cart.discount.code_item_unmatched", {
                         discountCode
                     });
                     break;
 
                   case "SHIPPING_PLAN_UNAVAILABLE":
-                    errInfo = i18n_t(`validate.shipping_plan_unavailable`, {
+                    errInfo = i18n_t(`transaction.general.coupon_invalid_for_the_shipping_method`, {
                         discountCode
                     });
                     break;
@@ -17039,7 +12862,7 @@
                 this.topErrInfo = errInfo;
                 const _that = this;
                 if (errInfo) setTimeout((() => {
-                    $(".trade_coupon_invalid_tips_content_info").text(errInfo);
+                    __SL_$__(".trade_coupon_invalid_tips_content_info").text(errInfo);
                     _that.changeErrorTipsDisplayStatus("show")();
                 }), 100);
             }
@@ -17060,7 +12883,7 @@
             }
             selectInputContent() {
                 eachEles(this.discountCodeInpEles, (ele => {
-                    $(ele).select();
+                    __SL_$__(ele).select();
                 }));
             }
             handleChangeInput(e) {
@@ -17121,7 +12944,13 @@
                 const errCode = await this.updateServiceDiscoutCode(discountCode);
                 updateClasses(this.applyBtnEles, "remove", "hide");
                 updateClasses(this.loadingBtnEles, "add", "hide");
-                if ("error" === errCode) return;
+                if ("error" === errCode) {
+                    sentrylogger.warn("优惠券应用失败", {
+                        action: loggerReport_Action.Apply,
+                        status: index_es.LogStatus.Failure
+                    });
+                    return;
+                }
                 if (!errCode) {
                     const emit = get_default()(SL_EventBus, "emit", void 0);
                     if (emit) emit(HD_EVENT_NAME.COUPON_APPLY, {
@@ -17144,6 +12973,10 @@
                     this.preSaleInfo = {
                         ...preSaleInfoCopy
                     };
+                    sentrylogger.warn("优惠券删除失败", {
+                        action: loggerReport_Action.Apply,
+                        status: index_es.LogStatus.Failure
+                    });
                     return;
                 }
                 this.curWrapper = getClosest(e.target, eleSelectorMap.couponWrapper);
@@ -17198,7 +13031,7 @@
                     }));
                 }));
                 this.discountCodeInpEles.forEach((ele => {
-                    const currentValue = $(ele).val();
+                    const currentValue = __SL_$__(ele).val();
                     if (currentValue) this.handleChangeInput({
                         target: {
                             value: currentValue
@@ -17238,23 +13071,79 @@
                 }
             }
             init() {
+                sentrylogger.info("优惠券初始化", {
+                    action: loggerReport_Action.Init
+                });
                 this.initEventListener();
             }
         }
         const biz_com_coupon = Coupon;
+        const trade_coupon_logger = logger.pipeOwner(`${Owner.Cart} trade-coupon/index.js`);
+        const trade_coupon_cartToken = js_cookie_default().get("t_cart");
         function initCoupon() {
+            trade_coupon_logger.info(`normal 主站购物车 Coupon 初始化 initCoupon`, {
+                data: {
+                    cartToken: trade_coupon_cartToken
+                },
+                action: sentryReport_Action.InitCart,
+                status: o.Start
+            });
             const cartServ = service_cart.takeCartService();
-            const updateServiceDiscoutCode = async discountCode => {
+            const updateServiceDiscountCode = async discountCode => {
+                trade_coupon_logger.info(`normal 主站购物车 Coupon 更改优惠码 initCoupon`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken,
+                        discountCode
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Start
+                });
                 if ("" !== discountCode) {
                     const {success, msg} = await cartServ.applyCoupon(discountCode);
-                    if (!success) return msg;
+                    if (!success) {
+                        trade_coupon_logger.info(`normal 主站购物车 Coupon 更改优惠码 有优惠码 initCoupon`, {
+                            data: {
+                                cartToken: trade_coupon_cartToken,
+                                discountCode
+                            },
+                            action: sentryReport_Action.EditCart,
+                            error: msg
+                        });
+                        return msg;
+                    }
                 } else {
-                    const {success} = await cartServ.withdrawCoupon();
-                    if (!success) return "error";
+                    const {success, msg} = await cartServ.withdrawCoupon();
+                    if (!success) {
+                        trade_coupon_logger.info(`normal 主站购物车 Coupon 更改优惠码 删除优惠码 initCoupon`, {
+                            data: {
+                                cartToken: trade_coupon_cartToken,
+                                discountCode
+                            },
+                            action: sentryReport_Action.EditCart,
+                            error: msg
+                        });
+                        return "error";
+                    }
                 }
+                trade_coupon_logger.info(`normal 主站购物车 Coupon 更改优惠码 initCoupon`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken,
+                        discountCode
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Success
+                });
             };
             const getCartType = ele => {
-                let tmp = $(ele);
+                trade_coupon_logger.info(`normal 主站购物车 获取购物车类型 getCartType`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken,
+                        ele
+                    },
+                    action: sentryReport_Action.TakeCart,
+                    status: o.Start
+                });
+                let tmp = __SL_$__(ele);
                 while (tmp && tmp.length) {
                     if (tmp.hasClass("sidebar")) return "sidebar";
                     if (tmp.hasClass("main")) return "main";
@@ -17274,38 +13163,76 @@
                 }
             };
             const clickApplyBtn = () => {
-                const eventid = "/cart" === window.location.pathname ? 60006254 : 60006262;
+                const eventId = "Cart" === state_selector_SL_State.get("templateAlias") ? 60006254 : 60006262;
+                trade_coupon_logger.info(`normal 主站购物车 点击提交优惠码按钮 数据上报 clickApplyBtn`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken,
+                        eventId
+                    },
+                    action: sentryReport_Action.EditCart,
+                    status: o.Start
+                });
                 try {
                     var _window$HdSdk;
-                    null === (_window$HdSdk = window.HdSdk) || void 0 === _window$HdSdk ? void 0 : _window$HdSdk.shopTracker.report(eventid, {
+                    null === (_window$HdSdk = window.HdSdk) || void 0 === _window$HdSdk ? void 0 : _window$HdSdk.shopTracker.report(eventId, {
                         event_name: "109",
                         custom_component: "151"
                     });
+                    trade_coupon_logger.info(`normal 主站购物车 点击提交优惠码按钮 数据上报 clickApplyBtn`, {
+                        data: {
+                            cartToken: trade_coupon_cartToken,
+                            eventId
+                        },
+                        action: sentryReport_Action.EditCart,
+                        status: o.Success
+                    });
                 } catch (e) {
+                    trade_coupon_logger.info(`normal 主站购物车 点击提交优惠码按钮 数据上报 失败 clickApplyBtn`, {
+                        data: {
+                            cartToken: trade_coupon_cartToken
+                        },
+                        action: sentryReport_Action.EditCart,
+                        error: e
+                    });
                     console.log(e);
                 }
             };
             const onErrorTipsClosed = () => {
-                updateServiceDiscoutCode("");
+                updateServiceDiscountCode("");
             };
             const couponInstance = new biz_com_coupon({
-                onChange: updateServiceDiscoutCode,
+                onChange: updateServiceDiscountCode,
                 onErrorTipsClosed,
                 beforeInputFocus,
                 afterInputBlur,
                 clickApplyBtn
             });
             const initEventBusListener = () => {
+                trade_coupon_logger.info(`normal 主站购物车 初始化 eventBus 监听事件 initEventBusListener`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
                 const {eventBus, eventBusEnum} = service_cart;
                 eventBus.on(eventBusEnum.UPDATE, (data => {
+                    trade_coupon_logger.info(`normal 主站购物车 监听到 cart变更 initEventBusListener`, {
+                        data: {
+                            cartToken: trade_coupon_cartToken,
+                            data
+                        },
+                        action: sentryReport_Action.InitCart,
+                        status: o.Start
+                    });
                     const {valid, promotionCode, errorMsg} = (null === data || void 0 === data ? void 0 : data.promotionCodeDTO) || {};
                     couponInstance.preSaleInfo.promotionCode = promotionCode;
                     couponInstance.preSaleInfo.errorMsg = errorMsg;
                     if (!(null !== data && void 0 !== data && data.promotionCodeDTO)) {
-                        $(eleSelectorMap.couponWrapper).addClass("hide");
+                        __SL_$__(eleSelectorMap.couponWrapper).addClass("hide");
                         return;
                     }
-                    $(eleSelectorMap.couponWrapper).removeClass("hide");
+                    __SL_$__(eleSelectorMap.couponWrapper).removeClass("hide");
                     couponInstance.updateStatus({
                         valid,
                         discountCode: promotionCode,
@@ -17330,7 +13257,7 @@
             APP_ENV__PRODUCT: "product"
         };
         function env_get(key) {
-            return (0, get_env["default"])()[key];
+            return getEnv()[key];
         }
         function isDebugMode() {
             const value = env_get(envConst.DEBUG);
@@ -17426,7 +13353,7 @@
                 return _logger;
             };
         }();
-        const logger = {
+        const utils_logger = {
             get logger() {
                 return loggerGetter();
             },
@@ -17505,7 +13432,7 @@
         const helperConsole = {
             checkout: utils_createLogger("checkout")
         };
-        const checkout_logger = logger.pipeOwner({
+        const checkout_logger = utils_logger.pipeOwner({
             owner: "checkout",
             onTag: key => {
                 switch (key) {
@@ -17820,33 +13747,33 @@
         };
         var gateway_sdk_dist = __webpack_require__("../shared/browser/node_modules/@payment/gateway-sdk/dist/index.js");
         var gateway_sdk_dist_default = __webpack_require__.n(gateway_sdk_dist);
-        const utils_isProd = [ "product", "preview" ].includes((0, get_env["default"])().APP_ENV);
+        const utils_isProd = [ "product", "preview" ].includes(getEnv().APP_ENV);
         const conversion = error => {
             let content;
             switch (true) {
               case /0401/.test(error.code):
               case /0402/.test(error.code):
-                content = i18n_t("paypal.error-expired");
+                content = i18n_t("cart.notices.product_expired");
                 break;
 
               case /0403/.test(error.code):
-                content = i18n_t("paypal.error-sold-out");
+                content = i18n_t("cart.notices.insufficient_product_inventory");
                 break;
 
               case /0404/.test(error.code):
-                content = i18n_t("paypal.error-product-limit");
+                content = i18n_t("cart.notices.product_limit");
                 break;
 
               case /0005/.test(error.code):
-                content = i18n_t("paypal.error-network-error");
+                content = i18n_t("cart.notices.network");
                 break;
 
               case /0703/.test(error.code):
-                content = i18n_t("paypal.error-shop-not-exit");
+                content = i18n_t("cart.notices.store_nonexistent");
                 break;
 
               default:
-                content = error && error.message || i18n_t("paypal.error-network-error");
+                content = error && error.message || i18n_t("cart.notices.network");
             }
             return content;
         };
@@ -17907,7 +13834,7 @@
             return {
                 key: merchantKey || slPublicKey,
                 expand: {
-                    currency: js_cookie_default().get("currency_code") || "USD"
+                    currency: src_js_cookie_default().get("currency_code") || "USD"
                 }
             };
         };
@@ -17975,7 +13902,7 @@
         }));
         const load_script = loadScript;
         const {PAYPAL_CHECKOUT} = HD_EVENT_NAME;
-        const paypal_logger = logger.pipeOwner({
+        const paypal_logger = utils_logger.pipeOwner({
             owner: "PayPal",
             onTag: key => {
                 switch (key) {
@@ -18340,7 +14267,7 @@
                     };
                     node.style = convertOutputStyle(wrapperStyle);
                 }
-                node.parentElement.prepend(styleTag);
+                node.parentElement.insertBefore(styleTag, node);
                 node.appendChild(skeleton);
             }
             createDisabledStyle(node) {
@@ -18348,7 +14275,7 @@
                 this.disabledStyleTag = styleTag;
                 styleTag.innerHTML = `\n      #${this.config.domId || "shopline-paypal"}::before {\n        width: 0 !important;\n      }\n      #${this.config.domId || "shopline-paypal"}::after {\n        content: '';\n        display: block;\n        z-index: 100;\n        width: 100% !important;\n        height: ${this.style.height}px;\n        border-radius: 4px;\n        cursor: not-allowed;\n        position: absolute;\n        top: 0;\n        left: 0 !important;\n        background: transparent !important;\n      }\n\n      #${this.config.domId} {\n        opacity: ${this.disabled ? .3 : 1};\n      }\n    `;
                 if (!node) return;
-                node.parentElement.prepend(styleTag);
+                node.parentElement.insertBefore(styleTag, node);
             }
             removeSkeleton(node) {
                 const {skeleton} = this;
@@ -18623,6 +14550,8 @@
             withStorage,
             takeStorage
         };
+        const service_logger = logger.pipeOwner(`${Owner.Cart} cart/script/service/index.js`);
+        const service_cartToken = js_cookie_default().get("t_cart");
         let initialized = false;
         function service_init() {
             if (initialized) return;
@@ -18631,6 +14560,13 @@
                 ai: request
             });
             service_cart.withCartService(svc.takeSvc(), storage.takeStorage());
+            service_logger.info(`normal 主站购物车 全局化 cart service _init`, {
+                data: {
+                    cartToken: service_cartToken
+                },
+                action: sentryReport_Action.InitCart,
+                status: o.Success
+            });
         }
         const script_service = {
             init: service_init
@@ -18642,7 +14578,7 @@
             return !param || "string" !== typeof param;
         }
         function isJqueryInstance(dom) {
-            return dom && dom instanceof $ && dom.length > 0;
+            return dom && dom instanceof __SL_$__ && dom.length > 0;
         }
         function getEventHandlerName(event, selector, namepsace) {
             if (!selector) return [ event, namepsace ].join("-");
@@ -18707,9 +14643,9 @@
         }
         class EventManager {
             constructor(namespace = "", portals) {
-                this.$win = $(window);
-                this.$doc = $(document);
-                this.$portals = portals ? $(portals) : null;
+                this.$win = __SL_$__(window);
+                this.$doc = __SL_$__(document);
+                this.$portals = portals ? __SL_$__(portals) : null;
                 this.namespace = "string" === typeof namespace ? namespace : "";
                 this.$eventHandlers = new Map;
                 this.$winEventHandlers = new Map;
@@ -18727,7 +14663,7 @@
                 this.namespace = namespace;
             }
             $setPortals(portals) {
-                this.$portals = portals ? $(portals) : null;
+                this.$portals = portals ? __SL_$__(portals) : null;
             }
             $on(event, selector, handler) {
                 const onEvent = onConsistent.call(this, event, selector, handler);
@@ -18823,10 +14759,10 @@
                 return this.$root.hasClass(this.classes.active);
             }
             get $body() {
-                return $("body");
+                return __SL_$__("body");
             }
             get $root() {
-                return $(`#${this.id}`);
+                return __SL_$__(`#${this.id}`);
             }
             setupFullScreen() {
                 if (this.options.fullScreen) this.$root.addClass(this.classes.fullscreen);
@@ -18858,7 +14794,7 @@
             bindClickOutside() {
                 this.$on("click", (e => {
                     if (!this.closeFlag) return;
-                    const $container = $(e.target).closest(`#${this.id}`);
+                    const $container = __SL_$__(e.target).closest(`#${this.id}`);
                     const isOutside = 0 === $container.length;
                     if (this.isOpen && isOutside) window.SL_EventBus.emit(DRAWER_EVENT_NAME, {
                         operator: DRAWER_OPERATORS.CLOSE,
@@ -18957,17 +14893,17 @@
             listenImageLoadEvent() {
                 const _that = this;
                 this._root.find(".trade-cart-sku-item-image-wrapper").each(((index, img) => {
-                    this.needUnbindEleList.push($(img));
-                    $(img).on("error", (function() {
-                        $(img).parent().children(".trade-cart-sku-item-image-fallback").removeClass("hide");
-                        $(img).addClass("hide");
-                        _that.loadFailedImgSet.add($(img).attr("origin-src"));
+                    this.needUnbindEleList.push(__SL_$__(img));
+                    __SL_$__(img).on("error", (function() {
+                        __SL_$__(img).parent().children(".trade-cart-sku-item-image-fallback").removeClass("hide");
+                        __SL_$__(img).addClass("hide");
+                        _that.loadFailedImgSet.add(__SL_$__(img).attr("origin-src"));
                     }));
                 }));
             }
             listenSelectContentReport() {
-                $(".trade_mini_cart").on("click", ".trade-cart-sku-item-image", (function() {
-                    const {productSource, skuId, name, skuAttrs, price, salePrice, itemNo} = $(this).data();
+                __SL_$__(".trade_mini_cart").on("click", ".trade-cart-sku-item-image", (function() {
+                    const {productSource, skuId, name, skuAttrs, price, salePrice, itemNo} = __SL_$__(this).data();
                     if (1 === productSource) report_cartReport.selectContent({
                         skuId,
                         name,
@@ -18998,7 +14934,7 @@
                     const {integer, decimal} = convertPrice(data);
                     return `${integer}<sup class="body6">${decimal}</sup>`;
                 }
-                return `${convertFormat(data)}`;
+                return `${currency_convertFormat(data)}`;
             }
             getImageUrl(src) {
                 return imgUrl(src, {
@@ -19054,7 +14990,7 @@
                     null === ele || void 0 === ele ? void 0 : ele.unbind();
                 }));
                 const {count, totalAmount, addedItem} = this.bannerData;
-                this._root = $(".trade_mini_cart");
+                this._root = __SL_$__(".trade_mini_cart");
                 this._subtotal = this._root.find(".trade-cart-banner-summations-subtotal--price");
                 this._cartTotal = this._root.find(".trade-cart-banner-summations-footer-cart-total");
                 this._skuCard = this._root.find(".trade-cart-sku-item");
@@ -19068,6 +15004,8 @@
         const banner = new CartBanner;
         const cart_tradeSettleConfig = state_selector_SL_State.get("tradeSettleConfig");
         const cart_useSuperScriptDecimals = state_selector_SL_State.get("theme.settings.superscript_decimals");
+        const cart_logger = logger.pipeOwner(`${Owner.cart} biz/cart/index.js`);
+        const cart_cartToken = js_cookie_default().get("t_cart");
         class CartModule {
             constructor(cartType) {
                 var _tradeSettleConfig$ca;
@@ -19082,28 +15020,42 @@
                 state_selector_SL_State.on("currencyCode", (() => {
                     const amountNode = cartRootNode.find("[data-amount]");
                     amountNode.each((function() {
-                        if (cart_useSuperScriptDecimals && !$(this).hasClass("is-promotion")) {
-                            const {integer, decimal} = convertPrice($(this).attr("data-amount"));
-                            $(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
-                        } else $(this).text(convertFormat($(this).attr("data-amount")));
+                        if (cart_useSuperScriptDecimals && !__SL_$__(this).hasClass("is-promotion")) {
+                            const {integer, decimal} = convertPrice(__SL_$__(this).attr("data-amount"));
+                            __SL_$__(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
+                        } else __SL_$__(this).text(currency_convertFormat(__SL_$__(this).attr("data-amount")));
                     }));
                 }));
                 window.SL_EventBus.on("stage:locale:change", (() => {
                     const amountNode = cartRootNode.find("[data-amount]");
                     amountNode.each((function() {
-                        if (cart_useSuperScriptDecimals && !$(this).hasClass("is-promotion")) {
-                            const {integer, decimal} = convertPrice($(this).attr("data-amount"));
-                            $(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
-                        } else $(this).text(convertFormat($(this).attr("data-amount")));
+                        if (cart_useSuperScriptDecimals && !__SL_$__(this).hasClass("is-promotion")) {
+                            const {integer, decimal} = convertPrice(__SL_$__(this).attr("data-amount"));
+                            __SL_$__(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
+                        } else __SL_$__(this).text(currency_convertFormat(__SL_$__(this).attr("data-amount")));
                     }));
                 }));
             }
             _initAfterLoaded() {
+                cart_logger.info(`normal 主站购物车 初始化 _initAfterLoaded`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Success
+                });
                 if ("loading" !== document.readyState) this._init(); else document.addEventListener("DOMContentLoaded", (() => {
                     this._init();
                 }));
             }
             _init() {
+                cart_logger.info(`normal 主站购物车 全局化 cart service _init`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
                 script_service.init();
                 let ctx = context.background();
                 ctx = context.withValue(ctx, valuer_cartService.valuer, service_cart.takeCartService());
@@ -19111,11 +15063,41 @@
                 ctx = script_valuer.cartActionHooksValuer.withCartActionHooks(ctx);
                 this._ctx = ctx;
                 if ("main" === this._cartType) {
+                    cart_logger.info(`normal 主站购物车 _init`, {
+                        data: {
+                            cartToken: cart_cartToken
+                        },
+                        action: sentryReport_Action.InitCart,
+                        status: o.Start
+                    });
                     initMainCartSticky();
-                    if (this._showQuickPaymentBtn) this._initMainPaypalModule();
+                    if (this._showQuickPaymentBtn) {
+                        cart_logger.info(`normal 主站购物车 Paypal初始化 _init`, {
+                            data: {
+                                cartToken: cart_cartToken
+                            },
+                            action: sentryReport_Action.InitCart,
+                            status: o.Start
+                        });
+                        this._initMainPaypalModule();
+                    }
                     this._skuCardComponent = new sku_card(ctx, this._cartType);
                     this._skuCardComponent.init();
                     trade_summations.init();
+                    cart_logger.info(`normal 主站购物车 SummationModule 初始化 _init`, {
+                        data: {
+                            cartToken: cart_cartToken
+                        },
+                        action: sentryReport_Action.InitCart,
+                        status: o.Success
+                    });
+                    cart_logger.info(`normal 主站购物车 Coupon 初始化 _init`, {
+                        data: {
+                            cartToken: cart_cartToken
+                        },
+                        action: sentryReport_Action.InitCart,
+                        status: o.Start
+                    });
                     trade_coupon();
                 } else {
                     listenHeaderSectionChange();
@@ -19123,10 +15105,17 @@
                     this._initBanner();
                     trade_checkbox();
                     banner.init();
+                    cart_logger.info(`normal 主站购物车 CartBanner 初始化 _init`, {
+                        data: {
+                            cartToken: cart_cartToken
+                        },
+                        action: sentryReport_Action.InitCart,
+                        status: o.Start
+                    });
                 }
                 this._initCheckoutModule();
                 this._initCheckoutErrorModule();
-                this._root = $(`.${"main" === this._cartType ? "trade_cart" : "trade_mini_cart"}`);
+                this._root = __SL_$__(`.${"main" === this._cartType ? "trade_cart" : "trade_mini_cart"}`);
                 this._initCurrencyChangeListener();
                 if ("/cart" === window.location.pathname && "main" === this._cartType) {
                     const cartInfo = state_selector_SL_State.get("cartInfo");
@@ -19134,6 +15123,13 @@
                 }
             }
             _initCheckoutModule() {
+                cart_logger.info(`normal 主站购物车 结算按钮初始化 _initCheckoutModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
                 const nodeList = document.querySelectorAll(`.${this._cartType}__trade-cart-checkout [data-sl-module=${contant.MODULE_BUTTON_CHECKOUT}]`);
                 const extra = {
                     stage: "main" === this._cartType ? cartPage.Cart : cartPage.MiniCart
@@ -19141,19 +15137,58 @@
                 nodeList.forEach((el => {
                     module_checkout.newCheckoutModule(this._ctx, el, extra);
                 }));
+                cart_logger.info(`normal 主站购物车 结算按钮初始化 _initCheckoutModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Success
+                });
             }
             _initCheckoutErrorModule() {
+                cart_logger.info(`normal 主站购物车 结账错误初始化 _initCheckoutErrorModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
                 const nodeList = document.querySelectorAll(`.${this._cartType}__trade-cart-checkout-error`);
                 nodeList.forEach((el => {
                     checkout_error.newCheckoutErrorModule(this._ctx, el);
                 }));
+                cart_logger.info(`normal 主站购物车 结账错误初始化 _initCheckoutErrorModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Success
+                });
             }
             _initMainPaypalModule() {
+                cart_logger.info(`main 主站购物车 Paypal初始化 _initMainPaypalModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
                 module_paypal.newPaypalModule(this._ctx, "cart-spb", cartPage.Cart);
                 module_paypal.newPaypalModule(this._ctx, "cart-spb-fixed", cartPage.Cart);
+                cart_logger.info(`main 主站购物车 Paypal初始化 _initMainPaypalModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport_Action.InitCart,
+                    status: o.Success
+                });
             }
             _initBanner() {
-                $(document).on("click", ".trade-cart-banner--close", (() => {
+                cart_logger.info(`mini 主站购物车 banner初始化`, {
+                    action: sentryReport_Action.InitCart,
+                    status: o.Start
+                });
+                __SL_$__(document).on("click", ".trade-cart-banner--close", (() => {
                     window.SL_EventBus.emit(DRAWER_EVENT_NAME, {
                         id: "cart-select",
                         operator: DRAWER_OPERATORS.CLOSE
@@ -19163,17 +15198,50 @@
         }
         let cartModule;
         function initCartModule(cartType) {
+            cart_logger.info(`normal 主站购物车 初始化 initCartModule`, {
+                data: {
+                    cartToken: cart_cartToken,
+                    cartType
+                },
+                action: sentryReport_Action.InitCart,
+                status: o.Start
+            });
             cartModule = new CartModule(cartType);
+            cart_logger.info(`normal 主站购物车 初始化 initCartModule`, {
+                data: {
+                    cartToken: cart_cartToken,
+                    cartType
+                },
+                action: sentryReport_Action.InitCart,
+                status: o.Success
+            });
         }
         function takeCartModule() {
+            cart_logger.info(`normal 主站购物车 takeCartModule`, {
+                data: {
+                    cartToken: cart_cartToken,
+                    cartModule
+                },
+                action: sentryReport_Action.TakeCart,
+                status: o.Start
+            });
             return cartModule;
         }
         const biz_cart = {
             initCartModule,
             takeCartModule
         };
+        const sentryLogger = logger.pipeOwner(`${Owner.miniCart} mini-cart.js`);
+        const mini_cart_cartToken = js_cookie_default().get("t_cart");
         const mini_cart_logger = utils_createLogger("mini-cart");
         mini_cart_logger.info("ready to init sidebar cart");
+        sentryLogger.info("mini购物车主站", {
+            data: {
+                cartToken: mini_cart_cartToken
+            },
+            action: sentryReport_Action.InitCart,
+            status: o.Start
+        });
         biz_cart.initCartModule("sidebar");
     })();
 })();

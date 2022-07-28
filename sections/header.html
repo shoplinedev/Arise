@@ -22,7 +22,7 @@
 <div class="header-sticky-wrapper __sl-custom-track-stage-header" data-color-scheme="{{section.settings.color_scheme}}">
 	<div id="stage-headerWrapper" class="header__wrapper">
     <header class="header__main" id="stage-header" data-sticky={{boolean section.settings.header_style}} data-section-id="{{section.id}}">
-      {{snippet 'header/header-layout-left-down' blockObj=blockObj settings=section.settings  main_menu=main_menu}}
+      {{snippet 'header/header-layout-left-down' settings=section.settings  main_menu=main_menu}}
       {{!-- 点击页头的输入框弹出的搜索框 --}}
       {{snippet 'header-search' id="header-drawer"}}
     </header>
@@ -117,6 +117,13 @@
           "label": "t:sections.header.settings.navigation_layout.options__2.label"
         }
       ]
+    },
+    {
+      "type": "switch",
+      "id": "mega_menu_images",
+      "label": "t:sections.header.settings.mega_menu_images.label",
+      "info": "t:sections.header.settings.mega_menu_images.info",
+      "default": false
     },
     {
       "type": "switch",

@@ -11,26 +11,25 @@
 <div class="sales__promotionTags {{class}}">
   {{!-- 移动isMobile端展示1个，非移动端展示3个，用js控制 --}}
   <div class="sales__promotionTags-packUp">
-    <span class="sales__promotionTags-label">
-      {{t 'sales.promotion.tags-label'}}
-    </span>
     {{#each benefitConditions}}
       {{#if @index "<" 3}}
 
-        {{ snippet 'sales/promotion-tag' className="sales__promotion-tags-tag sales__promotion-tags-tag-hook" benefitCondition=this benefitType=../benefitType }}
+        {{ snippet 'activity/promotion-tag' className="sales__promotion-tags-tag sales__promotion-tags-tag-hook" benefitCondition=this benefitType=../benefitType }}
       {{/if}}
     {{/each}}
     {{!-- 商品详情页展示布局 --}}
-    <div class="sales__promotionTags-switch">
-      <i class="sales__promotionTags-switchIcon __sl-track_click" data-track-event_name="click_component" data-track-custom_component="view_more">
-        {{snippet 'sales/commons/svg/arrow_down'}}
-      </i>
-    </div>
+    {{#if benefitConditions.length '>=' 3}}
+      <div class="sales__promotionTags-switch">
+        <i class="sales__promotionTags-switchIcon __sl-track_click" data-track-event_name="click_component" data-track-custom_component="view_more">
+          {{snippet 'activity/arrow_down'}}
+        </i>
+      </div>
+    {{/if}}
     {{#if scene "pdp"}}
       {{!-- 点击按钮弹窗展示所有的优惠信息 --}}
       <div class="sales__promotionTags-items">
         <div class="sales__promotionTags-items-header">
-          <span class="sales__promotionTags-items-title">{{t 'sales.promotion.tags-label'}}</span>
+          <span class="sales__promotionTags-items-title">{{t 'sales.promotion.discount_tag.label'}}</span>
           <span class="sales__promotionTags-items-close sales__promotionTags-items-close-hook">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.2 4.80005L4.80005 19.2" stroke="#1E1E1E" stroke-width="1.5" />
@@ -42,7 +41,7 @@
           {{#each benefitConditions}}
             <div class="sales__promotionTags-item">
 
-              {{ snippet 'sales/promotion-tag' benefitCondition=this benefitType=../benefitType }}
+              {{ snippet 'activity/promotion-tag' benefitCondition=this benefitType=../benefitType }}
             </div>
           {{/each}}
         </div>
@@ -55,7 +54,7 @@
     {{#each benefitConditions}}
       <span class="sales__promotionTags-item">
 
-        {{ snippet 'sales/promotion-tag' benefitCondition=this benefitType=../benefitType }}
+        {{ snippet 'activity/promotion-tag' benefitCondition=this benefitType=../benefitType }}
       </span>
     {{/each}}
   {{/if}}

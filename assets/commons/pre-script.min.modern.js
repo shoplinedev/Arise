@@ -397,6 +397,7 @@
                     } else throttledCheckElements();
                 },
                 checkElems: throttledCheckElements,
+                immediatelyCheckElems: checkElements,
                 unveil: unveilElement,
                 _aLSL: altLoadmodeScrollListner
             };
@@ -546,6 +547,7 @@
             const setImageData = ({src, srcset}, img = new Image) => {
                 if (sizes) img.sizes = "number" === typeof sizes ? `${sizes}px` : sizes;
                 if (srcset) img.srcset = srcset;
+                if (window.__PRELOAD_STATE__.imgNoReferrerSwitch) img.setAttribute("referrerpolicy", "same-origin");
                 if (src) img.src = src;
                 return img;
             };

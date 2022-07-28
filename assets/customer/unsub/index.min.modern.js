@@ -1614,8 +1614,8 @@
             }
             render() {
                 const template = getTemplate(this.options, this.type || this.options.type);
-                this.$toast = $(template);
-                this.$target = $(this.options.target);
+                this.$toast = __SL_$__(template);
+                this.$target = __SL_$__(this.options.target);
                 const {$target} = this;
                 if ("static" === $target.css("position")) $target.css("position", "relative");
                 $target.append(this.$toast);
@@ -1716,31 +1716,31 @@
                 this.initEvent();
             }
             initTextarea() {
-                const $textareaSelector = $(this.textareaSelector);
+                const $textareaSelector = __SL_$__(this.textareaSelector);
                 $textareaSelector.on("input", (event => {
                     $textareaSelector.css("height", `${34 + 2}px`);
                     const height = $textareaSelector[0].scrollHeight;
                     $textareaSelector.css("height", `${height + 2}px`);
                     if (event.target.value.length > 300) {
-                        $(this.textareaWrapSelector).addClass("has-error");
+                        __SL_$__(this.textareaWrapSelector).addClass("has-error");
                         this.validate = false;
                     } else {
-                        $(this.textareaWrapSelector).removeClass("has-error");
+                        __SL_$__(this.textareaWrapSelector).removeClass("has-error");
                         this.validate = true;
                     }
                     this.reasonDetail = event.target.value;
                 }));
             }
             initEvent() {
-                $(this.reasonRadioSelector).on("change", (event => {
+                __SL_$__(this.reasonRadioSelector).on("change", (event => {
                     this.reason = event.target.value;
-                    $(this.submitSelector).removeAttr("disabled");
-                    if ("6" === this.reason) $(this.textareaWrapSelector).show(); else $(this.textareaWrapSelector).hide();
+                    __SL_$__(this.submitSelector).removeAttr("disabled");
+                    if ("6" === this.reason) __SL_$__(this.textareaWrapSelector).show(); else __SL_$__(this.textareaWrapSelector).hide();
                 }));
-                $(this.submitSelector).on("click", (() => {
+                __SL_$__(this.submitSelector).on("click", (() => {
                     if (!this.reason) return false;
                     if ("6" === this.reason && !this.validate) return false;
-                    $(this.submitSelector).attr("disabled", "disabled").addClass("btn--loading");
+                    __SL_$__(this.submitSelector).attr("disabled", "disabled").addClass("btn--loading");
                     postUnSubscribe({
                         subscribeAccountType: "email",
                         unSubscribeType: this.reason,
@@ -1748,21 +1748,21 @@
                     }).then((() => {
                         toast.init({
                             className: "unsub-toast-container",
-                            content: t("customer.unsubscribe.success"),
+                            content: t("customer.subscription.unsubscribe_success"),
                             duration: 3e3
                         });
-                        $(this.submitSelector).removeClass("btn--loading");
+                        __SL_$__(this.submitSelector).removeClass("btn--loading");
                         setTimeout((() => {
                             window.location.href = HOME;
                         }), 3e3);
                     })).catch((() => {
-                        $(this.submitSelector).removeAttr("disabled").removeClass("btn--loading");
+                        __SL_$__(this.submitSelector).removeAttr("disabled").removeClass("btn--loading");
                     }));
                 }));
             }
         }
         const unsub = Unsub;
-        $((function() {
+        __SL_$__((function() {
             new unsub({
                 id: "customer-unsubscribe"
             });

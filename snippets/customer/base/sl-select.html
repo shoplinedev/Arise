@@ -1,0 +1,20 @@
+{{ assign 'classes' (arrayify class)}}
+
+<div class="sl-select {{join classes ' '}}">
+  <div class="sl-select__area">
+    <select name="{{name}}" value="{{cond selected selected ''}}" placeholder="{{placeholder}}" class="sl-select__selectEle">
+      {{#each options}}
+        <option value="{{value}}" {{cond (boolean selected '===' value) 'selected' '' }}>{{text}}</option>
+      {{/each}}
+    </select>
+
+    <span class="placeholder">
+      {{placeholder}}
+    </span>
+  </div>
+  <div class="sl-select__suffix">
+    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.6" d="M5 6.5L8.5 10L12 6.5" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+</div>

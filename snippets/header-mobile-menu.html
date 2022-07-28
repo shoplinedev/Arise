@@ -26,11 +26,11 @@
   <div class="header-menu__account">
     <a href="{{ url }}" class="body5 account__link">
       {{#if global.request.is_login}}
-        {{t 'header.center'}}
+        {{t 'general.header.center'}}
       {{/if}}
 
       {{#unless global.request.is_login}}
-        {{t 'header.login'}}
+        {{t 'general.header.login'}}
       {{/unless}}
     </a>
   </div>

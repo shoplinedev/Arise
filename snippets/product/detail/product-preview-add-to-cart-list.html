@@ -1,0 +1,6 @@
+{{#if (and productActivity.autoDiscountActivityList.length (isFalsey product.spu.inquiry))}}
+  {{assign 'autoDiscountActivityItem' (itemAt productActivity.autoDiscountActivityList 0) }}
+  {{#if autoDiscountActivityItem.discountStyleType '===' 2}}
+    {{ snippet 'product/detail/auto-coupon/add-to-cart-list' benefitType=autoDiscountActivityItem.benefitType benefitConditions=autoDiscountActivityItem.benefitConditions scene='pdp' template = autoDiscountActivityItem.discountStyleText}}
+  {{/if}}
+{{/if}}

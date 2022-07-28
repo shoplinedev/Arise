@@ -30,18 +30,18 @@
       <p class="title4 contact-form__title">{{ section.settings.title }}</p>
       <form class="row contact-form__wrapped" id="contact-form-{{ section.id }}">
         {{#formItem 'name' "class='col-24 col-md-12'"}}
-          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="name" maxlength="255"' name='name' placeholder=(t 'common.username') }}
+          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="name" maxlength="255"' name='name' placeholder=(t 'general.general.username') }}
         {{/formItem}}
         {{#formItem 'email' "class='col-24 col-md-12'"}}
-          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="email" maxlength="255"' name='email' placeholder=(t 'common.email2') }}
+          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="email" maxlength="255"' name='email' placeholder=(t 'customer.email.mail_common') }}
         {{/formItem}}
         {{#formItem 'phone' "class='col-24'"}}
-          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="tel" maxlength="255"' name='phone' placeholder=(t 'common.tel-phone') }}
+          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="tel" maxlength="255"' name='phone' placeholder=(t 'general.general.tel_phone') }}
         {{/formItem}}
         {{#formItem 'comment' "class='col-24'"}}
-          {{ snippet 'product/commons/base-input' wrapperClass='contact-form__textarea' inputRestAttr='autocomplete="off" maxlength="5000"' name='comment' type='textarea' placeholder=(t 'productDetail.inquiry.message') }}
+          {{ snippet 'product/commons/base-input' wrapperClass='contact-form__textarea' inputRestAttr='autocomplete="off" maxlength="5000"' name='comment' type='textarea' placeholder=(t 'products.product_details.message') }}
         {{/formItem}}
-        <button class="__sl-custom-track-stage-contactForm-button btn btn-primary contact-form__submit">{{ t 'user.send' }}</button>
+        <button class="__sl-custom-track-stage-contactForm-button btn btn-primary contact-form__submit">{{ t 'customer.general.send' }}</button>
       </form>
   </div>
 </div>

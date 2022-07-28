@@ -1,8 +1,8 @@
 {{assign 'show_more' (boolean dataList.length '>' 1)}}
-{{assign '__uploadTimeStr__' (t 'order.detail.orderstatus.UploadTime')}}
-{{assign '__referenceNumberStr__' (t 'order.detail.orderstatus.ReferenceNumber')}}
-{{assign '__receiverAccountStr__' (t 'order.detail.orderstatus.ReceiverAccount')}}
-{{assign '__payAmountStr__' (t 'order.detail.orderstatus.PayAmount')}}
+{{assign '__uploadTimeStr__' (t 'cart.order.upload_time')}}
+{{assign '__referenceNumberStr__' (t 'cart.order.reference_number')}}
+{{assign '__receiverAccountStr__' (t 'cart.order.receiver_account')}}
+{{assign '__payAmountStr__' (t 'cart.order.pay_amount')}}
 {{assign '__showMoreStr__' (t 'order.detail.orderstatus.action.ShowMore')}}
 
 {{#each dataList}}

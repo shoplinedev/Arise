@@ -10,7 +10,7 @@
             {{ snippet 'icons/icon_header_close' }}
           </a>
         </div>
-        <a class="header__drawer-btn j-header-drawer-btn">
+        <a class="header__drawer-btn j-header-drawer-btn  sl-icon-hover">
           {{ snippet 'icons/icon_menu' }}
         </a>
         {{#if settings.show_search_entry}}
@@ -20,7 +20,7 @@
           {{snippet 'header/header-logo' settings=settings}}
         </div>
         <div class="header__layout--nav">
-          {{snippet 'desktop-site-nav' blockObj=blockObj settings=settings main_menu=main_menu}}
+          {{snippet 'desktop-site-nav' settings=settings main_menu=main_menu}}
         </div>
       </div>
 
@@ -31,7 +31,7 @@
       <div class="header__layout--logo">
         {{snippet 'header/header-logo' settings=settings}}
       </div>
-      
+
       <div data-ssr-plugin-wishlist="header" class="header__item header__item--buttons">
         {{#if settings.show_search_entry}}
           {{snippet 'header-btns' btns='search' classnames=(append 'color-scheme-' settings.color_scheme ' header__layout--search-btn') }}
@@ -52,7 +52,7 @@
 
   <div class="header__nav-container header__layout--nav {{#if settings.show_line_separator}}header__nav-container--border{{/if}} color-scheme-{{settings.color_scheme}}">
     <div class="container g-4 g-md-6">
-      {{snippet 'desktop-site-nav' blockObj=blockObj settings=settings main_menu=main_menu}}
+      {{snippet 'desktop-site-nav' settings=settings main_menu=main_menu}}
     </div>
   </div>
 

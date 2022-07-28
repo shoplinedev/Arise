@@ -2,9 +2,40 @@
 {{ assign 'gift_promotion_config' (sales_promotion_reminder_translate data)}}
 {{ assign 'selectText' (t 'sales.gift.select')}}
 
-<div class="cart-sku-list-promotion-module salesPluginGift__promotion" data-widget-scope="gift" data-activityseq="{{promotion.activitySeq}}" data-promotionseq="{{promotion.promotionSeq}}">
+{{#if gift_promotion_config.step '===' 1}}
+  {{!-- 未满足领取条件 --}}
+  {{#if gift_promotion_config.thresholdType '===' 0}}
+    {{ assign '_cartGiftReminderKey' 'sales.gift.not_meet_amount_tip'}}
+  {{else}}
+    {{ assign '_cartGiftReminderKey' 'sales.gift.not_meet_quantity_tip'}}
+  {{/if}}
+{{else if gift_promotion_config.step '===' 2}}
+  {{!-- 已满足领取条件 --}}
+  {{#if (or (compare gift_promotion_config.extra '<=' 0) (compare gift_promotion_config.thresholdType '===' -1))}}
+    {{!-- 已满足领取条件，未领取赠品/领取条件为无门槛 --}}
+    {{ assign '_cartGiftReminderKey' 'sales.gift.select_gift_tip'}}
+  {{else if gift_promotion_config.thresholdType '===' 0}}
+    {{!-- 已满足领取条件，已领取赠品，未达到最高梯度 --}}
+    {{ assign '_cartGiftReminderKey' 'sales.gift.spend_more_money_get_more_tip'}}
+  {{else}}
+    {{!-- 已满足领取条件，已领取赠品，未达到最高梯度 --}}
+    {{ assign '_cartGiftReminderKey' 'sales.gift.spend_more_quantity_get_more_tip'}}
+  {{/if}}
+{{else if gift_promotion_config.step '===' 3}}
+  {{!-- 已满足领取条件，已达到最高梯度 --}}
+  {{#if gift_promotion_config.extra '<=' 0}}
+    {{!-- 未领取赠品 --}}
+    {{ assign '_cartGiftReminderKey' 'sales.gift.select_gift_tip'}}
+  {{else}}
+    {{!-- 已领取赠品 --}}
+    {{ assign '_cartGiftReminderKey' 'sales.gift.got_all_gifts_tip'}}
+  {{/if}}
+{{/if}}
+
+<div class="cart-sku-list-promotion-module salesPluginGift__promotion" data-widget-scope="gift" data-activityseq="{{promotion.activitySeq}}"
+  data-promotionseq="{{promotion.promotionSeq}}">
   <div>
-    {{ noTranslationHTML (t gift_promotion_config.path saved=gift_promotion_config.params.saved willSave=gift_promotion_config.params.willSave threshold=gift_promotion_config.params.threshold br=gift_promotion_config.params.br upperLimit=gift_promotion_config.params.upperLimit) }}
+    {{ noTranslationHTML (t _cartGiftReminderKey saved=gift_promotion_config.params.saved willSave=gift_promotion_config.params.willSave threshold=gift_promotion_config.params.threshold br=gift_promotion_config.params.br upperLimit=gift_promotion_config.params.upperLimit) }}
   </div>
   <span class="cart-sku-list-promotion-module-arrow salesPluginGift__selectIcon">
     {{#if (and (is trade_cart_type 'main') (isFalsey is-mobile))}}

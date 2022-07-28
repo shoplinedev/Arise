@@ -16,7 +16,7 @@
   {{!-- 面包屑/标题 --}}
   {{#if id 'productDetail' }}
     <div class="product-crumbs">
-      <a class="body4" href="/">{{t 'common.home'}}</a> /
+      <a class="body4" href="/">{{t 'general.general.home'}}</a> /
     </div>
     <h1 class="title title-font title4 text-left">{{ spuInfo.title }}</h1>
   {{else}}
@@ -30,7 +30,7 @@
         {{{ rate value=comment.score  }}}
       </div>
       <div class="reviews body-font body4">
-        {{ comment.total }} {{t 'productDetail.commentsTitle'}}
+        {{ comment.total }} {{t 'products.product_details.reviews_title'}}
       </div>
     </div>
   {{/and}}
@@ -53,10 +53,10 @@
                   {{else}}
                     {{assign 'priceVal' (currency_convert discount_text) }}
                   {{/if}}
-                  {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate" >' priceVal '</span>') }}}
+                  {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate" >' priceVal '</span>') }}}
                 {{/currency_convert_price}}
               {{else}}
-                {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate">' discount_text '% ' '</span>')}}}
+                {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate">' discount_text '% ' '</span>')}}}
               {{/if}}
             {{/if}}
           </div>
@@ -89,9 +89,9 @@
             product_discount_style={{theme.settings.product_discount_style}}>
             {{#if (and (and (is (typeOf productPrice.originPrice) 'number') (is (typeOf productPrice.salesPrice) 'number')) discount_text)}}
               {{#if theme.settings.product_discount_style '===' 'number'}}
-                {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate">' (currency_convert discount_text) '</span>')}}}
+                {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate">' (currency_convert discount_text) '</span>')}}}
               {{else}}
-                {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate">' discount_text '% ' '</span>')}}}
+                {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate">' discount_text '% ' '</span>')}}}
               {{/if}}
             {{/if}}
           </span>
@@ -105,46 +105,9 @@
     </div>
   {{/not}}
   <div data-ssr-plugin-title-top></div>
-  
-  {{! 折扣券}}
-  {{assign 'discountCodeActivityList' productActivity.discountCodeActivityList}}
-  {{#if (and discountCodeActivityList.length (compare id '===' 'productDetail') (isFalsey spuInfo.inquiry))}}
-    <div class="text-left">
-      {{snippet 'sales/discount-coupon/discount-coupon-banner' discountCodeActivityList=discountCodeActivityList }}
-    </div>
-  {{/if}}
-  {{!-- 自动折扣 --}}
-  {{assign 'autoDiscountActivityItem' (itemAt productActivity.autoDiscountActivityList 0) }}
-  {{#if (and autoDiscountActivityItem.benefitConditions (compare id '===' 'productDetail') (isFalsey spuInfo.inquiry) (compare autoDiscountActivityItem.discountStyleType '===' 1))}}
-    <div class="text-left product-info-salesTag" data-track-eventid="60006253" data-track-page="pdp">
-      {{ snippet 'sales/auto-coupon/auto-coupon-banner'   
-            autoDiscountActivityItem=autoDiscountActivityItem 
-            template = autoDiscountActivityItem.discountStyleText
-      }}
-    </div>
-  {{/if}}
 
-  {{!-- 询盘商品不显示倒计时和限时促销挂件 --}}
-   {{#not product.spu.inquiry}}
-    {{#if productActivity.timeLimitActivityList.length}}
-      {{assign 'timeLimitActivity' (itemAt productActivity.timeLimitActivityList 0)}}
-      {{#if (or timeLimitActivity.salesPlugin.countDownTimerPlugin.showCountDownTime timeLimitActivity.salesPlugin.progressPlugin.showProgressBar)}}
-        <div class="d-none d-md-block flash-sale-component  sales__flashSale notranslate">
-          {{ snippet 'sales/flash-sale' }}
-        </div>
-      {{else}}
-        <div class="d-none d-md-block countdown-component">
-          {{ snippet 'sales/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
-        </div>
-      {{/if}}
-    {{else}}
-      <div class="d-none d-md-block countdown-component">
-        {{ snippet 'sales/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
-      </div>
-    {{/if}}
+  {{!-- 营销：折扣码&自动折扣&限时促销&倒计时&赠品 --}}
+  {{ snippet 'product/detail/product-info-promotions'}}
 
-    {{!-- 营销赠品 --}}
-    {{ snippet 'sales/gift-plugin-container' }}
-  {{/not}}
   {{ snippet 'product/detail/product-sell-info' id=id }}
 </div>

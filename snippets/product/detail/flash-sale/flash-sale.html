@@ -1,4 +1,3 @@
-{{preload_state 'productActivity'}}
 {{#if productActivity.timeLimitActivityList.length}}
   {{assign 'timeLimitActivity' (itemAt productActivity.timeLimitActivityList 0)}}
   {{#if (and timeLimitActivity.salesPlugin (compare timeLimitActivity.promotionSubType "===" 1) (compare timeLimitActivity.promotionType "===" 1))}}
@@ -7,13 +6,14 @@
     {{#if timeLimitActivity.salesEnvCustomInfo}}
       {{ assign 'salesCustom' timeLimitActivity.salesEnvCustomInfo.productDetailConfig }}
     {{/if}}
-    <div class="flashSale {{#if salesCustom.linkType '!==' 'none'}}cursor-pointer{{/if}} {{#if salesPlugin.template "==" '1'}}red{{else}}orange{{/if}}"
+    <div class="sales__flash-sale-container sales__flash-sale-container-hook {{#if salesCustom.linkType '!==' 'none'}}cursor-pointer{{/if}} {{#if salesPlugin.template "==" '1'}}sales__flash-sale-container--red{{else}}sales__flash-sale-container--orange{{/if}}"
       data-seq="{{timeLimitActivity.activitySeq}}">
-      <div class="countDown">
-        <i class="countDown-bg" style="background-color:{{salesCustom.bannerBgColor}};{{#if salesCustom.bannerBgImg}}background-image:url({{salesCustom.bannerBgImg}});{{/if}}"></i>
-        <div class="titleContent">
-          <p class="title">
-            <span class="titleMsg" style="color:{{salesCustom.bannerTextColor}};">
+      <div class="sales__flash-sale-count-down" style="background-color:{{salesCustom.bannerBgColor}};">
+        {{!-- 样式里面设置了这层div都有一个样式，我不需要这个样式所以通过i包裹避开这个样式--}}
+        <i>{{ snippet 'sales/card-background' mobileBgImg=salesCustom.bannerBgImg_mobile pcBgImg=salesCustom.bannerBgImg}}</i>
+        <div class="sales__flash-sale-title-content">
+          <p class="sales__flash-sale-title">
+            <span class="sales__flash-sale-title-msg" style="color:{{salesCustom.bannerTextColor}};">
               {{#if salesPlugin.template '==' '2'}}
                 <i>
                   <svg width="14" height="15" viewBox="0 0 14 15" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,14 +34,14 @@
                     </defs>
                   </svg>
                 </i>
-              {{/if}}{{#if salesCustom.bannerText}}{{salesCustom.bannerText}}{{else}}{{t "sales.flash-sale-text"}}{{/if}}
+              {{/if}}{{#if salesCustom.bannerText}}{{salesCustom.bannerText}}{{else}}{{t "sales.general.flash_sale_text"}}{{/if}}
             </span>
             {{#if salesPlugin.countDownTimerPlugin.showCountDownTime}}
               {{#if salesPlugin.progressPlugin.showProgressBar}}
                 {{#if salesPlugin.progressPlugin.onlyShopHotSaleLabel}}
-                  <div class="hot" style="color:{{salesCustom.bannerTextColor}};">{{t "sales.hot-sale"}}</div>
+                  <div class="sales__flash-sale-hot" style="color:{{salesCustom.bannerTextColor}};">{{t "sales.general.hot_sale"}}</div>
                 {{else}}
-                  {{ snippet 'sales/percentage' salesCustom=salesCustom color=salesPlugin.template  type="1" total=salesPlugin.progressPlugin.totalNum sold=salesPlugin.progressPlugin.saleNum}}
+                  {{ snippet 'product/detail/flash-sale/flash-sale-percentage' salesCustom=salesCustom color=salesPlugin.template  type="1" total=salesPlugin.progressPlugin.totalNum sold=salesPlugin.progressPlugin.saleNum}}
                 {{/if}}
               {{/if}}
             {{/if}}
@@ -49,22 +49,22 @@
         </div>
         {{#if (and salesPlugin.countDownTimerPlugin.showCountDownTime salesPlugin.countDownTimerPlugin.endTime (compare (dayjs method='valueOf') '<' salesPlugin.countDownTimerPlugin.endTime ))}}
           {{!-- 展示倒计时 --}}
-          {{ snippet 'sales/timeout' salesCustom=salesCustom type=salesPlugin.template}}
+          {{ snippet 'product/detail/flash-sale/flash-sale-timeout' salesCustom=salesCustom type=salesPlugin.template}}
         {{else}}
           {{!-- 不展示倒计时，进度条组件往右移 --}}
           {{#if salesPlugin.progressPlugin.showProgressBar}}
             {{#if salesPlugin.progressPlugin.onlyShopHotSaleLabel}}
-              <div class="hot" style="color:{{salesCustom.bannerTextColor}};">{{t "sales.hot-sale"}}</div>
+              <div class="sales__flash-sale-hot" style="color:{{salesCustom.bannerTextColor}};">{{t "sales.general.hot_sale"}}</div>
             {{else}}
-              {{ snippet 'sales/percentage' salesCustom=salesCustom color=salesPlugin.template  type="2" total=salesPlugin.progressPlugin.totalNum sold=salesPlugin.progressPlugin.saleNum}}
+              {{ snippet 'product/detail/flash-sale/flash-sale-percentage' salesCustom=salesCustom color=salesPlugin.template  type="2" total=salesPlugin.progressPlugin.totalNum sold=salesPlugin.progressPlugin.saleNum}}
             {{/if}}
           {{/if}}
         {{/if}}
       </div>
     </div>
-    <div class="limit">
+    <div class="sales__flash-sale-limit">
       {{#if (and (compare timeLimitActivity.userLimitedType "!=" 0) timeLimitActivity.acquirePerUserLimit)}}
-        {{t "sales.flash-sale-tips" count=timeLimitActivity.acquirePerUserLimit}}
+        {{t "sales.general.flash_sale_tip" count=timeLimitActivity.acquirePerUserLimit}}
       {{/if}}
     </div>
   {{/if}}

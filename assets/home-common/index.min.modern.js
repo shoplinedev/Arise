@@ -288,8 +288,8 @@
                     type,
                     selector: ".__sl-custom-track-stage-shoppableImage-button"
                 });
-                $(".__sl-custom-track-stage-shoppableImage-product").on("click", (e => {
-                    const $target = $(e.currentTarget);
+                __SL_$__(".__sl-custom-track-stage-shoppableImage-product").on("click", (e => {
+                    const $target = __SL_$__(e.currentTarget);
                     const dataPrefix = "customTrackStageShoppableimage";
                     const spuSeq = $target.data(`${dataPrefix}Spuseq`);
                     const skuSeq = $target.data(`${dataPrefix}Skuseq`);
@@ -465,7 +465,7 @@
             }
         }
         function initSectionReport() {
-            $((function() {
+            __SL_$__((function() {
                 const report = new SectionReport([ "slideshow", "collection-list", "custom-html", "faqs", "featured-collection", "image-with-text", "text-columns-with-images", "video", "featured-product", "rich-text", "sign-up-and-save", "testimonials", "blog", "contact-form", "image-banner", "multi-media-splicing", "contact-page", "custom-page" ]);
                 report.init();
             }));
@@ -530,8 +530,8 @@
             }
             bindClick() {
                 const __this = this;
-                $("body").on("click", __this.selector, (function() {
-                    const _this = $(this);
+                __SL_$__("body").on("click", __this.selector, (function() {
+                    const _this = __SL_$__(this);
                     const id = _this.attr("data-sortation-id");
                     __this.click({
                         collection_id: id,

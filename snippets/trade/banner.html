@@ -9,7 +9,7 @@
          xmlns="http://www.w3.org/2000/svg">
          <path fill="currentColor" fill-rule="evenodd" d="M6.23 9.1L2.078 5.2 0 7.15 6.23 13 18 1.95 15.923 0z"></path>
        </svg></span>
-    {{t 'cart.added-to-cart'}}
+    {{t 'cart.cart.added_to_cart'}}
    </div>
    <div class="trade-cart-banner--product">
      <div class="trade-cart-sku-item">
@@ -19,18 +19,18 @@
  <div class="trade-cart-banner-summations">
    <div class="trade-cart-banner-summations-subtotal">
      <span class="trade-cart-banner-summations-subtotal--label body2">
-        {{t 'cart.cart-subtotal'}}
+        {{t 'cart.cart.cart_subtotal'}}
      </span>
      <span class="notranslate body1 text_bold trade-cart-banner-summations-subtotal--price"></span>
    </div>
 
    <footer class="trade-cart-banner-summations-footer">
-     <button class="btn trade-cart-banner-summations-footer-view-cart body3 text_bold" onclick="window.location.href='/cart'"> {{t 'cart.view-cart'}} (<span
+     <button class="btn trade-cart-banner-summations-footer-view-cart body3 text_bold" onclick="window.location.href='/cart'"> {{t 'cart.cart.cart_view'}} (<span
          class="trade-cart-banner-summations-footer-cart-total"></span>)</button>
      <div class="sidebar__trade-cart-checkout">
        <button type="button" data-sl-module="button__trade-cart-checkout" class="btn trade-cart-banner-summations-footer-checkout text_bold body3" id="mini-cart-spb-slibing"
          style="width: 100%;">
-         {{ t 'common.checkout' }}
+         {{ t 'cart.cart.checkout' }}
          {{snippet 'btn-loading-spinner'}}
        </button>
      </div>

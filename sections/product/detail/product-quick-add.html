@@ -86,10 +86,10 @@
                     {{else}}
                       {{assign 'priceVal' (currency_convert discount_text) }}
                     {{/if}}
-                    {{{t 'productList.container.listItem.save'  priceDom=(append '<span class="notranslate">' priceVal '</span>')}}}
+                    {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate">' priceVal '</span>')}}}
                   {{/currency_convert_price}}
                 {{else}}
-                   {{t 'productList.container.listItem.saveRatio' price=discount_text }}
+                   {{t 'products.product_list.save_ratio' price=discount_text }}
                 {{/if}}
             {{/if}}
           </span>

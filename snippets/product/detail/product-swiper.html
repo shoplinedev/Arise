@@ -1,6 +1,7 @@
 {{ assign 'productImageSizeObj' (JSONparse '{"large": 1704, "medium":1420, "small": 1136}')  }}
 {{ assign 'productWidth' (get productImageSize productImageSizeObj) }}
 {{ assign 'mediaList' spu.mediaList}}
+
 {{ assign 'coverImgObj' selectSku.imageBeanList.[0]}}
 
 {{ assign 'isVideoFirst' (first mediaList)}}
@@ -43,8 +44,14 @@
               <div class="swiper-slide thumbsImageItem">
                 <figure style="padding-bottom:{{append (default (get 'ratio' (img_size resource)) 100) '%'}}">               
                   {{#if type '===' 'VIDEO' }}
-                    <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="lozad" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {{ assign 'resourceUrl' (urlParse resource)}}
+
+{{#if resourceUrl.hostname '===' 'www.youtube.com' }}
+    <img style="" onerror="this.onerror=null;this.parentElement.className+=' videoCoverError';" class="lozad" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+{{else}}
+    <img style="" onerror="this.onerror=null;this.parentElement.className+=' videoCoverError';" class="lozad" data-src="{{ cover }}" alt="">
+{{/if}}
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="10" cy="10" r="10" fill="black" fill-opacity="0.6"/>
 <path d="M13.6256 10.2496L8.46641 13.6891C8.26704 13.822 8 13.6791 8 13.4394V6.56056C8 6.32095 8.26704 6.17803 8.46641 6.31094L13.6256 9.75039C13.8037 9.86913 13.8037 10.1309 13.6256 10.2496Z" fill="white"/>
 </svg>
@@ -73,18 +80,48 @@
         <div class="swiper-wrapper">
           {{#each mediaList }}
             {{#if type '===' 'VIDEO' }}
-              <div class="swiper-slide firstInit videoItem {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" style="padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}56.25%{{/and}}">
-                <div class="product_youTubeVideoContainer">
-                  <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover resource) }}"></div>
-                </div>
+              {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
+{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
+
+              <div class="swiper-slide firstInit videoItem {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" data-video-platform="{{ cond isYoutube 'youtube' 'sl' }}" style="padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{videoCoverRatio}}{{/and}}">
+                {{#if isYoutube}}
+                  <div class="product_youTubeVideoContainer">
+                    <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover resource) }}"></div>
+                  </div>
+                {{else}}
+                  <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ cover }}">
+                    <source src="{{resource}}" type="video/mp4">
+                  </video>
+                {{/if}}
                 {{#if ../needSkuCover}}
                   {{#if @index '==' ../initialSlide }}
-                    <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_photoSwipe_image lozad" data-photoswipe-src="{{ get 'middle' (getYouTubeCover resource) }}" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+                    {{ assign 'resourceUrl' (urlParse resource)}}
+
+{{#if resourceUrl.hostname '===' 'www.youtube.com' }}
+    <img style="" class="product_photoSwipe_image lozad" data-photoswipe-src="{{ get 'middle' (getYouTubeCover resource) }}" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+{{else}}
+    <img style="" class="product_photoSwipe_image lozad" data-photoswipe-src="{{ img_url cover width=1800 }}" data-src="{{ cover }}" alt="">
+{{/if}}
+
                   {{else}}
-                    <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_photoSwipe_image swiper-lazy" data-photoswipe-src="{{ get 'middle' (getYouTubeCover resource) }}" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+                    {{ assign 'resourceUrl' (urlParse resource)}}
+
+{{#if resourceUrl.hostname '===' 'www.youtube.com' }}
+    <img style="" class="product_photoSwipe_image swiper-lazy" data-photoswipe-src="{{ get 'middle' (getYouTubeCover resource) }}" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+{{else}}
+    <img style="" class="product_photoSwipe_image swiper-lazy" data-photoswipe-src="{{ img_url cover width=1800 }}" data-src="{{ cover }}" alt="">
+{{/if}}
+
                   {{/if}}
                 {{else}}
-                  <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_photoSwipe_image swiper-lazy" data-photoswipe-src="{{ get 'middle' (getYouTubeCover resource) }}" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+                  {{ assign 'resourceUrl' (urlParse resource)}}
+
+{{#if resourceUrl.hostname '===' 'www.youtube.com' }}
+    <img style="" class="product_photoSwipe_image swiper-lazy" data-photoswipe-src="{{ get 'middle' (getYouTubeCover resource) }}" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+{{else}}
+    <img style="" class="product_photoSwipe_image swiper-lazy" data-photoswipe-src="{{ img_url cover width=1800 }}" data-src="{{ cover }}" alt="">
+{{/if}}
+
                 {{/if}}
               </div>
             {{else if type '===' 'IMAGE'}}
@@ -135,11 +172,18 @@
               <div class="swiper-slide thumbsImageItem">
                 <figure style="padding-bottom:{{append (default (get 'ratio' (img_size resource)) 100) '%'}}">
                   {{#if type '===' 'VIDEO' }}
-                  <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="lozad" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {{ assign 'resourceUrl' (urlParse resource)}}
+
+{{#if resourceUrl.hostname '===' 'www.youtube.com' }}
+    <img style="" onerror="this.onerror=null;this.parentElement.className+=' videoCoverError';" class="lozad" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+{{else}}
+    <img style="" onerror="this.onerror=null;this.parentElement.className+=' videoCoverError';" class="lozad" data-src="{{ cover }}" alt="">
+{{/if}}
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="10" cy="10" r="10" fill="black" fill-opacity="0.6"/>
 <path d="M13.6256 10.2496L8.46641 13.6891C8.26704 13.822 8 13.6791 8 13.4394V6.56056C8 6.32095 8.26704 6.17803 8.46641 6.31094L13.6256 9.75039C13.8037 9.86913 13.8037 10.1309 13.6256 10.2496Z" fill="white"/>
 </svg>
+
 
                   {{else if type '===' 'IMAGE'}}
                   {{ snippet 'product/detail/product-swiper-img' type='pcThumbImage' class='lozad' }}
@@ -172,19 +216,28 @@
           <div class="flattenFirstItemWrapper">
             <div class="normalItem" style="display: {{ cond coverImgObj.url 'none' 'block' }}">
               {{#if firstItem.type '==' 'VIDEO'}}
-                <div class="videoItem" data-index="0">
-                  <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover firstItem.resource) }}"></div>
-                  <img class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover firstItem.resource) }}" data-src="{{ get 'middle' (getYouTubeCover firstItem.resource) }}" alt="">
+                {{ assign 'isYoutube' (boolean (get 'hostname' (urlParse firstItem.resource)) '==' 'www.youtube.com') }}
+                {{ assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size firstItem.cover)) '56.25') '%')) }}
+                <div class="videoItem" data-index="0" style="padding-bottom: {{ videoCoverRatio }}">
+                  {{#if isYoutube}}
+                    <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover firstItem.resource) }}"></div>
+                    <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover firstItem.resource) }}" data-src="{{ get 'middle' (getYouTubeCover firstItem.resource) }}" alt="">
+                  {{else}}
+                    <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ firstItem.cover }}">
+                      <source src="{{ firstItem.resource }}" type="video/mp4">
+                    </video>
+                    <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.cover width=1800 }}" data-src="{{ firstItem.cover }}" alt="">
+                  {{/if}}
                 </div>
               {{else}}
                 <div class="imageItem" style="padding-bottom: {{ append (default (get 'ratio' (img_size firstItem.resource)) 100) '%' }}" data-index="0">
-                  <img  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.resource width=1800 }}" alt="{{ firstItem.alt }}">
+                  <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"   onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.resource width=1800 }}" alt="{{ firstItem.alt }}">
                 </div>
               {{/if}}
             </div>
             <div class="product_pc_skuImage_flatten" style="display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
               {{#if coverImgObj.url}}
-                <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}" >
+                <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}" >
               {{/if}}
             </div>
           </div>
@@ -194,9 +247,19 @@
             {{#each exceptFirstMediaList}}
               {{#ifEven @index}}
                 {{#if this.type '==' 'VIDEO'}}
-                  <div class="videoItem" data-index="{{ add @index 1 }}">
-                    <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover this.resource) }}"></div>
-                    <img class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover this.resource) }}" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
+                  {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
+{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
+
+                  <div class="videoItem" data-index="{{ add @index 1 }}" style="padding-bottom: {{ videoCoverRatio }}">
+                    {{#if isYoutube}}
+                      <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover this.resource) }}"></div>
+                      <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover this.resource) }}" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
+                    {{else}}
+                      <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ this.cover }}">
+                        <source src="{{ this.resource }}" type="video/mp4">
+                      </video>
+                      <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url this.cover width=1800 }}" data-src="{{ this.cover }}" alt="">
+                    {{/if}}
                   </div>
                 {{else}}
                   {{ snippet 'product/detail/product-swiper-img' type='pcTwoColImage' index=(add @index 1) }}
@@ -208,9 +271,19 @@
             {{#each exceptFirstMediaList}}
               {{#ifOdd @index}}
                 {{#if this.type '==' 'VIDEO'}}
-                  <div class="videoItem" data-index="{{ add @index 1 }}">
-                    <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover this.resource) }}"></div>
-                    <img class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover this.resource) }}" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
+                  {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
+{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
+
+                  <div class="videoItem" data-index="{{ add @index 1 }}" style="padding-bottom: {{ videoCoverRatio }}">
+                    {{#if isYoutube}}
+                      <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover this.resource) }}"></div>
+                      <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover this.resource) }}" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
+                    {{else}}
+                      <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ this.cover }}">
+                        <source src="{{ this.resource }}" type="video/mp4">
+                      </video>
+                      <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url this.cover width=1800 }}" data-src="{{ this.cover }}" alt="">
+                    {{/if}}
                   </div>
                 {{else}}
                   {{ snippet 'product/detail/product-swiper-img' type='pcTwoColImage' index=(add @index 1) }}
@@ -224,7 +297,7 @@
       <div class="product_productImages_tile product-detail-empty-image {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">
         <div class="product_pc_skuImage_flatten" style="width: 100%; position:absolute; display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
           {{#if coverImgObj.url}}
-            <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}">
+            <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}">
           {{/if}}
         </div>
       </div>
@@ -242,17 +315,41 @@
         <div class="swiper-wrapper {{#or (boolean mediaList.length '===' 1) (boolean isVideoFirst.type '===' 'VIDEO') (boolean isVideoLast.type '===' 'VIDEO')}}hasVideoFl{{/or}}">
           {{#each mediaList }}
             {{#if type '===' 'VIDEO' }}
-              <div class="swiper-slide videoItem" data-index="{{ @index }}" data-length="{{ ../mediaList.length }}">
+              {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
+{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
+
+              <div class="swiper-slide videoItem" data-video-platform="{{ cond isYoutube 'youtube' 'sl' }}" data-index="{{ @index }}" data-length="{{ ../mediaList.length }}">
                 <div 
                   class="swiper-slide-box"
-                  data-image-ratio="56.25%"
-                  style="padding-bottom: {{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}56.25%{{/and}}"
+                  data-image-ratio="{{ videoCoverRatio }}"
+                  style="padding-bottom: {{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{videoCoverRatio}}{{/and}}"
                   data-sku-image-ratio="{{#and ../needSkuCover (boolean @index '==' 0 )}}{{ append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{/and}}"
                 >
-                  <div class="product_youTubeVideoContainer">
-                    <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover resource) }}"></div>
-                  </div>
-                  <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover resource) }}" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+                  {{#if isYoutube}}
+                    <div class="product_youTubeVideoContainer">
+                      <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover resource) }}"></div>
+                    </div>
+                    {{ assign 'resourceUrl' (urlParse resource)}}
+
+{{#if resourceUrl.hostname '===' 'www.youtube.com' }}
+    <img style="" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover resource) }}" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+{{else}}
+    <img style="" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url cover width=1800 }}" data-src="{{ cover }}" alt="">
+{{/if}}
+
+                  {{else}}
+                    <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ cover }}">
+                      <source src="{{resource}}" type="video/mp4">
+                    </video>
+                    {{ assign 'resourceUrl' (urlParse resource)}}
+
+{{#if resourceUrl.hostname '===' 'www.youtube.com' }}
+    <img style="" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover resource) }}" data-src="{{ get 'middle' (getYouTubeCover resource) }}" alt="">
+{{else}}
+    <img style="" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url cover width=1800 }}" data-src="{{ cover }}" alt="">
+{{/if}}
+
+                  {{/if}}
                   {{#and ../needSkuCover (boolean @index '==' 0) }}
                     <div class="product_m_skuImageBox">
                       {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' class='lozad product_m_skuImage product_photoSwipe_image' skuImageObj=../coverImgObj }}
@@ -370,13 +467,22 @@
         <div class="swiper-wrapper">
           {{#each mediaList}}
             <div class="swiper-slide">
-              <div class="swiper-slide-item" style="padding-bottom: {{ cond (boolean this.type '==' 'VIDEO') '56.25%' (append (default (get 'ratio' (img_size this.resource)) 100) '%') }}">
-                {{#if this.type '==' 'VIDEO'}}
-                  <img class="lozad" data-sizes="auto" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
-                {{else}}
-                  <img class="lozad" data-sizes="auto" data-src="{{ this.resource }}" alt="{{ this.alt }}">
-                {{/if}}
-              </div>
+              {{#if this.type '==' 'VIDEO'}}
+                {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
+{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
+
+                <div class="swiper-slide-item" style="padding-bottom:{{ videoCoverRatio }}">
+                  {{#if isYoutube}}
+                    <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-sizes="auto" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
+                  {{else}}
+                    <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-sizes="auto" data-src="{{ this.cover }}" alt="">
+                  {{/if}}
+                </div>
+              {{else}}
+                <div class="swiper-slide-item" style="padding-bottom:{{ append (default (get 'ratio' (img_size this.resource)) 100) '%' }}">
+                  <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-sizes="auto" data-src="{{ this.resource }}" alt="{{ this.alt }}">
+                </div>
+              {{/if}}
             </div>
           {{/each}}
         </div>

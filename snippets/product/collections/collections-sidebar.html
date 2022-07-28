@@ -1,7 +1,6 @@
 <!-- 判断侧边栏是否有内容 helper product_collections_sidebar_isEmpty-->
 {{assign 'sidebarIsEmpty' (product_collections_sidebar_isEmpty blocks product_tags child_category_list navigations)}}
 {{assign 'showFilter' (isFalsey request.uri.query.temp_hidding_filter)}}
-
 {{#if (isTruthy sidebarIsEmpty)}}
   <style>
      {{!-- 如果filter无内容，强制隐藏移动端filter按钮 --}}

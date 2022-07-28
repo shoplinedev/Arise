@@ -31,10 +31,10 @@
             name: "email",
             value: "",
             rules: [ {
-                message: (0, i18n.t)("productDetail.inquiry.emailEmptyErr"),
+                message: (0, i18n.t)("products.product_details.enter_email_address"),
                 required: true
             }, {
-                message: (0, i18n.t)("productDetail.inquiry.emailFormatErr"),
+                message: (0, i18n.t)("products.product_details.enter_valid_email_address"),
                 pattern: emailRE
             } ]
         }, {
@@ -71,7 +71,7 @@
                     const contactData = this.contactForm.getFieldsValue();
                     try {
                         await request["default"].post(SEND_API, contactData);
-                        contact_form_toast.open((0, i18n.t)(`contactForm.sendSuccess`));
+                        contact_form_toast.open((0, i18n.t)(`general.contact_us.send_success`));
                         this.contactForm.setFields(fields);
                     } catch (error) {
                         contact_form_toast.open("Network Error");

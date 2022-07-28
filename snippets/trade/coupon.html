@@ -9,22 +9,22 @@
         <div class="trade_coupon_invalid_tips_content_info">
           {{#if discountCodeUnavailable '===' 'DISCOUNT_CODE_INVALID'}}
             {{!-- 优惠码无效 --}}
-            {{t 'validate.discount-code-error'}}
+            {{t 'cart.discount.code_error' }}
           {{ else if discountCodeUnavailable '===' 'DISCOUNT_CODE_NO_REACH'}}
             {{!-- 优惠码输入正确，但商品价格或数量不符合要求 --}}
-            {{t 'validate.discount-code-user-invalid' discountCode=discountCode}}
+            {{t 'cart.discount.code_item_unmatched' discountCode=discountCode}}
           {{else if discountCodeUnavailable '===' 'MUTUAL_EXCLUDED_BY_TIME_LIMITED'}}
             {{!-- 优惠码输入正确，但与限时活动互斥 --}}
-            {{t 'validate.mutual-excluded-by-time-limited'}}
+            {{t 'cart.discount.discounts_cannot_stack'}}
           {{else if discountCodeUnavailable '===' 'MUTUAL_EXCLUDED_BY_LEVEL_PRICE'}}
             {{!-- 输入正确，但商品价格或数量不符合要求 --}}
-            {{t 'validate.discount-code-user-invalid' discountCode=discountCode}}
+            {{t 'cart.discount.code_item_unmatched' discountCode=discountCode}}
           {{ else if discountCodeUnavailable '===' 'DISCOUNT_CODE_CAN_NOT_ACCUMULATE'}}
           {{!-- 商品已经存在一个优惠活动，不可与其他优惠叠加 --}}
-            {{t 'validate.discount-code-can-not-accumulate' discountCode=discountCode}}
+            {{t 'transaction.general.discount_codes_cannot_stack' discountCode=discountCode}}
           {{else if discountCodeUnavailable '===' 'SHIPPING_PLAN_UNAVAILABLE'}}
             {{!-- 优惠码不适用当前物流方式 --}}
-            {{t 'validate.shipping_plan_unavailable' discountCode=discountCode}}
+            {{t 'transaction.general.coupon_invalid_for_the_shipping_method' discountCode=discountCode}}
           {{/if}}
         </div>
       </div>
@@ -36,16 +36,16 @@
       {{#input
         wrapperClass='trade_coupon'
         value=''
-        placeholder=(t 'trade.coupon-code')}}
+        placeholder=(t 'cart.discount.coupon_code')}}
       {{/input}}
       <div class="trade_coupon__btns">
         {{!-- 首屏渲染禁用“应用”按钮 --}}
         <button id="trade_coupon_btn"
-          class="trade_coupon__btns-apply is-disabled">
-          {{ t 'common.apply' }}
+          class="btn btn-primary trade_coupon__btns-apply is-disabled">
+          {{ t 'sales.general.apply_common' }}
         </button>
-        <button id="trade_coupon_loading_btn" class="trade_coupon__btns-loading is-disabled hide">
-          {{ t 'common.apply' }}
+        <button id="trade_coupon_loading_btn" class="btn btn-primary trade_coupon__btns-loading is-disabled hide">
+          {{ t 'sales.general.apply_common' }}
           {{ snippet 'icons/icon_coupon_btn_loading' }}
         </button>
       </div>

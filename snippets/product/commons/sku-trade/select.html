@@ -1,3 +1,4 @@
+{{#with this as |global|}}
 {{#if (length attr)}}
 <div class="product-sku-trade-select" data-ssr-plugin-sku id="{{ id }}">
   {{#each attr}}
@@ -8,8 +9,8 @@
     </div>
     <div class="select-box" data-ssr-sku-value-list>
       <div class="select-entry" data-index="{{ @index }}">
-        <img style="display: {{#isFalsey activeItem.imgUrl }}none{{/isFalsey}}" class="entry-img" src="{{img_url activeItem.imgUrl width=32 scale=2}}">
-        <span class="entry-text body3">{{#if activeItem }}{{activeItem.name}}{{else}}{{t 'productDetail.default-placeholder' attrName=specName}}{{/if}}</span>
+        <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  style="display: {{#isFalsey activeItem.imgUrl }}none{{/isFalsey}}" class="entry-img" src="{{img_url activeItem.imgUrl width=32 scale=2}}">
+        <span class="entry-text body3">{{#if activeItem }}{{activeItem.name}}{{else}}{{t 'products.product_details.default_placeholder' attrName=specName}}{{/if}}</span>
         <span class="entry-arrow"></span>
       </div>
 
@@ -17,7 +18,7 @@
       {{#each specAttrList}}
         <div class="select-item" data-index="{{ @index }}">
           {{#isTruthy imgUrl}}
-            <img class="select-img" src="{{img_url imgUrl width=32 scale=2 }}" >
+            <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  class="select-img" src="{{img_url imgUrl width=32 scale=2 }}" >
           {{/isTruthy}}
           <span class="select-text">{{ name }}</span>
           <span class="select-checked"></span>
@@ -30,14 +31,14 @@
   {{/each}}
 </div>
 {{/if }}
-
+{{/with}}
 {{!-- mobile popup样式节点 --}}
 {{!-- <div class="product-sku-trade-select-popup">
   <div class="select-options body-font select-popup">
   {{#with attr.[0].specAttrList}}
     <div class="select-item" data-index="{{ @index }}">
       {{#isTruthy imgUrl}}
-        <img class="select-img" src="{{ imgUrl }}" >
+        <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  class="select-img" src="{{ imgUrl }}" >
       {{/isTruthy}}
       <span class="select-text">{{ name }}</span>
       <span class="select-checked"></span>

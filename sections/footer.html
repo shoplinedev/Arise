@@ -45,7 +45,13 @@
           {{/each}}
         {{/with}}
         </div>
-        <div class="footer__block-social-container row g-4 {{ footInlineClass }}">                
+        {{assign 'has_social_logos' false}}
+        {{#with theme.settings}}
+          {{#or social_facebook_link social_twitter_link social_pinterest_link social_instagram_link social_snapchat_link social_tiktok_link social_youtube_link social_linkedin_link}}
+            {{object_set ../this 'has_social_logos' true}}
+          {{/or}}
+        {{/with}}
+        <div class="{{#or showLetter has_social_logos}}footer_social--divider {{/or}}{{#if showLetter}}footer_social-hasletter {{/if}}footer__block-social-container row g-4 {{ footInlineClass }}">                
           {{#if showLetter}}
             {{!-- 邮件订阅 --}}
             <div class="footer__block-subscribe">
@@ -57,11 +63,11 @@
             <div class="footer__block-social">
               {{ snippet 'footer-social' }}
             </div>
-          {{/if}}      
+          {{/if}}  
+          {{#or showLetter showSocialLogos }}
+            <div class="footer__block-divider d-md-none entry-line"></div>
+          {{/or}}     
         </div>
-        {{#or showLetter showSocialLogos }}
-        <div class="footer__block-divider d-md-none entry-line"></div>
-        {{/or}}
       </div>      
     </div>
     <div class="footer__corner entry-line">
@@ -247,15 +253,7 @@
         {
           "type": "url",
           "id": "link",
-          "label": {
-            "zh-hans-cn": "跳转链接",
-            "en": "URL",
-            "id": "lompat link",
-            "th": "ลิงก์กระโดดข้าม",
-            "vi": "Link chuyển đổi",
-            "ms": "Pautan lompat",
-            "zh-hant-tw": "跳轉鏈接"
-          }
+          "label": "t:sections.footer.blocks.image.settings.link.label"
         },
         {
           "id": "image_width",

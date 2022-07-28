@@ -38,18 +38,18 @@
                     const referralCode = (null === (_window = window) || void 0 === _window ? void 0 : null === (_window$SLMemberPlugi = _window.SLMemberPlugin) || void 0 === _window$SLMemberPlugi ? void 0 : null === (_window$SLMemberPlugi2 = _window$SLMemberPlugi.memberReferralCode) || void 0 === _window$SLMemberPlugi2 ? void 0 : _window$SLMemberPlugi2.value) || null;
                     if (referralCode) params.referralCode = referralCode;
                     _yy_sl_theme_shared_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"].post("/user/front/users/footersub", params).then((res => {
-                        if (res.success) this.toast.open((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_2__.t)("footer.subscribeSuccess"), 2e3); else this.toast.open((0, 
-                        _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_2__.t)("footer.subscribeRegExpError"), 2e3);
+                        if (res.success) this.toast.open((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_2__.t)("general.footer.subscribe_success"), 2e3); else this.toast.open((0, 
+                        _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_2__.t)("general.footer.subscribe_reg_exp_error"), 2e3);
                     })).catch((err => {
                         console.log("subscribe error", err);
-                        this.toast.open((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_2__.t)("footer.subscribeRegExpError"), 2e3);
+                        this.toast.open((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_2__.t)("general.footer.subscribe_reg_exp_error"), 2e3);
                     }));
                 }));
                 container.on("click", ".newsletter__btn", (() => {
                     const $input = container.find(".newsletter__input");
                     const value = $input.val();
                     if (true !== (0, _commons_utils_checkEmail__WEBPACK_IMPORTED_MODULE_5__["default"])(value)) {
-                        this.toast.open((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_2__.t)("footer.subscribeRegExpError"), 2e3);
+                        this.toast.open((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_2__.t)("general.footer.subscribe_reg_exp_error"), 2e3);
                         return;
                     }
                     post(value);

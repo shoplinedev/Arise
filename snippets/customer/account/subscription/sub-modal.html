@@ -6,10 +6,10 @@
 }}
   <div class="customer-center-sub-modal__content">
     {{#if type 'email'}}
-      <div class="customer-center-sub-modal__title">{{ t 'userCenter.subscription.modal.eamil-title' }}</div>
+      <div class="customer-center-sub-modal__title">{{ t 'customer.subscription.email_subscription_text' }}</div>
     {{/if}}
     {{#if type 'phone'}}
-      <div class="customer-center-sub-modal__title">{{ t 'userCenter.subscription.modal.phone-title' }}</div>
+      <div class="customer-center-sub-modal__title">{{ t 'customer.subscription.phone_subscription_text' }}</div>
     {{/if}}
 
     <form class="customer-center-sub-modal__form" id={{ append id '-form' }}>
@@ -22,11 +22,11 @@
       {{/if}}
 
       {{#snippet 'customer/base/sl-button' class="submit-button" block=true }}
-        {{ t 'userCenter.subscription.modal.save' }}
+        {{ t 'customer.subscription.save_button' }}
       {{/snippet}}
     </form>
     <div class="customer-center-sub-modal__cancel">
-      <span>{{ t 'userCenter.subscription.modal.cancel-text' }}</span>
+      <span>{{ t 'customer.subscription.subscription_cancel_text' }}</span>
     </div>
   </div>
 {{/snippet}}

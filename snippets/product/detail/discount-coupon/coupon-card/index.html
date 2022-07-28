@@ -1,7 +1,7 @@
-{{! couponTemplate '2'为自定义，'1'为提供的模板}}
+{{!-- couponTemplate '2'为自定义，'1'为提供的模板 --}}
 {{assign 'couponTemplate' item.salesEnvCustomInfo.productDetailConfig.couponTemplate}}
 {{#if (or (compare item.discountCodeDisplayStyle '===' "discountCodeStyle1") (compare couponTemplate '===' '2') )}}
-  {{snippet 'sales/discount-coupon/coupon-card/coupon-card1' couponTemplate=couponTemplate id=id}}
+  {{snippet 'product/detail/discount-coupon/coupon-card/coupon-card1' couponTemplate=couponTemplate}}
 {{else if discountCodeDisplayStyle '===' "discountCodeStyle2"}}
-  {{snippet 'sales/discount-coupon/coupon-card/coupon-card2'}}
+  {{snippet 'product/detail/discount-coupon/coupon-card/coupon-card2'}}
 {{/if}}

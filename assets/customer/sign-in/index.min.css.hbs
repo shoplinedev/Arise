@@ -569,6 +569,28 @@ input{
 .customer__form-item--send:before,.customer__form-item--send:not(.btn--loading):after{
   display:none;
 }
+.customer__form-nickname{
+  -webkit-box-align:center;
+  -webkit-box-pack:justify;
+  -webkit-align-items:center;
+          align-items:center;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  gap:20px;
+  -webkit-justify-content:space-between;
+          justify-content:space-between;
+  margin-top:16px;
+}
+.customer__form-nickname>.customer__form-item{
+  -webkit-box-flex:1;
+  -webkit-flex:1;
+          flex:1;
+  margin-top:0;
+}
+.customer__form-nickname .sl-input__suffix{
+  display:none;
+}
 .customer__error{
   color:#f04949;
   display:none;

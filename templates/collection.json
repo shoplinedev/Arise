@@ -19,8 +19,36 @@
         "per_page_num": 16,
         "product_image_ratio": "0",
         "product_fill_type": "contain",
-        "product_hover_show_next": false
-      }
+        "product_hover_show_next": false,
+        "pc_cols": 4,
+        "md_cols": 2,
+        "filter_enable": true,
+        "support_multiple": true,
+        "padding-top": 0,
+        "padding-bottom": 0
+      },
+      "blocks": {
+        "a": {
+          "type": "child_category",
+          "settings": {
+            "show_level3_title": false,
+            "show_product_num": false,
+            "default_fold": false
+          }
+        },
+        "b": {
+          "type": "tag_filter",
+          "settings": {
+            "tag_filter_title": "Filters",
+            "default_fold": false,
+            "tag_data": {
+              "group": "1",
+              "tags": []
+            }
+          }
+        }
+      },
+      "block_order": ["a", "b"]
     },
     "recently-viewed":{  
       "type": "product/recently-viewed",

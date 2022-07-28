@@ -1,0 +1,19 @@
+{{!-- 询盘商品不显示倒计时 --}}
+{{#not product.spu.inquiry}}
+  {{#if productActivity.timeLimitActivityList.length}}
+    {{assign 'timeLimitActivity' (itemAt productActivity.timeLimitActivityList 0)}}
+    {{#if (or timeLimitActivity.salesPlugin.countDownTimerPlugin.showCountDownTime timeLimitActivity.salesPlugin.progressPlugin.showProgressBar)}}
+      <div class="d-md-none flash-sale-component sales__flash-sale notranslate">
+        {{ snippet 'product/detail/flash-sale/flash-sale' }}
+      </div>
+    {{else}}
+      <div class="d-md-none product-detail-countdown countdown-component">
+        {{ snippet 'product/detail/countdown-widget' spuSeq=product.spu.spuSeq sortationList=product.spu.sortationList }}
+      </div>
+    {{/if}}
+  {{else}}
+    <div class="d-md-none product-detail-countdown countdown-component">
+      {{ snippet 'product/detail/countdown-widget' spuSeq=product.spu.spuSeq sortationList=product.spu.sortationList }}
+    </div>
+  {{/if}}
+{{/not}}

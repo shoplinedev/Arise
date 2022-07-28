@@ -2,9 +2,9 @@
     var __webpack_modules__ = {
         "../shared/browser/components/hbs/thirdPartyShare/js/index.js": () => {
             const ACTIVE_CLASS = "third-party-more-active";
-            $(document).on("click", (function(e) {
-                const $more = $(`.third-party-share .third-party-more`);
-                const $target = $(e.target).closest(".third-party-more");
+            __SL_$__(document).on("click", (function(e) {
+                const $more = __SL_$__(`.third-party-share .third-party-more`);
+                const $target = __SL_$__(e.target).closest(".third-party-more");
                 if ($target.length > 0) $target.toggleClass(ACTIVE_CLASS); else if ($more.hasClass(ACTIVE_CLASS)) $more.removeClass(ACTIVE_CLASS);
             }));
         }

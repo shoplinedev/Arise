@@ -126,7 +126,7 @@ product_activity_config:
     page_kw: '{{ default product.productSeo.key }}',
     pic_rank: 1,
     iframe_id: 1,
-    sellected_variantion_id: "{{#if isBatchBuy}}null{{else}}{{#if isSigleSku}}{{ initSku.firstSku.skuSeq }}{{else}}{{#if isSoldOut}}null{{else}}{{#if initSku.selectSku.skuSeq}}{{ initSku.selectSku.skuSeq }}{{else}}null{{/if}}{{/if}}{{/if}}{{/if}}"
+    sellected_variantion_id: "{{#if isBatchBuy}}null{{else}}{{#if isSigleSku}}{{ initSku.firstSku.skuSeq }}{{else}}{{#if initSku.selectSku.skuSeq}}{{ initSku.selectSku.skuSeq }}{{else}}null{{/if}}{{/if}}{{/if}}"
   });
 </script>
 {{/partial}}

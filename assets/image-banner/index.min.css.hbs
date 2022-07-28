@@ -207,18 +207,32 @@ input{
     color:#fff;
   }
   .stage-image-banner .content .wrapper--default-scheme .control .btn{
+    --btn-border-background-color:#fff;
     background-color:#fff;
     color:#000;
   }
   .stage-image-banner .content .wrapper--default-scheme .control .btn:after{
+    box-shadow:0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} {{ rgba '#000000' (subtract 1 (divide theme.settings.btn_border_opacity 100)) }}, 0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} var(--btn-border-background-color);
+  }
+  .stage-image-banner .content .wrapper--default-scheme .control .btn.disabled:hover:after{
     box-shadow:0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} {{ rgba '#000000' (subtract 1 (divide theme.settings.btn_border_opacity 100)) }};
   }
+  .stage-image-banner .content .wrapper--default-scheme .control .btn:hover:after{
+    box-shadow:0 0 0 {{ append (add theme.settings.btn_border_thickness 1) 'px' }} {{ rgba '#000000' (subtract 1 (divide theme.settings.btn_border_opacity 100)) }}, 0 0 0 {{ append (add theme.settings.btn_border_thickness 1) 'px' }} var(--btn-border-background-color);
+  }
   .stage-image-banner .content .wrapper--default-scheme .control .btn.btn-extra{
+    --btn-border-background-color:transparent;
     background-color:transparent;
     color:#fff;
   }
   .stage-image-banner .content .wrapper--default-scheme .control .btn.btn-extra:after{
+    box-shadow:0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} {{ rgba '#ffffff' (divide theme.settings.btn_border_opacity 100) }}, 0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} var(--btn-border-background-color);
+  }
+  .stage-image-banner .content .wrapper--default-scheme .control .btn.btn-extra.disabled:hover:after{
     box-shadow:0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} {{ rgba '#ffffff' (divide theme.settings.btn_border_opacity 100) }};
+  }
+  .stage-image-banner .content .wrapper--default-scheme .control .btn.btn-extra:hover:after{
+    box-shadow:0 0 0 {{ append (add theme.settings.btn_border_thickness 1) 'px' }} {{ rgba '#ffffff' (divide theme.settings.btn_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.btn_border_thickness 1) 'px' }} var(--btn-border-background-color);
   }
   .stage-image-banner .content .wrapper.content--pos-left{
     text-align:left;
@@ -413,18 +427,32 @@ input{
     color:#fff;
   }
   .stage-image-banner .content .wrapper--default-scheme .control .btn{
+    --btn-border-background-color:#fff;
     background-color:#fff;
     color:#000;
   }
   .stage-image-banner .content .wrapper--default-scheme .control .btn:after{
+    box-shadow:0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} {{ rgba '#000000' (subtract 1 (divide theme.settings.btn_border_opacity 100)) }}, 0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} var(--btn-border-background-color);
+  }
+  .stage-image-banner .content .wrapper--default-scheme .control .btn.disabled:hover:after{
     box-shadow:0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} {{ rgba '#000000' (subtract 1 (divide theme.settings.btn_border_opacity 100)) }};
   }
+  .stage-image-banner .content .wrapper--default-scheme .control .btn:hover:after{
+    box-shadow:0 0 0 {{ append (add theme.settings.btn_border_thickness 1) 'px' }} {{ rgba '#000000' (subtract 1 (divide theme.settings.btn_border_opacity 100)) }}, 0 0 0 {{ append (add theme.settings.btn_border_thickness 1) 'px' }} var(--btn-border-background-color);
+  }
   .stage-image-banner .content .wrapper--default-scheme .control .btn.btn-extra{
+    --btn-border-background-color:transparent;
     background-color:transparent;
     color:#fff;
   }
   .stage-image-banner .content .wrapper--default-scheme .control .btn.btn-extra:after{
+    box-shadow:0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} {{ rgba '#ffffff' (divide theme.settings.btn_border_opacity 100) }}, 0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} var(--btn-border-background-color);
+  }
+  .stage-image-banner .content .wrapper--default-scheme .control .btn.btn-extra.disabled:hover:after{
     box-shadow:0 0 0 {{ append theme.settings.btn_border_thickness 'px' }} {{ rgba '#ffffff' (divide theme.settings.btn_border_opacity 100) }};
+  }
+  .stage-image-banner .content .wrapper--default-scheme .control .btn.btn-extra:hover:after{
+    box-shadow:0 0 0 {{ append (add theme.settings.btn_border_thickness 1) 'px' }} {{ rgba '#ffffff' (divide theme.settings.btn_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.btn_border_thickness 1) 'px' }} var(--btn-border-background-color);
   }
   .stage-image-banner .content .wrapper.content--pos-left{
     text-align:left;

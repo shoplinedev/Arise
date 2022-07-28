@@ -1,6 +1,6 @@
 {{ preload_state 'customer_subscription' }}
 
-{{#snippet 'customer/base/sl-card' title=(t 'userCenter.subscription.title') desc=(t 'userCenter.subscription.desc') id="customer-center-subscription"}}
+{{#snippet 'customer/base/sl-card' title=(t 'customer.subscription.subscription_title') desc=(t 'customer.general.subscription_desc') id="customer-center-subscription"}}
   <div class="subscription">
     {{#if customer_subscription.email}}
       {{ snippet 'customer/account/subscription/sub-item' key='email' data=customer_subscription.email }}

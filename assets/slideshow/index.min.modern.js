@@ -114,6 +114,97 @@
             return params;
         }
     },
+    "./node_modules/swiper/esm/components/effect-fade/effect-fade.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => __WEBPACK_DEFAULT_EXPORT__
+        });
+        var _utils_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/swiper/esm/utils/utils.js");
+        function _extends() {
+            _extends = Object.assign || function(target) {
+                for (var i = 1; i < arguments.length; i++) {
+                    var source = arguments[i];
+                    for (var key in source) if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+                }
+                return target;
+            };
+            return _extends.apply(this, arguments);
+        }
+        var Fade = {
+            setTranslate: function() {
+                var swiper = this;
+                var slides = swiper.slides;
+                for (var i = 0; i < slides.length; i += 1) {
+                    var $slideEl = swiper.slides.eq(i);
+                    var offset = $slideEl[0].swiperSlideOffset;
+                    var tx = -offset;
+                    if (!swiper.params.virtualTranslate) tx -= swiper.translate;
+                    var ty = 0;
+                    if (!swiper.isHorizontal()) {
+                        ty = tx;
+                        tx = 0;
+                    }
+                    var slideOpacity = swiper.params.fadeEffect.crossFade ? Math.max(1 - Math.abs($slideEl[0].progress), 0) : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
+                    $slideEl.css({
+                        opacity: slideOpacity
+                    }).transform("translate3d(" + tx + "px, " + ty + "px, 0px)");
+                }
+            },
+            setTransition: function(duration) {
+                var swiper = this;
+                var slides = swiper.slides, $wrapperEl = swiper.$wrapperEl;
+                slides.transition(duration);
+                if (swiper.params.virtualTranslate && 0 !== duration) {
+                    var eventTriggered = false;
+                    slides.transitionEnd((function() {
+                        if (eventTriggered) return;
+                        if (!swiper || swiper.destroyed) return;
+                        eventTriggered = true;
+                        swiper.animating = false;
+                        var triggerEvents = [ "webkitTransitionEnd", "transitionend" ];
+                        for (var i = 0; i < triggerEvents.length; i += 1) $wrapperEl.trigger(triggerEvents[i]);
+                    }));
+                }
+            }
+        };
+        const __WEBPACK_DEFAULT_EXPORT__ = {
+            name: "effect-fade",
+            params: {
+                fadeEffect: {
+                    crossFade: false
+                }
+            },
+            create: function() {
+                var swiper = this;
+                (0, _utils_utils__WEBPACK_IMPORTED_MODULE_0__.bindModuleMethods)(swiper, {
+                    fadeEffect: _extends({}, Fade)
+                });
+            },
+            on: {
+                beforeInit: function(swiper) {
+                    if ("fade" !== swiper.params.effect) return;
+                    swiper.classNames.push(swiper.params.containerModifierClass + "fade");
+                    var overwriteParams = {
+                        slidesPerView: 1,
+                        slidesPerColumn: 1,
+                        slidesPerGroup: 1,
+                        watchSlidesProgress: true,
+                        spaceBetween: 0,
+                        virtualTranslate: true
+                    };
+                    (0, _utils_utils__WEBPACK_IMPORTED_MODULE_0__.extend)(swiper.params, overwriteParams);
+                    (0, _utils_utils__WEBPACK_IMPORTED_MODULE_0__.extend)(swiper.originalParams, overwriteParams);
+                },
+                setTranslate: function(swiper) {
+                    if ("fade" !== swiper.params.effect) return;
+                    swiper.fadeEffect.setTranslate();
+                },
+                setTransition: function(swiper, duration) {
+                    if ("fade" !== swiper.params.effect) return;
+                    swiper.fadeEffect.setTransition(duration);
+                }
+            }
+        };
+    },
     "./node_modules/swiper/esm/components/navigation/navigation.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         __webpack_require__.d(__webpack_exports__, {
             default: () => __WEBPACK_DEFAULT_EXPORT__
@@ -793,6 +884,7 @@
             }
         };
         var core_class = __webpack_require__("./node_modules/swiper/esm/components/core/core-class.js");
+        var effect_fade = __webpack_require__("./node_modules/swiper/esm/components/effect-fade/effect-fade.js");
         var navigation = __webpack_require__("./node_modules/swiper/esm/components/navigation/navigation.js");
         var pagination = __webpack_require__("./node_modules/swiper/esm/components/pagination/pagination.js");
         var sectionsLoad = __webpack_require__("../shared/browser/utils/sectionsLoad/index.js");
@@ -846,7 +938,7 @@
                     const $animateItems = swiper.slides.eq(this.activeIndex).find(".animation-contents");
                     $animateItems.off("animationend");
                     Promise.all($animateItems.map((item => new Promise((resolve => {
-                        $(item).one("animationend", (() => {
+                        __SL_$__(item).one("animationend", (() => {
                             resolve();
                         }));
                     }))))).then((() => {
@@ -854,7 +946,7 @@
                         swiper.emit("fadeTransitionend");
                     }));
                     swiper.slides.each((function() {
-                        const $el = $(this);
+                        const $el = __SL_$__(this);
                         if ($el.hasClass(swiper.params.slideActiveClass)) $el.addClass(classes.animateOut).one("transitionend", (() => {
                             $el.removeClass(classes.animateOut);
                         }));
@@ -872,7 +964,7 @@
             }); else obj[key] = value;
             return obj;
         }
-        core_class["default"].use([ effect_flickity_fade, navigation["default"], pagination["default"], autoplay, keyboard ]);
+        core_class["default"].use([ effect_flickity_fade, effect_fade["default"], navigation["default"], pagination["default"], autoplay, keyboard ]);
         const SLIDE_ACTIVE_CLASS = "is-selected";
         const selectors = {
             flickityViewport: ".flickity-viewport",
@@ -895,7 +987,7 @@
                 this.container = container;
                 this.sectionId = container.data("section-id");
                 try {
-                    this.settings = JSON.parse($(`#Slideshow-data-${this.sectionId}`).text());
+                    this.settings = JSON.parse(__SL_$__(`#Slideshow-data-${this.sectionId}`).text());
                 } catch (err) {}
                 this.init();
             }
@@ -921,14 +1013,29 @@
                         slideChangeTransitionStart() {
                             this.$el.removeClass("hero--static");
                         },
-                        init() {
-                            window.lozadObserver.observe();
-                        },
+                        init() {},
                         afterInit() {
                             window.SL_EventBus.emit("parallax");
+                        },
+                        beforeTransitionStart(swiper) {
+                            swiper.$el[0].classList.add("hero-transition");
+                        },
+                        transitionEnd(swiper) {
+                            swiper.$el[0].classList.remove("hero-transition");
                         }
                     }
                 };
+                if ("slide" === settings.transition_type) Object.assign(swiperOptions, {
+                    speed: 1e3,
+                    effect: "slide",
+                    createElements: false,
+                    virtualTranslate: false,
+                    delay: 0
+                });
+                if ("scale" === settings.transition_type) Object.assign(swiperOptions, {
+                    effect: "fade",
+                    speed: 800
+                });
                 if (settings.autoplay) Object.assign(swiperOptions, {
                     autoplay: {
                         disableOnInteraction: false,
@@ -965,7 +1072,7 @@
                     image.onload = e => {
                         const {target} = e;
                         const aspectRatio = target.height / target.width * 100;
-                        $flickityViewport.prepend($("<style />").text(`\n          @media only screen and (min-width: 769px) {\n            .natural--${sectionId} {\n              padding-top: ${aspectRatio}% !important;\n            }\n          }\n        `));
+                        $flickityViewport.prepend(__SL_$__("<style />").text(`\n          @media only screen and (min-width: 769px) {\n            .natural--${sectionId} {\n              padding-top: ${aspectRatio}% !important;\n            }\n          }\n        `));
                     };
                 }
                 if ($flickityViewport.hasClass(slideshow_classes.isNaturalMobile)) {
@@ -983,7 +1090,7 @@
                     image.onload = e => {
                         const {target} = e;
                         const aspectRatio = target.height / target.width * 100;
-                        $flickityViewport.prepend($("<style />").text(`\n          @media only screen and (max-width: 768px) {\n            .natural-mobile--${sectionId} {\n              padding-top: ${aspectRatio}% !important;\n            }\n          }\n        `));
+                        $flickityViewport.prepend(__SL_$__("<style />").text(`\n          @media only screen and (max-width: 768px) {\n            .natural-mobile--${sectionId} {\n              padding-top: ${aspectRatio}% !important;\n            }\n          }\n        `));
                     };
                 }
             }

@@ -15,7 +15,7 @@
         }
     }
     const unsub_feedback = UnsubFeedback;
-    $((function() {
+    __SL_$__((function() {
         new unsub_feedback;
     }));
 })();

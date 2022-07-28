@@ -1,0 +1,15 @@
+<div class="sales__flash-sale-percentage-container {{#if type "==" '1'}}sales__flash-sale-percentage-container--vertical{{else }}sales__flash-sale-percentage-container--horizontal{{/if}} {{#if color "==" '1'}}sales__flash-sale-percentage-container--red{{else }}sales__flash-sale-percentage-container--orange{{/if}}">
+  {{#if type "==" '2'}}
+    <div class="sales__flash-sale-percentage-msg" style="color:{{salesCustom.progressBarTextColor}};">
+      {{noTranslationHTML (t "sales.general.sold" count=(javascript_template '<strong>${sold}</strong>' sold=sold))}}
+    </div>
+  {{/if}}
+  <div class="sales__flash-sale-percentage-percent-out" style="background-color:{{rgba salesCustom.progressBarBgColor 0.2}}">
+    <div class="sales__flash-sale-percentage-percent" style="background-color:{{salesCustom.progressBarBgColor}}; width:{{multiply (divide sold total) 100}}%;"></div>
+  </div>
+  {{#if type "==" '1'}}
+    <div class="sales__flash-sale-percentage-msg" style="color:{{salesCustom.progressBarTextColor}};">
+      {{noTranslationHTML (t "sales.general.sold" count=(javascript_template '<strong>${sold}</strong>' sold=sold))}}
+    </div>
+  {{/if}}
+</div>

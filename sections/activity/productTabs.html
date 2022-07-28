@@ -1,0 +1,53 @@
+{{assign 'benefitCondition' (itemAt activity.benefitConditions 0)}}
+{{#if (and benefitCondition (compare activity.benefitType '===' 12))}}
+  {{assign 'url' (replace_by_regex request.uri.url '(query_product_type|page_num|page_size)=[^&#]*(&|$)' 'ig' '')  }}
+  {{assign 'url' (replace_by_regex url '[\?&](#|$)' 'ig' '')}}
+
+  {{#if request.uri.query.query_product_type}}
+    {{assign 'selectedTab' 2}}
+    {{assign 'effectProductUrl' url}}
+    {{assign 'benefitProductUrl' 'javascript: void(0);'}}
+  {{else}}
+    {{assign 'selectedTab' 1}}
+    {{assign 'effectProductUrl' 'javascript: void(0);'}}
+    {{#if (test url (toRegex "\?"))}}
+      {{assign 'benefitProductUrl' (append url '&' 'query_product_type=2')}}
+    {{else}}
+      {{assign 'benefitProductUrl' (append url '?' 'query_product_type=2')}}
+    {{/if}}
+  {{/if}}
+  {{#if benefitCondition.benefitEvent.type '===' 0}}
+    {{assign 'threshold' (noTranslationHTML (t "sales.general.product_tabs_threshold" threshold=(javascript_template '<span data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))))}}
+  {{else}}
+    {{assign 'threshold' (t 'sales.general.product_tabs_threshold' threshold=benefitCondition.benefitEvent.minThreshold)}}
+  {{/if}}
+  {{#if benefitCondition.benefit.discount '===' 0}}
+    {{assign 'benefit' (t 'sales.general.product_tabs_benefit_free_locked')}}
+    {{#if activity.promotionSubType '===' 3}}
+      {{assign 'benefitUnlock' (t 'sales.general.product_tabs_code_benefit_free_unlocked' benefitCount=benefitCondition.benefit.benefitCount)}}
+    {{else}}
+      {{assign 'benefitUnlock' (t 'sales.general.product_tabs_benefit_free_unlocked')}}
+    {{/if}}
+  {{else}}
+    {{assign '__offPercent' (subtract 100 (default benefitCondition.benefit.discount 0))}}
+    {{assign 'benefit' (t 'sales.general.product_tabs_benefit_discount_locked' offPercent=__offPercent)}}
+    {{#if activity.promotionSubType '===' 3}}
+      {{assign 'benefitUnlock' (t 'sales.general.product_tabs_code_benefit_discount_unlocked' offPercent=__offPercent benefitCount=benefitCondition.benefit.benefitCount)}}
+    {{else}}
+      {{assign 'benefitUnlock' (t 'sales.general.product_tabs_benefit_discount_unlocked' offPercent=__offPercent)}}
+    {{/if}}
+  {{/if}}
+
+  <div class="container activity__productTabs">
+    <a class="tab1 wrapAnywhere {{#if selectedTab '===' 1}}active{{/if}}" href="{{effectProductUrl}}"><span>{{threshold}}</span></a>
+    <a class="tab2 wrapAnywhere {{#if selectedTab '===' 2}}active{{/if}} {{#if activity.promotionSubType '===' 3}}unlocked{{/if}}" href="{{benefitProductUrl}}"
+      data-color_tooltip="{{rgba theme.settings.color_discount 0.85}}">
+      <i>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M15.0148 6.73438H16.875C17.2288 6.73438 17.5156 7.02119 17.5156 7.375V16.75C17.5156 17.1038 17.2288 17.3906 16.875 17.3906H3.125C2.77119 17.3906 2.48438 17.1038 2.48438 16.75V7.375C2.48438 7.02119 2.77119 6.73438 3.125 6.73438H4.9852C4.98802 6.03697 5.00045 5.37029 5.0553 4.75914C5.12668 3.96372 5.27351 3.20799 5.59888 2.55725C5.93344 1.88813 6.44564 1.3528 7.19528 0.995824C7.92755 0.647124 8.85258 0.484375 10 0.484375C11.1474 0.484375 12.0725 0.647124 12.8047 0.995824C13.5544 1.3528 14.0666 1.88813 14.4011 2.55725C14.7265 3.20799 14.8733 3.96372 14.9447 4.75914C14.9995 5.37029 15.012 6.03697 15.0148 6.73438ZM13.7335 6.73438C13.7306 6.04983 13.7187 5.43198 13.6686 4.87367C13.6032 4.14565 13.4766 3.57326 13.2551 3.13025C13.0428 2.70562 12.7347 2.38158 12.2539 2.15261C11.7557 1.91538 11.0401 1.76562 10 1.76562C8.95992 1.76562 8.24433 1.91538 7.74613 2.15261C7.2653 2.38158 6.95718 2.70562 6.74487 3.13025C6.52336 3.57326 6.39675 4.14565 6.33142 4.87367C6.28132 5.43198 6.26936 6.04983 6.26652 6.73438H13.7335ZM10 9.85938C10.3538 9.85938 10.6406 10.1462 10.6406 10.5V11.9082C11.0146 12.1282 11.2656 12.5348 11.2656 13C11.2656 13.699 10.699 14.2656 10 14.2656C9.30101 14.2656 8.73438 13.699 8.73438 13C8.73438 12.5348 8.98539 12.1282 9.35938 11.9082V10.5C9.35938 10.1462 9.64619 9.85938 10 9.85938Z"
+            fill="currentColor" />
+        </svg>
+      </i><span class="locked_text">{{benefit}}</span><span class="unlocked_text">{{benefitUnlock}}</span></a>
+  </div>
+{{/if}}

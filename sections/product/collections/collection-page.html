@@ -29,6 +29,7 @@ history_browse_products:
 {{ assign 'slice_products_list' products.list }}
 {{ assign 'gripType' 'small_grid' }}
 {{ assign 'productSortation' (object_create id=sortationId sortation=sortation) }}
+{{ assign 'child_category_list' (navigation_to_category all_collections navigations.head sortationId) }}
 {{ preload_state 'products' }}
 {{ preload_state 'productSortation' }}
 
@@ -40,6 +41,11 @@ history_browse_products:
   >
     <div class="row g-4">
       <div class="product-list-main-box">
+        <div class="product-list-filter-main-container">
+          <section class="product-list-filter">
+            {{ snippet 'product/collections/collections-menu' settings=section.settings blocks=(product_blocks_order_translate section 'blocks' 'block_order') }}
+          </section>
+        </div>
         <div class="product-collection-page-con">
           <div class="product-list-list __sl-custom-track-{{ cond productSortation.id productSortation.id 'all-products' }}" data-ssr-product-list-left>
             <div class="product-list-description-category-top">
@@ -60,9 +66,9 @@ history_browse_products:
                 <div class="product-list-filter-container">
                   <div class="product-list-show-product-number-m body3" id="product-list-list-header-left-m">
                     {{#if products.realTotal '>' 1}}
-                        {{ t 'productList.container.moreProductNum' num=products.realTotal }}
+                        {{ t 'products.product_list.more__product_num' num=products.realTotal }}
                       {{else}}
-                        {{ t 'productList.container.oneProductNum' num=products.realTotal }}
+                        {{ t 'products.product_list.one_product_num' num=products.realTotal }}
                       {{/if}}
                   </div>
                   {{#if section.settings.sorter_enable}}
@@ -83,7 +89,7 @@ history_browse_products:
               {{#if (boolean products.list.length '>' 0)}}
                 {{ snippet 'product/commons/product-item-list' effectPage='productList' gripType=gripType className='__sl-custom-track-product-list-item' colNum=itemNumByRow listData=slice_products_list pageSize=calc_page_size pageNum=products.pageNum total=products.total }}
               {{else}}
-                <span class="body3">{{ t 'productList.noProduct' }}</span>
+                <span class="body3">{{ t 'products.product_list.no_product' }}</span>
               {{/if}}
             </div>
             <div class="product-list-description-category">
@@ -195,8 +201,118 @@ history_browse_products:
       "type": "switch",
       "label": "t:sections.product_collections_collection-page.settings.product_hover_show_next.label",
       "default": false
+    },
+    {
+      "type": "group_header",
+      "label": {
+        "zh-hans-cn": "侧栏筛选",
+        "en": "Side column filter",
+        "id": "Pemfilteran bilah sisi",
+        "th": "ตัวกรองแถบด้านข้าง",
+        "vi": "Bộ lọc thanh bên",
+        "ms": "Penapis bar sisi",
+        "zh-hant-tw": "側欄篩選"
+      }
+    },
+    {
+      "type": "switch",
+      "id": "filter_enable",
+      "label": "t:sections.product_collections_collection-filter.settings.filter_enable.label",
+      "default": true
+    },
+    {
+      "type": "switch",
+      "id": "support_multiple",
+      "label": "t:sections.product_collections_collection-filter.settings.support_multiple.label",
+      "default": false
     }
   ],
+  "blocks": [
+    {
+      "type": "tag_filter",
+      "icon": "product",
+      "name": "t:sections.product_collections_collection-filter.blocks.tag_filter.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag_filter_title",
+          "label": "t:sections.product_collections_collection-filter.blocks.tag_filter.settings.tag_filter_title.label",
+          "default": "Filters"
+        },
+        {
+          "type": "tag_picker",
+          "id": "tag_data",
+          "label": "t:sections.product_collections_collection-filter.blocks.tag_filter.settings.tag_data.label",
+          "default": {
+            "group": "1",
+            "tags": []
+          }
+        },
+        {
+          "type": "switch",
+          "id": "default_fold",
+          "label": "t:sections.product_collections_collection-filter.blocks.tag_filter.settings.default_fold.label",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "child_category",
+      "icon": "productCategories",
+      "name": "t:sections.product_collections_collection-filter.blocks.child_category.name",
+      "settings": [
+        {
+          "type": "group_header",
+          "label": "t:sections.product_collections_collection-filter.blocks.child_category.settings.group_header__0.label",
+          "info": "t:sections.product_collections_collection-filter.blocks.child_category.settings.group_header__0.info",
+          "id": "group_header__0"
+        },
+        {
+          "type": "switch",
+          "id": "show_level3_title",
+          "label": "t:sections.product_collections_collection-filter.blocks.child_category.settings.show_level3_title.label",
+          "default": false
+        },
+        {
+          "type": "switch",
+          "id": "show_product_num",
+          "label": "t:sections.product_collections_collection-filter.blocks.child_category.settings.show_product_num.label",
+          "default": false
+        },
+        {
+          "type": "switch",
+          "id": "default_fold",
+          "label": "t:sections.product_collections_collection-filter.blocks.child_category.settings.default_fold.label",
+          "default": false
+        }
+      ],
+      "limit": 1
+    },
+    {
+      "type": "menu",
+      "icon": "navigation",
+      "name": "t:sections.product_collections_collection-filter.blocks.menu.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "t:sections.product_collections_collection-filter.blocks.menu.settings.menu_title.label"
+        },
+        {
+          "type": "menu_picker",
+          "id": "menu_selector",
+          "label": "t:sections.product_collections_collection-filter.blocks.menu.settings.menu_selector.label"
+        },
+        {
+          "type": "switch",
+          "id": "default_fold",
+          "label": "t:sections.product_collections_collection-filter.blocks.menu.settings.default_fold.label",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
   "default": {
     "settings": {
       "category_desc_position": "top",
@@ -204,8 +320,31 @@ history_browse_products:
       "per_page_num": 16,
       "product_image_ratio": "0",
       "product_fill_type": "contain",
-      "product_hover_show_next": false
-    }
+      "product_hover_show_next": false,
+      "filter_enable": true,
+      "support_multiple": true
+    },
+    "blocks": [
+      {
+        "type": "child_category",
+        "settings": {
+          "show_level3_title": true,
+          "show_product_num": true,
+          "default_fold": false
+        }
+      },
+      {
+        "type": "tag_filter",
+        "settings": {
+          "tag_filter_title": "Filters",
+          "tag_data": {
+            "group": "1",
+            "tags": []
+          },
+          "default_fold": false
+        }
+      }
+    ]
   }
 }
 {{/schema}}

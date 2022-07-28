@@ -70,35 +70,19 @@
     <div class="product-detail-col-img__{{ product_image_size }} product-detail-col-img">
       <div class="{{#and (boolean product_image_show_style '!=' 'flatten') (isTruthy product_info_sticky)}}product-detail-sticky{{/and}}" id="{{#and (boolean product_image_show_style '!=' 'flatten') (isTruthy product_info_sticky)}}product-detail-sticky_{{ id }}{{/and}}">
         {{ snippet 'product/detail/product-swiper' selectorId=id showThumbnailArrow=show_thumbnail_arrow mobileProductImageIsFull=(if image_width_in_mobile 'full') thumbsDirection=thumbnail_position productImagePos=product_image_position productImageScale=product_image_scale videoMute=video_mute videoLoop=video_loop spu=product.spu selectSku=initSku.selectSku productImageSize=product_image_size productImageShowStyle=product_image_show_style productMobileThumbnailImageHide=product_mobile_thumbnail_image_hide }}
+        <script>window.lazySizes.loader.immediatelyCheckElems()</script>
       </div>
     </div>
 
-    {{!-- 询盘商品不显示倒计时 --}}
-    {{#not product.spu.inquiry}}
-      {{#if productActivity.timeLimitActivityList.length}}
-        {{ assign 'timeLimitActivity' (itemAt productActivity.timeLimitActivityList 0) }}
-        {{#if (or timeLimitActivity.salesPlugin.countDownTimerPlugin.showCountDownTime timeLimitActivity.salesPlugin.progressPlugin.showProgressBar)}}
-          <div class="d-md-none flash-sale-component sales__flashSale notranslate">
-            {{ snippet 'sales/flash-sale' }}
-          </div>
-        {{else}}
-          <div class="d-md-none product-detail-countdown countdown-component">
-            {{ snippet 'sales/countdown-widget' spuSeq=product.spu.spuSeq sortationList=product.spu.sortationList }}
-          </div>
-        {{/if}}
-      {{else}}
-        <div class="d-md-none product-detail-countdown countdown-component">
-          {{ snippet 'sales/countdown-widget' spuSeq=product.spu.spuSeq sortationList=product.spu.sortationList }}
-        </div>
-      {{/if}}
-    {{/not}}
+    {{!-- 限时促销&倒计时 --}}
+    {{ snippet 'product/detail/product-preview-promotions' }}
 
     <div class="product-detail-col-info__{{ product_image_size }} product-detail-col-info">
       <div class="product-main_imgps__{{ product_image_position }} {{#and (boolean product_image_show_style '==' 'flatten') (isTruthy product_info_sticky)}} product-detail-sticky {{/and}}" id="{{#and (boolean product_image_show_style '==' 'flatten') (isTruthy product_info_sticky)}}product-detail-sticky_{{ id }}{{/and}}">
         <div class="sticky-main-view">
           {{#if id 'productDetail'}}
           <div class="product-crumbs">
-            <a class="body4" href="/">{{ t 'common.home' }}</a> /
+            <a class="body4" href="/">{{ t 'general.general.home' }}</a> /
           </div>
           {{/if}}
           {{!-- 保留isv挂载点 --}}
@@ -154,12 +138,9 @@
                     <div data-ssr-plugin-b2b></div>
                     {{/with}}
                     <div id="bundle-add_to_cart"></div>
-                    {{#if (and ../productActivity.autoDiscountActivityList.length (isFalsey ../product.spu.inquiry))}}
-                      {{ assign 'autoDiscountActivityItem' (itemAt ../productActivity.autoDiscountActivityList 0) }}
-                      {{#if autoDiscountActivityItem.discountStyleType '===' 2}}
-                        {{ snippet 'sales/add-to-cart-list' benefitType=autoDiscountActivityItem.benefitType benefitConditions=autoDiscountActivityItem.benefitConditions scene='pdp' template=autoDiscountActivityItem.discountStyleText }}
-                      {{/if}}
-                    {{/if}}
+
+                    {{!-- 批量加购 --}}
+                    {{ snippet 'product/detail/product-preview-add-to-cart-list' productActivity=../productActivity product=../product }}
                     {{ snippet 'product/detail/payment-security' displayPosition='PRODUCT_DETAIL' }}
                   </div>
                   {{/if}}

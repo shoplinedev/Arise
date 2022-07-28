@@ -29,6 +29,7 @@ alt: 图片alt
   class="product-process-image {{!-- 如果为自由比例👉 --}}{{#if _imageRatio '!==' '0'}} fix-product-image-con {{/if}}{{!-- 如果图片地址为空，直接走占位符逻辑👉 --}}{{#if (isFalsey src)}}placeholder-border{{/if}}"
   style="{{#if _imageRatio '!==' '0'}} padding-bottom:{{ _imageRatio }}%; {{/if}} {{#if backgroundColor}} background-color: {{backgroundColor}}; {{/if}}" data-plugin-product-item-img-ele>
   <img {{!-- 如果图片地址为空，直接走占位符逻辑，图片透明度为零 --}}
+     referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"
      style="{{#if (isFalsey src)}}opacity: 0;{{/if}}{{#if imagePosition }}object-position: {{imagePosition}};{{/if}} object-fit: {{_imageFit}};{{#if _imageRatio '===' '0'}} height:{{_placeholderHeight}}px {{/if}}"
      class="lozad"
      alt="{{alt}}"

@@ -1,42 +1,42 @@
-{{#snippet 'customer/base/sl-card' title=(t 'userCenter.personal.personal-information') id="customer-center-personal" editable="true"}}
+{{#snippet 'customer/base/sl-card' title=(t 'customer.account.personal__information') id="customer-center-personal" editable="true"}}
   <div class="personal">
     <div class="personal-item">
-      <div class="personal-item__title">{{ t 'userCenter.personal.birthday-date' }}</div>
+      <div class="personal-item__title">{{ t 'customer.account.birthday' }}</div>
       <div class="personal-item__content">
         <div data-show="detail" id="customer-center-personal-birthday">
           {{#if customer.userInfoDTO.birthday}}
             {{ dayjs method='format' init=customer.userInfoDTO.birthday format='YYYY-MM-DD' }}
           {{else}}
-            {{ t 'userCenter.personal.gender-secret' }}
+            {{ t 'customer.account.gender_secret' }}
           {{/if}}
         </div>
         <div data-show="edit">
-          {{snippet 'customer/base/sl-datepicker' id="personal-birthday-input" placeholder=(t 'userCenter.personal.select-date') }}
+          {{snippet 'customer/base/sl-datepicker' id="personal-birthday-input" placeholder=(t 'customer.account.select__date') }}
         </div>
       </div>
     </div>
 
     <div class="personal-item">
-      <div class="personal-item__title">{{ t 'userCenter.personal.gender' }}</div>
+      <div class="personal-item__title">{{ t 'customer.account.gender' }}</div>
       <div class="personal-item__content">
         <div data-show="detail" id="customer-center-personal-gender">
           {{#if customer.userInfoDTO.gender 1}}
-            {{ t 'userCenter.personal.gender-male' }}
+            {{ t 'customer.account.gender_male' }}
           {{else if customer.userInfoDTO.gender 2}}
-            {{ t 'userCenter.personal.gender-female' }}
+            {{ t 'customer.account.gender_female' }}
           {{else}}
-            {{ t 'userCenter.personal.gender-secret' }}
+            {{ t 'customer.account.gender_secret' }}
           {{/if}}
         </div>
         <div data-show="edit">
           {{#snippet 'customer/base/sl-radio' checked=(compare customer.userInfoDTO.gender '===' 1) name="personal-gender" value=1 }}
-            <span>{{ t 'userCenter.personal.gender-male' }}</span>
+            <span>{{ t 'customer.account.gender_male' }}</span>
           {{/snippet}}
           {{#snippet 'customer/base/sl-radio' checked=(compare customer.userInfoDTO.gender '===' 2) name="personal-gender" value=2 }}
-            <span>{{ t 'userCenter.personal.gender-female' }}</span>
+            <span>{{ t 'customer.account.gender_female' }}</span>
           {{/snippet}}
           {{#snippet 'customer/base/sl-radio' checked=(or (compare customer.userInfoDTO.gender '===' 0) (compare customer.userInfoDTO.gender '===' 3)) name="personal-gender" value=3 }}
-            <span>{{ t 'userCenter.personal.gender-secret' }}</span>
+            <span>{{ t 'customer.account.gender_secret' }}</span>
           {{/snippet}}
         </div>
       </div>

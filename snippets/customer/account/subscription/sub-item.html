@@ -1,17 +1,17 @@
 <div class="subscription-item" data-type={{ key }} {{ cond (boolean data.state '==' 1) 'data-subscribed' '' }}>
   <div class="subscription-item__wrapper">
-    <span class="subscription-item__title">{{ t (append 'userCenter.subscription.' key) }}</span>
+    <span class="subscription-item__title">{{ t (append 'customer.subscription.' key) }}</span>
 
     {{!-- 订阅按钮 --}}
     {{#if key 'messenger'}}
       <div id="customer-center-messenger-btn" class="subscription-item__btn"></div>
       <button id="customer-center-messenger-loading" style="display: none;" class="btn btn-outline-primary btn-sm btn--loading disabled"></button>
     {{else}}
-      <button class="btn btn-outline-primary btn-sm subscription-item__btn" type="button">{{ t 'userCenter.subscription.modal.ok-text' }}</button>
+      <button class="btn btn-outline-primary btn-sm subscription-item__btn" type="button">{{ t 'customer.subscription.subscribe_button' }}</button>
     {{/if}}
     {{!-- 已订阅 --}}
     <div class="subscription-item__subscribed">
-      <span>{{ t 'userCenter.subscription.subed' }}</span>
+      <span>{{ t 'customer.subscription.subscription_hint' }}</span>
       {{snippet 'icons/icon_complete'}}
     </div>
     {{!-- 编辑 --}}
@@ -25,10 +25,10 @@
 
       {{#if showEdit}}
         {{snippet 'icons/icon_edit'}}
-        <span>{{ t 'userCenter.edit' }}</span>
+        <span>{{ t 'customer.general.edit' }}</span>
       {{else}}
         {{snippet 'icons/icon_cancel'}}
-        <span>{{ t 'userCenter.subscription.unsub.ok-text' }}</span>
+        <span>{{ t 'customer.subscription.unsubscribe_confirm_text' }}</span>
       {{/if}}
     </div>
   </div>

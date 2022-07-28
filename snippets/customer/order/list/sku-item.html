@@ -4,17 +4,17 @@
       <div class="customer-order-sku-item-header">
         <div>
           {{!-- 单号 --}}
-          <span class="seq">{{t 'order.seq-no'  id=appOrderSeq }}</span>
+          <span class="seq">{{t 'cart.order.sequence'  id=appOrderSeq }}</span>
           {{!-- 时间 --}}
           <div class="create-time">
-            <span>{{t 'order.order-at'}}</span>
+            <span>{{t 'cart.order.time'}}</span>
             <span class="hide" data-date-format="YYYY-MM-DD HH:mm A" data-date="{{createTime}}">{{dayjs method='format' init=createTime format='YYYY-MM-DD HH:mm A'}}</span>
           </div>
         </div>
         {{!-- 状态，目前只有「已取消」才需要展示 --}}
         {{#if (boolean bizOrderStatus '==' 400)}}
           <span class="status cancelled">
-            {{t 'order.order-status.cancelled'}}
+            {{t 'cart.order.canceled'}}
           </span>
         {{/if}}
       </div>
@@ -30,9 +30,9 @@
 
           <div class="product-total">
             {{#if (boolean productNum '>' 1)}}
-              <span>{{t 'order.order-list.item-total-plural' transPackages=productNum }}</span>
+              <span>{{t 'cart.order.total_item_amount' transPackages=productNum }}</span>
             {{else}}
-              <span>{{t 'order.order-list.item-total' transPackages=productNum }}</span>
+              <span>{{t 'cart.order.total_amount' transPackages=productNum }}</span>
             {{/if}}
           </div>
         </div>
@@ -80,7 +80,7 @@
 
         <div class="total-info">
           <p>
-            <span>{{t 'trade.total'}}</span>
+            <span>{{t 'cart.payment.total'}}</span>
             <span class="total notranslate" data-amount="{{orderAmount}}"> {{currency_convert orderAmount}}</span>
           </p>
         </div>

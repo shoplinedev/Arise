@@ -1,0 +1,11 @@
+{{!-- 移动端背景 --}}
+{{#if mobileBgImg }}
+  <div class="sales__card-background d-block d-md-none" style="background-image:url({{ mobileBgImg }});"></div>
+{{else if pcBgImg}}
+  {{!-- 无移动端背景，就使用pc端图片 --}}
+  <div class="sales__card-background d-block d-md-none" style="background-image:url({{ pcBgImg }});"></div>
+{{/if}}
+{{!-- pc端背景 --}}
+{{#if pcBgImg }}
+  <div class="sales__card-background d-none d-md-block" style="background-image:url({{ pcBgImg }});"></div>
+{{/if}}

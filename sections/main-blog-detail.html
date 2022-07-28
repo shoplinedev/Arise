@@ -2,7 +2,7 @@
 
 <main class="blog-container container">
   {{ assign 'settings' section.settings }}
-  {{ assign 'homeText' (t 'common.home') }}
+  {{ assign 'homeText' (t 'general.general.home') }}
 
   {{ assign 'collectionTitle' (get 'title' blogCollection) }}
   {{ assign 'title' (get 'title' blog) }}
@@ -44,7 +44,7 @@
     {{/if}}
   </div>
 
-  <div class="blog__content sl-richtext body3">
+  <div class="blog__content body3">
     {{{ rich_editor_format content }}}
   </div>
 
@@ -135,7 +135,7 @@
 
   <a class="blog__back-link body3" href="{{ collectionPath }}" title="{{ collectionTitle }}">
     {{ snippet 'icons/icon_arrow_left_line' classes='back-link__icon' }}
-    <span class="back-link__title">{{ t 'blog.container.backTo' collectionTitle=collectionTitle }}</span>
+    <span class="back-link__title">{{ t 'blog.general.back_to' collectionTitle=collectionTitle }}</span>
   </a>
 </main>
 

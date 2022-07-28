@@ -11,7 +11,7 @@
 {{ assign 'search' (cond (eq showType 'page') (get 'search' (urlParse request.uri.url)) '')}}
 
 <div class="customer sign-in" data-track-page="128" id="{{ id }}">
-  <h2 class="customer__title">{{t 'user.signIn'}}</h2>
+  <h2 class="customer__title">{{t 'customer.general.sign_in'}}</h2>
   <p class="sign-in__has-registered"></p>
 
   <form class="customer__form">
@@ -23,7 +23,7 @@
         attrs='autocomplete="new-password" maxlength="255"'
         name="password"
         type="password"
-        placeholder=(t 'user.password')
+        placeholder=(t 'customer.general.password')
         class="form-item--password"
       }}
         {{#child 'suffix'}}
@@ -35,16 +35,16 @@
     <p class="customer__error"></p>
 
     {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button" block=true attrs="type='button'" }}
-      {{t 'user.signIn'}}
+      {{t 'customer.general.sign_in'}}
     {{/snippet}}
   </form>
 
   <div class="sign-in__buttons" data-track-module="-999" data-track-action_type="102">
-    <a class="__sl-track_click" data-track-eventid="1031" data-track-component="125" href="/user/passwordNew{{{search}}}">{{t 'tips.forget-password'}}?</a>
+    <a class="__sl-track_click shopline-element-forgot-pwd" data-track-eventid="1031" data-track-component="125" href="/user/passwordNew{{{search}}}">{{t 'customer.forget_password.forget_password_tips'}}?</a>
 
     {{#if showType 'page'}}
       {{!-- 弹窗不显示这个跳转链接 --}}
-      <a class="__sl-track_click" data-track-eventid="1032" data-track-component="126" href="/user/signUp{{{search}}}">{{t 'tips.register' }}</a>
+      <a class="__sl-track_click shopline-element-sign-up" data-track-eventid="1032" data-track-component="126" href="/user/signUp{{{search}}}">{{t 'customer.general.register' }}</a>
     {{/if}}
   </div>
 
@@ -52,7 +52,7 @@
   {{#if (isTruthy thirdParty)}}
     <div class="sign-in__third">
       <div class="sign-in__divid">
-        <span>{{t 'tips.or-use-the-following-method-to-log-in'}}</span>
+        <span>{{t 'customer.general.login_method'}}</span>
       </div>
 
       <div class="sign-in__third-buttons">
@@ -79,10 +79,10 @@
   {{#if (is request.uri.query.isAllowedContinue '1')}}
     <div class="sign-in__guest">
       <div class="sign-in__divid">
-        <span>{{t 'tips.poroceed-to-checkout'}}</span>
+        <span>{{t 'customer.general.proceed_to_checkout'}}</span>
       </div>
       {{#snippet 'customer/base/sl-button' class="sign-in__guest-button" block=true ghost=true attrs="type='button'" }}
-        {{t 'tips.continue-as-a-guest'}}
+        {{t 'customer.general.continue_as_a_guest'}}
       {{/snippet}}
     </div>
   {{/if}}

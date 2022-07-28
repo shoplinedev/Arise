@@ -1,10 +1,10 @@
  {{#if (boolean status '==' 150)}}
    {{!-- 部分发货 --}}
-   {{t 'order.delivery-statusType.delivery-partial'}}
+   {{t 'cart.shipping.partially_shipped'}}
  {{else if (boolean status '==' 400)}}
    {{!-- 已发货 --}}
-   {{ t 'order.delivery-statusType.shipped'}}
+   {{ t 'cart.shipping.shipped_order'}}
  {{else}}
    {{!-- 备货中 --}}
-   {{t 'order.delivery-statusType.stocking'}}
+   {{t 'cart.shipping.preparing_order'}}
  {{/if}}

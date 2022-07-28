@@ -57,39 +57,54 @@
           <div class="coupon-left">
             {{#if (compare activity.benefitType '===' 1)}}
               {{!-- 金额 --}}
-              {{!-- sales.activityBanner.benefit: "{discount} OFF" --}}
-              {{ assign 'benefit' (noTranslationHTML (t 'sales.activityBanner.benefit' benefit=(javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(currency_convert benefitCondition.benefit.benefitAmount))))}}
-              {{!-- {{ assign 'benefit' (javascript_template '<span data-amount="${amount}">${amountStr}</span> OFF' amount=benefitCondition.benefit.benefitAmount amountStr=(currency_convert benefitCondition.benefit.benefitAmount))}} --}}
+              {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=(javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(currency_convert benefitCondition.benefit.benefitAmount))))}}
             {{else if (compare activity.benefitType '===' 2)}}
               {{!-- 折扣 --}}
-              {{assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
-              {{ assign 'benefit' (noTranslationHTML (t 'sales.activityBanner.benefit' benefit=percentage))}}
-              {{!-- {{ assign 'benefit' (javascript_template '${discount}% OFF' discount=benefitCondition.benefit.offPercent)}} --}}
+              {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
+              {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=percentage))}}
             {{else if (compare activity.benefitType '===' 3)}}
               {{!-- 免运费 --}}
-              {{!-- sales.activityBanner.freeShipping: ''Free Shippin' --}}
-              {{ assign 'benefit' (t 'sales.activityBanner.freeShipping')}}
-              {{!-- {{ assign 'benefit' 'Free Shipping'}} --}}
+              {{ assign 'benefitText' (t 'sales.general.activity_banner_free_shipping')}}
             {{/if}}
-            <span class="benefit wrapAnywhere">{{benefit}}</span>
-            {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
-              {{!-- 金额门槛 --}}
-              {{!-- sales.activityBanner.threshold: "orders over {threshold}" --}}
-              {{ assign 'threshold' (noTranslationHTML (t "sales.activityBanner.threshold" threshold=(javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))))}}
-              {{!-- {{ assign 'threshold' (javascript_template 'orders over <span data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))}} --}}
+            {{#if activity.benefitType '===' 12}}
+              {{!-- 买x送y --}}
+              {{#if benefitCondition.benefit.discount '===' 0}}
+                {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_free_content'))}}
+              {{else}}
+                {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
+                {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_discount_content' discount=percentage))}}
+              {{/if}}
+              {{!-- 买x送y门槛文案 --}}
+              {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
+                {{!-- 金额 --}}
+                {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))}}
+              {{else}}
+                {{!-- 百分比折扣 --}}
+                {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
+              {{/if}}
+              {{ assign 'thresholdText' (noTranslationHTML (t "sales.discount_coupon.buy_x_get_y_threshold" threshold=__threshold benefitCount=benefitCondition.benefit.benefitCount))}}
             {{else}}
-              {{!-- 件数门槛 --}}
-              {{ assign 'threshold' (noTranslationHTML (t "sales.activityBanner.threshold" threshold=benefitCondition.benefitEvent.minThreshold))}}
-              {{!-- {{ assign 'threshold' (javascript_template 'orders over ${piece}' piece=benefitCondition.benefitEvent.minThreshold)}} --}}
+              {{!-- 其他折扣码门槛文案 --}}
+              {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
+                {{!-- 金额 --}}
+                {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))}}
+                {{ assign '__threshold' __threshold.string}}
+              {{else}}
+                {{!-- 百分比折扣 --}}
+                {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
+              {{/if}}
+              {{!-- TODO: 多语言helper 与 replace 同时存在，当替换语料后统一使用多语言helper --}}
+              {{ assign 'thresholdText' (noTranslationHTML (replace (t "sales.general.activity_banner_threshold" threshold=__threshold) '{threshold}' __threshold))}}
             {{/if}}
-            {{#if (compare benefitCondition.benefitEvent.type '!==' -1)}}
-              <span class="condition wrapAnywhere">{{threshold}}</span>
+            {{!-- 门槛 --}}
+            {{#if benefitCondition.benefitEvent.type '!==' -1}}
+              <span class="condition wrapAnywhere">{{thresholdText}}</span>
             {{/if}}
+            {{!-- 优惠 --}}
+            <span class="benefit wrapAnywhere">{{benefitText}}</span>
           </div>
-          {{!-- sales.activityBanner.copyText: "COPY" --}}
           <button class="coupon_copy wrapAnywhere"
-            style="background-color:{{salesCustom.copyBtnBgColor}};color:{{salesCustom.copyBtnTextColor}};">{{t "sales.activityBanner.copyText"}}</button>
-          {{!-- <button class="coupon_copy" style="background-color:{{salesCustom.copyBtnBgColor}};color:{{salesCustom.copyBtnTextColor}};">COPY</button> --}}
+            style="background-color:{{salesCustom.copyBtnBgColor}};color:{{salesCustom.copyBtnTextColor}};">{{t "sales.general.activity_banner_copy_text"}}</button>
         </div>
       </div>
     {{/if}}
@@ -115,7 +130,7 @@
               <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
                 d="M8.25 16.5L8.25 7.5H8.75C9.30228 7.5 9.75 7.94772 9.75 8.5V15.5C9.75 16.0523 9.30228 16.5 8.75 16.5H8.25Z" fill="currentColor" />
             </svg>
-          </i>{{#if activity.userLimitedType '===' 2}}{{!-- 每人每款商品限购 --}}{{t 'sales.customer-purchase-limit-each-item' count=activity.acquirePerUserLimit}}{{else}}{{!-- 每人每活动限购 --}}{{t 'sales.customer-purchase-limit' count=activity.acquirePerUserLimit}}{{/if}}
+          </i>{{#if activity.userLimitedType '===' 2}}{{!-- 每人每款商品限购 --}}{{t 'sales.general.purchase_limit_each_item' count=activity.acquirePerUserLimit}}{{else}}{{!-- 每人每活动限购 --}}{{t 'sales.general.purchase_limit' count=activity.acquirePerUserLimit}}{{/if}}
         </div>
       {{/if}}
       {{#if salesCustom.isShowActivityTime '!==' 'false'}}
@@ -136,7 +151,7 @@
   {{!-- 活动标签 --}}
   {{#if (and activity.benefitConditions.length (compare activity.promotionSubType '!==' 3))}}
     <div class="activity__tags">
-      {{ snippet 'sales/promotion-tags' benefitType=activity.benefitType benefitConditions=activity.benefitConditions  template=activity.discountStyleText}}
+      {{ snippet 'activity/promotion-tags' benefitType=activity.benefitType benefitConditions=activity.benefitConditions  template=activity.discountStyleText}}
     </div>
   {{/if}}
 </div>

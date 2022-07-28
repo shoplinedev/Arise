@@ -1,14 +1,14 @@
 <div class="footer__custom">
-    {{ snippet 'footer-block-header' }}
+  {{ snippet 'footer-block-header' }}
 
-    <div class="footer__block-main">
-      {{#and this.settings.image this.settings.image.url}}
-        <div class="footer__custom-image">
-            <img class="lozad" data-src="{{this.settings.image.url}}" alt={{this.settings.image.alt}}>
-        </div>
-      {{/and}}
-      {{#if this.settings.content}}
-          <div class="body5 footer_custom-content sl-richtext richtext-content">{{{this.settings.content}}}</div>
-      {{/if}}
-    </div>
+  <div class="footer__block-main">
+    {{#and this.settings.image this.settings.image.url}}
+      <div class="footer__custom-image">
+        <img class="lozad" data-src="{{this.settings.image.url}}" alt={{this.settings.image.alt}}>
+      </div>
+    {{/and}}
+    {{#if this.settings.content}}
+      <div class="body5 footer__block-item footer_custom-content sl-richtext richtext-content">{{{this.settings.content}}}</div>
+    {{/if}}
+  </div>
 </div>

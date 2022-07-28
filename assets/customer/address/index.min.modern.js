@@ -4315,7 +4315,7 @@
             });
             return {
                 add(blob) {
-                    console.debug("add address blob stream", blob);
+                    console.debug("add address blob stream", JSON.stringify(blob, null, 2));
                     queue.push(blob);
                     K(getTickPriority(blob)).with(TickBlocking, (() => scheduler.tick(TickBlocking))).otherwise((() => scheduler.tick(TickDefer)));
                 },
@@ -4979,276 +4979,6 @@
                     distinctCancel();
                 }
             };
-        }
-        var axios = __webpack_require__("../shared/browser/node_modules/axios/index.js");
-        var axios_default = __webpack_require__.n(axios);
-        var query_string = __webpack_require__("../shared/browser/node_modules/query-string/index.js");
-        const instance = axios_default().create({
-            baseURL: "/leproxy/api",
-            timeout: 3e4,
-            withCredentials: true,
-            paramsSerializer(params) {
-                return query_string.stringify(params);
-            }
-        });
-        instance.interceptors.response.use((res => {
-            const {status, data, config} = res;
-            if ("/leproxy" === config.baseURL) {
-                if (200 !== status || "0" !== data.rescode) return Promise.reject({
-                    message: data.resmsg,
-                    ...data
-                });
-            } else if (200 !== status || !(data.success || "SUCCESS" === data.code)) return Promise.reject(data);
-            return data;
-        }), (error => Promise.reject(error)));
-        const utils_request = instance;
-        const request_request = utils_request;
-        const USER_CENTER = "/user/center";
-        const SIGN_IN = "/user/signIn";
-        "undefined" === typeof window || window.location.origin;
-        const LOGISTICS_COUNTRIES = "/logistics/countries";
-        const LOGISTICS_ADDRESS_LIBRARY = "/logistics/address/library";
-        const LOGISTICS_ADDRESS_LAYER = "/logistics/address/layer/list";
-        const LOGISTICS_ADDRESS_TEMPLATE = "/logistics/addr/template/get";
-        var url = __webpack_require__("../shared/browser/biz-com/customer/utils/url.js");
-        function getEnv(key) {
-            const ENV = window.__ENV__ || {};
-            if (key) return ENV[key];
-            return ENV;
-        }
-        [ "preview", "product" ].includes(getEnv().APP_ENV || "");
-        const DEFAULT_LANGUAGE = "en";
-        const DEFAULT_PHONE_ISO2 = "cn";
-        const DEFAULT_PHONE_CODE = "cn+86";
-        function helper_getLanguage() {
-            return window && window.SL_State && window.SL_State.get("request.cookie.lang") || DEFAULT_LANGUAGE;
-        }
-        const getRedirectUrl = () => {
-            let redirectUrl = (0, url.getUrlQuery)("redirectUrl");
-            let state = (0, url.getUrlQuery)("state");
-            try {
-                if (state) {
-                    state = JSON.parse(state);
-                    redirectUrl = state.redirectUrl || redirectUrl;
-                }
-            } catch (e) {
-                console.error(e);
-            }
-            return redirectUrl;
-        };
-        function redirectPage(pathname) {
-            const redirectUrl = getRedirectUrl();
-            window.location.href = redirectUrl || pathname;
-        }
-        var eventemitter3 = __webpack_require__("../shared/browser/node_modules/eventemitter3/index.js");
-        var eventemitter3_default = __webpack_require__.n(eventemitter3);
-        if (!window.SL_EventBus) {
-            window.SL_EventBus = new (eventemitter3_default());
-            window.SL_EventEmitter = eventemitter3_default();
-        }
-        const {SL_EventBus} = window;
-        const {SL_EventEmitter} = window;
-        window.SL_EventBus, window.SL_EventEmitter;
-        function parsePathToArray(path) {
-            if ("string" !== typeof path) throw new TypeError("path must be string");
-            return path.replace(/\]/, "").split(/[.[]/);
-        }
-        const utils_parsePathToArray = parsePathToArray;
-        class SLState {
-            constructor(state) {
-                this.bus = new SL_EventEmitter;
-                this.rootState = state;
-            }
-            get(path) {
-                const keys = utils_parsePathToArray(path);
-                const value = keys.reduce(((prev, current) => {
-                    if (!prev) return;
-                    return prev[current];
-                }), this.rootState);
-                return value;
-            }
-            set(path, newValue) {
-                if ("function" === typeof newValue) throw TypeError("newValue must not be a function");
-                const keys = utils_parsePathToArray(path);
-                let oldValue;
-                keys.reduce(((prev, current, index) => {
-                    if (index === keys.length - 1) {
-                        const key = prev;
-                        oldValue = key[current];
-                        key[current] = newValue;
-                    }
-                    return prev[current];
-                }), this.rootState);
-                this.bus.emit(path, newValue, oldValue);
-            }
-            on(...args) {
-                return this.bus.on(...args);
-            }
-            off(...args) {
-                return this.bus.off(...args);
-            }
-        }
-        const __PRELOAD_STATE__ = window.__PRELOAD_STATE__ || {};
-        if (!window.SL_State) window.SL_State = new SLState(__PRELOAD_STATE__);
-        const {SL_State} = window;
-        function createAdapter() {
-            const presetAddressTemplate = SL_State.get("customer_address_template");
-            return {
-                countrySource: {
-                    async getCountryList() {
-                        const res = await request_request.get(LOGISTICS_COUNTRIES, {
-                            params: {
-                                popularType: "receiving"
-                            }
-                        });
-                        if (true !== res.success) return res;
-                        return {
-                            ...res,
-                            data: (res.data || []).map((country => unmarshalCountryLevelInfo(country, helper_getLanguage())))
-                        };
-                    }
-                },
-                addressBookFetcher: {
-                    async getAddressBook(countryCode, fieldName, code, depth) {
-                        if ("country" === fieldName) return request_request.get(LOGISTICS_ADDRESS_LIBRARY, {
-                            params: {
-                                countryCode,
-                                level: null == depth ? 3 : depth,
-                                language: helper_getLanguage()
-                            }
-                        });
-                        if (!code) return {
-                            success: true,
-                            code: "SUCCESS",
-                            data: []
-                        };
-                        return request_request.get(LOGISTICS_ADDRESS_LAYER, {
-                            params: {
-                                countryCode,
-                                addressCode: code,
-                                depth: depth || 1
-                            }
-                        });
-                    }
-                },
-                addressTemplateFetcher: {
-                    async getAddressTemplate(countryCode) {
-                        if (presetAddressTemplate && presetAddressTemplate.country === countryCode) return {
-                            success: true,
-                            code: "success",
-                            data: presetAddressTemplate
-                        };
-                        return request_request.get(LOGISTICS_ADDRESS_TEMPLATE, {
-                            params: {
-                                country: countryCode
-                            }
-                        });
-                    }
-                }
-            };
-        }
-        function unmarshalCountryLevelInfo(country, language) {
-            let {name} = country;
-            const i18nCountryInfos = country.countryInfos || {};
-            const localCountryInfo = language ? i18nCountryInfos[language] : null;
-            if (null != localCountryInfo && localCountryInfo.name) name = localCountryInfo.name;
-            return {
-                code: country.countryCode,
-                name
-            };
-        }
-        var index_esm_FieldNameEnum;
-        (function(FieldNameEnum) {
-            FieldNameEnum["Country"] = "country";
-            FieldNameEnum["Province"] = "province";
-            FieldNameEnum["City"] = "city";
-            FieldNameEnum["District"] = "district";
-            FieldNameEnum["Name"] = "name";
-            FieldNameEnum["FirstName"] = "firstName";
-            FieldNameEnum["LastName"] = "lastName";
-            FieldNameEnum["Mobile"] = "mobile";
-            FieldNameEnum["Postcode"] = "postcode";
-            FieldNameEnum["Company"] = "company";
-            FieldNameEnum["Address"] = "address";
-            FieldNameEnum["Address2"] = "address2";
-        })(index_esm_FieldNameEnum || (index_esm_FieldNameEnum = {}));
-        var index_esm_AddressTemplateNameTypeEnum;
-        (function(AddressTemplateNameTypeEnum) {
-            AddressTemplateNameTypeEnum[AddressTemplateNameTypeEnum["NAME"] = 1] = "NAME";
-            AddressTemplateNameTypeEnum[AddressTemplateNameTypeEnum["FLName"] = 2] = "FLName";
-        })(index_esm_AddressTemplateNameTypeEnum || (index_esm_AddressTemplateNameTypeEnum = {}));
-        var index_esm_FieldInteractionEnum;
-        (function(FieldInteractionEnum) {
-            FieldInteractionEnum[FieldInteractionEnum["Select"] = 1] = "Select";
-            FieldInteractionEnum[FieldInteractionEnum["Input"] = 2] = "Input";
-        })(index_esm_FieldInteractionEnum || (index_esm_FieldInteractionEnum = {}));
-        function mapAutofillToken(fieldName) {
-            switch (fieldName) {
-              case index_esm_FieldNameEnum.Name:
-                return "name";
-
-              case index_esm_FieldNameEnum.FirstName:
-                return "given-name";
-
-              case index_esm_FieldNameEnum.LastName:
-                return "family-name";
-
-              case index_esm_FieldNameEnum.Mobile:
-                return "tel";
-
-              case index_esm_FieldNameEnum.Postcode:
-                return "postal-code";
-
-              case index_esm_FieldNameEnum.Address:
-                return "street-address";
-
-              case index_esm_FieldNameEnum.Address2:
-                return "address-line2";
-
-              case index_esm_FieldNameEnum.Country:
-                return "country";
-
-              case index_esm_FieldNameEnum.Province:
-                return "address-level1";
-
-              case index_esm_FieldNameEnum.City:
-                return "address-level2";
-
-              case index_esm_FieldNameEnum.District:
-                return "address-level3";
-
-              case index_esm_FieldNameEnum.Company:
-                return "organization";
-
-              default:
-                return "on";
-            }
-        }
-        function litAutofillControls(model) {
-            const controls = [];
-            model.traverseAddressLevelField(((fieldName, fieldTemplate) => {
-                if ("country" === fieldName) {
-                    const options = function() {
-                        const traverser = model.fieldAddressBookTraverser[fieldName];
-                        const options = [];
-                        if (traverser) traverser.traverse(((_, addressBook) => {
-                            options.push({
-                                value: addressBook.code,
-                                text: addressBook.name
-                            });
-                        }));
-                        return options;
-                    }();
-                    controls.push(`\n<select style="${createHiddenStyle()}" label="" aria-hidden="true" aria-label="no-label" type="text" name="${fieldName}" autocomplete="${mapAutofillToken(fieldName)}">\n        ${options.map((option => `<option value="${option.value}">${option.text}</option>`)).join("")}\n</select>\n        `);
-                } else controls.push(`\n        <input style="${createHiddenStyle()}" label="" aria-hidden="true" aria-label="no-label" type="text" name="${fieldName}" autocomplete="${mapAutofillToken(fieldName)}" />\n        `);
-            }));
-            model.traverseAddressInfoField(((fieldName, fieldTemplate) => {
-                if (isVisibleField(fieldTemplate)) controls.push(`\n        <input style="${createHiddenStyle()}" label="" aria-hidden="true" aria-label="no-label" type="text" name="${fieldName}" autocomplete="${mapAutofillToken(fieldName)}" />\n        `);
-            }));
-            return controls;
-        }
-        function createHiddenStyle() {
-            return `\n    border: 0;\n    clip: rect(0, 0, 0, 0);\n    clip: rect(0 0 0 0);\n    width: 2px;\n    height: 2px;\n    margin: -2px;\n    overflow: hidden;\n    padding: 0;\n    position: absolute;\n    white-space: nowrap\n  `;
         }
         function index_esm_awaiter$1(thisArg, _arguments, P, generator) {
             function adopt(value) {
@@ -6093,7 +5823,7 @@
         function takePlacePredictionConfig(ctx) {
             return ctx.value(configValuer);
         }
-        var dist_index_esm_FieldNameEnum;
+        var index_esm_FieldNameEnum;
         (function(FieldNameEnum) {
             FieldNameEnum["Country"] = "country";
             FieldNameEnum["Province"] = "province";
@@ -6107,66 +5837,66 @@
             FieldNameEnum["Company"] = "company";
             FieldNameEnum["Address"] = "address";
             FieldNameEnum["Address2"] = "address2";
-        })(dist_index_esm_FieldNameEnum || (dist_index_esm_FieldNameEnum = {}));
-        var dist_index_esm_AddressTemplateNameTypeEnum;
+        })(index_esm_FieldNameEnum || (index_esm_FieldNameEnum = {}));
+        var index_esm_AddressTemplateNameTypeEnum;
         (function(AddressTemplateNameTypeEnum) {
             AddressTemplateNameTypeEnum[AddressTemplateNameTypeEnum["NAME"] = 1] = "NAME";
             AddressTemplateNameTypeEnum[AddressTemplateNameTypeEnum["FLName"] = 2] = "FLName";
-        })(dist_index_esm_AddressTemplateNameTypeEnum || (dist_index_esm_AddressTemplateNameTypeEnum = {}));
-        var dist_index_esm_FieldInteractionEnum;
+        })(index_esm_AddressTemplateNameTypeEnum || (index_esm_AddressTemplateNameTypeEnum = {}));
+        var index_esm_FieldInteractionEnum;
         (function(FieldInteractionEnum) {
             FieldInteractionEnum[FieldInteractionEnum["Select"] = 1] = "Select";
             FieldInteractionEnum[FieldInteractionEnum["Input"] = 2] = "Input";
-        })(dist_index_esm_FieldInteractionEnum || (dist_index_esm_FieldInteractionEnum = {}));
+        })(index_esm_FieldInteractionEnum || (index_esm_FieldInteractionEnum = {}));
         const presetDisabledCountries = new Set([ "CN", "TW", "MY", "ID", "SG", "VN", "PH", "TH" ]);
         const AutoCompleteKeyMapping = {
             US: {
-                country: dist_index_esm_FieldNameEnum.Country,
-                administrative_area_level_1: dist_index_esm_FieldNameEnum.Province,
-                locality: dist_index_esm_FieldNameEnum.City,
-                postal_code: dist_index_esm_FieldNameEnum.Postcode
+                country: index_esm_FieldNameEnum.Country,
+                administrative_area_level_1: index_esm_FieldNameEnum.Province,
+                locality: index_esm_FieldNameEnum.City,
+                postal_code: index_esm_FieldNameEnum.Postcode
             },
             DE: {
-                country: dist_index_esm_FieldNameEnum.Country,
-                locality: dist_index_esm_FieldNameEnum.City,
-                postal_code: dist_index_esm_FieldNameEnum.Postcode
+                country: index_esm_FieldNameEnum.Country,
+                locality: index_esm_FieldNameEnum.City,
+                postal_code: index_esm_FieldNameEnum.Postcode
             },
             GB: {
-                country: dist_index_esm_FieldNameEnum.Country,
-                administrative_area_level_1: dist_index_esm_FieldNameEnum.Province,
-                administrative_area_level_2: dist_index_esm_FieldNameEnum.City,
-                postal_code: dist_index_esm_FieldNameEnum.Postcode
+                country: index_esm_FieldNameEnum.Country,
+                administrative_area_level_1: index_esm_FieldNameEnum.Province,
+                administrative_area_level_2: index_esm_FieldNameEnum.City,
+                postal_code: index_esm_FieldNameEnum.Postcode
             },
             IT: {
-                country: dist_index_esm_FieldNameEnum.Country,
-                administrative_area_level_2: dist_index_esm_FieldNameEnum.Province,
-                locality: dist_index_esm_FieldNameEnum.City,
-                postal_code: dist_index_esm_FieldNameEnum.Postcode
+                country: index_esm_FieldNameEnum.Country,
+                administrative_area_level_2: index_esm_FieldNameEnum.Province,
+                locality: index_esm_FieldNameEnum.City,
+                postal_code: index_esm_FieldNameEnum.Postcode
             },
             CA: {
-                country: dist_index_esm_FieldNameEnum.Country,
-                administrative_area_level_1: dist_index_esm_FieldNameEnum.Province,
-                locality: dist_index_esm_FieldNameEnum.City,
-                postal_code: dist_index_esm_FieldNameEnum.Postcode
+                country: index_esm_FieldNameEnum.Country,
+                administrative_area_level_1: index_esm_FieldNameEnum.Province,
+                locality: index_esm_FieldNameEnum.City,
+                postal_code: index_esm_FieldNameEnum.Postcode
             },
             AU: {
-                country: dist_index_esm_FieldNameEnum.Country,
-                administrative_area_level_1: dist_index_esm_FieldNameEnum.Province,
-                locality: dist_index_esm_FieldNameEnum.City,
-                postal_code: dist_index_esm_FieldNameEnum.Postcode
+                country: index_esm_FieldNameEnum.Country,
+                administrative_area_level_1: index_esm_FieldNameEnum.Province,
+                locality: index_esm_FieldNameEnum.City,
+                postal_code: index_esm_FieldNameEnum.Postcode
             },
             FR: {
-                country: dist_index_esm_FieldNameEnum.Country,
-                administrative_area_level_2: dist_index_esm_FieldNameEnum.Province,
-                locality: dist_index_esm_FieldNameEnum.City,
-                postal_code: dist_index_esm_FieldNameEnum.Postcode
+                country: index_esm_FieldNameEnum.Country,
+                administrative_area_level_2: index_esm_FieldNameEnum.Province,
+                locality: index_esm_FieldNameEnum.City,
+                postal_code: index_esm_FieldNameEnum.Postcode
             }
         };
         const DefaultAutoCompleteMapping = {
-            country: dist_index_esm_FieldNameEnum.Country,
-            administrative_area_level_1: dist_index_esm_FieldNameEnum.Province,
-            locality: dist_index_esm_FieldNameEnum.City,
-            postal_code: dist_index_esm_FieldNameEnum.Postcode
+            country: index_esm_FieldNameEnum.Country,
+            administrative_area_level_1: index_esm_FieldNameEnum.Province,
+            locality: index_esm_FieldNameEnum.City,
+            postal_code: index_esm_FieldNameEnum.Postcode
         };
         const AddressComponentTypeSet = new Set([ "street_number", "route" ]);
         function formatPlaceDetail(addressComponents = []) {
@@ -6178,10 +5908,10 @@
             for (let i = 0; i < addressComponents.length; ++i) {
                 const {longName, shortName, types = []} = addressComponents[i] || {};
                 const type = types[0];
-                if (dist_index_esm_FieldNameEnum.Country === mapping[type]) components.countryCode = [ shortName ]; else if (dist_index_esm_FieldNameEnum.Postcode === mapping[type]) components.postcode = [ longName ]; else {
+                if (index_esm_FieldNameEnum.Country === mapping[type]) components.countryCode = [ shortName ]; else if (index_esm_FieldNameEnum.Postcode === mapping[type]) components.postcode = [ longName ]; else {
                     const curKey = mapping[type];
                     if (curKey) {
-                        if (curKey === dist_index_esm_FieldNameEnum.Province) components[curKey] = [ shortName, longName ]; else if (longName) components[curKey] = [ longName ];
+                        if (curKey === index_esm_FieldNameEnum.Province) components[curKey] = [ shortName, longName ]; else if (longName) components[curKey] = [ longName ];
                     } else if (AddressComponentTypeSet.has(type)) addressSegments.push(longName);
                 }
             }
@@ -6216,92 +5946,159 @@
             };
             return builder;
         }
-        const GOOGLE_MAP_KEY = "AIzaSyCYBjkXgMUen81S8l4tXg6zNoqW2cDWtjU";
-        const GOOGLE_MAP_JSONP_CALLBACK_NAME = "SL_GOOGLE_MAP_INIT_CALLBACK_NAME";
-        const SERVICE_PROVIDER__GOOGLE = "google";
-        function createAutocompleteService(language) {
+        function pipeProvider(base, next) {
+            return [ base, next ].filter((v => null != v)).join(".");
+        }
+        const Service_Provider__Shopline = "shopline";
+        const Service_Provider__Cache = "cache";
+        function fixSuccessResponse(res) {
+            if ("boolean" === typeof res.success) return res;
+            res.success = "SUCCESS" === res.code;
+            return res;
+        }
+        function createShoplineServiceBuilder(placeService) {
             return {
-                queryPlaceDetail(ctx, placeId) {
-                    return index_esm_awaiter$1(this, void 0, void 0, (function*() {
-                        const {placeService} = yield awaitServiceInit(language);
-                        return new Promise((resolve => {
-                            placeService.getDetails({
-                                placeId
-                            }, ((detail, status) => {
-                                if ("OK" === status && null != detail) resolve({
+                build(language) {
+                    const placeIdMetaCache = {};
+                    return {
+                        queryPlacePredictions(ctx, countryCode, query) {
+                            return index_esm_awaiter$1(this, void 0, void 0, (function*() {
+                                const res = yield placeService.autocomplete({
+                                    input: query,
+                                    country: countryCode,
+                                    language
+                                }).then(fixSuccessResponse);
+                                if (!res.success) return {
                                     ctx,
-                                    payload: {
-                                        type: "OK",
-                                        placeId,
-                                        detail: {
-                                            placeId,
-                                            addressComponents: (detail.address_components || []).map((v => ({
-                                                types: v.types,
-                                                longName: v.long_name,
-                                                shortName: v.short_name
-                                            })))
-                                        }
-                                    },
-                                    provider: SERVICE_PROVIDER__GOOGLE
-                                }); else resolve({
+                                    payload: [],
+                                    provider: Service_Provider__Shopline
+                                };
+                                const {token, predictions, type} = res.data;
+                                (predictions || []).forEach((v => {
+                                    placeIdMetaCache[v.placeId] = {
+                                        token,
+                                        countryCode
+                                    };
+                                }));
+                                return {
+                                    ctx,
+                                    payload: (predictions || []).map((v => ({
+                                        placeId: v.placeId,
+                                        description: v.description,
+                                        matchedSubstrings: v.matchedSubstrings
+                                    }))),
+                                    provider: pipeProvider(Service_Provider__Shopline, type)
+                                };
+                            }));
+                        },
+                        queryPlaceDetail(ctx, placeId) {
+                            var _a, _b, _c;
+                            return index_esm_awaiter$1(this, void 0, void 0, (function*() {
+                                const res = yield placeService.detail({
+                                    placeId,
+                                    country: null === (_a = placeIdMetaCache[placeId]) || void 0 === _a ? void 0 : _a.countryCode,
+                                    token: null === (_b = placeIdMetaCache[placeId]) || void 0 === _b ? void 0 : _b.token,
+                                    language
+                                }).then(fixSuccessResponse);
+                                if (!res.success || null == res.data) return {
                                     ctx,
                                     payload: {
                                         type: "NOT_EXISTED",
                                         placeId
                                     },
-                                    provider: SERVICE_PROVIDER__GOOGLE
-                                });
+                                    provider: Service_Provider__Shopline
+                                };
+                                return {
+                                    ctx,
+                                    payload: {
+                                        type: "OK",
+                                        placeId,
+                                        detail: Object.assign({}, res.data)
+                                    },
+                                    provider: pipeProvider(Service_Provider__Shopline, null === (_c = res.data) || void 0 === _c ? void 0 : _c.type)
+                                };
                             }));
-                        }));
-                    }));
-                },
-                queryPlacePredictions(ctx, countryCode, query) {
-                    return index_esm_awaiter$1(this, void 0, void 0, (function*() {
-                        const {autocompleteService} = yield awaitServiceInit(language);
-                        const res = yield autocompleteService.getPlacePredictions({
-                            input: query,
-                            componentRestrictions: {
-                                country: countryCode
-                            }
-                        });
-                        return {
-                            ctx,
-                            payload: res.predictions.map((v => ({
-                                placeId: v.place_id,
-                                description: v.description,
-                                matchedSubstrings: v.matched_substrings
-                            }))),
-                            provider: SERVICE_PROVIDER__GOOGLE
-                        };
-                    }));
+                        }
+                    };
                 }
             };
         }
-        let serviceInitLang;
-        let serviceInitPromise;
-        function awaitServiceInit(language) {
-            if (serviceInitPromise && serviceInitLang === language) return serviceInitPromise;
-            serviceInitLang = language;
-            serviceInitPromise = new Promise((resolve => {
-                const script = document.createElement("script");
-                window[GOOGLE_MAP_JSONP_CALLBACK_NAME] = () => {
-                    script.remove();
-                    delete window[GOOGLE_MAP_JSONP_CALLBACK_NAME];
-                    resolve({
-                        autocompleteService: new window.google.maps.places.AutocompleteService,
-                        placeService: new window.google.maps.places.PlacesService(document.createElement("div"))
-                    });
-                };
-                const query = [ [ "key", GOOGLE_MAP_KEY ], [ "libraries", "places" ], [ "callback", GOOGLE_MAP_JSONP_CALLBACK_NAME ] ];
-                if (language) query.push([ "language", language ]);
-                const rawQuery = query.map((tuple => `${tuple[0]}=${encodeURIComponent(tuple[1])}`)).join("&");
-                script.async = true;
-                script.defer = true;
-                script.type = "text/javascript";
-                script.src = `https://maps.googleapis.com/maps/api/js?${rawQuery}`;
-                document.body.appendChild(script);
-            }));
-            return serviceInitPromise;
+        function createCacheableServiceBuilder(params) {
+            return {
+                build(target) {
+                    const AutoCompleteListCache = {};
+                    const AutoCompleteInfoCache = {};
+                    function setAutoCompleteListCache(code, input, value) {
+                        AutoCompleteListCache[code] = Object.assign(Object.assign({}, AutoCompleteListCache[code] || {}), {
+                            [input]: value
+                        });
+                    }
+                    function setAutoCompleteInfoCache(placeId, value) {
+                        AutoCompleteInfoCache[placeId] = value;
+                    }
+                    return {
+                        queryPlacePredictions(ctx, countryCode, query) {
+                            return index_esm_awaiter$1(this, void 0, void 0, (function*() {
+                                if (AutoCompleteListCache[countryCode] && AutoCompleteListCache[countryCode][query]) {
+                                    const cache = AutoCompleteListCache[countryCode][query];
+                                    return {
+                                        ctx,
+                                        payload: cache.payload,
+                                        provider: pipeProvider(Service_Provider__Cache, cache.provider)
+                                    };
+                                }
+                                try {
+                                    const res = yield target.queryPlacePredictions(ctx, countryCode, query);
+                                    setAutoCompleteListCache(countryCode, query, res);
+                                    return res;
+                                } catch (e) {
+                                    params.onError(`[获取联想地址列表失败]`, {
+                                        countryCode,
+                                        query,
+                                        error: e
+                                    });
+                                    return {
+                                        ctx,
+                                        payload: [],
+                                        provider: Service_Provider__Cache
+                                    };
+                                }
+                            }));
+                        },
+                        queryPlaceDetail(ctx, placeId) {
+                            return index_esm_awaiter$1(this, void 0, void 0, (function*() {
+                                if (AutoCompleteInfoCache[placeId]) {
+                                    const cache = AutoCompleteInfoCache[placeId];
+                                    return {
+                                        ctx,
+                                        payload: cache.payload,
+                                        provider: pipeProvider(Service_Provider__Cache, cache.provider)
+                                    };
+                                }
+                                try {
+                                    return target.queryPlaceDetail(ctx, placeId).then((res => {
+                                        setAutoCompleteInfoCache(placeId, res);
+                                        return res;
+                                    }));
+                                } catch (e) {
+                                    params.onError(`[获取联想地址详情失败]`, {
+                                        placeId,
+                                        error: e
+                                    });
+                                    return {
+                                        ctx,
+                                        payload: {
+                                            type: "NOT_EXISTED",
+                                            placeId
+                                        },
+                                        provider: Service_Provider__Cache
+                                    };
+                                }
+                            }));
+                        }
+                    };
+                }
+            };
         }
         function styleInject(css, ref) {
             if (void 0 === ref) ref = {};
@@ -6318,7 +6115,7 @@
         function shouldBind(countryCode, fieldName) {
             if (!countryCode || !fieldName) return false;
             if (presetDisabledCountries.has(countryCode)) return false;
-            if ("JP" === countryCode) return fieldName === dist_index_esm_FieldNameEnum.Postcode; else return fieldName === dist_index_esm_FieldNameEnum.Address;
+            if ("JP" === countryCode) return fieldName === index_esm_FieldNameEnum.Postcode; else return fieldName === index_esm_FieldNameEnum.Address;
         }
         function bind(ctx, countryCode, fieldName, $input) {
             ctx = withCountryCode(ctx, countryCode);
@@ -6375,7 +6172,7 @@
                             const {payload: detail} = response;
                             if ("OK" === detail.type) {
                                 const [address, records] = formatPlaceDetail(detail.detail.addressComponents);
-                                if (null !== address) records[dist_index_esm_FieldNameEnum.Address] = [ address ];
+                                if (null !== address) records[index_esm_FieldNameEnum.Address] = [ address ];
                                 takeAutocompleteHooks(ctx).placeSelected({
                                     query,
                                     placeId: prediction.placeId,
@@ -6406,7 +6203,7 @@
                 if (target instanceof HTMLInputElement) cb(target.value);
             };
             $ele.addEventListener("input", listener);
-            queueMicrotask((() => {
+            queueTask((() => {
                 if (canceled) return;
                 if (document.activeElement === $ele) cb($ele.value);
             }));
@@ -6427,7 +6224,7 @@
             $ele.addEventListener("keyup", listener);
             $ele.addEventListener("mouseup", listener);
             $ele.addEventListener("input", listener);
-            queueMicrotask((() => {
+            queueTask((() => {
                 if (canceled) return;
                 if (document.activeElement === $ele) cb($ele.value);
             }));
@@ -6454,7 +6251,7 @@
                 }
             };
             $ele.addEventListener("focus", listener);
-            queueMicrotask((() => {
+            queueTask((() => {
                 if (canceled) return;
                 if (document.activeElement === $ele) cb(...index_esm_context.withCancel(ctx));
             }));
@@ -6481,6 +6278,307 @@
         }
         function getQueryLength(query) {
             return Array.from(query).length;
+        }
+        function queueTask(cb) {
+            if ("function" === typeof queueMicrotask) {
+                queueMicrotask(cb);
+                return;
+            }
+            Promise.resolve().then(cb).catch((e => setTimeout((() => {
+                throw e;
+            }))));
+        }
+        var axios = __webpack_require__("../shared/browser/node_modules/axios/index.js");
+        var axios_default = __webpack_require__.n(axios);
+        var query_string = __webpack_require__("../shared/browser/node_modules/query-string/index.js");
+        const instance = axios_default().create({
+            baseURL: "/leproxy/api",
+            timeout: 3e4,
+            withCredentials: true,
+            paramsSerializer(params) {
+                return query_string.stringify(params);
+            }
+        });
+        instance.interceptors.response.use((res => {
+            const {status, data, config} = res;
+            if ("/leproxy" === config.baseURL) {
+                if (200 !== status || "0" !== data.rescode) return Promise.reject({
+                    message: data.resmsg,
+                    ...data
+                });
+            } else if (200 !== status || !(data.success || "SUCCESS" === data.code)) return Promise.reject(data);
+            return data;
+        }), (error => Promise.reject(error)));
+        const utils_request = instance;
+        const request_request = utils_request;
+        const USER_CENTER = "/user/center";
+        const SIGN_IN = "/user/signIn";
+        "undefined" === typeof window || window.location.origin;
+        const LOGISTICS_COUNTRIES = "/logistics/countries";
+        const LOGISTICS_ADDRESS_LIBRARY = "/logistics/address/library";
+        const LOGISTICS_ADDRESS_LAYER = "/logistics/address/layer/list";
+        const LOGISTICS_ADDRESS_TEMPLATE = "/logistics/addr/template/get";
+        const PLACE_AUTOCOMPLETE = "/places/autocomplete";
+        const PLACE_DETAIL = "/places/detail";
+        var url = __webpack_require__("../shared/browser/biz-com/customer/utils/url.js");
+        function getEnv(key) {
+            const ENV = window.__ENV__ || {};
+            if (key) return ENV[key];
+            return ENV;
+        }
+        [ "preview", "product" ].includes(getEnv().APP_ENV || "");
+        const DEFAULT_LANGUAGE = "en";
+        const DEFAULT_PHONE_ISO2 = "cn";
+        const DEFAULT_PHONE_CODE = "cn+86";
+        function getLanguage() {
+            return window && window.SL_State && window.SL_State.get("request.cookie.lang") || DEFAULT_LANGUAGE;
+        }
+        const getRedirectUrl = () => {
+            let redirectUrl = (0, url.getUrlQuery)("redirectUrl");
+            let state = (0, url.getUrlQuery)("state");
+            try {
+                if (state) {
+                    state = JSON.parse(state);
+                    redirectUrl = state.redirectUrl || redirectUrl;
+                }
+            } catch (e) {
+                console.error(e);
+            }
+            return redirectUrl;
+        };
+        function redirectPage(pathname) {
+            const redirectUrl = getRedirectUrl();
+            window.location.href = redirectUrl || pathname;
+        }
+        var eventemitter3 = __webpack_require__("../shared/browser/node_modules/eventemitter3/index.js");
+        var eventemitter3_default = __webpack_require__.n(eventemitter3);
+        if (!window.SL_EventBus) {
+            window.SL_EventBus = new (eventemitter3_default());
+            window.SL_EventEmitter = eventemitter3_default();
+        }
+        const {SL_EventBus} = window;
+        const {SL_EventEmitter} = window;
+        window.SL_EventBus, window.SL_EventEmitter;
+        function parsePathToArray(path) {
+            if ("string" !== typeof path) throw new TypeError("path must be string");
+            return path.replace(/\]/, "").split(/[.[]/);
+        }
+        const utils_parsePathToArray = parsePathToArray;
+        class SLState {
+            constructor(state) {
+                this.bus = new SL_EventEmitter;
+                this.rootState = state;
+            }
+            get(path) {
+                const keys = utils_parsePathToArray(path);
+                const value = keys.reduce(((prev, current) => {
+                    if (!prev) return;
+                    return prev[current];
+                }), this.rootState);
+                return value;
+            }
+            set(path, newValue) {
+                if ("function" === typeof newValue) throw TypeError("newValue must not be a function");
+                const keys = utils_parsePathToArray(path);
+                let oldValue;
+                keys.reduce(((prev, current, index) => {
+                    if (index === keys.length - 1) {
+                        const key = prev;
+                        oldValue = key[current];
+                        key[current] = newValue;
+                    }
+                    return prev[current];
+                }), this.rootState);
+                this.bus.emit(path, newValue, oldValue);
+            }
+            on(...args) {
+                return this.bus.on(...args);
+            }
+            off(...args) {
+                return this.bus.off(...args);
+            }
+        }
+        const __PRELOAD_STATE__ = window.__PRELOAD_STATE__ || {};
+        if (!window.SL_State) window.SL_State = new SLState(__PRELOAD_STATE__);
+        const {SL_State} = window;
+        function createAdapter() {
+            const presetAddressTemplate = SL_State.get("customer_address_template");
+            return {
+                countrySource: {
+                    async getCountryList() {
+                        const res = await request_request.get(LOGISTICS_COUNTRIES, {
+                            params: {
+                                popularType: "receiving"
+                            }
+                        });
+                        if (true !== res.success) return res;
+                        return {
+                            ...res,
+                            data: (res.data || []).map((country => unmarshalCountryLevelInfo(country, getLanguage())))
+                        };
+                    }
+                },
+                addressBookFetcher: {
+                    async getAddressBook(countryCode, fieldName, code, depth) {
+                        if ("country" === fieldName) return request_request.get(LOGISTICS_ADDRESS_LIBRARY, {
+                            params: {
+                                countryCode,
+                                level: null == depth ? 3 : depth,
+                                language: getLanguage()
+                            }
+                        });
+                        if (!code) return {
+                            success: true,
+                            code: "SUCCESS",
+                            data: []
+                        };
+                        return request_request.get(LOGISTICS_ADDRESS_LAYER, {
+                            params: {
+                                countryCode,
+                                addressCode: code,
+                                depth: depth || 1
+                            }
+                        });
+                    }
+                },
+                addressTemplateFetcher: {
+                    async getAddressTemplate(countryCode) {
+                        if (presetAddressTemplate && presetAddressTemplate.country === countryCode) return {
+                            success: true,
+                            code: "success",
+                            data: presetAddressTemplate
+                        };
+                        return request_request.get(LOGISTICS_ADDRESS_TEMPLATE, {
+                            params: {
+                                country: countryCode
+                            }
+                        });
+                    }
+                }
+            };
+        }
+        function createAutocompleteService() {
+            const cacheableAutocompleteServiceBuilder = createCacheableServiceBuilder({
+                onError(msg, data) {
+                    console.error(msg, data);
+                }
+            });
+            const shoplineAutocompleteServiceBuilder = createShoplineServiceBuilder({
+                autocomplete(params) {
+                    return request_request.get(PLACE_AUTOCOMPLETE, {
+                        params
+                    });
+                },
+                detail(params) {
+                    return request_request.get(PLACE_DETAIL, {
+                        params
+                    });
+                }
+            });
+            return cacheableAutocompleteServiceBuilder.build(shoplineAutocompleteServiceBuilder.build(getLanguage()));
+        }
+        function unmarshalCountryLevelInfo(country, language) {
+            let {name} = country;
+            const i18nCountryInfos = country.countryInfos || {};
+            const localCountryInfo = language ? i18nCountryInfos[language] : null;
+            if (null != localCountryInfo && localCountryInfo.name) name = localCountryInfo.name;
+            return {
+                code: country.countryCode,
+                name
+            };
+        }
+        var dist_index_esm_FieldNameEnum;
+        (function(FieldNameEnum) {
+            FieldNameEnum["Country"] = "country";
+            FieldNameEnum["Province"] = "province";
+            FieldNameEnum["City"] = "city";
+            FieldNameEnum["District"] = "district";
+            FieldNameEnum["Name"] = "name";
+            FieldNameEnum["FirstName"] = "firstName";
+            FieldNameEnum["LastName"] = "lastName";
+            FieldNameEnum["Mobile"] = "mobile";
+            FieldNameEnum["Postcode"] = "postcode";
+            FieldNameEnum["Company"] = "company";
+            FieldNameEnum["Address"] = "address";
+            FieldNameEnum["Address2"] = "address2";
+        })(dist_index_esm_FieldNameEnum || (dist_index_esm_FieldNameEnum = {}));
+        var dist_index_esm_AddressTemplateNameTypeEnum;
+        (function(AddressTemplateNameTypeEnum) {
+            AddressTemplateNameTypeEnum[AddressTemplateNameTypeEnum["NAME"] = 1] = "NAME";
+            AddressTemplateNameTypeEnum[AddressTemplateNameTypeEnum["FLName"] = 2] = "FLName";
+        })(dist_index_esm_AddressTemplateNameTypeEnum || (dist_index_esm_AddressTemplateNameTypeEnum = {}));
+        var dist_index_esm_FieldInteractionEnum;
+        (function(FieldInteractionEnum) {
+            FieldInteractionEnum[FieldInteractionEnum["Select"] = 1] = "Select";
+            FieldInteractionEnum[FieldInteractionEnum["Input"] = 2] = "Input";
+        })(dist_index_esm_FieldInteractionEnum || (dist_index_esm_FieldInteractionEnum = {}));
+        function mapAutofillToken(fieldName) {
+            switch (fieldName) {
+              case dist_index_esm_FieldNameEnum.Name:
+                return "name";
+
+              case dist_index_esm_FieldNameEnum.FirstName:
+                return "given-name";
+
+              case dist_index_esm_FieldNameEnum.LastName:
+                return "family-name";
+
+              case dist_index_esm_FieldNameEnum.Mobile:
+                return "tel";
+
+              case dist_index_esm_FieldNameEnum.Postcode:
+                return "postal-code";
+
+              case dist_index_esm_FieldNameEnum.Address:
+                return "street-address";
+
+              case dist_index_esm_FieldNameEnum.Address2:
+                return "address-line2";
+
+              case dist_index_esm_FieldNameEnum.Country:
+                return "country";
+
+              case dist_index_esm_FieldNameEnum.Province:
+                return "address-level1";
+
+              case dist_index_esm_FieldNameEnum.City:
+                return "address-level2";
+
+              case dist_index_esm_FieldNameEnum.District:
+                return "address-level3";
+
+              case dist_index_esm_FieldNameEnum.Company:
+                return "organization";
+
+              default:
+                return "on";
+            }
+        }
+        function litAutofillControls(model) {
+            const controls = [];
+            model.traverseAddressLevelField(((fieldName, fieldTemplate) => {
+                if ("country" === fieldName) {
+                    const options = function() {
+                        const traverser = model.fieldAddressBookTraverser[fieldName];
+                        const options = [];
+                        if (traverser) traverser.traverse(((_, addressBook) => {
+                            options.push({
+                                value: addressBook.code,
+                                text: addressBook.name
+                            });
+                        }));
+                        return options;
+                    }();
+                    controls.push(`\n<select style="${createHiddenStyle()}" label="" aria-hidden="true" aria-label="no-label" type="text" name="${fieldName}" autocomplete="${mapAutofillToken(fieldName)}">\n        ${options.map((option => `<option value="${option.value}">${option.text}</option>`)).join("")}\n</select>\n        `);
+                } else controls.push(`\n        <input style="${createHiddenStyle()}" label="" aria-hidden="true" aria-label="no-label" type="text" name="${fieldName}" autocomplete="${mapAutofillToken(fieldName)}" />\n        `);
+            }));
+            model.traverseAddressInfoField(((fieldName, fieldTemplate) => {
+                if (isVisibleField(fieldTemplate)) controls.push(`\n        <input style="${createHiddenStyle()}" label="" aria-hidden="true" aria-label="no-label" type="text" name="${fieldName}" autocomplete="${mapAutofillToken(fieldName)}" />\n        `);
+            }));
+            return controls;
+        }
+        function createHiddenStyle() {
+            return `\n    border: 0;\n    clip: rect(0, 0, 0, 0);\n    clip: rect(0 0 0 0);\n    width: 2px;\n    height: 2px;\n    margin: -2px;\n    overflow: hidden;\n    padding: 0;\n    position: absolute;\n    white-space: nowrap\n  `;
         }
         const ValidateTrigger = {
             ONCHANGE: "onChange",
@@ -6873,8 +6971,8 @@
             return nullishCoalescingOperator(get_func(value, "replace").exec(regExp, ((...args) => nullishCoalescingOperator(syntax_patch_get(hash, args[1]), args[0]))), path);
         }
         const addressInfo = SL_State.get("customer_edit_address") || {};
-        addressInfo.firstName, addressInfo.lastName, i18n_t("userCenter.editAddress.lastName-message"), 
-        addressInfo.mobilePhone, i18n_t("userCenter.editAddress.phone-message"), i18n_t("customer.address.mobile-errorMessage");
+        addressInfo.firstName, addressInfo.lastName, i18n_t("customer.address.edit_last_name_hint"), 
+        addressInfo.mobilePhone, i18n_t("customer.address.edit_phone_hint"), i18n_t("customer.general.phone_number_error_message");
         const MAX_LENGTH_64 = 64;
         const MIN_LENGTH_2 = 2;
         const ruleConfig = {
@@ -6884,7 +6982,7 @@
                         if (value.length <= max) return resolve();
                         return reject();
                     })),
-                    message: i18n_t("userCenter.editAddress.common-max", {
+                    message: i18n_t("customer.address.common_max", {
                         max
                     }),
                     ...props
@@ -6896,7 +6994,7 @@
                         if (value.length >= min) return resolve();
                         return reject();
                     })),
-                    message: i18n_t("userCenter.editAddress.common-min", {
+                    message: i18n_t("customer.address.common_min", {
                         min
                     }),
                     ...props
@@ -6914,15 +7012,14 @@
             address2: [ ruleConfig.generalMax(255), ruleConfig.generalMin() ],
             firstName: [],
             lastName: [ {
-                message: i18n_t("userCenter.editAddress.lastName-message"),
+                message: i18n_t("customer.address.edit_last_name_hint"),
                 required: true
             } ],
             mobile: [ {
-                required: true,
-                message: i18n_t("userCenter.editAddress.phone-message")
-            }, {
-                pattern: /^[+()\s-\d]{2,16}$/,
-                message: i18n_t("customer.address.mobile-errorMessage")
+                validator: value => {
+                    if (value && !/^[+()\s-\d]{2,16}$/.test(value)) return Promise.reject(i18n_t("customer.general.phone_number_error_message"));
+                    return Promise.resolve();
+                }
             } ]
         };
         const FIELD_ATTRS = {
@@ -6945,6 +7042,7 @@
             return "";
         };
         const PRESET_SELECT_OPTION = "--no-value--";
+        const autocompleteService = createAutocompleteService();
         function createRenderer({host, rootId}) {
             let $currentRoot = document.getElementById(rootId);
             host.init().then((() => {
@@ -7002,6 +7100,7 @@
                                     let v = _v;
                                     if ("string" === typeof v) v = v.trim();
                                     if (v === PRESET_SELECT_OPTION) v = "";
+                                    if ("mobile" === fieldName) return true;
                                     return !!v;
                                 }
                             } ].concat(ADDRESS_RULES[fieldName] || [])
@@ -7049,7 +7148,7 @@
                 $control.removeEventListener("change", onChangeHandler);
             }));
             if (shouldBind(model.addressInfo.countryCode, fieldName)) {
-                const unbindCurrentAutocomplete = bind(contextBuilder().withAutocompleteService(createAutocompleteService(helper_getLanguage())).withRenderer(renderer_createAutocompleteRenderer($controlFrag.querySelector(".sl-input"))).withAutocompleteHooks({
+                const unbindCurrentAutocomplete = bind(contextBuilder().withAutocompleteService(autocompleteService).withRenderer(renderer_createAutocompleteRenderer($controlFrag.querySelector(".sl-input"))).withAutocompleteHooks({
                     beforePlaceSelect() {
                         $control.removeEventListener("change", onChangeHandler);
                     },
@@ -7283,8 +7382,8 @@
             signUp: "user.signUp",
             signIn: "user.signIn",
             confirm: "user.confirm",
-            emailError: "user.emailError",
-            phoneError: "user.phoneError",
+            emailError: "customer.general.email_error_hint",
+            phoneError: "customer.general.phone_error_message",
             codeError: "user.codeError",
             passwordError: "user.passwordError",
             repeatPasswordError: "user.repeatPasswordError",
@@ -7324,7 +7423,7 @@
             constructor({form, formId, value, iso2}) {
                 this.form = form;
                 this.formId = formId;
-                this.$username = $(`#${formId} [sl-form-item-name="username"] .sl-input`);
+                this.$username = __SL_$__(`#${formId} [sl-form-item-name="username"] .sl-input`);
                 this.$input = this.$username.find(".sl-input__inpEle");
                 const originValue = value || "";
                 if (iso2) {
@@ -7443,7 +7542,7 @@
                 this.form = form;
                 this.formId = formId;
                 this.emit = emit;
-                this.$phone = $container || $(`#${formId} [sl-form-item-name="phone"] .sl-input`);
+                this.$phone = $container || __SL_$__(`#${formId} [sl-form-item-name="phone"] .sl-input`);
                 this.$input = this.$phone.find(".sl-input__inpEle");
                 const originValue = value || "";
                 const countryCodeOriginal = window && window.SL_State && window.SL_State.get("customer_address.countryCode");
@@ -7544,7 +7643,7 @@
             constructor({formId, value, name}) {
                 this.formId = formId;
                 this.name = name;
-                this.$item = $(`#${formId} [sl-form-item-name="${name}"] .sl-input`);
+                this.$item = __SL_$__(`#${formId} [sl-form-item-name="${name}"] .sl-input`);
                 this.$input = this.$item.find(".sl-input__inpEle");
                 const originValue = value || "";
                 this.value = encrypt(originValue);
@@ -7572,7 +7671,7 @@
                     this.inputValue = value;
                 }));
                 this.$item.find(".sl-input__suffix").click((e => {
-                    const $this = $(e.currentTarget);
+                    const $this = __SL_$__(e.currentTarget);
                     const $input = $this.siblings(".sl-input__area").find(".sl-input__inpEle");
                     const type = $input.attr("type");
                     if ("password" === type) {
@@ -7587,8 +7686,15 @@
         }
         const form_item_password = Password;
         const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014 ];
+        const keyMaps = {
+            "-1": "2",
+            "-13": "3",
+            "-4": "4",
+            "-5": "5",
+            "-999": "6"
+        };
         const getUdbResponseLanguageErrorKey = rescode => {
-            if (UDB_RESPONSE_LANGUAGE_ERROR_CODES.indexOf(Number(rescode)) > -1) return `user.udbResponse.err${rescode}`;
+            if (UDB_RESPONSE_LANGUAGE_ERROR_CODES.indexOf(Number(rescode)) > -1) return `customer.general.error_message_${keyMaps[rescode] || rescode}`;
             return;
         };
         function getUdbErrorMessage(res) {
@@ -7603,7 +7709,7 @@
                 this.form = form;
                 this.formId = formId;
                 this.on = on;
-                this.$item = $(`#${formId} [sl-form-item-name="verifycode"] .sl-input`);
+                this.$item = __SL_$__(`#${formId} [sl-form-item-name="verifycode"] .sl-input`);
                 this.$input = this.$item.find(".sl-input__inpEle");
                 this.$send = this.$item.find(`.customer__send-btn`);
                 const originValue = value || this.$input && this.$input.val();
@@ -7647,7 +7753,7 @@
             setCountDown() {
                 if (this.countDown > 0) {
                     this.$send.attr("disabled", true);
-                    this.$send.text(`${i18n_t("user.resend")}(${this.countDown})`);
+                    this.$send.text(`${i18n_t("customer.general.resend")}(${this.countDown})`);
                     this.countDown -= 1;
                     this.countDownTimeout = window.setTimeout((() => {
                         this.setCountDown();
@@ -7656,7 +7762,7 @@
             }
             clearCountDown() {
                 this.$send.removeAttr("disabled");
-                this.$send.text(i18n_t("user.send"));
+                this.$send.text(i18n_t("customer.general.send"));
                 window.clearTimeout(this.countDownTimeout);
                 this.countDownTimeout = null;
                 this.countDown = 60;
@@ -7670,7 +7776,7 @@
                     this.clearCountDown();
                     try {
                         loading = true;
-                        $(e.target).addClass(BUTTON_LOADING_CLASS);
+                        __SL_$__(e.target).addClass(BUTTON_LOADING_CLASS);
                         await (this.on && this.on.send());
                         this.form.removeErrList([ this.dependFormItemName || "verifycode" ]);
                         this.setCountDown();
@@ -7682,7 +7788,7 @@
                         } ]);
                     }
                     loading = false;
-                    $(e.target).removeClass(BUTTON_LOADING_CLASS);
+                    __SL_$__(e.target).removeClass(BUTTON_LOADING_CLASS);
                 }));
                 if (this.immediate) this.triggerSendCode();
             }
@@ -7720,7 +7826,7 @@
                         ...args,
                         ...dependenciesValue
                     });
-                    if (defaultFormValue[name]) $(formInstance.el).find(`input[name=${name}]`).val(defaultFormValue[name]);
+                    if (defaultFormValue[name]) __SL_$__(formInstance.el).find(`input[name=${name}]`).val(defaultFormValue[name]);
                     const {rules: defaultRules = []} = instance && instance.install && instance.install() || {};
                     formItems[name] = instance;
                     return {
@@ -7805,8 +7911,8 @@
             }
             render() {
                 const template = toast_getTemplate(this.options, this.type || this.options.type);
-                this.$toast = $(template);
-                this.$target = $(this.options.target);
+                this.$toast = __SL_$__(template);
+                this.$target = __SL_$__(this.options.target);
                 const {$target} = this;
                 if ("static" === $target.css("position")) $target.css("position", "relative");
                 $target.append(this.$toast);
@@ -7870,11 +7976,11 @@
             }
             bindFormSubmit() {
                 let isLoading = false;
-                $(`#${this.formId} .submit-button`).click((async e => {
+                __SL_$__(`#${this.formId} .submit-button`).click((async e => {
                     if (isLoading) return;
                     if (!(window && window.navigator && window.navigator.onLine)) {
                         toast.init({
-                            content: i18n_t("customer.network-err-msg")
+                            content: i18n_t("customer.general.network_error_message")
                         });
                         return;
                     }
@@ -7883,7 +7989,7 @@
                         await this.validateForm();
                         const data = this.getFormValue();
                         isLoading = true;
-                        $(e.target).addClass(form_BUTTON_LOADING_CLASS);
+                        __SL_$__(e.target).addClass(form_BUTTON_LOADING_CLASS);
                         await (this.onSubmit && this.onSubmit(data));
                     } catch (err) {
                         if (!err.rescode) return;
@@ -7894,7 +8000,7 @@
                         } ]);
                     }
                     isLoading = false;
-                    $(e.target).removeClass(form_BUTTON_LOADING_CLASS);
+                    __SL_$__(e.target).removeClass(form_BUTTON_LOADING_CLASS);
                 }));
                 this.bindInputActive();
             }
@@ -7938,9 +8044,9 @@
                 return true;
             }
             bindInputActive() {
-                $(this.formInstance.el).find(".placeholder").one("transitionend", (e => {
-                    $(e.target).addClass("active");
-                    setTimeout((() => $(e.target).removeClass("active")), 100);
+                __SL_$__(this.formInstance.el).find(".placeholder").one("transitionend", (e => {
+                    __SL_$__(e.target).addClass("active");
+                    setTimeout((() => __SL_$__(e.target).removeClass("active")), 100);
                 }));
             }
             destroy() {
@@ -8057,7 +8163,7 @@
                 this.form && this.form.formInstance && this.form.formInstance.on("valuesChange", (({changedValue}) => {
                     if ("undefined" !== typeof changedValue.def) this.onChangeDefCheckBox(changedValue.def);
                 }));
-                $(`#${this.id} .address-form__btn--cancel`).click((e => {
+                __SL_$__(`#${this.id} .address-form__btn--cancel`).click((e => {
                     this.onCancel(e);
                 }));
             }
@@ -8073,7 +8179,7 @@
             }
             async onSubmit() {
                 const addressData = await this.address.getAddressInfo();
-                const def = $(`#${this.id} .sl-checkbox__input[type="checkbox"]`).is(":checked");
+                const def = __SL_$__(`#${this.id} .sl-checkbox__input[type="checkbox"]`).is(":checked");
                 const formValue = {
                     ...addressData,
                     addressSeq: SL_State.get("request.uri.params.addressSeq"),
@@ -8087,7 +8193,7 @@
         }
         const address = CustomerAddress;
         const containerId = "customer-address";
-        $((function() {
+        __SL_$__((function() {
             if (!document.getElementById(containerId)) return false;
             new address({
                 id: containerId

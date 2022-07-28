@@ -1,0 +1,30 @@
+<div class="sales__flash-sale-timeout-container sales__flash-sale-timeout-container-hook {{#if type "==" '1'}}sales__flash-sale-timeout-container--red{{else}}sales__flash-sale-timeout-container--orange{{/if}}"
+  style="color:{{salesCustom.countDownTextColor}};{{#if type "==" '1'}}background-color:{{salesCustom.countDownBgColor}}{{/if}}">
+  <div class="sales__flash-sale-timeout-time-item sales__flash-sale-timeout-first-time-item-hook" {{#if type "==" '2'}}style="background-color:{{salesCustom.countDownBgColor}}" {{/if}}>
+    <span class="sales__flash-sale-timeout-days-hook">00</span>
+    {{#if type "==" '2'}}
+      <span>D</span>
+    {{/if}}
+  </div>
+  <span class='sales__flash-sale-timeout-first-dot-hook' {{#if type "==" '2'}}style="color:{{salesCustom.countDownTextColor}}" {{/if}}>:</span>
+  <div class="sales__flash-sale-timeout-time-item" {{#if type "==" '2'}}style="background-color:{{salesCustom.countDownBgColor}}" {{/if}}>
+    <span class="sales__flash-sale-timeout-hours-hook">00</span>
+    {{#if type "==" '2'}}
+      <span>H</span>
+    {{/if}}
+  </div>
+  <span {{#if type "==" '2'}}style="color:{{salesCustom.countDownTextColor}}" {{/if}}>:</span>
+  <div class="sales__flash-sale-timeout-time-item" {{#if type "==" '2'}}style="background-color:{{salesCustom.countDownBgColor}}" {{/if}}>
+    <span class="sales__flash-sale-timeout-minutes-hook">00</span>
+    {{#if type "==" '2'}}
+      <span>M</span>
+    {{/if}}
+  </div>
+  <span {{#if type "==" '2'}}style="color:{{salesCustom.countDownTextColor}}" {{/if}}>:</span>
+  <div class="sales__flash-sale-timeout-time-item" {{#if type "==" '2'}}style="background-color:{{salesCustom.countDownBgColor}}" {{/if}}>
+    <span class="sales__flash-sale-timeout-seconds-hook">00</span>
+    {{#if type "==" '2'}}
+      <span>S</span>
+    {{/if}}
+  </div>
+</div>

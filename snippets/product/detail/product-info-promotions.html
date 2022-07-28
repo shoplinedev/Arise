@@ -1,0 +1,38 @@
+{{!-- 折扣券 --}}
+{{assign 'discountCodeActivityList' productActivity.discountCodeActivityList}}
+{{#if (and discountCodeActivityList.length (compare id '===' 'productDetail') (isFalsey spuInfo.inquiry))}}
+  {{snippet 'product/detail/discount-coupon/discount-coupon-banner' discountCodeActivityList=discountCodeActivityList }}
+{{/if}}
+{{!-- 自动折扣 --}}
+{{assign 'autoDiscountActivityItem' (itemAt productActivity.autoDiscountActivityList 0) }}
+{{#if (and autoDiscountActivityItem.benefitConditions (compare id '===' 'productDetail') (isFalsey spuInfo.inquiry) (compare autoDiscountActivityItem.discountStyleType '===' 1))}}
+  <div data-track-eventid="60006253" data-track-page="pdp">
+    {{ snippet 'product/detail/auto-coupon/auto-coupon-banner'   
+          autoDiscountActivityItem=autoDiscountActivityItem 
+          template = autoDiscountActivityItem.discountStyleText
+    }}
+  </div>
+{{/if}}
+
+{{!-- 询盘商品不显示倒计时和限时促销挂件 --}}
+{{#not product.spu.inquiry}}
+  {{#if productActivity.timeLimitActivityList.length}}
+    {{assign 'timeLimitActivity' (itemAt productActivity.timeLimitActivityList 0)}}
+    {{#if (or timeLimitActivity.salesPlugin.countDownTimerPlugin.showCountDownTime timeLimitActivity.salesPlugin.progressPlugin.showProgressBar)}}
+      <div class="d-none d-md-block sales__flash-sale notranslate">
+        {{ snippet 'product/detail/flash-sale/flash-sale' }}
+      </div>
+    {{else}}
+      <div class="d-none d-md-block countdown-component">
+        {{ snippet 'product/detail/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
+      </div>
+    {{/if}}
+  {{else}}
+    <div class="d-none d-md-block countdown-component">
+      {{ snippet 'product/detail/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
+    </div>
+  {{/if}}
+
+  {{!-- 营销赠品 --}}
+  {{ snippet 'product/detail/gift-plugin-container' }}
+{{/not}}

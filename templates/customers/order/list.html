@@ -22,10 +22,10 @@
           {{!-- 无订单数据 --}}
           <div class="empty">
             <p class="empty-title">
-              {{t 'order.order-list.empty-tip'}}
+              {{t 'cart.order.no_record'}}
             </p>
             <button class="btn btn-primary go-shipping-btn">
-              {{t 'trade.go-on-shopping' }}
+              {{t 'cart.payment.continue_shopping' }}
             </button>
           </div>
         {{/if}}
@@ -41,7 +41,7 @@
 
         {{#if lastPage}}
           <p class="no-more">
-            - {{t 'order.order-list.no-more'}} -
+            - {{t 'cart.order.no_more_info'}} -
           </p>
         {{/if}}
       {{/if}}

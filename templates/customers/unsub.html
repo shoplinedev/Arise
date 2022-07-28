@@ -8,48 +8,48 @@
 
 <div class="unsub-container" id="customer-unsubscribe">
   <div class="unsub-wrap">
-    <h1>{{t 'customer.unsubscribe.title'}}</h1>
-    <h4>{{t 'customer.unsubscribe.subtitle'}}</h4>
+    <h1>{{t 'customer.subscription.unsubscribe'}}</h1>
+    <h4>{{t 'customer.subscription.unsubscribe_subtitle'}}</h4>
     <div class="unsub-reason">
       <div class="unsub-reason__item">
         {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=1 }}
-          <span>{{t 'customer.unsubscribe.reason1'}}</span>
+          <span>{{t 'customer.subscription.unsubscribe_reason1'}}</span>
         {{/snippet}}
       </div>
       <div class="unsub-reason__item">
         {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=2 }}
-          <span>{{t 'customer.unsubscribe.reason2'}}</span>
+          <span>{{t 'customer.subscription.unsubscribe_reason2'}}</span>
         {{/snippet}}
       </div>
       <div class="unsub-reason__item">
         {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=3 }}
-          <span>{{t 'customer.unsubscribe.reason3'}}</span>
+          <span>{{t 'customer.subscription.unsubscribe_reason3'}}</span>
         {{/snippet}}
       </div>
       <div class="unsub-reason__item">
         {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=4 }}
-          <span>{{t 'customer.unsubscribe.reason4'}}</span>
+          <span>{{t 'customer.subscription.unsubscribe_reason4'}}</span>
         {{/snippet}}
       </div>
       <div class="unsub-reason__item">
         {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=5 }}
-          <span>{{t 'customer.unsubscribe.reason5'}}</span>
+          <span>{{t 'customer.subscription.unsubscribe_reason5'}}</span>
         {{/snippet}}
       </div>
       <div class="unsub-reason__item">
         {{#snippet 'customer/base/sl-radio' name="unsub-reason" value=6 }}
-          <span>{{t 'customer.unsubscribe.reason6'}}</span>
+          <span>{{t 'customer.subscription.unsubscribe_reason6'}}</span>
         {{/snippet}}
         <div class="unsubscribe-textarea">
-          <textarea placeholder="{{t 'customer.unsubscribe.reason.other.placeholder'}}"></textarea>
-          <div class="unsubscribe-textarea__error">{{t 'customer.unsubscribe.reason.other.length'}}</div>
+          <textarea placeholder="{{t 'customer.subscription.reason_other_placeholder'}}"></textarea>
+          <div class="unsubscribe-textarea__error">{{t 'customer.subscription.reason_other_length'}}</div>
         </div>
       </div>
     </div>
 
     <div class="unsub-submit">
       {{#snippet 'customer/base/sl-button' attrs='disabled="disabled"' class="submit-button" }}
-        {{t 'customer.unsubscribe.btn'}}
+        {{t 'customer.subscription.unsubscribe_btn'}}
       {{/snippet}}
     </div>
   </div>

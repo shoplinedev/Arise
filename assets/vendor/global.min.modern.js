@@ -512,6 +512,78 @@
             AsyncParallelBailHook
         };
     },
+    "./node_modules/@sl/logger/lib/index.es.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            LogStatus: () => o
+        });
+        var n, o, t, i = function() {
+            return i = Object.assign || function(n) {
+                for (var o, t = 1, i = arguments.length; t < i; t++) for (var r in o = arguments[t]) Object.prototype.hasOwnProperty.call(o, r) && (n[r] = o[r]);
+                return n;
+            }, i.apply(this, arguments);
+        };
+        !function(n) {
+            n.P0 = "P0", n.P1 = "P1", n.P2 = "P2";
+        }(n || (n = {})), function(n) {
+            n.Start = "开始", n.Success = "成功", n.Failure = "失败";
+        }(o || (o = {})), function(n) {
+            n.Info = "info", n.Log = "log", n.Warn = "warn", n.Error = "error";
+        }(t || (t = {}));
+        var r = function n(o) {
+            var r = this;
+            this.options = {
+                owner: "",
+                action: "",
+                transports: []
+            }, this.withOwner = function(o) {
+                return new n(i(i({}, r.options), {
+                    owner: o
+                }));
+            }, this.pipeOwner = function(o) {
+                var t = "";
+                return t = r.options.owner ? "".concat(r.options.owner, ".").concat(o) : o, new n(i(i({}, r.options), {
+                    owner: t
+                }));
+            }, this.withAction = function(o) {
+                return new n(i(i({}, r.options), {
+                    action: o
+                }));
+            }, this.pipeTransport = function() {
+                for (var o = [], t = 0; t < arguments.length; t++) o[t] = arguments[t];
+                var e = r.options.transports.concat(o);
+                return new n(i(i({}, r.options), {
+                    transports: e
+                }));
+            }, this.report = function(n, o, t) {
+                !function(n, o) {
+                    var t = n;
+                    o.forEach((function(n) {
+                        var o = n(t);
+                        o && (t = o);
+                    }));
+                }(i(i({
+                    level: n,
+                    owner: r.options.owner,
+                    action: r.options.action
+                }, t), {
+                    message: o
+                }), r.options.transports);
+            }, this.info = function(n, o) {
+                r.report(t.Info, n, o);
+            }, this.log = function(n, o) {
+                r.report(t.Log, n, o);
+            }, this.warn = function(n, o) {
+                r.report(t.Warn, n, o);
+            }, this.error = function(n, o) {
+                r.report(t.Error, n, o);
+            }, this.options = i(i({}, this.options), o);
+        }, e = new r;
+        Object.defineProperty(e, "options", {
+            writable: !1,
+            configurable: !1
+        });
+    },
     "./node_modules/js-cookie/src/js.cookie.js": (module, exports, __webpack_require__) => {
         var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
         (function(factory) {
@@ -4268,17 +4340,12 @@
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
             default: () => __WEBPACK_DEFAULT_EXPORT__,
-            limitedActiveEnum: () => limitedActiveEnum,
             cartLimitedEnum: () => cartLimitedEnum
         });
         const __WEBPACK_DEFAULT_EXPORT__ = {
             LIMITED: 0,
             UNLIMITED: 1,
             OVERSOLD: 2
-        };
-        const limitedActiveEnum = {
-            LIMITED_ACTIVE_OVER: 1,
-            LIMITED_ACTIVE_SKU_OVER: 2
         };
         const cartLimitedEnum = {
             NORMAL_ITEM_MAX_NUM: [ "ITEM_MAX_NUM" ],
@@ -5251,18 +5318,31 @@
         __webpack_require__.d(__webpack_exports__, {
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
-        var _yy_sl_theme_shared_utils_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/request.js");
-        var _domain_adapter_svc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/assets/cart/script/domain/adapter/svc/index.js");
-        var _domain_adapter_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./src/assets/cart/script/domain/adapter/storage/index.js");
-        var _cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./src/assets/cart/script/service/cart/index.js");
+        var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/js-cookie/src/js.cookie.js");
+        var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = __webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
+        var _yy_sl_theme_shared_utils_request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/request.js");
+        var _yy_sl_theme_shared_utils_logger_sentryReport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/utils/logger/sentryReport.js");
+        var _domain_adapter_svc__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./src/assets/cart/script/domain/adapter/svc/index.js");
+        var _domain_adapter_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./src/assets/cart/script/domain/adapter/storage/index.js");
+        var _cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./src/assets/cart/script/service/cart/index.js");
+        var _shared_logger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./src/assets/shared/logger/index.js");
+        const logger = _shared_logger__WEBPACK_IMPORTED_MODULE_6__["default"].pipeOwner(`${_yy_sl_theme_shared_utils_logger_sentryReport__WEBPACK_IMPORTED_MODULE_2__.Owner.Cart} cart/script/service/index.js`);
+        const cartToken = js_cookie__WEBPACK_IMPORTED_MODULE_0___default().get("t_cart");
         let initialized = false;
         function init() {
             if (initialized) return;
             initialized = true;
-            _domain_adapter_svc__WEBPACK_IMPORTED_MODULE_1__["default"].withSvc({
-                ai: _yy_sl_theme_shared_utils_request__WEBPACK_IMPORTED_MODULE_0__["default"]
+            _domain_adapter_svc__WEBPACK_IMPORTED_MODULE_3__["default"].withSvc({
+                ai: _yy_sl_theme_shared_utils_request__WEBPACK_IMPORTED_MODULE_1__["default"]
             });
-            _cart__WEBPACK_IMPORTED_MODULE_3__["default"].withCartService(_domain_adapter_svc__WEBPACK_IMPORTED_MODULE_1__["default"].takeSvc(), _domain_adapter_storage__WEBPACK_IMPORTED_MODULE_2__["default"].takeStorage());
+            _cart__WEBPACK_IMPORTED_MODULE_5__["default"].withCartService(_domain_adapter_svc__WEBPACK_IMPORTED_MODULE_3__["default"].takeSvc(), _domain_adapter_storage__WEBPACK_IMPORTED_MODULE_4__["default"].takeStorage());
+            logger.info(`normal 主站购物车 全局化 cart service _init`, {
+                data: {
+                    cartToken
+                },
+                action: _yy_sl_theme_shared_utils_logger_sentryReport__WEBPACK_IMPORTED_MODULE_2__.Action.InitCart,
+                status: _shared_logger__WEBPACK_IMPORTED_MODULE_6__.Status.Success
+            });
         }
         const __WEBPACK_DEFAULT_EXPORT__ = {
             init
@@ -5311,7 +5391,7 @@
             return !param || "string" !== typeof param;
         }
         function isJqueryInstance(dom) {
-            return dom && dom instanceof $ && dom.length > 0;
+            return dom && dom instanceof __SL_$__ && dom.length > 0;
         }
         function getEventHandlerName(event, selector, namepsace) {
             if (!selector) return [ event, namepsace ].join("-");
@@ -5376,9 +5456,9 @@
         }
         class EventManager {
             constructor(namespace = "", portals) {
-                this.$win = $(window);
-                this.$doc = $(document);
-                this.$portals = portals ? $(portals) : null;
+                this.$win = __SL_$__(window);
+                this.$doc = __SL_$__(document);
+                this.$portals = portals ? __SL_$__(portals) : null;
                 this.namespace = "string" === typeof namespace ? namespace : "";
                 this.$eventHandlers = new Map;
                 this.$winEventHandlers = new Map;
@@ -5396,7 +5476,7 @@
                 this.namespace = namespace;
             }
             $setPortals(portals) {
-                this.$portals = portals ? $(portals) : null;
+                this.$portals = portals ? __SL_$__(portals) : null;
             }
             $on(event, selector, handler) {
                 const onEvent = onConsistent.call(this, event, selector, handler);
@@ -5464,8 +5544,6 @@
         var event_bus = __webpack_require__("../shared/browser/utils/event-bus.js");
         var currency = __webpack_require__("../shared/browser/utils/currency/index.js");
         var tradeReport_const = __webpack_require__("../shared/browser/utils/tradeReport/const.js");
-        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
-        var get_default = __webpack_require__.n(get);
         const reportEvent = data => {
             window.HdSdk && window.HdSdk.shopTracker.collect(data);
         };
@@ -5475,12 +5553,14 @@
             const quantity = [];
             const price = [];
             const product_name = [];
+            const isCheckoutPage = "Checkout" === window.Shopline.uri.alias;
             data && data.forEach((item => {
-                product_id.push(item.productSeq);
-                variantion_id.push(item.productSku);
-                quantity.push(item.productNum);
-                price.push(`${currency["default"].formatNumber(Number(get_default()(item, "productPrice", void 0)) || 0)}`);
-                product_name.push(item.productName);
+                const {productSeq, productSku, productNum, finalPrice, productPrice, productName} = item || {};
+                product_id.push(productSeq);
+                variantion_id.push(productSku);
+                quantity.push(productNum);
+                price.push(currency["default"].formatNumber(Number(isCheckoutPage ? finalPrice : productPrice) || 0).toString());
+                product_name.push(productName);
             }));
             return {
                 product_id: product_id.join(","),
@@ -5529,7 +5609,7 @@
             }, cid);
         };
         const getIsMiniCart = (node, ele) => {
-            const dom = $(node);
+            const dom = __SL_$__(node);
             const closest = dom && dom.closest(ele || ".trade_coupon__wrapper");
             const isMiniCart = closest && closest.hasClass("sidebar");
             return isMiniCart;
@@ -5703,20 +5783,24 @@
                 });
                 if (!responseCode["default"].isOk(res)) {
                     let errMsg = res.msg;
-                    if (responseCode["default"].is(res, "TCAT0109")) errMsg = (0, i18n.t)("modal.exceedCartTitle");
-                    if (responseCode["default"].batchIs(res, "TCAT0107,TCAT0112")) errMsg = (0, i18n.t)("cart.active-stock-limit-2", {
+                    if (responseCode["default"].is(res, "TCAT0109")) errMsg = (0, i18n.t)("cart.notices.product_amount_limit");
+                    if (responseCode["default"].batchIs(res, "TCAT0107,TCAT0112")) errMsg = (0, i18n.t)("cart.discount_price.buy_limit3", {
                         stock: res.data.maxPurchaseTotalNum > 0 ? res.data.maxPurchaseTotalNum : "0"
                     });
-                    if (responseCode["default"].is(res, "TCAT0111")) errMsg = (0, i18n.t)("cart.active-stock-limit-1", {
+                    if (responseCode["default"].is(res, "TCAT0111")) errMsg = (0, i18n.t)("cart.discount_price.buy_limit2", {
                         stock: res.data.maxPurchaseTotalNum > 0 ? res.data.maxPurchaseTotalNum : "0"
                     });
-                    if (responseCode["default"].is(res, "TCAT0101")) errMsg = (0, i18n.t)("cart.product-no-exists");
-                    if (responseCode["default"].is(res, "TCAT0103")) errMsg = (0, i18n.t)("productList.container.tradePopup.error6");
+                    if (responseCode["default"].is(res, "TCAT0101")) errMsg = (0, i18n.t)("cart.item.none_existent");
+                    if (responseCode["default"].is(res, "TCAT0103")) errMsg = (0, i18n.t)("products.product_list.product_has_been_removed");
                     (new toast["default"]).open(errMsg, 1500);
                     if ("function" === typeof error) error();
                 } else {
+                    if ("function" === typeof success) try {
+                        success();
+                    } catch (e) {
+                        console.error(e);
+                    }
                     if ("newpage" !== cartOpenType) window.SL_EventBus.emit(OPEN_TOP_CART); else interior.emit(interior_event.OPEN_MINI_CART);
-                    if ("function" === typeof success) success();
                 }
             } catch (e) {
                 console.warn("add to cart fail:", e);
@@ -5826,8 +5910,8 @@
             }
             init() {
                 const template = (0, _toast__WEBPACK_IMPORTED_MODULE_0__.getTemplate)(this.options, _toast__WEBPACK_IMPORTED_MODULE_0__.LOADING);
-                this.$target = $(this.options.target || document.body);
-                this.$loading = $(template);
+                this.$target = __SL_$__(this.options.target || document.body);
+                this.$loading = __SL_$__(template);
             }
             open() {
                 const {$target} = this;
@@ -5916,8 +6000,8 @@
             }
             render() {
                 const template = getTemplate(this.options, this.type || this.options.type);
-                this.$toast = $(template);
-                this.$target = $(this.options.target);
+                this.$toast = __SL_$__(template);
+                this.$target = __SL_$__(this.options.target);
                 const {$target} = this;
                 if ("static" === $target.css("position")) $target.css("position", "relative");
                 $target.append(this.$toast);
@@ -5952,6 +6036,7 @@
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
             DRAWER_EVENT_NAME: () => _yy_sl_theme_shared_components_hbs_shared_components_topDrawer_const__WEBPACK_IMPORTED_MODULE_1__.DRAWER_EVENT_NAME,
+            DRAWER_CALLBACK_EVENT_NAME: () => _yy_sl_theme_shared_components_hbs_shared_components_topDrawer_const__WEBPACK_IMPORTED_MODULE_1__.DRAWER_CALLBACK_EVENT_NAME,
             DRAWER_OPERATORS: () => _yy_sl_theme_shared_components_hbs_shared_components_topDrawer_const__WEBPACK_IMPORTED_MODULE_1__.DRAWER_OPERATORS,
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
@@ -6131,6 +6216,17 @@
         };
         const __WEBPACK_DEFAULT_EXPORT__ = utils;
     },
+    "./src/assets/shared/logger/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            Status: () => _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogStatus,
+            default: () => __WEBPACK_DEFAULT_EXPORT__
+        });
+        var _sl_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/@sl/logger/lib/index.es.js");
+        var _yy_sl_theme_shared_utils_logger_sentry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/logger/sentry.js");
+        const newLogger = _yy_sl_theme_shared_utils_logger_sentry__WEBPACK_IMPORTED_MODULE_1__["default"].pipeOwner("trade");
+        const __WEBPACK_DEFAULT_EXPORT__ = newLogger;
+    },
     "./src/assets/stage/announcement-bar/index.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
         "use strict";
         var _yy_sl_theme_shared_utils_sectionsLoad__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/sectionsLoad/index.js");
@@ -6165,25 +6261,25 @@
             }));
         };
         if (isPad) {
-            $(document).on("click", firstNavItemLink, (function(e) {
+            __SL_$__(document).on("click", firstNavItemLink, (function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                const $parent = $(this).parent();
+                const $parent = __SL_$__(this).parent();
                 if ($parent.hasClass("actived")) {
                     window.location.href = e.target.href;
                     $parent.removeClass("actived");
                 } else {
                     $parent.addClass("actived");
-                    $(firstNavItem).not($parent).removeClass("actived");
+                    __SL_$__(firstNavItem).not($parent).removeClass("actived");
                 }
             }));
-            $(document).on("click", "body", (function(e) {
-                const that = $(e.target).parents(firstNavItem);
-                if (!that.hasClass("site-nav--has-dropdown")) $(firstNavItem).removeClass("actived");
+            __SL_$__(document).on("click", "body", (function(e) {
+                const that = __SL_$__(e.target).parents(firstNavItem);
+                if (!that.hasClass("site-nav--has-dropdown")) __SL_$__(firstNavItem).removeClass("actived");
             }));
         } else {
             registryNavMouseenterHandler();
-            $(document).on("shopline:section:load", (async e => {
+            __SL_$__(document).on("shopline:section:load", (async e => {
                 if ("header" === e.detail.sectionId) registryNavMouseenterHandler();
             }));
         }
@@ -6262,20 +6358,18 @@
         const navigate_cart_external = window && window.Shopline.event;
         const navigateCartHandler = argument => {
             const noop = () => {};
-            if (argument) {
-                const data = argument.data || {};
-                const onSuccess = argument.onSuccess || noop;
-                const onError = argument.onError || noop;
-                try {
-                    navigate_cart_interior.emit(interior_event.OPEN_MINI_CART, {
-                        data,
-                        onSuccess
-                    });
-                    navigate_cart_logger.log(data);
-                    onSuccess && onSuccess();
-                } catch (error) {
-                    onError && onError(error);
-                }
+            const data = argument && argument.data || {};
+            const onSuccess = argument && argument.onSuccess || noop;
+            const onError = argument && argument.onError || noop;
+            try {
+                navigate_cart_interior.emit(interior_event.OPEN_MINI_CART, {
+                    data,
+                    onSuccess
+                });
+                navigate_cart_logger.log(data);
+                if ("function" === typeof onSuccess) onSuccess();
+            } catch (error) {
+                if ("function" === typeof onError) onError(error);
             }
         };
         const navigateCart = () => navigate_cart_external && navigate_cart_external.on(navigate_cart_EVENT_NAME, navigateCartHandler);
@@ -6438,6 +6532,7 @@
             return executedEvents;
         };
         const LOGIN_MODAL = "Customer::LoginModal";
+        const REGISTER = "Customer::Register";
         const interior_event_LOGIN_MODAL = Symbol("LOGIN_MODAL");
         var axios = __webpack_require__("../shared/browser/node_modules/axios/index.js");
         var axios_default = __webpack_require__.n(axios);
@@ -6495,7 +6590,7 @@
                 this.init();
             }
             init() {
-                const $modal = $(`#${this.modalId}`);
+                const $modal = __SL_$__(`#${this.modalId}`);
                 if ($modal.length > 0) {
                     this.$modal = $modal;
                     this.$setPortals($modal);
@@ -6508,7 +6603,7 @@
             buildModalHtml() {
                 const {zIndex, closable, containerClassName, bodyClassName, content, children} = this.config;
                 const modalHtml = `\n      <div id="${this.modalId}" class="${common_bem("wrapper")}">\n        <div class="${common_bem("mask")}"></div>\n        <div class="${common_bem("container")}">\n          ${closable ? `<span class="${common_bem("close")}">\n            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M19.1998 4.80005L4.7998 19.2" stroke="currentColor" stroke-width="2"/>\n              <path d="M4.7998 4.79995L19.1998 19.2" stroke="currentColor" stroke-width="2"/>\n            </svg>          \n          </span>` : ""}\n          <div class="${common_bem("body")} ${bodyClassName}">\n            ${content}\n          </div>\n        </div>\n      </div>\n    `;
-                const $modal = $(modalHtml);
+                const $modal = __SL_$__(modalHtml);
                 if (containerClassName) $modal.find(`.${common_bem("container")}`).addClass(containerClassName);
                 if (bodyClassName) $modal.find(`.${common_bem("body")}`).addClass(bodyClassName);
                 if (children) $modal.find(`.${common_bem("body")}`).append(children);
@@ -6564,24 +6659,39 @@
                 this.$offAll();
             }
         }
+        function baseGet(object, path) {
+            path = path.split(".");
+            let index = 0;
+            const {length} = path;
+            while (null != object && index < length) object = object[path[index++]];
+            return index && index === length ? object : void 0;
+        }
         const CONTAINER_CLASS = "login-modal__container";
         const BODY_CLASS = "login-modal__body";
         const loadingTemplate = `\n  <div class="login-modal--loading">\n    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n      <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>\n    </svg>\n  </div>\n`;
-        async function initLoginModalChunk() {
+        async function initLoginModalChunk(containerId) {
             return new Promise(((resolve, reject) => {
-                const script = document.createElement("script");
-                const $scriptUrl = document.getElementById("customerLoginModalScriptUrl");
-                const jsUrl = $scriptUrl && $scriptUrl.attributes && $scriptUrl.attributes.src && $scriptUrl.attributes.src.nodeValue || "";
-                if (!jsUrl) {
+                let container = document.getElementById("customerLoginModalScriptUrl");
+                let jsUrls = [];
+                if (container && "script" === container.tagName.toLocaleLowerCase()) jsUrls.push(baseGet(container, "attributes.src.nodeValue", "")); else {
+                    container = document.getElementById(containerId);
+                    jsUrls = Array.from(container.querySelectorAll("script")).map((ele => baseGet(ele, "attributes.src.nodeValue", ""))).filter((url => !!url));
+                }
+                if (!jsUrls || !jsUrls.length) {
                     reject(new Error(`failed to get login-modal js chunk url`));
                     return;
                 }
-                document.body.appendChild(script);
-                script.onload = () => {
-                    resolve();
-                };
-                script.onerror = reject;
-                script.src = jsUrl;
+                const promiseList = jsUrls.map((url => new Promise(((resolve, reject) => {
+                    const scriptEle = document.createElement("script");
+                    document.body.appendChild(scriptEle);
+                    scriptEle.onload = () => {
+                        resolve();
+                    };
+                    scriptEle.async = false;
+                    scriptEle.onerror = reject;
+                    scriptEle.src = url;
+                }))));
+                Promise.all(promiseList).then(resolve).catch(reject);
             }));
         }
         const renderModal = async (options = {}, lifeCycle = {}) => {
@@ -6596,7 +6706,7 @@
             lifeCycle && lifeCycle.onShow && lifeCycle.onShow(modal);
             const {data} = await axios_default().get("/user/signIn?view=ajax");
             modal.setContent(data || "");
-            await initLoginModalChunk(modal);
+            await initLoginModalChunk(modal.modalId);
             return modal;
         };
         const login_modal_logger = (0, api_logger["default"])(LOGIN_MODAL);
@@ -6654,8 +6764,19 @@
         }));
         loginModal.apiName = LOGIN_MODAL;
         const login_modal = loginModal;
+        const register_logger = (0, api_logger["default"])(`${REGISTER} - EMIT`);
+        const register_interior = window.SL_EventBus;
+        const register_external = window.Shopline.event;
+        const register = () => register_interior.on("customer:register", ((data = {}) => {
+            register_logger.info(data);
+            register_external.emit(REGISTER, {
+                ...data
+            });
+        }));
+        register.apiName = REGISTER;
+        const developer_api_register = register;
         const customer_developer_api_logger = (0, api_logger["default"])("register");
-        const developer_api_events = [ login_modal ];
+        const developer_api_events = [ login_modal, developer_api_register ];
         const customer_developer_api = (...activateApiNames) => {
             const executedEvents = [];
             activateApiNames.forEach((activateApiName => {
@@ -6850,7 +6971,7 @@
         const DRAWER_EVENT_NAME = "stage:drawer";
         const DRAWER_CALLBACK_EVENT_NAME = "stage:drawer:callback";
         function getEventRealElem(event) {
-            const isJqueryEvent = event instanceof $.Event;
+            const isJqueryEvent = event instanceof __SL_$__.Event;
             const oEvent = isJqueryEvent ? event.originalEvent : event;
             const eventPath = oEvent.composedPath && oEvent.composedPath() || oEvent.path;
             let index = 0;
@@ -6880,7 +7001,7 @@
                 });
                 _defineProperty(this, "hub", {});
                 _defineProperty(this, "jq", {
-                    root: $("body")
+                    root: __SL_$__("body")
                 });
                 this.jq.root.removeClass(this.classes.drawerClosingRoot);
                 this.jq.root.removeClass(this.classes.drawerOpenRoot);
@@ -6890,7 +7011,7 @@
             init() {
                 window.SL_EventBus.on(DRAWER_EVENT_NAME, (({id, status, onOpen}) => {
                     if (!id) return;
-                    const $drawer = $(`#${id}`);
+                    const $drawer = __SL_$__(`#${id}`);
                     const isSubDrawer = $drawer.data("level") > 1;
                     this.hub[id] = "open" === status;
                     if ("open" === status) {
@@ -6973,7 +7094,7 @@
             }
         }
         let instance = new GlobalDrawer;
-        $(document).on("shopline:section:load", (() => {
+        __SL_$__(document).on("shopline:section:load", (() => {
             Object.keys(instance.hub).filter((id => !!instance.hub[id])).forEach((id => {
                 window.SL_EventBus.emit(DRAWER_EVENT_NAME, {
                     status: "close",
@@ -7011,17 +7132,17 @@
             const {container} = options;
             const attr = "global-dropdown-list-related-id";
             const relatedId = container.data(attr);
-            if (relatedId) $(`[data-${attr}=${relatedId}]`).each(((_idx, element) => {
+            if (relatedId) __SL_$__(`[data-${attr}=${relatedId}]`).each(((_idx, element) => {
                 if (element === container[0]) return;
                 toggle({
                     ...options,
-                    ...getTargetElement($(element), options)
+                    ...getTargetElement(__SL_$__(element), options)
                 }, false);
             }));
         }
-        $((function() {
+        __SL_$__((function() {
             function openHandler(event) {
-                const trigger = $(event.currentTarget);
+                const trigger = __SL_$__(event.currentTarget);
                 const container = trigger.parent(".global-dropdown-list");
                 const dropdownList = trigger.siblings(".global-dropdown-list__main");
                 const options = {
@@ -7034,7 +7155,7 @@
                 closeOtherReleased(options);
                 toggle(options);
             }
-            $("body").on("click", `.global-dropdown-list .${defaultOptions.triggerClass}`, openHandler);
+            __SL_$__("body").on("click", `.global-dropdown-list .${defaultOptions.triggerClass}`, openHandler);
         }));
         var debounce = __webpack_require__("./node_modules/lodash/debounce.js");
         var debounce_default = __webpack_require__.n(debounce);
@@ -7079,7 +7200,7 @@
                 };
             }
             inFooter(e) {
-                const $target = $(e.target);
+                const $target = __SL_$__(e.target);
                 const $footer = $target.closest(this.footerElementSelector.footer);
                 const flag = $footer.length > 0;
                 return flag;
@@ -7116,7 +7237,7 @@
                 this.bindClick({
                     selector: "a[href]",
                     customHandler: (e, params) => {
-                        const $socialItem = $(e.currentTarget);
+                        const $socialItem = __SL_$__(e.currentTarget);
                         const cls = $socialItem && $socialItem.attr("class") || "";
                         const hasClass = cls.indexOf(prefix) >= 0;
                         if (!$socialItem.length || !hasClass) return;
@@ -7255,7 +7376,7 @@
         }
         const virtualReport = new VirtualReport;
         function initVirtualReport() {
-            $((() => {
+            __SL_$__((() => {
                 virtualReport.bindHeaderReport();
                 virtualReport.bindFooterReport();
                 virtualReport.bindFooterPromotionReport();
@@ -7327,7 +7448,7 @@
                     searchBarSuggestList: ".searchbar__suggest--list"
                 });
                 header_search_defineProperty(this, "jq", {
-                    root: $("body")
+                    root: __SL_$__("body")
                 });
                 header_search_defineProperty(this, "searchResultReport", debounce_default()(((data, searchKey) => {
                     var _data$filter, _data$filter2, _window$HdSdk;
@@ -7349,9 +7470,9 @@
                     var _list$children$;
                     if (counter !== this.counter) return;
                     const html = renderDynamicItem(data, this.tempSearchKey);
-                    const list = $(resultList)[0];
+                    const list = __SL_$__(resultList)[0];
                     const firstItem = null === list || void 0 === list ? void 0 : null === (_list$children$ = list.children[0]) || void 0 === _list$children$ ? void 0 : _list$children$.outerHTML;
-                    if (firstItem) $(resultList).html(firstItem + html);
+                    if (firstItem) __SL_$__(resultList).html(firstItem + html);
                 }));
                 header_search_defineProperty(this, "counter", 0);
                 header_search_defineProperty(this, "tempSearchKey", "");
@@ -7411,24 +7532,24 @@
                 });
             }
             openSearch(caller) {
-                const $container = $(this.selectors.searchContainer);
+                const $container = __SL_$__(this.selectors.searchContainer);
                 if ($container.hasClass(this.classes.activeClass)) return;
                 this.searchViewReport(caller);
                 this.prepareTransition($container, (() => {
                     this.jq.root.addClass([ this.classes.drawerOpenRoot, this.classes.drawerOpenRootSearch ]);
                     $container.addClass(this.classes.activeClass);
                 }), (() => {}));
-                const $input = $(this.selectors.input);
+                const $input = __SL_$__(this.selectors.input);
                 $input.trigger("focus");
                 this.bindInput(this.selectors.input);
                 this.bindMaskClick();
             }
             closeSearch() {
-                const $container = $(this.selectors.searchContainer);
+                const $container = __SL_$__(this.selectors.searchContainer);
                 if (!$container.hasClass(this.classes.activeClass)) return;
                 this.searchExitReport();
-                $(this.selectors.input).trigger("blur").val("");
-                $(this.selectors.suggestList).html("");
+                __SL_$__(this.selectors.input).trigger("blur").val("");
+                __SL_$__(this.selectors.suggestList).html("");
                 this.prepareTransition($container, (() => {
                     this.jq.root.removeClass([ this.classes.drawerOpenRoot, this.classes.drawerOpenRootSearch ]);
                     this.jq.root.addClass(this.classes.drawerClosingRoot);
@@ -7443,7 +7564,7 @@
             }
             bindMaskClick() {
                 this.$on(this.tempEventType, (({target}) => {
-                    const container = $(this.selectors.searchContainer)[0];
+                    const container = __SL_$__(this.selectors.searchContainer)[0];
                     if (!container) return;
                     if (!container.contains(target)) window.SL_EventBus.emit(HEADER_SEARCH_EVENT, "close");
                 }));
@@ -7460,8 +7581,8 @@
                 });
             }
             doSearch(e) {
-                const id = $(e.currentTarget).data("id");
-                const value = $(`#${id}__input`).val();
+                const id = __SL_$__(e.currentTarget).data("id");
+                const value = __SL_$__(`#${id}__input`).val();
                 if (!value) return;
                 this.doSearchReport(value);
                 window.location.href = getSearchResultUrl(value, 2);
@@ -7478,8 +7599,8 @@
             }
             bindInput(selector) {
                 this.$on("input", selector, debounce_default()((async e => {
-                    const resultList = `#${$(e.target).data("id")}__suggest-list`;
-                    const $list = $(resultList);
+                    const resultList = `#${__SL_$__(e.target).data("id")}__suggest-list`;
+                    const $list = __SL_$__(resultList);
                     const {value: searchValue} = e.target;
                     if (!searchValue) {
                         $list.html("");
@@ -7514,14 +7635,14 @@
                     }
                 }));
                 this.$on("focus", this.selectors.searchBarInput, (e => {
-                    const resultList = `#${$(e.target).data("id")}__suggest-list`;
-                    const $target = $("#suggest-menu-list");
-                    $(resultList).html($target.html());
+                    const resultList = `#${__SL_$__(e.target).data("id")}__suggest-list`;
+                    const $target = __SL_$__("#suggest-menu-list");
+                    __SL_$__(resultList).html($target.html());
                 }));
                 this.$on("blur", this.selectors.searchBarInput, (e => {
-                    const resultList = `#${$(e.target).data("id")}__suggest-list`;
+                    const resultList = `#${__SL_$__(e.target).data("id")}__suggest-list`;
                     setTimeout((() => {
-                        $(resultList).html("");
+                        __SL_$__(resultList).html("");
                     }), 500);
                 }));
             }
@@ -7530,7 +7651,7 @@
             }
         }
         let header_search_instance = new HeaderSearch;
-        $(document).on("shopline:section:load", (() => {
+        __SL_$__(document).on("shopline:section:load", (() => {
             header_search_instance.off();
             header_search_instance = new HeaderSearch;
         }));
@@ -7573,9 +7694,9 @@
             }
             bindEvent() {
                 this.$on("click", this.selector.trigger, (e => {
-                    const $button = $(e.currentTarget);
+                    const $button = __SL_$__(e.currentTarget);
                     const controlsId = $button.attr("aria-controls");
-                    const $controls = $(`#${controlsId}`);
+                    const $controls = __SL_$__(`#${controlsId}`);
                     const $inner = $controls.find(this.selector.inner);
                     const height = $inner.height();
                     if ($button.hasClass(this.classes.openClass)) {
@@ -7598,7 +7719,7 @@
             }
             bindDrawer() {
                 this.$on("click", this.selector.localeCurrency, (e => {
-                    const $target = $(e.currentTarget);
+                    const $target = __SL_$__(e.currentTarget);
                     const drawerId = $target.data("drawer");
                     window.SL_EventBus.emit("stage:drawer", {
                         id: drawerId,
@@ -7608,7 +7729,7 @@
             }
             bindLocaleCurrencyChange() {
                 this.$on("click", `${this.selector.localeCurrencyContainer} li`, (e => {
-                    const $target = $(e.currentTarget);
+                    const $target = __SL_$__(e.currentTarget);
                     const drawerId = $target.parents(this.selector.drawer).eq(0).attr("id");
                     window.SL_EventBus.emit("stage:drawer", {
                         id: drawerId,
@@ -7621,7 +7742,7 @@
             }
         }
         let drawer_menu_instance = new DrawerMenu;
-        $(document).on("shopline:section:load", (() => {
+        __SL_$__(document).on("shopline:section:load", (() => {
             drawer_menu_instance.off();
             drawer_menu_instance = new DrawerMenu;
         }));
@@ -7670,19 +7791,19 @@
                     this.drawers.localeDrawer.open();
                 }));
                 this.$on("click", this.selector.currencyBtn, (e => {
-                    const $btn = $(e.currentTarget);
+                    const $btn = __SL_$__(e.currentTarget);
                     this.setupCurrencyList($btn);
                     this.drawers.currencyDrawer.open();
                 }));
             }
             setupCurrencyList($btn) {
                 const hasSymbol = $btn.find(".currency-symbol").hasClass("show");
-                const $drawerCurrencyList = $(".drawer-menu-locale-currency[data-currency] .currency-list");
+                const $drawerCurrencyList = __SL_$__(".drawer-menu-locale-currency[data-currency] .currency-list");
                 if (hasSymbol) $drawerCurrencyList.addClass("show-symbol"); else $drawerCurrencyList.removeClass("show-symbol");
             }
             bindLocaleCurrencyChange() {
                 this.$on("click", `${this.selector.localeCurrencyContainer} li`, (e => {
-                    const $target = $(e.currentTarget);
+                    const $target = __SL_$__(e.currentTarget);
                     const drawerId = $target.parents(this.selector.drawer).eq(0).attr("id");
                     Object.keys(this.drawers).forEach((key => {
                         const drawer = this.drawers[key];
@@ -7695,7 +7816,7 @@
             }
         }
         let mobile_locale_currency_drawer_instance = new mobile_locale_currency_drawer_DrawerMenu;
-        $(document).on("shopline:section:load", (() => {
+        __SL_$__(document).on("shopline:section:load", (() => {
             mobile_locale_currency_drawer_instance.off();
             mobile_locale_currency_drawer_instance = new mobile_locale_currency_drawer_DrawerMenu;
         }));
@@ -7704,8 +7825,8 @@
         const EVENT_STICKY_ELEMENT_HEIGHT = "stage:header:stickyElementHeight";
         function getStickyElementHeight(headerSectionSelector = "#shopline-section-header") {
             let top = 0;
-            $(headerSectionSelector).prevAll().each(((_, el) => {
-                const $el = $(el);
+            __SL_$__(headerSectionSelector).prevAll().each(((_, el) => {
+                const $el = __SL_$__(el);
                 if ("sticky" === $el.css("position")) top += $el.height();
             }));
             return top;
@@ -7737,12 +7858,12 @@
                 this.onEvent();
             }
             onEvent() {
-                $(window).on(`scroll.${this.namespace}`, lodash_debounce_default()(emitStickyElementHeight, 1e3, {
+                __SL_$__(window).on(`scroll.${this.namespace}`, lodash_debounce_default()(emitStickyElementHeight, 1e3, {
                     leading: true
                 }));
             }
             offEvent() {
-                $(window).off(`scroll.${this.namespace}`);
+                __SL_$__(window).off(`scroll.${this.namespace}`);
             }
         }
         var globalEvent = __webpack_require__("./src/assets/commons/cart/globalEvent.js");
@@ -7804,24 +7925,24 @@
                     sectionOuterHeaderWrapper: "#shopline-section-header"
                 });
                 header_defineProperty(this, "jq", {
-                    header: $(),
-                    wrapper: $(),
-                    stickyHeaderWrapper: $()
+                    header: __SL_$__(),
+                    wrapper: __SL_$__(),
+                    stickyHeaderWrapper: __SL_$__()
                 });
                 header_defineProperty(this, "menuDrawer", null);
                 this.$setNamespace(this.config.namespace);
-                this.jq.header = $(this.selectors.header);
-                this.jq.wrapper = $(this.selectors.wrapper);
+                this.jq.header = __SL_$__(this.selectors.header);
+                this.jq.wrapper = __SL_$__(this.selectors.wrapper);
                 this.stickyElementManager = new StickyElementManager;
                 this.bindCartEvent();
                 this.initAfterLoaded();
                 this.bindHeaderNav();
-                const $img = $(this.selectors.logoImag);
+                const $img = __SL_$__(this.selectors.logoImag);
                 let waitForImg = null;
                 if ($img.length) waitForImg = null === $img || void 0 === $img ? void 0 : $img.toArray().find((img => null !== img.offsetParent));
                 if (waitForImg) if (waitForImg.complete && 0 !== waitForImg.naturalHeight) this.initHeader(); else waitForImg.onload = () => {
                     this.initHeader();
-                }; else $((() => {
+                }; else __SL_$__((() => {
                     this.initHeader();
                 }));
             }
@@ -7833,7 +7954,7 @@
             initHeader() {
                 this.config.stickyEnabled = this.jq.header.data("sticky");
                 if (this.config.stickyEnabled) {
-                    const notOverlay = $(this.selectors.notOverlayId);
+                    const notOverlay = __SL_$__(this.selectors.notOverlayId);
                     if (notOverlay.length) {
                         this.config.wrapperOverlayed = false;
                         this.jq.wrapper.removeClass(this.classes.overlayedClass);
@@ -7842,7 +7963,7 @@
                     this.stickyHeaderCheck();
                 }
                 window.SL_EventBus.on("force-header-intoView", (() => {
-                    if (window.scrollY < 250 && window.scrollY > 0) $(this.selectors.header)[0].scrollIntoView();
+                    if (window.scrollY < 250 && window.scrollY > 0) __SL_$__(this.selectors.header)[0].scrollIntoView();
                 }));
                 window.SL_EventBus.on("stage:locale:change", (() => {
                     var _this$jq, _this$jq$stickyHeader, _this$jq$stickyHeader2;
@@ -7864,7 +7985,7 @@
                 const wrapWith = document.createElement("div");
                 wrapWith.id = this.config.stickyHeaderWrapper;
                 this.jq.header.wrap(wrapWith);
-                this.jq.stickyHeaderWrapper = $(`#${wrapWith.id}`);
+                this.jq.stickyHeaderWrapper = __SL_$__(`#${wrapWith.id}`);
                 this.stickyHeaderHeight();
                 this.stickyHeaderScroll();
                 setTimeout((() => {
@@ -7873,7 +7994,7 @@
                 this.$onWin("resize", debounce_default()(this.stickyHeaderHeight.bind(this), 50));
                 this.$onWin("scroll", throttle_default()(this.stickyHeaderScroll.bind(this), 20));
                 if (window.Shopline.designMode) {
-                    const $logoImage = $(this.selectors.logoImage);
+                    const $logoImage = __SL_$__(this.selectors.logoImage);
                     const onLoadHandler = () => {
                         setTimeout((() => {
                             this.stickyHeaderHeight();
@@ -7893,7 +8014,7 @@
                 if (window.scrollY > 250) this.doSticky(); else this.undoSticky();
             }
             emitSticky(stickyActive) {
-                const headerHeight = $(this.selectors.header).height();
+                const headerHeight = __SL_$__(this.selectors.header).height();
                 const stickOffsetTop = this.getStickHeaderOffsetTop();
                 this.config.lastStickOffsetTop = stickOffsetTop;
                 window.SL_EventBus.emit("stage:header:sticky", {
@@ -7909,7 +8030,7 @@
                 if (false === this.config.stickyActive) return;
                 this.config.stickyActive = false;
                 this.jq.header.removeClass([ this.classes.openTransitionClass, this.classes.stickyClass ]);
-                $(this.selectors.outerWrapper).removeClass(this.classes.outerWrapperSticky);
+                __SL_$__(this.selectors.outerWrapper).removeClass(this.classes.outerWrapperSticky);
                 this.jq.header.css({
                     top: 0
                 });
@@ -7922,14 +8043,14 @@
                 const isNeedRerender = !this.config.stickyActive || this.config.lastStickOffsetTop !== stickOffsetTop;
                 if (!isNeedRerender) return;
                 this.config.stickyActive = true;
-                const height = $(this.selectors.header).innerHeight();
+                const height = __SL_$__(this.selectors.header).innerHeight();
                 this.jq.header.addClass(this.classes.stickyClass);
                 this.jq.stickyHeaderWrapper.eq(0).height(height);
                 this.jq.header.addClass(this.classes.stickyClass);
                 if (this.config.wrapperOverlayed) this.jq.wrapper.removeClass(this.classes.overlayedClass);
                 setTimeout((() => {
                     this.jq.header.addClass(this.classes.openTransitionClass);
-                    $(this.selectors.outerWrapper).addClass(this.classes.outerWrapperSticky);
+                    __SL_$__(this.selectors.outerWrapper).addClass(this.classes.outerWrapperSticky);
                     this.emitSticky(true);
                     this.jq.header.css({
                         top: stickOffsetTop
@@ -7938,27 +8059,27 @@
             }
             stickyHeaderHeight() {
                 if (!this.config.stickyEnabled) return;
-                const headerLayoutBackgroundHeight = $(".header__layout-background").css("height") || 0;
+                const headerLayoutBackgroundHeight = __SL_$__(".header__layout-background").css("height") || 0;
                 const h = headerLayoutBackgroundHeight;
                 this.jq.stickyHeaderWrapper[0].style.height = this.config.wrapperOverlayed ? "auto" : `${h}px`;
             }
             getStickHeaderOffsetTop() {
                 let top = 0;
-                $(this.selectors.sectionOuterHeaderWrapper).prevAll().each(((_, el) => {
-                    const $el = $(el);
+                __SL_$__(this.selectors.sectionOuterHeaderWrapper).prevAll().each(((_, el) => {
+                    const $el = __SL_$__(el);
                     if ("sticky" === $el.css("position")) top += $el.height();
                 }));
                 return top;
             }
             bindCartEvent() {
                 this.$on("click", this.selectors.miniCart, (e => {
-                    const $btn = $(e.currentTarget);
+                    const $btn = __SL_$__(e.currentTarget);
                     if ($btn.hasClass("header__btn--on")) window.SL_EventBus.emit(globalEvent.CLOSE_MINI_CART); else window.SL_EventBus.emit(globalEvent.OPEN_MINI_CART);
                 }));
             }
             bindHeaderNav() {
                 this.$on("click", this.selectors.navBtn, (() => {
-                    $(this.selectors.layoutContainer).toggleClass(this.classes.activeNavClass);
+                    __SL_$__(this.selectors.layoutContainer).toggleClass(this.classes.activeNavClass);
                 }));
                 this.$on("click", this.selectors.drawerBtn, (() => {
                     window.SL_EventBus.emit(DRAWER_EVENT_NAME, {
@@ -7988,12 +8109,12 @@
                 }));
             }
             activeCart(num = 0) {
-                const cartBtn = $(this.selectors.cartBtn);
+                const cartBtn = __SL_$__(this.selectors.cartBtn);
                 if (!cartBtn.length) return;
                 const cartNum = window.SL_State.get("cartInfo.count") || num;
                 if (cartNum) {
                     cartBtn.removeClass(this.classes.activeCartClass).addClass(this.classes.activeCartClass);
-                    $(this.selectors.cartPoint).html(cartNum);
+                    __SL_$__(this.selectors.cartPoint).html(cartNum);
                 } else cartBtn.removeClass(this.classes.activeCartClass);
             }
             offEventBus() {
@@ -8006,7 +8127,7 @@
             }
         }
         let header_instance = new Header;
-        $(document).on("shopline:section:load", (() => {
+        __SL_$__(document).on("shopline:section:load", (() => {
             header_instance.off();
             header_instance = null;
             header_instance = new Header;
@@ -8061,8 +8182,8 @@
                 });
                 locale_currency_defineProperty(this, "gteObserver", null);
                 this.$setNamespace(this.config.namespace);
-                if ($(this.selectors.localeButton).length > 0) this.initLocaleDropdown();
-                if ($(this.selectors.currencyButton).length > 0) this.initCurrencyDropdown();
+                if (__SL_$__(this.selectors.localeButton).length > 0) this.initLocaleDropdown();
+                if (__SL_$__(this.selectors.currencyButton).length > 0) this.initCurrencyDropdown();
                 this.bindLanguageChange();
                 this.bindCurrencySearch();
                 this.bindCurrencyChange();
@@ -8070,7 +8191,7 @@
             }
             createGTEObserver() {
                 window.Shopline.event.on("googleInitComplete", (() => {
-                    const node = $(this.selectors.gteTag)[0];
+                    const node = __SL_$__(this.selectors.gteTag)[0];
                     if (node) {
                         this.gteObserver = new MutationObserver((() => {
                             window.SL_EventBus.emit("stage:locale:change");
@@ -8083,7 +8204,7 @@
             }
             bindDropdownClick(selector) {
                 this.$on("click", selector, (e => {
-                    const $dropdownContainer = $(e.target).parents(".locale-currency");
+                    const $dropdownContainer = __SL_$__(e.target).parents(".locale-currency");
                     const $dropdownList = $dropdownContainer.find(this.selectors.dropdownList);
                     if ($dropdownList.hasClass(this.classes.dropdownVisibleClass)) {
                         $dropdownList.removeClass(this.classes.dropdownVisibleClass);
@@ -8107,14 +8228,14 @@
                 }));
             }
             showLocaleBtn() {
-                $(this.selectors.localeContainer).show();
-                $(this.selectors.mobileLocaleBtn).removeClass("d-none");
+                __SL_$__(this.selectors.localeContainer).show();
+                __SL_$__(this.selectors.mobileLocaleBtn).removeClass("d-none");
             }
             bindLanguageChange() {
                 this.$on("click", `${this.selectors.localeContainer} li`, (e => {
-                    var _$, _$$parents, _$$find, _$$find2;
+                    var _SL_$__, _SL_$__$parents, _SL_$__$find, _SL_$__$find2;
                     const storeLanguage = window.SL_State.get("storeInfo.languageSetting.storeLanguage");
-                    const $target = $(e.currentTarget);
+                    const $target = __SL_$__(e.currentTarget);
                     const alias = $target.data("alias");
                     const text = $target.data("name");
                     report_virtualReport.reportSelectLang(e, alias);
@@ -8133,9 +8254,9 @@
                     src_js_cookie_default().set("lang", storeLanguage);
                     src_js_cookie_default().set("addressLang", alias);
                     src_js_cookie_default().set("userSelectLocale", alias);
-                    null === (_$ = $(e.target)) || void 0 === _$ ? void 0 : null === (_$$parents = _$.parents(this.selectors.dropdownList)) || void 0 === _$$parents ? void 0 : _$$parents.removeClass(this.classes.dropdownVisibleClass);
-                    null === (_$$find = $(this.selectors.localeButton).find("span")) || void 0 === _$$find ? void 0 : _$$find.text(text);
-                    null === (_$$find2 = $(this.selectors.localeDrawerButton).find("span")) || void 0 === _$$find2 ? void 0 : _$$find2.text(text);
+                    null === (_SL_$__ = __SL_$__(e.target)) || void 0 === _SL_$__ ? void 0 : null === (_SL_$__$parents = _SL_$__.parents(this.selectors.dropdownList)) || void 0 === _SL_$__$parents ? void 0 : _SL_$__$parents.removeClass(this.classes.dropdownVisibleClass);
+                    null === (_SL_$__$find = __SL_$__(this.selectors.localeButton).find("span")) || void 0 === _SL_$__$find ? void 0 : _SL_$__$find.text(text);
+                    null === (_SL_$__$find2 = __SL_$__(this.selectors.localeDrawerButton).find("span")) || void 0 === _SL_$__$find2 ? void 0 : _SL_$__$find2.text(text);
                     window.SL_State.set("request.locale", alias);
                     window.SL_EventBus.emit("global:currency:format", {
                         lang: alias,
@@ -8152,7 +8273,7 @@
             }
             bindCurrencyChange() {
                 this.$on("click", `${this.selectors.currencyContainer} li`, (e => {
-                    const $target = $(e.currentTarget);
+                    const $target = __SL_$__(e.currentTarget);
                     const code = $target.data("currency-code");
                     const symbol = $target.data("currency-symbol");
                     const showSymbol = $target.parents(this.selectors.currencyList).data("show-symbol");
@@ -8168,10 +8289,10 @@
                         lang: window.SL_State.get("request.locale"),
                         currencyCode: code
                     });
-                    $(e.target).parents(this.selectors.dropdownList).removeClass(this.classes.dropdownVisibleClass);
-                    $(this.selectors.currencyButton).find("span").text(currencyText);
-                    $(this.selectors.currencyDrawerButton).find(".currency-symbol").text(symbol);
-                    $(this.selectors.currencyDrawerButton).find(".currency-code").text(code);
+                    __SL_$__(e.target).parents(this.selectors.dropdownList).removeClass(this.classes.dropdownVisibleClass);
+                    __SL_$__(this.selectors.currencyButton).find("span").text(currencyText);
+                    __SL_$__(this.selectors.currencyDrawerButton).find(".currency-symbol").text(symbol);
+                    __SL_$__(this.selectors.currencyDrawerButton).find(".currency-code").text(code);
                 }));
             }
             bindCurrencySearch() {
@@ -8179,7 +8300,7 @@
                     const {value: searchValue} = e.target;
                     const allCurrencies = window.SL_State.get("currencyConfig.referenceCurrencies");
                     let str = "";
-                    const container = $(e.target).parents(this.selectors.currencyContainer).find(this.selectors.currencyList);
+                    const container = __SL_$__(e.target).parents(this.selectors.currencyContainer).find(this.selectors.currencyList);
                     const showSymbol = container.data("show-symbol");
                     if (!searchValue) str = createCurrencyListTemplate(allCurrencies, showSymbol); else {
                         const filterList = allCurrencies.filter((item => {
@@ -8204,7 +8325,7 @@
             }
         }
         let locale_currency_instance = new LocaleCurrency;
-        $(document).on("shopline:section:load", (() => {
+        __SL_$__(document).on("shopline:section:load", (() => {
             locale_currency_instance.off();
             locale_currency_instance = new LocaleCurrency;
             locale_currency_instance.showLocaleBtn();
@@ -8241,8 +8362,8 @@
                 this.initMobileToolkit();
             }
             initMobileToolkit() {
-                const $item = $("#stage-footer .j-locale-currency-flag");
-                const $root = $("#stage-footer");
+                const $item = __SL_$__("#stage-footer .j-locale-currency-flag");
+                const $root = __SL_$__("#stage-footer");
                 const $localeBtn = $root.find(".j-locale-drawer-btn");
                 const $currencyBtn = $root.find(".j-currency-drawer-btn");
                 const currency_selector = $item.data("currency");
@@ -8275,23 +8396,23 @@
                     if (referralCode) params.referralCode = referralCode;
                     request["default"].post("/user/front/users/footersub", params).then((res => {
                         if (res.success) toast["default"].init({
-                            content: (0, i18n.t)("footer.subscribeSuccess")
+                            content: (0, i18n.t)("general.footer.subscribe_success")
                         }); else toast["default"].init({
-                            content: (0, i18n.t)("footer.subscribeRegExpError")
+                            content: (0, i18n.t)("general.footer.subscribe_reg_exp_error")
                         });
                     })).catch((err => {
                         console.log("subscribe error", err);
                         toast["default"].init({
-                            content: (0, i18n.t)("footer.subscribeRegExpError")
+                            content: (0, i18n.t)("general.footer.subscribe_reg_exp_error")
                         });
                     }));
                 }));
                 this.$on("click", ".footer__newsletter-btn", (e => {
-                    const $input = $(e.currentTarget).parent().find("input");
+                    const $input = __SL_$__(e.currentTarget).parent().find("input");
                     const value = $input.val();
                     if (true !== (0, checkEmail["default"])(value)) {
                         toast["default"].init({
-                            content: (0, i18n.t)("footer.subscribeRegExpError")
+                            content: (0, i18n.t)("general.footer.subscribe_reg_exp_error")
                         });
                         return;
                     }
@@ -8300,12 +8421,12 @@
             }
         }
         const footer_instance = new Footer;
-        $(document).on("shopline:section:load", (() => {
+        __SL_$__(document).on("shopline:section:load", (() => {
             footer_instance.reset();
         }));
         __webpack_require__("./src/assets/stage/announcement-bar/index.js");
         developer_api("Cart::GetCartId", "Cart::NavigateCart", "Checkout::NavigateCheckout", "Cart::AddToCart", "Cart::ControlCartBasis", "Cart::CartDetailUpdate", "Cart::LineItemUpdate");
-        customer_developer_api("Customer::LoginModal");
+        customer_developer_api("Customer::LoginModal", "Customer::Register");
         null === utils_dataReport || void 0 === utils_dataReport ? void 0 : utils_dataReport.listen("DataReport::AddToCart");
         (0, dataAccessor.setSyncData)({
             orderFrom: "web"
@@ -8319,7 +8440,7 @@
     },
     "./src/assets/vendor/mod/a-nested.js": () => {
         const registerLink = element => {
-            const $element = $(element);
+            const $element = __SL_$__(element);
             const href = $element.attr("href");
             const target = $element.attr("target") || "_self";
             if (!href) return;
@@ -8328,31 +8449,31 @@
                 window.open(href, target);
             }));
         };
-        $(".global-a-nested").each(((_, element) => {
+        __SL_$__(".global-a-nested").each(((_, element) => {
             registerLink(element);
         }));
-        $(document).on("shopline:section:load", (e => {
+        __SL_$__(document).on("shopline:section:load", (e => {
             const {sectionId} = e.detail;
-            $(`#shopline-section-${sectionId} .global-a-nested`).each(((_, element) => {
+            __SL_$__(`#shopline-section-${sectionId} .global-a-nested`).each(((_, element) => {
                 registerLink(element);
             }));
         }));
     },
     "./src/assets/vendor/mod/parallax.js": () => {
-        let parallaxContainers = $(".parallax-container");
+        let parallaxContainers = __SL_$__(".parallax-container");
         let parallaxListener;
         function onScroll() {
             requestAnimationFrame(scrollHandler.bind(this));
         }
         function scrollHandler() {
-            const viewPortHeight = $(window).height();
+            const viewPortHeight = __SL_$__(window).height();
             parallaxContainers.each(((index, el) => {
-                const parallaxImage = $(el).find(".parallax");
-                const hasClass = $(el).hasClass("large-image-with-text-box--loaded");
-                const isLargeImageText = $(el).hasClass("large-image-with-text-box");
+                const parallaxImage = __SL_$__(el).find(".parallax");
+                const hasClass = __SL_$__(el).hasClass("large-image-with-text-box--loaded");
+                const isLargeImageText = __SL_$__(el).hasClass("large-image-with-text-box");
                 if (0 === parallaxImage.length) {
                     if (!isLargeImageText) return;
-                    if (!hasClass) $(el).addClass("large-image-with-text-box--loaded");
+                    if (!hasClass) __SL_$__(el).addClass("large-image-with-text-box--loaded");
                     return;
                 }
                 const {top, height} = el.getBoundingClientRect();
@@ -8362,14 +8483,14 @@
                 const currentDistance = viewPortHeight - top;
                 const percent = (currentDistance / movableDistance * speed * 38).toFixed(2);
                 const num = 38 - Number(percent);
-                $(parallaxImage).css("transform", `translate3d(0 , ${-num}% , 0)`);
+                __SL_$__(parallaxImage).css("transform", `translate3d(0 , ${-num}% , 0)`);
                 if (!isLargeImageText) return;
-                if (!hasClass) $(el).addClass("large-image-with-text-box--loaded");
+                if (!hasClass) __SL_$__(el).addClass("large-image-with-text-box--loaded");
             }));
         }
         function init() {
-            parallaxContainers = $(".parallax-container");
-            if (!parallaxListener) parallaxListener = $(window).on("scroll", onScroll);
+            parallaxContainers = __SL_$__(".parallax-container");
+            if (!parallaxListener) parallaxListener = __SL_$__(window).on("scroll", onScroll);
             scrollHandler();
         }
         window.SL_EventBus.on("parallax", (() => {
@@ -8474,7 +8595,7 @@
             return !param || "string" !== typeof param;
         }
         function isJqueryInstance(dom) {
-            return dom && dom instanceof $ && dom.length > 0;
+            return dom && dom instanceof __SL_$__ && dom.length > 0;
         }
         function getEventHandlerName(event, selector, namepsace) {
             if (!selector) return [ event, namepsace ].join("-");
@@ -8539,9 +8660,9 @@
         }
         class EventManager {
             constructor(namespace = "", portals) {
-                this.$win = $(window);
-                this.$doc = $(document);
-                this.$portals = portals ? $(portals) : null;
+                this.$win = __SL_$__(window);
+                this.$doc = __SL_$__(document);
+                this.$portals = portals ? __SL_$__(portals) : null;
                 this.namespace = "string" === typeof namespace ? namespace : "";
                 this.$eventHandlers = new Map;
                 this.$winEventHandlers = new Map;
@@ -8559,7 +8680,7 @@
                 this.namespace = namespace;
             }
             $setPortals(portals) {
-                this.$portals = portals ? $(portals) : null;
+                this.$portals = portals ? __SL_$__(portals) : null;
             }
             $on(event, selector, handler) {
                 const onEvent = onConsistent.call(this, event, selector, handler);
@@ -8671,10 +8792,10 @@
                 return this.$root.hasClass(this.classes.active);
             }
             get $body() {
-                return $("body");
+                return __SL_$__("body");
             }
             get $root() {
-                return $(`#${this.id}`);
+                return __SL_$__(`#${this.id}`);
             }
             setupFullScreen() {
                 if (this.options.fullScreen) this.$root.addClass(this.classes.fullscreen);
@@ -8706,7 +8827,7 @@
             bindClickOutside() {
                 this.$on("click", (e => {
                     if (!this.closeFlag) return;
-                    const $container = $(e.target).closest(`#${this.id}`);
+                    const $container = __SL_$__(e.target).closest(`#${this.id}`);
                     const isOutside = 0 === $container.length;
                     if (this.isOpen && isOutside) window.SL_EventBus.emit(_const__WEBPACK_IMPORTED_MODULE_0__.DRAWER_EVENT_NAME, {
                         operator: _const__WEBPACK_IMPORTED_MODULE_0__.DRAWER_OPERATORS.CLOSE,
@@ -9202,7 +9323,7 @@
                     };
                     node.style = convertOutputStyle(wrapperStyle);
                 }
-                node.parentElement.prepend(styleTag);
+                node.parentElement.insertBefore(styleTag, node);
                 node.appendChild(skeleton);
             }
             createDisabledStyle(node) {
@@ -9210,7 +9331,7 @@
                 this.disabledStyleTag = styleTag;
                 styleTag.innerHTML = `\n      #${this.config.domId || "shopline-paypal"}::before {\n        width: 0 !important;\n      }\n      #${this.config.domId || "shopline-paypal"}::after {\n        content: '';\n        display: block;\n        z-index: 100;\n        width: 100% !important;\n        height: ${this.style.height}px;\n        border-radius: 4px;\n        cursor: not-allowed;\n        position: absolute;\n        top: 0;\n        left: 0 !important;\n        background: transparent !important;\n      }\n\n      #${this.config.domId} {\n        opacity: ${this.disabled ? .3 : 1};\n      }\n    `;
                 if (!node) return;
-                node.parentElement.prepend(styleTag);
+                node.parentElement.insertBefore(styleTag, node);
             }
             removeSkeleton(node) {
                 const {skeleton} = this;
@@ -9397,27 +9518,27 @@
             switch (true) {
               case /0401/.test(error.code):
               case /0402/.test(error.code):
-                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("paypal.error-expired");
+                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("cart.notices.product_expired");
                 break;
 
               case /0403/.test(error.code):
-                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("paypal.error-sold-out");
+                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("cart.notices.insufficient_product_inventory");
                 break;
 
               case /0404/.test(error.code):
-                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("paypal.error-product-limit");
+                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("cart.notices.product_limit");
                 break;
 
               case /0005/.test(error.code):
-                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("paypal.error-network-error");
+                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("cart.notices.network");
                 break;
 
               case /0703/.test(error.code):
-                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("paypal.error-shop-not-exit");
+                content = (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("cart.notices.store_nonexistent");
                 break;
 
               default:
-                content = error && error.message || (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("paypal.error-network-error");
+                content = error && error.message || (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("cart.notices.network");
             }
             return content;
         };
@@ -12336,6 +12457,791 @@
             });
         }));
     },
+    "../shared/browser/node_modules/@sl/logger-sentry/lib/index.es.js": (module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => U
+        });
+        var _sl_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sl/logger/lib/index.es.js");
+        module = __webpack_require__.hmd(module);
+        var e = function() {
+            return e = Object.assign || function(t) {
+                for (var e, n = 1, r = arguments.length; n < r; n++) for (var i in e = arguments[n]) Object.prototype.hasOwnProperty.call(e, i) && (t[i] = e[i]);
+                return t;
+            }, e.apply(this, arguments);
+        };
+        function n(t, e) {
+            var n = "function" == typeof Symbol && t[Symbol.iterator];
+            if (!n) return t;
+            var r, i, s = n.call(t), o = [];
+            try {
+                for (;(void 0 === e || e-- > 0) && !(r = s.next()).done; ) o.push(r.value);
+            } catch (t) {
+                i = {
+                    error: t
+                };
+            } finally {
+                try {
+                    r && !r.done && (n = s.return) && n.call(s);
+                } finally {
+                    if (i) throw i.error;
+                }
+            }
+            return o;
+        }
+        function r() {
+            for (var t = [], e = 0; e < arguments.length; e++) t = t.concat(n(arguments[e]));
+            return t;
+        }
+        function i() {
+            return !("undefined" != typeof __SENTRY_BROWSER_BUNDLE__ && __SENTRY_BROWSER_BUNDLE__) && "[object process]" === Object.prototype.toString.call("undefined" != typeof process ? process : 0);
+        }
+        var s = {};
+        function o() {
+            return i() ? __webpack_require__.g : "undefined" != typeof window ? window : "undefined" != typeof self ? self : s;
+        }
+        function a(t, e, n) {
+            var r = n || o(), i = r.__SENTRY__ = r.__SENTRY__ || {};
+            return i[t] || (i[t] = e());
+        }
+        var c = Object.prototype.toString;
+        function u(t) {
+            return function(t, e) {
+                return c.call(t) === "[object " + e + "]";
+            }(t, "Object");
+        }
+        function p(t) {
+            return Boolean(t && t.then && "function" == typeof t.then);
+        }
+        var h, f = "undefined" == typeof __SENTRY_DEBUG__ || __SENTRY_DEBUG__, _ = o(), l = [ "debug", "info", "warn", "error", "log", "assert" ];
+        function d(t) {
+            var e = o();
+            if (!("console" in e)) return t();
+            var n = e.console, r = {};
+            l.forEach((function(t) {
+                var i = n[t] && n[t].__sentry_original__;
+                t in e.console && i && (r[t] = n[t], n[t] = i);
+            }));
+            try {
+                return t();
+            } finally {
+                Object.keys(r).forEach((function(t) {
+                    n[t] = r[t];
+                }));
+            }
+        }
+        function g() {
+            var t = !1, e = {
+                enable: function() {
+                    t = !0;
+                },
+                disable: function() {
+                    t = !1;
+                }
+            };
+            return f ? l.forEach((function(n) {
+                e[n] = function() {
+                    for (var e = [], i = 0; i < arguments.length; i++) e[i] = arguments[i];
+                    t && d((function() {
+                        var t;
+                        (t = _.console)[n].apply(t, r([ "Sentry Logger [" + n + "]:" ], e));
+                    }));
+                };
+            })) : l.forEach((function(t) {
+                e[t] = function() {};
+            })), e;
+        }
+        function v(t) {
+            var e, n;
+            if (u(t)) {
+                var r = {};
+                try {
+                    for (var i = function(t) {
+                        var e = "function" == typeof Symbol && Symbol.iterator, n = e && t[e], r = 0;
+                        if (n) return n.call(t);
+                        if (t && "number" == typeof t.length) return {
+                            next: function() {
+                                return t && r >= t.length && (t = void 0), {
+                                    value: t && t[r++],
+                                    done: !t
+                                };
+                            }
+                        };
+                        throw new TypeError(e ? "Object is not iterable." : "Symbol.iterator is not defined.");
+                    }(Object.keys(t)), s = i.next(); !s.done; s = i.next()) {
+                        var o = s.value;
+                        void 0 !== t[o] && (r[o] = v(t[o]));
+                    }
+                } catch (t) {
+                    e = {
+                        error: t
+                    };
+                } finally {
+                    try {
+                        s && !s.done && (n = i.return) && n.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+                return r;
+            }
+            return Array.isArray(t) ? t.map(v) : t;
+        }
+        function y() {
+            var t = o(), e = t.crypto || t.msCrypto;
+            if (void 0 !== e && e.getRandomValues) {
+                var n = new Uint16Array(8);
+                e.getRandomValues(n), n[3] = 4095 & n[3] | 16384, n[4] = 16383 & n[4] | 32768;
+                var r = function(t) {
+                    for (var e = t.toString(16); e.length < 4; ) e = "0" + e;
+                    return e;
+                };
+                return r(n[0]) + r(n[1]) + r(n[2]) + r(n[3]) + r(n[4]) + r(n[5]) + r(n[6]) + r(n[7]);
+            }
+            return "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, (function(t) {
+                var e = 16 * Math.random() | 0;
+                return ("x" === t ? e : 3 & e | 8).toString(16);
+            }));
+        }
+        h = f ? a("logger", g) : g();
+        var x, S = function() {
+            function t(t) {
+                var e = this;
+                this._state = 0, this._handlers = [], this._resolve = function(t) {
+                    e._setResult(1, t);
+                }, this._reject = function(t) {
+                    e._setResult(2, t);
+                }, this._setResult = function(t, n) {
+                    0 === e._state && (p(n) ? n.then(e._resolve, e._reject) : (e._state = t, e._value = n, 
+                    e._executeHandlers()));
+                }, this._executeHandlers = function() {
+                    if (0 !== e._state) {
+                        var t = e._handlers.slice();
+                        e._handlers = [], t.forEach((function(t) {
+                            t[0] || (1 === e._state && t[1](e._value), 2 === e._state && t[2](e._value), t[0] = !0);
+                        }));
+                    }
+                };
+                try {
+                    t(this._resolve, this._reject);
+                } catch (t) {
+                    this._reject(t);
+                }
+            }
+            return t.prototype.then = function(e, n) {
+                var r = this;
+                return new t((function(t, i) {
+                    r._handlers.push([ !1, function(n) {
+                        if (e) try {
+                            t(e(n));
+                        } catch (t) {
+                            i(t);
+                        } else t(n);
+                    }, function(e) {
+                        if (n) try {
+                            t(n(e));
+                        } catch (t) {
+                            i(t);
+                        } else i(e);
+                    } ]), r._executeHandlers();
+                }));
+            }, t.prototype.catch = function(t) {
+                return this.then((function(t) {
+                    return t;
+                }), t);
+            }, t.prototype.finally = function(e) {
+                var n = this;
+                return new t((function(t, r) {
+                    var i, s;
+                    return n.then((function(t) {
+                        s = !1, i = t, e && e();
+                    }), (function(t) {
+                        s = !0, i = t, e && e();
+                    })).then((function() {
+                        s ? r(i) : t(i);
+                    }));
+                }));
+            }, t;
+        }();
+        !function(t) {
+            t.Fatal = "fatal", t.Error = "error", t.Warning = "warning", t.Log = "log", t.Info = "info", 
+            t.Debug = "debug", t.Critical = "critical";
+        }(x || (x = {}));
+        var m = {
+            nowSeconds: function() {
+                return Date.now() / 1e3;
+            }
+        };
+        var b = i() ? function() {
+            try {
+                return (t = module, e = "perf_hooks", t.require(e)).performance;
+            } catch (t) {
+                return;
+            }
+            var t, e;
+        }() : function() {
+            var t = o().performance;
+            if (t && t.now) return {
+                now: function() {
+                    return t.now();
+                },
+                timeOrigin: Date.now() - t.now()
+            };
+        }(), E = void 0 === b ? m : {
+            nowSeconds: function() {
+                return (b.timeOrigin + b.now()) / 1e3;
+            }
+        }, w = m.nowSeconds.bind(m), k = E.nowSeconds.bind(E);
+        !function() {
+            var t = o().performance;
+            if (t && t.now) {
+                var e = 36e5, n = t.now(), r = Date.now(), i = t.timeOrigin ? Math.abs(t.timeOrigin + n - r) : e, s = i < e, a = t.timing && t.timing.navigationStart, c = "number" == typeof a ? Math.abs(a + n - r) : e;
+                (s || c < e) && i <= c && t.timeOrigin;
+            }
+        }();
+        var T = function() {
+            function t() {
+                this._notifyingListeners = !1, this._scopeListeners = [], this._eventProcessors = [], 
+                this._breadcrumbs = [], this._user = {}, this._tags = {}, this._extra = {}, this._contexts = {}, 
+                this._sdkProcessingMetadata = {};
+            }
+            return t.clone = function(n) {
+                var i = new t;
+                return n && (i._breadcrumbs = r(n._breadcrumbs), i._tags = e({}, n._tags), i._extra = e({}, n._extra), 
+                i._contexts = e({}, n._contexts), i._user = n._user, i._level = n._level, i._span = n._span, 
+                i._session = n._session, i._transactionName = n._transactionName, i._fingerprint = n._fingerprint, 
+                i._eventProcessors = r(n._eventProcessors), i._requestSession = n._requestSession), 
+                i;
+            }, t.prototype.addScopeListener = function(t) {
+                this._scopeListeners.push(t);
+            }, t.prototype.addEventProcessor = function(t) {
+                return this._eventProcessors.push(t), this;
+            }, t.prototype.setUser = function(t) {
+                return this._user = t || {}, this._session && this._session.update({
+                    user: t
+                }), this._notifyScopeListeners(), this;
+            }, t.prototype.getUser = function() {
+                return this._user;
+            }, t.prototype.getRequestSession = function() {
+                return this._requestSession;
+            }, t.prototype.setRequestSession = function(t) {
+                return this._requestSession = t, this;
+            }, t.prototype.setTags = function(t) {
+                return this._tags = e(e({}, this._tags), t), this._notifyScopeListeners(), this;
+            }, t.prototype.setTag = function(t, n) {
+                var r;
+                return this._tags = e(e({}, this._tags), ((r = {})[t] = n, r)), this._notifyScopeListeners(), 
+                this;
+            }, t.prototype.setExtras = function(t) {
+                return this._extra = e(e({}, this._extra), t), this._notifyScopeListeners(), this;
+            }, t.prototype.setExtra = function(t, n) {
+                var r;
+                return this._extra = e(e({}, this._extra), ((r = {})[t] = n, r)), this._notifyScopeListeners(), 
+                this;
+            }, t.prototype.setFingerprint = function(t) {
+                return this._fingerprint = t, this._notifyScopeListeners(), this;
+            }, t.prototype.setLevel = function(t) {
+                return this._level = t, this._notifyScopeListeners(), this;
+            }, t.prototype.setTransactionName = function(t) {
+                return this._transactionName = t, this._notifyScopeListeners(), this;
+            }, t.prototype.setTransaction = function(t) {
+                return this.setTransactionName(t);
+            }, t.prototype.setContext = function(t, n) {
+                var r;
+                return null === n ? delete this._contexts[t] : this._contexts = e(e({}, this._contexts), ((r = {})[t] = n, 
+                r)), this._notifyScopeListeners(), this;
+            }, t.prototype.setSpan = function(t) {
+                return this._span = t, this._notifyScopeListeners(), this;
+            }, t.prototype.getSpan = function() {
+                return this._span;
+            }, t.prototype.getTransaction = function() {
+                var t = this.getSpan();
+                return t && t.transaction;
+            }, t.prototype.setSession = function(t) {
+                return t ? this._session = t : delete this._session, this._notifyScopeListeners(), 
+                this;
+            }, t.prototype.getSession = function() {
+                return this._session;
+            }, t.prototype.update = function(n) {
+                if (!n) return this;
+                if ("function" == typeof n) {
+                    var r = n(this);
+                    return r instanceof t ? r : this;
+                }
+                return n instanceof t ? (this._tags = e(e({}, this._tags), n._tags), this._extra = e(e({}, this._extra), n._extra), 
+                this._contexts = e(e({}, this._contexts), n._contexts), n._user && Object.keys(n._user).length && (this._user = n._user), 
+                n._level && (this._level = n._level), n._fingerprint && (this._fingerprint = n._fingerprint), 
+                n._requestSession && (this._requestSession = n._requestSession)) : u(n) && (this._tags = e(e({}, this._tags), n.tags), 
+                this._extra = e(e({}, this._extra), n.extra), this._contexts = e(e({}, this._contexts), n.contexts), 
+                n.user && (this._user = n.user), n.level && (this._level = n.level), n.fingerprint && (this._fingerprint = n.fingerprint), 
+                n.requestSession && (this._requestSession = n.requestSession)), this;
+            }, t.prototype.clear = function() {
+                return this._breadcrumbs = [], this._tags = {}, this._extra = {}, this._user = {}, 
+                this._contexts = {}, this._level = void 0, this._transactionName = void 0, this._fingerprint = void 0, 
+                this._requestSession = void 0, this._span = void 0, this._session = void 0, this._notifyScopeListeners(), 
+                this;
+            }, t.prototype.addBreadcrumb = function(t, n) {
+                var i = "number" == typeof n ? Math.min(n, 100) : 100;
+                if (i <= 0) return this;
+                var s = e({
+                    timestamp: w()
+                }, t);
+                return this._breadcrumbs = r(this._breadcrumbs, [ s ]).slice(-i), this._notifyScopeListeners(), 
+                this;
+            }, t.prototype.clearBreadcrumbs = function() {
+                return this._breadcrumbs = [], this._notifyScopeListeners(), this;
+            }, t.prototype.applyToEvent = function(t, n) {
+                if (this._extra && Object.keys(this._extra).length && (t.extra = e(e({}, this._extra), t.extra)), 
+                this._tags && Object.keys(this._tags).length && (t.tags = e(e({}, this._tags), t.tags)), 
+                this._user && Object.keys(this._user).length && (t.user = e(e({}, this._user), t.user)), 
+                this._contexts && Object.keys(this._contexts).length && (t.contexts = e(e({}, this._contexts), t.contexts)), 
+                this._level && (t.level = this._level), this._transactionName && (t.transaction = this._transactionName), 
+                this._span) {
+                    t.contexts = e({
+                        trace: this._span.getTraceContext()
+                    }, t.contexts);
+                    var i = this._span.transaction && this._span.transaction.name;
+                    i && (t.tags = e({
+                        transaction: i
+                    }, t.tags));
+                }
+                return this._applyFingerprint(t), t.breadcrumbs = r(t.breadcrumbs || [], this._breadcrumbs), 
+                t.breadcrumbs = t.breadcrumbs.length > 0 ? t.breadcrumbs : void 0, t.sdkProcessingMetadata = this._sdkProcessingMetadata, 
+                this._notifyEventProcessors(r(a("globalEventProcessors", (function() {
+                    return [];
+                })), this._eventProcessors), t, n);
+            }, t.prototype.setSDKProcessingMetadata = function(t) {
+                return this._sdkProcessingMetadata = e(e({}, this._sdkProcessingMetadata), t), this;
+            }, t.prototype._notifyEventProcessors = function(t, n, r, i) {
+                var s = this;
+                return void 0 === i && (i = 0), new S((function(o, a) {
+                    var c = t[i];
+                    if (null === n || "function" != typeof c) o(n); else {
+                        var u = c(e({}, n), r);
+                        p(u) ? u.then((function(e) {
+                            return s._notifyEventProcessors(t, e, r, i + 1).then(o);
+                        })).then(null, a) : s._notifyEventProcessors(t, u, r, i + 1).then(o).then(null, a);
+                    }
+                }));
+            }, t.prototype._notifyScopeListeners = function() {
+                var t = this;
+                this._notifyingListeners || (this._notifyingListeners = !0, this._scopeListeners.forEach((function(e) {
+                    e(t);
+                })), this._notifyingListeners = !1);
+            }, t.prototype._applyFingerprint = function(t) {
+                t.fingerprint = t.fingerprint ? Array.isArray(t.fingerprint) ? t.fingerprint : [ t.fingerprint ] : [], 
+                this._fingerprint && (t.fingerprint = t.fingerprint.concat(this._fingerprint)), 
+                t.fingerprint && !t.fingerprint.length && delete t.fingerprint;
+            }, t;
+        }();
+        var L = function() {
+            function t(t) {
+                this.errors = 0, this.sid = y(), this.duration = 0, this.status = "ok", this.init = !0, 
+                this.ignoreDuration = !1;
+                var e = k();
+                this.timestamp = e, this.started = e, t && this.update(t);
+            }
+            return t.prototype.update = function(t) {
+                if (void 0 === t && (t = {}), t.user && (!this.ipAddress && t.user.ip_address && (this.ipAddress = t.user.ip_address), 
+                this.did || t.did || (this.did = t.user.id || t.user.email || t.user.username)), 
+                this.timestamp = t.timestamp || k(), t.ignoreDuration && (this.ignoreDuration = t.ignoreDuration), 
+                t.sid && (this.sid = 32 === t.sid.length ? t.sid : y()), void 0 !== t.init && (this.init = t.init), 
+                !this.did && t.did && (this.did = "" + t.did), "number" == typeof t.started && (this.started = t.started), 
+                this.ignoreDuration) this.duration = void 0; else if ("number" == typeof t.duration) this.duration = t.duration; else {
+                    var e = this.timestamp - this.started;
+                    this.duration = e >= 0 ? e : 0;
+                }
+                t.release && (this.release = t.release), t.environment && (this.environment = t.environment), 
+                !this.ipAddress && t.ipAddress && (this.ipAddress = t.ipAddress), !this.userAgent && t.userAgent && (this.userAgent = t.userAgent), 
+                "number" == typeof t.errors && (this.errors = t.errors), t.status && (this.status = t.status);
+            }, t.prototype.close = function(t) {
+                t ? this.update({
+                    status: t
+                }) : "ok" === this.status ? this.update({
+                    status: "exited"
+                }) : this.update();
+            }, t.prototype.toJSON = function() {
+                return v({
+                    sid: "" + this.sid,
+                    init: this.init,
+                    started: new Date(1e3 * this.started).toISOString(),
+                    timestamp: new Date(1e3 * this.timestamp).toISOString(),
+                    status: this.status,
+                    errors: this.errors,
+                    did: "number" == typeof this.did || "string" == typeof this.did ? "" + this.did : void 0,
+                    duration: this.duration,
+                    attrs: {
+                        release: this.release,
+                        environment: this.environment,
+                        ip_address: this.ipAddress,
+                        user_agent: this.userAgent
+                    }
+                });
+            }, t;
+        }(), O = "undefined" == typeof __SENTRY_DEBUG__ || __SENTRY_DEBUG__, N = function() {
+            function t(t, e, n) {
+                void 0 === e && (e = new T), void 0 === n && (n = 4), this._version = n, this._stack = [ {} ], 
+                this.getStackTop().scope = e, t && this.bindClient(t);
+            }
+            return t.prototype.isOlderThan = function(t) {
+                return this._version < t;
+            }, t.prototype.bindClient = function(t) {
+                this.getStackTop().client = t, t && t.setupIntegrations && t.setupIntegrations();
+            }, t.prototype.pushScope = function() {
+                var t = T.clone(this.getScope());
+                return this.getStack().push({
+                    client: this.getClient(),
+                    scope: t
+                }), t;
+            }, t.prototype.popScope = function() {
+                return !(this.getStack().length <= 1) && !!this.getStack().pop();
+            }, t.prototype.withScope = function(t) {
+                var e = this.pushScope();
+                try {
+                    t(e);
+                } finally {
+                    this.popScope();
+                }
+            }, t.prototype.getClient = function() {
+                return this.getStackTop().client;
+            }, t.prototype.getScope = function() {
+                return this.getStackTop().scope;
+            }, t.prototype.getStack = function() {
+                return this._stack;
+            }, t.prototype.getStackTop = function() {
+                return this._stack[this._stack.length - 1];
+            }, t.prototype.captureException = function(t, n) {
+                var r = this._lastEventId = n && n.event_id ? n.event_id : y(), i = n;
+                if (!n) {
+                    var s = void 0;
+                    try {
+                        throw new Error("Sentry syntheticException");
+                    } catch (t) {
+                        s = t;
+                    }
+                    i = {
+                        originalException: t,
+                        syntheticException: s
+                    };
+                }
+                return this._invokeClient("captureException", t, e(e({}, i), {
+                    event_id: r
+                })), r;
+            }, t.prototype.captureMessage = function(t, n, r) {
+                var i = this._lastEventId = r && r.event_id ? r.event_id : y(), s = r;
+                if (!r) {
+                    var o = void 0;
+                    try {
+                        throw new Error(t);
+                    } catch (t) {
+                        o = t;
+                    }
+                    s = {
+                        originalException: t,
+                        syntheticException: o
+                    };
+                }
+                return this._invokeClient("captureMessage", t, n, e(e({}, s), {
+                    event_id: i
+                })), i;
+            }, t.prototype.captureEvent = function(t, n) {
+                var r = n && n.event_id ? n.event_id : y();
+                return "transaction" !== t.type && (this._lastEventId = r), this._invokeClient("captureEvent", t, e(e({}, n), {
+                    event_id: r
+                })), r;
+            }, t.prototype.lastEventId = function() {
+                return this._lastEventId;
+            }, t.prototype.addBreadcrumb = function(t, n) {
+                var r = this.getStackTop(), i = r.scope, s = r.client;
+                if (i && s) {
+                    var o = s.getOptions && s.getOptions() || {}, a = o.beforeBreadcrumb, c = void 0 === a ? null : a, u = o.maxBreadcrumbs, p = void 0 === u ? 100 : u;
+                    if (!(p <= 0)) {
+                        var h = w(), f = e({
+                            timestamp: h
+                        }, t), _ = c ? d((function() {
+                            return c(f, n);
+                        })) : f;
+                        null !== _ && i.addBreadcrumb(_, p);
+                    }
+                }
+            }, t.prototype.setUser = function(t) {
+                var e = this.getScope();
+                e && e.setUser(t);
+            }, t.prototype.setTags = function(t) {
+                var e = this.getScope();
+                e && e.setTags(t);
+            }, t.prototype.setExtras = function(t) {
+                var e = this.getScope();
+                e && e.setExtras(t);
+            }, t.prototype.setTag = function(t, e) {
+                var n = this.getScope();
+                n && n.setTag(t, e);
+            }, t.prototype.setExtra = function(t, e) {
+                var n = this.getScope();
+                n && n.setExtra(t, e);
+            }, t.prototype.setContext = function(t, e) {
+                var n = this.getScope();
+                n && n.setContext(t, e);
+            }, t.prototype.configureScope = function(t) {
+                var e = this.getStackTop(), n = e.scope, r = e.client;
+                n && r && t(n);
+            }, t.prototype.run = function(t) {
+                var e = C(this);
+                try {
+                    t(this);
+                } finally {
+                    C(e);
+                }
+            }, t.prototype.getIntegration = function(t) {
+                var e = this.getClient();
+                if (!e) return null;
+                try {
+                    return e.getIntegration(t);
+                } catch (e) {
+                    return O && h.warn("Cannot retrieve integration " + t.id + " from the current Hub"), 
+                    null;
+                }
+            }, t.prototype.startSpan = function(t) {
+                return this._callExtensionMethod("startSpan", t);
+            }, t.prototype.startTransaction = function(t, e) {
+                return this._callExtensionMethod("startTransaction", t, e);
+            }, t.prototype.traceHeaders = function() {
+                return this._callExtensionMethod("traceHeaders");
+            }, t.prototype.captureSession = function(t) {
+                if (void 0 === t && (t = !1), t) return this.endSession();
+                this._sendSessionUpdate();
+            }, t.prototype.endSession = function() {
+                var t = this.getStackTop(), e = t && t.scope, n = e && e.getSession();
+                n && n.close(), this._sendSessionUpdate(), e && e.setSession();
+            }, t.prototype.startSession = function(t) {
+                var n = this.getStackTop(), r = n.scope, i = n.client, s = i && i.getOptions() || {}, a = s.release, c = s.environment, u = (o().navigator || {}).userAgent, p = new L(e(e(e({
+                    release: a,
+                    environment: c
+                }, r && {
+                    user: r.getUser()
+                }), u && {
+                    userAgent: u
+                }), t));
+                if (r) {
+                    var h = r.getSession && r.getSession();
+                    h && "ok" === h.status && h.update({
+                        status: "exited"
+                    }), this.endSession(), r.setSession(p);
+                }
+                return p;
+            }, t.prototype._sendSessionUpdate = function() {
+                var t = this.getStackTop(), e = t.scope, n = t.client;
+                if (e) {
+                    var r = e.getSession && e.getSession();
+                    r && n && n.captureSession && n.captureSession(r);
+                }
+            }, t.prototype._invokeClient = function(t) {
+                for (var e, n = [], i = 1; i < arguments.length; i++) n[i - 1] = arguments[i];
+                var s = this.getStackTop(), o = s.scope, a = s.client;
+                a && a[t] && (e = a)[t].apply(e, r(n, [ o ]));
+            }, t.prototype._callExtensionMethod = function(t) {
+                for (var e = [], n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
+                var r = R(), i = r.__SENTRY__;
+                if (i && i.extensions && "function" == typeof i.extensions[t]) return i.extensions[t].apply(this, e);
+                O && h.warn("Extension method " + t + " couldn't be found, doing nothing.");
+            }, t;
+        }();
+        function R() {
+            var t = o();
+            return t.__SENTRY__ = t.__SENTRY__ || {
+                extensions: {},
+                hub: void 0
+            }, t;
+        }
+        function C(t) {
+            var e = R(), n = M(e);
+            return D(e, t), n;
+        }
+        function j() {
+            var t = R();
+            return A(t) && !M(t).isOlderThan(4) || D(t, new N), i() ? function(t) {
+                try {
+                    var e = R().__SENTRY__, n = e && e.extensions && e.extensions.domain && e.extensions.domain.active;
+                    if (!n) return M(t);
+                    if (!A(n) || M(n).isOlderThan(4)) {
+                        var r = M(t).getStackTop();
+                        D(n, new N(r.client, T.clone(r.scope)));
+                    }
+                    return M(n);
+                } catch (e) {
+                    return M(t);
+                }
+            }(t) : M(t);
+        }
+        function A(t) {
+            return !!(t && t.__SENTRY__ && t.__SENTRY__.hub);
+        }
+        function M(t) {
+            return a("hub", (function() {
+                return new N;
+            }), t);
+        }
+        function D(t, e) {
+            return !!t && ((t.__SENTRY__ = t.__SENTRY__ || {}).hub = e, !0);
+        }
+        function P(t) {
+            for (var e = [], n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
+            var i = j();
+            if (i && i[t]) return i[t].apply(i, r(e));
+            throw new Error("No hub defined or " + t + " was not found on the hub, please open a bug report.");
+        }
+        function B(t, n) {
+            var r = new Error(t);
+            return P("captureMessage", t, "string" == typeof n ? n : void 0, e({
+                originalException: t,
+                syntheticException: r
+            }, "string" != typeof n ? {
+                captureContext: n
+            } : void 0));
+        }
+        var I = function(t) {
+            var e = t.message, n = t.owner, r = t.action, i = t.status, s = t.errorLevel, o = t.data, a = [ {
+                key: "owner",
+                value: n
+            }, {
+                key: "action",
+                value: r
+            }, {
+                key: "status",
+                value: i
+            }, {
+                key: "errorLevel",
+                value: s
+            } ];
+            return "".concat(e).concat(a.map((function(t) {
+                return e = t.key, n = t.value, "".concat(n ? "\n[".concat(e, ": ").concat(n, "]") : "");
+                var e, n;
+            })).join("")).concat(o ? "\n".concat(JSON.stringify(o, null, 2)) : "");
+        }, Y = function(t, e) {
+            var n = e;
+            return n && n instanceof Error ? n.message = "".concat(null == e ? void 0 : e.message, ": ").concat(t) : n = t, 
+            n;
+        }, U = function(n) {
+            var r, i, s = n.level, o = n.data, a = n.owner, c = n.action, u = n.error, p = I(n), h = e({
+                "event.owner": a,
+                "event.action": c
+            }, n.tags), f = Y(p, u);
+            switch (s) {
+              case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Info:
+                P("addBreadcrumb", {
+                    category: n.owner,
+                    message: p,
+                    level: x.Info
+                });
+                break;
+
+              case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Log:
+                B(p, {
+                    extra: o,
+                    tags: h,
+                    level: x.Log
+                });
+                break;
+
+              case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Warn:
+                B(p, {
+                    extra: o,
+                    tags: h,
+                    level: x.Warning
+                });
+                break;
+
+              case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Error:
+                r = f, i = {
+                    extra: o,
+                    tags: h,
+                    level: x.Error
+                }, P("captureException", r, {
+                    captureContext: i,
+                    originalException: r,
+                    syntheticException: new Error("Sentry syntheticException")
+                });
+                break;
+
+              default:
+                console.error("不是期望的上报类型", s, p);
+            }
+        };
+    },
+    "../shared/browser/node_modules/@sl/logger/lib/index.es.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            LogLevel: () => t,
+            LogStatus: () => o,
+            default: () => e
+        });
+        var n, o, t, i = function() {
+            return i = Object.assign || function(n) {
+                for (var o, t = 1, i = arguments.length; t < i; t++) for (var r in o = arguments[t]) Object.prototype.hasOwnProperty.call(o, r) && (n[r] = o[r]);
+                return n;
+            }, i.apply(this, arguments);
+        };
+        !function(n) {
+            n.P0 = "P0", n.P1 = "P1", n.P2 = "P2";
+        }(n || (n = {})), function(n) {
+            n.Start = "开始", n.Success = "成功", n.Failure = "失败";
+        }(o || (o = {})), function(n) {
+            n.Info = "info", n.Log = "log", n.Warn = "warn", n.Error = "error";
+        }(t || (t = {}));
+        var r = function n(o) {
+            var r = this;
+            this.options = {
+                owner: "",
+                action: "",
+                transports: []
+            }, this.withOwner = function(o) {
+                return new n(i(i({}, r.options), {
+                    owner: o
+                }));
+            }, this.pipeOwner = function(o) {
+                var t = "";
+                return t = r.options.owner ? "".concat(r.options.owner, ".").concat(o) : o, new n(i(i({}, r.options), {
+                    owner: t
+                }));
+            }, this.withAction = function(o) {
+                return new n(i(i({}, r.options), {
+                    action: o
+                }));
+            }, this.pipeTransport = function() {
+                for (var o = [], t = 0; t < arguments.length; t++) o[t] = arguments[t];
+                var e = r.options.transports.concat(o);
+                return new n(i(i({}, r.options), {
+                    transports: e
+                }));
+            }, this.report = function(n, o, t) {
+                !function(n, o) {
+                    var t = n;
+                    o.forEach((function(n) {
+                        var o = n(t);
+                        o && (t = o);
+                    }));
+                }(i(i({
+                    level: n,
+                    owner: r.options.owner,
+                    action: r.options.action
+                }, t), {
+                    message: o
+                }), r.options.transports);
+            }, this.info = function(n, o) {
+                r.report(t.Info, n, o);
+            }, this.log = function(n, o) {
+                r.report(t.Log, n, o);
+            }, this.warn = function(n, o) {
+                r.report(t.Warn, n, o);
+            }, this.error = function(n, o) {
+                r.report(t.Error, n, o);
+            }, this.options = i(i({}, this.options), o);
+        }, e = new r;
+        Object.defineProperty(e, "options", {
+            writable: !1,
+            configurable: !1
+        });
+    },
     "../shared/browser/node_modules/axios/index.js": (module, __unused_webpack_exports, __webpack_require__) => {
         module.exports = __webpack_require__("../shared/browser/node_modules/axios/lib/axios.js");
     },
@@ -14940,8 +15846,8 @@
         var _yy_sl_theme_shared_utils_report_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/report/page.js");
         var _yy_sl_theme_shared_utils_report_tool__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/report/tool.js");
         function findSectionId(selector) {
-            if (!selector || !$(selector)) return;
-            const id = $(selector).closest(".shopline-section").attr("id");
+            if (!selector || !__SL_$__(selector)) return;
+            const id = __SL_$__(selector).closest(".shopline-section").attr("id");
             const trueId = id ? id.replace("shopline-section-", "") : "";
             return trueId;
         }
@@ -15168,7 +16074,7 @@
         var baseReport = __webpack_require__("../shared/browser/report/common/baseReport.js");
         class InputReport {
             constructor({selector, params}) {
-                this.$el = $(selector);
+                this.$el = __SL_$__(selector);
                 this.params = params;
                 this.changed = false;
                 this.init();
@@ -15196,7 +16102,7 @@
         }
         class HoverReport {
             constructor({selector, params}) {
-                this.$el = $(selector);
+                this.$el = __SL_$__(selector);
                 this.params = params;
                 this.init();
             }
@@ -15205,7 +16111,7 @@
             }
             bindMouseenter() {
                 this.$el.on("mouseenter", (e => {
-                    const $target = $(e.target);
+                    const $target = __SL_$__(e.target);
                     const isTarget = $target.attr("class") === this.$el.attr("class");
                     if (!isTarget) return;
                     const params = {
@@ -15234,7 +16140,7 @@
                 });
             }
             expose({selector, moreInfo}) {
-                const $els = $(selector);
+                const $els = __SL_$__(selector);
                 if (!$els.length) return;
                 const paramsFn = target => {
                     const id = (0, baseReport.findSectionId)(target);
@@ -15263,14 +16169,14 @@
                 });
             }
             bindFallbackClick({wrapperSel, targetSel, fallbackSel, moreInfo}) {
-                $(wrapperSel).on("click", (e => {
+                __SL_$__(wrapperSel).on("click", (e => {
                     const id = (0, baseReport.findSectionId)(e.target);
                     const params = {
                         component_ID: id,
                         ...this.defaultParams,
                         ...moreInfo
                     };
-                    const $target = $(e.target);
+                    const $target = __SL_$__(e.target);
                     const $wrapper = $target.closest(wrapperSel);
                     const hasTarget = $wrapper.find(targetSel).length > 0;
                     const clickOnTarget = $target.closest(targetSel).length > 0;
@@ -15285,7 +16191,7 @@
             }
             bindClick({selector, moreInfo, customHandler}) {
                 if (!selector) return;
-                $(document.body).on("click", selector, (e => {
+                __SL_$__(document.body).on("click", selector, (e => {
                     const id = (0, baseReport.findSectionId)(e.target);
                     const params = {
                         component_ID: id,
@@ -16330,6 +17236,76 @@
             }
         };
     },
+    "../shared/browser/utils/logger/sentry.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            Status: () => _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogStatus,
+            default: () => __WEBPACK_DEFAULT_EXPORT__
+        });
+        var _sl_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sl/logger/lib/index.es.js");
+        var _sl_logger_sentry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sl/logger-sentry/lib/index.es.js");
+        const newLogger = _sl_logger__WEBPACK_IMPORTED_MODULE_0__["default"].pipeTransport(_sl_logger_sentry__WEBPACK_IMPORTED_MODULE_1__["default"]);
+        const __WEBPACK_DEFAULT_EXPORT__ = newLogger;
+    },
+    "../shared/browser/utils/logger/sentryReport.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            Owner: () => Owner,
+            Action: () => Action
+        });
+        const Owner = {
+            MiniCart: "Checkouts.cart.mini",
+            MainCart: "Checkouts.cart.main",
+            Cart: "Checkouts.common.cart",
+            Coupon: "Checkouts.common.coupon",
+            Checkout: "Checkouts.checkout",
+            Processing: "Checkouts.processing",
+            Thankyou: "Checkouts.thankyou",
+            Order: "Checkouts.order",
+            ExpressCallback: "Checkouts.expressCallback",
+            Error: "Checkouts.error"
+        };
+        const ActionOwner = {
+            Cart: "Cart",
+            Checkout: "Checkout",
+            Processing: "Processing",
+            Thankyou: "Thankyou",
+            Order: "Order",
+            ExpressCallback: "ExpressCallback",
+            Error: "Error"
+        };
+        const commonAction = actionOwner => ({
+            [`Init${actionOwner}`]: `init${actionOwner}`,
+            [`Take${actionOwner}`]: `take${actionOwner}`,
+            [`Edit${actionOwner}`]: `edit${actionOwner}`,
+            [`CallingInterface${actionOwner}`]: `callingInterface${actionOwner}`,
+            [`CalculatePrice${actionOwner}`]: `calculatePrice${actionOwner}`,
+            [`Report${actionOwner}`]: `report${actionOwner}`
+        });
+        const CartActions = {
+            ...commonAction(ActionOwner.Cart),
+            OpenCart: "openCart",
+            Add2Cart: "add2Cart",
+            DeleteCart: "deleteCart",
+            ClearCart: "clearCart",
+            EditCoupon: "editCoupon"
+        };
+        const CheckoutActions = {
+            ...commonAction(ActionOwner.Checkout),
+            EditCoupon: "editCoupon",
+            ChangePage: "changePage",
+            CompleteOrder: "CompleteOrder"
+        };
+        const Action = {
+            ...CartActions,
+            ...CheckoutActions,
+            ...commonAction(ActionOwner.ExpressCallback),
+            ...commonAction(ActionOwner.Processing),
+            ...commonAction(ActionOwner.Thankyou),
+            ...commonAction(ActionOwner.Order),
+            ...commonAction(ActionOwner.Error)
+        };
+    },
     "../shared/browser/utils/logger/transports.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
@@ -16761,7 +17737,7 @@
                     const instance = this.sectionInstances.get(sectionId);
                     if ("function" === typeof instance.onUnload) instance.onUnload.call(instance);
                 }
-                const $container = $(`[data-section-id='${sectionId}']`);
+                const $container = __SL_$__(`[data-section-id='${sectionId}']`);
                 this._createInstace($container);
             }
             _onSectionUnload(e) {
@@ -16779,9 +17755,9 @@
         const registrySectionConstructor = (type, constructor) => {
             if (window.__section_load__.constructorMap.get(type)) return;
             window.__section_load__.constructorMap.set(type, constructor);
-            const $sections = $(`[data-section-type='${type}']`);
+            const $sections = __SL_$__(`[data-section-type='${type}']`);
             $sections.each((function() {
-                const $container = $(this);
+                const $container = __SL_$__(this);
                 window.__section_load__._createInstace($container, constructor);
             }));
         };
@@ -16995,7 +17971,7 @@
             const {eventID, ...extData} = resData;
             let price = 0;
             products.forEach((item => {
-                price += item.productPrice * item.productNum;
+                price += item.productPrice;
             }));
             const dataReportReq = setAddtoCart(price, window && window.SL_State.get("storeInfo.currency"), `addToCart${eventID}`, {
                 ...extra,

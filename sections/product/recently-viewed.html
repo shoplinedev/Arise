@@ -19,7 +19,7 @@
   {{#if (boolean hiddenMount '&&' historyBrowseProducts.length)}}
     <div class="product-detail-block-space"></div>
     <div class="product-list product-recently-viewed">
-      <div class="product-list-title product-section-title title4">{{ t 'productDetail.recentlyViewedProducts' }}</div>
+      <div class="product-list-title product-section-title title4">{{ t 'products.recently_viewed_products.recently_viewed_products' }}</div>
       {{ snippet 'product/commons/product-item-list' colNum=section.settings.pc_cols mbColNum=section.settings.md_cols forbiddenBtn=true listData=(first historyBrowseProducts show_product_number) className='__sl-custom-track-product-recently-viewed-item' }}
     </div>
     {{else}}

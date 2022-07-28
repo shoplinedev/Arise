@@ -13,12 +13,12 @@
 {{#not linkType}}
   {{assign 'linkType' 'activityPage'}}
 {{/not}}
-{{assign 'bannerBgImg' productDetailConfig.bannerBgImg}}
+
 {{assign 'btnTextColor' productDetailConfig.btnTextColor}}
 {{assign 'bannerBgColor' productDetailConfig.bannerBgColor}}
 {{assign 'bannerTextColor' productDetailConfig.bannerTextColor}}
 
-{{! 给颜色配置默认值}}
+{{!-- 给颜色配置默认值 --}}
 {{#if (isFalsey btnTextColor)}}
   {{assign 'btnTextColor' '#2C2C2C'}}
 {{/if}}
@@ -35,10 +35,10 @@
   {{assign 'linkUrl' (append '/activity/' seoHandleItem)}}
 {{/if}}
 
-<div class="sales__autoCouponBanner-container sales__autoCouponBanner-container-hook"
-  style="{{#if bannerBgImg}}background-image:url({{bannerBgImg}}){{else}}background:{{bannerBgColor}}{{/if}}">
+<div class="sales__autoCouponBanner-container sales__autoCouponBanner-container-hook" style="background-color:{{bannerBgColor}}">
+  {{ snippet 'sales/card-background' mobileBgImg=productDetailConfig.bannerBgImg_mobile pcBgImg=productDetailConfig.bannerBgImg}}
   <div class="sales__autoCouponBanner-left" id="salesAutoCouponBannerLeftHook" style="color:{{bannerTextColor}}">
-    {{! 标签图标 }}
+    {{!-- 标签图标 --}}
     <svg class="sales__autoCouponBanner-tagIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M20.3335 11.4792L19.5002 4.50008L12.521 3.66675L3.18705 13.0007C2.99179 13.196 2.99179 13.5125 3.18705 13.7078L10.2924 20.8132C10.4877 21.0085 10.8043 21.0085 10.9995 20.8132L20.3335 11.4792Z"
@@ -57,25 +57,25 @@
         </span>
       {{/if}}
     {{/each}}
-    {{! 下箭头图标 }}
+    {{!-- 下箭头图标 --}}
     <svg class="sales__autoCouponBanner-downIcon sales__autoCouponBanner-downIcon-hook" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M8.7585 4H3.24134C2.7068 4 2.4391 4.64629 2.81708 5.02426L5.57565 7.78284C5.80997 8.01716 6.18987 8.01716 6.42418 7.78284L9.18276 5.02426C9.56074 4.64629 9.29304 4 8.7585 4Z"
         fill="currentColor" />
     </svg>
     {{!-- PC-弹窗 --}}
-    {{ snippet 'sales/auto-coupon/auto-coupon-modal' list=benefitConditions benefitType=benefitType template=template}}
+    {{ snippet 'product/detail/auto-coupon/auto-coupon-modal' list=benefitConditions benefitType=benefitType template=template}}
   </div>
   {{#if linkUrl}}
     <a href="{{linkUrl}}" class="sales__autoCouponBanner-shopMoreWrap" style="color:{{btnTextColor}}">
       <span class="sales__autoCouponBanner-shopMoreText sales__autoCouponBanner-shopMoreText-hook"
-        style="{{#if isMobile}}display:none;{{/if}}">{{t 'sales.autoCoupon.shopMore'}}</span>
-      {{! 右箭头图标 }}
+        style="{{#if isMobile}}display:none;{{/if}}">{{t 'sales.general.shop_more'}}</span>
+      {{!-- 右箭头图标 --}}
       <svg class="sales__autoCouponBanner-shopMoreIcon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M3.5 11L8.5 6L3.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
       </svg>
     </a>
   {{/if}}
   {{!-- 移动端弹窗 --}}
-  {{snippet 'sales/auto-coupon/auto-coupon-drawer' list=benefitConditions benefitType=benefitType template=template color=bannerTextColor }}
+  {{snippet 'product/detail/auto-coupon/auto-coupon-drawer' list=benefitConditions benefitType=benefitType template=template color=bannerTextColor }}
 </div>

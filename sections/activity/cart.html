@@ -1,6 +1,6 @@
 {{ assign 'GIFT_PLUGIN_TYPE' 7}}
 
-{{#if request.uri.query.type '===' 'pool'}}
+{{#if (and (compare request.uri.query.type '===' 'pool') (compare activity.promotionSubType '===' 0))}}
   {{!-- 无cartInfo默认隐藏活动页购物车 --}}
   {{#if (not cartInfo)}}
     {{ assign 'hasHide' 'd-none'}}
@@ -22,9 +22,10 @@
     {{ assign 'type' benefitCondition.benefitEvent.type}}
     {{ assign 'benefit' (default benefitCondition.benefit.discount benefitCondition.benefit.benefitAmount)}}
     {{ assign 'amount' benefitCondition.benefitEvent.minThreshold}}
-    {{ assign 'promotion' (object_create benefitType=benefitType promotionBenefitList=(arrayify (object_create type=type benefit=benefit amount=amount)))}}
+    {{ assign 'benefitCount' benefitCondition.benefit.benefitCount}}
+    {{ assign 'promotion' (object_create benefitType=benefitType promotionBenefitList=(arrayify (object_create type=type benefit=benefit amount=amount benefitCount=benefitCount)))}}
   {{/if}}
-  
+
   <div class="activity__cart custom-body-color {{hasHide}}" id="activity-cart">
     {{!-- 营销提示信息 --}}
     <div class="activity__salesTipBg">
@@ -37,7 +38,8 @@
           {{!-- 购物提示文案 --}}
           {{#if (and promotion (not hasGiftPlugin))}}
             {{ assign "config" (sales_promotion_reminder_translate promotion)}}
-            {{ noTranslationHTML (t config.path  saved=config.params.saved willSave=config.params.willSave threshold=config.params.threshold br=config.params.br upperLimit=config.params.upperLimit) }}
+            {{ assign "_cartReminderKey" (javascript_template 'sales.promotion.cart_reminder.b${benefitType}_t${thresholdType}_s${step}${extra}' benefitType=config.benefitType thresholdType=config.thresholdType step=config.step extra=config.extra) }}
+            {{ noTranslationHTML (t _cartReminderKey  saved=config.params.saved willSave=config.params.willSave threshold=config.params.threshold benefitCount=config.params.benefitCount br=config.params.br upperLimit=config.params.upperLimit) }}
           {{/if}}
         </span>
       </div>
@@ -47,18 +49,18 @@
       {{#if (not hasGiftPlugin)}}
         <span id="activity-cartTotalInfo">
           {{!-- 购物车金额 --}}
-          <span class="activity__cartTotal body3">{{ t "common.subTotal"  }} :
+          <span class="activity__cartTotal body3">{{ t "cart.cart.subtotal"  }} :
             <span id="activity-cartTotal" class="notranslate" data-amount="{{default activeItem.totalAmount 0}}">{{ currency_convert (default activeItem.totalAmount 0)}}</span>
           </span>
           <br />
           {{!-- 当前活动商品数量 --}}
           <span class="activity__cartNum body6">
-            {{ noTranslationHTML (t "sales.selected-count-activity-product" selectCount=(javascript_template '<span id="activity-cartNum" class="notranslate">${num}</span>' num=(sum (pluck activeItem.itemList 'num')))) }}
+            {{ noTranslationHTML (t "sales.general.select_promotional_product" selectCount=(javascript_template '<span id="activity-cartNum" class="notranslate">${num}</span>' num=(sum (pluck activeItem.itemList 'num')))) }}
           </span>
         </span>
       {{/if}}
       {{!-- 去购物车页 --}}
-      <a href="/cart"><button type="button" class="activity__gotoCart btn btn-primary body5">{{ t "common.back-to-cart" }}</button></a>
+      <a href="/cart"><button type="button" class="activity__gotoCart btn btn-primary body5">{{ t "cart.cart.return_to_cart" }}</button></a>
     </div>
   </div>
 {{/if}}

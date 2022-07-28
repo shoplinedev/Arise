@@ -19,7 +19,7 @@
         {{/each}}
       </ul>
     {{/if}}
-    <input autocomplete="off" data-id={{id}} id="{{append id '__input'}}" maxlength="255" type="search" value placeholder="{{t 'header.searchInputPlaceholder'}}"
+    <input autocomplete="off" data-id={{id}} id="{{append id '__input'}}" maxlength="255" type="search" value placeholder="{{t 'general.header.search_input_placeholder'}}"
       class="searchbar--input body3">
     <div class="header__search--predicate">
       <ul id="{{append id '__suggest-list'}}" class="searchbar__suggest--list"></ul>
@@ -34,7 +34,7 @@
             <button data-id="header-drawer" type="button" class="header__search--btn j-stage-force-search">
               {{ snippet 'icons/icon_header_search' }}
             </button>
-            <input autocomplete="off" data-id="header-drawer" id="header-drawer__input" maxlength="255" type="search" value placeholder="{{t 'header.searchInputPlaceholder'}}"
+            <input autocomplete="off" data-id="header-drawer" id="header-drawer__input" maxlength="255" type="search" value placeholder="{{t 'general.header.search_input_placeholder'}}"
               class="header__search--input body3">
           </div>
           <button type="button" class="header__search--btn header__cancel--btn j-stage-search-close">

@@ -10,7 +10,7 @@
           {{#each specAttrList }}
             {{#isTruthy imgUrl}}
               <div class="attr-value with-img {{#isTruthy active }}active{{/isTruthy}}" data-index="{{ @index }}">
-                <img class="value-img" src="{{img_url imgUrl width=32 scale=2}}">
+                <img referrerpolicy="{{#if ../../imgNoReferrerSwitch}}same-origin{{/if}}"  class="value-img" src="{{img_url imgUrl width=32 scale=2}}">
                 {{#isFalsey ../onlyShowAttrImg}}
                   <span class="value-text">{{ name }}</span>
                 {{/isFalsey}}

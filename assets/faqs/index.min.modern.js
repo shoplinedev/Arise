@@ -21,7 +21,7 @@
             }
             bindBlockCollapse(container) {
                 container.on("click", ".faq__collapse-title", (e => {
-                    let $target = $(e.target);
+                    let $target = __SL_$__(e.target);
                     if (e.target.classList.value.indexOf("faq__collapse-icon") > -1) $target = $target.parent();
                     const $wrapper = $target.next();
                     const $content = $wrapper.find(".faq__collapse-content");

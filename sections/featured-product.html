@@ -14,9 +14,10 @@
 {{ assign 'prefix' 'stage__featured__product' }}
 
 <div class="{{#if (isTruthy section.settings.show_background)}}section-gap--padding {{ prefix }}--background-wrapped{{else}}{{ prefix }}--no-background{{/if}}"  style="{{#if (isTruthy section.settings.show_background)}}background-color: {{ rgba theme.settings.color_text 0.05 }};{{/if}}">
-  <div id="{{ prefix }}--{{ section.id }}" 
-    class='__sl-custom-track-stage-featuredProduct container {{#if (isTruthy notEmpty)}}not-empty{{/if}} {{ prefix }}--wrapped section-gap{{#if (isTruthy section.settings.show_background)}}--padding{{/if}}' data-section-type="featured-product" data-section-id="{{ section.id }}" data-state-path="product_{{ section.settings.product_id }}" data-product-id="{{ section.settings.product_id }}">
-    {{#if (isTruthy notEmpty)}}
+  <div id="{{ prefix }}--{{ section.id }}"
+    class='__sl-custom-track-stage-featuredProduct container'>
+    <div class="{{#if (isTruthy notEmpty)}}not-empty{{/if}} {{ prefix }}--wrapped {{#if (isFalsey section.settings.show_background)}}section-gap{{else}}box-padding{{/if}}" data-section-type="featured-product" data-section-id="{{ section.id }}" data-state-path="product_{{ section.settings.product_id }}" data-product-id="{{ section.settings.product_id }}">
+      {{#if (isTruthy notEmpty)}}
       {{ snippet 'product/detail/product-preview' moduleName='featuredProduct' id=section.id statePrefix=(append 'product_' section.settings.product_id) product=product description=product.desc section=section statePath=(append 'product_' section.settings.product_id) }}
     {{else}}
       {{!-- 未配置商品展示默认图 --}}
@@ -47,6 +48,7 @@
         </div>
       </div>
     {{/if}}
+    </div>
   </div>
 </div>
 

@@ -21,12 +21,12 @@
     </span>
     {{#if key '==' 'deductMemberPointAmount' }}
       <div class="customer_order_summations_remark">
-        {{t 'trade.point-discount-remark' value=pageData.priceInfo.deductMemberPointNum}}
+        {{t 'cart.refund.cost_points' value=pageData.priceInfo.deductMemberPointNum}}
       </div>
     {{else if (boolean  key '==' 'settleSumAmount' '&&' pageData.basicInfo.taxesIncluded)}}
       {{!-- 含税订单，要在总额下面展示对应的含税价 --}}
       <div class="customer_order_summations_remark">
-        {{ noTranslationHTML (t 'order.includeTax.totalLine' price=(javascript_template '<span class="notranslate" data-amount="${amount}">${num}</span>' num=(currency_convert pageData.priceInfo.taxesIncludedSumAmount) amount=pageData.priceInfo.taxesIncludedSumAmount) ) }}
+        {{ noTranslationHTML (t 'cart.order.tax_included' price=(javascript_template '<span class="notranslate" data-amount="${amount}">${num}</span>' num=(currency_convert pageData.priceInfo.taxesIncludedSumAmount) amount=pageData.priceInfo.taxesIncludedSumAmount) ) }}
       </div>
     {{/if}}
   </div>

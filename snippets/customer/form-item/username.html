@@ -10,9 +10,9 @@
 {{ assign 'attrs' (javascript_template 'autocomplete="${autocomplete}" maxlength="255"' autocomplete=autocomplete)}}
 
 {{#switch type}}
-  {{#case 'username'}} {{ assign 'placeholder' (t 'user.username')}} {{/case}}
-  {{#case 'phone'}} {{ assign 'placeholder' (t 'user.phone')}} {{/case}}
-  {{#case 'email'}} {{ assign 'placeholder' (t 'user.email')}} {{/case}}
+  {{#case 'username'}} {{ assign 'placeholder' (t 'customer.general.username')}} {{/case}}
+  {{#case 'phone'}} {{ assign 'placeholder' (t 'customer.general.phone')}} {{/case}}
+  {{#case 'email'}} {{ assign 'placeholder' (t 'customer.general.email')}} {{/case}}
 {{/switch}}
 
 {{#formItem type "class='sign-in__form-item'"}}

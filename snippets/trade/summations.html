@@ -1,5 +1,8 @@
+{{ assign 'summation_key_alias' (object_create) }}
+{{snippet 'trade/commons/summation_key_alias' data=summation_key_alias}}
+
 <div id="trade-summations" class="trade_summations body3">
-  {{#trade_with_summations pageType='cart'}}
+  {{#trade_with_summations pageType='cart' keyAlias=summation_key_alias}}
     {{! 费用列表 这里顺序不能变，UI跟产品定了的 @吴婉楠 @狄璇 }}
     {{#each summations}}
       {{include
@@ -18,6 +21,6 @@
     {{/each}}
   {{/trade_with_summations}}
   {{#if tradeSettleConfig.taxesIncluded}}
-      <div class="trade_summations_taxes">{{ t 'cart.taxIncluded.textTag' }}</div>
+      <div class="trade_summations_taxes">{{ t 'cart.cart.tax_included' }}</div>
   {{/if}}
 </div>

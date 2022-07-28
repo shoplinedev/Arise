@@ -1,22 +1,22 @@
 {{ assign 'promotion' _promotion}}
 
-{{#if is-mobile}}
-  {{ assign "_promotion_config_" (sales_promotion_reminder_translate promotion (object_create lineBreak=1))}}
-{{else}}
-  {{ assign "_promotion_config_" (sales_promotion_reminder_translate promotion)}}
-{{/if}}
+{{ assign "_promotion_config_" (sales_promotion_reminder_translate promotion (object_create lineBreak=is-mobile))}}
+{{ assign "_cartReminderKey" (javascript_template 'sales.promotion.cart_reminder.b${benefitType}_t${thresholdType}_s${step}${extra}' benefitType=_promotion_config_.benefitType thresholdType=_promotion_config_.thresholdType step=_promotion_config_.step extra=_promotion_config_.extra) }}
+{{ assign "cartReminderText" (noTranslationHTML (t _cartReminderKey  saved=_promotion_config_.params.saved willSave=_promotion_config_.params.willSave threshold=_promotion_config_.params.threshold benefitCount=_promotion_config_.params.benefitCount br=_promotion_config_.params.br upperLimit=_promotion_config_.params.upperLimit)) }}
 
+{{!-- 完成活动门槛，且在买x送y活动中已经选中了y商品，这不需要跳转 --}}
 {{#if _promotion_config_.step '==' 3}}
   <div class="cart-sku-list-promotion-module">
     <span>
-      {{ noTranslationHTML (t _promotion_config_.path  saved=_promotion_config_.params.saved willSave=_promotion_config_.params.willSave threshold=_promotion_config_.params.threshold br=_promotion_config_.params.br upperLimit=_promotion_config_.params.upperLimit) }}
+      {{cartReminderText}}
     </span>
   </div>
 {{else}}
   <div class="cart-sku-list-promotion-module-can-jump">
-    <a href="{{append '/activity/' promotion.activitySeq '?type=pool'}}" class="cart-sku-list-promotion-module-can-jump-wrapper">
+    <a href="{{append '/activity/' promotion.activitySeq '?type=pool'}}{{#if _promotion_config_.params.extMap.meetThreshold '===' 'true'}}&query_product_type=2{{/if}}"
+      class="cart-sku-list-promotion-module-can-jump-wrapper">
       <div>
-        {{ noTranslationHTML (t _promotion_config_.path  saved=_promotion_config_.params.saved willSave=_promotion_config_.params.willSave threshold=_promotion_config_.params.threshold br=_promotion_config_.params.br upperLimit=_promotion_config_.params.upperLimit) }}
+        {{cartReminderText}}
       </div>
       <div class="cart-sku-list-promotion-module-can-jump-arrow" style="font-size:0;">
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">

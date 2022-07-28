@@ -2272,6 +2272,260 @@
             stripBOM
         };
     },
+    "./node_modules/dayjs/dayjs.min.js": function(module) {
+        !function(t, e) {
+            true ? module.exports = e() : 0;
+        }(0, (function() {
+            "use strict";
+            var t = 1e3, e = 6e4, n = 36e5, r = "millisecond", i = "second", s = "minute", u = "hour", a = "day", o = "week", f = "month", h = "quarter", c = "year", d = "date", $ = "Invalid Date", l = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M = {
+                name: "en",
+                weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
+                months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_")
+            }, m = function(t, e, n) {
+                var r = String(t);
+                return !r || r.length >= e ? t : "" + Array(e + 1 - r.length).join(n) + t;
+            }, g = {
+                s: m,
+                z: function(t) {
+                    var e = -t.utcOffset(), n = Math.abs(e), r = Math.floor(n / 60), i = n % 60;
+                    return (e <= 0 ? "+" : "-") + m(r, 2, "0") + ":" + m(i, 2, "0");
+                },
+                m: function t(e, n) {
+                    if (e.date() < n.date()) return -t(n, e);
+                    var r = 12 * (n.year() - e.year()) + (n.month() - e.month()), i = e.clone().add(r, f), s = n - i < 0, u = e.clone().add(r + (s ? -1 : 1), f);
+                    return +(-(r + (n - i) / (s ? i - u : u - i)) || 0);
+                },
+                a: function(t) {
+                    return t < 0 ? Math.ceil(t) || 0 : Math.floor(t);
+                },
+                p: function(t) {
+                    return {
+                        M: f,
+                        y: c,
+                        w: o,
+                        d: a,
+                        D: d,
+                        h: u,
+                        m: s,
+                        s: i,
+                        ms: r,
+                        Q: h
+                    }[t] || String(t || "").toLowerCase().replace(/s$/, "");
+                },
+                u: function(t) {
+                    return void 0 === t;
+                }
+            }, v = "en", D = {};
+            D[v] = M;
+            var p = function(t) {
+                return t instanceof _;
+            }, S = function t(e, n, r) {
+                var i;
+                if (!e) return v;
+                if ("string" == typeof e) {
+                    var s = e.toLowerCase();
+                    D[s] && (i = s), n && (D[s] = n, i = s);
+                    var u = e.split("-");
+                    if (!i && u.length > 1) return t(u[0]);
+                } else {
+                    var a = e.name;
+                    D[a] = e, i = a;
+                }
+                return !r && i && (v = i), i || !r && v;
+            }, w = function(t, e) {
+                if (p(t)) return t.clone();
+                var n = "object" == typeof e ? e : {};
+                return n.date = t, n.args = arguments, new _(n);
+            }, O = g;
+            O.l = S, O.i = p, O.w = function(t, e) {
+                return w(t, {
+                    locale: e.$L,
+                    utc: e.$u,
+                    x: e.$x,
+                    $offset: e.$offset
+                });
+            };
+            var _ = function() {
+                function M(t) {
+                    this.$L = S(t.locale, null, !0), this.parse(t);
+                }
+                var m = M.prototype;
+                return m.parse = function(t) {
+                    this.$d = function(t) {
+                        var e = t.date, n = t.utc;
+                        if (null === e) return new Date(NaN);
+                        if (O.u(e)) return new Date;
+                        if (e instanceof Date) return new Date(e);
+                        if ("string" == typeof e && !/Z$/i.test(e)) {
+                            var r = e.match(l);
+                            if (r) {
+                                var i = r[2] - 1 || 0, s = (r[7] || "0").substring(0, 3);
+                                return n ? new Date(Date.UTC(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s)) : new Date(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s);
+                            }
+                        }
+                        return new Date(e);
+                    }(t), this.$x = t.x || {}, this.init();
+                }, m.init = function() {
+                    var t = this.$d;
+                    this.$y = t.getFullYear(), this.$M = t.getMonth(), this.$D = t.getDate(), this.$W = t.getDay(), 
+                    this.$H = t.getHours(), this.$m = t.getMinutes(), this.$s = t.getSeconds(), this.$ms = t.getMilliseconds();
+                }, m.$utils = function() {
+                    return O;
+                }, m.isValid = function() {
+                    return !(this.$d.toString() === $);
+                }, m.isSame = function(t, e) {
+                    var n = w(t);
+                    return this.startOf(e) <= n && n <= this.endOf(e);
+                }, m.isAfter = function(t, e) {
+                    return w(t) < this.startOf(e);
+                }, m.isBefore = function(t, e) {
+                    return this.endOf(e) < w(t);
+                }, m.$g = function(t, e, n) {
+                    return O.u(t) ? this[e] : this.set(n, t);
+                }, m.unix = function() {
+                    return Math.floor(this.valueOf() / 1e3);
+                }, m.valueOf = function() {
+                    return this.$d.getTime();
+                }, m.startOf = function(t, e) {
+                    var n = this, r = !!O.u(e) || e, h = O.p(t), $ = function(t, e) {
+                        var i = O.w(n.$u ? Date.UTC(n.$y, e, t) : new Date(n.$y, e, t), n);
+                        return r ? i : i.endOf(a);
+                    }, l = function(t, e) {
+                        return O.w(n.toDate()[t].apply(n.toDate("s"), (r ? [ 0, 0, 0, 0 ] : [ 23, 59, 59, 999 ]).slice(e)), n);
+                    }, y = this.$W, M = this.$M, m = this.$D, g = "set" + (this.$u ? "UTC" : "");
+                    switch (h) {
+                      case c:
+                        return r ? $(1, 0) : $(31, 11);
+
+                      case f:
+                        return r ? $(1, M) : $(0, M + 1);
+
+                      case o:
+                        var v = this.$locale().weekStart || 0, D = (y < v ? y + 7 : y) - v;
+                        return $(r ? m - D : m + (6 - D), M);
+
+                      case a:
+                      case d:
+                        return l(g + "Hours", 0);
+
+                      case u:
+                        return l(g + "Minutes", 1);
+
+                      case s:
+                        return l(g + "Seconds", 2);
+
+                      case i:
+                        return l(g + "Milliseconds", 3);
+
+                      default:
+                        return this.clone();
+                    }
+                }, m.endOf = function(t) {
+                    return this.startOf(t, !1);
+                }, m.$set = function(t, e) {
+                    var n, o = O.p(t), h = "set" + (this.$u ? "UTC" : ""), $ = (n = {}, n[a] = h + "Date", 
+                    n[d] = h + "Date", n[f] = h + "Month", n[c] = h + "FullYear", n[u] = h + "Hours", 
+                    n[s] = h + "Minutes", n[i] = h + "Seconds", n[r] = h + "Milliseconds", n)[o], l = o === a ? this.$D + (e - this.$W) : e;
+                    if (o === f || o === c) {
+                        var y = this.clone().set(d, 1);
+                        y.$d[$](l), y.init(), this.$d = y.set(d, Math.min(this.$D, y.daysInMonth())).$d;
+                    } else $ && this.$d[$](l);
+                    return this.init(), this;
+                }, m.set = function(t, e) {
+                    return this.clone().$set(t, e);
+                }, m.get = function(t) {
+                    return this[O.p(t)]();
+                }, m.add = function(r, h) {
+                    var d, $ = this;
+                    r = Number(r);
+                    var l = O.p(h), y = function(t) {
+                        var e = w($);
+                        return O.w(e.date(e.date() + Math.round(t * r)), $);
+                    };
+                    if (l === f) return this.set(f, this.$M + r);
+                    if (l === c) return this.set(c, this.$y + r);
+                    if (l === a) return y(1);
+                    if (l === o) return y(7);
+                    var M = (d = {}, d[s] = e, d[u] = n, d[i] = t, d)[l] || 1, m = this.$d.getTime() + r * M;
+                    return O.w(m, this);
+                }, m.subtract = function(t, e) {
+                    return this.add(-1 * t, e);
+                }, m.format = function(t) {
+                    var e = this, n = this.$locale();
+                    if (!this.isValid()) return n.invalidDate || $;
+                    var r = t || "YYYY-MM-DDTHH:mm:ssZ", i = O.z(this), s = this.$H, u = this.$m, a = this.$M, o = n.weekdays, f = n.months, h = function(t, n, i, s) {
+                        return t && (t[n] || t(e, r)) || i[n].slice(0, s);
+                    }, c = function(t) {
+                        return O.s(s % 12 || 12, t, "0");
+                    }, d = n.meridiem || function(t, e, n) {
+                        var r = t < 12 ? "AM" : "PM";
+                        return n ? r.toLowerCase() : r;
+                    }, l = {
+                        YY: String(this.$y).slice(-2),
+                        YYYY: this.$y,
+                        M: a + 1,
+                        MM: O.s(a + 1, 2, "0"),
+                        MMM: h(n.monthsShort, a, f, 3),
+                        MMMM: h(f, a),
+                        D: this.$D,
+                        DD: O.s(this.$D, 2, "0"),
+                        d: String(this.$W),
+                        dd: h(n.weekdaysMin, this.$W, o, 2),
+                        ddd: h(n.weekdaysShort, this.$W, o, 3),
+                        dddd: o[this.$W],
+                        H: String(s),
+                        HH: O.s(s, 2, "0"),
+                        h: c(1),
+                        hh: c(2),
+                        a: d(s, u, !0),
+                        A: d(s, u, !1),
+                        m: String(u),
+                        mm: O.s(u, 2, "0"),
+                        s: String(this.$s),
+                        ss: O.s(this.$s, 2, "0"),
+                        SSS: O.s(this.$ms, 3, "0"),
+                        Z: i
+                    };
+                    return r.replace(y, (function(t, e) {
+                        return e || l[t] || i.replace(":", "");
+                    }));
+                }, m.utcOffset = function() {
+                    return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
+                }, m.diff = function(r, d, $) {
+                    var l, y = O.p(d), M = w(r), m = (M.utcOffset() - this.utcOffset()) * e, g = this - M, v = O.m(this, M);
+                    return v = (l = {}, l[c] = v / 12, l[f] = v, l[h] = v / 3, l[o] = (g - m) / 6048e5, 
+                    l[a] = (g - m) / 864e5, l[u] = g / n, l[s] = g / e, l[i] = g / t, l)[y] || g, $ ? v : O.a(v);
+                }, m.daysInMonth = function() {
+                    return this.endOf(f).$D;
+                }, m.$locale = function() {
+                    return D[this.$L];
+                }, m.locale = function(t, e) {
+                    if (!t) return this.$L;
+                    var n = this.clone(), r = S(t, e, !0);
+                    return r && (n.$L = r), n;
+                }, m.clone = function() {
+                    return O.w(this.$d, this);
+                }, m.toDate = function() {
+                    return new Date(this.valueOf());
+                }, m.toJSON = function() {
+                    return this.isValid() ? this.toISOString() : null;
+                }, m.toISOString = function() {
+                    return this.$d.toISOString();
+                }, m.toString = function() {
+                    return this.$d.toUTCString();
+                }, M;
+            }(), T = _.prototype;
+            return w.prototype = T, [ [ "$ms", r ], [ "$s", i ], [ "$m", s ], [ "$H", u ], [ "$W", a ], [ "$M", f ], [ "$y", c ], [ "$D", d ] ].forEach((function(t) {
+                T[t[1]] = function(e) {
+                    return this.$g(e, t[0], t[1]);
+                };
+            })), w.extend = function(t, e) {
+                return t.$i || (t(e, _, w), t.$i = !0), w;
+            }, w.locale = S, w.isDayjs = p, w.unix = function(t) {
+                return w(1e3 * t);
+            }, w.en = D[v], w.Ls = D, w.p = {}, w;
+        }));
+    },
     "./node_modules/dayjs/plugin/duration.js": function(module) {
         !function(t, s) {
             true ? module.exports = s() : 0;
@@ -4097,6 +4351,98 @@
             } ])["default"];
         }));
     },
+    "./node_modules/swiper/esm/components/effect-fade/effect-fade.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => __WEBPACK_DEFAULT_EXPORT__
+        });
+        var _utils_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/swiper/esm/utils/utils.js");
+        function _extends() {
+            _extends = Object.assign || function(target) {
+                for (var i = 1; i < arguments.length; i++) {
+                    var source = arguments[i];
+                    for (var key in source) if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+                }
+                return target;
+            };
+            return _extends.apply(this, arguments);
+        }
+        var Fade = {
+            setTranslate: function() {
+                var swiper = this;
+                var slides = swiper.slides;
+                for (var i = 0; i < slides.length; i += 1) {
+                    var $slideEl = swiper.slides.eq(i);
+                    var offset = $slideEl[0].swiperSlideOffset;
+                    var tx = -offset;
+                    if (!swiper.params.virtualTranslate) tx -= swiper.translate;
+                    var ty = 0;
+                    if (!swiper.isHorizontal()) {
+                        ty = tx;
+                        tx = 0;
+                    }
+                    var slideOpacity = swiper.params.fadeEffect.crossFade ? Math.max(1 - Math.abs($slideEl[0].progress), 0) : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
+                    $slideEl.css({
+                        opacity: slideOpacity
+                    }).transform("translate3d(" + tx + "px, " + ty + "px, 0px)");
+                }
+            },
+            setTransition: function(duration) {
+                var swiper = this;
+                var slides = swiper.slides, $wrapperEl = swiper.$wrapperEl;
+                slides.transition(duration);
+                if (swiper.params.virtualTranslate && 0 !== duration) {
+                    var eventTriggered = false;
+                    slides.transitionEnd((function() {
+                        if (eventTriggered) return;
+                        if (!swiper || swiper.destroyed) return;
+                        eventTriggered = true;
+                        swiper.animating = false;
+                        var triggerEvents = [ "webkitTransitionEnd", "transitionend" ];
+                        for (var i = 0; i < triggerEvents.length; i += 1) $wrapperEl.trigger(triggerEvents[i]);
+                    }));
+                }
+            }
+        };
+        const __WEBPACK_DEFAULT_EXPORT__ = {
+            name: "effect-fade",
+            params: {
+                fadeEffect: {
+                    crossFade: false
+                }
+            },
+            create: function() {
+                var swiper = this;
+                (0, _utils_utils__WEBPACK_IMPORTED_MODULE_0__.bindModuleMethods)(swiper, {
+                    fadeEffect: _extends({}, Fade)
+                });
+            },
+            on: {
+                beforeInit: function(swiper) {
+                    if ("fade" !== swiper.params.effect) return;
+                    swiper.classNames.push(swiper.params.containerModifierClass + "fade");
+                    var overwriteParams = {
+                        slidesPerView: 1,
+                        slidesPerColumn: 1,
+                        slidesPerGroup: 1,
+                        watchSlidesProgress: true,
+                        spaceBetween: 0,
+                        virtualTranslate: true
+                    };
+                    (0, _utils_utils__WEBPACK_IMPORTED_MODULE_0__.extend)(swiper.params, overwriteParams);
+                    (0, _utils_utils__WEBPACK_IMPORTED_MODULE_0__.extend)(swiper.originalParams, overwriteParams);
+                },
+                setTranslate: function(swiper) {
+                    if ("fade" !== swiper.params.effect) return;
+                    swiper.fadeEffect.setTranslate();
+                },
+                setTransition: function(swiper, duration) {
+                    if ("fade" !== swiper.params.effect) return;
+                    swiper.fadeEffect.setTransition(duration);
+                }
+            }
+        };
+    },
     "./node_modules/swiper/esm/components/navigation/navigation.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
@@ -4788,7 +5134,10 @@
     },
     "./src/assets/cart/script/main.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
         "use strict";
+        var js_cookie = __webpack_require__("./node_modules/js-cookie/src/js.cookie.js");
+        var js_cookie_default = __webpack_require__.n(js_cookie);
         __webpack_require__("./src/assets/product/commons/js/product-item.js");
+        var sentryReport = __webpack_require__("../shared/browser/utils/logger/sentryReport.js");
         var state_selector = __webpack_require__("../shared/browser/utils/state-selector.js");
         var CurrencyConvert = __webpack_require__("../shared/browser/utils/currency/CurrencyConvert.js");
         var tradeReport_const = __webpack_require__("../shared/browser/utils/tradeReport/const.js");
@@ -4816,9 +5165,9 @@
             return "";
         }
         const getI18nKey = (step, configs, type) => {
-            if (1 === step) return type === TypeEnum.AMOUNT ? "sales.gift.notMetAmount" : "sales.gift.notMetQuantity";
-            if (2 === step) return configs.hasSelectedGiftQuantity <= 0 || type === TypeEnum.NONE ? "sales.gift.noReceived" : type === TypeEnum.AMOUNT ? "sales.gift.spendMoreMoneyGetMore" : "sales.gift.spendMoreQuantityGetMore";
-            if (3 === step) return configs.hasSelectedGiftQuantity <= 0 ? "sales.gift.noReceived" : "sales.gift.gotAll";
+            if (1 === step) return type === TypeEnum.AMOUNT ? "sales.gift.not_meet_amount_tip" : "sales.gift.not_meet_quantity_tip";
+            if (2 === step) return configs.hasSelectedGiftQuantity <= 0 || type === TypeEnum.NONE ? "sales.gift.select_gift_tip" : type === TypeEnum.AMOUNT ? "sales.gift.spend_more_money_get_more_tip" : "sales.gift.spend_more_quantity_get_more_tip";
+            if (3 === step) return configs.hasSelectedGiftQuantity <= 0 ? "sales.gift.select_gift_tip" : "sales.gift.got_all_gifts_tip";
             return "";
         };
         const getGiftConfig = (promotion, configs = {}) => {
@@ -4891,7 +5240,8 @@
             const promotionTemplate = (0, i18n.t)(config.path, {
                 ...config.params || {}
             });
-            if (needJump) return `\n      <div class="cart-sku-list-promotion-module-can-jump">\n        <a href="/activity/${promotion.activitySeq}?type=pool" class="cart-sku-list-promotion-module-can-jump-wrapper">\n          <div>\n            ${promotionTemplate}\n          </div>\n          <div class="cart-sku-list-promotion-module-can-jump-arrow" style="font-size:0;">\n            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n              <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />\n            </svg>\n          </div>\n        </a>\n      </div>\n    `;
+            const {extMap = {}} = config.params;
+            if (needJump) return `\n      <div class="cart-sku-list-promotion-module-can-jump">\n        <a href="/activity/${promotion.activitySeq}?type=pool${"true" === extMap.meetThreshold ? "&query_product_type=2" : ""}" class="cart-sku-list-promotion-module-can-jump-wrapper">\n          <div>\n            ${promotionTemplate}\n          </div>\n          <div class="cart-sku-list-promotion-module-can-jump-arrow" style="font-size:0;">\n            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n              <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />\n            </svg>\n          </div>\n        </a>\n      </div>\n    `;
             return `\n    <div class="cart-sku-list-promotion-module">\n      <span>\n        ${promotionTemplate}\n      </span>\n    </div>\n  `;
         };
         const reminder = getPromotionBarContent;
@@ -4924,6 +5274,7 @@
             const content = getContent(...args);
             return `\n    <div class="cart-sku-list-promotion">\n      ${content}\n    </div>\n  `;
         };
+        var logger = __webpack_require__("./src/assets/shared/logger/index.js");
         var utils = __webpack_require__("./src/assets/commons/utils/index.js");
         function isS3FileUrl(url) {
             return /\.cloudfront\./.test(url) || /https:\/\/img.myshopline.com/.test(url) || /https:\/\/img-preview.myshopline.com/.test(url);
@@ -5038,8 +5389,19 @@
         const report_cartHdReport = cartHdReport;
         var tradeReport = __webpack_require__("../shared/browser/utils/tradeReport/index.js");
         var report_const = __webpack_require__("../shared/browser/utils/report/const.js");
+        const cartReport_logger = logger["default"].pipeOwner(`${sentryReport.Owner.Cart} report/cartReport.js`);
+        const cartToken = js_cookie_default().get("t_cart");
         class CartReport extends tradeReport.TradeReport {
             setRemoveItemParams(params, extraItems) {
+                cartReport_logger.info(`normal 主站购物车 数据上报 设置移除商品params setRemoveItemParams`, {
+                    data: {
+                        cartToken,
+                        params,
+                        extraItems
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Start
+                });
                 const res = {
                     productItems: [],
                     value: 0
@@ -5075,6 +5437,16 @@
                     });
                 }));
                 res.value = null === currency["default"] || void 0 === currency["default"] ? void 0 : currency["default"].formatCurrency(res.value || 0).toString();
+                cartReport_logger.info(`normal 主站购物车 数据上报 设置移除商品params setRemoveItemParams`, {
+                    data: {
+                        cartToken,
+                        params,
+                        extraItems,
+                        integratedParams: res
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Success
+                });
                 return res;
             }
             selectContent({skuId, name, price, skuAttrs, itemNo, ...rest}) {
@@ -5090,6 +5462,14 @@
                     actionType: report_const.ClickType.SelectContent,
                     value
                 };
+                cartReport_logger.info(`normal 主站购物车 数据上报 选中商品 selectContent`, {
+                    data: {
+                        cartToken,
+                        integratedParams: data
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Start
+                });
                 this.touch(data);
             }
             removeItem(params, extraItems) {
@@ -5098,12 +5478,40 @@
                         actionType: report_const.ClickType.RemoveFromCart,
                         value: this.setRemoveItemParams(params, extraItems)
                     };
+                    cartReport_logger.info(`normal 主站购物车 数据上报 移除商品 removeItem`, {
+                        data: {
+                            cartToken,
+                            params,
+                            extraItems,
+                            integratedParams: data
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Start
+                    });
                     this.touch(data);
                 } catch (e) {
+                    cartReport_logger.info(`normal 主站购物车 数据上报 移除商品 上报报错 removeItem`, {
+                        data: {
+                            cartToken,
+                            params,
+                            extraItems,
+                            error: e
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Start
+                    });
                     console.error(e);
                 }
             }
             viewCart(cartInfo) {
+                cartReport_logger.info(`mini 主站购物车 数据上报 viewCart`, {
+                    data: {
+                        cartToken,
+                        cartInfo
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
                 if (!cartInfo.activeItems) return;
                 const params = {
                     amount: null === currency["default"] || void 0 === currency["default"] ? void 0 : currency["default"].formatCurrency(cartInfo.realAmount || 0),
@@ -5114,6 +5522,17 @@
                     params.items = [ ...params.items, ...activeItem.itemList ];
                     return activeItem;
                 }));
+                cartReport_logger.info(`mini 主站购物车 数据上报 viewCart`, {
+                    data: {
+                        cartToken,
+                        reportInfo: {
+                            ...params,
+                            actionType: report_const.ClickType.ViewCart
+                        }
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
                 this.reportViewCart({
                     params,
                     actionType: report_const.ClickType.ViewCart
@@ -5126,7 +5545,7 @@
         var utils_throttle = __webpack_require__("./src/assets/commons/utils/throttle.js");
         const helper_setStickyContAnimate = ({viewportSelector, containerSelector}) => {
             const inInput = state_selector.SL_State.get("cartInInputMode");
-            if (!utils["default"].helper.isUnderViewport($(viewportSelector).get(0)) && !inInput) $(containerSelector).slideDown(300).attr("isOpen", true); else $(containerSelector).slideUp(200).removeAttr("isOpen");
+            if (!utils["default"].helper.isUnderViewport(__SL_$__(viewportSelector).get(0)) && !inInput) __SL_$__(containerSelector).slideDown(300).attr("isOpen", true); else __SL_$__(containerSelector).slideUp(200).removeAttr("isOpen");
         };
         const helper_listenElementMutation = (target, callback, options = {
             childList: true
@@ -5143,16 +5562,25 @@
         };
         var _tradeSettleConfig$pa, _tradeSettleConfig$pa2, _tradeSettleConfig$af, _tradeSettleConfig$af2;
         const tradeSettleConfig = state_selector.SL_State.get("tradeSettleConfig");
+        const sticky_cart_logger = logger["default"].pipeOwner(`${sentryReport.Owner.Cart} biz/sticky-cart/index.js`);
+        const sticky_cart_cartToken = js_cookie_default().get("t_cart");
         (null === tradeSettleConfig || void 0 === tradeSettleConfig ? void 0 : null === (_tradeSettleConfig$pa = tradeSettleConfig.paymentSecurity) || void 0 === _tradeSettleConfig$pa ? void 0 : null === (_tradeSettleConfig$pa2 = _tradeSettleConfig$pa.displayPosition) || void 0 === _tradeSettleConfig$pa2 ? void 0 : _tradeSettleConfig$pa2.includes("CART")) || null === tradeSettleConfig || void 0 === tradeSettleConfig || null === (_tradeSettleConfig$af = tradeSettleConfig.afterSaleGuarantee) || void 0 === _tradeSettleConfig$af || null === (_tradeSettleConfig$af2 = _tradeSettleConfig$af.displayPosition) || void 0 === _tradeSettleConfig$af2 || _tradeSettleConfig$af2.includes("CART");
         const initMainCartSticky = () => {
             if ((0, isMobile["default"])()) {
-                $(window).on("scroll", (0, utils_throttle["default"])(20, (() => {
+                sticky_cart_logger.info(`main 主站购物车 initMainCartSticky`, {
+                    data: {
+                        cartToken: sticky_cart_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Success
+                });
+                __SL_$__(window).on("scroll", (0, utils_throttle["default"])(20, (() => {
                     helper_setStickyContAnimate({
                         viewportSelector: ".trade_cart .main_cart",
                         containerSelector: ".cart__stick_container"
                     });
                 })));
-                helper_listenElementMutation($(".trade-cart-sku-list").get(0), (() => {
+                helper_listenElementMutation(__SL_$__(".trade-cart-sku-list").get(0), (() => {
                     setTimeout((() => {
                         helper_setStickyContAnimate({
                             viewportSelector: ".trade_cart .main_cart",
@@ -5170,14 +5598,14 @@
         };
         let intersectionObserver;
         const handleHeaderVisibleToggle = isVisible => {
-            if (!isVisible) $(".mini-cart__drawer-slot").css("position", "fixed").css("top", 0); else $(".mini-cart__drawer-slot").css("position", "absolute").css("top", "");
+            if (!isVisible) __SL_$__(".mini-cart__drawer-slot").css("position", "fixed").css("top", 0); else __SL_$__(".mini-cart__drawer-slot").css("position", "absolute").css("top", "");
         };
         const listenHeaderIntersection = () => {
-            const isHeaderSticky = $("#stage-header").attr("data-sticky");
-            if ("true" !== isHeaderSticky) intersectionObserver = listenElementIntersection($(".header__main").get(0), handleHeaderVisibleToggle);
+            const isHeaderSticky = __SL_$__("#stage-header").attr("data-sticky");
+            if ("true" !== isHeaderSticky) intersectionObserver = listenElementIntersection(__SL_$__(".header__main").get(0), handleHeaderVisibleToggle);
         };
         const listenEditorSectionChange = () => {
-            $(document).on("shopline:section:load", (() => {
+            __SL_$__(document).on("shopline:section:load", (() => {
                 var _intersectionObserver;
                 null === (_intersectionObserver = intersectionObserver) || void 0 === _intersectionObserver ? void 0 : _intersectionObserver.disconnect();
                 listenHeaderIntersection();
@@ -5190,12 +5618,27 @@
             }), 0);
         };
         const toggleVisibility = (cartType, visibility) => {
+            sticky_cart_logger.info(`normal 主站购物车 切换展示 toggleVisibility`, {
+                data: {
+                    cartToken: sticky_cart_cartToken
+                },
+                action: sentryReport.Action.openCart,
+                status: logger.Status.Start
+            });
             if (!(0, isMobile["default"])()) return;
             const selector = "main" === cartType ? ".cart__stick_container" : ".miniCart__stick_container";
-            const isOpen = $(selector).attr("isOpen");
+            const isOpen = __SL_$__(selector).attr("isOpen");
             if (!isOpen) return;
-            const visible = "boolean" === typeof visibility ? visibility : "block" !== $(selector).css("display");
-            $(selector)[visible ? "show" : "hide"]();
+            const visible = "boolean" === typeof visibility ? visibility : "block" !== __SL_$__(selector).css("display");
+            __SL_$__(selector)[visible ? "show" : "hide"]();
+            sticky_cart_logger.info(`normal 主站购物车 切换展示 toggleVisibility`, {
+                data: {
+                    cartToken: sticky_cart_cartToken,
+                    visible: visible ? "show" : "hide"
+                },
+                action: sentryReport.Action.openCart,
+                status: logger.Status.Success
+            });
         };
         function observer(data, action = {}) {
             return new Proxy(data, {
@@ -5216,9 +5659,24 @@
         const model_observer = observer;
         var stockType = __webpack_require__("./src/assets/cart/script/constant/stockType.js");
         const toastTypeEnum = {
-            stockLimit: "stock-limit",
-            activeStockLimit: "active-stock-limit"
+            stockLimit: "item.item_left",
+            activeStockLimit: "discount_price.buy_limit"
         };
+        function tActiveStockLimitWithMaxPurchaseReasonCode(code, stock) {
+            const tParams = {
+                stock
+            };
+            switch (code) {
+              case "LIMITED_ACTIVE_OVER":
+                return (0, i18n.t)("cart.discount_price.buy_limit2", tParams);
+
+              case "LIMITED_ACTIVE_SKU_OVER":
+                return (0, i18n.t)("cart.discount_price.buy_limit3", tParams);
+
+              default:
+                return (0, i18n.t)("cart.discount_price.buy_limit1", tParams);
+            }
+        }
         let currentValue;
         function skuPromotionVerify(key, nextValue) {
             const ctx = this.stepper;
@@ -5239,6 +5697,8 @@
         const model_skuPromotionVerify = skuPromotionVerify;
         var helpers = __webpack_require__("./src/assets/cart/script/domain/model/helpers.js");
         var cartItem = __webpack_require__("./src/assets/cart/script/domain/model/cartItem.js");
+        const sku_stepper_logger = logger["default"].pipeOwner(`${sentryReport.Owner.Cart} components/sku-stepper`);
+        const sku_stepper_cartToken = js_cookie_default().get("t_cart");
         const getCursorPosition = function(element) {
             var _document;
             let cursorPos = 0;
@@ -5294,15 +5754,31 @@
                 this.beforeValue = totalSkuNum;
             }
             init() {
+                sku_stepper_logger.info(`normal 主站购物车 skuStepper init`, {
+                    data: {
+                        cartToken: sku_stepper_cartToken,
+                        stepperInfo: this.stepper
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
                 this.$stepper = this.root.find(".cart-stepper");
                 this.$minusButton = this.$stepper.find(".cart-stepper-minus");
                 this.$plusButton = this.$stepper.find(".cart-stepper-plus");
                 this.$input = this.$stepper.find(".cart-stepper-input");
                 this.initEventListener();
                 this.render();
-                $(window).on("unload", (() => {
+                __SL_$__(window).on("unload", (() => {
                     this.unbind();
                 }));
+                sku_stepper_logger.info(`normal 主站购物车 skuStepper init`, {
+                    data: {
+                        cartToken: sku_stepper_cartToken,
+                        stepperInfo: this.stepper
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Success
+                });
             }
             unbind() {
                 var _this$$minusButton, _this$$plusButton, _this$$input;
@@ -5310,9 +5786,16 @@
                 null === (_this$$plusButton = this.$plusButton) || void 0 === _this$$plusButton ? void 0 : _this$$plusButton.off();
                 null === (_this$$input = this.$input) || void 0 === _this$$input ? void 0 : _this$$input.off();
             }
-            changeItemNum() {
-                this.stepper.setRendering(true);
+            changeItemNumReport() {
                 try {
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNumReport`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Start
+                    });
                     report_cartHdReport.updateItem({
                         spuId: this.stepper.spuId,
                         skuId: this.stepper.skuId,
@@ -5338,11 +5821,47 @@
                         report_cartHdReport.removeRp(params);
                     }
                     this.beforeValue = this.stepper.value;
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNumReport`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Success
+                    });
                 } catch (e) {
                     this.beforeValue = this.stepper.value;
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNumReport`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport.Action.EditCart,
+                        error: e
+                    });
                     console.error(e);
                 }
+            }
+            changeItemNum() {
+                sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNum`, {
+                    data: {
+                        cartToken: sku_stepper_cartToken,
+                        stepperInfo: this.stepper
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Start
+                });
+                this.stepper.setRendering(true);
+                this.changeItemNumReport();
                 cart_util.changeItemNum(this.stepper.spuId, this.stepper.skuId, this.stepper.value, this.stepper.groupId, this.stepper.productSource);
+                sku_stepper_logger.info(`normal 主站购物车 skuStepper changeItemNum`, {
+                    data: {
+                        cartToken: sku_stepper_cartToken,
+                        stepperInfo: this.stepper
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Success
+                });
             }
             limitToastNum(num) {
                 if (num > 0) return num;
@@ -5351,12 +5870,9 @@
             toastLimit() {
                 const {maxPurchaseReasonCode, maxPurchaseTotalNum} = this.stepper;
                 if (stockType.cartLimitedEnum.NORMAL_ITEM_MAX_NUM.includes(maxPurchaseReasonCode)) {
-                    sku_stepper_toast.open((0, i18n.t)(`cart.most-buy-999`));
+                    sku_stepper_toast.open((0, i18n.t)(`cart.item.add_limit2`));
                     this.render();
-                } else if (stockType.cartLimitedEnum.ACTIVE_LIMITED.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
-                i18n.t)(`cart.${toastTypeEnum.activeStockLimit}-${stockType.limitedActiveEnum[maxPurchaseReasonCode]}`, {
-                    stock: this.limitToastNum(maxPurchaseTotalNum)
-                })); else if (stockType.cartLimitedEnum.NORMAL_STOCK_OVER.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
+                } else if (stockType.cartLimitedEnum.ACTIVE_LIMITED.includes(maxPurchaseReasonCode)) sku_stepper_toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(maxPurchaseReasonCode, this.limitToastNum(maxPurchaseTotalNum))); else if (stockType.cartLimitedEnum.NORMAL_STOCK_OVER.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
                 i18n.t)(`cart.${toastTypeEnum.stockLimit}`, {
                     stock: this.limitToastNum(maxPurchaseTotalNum)
                 })); else if (stockType.cartLimitedEnum.ACTIVE_STOCK_OVER.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
@@ -5367,50 +5883,101 @@
             initEventListener() {
                 var _this$$minusButton2;
                 null === (_this$$minusButton2 = this.$minusButton) || void 0 === _this$$minusButton2 ? void 0 : _this$$minusButton2.on("click", (() => {
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper minusBtnClick`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Start
+                    });
                     this.setNeedForceFocus(false);
+                    const {stepper, groupTotalDiscountValue} = this;
                     if (this.stepper.isRendering()) return;
-                    const {maxPurchaseReasonCode, maxPurchaseTotalNum, maxPurchaseNum, value} = this.stepper;
-                    const stepValue = Math.max(value - this.getDiscountValue(), 1);
+                    const {maxPurchaseReasonCode, maxPurchaseTotalNum, maxPurchaseNum, value} = stepper;
+                    const stepValue = Math.max(value - groupTotalDiscountValue, 1);
                     if (stepValue > 0) {
                         if (stepValue > maxPurchaseNum) {
-                            if (stockType.cartLimitedEnum.ACTIVE.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
-                            i18n.t)(`cart.${toastTypeEnum.activeStockLimit}`, {
-                                stock: this.limitToastNum(maxPurchaseTotalNum)
-                            })); else sku_stepper_toast.open((0, i18n.t)(`cart.${toastTypeEnum.stockLimit}`, {
+                            if (stockType.cartLimitedEnum.ACTIVE.includes(maxPurchaseReasonCode)) sku_stepper_toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(void 0, this.limitToastNum(maxPurchaseTotalNum))); else sku_stepper_toast.open((0, 
+                            i18n.t)(`cart.${toastTypeEnum.stockLimit}`, {
                                 stock: this.limitToastNum(maxPurchaseTotalNum)
                             }));
                             if (1 === value) this.stepper.value = 0; else if (maxPurchaseNum > 0) this.stepper.value = maxPurchaseNum; else this.stepper.value = 1;
                             this.render();
                         } else this.stepper.value -= 1;
                         this.changeItemNum();
+                        sku_stepper_logger.info(`normal 主站购物车 skuStepper minusBtnClick`, {
+                            data: {
+                                cartToken: sku_stepper_cartToken,
+                                stepperInfo: this.stepper
+                            },
+                            action: sentryReport.Action.EditCart,
+                            status: logger.Status.Success
+                        });
                     }
                 }));
                 this.$plusButton.on("click", (() => {
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper plusBtnClick`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Start
+                    });
                     this.setNeedForceFocus(false);
                     if (this.stepper.isRendering()) return;
-                    const {value, maxPurchaseNum} = this.stepper;
-                    const stepValue = Math.max(value - this.getDiscountValue(), 1);
+                    const {groupTotalDiscountValue, stepper} = this;
+                    const {value, maxPurchaseNum} = stepper;
+                    const stepValue = Math.max(value - groupTotalDiscountValue, 1);
                     if (stepValue < maxPurchaseNum) {
                         this.stepper.value += 1;
                         this.changeItemNum();
                     } else if (stepValue === maxPurchaseNum) this.toastLimit(); else {
                         this.toastLimit();
                         if (stepValue > maxPurchaseNum) {
-                            this.stepper.value = maxPurchaseNum > 0 ? maxPurchaseNum + this.getDiscountValue() : 1;
+                            this.stepper.value = maxPurchaseNum > 0 ? maxPurchaseNum + groupTotalDiscountValue : 1;
                             this.render();
                             this.changeItemNum();
                         } else this.render();
                     }
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper plusBtnClick`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Success
+                    });
                 }));
                 this.$input.on("input", (e => {
                     var _e$target, _e$target$value;
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper input`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Start
+                    });
                     const input = null === (_e$target = e.target) || void 0 === _e$target ? void 0 : null === (_e$target$value = _e$target.value) || void 0 === _e$target$value ? void 0 : _e$target$value.match(/^\d*/);
+                    let inputVal = "";
                     if ("" !== (null === input || void 0 === input ? void 0 : input[0])) {
                         var _input$, _input$2;
                         const value = e.target.value ? Number(null === (_input$ = input[0]) || void 0 === _input$ ? void 0 : _input$.slice(0, Math.min(null === (_input$2 = input[0]) || void 0 === _input$2 ? void 0 : _input$2.length, 4))) : e.target.value;
                         this.stepper.value = value;
-                        this.setValue(value);
-                    } else this.setValue("");
+                        inputVal = value;
+                    }
+                    this.setValue(inputVal);
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper input`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper,
+                            inputVal
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Success
+                    });
                 }));
                 this.$input.on("focus", (() => {
                     this.setNeedForceFocus(true);
@@ -5427,6 +5994,15 @@
                     });
                 }));
                 this.$input.on("blur", (e => {
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper inputBlur`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper,
+                            currentStepper: e
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Start
+                    });
                     this.setNeedForceFocus(true);
                     toggleVisibility(this.cartType, true);
                     state_selector.SL_State.set("cartInInputMode", false);
@@ -5438,29 +6014,34 @@
                         this.changeItemNum();
                     } else {
                         this.stepper.value = value;
+                        const {groupTotalDiscountValue} = this;
                         const {maxPurchaseTotalNum, maxPurchaseNum, maxPurchaseReasonCode} = this.stepper;
-                        let totalValue = value + this.getDiscountValue();
+                        let totalValue = value + groupTotalDiscountValue;
                         const overFlag = totalValue > maxPurchaseNum;
                         if (overFlag) if (stockType.cartLimitedEnum.NORMAL_ITEM_MAX_NUM.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
-                        i18n.t)(`cart.most-buy-999`)); else if (stockType.cartLimitedEnum.ACTIVE_LIMITED.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
-                        i18n.t)(`cart.${toastTypeEnum.activeStockLimit}-${stockType.limitedActiveEnum[maxPurchaseReasonCode]}`, {
-                            stock: this.limitToastNum(maxPurchaseTotalNum)
-                        })); else if (stockType.cartLimitedEnum.NORMAL_STOCK_OVER.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
+                        i18n.t)(`cart.item.add_limit2`)); else if (stockType.cartLimitedEnum.ACTIVE_LIMITED.includes(maxPurchaseReasonCode)) sku_stepper_toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(maxPurchaseReasonCode, this.limitToastNum(maxPurchaseTotalNum))); else if (stockType.cartLimitedEnum.NORMAL_STOCK_OVER.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
                         i18n.t)(`cart.${toastTypeEnum.stockLimit}`, {
                             stock: this.limitToastNum(maxPurchaseTotalNum)
                         })); else if (stockType.cartLimitedEnum.ACTIVE_STOCK_OVER.includes(maxPurchaseReasonCode)) sku_stepper_toast.open((0, 
                         i18n.t)(`cart.${toastTypeEnum.stockLimit}`, {
                             stock: this.limitToastNum(maxPurchaseTotalNum)
-                        })); else sku_stepper_toast.open((0, i18n.t)(`cart.${toastTypeEnum.activeStockLimit}-${stockType.limitedActiveEnum[maxPurchaseReasonCode]}`, {
-                            stock: this.limitToastNum(maxPurchaseTotalNum)
-                        }));
+                        })); else sku_stepper_toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(maxPurchaseReasonCode, this.limitToastNum(maxPurchaseTotalNum)));
                         if (this.stepper.preValue !== this.stepper.value || overFlag) {
-                            if (overFlag) totalValue = maxPurchaseNum > 0 ? maxPurchaseNum + this.getDiscountValue() : 1;
+                            if (overFlag) totalValue = maxPurchaseNum > 0 ? maxPurchaseNum + groupTotalDiscountValue : 1;
                             this.stepper.value = totalValue;
                             this.render();
                             this.changeItemNum();
                         } else this.setValue(this.stepper.preValue);
                     }
+                    sku_stepper_logger.info(`normal 主站购物车 skuStepper inputBlur`, {
+                        data: {
+                            cartToken: sku_stepper_cartToken,
+                            stepperInfo: this.stepper,
+                            currentStepper: e
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Success
+                    });
                 }));
             }
             getDiscountValue(groupById = true) {
@@ -5478,13 +6059,18 @@
                 const {skuId: stepperSkuId, spuId: stepperSpuId, groupId: stepperGroupId} = this.stepper;
                 otherSameSkuNum.forEach(((sku, skuIndex) => {
                     if (skuIndex !== currentIndex) {
-                        const {skuId, spuId, groupId} = sku;
-                        let sameItem = String(skuId) === String(stepperSkuId) && String(spuId) === String(stepperSpuId);
+                        const {skuId, spuId, groupId, num, parentSkuId} = sku;
+                        let sameItem = String(skuId) === String(stepperSkuId) && String(spuId) === String(stepperSpuId) && !parentSkuId;
                         if (groupById) sameItem = sameItem && String(groupId) === String(stepperGroupId);
-                        if (sameItem) discountValue += sku.num;
+                        if (sameItem) discountValue += num;
                     }
                 }));
-                return discountValue;
+                return {
+                    discountValue
+                };
+            }
+            get groupTotalDiscountValue() {
+                return this.getDiscountValue().discountValue;
             }
             setSingleDisabled(position, disabled) {
                 const prefix = ".cart-stepper-";
@@ -5504,8 +6090,9 @@
                 this.$stepper.find(".cart-stepper-input").val(value);
             }
             render() {
-                const {value, maxPurchaseNum} = this.stepper;
-                const stepValue = Math.max(value - this.getDiscountValue(), 1);
+                const {groupTotalDiscountValue, stepper} = this;
+                const {value, maxPurchaseNum} = stepper;
+                const stepValue = Math.max(value - groupTotalDiscountValue, 1);
                 this.setSingleDisabled("plus", maxPurchaseNum <= stepValue);
                 this.setStepperDisabled();
             }
@@ -5521,7 +6108,7 @@
             init() {
                 this.$removeButton = this.root.find(".trade-cart-sku-item-remove-button");
                 this.initEventListener();
-                $(window).on("unload", (() => {
+                __SL_$__(window).on("unload", (() => {
                     this.unbind();
                 }));
             }
@@ -5565,9 +6152,9 @@
                 this.cartActionHooks = cartActionHooks;
             }
             init() {
-                this.$removeAllButton = $(this.rootId);
+                this.$removeAllButton = __SL_$__(this.rootId);
                 this.initEventListener();
-                $(window).on("unload", (() => {
+                __SL_$__(window).on("unload", (() => {
                     this.unbind();
                 }));
             }
@@ -5948,7 +6535,7 @@
                 }), 1e3);
             }
             update() {
-                $(`#${this.parentId}`).find(`.cart__count-down--${this.parentId}`).text(this.leftTime.format);
+                __SL_$__(`#${this.parentId}`).find(`.cart__count-down--${this.parentId}`).text(this.leftTime.format);
             }
             get now() {
                 return Date.now();
@@ -5963,7 +6550,7 @@
                 const hours = duration.hours();
                 const minutes = duration.minutes() % 60 < 10 ? `0${duration.minutes() % 60}` : duration.minutes() % 60;
                 const seconds = duration.seconds() % 60 < 10 ? `0${duration.seconds() % 60}` : duration.seconds() % 60;
-                const dayText = dayValue => dayValue > 1 ? (0, i18n.t)("common.days") : (0, i18n.t)("common.day");
+                const dayText = dayValue => dayValue > 1 ? (0, i18n.t)("cart.cart.days") : (0, i18n.t)("cart.cart.day");
                 const renderDays = () => days > 0 ? `${days}${dayText(days)} ` : "";
                 return duration ? {
                     time: duration,
@@ -5972,7 +6559,7 @@
             }
             getComponent() {
                 this.countDown();
-                if (!this.leftTime.time) return $("<span></span>");
+                if (!this.leftTime.time) return __SL_$__("<span></span>");
                 return template({
                     label: "Flash Sale",
                     value: this.leftTime.format,
@@ -5992,10 +6579,10 @@
                 return html;
             }
             initFlashSale() {
-                const allFlashSaleEle = $("[data-flash-sale-item-id]");
+                const allFlashSaleEle = __SL_$__("[data-flash-sale-item-id]");
                 if (!allFlashSaleEle.length) return;
                 allFlashSaleEle.map(((_, ele) => {
-                    const curEle = $(ele);
+                    const curEle = __SL_$__(ele);
                     const data = curEle.data("flash-sale-data");
                     return curEle.html(this.renderFlashSale(curEle.attr("data-flash-sale-item-id"), data));
                 }));
@@ -6024,7 +6611,7 @@
                     "0111": 1,
                     "0112": 2
                 };
-                return `<div>${(0, i18n.t)(`cart.${toastTypeEnum.activeStockLimit}-${errorText[errorList[0]]}`, {
+                return `<div>${(0, i18n.t)(`cart.${toastTypeEnum.activeStockLimit}${errorText[errorList[0]]}`, {
                     stock: this.state.maxPurchaseTotalNum > 0 ? this.state.maxPurchaseTotalNum : "0"
                 })}</div>`;
             }
@@ -6040,10 +6627,10 @@
                 return html;
             }
             initPromotionLimited() {
-                const allFlashSaleEle = $("[data-promotion-limited-item-id]");
+                const allFlashSaleEle = __SL_$__("[data-promotion-limited-item-id]");
                 if (!allFlashSaleEle.length) return;
                 allFlashSaleEle.map(((_, ele) => {
-                    const curEle = $(ele);
+                    const curEle = __SL_$__(ele);
                     const data = curEle.data("promotion-limited-data");
                     return curEle.html(this.renderPromotionLimited(curEle.attr("data-promotion-limited-item-id"), data));
                 }));
@@ -6054,6 +6641,8 @@
             staticRender: (id, data) => render_model.renderPromotionLimited(id, data),
             initialModel: () => render_model.initPromotionLimited()
         };
+        const sku_card_logger = logger["default"].pipeOwner(`${sentryReport.Owner.Cart} components/sku-card`);
+        const sku_card_cartToken = js_cookie_default().get("t_cart");
         const setCursorPosition = (originDomEle, pos) => {
             if (document.selection) {
                 const sel = originDomEle.createTextRange();
@@ -6081,19 +6670,27 @@
                 this.ctx = ctx;
                 this.tradeCartType = tradeCartType;
                 if ("main" === tradeCartType) this.scrollContent = document.documentElement; else {
-                    var _$;
-                    this.scrollContent = null === (_$ = $(".trade_mini_cart .trade_cart_not_empty_wrapper")) || void 0 === _$ ? void 0 : _$.get(0);
+                    var _SL_$__;
+                    this.scrollContent = null === (_SL_$__ = __SL_$__(".trade_mini_cart .trade_cart_not_empty_wrapper")) || void 0 === _SL_$__ ? void 0 : _SL_$__.get(0);
                 }
-                this.rootWrapper = $(`#${tradeCartType}-trade-cart-sku-list`);
+                this.rootWrapper = __SL_$__(`#${tradeCartType}-trade-cart-sku-list`);
                 this.cartData = state_selector.SL_State.get("cartInfo");
                 this.loadFailedImgSet = new Set;
                 this.preFocusedInputEle = null;
                 this.needForceFocus = false;
             }
             init() {
-                var _this$cartData, _this$cartData2;
-                this.activeItems = null === (_this$cartData = this.cartData) || void 0 === _this$cartData ? void 0 : _this$cartData.activeItems;
-                this.inactiveItems = null === (_this$cartData2 = this.cartData) || void 0 === _this$cartData2 ? void 0 : _this$cartData2.inactiveItems;
+                const {cartData = {}} = this;
+                sku_card_logger.info(`normal 主站购物车 SkuCard init`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        cartData
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
+                this.activeItems = null === cartData || void 0 === cartData ? void 0 : cartData.activeItems;
+                this.inactiveItems = null === cartData || void 0 === cartData ? void 0 : cartData.inactiveItems;
                 this.preprocessDiscountData();
                 this.reset();
                 this.listenPlatformChange();
@@ -6102,6 +6699,14 @@
                 this.listenSelectContentReport();
                 render.initialModel();
                 promotion_limited_render.initialModel();
+                sku_card_logger.info(`normal 主站购物车 SkuCard init`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        cartData
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Success
+                });
             }
             setPreFocusedInputEle(info) {
                 this.preFocusedInputEle = this.preFocusedInputEle || {};
@@ -6117,7 +6722,7 @@
                 const _that = this;
                 if (this.needForceFocus && this.preFocusedInputEle) {
                     const {id, pos} = _that.preFocusedInputEle;
-                    const inputEle = $(`#${id}`).find(".cart-stepper-input");
+                    const inputEle = __SL_$__(`#${id}`).find(".cart-stepper-input");
                     const originDomEle = inputEle.get(0);
                     inputEle.trigger("focus");
                     setCursorPosition(originDomEle, pos);
@@ -6126,39 +6731,111 @@
                 }
             }
             reset(isRerender) {
-                var _this$activeItems, _this$inactiveItems;
+                const {activeItems, inactiveItems} = this;
+                sku_card_logger.info(`normal 主站购物车 SkuCard reset`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        activeItems,
+                        inactiveItems
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Start
+                });
                 this.needUnbindEleList = [];
                 this.listenImageLoadEvent();
-                null === (_this$activeItems = this.activeItems) || void 0 === _this$activeItems ? void 0 : _this$activeItems.forEach(((activeItem, findex) => {
+                null === activeItems || void 0 === activeItems ? void 0 : activeItems.forEach(((activeItem, findex) => {
                     var _activeItem$itemList;
                     null === activeItem || void 0 === activeItem ? void 0 : null === (_activeItem$itemList = activeItem.itemList) || void 0 === _activeItem$itemList ? void 0 : _activeItem$itemList.forEach(((item, index) => {
-                        const {skuId, spuId, priceType, groupId} = item;
-                        const rootId = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${null !== priceType && void 0 !== priceType ? priceType : ""}`;
-                        const root = $(`#${rootId}`);
-                        if (!isRerender) jQuery((() => {
-                            this.initStepper(root, item, `${findex}-${index}`);
-                            this.initRemoveButton(root, item);
-                        })); else {
-                            this.initStepper(root, item, `${findex}-${index}`);
-                            this.initRemoveButton(root, item);
-                        }
+                        const {skuId, spuId, groupId, uniqueSeq, businessFlag = {}} = item;
+                        const {singleAdjustNum, singleDelete} = businessFlag || {};
+                        const rootId = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${uniqueSeq}`;
+                        const root = __SL_$__(`#${rootId}`);
+                        const renderEditBtn = () => {
+                            sku_card_logger.info(`normal 主站购物车 SkuCard reset activeItems initStepper/removeBtn`, {
+                                data: {
+                                    cartToken: sku_card_cartToken,
+                                    isRerender,
+                                    root,
+                                    item,
+                                    id: `${findex}-${index}`
+                                },
+                                action: sentryReport.Action.EditCart,
+                                status: logger.Status.Start
+                            });
+                            if (singleAdjustNum) this.initStepper(root, item, `${findex}-${index}`);
+                            if (singleDelete) this.initRemoveButton(root, item);
+                            sku_card_logger.info(`normal 主站购物车 SkuCard reset initStepper/removeBtn`, {
+                                data: {
+                                    cartToken: sku_card_cartToken,
+                                    isRerender,
+                                    root,
+                                    item,
+                                    id: `${findex}-${index}`
+                                },
+                                action: sentryReport.Action.EditCart,
+                                status: logger.Status.Success
+                            });
+                        };
+                        if (!isRerender) jQuery(renderEditBtn); else renderEditBtn();
                     }));
                 }));
-                null === (_this$inactiveItems = this.inactiveItems) || void 0 === _this$inactiveItems ? void 0 : _this$inactiveItems.forEach((item => {
-                    const {skuId, spuId, priceType, groupId} = item;
-                    const rootId = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${null !== priceType && void 0 !== priceType ? priceType : ""}`;
-                    const root = $(`#${rootId}`);
-                    if (!isRerender) jQuery((() => {
+                null === inactiveItems || void 0 === inactiveItems ? void 0 : inactiveItems.forEach((item => {
+                    const {skuId, spuId, groupId, uniqueSeq} = item;
+                    const rootId = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${uniqueSeq}`;
+                    const root = __SL_$__(`#${rootId}`);
+                    const renderRemoveBtn = () => {
+                        sku_card_logger.info(`normal 主站购物车 SkuCard reset inactiveItems initRemoveBtn`, {
+                            data: {
+                                cartToken: sku_card_cartToken,
+                                activeItems,
+                                inactiveItems
+                            },
+                            action: sentryReport.Action.EditCart,
+                            status: logger.Status.Start
+                        });
                         this.initRemoveButton(root, item);
-                    })); else this.initRemoveButton(root, item);
+                        sku_card_logger.info(`normal 主站购物车 SkuCard reset inactiveItems initRemoveBtn`, {
+                            data: {
+                                cartToken: sku_card_cartToken,
+                                activeItems,
+                                inactiveItems
+                            },
+                            action: sentryReport.Action.EditCart,
+                            status: logger.Status.Success
+                        });
+                    };
+                    if (!isRerender) jQuery(renderRemoveBtn); else renderRemoveBtn();
                 }));
-                if (!isRerender) jQuery((() => {
+                const renderClearBtn = () => {
+                    sku_card_logger.info(`normal 主站购物车 SkuCard reset inactiveItems initClearBtn`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            inactiveItems
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Start
+                    });
                     this.getDeviceInfo();
                     this.initRemoveAllButton(this.inactiveItems);
-                })); else {
-                    this.getDeviceInfo();
-                    this.initRemoveAllButton(this.inactiveItems);
-                }
+                    sku_card_logger.info(`normal 主站购物车 SkuCard reset inactiveItems initClearBtn`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            inactiveItems
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Success
+                    });
+                };
+                if (!isRerender) jQuery(renderClearBtn); else renderClearBtn();
+                sku_card_logger.info(`normal 主站购物车 SkuCard reset`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        activeItems,
+                        inactiveItems
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Success
+                });
             }
             getRendering() {
                 return this.rendering;
@@ -6169,22 +6846,44 @@
             listenImageLoadEvent() {
                 const _that = this;
                 this.rootWrapper.find(".trade-cart-sku-item-image-wrapper").each(((index, img) => {
-                    this.needUnbindEleList.push($(img));
-                    $(img).on("error", (function() {
-                        $(img).parent().children(".trade-cart-sku-item-image-fallback").removeClass("hide");
-                        $(img).addClass("hide");
-                        _that.loadFailedImgSet.add($(img).attr("origin-src"));
+                    this.needUnbindEleList.push(__SL_$__(img));
+                    __SL_$__(img).on("error", (function() {
+                        __SL_$__(img).parent().children(".trade-cart-sku-item-image-fallback").removeClass("hide");
+                        __SL_$__(img).addClass("hide");
+                        _that.loadFailedImgSet.add(__SL_$__(img).attr("origin-src"));
                     }));
                 }));
             }
             listenCartDataUpdate() {
+                sku_card_logger.info(`normal 主站购物车 SkuCard CartDataUpdate`, {
+                    data: {
+                        cartToken: sku_card_cartToken
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Start
+                });
                 service["default"].cartEventBus.on(service["default"].CartEventBusEnum.UPDATE, (data => {
+                    sku_card_logger.info(`normal 主站购物车 SkuCard CartDataUpdateListener`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            cartInfo: data
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Start
+                    });
                     const {scrollTop} = this.scrollContent;
                     this.reRender(data);
                     this.setRendering(false);
                     setTimeout((() => {
                         this.scrollContent.scrollTop = scrollTop;
                     }), 0);
+                    sku_card_logger.info(`normal 主站购物车 SkuCard CartDataUpdate`, {
+                        data: {
+                            cartToken: sku_card_cartToken
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Success
+                    });
                 }));
             }
             listenPlatformChange() {
@@ -6200,13 +6899,13 @@
                     }
                     this.getDeviceInfo();
                     if (this.preImageWidth !== this.imageWidth) cartSkuWrapper.find(".trade-cart-sku-item-image-wrapper").each(((index, img) => {
-                        $(img).prop("src", this.getImageUrl($(img).attr("origin-src")));
+                        __SL_$__(img).prop("src", this.getImageUrl(__SL_$__(img).attr("origin-src")));
                     }));
                 }));
             }
             listenSelectContentReport() {
                 this.rootWrapper.on("click", ".trade-cart-sku-item-image", (function() {
-                    const {productSource, skuId, name, skuAttrs, price, salePrice, itemNo, quantity} = $(this).data();
+                    const {productSource, skuId, name, skuAttrs, price, salePrice, itemNo, quantity} = __SL_$__(this).data();
                     if (1 === productSource) report_cartReport.selectContent({
                         skuId,
                         name,
@@ -6247,9 +6946,9 @@
                 }));
             }
             preprocessDiscountData() {
-                var _this$activeItems2;
+                var _this$activeItems;
                 this.skuNumMap = {};
-                null === (_this$activeItems2 = this.activeItems) || void 0 === _this$activeItems2 ? void 0 : _this$activeItems2.forEach((activeItems => {
+                null === (_this$activeItems = this.activeItems) || void 0 === _this$activeItems ? void 0 : _this$activeItems.forEach((activeItems => {
                     var _activeItems$itemList;
                     null === activeItems || void 0 === activeItems ? void 0 : null === (_activeItems$itemList = activeItems.itemList) || void 0 === _activeItems$itemList ? void 0 : _activeItems$itemList.forEach((item => {
                         const {spuId, skuId, groupId, num} = item;
@@ -6297,8 +6996,8 @@
                     const addonBefore = `<div class="trade-cart-sku-item-info-spec body3">\n        <div class="trade-cart-sku-item-info-spec-key">${encodeHTML(data.name)}:</div>\n        `;
                     let content = ``;
                     if ("text" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value">${data.value}</div>`; else if ("picture" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-preview-btn" data-preview-list=${JSON.stringify(data.urls)}>${(0, 
-                    i18n.t)("cart.view-pic")}</div>`; else if ("link" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-look-btn">\n                        <a class="body3" href='${data.urls ? data.urls[0] : ""}' target="_blank">${(0, 
-                    i18n.t)("cart.view-link")}</a></div>`;
+                    i18n.t)("cart.cart.custom_preview")}</div>`; else if ("link" === data.type) content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-look-btn">\n                        <a class="body3" href='${data.urls ? data.urls[0] : ""}' target="_blank">${(0, 
+                    i18n.t)("cart.cart.click_to_view")}</a></div>`;
                     const addonAfter = `\n        </div>`;
                     skuContent.push(`${addonBefore}${content}${addonAfter}`);
                 }));
@@ -6317,27 +7016,25 @@
             getInfoLeft(data, isInactive, indexStr) {
                 var _data$businessFlag;
                 if (data.businessFlag && false === (null === (_data$businessFlag = data.businessFlag) || void 0 === _data$businessFlag ? void 0 : _data$businessFlag.singleAdjustNum) || 0 === data.maxPurchaseTotalNum && stockType.cartLimitedEnum.NORMAL_STOCK_OVER.includes(data.maxPurchaseReasonCode) || isInactive) return `<div class="trade-cart-sku-item-info-sku-number body3">x<span>${data.num}</span></div>`;
-                return this.getStepper(data.num, indexStr);
+                return `<div class="trade-cart-sku-item-info-left-stepper">${this.getStepper(data.num, indexStr)}</div>`;
             }
             getRemoveButton(data) {
                 var _data$businessFlag2;
                 return !data.businessFlag || data.businessFlag && null !== (_data$businessFlag2 = data.businessFlag) && void 0 !== _data$businessFlag2 && _data$businessFlag2.singleDelete ? `<div class="trade-cart-sku-item-remove"><button class="trade-cart-sku-item-remove-button body3 btn-link">${(0, 
-                i18n.t)("common.remove")}</button></div>` : "";
-            }
-            getLimitedDiscountClass(data) {
-                return 2 === data.priceType ? "trade-cart-sku-item-info-amount-and-limited-discount" : "";
+                i18n.t)("cart.cart.remove")}</button></div>` : "";
             }
             getPriceInfo(data) {
+                const isShowScribingPrice = parseInt(data.promotionAmount, 10) > 0 && parseInt(data.productPrice, 10) > parseInt(data.price, 10);
                 if (useSuperScriptDecimals) {
-                    const {integer: salePriceInteger, decimal: salePriceDecimal} = convertPrice(data.salePrice);
+                    const {integer: productPriceInteger, decimal: productPriceDecimal} = convertPrice(data.productPrice);
                     const {integer: priceInteger, decimal: priceDecimal} = convertPrice(data.price);
-                    if (parseInt(data.salePrice, 10) > parseInt(data.price, 10)) return `<span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount=${data.salePrice}>${salePriceInteger}<sup class="body6">${salePriceDecimal}</sup></span><span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}><span>${priceInteger}<sup class="body6">${priceDecimal}</sup></span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+                    if (isShowScribingPrice) return `<span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount=${data.productPrice}>${productPriceInteger}<sup class="body6">${productPriceDecimal}</sup></span><span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}><span>${priceInteger}<sup class="body6">${priceDecimal}</sup></span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
                     return `<span class="trade-cart-sku-item-real-price notranslate body2 text_bold" data-amount=${data.price}><span>${priceInteger}<sup class="body6">${priceDecimal}</sup></span>${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
                 }
-                if (parseInt(data.salePrice, 10) > parseInt(data.price, 10)) return `<span class="trade-cart-sku-item-info-amount-through notranslate" data-amount=${data.salePrice}>${(0, 
-                CurrencyConvert.convertFormat)(data.salePrice)}</span><span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price ${this.getLimitedDiscountClass(data)}" data-amount=${data.price}>${(0, 
+                if (isShowScribingPrice) return `<span class="trade-cart-sku-item-info-amount-through notranslate" data-amount=${data.productPrice}>${(0, 
+                CurrencyConvert.convertFormat)(data.productPrice)}</span><span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}>${(0, 
                 CurrencyConvert.convertFormat)(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
-                return `<span class="trade-cart-sku-item-real-price notranslate ${this.getLimitedDiscountClass(data)}" data-amount=${data.price}>${(0, 
+                return `<span class="trade-cart-sku-item-real-price notranslate" data-amount=${data.price}>${(0, 
                 CurrencyConvert.convertFormat)(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
             }
             getVipTag(data) {
@@ -6346,10 +7043,10 @@
             getPromotionAmountInfo(data) {
                 var _data$businessFlag3;
                 if (parseInt(data.promotionAmount, 10) > 0) return `\n      <div class="trade-cart-sku-item-info-discount body4">\n        <div>\n          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n            <path fill-rule="evenodd" clip-rule="evenodd"\n              d="M1.02892 5.44639C1.01074 5.59863 1.06342 5.7508 1.17184 5.85922L6.10552 10.7929C6.49605 11.1834 7.12921 11.1834 7.51974 10.7929L10.793 7.51962C11.1835 7.12909 11.1835 6.49593 10.793 6.1054L5.85934 1.17172C5.75092 1.0633 5.59875 1.01062 5.44651 1.0288L1.89069 1.45337C1.66152 1.48074 1.48086 1.6614 1.4535 1.89057L1.02892 5.44639ZM4.00013 3.00001C4.55241 3.00001 5.00013 3.44772 5.00013 4.00001C5.00013 4.55229 4.55241 5.00001 4.00013 5.00001C3.44785 5.00001 3.00013 4.55229 3.00013 4.00001C3.00013 3.44772 3.44785 3.00001 4.00013 3.00001Z"\n              />\n          </svg><span>&nbsp;${(0, 
-                i18n.t)("common.discount")}</span>\n        </div>\n        <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion" data-amount=${data.promotionAmount}>${(0, 
+                i18n.t)("sales.general.discount_common")}</span>\n        </div>\n        <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion" data-amount=${data.promotionAmount}>${(0, 
                 CurrencyConvert.convertFormat)(data.promotionAmount)}</span><span>)</span></div>\n      </div>`;
                 if (data && null !== data && void 0 !== data && data.businessFlag && !(null !== data && void 0 !== data && null !== (_data$businessFlag3 = data.businessFlag) && void 0 !== _data$businessFlag3 && _data$businessFlag3.discountable)) return `<div class="trade-cart-sku-item-info-discount sale-color body4">${(0, 
-                i18n.t)("cart.not-participation-offers")}</div>`;
+                i18n.t)("cart.promotion.no_promotion")}</div>`;
                 return "";
             }
             getImageFallbackIfNecessary(data) {
@@ -6367,14 +7064,14 @@
                 return ``;
             }
             getCardItemContent(data, isInactive, indexStr = "") {
-                var _data$groupId, _data$priceType, _data$groupId2;
                 const wrapperClassName = [ "trade-cart-sku-item" ];
                 if (0 === data.maxPurchaseTotalNum && stockType.cartLimitedEnum.NORMAL_STOCK_OVER.includes(data.maxPurchaseReasonCode)) wrapperClassName.push("sold-out");
                 if (isInactive) wrapperClassName.push("inactive");
-                const id = `${this.tradeCartType}-card-sku-item-${null !== (_data$groupId = data.groupId) && void 0 !== _data$groupId ? _data$groupId : ""}-${data.spuId}-${data.skuId}-${null !== (_data$priceType = data.priceType) && void 0 !== _data$priceType ? _data$priceType : ""}`;
-                const hasDiscount = parseInt(data.salePrice, 10) > parseInt(data.price, 10);
-                const content = `\n    <div class="${wrapperClassName.join(" ")}" id="${id}">\n      <a class="trade-cart-sku-item-image"\n         href="${1 === data.productSource ? `/products/${data.spuId}` : `javascript:void(0)`}"\n         data-product-source="${data.productSource}"\n         data-group-id="${null !== (_data$groupId2 = data.groupId) && void 0 !== _data$groupId2 ? _data$groupId2 : ""}"\n         data-name="${escape_default()(data.name)}"\n         data-sku-id="${data.skuId}"\n         data-spu-id="${data.spuId}"\n         data-sku-attrs="${escape_default()((data.skuAttr || []).join(","))}"\n         data-price="${data.price}"\n         data-sale-price="${data.salePrice}"\n         data-item-no="${data.itemNo}"\n       >\n          ${this.getImageFallbackIfNecessary(data)}\n          ${this.getImageAccessorial(data.bindProductImages)}\n          <div class="trade-cart-sku-item-image-sold-out body6">${(0, 
-                i18n.t)("productList.container.listItem.sold.out")}</div>\n      </a>\n      <div class="trade-cart-sku-item-info">\n          <div class="trade-cart-sku-item-info-title body3">${encodeHTML(data.name)}</div>\n          ${this.getCardItemAttrs(data)}\n          ${2 === data.priceType ? `<span class="flash-sale">${render.staticRender(id, data)}</span>` : ""}\n          <div class="trade-cart-sku-item-info-number">\n              <div class="trade-cart-sku-item-info-left">\n                  ${this.getInfoLeft(data, isInactive, indexStr)}\n                  ${Array.isArray(data.errorList) && data.errorList.length ? `<span class="promotion-limited">${promotion_limited_render.staticRender(id, data)}</span>` : ""}\n              </div>\n              <div class="trade-cart-sku-item-info-amount-and-discount">\n                  <div class="trade-cart-sku-item-info-amount body3 ${hasDiscount ? "has-discount" : ""}">\n                    ${this.getPriceInfo(data)}\n                  </div>\n                  ${this.getPromotionAmountInfo(data)}\n              </div>\n          </div>\n          <div class="slot-cart slot-cart-num-editor-end" data-slot-cart-num-editor-end></div>\n          ${this.getRemoveButton(data)}\n      </div>\n      <div class="trade-cart-sku-item-mask"></div>\n    </div>\n    <div class="slot-cart slot-cart-item-end" data-slot-cart-item-end></div>\n    `;
+                const {groupId, spuId, skuId, uniqueSeq, priceType, productSource, name, skuAttr, price, salePrice, itemNo, bindProductImages, errorList, promotionAmount} = data || {};
+                const id = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${uniqueSeq}`;
+                const hasDiscount = parseInt(promotionAmount, 10) > 0 && parseInt(salePrice, 10) > parseInt(price, 10);
+                const content = `\n    <div class="${wrapperClassName.join(" ")}" id="${id}">\n      <a class="trade-cart-sku-item-image"\n         href="${1 === productSource ? `/products/${spuId}` : `javascript:void(0)`}"\n         data-product-source="${productSource}"\n         data-group-id="${null !== groupId && void 0 !== groupId ? groupId : ""}"\n         data-name="${escape_default()(name)}"\n         data-sku-id="${skuId}"\n         data-spu-id="${spuId}"\n         data-sku-attrs="${escape_default()((skuAttr || []).join(","))}"\n         data-price="${price}"\n         data-sale-price="${salePrice}"\n         data-item-no="${itemNo}"\n       >\n          ${this.getImageFallbackIfNecessary(data)}\n          ${this.getImageAccessorial(bindProductImages)}\n          <div class="trade-cart-sku-item-image-sold-out body6">${(0, 
+                i18n.t)("products.product_list.product_sold_out")}</div>\n      </a>\n      <div class="trade-cart-sku-item-info">\n          <div class="trade-cart-sku-item-info-title body3">${encodeHTML(name)}</div>\n          ${this.getCardItemAttrs(data)}\n          ${2 === priceType ? `<span class="flash-sale">${render.staticRender(id, data)}</span>` : ""}\n          <div class="trade-cart-sku-item-info-number">\n              <div class="trade-cart-sku-item-info-left">\n                  ${this.getInfoLeft(data, isInactive, indexStr)}\n                  ${Array.isArray(errorList) && errorList.length ? `<span class="promotion-limited">${promotion_limited_render.staticRender(id, data)}</span>` : ""}\n              </div>\n              <div class="trade-cart-sku-item-info-amount-and-discount">\n                  <div class="trade-cart-sku-item-info-amount body3 ${hasDiscount ? "has-discount" : ""}">\n                    ${this.getPriceInfo(data)}\n                  </div>\n                  ${this.getPromotionAmountInfo(data)}\n              </div>\n          </div>\n          <div class="slot-cart slot-cart-num-editor-end" data-slot-cart-num-editor-end></div>\n          ${this.getRemoveButton(data)}\n      </div>\n      <div class="trade-cart-sku-item-mask"></div>\n    </div>\n    <div class="slot-cart slot-cart-item-end" data-slot-cart-item-end></div>\n    `;
                 this.templateContent.push(content);
             }
             generateActiveItemTemplate(activeItemData, findex) {
@@ -6385,22 +7082,30 @@
             }
             generateInactiveItemTemplate(inactiveItems) {
                 this.templateContent.push(`<div class="trade-cart-sku-list-inactive-wrapper">\n      <div class="trade-cart-sku-list-inactive-wrapper-title body3">${(0, 
-                i18n.t)("trade.invalid-product")}</div>\n      <button class="trade-cart-sku-list-inactive-wrapper-remove-all body3 btn-link" id="${this.tradeCartType}-trade-cart-sku-list-inactive-wrapper-remove-all">${(0, 
-                i18n.t)("trade.delete-invalid-product")}</button>\n    </div>`);
+                i18n.t)("cart.item.invalid_product")}</div>\n      <button class="trade-cart-sku-list-inactive-wrapper-remove-all body3 btn-link" id="${this.tradeCartType}-trade-cart-sku-list-inactive-wrapper-remove-all">${(0, 
+                i18n.t)("cart.item.remove_invalid_product")}</button>\n    </div>`);
                 inactiveItems.forEach((data => {
                     this.getCardItemContent(data, true);
                 }));
             }
             showEmptyCart(show) {
                 if (show) {
-                    $(".trade_cart_empty_wrapper").removeClass("hide");
-                    $(".trade_cart_not_empty_wrapper").addClass("hide");
+                    __SL_$__(".trade_cart_empty_wrapper").removeClass("hide");
+                    __SL_$__(".trade_cart_not_empty_wrapper").addClass("hide");
                 } else {
-                    $(".trade_cart_empty_wrapper").addClass("hide");
-                    $(".trade_cart_not_empty_wrapper").removeClass("hide");
+                    __SL_$__(".trade_cart_empty_wrapper").addClass("hide");
+                    __SL_$__(".trade_cart_not_empty_wrapper").removeClass("hide");
                 }
             }
             reRender(data) {
+                sku_card_logger.info(`normal 主站购物车 SkuCard reRender`, {
+                    data: {
+                        cartToken: sku_card_cartToken,
+                        cartInfo: data
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Start
+                });
                 if (0 === data.count) {
                     this.showEmptyCart(true);
                     return;
@@ -6435,7 +7140,23 @@
                     null === (_window$Shopline = window.Shopline) || void 0 === _window$Shopline ? void 0 : null === (_window$Shopline$even = _window$Shopline.event) || void 0 === _window$Shopline$even ? void 0 : _window$Shopline$even.emit("Cart::LineItemUpdate");
                     this.reset(true);
                     this.forceInputFocusIfNecessary();
+                    sku_card_logger.info(`normal 主站购物车 SkuCard reRender`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            cartInfo: data
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Success
+                    });
                 } catch (e) {
+                    sku_card_logger.info(`normal 主站购物车 SkuCard reRender`, {
+                        data: {
+                            cartToken: sku_card_cartToken,
+                            cartInfo: data
+                        },
+                        action: sentryReport.Action.EditCart,
+                        error: e
+                    });
                     console.log(e);
                 }
             }
@@ -6562,6 +7283,8 @@
             }); else obj[key] = value;
             return obj;
         }
+        const trade_summations_logger = logger["default"].pipeOwner(`${sentryReport.Owner.Cart} biz/trade-summations/index.js`);
+        const trade_summations_cartToken = js_cookie_default().get("t_cart");
         let trade_summations_tooltip;
         const info_tips_icon = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="cursor: pointer; {{style}}">\n<circle cx="6" cy="6" r="5.5" stroke="currentColor"/>\n<path d="M6 3V6.5" stroke="currentColor" stroke-linecap="round"/>\n<circle cx="6" cy="8.75" r="0.75" fill="currentColor"/>\n</svg>\n`;
         const trade_summations_useSuperScriptDecimals = state_selector.SL_State.get("theme.settings.superscript_decimals");
@@ -6569,7 +7292,7 @@
             constructor() {
                 trade_summations_defineProperty(this, "_data", {});
                 trade_summations_defineProperty(this, "getTriggerType", (platform => "pc" === platform ? "hover" : "click"));
-                trade_summations_defineProperty(this, "getEles", (key => $(`.trade_summations_fee[data-key="${key}"]`)));
+                trade_summations_defineProperty(this, "getEles", (key => __SL_$__(`.trade_summations_fee[data-key="${key}"]`)));
                 trade_summations_defineProperty(this, "_renderTooltip", (isMutra => {
                     if (trade_summations_tooltip) trade_summations_tooltip.destroy();
                     const platform = utils["default"].helper.getPlatform();
@@ -6578,9 +7301,9 @@
                     trade_summations_tooltip = new tooltip["default"]({
                         selector,
                         trigger: this.getTriggerType(platform),
-                        title: (0, i18n.t)("trade.coupon-mutra-discount")
+                        title: (0, i18n.t)("cart.discount.use_coupon_alone")
                     });
-                    $(selector).html(info_tips_icon);
+                    __SL_$__(selector).html(info_tips_icon);
                 }));
                 trade_summations_defineProperty(this, "_keyList", []);
                 trade_summations_defineProperty(this, "getInitData", (() => {
@@ -6638,17 +7361,17 @@
                     let formattedValue = deductMemberPointAmount;
                     if ("number" === typeof deductMemberPointAmount || !deductMemberPointAmount) formattedValue = (0, 
                     CurrencyConvert.convertFormat)(deductMemberPointAmount);
-                    descEl.html((0, i18n.t)("trade.point-discount-desc", {
+                    descEl.html((0, i18n.t)("cart.refund.deduct_point", {
                         deductMemberPointNum: `${null !== deductMemberPointNum && void 0 !== deductMemberPointNum ? deductMemberPointNum : 0}`,
                         deductMemberPointAmount: `<span class="deductMemberPointAmount">${formattedValue}</span>`
                     }));
-                    pointAmountEl.find(".trade_summations_remark").html((0, i18n.t)("trade.point-discount-remark", {
+                    pointAmountEl.find(".trade_summations_remark").html((0, i18n.t)("cart.refund.cost_points", {
                         value: `${null !== deductMemberPointNum && void 0 !== deductMemberPointNum ? deductMemberPointNum : 0}`
                     }));
                 }));
                 trade_summations_defineProperty(this, "toggleMemberPoint", (checked => {
-                    const pointsAmountDescEle = $(".trade_summations_fee__desc");
-                    const pointsAmountValueEle = $(".pointAmount");
+                    const pointsAmountDescEle = __SL_$__(".trade_summations_fee__desc");
+                    const pointsAmountValueEle = __SL_$__(".pointAmount");
                     if (!checked) {
                         pointsAmountValueEle.addClass("hide");
                         pointsAmountDescEle.removeClass("hide");
@@ -6688,7 +7411,7 @@
                     let promotionDisplayValue = 0;
                     if (2 === discountBenefitType) {
                         promotionAvailable = true;
-                        promotionDisplayValue = (0, i18n.t)("trade.free-shipping");
+                        promotionDisplayValue = (0, i18n.t)("transaction.general.free_shipping");
                         promotionFreeShippingMatched = true;
                     } else if (null == discountBenefitType || 1 === discountBenefitType) {
                         promotionAvailable = promotionAmount > 0;
@@ -6700,13 +7423,13 @@
                             const discountCodeSumAmountEles = this.getEles("codePromotionAmount");
                             const freeShipping = 3 === (null === promotionCodeDTO || void 0 === promotionCodeDTO ? void 0 : promotionCodeDTO.discountCodeBenefitType);
                             if (freeShipping) {
-                                newAmount = (0, i18n.t)("trade.free-shipping");
+                                newAmount = (0, i18n.t)("transaction.general.free_shipping");
                                 discountCodeSumAmountEles.find(".trade_summations__amount_reduce").addClass("hide");
                             } else {
                                 newAmount = null !== promotionCodeDTO && void 0 !== promotionCodeDTO && promotionCodeDTO.codePromotionAmount ? +promotionCodeDTO.codePromotionAmount : 0;
                                 discountCodeSumAmountEles.find(".trade_summations__amount_reduce").removeClass("hide");
                             }
-                        } else if ("freeShipping" === key) newAmount = newAmount ? (0, i18n.t)("trade.free") : 0; else if ("deductMemberPointAmount" === key) {
+                        } else if ("freeShipping" === key) newAmount = newAmount ? (0, i18n.t)("cart.payment.free") : 0; else if ("deductMemberPointAmount" === key) {
                             var _memberPointInfo$dedu;
                             newAmount = null !== (_memberPointInfo$dedu = null === memberPointInfo || void 0 === memberPointInfo ? void 0 : memberPointInfo.deductMemberPointAmount) && void 0 !== _memberPointInfo$dedu ? _memberPointInfo$dedu : 0;
                         } else if ("totalAmount" === key) {
@@ -6733,6 +7456,13 @@
                     trade_summations_tooltip.hide();
                 }), 50));
                 trade_summations_defineProperty(this, "init", (() => {
+                    trade_summations_logger.info(`normal 主站购物车 SummationModule 初始化 init`, {
+                        data: {
+                            cartToken: trade_summations_cartToken
+                        },
+                        action: sentryReport.Action.InitCart,
+                        status: logger.Status.Start
+                    });
                     this.initEventListner();
                     this.getInitData();
                     this._renderTooltip();
@@ -6742,21 +7472,36 @@
                             trigger: this.getTriggerType(platform)
                         });
                     }));
-                    $(".trade_mini_cart").parent().on("scroll", this.scrollHideTips);
-                    $(".trade_cart").parent().on("scroll", this.scrollHideTips);
-                    $(".trade_cart_not_empty_wrapper").on("scroll", this.scrollHideTips);
-                    $(document).on("scroll", this.scrollHideTips);
+                    __SL_$__(".trade_mini_cart").parent().on("scroll", this.scrollHideTips);
+                    __SL_$__(".trade_cart").parent().on("scroll", this.scrollHideTips);
+                    __SL_$__(".trade_cart_not_empty_wrapper").on("scroll", this.scrollHideTips);
+                    __SL_$__(document).on("scroll", this.scrollHideTips);
                     event_bus["default"].on("trade:checkbox-trade_checkout_point_checkbox", this.toggleMemberPoint);
                 }));
             }
         }
         const summationBus = new Summations;
         const trade_summations = summationBus;
+        var src_js_cookie = __webpack_require__("../shared/browser/node_modules/js-cookie/src/js.cookie.js");
+        var src_js_cookie_default = __webpack_require__.n(src_js_cookie);
         var debounce = __webpack_require__("../shared/browser/node_modules/lodash/debounce.js");
         var debounce_default = __webpack_require__.n(debounce);
         var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
         var get_default = __webpack_require__.n(get);
         var utils_event_bus = __webpack_require__("../shared/browser/utils/event-bus.js");
+        var sentry = __webpack_require__("../shared/browser/utils/logger/sentry.js");
+        const Owner = {
+            Coupon: "coupon"
+        };
+        const loggerReport_Action = {
+            Init: "init",
+            Apply: "apply"
+        };
+        const sentrylogger = sentry["default"].pipeOwner(Owner.Coupon);
+        const coupon_logger = sentry["default"].pipeOwner(`${sentryReport.Owner.Coupon} biz-com/coupon/index.js`);
+        const coupon_cartToken = src_js_cookie_default().get("t_cart");
+        const checkoutToken = state_selector.SL_State.get("checkout");
+        console.log(sentryReport.Action, coupon_logger, coupon_cartToken, checkoutToken);
         const getEles = eleClass => document.querySelectorAll(eleClass);
         const isFn = object => "function" === typeof object;
         const getClosest = (ele, matchs) => {
@@ -6822,10 +7567,10 @@
                 this.changeErrorTipsDisplayStatus = (action, handleClose) => () => {
                     eachEles(this.couponErrorTipsEles, (ele => {
                         if ("show" === action) {
-                            $(ele).removeClass("hide");
+                            __SL_$__(ele).removeClass("hide");
                             this.applyCouponSucceed = false;
-                            $(ele).slideDown(100);
-                        } else $(ele).slideUp(100);
+                            __SL_$__(ele).slideDown(100);
+                        } else __SL_$__(ele).slideUp(100);
                     }));
                     if ("hide" === action && handleClose) {
                         this.applyCouponSucceed = true;
@@ -6838,39 +7583,42 @@
                 let errInfo;
                 switch (discountCodeUnavailable) {
                   case "DISCOUNT_CODE_INVALID":
-                    errInfo = (0, i18n.t)("validate.discount-code-error");
+                    errInfo = (0, i18n.t)("cart.discount.code_error");
                     break;
 
                   case "DISCOUNT_CODE_CAN_NOT_ACCUMULATE":
-                    errInfo = (0, i18n.t)("validate.discount-code-can-not-accumulate");
+                    errInfo = (0, i18n.t)("transaction.general.discount_codes_cannot_stack");
                     break;
 
                   case "DISCOUNT_CODE_NO_REACH":
-                    errInfo = (0, i18n.t)(`validate.discount-code-user-invalid`, {
+                    errInfo = (0, i18n.t)(`cart.discount.code_item_unmatched`, {
                         discountCode
                     });
                     break;
 
                   case "MUTUAL_EXCLUDED_BY_TIME_LIMITED":
-                    errInfo = (0, i18n.t)("validate.mutual-excluded-by-time-limited");
+                    errInfo = (0, i18n.t)("cart.discount.discounts_cannot_stack");
                     break;
 
                   case "DISCOUNT_CODE_TOO_LONG":
-                    errInfo = (0, i18n.t)("validate.coupon-code-cannot-exceed-64-length");
-                    if ("validate.coupon-code-cannot-exceed-64-length" === errInfo) {
-                        errInfo = (0, i18n.t)("validate.coupon-code-cannot-exceed-25-length");
-                        errInfo = errInfo.replace("25", "2~25");
+                    errInfo = (0, i18n.t)("transaction.general.coupon_code_exceed_not_64_characters");
+                    if ("transaction.general.coupon_code_exceed_not_64_characters" === errInfo) {
+                        errInfo = (0, i18n.t)("transaction.general.coupon_code_exceed_not_25_characters");
+                        if ("transaction.general.coupon_code_exceed_not_25_characters" === errInfo) errInfo = (0, 
+                        i18n.t)("cart.discount.coupon_code_length_limit", {
+                            range: "2~25"
+                        }); else errInfo = errInfo.replace("25", "2~25");
                     } else errInfo = errInfo.replace("64", "2~25");
                     break;
 
                   case "MUTUAL_EXCLUDED_BY_LEVEL_PRICE":
-                    errInfo = (0, i18n.t)("validate.discount-code-user-invalid", {
+                    errInfo = (0, i18n.t)("cart.discount.code_item_unmatched", {
                         discountCode
                     });
                     break;
 
                   case "SHIPPING_PLAN_UNAVAILABLE":
-                    errInfo = (0, i18n.t)(`validate.shipping_plan_unavailable`, {
+                    errInfo = (0, i18n.t)(`transaction.general.coupon_invalid_for_the_shipping_method`, {
                         discountCode
                     });
                     break;
@@ -6893,7 +7641,7 @@
                 this.topErrInfo = errInfo;
                 const _that = this;
                 if (errInfo) setTimeout((() => {
-                    $(".trade_coupon_invalid_tips_content_info").text(errInfo);
+                    __SL_$__(".trade_coupon_invalid_tips_content_info").text(errInfo);
                     _that.changeErrorTipsDisplayStatus("show")();
                 }), 100);
             }
@@ -6914,7 +7662,7 @@
             }
             selectInputContent() {
                 eachEles(this.discountCodeInpEles, (ele => {
-                    $(ele).select();
+                    __SL_$__(ele).select();
                 }));
             }
             handleChangeInput(e) {
@@ -6975,7 +7723,13 @@
                 const errCode = await this.updateServiceDiscoutCode(discountCode);
                 updateClasses(this.applyBtnEles, "remove", "hide");
                 updateClasses(this.loadingBtnEles, "add", "hide");
-                if ("error" === errCode) return;
+                if ("error" === errCode) {
+                    sentrylogger.warn("优惠券应用失败", {
+                        action: loggerReport_Action.Apply,
+                        status: sentry.Status.Failure
+                    });
+                    return;
+                }
                 if (!errCode) {
                     const emit = get_default()(utils_event_bus.SL_EventBus, "emit", void 0);
                     if (emit) emit(tradeReport_const.HD_EVENT_NAME.COUPON_APPLY, {
@@ -6998,6 +7752,10 @@
                     this.preSaleInfo = {
                         ...preSaleInfoCopy
                     };
+                    sentrylogger.warn("优惠券删除失败", {
+                        action: loggerReport_Action.Apply,
+                        status: sentry.Status.Failure
+                    });
                     return;
                 }
                 this.curWrapper = getClosest(e.target, eleSelectorMap.couponWrapper);
@@ -7052,7 +7810,7 @@
                     }));
                 }));
                 this.discountCodeInpEles.forEach((ele => {
-                    const currentValue = $(ele).val();
+                    const currentValue = __SL_$__(ele).val();
                     if (currentValue) this.handleChangeInput({
                         target: {
                             value: currentValue
@@ -7092,23 +7850,79 @@
                 }
             }
             init() {
+                sentrylogger.info("优惠券初始化", {
+                    action: loggerReport_Action.Init
+                });
                 this.initEventListener();
             }
         }
         const coupon = Coupon;
+        const trade_coupon_logger = logger["default"].pipeOwner(`${sentryReport.Owner.Cart} trade-coupon/index.js`);
+        const trade_coupon_cartToken = js_cookie_default().get("t_cart");
         function initCoupon() {
+            trade_coupon_logger.info(`normal 主站购物车 Coupon 初始化 initCoupon`, {
+                data: {
+                    cartToken: trade_coupon_cartToken
+                },
+                action: sentryReport.Action.InitCart,
+                status: logger.Status.Start
+            });
             const cartServ = cart["default"].takeCartService();
-            const updateServiceDiscoutCode = async discountCode => {
+            const updateServiceDiscountCode = async discountCode => {
+                trade_coupon_logger.info(`normal 主站购物车 Coupon 更改优惠码 initCoupon`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken,
+                        discountCode
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Start
+                });
                 if ("" !== discountCode) {
                     const {success, msg} = await cartServ.applyCoupon(discountCode);
-                    if (!success) return msg;
+                    if (!success) {
+                        trade_coupon_logger.info(`normal 主站购物车 Coupon 更改优惠码 有优惠码 initCoupon`, {
+                            data: {
+                                cartToken: trade_coupon_cartToken,
+                                discountCode
+                            },
+                            action: sentryReport.Action.EditCart,
+                            error: msg
+                        });
+                        return msg;
+                    }
                 } else {
-                    const {success} = await cartServ.withdrawCoupon();
-                    if (!success) return "error";
+                    const {success, msg} = await cartServ.withdrawCoupon();
+                    if (!success) {
+                        trade_coupon_logger.info(`normal 主站购物车 Coupon 更改优惠码 删除优惠码 initCoupon`, {
+                            data: {
+                                cartToken: trade_coupon_cartToken,
+                                discountCode
+                            },
+                            action: sentryReport.Action.EditCart,
+                            error: msg
+                        });
+                        return "error";
+                    }
                 }
+                trade_coupon_logger.info(`normal 主站购物车 Coupon 更改优惠码 initCoupon`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken,
+                        discountCode
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Success
+                });
             };
             const getCartType = ele => {
-                let tmp = $(ele);
+                trade_coupon_logger.info(`normal 主站购物车 获取购物车类型 getCartType`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken,
+                        ele
+                    },
+                    action: sentryReport.Action.TakeCart,
+                    status: logger.Status.Start
+                });
+                let tmp = __SL_$__(ele);
                 while (tmp && tmp.length) {
                     if (tmp.hasClass("sidebar")) return "sidebar";
                     if (tmp.hasClass("main")) return "main";
@@ -7128,38 +7942,76 @@
                 }
             };
             const clickApplyBtn = () => {
-                const eventid = "/cart" === window.location.pathname ? 60006254 : 60006262;
+                const eventId = "Cart" === state_selector.SL_State.get("templateAlias") ? 60006254 : 60006262;
+                trade_coupon_logger.info(`normal 主站购物车 点击提交优惠码按钮 数据上报 clickApplyBtn`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken,
+                        eventId
+                    },
+                    action: sentryReport.Action.EditCart,
+                    status: logger.Status.Start
+                });
                 try {
                     var _window$HdSdk;
-                    null === (_window$HdSdk = window.HdSdk) || void 0 === _window$HdSdk ? void 0 : _window$HdSdk.shopTracker.report(eventid, {
+                    null === (_window$HdSdk = window.HdSdk) || void 0 === _window$HdSdk ? void 0 : _window$HdSdk.shopTracker.report(eventId, {
                         event_name: "109",
                         custom_component: "151"
                     });
+                    trade_coupon_logger.info(`normal 主站购物车 点击提交优惠码按钮 数据上报 clickApplyBtn`, {
+                        data: {
+                            cartToken: trade_coupon_cartToken,
+                            eventId
+                        },
+                        action: sentryReport.Action.EditCart,
+                        status: logger.Status.Success
+                    });
                 } catch (e) {
+                    trade_coupon_logger.info(`normal 主站购物车 点击提交优惠码按钮 数据上报 失败 clickApplyBtn`, {
+                        data: {
+                            cartToken: trade_coupon_cartToken
+                        },
+                        action: sentryReport.Action.EditCart,
+                        error: e
+                    });
                     console.log(e);
                 }
             };
             const onErrorTipsClosed = () => {
-                updateServiceDiscoutCode("");
+                updateServiceDiscountCode("");
             };
             const couponInstance = new coupon({
-                onChange: updateServiceDiscoutCode,
+                onChange: updateServiceDiscountCode,
                 onErrorTipsClosed,
                 beforeInputFocus,
                 afterInputBlur,
                 clickApplyBtn
             });
             const initEventBusListener = () => {
+                trade_coupon_logger.info(`normal 主站购物车 初始化 eventBus 监听事件 initEventBusListener`, {
+                    data: {
+                        cartToken: trade_coupon_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
                 const {eventBus, eventBusEnum} = cart["default"];
                 eventBus.on(eventBusEnum.UPDATE, (data => {
+                    trade_coupon_logger.info(`normal 主站购物车 监听到 cart变更 initEventBusListener`, {
+                        data: {
+                            cartToken: trade_coupon_cartToken,
+                            data
+                        },
+                        action: sentryReport.Action.InitCart,
+                        status: logger.Status.Start
+                    });
                     const {valid, promotionCode, errorMsg} = (null === data || void 0 === data ? void 0 : data.promotionCodeDTO) || {};
                     couponInstance.preSaleInfo.promotionCode = promotionCode;
                     couponInstance.preSaleInfo.errorMsg = errorMsg;
                     if (!(null !== data && void 0 !== data && data.promotionCodeDTO)) {
-                        $(eleSelectorMap.couponWrapper).addClass("hide");
+                        __SL_$__(eleSelectorMap.couponWrapper).addClass("hide");
                         return;
                     }
-                    $(eleSelectorMap.couponWrapper).removeClass("hide");
+                    __SL_$__(eleSelectorMap.couponWrapper).removeClass("hide");
                     couponInstance.updateStatus({
                         valid,
                         discountCode: promotionCode,
@@ -7291,7 +8143,7 @@
         };
         var paypal = __webpack_require__("../shared/browser/components/paypal/index.js");
         var createLogger = __webpack_require__("../shared/browser/utils/createLogger.js");
-        const logger = {
+        const module_paypal_logger = {
             paypal: (0, createLogger["default"])("paypal")
         };
         let slibingNodeHeight = 0;
@@ -7302,7 +8154,7 @@
                 this.elementId = elementId;
                 this.$element = document.getElementById(elementId);
                 this.paypalComponent = null;
-                if (this.$element) this._init(); else logger.paypal.error(`Failed to init paypal module. Can't get element with #${elementId}`);
+                if (this.$element) this._init(); else module_paypal_logger.paypal.error(`Failed to init paypal module. Can't get element with #${elementId}`);
             }
             _init() {
                 slibingNodeHeight = slibingNodeHeight || document.getElementById(`${this.elementId}-slibing`).offsetHeight;
@@ -7313,11 +8165,11 @@
                     beforeCreateOrder: async () => {
                         const cartService = valuer_cartService.withCartService(this.ctx);
                         const cartItemList = cartService.getCardItemList();
-                        logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder]`);
+                        module_paypal_logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder]`);
                         return effect.getCheckoutParams(this.ctx, cartItemList);
                     },
                     beforeContinue: ({returnUrl} = {}) => {
-                        logger.paypal.info(`[点击继续按钮][准备跳转][beforeContinue][${returnUrl}]`);
+                        module_paypal_logger.paypal.info(`[点击继续按钮][准备跳转][beforeContinue][${returnUrl}]`);
                     }
                 });
                 this.paypalComponent.render();
@@ -7377,17 +8229,17 @@
             listenImageLoadEvent() {
                 const _that = this;
                 this._root.find(".trade-cart-sku-item-image-wrapper").each(((index, img) => {
-                    this.needUnbindEleList.push($(img));
-                    $(img).on("error", (function() {
-                        $(img).parent().children(".trade-cart-sku-item-image-fallback").removeClass("hide");
-                        $(img).addClass("hide");
-                        _that.loadFailedImgSet.add($(img).attr("origin-src"));
+                    this.needUnbindEleList.push(__SL_$__(img));
+                    __SL_$__(img).on("error", (function() {
+                        __SL_$__(img).parent().children(".trade-cart-sku-item-image-fallback").removeClass("hide");
+                        __SL_$__(img).addClass("hide");
+                        _that.loadFailedImgSet.add(__SL_$__(img).attr("origin-src"));
                     }));
                 }));
             }
             listenSelectContentReport() {
-                $(".trade_mini_cart").on("click", ".trade-cart-sku-item-image", (function() {
-                    const {productSource, skuId, name, skuAttrs, price, salePrice, itemNo} = $(this).data();
+                __SL_$__(".trade_mini_cart").on("click", ".trade-cart-sku-item-image", (function() {
+                    const {productSource, skuId, name, skuAttrs, price, salePrice, itemNo} = __SL_$__(this).data();
                     if (1 === productSource) report_cartReport.selectContent({
                         skuId,
                         name,
@@ -7474,7 +8326,7 @@
                     null === ele || void 0 === ele ? void 0 : ele.unbind();
                 }));
                 const {count, totalAmount, addedItem} = this.bannerData;
-                this._root = $(".trade_mini_cart");
+                this._root = __SL_$__(".trade_mini_cart");
                 this._subtotal = this._root.find(".trade-cart-banner-summations-subtotal--price");
                 this._cartTotal = this._root.find(".trade-cart-banner-summations-footer-cart-total");
                 this._skuCard = this._root.find(".trade-cart-sku-item");
@@ -7488,6 +8340,8 @@
         const banner = new CartBanner;
         const cart_tradeSettleConfig = state_selector.SL_State.get("tradeSettleConfig");
         const cart_useSuperScriptDecimals = state_selector.SL_State.get("theme.settings.superscript_decimals");
+        const cart_logger = logger["default"].pipeOwner(`${sentryReport.Owner.cart} biz/cart/index.js`);
+        const cart_cartToken = js_cookie_default().get("t_cart");
         class CartModule {
             constructor(cartType) {
                 var _tradeSettleConfig$ca;
@@ -7502,28 +8356,42 @@
                 state_selector.SL_State.on("currencyCode", (() => {
                     const amountNode = cartRootNode.find("[data-amount]");
                     amountNode.each((function() {
-                        if (cart_useSuperScriptDecimals && !$(this).hasClass("is-promotion")) {
-                            const {integer, decimal} = convertPrice($(this).attr("data-amount"));
-                            $(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
-                        } else $(this).text((0, CurrencyConvert.convertFormat)($(this).attr("data-amount")));
+                        if (cart_useSuperScriptDecimals && !__SL_$__(this).hasClass("is-promotion")) {
+                            const {integer, decimal} = convertPrice(__SL_$__(this).attr("data-amount"));
+                            __SL_$__(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
+                        } else __SL_$__(this).text((0, CurrencyConvert.convertFormat)(__SL_$__(this).attr("data-amount")));
                     }));
                 }));
                 window.SL_EventBus.on("stage:locale:change", (() => {
                     const amountNode = cartRootNode.find("[data-amount]");
                     amountNode.each((function() {
-                        if (cart_useSuperScriptDecimals && !$(this).hasClass("is-promotion")) {
-                            const {integer, decimal} = convertPrice($(this).attr("data-amount"));
-                            $(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
-                        } else $(this).text((0, CurrencyConvert.convertFormat)($(this).attr("data-amount")));
+                        if (cart_useSuperScriptDecimals && !__SL_$__(this).hasClass("is-promotion")) {
+                            const {integer, decimal} = convertPrice(__SL_$__(this).attr("data-amount"));
+                            __SL_$__(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
+                        } else __SL_$__(this).text((0, CurrencyConvert.convertFormat)(__SL_$__(this).attr("data-amount")));
                     }));
                 }));
             }
             _initAfterLoaded() {
+                cart_logger.info(`normal 主站购物车 初始化 _initAfterLoaded`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Success
+                });
                 if ("loading" !== document.readyState) this._init(); else document.addEventListener("DOMContentLoaded", (() => {
                     this._init();
                 }));
             }
             _init() {
+                cart_logger.info(`normal 主站购物车 全局化 cart service _init`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
                 script_service["default"].init();
                 let ctx = context.background();
                 ctx = context.withValue(ctx, valuer_cartService.valuer, cart["default"].takeCartService());
@@ -7531,11 +8399,41 @@
                 ctx = script_valuer.cartActionHooksValuer.withCartActionHooks(ctx);
                 this._ctx = ctx;
                 if ("main" === this._cartType) {
+                    cart_logger.info(`normal 主站购物车 _init`, {
+                        data: {
+                            cartToken: cart_cartToken
+                        },
+                        action: sentryReport.Action.InitCart,
+                        status: logger.Status.Start
+                    });
                     initMainCartSticky();
-                    if (this._showQuickPaymentBtn) this._initMainPaypalModule();
+                    if (this._showQuickPaymentBtn) {
+                        cart_logger.info(`normal 主站购物车 Paypal初始化 _init`, {
+                            data: {
+                                cartToken: cart_cartToken
+                            },
+                            action: sentryReport.Action.InitCart,
+                            status: logger.Status.Start
+                        });
+                        this._initMainPaypalModule();
+                    }
                     this._skuCardComponent = new sku_card(ctx, this._cartType);
                     this._skuCardComponent.init();
                     trade_summations.init();
+                    cart_logger.info(`normal 主站购物车 SummationModule 初始化 _init`, {
+                        data: {
+                            cartToken: cart_cartToken
+                        },
+                        action: sentryReport.Action.InitCart,
+                        status: logger.Status.Success
+                    });
+                    cart_logger.info(`normal 主站购物车 Coupon 初始化 _init`, {
+                        data: {
+                            cartToken: cart_cartToken
+                        },
+                        action: sentryReport.Action.InitCart,
+                        status: logger.Status.Start
+                    });
                     trade_coupon();
                 } else {
                     listenHeaderSectionChange();
@@ -7543,10 +8441,17 @@
                     this._initBanner();
                     trade_checkbox();
                     banner.init();
+                    cart_logger.info(`normal 主站购物车 CartBanner 初始化 _init`, {
+                        data: {
+                            cartToken: cart_cartToken
+                        },
+                        action: sentryReport.Action.InitCart,
+                        status: logger.Status.Start
+                    });
                 }
                 this._initCheckoutModule();
                 this._initCheckoutErrorModule();
-                this._root = $(`.${"main" === this._cartType ? "trade_cart" : "trade_mini_cart"}`);
+                this._root = __SL_$__(`.${"main" === this._cartType ? "trade_cart" : "trade_mini_cart"}`);
                 this._initCurrencyChangeListener();
                 if ("/cart" === window.location.pathname && "main" === this._cartType) {
                     const cartInfo = state_selector.SL_State.get("cartInfo");
@@ -7554,6 +8459,13 @@
                 }
             }
             _initCheckoutModule() {
+                cart_logger.info(`normal 主站购物车 结算按钮初始化 _initCheckoutModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
                 const nodeList = document.querySelectorAll(`.${this._cartType}__trade-cart-checkout [data-sl-module=${contant.MODULE_BUTTON_CHECKOUT}]`);
                 const extra = {
                     stage: "main" === this._cartType ? tradeReport_const.cartPage.Cart : tradeReport_const.cartPage.MiniCart
@@ -7561,19 +8473,58 @@
                 nodeList.forEach((el => {
                     module_checkout.newCheckoutModule(this._ctx, el, extra);
                 }));
+                cart_logger.info(`normal 主站购物车 结算按钮初始化 _initCheckoutModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Success
+                });
             }
             _initCheckoutErrorModule() {
+                cart_logger.info(`normal 主站购物车 结账错误初始化 _initCheckoutErrorModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
                 const nodeList = document.querySelectorAll(`.${this._cartType}__trade-cart-checkout-error`);
                 nodeList.forEach((el => {
                     checkout_error.newCheckoutErrorModule(this._ctx, el);
                 }));
+                cart_logger.info(`normal 主站购物车 结账错误初始化 _initCheckoutErrorModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Success
+                });
             }
             _initMainPaypalModule() {
+                cart_logger.info(`main 主站购物车 Paypal初始化 _initMainPaypalModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
                 module_paypal.newPaypalModule(this._ctx, "cart-spb", tradeReport_const.cartPage.Cart);
                 module_paypal.newPaypalModule(this._ctx, "cart-spb-fixed", tradeReport_const.cartPage.Cart);
+                cart_logger.info(`main 主站购物车 Paypal初始化 _initMainPaypalModule`, {
+                    data: {
+                        cartToken: cart_cartToken
+                    },
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Success
+                });
             }
             _initBanner() {
-                $(document).on("click", ".trade-cart-banner--close", (() => {
+                cart_logger.info(`mini 主站购物车 banner初始化`, {
+                    action: sentryReport.Action.InitCart,
+                    status: logger.Status.Start
+                });
+                __SL_$__(document).on("click", ".trade-cart-banner--close", (() => {
                     window.SL_EventBus.emit(topDrawer.DRAWER_EVENT_NAME, {
                         id: "cart-select",
                         operator: topDrawer.DRAWER_OPERATORS.CLOSE
@@ -7583,16 +8534,49 @@
         }
         let cartModule;
         function initCartModule(cartType) {
+            cart_logger.info(`normal 主站购物车 初始化 initCartModule`, {
+                data: {
+                    cartToken: cart_cartToken,
+                    cartType
+                },
+                action: sentryReport.Action.InitCart,
+                status: logger.Status.Start
+            });
             cartModule = new CartModule(cartType);
+            cart_logger.info(`normal 主站购物车 初始化 initCartModule`, {
+                data: {
+                    cartToken: cart_cartToken,
+                    cartType
+                },
+                action: sentryReport.Action.InitCart,
+                status: logger.Status.Success
+            });
         }
         function takeCartModule() {
+            cart_logger.info(`normal 主站购物车 takeCartModule`, {
+                data: {
+                    cartToken: cart_cartToken,
+                    cartModule
+                },
+                action: sentryReport.Action.TakeCart,
+                status: logger.Status.Start
+            });
             return cartModule;
         }
         const biz_cart = {
             initCartModule,
             takeCartModule
         };
+        const main_logger = logger["default"].pipeOwner(`${sentryReport.Owner.MainCart} main.js`);
+        const main_cartToken = js_cookie_default().get("t_cart");
         biz_cart.initCartModule("main");
+        main_logger.info("main购物车主站", {
+            data: {
+                cartToken: main_cartToken
+            },
+            action: sentryReport.Action.InitCart,
+            status: logger.Status.Start
+        });
     },
     "./src/assets/commons/components/modal/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
@@ -7616,7 +8600,7 @@
         class Modal {
             constructor({modalId = ""} = {}) {
                 this.modalId = `${DEFAULT_MODAL_ID_PRE}${modalId}`;
-                this.$modal = $(`#${this.modalId}`);
+                this.$modal = __SL_$__(`#${this.modalId}`);
                 this.$modalBody = this.$modal.find(`.${common_bem("body")}`);
                 this.$modalContainer = this.$modal.find(`.${common_bem("container")}`);
                 this.isMobile = state_selector.SL_State.get("request.is_mobile");
@@ -7681,7 +8665,7 @@
                 this.init();
             }
             init() {
-                const $modal = $(`#${this.modalId}`);
+                const $modal = __SL_$__(`#${this.modalId}`);
                 if ($modal.length > 0) {
                     this.$modal = $modal;
                     this.$setPortals($modal);
@@ -7694,7 +8678,7 @@
             buildModalHtml() {
                 const {zIndex, closable, containerClassName, bodyClassName, content, children} = this.config;
                 const modalHtml = `\n      <div id="${this.modalId}" class="${common_bem("wrapper")}">\n        <div class="${common_bem("mask")}"></div>\n        <div class="${common_bem("container")}">\n          ${closable ? `<span class="${common_bem("close")}">\n            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M19.1998 4.80005L4.7998 19.2" stroke="currentColor" stroke-width="2"/>\n              <path d="M4.7998 4.79995L19.1998 19.2" stroke="currentColor" stroke-width="2"/>\n            </svg>          \n          </span>` : ""}\n          <div class="${common_bem("body")} ${bodyClassName}">\n            ${content}\n          </div>\n        </div>\n      </div>\n    `;
-                const $modal = $(modalHtml);
+                const $modal = __SL_$__(modalHtml);
                 if (containerClassName) $modal.find(`.${common_bem("container")}`).addClass(containerClassName);
                 if (bodyClassName) $modal.find(`.${common_bem("body")}`).addClass(bodyClassName);
                 if (children) $modal.find(`.${common_bem("body")}`).append(children);
@@ -7835,10 +8819,11 @@
     "./src/assets/commons/utils/countdown.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
-            t: () => t,
+            timers: () => timers,
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
         const t = {};
+        const timers = t;
         const fillZero = num => `${num}`.padStart(2, "0");
         const countdown = (target, fn, params) => {
             var _p$interval;
@@ -7937,16 +8922,16 @@
         __webpack_require__.d(__webpack_exports__, {
             default: () => isMobile
         });
-        let d = $("i[data-platform]");
+        let d = __SL_$__("i[data-platform]");
         if (!d.get(0)) {
-            d = $(`<i data-platform></i>`);
-            $(document.body).append(d);
+            d = __SL_$__(`<i data-platform></i>`);
+            __SL_$__(document.body).append(d);
         }
         function isMobile() {
-            let dom = $("i[data-platform]");
+            let dom = __SL_$__("i[data-platform]");
             if (!dom.get(0)) {
-                dom = $(`<i data-platform></i>`);
-                $(document.body).append(dom);
+                dom = __SL_$__(`<i data-platform></i>`);
+                __SL_$__(document.body).append(dom);
             }
             return "block" === dom.css("display");
         }
@@ -7957,7 +8942,8 @@
             changeURLArg: () => changeURLArg,
             getUrlQuery: () => getUrlQuery,
             getUrlAllQuery: () => getUrlAllQuery,
-            delParam: () => delParam
+            delParam: () => delParam,
+            updateUrlQueryParam: () => updateUrlQueryParam
         });
         var url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/url/url.js");
         var querystring__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./node_modules/querystring/index.js");
@@ -8044,24 +9030,24 @@
             shadowDomStyle: () => shadowDomStyle,
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
-        const shadowDomStyle = $("<style></style>").attr({
+        const shadowDomStyle = __SL_$__("<style></style>").attr({
             type: "text/css"
-        }).append(`table{border-collapse:collapse}table:not([cellpadding]) td,table:not([cellpadding]) th{padding:.4rem}table:not([border="0"]):not([style*=border-width]) td,table:not([border="0"]):not([style*=border-width]) th{border-width:1px}table:not([border="0"]):not([style*=border-style]) td,table:not([border="0"]):not([style*=border-style]) th{border-style:solid}table:not([border="0"]):not([style*=border-color]) td,table:not([border="0"]):not([style*=border-color]) th{border-color:#ccc}iframe{max-width:100%}img{height:auto;max-width:100%}figure{display:table;margin:1rem auto}figure figcaption{color:#999;display:block;margin-top:.25rem;text-align:center}hr{border-color:#ccc;border-style:solid;border-width:1px 0 0 0}code{background-color:#e8e8e8;border-radius:3px;padding:.1rem .2rem}.mce-content-body:not([dir=rtl]) blockquote{border-left:2px solid #ccc;margin-left:1.5rem;padding-left:1rem}.mce-content-body[dir=rtl] blockquote{border-right:2px solid #ccc;margin-right:1.5rem;padding-right:1rem}@media screen and (max-width: 750px){table{width: 100%!important}}`);
+        }).append(`table{border-collapse:collapse}table:not([cellpadding]) td,table:not([cellpadding]) th{padding:.4rem}table:not([border="0"]):not([style*=border-width]) td,table:not([border="0"]):not([style*=border-width]) th{border-width:1px}table:not([border="0"]):not([style*=border-style]) td,table:not([border="0"]):not([style*=border-style]) th{border-style:solid}table:not([border="0"]):not([style*=border-color]) td,table:not([border="0"]):not([style*=border-color]) th{border-color:#ccc}iframe,video{max-width:100%;outline:none}img{height:auto;max-width:100%}figure{display:table;margin:1rem auto}figure figcaption{color:#999;display:block;margin-top:.25rem;text-align:center}hr{border-color:#ccc;border-style:solid;border-width:1px 0 0 0}code{background-color:#e8e8e8;border-radius:3px;padding:.1rem .2rem}.mce-content-body:not([dir=rtl]) blockquote{border-left:2px solid #ccc;margin-left:1.5rem;padding-left:1rem}.mce-content-body[dir=rtl] blockquote{border-right:2px solid #ccc;margin-right:1.5rem;padding-right:1rem}@media screen and (max-width: 750px){table{width: 100%!important}}`);
         const createShadowDom = () => {
             const shadowDom = document.querySelector("[data-node=shadow-dom]");
             if (!shadowDom) return;
-            const shadowContent = $(shadowDom).prev("[data-node=shadow-content]");
-            $(shadowDom).attr("class", "shadow-dom");
+            const shadowContent = __SL_$__(shadowDom).prev("[data-node=shadow-content]");
+            __SL_$__(shadowDom).attr("class", "shadow-dom");
             if (shadowContent.get(0)) {
                 shadowContent.children(".mce-content-body").css("word-break", "break-word");
-                shadowContent.prepend($("<style></style>").attr({
+                shadowContent.prepend(__SL_$__("<style></style>").attr({
                     type: "text/css"
-                }).append(`body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;line-height:1.4;margin:1rem}table{border-collapse:collapse}table:not([cellpadding]) td,table:not([cellpadding]) th{padding:.4rem}table:not([border="0"]):not([style*=border-width]) td,table:not([border="0"]):not([style*=border-width]) th{border-width:1px}table:not([border="0"]):not([style*=border-style]) td,table:not([border="0"]):not([style*=border-style]) th{border-style:solid}table:not([border="0"]):not([style*=border-color]) td,table:not([border="0"]):not([style*=border-color]) th{border-color:#ccc}iframe{max-width:100%}img{height:auto;max-width:100%}figure{display:table;margin:1rem auto}figure figcaption{color:#999;display:block;margin-top:.25rem;text-align:center}hr{border-color:#ccc;border-style:solid;border-width:1px 0 0 0}code{background-color:#e8e8e8;border-radius:3px;padding:.1rem .2rem}.mce-content-body:not([dir=rtl]) blockquote{border-left:2px solid #ccc;margin-left:1.5rem;padding-left:1rem}.mce-content-body[dir=rtl] blockquote{border-right:2px solid #ccc;margin-right:1.5rem;padding-right:1rem}@media screen and (max-width: 750px){table{width: 100%}}`));
+                }).append(`body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;line-height:1.4;margin:1rem}table{border-collapse:collapse}table:not([cellpadding]) td,table:not([cellpadding]) th{padding:.4rem}table:not([border="0"]):not([style*=border-width]) td,table:not([border="0"]):not([style*=border-width]) th{border-width:1px}table:not([border="0"]):not([style*=border-style]) td,table:not([border="0"]):not([style*=border-style]) th{border-style:solid}table:not([border="0"]):not([style*=border-color]) td,table:not([border="0"]):not([style*=border-color]) th{border-color:#ccc}iframe,video{max-width:100%;outline:none}img{height:auto;max-width:100%}figure{display:table;margin:1rem auto}figure figcaption{color:#999;display:block;margin-top:.25rem;text-align:center}hr{border-color:#ccc;border-style:solid;border-width:1px 0 0 0}code{background-color:#e8e8e8;border-radius:3px;padding:.1rem .2rem}.mce-content-body:not([dir=rtl]) blockquote{border-left:2px solid #ccc;margin-left:1.5rem;padding-left:1rem}.mce-content-body[dir=rtl] blockquote{border-right:2px solid #ccc;margin-right:1.5rem;padding-right:1rem}@media screen and (max-width: 750px){table{width: 100%}}`));
                 const shadowRoot = shadowDom.attachShadow({
                     mode: "open"
                 });
                 shadowRoot.append(shadowContent.get(0));
-                $(shadowDom).removeAttr("data-node");
+                __SL_$__(shadowDom).removeAttr("data-node");
                 shadowContent.removeAttr("data-node");
             }
             shadowDom.__updateLazyExtraElements__();
@@ -8078,6 +9064,7 @@
         var axios = __webpack_require__("./node_modules/axios/index.js");
         var axios_default = __webpack_require__.n(axios);
         var quickView_click = __webpack_require__("../shared/browser/events/product/quickView-click/index.js");
+        var js = __webpack_require__("../shared/browser/components/hbs/productImages/js/index.js");
         var components_modal = __webpack_require__("./src/assets/commons/components/modal/index.js");
         var toast = __webpack_require__("./src/assets/commons/components/toast/index.js");
         var product_preview = __webpack_require__("./src/assets/product/detail/js/product-preview.js");
@@ -8103,7 +9090,39 @@
             });
         }
         function createContent() {
-            return $('<div class="product-preview-modal-content" data-scroll-lock-scrollable></div>');
+            return __SL_$__('<div class="product-preview-modal-content" data-scroll-lock-scrollable></div>');
+        }
+        const previewProductDescVideoMap = {};
+        function collectProductDescVideo(children, id) {
+            const productDescDom = children.find("[data-ssr-plugin-detail-description]");
+            const video = productDescDom.find("video");
+            const youtubeIframe = productDescDom.find("iframe").filter(((index, item) => {
+                const src = __SL_$__(item).attr("src");
+                return src && (0, js.isYoutube)(src);
+            }));
+            previewProductDescVideoMap[id] = {};
+            if (video.length > 0) previewProductDescVideoMap[id].videoList = video;
+            if (youtubeIframe.length > 0) previewProductDescVideoMap[id].youtubeIframeList = youtubeIframe;
+        }
+        function handleProductDescVideoByCloseModal(id) {
+            const videoMap = previewProductDescVideoMap[id] || {};
+            const {videoList, youtubeIframeList} = videoMap;
+            if (videoList && videoList.each) videoList.each(((index, item) => {
+                if (item.pause) item.pause();
+            }));
+            if (youtubeIframeList && youtubeIframeList.each) youtubeIframeList.each(((index, item) => {
+                const src = __SL_$__(item).attr("src");
+                __SL_$__(item).attr("data-resource-url", src);
+                __SL_$__(item).attr("src", "");
+            }));
+        }
+        function handleProductDescVideoByOpenModal(id) {
+            const videoMap = previewProductDescVideoMap[id] || {};
+            const {youtubeIframeList} = videoMap;
+            if (youtubeIframeList && youtubeIframeList.each) youtubeIframeList.each(((index, item) => {
+                const src = __SL_$__(item).attr("data-resource-url");
+                if (src) __SL_$__(item).attr("src", src);
+            }));
         }
         const modalMap = {};
         const previewMap = {};
@@ -8120,6 +9139,7 @@
             }
             if (modalMap[spuSeq]) {
                 var _modalMap$spuSeq, _previewMap$spuSeq;
+                handleProductDescVideoByOpenModal(spuSeq);
                 null === (_modalMap$spuSeq = modalMap[spuSeq]) || void 0 === _modalMap$spuSeq ? void 0 : _modalMap$spuSeq.show();
                 null === (_previewMap$spuSeq = previewMap[spuSeq]) || void 0 === _previewMap$spuSeq ? void 0 : _previewMap$spuSeq.productEventRepeat();
                 modalExpose(modalPrefix);
@@ -8143,6 +9163,7 @@
                     bodyClassName: "product-preview-modal-body",
                     zIndex: 128,
                     closeCallback: () => {
+                        handleProductDescVideoByCloseModal(spuSeq);
                         (0, quickView_click["default"])({
                             eventName: "CLOSE_QUICKVIEW_EVENT",
                             spuSeq,
@@ -8158,6 +9179,7 @@
                 }).open();
                 fetchDetail(uniqueKey, queryObj).then((res => {
                     children.html('<div class="product-preview-modal-top-space"></div>').append(res.data);
+                    collectProductDescVideo(children, spuSeq);
                     modalExpose(modalPrefix);
                     window.SL_EventBus.emit("global.activeIcon.show", {
                         type: "vip"
@@ -8195,7 +9217,7 @@
                         }));
                     }
                 })).catch((() => {
-                    (new toast["default"]).open((0, i18n.t)("common.productError"), 3e3);
+                    (new toast["default"]).open((0, i18n.t)("products.general.no_product_data_found"), 3e3);
                     modal.hide();
                     modal.destroy();
                 }));
@@ -8218,7 +9240,7 @@
         const priceVipWrap = ".product-price-vip_";
         const priceDiscountWrap = ".product-price-discount_";
         function getDiscount(showDiscount, sku) {
-            const $el = $(`${priceDiscountWrap}${uniqueId}`);
+            const $el = __SL_$__(`${priceDiscountWrap}${uniqueId}`);
             const discountSettingStyle = null === $el || void 0 === $el ? void 0 : $el.attr("product_discount_style");
             const ratioCalc = Math.round(100 * (1 - sku.price / sku.originPrice));
             const discountText = "number" === discountSettingStyle ? sku.originPrice - sku.price : ratioCalc;
@@ -8230,34 +9252,34 @@
                         isSavePrice: true
                     });
                     isHidden = false;
-                    $el.html((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("productList.container.listItem.saveByJs", {
+                    $el.html((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("products.product_list.save_byjs", {
                         priceDom: getPriceContent()
                     }));
                 } else isHidden = true;
             } else {
                 isHidden = false;
-                $el.html((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("productList.container.listItem.saveRatio", {
+                $el.html((0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("products.product_list.save_ratio", {
                     price: ratioCalc
                 }));
             } else isHidden = true;
             $el.toggleClass("hide", isHidden);
         }
         const setSkuPrice = (spuSoldout, activeSku = {}) => {
-            var _$;
-            const discountSetting = null === (_$ = $(`${priceWrap}${uniqueId}`)) || void 0 === _$ ? void 0 : _$.attr("product_discount");
+            var _SL_$__;
+            const discountSetting = null === (_SL_$__ = __SL_$__(`${priceWrap}${uniqueId}`)) || void 0 === _SL_$__ ? void 0 : _SL_$__.attr("product_discount");
             const {originPrice: oriPrice, price, showMemberMark} = activeSku;
             const originPrice = oriPrice > price ? oriPrice : "";
             const showDiscount = discountSetting && !spuSoldout;
-            const $priceWrapperEl = $(`.price.product-info-price_${uniqueId}`);
+            const $priceWrapperEl = __SL_$__(`.price.product-info-price_${uniqueId}`);
             if (oriPrice > price) {
                 if (!$priceWrapperEl.hasClass("product-info-price_hasDiscount")) $priceWrapperEl.addClass("product-info-price_hasDiscount");
             } else $priceWrapperEl.removeClass("product-info-price_hasDiscount");
-            (0, _commons_utils_convertPrice__WEBPACK_IMPORTED_MODULE_1__.processPrice)($(`${priceSellWrap}${uniqueId}`), price).render();
-            if (showMemberMark) $(`${priceVipWrap}${uniqueId}`).removeClass("hide"); else $(`${priceVipWrap}${uniqueId}`).addClass("hide");
+            (0, _commons_utils_convertPrice__WEBPACK_IMPORTED_MODULE_1__.processPrice)(__SL_$__(`${priceSellWrap}${uniqueId}`), price).render();
+            if (showMemberMark) __SL_$__(`${priceVipWrap}${uniqueId}`).removeClass("hide"); else __SL_$__(`${priceVipWrap}${uniqueId}`).addClass("hide");
             if (originPrice) {
-                (0, _commons_utils_convertPrice__WEBPACK_IMPORTED_MODULE_1__.processPrice)($(`${priceOriginWrap}${uniqueId}`), originPrice).render();
-                $(`${priceOriginWrap}${uniqueId}`).removeClass("hide");
-            } else $(`${priceOriginWrap}${uniqueId}`).addClass("hide");
+                (0, _commons_utils_convertPrice__WEBPACK_IMPORTED_MODULE_1__.processPrice)(__SL_$__(`${priceOriginWrap}${uniqueId}`), originPrice).render();
+                __SL_$__(`${priceOriginWrap}${uniqueId}`).removeClass("hide");
+            } else __SL_$__(`${priceOriginWrap}${uniqueId}`).addClass("hide");
             getDiscount(showDiscount, activeSku);
         };
         const getHighOriginPrice = (min, item) => {
@@ -8430,6 +9452,10 @@
                 console.error(e);
             }
         };
+        const getSortationIds = spu => {
+            if (spu && spu.sortationList && Array.isArray(spu.sortationList)) return spu.sortationList.map((s => s.sortationId)).join(",");
+            return "";
+        };
         const modalInstanceMap = new Map;
         const previewInstanceMap = new Map;
         const quickAddLoadingClassName = "product-item__btn--loading";
@@ -8460,11 +9486,16 @@
                 imageBeanList
             };
         };
+        const getReportCartId = async () => await (0, utils.getCartId)();
         async function quickAddModal(data) {
             const {spuSeq, uniqueKey, $button} = data;
             let modalPrefix = "product_quick_add_";
             let queryObj = {};
             const query = $button.data("query");
+            let cartId = "";
+            getReportCartId().then((id => {
+                cartId = id;
+            }));
             try {
                 queryObj = {
                     ...query
@@ -8489,7 +9520,7 @@
                     const isSoldOut = null === (_res$data3 = res.data) || void 0 === _res$data3 ? void 0 : null === (_res$data3$spu = _res$data3.spu) || void 0 === _res$data3$spu ? void 0 : _res$data3$spu.soldOut;
                     const isSingleSku = Array.isArray(skuList) && 1 === skuList.length;
                     if (isSoldOut) {
-                        (new toast["default"]).open((0, i18n.t)("common.soldOut"), 3e3);
+                        (new toast["default"]).open((0, i18n.t)("products.general.sold_out"), 3e3);
                         return;
                     }
                     modalExpose(page);
@@ -8502,6 +9533,7 @@
                             toggleAddLoading,
                             hdReportPage: page,
                             skuAttributeMap,
+                            cartId,
                             ...data
                         });
                         emitProductSkuChange({
@@ -8512,7 +9544,7 @@
                         emitViewContent({
                             content_spu_id: null === productInfo || void 0 === productInfo ? void 0 : null === (_productInfo$spu = productInfo.spu) || void 0 === _productInfo$spu ? void 0 : _productInfo$spu.spuSeq,
                             content_sku_id: null === skuInfo || void 0 === skuInfo ? void 0 : skuInfo.skuSeq,
-                            content_category: "",
+                            content_category: getSortationIds(null === productInfo || void 0 === productInfo ? void 0 : productInfo.spu),
                             currency: null === (_window2 = window) || void 0 === _window2 ? void 0 : null === (_window2$SL_State = _window2.SL_State) || void 0 === _window2$SL_State ? void 0 : _window2$SL_State.get("storeInfo.currency"),
                             value: quick_add_modal_formatCurrency((null === skuInfo || void 0 === skuInfo ? void 0 : skuInfo.price) || 0),
                             quantity: 1,
@@ -8526,9 +9558,9 @@
                         modalPrefix,
                         ...data
                     });
-                } else (new toast["default"]).open((0, i18n.t)("common.productError"), 3e3);
+                } else (new toast["default"]).open((0, i18n.t)("products.general.no_product_data_found"), 3e3);
             } catch (err) {
-                (new toast["default"]).open((0, i18n.t)("common.productError"), 3e3);
+                (new toast["default"]).open((0, i18n.t)("products.general.no_product_data_found"), 3e3);
             } finally {
                 toggleAddLoading(false);
             }
@@ -8551,7 +9583,7 @@
                     $el: document.getElementById(null === (_modalInstanceMap$get2 = modalInstanceMap.get(spuSeq)) || void 0 === _modalInstanceMap$get2 ? void 0 : _modalInstanceMap$get2.modalId)
                 });
             } else {
-                const children = $('<div class="quick-add-modal__outerWrapper"></div>');
+                const children = __SL_$__('<div class="quick-add-modal__outerWrapper"></div>');
                 const modal = new components_modal.ModalWithHtml({
                     children,
                     containerClassName: `quick-add-modal__container __sl-custom-track-quick-add-modal-${spuSeq}`,
@@ -8592,7 +9624,7 @@
                         $el: document.getElementById(null === (_modalInstanceMap$get4 = modalInstanceMap.get(spuSeq)) || void 0 === _modalInstanceMap$get4 ? void 0 : _modalInstanceMap$get4.modalId)
                     });
                 } catch (err) {
-                    (new toast["default"]).open((0, i18n.t)("common.productError"), 3e3);
+                    (new toast["default"]).open((0, i18n.t)("products.general.no_product_data_found"), 3e3);
                     modal.hide();
                 } finally {
                     loading.close();
@@ -8660,7 +9692,7 @@
                     emitViewContent({
                         content_spu_id: spu.spuSeq,
                         content_sku_id,
-                        content_category: "",
+                        content_category: getSortationIds(spu),
                         currency: null === (_window3 = window) || void 0 === _window3 ? void 0 : null === (_window3$SL_State = _window3.SL_State) || void 0 === _window3$SL_State ? void 0 : _window3$SL_State.get("storeInfo.currency"),
                         value: price,
                         quantity: 1,
@@ -8704,7 +9736,7 @@
                     emitViewContent({
                         content_spu_id: spu.spuSeq,
                         content_sku_id,
-                        content_category: "",
+                        content_category: getSortationIds(spu),
                         currency: null === (_window4 = window) || void 0 === _window4 ? void 0 : null === (_window4$SL_State = _window4.SL_State) || void 0 === _window4$SL_State ? void 0 : _window4$SL_State.get("storeInfo.currency"),
                         value: price,
                         quantity: 1,
@@ -8728,7 +9760,7 @@
                 }
             }
         }
-        function addToCart({sku, spu, toggleAddLoading, hdReportPage, skuAttributeMap, position}) {
+        function addToCart({sku, spu, toggleAddLoading, hdReportPage, skuAttributeMap, position, cartId}) {
             var _window$HdSdk2, _window$HdSdk2$shopTr, _spu$sortationList, _spu$sortationList$, _spu$sortationList2, _spu$sortationList2$;
             const activeSku = sku ? {
                 ...sku,
@@ -8736,11 +9768,11 @@
                 name: spu.title
             } : null;
             if (isPreview()) {
-                (new toast["default"]).open((0, i18n.t)("productDetail.previewLinkToast"));
+                (new toast["default"]).open((0, i18n.t)("products.product_details.link_preview_does_not_support"));
                 return;
             }
             if (!activeSku) {
-                (new toast["default"]).open((0, i18n.t)("productList.container.tradePopup.error4"));
+                (new toast["default"]).open((0, i18n.t)("products.product_list.select_product_all_options"));
                 return;
             }
             toggleAddLoading(true);
@@ -8760,7 +9792,8 @@
                 collectionName: null === spu || void 0 === spu ? void 0 : null === (_spu$sortationList2 = spu.sortationList) || void 0 === _spu$sortationList2 ? void 0 : null === (_spu$sortationList2$ = _spu$sortationList2[0]) || void 0 === _spu$sortationList2$ ? void 0 : _spu$sortationList2$.sortationName,
                 position,
                 dataId,
-                eventID
+                eventID,
+                cartId
             };
             window.SL_EventBus.emit(globalEvent.ADD_TO_CART, {
                 spuId,
@@ -8836,13 +9869,13 @@
         const {formatCurrency: product_item_formatCurrency} = currency["default"];
         const product_item_hdReport = new product_item["default"];
         const isPad = state_selector.SL_State.get("request.is_mobile") || void 0 !== document.ontouchmove;
-        $("body").delegate(".js-product-item-quick-view", "click", (function(e) {
+        __SL_$__("body").delegate(".js-product-item-quick-view", "click", (function(e) {
             e.preventDefault();
             e.stopPropagation();
-            const spuSeq = $(this).data("spu-seq");
-            const uniqueKey = $(this).data("unique-key");
-            const query = $(this).data("query");
-            const position = $(this).data("index");
+            const spuSeq = __SL_$__(this).data("spu-seq");
+            const uniqueKey = __SL_$__(this).data("unique-key");
+            const query = __SL_$__(this).data("query");
+            const position = __SL_$__(this).data("index");
             (0, preview_modal["default"])({
                 spuSeq,
                 uniqueKey,
@@ -8850,10 +9883,10 @@
                 position
             });
         }));
-        $("body").on("click", ".js-product-item-quick-add", (e => {
+        __SL_$__("body").on("click", ".js-product-item-quick-add", (e => {
             e.preventDefault();
             e.stopPropagation();
-            const $current = $(e.currentTarget);
+            const $current = __SL_$__(e.currentTarget);
             const itemIndex = $current.data("index");
             const spuSeq = $current.data("spu-seq");
             const uniqueKey = $current.data("unique-key");
@@ -8868,16 +9901,16 @@
                 status
             });
         }));
-        $("body").on("click", ".js-product-item-sold-out", (e => {
+        __SL_$__("body").on("click", ".js-product-item-sold-out", (e => {
             e.preventDefault();
             e.stopPropagation();
         }));
         window.SL_EventBus.on("global:currency:format", (({currencyCode: code, lang}) => {
-            const priceItems = $("[data-product-item-price]");
+            const priceItems = __SL_$__("[data-product-item-price]");
             for (const priceItem of priceItems) {
-                const priceValue = $(priceItem).data("product-item-price");
-                const isSavePrice = $(priceItem).data("product-item-save-price");
-                (0, convertPrice.processPrice)($(priceItem), priceValue, {
+                const priceValue = __SL_$__(priceItem).data("product-item-price");
+                const isSavePrice = __SL_$__(priceItem).data("product-item-save-price");
+                (0, convertPrice.processPrice)(__SL_$__(priceItem), priceValue, {
                     isSavePrice,
                     code,
                     lang
@@ -8885,24 +9918,24 @@
             }
         }));
         if (isPad) {
-            $(".product-item__inner-wrap .product-item__actions").css({
+            __SL_$__(".product-item__inner-wrap .product-item__actions").css({
                 display: "block"
             });
-            $(".product-item__inner-wrap").removeClass("js-product-inner-wrap");
-            $("#collectionsAjaxInner").addClass("pad");
-            $(".product-item__wrapper").addClass("pad");
+            __SL_$__(".product-item__inner-wrap").removeClass("js-product-inner-wrap");
+            __SL_$__("#collectionsAjaxInner").addClass("pad");
+            __SL_$__(".product-item__wrapper").addClass("pad");
         }
-        $("body").on("mouseenter", ".js-product-inner-wrap", (function(e) {
+        __SL_$__("body").on("mouseenter", ".js-product-inner-wrap", (function(e) {
             e.preventDefault();
             e.stopPropagation();
-            const $item = $(this);
+            const $item = __SL_$__(this);
             const $parent = $item.parent();
             const $btns = $item.find(".js-product-item__actions");
             const noHoverAnimation = $item.data("no-hover-ani-effect");
             if ($btns.hasClass("show-middle-btn") || noHoverAnimation) return;
             window.clearTimeout(+$item.attr("data-timer"));
             if ($parent.children(".js-bg").length) $item.css("height", `${$item.find(".js-product-item").outerHeight()}px`); else {
-                const $bg = $('<div class="js-bg" style="width: 100%;"></div>');
+                const $bg = __SL_$__('<div class="js-bg" style="width: 100%;"></div>');
                 $bg.css("height", `${$item.outerHeight()}px`).appendTo($parent);
                 $item.css("position", "absolute").css("top", "0").css("left", "0").css("width", "100%").css("z-index", $item.attr("data-hover-z-index"));
                 $btns.css("display", "block");
@@ -8910,10 +9943,10 @@
                 $item.css("height", `${$item.find(".js-product-item").outerHeight()}px`);
             }
         }));
-        $("body").on("mouseleave", ".js-product-inner-wrap", (function(e) {
+        __SL_$__("body").on("mouseleave", ".js-product-inner-wrap", (function(e) {
             e.preventDefault();
             e.stopPropagation();
-            const $item = $(this);
+            const $item = __SL_$__(this);
             const $parent = $item.parent();
             const $btns = $item.find(".js-product-item__actions");
             if ($btns.hasClass("show-middle-btn")) return;
@@ -8961,18 +9994,19 @@
                 } ] ]
             });
         }
-        $(document.body).on("click", ".product-item", (function() {
-            const item = $(this);
+        __SL_$__(document.body).on("click", ".product-item", (function() {
+            const item = __SL_$__(this);
             const isRecentlyProduct = item.hasClass("__sl-custom-track-product-recently-viewed-item");
             const isSearchProduct = item.hasClass("__sl-custom-track-product-item-search");
-            if (!isSearchProduct && !isRecentlyProduct) product_item_hdReport.itemSelect({
+            const isRecommendProduct = item.hasClass("__sl-custom-track-product-recommend-item");
+            if (!isSearchProduct && !isRecentlyProduct && !isRecommendProduct) product_item_hdReport.itemSelect({
                 productInfo: item.data()
             });
             thirdPartReport({
-                id: $(this).data("skuId"),
-                name: $(this).data("name"),
-                price: $(this).data("price"),
-                index: $(this).data("index") + 1
+                id: __SL_$__(this).data("skuId"),
+                name: __SL_$__(this).data("name"),
+                price: __SL_$__(this).data("price"),
+                index: __SL_$__(this).data("index") + 1
             });
         }));
     },
@@ -8985,7 +10019,6 @@
             paypalHdReport: () => paypalHdReport
         });
         var tool = __webpack_require__("../shared/browser/utils/report/tool.js");
-        var utils = __webpack_require__("../shared/browser/report/product/utils/index.js");
         var currency = __webpack_require__("../shared/browser/utils/currency/index.js");
         var state_selector = __webpack_require__("../shared/browser/utils/state-selector.js");
         var syntax_patch = __webpack_require__("../shared/browser/utils/syntax-patch.js");
@@ -9027,11 +10060,11 @@
             Activity: 115
         };
         function findSectionId(selector) {
-            const id = $(selector).closest(".shopline-section").attr("id");
+            const id = __SL_$__(selector).closest(".shopline-section").attr("id");
             const trueId = id && id.replace("shopline-section-", "");
             return trueId;
         }
-        async function newHdReportData({addtocartType, price, skuId, spuId, num, modalType, variant, collectionId, collectionName, position, dataId, eventID, moreInfo = {}, singleItem = {}}) {
+        function newHdReportData({addtocartType, price, skuId, spuId, num, modalType, variant, collectionId, collectionName, position, dataId, eventID, cartId, moreInfo = {}, singleItem = {}}) {
             let config = {};
             if (modalType) {
                 config = pageMap[modalType];
@@ -9054,7 +10087,7 @@
                 event_id: `addToCart${eventID}`,
                 currency: state_selector.SL_State.get("storeInfo.currency"),
                 value: formatCurrency(price * num),
-                cart_id: await (0, utils.getCartId)(),
+                cart_id: cartId,
                 ...moreInfo,
                 items: [ {
                     sku_id: skuId,
@@ -9159,7 +10192,7 @@
             });
             return eventID;
         }
-        async function addToCartHdReport({spuId, skuId, num, price, name, page, event_status, modalType, variant, collectionId, collectionName, position, dataId, eventID}) {
+        function addToCartHdReport({spuId, skuId, num, price, name, page, event_status, modalType, variant, collectionId, collectionName, position, dataId, eventID, cartId}) {
             var _window$HdSdk;
             null === (_window$HdSdk = window.HdSdk) || void 0 === _window$HdSdk ? void 0 : _window$HdSdk.shopTracker.report("60006263", {
                 page,
@@ -9172,7 +10205,7 @@
                 price: product_button_report_formatCurrency(price),
                 product_name: name,
                 event_status,
-                cart_id: await (0, utils.getCartId)()
+                cart_id: cartId
             });
             newHdReportData({
                 addtocartType: "addtocart",
@@ -9188,12 +10221,13 @@
                 position,
                 dataId,
                 eventID,
+                cartId,
                 moreInfo: {
                     event_status
                 }
             });
         }
-        function buyNowHdReport({spuId, skuId, num, price, name, page, event_status, modalType, variant, collectionId, collectionName, isMorePay, position, dataId, eventID}) {
+        function buyNowHdReport({spuId, skuId, num, price, name, page, event_status, modalType, variant, collectionId, collectionName, isMorePay, position, dataId, eventID, cartId}) {
             var _window$HdSdk2;
             null === (_window$HdSdk2 = window.HdSdk) || void 0 === _window$HdSdk2 ? void 0 : _window$HdSdk2.shopTracker.report("60006263", {
                 page,
@@ -9220,6 +10254,7 @@
                 position,
                 dataId,
                 eventID,
+                cartId,
                 moreInfo: {
                     event_status
                 }
@@ -9227,7 +10262,12 @@
         }
         function paypalHdReport(data) {
             var _window$HdSdk3;
-            null === (_window$HdSdk3 = window.HdSdk) || void 0 === _window$HdSdk3 ? void 0 : _window$HdSdk3.shopTracker.report("60006263", data);
+            const {cartId, ...rest} = data;
+            const position = "" === (0, syntax_patch.nullishCoalescingOperator)(data.position, "") ? "" : Number(data.position) + 1;
+            null === (_window$HdSdk3 = window.HdSdk) || void 0 === _window$HdSdk3 ? void 0 : _window$HdSdk3.shopTracker.report("60006263", {
+                ...rest,
+                position
+            });
             newHdReportData({
                 addtocartType: "paypal",
                 price: unformatCurrency(data.price),
@@ -9242,6 +10282,7 @@
                 position: data.position,
                 dataId: data.dataId,
                 eventID: data.eventID,
+                cartId: data.cartId,
                 moreInfo: {
                     event_status: data.event_status
                 }
@@ -9289,6 +10330,7 @@
             }
         }
         const checkoutEnd = new EventAddCheckoutEnd;
+        var utils = __webpack_require__("../shared/browser/report/product/utils/index.js");
         var globalEvent = __webpack_require__("./src/assets/commons/cart/globalEvent.js");
         var toast = __webpack_require__("./src/assets/commons/components/toast/index.js");
         var debounce = __webpack_require__("./src/assets/commons/utils/debounce.js");
@@ -9308,6 +10350,7 @@
         };
         class ButtonEvent {
             constructor({id, cartRoot, buyNowRoot, payPayId, soldOutRoot, spu, onAddSuccess, onAddError, sku, modalType, position}) {
+                this.getReportCartId();
                 this.addButton = cartRoot;
                 this.buyButton = buyNowRoot;
                 this.payPayId = payPayId;
@@ -9316,7 +10359,7 @@
                 this.onAddError = onAddError;
                 this.spu = spu;
                 this.sku = sku;
-                this.initPaypal(id);
+                this.initPaypal();
                 this.initEvent();
                 this.toast = new toast["default"];
                 this.initLoading();
@@ -9324,6 +10367,9 @@
                 this.page = String(id).startsWith("productRecommendModal") ? "123" : pageMapping["default"][window.SL_State.get("templateAlias")];
                 this.modalType = modalType;
                 this.position = position;
+            }
+            async getReportCartId() {
+                this.cartId = await (0, utils.getCartId)();
             }
             initLoading() {
                 this.addLoading = new toast["default"]({
@@ -9343,7 +10389,7 @@
             }
             initPaypal() {
                 var _this$buttonConfig, _this$buttonConfig$or;
-                if (0 === $(`#${this.payPayId}`).length) return;
+                if (0 === __SL_$__(`#${this.payPayId}`).length) return;
                 let dataId;
                 let eventID;
                 this.buttonConfig = window.SL_State.get("productSettleButtonConfig");
@@ -9365,7 +10411,8 @@
                         collectionName: null === (_this$spu2 = this.spu) || void 0 === _this$spu2 ? void 0 : null === (_this$spu2$sortationL = _this$spu2.sortationList) || void 0 === _this$spu2$sortationL ? void 0 : null === (_this$spu2$sortationL2 = _this$spu2$sortationL[0]) || void 0 === _this$spu2$sortationL2 ? void 0 : _this$spu2$sortationL2.sortationName,
                         position: this.position,
                         dataId,
-                        eventID
+                        eventID,
+                        cartId: this.cartId
                     });
                 }));
                 setChannel();
@@ -9392,30 +10439,30 @@
                     },
                     beforeCreateOrder: () => {},
                     domId: this.payPayId,
-                    height: $(`#${this.payPayId}`).height(),
+                    height: __SL_$__(`#${this.payPayId}`).height(),
                     dynamic: null === (_this$buttonConfig = this.buttonConfig) || void 0 === _this$buttonConfig ? void 0 : null === (_this$buttonConfig$or = _this$buttonConfig.originConfig) || void 0 === _this$buttonConfig$or ? void 0 : _this$buttonConfig$or.system,
                     onToast: ({message}) => this.toast.open(message),
                     onDynamicNotify: () => {
-                        $(`#${this.payPayId}`).remove();
-                        $(this.buyButton).filter(".product-more-payment-button").remove();
+                        __SL_$__(`#${this.payPayId}`).remove();
+                        __SL_$__(this.buyButton).filter(".product-more-payment-button").remove();
                         if (!this.buttonConfig.buyNow) this.extraBuyNow();
                     },
                     afterRender: () => {
                         if (!this.activeSku) this.setPaypalDisabled();
                     },
                     onInit: () => {
-                        $(this.buyButton).filter(".product-more-payment-button").html((0, i18n.t)("productDetail.morePaymentOptions"));
+                        __SL_$__(this.buyButton).filter(".product-more-payment-button").html((0, i18n.t)("products.product_details.more_payment_options"));
                     }
                 });
                 this.PayPalButton.render();
-                $(document).on("click", `#${this.payPayId} .product-button-paypal-preview-mask`, (() => {
-                    this.toast.open((0, i18n.t)("productDetail.previewLinkToast"));
+                __SL_$__(document).on("click", `#${this.payPayId} .product-button-paypal-preview-mask`, (() => {
+                    this.toast.open((0, i18n.t)("products.product_details.link_preview_does_not_support"));
                 }));
             }
             extraBuyNow() {
                 const buyNow = `<button data-ssr-plugin-pdp-button-buy-now class="buy-now btn btn-primary btn-lg ${this.buyButton.substr(1)} __sl-custom-track-product-detail-buy-now paypalAddBuyNow">\n        <span class="pdp_button_text fw-bold">${(0, 
-                i18n.t)("common.buy-now")}</span>\n      </button>`;
-                $(this.addButton).after(buyNow);
+                i18n.t)("cart.cart.buy_now")}</span>\n      </button>`;
+                __SL_$__(this.addButton).after(buyNow);
                 this.bindBuyNow();
                 this.setTradeButtonHide(this.activeSku ? !this.activeSku.available : this.spu.soldOut);
                 this.buyLoading = new toast["default"]({
@@ -9431,26 +10478,26 @@
                 if ("buy" === button) dom = this.buyButton;
                 const loadingName = `${button}Loading`;
                 if (loading) {
-                    $(dom).find(".pdp_button_text").addClass("loading");
+                    __SL_$__(dom).find(".pdp_button_text").addClass("loading");
                     this[loadingName].open();
-                    $(`.product_${button}_loading`).find(".mp-loading__circular path").css({
-                        stroke: $(dom).css("color")
+                    __SL_$__(`.product_${button}_loading`).find(".mp-loading__circular path").css({
+                        stroke: __SL_$__(dom).css("color")
                     });
                 } else {
                     this[loadingName].close();
-                    $(dom).find(".pdp_button_text").removeClass("loading");
+                    __SL_$__(dom).find(".pdp_button_text").removeClass("loading");
                 }
             }
             initEvent() {
                 const $this = this;
-                $(this.addButton).on("click", (0, debounce["default"])(300, (() => {
+                __SL_$__(this.addButton).on("click", (0, debounce["default"])(300, (() => {
                     var _window$HdSdk2, _window$HdSdk2$shopTr, _this$activeSku3, _this$sku3, _this$spu3, _this$spu3$sortationL, _this$spu3$sortationL2, _this$spu4, _this$spu4$sortationL, _this$spu4$sortationL2;
                     if ($this.isPreview()) {
-                        this.toast.open((0, i18n.t)("productDetail.previewLinkToast"));
+                        this.toast.open((0, i18n.t)("products.product_details.link_preview_does_not_support"));
                         return;
                     }
                     if (!this.activeSku) {
-                        this.toast.open((0, i18n.t)("productList.container.tradePopup.error4"));
+                        this.toast.open((0, i18n.t)("products.product_list.select_product_all_options"));
                         return;
                     }
                     this.setLoading("add", true);
@@ -9471,7 +10518,8 @@
                         collectionName: null === (_this$spu4 = this.spu) || void 0 === _this$spu4 ? void 0 : null === (_this$spu4$sortationL = _this$spu4.sortationList) || void 0 === _this$spu4$sortationL ? void 0 : null === (_this$spu4$sortationL2 = _this$spu4$sortationL[0]) || void 0 === _this$spu4$sortationL2 ? void 0 : _this$spu4$sortationL2.sortationName,
                         position: this.position,
                         dataId,
-                        eventID
+                        eventID,
+                        cartId: this.cartId
                     };
                     window.SL_EventBus.emit(globalEvent.ADD_TO_CART, {
                         spuId,
@@ -9534,10 +10582,11 @@
                         variant: getVariant(null === (_this$activeSku5 = this.activeSku) || void 0 === _this$activeSku5 ? void 0 : _this$activeSku5.skuAttributeIds, null === (_this$sku5 = this.sku) || void 0 === _this$sku5 ? void 0 : _this$sku5.skuAttributeMap),
                         collectionId: null === (_this$spu5 = this.spu) || void 0 === _this$spu5 ? void 0 : null === (_this$spu5$sortationL = _this$spu5.sortationList) || void 0 === _this$spu5$sortationL ? void 0 : null === (_this$spu5$sortationL2 = _this$spu5$sortationL[0]) || void 0 === _this$spu5$sortationL2 ? void 0 : _this$spu5$sortationL2.sortationId,
                         collectionName: null === (_this$spu6 = this.spu) || void 0 === _this$spu6 ? void 0 : null === (_this$spu6$sortationL = _this$spu6.sortationList) || void 0 === _this$spu6$sortationL ? void 0 : null === (_this$spu6$sortationL2 = _this$spu6$sortationL[0]) || void 0 === _this$spu6$sortationL2 ? void 0 : _this$spu6$sortationL2.sortationName,
-                        isMorePay: $(this.addButton).hasClass("product-more-payment-button"),
+                        isMorePay: __SL_$__(this.addButton).hasClass("product-more-payment-button"),
                         position: this.position,
                         dataId,
-                        eventID
+                        eventID,
+                        cartId: this.cartId
                     };
                     (0, product_button_report.buyNowHdReport)({
                         ...hdReportData,
@@ -9545,14 +10594,14 @@
                     });
                 }));
                 const $this = this;
-                $(this.buyButton).on("click", (0, debounce["default"])(300, (() => {
+                __SL_$__(this.buyButton).on("click", (0, debounce["default"])(300, (() => {
                     var _window$HdSdk3, _window$HdSdk3$shopTr;
                     if ($this.isPreview()) {
-                        this.toast.open((0, i18n.t)("productDetail.previewLinkToast"));
+                        this.toast.open((0, i18n.t)("products.product_details.link_preview_does_not_support"));
                         return;
                     }
                     if (!this.activeSku) {
-                        this.toast.open((0, i18n.t)("productList.container.tradePopup.error4"));
+                        this.toast.open((0, i18n.t)("products.product_list.select_product_all_options"));
                         return;
                     }
                     this.setLoading("buy", true);
@@ -9616,7 +10665,7 @@
                 null === (_this$PayPalButton2 = this.PayPalButton) || void 0 === _this$PayPalButton2 ? void 0 : _this$PayPalButton2.setDisabled(false);
             }
             setPayPalProduct() {
-                if (0 === $(`#${this.payPayId}`).length || !this.activeSku) return;
+                if (0 === __SL_$__(`#${this.payPayId}`).length || !this.activeSku) return;
                 const product = [ {
                     spuId: this.activeSku.spuSeq,
                     skuId: this.activeSku.skuSeq,
@@ -9627,21 +10676,21 @@
                 this.PayPalButton.setProducts(product);
             }
             setTradeButtonHide(show) {
-                var _$2, _$$filter2;
+                var _SL_$__2, _SL_$__$filter2;
                 if (!show) {
-                    var _$, _$$filter;
-                    $(this.addButton).removeClass("hide");
-                    $(this.buyButton).removeClass("hide");
-                    null === (_$ = $(`#${this.payPayId}`)) || void 0 === _$ ? void 0 : _$.removeClass("hide");
-                    null === (_$$filter = $(this.buyButton).filter(".product-more-payment-button")) || void 0 === _$$filter ? void 0 : _$$filter.removeClass("hide");
-                    $(this.soldOutRoot).addClass("hide");
+                    var _SL_$__, _SL_$__$filter;
+                    __SL_$__(this.addButton).removeClass("hide");
+                    __SL_$__(this.buyButton).removeClass("hide");
+                    null === (_SL_$__ = __SL_$__(`#${this.payPayId}`)) || void 0 === _SL_$__ ? void 0 : _SL_$__.removeClass("hide");
+                    null === (_SL_$__$filter = __SL_$__(this.buyButton).filter(".product-more-payment-button")) || void 0 === _SL_$__$filter ? void 0 : _SL_$__$filter.removeClass("hide");
+                    __SL_$__(this.soldOutRoot).addClass("hide");
                     return;
                 }
-                $(this.addButton).addClass("hide");
-                $(this.buyButton).addClass("hide");
-                null === (_$2 = $(`#${this.payPayId}`)) || void 0 === _$2 ? void 0 : _$2.addClass("hide");
-                null === (_$$filter2 = $(this.buyButton).filter(".product-more-payment-button")) || void 0 === _$$filter2 ? void 0 : _$$filter2.addClass("hide");
-                $(this.soldOutRoot).removeClass("hide");
+                __SL_$__(this.addButton).addClass("hide");
+                __SL_$__(this.buyButton).addClass("hide");
+                null === (_SL_$__2 = __SL_$__(`#${this.payPayId}`)) || void 0 === _SL_$__2 ? void 0 : _SL_$__2.addClass("hide");
+                null === (_SL_$__$filter2 = __SL_$__(this.buyButton).filter(".product-more-payment-button")) || void 0 === _SL_$__$filter2 ? void 0 : _SL_$__$filter2.addClass("hide");
+                __SL_$__(this.soldOutRoot).removeClass("hide");
             }
             isPreview() {
                 const currentUrl = window.location.pathname;
@@ -9682,1445 +10731,15 @@
         var product_quantity = __webpack_require__("./src/assets/product/detail/js/product-quantity.js");
         var product_button = __webpack_require__("./src/assets/product/detail/js/product-button.js");
         var product_info = __webpack_require__("./src/assets/product/commons/js/product-info.js");
-        var core_class = __webpack_require__("./node_modules/swiper/esm/components/core/core-class.js");
-        var utils = __webpack_require__("./node_modules/swiper/esm/utils/utils.js");
-        function _extends() {
-            _extends = Object.assign || function(target) {
-                for (var i = 1; i < arguments.length; i++) {
-                    var source = arguments[i];
-                    for (var key in source) if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
-                }
-                return target;
-            };
-            return _extends.apply(this, arguments);
-        }
-        var Fade = {
-            setTranslate: function() {
-                var swiper = this;
-                var slides = swiper.slides;
-                for (var i = 0; i < slides.length; i += 1) {
-                    var $slideEl = swiper.slides.eq(i);
-                    var offset = $slideEl[0].swiperSlideOffset;
-                    var tx = -offset;
-                    if (!swiper.params.virtualTranslate) tx -= swiper.translate;
-                    var ty = 0;
-                    if (!swiper.isHorizontal()) {
-                        ty = tx;
-                        tx = 0;
-                    }
-                    var slideOpacity = swiper.params.fadeEffect.crossFade ? Math.max(1 - Math.abs($slideEl[0].progress), 0) : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
-                    $slideEl.css({
-                        opacity: slideOpacity
-                    }).transform("translate3d(" + tx + "px, " + ty + "px, 0px)");
-                }
-            },
-            setTransition: function(duration) {
-                var swiper = this;
-                var slides = swiper.slides, $wrapperEl = swiper.$wrapperEl;
-                slides.transition(duration);
-                if (swiper.params.virtualTranslate && 0 !== duration) {
-                    var eventTriggered = false;
-                    slides.transitionEnd((function() {
-                        if (eventTriggered) return;
-                        if (!swiper || swiper.destroyed) return;
-                        eventTriggered = true;
-                        swiper.animating = false;
-                        var triggerEvents = [ "webkitTransitionEnd", "transitionend" ];
-                        for (var i = 0; i < triggerEvents.length; i += 1) $wrapperEl.trigger(triggerEvents[i]);
-                    }));
-                }
-            }
-        };
-        const effect_fade = {
-            name: "effect-fade",
-            params: {
-                fadeEffect: {
-                    crossFade: false
-                }
-            },
-            create: function() {
-                var swiper = this;
-                (0, utils.bindModuleMethods)(swiper, {
-                    fadeEffect: _extends({}, Fade)
-                });
-            },
-            on: {
-                beforeInit: function(swiper) {
-                    if ("fade" !== swiper.params.effect) return;
-                    swiper.classNames.push(swiper.params.containerModifierClass + "fade");
-                    var overwriteParams = {
-                        slidesPerView: 1,
-                        slidesPerColumn: 1,
-                        slidesPerGroup: 1,
-                        watchSlidesProgress: true,
-                        spaceBetween: 0,
-                        virtualTranslate: true
-                    };
-                    (0, utils.extend)(swiper.params, overwriteParams);
-                    (0, utils.extend)(swiper.originalParams, overwriteParams);
-                },
-                setTranslate: function(swiper) {
-                    if ("fade" !== swiper.params.effect) return;
-                    swiper.fadeEffect.setTranslate();
-                },
-                setTransition: function(swiper, duration) {
-                    if ("fade" !== swiper.params.effect) return;
-                    swiper.fadeEffect.setTransition(duration);
-                }
-            }
-        };
-        var ssr_window_esm = __webpack_require__("./node_modules/ssr-window/ssr-window.esm.js");
-        var dom = __webpack_require__("./node_modules/swiper/esm/utils/dom.js");
-        function lazy_extends() {
-            lazy_extends = Object.assign || function(target) {
-                for (var i = 1; i < arguments.length; i++) {
-                    var source = arguments[i];
-                    for (var key in source) if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
-                }
-                return target;
-            };
-            return lazy_extends.apply(this, arguments);
-        }
-        var Lazy = {
-            loadInSlide: function(index, loadInDuplicate) {
-                if (void 0 === loadInDuplicate) loadInDuplicate = true;
-                var swiper = this;
-                var params = swiper.params.lazy;
-                if ("undefined" === typeof index) return;
-                if (0 === swiper.slides.length) return;
-                var isVirtual = swiper.virtual && swiper.params.virtual.enabled;
-                var $slideEl = isVirtual ? swiper.$wrapperEl.children("." + swiper.params.slideClass + '[data-swiper-slide-index="' + index + '"]') : swiper.slides.eq(index);
-                var $images = $slideEl.find("." + params.elementClass + ":not(." + params.loadedClass + "):not(." + params.loadingClass + ")");
-                if ($slideEl.hasClass(params.elementClass) && !$slideEl.hasClass(params.loadedClass) && !$slideEl.hasClass(params.loadingClass)) $images.push($slideEl[0]);
-                if (0 === $images.length) return;
-                $images.each((function(imageEl) {
-                    var $imageEl = (0, dom["default"])(imageEl);
-                    $imageEl.addClass(params.loadingClass);
-                    var background = $imageEl.attr("data-background");
-                    var src = $imageEl.attr("data-src");
-                    var srcset = $imageEl.attr("data-srcset");
-                    var sizes = $imageEl.attr("data-sizes");
-                    var $pictureEl = $imageEl.parent("picture");
-                    swiper.loadImage($imageEl[0], src || background, srcset, sizes, false, (function() {
-                        if ("undefined" === typeof swiper || null === swiper || !swiper || swiper && !swiper.params || swiper.destroyed) return;
-                        if (background) {
-                            $imageEl.css("background-image", 'url("' + background + '")');
-                            $imageEl.removeAttr("data-background");
-                        } else {
-                            if (srcset) {
-                                $imageEl.attr("srcset", srcset);
-                                $imageEl.removeAttr("data-srcset");
-                            }
-                            if (sizes) {
-                                $imageEl.attr("sizes", sizes);
-                                $imageEl.removeAttr("data-sizes");
-                            }
-                            if ($pictureEl.length) $pictureEl.children("source").each((function(sourceEl) {
-                                var $source = (0, dom["default"])(sourceEl);
-                                if ($source.attr("data-srcset")) {
-                                    $source.attr("srcset", $source.attr("data-srcset"));
-                                    $source.removeAttr("data-srcset");
-                                }
-                            }));
-                            if (src) {
-                                $imageEl.attr("src", src);
-                                $imageEl.removeAttr("data-src");
-                            }
-                        }
-                        $imageEl.addClass(params.loadedClass).removeClass(params.loadingClass);
-                        $slideEl.find("." + params.preloaderClass).remove();
-                        if (swiper.params.loop && loadInDuplicate) {
-                            var slideOriginalIndex = $slideEl.attr("data-swiper-slide-index");
-                            if ($slideEl.hasClass(swiper.params.slideDuplicateClass)) {
-                                var originalSlide = swiper.$wrapperEl.children('[data-swiper-slide-index="' + slideOriginalIndex + '"]:not(.' + swiper.params.slideDuplicateClass + ")");
-                                swiper.lazy.loadInSlide(originalSlide.index(), false);
-                            } else {
-                                var duplicatedSlide = swiper.$wrapperEl.children("." + swiper.params.slideDuplicateClass + '[data-swiper-slide-index="' + slideOriginalIndex + '"]');
-                                swiper.lazy.loadInSlide(duplicatedSlide.index(), false);
-                            }
-                        }
-                        swiper.emit("lazyImageReady", $slideEl[0], $imageEl[0]);
-                        if (swiper.params.autoHeight) swiper.updateAutoHeight();
-                    }));
-                    swiper.emit("lazyImageLoad", $slideEl[0], $imageEl[0]);
-                }));
-            },
-            load: function() {
-                var swiper = this;
-                var $wrapperEl = swiper.$wrapperEl, swiperParams = swiper.params, slides = swiper.slides, activeIndex = swiper.activeIndex;
-                var isVirtual = swiper.virtual && swiperParams.virtual.enabled;
-                var params = swiperParams.lazy;
-                var slidesPerView = swiperParams.slidesPerView;
-                if ("auto" === slidesPerView) slidesPerView = 0;
-                function slideExist(index) {
-                    if (isVirtual) {
-                        if ($wrapperEl.children("." + swiperParams.slideClass + '[data-swiper-slide-index="' + index + '"]').length) return true;
-                    } else if (slides[index]) return true;
-                    return false;
-                }
-                function slideIndex(slideEl) {
-                    if (isVirtual) return (0, dom["default"])(slideEl).attr("data-swiper-slide-index");
-                    return (0, dom["default"])(slideEl).index();
-                }
-                if (!swiper.lazy.initialImageLoaded) swiper.lazy.initialImageLoaded = true;
-                if (swiper.params.watchSlidesVisibility) $wrapperEl.children("." + swiperParams.slideVisibleClass).each((function(slideEl) {
-                    var index = isVirtual ? (0, dom["default"])(slideEl).attr("data-swiper-slide-index") : (0, 
-                    dom["default"])(slideEl).index();
-                    swiper.lazy.loadInSlide(index);
-                })); else if (slidesPerView > 1) {
-                    for (var i = activeIndex; i < activeIndex + slidesPerView; i += 1) if (slideExist(i)) swiper.lazy.loadInSlide(i);
-                } else swiper.lazy.loadInSlide(activeIndex);
-                if (params.loadPrevNext) if (slidesPerView > 1 || params.loadPrevNextAmount && params.loadPrevNextAmount > 1) {
-                    var amount = params.loadPrevNextAmount;
-                    var spv = slidesPerView;
-                    var maxIndex = Math.min(activeIndex + spv + Math.max(amount, spv), slides.length);
-                    var minIndex = Math.max(activeIndex - Math.max(spv, amount), 0);
-                    for (var _i = activeIndex + slidesPerView; _i < maxIndex; _i += 1) if (slideExist(_i)) swiper.lazy.loadInSlide(_i);
-                    for (var _i2 = minIndex; _i2 < activeIndex; _i2 += 1) if (slideExist(_i2)) swiper.lazy.loadInSlide(_i2);
-                } else {
-                    var nextSlide = $wrapperEl.children("." + swiperParams.slideNextClass);
-                    if (nextSlide.length > 0) swiper.lazy.loadInSlide(slideIndex(nextSlide));
-                    var prevSlide = $wrapperEl.children("." + swiperParams.slidePrevClass);
-                    if (prevSlide.length > 0) swiper.lazy.loadInSlide(slideIndex(prevSlide));
-                }
-            },
-            checkInViewOnLoad: function() {
-                var window = (0, ssr_window_esm.getWindow)();
-                var swiper = this;
-                if (!swiper || swiper.destroyed) return;
-                var $scrollElement = swiper.params.lazy.scrollingElement ? (0, dom["default"])(swiper.params.lazy.scrollingElement) : (0, 
-                dom["default"])(window);
-                var isWindow = $scrollElement[0] === window;
-                var scrollElementWidth = isWindow ? window.innerWidth : $scrollElement[0].offsetWidth;
-                var scrollElementHeight = isWindow ? window.innerHeight : $scrollElement[0].offsetHeight;
-                var swiperOffset = swiper.$el.offset();
-                var rtl = swiper.rtlTranslate;
-                var inView = false;
-                if (rtl) swiperOffset.left -= swiper.$el[0].scrollLeft;
-                var swiperCoord = [ [ swiperOffset.left, swiperOffset.top ], [ swiperOffset.left + swiper.width, swiperOffset.top ], [ swiperOffset.left, swiperOffset.top + swiper.height ], [ swiperOffset.left + swiper.width, swiperOffset.top + swiper.height ] ];
-                for (var i = 0; i < swiperCoord.length; i += 1) {
-                    var point = swiperCoord[i];
-                    if (point[0] >= 0 && point[0] <= scrollElementWidth && point[1] >= 0 && point[1] <= scrollElementHeight) {
-                        if (0 === point[0] && 0 === point[1]) continue;
-                        inView = true;
-                    }
-                }
-                var passiveListener = "touchstart" === swiper.touchEvents.start && swiper.support.passiveListener && swiper.params.passiveListeners ? {
-                    passive: true,
-                    capture: false
-                } : false;
-                if (inView) {
-                    swiper.lazy.load();
-                    $scrollElement.off("scroll", swiper.lazy.checkInViewOnLoad, passiveListener);
-                } else if (!swiper.lazy.scrollHandlerAttached) {
-                    swiper.lazy.scrollHandlerAttached = true;
-                    $scrollElement.on("scroll", swiper.lazy.checkInViewOnLoad, passiveListener);
-                }
-            }
-        };
-        const lazy = {
-            name: "lazy",
-            params: {
-                lazy: {
-                    checkInView: false,
-                    enabled: false,
-                    loadPrevNext: false,
-                    loadPrevNextAmount: 1,
-                    loadOnTransitionStart: false,
-                    scrollingElement: "",
-                    elementClass: "swiper-lazy",
-                    loadingClass: "swiper-lazy-loading",
-                    loadedClass: "swiper-lazy-loaded",
-                    preloaderClass: "swiper-lazy-preloader"
-                }
-            },
-            create: function() {
-                var swiper = this;
-                (0, utils.bindModuleMethods)(swiper, {
-                    lazy: lazy_extends({
-                        initialImageLoaded: false
-                    }, Lazy)
-                });
-            },
-            on: {
-                beforeInit: function(swiper) {
-                    if (swiper.params.lazy.enabled && swiper.params.preloadImages) swiper.params.preloadImages = false;
-                },
-                init: function(swiper) {
-                    if (swiper.params.lazy.enabled && !swiper.params.loop && 0 === swiper.params.initialSlide) if (swiper.params.lazy.checkInView) swiper.lazy.checkInViewOnLoad(); else swiper.lazy.load();
-                },
-                scroll: function(swiper) {
-                    if (swiper.params.freeMode && !swiper.params.freeModeSticky) swiper.lazy.load();
-                },
-                "scrollbarDragMove resize _freeModeNoMomentumRelease": function(swiper) {
-                    if (swiper.params.lazy.enabled) swiper.lazy.load();
-                },
-                transitionStart: function(swiper) {
-                    if (swiper.params.lazy.enabled) if (swiper.params.lazy.loadOnTransitionStart || !swiper.params.lazy.loadOnTransitionStart && !swiper.lazy.initialImageLoaded) swiper.lazy.load();
-                },
-                transitionEnd: function(swiper) {
-                    if (swiper.params.lazy.enabled && !swiper.params.lazy.loadOnTransitionStart) swiper.lazy.load();
-                },
-                slideChange: function(swiper) {
-                    var _swiper$params = swiper.params, lazy = _swiper$params.lazy, cssMode = _swiper$params.cssMode, watchSlidesVisibility = _swiper$params.watchSlidesVisibility, watchSlidesProgress = _swiper$params.watchSlidesProgress, touchReleaseOnEdges = _swiper$params.touchReleaseOnEdges, resistanceRatio = _swiper$params.resistanceRatio;
-                    if (lazy.enabled && (cssMode || (watchSlidesVisibility || watchSlidesProgress) && (touchReleaseOnEdges || 0 === resistanceRatio))) swiper.lazy.load();
-                }
-            }
-        };
-        function thumbs_extends() {
-            thumbs_extends = Object.assign || function(target) {
-                for (var i = 1; i < arguments.length; i++) {
-                    var source = arguments[i];
-                    for (var key in source) if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
-                }
-                return target;
-            };
-            return thumbs_extends.apply(this, arguments);
-        }
-        var Thumbs = {
-            init: function() {
-                var swiper = this;
-                var thumbsParams = swiper.params.thumbs;
-                if (swiper.thumbs.initialized) return false;
-                swiper.thumbs.initialized = true;
-                var SwiperClass = swiper.constructor;
-                if (thumbsParams.swiper instanceof SwiperClass) {
-                    swiper.thumbs.swiper = thumbsParams.swiper;
-                    (0, utils.extend)(swiper.thumbs.swiper.originalParams, {
-                        watchSlidesProgress: true,
-                        slideToClickedSlide: false
-                    });
-                    (0, utils.extend)(swiper.thumbs.swiper.params, {
-                        watchSlidesProgress: true,
-                        slideToClickedSlide: false
-                    });
-                } else if ((0, utils.isObject)(thumbsParams.swiper)) {
-                    swiper.thumbs.swiper = new SwiperClass((0, utils.extend)({}, thumbsParams.swiper, {
-                        watchSlidesVisibility: true,
-                        watchSlidesProgress: true,
-                        slideToClickedSlide: false
-                    }));
-                    swiper.thumbs.swiperCreated = true;
-                }
-                swiper.thumbs.swiper.$el.addClass(swiper.params.thumbs.thumbsContainerClass);
-                swiper.thumbs.swiper.on("tap", swiper.thumbs.onThumbClick);
-                return true;
-            },
-            onThumbClick: function() {
-                var swiper = this;
-                var thumbsSwiper = swiper.thumbs.swiper;
-                if (!thumbsSwiper) return;
-                var clickedIndex = thumbsSwiper.clickedIndex;
-                var clickedSlide = thumbsSwiper.clickedSlide;
-                if (clickedSlide && (0, dom["default"])(clickedSlide).hasClass(swiper.params.thumbs.slideThumbActiveClass)) return;
-                if ("undefined" === typeof clickedIndex || null === clickedIndex) return;
-                var slideToIndex;
-                if (thumbsSwiper.params.loop) slideToIndex = parseInt((0, dom["default"])(thumbsSwiper.clickedSlide).attr("data-swiper-slide-index"), 10); else slideToIndex = clickedIndex;
-                if (swiper.params.loop) {
-                    var currentIndex = swiper.activeIndex;
-                    if (swiper.slides.eq(currentIndex).hasClass(swiper.params.slideDuplicateClass)) {
-                        swiper.loopFix();
-                        swiper._clientLeft = swiper.$wrapperEl[0].clientLeft;
-                        currentIndex = swiper.activeIndex;
-                    }
-                    var prevIndex = swiper.slides.eq(currentIndex).prevAll('[data-swiper-slide-index="' + slideToIndex + '"]').eq(0).index();
-                    var nextIndex = swiper.slides.eq(currentIndex).nextAll('[data-swiper-slide-index="' + slideToIndex + '"]').eq(0).index();
-                    if ("undefined" === typeof prevIndex) slideToIndex = nextIndex; else if ("undefined" === typeof nextIndex) slideToIndex = prevIndex; else if (nextIndex - currentIndex < currentIndex - prevIndex) slideToIndex = nextIndex; else slideToIndex = prevIndex;
-                }
-                swiper.slideTo(slideToIndex);
-            },
-            update: function(initial) {
-                var swiper = this;
-                var thumbsSwiper = swiper.thumbs.swiper;
-                if (!thumbsSwiper) return;
-                var slidesPerView = "auto" === thumbsSwiper.params.slidesPerView ? thumbsSwiper.slidesPerViewDynamic() : thumbsSwiper.params.slidesPerView;
-                var autoScrollOffset = swiper.params.thumbs.autoScrollOffset;
-                var useOffset = autoScrollOffset && !thumbsSwiper.params.loop;
-                if (swiper.realIndex !== thumbsSwiper.realIndex || useOffset) {
-                    var currentThumbsIndex = thumbsSwiper.activeIndex;
-                    var newThumbsIndex;
-                    var direction;
-                    if (thumbsSwiper.params.loop) {
-                        if (thumbsSwiper.slides.eq(currentThumbsIndex).hasClass(thumbsSwiper.params.slideDuplicateClass)) {
-                            thumbsSwiper.loopFix();
-                            thumbsSwiper._clientLeft = thumbsSwiper.$wrapperEl[0].clientLeft;
-                            currentThumbsIndex = thumbsSwiper.activeIndex;
-                        }
-                        var prevThumbsIndex = thumbsSwiper.slides.eq(currentThumbsIndex).prevAll('[data-swiper-slide-index="' + swiper.realIndex + '"]').eq(0).index();
-                        var nextThumbsIndex = thumbsSwiper.slides.eq(currentThumbsIndex).nextAll('[data-swiper-slide-index="' + swiper.realIndex + '"]').eq(0).index();
-                        if ("undefined" === typeof prevThumbsIndex) newThumbsIndex = nextThumbsIndex; else if ("undefined" === typeof nextThumbsIndex) newThumbsIndex = prevThumbsIndex; else if (nextThumbsIndex - currentThumbsIndex === currentThumbsIndex - prevThumbsIndex) newThumbsIndex = thumbsSwiper.params.slidesPerGroup > 1 ? nextThumbsIndex : currentThumbsIndex; else if (nextThumbsIndex - currentThumbsIndex < currentThumbsIndex - prevThumbsIndex) newThumbsIndex = nextThumbsIndex; else newThumbsIndex = prevThumbsIndex;
-                        direction = swiper.activeIndex > swiper.previousIndex ? "next" : "prev";
-                    } else {
-                        newThumbsIndex = swiper.realIndex;
-                        direction = newThumbsIndex > swiper.previousIndex ? "next" : "prev";
-                    }
-                    if (useOffset) newThumbsIndex += "next" === direction ? autoScrollOffset : -1 * autoScrollOffset;
-                    if (thumbsSwiper.visibleSlidesIndexes && thumbsSwiper.visibleSlidesIndexes.indexOf(newThumbsIndex) < 0) {
-                        if (thumbsSwiper.params.centeredSlides) if (newThumbsIndex > currentThumbsIndex) newThumbsIndex = newThumbsIndex - Math.floor(slidesPerView / 2) + 1; else newThumbsIndex = newThumbsIndex + Math.floor(slidesPerView / 2) - 1; else if (newThumbsIndex > currentThumbsIndex && 1 === thumbsSwiper.params.slidesPerGroup) ;
-                        thumbsSwiper.slideTo(newThumbsIndex, initial ? 0 : void 0);
-                    }
-                }
-                var thumbsToActivate = 1;
-                var thumbActiveClass = swiper.params.thumbs.slideThumbActiveClass;
-                if (swiper.params.slidesPerView > 1 && !swiper.params.centeredSlides) thumbsToActivate = swiper.params.slidesPerView;
-                if (!swiper.params.thumbs.multipleActiveThumbs) thumbsToActivate = 1;
-                thumbsToActivate = Math.floor(thumbsToActivate);
-                thumbsSwiper.slides.removeClass(thumbActiveClass);
-                if (thumbsSwiper.params.loop || thumbsSwiper.params.virtual && thumbsSwiper.params.virtual.enabled) for (var i = 0; i < thumbsToActivate; i += 1) thumbsSwiper.$wrapperEl.children('[data-swiper-slide-index="' + (swiper.realIndex + i) + '"]').addClass(thumbActiveClass); else for (var _i = 0; _i < thumbsToActivate; _i += 1) thumbsSwiper.slides.eq(swiper.realIndex + _i).addClass(thumbActiveClass);
-            }
-        };
-        const thumbs = {
-            name: "thumbs",
-            params: {
-                thumbs: {
-                    swiper: null,
-                    multipleActiveThumbs: true,
-                    autoScrollOffset: 0,
-                    slideThumbActiveClass: "swiper-slide-thumb-active",
-                    thumbsContainerClass: "swiper-container-thumbs"
-                }
-            },
-            create: function() {
-                var swiper = this;
-                (0, utils.bindModuleMethods)(swiper, {
-                    thumbs: thumbs_extends({
-                        swiper: null,
-                        initialized: false
-                    }, Thumbs)
-                });
-            },
-            on: {
-                beforeInit: function(swiper) {
-                    var thumbs = swiper.params.thumbs;
-                    if (!thumbs || !thumbs.swiper) return;
-                    swiper.thumbs.init();
-                    swiper.thumbs.update(true);
-                },
-                slideChange: function(swiper) {
-                    if (!swiper.thumbs.swiper) return;
-                    swiper.thumbs.update();
-                },
-                update: function(swiper) {
-                    if (!swiper.thumbs.swiper) return;
-                    swiper.thumbs.update();
-                },
-                resize: function(swiper) {
-                    if (!swiper.thumbs.swiper) return;
-                    swiper.thumbs.update();
-                },
-                observerUpdate: function(swiper) {
-                    if (!swiper.thumbs.swiper) return;
-                    swiper.thumbs.update();
-                },
-                setTransition: function(swiper, duration) {
-                    var thumbsSwiper = swiper.thumbs.swiper;
-                    if (!thumbsSwiper) return;
-                    thumbsSwiper.setTransition(duration);
-                },
-                beforeDestroy: function(swiper) {
-                    var thumbsSwiper = swiper.thumbs.swiper;
-                    if (!thumbsSwiper) return;
-                    if (swiper.thumbs.swiperCreated && thumbsSwiper) thumbsSwiper.destroy();
-                }
-            }
-        };
-        var navigation = __webpack_require__("./node_modules/swiper/esm/components/navigation/navigation.js");
-        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
-        var get_default = __webpack_require__.n(get);
-        var photoswipe_min = __webpack_require__("../shared/browser/node_modules/photoswipe/dist/photoswipe.min.js");
-        var photoswipe_min_default = __webpack_require__.n(photoswipe_min);
-        var photoswipe_ui_default_min = __webpack_require__("../shared/browser/node_modules/photoswipe/dist/photoswipe-ui-default.min.js");
-        var photoswipe_ui_default_min_default = __webpack_require__.n(photoswipe_ui_default_min);
-        var yt_player = __webpack_require__("../shared/browser/node_modules/yt-player/index.js");
-        var yt_player_default = __webpack_require__.n(yt_player);
-        var url_url = __webpack_require__("./node_modules/url/url.js");
-        var query_string = __webpack_require__("../shared/browser/node_modules/query-string/index.js");
-        function img_size(url) {
-            const urlParse = url_url.parse(url);
-            const urlQuery = query_string.parse(urlParse && urlParse.query) || {};
-            const radix = 10;
-            const fixed = 2;
-            const width = Number.parseInt(urlQuery.w, radix);
-            const height = Number.parseInt(urlQuery.h, radix);
-            let ratio = null;
-            if (Number.isInteger(width) && Number.isInteger(height) && 0 !== width) ratio = `${Number(Number.parseFloat(height / width * 100).toFixed(fixed))}%`;
-            return {
-                width: Number.isInteger(width) ? width : null,
-                height: Number.isInteger(height) ? height : null,
-                ratio
-            };
-        }
-        const product_photoSwipeHtml = `\n  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">\n  <div class="pswp__bg"></div>\n    <div class="pswp__scroll-wrap">\n      <div class="pswp__container">\n          <div class="pswp__item"></div>\n          <div class="pswp__item"></div>\n          <div class="pswp__item"></div>\n      </div>\n      <div class="pswp__ui pswp__ui--hidden">\n        <button class="pswp__button pswp__button--arrow--left" title="Previous">\n          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">\n            <path d="M8 1L3 6L8 11" stroke-width="1.5" stroke-linecap="round"/>\n          </svg>        \n        </button>\n        <button class="pswp__button pswp__button--close" title="Close (Esc)">\n          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">\n            <path d="M10.8002 1.19999L1.2002 10.8" stroke-width="1.2" stroke-linecap="round"/>\n            <path d="M1.1998 1.19999L10.7998 10.8" stroke-width="1.2" stroke-linecap="round"/>\n          </svg>\n        </button>\n        <button class="pswp__button pswp__button--arrow--right" title="Next">\n          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">\n            <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round"/>\n          </svg>\n        </button>\n      </div>\n    </div>\n  </div>\n  </div>\n`;
-        function isS3FileUrl(url) {
-            return /\.cloudfront\./.test(url) || /https:\/\/img.myshopline.com/.test(url) || /https:\/\/img-preview.myshopline.com/.test(url);
-        }
-        function imgUrl(url, options) {
-            const {width, scale} = options;
-            if (!width) return url;
-            if (!isS3FileUrl(url)) return url;
-            let paramWidth = width;
-            if ("number" === typeof scale && scale > 1) paramWidth = width * scale;
-            const clipper = `_${paramWidth || ""}x`;
-            const slice = url.split("/");
-            const filename = slice.pop() || "";
-            const dirname = slice.join("/");
-            const lastDotIndex = filename.lastIndexOf(".");
-            if (-1 === lastDotIndex) return `${dirname}/${filename}${clipper}`;
-            return `${dirname}/${filename.slice(0, lastDotIndex)}${clipper}${filename.slice(lastDotIndex)}`;
-        }
-        const getYouTubeCover = videoResource => {
-            if ("string" !== typeof videoResource) return null;
-            const youTubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-            const getYouTubeIdByVideoUrl = url => {
-                const matches = url && url.match(youTubeRegex) || [];
-                return matches[1];
-            };
-            const getVideoCover = videoId => {
-                const coverUrlPrefix = `https://i.ytimg.com/vi/${videoId}`;
-                return {
-                    maxQuality: `${coverUrlPrefix}/maxresdefault.jpg`,
-                    aboveMiddle: `${coverUrlPrefix}/sddefault.jpg`,
-                    middle: `${coverUrlPrefix}/mqdefault.jpg`,
-                    lowerMiddle: `${coverUrlPrefix}/hqdefault.jpg`,
-                    minQuality: `${coverUrlPrefix}/default.jpg`,
-                    videoId
-                };
-            };
-            if (-1 !== videoResource.indexOf("www.youtube.com")) {
-                const videoId = getYouTubeIdByVideoUrl(videoResource);
-                return getVideoCover(videoId);
-            }
-            return getVideoCover(videoResource);
-        };
-        const utils_getYouTubeCover = getYouTubeCover;
-        const isIE = "undefined" !== typeof document && document.documentMode;
-        const isElementType = (element, type) => element.nodeName.toLowerCase() === type;
-        const isGif = url => /^.+\.gif(\?.*){0,1}$/.test(url);
-        const util_isS3FileUrl = url => /\.cloudfront\./.test(url) || /img\.myshopline\.com/.test(url) || /img-.*\.myshopline\.com/.test(url);
-        const makeIsLoaded = element => element.setAttribute("data-loaded", true);
-        const concatStr = (strs, symbol) => strs.filter(Boolean).join(symbol);
-        const transformSrcset = (srcset, transformer) => srcset.split(",").filter((str => "" !== str)).map((str => concatStr(transformer(...str.trim().split(" ")), " "))).join(",");
-        class SLFile {
-            constructor(url, base) {
-                const uri = new URL(url, base);
-                const paths = uri.pathname.split("/");
-                const filename = paths[paths.length - 1];
-                const [name, suffix] = filename.split(".");
-                const [originName, ...modifiers] = name.split("_");
-                this.uri = uri;
-                this.paths = paths;
-                this.name = originName;
-                this.suffix = suffix;
-                this.querys = this.uri.searchParams;
-                this.modifiers = modifiers;
-            }
-            toString() {
-                this.uri.pathname = concatStr([ ...this.paths.slice(0, -1), concatStr([ [ this.name, ...this.modifiers ].join("_"), this.suffix ], ".") ], "/");
-                return this.uri.toString();
-            }
-        }
-        const EnumAttributes = {
-            Iesrc: "data-iesrc",
-            Alt: "data-alt",
-            Src: "data-src",
-            Srcset: "data-srcset",
-            Poster: "data-poster",
-            ToggleClass: "data-toggle-class",
-            BackgroundImage: "data-background-image",
-            BackgroundImageSet: "data-background-image-set",
-            PlaceholderBackground: "data-placeholder-background"
-        };
-        EnumAttributes.Alt, EnumAttributes.Src, EnumAttributes.Iesrc, EnumAttributes.Srcset, 
-        EnumAttributes.Poster, EnumAttributes.ToggleClass, EnumAttributes.BackgroundImage, 
-        EnumAttributes.BackgroundImageSet;
-        function transformImageUrlToWebp(fileOrUrl, ignoreSetting = false) {
-            const file = "string" === typeof fileOrUrl ? new SLFile(fileOrUrl, window.location.href) : fileOrUrl;
-            if (!file.querys.has("t") || ignoreSetting) if (window.__isSupportWebp__) file.querys.set("t", "webp"); else if (file.suffix) file.querys.set("t", file.suffix);
-            return file.toString();
-        }
-        function getPosterUrl(url) {
-            if (!isGif(url) || !util_isS3FileUrl(url)) return;
-            const file = new SLFile(url, window.location.href);
-            if ("1" !== file.querys.get("_f")) return;
-            if ("poster" === file.modifiers[0]) return;
-            file.modifiers.unshift("poster");
-            file.suffix = "png";
-            return transformImageUrlToWebp(file, true);
-        }
-        function getPosterData({src, srcset}) {
-            const data = {};
-            if (src) data.src = getPosterUrl(src);
-            if (srcset) {
-                let srcsetHasPoster = false;
-                data.srcset = transformSrcset(srcset, ((url, breakpoint) => {
-                    const posterUrl = getPosterUrl(url);
-                    if (posterUrl) {
-                        srcsetHasPoster = true;
-                        return [ posterUrl, breakpoint ];
-                    }
-                    return [ url, breakpoint ];
-                }));
-                if (!srcsetHasPoster) delete data.srcset;
-            }
-            if (data.src || data.srcset) return data;
-        }
-        const image_gif_poster = {
-            attributes: [],
-            load(element) {
-                if (isElementType(element, "img")) {
-                    const src = element.getAttribute(EnumAttributes.Src);
-                    const srcset = element.getAttribute(EnumAttributes.Srcset);
-                    const sizes = element.getAttribute("sizes");
-                    let isSeted = false;
-                    const setImageData = ({src, srcset}, img = new Image) => {
-                        if (sizes) img.sizes = sizes;
-                        if (srcset) img.srcset = srcset;
-                        if (src) img.src = src;
-                        return img;
-                    };
-                    const setImageSrc = () => {
-                        if (isSeted) return;
-                        setImageData({
-                            src,
-                            srcset
-                        }, element);
-                        isSeted = true;
-                    };
-                    const posterData = getPosterData({
-                        src,
-                        srcset
-                    });
-                    if (posterData) {
-                        const bgImg = setImageData({
-                            src,
-                            srcset
-                        });
-                        const posterBgImage = setImageData(posterData);
-                        bgImg.onload = setImageSrc;
-                        posterBgImage.onerror = setImageSrc;
-                        setImageData(posterData, element);
-                    } else setImageSrc();
-                }
-            }
-        };
-        core_class["default"].use([ effect_fade, lazy, thumbs, navigation["default"] ]);
-        const COLUMN = "column";
-        const ROW = "row";
-        const WRAP_PC_ID = ".product_pc_productImageContainer";
-        const WRAP_M_ID = ".product_mobile_productImageContainer";
-        function handleVideoPlayPause(videoPlayer, type) {
-            if ("play" === type) videoPlayer && videoPlayer.play();
-            if ("pause" === type) videoPlayer && videoPlayer.pause();
-        }
-        function imgOnload(src, cb, failCb) {
-            if (!src) return;
-            const img = new Image;
-            img.onload = () => {
-                cb(img);
-            };
-            img.onerror = () => {
-                console.warn("imgOnError...", img);
-                failCb(img);
-            };
-            img.src = src;
-        }
-        class ProductImages {
-            constructor(options) {
-                const {selectorId, heightOnChange, swiperConfig, mediaList, beforeInit} = options || {};
-                this.mediaList = mediaList || [];
-                this.config = {};
-                this.swiperConfig = swiperConfig || {};
-                this.heightChangedCount = 0;
-                this.heightOnChange = heightOnChange || null;
-                this.slideItems = [];
-                if (!selectorId) {
-                    console.error(`初始化productImages组件失败，selectorId为空，请输入唯一id`);
-                    $(WRAP_PC_ID).hide();
-                    $(WRAP_M_ID).hide();
-                    return;
-                }
-                const pcWrapperSelector = `.${ProductImages.pcSelectorPrefix}_${selectorId}`;
-                const mobileWrapperSelector = `.${ProductImages.mobileSelectorPrefix}_${selectorId}`;
-                if (0 === $(`${pcWrapperSelector}`).length || 0 === $(`${mobileWrapperSelector}`).length) {
-                    console.error(`初始化productImages组件失败，请检查selectorId是否输错，应存在html上`);
-                    $(pcWrapperSelector).hide();
-                    $(mobileWrapperSelector).hide();
-                    return;
-                }
-                const pcWrapper = $(`${pcWrapperSelector}`);
-                this.thumbsDirection = "aside" === pcWrapper.data("thumbs-direction") ? COLUMN : ROW;
-                this.showThumbsArrow = "true" === String(pcWrapper.data("show-thumbnail-arrow"));
-                this.productImageScale = "true" === String($(`.product_productImageScale_${selectorId}`).val());
-                this.productVideoMute = "true" === String($(`.product_productVideoMute_${selectorId}`).val());
-                this.productVideoLoop = "true" === String($(`.product_productVideoLoop_${selectorId}`).val());
-                this.mobileWidthRatio = $(mobileWrapperSelector).hasClass("middleWidth") ? .75 : 1;
-                this.productImageLength = $(".product_productImageLength").val();
-                this.id = pcWrapperSelector;
-                this.mobileId = mobileWrapperSelector;
-                beforeInit && beforeInit({
-                    pcWrapperSelector
-                });
-                this.mobileSwiper = this.initMobileProductImages(true);
-                this.swiper = this.initPcProductImages(true);
-                this.swiper && this.swiper.init();
-                this.videoPcPlayer = this.initPcVideo();
-                this.videoMobilePlayer = this.initMobileVideo();
-                this.videoMobilePlayerStatus = "pause";
-            }
-            setConfig(config) {
-                if (!this.config.app) this.config.app = [];
-                this.config.app.push(config.app);
-            }
-            verifySource(app) {
-                if (!get_default()(this, "config.app.length") || this.config.app.includes(app)) return true;
-                return false;
-            }
-            initPcVideo() {
-                const videoPcSelector = `${this.id} .product_youTubeVideoBox`;
-                const videoDom = $(videoPcSelector);
-                if (videoDom.length > 0) {
-                    const videoPlayer = new (yt_player_default())(videoPcSelector, {
-                        modestBranding: true,
-                        controls: false
-                    });
-                    const videoId = videoDom.data("video-id");
-                    videoPlayer.load(videoId);
-                    window.SL_EventBus.on("global:popup:close", (() => {
-                        handleVideoPlayPause(videoPlayer, "pause");
-                    }));
-                    videoPlayer.on("playing", (() => {
-                        window.SL_EventBus.emit("product:product-play-video");
-                    }));
-                    if (this.productVideoMute) videoPlayer.mute();
-                    if (this.productVideoLoop) videoPlayer.on("ended", (() => {
-                        videoPlayer.play();
-                    }));
-                    return videoPlayer;
-                }
-                return null;
-            }
-            initMobileVideo() {
-                const videoMDom = $(`${this.mobileId} .swiper-slide`).not(".swiper-slide-duplicate").find(".product_youTubeVideoBox").addClass("product_youTubeMobileVideoBox");
-                const videoCoverDom = $(`${this.mobileId} .videoItem`).not(".swiper-slide-duplicate").find(".product_photoSwipe_image");
-                if (videoMDom.length > 0) {
-                    const videoPlayer = new (yt_player_default())(".product_youTubeMobileVideoBox", {
-                        modestBranding: true,
-                        controls: false
-                    });
-                    const videoId = videoMDom.data("video-id");
-                    videoPlayer.load(videoId);
-                    videoPlayer.on("playing", (() => {
-                        window.SL_EventBus.emit("product:product-play-video");
-                    }));
-                    if (this.productVideoMute) videoPlayer.mute();
-                    if (this.productVideoLoop) videoPlayer.on("ended", (() => {
-                        videoPlayer.play();
-                    }));
-                    videoCoverDom.on("click", (() => {
-                        if ("pause" === this.videoMobilePlayerStatus) {
-                            handleVideoPlayPause(videoPlayer, "play");
-                            this.videoMobilePlayerStatus = "play";
-                        } else {
-                            handleVideoPlayPause(videoPlayer, "pause");
-                            this.videoMobilePlayerStatus = "pause";
-                        }
-                    }));
-                    return videoPlayer;
-                }
-                return null;
-            }
-            initPhotoSwipe(slidesWrapID, platform) {
-                if (0 === Number(this.productImageLength)) return;
-                const slidesSelector = `${slidesWrapID} .product_productImages`;
-                const triggerDom = $(slidesSelector);
-                const eventDom = "mobile" === platform ? ".scaleImageIcon" : ".swiper-slide";
-                const self = this;
-                self.updatePhotoSwipeItems(slidesWrapID);
-                triggerDom.on("click", eventDom, (function() {
-                    if ($(this).hasClass("swiper-slide-duplicate") || !get_default()(self, "slideItems.length")) return;
-                    const triggerThis = "mobile" === platform ? $(this).closest(".imageItem") : $(this);
-                    const isMobileHasActiveSkuImage = triggerThis.find(".product_m_skuImage").length > 0;
-                    const isVideoSlide = triggerThis.hasClass("videoItem");
-                    if (isMobileHasActiveSkuImage || isVideoSlide) return;
-                    const {activeIndex} = "mobile" === platform ? self.mobileSwiper : self.swiper;
-                    const mobileIndexByLoop = self.getSwiperIsLoop() ? triggerThis.data("swiper-slide-index") : activeIndex;
-                    const index = "mobile" === platform ? mobileIndexByLoop : activeIndex;
-                    self.handlePhotoSwiper(self.slideItems, index);
-                }));
-            }
-            initPcSkuPhotoSwiper() {
-                const self = this;
-                $(`${this.id} .product_pc_skuImage`).on("click", (function() {
-                    const items = [ {
-                        src: $(this).find(".product_photoSwipe_image").attr("data-photoswipe-src"),
-                        w: 0,
-                        h: 0,
-                        el: $(this)[0]
-                    } ];
-                    self.handlePhotoSwiper(items, 0, false);
-                }));
-            }
-            handlePhotoSwiper(items, index, cacheNaturalSize) {
-                let pswpElement = document.querySelectorAll(".pswp")[0];
-                if (!pswpElement) {
-                    $("body").append(product_photoSwipeHtml);
-                    pswpElement = document.querySelectorAll(".pswp")[0];
-                }
-                this.openPhotoSwipe(pswpElement, items, index, cacheNaturalSize);
-            }
-            initMobileSkuPhotoSwiper() {
-                const self = this;
-                $(`${this.mobileId} .product_m_skuImageBox .scaleSkuImageIcon`).on("click", (function() {
-                    const items = [ {
-                        src: $(this).parent().find(".product_photoSwipe_image").attr("data-photoswipe-src"),
-                        w: 0,
-                        h: 0,
-                        el: $(this).parent()[0]
-                    } ];
-                    self.handlePhotoSwiper(items, 0, false);
-                }));
-            }
-            updatePhotoSwipeItems(slidesWrapID) {
-                const slidesDom = $(`${slidesWrapID} .product_productImages`).find(".swiper-slide").not(".swiper-slide-duplicate").filter((function() {
-                    return !$(this).children(".product-detail-empty-image").length;
-                }));
-                const items = [];
-                slidesDom.each(((index, item) => {
-                    const imgEl = $(item).find(".product_photoSwipe_image");
-                    const size = $(item).attr("data-natural-size");
-                    const transSize = size ? size.split("x") : null;
-                    items.push({
-                        src: imgEl.attr("data-photoswipe-src"),
-                        w: transSize ? parseInt(transSize[0], 10) : imgEl.innerWidth(),
-                        h: transSize ? parseInt(transSize[1], 10) : imgEl.innerHeight(),
-                        el: item
-                    });
-                }));
-                this.slideItems = items;
-            }
-            openPhotoSwipe(pswpElement, items, index = 0, cacheNaturalSize = true) {
-                const self = this;
-                if (items && items.length > 1) $(".pswp__button--arrow--left, .pswp__button--arrow--right").show(); else $(".pswp__button--arrow--left, .pswp__button--arrow--right").hide();
-                const photoSwipeOptions = {
-                    allowPanToNext: false,
-                    captionEl: false,
-                    closeOnScroll: false,
-                    counterEl: false,
-                    history: false,
-                    index,
-                    pinchToClose: false,
-                    preloaderEl: false,
-                    shareEl: false,
-                    tapToToggleControls: false,
-                    barsSize: {
-                        top: 20,
-                        bottom: 20
-                    },
-                    getThumbBoundsFn(_index) {
-                        let thumbnailParent;
-                        if (items[_index].el && -1 !== items[_index].el.className.indexOf("swiper-slide-duplicate")) thumbnailParent = $(`${self.mobileId} .swiper-slide`).eq(self.mobileSwiper.activeIndex).get(0); else thumbnailParent = items[_index].el;
-                        const thumbnail = thumbnailParent.getElementsByClassName("product_photoSwipe_image")[0];
-                        const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
-                        const rect = thumbnail.getBoundingClientRect();
-                        return {
-                            x: rect.left,
-                            y: rect.top + pageYScroll,
-                            w: rect.width
-                        };
-                    }
-                };
-                const gallery = new (photoswipe_min_default())(pswpElement, photoswipe_ui_default_min_default(), items, photoSwipeOptions);
-                gallery.listen("gettingData", (function(_index, item) {
-                    const imgWrapEl = item.el;
-                    if (!imgWrapEl.getAttribute("data-natural-size")) {
-                        const img = new Image;
-                        img.onload = () => {
-                            const _img = img_size(img.src);
-                            const hasWH = _img && _img.ratio;
-                            if (cacheNaturalSize) {
-                                const naturalSize = hasWH ? `${img.naturalWidth}x${img.naturalHeight}` : `100x100`;
-                                imgWrapEl.setAttribute("data-natural-size", naturalSize);
-                            }
-                            item.w = img.naturalWidth;
-                            item.h = img.naturalHeight;
-                            gallery.updateSize(true);
-                        };
-                        img.src = item.src;
-                    }
-                }));
-                gallery.init();
-                gallery.listen("afterChange", (() => {
-                    this.galleryAfterChange(gallery);
-                }));
-            }
-            galleryAfterChange(gallery) {
-                const currentIndex = gallery.getCurrentIndex();
-                this.swiper && this.swiper.slideTo(currentIndex);
-                this.mobileSwiper && this.mobileSwiper.slideToLoop(currentIndex);
-            }
-            heightOnChangeCb(height) {
-                setTimeout((() => {
-                    this.heightOnChange && this.heightOnChange(height);
-                }), 200);
-            }
-            handleProductImagesHeight(swiperSelector, activeIndex, ratio = 1, targetImgSrc) {
-                const self = this;
-                const selector = swiperSelector;
-                this.heightChangedCount++;
-                const count = this.heightChangedCount;
-                const promise = new Promise(((resolve, reject) => {
-                    if (count !== this.heightChangedCount) {
-                        resolve();
-                        return;
-                    }
-                    if (void 0 !== activeIndex) {
-                        const currentSlide = $(`${selector} .swiper-slide`).eq(activeIndex);
-                        if (!targetImgSrc && currentSlide.find(".product-detail-empty-image").length > 0) {
-                            const mobileWidthRatio = "block" === $(`${self.mobileId}`).css("display") ? self.mobileWidthRatio : 1;
-                            const boxWidth = parseInt($(`${selector}`).width() * mobileWidthRatio, 10);
-                            $(`${selector}`).css("height", boxWidth);
-                            self.heightOnChangeCb(boxWidth);
-                            resolve(boxWidth);
-                            return;
-                        }
-                        if (currentSlide.hasClass("videoItem") && !targetImgSrc) {
-                            const videoBoxHeight = parseInt(currentSlide.children().innerHeight(), 10);
-                            $(`${selector}`).css("height", videoBoxHeight);
-                            self.heightOnChangeCb(videoBoxHeight);
-                            window.SL_EventBus.emit("product:expose-product-video", currentSlide);
-                            resolve(videoBoxHeight);
-                        } else if (currentSlide.hasClass("imageItem") || targetImgSrc) {
-                            const currentSlideImgNaturalSize = currentSlide.attr("data-natural-size");
-                            if (currentSlideImgNaturalSize && !targetImgSrc) {
-                                const [imgNaturalWidth, imgNaturalHeight] = currentSlideImgNaturalSize.split("x");
-                                const wrapperHeight = parseInt(String($(`${selector}`)[0].offsetWidth * ratio * imgNaturalHeight / imgNaturalWidth), 10);
-                                $(`${selector}`).css("height", wrapperHeight);
-                                self.heightOnChangeCb(wrapperHeight);
-                                resolve(wrapperHeight);
-                                return;
-                            }
-                            const currentSlideImg = currentSlide.find("img");
-                            const imgSrc = targetImgSrc || currentSlideImg.attr("src") || currentSlideImg.attr("data-src");
-                            if (!targetImgSrc && "none" !== $(`${self.id}`).css("display")) {
-                                const slideHeight = parseInt(currentSlide.innerHeight(), 10);
-                                $(`${selector}`).css("height", slideHeight);
-                                self.heightOnChangeCb(slideHeight);
-                                resolve(slideHeight);
-                                return;
-                            }
-                            imgOnload(imgSrc, (img => {
-                                if (count !== this.heightChangedCount) {
-                                    resolve();
-                                    return;
-                                }
-                                if (!img) {
-                                    reject(new Error("不是img对象"));
-                                    return;
-                                }
-                                const height = parseInt(String($(`${selector}`)[0].offsetWidth * ratio * img.height / img.width), 10);
-                                $(`${selector}`).css("height", height);
-                                self.heightOnChangeCb(height);
-                                resolve(height);
-                            }), (() => {
-                                if (count !== this.heightChangedCount) {
-                                    resolve();
-                                    return;
-                                }
-                                const mobileWidthRatio = "block" === $(`${self.mobileId}`).css("display") ? self.mobileWidthRatio : 1;
-                                const boxWidth = parseInt($(`${selector}`).width() * mobileWidthRatio, 10);
-                                $(`${selector}`).css("height", boxWidth);
-                                if (targetImgSrc && -1 !== selector.indexOf(ProductImages.pcSelectorPrefix)) $(`${this.id} .product_pc_skuImage`).addClass("imageItemError"); else if (targetImgSrc && -1 !== selector.indexOf(ProductImages.mobileSelectorPrefix)) {
-                                    const currentSlideDom = self.getMobileCurrentSlideDom();
-                                    currentSlideDom.find(".product_m_skuImageBox").addClass("imageItemError");
-                                } else currentSlide.addClass("imageItemError");
-                                self.heightOnChangeCb(boxWidth);
-                                resolve(boxWidth);
-                            }));
-                        } else reject(new Error(`当前滑动slide子节点内容异常,currentSlide:${currentSlide},activeIndex:${activeIndex}`));
-                    } else reject(new Error(`activeIndex异常：${activeIndex}`));
-                }));
-                return promise;
-            }
-            setColumnThumbsSwiperHeight(height) {
-                $(`${this.id} .product_thumbsColumnContainer .productImageThumbs`).css({
-                    maxHeight: `${height}px`
-                });
-            }
-            handleThumbsArrow(activeIndex, slideLen, wrapperHeight) {
-                const selectorPrefix = this.id;
-                const {thumbsDirection: direction, showThumbsArrow} = this;
-                if (!showThumbsArrow) {
-                    this.setColumnThumbsSwiperHeight(wrapperHeight);
-                    return;
-                }
-                $(`${selectorPrefix} .thumbsArrowTop,${selectorPrefix} .thumbsArrowBottom`).show();
-                if (0 === activeIndex) {
-                    $(`${selectorPrefix} .thumbsArrowTop`).hide();
-                    if (direction === COLUMN) this.setColumnThumbsSwiperHeight(`${wrapperHeight - 25}`);
-                }
-                if (activeIndex + 1 === slideLen) {
-                    $(`${selectorPrefix} .thumbsArrowBottom`).hide();
-                    if (direction === COLUMN) this.setColumnThumbsSwiperHeight(`${wrapperHeight - 25}`);
-                } else if (direction === COLUMN) this.setColumnThumbsSwiperHeight(`${wrapperHeight - 50}`);
-            }
-            async handleEffectSwiperHeight(targetImageUrl) {
-                const {swiper} = this;
-                const {slides, activeIndex} = swiper || {};
-                const height = await this.handleProductImagesHeight(`${this.id} .product_productImages`, activeIndex, 1, targetImageUrl);
-                if (height) this.handleThumbsArrow(activeIndex, slides.length, height);
-            }
-            togglePcSkuImage(isShow, skuImageUrl) {
-                const skuImageDom = $(`${this.id} .product_pc_skuImage`);
-                const currentIndex = $(`${this.id}`).attr("data-index");
-                if (skuImageDom.hasClass("imageItemError")) skuImageDom.removeClass("imageItemError");
-                if (isShow && skuImageUrl) {
-                    skuImageDom.show().html(`<img class="product_photoSwipe_image" data-photoswipe-src=${imgUrl(skuImageUrl, {
-                        width: 1800
-                    })} src=${skuImageUrl} />`);
-                    $(`${this.id} .productImageThumbsWrapper .thumbsImageItem`).eq(currentIndex).removeClass("active");
-                } else if (!isShow) {
-                    skuImageDom.hide().empty();
-                    $(`${this.id} .productImageThumbsWrapper .thumbsImageItem`).eq(currentIndex).addClass("active");
-                }
-            }
-            handlePcSkuImage(isShow, skuImage) {
-                if (!this.swiper) return;
-                if (isShow) {
-                    this.handleEffectSwiperHeight(skuImage);
-                    this.togglePcSkuImage(true, skuImage);
-                } else {
-                    this.togglePcSkuImage(false);
-                    this.handleEffectSwiperHeight();
-                }
-            }
-            handleThumbsScroll(type, distance, smooth = true, timeout = 200) {
-                if ("scrollTop" === type) setTimeout((() => {
-                    const productImageThumbs = $(`${this.id} .product_thumbsColumnContainer .productImageThumbs`);
-                    if (smooth) productImageThumbs.addClass("smooth-animate"); else productImageThumbs.removeClass("smooth-animate");
-                    productImageThumbs.scrollTop(distance);
-                }), timeout); else if ("scrollLeft" === type) setTimeout((() => {
-                    const productImageThumbs = $(`${this.id} .product_thumbsRowContainer .productImageThumbs`);
-                    if (smooth) productImageThumbs.addClass("smooth-animate"); else productImageThumbs.removeClass("smooth-animate");
-                    productImageThumbs.scrollLeft(distance);
-                }), timeout);
-            }
-            getThumbsPosition(type, index) {
-                const columnThumbsListDom = $(`${this.id} .product_thumbsColumnContainer .thumbsImageItem`);
-                const rowThumbsListDom = $(`${this.id} .product_thumbsRowContainer .thumbsImageItem`);
-                if ("top" === type) {
-                    if (!columnThumbsListDom.length) return 0;
-                    const prevThumbsItem = columnThumbsListDom.eq(index > 0 ? index - 1 : 0);
-                    const prevThumbsItemHalfHeight = parseInt(prevThumbsItem.innerHeight() / 2, 10);
-                    return columnThumbsListDom.eq(index).position().top - prevThumbsItemHalfHeight - 20;
-                }
-                if ("left" === type) {
-                    if (!rowThumbsListDom.length) return 0;
-                    const prevThumbsItem = rowThumbsListDom.eq(index > 0 ? index - 1 : 0);
-                    const prevThumbsItemHalfWidth = parseInt(prevThumbsItem.innerWidth() / 2, 10);
-                    return rowThumbsListDom.eq(index).position().left - prevThumbsItemHalfWidth - 20;
-                }
-            }
-            initHandleProductImagesArrow() {
-                if (!this.showThumbsArrow) return;
-                const {thumbsDirection: direction} = this;
-                $(`${this.id} .arrowTop`).on("click", (() => {
-                    const {activeIndex} = this.swiper;
-                    this.swiper.slidePrev();
-                    if (direction === COLUMN) {
-                        const scrollTopDistance = this.getThumbsPosition("top", activeIndex - 1);
-                        this.handleThumbsScroll("scrollTop", scrollTopDistance);
-                    } else if (direction === ROW) {
-                        const scrollLeftDistance = this.getThumbsPosition("left", activeIndex - 1);
-                        this.handleThumbsScroll("scrollLeft", scrollLeftDistance);
-                    }
-                }));
-                $(`${this.id} .arrowBottom`).on("click", (() => {
-                    const {activeIndex} = this.swiper;
-                    this.swiper.slideNext();
-                    if (direction === COLUMN) {
-                        const scrollTopDistance = this.getThumbsPosition("top", activeIndex + 1);
-                        this.handleThumbsScroll("scrollTop", scrollTopDistance);
-                    } else if (direction === ROW) {
-                        const scrollLeftDistance = this.getThumbsPosition("left", activeIndex + 1);
-                        this.handleThumbsScroll("scrollLeft", scrollLeftDistance);
-                    }
-                }));
-            }
-            handlePcThumbsActive(index) {
-                $(`${this.id} .productImageThumbsWrapper .thumbsImageItem`).removeClass("active").eq(index).addClass("active");
-                $(`${this.id}`).attr("data-index", index);
-            }
-            async initThumbsSwiper(firstInit) {
-                const {thumbsDirection} = this;
-                const self = this;
-                const bindClickDom = $(`${this.id} .product_thumbs${thumbsDirection === COLUMN ? "Column" : "Row"}Container `);
-                bindClickDom.on("click", ".thumbsImageItem", (function() {
-                    const index = $(this).index();
-                    self.swiper.slideTo(index);
-                    if ("block" === $(`${self.id} .product_pc_skuImage`).css("display")) {
-                        self.handlePcSkuImage(false);
-                        $(this).addClass("active");
-                    }
-                }));
-                const skuImageDom = $(`${this.id} .product_pc_skuImage`).find("img");
-                const skuImage = skuImageDom.attr("data-src") || skuImageDom.attr("src");
-                if (!skuImage) this.handlePcThumbsActive(self.swiper.activeIndex);
-                await this.handleEffectSwiperHeight(skuImage ? skuImage : null);
-                if (skuImage && firstInit) {
-                    const firstActiveImg = $(`${this.id}`).find(".swiper-slide-active img");
-                    if (firstActiveImg.length > 0) {
-                        const src = firstActiveImg.attr("src") || firstActiveImg.attr("data-src");
-                        const _img = img_size(src);
-                        const ratio = _img && _img.ratio || "100%";
-                        firstActiveImg.parent().css("paddingBottom", ratio);
-                    }
-                    const emptyDom = $(`${this.id}`).find(".product-detail-empty-image");
-                    console.log("emptyDom", emptyDom.length);
-                    if (emptyDom.length > 0) emptyDom.css("paddingBottom", "100%");
-                }
-                if (firstInit) $(`${this.id}`).find(".swiper-slide").removeClass("firstInit");
-                $(`${this.id} .product_thumbsColumnContainer`).height("auto");
-                $(`${this.id} .product_thumbsRowContainer`).height("auto");
-                this.initHandleProductImagesArrow();
-            }
-            initPcProductImages(firstInit) {
-                const pcProductImagesDom = $(`${this.id}`);
-                if (0 == pcProductImagesDom.find(".product_productImages").length || "none" === pcProductImagesDom.css("display")) return null;
-                const mainSwiper = new core_class["default"](`${this.id} .product_productImages`, {
-                    initialSlide: $(`${this.id}`).data("initial-slide") || 0,
-                    effect: "fade",
-                    fadeEffect: {
-                        crossFade: true
-                    },
-                    init: firstInit ? false : true,
-                    lazy: {
-                        loadOnTransitionStart: true
-                    },
-                    allowTouchMove: false,
-                    on: {
-                        init: () => {
-                            if (firstInit) {
-                                this.initThumbsSwiper(firstInit);
-                                if (this.productImageScale) {
-                                    this.initPhotoSwipe(this.id, "pc");
-                                    this.initPcSkuPhotoSwiper();
-                                }
-                            }
-                        },
-                        slideChange: () => {
-                            handleVideoPlayPause(this.videoPcPlayer, "pause");
-                            if (this.swiper.destroyed) return;
-                            const {activeIndex, previousIndex} = this.swiper;
-                            this.handlePcThumbsActive(activeIndex);
-                            this.handlePcSkuImage(false);
-                            if (this.thumbsDirection === COLUMN) {
-                                const scrollTopDistance = this.getThumbsPosition("top", activeIndex);
-                                this.handleThumbsScroll("scrollTop", scrollTopDistance, Math.abs(activeIndex - previousIndex) < 10);
-                            } else {
-                                const scrollLeftDistance = this.getThumbsPosition("left", activeIndex);
-                                this.handleThumbsScroll("scrollLeft", scrollLeftDistance, Math.abs(activeIndex - previousIndex) < 10);
-                            }
-                        },
-                        lazyImageLoad: (_swiper, _slideEl, imageEl) => {
-                            image_gif_poster.load(imageEl);
-                        }
-                    }
-                });
-                return mainSwiper;
-            }
-            getActivePaginationList(activeIndex, activePointer) {
-                const list = [];
-                for (let i = 0; i < 5; i++) {
-                    const offset = i - activePointer;
-                    list.push(activeIndex + offset);
-                }
-                return list;
-            }
-            handleMActivePagination(activeIndex) {
-                const previousIndex = this.mobileRealPreviewIndex || 0;
-                this.mobileRealPreviewIndex = activeIndex;
-                const listContainer = $(`${this.mobileId} .paginationList`);
-                const scrollWrapper = listContainer.children(".paginationListWrapper");
-                const bullets = scrollWrapper.children("span");
-                const length = bullets.length;
-                if (bullets.length < 6) {
-                    scrollWrapper.addClass("noTransition");
-                    scrollWrapper.css("transform", "");
-                    bullets.removeClass("active");
-                    bullets.eq(activeIndex).addClass("active");
-                    return;
-                }
-                if (!this.mobilePaginationList) this.mobilePaginationList = [ 0, 1, 2, 3, 4 ];
-                let resultMobilePaginationList = this.mobilePaginationList;
-                const previousPointer = this.mobilePaginationList.indexOf(previousIndex);
-                const offsetIndex = previousIndex - activeIndex;
-                if (offsetIndex < 0) {
-                    let activePointer = Math.min(3, previousPointer - offsetIndex);
-                    if (activeIndex === length - 1) activePointer = 4;
-                    resultMobilePaginationList = this.getActivePaginationList(activeIndex, activePointer);
-                } else {
-                    let activePointer = Math.max(1, previousPointer - offsetIndex);
-                    if (0 === activeIndex) activePointer = 0;
-                    resultMobilePaginationList = this.getActivePaginationList(activeIndex, activePointer);
-                }
-                if (Math.abs(offsetIndex) > 1) scrollWrapper.addClass("noTransition"); else scrollWrapper.removeClass("noTransition");
-                if (this.mobilePaginationList[0] - 1 > -1) bullets.eq(this.mobilePaginationList[0] - 1).removeClass([ "active", "next" ]);
-                if (this.mobilePaginationList[this.mobilePaginationList.length - 1] + 1 < length) bullets.eq(this.mobilePaginationList[this.mobilePaginationList.length - 1] + 1).removeClass([ "active", "next" ]);
-                this.mobilePaginationList.forEach(((index, i) => {
-                    bullets.eq(index).removeClass([ "active", "next" ]);
-                }));
-                bullets.eq(activeIndex).addClass("active");
-                if (resultMobilePaginationList[0] - 1 > 0) {
-                    bullets.eq(resultMobilePaginationList[0] - 1).addClass("next");
-                    bullets.eq(resultMobilePaginationList[0]).addClass("next");
-                } else if (resultMobilePaginationList[0] > 0) bullets.eq(resultMobilePaginationList[0]).addClass("next");
-                if (resultMobilePaginationList[resultMobilePaginationList.length - 1] + 1 < length - 1) {
-                    bullets.eq(resultMobilePaginationList[resultMobilePaginationList.length - 1] + 1).addClass("next");
-                    bullets.eq(resultMobilePaginationList[resultMobilePaginationList.length - 1]).addClass("next");
-                } else if (resultMobilePaginationList[resultMobilePaginationList.length - 1] < length - 1) bullets.eq(resultMobilePaginationList[resultMobilePaginationList.length - 1]).addClass("next");
-                if (resultMobilePaginationList[0] !== this.mobilePaginationList[0]) scrollWrapper.css("transform", `translate3d(-${resultMobilePaginationList[0] / length * 100}%, 0, 0)`);
-                this.mobilePaginationList = resultMobilePaginationList;
-            }
-            handleMobileSkuImage(isShow, skuImageUrl) {
-                const selector = `${this.mobileId} .product_productImages`;
-                const mainSwiperDom = $(selector);
-                if (!this.mobileSwiper) return;
-                if (0 === mainSwiperDom.length) {
-                    console.error("m端切换sku图片失败，请检查selectorId是否输错，应存在html上");
-                    return;
-                }
-                const {realIndex} = this.mobileSwiper;
-                if (isShow) this.toggleMSkuImage(realIndex, true, skuImageUrl); else this.toggleMSkuImage(realIndex, false);
-            }
-            getSwiperIsLoop() {
-                return $(`${this.mobileId} .product_productImages .swiper-slide-duplicate`).length > 0;
-            }
-            bindMobileSkuImageScaleDom() {
-                const self = this;
-                $(".product_m_skuImageBox .scaleSkuImageIcon").on("click", (function() {
-                    const items = [ {
-                        src: $(this).parent().find(".product_photoSwipe_image").attr("data-photoswipe-src"),
-                        w: 0,
-                        h: 0,
-                        el: $(this).parent()[0]
-                    } ];
-                    self.handlePhotoSwiper(items, 0, false);
-                }));
-            }
-            getMobileCurrentSlideDom(index) {
-                const {realIndex} = this.mobileSwiper || {};
-                const _index = index || realIndex;
-                const swiperIsLoop = this.getSwiperIsLoop();
-                const currentSlideDom = swiperIsLoop ? $(`${this.mobileId} .product_productImages .swiper-slide[data-swiper-slide-index="${_index}"]`) : $(`${this.mobileId} .product_productImages .swiper-slide`).eq(_index);
-                return currentSlideDom;
-            }
-            setCurrentSlidePB($dom, imageUrl) {
-                const ratio = img_size(imageUrl).ratio || "100%";
-                $dom.css("paddingBottom", ratio).attr("data-sku-image-ratio", ratio);
-            }
-            toggleMSkuImage(index, isShow, skuImageUrl) {
-                const self = this;
-                if (void 0 === index || null === index) {
-                    console.error(`toggleMSkuImage: index异常${index}`);
-                    return;
-                }
-                const currentSlideDom = self.getMobileCurrentSlideDom(index);
-                const currentSkuImageBox = currentSlideDom.find(".product_m_skuImageBox");
-                const currentSlideBox = currentSlideDom.find(".swiper-slide-box");
-                const currentSkuImageIsError = currentSkuImageBox.hasClass("imageItemError");
-                if (currentSkuImageIsError) currentSkuImageBox.removeClass("imageItemError");
-                const skuImageDom = `\n    <div class="product_m_skuImageBox">\n      <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_m_skuImage product_photoSwipe_image" data-photoswipe-src=${imgUrl(skuImageUrl, {
-                    width: 1800
-                })} src=${skuImageUrl} />\n      ${self.productImageScale ? `<div class="scaleSkuImageIcon">\n      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">\n      <circle cx="13" cy="12" r="7.5" stroke="black"/>\n      <path d="M18.5 17.5L23 22.5" stroke="black" stroke-linecap="round"/>\n      </svg>\n      </div>` : ""}\n    </div>`;
-                if (isShow && void 0 !== index && skuImageUrl) {
-                    currentSlideDom.find("img").hide();
-                    if (0 === currentSkuImageBox.length) {
-                        currentSlideDom.append(skuImageDom);
-                        self.setCurrentSlidePB(currentSlideBox, skuImageUrl);
-                        self.bindMobileSkuImageScaleDom();
-                    } else {
-                        currentSkuImageBox.find(".product_m_skuImage").removeAttr("srcset data-srcset").attr({
-                            src: skuImageUrl,
-                            "data-photoswipe-src": imgUrl(skuImageUrl, {
-                                width: 1800
-                            }),
-                            onerror: "this.onerror=null;this.parentElement.className+=' imageItemError';"
-                        }).show();
-                        self.setCurrentSlidePB(currentSlideBox, skuImageUrl);
-                    }
-                    this.mobileSwiper.updateAutoHeight();
-                    $(`${this.mobileId} .product_productImages`).attr("sku-image-index", index);
-                } else if (!isShow && void 0 !== index && currentSkuImageBox.length > 0) {
-                    const slideImg = currentSlideDom.find("img");
-                    if (currentSlideBox.attr("data-image-ratio")) currentSlideBox.css("paddingBottom", currentSlideBox.attr("data-image-ratio")).removeAttr("data-sku-image-ratio");
-                    currentSkuImageBox.remove();
-                    slideImg.show();
-                    this.mobileSwiper.updateAutoHeight();
-                    $(`${this.mobileId} .product_productImages`).attr("sku-image-index", null);
-                }
-            }
-            handleMobileScaleImage() {
-                $(`${this.mobileId} .paginationList div`).removeClass("active").eq(activeIndex).addClass("active");
-            }
-            initMobileProductImages(firstInit) {
-                const mobileProductImagesDom = $(`${this.mobileId}`);
-                const selector = `${this.mobileId} .product_productImages`;
-                const mainSwiperDom = $(selector);
-                const slidesLength = mainSwiperDom.find(".swiper-slide").length;
-                const videoDom = mainSwiperDom.find(".videoItem");
-                const videoIndex = videoDom.data("index");
-                const videoIsStartOrEndPos = 0 === videoIndex || videoIndex === videoDom.data("length") - 1 || 1 === slidesLength;
-                if (0 === mainSwiperDom.length || "none" === mobileProductImagesDom.css("display")) return null;
-                const mainSwiper = new core_class["default"](selector, {
-                    loop: videoIsStartOrEndPos ? false : true,
-                    initialSlide: $(`${this.mobileId}`).data("initial-slide") || 0,
-                    slidesPerView: "auto",
-                    centeredSlides: true,
-                    spaceBetween: 5,
-                    autoHeight: true,
-                    lazy: {
-                        loadOnTransitionStart: true,
-                        loadPrevNext: .75 === this.mobileWidthRatio ? true : false
-                    },
-                    on: {
-                        init: swiper => {
-                            if (firstInit) {
-                                if (this.productImageScale) {
-                                    this.initPhotoSwipe(this.mobileId, "mobile");
-                                    this.initMobileSkuPhotoSwiper();
-                                }
-                                this.handleMActivePagination(swiper.realIndex);
-                                $(`${this.mobileId} .product_productImages`).attr("sku-image-index", swiper.realIndex);
-                                if (videoIsStartOrEndPos) {
-                                    const skuImageDom = $(`${this.mobileId} .product_productImages .swiper-slide`).eq(swiper.realIndex).find(".product_m_skuImage");
-                                    skuImageDom.attr("src") || skuImageDom.attr("data-src");
-                                }
-                                $(`${this.mobileId} .product_productImages .swiper-slide`).css("height", "auto");
-                                swiper.updateAutoHeight();
-                                window.lozadObserver && window.lozadObserver.observe();
-                            }
-                        },
-                        slideChange: swiper => {
-                            handleVideoPlayPause(this.videoMobilePlayer, "pause");
-                            this.videoMobilePlayerStatus = "pause";
-                            this.handleMActivePagination(swiper.realIndex);
-                            const skuImageDom = $(`${this.mobileId} .product_productImages .swiper-slide`).eq(swiper.realIndex).find(".product_m_skuImage");
-                            skuImageDom.attr("src") || skuImageDom.attr("data-src");
-                        },
-                        slideChangeTransitionEnd: () => {
-                            const skuImageIndex = $(`${this.mobileId} .product_productImages`).attr("sku-image-index");
-                            if (void 0 !== skuImageIndex) this.toggleMSkuImage(skuImageIndex, false);
-                        }
-                    },
-                    ...this.swiperConfig.mobile
-                });
-                return mainSwiper;
-            }
-            updateSlides(list) {
-                $(`${this.id} .product_productImages`).children(".swiper-wrapper").empty().append(Array.isArray(list) ? list.map(((item, index) => {
-                    const imgRatio = img_size(item.resource).ratio || "100%";
-                    if ("VIDEO" === item.type) {
-                        const {middle: cover, videoId} = utils_getYouTubeCover(item.resource);
-                        return `<div class="swiper-slide videoItem">\n<div class="product_youTubeVideoContainer">\n<div class="product_youTubeVideoBox" data-video-id="${videoId}"></div>\n</div>\n<img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_photoSwipe_image swiper-lazy" data-photoswipe-src="${cover}" ${0 !== index ? "data-" : ""}src="${cover}" alt="">\n</div>`;
-                    }
-                    return `<div class="swiper-slide imageItem" style="height: 0; padding-bottom:${imgRatio}"><img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" ${0 !== index ? "data-" : ""}src="${item.resource}" alt="" class="swiper-lazy product_photoSwipe_image"></div>`;
-                })) : `<div class="swiper-slide"><div class="product-detail-empty-image"></div></div>`);
-                const slidesLength = list.length;
-                const mobileWrapper = $(`${this.mobileId} .product_productImages`).children(".swiper-wrapper");
-                if (1 === get_default()(list, "length") || "VIDEO" === get_default()(list, "[0].type") || "VIDEO" === get_default()(list, `[${get_default()(list, "length") - 1}].type`)) mobileWrapper.addClass("hasVideoFl"); else mobileWrapper.removeClass("hasVideoFl");
-                mobileWrapper.empty().append(Array.isArray(list) ? list.map(((item, index) => {
-                    if ("VIDEO" === item.type) {
-                        const {middle: cover, videoId} = utils_getYouTubeCover(item.resource);
-                        return `<div class="swiper-slide videoItem" style="height: auto" data-index="${index}" data-length="${slidesLength}">\n<div class="swiper-slide-box" data-image-ratio="56.25%" style="padding-bottom: 56.25%">\n  <div class="product_youTubeVideoContainer">\n    <div class="product_youTubeVideoBox" data-video-id="${videoId}"></div>\n  </div>\n  <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_photoSwipe_image swiper-lazy" data-photoswipe-src="${cover}" ${0 !== index ? "data-" : ""}src="${cover}" alt="">\n</div>\n</div>`;
-                    }
-                    const ratio = img_size(item.resource).ratio || "100%";
-                    return `<div class="swiper-slide imageItem" style="height: auto">\n<div class="swiper-slide-box" data-image-ratio="${ratio}" data-sku-image-ratio="100%" style="padding-bottom: ${ratio}">\n<img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" ${0 !== index ? "data-" : ""}src="${item.resource}" alt="" class="swiper-lazy product_photoSwipe_image">${this.productImageScale ? `<div class="scaleImageIcon"><div class="scaleImageIconSvg"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="13" cy="12" r="7.5" /><path d="M18.5 17.5L23 22.5" stroke-linecap="round" /></svg></div></div>` : ""}</div>\n</div>`;
-                })) : `<div class="swiper-slide"><div class="swiper-slide-box" data-image-ratio="100%" style="padding-bottom: 100%"><div class="product-detail-empty-image product-noImages"></div></div></div>`);
-            }
-            updateImageList(list, activeIndex, source) {
-                if (!this.verifySource(source && source.app)) return;
-                this.mediaList = list;
-                handleVideoPlayPause(this.videoPcPlayer, "pause");
-                handleVideoPlayPause(this.videoMobilePlayer, "pause");
-                this.videoMobilePlayerStatus = "pause";
-                this.replaceThubsSwiper(list, activeIndex);
-                this.swiper && this.swiper.destroy();
-                this.mobileSwiper && this.mobileSwiper.destroy();
-                this.updateSlides(list);
-                if (this.swiper) {
-                    $(`${this.id}`).data("initial-slide", activeIndex);
-                    this.swiper = this.initPcProductImages();
-                    this.updatePhotoSwipeItems(this.id);
-                    this.handleEffectSwiperHeight();
-                    if (this.thumbsDirection === COLUMN) {
-                        const scrollTopDistance = this.getThumbsPosition("top", activeIndex);
-                        this.handleThumbsScroll("scrollTop", scrollTopDistance, false, 0);
-                    } else {
-                        const scrollLeftDistance = this.getThumbsPosition("left", activeIndex);
-                        this.handleThumbsScroll("scrollLeft", scrollLeftDistance, false, 0);
-                    }
-                }
-                if (this.mobileSwiper) {
-                    $(`${this.mobileId}`).data("initial-slide", activeIndex);
-                    this.mobileSwiper = this.initMobileProductImages();
-                    this.updatePhotoSwipeItems(this.mobileId);
-                }
-                this.videoPcPlayer = this.initPcVideo();
-                this.videoMobilePlayer = this.initMobileVideo();
-                $(`${this.id}`).attr("data-index", activeIndex || 0);
-            }
-            replaceThubsSwiper(list, activeIndex) {
-                const wrapper = $(`${this.id} .product_thumbs${this.thumbsDirection === COLUMN ? "Column" : "Row"}Container .productImageThumbsWrapper`);
-                const mBox = $(`${this.mobileId} .paginationBox`);
-                const mWrapper = mBox.find(".paginationListWrapper");
-                wrapper.empty();
-                mWrapper.empty();
-                if (!get_default()(list, "length") || list.length <= 1) {
-                    $(`${this.id} .product_thumbs${this.thumbsDirection === COLUMN ? "Column" : "Row"}Container`).hide();
-                    mBox.hide();
-                } else {
-                    $(`${this.id} .product_thumbs${this.thumbsDirection === COLUMN ? "Column" : "Row"}Container`).show();
-                    mBox.show();
-                    list.forEach(((item, index) => {
-                        const ratio = img_size(item.resource).ratio || "100%";
-                        if ("VIDEO" === item.type) wrapper.append(`<div class="swiper-slide thumbsImageItem ${activeIndex === index ? "active" : ""}"><figure style="padding-bottom: ${ratio}"><img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" src="${utils_getYouTubeCover(item.resource).middle}" alt=""><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n          <circle cx="10" cy="10" r="10" fill="black" fill-opacity="0.6"/>\n          <path d="M13.6256 10.2496L8.46641 13.6891C8.26704 13.822 8 13.6791 8 13.4394V6.56056C8 6.32095 8.26704 6.17803 8.46641 6.31094L13.6256 9.75039C13.8037 9.86913 13.8037 10.1309 13.6256 10.2496Z" fill="white"/>\n          </svg></figure>\n          </div>`); else wrapper.append($(`<div class="swiper-slide thumbsImageItem ${activeIndex === index ? "active" : ""}"><figure style="padding-bottom: ${ratio}"><img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" src="${imgUrl(item.resource, {
-                            width: 152
-                        })}" alt=""></figure></div>`));
-                        mWrapper.append(`<span class="${activeIndex === index ? "active" : ""}" />`);
-                    }));
-                }
-            }
-            skuImageChange(img, source) {
-                if (!this.verifySource(source && source.app)) return;
-                const {url} = img || {};
-                if (url) {
-                    handleVideoPlayPause(this.videoPcPlayer, "pause");
-                    handleVideoPlayPause(this.videoMobilePlayer, "pause");
-                    this.videoMobilePlayerStatus = "pause";
-                    const index = this.mediaList.findIndex((item => item.resource === url));
-                    if (index > -1) {
-                        this.swiper && this.swiper.slideTo(index);
-                        this.mobileSwiper && this.mobileSwiper.slideToLoop(index, 0);
-                        this.handlePcSkuImage(false);
-                        this.handleMobileSkuImage(false);
-                    } else {
-                        this.handlePcSkuImage(true, url);
-                        this.handleMobileSkuImage(true, url);
-                    }
-                } else {
-                    this.handlePcSkuImage(false);
-                    this.handleMobileSkuImage(false);
-                }
-            }
-        }
-        ProductImages.pcSelectorPrefix = "execute_productImages_pc";
-        ProductImages.mobileSelectorPrefix = "execute_productImages_mobile";
-        const js = ProductImages;
-        class ProductImagesWithFlattenAndMobileThumb extends js {
+        var js = __webpack_require__("../shared/browser/components/hbs/productImages/js/index.js");
+        var getYouTubeCover = __webpack_require__("../shared/browser/components/hbs/shared/utils/getYouTubeCover.js");
+        var img_size = __webpack_require__("../shared/browser/utils/img-size.js");
+        var imgUrl = __webpack_require__("../shared/browser/components/hbs/shared/utils/imgUrl.js");
+        class ProductImagesWithFlattenAndMobileThumb extends js["default"] {
             constructor(...args) {
                 const {selectorId} = args[0] || {};
                 const mobilePrefixCls = `.execute_productImages_mobile_${selectorId}`;
-                const productMobileHideThumbnailImage = "hide" === $(`.product_productMobileThumbnailImageHide_${selectorId}`).val();
+                const productMobileHideThumbnailImage = "hide" === __SL_$__(`.product_productMobileThumbnailImageHide_${selectorId}`).val();
                 const config = {
                     ...args[0],
                     swiperConfig: {
@@ -11148,13 +10767,13 @@
                     }
                 };
                 super(config);
-                this.productImageIsFlatten = "flatten" === $(`.product_productImageShowStyle_${selectorId}`).val();
-                this.productPcSkuImageFlatten = $(this.id).find(".product_pc_skuImage_flatten");
-                this.productPcNormalItemFlatten = $(this.id).find(".normalItem");
+                this.productImageIsFlatten = "flatten" === __SL_$__(`.product_productImageShowStyle_${selectorId}`).val();
+                this.productPcSkuImageFlatten = __SL_$__(this.id).find(".product_pc_skuImage_flatten");
+                this.productPcNormalItemFlatten = __SL_$__(this.id).find(".normalItem");
                 this.productMobileHideThumbnailImage = productMobileHideThumbnailImage;
                 if (this.productMobileHideThumbnailImage && this.mobileSwiper) {
                     var _this$mobileSwiper, _this$mobileSwiper$sl;
-                    const index = $(`${this.mobileId}`).data("initial-slide") || 0;
+                    const index = __SL_$__(`${this.mobileId}`).data("initial-slide") || 0;
                     const total = null === (_this$mobileSwiper = this.mobileSwiper) || void 0 === _this$mobileSwiper ? void 0 : null === (_this$mobileSwiper$sl = _this$mobileSwiper.slidesGrid) || void 0 === _this$mobileSwiper$sl ? void 0 : _this$mobileSwiper$sl.length;
                     this.updatePagination(index, total);
                     this.initMobileNormalPagination();
@@ -11166,11 +10785,11 @@
                 }
             }
             handleInitThumbnailImageBySkuImage() {
-                var _this$mobileSwiper2, _$$find;
+                var _this$mobileSwiper2, _SL_$__$find;
                 const index = null === (_this$mobileSwiper2 = this.mobileSwiper) || void 0 === _this$mobileSwiper2 ? void 0 : _this$mobileSwiper2.activeIndex;
-                const firstThumbnail = null === (_$$find = $(`${this.mobileId} .product_mobile_thumbnail_container`).find(".swiper-slide")) || void 0 === _$$find ? void 0 : _$$find.eq(index);
+                const firstThumbnail = null === (_SL_$__$find = __SL_$__(`${this.mobileId} .product_mobile_thumbnail_container`).find(".swiper-slide")) || void 0 === _SL_$__$find ? void 0 : _SL_$__$find.eq(index);
                 const activeCls = "noShowActive";
-                if ($(`${this.mobileId}`).find(".product_m_skuImageBox").length > 0) {
+                if (__SL_$__(`${this.mobileId}`).find(".product_m_skuImageBox").length > 0) {
                     firstThumbnail.addClass(activeCls);
                     firstThumbnail.one("click", (() => {
                         firstThumbnail.removeClass(activeCls);
@@ -11180,9 +10799,9 @@
             }
             updatePagination(currentIndex, total) {
                 const {mobileId} = this;
-                const prevDom = $(`${mobileId} .normal-thumbnail-button-prev`);
-                const nextDom = $(`${mobileId} .normal-thumbnail-button-next`);
-                const content = $(`${mobileId} .pagination-content`);
+                const prevDom = __SL_$__(`${mobileId} .normal-thumbnail-button-prev`);
+                const nextDom = __SL_$__(`${mobileId} .normal-thumbnail-button-next`);
+                const content = __SL_$__(`${mobileId} .pagination-content`);
                 content.html(`${currentIndex + 1}/${total}`);
                 prevDom.removeClass("disabled");
                 nextDom.removeClass("disabled");
@@ -11200,7 +10819,7 @@
                     const total = null === swiper || void 0 === swiper ? void 0 : null === (_swiper$slidesGrid = swiper.slidesGrid) || void 0 === _swiper$slidesGrid ? void 0 : _swiper$slidesGrid.length;
                     this.updatePagination(index, total);
                 }));
-                $(`${mobileId}`).on("click", ".normal-thumbnail-button-prev", (() => {
+                __SL_$__(`${mobileId}`).on("click", ".normal-thumbnail-button-prev", (() => {
                     mobileSwiper.slidePrev(200);
                 })).on("click", ".normal-thumbnail-button-next", (() => {
                     mobileSwiper.slideNext(200);
@@ -11209,19 +10828,19 @@
             initFlattenPcPhotoSwipe() {
                 const self = this;
                 this.updateFlattenPhotoSwipeItems();
-                $(`${this.id}`).on("click", ".imageItem", (function() {
-                    const realIndex = $(this).data("index");
+                __SL_$__(`${this.id}`).on("click", ".imageItem", (function() {
+                    const realIndex = __SL_$__(this).data("index");
                     self.handlePhotoSwiper(self.slideItems, realIndex);
                 }));
             }
             initFlattenPcSkuPhotoSwiper() {
                 const self = this;
-                $(`${this.id}`).on("click", ".product_pc_skuImage_flatten", (function() {
+                __SL_$__(`${this.id}`).on("click", ".product_pc_skuImage_flatten", (function() {
                     const items = [ {
-                        src: $(this).find(".product_photoSwipe_image").attr("data-photoswipe-src"),
+                        src: __SL_$__(this).find(".product_photoSwipe_image").attr("data-photoswipe-src"),
                         w: 0,
                         h: 0,
-                        el: $(this)[0]
+                        el: __SL_$__(this)[0]
                     } ];
                     self.handlePhotoSwiper(items, 0, false);
                 }));
@@ -11231,14 +10850,15 @@
                 if (skuImageDom.hasClass("imageItemError")) skuImageDom.removeClass("imageItemError");
                 if (isShow && skuImageUrl) {
                     var _imgSize;
-                    const ratio = (null === (_imgSize = img_size(skuImageUrl)) || void 0 === _imgSize ? void 0 : _imgSize.ratio) || "100%";
+                    const ratio = (null === (_imgSize = (0, img_size["default"])(skuImageUrl)) || void 0 === _imgSize ? void 0 : _imgSize.ratio) || "100%";
                     const imgDom = skuImageDom.find("img");
                     if (imgDom.length > 0) imgDom.removeAttr("srcset data-srcset").attr({
                         src: skuImageUrl,
-                        "data-photoswipe-src": imgUrl(skuImageUrl, {
+                        "data-photoswipe-src": (0, imgUrl["default"])(skuImageUrl, {
                             width: 1800
                         })
-                    }); else skuImageDom.css("paddingBottom", `${ratio}`).html(`<img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_photoSwipe_image" data-photoswipe-src=${imgUrl(skuImageUrl, {
+                    }); else skuImageDom.css("paddingBottom", `${ratio}`).html(`<img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_photoSwipe_image" data-photoswipe-src=${(0, 
+                    imgUrl["default"])(skuImageUrl, {
                         width: 1800
                     })} src=${skuImageUrl} />`);
                     skuImageDom.show();
@@ -11268,7 +10888,7 @@
                 }
             }
             updateMobileThumbsImage(list) {
-                const thumbnailContainer = $(`${this.mobileId} .product_mobile_thumbnail_container`);
+                const thumbnailContainer = __SL_$__(`${this.mobileId} .product_mobile_thumbnail_container`);
                 if (!(null !== list && void 0 !== list && list.length) || list.length <= 1) {
                     thumbnailContainer.hide();
                     return;
@@ -11276,16 +10896,24 @@
                 thumbnailContainer.show();
                 thumbnailContainer.find(".swiper-wrapper").empty().append(list.map((item => {
                     var _imgSize2;
-                    const ratio = (null === (_imgSize2 = img_size(item.resource)) || void 0 === _imgSize2 ? void 0 : _imgSize2.ratio) || "100%";
-                    const boxPb = "VIDEO" === item.type ? "56.25%" : ratio;
-                    const {middle: cover} = utils_getYouTubeCover(item.resource);
-                    const domItem = "VIDEO" === item.type ? `<img class="lozad" data-sizes="auto" data-src="${cover}" alt="">` : `<img class="lozad" data-sizes="auto" data-src="${item.resource}" alt="">`;
+                    const ratio = (null === (_imgSize2 = (0, img_size["default"])(item.resource)) || void 0 === _imgSize2 ? void 0 : _imgSize2.ratio) || "100%";
+                    let videoCover;
+                    let videoRatio;
+                    if ("VIDEO" === item.type) {
+                        var _imgSize3;
+                        const isYoutubeVideo = (0, js.isYoutube)(item.resource);
+                        const {middle: cover} = (0, getYouTubeCover["default"])(item.resource);
+                        videoRatio = isYoutubeVideo ? "56.25%" : (null === (_imgSize3 = (0, img_size["default"])(item.cover)) || void 0 === _imgSize3 ? void 0 : _imgSize3.ratio) || "56.25%";
+                        videoCover = isYoutubeVideo ? cover : item.cover;
+                    }
+                    const boxPb = "VIDEO" === item.type ? videoRatio : ratio;
+                    const domItem = "VIDEO" === item.type ? `<img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  class="lozad" data-sizes="auto" data-src="${videoCover}" alt="">` : `<img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  class="lozad" data-sizes="auto" data-src="${item.resource}" alt="">`;
                     return `\n          <div class="swiper-slide">\n            <div class="swiper-slide-item" style="padding-bottom:${boxPb}">${domItem}</div>\n          </div>`;
                 })));
                 this.handleMobileThumbArrow(thumbnailContainer, list);
             }
             updateMobileThumbArrow(list) {
-                const paginationContainer = $(`${this.mobileId} .product_mobile_thumbnail_pagination`);
+                const paginationContainer = __SL_$__(`${this.mobileId} .product_mobile_thumbnail_pagination`);
                 if (list.length > 1) paginationContainer.show(); else paginationContainer.hide();
             }
             updateImageList(list, activeIndex, source) {
@@ -11304,10 +10932,10 @@
             }
             updateFlattenPhotoSwipeItems() {
                 const items = [];
-                $(`${this.id}`).find(".imageItem,.videoItem").each(((index, item) => {
-                    const realIndex = $(item).data("index");
-                    const imgEl = $(item).find(".product_photoSwipe_image");
-                    const size = $(item).attr("data-natural-size");
+                __SL_$__(`${this.id}`).find(".imageItem,.videoItem").each(((index, item) => {
+                    const realIndex = __SL_$__(item).data("index");
+                    const imgEl = __SL_$__(item).find(".product_photoSwipe_image");
+                    const size = __SL_$__(item).attr("data-natural-size");
                     const transSize = size ? size.split("x") : null;
                     items[realIndex] = {
                         src: imgEl.attr("data-photoswipe-src"),
@@ -11335,25 +10963,29 @@
                 super.galleryAfterChange(...args);
             }
             updateFlattenDom() {
-                this.productPcSkuImageFlatten = $(this.id).find(".product_pc_skuImage_flatten");
-                this.productPcNormalItemFlatten = $(this.id).find(".normalItem");
+                this.productPcSkuImageFlatten = __SL_$__(this.id).find(".product_pc_skuImage_flatten");
+                this.productPcNormalItemFlatten = __SL_$__(this.id).find(".normalItem");
             }
             updateFlattenImageList(list) {
-                const container = $(`${this.id}.product_productImages_tile`).empty();
+                const container = __SL_$__(`${this.id}.product_productImages_tile`).empty();
                 if (null !== list && void 0 !== list && list.length) {
                     container.removeClass("product-detail-empty-image");
-                    const flattenFirstItem = $(`<div class="row row-cols-md-1 gx-md-4 flattenFirstItem">\n          <div class="flattenFirstItemWrapper">\n            <div class="normalItem"></div>\n            <div class="product_pc_skuImage_flatten"></div>\n          </div>\n        </div>`);
-                    const exceptFlattenItemList = $(`<div class="exceptFirstMediaList row row-cols-md-2 gx-md-4"></div>`);
-                    const firstCol = $(`<div class="product_images_firstCol"></div>`);
-                    const secondCol = $(`<div class="product_images_secondCol"></div>`);
+                    const flattenFirstItem = __SL_$__(`<div class="row row-cols-md-1 gx-md-4 flattenFirstItem">\n          <div class="flattenFirstItemWrapper">\n            <div class="normalItem"></div>\n            <div class="product_pc_skuImage_flatten"></div>\n          </div>\n        </div>`);
+                    const exceptFlattenItemList = __SL_$__(`<div class="exceptFirstMediaList row row-cols-md-2 gx-md-4"></div>`);
+                    const firstCol = __SL_$__(`<div class="product_images_firstCol"></div>`);
+                    const secondCol = __SL_$__(`<div class="product_images_secondCol"></div>`);
                     list.forEach(((item, index) => {
                         let dom;
                         if ("VIDEO" === item.type) {
-                            const {middle: cover, videoId} = utils_getYouTubeCover(item.resource);
-                            dom = `<div class="videoItem" data-index="${index}">\n<div class="product_youTubeVideoBox" data-video-id="${videoId}"></div>\n<img class="product_photoSwipe_image" data-photoswipe-src="${cover}" src="${cover}" alt="">\n</div>`;
+                            var _imgSize4;
+                            const {middle: cover, videoId} = (0, getYouTubeCover["default"])(item.resource);
+                            const isYoutubeVideo = (0, js.isYoutube)(item.resource);
+                            const photoswipeCoverSrc = isYoutubeVideo ? cover : item.cover;
+                            dom = `<div class="videoItem" data-index="${index}" style="padding-bottom: ${isYoutubeVideo ? "56.25%" : (null === (_imgSize4 = (0, 
+                            img_size["default"])(item.cover)) || void 0 === _imgSize4 ? void 0 : _imgSize4.ratio) || "56.25%"}">\n          ${isYoutubeVideo ? `<div class="product_youTubeVideoBox" data-video-id="${videoId}"></div>` : `<video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="${item.cover}">\n                  <source src="${item.resource}" type="video/mp4">\n                </video>`}\n          <img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  class="product_photoSwipe_image" data-photoswipe-src="${photoswipeCoverSrc}" src="${photoswipeCoverSrc}" alt="">\n          </div>`;
                         } else {
-                            const {ratio} = img_size(item.resource);
-                            dom = `<div class="imageItem" style="padding-bottom: ${ratio}" data-index="${index}"><img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" class="product_photoSwipe_image" src="${item.resource}" alt=""></div>`;
+                            const {ratio} = (0, img_size["default"])(item.resource);
+                            dom = `<div class="imageItem" style="padding-bottom: ${ratio}" data-index="${index}"><img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" class="product_photoSwipe_image" src="${item.resource}" alt=""></div>`;
                         }
                         if (0 === index) {
                             flattenFirstItem.find(".normalItem").append(dom);
@@ -11374,12 +11006,12 @@
         var debounce = __webpack_require__("./src/assets/commons/utils/debounce.js");
         var isMobile = __webpack_require__("./src/assets/commons/utils/isMobile.js");
         function setPosition({id, container = window, offsetTop = 0}) {
-            const box = $(`#product-detail-sticky_${id}`);
+            const box = __SL_$__(`#product-detail-sticky_${id}`);
             if (!box.get(0)) return;
             let mainView = box.children(".sticky-main-view");
             mainView = mainView.length ? mainView : box;
             const height = mainView.height();
-            const wHeight = $(container).outerHeight();
+            const wHeight = __SL_$__(container).outerHeight();
             if (height + offsetTop > wHeight) box.css("top", -(height - wHeight)); else box.css("top", offsetTop);
         }
         function listenPosition({id, container = window, offsetTop = 0}) {
@@ -11395,11 +11027,11 @@
                     offsetTop
                 });
             }));
-            $(window).on("resize", setPositionDebounce);
-            if (!(0, isMobile["default"])()) $(container).one("scroll", setPositionDebounce);
+            __SL_$__(window).on("resize", setPositionDebounce);
+            if (!(0, isMobile["default"])()) __SL_$__(container).one("scroll", setPositionDebounce);
             return function() {
-                $(window).off("resize", setPositionDebounce);
-                $(container).off("scroll", setPositionDebounce);
+                __SL_$__(window).off("resize", setPositionDebounce);
+                __SL_$__(container).off("scroll", setPositionDebounce);
             };
         }
         const layout = setPosition;
@@ -11413,6 +11045,8 @@
         }
         var lodash_debounce = __webpack_require__("../shared/browser/node_modules/lodash/debounce.js");
         var debounce_default = __webpack_require__.n(lodash_debounce);
+        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
+        var get_default = __webpack_require__.n(get);
         var pageMapping = __webpack_require__("../shared/browser/utils/report/pageMapping.js");
         var page = __webpack_require__("../shared/browser/utils/report/page.js");
         __webpack_require__("../shared/browser/report/customArgs/index.js");
@@ -11609,8 +11243,8 @@
             })), 1e3)
         };
         function listenInputChange({area}) {
-            $(area).find("[sl-form-item-name]").on("input", "input,textarea", (function() {
-                const input = $(this);
+            __SL_$__(area).find("[sl-form-item-name]").on("input", "input,textarea", (function() {
+                const input = __SL_$__(this);
                 const formItem = input.parents("[sl-form-item-name]");
                 const name = formItem.attr("sl-form-item-name");
                 const value = input.val();
@@ -11626,7 +11260,7 @@
         class InquiryPriceModal extends BaseClass["default"] {
             constructor({id, spu, sku}) {
                 super("product:inquiry:price:modal");
-                this.$root = $(`#JS-inquiry-price-modal_${id}`);
+                this.$root = __SL_$__(`#JS-inquiry-price-modal_${id}`);
                 this.$setPortals(this.$root);
                 this.buttonSelector = `#JS-inquiry-price-button_${id}`;
                 this.spu = spu;
@@ -11678,14 +11312,14 @@
                     submitClickHandler: async e => {
                         try {
                             if (this.isPreview()) {
-                                inquiry_price_modal_toast.open((0, i18n.t)("productDetail.previewLinkToast"));
+                                inquiry_price_modal_toast.open((0, i18n.t)("products.product_details.link_preview_does_not_support"));
                                 return;
                             }
-                            $(e.target).addClass("disabled");
+                            __SL_$__(e.target).addClass("disabled");
                             await this.validateForm();
                             await this.postForm();
                         } catch (err) {} finally {
-                            $(e.target).removeClass("disabled");
+                            __SL_$__(e.target).removeClass("disabled");
                         }
                     },
                     cancelClickHandler: () => {
@@ -11700,11 +11334,11 @@
                 this.$onPortals("click", ".JS-inquiry-modal-submit", eventHandlers.submitClickHandler);
                 this.$onPortals("click", ".JS-inquiry-modal-cancel", eventHandlers.cancelClickHandler);
                 this.$root.parents(".mp-modal__wrapper").on("click", ".mp-modal__mask.mp-modal__closable,.mp-modal__close", (() => this.cancelReport()));
-                $(this.buttonSelector).on("click", eventHandlers.buttonClickHandler);
+                __SL_$__(this.buttonSelector).on("click", eventHandlers.buttonClickHandler);
             }
             unbindEvents() {
                 this.$offAll();
-                $(this.buttonSelector).off("click");
+                __SL_$__(this.buttonSelector).off("click");
             }
             async postForm() {
                 var _activeSku$imageList, _spuInfo$images;
@@ -11752,8 +11386,8 @@
                         ...extraData
                     });
                     this.hideModal();
-                    inquiry_price_modal_toast.open((0, i18n.t)("productDetail.inquiry.submitSuccess"));
-                } else inquiry_price_modal_toast.open((0, i18n.t)("productDetail.inquiry.submitFailed"));
+                    inquiry_price_modal_toast.open((0, i18n.t)("products.product_details.submission_successfully"));
+                } else inquiry_price_modal_toast.open((0, i18n.t)("products.product_details.submission_failed"));
             }
             showModal() {
                 this.modalInstance.show();
@@ -11766,20 +11400,20 @@
                     name: "email",
                     value: "",
                     rules: [ {
-                        message: (0, i18n.t)("productDetail.inquiry.emailEmptyErr"),
+                        message: (0, i18n.t)("products.product_details.enter_email_address"),
                         required: true
                     }, {
-                        message: (0, i18n.t)("productDetail.inquiry.emailFormatErr"),
+                        message: (0, i18n.t)("products.product_details.enter_valid_email_address"),
                         pattern: emailRE
                     } ]
                 }, {
                     name: "message",
                     value: "",
                     rules: [ {
-                        message: (0, i18n.t)("productDetail.inquiry.messageEmptyErr"),
+                        message: (0, i18n.t)("products.product_details.leave_us_message"),
                         required: true
                     }, {
-                        message: (0, i18n.t)("productDetail.inquiry.messageLengthErr"),
+                        message: (0, i18n.t)("products.product_details.maximum_length_of_message"),
                         validator(val) {
                             return val.length <= 1500;
                         }
@@ -11820,7 +11454,7 @@
         };
         class Tabs {
             constructor({root}) {
-                this.root = $(root);
+                this.root = __SL_$__(root);
                 this.lang = "default";
                 this.showKey = "tab0";
                 this.init();
@@ -11834,7 +11468,7 @@
                 this.contents = this.root.children(".product-tabs-content").children(".product-tabs-item");
                 this.ids = [];
                 tabs.each(((_, el) => {
-                    const $el = $(el);
+                    const $el = __SL_$__(el);
                     const id = $el.data("id");
                     if (id) this.ids.push(id);
                     if ($el.hasClass("active")) this.showKey = $el.data("key");
@@ -11863,8 +11497,8 @@
             }
             setCollapseTitle(data) {
                 this.tabs.each(((_, el) => {
-                    const title = data[$(el).data("id")];
-                    if (title) $(el).text(title);
+                    const title = data[__SL_$__(el).data("id")];
+                    if (title) __SL_$__(el).text(title);
                 }));
             }
             requestCollapseContent(id, content) {
@@ -11879,12 +11513,12 @@
             setCollapseContent(data, content) {
                 var _shadow$get;
                 const html = this.getCustomPageContent(null === data || void 0 === data ? void 0 : data.htmlConfig);
-                const shadow = $(content).children(".product-tabs-shadow");
+                const shadow = __SL_$__(content).children(".product-tabs-shadow");
                 const shadowRoot = null === (_shadow$get = shadow.get(0)) || void 0 === _shadow$get ? void 0 : _shadow$get.attachShadow({
                     mode: "open"
                 });
-                $(shadowRoot).append(createShadowDom.shadowDomStyle.clone());
-                $(shadowRoot).append(html);
+                __SL_$__(shadowRoot).append(createShadowDom.shadowDomStyle.clone());
+                __SL_$__(shadowRoot).append(html);
             }
             getCustomPageContent(pageConfig) {
                 const config = isReJsonSdkData(null !== pageConfig && void 0 !== pageConfig ? pageConfig : "");
@@ -11920,8 +11554,8 @@
                 contents.hide();
                 let content;
                 contents.each(((_, el) => {
-                    if ($(el).data("key") === key) {
-                        $(el).show();
+                    if (__SL_$__(el).data("key") === key) {
+                        __SL_$__(el).show();
                         content = el;
                         return true;
                     }
@@ -11936,7 +11570,7 @@
                 const that = this;
                 const {tabs} = this;
                 tabs.on("click", (function() {
-                    const tab = $(this);
+                    const tab = __SL_$__(this);
                     const key = tab.data("key");
                     if (that.showKey === key) return;
                     tab.get(0).scrollIntoView({
@@ -11962,17 +11596,17 @@
             for (t in transitions) if (void 0 !== el.style[t]) return transitions[t];
         }
         function openCollapseByHeight(element) {
-            const initHeight = $(element).innerHeight();
+            const initHeight = __SL_$__(element).innerHeight();
             element.style.height = "auto";
-            const targetHeight = $(element).innerHeight();
+            const targetHeight = __SL_$__(element).innerHeight();
             element.style.height = `${initHeight}px`;
-            $(element).css("color");
+            __SL_$__(element).css("color");
             element.style.height = `${targetHeight}px`;
         }
         function closeCollapseByHeight(element) {
-            const initHeight = $(element).innerHeight();
-            $(element).css("height", `${initHeight}px`);
-            $(element).css("color");
+            const initHeight = __SL_$__(element).innerHeight();
+            __SL_$__(element).css("height", `${initHeight}px`);
+            __SL_$__(element).css("color");
             element.style.height = `0px`;
         }
         const PAGE_ID = "pageid";
@@ -11986,7 +11620,7 @@
         };
         class Collapse {
             constructor({lang = "default", selector, cacheRequest = true}) {
-                this.$container = $(selector);
+                this.$container = __SL_$__(selector);
                 this.$collapseAsyncItems = this.$container.find(".base-collapse-item-async");
                 this.$collapseSyncItems = this.$container.find(".base-collapse-item-sync");
                 this.lang = lang;
@@ -11998,20 +11632,20 @@
             }
             init() {
                 const self = this;
-                const ids = Array.from(this.$collapseAsyncItems).map((item => $(item).data(PAGE_ID))).filter((id => !!id));
+                const ids = Array.from(this.$collapseAsyncItems).map((item => __SL_$__(item).data(PAGE_ID))).filter((id => !!id));
                 this.$collapseAsyncItems.each(((index, item) => {
-                    const $item = $(item);
+                    const $item = __SL_$__(item);
                     $item.find(".base-collapse-item__wrap").on(self.transitionEvent, (function() {
-                        if ($(this).parent().hasClass("active")) $(this).css("height", "auto");
+                        if (__SL_$__(this).parent().hasClass("active")) __SL_$__(this).css("height", "auto");
                     }));
                     if ($item.hasClass("active") && $item.data(PAGE_ID)) this.requestCollapseContent($item.data(PAGE_ID)).then((res => {
                         this.setCollapseContent(null === res || void 0 === res ? void 0 : res.data, $item);
                     }));
                 }));
                 this.$collapseSyncItems.each(((index, item) => {
-                    const $item = $(item);
+                    const $item = __SL_$__(item);
                     $item.find(".base-collapse-item__wrap").on(self.transitionEvent, (function() {
-                        if ($(this).parent().hasClass("active")) $(this).css("height", "auto");
+                        if (__SL_$__(this).parent().hasClass("active")) __SL_$__(this).css("height", "auto");
                     }));
                     if (!$item.data("isInitShadowDom")) {
                         const html = $item.find(".base-collapse-item__content").html();
@@ -12045,7 +11679,7 @@
             }
             setCollapseTitle(titleMap) {
                 this.$collapseAsyncItems.each(((index, item) => {
-                    const $item = $(item);
+                    const $item = __SL_$__(item);
                     const title = titleMap[$item.data(PAGE_ID)];
                     if (title) $item.find(".base-collapse-item__title").text(title);
                 }));
@@ -12053,7 +11687,7 @@
             bindEvent() {
                 const self = this;
                 this.$collapseAsyncItems.on("click", ".base-collapse-item__header", (function() {
-                    const $item = $(this).closest(".base-collapse-item");
+                    const $item = __SL_$__(this).closest(".base-collapse-item");
                     const id = $item.data(PAGE_ID);
                     const isOpen = $item.hasClass("active");
                     if (isOpen) {
@@ -12067,7 +11701,7 @@
                     }));
                 }));
                 this.$collapseSyncItems.on("click", ".base-collapse-item__header", (function() {
-                    const $item = $(this).closest(".base-collapse-item");
+                    const $item = __SL_$__(this).closest(".base-collapse-item");
                     const isOpen = $item.hasClass("active");
                     if (isOpen) {
                         self.close($item);
@@ -12082,7 +11716,7 @@
                 }));
                 window.SL_EventBus.on("stage:locale:change", (() => {
                     if (this.$activeItem) this.calcCollapseContentHeight(this.$activeItem); else this.$collapseAsyncItems.each(((index, item) => {
-                        const $item = $(item);
+                        const $item = __SL_$__(item);
                         if ($item.hasClass("active") && $item.data(PAGE_ID)) this.calcCollapseContentHeight($item);
                     }));
                 }));
@@ -12194,16 +11828,16 @@
                 if (!drawerDom) return;
                 this.isShow = true;
                 drawerDom.style.display = "block";
-                const $body = $("body");
-                $body.addClass("sales-discount-coupon-common-drawer__root-open");
-                const mask = drawerDom.querySelector(".sales-discount-coupon-common-drawer__mask-hook");
+                const $body = __SL_$__("body");
+                $body.addClass("sales-common-drawer__root-open");
+                const mask = drawerDom.querySelector(".sales-common-drawer__mask-hook");
                 if (mask) {
                     setTimeout((() => {
-                        $(mask).addClass("sales-discount-coupon-common-drawer__mask--append");
+                        __SL_$__(mask).addClass("sales-common-drawer__mask--append");
                     }), 20);
                     mask.addEventListener("click", this.hide);
                 }
-                const closeBtn = drawerDom.querySelector(".sales-discount-coupon-common-drawer-hook");
+                const closeBtn = drawerDom.querySelector(".sales-common-drawer-hook");
                 if (closeBtn) closeBtn.addEventListener("click", this.hide);
                 null === (_this$onSwitch = this.onSwitch) || void 0 === _this$onSwitch ? void 0 : _this$onSwitch.call(this, true);
             }
@@ -12213,14 +11847,14 @@
                 if (!drawerDom) return;
                 this.isShow = false;
                 drawerDom.style.display = "none";
-                const $body = $("body");
-                $body.removeClass("sales-discount-coupon-common-drawer__root-open");
-                const mask = drawerDom.querySelector(".sales-discount-coupon-common-drawer__mask-hook");
+                const $body = __SL_$__("body");
+                $body.removeClass("sales-common-drawer__root-open");
+                const mask = drawerDom.querySelector(".sales-common-drawer__mask-hook");
                 if (mask) {
-                    $(mask).removeClass("sales-discount-coupon-common-drawer__mask--append");
+                    __SL_$__(mask).removeClass("sales-common-drawer__mask--append");
                     mask.removeEventListener("click", this.hide);
                 }
-                const closeBtn = drawerDom.querySelector(".sales-discount-coupon-common-drawer-hook");
+                const closeBtn = drawerDom.querySelector(".sales-common-drawer-hook");
                 if (closeBtn) closeBtn.removeEventListener("click", this.hide);
                 null === (_this$onSwitch2 = this.onSwitch) || void 0 === _this$onSwitch2 ? void 0 : _this$onSwitch2.call(this, false);
             }
@@ -12228,7 +11862,7 @@
                 return this.isShow;
             }
         }
-        const js_Drawer = Drawer;
+        const drawer_Drawer = Drawer;
         const vars = {
             containerSel: ".sales__autoCouponBanner-container-hook",
             tagsSel: ".sales__autoCouponBanner-couponItem-hook",
@@ -12242,25 +11876,25 @@
             shopMoreText: ".sales__autoCouponBanner-shopMoreText-hook"
         };
         function isAllowPopupFn() {
-            const $tags = $(vars.modelListItemsSel);
+            const $tags = __SL_$__(vars.modelListItemsSel);
             const isMob = (0, isMobile["default"])();
             return $tags.length > 2 || isMob && $tags.length > 1;
         }
         function handlePlatformChange() {
-            const $tags = $(vars.tagsSel);
+            const $tags = __SL_$__(vars.tagsSel);
             const isMob = (0, isMobile["default"])();
             if ($tags[0]) if (isMob) $tags.css("display", "none").eq(0).css("display", "inline-block"); else $tags.css("display", "inline-block");
-            const $downIcon = $(vars.downIconSel);
-            const $clickArea = $(vars.clickAreaSel);
+            const $downIcon = __SL_$__(vars.downIconSel);
+            const $clickArea = __SL_$__(vars.clickAreaSel);
             const isAllowPopup = isAllowPopupFn();
             $downIcon.css("display", isAllowPopup ? "block" : "none");
             $clickArea.css("cursor", isAllowPopup ? "pointer" : "default");
-            const $shopMoreText = $(vars.shopMoreText);
+            const $shopMoreText = __SL_$__(vars.shopMoreText);
             if ($shopMoreText.length) $shopMoreText.css("display", isMob ? "none" : "block");
         }
-        const salesAutoCouponBanner = (0, effectFc["default"])((function(parent) {
+        const auto_coupon_banner = (0, effectFc["default"])((function(parent) {
             const {useEffect} = this;
-            const $parent = $(parent || document.body);
+            const $parent = __SL_$__(parent || document.body);
             const $container = $parent.find(vars.containerSel);
             if (!$container.length) return;
             handlePlatformChange();
@@ -12273,17 +11907,17 @@
                     if ((isModalShow || isDrawerShow) && !hasClass) $container.addClass(vars.containerShowStateClassName);
                     if (!isModalShow && !isDrawerShow && hasClass) $container.removeClass(vars.containerShowStateClassName);
                 };
-                const drawer = new js_Drawer({
+                const drawer = new drawer_Drawer({
                     id: vars.drawerId,
                     onSwitch(flag) {
                         isDrawerShow = flag;
                         updateContainerShowState();
                     }
                 });
-                const $clickArea = $(vars.clickAreaSel);
+                const $clickArea = __SL_$__(vars.clickAreaSel);
                 if (!$clickArea.length) return;
                 const modalShow = () => {
-                    const $modal = $(vars.modalSel);
+                    const $modal = __SL_$__(vars.modalSel);
                     if ($modal.length && !$modal.hasClass(vars.modalPopupClassName)) {
                         $modal.addClass(vars.modalPopupClassName);
                         isModalShow = true;
@@ -12291,7 +11925,7 @@
                     updateContainerShowState();
                 };
                 const modalHide = () => {
-                    const $modal = $(vars.modalSel);
+                    const $modal = __SL_$__(vars.modalSel);
                     if ($modal.length && $modal.hasClass(vars.modalPopupClassName)) {
                         $modal.removeClass(vars.modalPopupClassName);
                         isModalShow = false;
@@ -12299,7 +11933,7 @@
                     updateContainerShowState();
                 };
                 const modalToggle = () => {
-                    const $modal = $(vars.modalSel);
+                    const $modal = __SL_$__(vars.modalSel);
                     if ($modal.length) if ($modal.hasClass(vars.modalPopupClassName)) {
                         $modal.removeClass(vars.modalPopupClassName);
                         isModalShow = false;
@@ -12318,16 +11952,16 @@
                     }
                     if (isMob) drawer.show(); else modalToggle();
                 }));
-                useEffect($(vars.modalSel), "on,off", "click", (e => {
+                useEffect(__SL_$__(vars.modalSel), "on,off", "click", (e => {
                     e.stopPropagation();
                 }));
-                useEffect($(`#${vars.drawerId}`), "on,off", "click", (e => {
+                useEffect(__SL_$__(`#${vars.drawerId}`), "on,off", "click", (e => {
                     e.stopPropagation();
                 }));
-                useEffect($(document.body), "on,off", "click", (e => {
+                useEffect(__SL_$__(document.body), "on,off", "click", (e => {
                     const {target} = e;
                     const containerDom = $clickArea.get(0);
-                    if ($.contains(containerDom, target) || containerDom === target) return;
+                    if (__SL_$__.contains(containerDom, target) || containerDom === target) return;
                     if ((0, isMobile["default"])() && drawer.getShowStatus()) drawer.hide();
                     if (!(0, isMobile["default"])()) modalHide();
                 }));
@@ -12347,12 +11981,12 @@
             handlePopup();
             window.SL_EventBus.on("global:currency:format", (() => {
                 const amountNode = $container.find("[data-amount]");
-                const drawerAmountNode = $(`#${vars.drawerId}`).find("[data-amount]");
+                const drawerAmountNode = __SL_$__(`#${vars.drawerId}`).find("[data-amount]");
                 amountNode.each((function() {
-                    $(this).text((0, CurrencyConvert.convertFormat)($(this).data("amount")));
+                    __SL_$__(this).text((0, CurrencyConvert.convertFormat)(__SL_$__(this).data("amount")));
                 }));
                 drawerAmountNode.each((function() {
-                    $(this).text((0, CurrencyConvert.convertFormat)($(this).data("amount")));
+                    __SL_$__(this).text((0, CurrencyConvert.convertFormat)(__SL_$__(this).data("amount")));
                 }));
             }));
         }));
@@ -12364,12 +11998,12 @@
                 this.timeLimitActivityList = null === (_SL_State$get = state_selector.SL_State.get("productActivity")) || void 0 === _SL_State$get ? void 0 : _SL_State$get.timeLimitActivityList;
             }
             init() {
-                const flashSales = $(".flashSale[data-seq]");
+                const flashSales = __SL_$__(".sales__flash-sale-container-hook[data-seq]");
                 if (this.timeLimitActivityList && flashSales.length) {
                     const seqList = [ ...new Set([ ...flashSales ].map((ele => ele.dataset.seq))) ];
                     seqList.forEach((seq => {
                         var _activity$salesPlugin, _activity$salesPlugin2, _salesEnvCustomInfo$p;
-                        const eles = $(".flashSale[data-seq]").filter(`[data-seq=${seq}]`);
+                        const eles = __SL_$__(".sales__flash-sale-container-hook[data-seq]").filter(`[data-seq=${seq}]`);
                         const activity = this.timeLimitActivityList.find((({activitySeq}) => seq === activitySeq));
                         if (!activity) return;
                         if (null !== activity && void 0 !== activity && null !== (_activity$salesPlugin = activity.salesPlugin) && void 0 !== _activity$salesPlugin && null !== (_activity$salesPlugin2 = _activity$salesPlugin.countDownTimerPlugin) && void 0 !== _activity$salesPlugin2 && _activity$salesPlugin2.showCountDownTime) this.startCountDown(activity, eles);
@@ -12388,13 +12022,13 @@
                 var _activity$salesPlugin3, _activity$salesPlugin4;
                 if (null !== activity && void 0 !== activity && null !== (_activity$salesPlugin3 = activity.salesPlugin) && void 0 !== _activity$salesPlugin3 && null !== (_activity$salesPlugin4 = _activity$salesPlugin3.countDownTimerPlugin) && void 0 !== _activity$salesPlugin4 && _activity$salesPlugin4.showCountDownTime) {
                     var _activity$salesPlugin5;
-                    const countdownEles = eles.find(".timeout");
-                    const daysCon = countdownEles.find(".first-timeout-item");
-                    const daysEles = countdownEles.find(".timeout-days");
-                    const daysDotEles = countdownEles.find(".timeout-first-dot");
-                    const hoursEles = countdownEles.find(".timeout-hours");
-                    const minutesEles = countdownEles.find(".timeout-minutes");
-                    const secondsEles = countdownEles.find(".timeout-seconds");
+                    const countdownEles = eles.find(".sales__flash-sale-timeout-container-hook");
+                    const daysCon = countdownEles.find(".sales__flash-sale-timeout-first-time-item-hook");
+                    const daysEles = countdownEles.find(".sales__flash-sale-timeout-days-hook");
+                    const daysDotEles = countdownEles.find(".sales__flash-sale-timeout-first-dot-hook");
+                    const hoursEles = countdownEles.find(".sales__flash-sale-timeout-hours-hook");
+                    const minutesEles = countdownEles.find(".sales__flash-sale-timeout-minutes-hook");
+                    const secondsEles = countdownEles.find(".sales__flash-sale-timeout-seconds-hook");
                     const {startTime, endTime} = null === (_activity$salesPlugin5 = activity.salesPlugin) || void 0 === _activity$salesPlugin5 ? void 0 : _activity$salesPlugin5.countDownTimerPlugin;
                     const now = Date.now();
                     if (now >= startTime && now < endTime) (0, countdown["default"])(endTime, (([d, h, m, s, ms], interval) => {
@@ -12417,13 +12051,13 @@
             }
             destroy() {
                 this.timeLimitActivityList.forEach((({activitySeq}) => {
-                    if (countdown.t[`flashSale_${activitySeq}`]) clearInterval(countdown.t[`flashSale_${activitySeq}`]);
+                    if (countdown.timers[`flashSale_${activitySeq}`]) clearInterval(countdown.timers[`flashSale_${activitySeq}`]);
                 }));
             }
         }
-        const snippets_flashSale = FlashSale;
+        const flash_sale = FlashSale;
         var tool = __webpack_require__("../shared/browser/utils/report/tool.js");
-        const getSkuAttributeNames = (skuAttributeIds, skuAttributeMap) => skuAttributeIds && skuAttributeIds.length && skuAttributeMap ? skuAttributeIds.map((({id, valueId}) => ({
+        const get_sku_attribute_names = (skuAttributeIds, skuAttributeMap) => skuAttributeIds && skuAttributeIds.length && skuAttributeMap ? skuAttributeIds.map((({id, valueId}) => ({
             skuAttribute: skuAttributeMap[id],
             valueId
         }))).filter((({skuAttribute}) => !skuAttribute.hidden)).map((({skuAttribute, valueId}) => {
@@ -12455,7 +12089,7 @@
                 const sku = null !== (_ref = null !== (_skulist$find = null === skulist || void 0 === skulist ? void 0 : skulist.find((s => (null === s || void 0 === s ? void 0 : s.skuId) && (null === s || void 0 === s ? void 0 : s.skuId) === SkuId || (null === s || void 0 === s ? void 0 : s.skuId) && (null === s || void 0 === s ? void 0 : s.skuSeq) === SkuId))) && void 0 !== _skulist$find ? _skulist$find : null === skulist || void 0 === skulist ? void 0 : skulist[0]) && void 0 !== _ref ? _ref : {};
                 const {price, skuAttributeIds} = sku;
                 SkuId = sku.skuId || sku.skuSeq || SkuId;
-                const variant = sku ? getSkuAttributeNames(skuAttributeIds, skuAttributeMap).join(",") : "";
+                const variant = sku ? get_sku_attribute_names(skuAttributeIds, skuAttributeMap).join(",") : "";
                 const Price = formatCurrency ? formatCurrency(price * num) : Number(price * num) / 100;
                 ga_items.push({
                     id,
@@ -12567,7 +12201,7 @@
             }
             init() {
                 const addToCart = this;
-                $("#page-product-detail .addToCartList_content").on("click", ".addToCart", (ev => {
+                __SL_$__("#page-product-detail .sales__add-to-cart-list-content").on("click", ".sales__add-to-cart-item-btn-hook", (ev => {
                     const {spuSeq: spuId, skuSeq: skuId, name, price} = addToCart.activeSku;
                     const eventID = (0, tool.getEventID)();
                     window.Shopline.event.emit("Cart::AddToCart", {
@@ -12597,7 +12231,7 @@
                 }));
             }
         }
-        const snippets_addToCartList = AddToCartList;
+        const add_to_cart_list = AddToCartList;
         var url = __webpack_require__("./src/assets/commons/utils/url.js");
         var syntax_patch = __webpack_require__("../shared/browser/utils/syntax-patch.js");
         function hiido_guid() {
@@ -12747,7 +12381,7 @@
         });
         const {spu} = null !== (_SL_State$get = state_selector.SL_State.get("product")) && void 0 !== _SL_State$get ? _SL_State$get : {};
         const {discountCodeActivityList} = null !== (_SL_State$get2 = state_selector.SL_State.get("productActivity")) && void 0 !== _SL_State$get2 ? _SL_State$get2 : {};
-        const js_vars = {
+        const discount_coupon_vars = {
             containerIdSel: ".sales__discountCouponBanner-container-hook",
             tagsSel: ".sales__discountCouponBanner-couponItem-hook",
             modalSel: "#salesCouponModalHook",
@@ -12779,16 +12413,16 @@
             }));
         }
         function handleTagsShow() {
-            const $tags = $(js_vars.tagsSel);
+            const $tags = __SL_$__(discount_coupon_vars.tagsSel);
             if (!$tags[0]) return;
             if ((0, isMobile["default"])()) $tags.css("display", "none").eq(0).css("display", "inline-block"); else $tags.css("display", "inline-block");
         }
         const initDiscountCoupon = (0, effectFc["default"])((function() {
             const {useEffect} = this;
-            const container = $(js_vars.containerIdSel);
-            const onlyOneContainer = $(js_vars.onlyOneContainerSel);
-            const drawer = new js_Drawer({
-                id: js_vars.drawerId,
+            const container = __SL_$__(discount_coupon_vars.containerIdSel);
+            const onlyOneContainer = __SL_$__(discount_coupon_vars.onlyOneContainerSel);
+            const drawer = new drawer_Drawer({
+                id: discount_coupon_vars.drawerId,
                 onSwitch(isShow) {
                     if (isShow) {
                         var _discountCodeActivity, _discountCodeActivity2;
@@ -12797,11 +12431,11 @@
                             spu_id: null === spu || void 0 === spu ? void 0 : spu.spuSeq,
                             activity_id: null === discountCodeActivityList || void 0 === discountCodeActivityList ? void 0 : null === (_discountCodeActivity = discountCodeActivityList.map) || void 0 === _discountCodeActivity ? void 0 : null === (_discountCodeActivity2 = _discountCodeActivity.call(discountCodeActivityList, (item => null === item || void 0 === item ? void 0 : item.activitySeq))) || void 0 === _discountCodeActivity2 ? void 0 : _discountCodeActivity2.join(",")
                         };
-                        hd.exposure(`#${js_vars.drawerId}`, {
+                        hd.exposure(`#${discount_coupon_vars.drawerId}`, {
                             event_id: 1319,
                             ...hdOptions
                         });
-                        hd.exposure(`#${js_vars.drawerId}`, {
+                        hd.exposure(`#${discount_coupon_vars.drawerId}`, {
                             event_id: 1320,
                             ...hdOptions
                         }, {
@@ -12812,8 +12446,8 @@
             });
             const modalShow = () => {
                 var _discountCodeActivity3, _discountCodeActivity4;
-                const modal = $(js_vars.modalSel);
-                modal.addClass(js_vars.modalShowClassName);
+                const modal = __SL_$__(discount_coupon_vars.modalSel);
+                modal.addClass(discount_coupon_vars.modalShowClassName);
                 const hdOptions = {
                     module: 129,
                     spu_id: null === spu || void 0 === spu ? void 0 : spu.spuSeq,
@@ -12831,25 +12465,24 @@
                 });
             };
             const modalHide = () => {
-                const modal = $(js_vars.modalSel);
-                if (modal.hasClass(js_vars.modalShowClassName)) modal.removeClass(js_vars.modalShowClassName);
+                const modal = __SL_$__(discount_coupon_vars.modalSel);
+                if (modal.hasClass(discount_coupon_vars.modalShowClassName)) modal.removeClass(discount_coupon_vars.modalShowClassName);
             };
             const modalToggle = () => {
-                const modal = $(js_vars.modalSel);
-                if (modal.hasClass(js_vars.modalShowClassName)) modalHide(); else modalShow();
+                const modal = __SL_$__(discount_coupon_vars.modalSel);
+                if (modal.hasClass(discount_coupon_vars.modalShowClassName)) modalHide(); else modalShow();
             };
             let isStopBtnApply = false;
-            const bindCouponApply = ({clickSel, applyClass, btnSel, containerSel}) => {
-                const $coupon = $(containerSel || clickSel);
-                const $clickEl = $(clickSel);
+            const bindCouponApply = ({clickSel, onApplySuccess}) => {
+                const $clickEl = __SL_$__(clickSel);
                 useEffect($clickEl, "on,off", "click", (e => {
                     var _discountCodeActivity5;
                     if (isStopBtnApply) return;
-                    const $el = $(e.currentTarget);
+                    const $el = __SL_$__(e.currentTarget);
                     const discountCode = $el.data("discount-code");
                     if (!discountCode) {
                         toast["default"].init({
-                            content: (0, i18n.t)("sales.discount-coupon.couponNoFound")
+                            content: (0, i18n.t)("sales.discount_coupon.coupon_not_found")
                         });
                         return;
                     }
@@ -12863,22 +12496,12 @@
                             isStopBtnApply = false;
                         }), 500);
                         toast["default"].init({
-                            content: (0, i18n.t)("sales.discount-coupon.applySuccess")
+                            content: (0, i18n.t)("sales.discount_coupon.applied_successfully")
                         });
-                        $coupon.removeClass(applyClass);
-                        const $btns = $coupon.find(btnSel);
-                        $btns.text($btns.data("apply"));
-                        $(containerSel).each((function() {
-                            const $self = $(this);
-                            const $btnItems = $self.find(btnSel);
-                            if ($self.data("discount-code") === discountCode) {
-                                $self.addClass(applyClass);
-                                $btnItems.text($btnItems.data("applied"));
-                            }
-                        }));
+                        if ("function" === typeof onApplySuccess) onApplySuccess(discountCode);
                     })).catch((() => {
                         toast["default"].init({
-                            content: (0, i18n.t)("sales.discount-coupon.applyFail")
+                            content: (0, i18n.t)("sales.discount_coupon.failed_to_apply_coupon_code")
                         });
                     }));
                     cartIdPromise.then((() => {
@@ -12907,14 +12530,14 @@
                         spu_id: null === spu || void 0 === spu ? void 0 : spu.spuSeq
                     });
                 }));
-                useEffect($(js_vars.modalSel), "on,off", "click", (e => {
+                useEffect(__SL_$__(discount_coupon_vars.modalSel), "on,off", "click", (e => {
                     e.stopPropagation();
                 }));
-                useEffect($(document.body), "on,off", "click", (e => {
+                useEffect(__SL_$__(document.body), "on,off", "click", (e => {
                     const {target} = e;
                     const containerDom = container.get(0);
                     if (containerDom.contains(target) || containerDom === target) return;
-                    const drawerContainer = document.querySelector(`#${js_vars.drawerId}`);
+                    const drawerContainer = document.querySelector(`#${discount_coupon_vars.drawerId}`);
                     if (drawerContainer && drawerContainer.contains(target) || drawerContainer === target) return;
                     if ((0, isMobile["default"])() && drawer.getShowStatus()) drawer.hide();
                     if (!(0, isMobile["default"])()) modalHide();
@@ -12926,26 +12549,53 @@
                         modalShow();
                     }
                     if ((0, isMobile["default"])()) {
-                        const modal = $(js_vars.modalSel);
-                        if (modal.hasClass(js_vars.modalShowClassName)) drawer.show();
+                        const modal = __SL_$__(discount_coupon_vars.modalSel);
+                        if (modal.hasClass(discount_coupon_vars.modalShowClassName)) drawer.show();
                         modalHide();
                     }
                 }));
                 window.SL_EventBus.on("global:currency:format", (() => {
                     const amountNode = container.find("[data-amount]");
                     amountNode.each((function() {
-                        $(this).text((0, CurrencyConvert.convertFormat)($(this).data("amount")));
+                        __SL_$__(this).text((0, CurrencyConvert.convertFormat)(__SL_$__(this).data("amount")));
                     }));
-                    const drawerAmountNode = $(`#${js_vars.drawerId}`).find("[data-amount]");
+                    const drawerAmountNode = __SL_$__(`#${discount_coupon_vars.drawerId}`).find("[data-amount]");
                     drawerAmountNode.each((function() {
-                        $(this).text((0, CurrencyConvert.convertFormat)($(this).data("amount")));
+                        __SL_$__(this).text((0, CurrencyConvert.convertFormat)(__SL_$__(this).data("amount")));
                     }));
                 }));
                 bindCouponApply({
-                    clickSel: js_vars.couponsSel,
-                    applyClass: js_vars.applyClass,
-                    btnSel: js_vars.btnSel,
-                    containerSel: js_vars.couponsSel
+                    clickSel: discount_coupon_vars.couponsSel,
+                    onApplySuccess: discountCode => {
+                        const $coupon = __SL_$__(discount_coupon_vars.couponsSel);
+                        const $btns = $coupon.find(discount_coupon_vars.btnSel);
+                        const btnData = $btns.data();
+                        $coupon.removeClass(discount_coupon_vars.applyClass);
+                        $btns.text(btnData.apply || "");
+                        $btns.each((function() {
+                            const $self = __SL_$__(this);
+                            const selfData = $self.data();
+                            if (true === selfData.isCustom) $self.css({
+                                "background-color": selfData.btnBgColor,
+                                color: selfData.btnTextColor,
+                                border: "none"
+                            });
+                        }));
+                        $coupon.each((function() {
+                            const $self = __SL_$__(this);
+                            const $btnItems = $self.find(discount_coupon_vars.btnSel);
+                            if ($self.data("discount-code") === discountCode) {
+                                $self.addClass(discount_coupon_vars.applyClass);
+                                $btnItems.text($btnItems.data("applied"));
+                                const btnItemsData = $btnItems.data();
+                                if (true === btnItemsData.isCustom) $btnItems.css({
+                                    color: btnItemsData.btnBgColor,
+                                    "background-color": "transparent",
+                                    border: `1px solid ${btnItemsData.btnBgColor}`
+                                });
+                            }
+                        }));
+                    }
                 });
                 handleTagsShow();
             } else if (onlyOneContainer.length) {
@@ -12957,21 +12607,33 @@
                     });
                 }));
                 bindCouponApply({
-                    clickSel: js_vars.onlyOneClickSel,
-                    applyClass: js_vars.onlyOneApplyClass,
-                    btnSel: js_vars.onlyOneBtnSel,
-                    containerSel: js_vars.onlyOneContainerSel
+                    clickSel: discount_coupon_vars.onlyOneClickSel,
+                    onApplySuccess: discountCode => {
+                        const $coupon = __SL_$__(discount_coupon_vars.onlyOneContainerSel);
+                        const $btns = $coupon.find(discount_coupon_vars.onlyOneBtnSel);
+                        const btnData = $btns.data();
+                        $coupon.removeClass(discount_coupon_vars.onlyOneApplyClass);
+                        $btns.text(btnData.apply || "");
+                        $coupon.each((function() {
+                            const $self = __SL_$__(this);
+                            const $btnItems = $self.find(discount_coupon_vars.onlyOneBtnSel);
+                            if ($self.data("discount-code") === discountCode) {
+                                $self.addClass(discount_coupon_vars.onlyOneApplyClass);
+                                $btnItems.text($btnItems.data("applied"));
+                            }
+                        }));
+                    }
                 });
                 window.SL_EventBus.on("global:currency:format", (() => {
                     const amountNode = onlyOneContainer.find("[data-amount]");
                     amountNode.each((function() {
-                        $(this).text((0, CurrencyConvert.convertFormat)($(this).data("amount")));
+                        __SL_$__(this).text((0, CurrencyConvert.convertFormat)(__SL_$__(this).data("amount")));
                     }));
                 }));
             }
             if (null !== discountCodeActivityList && void 0 !== discountCodeActivityList && discountCodeActivityList.length) {
                 var _discountCodeActivity6, _discountCodeActivity7;
-                hd.exposure(`${js_vars.onlyOneContainerSel},${js_vars.containerIdSel}`, {
+                hd.exposure(`${discount_coupon_vars.onlyOneContainerSel},${discount_coupon_vars.containerIdSel}`, {
                     event_id: 1317,
                     module: 128,
                     spu_id: null === spu || void 0 === spu ? void 0 : spu.spuSeq,
@@ -12979,7 +12641,7 @@
                 });
             }
         }));
-        const discount_coupon_js = initDiscountCoupon;
+        const discount_coupon = initDiscountCoupon;
         var baseReport = __webpack_require__("../shared/browser/report/common/baseReport.js");
         var stage_const = __webpack_require__("../shared/browser/report/stage/const.js");
         class ProductPreviewReport extends baseReport.BaseReport {
@@ -13069,6 +12731,10 @@
                 console.error(e);
             }
         };
+        const getSortationIds = spu => {
+            if (spu && spu.sortationList && Array.isArray(spu.sortationList)) return spu.sortationList.map((s => s.sortationId)).join(",");
+            return "";
+        };
         function thirdPartReport({activeSku, spu, sku}) {
             var _sku$skuList, _spu$sortationList, _spu$sortationList$, _spu$sortationList2, _spu$sortationList2$;
             const newActiveSku = activeSku || (null === sku || void 0 === sku ? void 0 : null === (_sku$skuList = sku.skuList) || void 0 === _sku$skuList ? void 0 : _sku$skuList[0]);
@@ -13138,8 +12804,8 @@
                         const $dom = document.querySelector(`${pcWrapperSelector} .swiper-container`);
                         if (!$dom) return;
                         const childHtml = $dom.outerHTML;
-                        $(`${pcWrapperSelector} .swiper-container`).remove();
-                        $(`${pcWrapperSelector}`).prepend(`<div class="swiper-border-shadow-container">${childHtml}</div>`);
+                        __SL_$__(`${pcWrapperSelector} .swiper-container`).remove();
+                        __SL_$__(`${pcWrapperSelector}`).prepend(`<div class="swiper-border-shadow-container">${childHtml}</div>`);
                     }
                 });
             } catch (e) {
@@ -13152,7 +12818,7 @@
                 spu,
                 sku
             });
-            const addToCartList = new snippets_addToCartList(spu, sku);
+            const addToCartList = new add_to_cart_list(spu, sku);
             addToCartList.init();
             const ButtonGroup = new product_button["default"]({
                 id,
@@ -13274,7 +12940,7 @@
                     emitViewContent({
                         content_spu_id: spu.spuSeq,
                         content_sku_id,
-                        content_category: "",
+                        content_category: getSortationIds(spu),
                         currency: null === (_window3 = window) || void 0 === _window3 ? void 0 : null === (_window3$SL_State = _window3.SL_State) || void 0 === _window3$SL_State ? void 0 : _window3$SL_State.get("storeInfo.currency"),
                         value: price,
                         quantity: 1,
@@ -13345,13 +13011,13 @@
                     });
                 }
             });
-            const unmountPromotionTags = salesAutoCouponBanner(`#product-info_${id}`);
-            const unmountedDiscountCoupon = discount_coupon_js();
+            const unmountPromotionTags = auto_coupon_banner(`#product-info_${id}`);
+            const unmountedDiscountCoupon = discount_coupon();
             window.SL_EventBus.on("global:currency:format", (() => {
                 (0, product_info["default"])(id, statePath, quantityStepper.activeSku);
             }));
             try {
-                const flashSale = new snippets_flashSale;
+                const flashSale = new flash_sale;
                 flashSale.init();
             } catch (e) {
                 console.log("初始化限时促销工具出错");
@@ -13382,7 +13048,7 @@
                     emitViewContent({
                         content_spu_id: spu.spuSeq,
                         content_sku_id,
-                        content_category: "",
+                        content_category: getSortationIds(spu),
                         currency: null === (_window4 = window) || void 0 === _window4 ? void 0 : null === (_window4$SL_State = _window4.SL_State) || void 0 === _window4$SL_State ? void 0 : _window4$SL_State.get("storeInfo.currency"),
                         value: price,
                         quantity: 1,
@@ -13463,8 +13129,8 @@
             }
             render() {
                 const template = toast_getTemplate(this.options, this.type || this.options.type);
-                this.$toast = $(template);
-                this.$target = $(this.options.target);
+                this.$toast = __SL_$__(template);
+                this.$target = __SL_$__(this.options.target);
                 const {$target} = this;
                 if ("static" === $target.css("position")) $target.css("position", "relative");
                 $target.append(this.$toast);
@@ -13511,17 +13177,17 @@
             const {userLimitedType, acquirePerUserLimit} = saleBuyLimitConfig || {};
             switch (userLimitedType) {
               case TOAST_TYPE.ACTIVE_PURCHASE_LIMIITED:
-                return (0, i18n.t)("productDetail.activityToast.product-limit", {
+                return (0, i18n.t)("products.product_details.activity_toast_product__limit", {
                     stock: acquirePerUserLimit > 0 ? acquirePerUserLimit : "0"
                 });
 
               case TOAST_TYPE.PRODUCT_PURCHASE_LIMIITED:
-                return (0, i18n.t)("productDetail.activityToast.price-limit", {
+                return (0, i18n.t)("products.product_details.activity_toast_price_limit", {
                     num: acquirePerUserLimit > 0 ? acquirePerUserLimit : "0"
                 });
 
               case TOAST_TYPE.ACTIVE_NOSTOCK:
-                return (0, i18n.t)("productDetail.activityToast.title-limit");
+                return (0, i18n.t)("products.product_details.activity_toast_title__limit");
 
               default:
                 return "";
@@ -13638,7 +13304,7 @@
             }
             init(domReady) {
                 if (domReady) {
-                    this.$stepper = $(this.root);
+                    this.$stepper = __SL_$__(this.root);
                     this.initEvent();
                 } else this.createAndInitDom();
                 this.toast = new components_toast["default"];
@@ -13675,7 +13341,7 @@
                         this.data.value = this.data.max;
                         if (!this.data.disabled) {
                             overStockLimit = 1;
-                            if (this.data.showOverStockToast) this.toast.open((0, i18n.t)("common.stock-limit", {
+                            if (this.data.showOverStockToast) this.toast.open((0, i18n.t)("cart.stock.limit", {
                                 stock: this.data.max
                             }), 1e3);
                         }
@@ -13685,7 +13351,7 @@
                 }));
             }
             createAndInitDom() {
-                $(this.root).html(`<div>stepper</div>`);
+                __SL_$__(this.root).html(`<div>stepper</div>`);
             }
             setSingleDisabled(position, disabled) {
                 if (disabled) this.$stepper.children(`.stepper-${position}`).addClass("disabled"); else this.$stepper.children(`.stepper-${position}`).removeClass("disabled");
@@ -13718,7 +13384,7 @@
                 this.spu = spu;
                 this.id = id;
                 this.root = `#product-detail-sku-quantity_${id}`;
-                this.isOpenFlashSale = isOpenFlashSale || $(`#has-b2b-plugin-${id}`).length <= 0;
+                this.isOpenFlashSale = isOpenFlashSale || __SL_$__(`#has-b2b-plugin-${id}`).length <= 0;
                 this.dataPool = dataPool || new DataWatcher["default"];
                 this.onChange = onChange;
                 this.isCheckStock = isCheckStock;
@@ -13742,7 +13408,7 @@
                 var _this$spu, _this$activeSku4;
                 this.skuStepper = new sku_stepper({
                     domReady: true,
-                    root: $(`#product-detail-sku-stepper_${this.id}`),
+                    root: __SL_$__(`#product-detail-sku-stepper_${this.id}`),
                     max: this.getMax(),
                     value: initValue,
                     min: 1,
@@ -13765,14 +13431,14 @@
                 var _this$activeSku5, _this$activeSku6;
                 const showTips = this.isTrackStock() && this.activeSku && (null === (_this$activeSku5 = this.activeSku) || void 0 === _this$activeSku5 ? void 0 : _this$activeSku5.stock) < 10 && (null === (_this$activeSku6 = this.activeSku) || void 0 === _this$activeSku6 ? void 0 : _this$activeSku6.stock) > 0;
                 if (showTips) {
-                    const content = (0, i18n.t)(`common.stock-limit`, {
+                    const content = (0, i18n.t)(`cart.stock.limit`, {
                         stock: this.activeSku.stock
                     });
                     this.setErrorTips(showTips, content);
                 } else this.setErrorTips(showTips);
             }
             setErrorTips(show, content) {
-                if (show) $(this.root).children(".stepper-tip").html(content).removeClass("hide"); else $(this.root).children(".stepper-tip").addClass("hide");
+                if (show) __SL_$__(this.root).children(".stepper-tip").html(content).removeClass("hide"); else __SL_$__(this.root).children(".stepper-tip").addClass("hide");
             }
             setCurrentNum(num) {
                 const data = {
@@ -13798,7 +13464,7 @@
                 this.activeSku = sku;
                 if (current > this.getMax()) {
                     current = this.getMax();
-                    if (!sku.soldOut) this.skuStepper.toast.open((0, i18n.t)(`common.stock-limit`, {
+                    if (!sku.soldOut) this.skuStepper.toast.open((0, i18n.t)(`cart.stock.limit`, {
                         stock: current
                     }), 1e3);
                 }
@@ -14005,7 +13671,7 @@
         class BaseSkuTrade {
             constructor({sku, spu, initialSkuSeq, dataPool, root, domReady, onInit, onChange, onDestory, mixins}) {
                 this.mixins = mixins;
-                this.root = $(root);
+                this.root = __SL_$__(root);
                 if (dataPool) this.dataPool = dataPool; else this.dataPool = new DataWatcher["default"];
                 if (!this.dataPool.inited) {
                     this.dataPool.sku = sku || {};
@@ -14155,10 +13821,10 @@
             }
             initDom() {
                 this.root.children(".spec-box").each(((_, el) => {
-                    const box = $(el);
+                    const box = __SL_$__(el);
                     const index = box.data("index");
                     box.children(".attr-box").children(".attr-value").each(((__, valueEl) => {
-                        const valueJQ = $(valueEl);
+                        const valueJQ = __SL_$__(valueEl);
                         const i = valueJQ.data("index");
                         valueJQ.on("click", (() => {
                             this.clickAttr(index, i);
@@ -14178,20 +13844,20 @@
                 const root = this.root.addClass("product-sku-trade");
                 this.dataPool.attrArray.forEach(((spec, index) => {
                     if (!spec.hidden) {
-                        const specBox = $('<div class="spec-box"></div>');
+                        const specBox = __SL_$__('<div class="spec-box"></div>');
                         specBox.data("index", index);
                         specBox.append(`<div class="spec-name body6 ls-30p text-uppercase">${spec.specName}</div>`);
-                        const attrBox = $('<div class="attr-box body3"></div>');
+                        const attrBox = __SL_$__('<div class="attr-box body3"></div>');
                         specBox.append(attrBox);
                         spec.specAttrList.forEach(((value, i) => {
                             const {imgUrl} = value;
                             let valueJQ;
                             if (imgUrl) {
-                                valueJQ = $(`<div class="attr-value with-img"><img class="value-img" src="${imgUrl}"></div>`);
+                                valueJQ = __SL_$__(`<div class="attr-value with-img"><img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  class="value-img" src="${imgUrl}"></div>`);
                                 if (!spec.onlyShowAttrImg) valueJQ.append(`<span class="value-text">${value.name}</span>`); else valueJQ.tooltip({
                                     title: value.name
                                 });
-                            } else valueJQ = $(`<div class="attr-value"><span>${value.name}</span></div>`);
+                            } else valueJQ = __SL_$__(`<div class="attr-value"><span>${value.name}</span></div>`);
                             valueJQ.data("index", i);
                             attrBox.append(valueJQ);
                             valueJQ.on("click", (() => {
@@ -14209,7 +13875,7 @@
             render() {
                 super.beforeUpdate();
                 this.root.children(".spec-box").each(((_, el) => {
-                    const boxEl = $(el);
+                    const boxEl = __SL_$__(el);
                     const valueEls = boxEl.children(".attr-box").children(".attr-value");
                     const index = boxEl.data("index");
                     const nameItem = this.dataPool.attrArray[index];
@@ -14218,7 +13884,7 @@
                         if (attrValue) boxEl.find(".spec-name").text(`${nameItem.specName}：${attrValue}`); else boxEl.find(".spec-name").text(nameItem.specName);
                     }
                     valueEls.each(((__, el_) => {
-                        const valueEl = $(el_);
+                        const valueEl = __SL_$__(el_);
                         const i = valueEl.data("index");
                         const valueItem = nameItem.specAttrList[i];
                         const disabled = !this.isPreview() ? this.dataPool.skuUtil.checkSpecAttrDisabled(this.dataPool.currentSpecList, valueItem.id, index) : false;
@@ -14249,7 +13915,7 @@
                     this.currentEntry = null;
                     this.currentDropdown = null;
                     this.currentIndex = null;
-                    $(window).off("click", this.closeItem);
+                    __SL_$__(window).off("click", this.closeItem);
                 };
                 this.openItem = (entry, dropdown) => {
                     const currentIndex = entry.data("index");
@@ -14263,7 +13929,7 @@
                     dropdown.fadeIn(200);
                     this.showPopup();
                     console.log("openItem");
-                    $(window).on("click", this.closeItem);
+                    __SL_$__(window).on("click", this.closeItem);
                 };
             }
             initFirstChecked() {
@@ -14272,18 +13938,18 @@
             createPopupDom() {
                 const that = this;
                 const popupId = `skutradeselectpopup_${Date.now()}`;
-                this.popup = $(`<div id="${popupId}" class="product-sku-trade-select-popup"><div class="select-options body-font select-popup"><div><div>`).on("click", (e => {
+                this.popup = __SL_$__(`<div id="${popupId}" class="product-sku-trade-select-popup"><div class="select-options body-font select-popup"><div><div>`).on("click", (e => {
                     if (e.target.classList.contains("product-sku-trade-select-popup")) this.closeItem();
                     e.stopPropagation();
                 }));
                 this.popup.children(".select-popup").on("click", ".select-item", (function(e) {
                     e.stopPropagation();
-                    const i = $(this).data("index");
-                    const active = $(this).prop("active");
+                    const i = __SL_$__(this).data("index");
+                    const active = __SL_$__(this).prop("active");
                     if (!active) that.clickAttr(that.currentIndex, i);
                     that.closeItem();
                 }));
-                $(document.body).append(this.popup);
+                __SL_$__(document.body).append(this.popup);
             }
             showPopup() {
                 var _this$dataPool$attrAr, _this$dataPool$attrAr2;
@@ -14296,7 +13962,7 @@
                 null === (_this$dataPool$attrAr = this.dataPool.attrArray[index]) || void 0 === _this$dataPool$attrAr ? void 0 : null === (_this$dataPool$attrAr2 = _this$dataPool$attrAr.specAttrList) || void 0 === _this$dataPool$attrAr2 ? void 0 : _this$dataPool$attrAr2.forEach(((valueItem, i) => {
                     const disabled = this.dataPool.skuUtil.checkSpecAttrDisabled(this.dataPool.currentSpecList, valueItem.id, index);
                     const active = this.dataPool.skuUtil.checkSpecAttrActive(this.dataPool.currentSpecList, valueItem.id);
-                    const valueEl = $(`<div class="select-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}">${valueItem.imgUrl ? `<img class="select-img" src="${valueItem.imgUrl}" />` : ""}<span class="select-text">${valueItem.name}</span><span class="select-checked"></span></div>`);
+                    const valueEl = __SL_$__(`<div class="select-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}">${valueItem.imgUrl ? `<img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  class="select-img" src="${valueItem.imgUrl}" />` : ""}<span class="select-text">${valueItem.name}</span><span class="select-checked"></span></div>`);
                     valueEl.data("index", i);
                     valueEl.prop("active", active);
                     popupBody.append(valueEl);
@@ -14307,13 +13973,13 @@
                 this.popup.animate({
                     opacity: 0
                 }, 200, (function() {
-                    $(this).hide().children(".select-popup").empty();
+                    __SL_$__(this).hide().children(".select-popup").empty();
                 })).children(".select-popup").removeClass("open");
             }
             initDom() {
                 const that = this;
                 this.root.children(".spec-box").each(((_, el) => {
-                    const box = $(el);
+                    const box = __SL_$__(el);
                     const index = box.data("index");
                     const selectBox = box.children(".select-box");
                     const entry = selectBox.children(".select-entry");
@@ -14323,8 +13989,8 @@
                         this.openItem(entry, dropdown);
                     }));
                     dropdown.on("click", ".select-item", (function() {
-                        const i = $(this).data("index");
-                        const active = $(this).prop("active");
+                        const i = __SL_$__(this).data("index");
+                        const active = __SL_$__(this).prop("active");
                         that.closeItem();
                         if (!active) that.clickAttr(index, i);
                     }));
@@ -14336,24 +14002,24 @@
                 this.root.addClass("product-sku-trade-select");
                 this.dataPool.attrArray.forEach(((spec, index) => {
                     if (!spec.hidden) {
-                        const specBox = $('<div class="spec-box"></div>').data("index", index);
+                        const specBox = __SL_$__('<div class="spec-box"></div>').data("index", index);
                         this.root.append(specBox);
-                        const selectBox = $(`<div class="select-box"></div>`);
+                        const selectBox = __SL_$__(`<div class="select-box"></div>`);
                         specBox.append(`<div class="spec-name body6 ls-30p text-uppercase">${spec.specName}</div>`, selectBox);
-                        const entry = $('<div class="select-entry"><img style="display: none" class="entry-img" src=""><span class="entry-text body3"></span><span class="entry-arrow"></span></div>').data("index", index);
-                        const dropdown = $('<div class="select-options body-font select-dropdown"></div>');
+                        const entry = __SL_$__(`<div class="select-entry"><img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  style="display: none" class="entry-img" src=""><span class="entry-text body3"></span><span class="entry-arrow"></span></div>`).data("index", index);
+                        const dropdown = __SL_$__('<div class="select-options body-font select-dropdown"></div>');
                         selectBox.append(entry, dropdown);
                         spec.specAttrList.forEach(((value, i) => {
                             const {imgUrl, name} = value;
-                            dropdown.append($(`<div class="select-item">${imgUrl ? `<img class="select-img" src="${imgUrl}" >` : ""}<span class="select-text">${name}</span><span class="select-checked"></span></div>\n              `).data("index", i));
+                            dropdown.append(__SL_$__(`<div class="select-item">${imgUrl ? `<img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  class="select-img" src="${imgUrl}" >` : ""}<span class="select-text">${name}</span><span class="select-checked"></span></div>\n              `).data("index", i));
                         }));
                         entry.on("click", (e => {
                             e.stopPropagation();
                             this.openItem(entry, dropdown);
                         }));
                         dropdown.on("click", ".select-item", (function() {
-                            const i = $(this).data("index");
-                            const active = $(this).prop("active");
+                            const i = __SL_$__(this).data("index");
+                            const active = __SL_$__(this).prop("active");
                             that.closeItem();
                             if (!active) that.clickAttr(index, i);
                         }));
@@ -14363,7 +14029,7 @@
             render() {
                 super.beforeUpdate();
                 this.root.children(".spec-box").each(((_, el) => {
-                    const boxEl = $(el);
+                    const boxEl = __SL_$__(el);
                     const index = boxEl.data("index");
                     const currentValue = this.getAttrValue(index);
                     const seletBox = boxEl.children(".select-box").children(".select-entry");
@@ -14372,11 +14038,11 @@
                     const text = seletBox.children(".entry-text");
                     if (imgUrl) img.show().prop("src", imgUrl); else img.hide().prop("src", "");
                     if (name) text.text(name); else if (currentValue) text.text(""); else text.text((0, 
-                    i18n.t)("productDetail.default-placeholder", {
+                    i18n.t)("products.product_details.default_placeholder", {
                         attrName: this.dataPool.attrArray[index].specName
                     }));
                     boxEl.children(".select-box").children(".select-options").children(".select-item").each(((__, el_) => {
-                        const valueEl = $(el_);
+                        const valueEl = __SL_$__(el_);
                         const i = valueEl.data("index");
                         const valueItem = this.dataPool.attrArray[index].specAttrList[i];
                         const disabled = this.dataPool.skuUtil.checkSpecAttrDisabled(this.dataPool.currentSpecList, valueItem.id, index);
@@ -14396,7 +14062,7 @@
         }
         const sku_trade_select = SkuTradeSelect;
         function initSku({id, sku, spu, mixins, onInit, onChange, dataPool}) {
-            const dataDom = $(`#product-sku-trade-data_${id}`);
+            const dataDom = __SL_$__(`#product-sku-trade-data_${id}`);
             const skuStyle = dataDom.data("skustyle");
             const selectSku = dataDom.data("selectsku");
             const SkuClass = "flatten" === skuStyle ? sku_trade_flatten : sku_trade_select;
@@ -14428,14 +14094,1395 @@
         });
         var _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/i18n.js");
         var _yy_sl_theme_shared_utils_currency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/currency/CurrencyConvert.js");
-        var _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/utils/syntax-patch.js");
-        const nc = _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.nullishCoalescingOperator;
-        function setWrapper(value, warper) {
-            return warper ? `<span class="notranslate ${warper.class}" style="font-size: 14px; font-weight: bold;${nc(warper.style, "")}">${value}</span>` : value;
+        var _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/components/hbs/sales/shoppingPromotionReminder/index.js");
+        const getPromotionReminder = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_currency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat);
+        const getShoppingReminderTranslate = (promotion, configs, options) => {
+            const config = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_currency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat)(promotion, configs, options);
+            return (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)(config.path, config.params);
+        };
+        const __WEBPACK_DEFAULT_EXPORT__ = getPromotionReminder;
+    },
+    "../shared/browser/components/hbs/productImages/js/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => js,
+            isYoutube: () => isYoutube
+        });
+        var ssr_window_esm = __webpack_require__("./node_modules/ssr-window/ssr-window.esm.js");
+        var dom = __webpack_require__("./node_modules/swiper/esm/utils/dom.js");
+        var utils = __webpack_require__("./node_modules/swiper/esm/utils/utils.js");
+        function _extends() {
+            _extends = Object.assign || function(target) {
+                for (var i = 1; i < arguments.length; i++) {
+                    var source = arguments[i];
+                    for (var key in source) if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+                }
+                return target;
+            };
+            return _extends.apply(this, arguments);
         }
+        var Lazy = {
+            loadInSlide: function(index, loadInDuplicate) {
+                if (void 0 === loadInDuplicate) loadInDuplicate = true;
+                var swiper = this;
+                var params = swiper.params.lazy;
+                if ("undefined" === typeof index) return;
+                if (0 === swiper.slides.length) return;
+                var isVirtual = swiper.virtual && swiper.params.virtual.enabled;
+                var $slideEl = isVirtual ? swiper.$wrapperEl.children("." + swiper.params.slideClass + '[data-swiper-slide-index="' + index + '"]') : swiper.slides.eq(index);
+                var $images = $slideEl.find("." + params.elementClass + ":not(." + params.loadedClass + "):not(." + params.loadingClass + ")");
+                if ($slideEl.hasClass(params.elementClass) && !$slideEl.hasClass(params.loadedClass) && !$slideEl.hasClass(params.loadingClass)) $images.push($slideEl[0]);
+                if (0 === $images.length) return;
+                $images.each((function(imageEl) {
+                    var $imageEl = (0, dom["default"])(imageEl);
+                    $imageEl.addClass(params.loadingClass);
+                    var background = $imageEl.attr("data-background");
+                    var src = $imageEl.attr("data-src");
+                    var srcset = $imageEl.attr("data-srcset");
+                    var sizes = $imageEl.attr("data-sizes");
+                    var $pictureEl = $imageEl.parent("picture");
+                    swiper.loadImage($imageEl[0], src || background, srcset, sizes, false, (function() {
+                        if ("undefined" === typeof swiper || null === swiper || !swiper || swiper && !swiper.params || swiper.destroyed) return;
+                        if (background) {
+                            $imageEl.css("background-image", 'url("' + background + '")');
+                            $imageEl.removeAttr("data-background");
+                        } else {
+                            if (srcset) {
+                                $imageEl.attr("srcset", srcset);
+                                $imageEl.removeAttr("data-srcset");
+                            }
+                            if (sizes) {
+                                $imageEl.attr("sizes", sizes);
+                                $imageEl.removeAttr("data-sizes");
+                            }
+                            if ($pictureEl.length) $pictureEl.children("source").each((function(sourceEl) {
+                                var $source = (0, dom["default"])(sourceEl);
+                                if ($source.attr("data-srcset")) {
+                                    $source.attr("srcset", $source.attr("data-srcset"));
+                                    $source.removeAttr("data-srcset");
+                                }
+                            }));
+                            if (src) {
+                                $imageEl.attr("src", src);
+                                $imageEl.removeAttr("data-src");
+                            }
+                        }
+                        $imageEl.addClass(params.loadedClass).removeClass(params.loadingClass);
+                        $slideEl.find("." + params.preloaderClass).remove();
+                        if (swiper.params.loop && loadInDuplicate) {
+                            var slideOriginalIndex = $slideEl.attr("data-swiper-slide-index");
+                            if ($slideEl.hasClass(swiper.params.slideDuplicateClass)) {
+                                var originalSlide = swiper.$wrapperEl.children('[data-swiper-slide-index="' + slideOriginalIndex + '"]:not(.' + swiper.params.slideDuplicateClass + ")");
+                                swiper.lazy.loadInSlide(originalSlide.index(), false);
+                            } else {
+                                var duplicatedSlide = swiper.$wrapperEl.children("." + swiper.params.slideDuplicateClass + '[data-swiper-slide-index="' + slideOriginalIndex + '"]');
+                                swiper.lazy.loadInSlide(duplicatedSlide.index(), false);
+                            }
+                        }
+                        swiper.emit("lazyImageReady", $slideEl[0], $imageEl[0]);
+                        if (swiper.params.autoHeight) swiper.updateAutoHeight();
+                    }));
+                    swiper.emit("lazyImageLoad", $slideEl[0], $imageEl[0]);
+                }));
+            },
+            load: function() {
+                var swiper = this;
+                var $wrapperEl = swiper.$wrapperEl, swiperParams = swiper.params, slides = swiper.slides, activeIndex = swiper.activeIndex;
+                var isVirtual = swiper.virtual && swiperParams.virtual.enabled;
+                var params = swiperParams.lazy;
+                var slidesPerView = swiperParams.slidesPerView;
+                if ("auto" === slidesPerView) slidesPerView = 0;
+                function slideExist(index) {
+                    if (isVirtual) {
+                        if ($wrapperEl.children("." + swiperParams.slideClass + '[data-swiper-slide-index="' + index + '"]').length) return true;
+                    } else if (slides[index]) return true;
+                    return false;
+                }
+                function slideIndex(slideEl) {
+                    if (isVirtual) return (0, dom["default"])(slideEl).attr("data-swiper-slide-index");
+                    return (0, dom["default"])(slideEl).index();
+                }
+                if (!swiper.lazy.initialImageLoaded) swiper.lazy.initialImageLoaded = true;
+                if (swiper.params.watchSlidesVisibility) $wrapperEl.children("." + swiperParams.slideVisibleClass).each((function(slideEl) {
+                    var index = isVirtual ? (0, dom["default"])(slideEl).attr("data-swiper-slide-index") : (0, 
+                    dom["default"])(slideEl).index();
+                    swiper.lazy.loadInSlide(index);
+                })); else if (slidesPerView > 1) {
+                    for (var i = activeIndex; i < activeIndex + slidesPerView; i += 1) if (slideExist(i)) swiper.lazy.loadInSlide(i);
+                } else swiper.lazy.loadInSlide(activeIndex);
+                if (params.loadPrevNext) if (slidesPerView > 1 || params.loadPrevNextAmount && params.loadPrevNextAmount > 1) {
+                    var amount = params.loadPrevNextAmount;
+                    var spv = slidesPerView;
+                    var maxIndex = Math.min(activeIndex + spv + Math.max(amount, spv), slides.length);
+                    var minIndex = Math.max(activeIndex - Math.max(spv, amount), 0);
+                    for (var _i = activeIndex + slidesPerView; _i < maxIndex; _i += 1) if (slideExist(_i)) swiper.lazy.loadInSlide(_i);
+                    for (var _i2 = minIndex; _i2 < activeIndex; _i2 += 1) if (slideExist(_i2)) swiper.lazy.loadInSlide(_i2);
+                } else {
+                    var nextSlide = $wrapperEl.children("." + swiperParams.slideNextClass);
+                    if (nextSlide.length > 0) swiper.lazy.loadInSlide(slideIndex(nextSlide));
+                    var prevSlide = $wrapperEl.children("." + swiperParams.slidePrevClass);
+                    if (prevSlide.length > 0) swiper.lazy.loadInSlide(slideIndex(prevSlide));
+                }
+            },
+            checkInViewOnLoad: function() {
+                var window = (0, ssr_window_esm.getWindow)();
+                var swiper = this;
+                if (!swiper || swiper.destroyed) return;
+                var $scrollElement = swiper.params.lazy.scrollingElement ? (0, dom["default"])(swiper.params.lazy.scrollingElement) : (0, 
+                dom["default"])(window);
+                var isWindow = $scrollElement[0] === window;
+                var scrollElementWidth = isWindow ? window.innerWidth : $scrollElement[0].offsetWidth;
+                var scrollElementHeight = isWindow ? window.innerHeight : $scrollElement[0].offsetHeight;
+                var swiperOffset = swiper.$el.offset();
+                var rtl = swiper.rtlTranslate;
+                var inView = false;
+                if (rtl) swiperOffset.left -= swiper.$el[0].scrollLeft;
+                var swiperCoord = [ [ swiperOffset.left, swiperOffset.top ], [ swiperOffset.left + swiper.width, swiperOffset.top ], [ swiperOffset.left, swiperOffset.top + swiper.height ], [ swiperOffset.left + swiper.width, swiperOffset.top + swiper.height ] ];
+                for (var i = 0; i < swiperCoord.length; i += 1) {
+                    var point = swiperCoord[i];
+                    if (point[0] >= 0 && point[0] <= scrollElementWidth && point[1] >= 0 && point[1] <= scrollElementHeight) {
+                        if (0 === point[0] && 0 === point[1]) continue;
+                        inView = true;
+                    }
+                }
+                var passiveListener = "touchstart" === swiper.touchEvents.start && swiper.support.passiveListener && swiper.params.passiveListeners ? {
+                    passive: true,
+                    capture: false
+                } : false;
+                if (inView) {
+                    swiper.lazy.load();
+                    $scrollElement.off("scroll", swiper.lazy.checkInViewOnLoad, passiveListener);
+                } else if (!swiper.lazy.scrollHandlerAttached) {
+                    swiper.lazy.scrollHandlerAttached = true;
+                    $scrollElement.on("scroll", swiper.lazy.checkInViewOnLoad, passiveListener);
+                }
+            }
+        };
+        const lazy = {
+            name: "lazy",
+            params: {
+                lazy: {
+                    checkInView: false,
+                    enabled: false,
+                    loadPrevNext: false,
+                    loadPrevNextAmount: 1,
+                    loadOnTransitionStart: false,
+                    scrollingElement: "",
+                    elementClass: "swiper-lazy",
+                    loadingClass: "swiper-lazy-loading",
+                    loadedClass: "swiper-lazy-loaded",
+                    preloaderClass: "swiper-lazy-preloader"
+                }
+            },
+            create: function() {
+                var swiper = this;
+                (0, utils.bindModuleMethods)(swiper, {
+                    lazy: _extends({
+                        initialImageLoaded: false
+                    }, Lazy)
+                });
+            },
+            on: {
+                beforeInit: function(swiper) {
+                    if (swiper.params.lazy.enabled && swiper.params.preloadImages) swiper.params.preloadImages = false;
+                },
+                init: function(swiper) {
+                    if (swiper.params.lazy.enabled && !swiper.params.loop && 0 === swiper.params.initialSlide) if (swiper.params.lazy.checkInView) swiper.lazy.checkInViewOnLoad(); else swiper.lazy.load();
+                },
+                scroll: function(swiper) {
+                    if (swiper.params.freeMode && !swiper.params.freeModeSticky) swiper.lazy.load();
+                },
+                "scrollbarDragMove resize _freeModeNoMomentumRelease": function(swiper) {
+                    if (swiper.params.lazy.enabled) swiper.lazy.load();
+                },
+                transitionStart: function(swiper) {
+                    if (swiper.params.lazy.enabled) if (swiper.params.lazy.loadOnTransitionStart || !swiper.params.lazy.loadOnTransitionStart && !swiper.lazy.initialImageLoaded) swiper.lazy.load();
+                },
+                transitionEnd: function(swiper) {
+                    if (swiper.params.lazy.enabled && !swiper.params.lazy.loadOnTransitionStart) swiper.lazy.load();
+                },
+                slideChange: function(swiper) {
+                    var _swiper$params = swiper.params, lazy = _swiper$params.lazy, cssMode = _swiper$params.cssMode, watchSlidesVisibility = _swiper$params.watchSlidesVisibility, watchSlidesProgress = _swiper$params.watchSlidesProgress, touchReleaseOnEdges = _swiper$params.touchReleaseOnEdges, resistanceRatio = _swiper$params.resistanceRatio;
+                    if (lazy.enabled && (cssMode || (watchSlidesVisibility || watchSlidesProgress) && (touchReleaseOnEdges || 0 === resistanceRatio))) swiper.lazy.load();
+                }
+            }
+        };
+        function thumbs_extends() {
+            thumbs_extends = Object.assign || function(target) {
+                for (var i = 1; i < arguments.length; i++) {
+                    var source = arguments[i];
+                    for (var key in source) if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+                }
+                return target;
+            };
+            return thumbs_extends.apply(this, arguments);
+        }
+        var Thumbs = {
+            init: function() {
+                var swiper = this;
+                var thumbsParams = swiper.params.thumbs;
+                if (swiper.thumbs.initialized) return false;
+                swiper.thumbs.initialized = true;
+                var SwiperClass = swiper.constructor;
+                if (thumbsParams.swiper instanceof SwiperClass) {
+                    swiper.thumbs.swiper = thumbsParams.swiper;
+                    (0, utils.extend)(swiper.thumbs.swiper.originalParams, {
+                        watchSlidesProgress: true,
+                        slideToClickedSlide: false
+                    });
+                    (0, utils.extend)(swiper.thumbs.swiper.params, {
+                        watchSlidesProgress: true,
+                        slideToClickedSlide: false
+                    });
+                } else if ((0, utils.isObject)(thumbsParams.swiper)) {
+                    swiper.thumbs.swiper = new SwiperClass((0, utils.extend)({}, thumbsParams.swiper, {
+                        watchSlidesVisibility: true,
+                        watchSlidesProgress: true,
+                        slideToClickedSlide: false
+                    }));
+                    swiper.thumbs.swiperCreated = true;
+                }
+                swiper.thumbs.swiper.$el.addClass(swiper.params.thumbs.thumbsContainerClass);
+                swiper.thumbs.swiper.on("tap", swiper.thumbs.onThumbClick);
+                return true;
+            },
+            onThumbClick: function() {
+                var swiper = this;
+                var thumbsSwiper = swiper.thumbs.swiper;
+                if (!thumbsSwiper) return;
+                var clickedIndex = thumbsSwiper.clickedIndex;
+                var clickedSlide = thumbsSwiper.clickedSlide;
+                if (clickedSlide && (0, dom["default"])(clickedSlide).hasClass(swiper.params.thumbs.slideThumbActiveClass)) return;
+                if ("undefined" === typeof clickedIndex || null === clickedIndex) return;
+                var slideToIndex;
+                if (thumbsSwiper.params.loop) slideToIndex = parseInt((0, dom["default"])(thumbsSwiper.clickedSlide).attr("data-swiper-slide-index"), 10); else slideToIndex = clickedIndex;
+                if (swiper.params.loop) {
+                    var currentIndex = swiper.activeIndex;
+                    if (swiper.slides.eq(currentIndex).hasClass(swiper.params.slideDuplicateClass)) {
+                        swiper.loopFix();
+                        swiper._clientLeft = swiper.$wrapperEl[0].clientLeft;
+                        currentIndex = swiper.activeIndex;
+                    }
+                    var prevIndex = swiper.slides.eq(currentIndex).prevAll('[data-swiper-slide-index="' + slideToIndex + '"]').eq(0).index();
+                    var nextIndex = swiper.slides.eq(currentIndex).nextAll('[data-swiper-slide-index="' + slideToIndex + '"]').eq(0).index();
+                    if ("undefined" === typeof prevIndex) slideToIndex = nextIndex; else if ("undefined" === typeof nextIndex) slideToIndex = prevIndex; else if (nextIndex - currentIndex < currentIndex - prevIndex) slideToIndex = nextIndex; else slideToIndex = prevIndex;
+                }
+                swiper.slideTo(slideToIndex);
+            },
+            update: function(initial) {
+                var swiper = this;
+                var thumbsSwiper = swiper.thumbs.swiper;
+                if (!thumbsSwiper) return;
+                var slidesPerView = "auto" === thumbsSwiper.params.slidesPerView ? thumbsSwiper.slidesPerViewDynamic() : thumbsSwiper.params.slidesPerView;
+                var autoScrollOffset = swiper.params.thumbs.autoScrollOffset;
+                var useOffset = autoScrollOffset && !thumbsSwiper.params.loop;
+                if (swiper.realIndex !== thumbsSwiper.realIndex || useOffset) {
+                    var currentThumbsIndex = thumbsSwiper.activeIndex;
+                    var newThumbsIndex;
+                    var direction;
+                    if (thumbsSwiper.params.loop) {
+                        if (thumbsSwiper.slides.eq(currentThumbsIndex).hasClass(thumbsSwiper.params.slideDuplicateClass)) {
+                            thumbsSwiper.loopFix();
+                            thumbsSwiper._clientLeft = thumbsSwiper.$wrapperEl[0].clientLeft;
+                            currentThumbsIndex = thumbsSwiper.activeIndex;
+                        }
+                        var prevThumbsIndex = thumbsSwiper.slides.eq(currentThumbsIndex).prevAll('[data-swiper-slide-index="' + swiper.realIndex + '"]').eq(0).index();
+                        var nextThumbsIndex = thumbsSwiper.slides.eq(currentThumbsIndex).nextAll('[data-swiper-slide-index="' + swiper.realIndex + '"]').eq(0).index();
+                        if ("undefined" === typeof prevThumbsIndex) newThumbsIndex = nextThumbsIndex; else if ("undefined" === typeof nextThumbsIndex) newThumbsIndex = prevThumbsIndex; else if (nextThumbsIndex - currentThumbsIndex === currentThumbsIndex - prevThumbsIndex) newThumbsIndex = thumbsSwiper.params.slidesPerGroup > 1 ? nextThumbsIndex : currentThumbsIndex; else if (nextThumbsIndex - currentThumbsIndex < currentThumbsIndex - prevThumbsIndex) newThumbsIndex = nextThumbsIndex; else newThumbsIndex = prevThumbsIndex;
+                        direction = swiper.activeIndex > swiper.previousIndex ? "next" : "prev";
+                    } else {
+                        newThumbsIndex = swiper.realIndex;
+                        direction = newThumbsIndex > swiper.previousIndex ? "next" : "prev";
+                    }
+                    if (useOffset) newThumbsIndex += "next" === direction ? autoScrollOffset : -1 * autoScrollOffset;
+                    if (thumbsSwiper.visibleSlidesIndexes && thumbsSwiper.visibleSlidesIndexes.indexOf(newThumbsIndex) < 0) {
+                        if (thumbsSwiper.params.centeredSlides) if (newThumbsIndex > currentThumbsIndex) newThumbsIndex = newThumbsIndex - Math.floor(slidesPerView / 2) + 1; else newThumbsIndex = newThumbsIndex + Math.floor(slidesPerView / 2) - 1; else if (newThumbsIndex > currentThumbsIndex && 1 === thumbsSwiper.params.slidesPerGroup) ;
+                        thumbsSwiper.slideTo(newThumbsIndex, initial ? 0 : void 0);
+                    }
+                }
+                var thumbsToActivate = 1;
+                var thumbActiveClass = swiper.params.thumbs.slideThumbActiveClass;
+                if (swiper.params.slidesPerView > 1 && !swiper.params.centeredSlides) thumbsToActivate = swiper.params.slidesPerView;
+                if (!swiper.params.thumbs.multipleActiveThumbs) thumbsToActivate = 1;
+                thumbsToActivate = Math.floor(thumbsToActivate);
+                thumbsSwiper.slides.removeClass(thumbActiveClass);
+                if (thumbsSwiper.params.loop || thumbsSwiper.params.virtual && thumbsSwiper.params.virtual.enabled) for (var i = 0; i < thumbsToActivate; i += 1) thumbsSwiper.$wrapperEl.children('[data-swiper-slide-index="' + (swiper.realIndex + i) + '"]').addClass(thumbActiveClass); else for (var _i = 0; _i < thumbsToActivate; _i += 1) thumbsSwiper.slides.eq(swiper.realIndex + _i).addClass(thumbActiveClass);
+            }
+        };
+        const thumbs = {
+            name: "thumbs",
+            params: {
+                thumbs: {
+                    swiper: null,
+                    multipleActiveThumbs: true,
+                    autoScrollOffset: 0,
+                    slideThumbActiveClass: "swiper-slide-thumb-active",
+                    thumbsContainerClass: "swiper-container-thumbs"
+                }
+            },
+            create: function() {
+                var swiper = this;
+                (0, utils.bindModuleMethods)(swiper, {
+                    thumbs: thumbs_extends({
+                        swiper: null,
+                        initialized: false
+                    }, Thumbs)
+                });
+            },
+            on: {
+                beforeInit: function(swiper) {
+                    var thumbs = swiper.params.thumbs;
+                    if (!thumbs || !thumbs.swiper) return;
+                    swiper.thumbs.init();
+                    swiper.thumbs.update(true);
+                },
+                slideChange: function(swiper) {
+                    if (!swiper.thumbs.swiper) return;
+                    swiper.thumbs.update();
+                },
+                update: function(swiper) {
+                    if (!swiper.thumbs.swiper) return;
+                    swiper.thumbs.update();
+                },
+                resize: function(swiper) {
+                    if (!swiper.thumbs.swiper) return;
+                    swiper.thumbs.update();
+                },
+                observerUpdate: function(swiper) {
+                    if (!swiper.thumbs.swiper) return;
+                    swiper.thumbs.update();
+                },
+                setTransition: function(swiper, duration) {
+                    var thumbsSwiper = swiper.thumbs.swiper;
+                    if (!thumbsSwiper) return;
+                    thumbsSwiper.setTransition(duration);
+                },
+                beforeDestroy: function(swiper) {
+                    var thumbsSwiper = swiper.thumbs.swiper;
+                    if (!thumbsSwiper) return;
+                    if (swiper.thumbs.swiperCreated && thumbsSwiper) thumbsSwiper.destroy();
+                }
+            }
+        };
+        var core_class = __webpack_require__("./node_modules/swiper/esm/components/core/core-class.js");
+        var effect_fade = __webpack_require__("./node_modules/swiper/esm/components/effect-fade/effect-fade.js");
+        var navigation = __webpack_require__("./node_modules/swiper/esm/components/navigation/navigation.js");
+        var url = __webpack_require__("./node_modules/url/url.js");
+        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
+        var get_default = __webpack_require__.n(get);
+        var photoswipe_min = __webpack_require__("../shared/browser/node_modules/photoswipe/dist/photoswipe.min.js");
+        var photoswipe_min_default = __webpack_require__.n(photoswipe_min);
+        var photoswipe_ui_default_min = __webpack_require__("../shared/browser/node_modules/photoswipe/dist/photoswipe-ui-default.min.js");
+        var photoswipe_ui_default_min_default = __webpack_require__.n(photoswipe_ui_default_min);
+        var yt_player = __webpack_require__("../shared/browser/node_modules/yt-player/index.js");
+        var yt_player_default = __webpack_require__.n(yt_player);
+        var img_size = __webpack_require__("../shared/browser/utils/img-size.js");
+        const product_photoSwipeHtml = `\n  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">\n  <div class="pswp__bg"></div>\n    <div class="pswp__scroll-wrap">\n      <div class="pswp__container">\n          <div class="pswp__item"></div>\n          <div class="pswp__item"></div>\n          <div class="pswp__item"></div>\n      </div>\n      <div class="pswp__ui pswp__ui--hidden">\n        <button class="pswp__button pswp__button--arrow--left" title="Previous">\n          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">\n            <path d="M8 1L3 6L8 11" stroke-width="1.5" stroke-linecap="round"/>\n          </svg>        \n        </button>\n        <button class="pswp__button pswp__button--close" title="Close (Esc)">\n          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">\n            <path d="M10.8002 1.19999L1.2002 10.8" stroke-width="1.2" stroke-linecap="round"/>\n            <path d="M1.1998 1.19999L10.7998 10.8" stroke-width="1.2" stroke-linecap="round"/>\n          </svg>\n        </button>\n        <button class="pswp__button pswp__button--arrow--right" title="Next">\n          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">\n            <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round"/>\n          </svg>\n        </button>\n      </div>\n    </div>\n  </div>\n  </div>\n`;
+        var imgUrl = __webpack_require__("../shared/browser/components/hbs/shared/utils/imgUrl.js");
+        var getYouTubeCover = __webpack_require__("../shared/browser/components/hbs/shared/utils/getYouTubeCover.js");
+        const isIE = "undefined" !== typeof document && document.documentMode;
+        const isElementType = (element, type) => element.nodeName.toLowerCase() === type;
+        const isGif = url => /^.+\.gif(\?.*){0,1}$/.test(url);
+        const isS3FileUrl = url => /\.cloudfront\./.test(url) || /img\.myshopline\.com/.test(url) || /img-.*\.myshopline\.com/.test(url);
+        const makeIsLoaded = element => element.setAttribute("data-loaded", true);
+        const concatStr = (strs, symbol) => strs.filter(Boolean).join(symbol);
+        const transformSrcset = (srcset, transformer) => srcset.split(",").filter((str => "" !== str)).map((str => concatStr(transformer(...str.trim().split(" ")), " "))).join(",");
+        class SLFile {
+            constructor(url, base) {
+                const uri = new URL(url, base);
+                const paths = uri.pathname.split("/");
+                const filename = paths[paths.length - 1];
+                const [name, suffix] = filename.split(".");
+                const [originName, ...modifiers] = name.split("_");
+                this.uri = uri;
+                this.paths = paths;
+                this.name = originName;
+                this.suffix = suffix;
+                this.querys = this.uri.searchParams;
+                this.modifiers = modifiers;
+            }
+            toString() {
+                this.uri.pathname = concatStr([ ...this.paths.slice(0, -1), concatStr([ [ this.name, ...this.modifiers ].join("_"), this.suffix ], ".") ], "/");
+                return this.uri.toString();
+            }
+        }
+        const EnumAttributes = {
+            Iesrc: "data-iesrc",
+            Alt: "data-alt",
+            Src: "data-src",
+            Srcset: "data-srcset",
+            Poster: "data-poster",
+            ToggleClass: "data-toggle-class",
+            BackgroundImage: "data-background-image",
+            BackgroundImageSet: "data-background-image-set",
+            PlaceholderBackground: "data-placeholder-background"
+        };
+        EnumAttributes.Alt, EnumAttributes.Src, EnumAttributes.Iesrc, EnumAttributes.Srcset, 
+        EnumAttributes.Poster, EnumAttributes.ToggleClass, EnumAttributes.BackgroundImage, 
+        EnumAttributes.BackgroundImageSet;
+        function transformImageUrlToWebp(fileOrUrl, ignoreSetting = false) {
+            const file = "string" === typeof fileOrUrl ? new SLFile(fileOrUrl, window.location.href) : fileOrUrl;
+            if (!file.querys.has("t") || ignoreSetting) if (window.__isSupportWebp__) file.querys.set("t", "webp"); else if (file.suffix) file.querys.set("t", file.suffix);
+            return file.toString();
+        }
+        function getPosterUrl(url) {
+            if (!isGif(url) || !isS3FileUrl(url)) return;
+            const file = new SLFile(url, window.location.href);
+            if ("1" !== file.querys.get("_f")) return;
+            if ("poster" === file.modifiers[0]) return;
+            file.modifiers.unshift("poster");
+            file.suffix = "png";
+            return transformImageUrlToWebp(file, true);
+        }
+        function getPosterData({src, srcset}) {
+            const data = {};
+            if (src) data.src = getPosterUrl(src);
+            if (srcset) {
+                let srcsetHasPoster = false;
+                data.srcset = transformSrcset(srcset, ((url, breakpoint) => {
+                    const posterUrl = getPosterUrl(url);
+                    if (posterUrl) {
+                        srcsetHasPoster = true;
+                        return [ posterUrl, breakpoint ];
+                    }
+                    return [ url, breakpoint ];
+                }));
+                if (!srcsetHasPoster) delete data.srcset;
+            }
+            if (data.src || data.srcset) return data;
+        }
+        const image_gif_poster = {
+            attributes: [],
+            load(element) {
+                if (isElementType(element, "img")) {
+                    const src = element.getAttribute(EnumAttributes.Src);
+                    const srcset = element.getAttribute(EnumAttributes.Srcset);
+                    const sizes = element.getAttribute("sizes");
+                    let isSeted = false;
+                    const setImageData = ({src, srcset}, img = new Image) => {
+                        if (sizes) img.sizes = sizes;
+                        if (srcset) img.srcset = srcset;
+                        if (window.__PRELOAD_STATE__.imgNoReferrerSwitch) img.setAttribute("referrerpolicy", "same-origin");
+                        if (src) img.src = src;
+                        return img;
+                    };
+                    const setImageSrc = () => {
+                        if (isSeted) return;
+                        setImageData({
+                            src,
+                            srcset
+                        }, element);
+                        isSeted = true;
+                    };
+                    const posterData = getPosterData({
+                        src,
+                        srcset
+                    });
+                    if (posterData) {
+                        const bgImg = setImageData({
+                            src,
+                            srcset
+                        });
+                        const posterBgImage = setImageData(posterData);
+                        bgImg.onload = setImageSrc;
+                        posterBgImage.onerror = setImageSrc;
+                        setImageData(posterData, element);
+                    } else setImageSrc();
+                }
+            }
+        };
+        core_class["default"].use([ effect_fade["default"], lazy, thumbs, navigation["default"] ]);
+        const COLUMN = "column";
+        const ROW = "row";
+        const WRAP_PC_ID = ".product_pc_productImageContainer";
+        const WRAP_M_ID = ".product_mobile_productImageContainer";
+        function imgOnload(src, cb, failCb) {
+            if (!src) return;
+            const img = new Image;
+            img.onload = () => {
+                cb(img);
+            };
+            img.onerror = () => {
+                console.warn("imgOnError...", img);
+                failCb(img);
+            };
+            img.src = src;
+        }
+        function isYoutube(_url) {
+            const urlParse = url.parse(_url);
+            return "www.youtube.com" === urlParse.hostname;
+        }
+        class ProductImages {
+            constructor(options) {
+                const {selectorId, heightOnChange, swiperConfig, mediaList, beforeInit} = options || {};
+                this.mediaList = mediaList || [];
+                this.config = {};
+                this.swiperConfig = swiperConfig || {};
+                this.heightChangedCount = 0;
+                this.heightOnChange = heightOnChange || null;
+                this.slideItems = [];
+                if (!selectorId) {
+                    console.error(`初始化productImages组件失败，selectorId为空，请输入唯一id`);
+                    __SL_$__(WRAP_PC_ID).hide();
+                    __SL_$__(WRAP_M_ID).hide();
+                    return;
+                }
+                const pcWrapperSelector = `.${ProductImages.pcSelectorPrefix}_${selectorId}`;
+                const mobileWrapperSelector = `.${ProductImages.mobileSelectorPrefix}_${selectorId}`;
+                if (0 === __SL_$__(`${pcWrapperSelector}`).length || 0 === __SL_$__(`${mobileWrapperSelector}`).length) {
+                    console.error(`初始化productImages组件失败，请检查selectorId是否输错，应存在html上`);
+                    __SL_$__(pcWrapperSelector).hide();
+                    __SL_$__(mobileWrapperSelector).hide();
+                    return;
+                }
+                const pcWrapper = __SL_$__(`${pcWrapperSelector}`);
+                this.thumbsDirection = "aside" === pcWrapper.data("thumbs-direction") ? COLUMN : ROW;
+                this.showThumbsArrow = "true" === String(pcWrapper.data("show-thumbnail-arrow"));
+                this.productImageScale = "true" === String(__SL_$__(`.product_productImageScale_${selectorId}`).val());
+                this.productVideoMute = "true" === String(__SL_$__(`.product_productVideoMute_${selectorId}`).val());
+                this.productVideoLoop = "true" === String(__SL_$__(`.product_productVideoLoop_${selectorId}`).val());
+                this.mobileWidthRatio = __SL_$__(mobileWrapperSelector).hasClass("middleWidth") ? .75 : 1;
+                this.productImageLength = __SL_$__(".product_productImageLength").val();
+                this.id = pcWrapperSelector;
+                this.mobileId = mobileWrapperSelector;
+                beforeInit && beforeInit({
+                    pcWrapperSelector
+                });
+                this.mobileSwiper = this.initMobileProductImages(true);
+                this.swiper = this.initPcProductImages(true);
+                this.swiper && this.swiper.init();
+                this.pcVideo = this.initPcVideo();
+                this.mobileVideo = this.initMobileVideo();
+            }
+            setConfig(config) {
+                if (!this.config.app) this.config.app = [];
+                this.config.app.push(config.app);
+            }
+            verifySource(app) {
+                if (!get_default()(this, "config.app.length") || this.config.app.includes(app)) return true;
+                return false;
+            }
+            handleVideoPlayPause(player, type) {
+                if ("play" === type && player) player.play();
+                if ("pause" === type && player) player.pause();
+            }
+            handleUnifyVideoStatus(video, device, status) {
+                if (video && video.ytbVideo) {
+                    this.handleVideoPlayPause(video.ytbVideo.player, status);
+                    if ("mobile" === device) video.ytbVideo.playerStatus = status;
+                }
+                if (video && video.slVideo) {
+                    this.handleVideoPlayPause(video.slVideo.player, status);
+                    if ("mobile" === device) video.slVideo.playerStatus = status;
+                }
+            }
+            floatVideoDiff(player, platform) {
+                if ("youtube" === platform) {
+                    player.on("playing", (() => {
+                        window.SL_EventBus.emit("product:product-play-video");
+                    }));
+                    if (this.productVideoMute) player.mute();
+                    if (this.productVideoLoop) player.on("ended", (() => {
+                        player.play();
+                    }));
+                } else if ("sl" === platform) {
+                    player.addEventListener("playing", (() => {
+                        window.SL_EventBus.emit("product:product-play-video");
+                    }));
+                    if (this.productVideoMute) player.muted = true;
+                    if (this.productVideoLoop) player.addEventListener("ended", (() => {
+                        player.play();
+                    }));
+                }
+                window.SL_EventBus.on("global:popup:close", (() => {
+                    this.handleVideoPlayPause(player, "pause");
+                }));
+            }
+            initPcVideo() {
+                const ytbVideoPcSelector = `${this.id} .product_youTubeVideoBox`;
+                const ytbVideoDom = __SL_$__(ytbVideoPcSelector);
+                const slVideoDom = __SL_$__(`${this.id} .product_slVideoContainer`);
+                const ytbVideo = {
+                    player: null,
+                    playerStatus: "pause"
+                };
+                const slVideo = {
+                    player: null,
+                    playerStatus: "pause"
+                };
+                if (ytbVideoDom.length > 0) {
+                    ytbVideo.player = new (yt_player_default())(ytbVideoPcSelector, {
+                        modestBranding: true,
+                        controls: false
+                    });
+                    const videoId = ytbVideoDom.data("video-id");
+                    ytbVideo.player.load(videoId);
+                    this.floatVideoDiff(ytbVideo.player, "youtube");
+                }
+                if (slVideoDom.length > 0) {
+                    slVideo.player = slVideoDom.get(0);
+                    this.floatVideoDiff(slVideo.player, "sl");
+                }
+                return {
+                    ytbVideo,
+                    slVideo
+                };
+            }
+            initMobileVideoCoverClick(dom, video) {
+                dom.on("click", (() => {
+                    const shouldExecutePlayStatus = "pause" === video.playerStatus ? "play" : "pause";
+                    this.handleVideoPlayPause(video.player, shouldExecutePlayStatus);
+                    video.playerStatus = shouldExecutePlayStatus;
+                }));
+            }
+            initMobileVideo() {
+                const ytbVideoMDom = __SL_$__(`${this.mobileId} .swiper-slide`).not(".swiper-slide-duplicate").find(".product_youTubeVideoBox").addClass("product_youTubeMobileVideoBox");
+                const slVideoMDom = __SL_$__(`${this.mobileId} .swiper-slide`).not(".swiper-slide-duplicate").find(".product_slVideoContainer");
+                const ytbVideoCoverDom = __SL_$__(`${this.mobileId} [data-video-platform="youtube"]`).not(".swiper-slide-duplicate").find(".product_photoSwipe_image");
+                const slVideoCoverDom = __SL_$__(`${this.mobileId} [data-video-platform="sl"]`).not(".swiper-slide-duplicate").find(".product_photoSwipe_image");
+                const ytbVideo = {
+                    player: null,
+                    playerStatus: "pause"
+                };
+                const slVideo = {
+                    player: null,
+                    playerStatus: "pause"
+                };
+                if (ytbVideoMDom.length > 0) {
+                    ytbVideo.player = new (yt_player_default())(".product_youTubeMobileVideoBox", {
+                        modestBranding: true,
+                        controls: false
+                    });
+                    const videoId = ytbVideoMDom.data("video-id");
+                    ytbVideo.player.load(videoId);
+                    this.floatVideoDiff(ytbVideo.player, "youtube");
+                    this.initMobileVideoCoverClick(ytbVideoCoverDom, ytbVideo);
+                }
+                if (slVideoMDom.length > 0) {
+                    slVideo.player = slVideoMDom.get(0);
+                    this.floatVideoDiff(slVideo.player, "sl");
+                    this.initMobileVideoCoverClick(slVideoCoverDom, slVideo);
+                }
+                return {
+                    ytbVideo,
+                    slVideo
+                };
+            }
+            initPhotoSwipe(slidesWrapID, platform) {
+                if (0 === Number(this.productImageLength)) return;
+                const slidesSelector = `${slidesWrapID} .product_productImages`;
+                const triggerDom = __SL_$__(slidesSelector);
+                const eventDom = "mobile" === platform ? ".scaleImageIcon" : ".swiper-slide";
+                const self = this;
+                self.updatePhotoSwipeItems(slidesWrapID);
+                triggerDom.on("click", eventDom, (function() {
+                    if (__SL_$__(this).hasClass("swiper-slide-duplicate") || !get_default()(self, "slideItems.length")) return;
+                    const triggerThis = "mobile" === platform ? __SL_$__(this).closest(".imageItem") : __SL_$__(this);
+                    const isMobileHasActiveSkuImage = triggerThis.find(".product_m_skuImage").length > 0;
+                    const isVideoSlide = triggerThis.hasClass("videoItem");
+                    if (isMobileHasActiveSkuImage || isVideoSlide) return;
+                    const {activeIndex} = "mobile" === platform ? self.mobileSwiper : self.swiper;
+                    const mobileIndexByLoop = self.getSwiperIsLoop() ? triggerThis.data("swiper-slide-index") : activeIndex;
+                    const index = "mobile" === platform ? mobileIndexByLoop : activeIndex;
+                    self.handlePhotoSwiper(self.slideItems, index);
+                }));
+            }
+            initPcSkuPhotoSwiper() {
+                const self = this;
+                __SL_$__(`${this.id} .product_pc_skuImage`).on("click", (function() {
+                    const items = [ {
+                        src: __SL_$__(this).find(".product_photoSwipe_image").attr("data-photoswipe-src"),
+                        w: 0,
+                        h: 0,
+                        el: __SL_$__(this)[0]
+                    } ];
+                    self.handlePhotoSwiper(items, 0, false);
+                }));
+            }
+            handlePhotoSwiper(items, index, cacheNaturalSize) {
+                let pswpElement = document.querySelectorAll(".pswp")[0];
+                if (!pswpElement) {
+                    __SL_$__("body").append(product_photoSwipeHtml);
+                    pswpElement = document.querySelectorAll(".pswp")[0];
+                }
+                this.openPhotoSwipe(pswpElement, items, index, cacheNaturalSize);
+            }
+            initMobileSkuPhotoSwiper() {
+                const self = this;
+                __SL_$__(`${this.mobileId} .product_m_skuImageBox .scaleSkuImageIcon`).on("click", (function() {
+                    const items = [ {
+                        src: __SL_$__(this).parent().find(".product_photoSwipe_image").attr("data-photoswipe-src"),
+                        w: 0,
+                        h: 0,
+                        el: __SL_$__(this).parent()[0]
+                    } ];
+                    self.handlePhotoSwiper(items, 0, false);
+                }));
+            }
+            updatePhotoSwipeItems(slidesWrapID) {
+                const slidesDom = __SL_$__(`${slidesWrapID} .product_productImages`).find(".swiper-slide").not(".swiper-slide-duplicate").filter((function() {
+                    return !__SL_$__(this).children(".product-detail-empty-image").length;
+                }));
+                const items = [];
+                slidesDom.each(((index, item) => {
+                    const imgEl = __SL_$__(item).find(".product_photoSwipe_image");
+                    const size = __SL_$__(item).attr("data-natural-size");
+                    const transSize = size ? size.split("x") : null;
+                    items.push({
+                        src: imgEl.attr("data-photoswipe-src"),
+                        w: transSize ? parseInt(transSize[0], 10) : imgEl.innerWidth(),
+                        h: transSize ? parseInt(transSize[1], 10) : imgEl.innerHeight(),
+                        el: item
+                    });
+                }));
+                this.slideItems = items;
+            }
+            openPhotoSwipe(pswpElement, items, index = 0, cacheNaturalSize = true) {
+                const self = this;
+                if (items && items.length > 1) __SL_$__(".pswp__button--arrow--left, .pswp__button--arrow--right").show(); else __SL_$__(".pswp__button--arrow--left, .pswp__button--arrow--right").hide();
+                const photoSwipeOptions = {
+                    allowPanToNext: false,
+                    captionEl: false,
+                    closeOnScroll: false,
+                    counterEl: false,
+                    history: false,
+                    index,
+                    pinchToClose: false,
+                    preloaderEl: false,
+                    shareEl: false,
+                    tapToToggleControls: false,
+                    barsSize: {
+                        top: 20,
+                        bottom: 20
+                    },
+                    getThumbBoundsFn(_index) {
+                        let thumbnailParent;
+                        if (items[_index].el && -1 !== items[_index].el.className.indexOf("swiper-slide-duplicate")) thumbnailParent = __SL_$__(`${self.mobileId} .swiper-slide`).eq(self.mobileSwiper.activeIndex).get(0); else thumbnailParent = items[_index].el;
+                        const thumbnail = thumbnailParent.getElementsByClassName("product_photoSwipe_image")[0];
+                        const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+                        const rect = thumbnail.getBoundingClientRect();
+                        return {
+                            x: rect.left,
+                            y: rect.top + pageYScroll,
+                            w: rect.width
+                        };
+                    }
+                };
+                const gallery = new (photoswipe_min_default())(pswpElement, photoswipe_ui_default_min_default(), items, photoSwipeOptions);
+                gallery.listen("gettingData", (function(_index, item) {
+                    const imgWrapEl = item.el;
+                    const img = new Image;
+                    if (!imgWrapEl.getAttribute("data-natural-size")) {
+                        if (!window.__PRELOAD_STATE__.imgNoReferrerSwitch) img.src = item.src;
+                        img.onload = () => {
+                            const _img = (0, img_size["default"])(img.src);
+                            const hasWH = _img && _img.ratio;
+                            if (cacheNaturalSize) {
+                                const naturalSize = hasWH ? `${img.naturalWidth}x${img.naturalHeight}` : `100x100`;
+                                imgWrapEl.setAttribute("data-natural-size", naturalSize);
+                            }
+                            item.w = img.naturalWidth;
+                            item.h = img.naturalHeight;
+                            gallery.updateSize(true);
+                        };
+                    }
+                    if (window.__PRELOAD_STATE__.imgNoReferrerSwitch) {
+                        img.setAttribute("referrerpolicy", "same-origin");
+                        img.src = item.src;
+                    }
+                }));
+                gallery.init();
+                gallery.listen("afterChange", (() => {
+                    this.galleryAfterChange(gallery);
+                }));
+            }
+            galleryAfterChange(gallery) {
+                const currentIndex = gallery.getCurrentIndex();
+                this.swiper && this.swiper.slideTo(currentIndex);
+                this.mobileSwiper && this.mobileSwiper.slideToLoop(currentIndex);
+            }
+            heightOnChangeCb(height) {
+                setTimeout((() => {
+                    this.heightOnChange && this.heightOnChange(height);
+                }), 200);
+            }
+            handleProductImagesHeight(swiperSelector, activeIndex, ratio = 1, targetImgSrc) {
+                const self = this;
+                const selector = swiperSelector;
+                this.heightChangedCount++;
+                const count = this.heightChangedCount;
+                const promise = new Promise(((resolve, reject) => {
+                    if (count !== this.heightChangedCount) {
+                        resolve();
+                        return;
+                    }
+                    if (void 0 !== activeIndex) {
+                        const currentSlide = __SL_$__(`${selector} .swiper-slide`).eq(activeIndex);
+                        if (!targetImgSrc && currentSlide.find(".product-detail-empty-image").length > 0) {
+                            const mobileWidthRatio = "block" === __SL_$__(`${self.mobileId}`).css("display") ? self.mobileWidthRatio : 1;
+                            const boxWidth = parseInt(__SL_$__(`${selector}`).width() * mobileWidthRatio, 10);
+                            __SL_$__(`${selector}`).css("height", boxWidth);
+                            self.heightOnChangeCb(boxWidth);
+                            resolve(boxWidth);
+                            return;
+                        }
+                        if (currentSlide.hasClass("videoItem") && !targetImgSrc) {
+                            const videoBoxHeight = parseInt(currentSlide.children().innerHeight(), 10);
+                            __SL_$__(`${selector}`).css("height", videoBoxHeight);
+                            self.heightOnChangeCb(videoBoxHeight);
+                            window.SL_EventBus.emit("product:expose-product-video", currentSlide);
+                            resolve(videoBoxHeight);
+                        } else if (currentSlide.hasClass("imageItem") || targetImgSrc) {
+                            const currentSlideImgNaturalSize = currentSlide.attr("data-natural-size");
+                            if (currentSlideImgNaturalSize && !targetImgSrc) {
+                                const [imgNaturalWidth, imgNaturalHeight] = currentSlideImgNaturalSize.split("x");
+                                const wrapperHeight = parseInt(String(__SL_$__(`${selector}`)[0].offsetWidth * ratio * imgNaturalHeight / imgNaturalWidth), 10);
+                                __SL_$__(`${selector}`).css("height", wrapperHeight);
+                                self.heightOnChangeCb(wrapperHeight);
+                                resolve(wrapperHeight);
+                                return;
+                            }
+                            const currentSlideImg = currentSlide.find("img");
+                            const imgSrc = targetImgSrc || currentSlideImg.attr("src") || currentSlideImg.attr("data-src");
+                            if (!targetImgSrc && "none" !== __SL_$__(`${self.id}`).css("display")) {
+                                const slideHeight = parseInt(currentSlide.innerHeight(), 10);
+                                __SL_$__(`${selector}`).css("height", slideHeight);
+                                self.heightOnChangeCb(slideHeight);
+                                resolve(slideHeight);
+                                return;
+                            }
+                            imgOnload(imgSrc, (img => {
+                                if (count !== this.heightChangedCount) {
+                                    resolve();
+                                    return;
+                                }
+                                if (!img) {
+                                    reject(new Error("不是img对象"));
+                                    return;
+                                }
+                                const height = parseInt(String(__SL_$__(`${selector}`)[0].offsetWidth * ratio * img.height / img.width), 10);
+                                __SL_$__(`${selector}`).css("height", height);
+                                self.heightOnChangeCb(height);
+                                resolve(height);
+                            }), (() => {
+                                if (count !== this.heightChangedCount) {
+                                    resolve();
+                                    return;
+                                }
+                                const mobileWidthRatio = "block" === __SL_$__(`${self.mobileId}`).css("display") ? self.mobileWidthRatio : 1;
+                                const boxWidth = parseInt(__SL_$__(`${selector}`).width() * mobileWidthRatio, 10);
+                                __SL_$__(`${selector}`).css("height", boxWidth);
+                                if (targetImgSrc && -1 !== selector.indexOf(ProductImages.pcSelectorPrefix)) __SL_$__(`${this.id} .product_pc_skuImage`).addClass("imageItemError"); else if (targetImgSrc && -1 !== selector.indexOf(ProductImages.mobileSelectorPrefix)) {
+                                    const currentSlideDom = self.getMobileCurrentSlideDom();
+                                    currentSlideDom.find(".product_m_skuImageBox").addClass("imageItemError");
+                                } else currentSlide.addClass("imageItemError");
+                                self.heightOnChangeCb(boxWidth);
+                                resolve(boxWidth);
+                            }));
+                        } else reject(new Error(`当前滑动slide子节点内容异常,currentSlide:${currentSlide},activeIndex:${activeIndex}`));
+                    } else reject(new Error(`activeIndex异常：${activeIndex}`));
+                }));
+                return promise;
+            }
+            setColumnThumbsSwiperHeight(height) {
+                __SL_$__(`${this.id} .product_thumbsColumnContainer .productImageThumbs`).css({
+                    maxHeight: `${height}px`
+                });
+            }
+            handleThumbsArrow(activeIndex, slideLen, wrapperHeight) {
+                const selectorPrefix = this.id;
+                const {thumbsDirection: direction, showThumbsArrow} = this;
+                if (!showThumbsArrow) {
+                    this.setColumnThumbsSwiperHeight(wrapperHeight);
+                    return;
+                }
+                __SL_$__(`${selectorPrefix} .thumbsArrowTop,${selectorPrefix} .thumbsArrowBottom`).show();
+                if (0 === activeIndex) {
+                    __SL_$__(`${selectorPrefix} .thumbsArrowTop`).hide();
+                    if (direction === COLUMN) this.setColumnThumbsSwiperHeight(`${wrapperHeight - 25}`);
+                }
+                if (activeIndex + 1 === slideLen) {
+                    __SL_$__(`${selectorPrefix} .thumbsArrowBottom`).hide();
+                    if (direction === COLUMN) this.setColumnThumbsSwiperHeight(`${wrapperHeight - 25}`);
+                } else if (direction === COLUMN) this.setColumnThumbsSwiperHeight(`${wrapperHeight - 50}`);
+            }
+            async handleEffectSwiperHeight(targetImageUrl) {
+                const {swiper} = this;
+                const {slides, activeIndex} = swiper || {};
+                const height = await this.handleProductImagesHeight(`${this.id} .product_productImages`, activeIndex, 1, targetImageUrl);
+                if (height) this.handleThumbsArrow(activeIndex, slides.length, height);
+            }
+            togglePcSkuImage(isShow, skuImageUrl) {
+                const skuImageDom = __SL_$__(`${this.id} .product_pc_skuImage`);
+                const currentIndex = __SL_$__(`${this.id}`).attr("data-index");
+                if (skuImageDom.hasClass("imageItemError")) skuImageDom.removeClass("imageItemError");
+                if (isShow && skuImageUrl) {
+                    skuImageDom.show().html(`<img class="product_photoSwipe_image" ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""} data-photoswipe-src=${(0, 
+                    imgUrl["default"])(skuImageUrl, {
+                        width: 1800
+                    })} src=${skuImageUrl} />`);
+                    __SL_$__(`${this.id} .productImageThumbsWrapper .thumbsImageItem`).eq(currentIndex).removeClass("active");
+                } else if (!isShow) {
+                    skuImageDom.hide().empty();
+                    __SL_$__(`${this.id} .productImageThumbsWrapper .thumbsImageItem`).eq(currentIndex).addClass("active");
+                }
+            }
+            handlePcSkuImage(isShow, skuImage) {
+                if (!this.swiper) return;
+                if (isShow) {
+                    this.handleEffectSwiperHeight(skuImage);
+                    this.togglePcSkuImage(true, skuImage);
+                } else {
+                    this.togglePcSkuImage(false);
+                    this.handleEffectSwiperHeight();
+                }
+            }
+            handleThumbsScroll(type, distance, smooth = true, timeout = 200) {
+                if ("scrollTop" === type) setTimeout((() => {
+                    const productImageThumbs = __SL_$__(`${this.id} .product_thumbsColumnContainer .productImageThumbs`);
+                    if (smooth) productImageThumbs.addClass("smooth-animate"); else productImageThumbs.removeClass("smooth-animate");
+                    productImageThumbs.scrollTop(distance);
+                }), timeout); else if ("scrollLeft" === type) setTimeout((() => {
+                    const productImageThumbs = __SL_$__(`${this.id} .product_thumbsRowContainer .productImageThumbs`);
+                    if (smooth) productImageThumbs.addClass("smooth-animate"); else productImageThumbs.removeClass("smooth-animate");
+                    productImageThumbs.scrollLeft(distance);
+                }), timeout);
+            }
+            getThumbsPosition(type, index) {
+                const columnThumbsListDom = __SL_$__(`${this.id} .product_thumbsColumnContainer .thumbsImageItem`);
+                const rowThumbsListDom = __SL_$__(`${this.id} .product_thumbsRowContainer .thumbsImageItem`);
+                if ("top" === type) {
+                    if (!columnThumbsListDom.length) return 0;
+                    const prevThumbsItem = columnThumbsListDom.eq(index > 0 ? index - 1 : 0);
+                    const prevThumbsItemHalfHeight = parseInt(prevThumbsItem.innerHeight() / 2, 10);
+                    return columnThumbsListDom.eq(index).position().top - prevThumbsItemHalfHeight - 20;
+                }
+                if ("left" === type) {
+                    if (!rowThumbsListDom.length) return 0;
+                    const prevThumbsItem = rowThumbsListDom.eq(index > 0 ? index - 1 : 0);
+                    const prevThumbsItemHalfWidth = parseInt(prevThumbsItem.innerWidth() / 2, 10);
+                    return rowThumbsListDom.eq(index).position().left - prevThumbsItemHalfWidth - 20;
+                }
+            }
+            initHandleProductImagesArrow() {
+                if (!this.showThumbsArrow) return;
+                const {thumbsDirection: direction} = this;
+                __SL_$__(`${this.id} .arrowTop`).on("click", (() => {
+                    const {activeIndex} = this.swiper;
+                    this.swiper.slidePrev();
+                    if (direction === COLUMN) {
+                        const scrollTopDistance = this.getThumbsPosition("top", activeIndex - 1);
+                        this.handleThumbsScroll("scrollTop", scrollTopDistance);
+                    } else if (direction === ROW) {
+                        const scrollLeftDistance = this.getThumbsPosition("left", activeIndex - 1);
+                        this.handleThumbsScroll("scrollLeft", scrollLeftDistance);
+                    }
+                }));
+                __SL_$__(`${this.id} .arrowBottom`).on("click", (() => {
+                    const {activeIndex} = this.swiper;
+                    this.swiper.slideNext();
+                    if (direction === COLUMN) {
+                        const scrollTopDistance = this.getThumbsPosition("top", activeIndex + 1);
+                        this.handleThumbsScroll("scrollTop", scrollTopDistance);
+                    } else if (direction === ROW) {
+                        const scrollLeftDistance = this.getThumbsPosition("left", activeIndex + 1);
+                        this.handleThumbsScroll("scrollLeft", scrollLeftDistance);
+                    }
+                }));
+            }
+            handlePcThumbsActive(index) {
+                __SL_$__(`${this.id} .productImageThumbsWrapper .thumbsImageItem`).removeClass("active").eq(index).addClass("active");
+                __SL_$__(`${this.id}`).attr("data-index", index);
+            }
+            async initThumbsSwiper(firstInit) {
+                const {thumbsDirection} = this;
+                const self = this;
+                const bindClickDom = __SL_$__(`${this.id} .product_thumbs${thumbsDirection === COLUMN ? "Column" : "Row"}Container `);
+                bindClickDom.on("click", ".thumbsImageItem", (function() {
+                    const index = __SL_$__(this).index();
+                    self.swiper.slideTo(index);
+                    if ("block" === __SL_$__(`${self.id} .product_pc_skuImage`).css("display")) {
+                        self.handlePcSkuImage(false);
+                        __SL_$__(this).addClass("active");
+                    }
+                }));
+                const skuImageDom = __SL_$__(`${this.id} .product_pc_skuImage`).find("img");
+                const skuImage = skuImageDom.attr("data-src") || skuImageDom.attr("src");
+                if (!skuImage) this.handlePcThumbsActive(self.swiper.activeIndex);
+                await this.handleEffectSwiperHeight(skuImage ? skuImage : null);
+                if (skuImage && firstInit) {
+                    const firstActiveImg = __SL_$__(`${this.id}`).find(".swiper-slide-active img");
+                    if (firstActiveImg.length > 0) {
+                        const src = firstActiveImg.attr("src") || firstActiveImg.attr("data-src");
+                        const _img = (0, img_size["default"])(src);
+                        const ratio = _img && _img.ratio || "100%";
+                        firstActiveImg.parent().css("paddingBottom", ratio);
+                    }
+                    const emptyDom = __SL_$__(`${this.id}`).find(".product-detail-empty-image");
+                    console.log("emptyDom", emptyDom.length);
+                    if (emptyDom.length > 0) emptyDom.css("paddingBottom", "100%");
+                }
+                if (firstInit) __SL_$__(`${this.id}`).find(".swiper-slide").removeClass("firstInit");
+                __SL_$__(`${this.id} .product_thumbsColumnContainer`).height("auto");
+                __SL_$__(`${this.id} .product_thumbsRowContainer`).height("auto");
+                this.initHandleProductImagesArrow();
+            }
+            initPcProductImages(firstInit) {
+                const pcProductImagesDom = __SL_$__(`${this.id}`);
+                if (0 == pcProductImagesDom.find(".product_productImages").length || "none" === pcProductImagesDom.css("display")) return null;
+                const mainSwiper = new core_class["default"](`${this.id} .product_productImages`, {
+                    initialSlide: __SL_$__(`${this.id}`).data("initial-slide") || 0,
+                    effect: "fade",
+                    fadeEffect: {
+                        crossFade: true
+                    },
+                    init: firstInit ? false : true,
+                    lazy: {
+                        loadOnTransitionStart: true
+                    },
+                    allowTouchMove: false,
+                    on: {
+                        init: () => {
+                            if (firstInit) {
+                                this.initThumbsSwiper(firstInit);
+                                if (this.productImageScale) {
+                                    this.initPhotoSwipe(this.id, "pc");
+                                    this.initPcSkuPhotoSwiper();
+                                }
+                            }
+                        },
+                        slideChange: () => {
+                            this.handleUnifyVideoStatus(this.pcVideo, "pc", "pause");
+                            if (this.swiper.destroyed) return;
+                            const {activeIndex, previousIndex} = this.swiper;
+                            this.handlePcThumbsActive(activeIndex);
+                            this.handlePcSkuImage(false);
+                            if (this.thumbsDirection === COLUMN) {
+                                const scrollTopDistance = this.getThumbsPosition("top", activeIndex);
+                                this.handleThumbsScroll("scrollTop", scrollTopDistance, Math.abs(activeIndex - previousIndex) < 10);
+                            } else {
+                                const scrollLeftDistance = this.getThumbsPosition("left", activeIndex);
+                                this.handleThumbsScroll("scrollLeft", scrollLeftDistance, Math.abs(activeIndex - previousIndex) < 10);
+                            }
+                        },
+                        lazyImageLoad: (_swiper, _slideEl, imageEl) => {
+                            image_gif_poster.load(imageEl);
+                        }
+                    }
+                });
+                return mainSwiper;
+            }
+            getActivePaginationList(activeIndex, activePointer) {
+                const list = [];
+                for (let i = 0; i < 5; i++) {
+                    const offset = i - activePointer;
+                    list.push(activeIndex + offset);
+                }
+                return list;
+            }
+            handleMActivePagination(activeIndex) {
+                const previousIndex = this.mobileRealPreviewIndex || 0;
+                this.mobileRealPreviewIndex = activeIndex;
+                const listContainer = __SL_$__(`${this.mobileId} .paginationList`);
+                const scrollWrapper = listContainer.children(".paginationListWrapper");
+                const bullets = scrollWrapper.children("span");
+                const length = bullets.length;
+                if (bullets.length < 6) {
+                    scrollWrapper.addClass("noTransition");
+                    scrollWrapper.css("transform", "");
+                    bullets.removeClass("active");
+                    bullets.eq(activeIndex).addClass("active");
+                    return;
+                }
+                if (!this.mobilePaginationList) this.mobilePaginationList = [ 0, 1, 2, 3, 4 ];
+                let resultMobilePaginationList = this.mobilePaginationList;
+                const previousPointer = this.mobilePaginationList.indexOf(previousIndex);
+                const offsetIndex = previousIndex - activeIndex;
+                if (offsetIndex < 0) {
+                    let activePointer = Math.min(3, previousPointer - offsetIndex);
+                    if (activeIndex === length - 1) activePointer = 4;
+                    resultMobilePaginationList = this.getActivePaginationList(activeIndex, activePointer);
+                } else {
+                    let activePointer = Math.max(1, previousPointer - offsetIndex);
+                    if (0 === activeIndex) activePointer = 0;
+                    resultMobilePaginationList = this.getActivePaginationList(activeIndex, activePointer);
+                }
+                if (Math.abs(offsetIndex) > 1) scrollWrapper.addClass("noTransition"); else scrollWrapper.removeClass("noTransition");
+                if (this.mobilePaginationList[0] - 1 > -1) bullets.eq(this.mobilePaginationList[0] - 1).removeClass([ "active", "next" ]);
+                if (this.mobilePaginationList[this.mobilePaginationList.length - 1] + 1 < length) bullets.eq(this.mobilePaginationList[this.mobilePaginationList.length - 1] + 1).removeClass([ "active", "next" ]);
+                this.mobilePaginationList.forEach(((index, i) => {
+                    bullets.eq(index).removeClass([ "active", "next" ]);
+                }));
+                bullets.eq(activeIndex).addClass("active");
+                if (resultMobilePaginationList[0] - 1 > 0) {
+                    bullets.eq(resultMobilePaginationList[0] - 1).addClass("next");
+                    bullets.eq(resultMobilePaginationList[0]).addClass("next");
+                } else if (resultMobilePaginationList[0] > 0) bullets.eq(resultMobilePaginationList[0]).addClass("next");
+                if (resultMobilePaginationList[resultMobilePaginationList.length - 1] + 1 < length - 1) {
+                    bullets.eq(resultMobilePaginationList[resultMobilePaginationList.length - 1] + 1).addClass("next");
+                    bullets.eq(resultMobilePaginationList[resultMobilePaginationList.length - 1]).addClass("next");
+                } else if (resultMobilePaginationList[resultMobilePaginationList.length - 1] < length - 1) bullets.eq(resultMobilePaginationList[resultMobilePaginationList.length - 1]).addClass("next");
+                if (resultMobilePaginationList[0] !== this.mobilePaginationList[0]) scrollWrapper.css("transform", `translate3d(-${resultMobilePaginationList[0] / length * 100}%, 0, 0)`);
+                this.mobilePaginationList = resultMobilePaginationList;
+            }
+            handleMobileSkuImage(isShow, skuImageUrl) {
+                const selector = `${this.mobileId} .product_productImages`;
+                const mainSwiperDom = __SL_$__(selector);
+                if (!this.mobileSwiper) return;
+                if (0 === mainSwiperDom.length) {
+                    console.error("m端切换sku图片失败，请检查selectorId是否输错，应存在html上");
+                    return;
+                }
+                const {realIndex} = this.mobileSwiper;
+                if (isShow) this.toggleMSkuImage(realIndex, true, skuImageUrl); else this.toggleMSkuImage(realIndex, false);
+            }
+            getSwiperIsLoop() {
+                return __SL_$__(`${this.mobileId} .product_productImages .swiper-slide-duplicate`).length > 0;
+            }
+            bindMobileSkuImageScaleDom() {
+                const self = this;
+                __SL_$__(".product_m_skuImageBox .scaleSkuImageIcon").on("click", (function() {
+                    const items = [ {
+                        src: __SL_$__(this).parent().find(".product_photoSwipe_image").attr("data-photoswipe-src"),
+                        w: 0,
+                        h: 0,
+                        el: __SL_$__(this).parent()[0]
+                    } ];
+                    self.handlePhotoSwiper(items, 0, false);
+                }));
+            }
+            getMobileCurrentSlideDom(index) {
+                const {realIndex} = this.mobileSwiper || {};
+                const _index = index || realIndex;
+                const swiperIsLoop = this.getSwiperIsLoop();
+                const currentSlideDom = swiperIsLoop ? __SL_$__(`${this.mobileId} .product_productImages .swiper-slide[data-swiper-slide-index="${_index}"]`) : __SL_$__(`${this.mobileId} .product_productImages .swiper-slide`).eq(_index);
+                return currentSlideDom;
+            }
+            setCurrentSlidePB($dom, imageUrl) {
+                const ratio = (0, img_size["default"])(imageUrl).ratio || "100%";
+                $dom.css("paddingBottom", ratio).attr("data-sku-image-ratio", ratio);
+            }
+            toggleMSkuImage(index, isShow, skuImageUrl) {
+                const self = this;
+                if (void 0 === index || null === index) {
+                    console.error(`toggleMSkuImage: index异常${index}`);
+                    return;
+                }
+                const currentSlideDom = self.getMobileCurrentSlideDom(index);
+                const currentSkuImageBox = currentSlideDom.find(".product_m_skuImageBox");
+                const currentSlideBox = currentSlideDom.find(".swiper-slide-box");
+                const currentSkuImageIsError = currentSkuImageBox.hasClass("imageItemError");
+                if (currentSkuImageIsError) currentSkuImageBox.removeClass("imageItemError");
+                const skuImageDom = `\n    <div class="product_m_skuImageBox">\n      <img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""} onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_m_skuImage product_photoSwipe_image" data-photoswipe-src=${(0, 
+                imgUrl["default"])(skuImageUrl, {
+                    width: 1800
+                })} src=${skuImageUrl} />\n      ${self.productImageScale ? `<div class="scaleSkuImageIcon">\n      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">\n      <circle cx="13" cy="12" r="7.5" stroke="black"/>\n      <path d="M18.5 17.5L23 22.5" stroke="black" stroke-linecap="round"/>\n      </svg>\n      </div>` : ""}\n    </div>`;
+                if (isShow && void 0 !== index && skuImageUrl) {
+                    currentSlideDom.find("img").hide();
+                    if (0 === currentSkuImageBox.length) {
+                        currentSlideDom.append(skuImageDom);
+                        self.setCurrentSlidePB(currentSlideBox, skuImageUrl);
+                        self.bindMobileSkuImageScaleDom();
+                    } else {
+                        currentSkuImageBox.find(".product_m_skuImage").removeAttr("srcset data-srcset").attr({
+                            src: skuImageUrl,
+                            "data-photoswipe-src": (0, imgUrl["default"])(skuImageUrl, {
+                                width: 1800
+                            }),
+                            onerror: "this.onerror=null;this.parentElement.className+=' imageItemError';"
+                        }).show();
+                        self.setCurrentSlidePB(currentSlideBox, skuImageUrl);
+                    }
+                    this.mobileSwiper.updateAutoHeight();
+                    __SL_$__(`${this.mobileId} .product_productImages`).attr("sku-image-index", index);
+                } else if (!isShow && void 0 !== index && currentSkuImageBox.length > 0) {
+                    const slideImg = currentSlideDom.find("img");
+                    if (currentSlideBox.attr("data-image-ratio")) currentSlideBox.css("paddingBottom", currentSlideBox.attr("data-image-ratio")).removeAttr("data-sku-image-ratio");
+                    currentSkuImageBox.remove();
+                    slideImg.show();
+                    this.mobileSwiper.updateAutoHeight();
+                    __SL_$__(`${this.mobileId} .product_productImages`).attr("sku-image-index", null);
+                }
+            }
+            handleMobileScaleImage() {
+                __SL_$__(`${this.mobileId} .paginationList div`).removeClass("active").eq(activeIndex).addClass("active");
+            }
+            initMobileProductImages(firstInit) {
+                const mobileProductImagesDom = __SL_$__(`${this.mobileId}`);
+                const selector = `${this.mobileId} .product_productImages`;
+                const mainSwiperDom = __SL_$__(selector);
+                const slidesLength = mainSwiperDom.find(".swiper-slide").length;
+                const videoDom = mainSwiperDom.find(".videoItem");
+                const videoIndex = videoDom.data("index");
+                const videoIsStartOrEndPos = 0 === videoIndex || videoIndex === videoDom.data("length") - 1 || 1 === slidesLength;
+                if (0 === mainSwiperDom.length || "none" === mobileProductImagesDom.css("display")) return null;
+                const mainSwiper = new core_class["default"](selector, {
+                    loop: videoIsStartOrEndPos ? false : true,
+                    initialSlide: __SL_$__(`${this.mobileId}`).data("initial-slide") || 0,
+                    slidesPerView: "auto",
+                    centeredSlides: true,
+                    spaceBetween: 5,
+                    autoHeight: true,
+                    lazy: {
+                        loadOnTransitionStart: true,
+                        loadPrevNext: .75 === this.mobileWidthRatio ? true : false
+                    },
+                    on: {
+                        init: swiper => {
+                            if (firstInit) {
+                                if (this.productImageScale) {
+                                    this.initPhotoSwipe(this.mobileId, "mobile");
+                                    this.initMobileSkuPhotoSwiper();
+                                }
+                                this.handleMActivePagination(swiper.realIndex);
+                                __SL_$__(`${this.mobileId} .product_productImages`).attr("sku-image-index", swiper.realIndex);
+                                if (videoIsStartOrEndPos) {
+                                    const skuImageDom = __SL_$__(`${this.mobileId} .product_productImages .swiper-slide`).eq(swiper.realIndex).find(".product_m_skuImage");
+                                    skuImageDom.attr("src") || skuImageDom.attr("data-src");
+                                }
+                                __SL_$__(`${this.mobileId} .product_productImages .swiper-slide`).css("height", "auto");
+                                swiper.updateAutoHeight();
+                                window.lozadObserver && window.lozadObserver.observe();
+                            }
+                        },
+                        slideChange: swiper => {
+                            this.handleUnifyVideoStatus(this.mobileVideo, "mobile", "pause");
+                            this.handleMActivePagination(swiper.realIndex);
+                            const skuImageDom = __SL_$__(`${this.mobileId} .product_productImages .swiper-slide`).eq(swiper.realIndex).find(".product_m_skuImage");
+                            skuImageDom.attr("src") || skuImageDom.attr("data-src");
+                        },
+                        slideChangeTransitionEnd: () => {
+                            const skuImageIndex = __SL_$__(`${this.mobileId} .product_productImages`).attr("sku-image-index");
+                            if (void 0 !== skuImageIndex) this.toggleMSkuImage(skuImageIndex, false);
+                        }
+                    },
+                    ...this.swiperConfig.mobile
+                });
+                return mainSwiper;
+            }
+            renderVideoItem(item, index) {
+                const {middle: cover, videoId} = (0, getYouTubeCover["default"])(item.resource);
+                const isYoutubeVideo = isYoutube(item.resource);
+                const photoswipeCoverSrc = isYoutubeVideo ? cover : (0, imgUrl["default"])(item.cover, {
+                    width: 1800
+                });
+                return `${isYoutubeVideo ? `<div class="product_youTubeVideoContainer">\n        <div class="product_youTubeVideoBox" data-video-id="${videoId}"></div>\n      </div>` : `<video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="${item.cover}">\n        <source src="${item.resource}" type="video/mp4">\n      </video>`}\n    <img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""} onerror="this.onerror=null;this.parentElement.className+=' videoCoverError';" \n    class="product_photoSwipe_image swiper-lazy"\n    data-photoswipe-src="${photoswipeCoverSrc}" ${0 !== index ? "data-" : ""}src="${photoswipeCoverSrc}" alt="">`;
+            }
+            updateSlides(list) {
+                __SL_$__(`${this.id} .product_productImages`).children(".swiper-wrapper").empty().append(Array.isArray(list) ? list.map(((item, index) => {
+                    const imgRatio = (0, img_size["default"])(item.resource).ratio || "100%";
+                    const isYoutubeVideo = isYoutube(item.resource);
+                    if ("VIDEO" === item.type) return `<div class="swiper-slide videoItem" data-video-platform="${isYoutubeVideo ? "youtube" : "sl"}" style="padding-bottom: ${isYoutubeVideo ? "56.25%" : (0, 
+                    img_size["default"])(item.cover).ratio || "56.25%"}">${this.renderVideoItem(item, index)};</div>`;
+                    return `<div class="swiper-slide imageItem" style="height: 0; padding-bottom:${imgRatio}"><img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""} onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" ${0 !== index ? "data-" : ""}src="${item.resource}" alt="" class="swiper-lazy product_photoSwipe_image"></div>`;
+                })) : `<div class="swiper-slide"><div class="product-detail-empty-image"></div></div>`);
+                const slidesLength = list.length;
+                const mobileWrapper = __SL_$__(`${this.mobileId} .product_productImages`).children(".swiper-wrapper");
+                if (1 === get_default()(list, "length") || "VIDEO" === get_default()(list, "[0].type") || "VIDEO" === get_default()(list, `[${get_default()(list, "length") - 1}].type`)) mobileWrapper.addClass("hasVideoFl"); else mobileWrapper.removeClass("hasVideoFl");
+                mobileWrapper.empty().append(Array.isArray(list) ? list.map(((item, index) => {
+                    if ("VIDEO" === item.type) {
+                        const isYoutubeVideo = isYoutube(item.resource);
+                        const ratio = isYoutubeVideo ? "56.25%" : (0, img_size["default"])(item.cover).ratio || "56.25%";
+                        return `<div class="swiper-slide videoItem" data-video-platform="${isYoutubeVideo ? "youtube" : "sl"}" style="height: auto" data-index="${index}" data-length="${slidesLength}">\n                <div class="swiper-slide-box" data-image-ratio="${ratio}" style="padding-bottom: ${ratio}">\n                  ${this.renderVideoItem(item, index)}\n                </div>\n              </div>`;
+                    }
+                    const ratio = (0, img_size["default"])(item.resource).ratio || "100%";
+                    return `<div class="swiper-slide imageItem" style="height: auto">\n<div class="swiper-slide-box" data-image-ratio="${ratio}" data-sku-image-ratio="100%" style="padding-bottom: ${ratio}">\n<img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" ${0 !== index ? "data-" : ""}src="${item.resource}" alt="" class="swiper-lazy product_photoSwipe_image">${this.productImageScale ? `<div class="scaleImageIcon"><div class="scaleImageIconSvg"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="13" cy="12" r="7.5" /><path d="M18.5 17.5L23 22.5" stroke-linecap="round" /></svg></div></div>` : ""}</div>\n</div>`;
+                })) : `<div class="swiper-slide"><div class="swiper-slide-box" data-image-ratio="100%" style="padding-bottom: 100%"><div class="product-detail-empty-image product-noImages"></div></div></div>`);
+            }
+            updateImageList(list, activeIndex, source) {
+                if (!this.verifySource(source && source.app)) return;
+                this.mediaList = list;
+                this.handleUnifyVideoStatus(this.pcVideo, "pc", "pause");
+                this.handleUnifyVideoStatus(this.mobileVideo, "mobile", "pause");
+                this.replaceThubsSwiper(list, activeIndex);
+                this.swiper && this.swiper.destroy();
+                this.mobileSwiper && this.mobileSwiper.destroy();
+                this.updateSlides(list);
+                if (this.swiper) {
+                    __SL_$__(`${this.id}`).data("initial-slide", activeIndex);
+                    this.swiper = this.initPcProductImages();
+                    this.updatePhotoSwipeItems(this.id);
+                    this.handleEffectSwiperHeight();
+                    if (this.thumbsDirection === COLUMN) {
+                        const scrollTopDistance = this.getThumbsPosition("top", activeIndex);
+                        this.handleThumbsScroll("scrollTop", scrollTopDistance, false, 0);
+                    } else {
+                        const scrollLeftDistance = this.getThumbsPosition("left", activeIndex);
+                        this.handleThumbsScroll("scrollLeft", scrollLeftDistance, false, 0);
+                    }
+                }
+                if (this.mobileSwiper) {
+                    __SL_$__(`${this.mobileId}`).data("initial-slide", activeIndex);
+                    this.mobileSwiper = this.initMobileProductImages();
+                    this.updatePhotoSwipeItems(this.mobileId);
+                }
+                this.pcVideo = this.initPcVideo();
+                this.mobileVideo = this.initMobileVideo();
+                __SL_$__(`${this.id}`).attr("data-index", activeIndex || 0);
+            }
+            replaceThubsSwiper(list, activeIndex) {
+                const wrapper = __SL_$__(`${this.id} .product_thumbs${this.thumbsDirection === COLUMN ? "Column" : "Row"}Container .productImageThumbsWrapper`);
+                const mBox = __SL_$__(`${this.mobileId} .paginationBox`);
+                const mWrapper = mBox.find(".paginationListWrapper");
+                wrapper.empty();
+                mWrapper.empty();
+                if (!get_default()(list, "length") || list.length <= 1) {
+                    __SL_$__(`${this.id} .product_thumbs${this.thumbsDirection === COLUMN ? "Column" : "Row"}Container`).hide();
+                    mBox.hide();
+                } else {
+                    __SL_$__(`${this.id} .product_thumbs${this.thumbsDirection === COLUMN ? "Column" : "Row"}Container`).show();
+                    mBox.show();
+                    list.forEach(((item, index) => {
+                        const ratio = (0, img_size["default"])(item.resource).ratio || "100%";
+                        if ("VIDEO" === item.type) {
+                            const isYoutubeVideo = isYoutube(item.resource);
+                            wrapper.append(`<div class="swiper-slide thumbsImageItem ${activeIndex === index ? "active" : ""}"><figure style="padding-bottom: ${ratio}"><img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""} onerror="this.onerror=null;this.parentElement.className+=' videoCoverError';" src="${isYoutubeVideo ? (0, 
+                            getYouTubeCover["default"])(item.resource).middle : item.cover}" alt=""><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n          <circle cx="10" cy="10" r="10" fill="black" fill-opacity="0.6"/>\n          <path d="M13.6256 10.2496L8.46641 13.6891C8.26704 13.822 8 13.6791 8 13.4394V6.56056C8 6.32095 8.26704 6.17803 8.46641 6.31094L13.6256 9.75039C13.8037 9.86913 13.8037 10.1309 13.6256 10.2496Z" fill="white"/>\n          </svg></figure>\n          </div>`);
+                        } else wrapper.append(__SL_$__(`<div class="swiper-slide thumbsImageItem ${activeIndex === index ? "active" : ""}"><figure style="padding-bottom: ${ratio}"><img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""} onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" src="${(0, 
+                        imgUrl["default"])(item.resource, {
+                            width: 152
+                        })}" alt=""></figure></div>`));
+                        mWrapper.append(`<span class="${activeIndex === index ? "active" : ""}" />`);
+                    }));
+                }
+            }
+            skuImageChange(img, source) {
+                if (!this.verifySource(source && source.app)) return;
+                const {url} = img || {};
+                if (url) {
+                    this.handleUnifyVideoStatus(this.pcVideo, "pc", "pause");
+                    this.handleUnifyVideoStatus(this.mobileVideo, "mobile", "pause");
+                    const index = this.mediaList.findIndex((item => item.resource === url));
+                    if (index > -1) {
+                        this.swiper && this.swiper.slideTo(index);
+                        this.mobileSwiper && this.mobileSwiper.slideToLoop(index, 0);
+                        this.handlePcSkuImage(false);
+                        this.handleMobileSkuImage(false);
+                    } else {
+                        this.handlePcSkuImage(true, url);
+                        this.handleMobileSkuImage(true, url);
+                    }
+                } else {
+                    this.handlePcSkuImage(false);
+                    this.handleMobileSkuImage(false);
+                }
+            }
+        }
+        ProductImages.pcSelectorPrefix = "execute_productImages_pc";
+        ProductImages.mobileSelectorPrefix = "execute_productImages_mobile";
+        const js = ProductImages;
+    },
+    "../shared/browser/components/hbs/sales/shoppingPromotionReminder/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => __WEBPACK_DEFAULT_EXPORT__
+        });
+        var _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/syntax-patch.js");
+        const nc = _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.nullishCoalescingOperator;
         const BenefitTypeEnum = {
             PRICE: 1,
             DISCOUNT: 2,
+            BUY_X_GET_Y: 12,
             NTH_PRICE: 11,
             FREELOWESTPRICE: 9,
             FREESHOPPING: 3
@@ -14444,88 +15491,159 @@
             PRICE: 0,
             NUMBER: 1
         };
-        function formatBenefitNum(str, type) {
-            if (void 0 === str) return "";
-            const num = Number(str) || 0;
-            if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(type, "thresholdType") === ThresholdTypeEnum.NUMBER) return num;
-            if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(type, "benefitType") === BenefitTypeEnum.DISCOUNT || (0, 
-            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(type, "benefitType") === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
-            if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(type, "benefitType") === BenefitTypeEnum.PRICE || (0, 
-            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(type, "thresholdType") === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${(0, 
-            _yy_sl_theme_shared_utils_currency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat)(num)}</span>`;
-            if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(type, "benefitType") === BenefitTypeEnum.FREELOWESTPRICE) return num;
-            return "";
+        function defaultSafeString(str) {
+            return str;
         }
-        function getShoppingReminderConfig(promotion, {lineBreak = false, warper} = {}) {
-            const {benefitType, promotionBenefitList = []} = nc(promotion, {});
-            if (promotionBenefitList.length) {
-                const thresholdType = promotionBenefitList[0].type;
-                let current;
-                let next;
-                let step;
-                if (!(0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(promotionBenefitList, [ 1 ])) if (promotionBenefitList[0].hit) {
-                    step = 3;
-                    current = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(promotionBenefitList, [ 0 ]);
-                } else {
-                    step = 1;
-                    next = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(promotionBenefitList, [ 0 ]);
-                } else if (promotionBenefitList[1].hit) {
-                    step = 3;
-                    current = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(promotionBenefitList, [ 1 ]);
-                } else {
-                    step = 2;
-                    current = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(promotionBenefitList, [ 0 ]);
-                    next = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(promotionBenefitList, [ 1 ]);
+        function shoppingPromotionReminder(currency, safeString = defaultSafeString) {
+            function setWrapper(value, warper) {
+                return safeString(warper ? `<span class="notranslate ${warper.class}" style="font-size: 14px; font-weight: bold;${nc(warper.style, "")}"> ${value} </span>` : value);
+            }
+            function formatBenefitNum(str, type, options) {
+                if (void 0 === str) return "";
+                const num = Number(str) || 0;
+                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "thresholdType") === ThresholdTypeEnum.NUMBER) return num;
+                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.DISCOUNT || (0, 
+                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.BUY_X_GET_Y || (0, 
+                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
+                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.PRICE || (0, 
+                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "thresholdType") === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
+                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.FREELOWESTPRICE) return num;
+                return "";
+            }
+            function getShoppingReminderConfig(promotion, configs = {}, options) {
+                const {lineBreak = false, warper} = configs;
+                const {benefitType, promotionBenefitList = []} = nc(promotion, {});
+                if (promotionBenefitList.length) {
+                    let current;
+                    let next;
+                    let step;
+                    if (!(0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(promotionBenefitList, [ 1 ])) if (promotionBenefitList[0].hit) {
+                        step = 3;
+                        current = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(promotionBenefitList, [ 0 ]);
+                    } else {
+                        step = 1;
+                        next = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(promotionBenefitList, [ 0 ]);
+                    } else if (promotionBenefitList[1].hit) {
+                        step = 3;
+                        current = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(promotionBenefitList, [ 1 ]);
+                    } else {
+                        step = 2;
+                        current = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(promotionBenefitList, [ 0 ]);
+                        next = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(promotionBenefitList, [ 1 ]);
+                    }
+                    const {extMap = {}, type: thresholdType} = current || next;
+                    const basePath = `sales.promotion.cart_reminder.b${benefitType}_t${thresholdType}_s${step}`;
+                    let completePath = basePath;
+                    const {meetThreshold} = extMap;
+                    if (benefitType === BenefitTypeEnum.BUY_X_GET_Y) if (1 === step && "true" === meetThreshold) if (0 === Number((0, 
+                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) completePath = `${basePath}_achieve_free`; else completePath = `${basePath}_achieve_normal`; else if (0 === Number((0, 
+                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit")) || 0 === Number((0, 
+                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) completePath = `${basePath}_free`; else completePath = `${basePath}_normal`;
+                    if (benefitType === BenefitTypeEnum.NTH_PRICE) if (0 === Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit"))) completePath = `${basePath}_free`; else if (0 === Number((0, 
+                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) completePath = `${basePath}_next_free`; else completePath = `${basePath}_normal`;
+                    const {prerequisiteShippingPriceRange} = extMap;
+                    if (benefitType === BenefitTypeEnum.FREESHOPPING) if (prerequisiteShippingPriceRange) completePath = `${basePath}_upper_limit`; else completePath = `${basePath}_unlimited`;
+                    const benefitCount = Number(nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount"), (0, 
+                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefitCount")));
+                    return {
+                        path: thresholdType > -1 ? completePath : " ",
+                        params: {
+                            saved: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? (0, 
+                            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount") : (0, 
+                            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit"), {
+                                benefitType
+                            }, options), {
+                                ...warper,
+                                class: `sales__promotionReminder-saved ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
+                            willSave: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? (0, 
+                            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefitCount") : (0, 
+                            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"), {
+                                benefitType
+                            }, options), {
+                                ...warper,
+                                class: `sales__promotionReminder-willSave custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
+                            threshold: setWrapper(formatBenefitNum((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "amount"), {
+                                thresholdType
+                            }, options), {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
+                            br: lineBreak ? setWrapper("<br/>") : setWrapper("<i></i>"),
+                            upperLimit: benefitType === BenefitTypeEnum.FREESHOPPING && prerequisiteShippingPriceRange ? currency && currency(prerequisiteShippingPriceRange, options) : void 0,
+                            benefitCount: benefitCount >= 0 ? setWrapper(benefitCount, {
+                                ...warper,
+                                class: `sales__promotionReminder--benefitCount ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }) : "",
+                            extMap
+                        },
+                        step
+                    };
                 }
-                const basePath = `sales.promotion.reminder.benefit${benefitType}.threshold${thresholdType}.step${step}`;
-                let completePath = basePath;
-                if (benefitType === BenefitTypeEnum.NTH_PRICE) if ("0" === (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(current, "benefit")) completePath = `${basePath}.free`; else if ("0" === (0, 
-                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(next, "benefit")) completePath = `${basePath}.nextFree`; else completePath = `${basePath}.normal`;
-                const prerequisiteShippingPriceRange = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(promotionBenefitList, "[0].extMap.prerequisiteShippingPriceRange");
-                if (benefitType === BenefitTypeEnum.FREESHOPPING) if (prerequisiteShippingPriceRange) completePath = `${basePath}.upperLimit`; else completePath = `${basePath}.unlimited`;
                 return {
-                    path: completePath,
-                    params: {
-                        saved: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? (0, 
-                        _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(current, "benefitCount") : (0, 
-                        _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(current, "benefit"), {
-                            benefitType
-                        }), {
-                            ...warper,
-                            class: `sales__promotionReminder-saved ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(warper, "class"), "")}`
-                        }),
-                        willSave: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? (0, 
-                        _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(next, "benefitCount") : (0, 
-                        _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(next, "benefit"), {
-                            benefitType
-                        }), {
-                            ...warper,
-                            class: `sales__promotionReminder-willSave custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(warper, "class"), "")}`
-                        }),
-                        threshold: setWrapper(formatBenefitNum((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(next, "amount"), {
-                            thresholdType
-                        }), {
-                            ...warper,
-                            class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_2__.get)(warper, "class"), "")}`
-                        }),
-                        br: lineBreak ? setWrapper("<br/>") : setWrapper("<i></i>"),
-                        upperLimit: benefitType === BenefitTypeEnum.FREESHOPPING && prerequisiteShippingPriceRange ? (0, 
-                        _yy_sl_theme_shared_utils_currency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat)(prerequisiteShippingPriceRange) : void 0
-                    },
-                    step
+                    path: "",
+                    params: {},
+                    step: 0
                 };
             }
-            return {
-                path: "",
-                params: {},
-                step: 0
-            };
+            return getShoppingReminderConfig;
         }
-        const getShoppingReminderTranslate = (promotion, configs) => {
-            const config = getShoppingReminderConfig(promotion, configs);
-            return (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)(config.path, config.params);
+        const __WEBPACK_DEFAULT_EXPORT__ = shoppingPromotionReminder;
+    },
+    "../shared/browser/components/hbs/shared/utils/getYouTubeCover.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => __WEBPACK_DEFAULT_EXPORT__
+        });
+        const getYouTubeCover = videoResource => {
+            if ("string" !== typeof videoResource) return null;
+            const youTubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+            const getYouTubeIdByVideoUrl = url => {
+                const matches = url && url.match(youTubeRegex) || [];
+                return matches[1];
+            };
+            const getVideoCover = videoId => {
+                const coverUrlPrefix = `https://i.ytimg.com/vi/${videoId}`;
+                return {
+                    maxQuality: `${coverUrlPrefix}/maxresdefault.jpg`,
+                    aboveMiddle: `${coverUrlPrefix}/sddefault.jpg`,
+                    middle: `${coverUrlPrefix}/mqdefault.jpg`,
+                    lowerMiddle: `${coverUrlPrefix}/hqdefault.jpg`,
+                    minQuality: `${coverUrlPrefix}/default.jpg`,
+                    videoId
+                };
+            };
+            if (-1 !== videoResource.indexOf("www.youtube.com")) {
+                const videoId = getYouTubeIdByVideoUrl(videoResource);
+                return getVideoCover(videoId);
+            }
+            return getVideoCover(videoResource);
         };
-        const __WEBPACK_DEFAULT_EXPORT__ = getShoppingReminderConfig;
+        const __WEBPACK_DEFAULT_EXPORT__ = getYouTubeCover;
+    },
+    "../shared/browser/components/hbs/shared/utils/imgUrl.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => imgUrl
+        });
+        function isS3FileUrl(url) {
+            return /\.cloudfront\./.test(url) || /https:\/\/img.myshopline.com/.test(url) || /https:\/\/img-preview.myshopline.com/.test(url);
+        }
+        function imgUrl(url, options) {
+            const {width, scale} = options;
+            if (!width) return url;
+            if (!isS3FileUrl(url)) return url;
+            let paramWidth = width;
+            if ("number" === typeof scale && scale > 1) paramWidth = width * scale;
+            const clipper = `_${paramWidth || ""}x`;
+            const slice = url.split("/");
+            const filename = slice.pop() || "";
+            const dirname = slice.join("/");
+            const lastDotIndex = filename.lastIndexOf(".");
+            if (-1 === lastDotIndex) return `${dirname}/${filename}${clipper}`;
+            return `${dirname}/${filename.slice(0, lastDotIndex)}${clipper}${filename.slice(lastDotIndex)}`;
+        }
     },
     "../shared/browser/events/data-report/view-content/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
@@ -16772,6 +17890,29 @@
         }
         _defineProperty(Form, "formInstanceList", {});
         const __WEBPACK_DEFAULT_EXPORT__ = Form;
+    },
+    "../shared/browser/utils/img-size.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => img_size
+        });
+        var url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/url/url.js");
+        var query_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/query-string/index.js");
+        function img_size(url) {
+            const urlParse = url__WEBPACK_IMPORTED_MODULE_0__.parse(url);
+            const urlQuery = query_string__WEBPACK_IMPORTED_MODULE_1__.parse(urlParse && urlParse.query) || {};
+            const radix = 10;
+            const fixed = 2;
+            const width = Number.parseInt(urlQuery.w, radix);
+            const height = Number.parseInt(urlQuery.h, radix);
+            let ratio = null;
+            if (Number.isInteger(width) && Number.isInteger(height) && 0 !== width) ratio = `${Number(Number.parseFloat(height / width * 100).toFixed(fixed))}%`;
+            return {
+                width: Number.isInteger(width) ? width : null,
+                height: Number.isInteger(height) ? height : null,
+                ratio
+            };
+        }
     },
     "../shared/browser/utils/report/pageMapping.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";

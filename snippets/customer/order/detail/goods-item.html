@@ -49,7 +49,7 @@
           </span>
           <a target="_blank" href={{first urls 1}} class="goods-item-good-watch">
             {{! 点击查看 }}
-            {{t 'trade.pod-link'}}
+            {{t 'cart.refund.click_to_view'}}
           </a>
         </div>
       {{else if type '==' 'picture'}}
@@ -59,7 +59,7 @@
           </span>
           <a class="goods-item-good-preview" data-urls="{{urls}}">
             {{! 定制预览 }}
-            {{t 'trade.pod-pic'}}
+            {{t 'cart.refund.custom_preview'}}
           </a>
         </div>
       {{/if}}
@@ -71,7 +71,7 @@
       </div>
     {{/each}}
     <div class="goods-item-good-price notranslate">
-      <span data-amount="{{productPrice}}">{{currency_convert productPrice}}</span><span> X {{productNum}}</span>
+      <span data-amount="{{finalPrice}}">{{currency_convert finalPrice}}</span><span> X {{productNum}}</span>
     </div>
   </div>
 </div>

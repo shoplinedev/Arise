@@ -1,9 +1,9 @@
 {{#if is_empty}}
   <div class="empty-cart-continue-btn">
     <a href="/collections">
-      <button class="trade-cart-continue-btn body3">{{ t 'cart.go-shopping' }}</button>
+      <button class="trade-cart-continue-btn body3">{{ t 'cart.cart.continue_shopping' }}</button>
     </a>
   </div>
 {{else}}
-  <button class="btn btn-sm trade-cart-non-empty-continue-btn body3" onclick="window.location.href='/collections'">{{ t 'cart.go-shopping' }}</button>
+  <button class="btn btn-primary btn-sm trade-cart-non-empty-continue-btn body3" onclick="window.location.href='/collections'">{{ t 'cart.cart.continue_shopping' }}</button>
 {{/if}}

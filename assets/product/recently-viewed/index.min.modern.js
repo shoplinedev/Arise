@@ -43,6 +43,8 @@
                 sectionId: sectionName,
                 context: {
                     historyBrowseProducts: productInfoVoList,
+                    storeInfo: state_selector.SL_State.get("storeInfo"),
+                    currencyRates: state_selector.SL_State.get("currencyRates"),
                     ...context
                 }
             };
@@ -81,13 +83,13 @@
                         };
                     }
                 });
-                $("body").on("click", `${recentlyItemCls}`, (function() {
-                    const content_ids = $(this).attr("data-id");
-                    const sku_id = $(this).attr("data-sku-id");
-                    const content_name = $(this).attr("data-name");
+                __SL_$__("body").on("click", `${recentlyItemCls}`, (function() {
+                    const content_ids = __SL_$__(this).attr("data-id");
+                    const sku_id = __SL_$__(this).attr("data-sku-id");
+                    const content_name = __SL_$__(this).attr("data-name");
                     const currency = state_selector.SL_State.get("storeInfo.currency");
-                    const value = $(this).attr("data-price");
-                    const position = Number($(`${recentlyItemCls}`).index($(this))) + 1;
+                    const value = __SL_$__(this).attr("data-price");
+                    const position = Number(__SL_$__(`${recentlyItemCls}`).index(__SL_$__(this))) + 1;
                     const customParams = {
                         content_ids,
                         sku_id,

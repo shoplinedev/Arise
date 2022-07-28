@@ -1,6 +1,6 @@
 {{ assign 'isMobile' request.is_mobile }}
 
-{{#snippet 'customer/base/sl-card' title=(t 'userCenter.address.address') id='customer-center-address'}}
+{{#snippet 'customer/base/sl-card' title=(t 'customer.address.address') id='customer-center-address'}}
   <div class="address">
     {{#if (isEmpty addressList)}}
       <div class="address--empty">
@@ -12,29 +12,29 @@
 </svg>
 
 
-        <p>{{ t 'userCenter.address.no-data' }}</p>
+        <p>{{ t 'customer.address.no_adress_data' }}</p>
         <a href="/user/address/new" class="address__link">
           {{#snippet 'customer/base/sl-button'}}
             {{ snippet 'icons/icon_add' }}
-            <span>{{ t 'userCenter.address.add' }}</span>
+            <span>{{ t 'customer.address.add_address' }}</span>
           {{/snippet}}
         </a>
       </div>
     {{else}}
       {{!-- 大于等于5条 --}}
       {{#if (gte (length addressList) 5)}}
-        <p class="address--max">{{ t 'userCenter.address.full-tip' }}</p>
+        <p class="address--max">{{ t 'customer.address.adress_full_tip' }}</p>
       {{else}}
         <div class="address__add-box">
           <a class="address__btn address__btn--add" href="/user/address/new">
             {{#if isMobile}}
               {{#snippet 'customer/base/sl-button' block=true}}
                 {{ snippet 'icons/icon_add' }}
-                <span>{{ t 'userCenter.address.add' }}</span>
+                <span>{{ t 'customer.address.add_address' }}</span>
               {{/snippet}}
             {{else}}
               {{ snippet 'icons/icon_add' }}
-              <span>{{ t 'userCenter.address.add' }}</span>
+              <span>{{ t 'customer.address.add_address' }}</span>
             {{/if}}
           </a>
         </div>
@@ -45,7 +45,7 @@
             <div class="address__header">
               <p class="address__title">
                 {{#if def}}
-                  <span class="address__item--default">{{ t 'userCenter.address.default' }}</span>
+                  <span class="address__item--default">{{ t 'customer.address.default' }}</span>
                 {{/if}}
                 <span class="address__name">{{ lastName }}{{ cond firstName (append ', ' firstName) '' }}</span>
               </p>

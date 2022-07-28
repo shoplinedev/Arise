@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ storeInfo.languageSetting.storeLanguage }}">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="x-dns-prefetch-control" content="on">
+
+  {{ snippet 'theme-css-var' }}
+
   {{!-- 这段snippet 必须在所有插槽之前 --}}
   {{ snippet 'page-snippet' }}
   {{#slot 'seo-meta'}}
@@ -25,6 +28,8 @@
   {{#slot 'before_head'}}{{/slot}}
   <link rel="stylesheet" href="{{ assets_url 'vendor/prepare.min.css' }}" />
   <link rel="stylesheet" href="{{ assets_url 'vendor/global.min.css' }}" />
+  {{ preload_state 'imgNoReferrerSwitch' }}
+
   {{ content_for_header }}
 
   <link rel="dns-prefetch" href="https://cdn.myshopline.com">
@@ -81,23 +86,12 @@
 
   <script>
     window.__I18N__ = window.__I18N__ || {};
-    window.__I18N__['common'] = {{{ JSONstringify (t 'common') }}};
-    window.__I18N__['footer'] = {{{ JSONstringify (t 'footer') }}};
-    window.__I18N__['trade'] = {{{ JSONstringify (t 'trade') }}};
     window.__I18N__['cart'] = {{{ JSONstringify (t 'cart') }}};
-    window.__I18N__['productList'] = {{{ JSONstringify (t 'productList') }}};
+    window.__I18N__['customer'] = {{{ JSONstringify (t 'customer') }}};
+    window.__I18N__['products'] = {{{ JSONstringify (t 'products') }}};
+    window.__I18N__['transaction'] = {{{ JSONstringify (t 'transaction') }}};
     window.__I18N__['sales'] = {{{ JSONstringify (t 'sales') }}};
-    window.__I18N__['validate'] = {{{ JSONstringify (t 'validate') }}};
-    window.__I18N__['productDetail'] = {{{ JSONstringify (t 'productDetail') }}};
-    window.__I18N__['modal'] = {{{ JSONstringify (t 'modal') }}};
-    window.__I18N__['comment'] = {{{ JSONstringify (t 'comment') }}};
-    window.__I18N__['collection'] = {{{ JSONstringify (t 'collection') }}}
-    window.__I18N__['contactForm'] = {{{ JSONstringify (t 'contactForm') }}}
-    window.__I18N__['user'] = {{{ JSONstringify (t 'user') }}}
-    window.__I18N__['tips'] = {{{ JSONstringify (t 'tips') }}}
-    window.__I18N__['userCenter'] = {{{ JSONstringify (t 'userCenter') }}}
-    window.__I18N__['customer'] = {{{ JSONstringify (t 'customer') }}}
-    window.__I18N__['general'] = {{{ JSONstringify (t 'general') }}}
+    window.__I18N__['general'] = {{{ JSONstringify (t 'general') }}};
   </script>
   {{#if storeInfo.languageSetting.enableSelector}}
     {{ snippet 'gte' }}
@@ -112,7 +106,6 @@
   {{/is_modern_browser}}
   {{#slot 'script'}}{{/slot}}
   {{#slot 'page_view'}}{{/slot}}
-  {{ sales_widgets_script }}
   {{!-- 自定义代码底部 --}}
   {{ content_for_footer }}
   <div data-ssr-plugin-body-bottom></div>

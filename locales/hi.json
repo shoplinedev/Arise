@@ -1,81 +1,78 @@
 {
-  "address": {
-    "dropdown": {
-      "default-placeholder": "कृपया चुने",
-      "no-item-tips": "कोई डेटा उपलब्ध नहीं है",
-      "no-search-result": "कोई मेल नहीं मिला"
-    },
-    "mobile-errorMessage": "कृपया एक मान्य फोन नंबर दर्ज करें",
-    "mobile-errorMessage-country-code": "कृपया क्षेत्र कोड दर्ज न करें"
-  },
   "blog": {
-    "container": {
-      "backTo": "वापसी {{{collectionTitle}}}"
-    }
-  },
-  "blogList": {
-    "container": {
-      "empty": {
-        "desc": "इस ब्लॉग में कोई ब्लॉग पोस्ट नहीं है।",
-        "title": "ब्लॉग"
-      },
-      "readBtnText": "अधिक पढ़ें"
+    "blog_list": {
+      "empty_desc": "इस ब्लॉग में कोई ब्लॉग पोस्ट नहीं है।",
+      "read_btn_text": "अधिक पढ़ें",
+      "title": "ब्लॉग"
+    },
+    "general": {
+      "back_to": "वापसी {{{collectionTitle}}}"
     }
   },
   "cart": {
-    "active-stock-limit": "इस छूट की कीमत में सिर्फ {{stock}} ही बचे हैं",
-    "active-stock-limit-1": "आप एक ही समय में छूट के साथ ज्यादा से ज्यादा {{stock}} उत्पाद खरीद सकते हैं",
-    "active-stock-limit-2": "आप इस उत्पाद के केवल {{stock}} टुकड़े छूट के साथ खरीद सकते हैं",
-    "activity-price-limit": "आप केवल {{num}} में इस उत्पाद को छूट के साथ खरीद सकते हैं",
-    "activity-product-limit": "आप एक ही समय में छूट के साथ ज्यादा से ज्यादा {{stock}} उत्पाद खरीद सकते हैं",
-    "activity-title-limit": "नीचे के उत्पाद खरीदारी की सीमा से अधिक हैं, फिर भी चेकआउट के लिए आगे बढ़ें?",
     "cart": {
+      "added_to_cart": "कार्ट में डाल दिया गया है",
+      "buy_now": "अभी खरीदें",
       "cancel": "रद्द करें",
+      "cart_subtotal": "सामान का कुल योग",
+      "cart_view": "कार्ट देंखे",
+      "checkout": "चेक आउट",
+      "click_to_view": "देखने के लिए दबाएं",
       "confirm": "ठीक है",
       "continue": "जारी रखें",
+      "continue_shopping": "खरीदारी जारी रखें",
+      "custom_preview": "कस्टम पूर्वावलोकन",
+      "day": "दिन",
+      "days": "दिनों",
+      "empty_cart": "फिलहाल आपका कार्ट खाली है।",
       "got_it": "मैं समझ गया",
-      "return_to_cart": "कार्ट पर लौटें"
+      "remove": "हटाएं",
+      "return_to_cart": "कार्ट पर लौटें",
+      "subtotal": "उप-योग",
+      "tax_included": "टैक्स शामिल"
     },
-    "checkout-error": "शॉपिंग कार्ट में कम से कम एक अनुपलब्ध उत्पाद है। चेकआउट करने के लिए कृपया कार्ट आइटम समायोजित करें।",
     "checkout_proceeding": {
       "checkout_proceed": "नीचे के उत्पाद खरीदारी की सीमा से अधिक हैं, फिर भी चेकआउट के लिए आगे बढ़ें?"
     },
-    "contact": {
-      "discounts_cannot_stack": "इस ऑर्डर पर छूट लागू की गई है। आप एक और छूट नहीं जोड़ सकते"
-    },
     "discount": {
+      "code_error": "छूट कोड गलत दर्ज किया गया है",
+      "code_item_unmatched": "{{discountCode}} सही ढंग से दर्ज किया गया है, लेकिन माल की कीमत या मात्रा आवश्यकताओं को पूरा नहीं करती है",
+      "coupon_code": "कूपन कोड",
       "coupon_code_amount": "कूपन",
-      "coupon_code_exceed_not_25_characters": "कूपन कोड 25 वर्णों से ज्यादा नहीं हो सकता।",
-      "coupon_invalid_for_the_shipping_method": "{{discountCode}} कूपन शिपिंग विधि के लिए मान्य है",
-      "discount_code_invalid": "{{discountCode}} सही ढंग से दर्ज किया गया है, लेकिन माल की कीमत या मात्रा आवश्यकताओं को पूरा नहीं करती है",
-      "discount_codes_cannot_stack": "यह सामग्री के लिए एक पसंदीदा इवेंट है, जो अन्य पसंदीदा इवेंट के साथ उपयोग नहीं किया जा सकता है",
-      "enter_a_valid_discount_code": "छूट कोड गलत दर्ज किया गया है",
-      "expected_discount": "छूट"
+      "coupon_code_length_limit": "कूपन कोड {{range}} वर्णों से ज्यादा नहीं हो सकता।",
+      "discounts_cannot_stack": "इस ऑर्डर पर छूट लागू की गई है। आप एक और छूट नहीं जोड़ सकते",
+      "expected_discount": "छूट",
+      "use_coupon_alone": "इस कूपन कोड का उपयोग अन्य प्रचार या छूट ऑफ़र के संयोजन में नहीं किया जा सकता है"
     },
     "discount_item": {
       "buy_limit5": "आप एक ही समय में छूट के साथ ज्यादा से ज्यादा {{stock}} उत्पाद खरीद सकते हैं"
     },
     "discount_price": {
+      "buy_limit1": "इस छूट की कीमत में सिर्फ {{stock}} ही बचे हैं",
+      "buy_limit2": "आप एक ही समय में छूट के साथ ज्यादा से ज्यादा {{stock}} उत्पाद खरीद सकते हैं",
       "buy_limit3": "आप इस उत्पाद के केवल {{stock}} टुकड़े छूट के साथ खरीद सकते हैं"
     },
-    "get": "एक डिस्काउंट मिलता है",
-    "go-shopping": "खरीदारी जारी रखें",
+    "general": {
+      "continue_as_a_guest": "अतिथि के रूप में जारी रखें"
+    },
     "item": {
-      "add_limit1": "100 आइटम तक जोड़ें",
       "add_limit2": "एक उत्पाद की अधिकतम राशि 999 पीस है",
+      "invalid_product": "अमान्य उत्पाद",
+      "item_left": "{{stock}} स्टॉक में है",
+      "none_existent": "सामग्री उपलब्ध नहीं है",
+      "remove_invalid_product": "अमान्य उत्पाद हटाएं",
       "removed": "अवैध",
       "sold_out": "बिक गया"
     },
-    "login-description": "पहले से ही सदस्य हैं क्या? ऑर्डर को प्रबंधित करने के लिए लॉगइन अधिक सुविधाजनक हो सकता है!",
-    "login-membership": "नि: शुल्क सदस्यता",
-    "most-100-sku": "100 आइटम तक जोड़ें",
-    "most-buy-999": "एक उत्पाद की अधिकतम राशि 999 पीस है",
-    "not-participation-offers": "भाग-नहीं लेने वाली छूट",
+    "next_step": {
+      "calculated_taxes_fees": "चेकआउट के समय कर और शिपिंग की गिनती"
+    },
     "notices": {
       "change_password_after_verification": "सत्यापन के बाद आप पासवर्ड बदल सकते हैं",
       "excess_product": "नीचे के उत्पाद खरीदारी की सीमा से अधिक हैं, कृपया राशि बदलें",
       "insufficient_product_inventory": "अपर्याप्त उत्पाद सूची",
       "network": "नेटवर्क में त्रुटि",
+      "product_amount_limit": "माफ़ करें! कार्ट में उत्पादों की संख्या सीमा से ज्यादा है।",
       "product_expired": "उत्पाद समाप्त हो गया है",
       "product_limit": "उत्पाद की सीमा पार हो गई है",
       "product_selected_invalid": "क्षमा करें, आपके द्वारा चुना गया उत्पाद खरीदने के लिए अमान्य है। कृपया फिर से चुनें",
@@ -86,286 +83,187 @@
       "canceled": "रद्द हुआ",
       "canceled_order": "रद्द हुआ",
       "click_to_track": "कृपया नीचे दिए गए लिंक पर दबा कर अपने पैकेज को ट्रैक करें:",
+      "contact_us": "हमसे संपर्क करें",
       "deleted": "अवैध",
+      "help_tips": "मदद चाहिएं? कृपया हमसे संपर्क करें:{{email}}",
       "invalid_order_number": "अमान्य आदेश संख्या",
       "no_more_info": "और कोई जानकारी नहीं है",
+      "no_record": "अभी कोई ऑर्डर रिकॉर्ड नहीं है, खरीदारी के लिए जाएं",
+      "order": "ऑर्डर",
+      "order_details": "ऑर्डर का विवरण",
+      "package_amount": "पैकेज {{num}}（{{item}} आइटम）",
       "pay_amount": "भुगतान राशि",
       "payment_voucher_confirmation": "समझ लिया",
+      "payment_voucher_transfer_success": "भुगतान सफलतापूर्वक स्थानांतरित हो गया",
+      "payment_voucher_waiting_for_payment": "भुगतान की प्रतीक्षा करना",
       "receiver_account": "प्राप्तकर्ता खाता",
       "reference_number": "संदर्भ संख्या",
+      "remark": "ऑर्डर टिप्पणी",
       "sequence": "नं.{{id}}",
       "shipping_address": "शिपिंग पता",
+      "sign_in": "या निम्न विधियों से साइन इन करें",
+      "tax_included": "करों में {{price}} सहित",
       "time": "ऑर्डर दिया गया:",
       "total_amount": "{{transPackages}} कुल आइटम",
       "total_item_amount": "{{transPackages}} कुल आइटम",
+      "tracking": "ट्रैक करें",
       "try_again": "अपलोड विफल। कृपया पुन: प्रयास करें।",
       "try_later": "सिस्टम व्यस्त है, कृपया बाद में पुन: प्रयास करें।",
+      "upload_bank_transfer_vouhcer_for_confirmation": "कृपया बैंक हस्तांतरण वाउचर अपलोड करें और हम पुष्टि करेंगे।",
       "upload_image_within_10_m_b": "कृपया 10MB के अंदर JPG, PNG, GIF इमेज अपलोड करें",
       "upload_time": "अपलोड समय",
+      "upload_voucher": "वाउचर अपलोड करें",
       "voucher_amount_limit": "आप अधिकतम 5 वाउचर ही अपलोड कर सकते हैं।"
     },
     "payment": {
+      "billing_address": "बिल भेजने का पता",
       "channel": "भुगतान चैनल",
+      "continue_shopping": "खरीदारी जारी रखें",
       "create_time": "बनाया गया था",
+      "detail": "विस्तार",
+      "free": "नि: शुल्क",
+      "log_in": "साइन इन पर जाएं",
+      "method": "भुगतान की विधि",
       "paid": "भुगतान किया गया",
       "partially_paid": "आंशिक भुगतान",
       "paying": "भुगतान हो रहा है",
+      "payment": "भुगतान",
       "payment_details": "भुगतान विवरण",
+      "payment_status": "भुगतान की स्थिति",
+      "pending_review": "भुगतान हो रहा है",
       "reference_number": "लेनदेन संदर्भ संख्या",
       "status": "स्थिति",
       "subtotal_price": "उप-योग",
       "sum": "राशि",
       "total": "कुल",
+      "total_sum": "कुल",
       "unpaid": "भुगतान नहीं हुआ",
       "update_time": "अद्यतन"
     },
     "policy": {
       "privacy_policy": "से सहमत हूं"
     },
-    "product-no-exists": "सामग्री उपलब्ध नहीं है",
+    "promotion": {
+      "no_promotion": "भाग-नहीं लेने वाली छूट"
+    },
     "refund": {
       "click_to_view": "देखने के लिए दबाएं",
-      "custom_preview": "कस्टम पूर्वावलोकन"
+      "cost_points": "लागत {{value}} पॉइंट",
+      "custom_preview": "कस्टम पूर्वावलोकन",
+      "deduct_point": "{{deductMemberPointAmount}} पॉइंट बचाने के लिए आप {{deductMemberPointNum}} पॉइंट का उपयोग कर सकते हैं"
     },
-    "render-add-items": "फिलहाल आपका कार्ट खाली है।",
-    "render-empty-status": "आपकी कार्ट में कोई सामान नहीं",
     "shipping": {
+      "info": "जानकारी",
       "no_info": "अभी तक कोई डिलीवरी जानकारी नहीं है, कृपया बाद में देखें।",
       "package_tracking": "पैकेज ट्रैक करें",
       "partially_shipped": "आंशिक शिपमेंट",
       "preparing_order": "उत्पादों की तैयारी",
+      "processing_amount": "({{num}} आइटम) प्रक्रियाकरण",
       "shipped_order": "पहुंचा दिया"
     },
-    "shopping-fees": "शॉपिंग शुल्क",
-    "shopping-money": "छूट, कर और शिपिंग की गणना अगले चरण में की जाएगी",
-    "shopping-money-step": "चेकआउट के समय कर और शिपिंग की गिनती",
     "shpping": {
       "service_terms": "शर्तें और"
     },
-    "stock-limit": "{{stock}} स्टॉक में है",
-    "taxIncluded": {
-      "textTag": "टैक्स शामिल"
+    "stock": {
+      "limit": "केवल {{stock}} बचा है"
     },
     "tips": {
+      "agree_with_the_shop": "मैं इसके लिए सहमत हूँ",
       "change_binding_after_verification": "सत्यापन के बाद आप {{value}} जोड़ें/बदल सकते हैं",
+      "forget_password": "पासवर्ड भूल गए है",
+      "proceed_to_checkout": "चेक आउट करने के लिए आगे बढ़ें",
       "reset_password": "आप खाते {{account}} के लिए पासवर्ड रीसेट कर रहे हैं"
-    },
-    "view-link": "देखने के लिए दबाएं",
-    "view-pic": "कस्टम पूर्वावलोकन",
-    "view-shopping-cart": "शॉपिंग कार्ट देखें",
-    "added-to-cart": "कार्ट में डाल दिया गया है",
-    "cart-subtotal": "सामान का कुल योग",
-    "view-cart": "कार्ट देंखे"
-  },
-  "cascade": {
-    "choose": "Veuillez sélectionner une option"
-  },
-  "checkout": {
-    "delivery-method": {
-      "store-pickup": "पिक अप"
-    },
-    "info-preview": {
-      "store-pickup__info": "स्टोर में पिकअप • {{locationName}} • मुफ़्त",
-      "store-pickup__label": "तरीका"
-    },
-    "store-pickup": {
-      "label": "लेने की जगह",
-      "list--empty": "आपका ऑर्डर पिकअप के लिए उपलब्ध नहीं है। एक शिपिंग पता दर्ज करें।",
-      "pickup-appointment--between": "लगभग {{start}}-{{end}} में तैयार",
-      "pickup-appointment--more-than": "{{start}} से अधिक में तैयार",
-      "pickup-appointment--within": "{{end}} के भीतर तैयार",
-      "pickup-appointment__value--day": "{{value}} दिन",
-      "pickup-appointment__value--day-plural": "{{value}} दिन",
-      "pickup-appointment__value--hour": "{{value}} घंटा",
-      "pickup-appointment__value--hour-plural": "{{value}} घंटे"
     }
-  },
-  "collection": {
-    "all": {
-      "h1Title": "श्रेणी",
-      "title": "सभी संग्रह"
-    }
-  },
-  "comment": {
-    "about-product": "कृपया कम से कम एक शब्द डालें",
-    "add-img": "एक तस्वीर जोड़ें",
-    "all-reviews": "सभी विचार देखें",
-    "bad": "बहुत खराब",
-    "best": "बहुत अच्चा",
-    "comment-count": "{{total}} विचार",
-    "customer-comment": "ग्राहक के विचार",
-    "enter-comment": "उत्पाद पर विचार लिखें",
-    "experience-about": "कृपया इस उत्पाद के बारे में अपनी विचार डालें",
-    "general": "ठिकठाक",
-    "good": "अच्छा",
-    "image-only-2m": "अधिकतम तस्वीर का आकार {{size}} MB है",
-    "leave-a-review": "विचार लिखें",
-    "mobile-submit": "जमा करें",
-    "more-images": "आप ज़्यादा से ज़्यादा {{total}} तस्वीर जोड़ सकते हैं",
-    "network-err-msg": "सिस्टम में त्रुटि के कारण आपकी विचार संसाधित नहीं की जा सकती, कृपया पुनः प्रयास करें~",
-    "nickname": "उपनाम",
-    "no-bought-msg": "क्षमा करें, आपने यह उत्पाद पहले नहीं खरीदा है, इसलिए आप विचार नहीं कर सकते",
-    "no-comment-first-tip": "अब पहली टिप्पणी पोस्ट करें!",
-    "no-comment-title-tip": "अब तक कोई टिप्पणी नहीं है",
-    "no-login-msg": "जिन ग्राहकों ने यह उत्पाद खरीदा है वे अपना विचार कर सकते हैं, कृपया पहले साइन इन करें",
-    "on-img-upload-tip": "अपलोड हो रहा है, कृपया बाद में जमा करें",
-    "only-image": "केवल .jpg .jpeg .png .bmp फ़ाइल अपलोड करने का समर्थन करता है",
-    "rate-score": "{{score}} रेटिंग",
-    "ratings": "रेटिंग्स",
-    "read-more-comments": "और दिखाएं",
-    "shipping-information": "शिपिंग सूचना",
-    "sign-in": "साइन इन करें",
-    "text": "विचार",
-    "thanks-msg": "आपकी विचार के लिए धन्यवाद",
-    "total": "{{total}} विचार",
-    "worse": "खराब",
-    "write-review": "विचार लिखें"
-  },
-  "common": {
-    "address": "पता",
-    "amount": "राशि",
-    "anonymous": "अज्ञात",
-    "anonymous-evaluation": "अज्ञात विचार",
-    "apply": "प्रयोग करें",
-    "applyDate": "आवेदन की तिथि",
-    "audit": "विचार",
-    "back-to-cart": "कार्ट पर लौटें",
-    "back-to-user-center": "उपयोगकर्ता केंद्र में वापस जाएं",
-    "backout": "पूर्ववत",
-    "bank-Account": "बैंक खाता",
-    "bank-Account2": "बैंक खाता",
-    "bank-card-number": "बैंक कार्ड नंबर",
-    "bank-name": "बैंक का नाम",
-    "buy-now": "अभी खरीदें",
-    "cancel": "रद्द करें",
-    "cardholder-name": "कार्डधारक का नाम",
-    "category": "श्रेणी",
-    "checkout": "चेक आउट",
-    "close": "बंद करे",
-    "confirm": "ठीक है",
-    "contact-information": "संपर्क जानकारी",
-    "contactUs": "हमसे संपर्क करें",
-    "continue": "जारी रखें",
-    "day": "दिन",
-    "days": "दिनों",
-    "default-address": "डिफ़ॉल्ट पता",
-    "descountPrice": "विक्रय कीमत",
-    "discount": "छूट",
-    "discountDesc": "बिक्री विवरण",
-    "discountOff": "छूट",
-    "email": "ईमेल पता",
-    "email2": "मेल",
-    "enter-email": "कृपया अपना पूरा ईमेल दर्ज करें",
-    "enter-mobile-phone": "कृपया मोबाइल फ़ोन नंबर दर्ज करें",
-    "enter-username": "कृपया उपयोगकर्ता नाम दर्ज करें",
-    "error-stack": "गलत स्टैक",
-    "evaluation": "विचार",
-    "finish": "पूरा हुआ",
-    "free-shipping": "मुफ़्त शिपिंग",
-    "freightDesc": "शिपिंग शुल्क का विवरण",
-    "hasSelected": "चुना है",
-    "home": "मुखपृष्ठ",
-    "login": "लॉग इन करें",
-    "logistics": "शिपिंग",
-    "logistics-and-payment": "वितरण और भुगतान",
-    "member-login": "सदस्य साइन इन",
-    "meno": "टिप्पणियां",
-    "mobile": "फ़ोन नंबर",
-    "mobile-phone": "मोबाइल फोन नंबर",
-    "modify": "बदलें",
-    "ok": "ठीक है",
-    "operation": "चालु करें",
-    "order": "ऑर्डर",
-    "order-evaluation": "ऑर्डर पर विचार",
-    "outOfStock": "स्टॉक ख़त्म",
-    "package": "पैकेज",
-    "page": "पृष्ठ",
-    "payment": "भुगतान",
-    "payment-2": "अभी भुगतान करें",
-    "piece": "टुकड़ा",
-    "pieces": "टुकड़े",
-    "productError": "कोई उत्पाद डेटा नहीं मिला। बाद में पुन: प्रयास करें",
-    "recommend": "सिफारिश किया गया",
-    "remain": "बचा हुआ",
-    "remove": "हटाएं",
-    "returnInfo": "वापसी की जानकारी",
-    "returnMoney": "पैसावापसी",
-    "returnProgress": "वापसी प्रगति",
-    "rollback": "निकालें",
-    "selectProduct": "उत्पाद चुनें",
-    "settleMent": "अभी खरीदें",
-    "sign-out": "लॉग आउट करें",
-    "soldOut": "बिक गया",
-    "stock-limit": "केवल {{stock}} बचा है",
-    "subTotal": "उप-योग",
-    "submit-evaluation": "विचार जमा करें",
-    "tax": "कर और शुल्क",
-    "taxDesc": "कर और शुल्क का विवरण",
-    "tel-phone": "फ़ोन नंबर",
-    "tips": "याद दिलाएं",
-    "title": "शीर्षक",
-    "total": "कुल",
-    "upload": "अपलोड करें",
-    "upload-image": "एक तस्वीर अपलोड करें",
-    "use-address": "उपयोग किए गए पता",
-    "use-new-address": "नए पते का इस्तेमाल करें",
-    "username": "नाम"
-  },
-  "contactForm": {
-    "sendSuccess": "हमसे संपर्क करने के लिए धन्यवाद, हम जल्द से जल्द आपसे संपर्क करेंगे।"
   },
   "customer": {
     "account": {
-      "add-email": "ईमेल जोड़ें",
-      "add-phone": "मोबाइल नंबर जोड़ें",
+      "account_binding": "खाता जोड़ना",
+      "account_information": "खाता",
+      "address": "पता",
+      "bind": "जोड़ा जा रहा है",
+      "birthday": "जन्म तारीख",
+      "change_password": "पासवर्ड बदलें",
+      "credit_card_number": "क्रेडिट कार्ड नंबर।",
       "deadline": "व्यावसायिक रिपोर्ट के उद्देश्य से, आपका ऑर्डर अभी भी दिखाई देगा। आपका खाता डेटा {{time}} को हटा दिया जाएगा, आप उस तारिख से पहले प्रक्रिया को रद्द कर सकते हैं।",
+      "delete_account": "खाता बंद करें",
+      "delete_account_email": "ईमेल",
+      "delete_account_notify": "आप इस खाते को बंद करने के लिए आवेदन कर सकते हैं। एक बार बंद होने पर, इस खाते की पहचान की कोई भी जानकारी हटा दी जाएगी, जिसमें शामिल हैं:",
+      "email": "ईमेल",
+      "first_name": "नाम",
+      "gender": "लिंग",
       "gender_female": "महिला",
       "gender_male": "पुरुष",
       "gender_secret": "गुप्त रखें",
+      "ip_address": "IP पता",
+      "last_name": "उपनाम",
+      "modify_email": "ईमेल संशोधित करें",
+      "modify_phone": "फोन संशोधित करें",
+      "name": "नाम",
+      "next": "अगला",
+      "nickname_empty_error": "पहला नाम और अंतिम नाम दोनों को खाली नहीं हो सकता है",
       "not_set": "सेट नहीं है",
+      "password": "पासवर्ड",
+      "personal__info": "व्यक्तिगत जानकारी",
+      "personal__information": "व्यक्तिगत जानकारी",
+      "phone": "फोन संशोधित करें",
       "reset_password_error_hint": "कृपया पहले ईमेल या मोबाइल जोड़े",
+      "revoke": "बंद करना रद्द करें",
+      "revoke_message": "यह खाता बंद करने की प्रक्रिया में है, खाता डेटा {{time}} को हटा दिया जाएगा, आप उस तारिख से पहले प्रक्रिया को रद्द कर सकते हैं।",
+      "select__date": "तारीख़ चुनें",
+      "timeout_tip": "ऑपरेशन का समय समाप्त हो गया, कृपया फिर से सत्यापित करें",
+      "username": "नाम",
       "verify_email_message": "खाता बंद करने से पहले, हमें आपकी पहचान सत्यापित करनी होगी\nआपके ईमेल {{email}} पर एक सत्यापन ईमेल मिलेगा",
       "verify_phone_message": "खाता बंद करने से पहले, हमें आपकी पहचान सत्यापित करनी होगी\nआपके मोबाइल फ़ोन {{phone}} को एक सत्यापन संदेश प्राप्त होगा"
     },
     "address": {
       "add_address": "नया पता जोड़ें",
+      "address": "पता",
+      "adress_full_tip": "5 पते सहेजे गए हैं और इस समय जोड़े नहीं जा सकते है",
       "common_max": "",
       "common_min": "{{मिनट}} वर्णों से अधिक",
+      "default": "डिफॉल्ट",
+      "delete__address": "पता हटाएं",
       "edit_last_name_hint": "कृपया अपना अंतिम नाम दर्ज करें!",
       "edit_phone_hint": "कृपया अपना मोबाइल दर्ज करें",
-      "mobile-errorMessage": "कृपया एक मान्य फोन नंबर दर्ज करें",
-      "no_adress_data": "वर्तमान में, कोई वितरण पता नहीं है"
-    },
-    "common": {
-      "back-to-user-center": "उपयोगकर्ता केंद्र में वापस जाएं",
-      "cancel": "रद्द करें",
-      "confirm": "ठीक है",
-      "email": "ईमेल पता",
-      "email2": "मेल",
-      "enter-email": "कृपया अपना पूरा ईमेल दर्ज करें",
-      "enter-mobile-phone": "कृपया मोबाइल फ़ोन नंबर दर्ज करें",
-      "member-login": "सदस्य साइन इन",
-      "mobile": "फ़ोन नंबर",
-      "mobile-phone": "मोबाइल फोन नंबर"
+      "edit_shipping_address": "शिपिंग पता संपादित करें",
+      "no_adress_data": "वर्तमान में, कोई वितरण पता नहीं है",
+      "set_default_address": "डिफ़ॉल्ट पते के रूप में सेट करें"
     },
     "email": {
       "mail_common": "मेल"
     },
+    "forget_password": {
+      "forget_password_tips": "पासवर्ड भूल गए है",
+      "tips_password_can_be_changed_after_verification": "सत्यापन के बाद आप पासवर्ड बदल सकते हैं",
+      "tips_reset_password": "आप खाते {{account}} के लिए पासवर्ड रीसेट कर रहे हैं"
+    },
     "general": {
+      "account": "खाता",
+      "and_button": "गोपनीयता नीति",
       "apr": "अप्रैल",
       "april": "अप्रैल",
       "aug": "अग",
       "august": "अगस्त",
+      "back_to__user__center": "उपयोगकर्ता केंद्र में वापस जाएं",
+      "bind__change_email": "ईमेल जोड़ें/बदलें",
+      "bind__change_phone": "मोबाइल फ़ोन नंबर जोड़ें/बदलें",
       "bind_success": "जुड़े हुए",
+      "cancel": "रद्द करें",
+      "cancel_common": "रद्द करें",
       "cancel_mobile_button": "रद्द करें",
       "clear_button": "स्पष्ट",
+      "confirm": "ठीक है",
       "confirm_button": "ठीक है",
+      "continue_as_a_guest": "अतिथि के रूप में जारी रखें",
       "date_format": "MM/dd/yyyy",
       "dec": "दिस",
       "december": "दिसंबर",
+      "edit": "संपादित करें",
+      "email": "ईमेल पता",
       "email_empty_hint": "कृपया ईमेल पता दर्ज करें",
       "email_error_hint": "कृपया मान्य प्रारूप और 50 से कम वर्णों का ईमेल पता दर्ज करें",
       "enter_verification_code": "कृपया सत्यापन कोड दर्ज करें",
+      "error_message_1": "अपडेट प्राप्त करने के लिए ईमेल के लिए मुझे साइन अप करें, विशेष सौदों तक पहुंच, और बहुत कुछ।",
       "error_message_1001": "पासवर्ड में त्रुटि",
       "error_message_1002": "उपभोक्ता नहीं हैं",
       "error_message_1003": "असामान्यता के कारण आपका खाता अक्षम कर दिया गया है; कृपया प्रतिबंध हटाने के लिए व्यापारी से संपर्क करें",
@@ -426,6 +324,7 @@
       "july": "जुलाई",
       "jun": "जून",
       "june": "जून",
+      "login_method": "या निम्न विधियों से साइन इन करें",
       "mar": "मार्च",
       "march": "मार्च",
       "max_image_upload_tips": "आप ज़्यादा से ज़्यादा {{max}} इमेज अपलोड कर सकते हैं",
@@ -439,24 +338,37 @@
       "november": "नवंबर",
       "oct": "अक्तू",
       "october": "अक्तूबर",
+      "ok": "ठीक है",
       "okay_common": "ठीक है",
+      "orders": "ऑर्डर",
+      "password": "पासवर्ड",
       "password_empty_hint": "कृप्या पासवर्ड डालें",
+      "phone": "मोबाइल फोन नंबर",
       "phone_empty_message": "कृपया मोबाइल फ़ोन नंबर दर्ज करें",
       "phone_error_message": "कृपया मान्य प्रारूप के साथ मोबाइल फ़ोन नंबर दर्ज करें",
       "phone_number_error_message": "कृपया एक मान्य फोन नंबर दर्ज करें",
+      "proceed_to_checkout": "चेक आउट करने के लिए आगे बढ़ें",
+      "register": "साइन अप करें",
       "repeat_passport_error": "आपके द्वारा दर्ज किया गया पासवर्ड मेल नहीं खाता है",
+      "repeat_password": "पासवर्ड फिर से दर्ज करें",
       "resend": "फिर से भेजें",
       "sa": "शनि",
       "sat": "शनि",
       "saturday": "शनिवार",
+      "save": "सहेजे",
       "select__date": "तारीख़ चुनें",
+      "select_date": "तारीख़ चुनें",
       "send": "भेजें",
       "send_error": "कृपया पहले सत्यापन कोड भेजें",
       "send_verification_code_hint": "कृपया पासवर्ड फिर से दर्ज करें",
       "sep": "सित",
       "september": "सितंबर",
       "set_password": "कृपया एक पासवर्ड सेट करें जिसकी लंबाई कम से कम 6 वर्ण और अधिकतम लंबाई 18 वर्ण हो।",
+      "sign__out": "साइन आउट",
+      "sign_in": "साइन इन करें",
+      "sign_up": "साइन अप करें",
       "su": "रवि",
+      "subscription_desc": "स्टोर के बारे में हाल के ख़बर पाएं",
       "sun": "रवि",
       "sunday": "रविवार",
       "th": "गुरु",
@@ -467,79 +379,63 @@
       "tu": "मंगल",
       "tue": "मंगल",
       "tuesday": "मंगलवार",
+      "update_passport": "पासवर्ड बदलें",
       "user_agreement_tip": "कृपया पहले उपयोगकर्ता समझौते को पढ़ें और सहमत हों",
+      "username": "ईमेल पता/मोबाइल फोन नंबर",
       "username_empty_hint": "कृपया ईमेल पता या मोबाइल फोन नंबर दर्ज करें",
+      "verification_code": "पुष्टिकरण कोड",
       "verification_code_sent_tip": "सत्यापन कोड आपके खाते में भेज दिया गया है",
+      "verift_account_tip": "कृपया अपना खाता सत्यापित करें और पासवर्ड रीसेट करें",
       "we": "बुध",
       "wed": "बुध",
       "wednesday": "बुधवार"
     },
-    "network-err-msg": "इंटरनेट नहीं है",
+    "login": {
+      "member_login_common": "सदस्य साइन इन"
+    },
+    "message": {
+      "input_placeholder": "क्या ऐसा कुछ है जिसके लिए आप संदेश देना चाहते हैं?",
+      "message": "संदेश",
+      "send": "भेजें"
+    },
     "phone": {
       "mobile_common": "फ़ोन नंबर"
     },
+    "register": {
+      "go_to_login": "साइन इन पर जाएं",
+      "privacy_policy": "से सहमत हूं",
+      "terms_of_service": "शर्तें और",
+      "tips_agree_with_the_shop": "मैं इसके लिए सहमत हूँ"
+    },
     "subscription": {
-      "unsubscribe_success": "सदस्यता रद्द, मुखपृष्ठ पर पुनर्निर्देशित की जाएगी"
-    },
-    "tips": {
-      "and": "गोपनीयता नीति",
-      "bind-change-email": "ईमेल जोड़ें/बदलें",
-      "bind-change-mobile-phone-number": "मोबाइल फ़ोन नंबर जोड़ें/बदलें",
-      "bind-success": "जुड़े हुए",
-      "change-binding-after-verification": "सत्यापन के बाद आप {{value}} जोड़ें/बदल सकते हैं",
-      "continue-as-a-guest": "अतिथि के रूप में जारी रखें",
-      "forget-password": "पासवर्ड भूल गए है",
-      "i-agree-with-the-shop": "मैं इसके लिए सहमत हूँ",
-      "login": "साइन इन करें",
-      "or-use-the-following-method-to-log-in": "या निम्न विधियों से साइन इन करें",
-      "password-can-be-changed-after-verification": "सत्यापन के बाद आप पासवर्ड बदल सकते हैं",
-      "please-read-and-agree-to-the-user-agreement-first": "कृपया पहले उपयोगकर्ता समझौते को पढ़ें और सहमत हों",
-      "poroceed-to-checkout": "चेक आउट करने के लिए आगे बढ़ें",
-      "register": "साइन अप करें",
-      "reset-password": "आप खाते {{account}} के लिए पासवर्ड रीसेट कर रहे हैं",
-      "set-new-password": "पासवर्ड रीसेट करें",
-      "update-password": "पासवर्ड बदलें",
-      "update-success": "बदला हुआ",
-      "verification-code-has-been-sent-to-your-account": "सत्यापन कोड आपके खाते में भेज दिया गया है",
-      "verify-account-to-reset-password": "कृपया अपना खाता सत्यापित करें और पासवर्ड रीसेट करें"
-    },
-    "trade": {
-      "go-login": "साइन इन पर जाएं"
-    },
-    "unsubscribe": {
-      "btn": "सदस्यता रद्द",
-      "reason": {
-        "other": {
-          "length": "300 शब्दों तक दर्ज करें",
-          "placeholder": "इनपुट"
-        }
-      },
-      "reason1": "मुझे और ईमेल नहीं प्राप्त करना है",
-      "reason2": "मुझे बहुत सारे ईमेल मिलते है",
-      "reason3": "मैंने इस सूची का सदस्यता नही ली है",
-      "reason4": "ईमेल मेरे लिए प्रासंगिक नहीं है",
-      "reason5": "ईमेल का विषय बहुत लंबा है",
-      "reason6": "अन्य",
-      "subtitle": "आपको जाते हुए हमे दुःख हो रहा है! आपके सदस्यता छोड़ने का कारण हमे बताएं:",
-      "success": "सदस्यता रद्द, मुखपृष्ठ पर पुनर्निर्देशित की जाएगी",
-      "title": "सदस्यता रद्द"
-    }
-  },
-  "footer": {
-    "copyright": "सर्वाधिकार सुरक्षित।",
-    "followus": "हमे फोलो करें",
-    "subscribeBarPlaceholder": "अपना ईमेल पता यहां डालें",
-    "subscribeError": "सदस्यता लेने में विफल",
-    "subscribeRegExpError": "ई-मेल पता प्रारूप में त्रुटि",
-    "subscribeSuccess": "सदस्यता लेने में सफल"
-  },
-  "gdpr": {
-    "modal": {
-      "accept": "स्वीकार करें",
-      "decline": "अस्वीकार",
-      "link": "गोपनीयता नीति",
-      "tips": "आपके अनुभव को बेहतर बनाने के लिए, हम लॉग-इन विवरण याद रखने, आंकड़े जोड़ने और आपकी रुचियों के अनुरूप सामग्री देने के लिए कुकीज़ का उपयोग करते हैं। कुकीज़ को \"स्वीकार\" करने के लिए स्वीकार करें पर दबाएं या हमारी \"गोपनीयता नीति\" देखें।",
-      "title": "हमें आपकी गोपनीयता का ख्याल रखते है"
+      "email": "ईमेल",
+      "email_subscription_text": "ईमेल द्वारा सदस्यता की प्रचार जानकारी प्राप्त करें",
+      "l_i_n_e": "LINE",
+      "messenger": "Messenger",
+      "phone": "फोन संशोधित करें",
+      "phone_subscription_text": "फ़ोन प्रोमोशन के लिए सदस्यता लें",
+      "reason_other_length": "300 शब्दों तक दर्ज करें",
+      "reason_other_placeholder": "इनपुट",
+      "save_button": "सहेजे",
+      "subscribe_button": "सदस्यता लें",
+      "subscription_cancel_text": "सदस्यता रद्द",
+      "subscription_hint": "सदस्यता लिया",
+      "subscription_title": "सदस्यता",
+      "unsubscribe": "सदस्यता रद्द",
+      "unsubscribe_btn": "सदस्यता रद्द",
+      "unsubscribe_confirm_text": "सदस्यता रद्द",
+      "unsubscribe_feedback_text": "आपको हमारी ओर से कोई और मार्केटिंग अपडेट प्राप्त नहीं होगा। आप किसी भी समय फिर से सदस्यता ले सकते हैं",
+      "unsubscribe_feedback_title": "आपने <italic>{{name}}</italic> मेलिंग सूची से सदस्यता छोड़ दी है",
+      "unsubscribe_reason1": "मुझे और ईमेल नहीं प्राप्त करना है",
+      "unsubscribe_reason2": "मुझे बहुत सारे ईमेल मिलते है",
+      "unsubscribe_reason3": "मैंने इस सूची का सदस्यता नही ली है",
+      "unsubscribe_reason4": "ईमेल मेरे लिए प्रासंगिक नहीं है",
+      "unsubscribe_reason5": "ईमेल का विषय बहुत लंबा है",
+      "unsubscribe_reason6": "अन्य",
+      "unsubscribe_subtitle": "आपको जाते हुए हमे दुःख हो रहा है! आपके सदस्यता छोड़ने का कारण हमे बताएं:",
+      "unsubscribe_success": "सदस्यता रद्द, मुखपृष्ठ पर पुनर्निर्देशित की जाएगी",
+      "unsubscribe_tip": "एक बार सदस्यता समाप्त करने के बाद, आपको अब नवीनतम प्रोमोशन नहीं मिलेगा।",
+      "unsubscribe_title": "सदस्यता रद्द"
     }
   },
   "general": {
@@ -548,669 +444,174 @@
       "subtext": "आपके द्वारा ढूंढे गए पेज उपलब्ध नहीं हैं।",
       "title": "404 पेज नहीं मिला"
     },
+    "contact_us": {
+      "contact_us": "हमसे संपर्क करें",
+      "send_success": "हमसे संपर्क करने के लिए धन्यवाद, हम जल्द से जल्द आपसे संपर्क करेंगे।"
+    },
+    "footer": {
+      "subscribe_reg_exp_error": "ई-मेल पता प्रारूप में त्रुटि",
+      "subscribe_success": "सदस्यता लेने में सफल"
+    },
     "general": {
       "accept": "स्वीकार करें",
       "decline": "अस्वीकार",
+      "home": "मुखपृष्ठ",
       "link": "गोपनीयता नीति",
+      "tel_phone": "फ़ोन नंबर",
       "tips": "आपके अनुभव को बेहतर बनाने के लिए, हम लॉग-इन विवरण याद रखने, आंकड़े जोड़ने और आपकी रुचियों के अनुरूप सामग्री देने के लिए कुकीज़ का उपयोग करते हैं। कुकीज़ को \"स्वीकार\" करने के लिए स्वीकार करें पर दबाएं या हमारी \"गोपनीयता नीति\" देखें।",
-      "title": "हमें आपकी गोपनीयता का ख्याल रखते है"
+      "title": "हमें आपकी गोपनीयता का ख्याल रखते है",
+      "username": "नाम"
+    },
+    "header": {
+      "cart": "आपकी कार्ट",
+      "center": "केंद्र",
+      "login": "लॉग इन करें",
+      "no_currency_fallback": "कोई प्रासंगिक मुद्रा नहीं मिला है",
+      "search_input_placeholder": "यहां लिखें और खोज पर दबाएं"
+    },
+    "policy": {
+      "privacy": "से सहमत हूं",
+      "refund": "धन वापसी नीति",
+      "service": "शर्तें और",
+      "shipping": "शिपिंग नीति"
     }
   },
-  "header": {
-    "cart": "आपकी कार्ट",
-    "center": "केंद्र",
-    "emptyPlaceholder": "",
-    "login": "लॉग इन करें",
-    "logout": "लॉग आउट करें",
-    "navItemAll": "सभी",
-    "noCurrencyFallback": "कोई प्रासंगिक मुद्रा नहीं मिला है",
-    "search": "खोज",
-    "searchInputPlaceholder": "यहां लिखें और खोज पर दबाएं",
-    "searchItems": "उत्पाद खोजें"
-  },
-  "labelInput": {
-    "contact-error": "कृपया वैध प्रारूप के साथ ईमेल पता/मोबाइल नंबर दर्ज करें",
-    "email-error": "कृपया मान्य प्रारूप के साथ ईमेल पता दर्ज करें",
-    "phone-error": "कृपया मान्य प्रारूप के साथ मोबाइल नंबर दर्ज करें",
-    "phone-error-tips": "आसानि से पाना सुनिश्चित करने के लिए कृपया प्राप्तकर्ता का असली नाम भरें"
-  },
-  "modal": {
-    "exceedCartContent": "आप पहले अपने कार्ट से अन्य उत्पादों को खरीद या हटाकर इस उत्पाद को अपने कार्ट में जोड़ सकते हैं",
-    "exceedCartTitle": "माफ़ करें! कार्ट में उत्पादों की संख्या सीमा से ज्यादा है।",
-    "goCart": "कार्ट पर जाएं",
-    "iKnow": "मैं समझ गया"
-  },
-  "oneShop": {
-    "TCTD0108": "शिपिंग विधि मौजूद नहीं है, कृपया फिर से चुनें",
-    "TCTD0112": "आपके द्वारा चुना गया उत्पाद अमान्य है, कृपया फिर से चुनें",
-    "TCTD0118": "भुगतान विधि मौजूद नहीं है, कृपया फिर से चुनें",
-    "TCTD0121": "मार्केटिंग का तरीका बदल दिया गया है, कृपया फिर से चुनें",
-    "bracket": "({{content}})",
-    "buyNow": "अभी खरीदें",
-    "buyPop": "{{name}} ने इसे {{minutes}} मिनट पहले खरीदा है",
-    "comboFailure": "कॉम्बो पैक अमान्य है",
-    "comboSelectFailure": "आपके द्वारा चुना गया कॉम्बो पैक अमान्य है, कृपया फिर से चयन करें",
-    "comment": "संदेश दें (जरूरत नहीं है)",
-    "country": "देश",
-    "currentProductSoldOut": "चयनित उत्पाद के लिए इन्वेंट्री अपर्याप्त है",
-    "cutByAmount": "CNY {{n}} से अधिक CNY {{amount}} की छूट",
-    "cutByNum": "CNY {{n}} पर {{num}} पीस",
-    "defaultErrorCodeMsg": "नेटवर्क असामान्य है, कृपया पृष्ठ को रीफ्रेश करें और बाद में पुनः प्रयास करें",
-    "discountByAmount": "CNY पर {{n}}% छूट {{amount}}",
-    "discountByNum": "{{num}} टुकड़ों के लिए {{n}}% छूट",
-    "freeShipping": "मुफ़्त शिपिंग",
-    "noComment": "अभी तक कोई टिप्पणी नहीं है",
-    "noProductDesc": "अब कोई उत्पाद विवरण नहीं है",
-    "optional": "जरूरत नहीं है",
-    "orderAgain": "कृपया फिर से ऑर्डर देने का प्रयास करें",
-    "overLength": "इनपुट लंबाई सीमा से ज्यादा है, कृपया अपनी सामग्री समायोजित करें और पुनः प्रयास करें",
-    "priceStart": "CNY से {{n}}",
-    "productCommentTitle": "उत्पाद विचार（{{n}}）",
-    "productDetail": "उत्पाद विवरण",
-    "productFailure": "आपके द्वारा चुना गया उत्पाद अमान्य है, कृपया फिर से चुनें",
-    "productNoSelect": "कृपया उत्पाद वर्णन का चयन करें",
-    "selectedProductSoldOut": "चयनित उत्पाद के लिए इन्वेंट्री अपर्याप्त है",
-    "soleOutSelectAgain": "चयनित उत्पाद के लिए इन्वेंट्री अपर्याप्त है, कृपया फिर से चयन करें",
-    "submit": "जमा करें"
-  },
-  "order": {
-    "after-order-status": {
-      "cancelled": "रद्द हुआ",
-      "completed": "पूरा हुआ",
-      "confirmed": "निश्चित",
-      "customer-canceled": "ग्राहक रद्द",
-      "customer-rejected": "ग्राहक ने अस्वीकार कर दिया",
-      "delivery-progress": "निश्चित",
-      "merchant-cancellation": "विक्रेता ने रद्द किया",
-      "processing": "प्रक्रिया हो रहा है"
-    },
-    "after-sale-type": {
-      "refund": "पैसावापसी",
-      "return-and-refund": "वापसी और धनवापसी"
-    },
-    "breadcrumb": {
-      "order": "ऑर्डर",
-      "order-detail": "ऑर्डर का विवरण",
-      "title": "ऑर्डर"
-    },
-    "customer-info": "ग्राहक सूचना",
-    "delivery-statusType": {
-      "arrived": "पहुंच गया",
-      "cancel-delivery": "शिपमेंट रद्द करें",
-      "cancelled": "रद्द हुआ",
-      "delivery-partial": "आंशिक शिपमेंट",
-      "delivery-return": "लौटा हुआ",
-      "picked-up": "प्राप्त हुआ",
-      "problem": "शिपमेंट समस्या और खो गए ऑर्डर जैसे मुद्दों के लिए मैन्युअल समर्थन चाहिए",
-      "shipped": "पहुंचा दिया",
-      "shipping": "डिलिवार हो रहा है",
-      "stocking": "उत्पादों की तैयारी"
-    },
-    "detail": {
-      "cancel-btn": "ऑर्डर रद्द करें",
-      "communication": {
-        "title": "संचार के लिए ऑर्डर"
-      },
-      "coms": {
-        "operationLog": {
-          "PayDealLog": {
-            "amount": "राशि",
-            "createTime": "भुगतान प्रारंभ समय",
-            "dealId": "भुगतान क्रमांक",
-            "payName": "भुगतान चैनल",
-            "status": "स्थिति",
-            "title": "ने {amount} से {payName} के लिए भुगतान संसाधित कर लिया है",
-            "updateTime": "वापसी परिणाम समय"
-          }
-        }
-      },
-      "order-info": {
-        "canceled": "रद्द हुआ",
-        "confirmed": "निश्चित",
-        "finished": "पूरा हुआ",
-        "processing": "प्रक्रिया हो रहा है"
-      },
-      "order-status": {
-        "button": {
-          "refresh": "ताज़ा करें"
-        },
-        "cancel": {
-          "desc": "आपका ऑर्डर {{cancelTime}} को रद्द कर दिया गया था। अगर आपके पास कोई सवाल है तो हमसे संपर्क करें।",
-          "title": "आपका ऑर्डर रद्द कर दिया गया है"
-        },
-        "pay": {
-          "go-pay": "भुगतान करें <0>{{orderAmount}}</0>",
-          "title": "भुगतान लंबित"
-        },
-        "pedding": {
-          "desc": "आपका भुगतान अनुरोध जमा कर दिया गया है और आप भुगतान परिणाम लौटाने के लिए {{payChannelDesc}} की प्रतीक्षा कर रहे हैं",
-          "title": "भुगतान प्रक्रिया में है..."
-        },
-        "pickedUp": {
-          "desc": "आपका आदेश {{address1}} पर {{weekDate}} को लिया गया था।",
-          "title": "आपका आदेश ले लिया गया है"
-        },
-        "readyForPickup": {
-          "desc": "जब आप अपना ऑर्डर लें तो कृपया अपने ऑर्डर की पुष्टि लाएं।",
-          "title": "आपका ऑर्डर पिकअप के लिए तैयार है"
-        },
-        "redirect": {
-          "desc": "अगर कोई स्वचालित रीडायरेकशन नहीं होता है तो पेज रिफ्रेश करें",
-          "title": "रीडायरेक्ट हो रहा है, प्रतीक्षा करें"
-        },
-        "success": {
-          "desc": "ऑर्डर की जानकारी {{buyerContact}} पर भेज दी गई है, कृपया जांचें",
-          "title": "आपके ऑर्डर की पुष्टि हो गई है"
-        }
-      },
-      "orderstatus": {
-        "PayAmount": "भुगतान राशि",
-        "ReceiverAccount": "प्राप्तकर्ता खाता",
-        "ReferenceNumber": "संदर्भ संख्या",
-        "UploadTime": "अपलोड समय",
-        "action": {
-          "UploadVoucher": "वाउचर अपलोड करें"
-        },
-        "feedback": {
-          "CountLimit": "आप अधिकतम 5 वाउचर ही अपलोड कर सकते हैं।",
-          "InvalidOrderNumber": "अमान्य आदेश संख्या",
-          "SizeLimte": "कृपया 10MB के अंदर JPG, PNG, GIF इमेज अपलोड करें",
-          "SystemBusy": "सिस्टम व्यस्त है, कृपया बाद में पुन: प्रयास करें।",
-          "UploadFail": "अपलोड विफल। कृपया पुन: प्रयास करें।"
-        },
-        "notice": {
-          "UploadVoucher": "कृपया बैंक हस्तांतरण वाउचर अपलोड करें और हम पुष्टि करेंगे।"
-        }
-      },
-      "packages": {
-        "amount": {
-          "channel-surcharge": "भुगतान कमीशन",
-          "deduct-voucher": "वाउचर राशि",
-          "discount": "कूपन कोड छूट",
-          "discount-amount-name": "विक्रेता अतिरिक्त छूट",
-          "express": "माल",
-          "express-surcharge": "माल का टैक्स",
-          "preferential": "मान्य",
-          "subtotal": "आइटम उप-योग",
-          "tax": "कमोडिटी टैक्स",
-          "tip": "टिप",
-          "total": "कुल"
-        },
-        "contact-us": "मदद चाहिएं? कृपया हमसे संपर्क करें:{{email}}",
-        "contact-us-title": "हमसे संपर्क करें",
-        "logistics": {
-          "blank-trace": "कृपया नीचे दिए गए लिंक पर दबा कर अपने पैकेज को ट्रैक करें:",
-          "detail": "विवरण",
-          "no-data": "वर्तमान में कोई लॉजिस्टिक्स जानकारी नहीं है",
-          "no-data2": "अभी तक कोई डिलीवरी जानकारी नहीं है, कृपया बाद में देखें।",
-          "tab-title": "पैकेज {{index}}"
-        },
-        "order-note-title": "ऑर्डर टिप्पणी",
-        "order-num": "पैकेज ({{num}})",
-        "payment-deal": {
-          "amount": "राशि",
-          "create-time": "बनाया गया था",
-          "deal-id": "लेनदेन संदर्भ संख्या",
-          "name": "भुगतान चैनल",
-          "status": "स्थिति",
-          "title": "भुगतान विवरण",
-          "update-time": "अद्यतन"
-        },
-        "payment-info": {
-          "address": "बिल भेजने का पता",
-          "detail": "विस्तार",
-          "method": "भुगतान की विधि",
-          "status": "भुगतान की स्थिति"
-        },
-        "payment-title": "भुगतान",
-        "send-to-Line": "Line पर भेजें",
-        "send-to-Messenger": "Messenger पर भेजें",
-        "shippings": {
-          "fee": "डिलिवरी शुल्क",
-          "method": "डिलिवरी विधि",
-          "status": "वितरण की स्थिति"
-        },
-        "status": {
-          "pedding": {
-            "desc": "हम वर्तमान में इन वस्तुओं को शिपमेंट के लिए तैयार कर रहे हैं।",
-            "title": "शिपमेंट के लिए तैयारी"
-          },
-          "success": {
-            "desc": "हमने आपका ऑर्डर स्वीकार कर लिया है, और हम इसे तैयार कर रहे हैं। अपनी शिपमेंट स्थिति पर अपडेट के लिए इस पेज पर वापस आएं।"
-          }
-        },
-        "sub-title": "पैकेज ट्रैक करें",
-        "subscriptions-title": "सदस्यता",
-        "title": "जानकारी",
-        "unshipped-order-num": "({{num}} आइटम) प्रक्रियाकरण"
-      },
-      "paymentvoucher": {
-        "Status": {
-          "TransferredSuccessful": "भुगतान सफलतापूर्वक स्थानांतरित हो गया",
-          "WaittingforPayment": "भुगतान की प्रतीक्षा करना"
-        },
-        "VoucherDetail": {
-          "Action": {
-            "Gotit": "समझ लिया"
-          }
-        }
-      },
-      "taxFee": "कर"
-    },
-    "help-tips": "मदद चाहिएं? कृपया हमसे संपर्क करें: {{email}}",
-    "includeTax": {
-      "totalLine": "करों में {{price}} सहित"
-    },
-    "oms-status": {
-      "arrived": "पहुंच गया",
-      "cancelled": "शिपमेंट रद्द करें",
-      "executing": "निष्पादित हो रहा है",
-      "picked": "साइन हुआ है",
-      "prepare-pick": "पिक अप के लिए तैयार",
-      "problem": "समस्या शिपमेंट",
-      "returned": "लौटा हुआ",
-      "returning": "लौटाया जा रहा है",
-      "shipped": "भेजा गया"
-    },
-    "order-at": "ऑर्डर दिया गया:",
-    "order-date": "ऑर्डर की तारीख",
-    "order-list": {
-      "empty-tip": "अभी कोई ऑर्डर रिकॉर्ड नहीं है, खरीदारी के लिए जाएं",
-      "empty-title": "तस्वीर",
-      "item-total": "{{transPackages}} कुल आइटम",
-      "item-total-plural": "{{transPackages}} कुल आइटम",
-      "load-more": "अधिक लोड करने के लिए ऊपर खींचे",
-      "no-more": "और कोई जानकारी नहीं है",
-      "package-item": "पैकेज {{num}}（{{item}} आइटम）",
-      "package-more": "और {{num}} ज्यादा",
-      "pay-now": "अभी भुगतान करें",
-      "sub-order": "उप-ऑर्डर",
-      "track": "ट्रैक करें"
-    },
-    "order-status": {
-      "cancelled": "रद्द हुआ",
-      "completed": "पूरा हुआ",
-      "confirmed": "निश्चित",
-      "customer-canceled": "ग्राहक रद्द",
-      "merchant-cancellation": "विक्रेता ने रद्द किया",
-      "processing": "प्रक्रिया हो रहा है"
-    },
-    "pay-status": {
-      "abolished": "अमान्य",
-      "already-paid": "भुगतान किया गया",
-      "authorized": "अधिकार दिया गया",
-      "failed": "भुगतान असफल हुआ",
-      "partial-payment": "आंशिक भुगतान",
-      "partial-refund": "आंशिक रूप से धनवापसी",
-      "paying": "भुगतान हो रहा है",
-      "refund-failed": "धनवापसी में विफल",
-      "refunded": "धनवापसी की गई है",
-      "refunding": "धन-वापसी कर",
-      "timed-out": "भुगतान का समय समाप्त",
-      "unpaid": "भुगतान नहीं हुआ"
-    },
-    "refund-methods": {
-      "merchant": "विक्रेता द्वारा उठाना",
-      "self": "अपने आप से वापस भेजें"
-    },
-    "refund-type": {
-      "origin": "मूल भुगतान खाते में धनवापसी",
-      "other": "अन्य"
-    },
-    "seq-no": "नं.{{id}}"
-  },
-  "payments-name": {
-    "COD": "डिलवरी पर नकद देना",
-    "Paypal": "Paypal",
-    "third-part": "क्रेडिट कार्ड"
-  },
-  "paypal": {
-    "error-expired": "उत्पाद समाप्त हो गया है",
-    "error-login-limit": "ऑर्डर देने से पहले कृपया अपने खाते में लॉग इन करें",
-    "error-network-error": "नेटवर्क में त्रुटि",
-    "error-product-limit": "उत्पाद की सीमा पार हो गई है",
-    "error-shop-not-exit": "दुकान मौजूद नहीं है",
-    "error-sold-out": "अपर्याप्त उत्पाद सूची"
-  },
-  "productDetail": {
-    "activityToast": {
-      "price-limit": "इस सीमित उत्पाद के लिए ज्यादा से ज्यादा {{num}} खरीदे जा सकते है",
-      "product-limit": "{{stock}} प्रोमोशन उत्पाद तक सीमित खरीदारी करें",
-      "title-limit": "नीचे के उत्पाद खरीदारी की सीमा से अधिक हैं"
-    },
-    "addCart": "जोड़ें",
-    "bulkDiscount": {
-      "title": "अधिक खरीदें अधिक सहेजें!"
-    },
-    "commentsTitle": "विचार",
-    "default-placeholder": "कृपया {{attrName}} चुनें",
-    "goOtherChannels": "अन्य खरीद चैनल",
-    "goOutsideOfAmazon": "Amazon के बाहर खरीदारी करें",
-    "goToAmazon": "Amazon से खरीदें",
-    "goToAmazonByLink": "Amazon से खरीदें",
-    "goToRakuten": "LOTTE",
-    "goToRakutenByLink": "LOTTE में खरीदें",
-    "goToYahoo": "Yahoo",
-    "goToYahooByLink": "Yahoo में खरीदें",
-    "inquiry": {
-      "cancel": "रद्द करें",
-      "email": "ईमेल",
-      "emailEmptyErr": "कृपया अपना पूरा ईमेल दर्ज करें",
-      "emailFormatErr": "कृपया एक वैध ई-मेल पता डालें",
-      "inquiryTips1": "कृपया हमें एक संदेश दें और हम जल्द से जल्द आपसे संपर्क करेंगे",
-      "inquiryTips2": "आप हमें अपनी अधिक जानकारी दे सकते हैं ताकि हम आपको अधिक उपयुक्त सेवाएं प्रदान कर सकें",
-      "inquiryTitle": "उत्पाद जानकारी",
-      "message": "आपका संदेश",
-      "messageEmptyErr": "कृपया अपना संदेश लिखें",
-      "messageLengthErr": "आपके संदेश की अधिकतम लंबाई 1500 शब्दों से अधिक नहीं होनी चाहिए",
-      "mobile": "फ़ोन नंबर",
-      "name": "नाम",
-      "optional": "वैकल्पिक",
-      "region": "देश/क्षेत्र",
-      "submit": "जमा करें",
-      "submitFailed": "जमा होना विफल, कृपया पुनः प्रयास करें",
-      "submitSuccess": "सफलतापूर्वक जमा हुआ"
-    },
-    "morePaymentOptions": "अन्य भुगतान विकल्प",
-    "moreSpuImgBtn": "और दिखाओ",
-    "network": {
-      "message2": "उत्पाद जानकारी पुनर्प्राप्त करने में विफल। बाद में पुन: प्रयास करें"
-    },
-    "no-logistics-and-payment-information": "अभी तक कोई लॉजिस्टिक्स और भुगतान विधियों की जानकारी नहीं है",
-    "no-product-introduction": "अभी तक कोई उत्पाद परिचय नहीं है",
-    "previewLinkToast": "लिंक पूर्वावलोकन संचालन समर्थित नहीं है",
-    "productTax": "टैक्स शामिल",
-    "recentlyViewedProducts": "हाल ही में देखे गए उत्पाद",
-    "recommendTitle": "आपको यह भी पसंद हो सकता हैं",
-    "skuLoadingTips": "प्रकार की जानकारी लोड हो रही है, कृपया प्रतीक्षा करें...",
-    "tabPanel": {
-      "comments": {
-        "empty": "अभी तक कोई उत्पाद विचार नहीं है",
-        "error": "उत्पाद विचार पुनर्प्राप्त करने में विफल। बाद में पुन: प्रयास करें"
-      },
-      "desc": "अभी तक कोई विवरण नहीं है",
-      "descFs": "डेटा पुनर्प्राप्त करने में विफल। बाद में पुन: प्रयास करें",
-      "pay": {
-        "text1": "भुगतान विधि",
-        "text2": "अभी तक कोई भुगतान विधि नहीं है",
-        "text3": "अभी तक कोई लॉजिस्टिक्स भुगतान जानकारी नहीं है"
-      },
-      "ship": {
-        "sh": {
-          "text1": "तरीका"
-        },
-        "text2": "अभी तक कोई शिपिंग विधि नहीं है"
-      }
-    },
-    "tabs": {
-      "comments": "विचार",
-      "description": "विवरण",
-      "shippingPayment": "शिपिंग & भुगतान"
-    },
-    "thumbSwiper": {
-      "image": {
-        "alt": "उत्पाद थंबनेल"
-      },
-      "share": {
-        "text": "साझा करें"
-      }
-    },
-    "toAmazon": "Amazon"
-  },
-  "productList": {
-    "all": {
-      "h1Title": "उत्पाद"
-    },
-    "container-tradePopup-error4": "",
-    "container": {
-      "empty": {
-        "desc": "इस श्रेणी में कोई उत्पाद नहीं है",
-        "description": "जरूरत पड़ने पर, व्यवसायी से परामर्श के लिए संपर्क कर सकते हैं",
-        "title": "क्षमा करें, यह उत्पाद अभी स्टॉक में नहीं है।"
-      },
-      "from": "{{price}} से",
-      "listItem": {
-        "addToCart": "कार्ट में जोड़ें",
-        "off": "{{value}}% छूट",
-        "sale": "अच्छी संख्या में बेचें",
-        "save": "ऑफ़र {{{priceDom}}}",
-        "saveByJs": "ऑफ़र {{priceDom}}",
-        "saveRatio": "{{price}}% छूट",
-        "sold": {
-          "out": "बिक गया"
-        },
-        "soldOut": "बिक गया",
-        "toDetail": "विवरण देखें"
-      },
-      "moreProductNum": "{{num}} उत्पादों",
-      "network": {
-        "message": "कोई उत्पाद डेटा नहीं मिला। बाद में पुन: प्रयास करें"
-      },
-      "oneProductNum": "{{num}} उत्पाद",
-      "productsNum": "{{num}} उत्पाद",
-      "show": "दिखाएं",
-      "sort": {
-        "newest": "नया आगमन",
-        "option1": "बिक्री की तिथि (नई से पुरानी)",
-        "option2": "बिक्री की तिथि (पुरानी से नई)",
-        "option3": "कीमत (ज्यादा से कम)",
-        "option4": "कीमत (कम से ज्यादा)",
-        "priceHighToLow": "कीमत ज्यादा से कम",
-        "priceLowToHigh": "कीमत कम से ज्यादा",
-        "recommend": "सिफारिश किया गया",
-        "sales": "सबसे अच्चे विक्रेता",
-        "text1": "सारे उत्पाद",
-        "text2": "क्रमबद्ध"
-      },
-      "tradePopup": {
-        "addToCart": "कार्ट में जोड़ें",
-        "error1": "{{stock}} टुकड़े बचे हैं। कृपया राशि चुनें",
-        "error2": "केवल {{saleMax}} टुकड़े खरीदे जा सकते हैं। कृपया राशि फिर से चुनें!",
-        "error3": "कृपया राशि चुनें!",
-        "error4": "कृपया पहले उत्पाद का आकार चुनें!",
-        "error5": "उत्पाद बिक चुका है",
-        "error6": "उत्पाद को सूची से हटा दिया गया है"
-      },
-      "viewAs": "ऐसे देखें"
-    },
-    "filterMenu": {
-      "filter": "फ़िल्टर",
-      "less": "कम लेबल",
-      "more": "अधिक टैग",
-      "price": "कीमत"
-    },
-    "gategoryMenu": {
-      "catalog": "सूची",
-      "menuitem": "सारे उत्पाद"
-    },
-    "noProduct": "श्रेणी में कोई उत्पाद नहीं हैं"
-  },
-  "productSearch": {
-    "container": {
-      "sort": {
-        "option1": "सूची में रहने का समय (नए से पुराने)",
-        "option2": "सूची में रहने समय (पुराने से नया)",
-        "option3": "कीमत (ज्यादा से कम)",
-        "option4": "कीमत (कम से ज्यादा)"
-      }
-    },
-    "empty": {
-      "title1": "टाइपिंग में गलतियाँ हैं कि नहीं जांचने की हम सलाह देते हैं,",
-      "title2": "और संक्षिप्त कीवर्ड के साथ फिर से खोजें"
-    },
-    "search": {
-      "backHome": "होम पेज पर वापस जाएं",
-      "noRelatedResultFound": "कोई संबंधित परिणाम नहीं मिला",
-      "results": "{{count}} परिणाम",
-      "resultsFoundFor": "\"{{keyword}}\" के लिए {{count}} परिणाम मिले",
-      "searchNoResults": "\"{{keyword}}\" के लिए आपकी खोज का कोई परिणाम नहीं मिला"
-    },
-    "serachTitle": {
-      "text1": "कोई संबंधित परिणाम नहीं मिला"
-    },
-    "sortName": "क्रमबद्ध:",
-    "title": "तलाशी"
-  },
   "products": {
-    "comment": {
-      "add_an_image": "एक तस्वीर जोड़ें",
-      "didnot_bought_cannot_reviewed": "क्षमा करें, आपने यह उत्पाद पहले नहीं खरीदा है, इसलिए आप विचार नहीं कर सकते",
-      "didnot_bought_sign_in_first": "जिन ग्राहकों ने यह उत्पाद खरीदा है वे अपना विचार कर सकते हैं, कृपया पहले साइन इन करें",
-      "enter_at_least_one_character": "कृपया कम से कम एक शब्द डालें",
-      "error_submit_again": "सिस्टम में त्रुटि के कारण आपकी विचार संसाधित नहीं की जा सकती, कृपया पुनः प्रयास करें~",
-      "first_review": "अब पहली टिप्पणी पोस्ट करें!",
-      "image_uploading": "अपलोड हो रहा है, कृपया बाद में जमा करें",
-      "maximum_image_quantity": "आप ज़्यादा से ज़्यादा {{total}} तस्वीर जोड़ सकते हैं",
-      "maximum_image_size": "अधिकतम तस्वीर का आकार {{size}} MB है",
-      "no_review": "अब तक कोई टिप्पणी नहीं है",
-      "only_supports__image_format": "केवल .jpg .jpeg .png .bmp फ़ाइल अपलोड करने का समर्थन करता है",
-      "ratings": "रेटिंग्स",
-      "sign_in": "साइन इन करें",
-      "submit": "जमा करें",
-      "thanks_for_your_review": "आपकी विचार के लिए धन्यवाद",
-      "write_a_review": "विचार लिखें",
-      "write_a_review_for_the_product": "कृपया इस उत्पाद के बारे में अपनी विचार डालें"
+    "collection": {
+      "collection": "श्रेणी"
+    },
+    "general": {
+      "no_product_data_found": "कोई उत्पाद डेटा नहीं मिला। बाद में पुन: प्रयास करें",
+      "sold_out": "बिक गया"
     },
     "product_details": {
       "activity_toast_price_limit": "इस सीमित उत्पाद के लिए ज्यादा से ज्यादा {{num}} खरीदे जा सकते है",
       "activity_toast_product__limit": "{{stock}} प्रोमोशन उत्पाद तक सीमित खरीदारी करें",
       "activity_toast_title__limit": "नीचे के उत्पाद खरीदारी की सीमा से अधिक हैं",
+      "amount": "राशि",
+      "buy_more_save_more": "अधिक खरीदें अधिक सहेजें!",
+      "cancel": "रद्द करें",
+      "country_region": "देश/क्षेत्र",
+      "default_placeholder": "कृपया {{attrName}} चुनें",
+      "description": "विवरण",
+      "email": "ईमेल",
+      "enter_email_address": "कृपया अपना पूरा ईमेल दर्ज करें",
+      "enter_valid_email_address": "कृपया एक वैध ई-मेल पता डालें",
+      "give_us_more_of_your_information": "आप हमें अपनी अधिक जानकारी दे सकते हैं ताकि हम आपको अधिक उपयुक्त सेवाएं प्रदान कर सकें",
       "go_to_amazon_by_link": "Amazon से खरीदें",
       "go_to_rakuten_by_link": "LOTTE में खरीदें",
-      "go_to_yahoo_by_link": "Yahoo में खरीदें"
+      "go_to_yahoo_by_link": "Yahoo में खरीदें",
+      "leave_us_message": "कृपया अपना संदेश लिखें",
+      "leave_us_message_get_back": "कृपया हमें एक संदेश दें और हम जल्द से जल्द आपसे संपर्क करेंगे",
+      "link_preview_does_not_support": "लिंक पूर्वावलोकन संचालन समर्थित नहीं है",
+      "maximum_length_of_message": "आपके संदेश की अधिकतम लंबाई 1500 शब्दों से अधिक नहीं होनी चाहिए",
+      "message": "आपका संदेश",
+      "more_payment_options": "अन्य भुगतान विकल्प",
+      "name": "नाम",
+      "optional": "वैकल्पिक",
+      "phone_number": "फ़ोन नंबर",
+      "product_enquiry": "उत्पाद जानकारी",
+      "submission_failed": "जमा होना विफल, कृपया पुनः प्रयास करें",
+      "submission_successfully": "सफलतापूर्वक जमा हुआ",
+      "submit": "जमा करें",
+      "tax_included": "टैक्स शामिल"
+    },
+    "product_list": {
+      "add_to_cart": "कार्ट में जोड़ें",
+      "filter": "फ़िल्टर",
+      "from_price_html": "{{price}} से",
+      "less": "कम लेबल",
+      "more": "अधिक टैग",
+      "more__product_num": "{{num}} उत्पादों",
+      "new_arrivals": "नया आगमन",
+      "no_product": "श्रेणी में कोई उत्पाद नहीं हैं",
+      "one_product_num": "{{num}} उत्पाद",
+      "price_high_to_low": "कीमत ज्यादा से कम",
+      "price_low_to_high": "कीमत कम से ज्यादा",
+      "product_has_been_removed": "उत्पाद को सूची से हटा दिया गया है",
+      "product_sold_out": "बिक गया",
+      "products": "उत्पाद",
+      "recommend": "सिफारिश किया गया",
+      "save": "ऑफ़र {{{priceDom}}}",
+      "save_byjs": "ऑफ़र {{priceDom}}",
+      "save_ratio": "{{price}}% छूट",
+      "select_product_all_options": "कृपया पहले उत्पाद का आकार चुनें!",
+      "show": "दिखाएं",
+      "sold_out": "बिक गया",
+      "top_sellers": "सबसे अच्चे विक्रेता"
+    },
+    "product_search": {
+      "back_to_home": "होम पेज पर वापस जाएं",
+      "ount_results": "{{count}} परिणाम",
+      "results_found_for": "\"{{keyword}}\" के लिए {{count}} परिणाम मिले",
+      "search": "तलाशी",
+      "search_no_results": "\"{{keyword}}\" के लिए आपकी खोज का कोई परिणाम नहीं मिला"
+    },
+    "recently_viewed_products": {
+      "recently_viewed_products": "हाल ही में देखे गए उत्पाद"
     }
   },
-  "promotion": {
-    "activity-benefit": "इवेंट का ऑफर",
-    "activity-introduction": "इवेंट परिचय",
-    "activity-scope": "इवेंट का स्कोप",
-    "all-product": "सारे उत्पाद",
-    "all-user": "सभी उपयोगकर्ता",
-    "all-vip": "सभी सदस्य",
-    "bundle": {
-      "desc": "<italic>{{value}}</italic> छूट के लिए शॉपिंग कार्ट में जोड़ें",
-      "title": "बंडल में सामान"
-    },
-    "buy-again": "खरीद <0>{{value}}</0> ज्यादा",
-    "buy-again-piece": "{{value}} और टुकड़े खरीदें",
-    "coupon": "कूपन",
-    "discount-benefit": "{{discount}} छूट",
-    "discounted": "आपने सहेजा है <0>{{value}}</0>",
-    "flash-sale": "तेज़ बिक्री",
-    "flash-sale-limit": "खरीद सीमा {{value}} प्रति व्यक्ति",
-    "free-shipping": "मुफ़्त शिपिंग",
-    "full-amount": "<0>{{value}}</0> या ज्यादा",
-    "full-discount": "डिस्काउंट प्रमोशन",
-    "full-discount-benefit": "डिस्काउंट प्रमोशन",
-    "full-piece": "{{value}} या ज्यादा",
-    "full-reduction": "छूट पदोन्नति",
-    "full-reduction-benefit": "छूट पदोन्नति",
-    "get-discount-1": "{{value}} छूट का आनंद लें",
-    "get-discount-2": "{{value}}% ऑफर का आनंद लें",
-    "item-num": "आइटम {{value}}",
-    "label-vip": "{{label}} सदस्य",
-    "level-vip": "लेवल.{{level}} सदस्य",
-    "member-price": "सदस्य मूल्य",
-    "more-combo": "और पैकेज",
-    "only-one-sku": "वर्तमान उत्पाद में केवल एक विनिर्देश है",
-    "other-customer": "ग्राहक (जिन उपयोगकर्ता ऑर्डर नहीं किया है)",
-    "percent-piece-step1": "<more>{{percent}}</more> छूट पाने के लिए <more>{{price}}</more> खरीदें",
-    "percent-piece-step2": "पहले से ही <normal>{{percent}}</normal> बचाएं! <white /><more>{{morePercent}}</more> छुट पाने के लिए <more>{{price}}</more> और खरीदें",
-    "percent-piece-step3": "बधाई हो! आपने <normal>{{percent}}</normal> बचाया है!",
-    "percent-price-step1": "<more>{{percent}}</more> छूट पाने के लिए <more>{{price}}</more> खरीदें",
-    "percent-price-step2": "पहले से ही <normal>{{percent}}</normal> बचाएं! <white /><more>{{morePercent}}</more> छुट पाने के लिए <more>{{price}}</more> और खरीदें",
-    "percent-price-step3": "बधाई हो! आपने <normal>{{percent}}</normal> बचाया है!",
-    "permanent": "स्थायी",
-    "piece-unit": "टुकड़ा",
-    "price-piece-step1": "<more>{{totalPrice}}</more> बचाने के लिए <more>{{morePrice}}</more> खरीदें",
-    "price-piece-step2": "<normal>{{price}}</normal> बचाएं!<white /> <more>{{totalPrice}}</more> बचाने के लिए <more>{{morePrice}}</more> और खरीदें",
-    "price-piece-step3": "बधाई हो! आपने <normal>{{price}}</normal> बचा लिया है!",
-    "price-price-step1": "<more>{{totalPrice}}</more> बचाने के लिए <more>{{morePrice}}</more> खरीदें",
-    "price-price-step2": "<normal>{{price}}</normal> बचाएं!<white /> <more>{{totalPrice}}</more> बचाने के लिए <more>{{morePrice}}</more> और खरीदें",
-    "price-price-step3": "बधाई हो! आपने <normal>{{price}}</normal> बचा लिया है!",
-    "price-unit": "Yuan",
-    "reduce": "<0>{{value}}</0> छूट",
-    "reduce-again": "<0>{{value}}</0> अतिरिक्त छूट",
-    "reduce1": "{{value}} की छूट",
-    "select-combo": "पैकेज चुनें",
-    "select-product": "दुकान का सामान",
-    "select-sku": "उत्पाद विनिर्देश चुनें",
-    "selected-count-activity-product": "{{selectCount}} ईवेंट उत्पाद चयनित",
-    "still-lacking": "<0>{{value}}</0> चाहिएं",
-    "terms-and-conditions": "इवेंट परिचय",
-    "whole-full-amount-discount": "<italic>{{condition}}</italic> पर <italic>{{content}}</italic>% की छूट",
-    "whole-full-amount-reduce": "<italic>{{condition}}</italic> से ज्यादा <italic>{{content}}</italic>की छूट",
-    "whole-full-piece-discount": "<italic>{{condition}}</italic> पर <italic>{{content}}</italic>% छूट",
-    "whole-full-piece-reduce": "<italic>{{condition}}</italic> के लिए <italic>{{content}}</italic>की छूट"
-  },
   "sales": {
-    "activity": {
-      "productTabs": {
-        "benefit": {
-          "discount": {
-            "locked": "{{offPercent}}% छूट पाएं",
-            "unlocked": "{{offPercent}}% छूट अनलॉक हो गई है!"
-          },
-          "free": {
-            "locked": "मुफ़्त ऑफ़र",
-            "unlocked": "मुफ़्त ऑफ़र अनलॉक हो गई है!"
-          },
-          "unlocked": {
-            "tip": "अब आप उत्पाद छूट का लाभ उठा सकते हैं"
-          }
-        },
-        "threshold": "ख़रीदें {{threshold}}"
-      }
-    },
-    "activityBanner": {
-      "benefit": "{{benefit}} छूट",
-      "copySuccessText": "कूपन कोड सफलतापूर्वक कॉपी किया गया",
-      "copyText": "कॉपी करें",
-      "freeShipping": "शिपिंग मुफ्त",
-      "threshold": "{{threshold}} से ज्यादा ऑर्डर"
-    },
-    "autoCoupon": {
-      "shopMore": "अधिक"
-    },
-    "bundle": {
-      "saveTip": "एक साथ खरीदारी करने पर {{amount}} बचाएं",
-      "title": "अक्सर एक साथ खरीदे जाते है"
-    },
-    "customer-purchase-limit": "खरीदारी की सीमा {{count}} प्रति व्यक्ति",
-    "customer-purchase-limit-each-item": "खरीदारी सीमा {{count}} प्रति व्यक्ति",
-    "discount-coupon-banner": {
-      "getCode": "डिस्काउंट कूपन प्राप्त करें"
-    },
-    "discount-coupon": {
+    "discount_coupon": {
+      "active_date_until": "तक मान्य: {{endTime}}",
       "applied": "लागू",
+      "applied_successfully": "डिस्काउंट कोड सफलतापूर्वक लागू किया गया",
       "apply": "प्रयोग करें",
-      "applyFail": "एप्लिकेशन विफल हुआ",
-      "applySuccess": "डिस्काउंट कोड सफलतापूर्वक लागू किया गया",
-      "coupon-content": {
-        "discount1": "{discount} छूट",
-        "discount2": "मुफ़्त शिपिंग",
-        "level": "{{level}} के लिए",
-        "shippingRateBelow": "भाड़ा {value} से कम है",
-        "specified": "निर्दिष्ट ग्राहकों के लिए",
-        "threshold": "खरीदें {threshold}",
-        "until": "तक मान्य: {{endTime}}"
-      },
-      "coupon-label": "कूपन:",
-      "couponNoFound": "डिस्काउंट कोड मौजूद नहीं है",
-      "popupLabel": "कूपन स्टोर करें:"
+      "buy_x_get_y_all_discount_content": "{{discount}} छूट के साथ {{benefitCount}} टुकड़े पाए",
+      "buy_x_get_y_all_free_content": "{{benefitCount}} टुकड़े मुफ्त में पाए",
+      "buy_x_get_y_discount_content": "{{discount}} छूट",
+      "buy_x_get_y_free_content": "मुफ्त",
+      "buy_x_get_y_threshold": "{{threshold}} खरीदने पर {{benefitCount}} मुफ्त",
+      "coupon_content_level": "{{level}} के लिए",
+      "coupon_discount_content": "{discount} छूट",
+      "coupon_not_found": "डिस्काउंट कोड मौजूद नहीं है",
+      "failed_to_apply_coupon_code": "एप्लिकेशन विफल हुआ",
+      "free__shipping": "मुफ़्त शिपिंग",
+      "get_code": "डिस्काउंट कूपन प्राप्त करें",
+      "popup_label": "कूपन स्टोर करें:",
+      "shipping_rate_below": "भाड़ा {value} से कम है",
+      "specified_customer": "निर्दिष्ट ग्राहकों के लिए",
+      "threshold": "खरीदें {threshold}"
     },
-    "flash-sale-text": "तेज़ बिक्री",
-    "flash-sale-tips": "खरीद सीमा: {{count}} राशि",
+    "general": {
+      "activity_banner_benefit": "{{benefit}} छूट",
+      "activity_banner_copy_success_text": "कूपन कोड सफलतापूर्वक कॉपी किया गया",
+      "activity_banner_copy_text": "कॉपी करें",
+      "activity_banner_free_shipping": "शिपिंग मुफ्त",
+      "activity_banner_threshold": "{{threshold}} से ज्यादा ऑर्डर",
+      "apply_common": "प्रयोग करें",
+      "bundle_save_tip": "एक साथ खरीदारी करने पर {{amount}} बचाएं",
+      "bundle_title": "अक्सर एक साथ खरीदे जाते है",
+      "common_buy_now": "अभी खरीदें",
+      "coupon_code_copied": "कूपन कोड सफलतापूर्वक कॉपी किया गया",
+      "coupon_code_copy": "कॉपी करें",
+      "discount_common": "छूट",
+      "flash_sale_text": "तेज़ बिक्री",
+      "flash_sale_tip": "खरीद सीमा: {{count}} राशि",
+      "hot_sale": "धमाकेदार सेल!",
+      "product_tabs_benefit_discount_locked": "{{offPercent}}% छूट पाएं",
+      "product_tabs_benefit_discount_unlocked": "{{offPercent}}% छूट अनलॉक हो गई है!",
+      "product_tabs_benefit_free_locked": "मुफ़्त ऑफ़र",
+      "product_tabs_benefit_free_unlocked": "मुफ़्त ऑफ़र अनलॉक हो गई है!",
+      "product_tabs_benefit_unlocked_tip": "अब आप उत्पाद छूट का लाभ उठा सकते हैं",
+      "product_tabs_code_benefit_discount_unlocked": "{{benefitCount}} टुकड़े {{offPercent}}% छूट में खरीदे",
+      "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} टुकड़े मुफ्त में पाए",
+      "product_tabs_threshold": "ख़रीदें {{threshold}}",
+      "purchase_limit": "खरीदारी की सीमा {{count}} प्रति व्यक्ति",
+      "purchase_limit_each_item": "खरीदारी सीमा {{count}} प्रति व्यक्ति",
+      "select_promotional_product": "{{selectCount}} ईवेंट उत्पाद चयनित",
+      "shop_more": "अधिक",
+      "sold": "{{count}} बिकी"
+    },
     "gift": {
-      "gotAll": "बधाई हो! आपको {{saved}} मुफ़्त-तौफा मिला है!",
-      "noReceived": "बधाई! आप {{willSave}} तक मुफ़्त-तौफा का आनंद ले सकते हैं",
-      "notMetAmount": "{{threshold}} और खरीदें, {{willSave}} तक मुफ़्त-तौफा का आनंद लें",
-      "notMetQuantity": "{{threshold}} और आइटम खरीदें, {{willSave}} तक मुफ़्त-तौफा का आनंद लें",
+      "got_all_gifts_tip": "बधाई हो! आपको {{saved}} मुफ़्त-तौफा मिला है!",
+      "not_meet_amount_tip": "{{threshold}} और खरीदें, {{willSave}} तक मुफ़्त-तौफा का आनंद लें",
+      "not_meet_quantity_tip": "{{threshold}} और आइटम खरीदें, {{willSave}} तक मुफ़्त-तौफा का आनंद लें",
       "select": "चुनते हैं",
-      "spendMoreMoneyGetMore": "बधाई हो! पहले से ही {{saved}} मुफ़्त तौफा मिल चुका है! {{threshold}} अधिक खर्च करें, {{willSave}} तक मुफ़्त-तौफा का आनंद लें",
-      "spendMoreQuantityGetMore": "बधाई हो! पहले से ही {{saved}} मुफ़्त तौफा मिल चुका है! {{threshold}} और खरीदें, {{willSave}} तक मुफ़्त-तौफा का आनंद लें"
+      "select_gift_tip": "बधाई! आप {{willSave}} तक मुफ़्त-तौफा का आनंद ले सकते हैं",
+      "spend_more_money_get_more_tip": "बधाई हो! पहले से ही {{saved}} मुफ़्त तौफा मिल चुका है! {{threshold}} अधिक खर्च करें, {{willSave}} तक मुफ़्त-तौफा का आनंद लें",
+      "spend_more_quantity_get_more_tip": "बधाई हो! पहले से ही {{saved}} मुफ़्त तौफा मिल चुका है! {{threshold}} और खरीदें, {{willSave}} तक मुफ़्त-तौफा का आनंद लें"
     },
-    "hot-sale": "धमाकेदार सेल!",
     "promotion": {
       "cart_reminder": {
         "b11_t1_s1_next_free": "{{threshold}} और चीज़ें खरीदें, किसी और किसी एक को मुफ्त में पाएं!",
@@ -1220,6 +621,18 @@
         "b11_t1_s2_normal": "बधाई हो! {{saved}} बचाया गया, {{br}}{{threshold}} और चीजें खरीदें, किसी एक आइटम पर {{willSave}} छुट पाएं!",
         "b11_t1_s3_free": "बधाई हो! किसी एक आइटम मुफ्त में पाने का आनंद लें!",
         "b11_t1_s3_normal": "बधाई हो! किसी एक आइटम पर {{saved}} की छूट का आनंद लें!",
+        "b12_t0_s1_achieve_free": "बधाई हो, आप {{benefitCount}} चीज़ों का मुफ़्त में लाभ उठा सकते हैं",
+        "b12_t0_s1_achieve_normal": "बधाई हो, आप {{benefitCount}} आइटम पर {{willSave}} छूट का लाभ उठा सकते हैं",
+        "b12_t0_s1_free": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों का मुफ़्त में आनंद लें",
+        "b12_t0_s1_normal": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों पर {{willSave}} की छूट का आनंद लें",
+        "b12_t0_s3_free": "बधाई हो! आपके पास {{benefitCount}} आइटम मुफ़्त हैं!",
+        "b12_t0_s3_normal": "बधाई हो! आपको {{benefitCount}} आइटम पर {{saved}} की छूट मिलती है!",
+        "b12_t1_s1_achieve_free": "बधाई हो, आप {{benefitCount}} चीज़ों का मुफ़्त में लाभ उठा सकते हैं",
+        "b12_t1_s1_achieve_normal": "बधाई हो, आप {{benefitCount}} आइटम पर {{willSave}} छूट का लाभ उठा सकते हैं",
+        "b12_t1_s1_free": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों का मुफ़्त में आनंद लें",
+        "b12_t1_s1_normal": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों पर {{willSave}} की छूट का आनंद लें",
+        "b12_t1_s3_free": "बधाई हो! आपके पास {{benefitCount}} आइटम मुफ़्त हैं!",
+        "b12_t1_s3_normal": "बधाई हो! आपको {{benefitCount}} आइटम पर {{saved}} की छूट मिलती है!",
         "b1_t0_s1": "{{willSave}} बचाने के लिए {{threshold}} और खरीदें",
         "b1_t0_s2": "पहले ही {{saved}} सेव कर लें! {{willSave}} बचाने के लिए {{br}}{{threshold}} और खरीदें",
         "b1_t0_s3": "बधाई हो! आपने {{saved}} बचाया है!",
@@ -1250,505 +663,25 @@
         "b1_t0": "{{threshold}} खरीदें {{save}} बचाएं",
         "b1_t1": "{{threshold}} खरीदें {{save}} की छूट पाएं",
         "b2_t0": "{{threshold}} खरीदें {{save}} बचाएं",
-        "b2_t1": "{{threshold}} खरीदें {{save}} की छूट पाएं"
-      },
-      "reminder": {
-        "benefit1": {
-          "threshold0": {
-            "step1": "{{willSave}} बचाने के लिए {{threshold}} और खरीदें",
-            "step2": "पहले ही {{saved}} सेव कर लें! {{willSave}} बचाने के लिए {{br}}{{threshold}} और खरीदें",
-            "step3": "बधाई हो! आपने {{saved}} बचाया है!"
-          },
-          "threshold1": {
-            "step1": "{{willSave}} बचाने के लिए {{threshold}} और खरीदें",
-            "step2": "पहले ही {{saved}} सेव कर लें! {{willSave}} बचाने के लिए {{br}}{{threshold}} और खरीदें",
-            "step3": "बधाई हो! आपने {{saved}} बचाया है!"
-          }
-        },
-        "benefit11": {
-          "threshold1": {
-            "step1": {
-              "nextFree": "{{threshold}} और चीज़ें खरीदें, किसी और किसी एक को मुफ्त में पाएं!",
-              "normal": "{{willSave}} छुट पाने के लिए {{threshold}} और खरीदें"
-            },
-            "step2": {
-              "free": "बधाई हो! किसी एक आइटम मुफ्त में पाने का आनंद लें!",
-              "nextFree": "बधाई हो! {{saved}} बचाया गया, {{br}}{{threshold}} और आइटम खरीदें, किसी एक आइटम को नि:शुल्क पाने का आनंद लें!",
-              "normal": "बधाई हो! {{saved}} बचाया गया, {{br}}{{threshold}} और चीजें खरीदें, किसी एक आइटम पर {{willSave}} छुट पाएं!"
-            },
-            "step3": {
-              "free": "बधाई हो! किसी एक आइटम मुफ्त में पाने का आनंद लें!",
-              "normal": "बधाई हो! किसी एक आइटम पर {{saved}} की छूट का आनंद लें!"
-            }
-          }
-        },
-        "benefit12": {
-          "threshold0": {
-            "step1": {
-              "achieve": {
-                "free": "बधाई हो, आप {{benefitCount}} चीज़ों का मुफ़्त में लाभ उठा सकते हैं",
-                "normal": "बधाई हो, आप {{benefitCount}} आइटम पर {{willSave}} छूट का लाभ उठा सकते हैं"
-              },
-              "free": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों का मुफ़्त में आनंद लें",
-              "normal": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों पर {{willSave}} की छूट का आनंद लें"
-            },
-            "step3": {
-              "free": "बधाई हो! आपके पास {{benefitCount}} आइटम मुफ़्त हैं!",
-              "normal": "बधाई हो! आपको {{benefitCount}} आइटम पर {{saved}} की छूट मिलती है!"
-            }
-          },
-          "threshold1": {
-            "step1": {
-              "achieve": {
-                "free": "बधाई हो, आप {{benefitCount}} चीज़ों का मुफ़्त में लाभ उठा सकते हैं",
-                "normal": "बधाई हो, आप {{benefitCount}} आइटम पर {{willSave}} छूट का लाभ उठा सकते हैं"
-              },
-              "free": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों का मुफ़्त में आनंद लें",
-              "normal": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों पर {{willSave}} की छूट का आनंद लें"
-            },
-            "step3": {
-              "free": "बधाई हो! आपके पास {{benefitCount}} आइटम मुफ़्त हैं!",
-              "normal": "बधाई हो! आपको {{benefitCount}} आइटम पर {{saved}} की छूट मिलती है!"
-            }
-          }
-        },
-        "benefit2": {
-          "threshold0": {
-            "step1": "{{willSave}} छूट पाने के लिए {{threshold}} और खरीदें",
-            "step2": "पहले ही {{saved}} सेव कर लें! {{br}}{{willSave}} की छूट पाने के लिए {{threshold}} और खरीदें",
-            "step3": "बधाई हो! आपने {{saved}} बचाया है!"
-          },
-          "threshold1": {
-            "step1": "{{willSave}} छूट पाने के लिए {{threshold}} और खरीदें",
-            "step2": "पहले ही {{saved}} सेव कर लें! {{br}}{{willSave}} की छूट पाने के लिए {{threshold}} और खरीदें",
-            "step3": "बधाई हो! आपने {{saved}} बचाया है!"
-          }
-        },
-        "benefit3": {
-          "threshold0": {
-            "step1": {
-              "unlimited": "{{threshold}} फिर से खरीदें और <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> का आनंद लें!",
-              "upperLimit": "{{threshold}} फिर से खरीदें और <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> का आनंद लें! (ज्यादा से ज्यादा मुफ़्त शिपिंग राशि {{upperLimit}})"
-            },
-            "step3": {
-              "unlimited": "बधाई हो! आपके पास <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> है!",
-              "upperLimit": "बधाई हो! आपके पास <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> है! (ज्यादा से ज्यादा मुफ़्त शिपिंग राशि {{upperLimit}})"
-            }
-          },
-          "threshold1": {
-            "step1": {
-              "unlimited": "{{threshold}} और खरीदें और <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> का आनंद लें!",
-              "upperLimit": "{{threshold}} और खरीदें और <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> का आनंद लें! (ज्यादा से ज्यादा मुफ़्त शिपिंग राशि {{upperLimit}})"
-            },
-            "step3": {
-              "unlimited": "बधाई हो! आपके पास <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> है!",
-              "upperLimit": "बधाई हो! आपके पास <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> है! (ज्यादा से ज्यादा मुफ़्त शिपिंग राशि {{upperLimit}})"
-            }
-          }
-        },
-        "benefit9": {
-          "threshold1": {
-            "step1": "{{threshold}} और टुकड़े खरीदें, जिनमें से {{willSave}} टुकड़े मुफ्त हैं",
-            "step2": "बधाई हो! {{saved}} टुकड़े मुफ्त में पाएं! {{threshold}} और टुकड़े खरीदें, जिनमें से {{willSave}} टुकड़े मुफ्त हैं",
-            "step3": "बधाई हो! उनमें से {{saved}} मुफ़्त हैं"
-          }
-        }
-      },
-      "tags-label": "की छूट:",
-      "tags": {
-        "benefit1": {
-          "threshold0": "{{threshold}} खरीदें {{save}} बचाएं",
-          "threshold1": "{{threshold}} खरीदें {{save}} की छूट पाएं"
-        },
-        "benefit11": {
-          "threshold1": {
-            "free": "{{threshold}} आइटम खरीदें, किसी एक को मुफ्त में पाने का आनंद लें!",
-            "normal": "{{threshold}} चीजे खरीदें, किसी एक पर {{save}} की छूट का आनंद लें!"
-          }
-        },
-        "benefit2": {
-          "threshold0": "{{threshold}} खरीदें {{save}} बचाएं",
-          "threshold1": "{{threshold}} खरीदें {{save}} की छूट पाएं"
-        }
+        "b2_t1": "{{threshold}} खरीदें {{save}} की छूट पाएं",
+        "label": "की छूट:"
       }
-    },
-    "selected-count-activity-product": "{{selectCount}} ईवेंट उत्पाद चयनित",
-    "sold": "{{count}} बिकी"
-  },
-  "subscription": {
-    "not-subscript-via-line-facebook": "LINE या Facebook से ऑर्डर अधिसूचना के लिए सदस्यता नहीं ले सकते है",
-    "subscript-via-line-facebook": "LINE या Facebook से ऑर्डर अधिसूचना के लिए सदस्यता लें"
-  },
-  "tips": {
-    "address-no-logistics": "वर्तमान पते के लिए कोई उपलब्ध डिलिवरी विधियां नहीं हैं",
-    "and": "गोपनीयता नीति",
-    "bind-change-email": "ईमेल जोड़ें/बदलें",
-    "bind-change-mobile-phone-number": "मोबाइल फ़ोन नंबर जोड़ें/बदलें",
-    "bind-success": "जुड़े हुए",
-    "cancel-apply-sent": "रद्द करने का अनुरोध भेजा गया है",
-    "cancel-order-fail": "ऑर्डर रद्द करना विफल हुआ, कृपया पुनः प्रयास करें",
-    "cancel-reason-feedback": "कृपया हमें अपने रद्द करने का कारण बताएं ताकि हम भविष्य में बेहतर कर सकें। आपका ऑर्डर सफलतापूर्वक रद्द होने के बाद आपको धनवापसी कर दी जाएगी। हम अपने स्टोर पर आपकी अगली यात्रा की प्रतीक्षा कर रहे हैं!",
-    "cancel-success-notice": "आपका ऑर्डर सफलतापूर्वक रद्द होने के बाद आपको एक ईमेल सूचना प्राप्त होगी, धन्यवाद!",
-    "change-binding-after-verification": "सत्यापन के बाद आप {{value}} जोड़ें/बदल सकते हैं",
-    "change-heart": "मैनें अपना मन बदल लिया है",
-    "change-item": "मैं खरीदी गई वस्तु (वस्तुओं) को बदलना चाहता/चाहती हूं",
-    "continue-as-a-guest": "अतिथि के रूप में जारी रखें",
-    "country-address-fail": "दर्ज किए गए पते के देश में स्थित विक्रेता वितरण शुल्क भुगतान के लिए ज़िम्मेदार नहीं हैं। कृपया मैन्युअल रूप से चयन करें",
-    "enter-address-first": "कृपया पहले पता दर्ज करें",
-    "enter-bank-card-number": "कृपया बैंक कार्ड नंबर दर्ज करें!",
-    "enter-bank-name": "कृपया बैंक का नाम दर्ज करें!",
-    "enter-email": "कृपया ईमेल पता दर्ज करें",
-    "enter-name": "कृपया नाम दर्ज करें!",
-    "enter-tel-number": "कृपया फ़ोन नंबर दर्ज करें",
-    "error-obtaining-support-logistics-country": "लजिस्टिक्स का समर्थन करने वाले देशों को पुनर्प्राप्त करते समय एक त्रुटि हुई है",
-    "expand-order-summary": "ऑर्डर सारांश दिखाएं",
-    "fail-contact": "यदि आपका रद्द करने का अनुरोध असफल रहा, तो कृपया नीचे विक्रेता/क्रेता ऑर्डर पत्राचार अनुभाग का हवाला देकर हमसे संपर्क करें।",
-    "fill-cancel-reason": "कृपया ऑर्डर रद्द करने का कारण भरें",
-    "forget-password": "पासवर्ड भूल गए है",
-    "get-checkout-config-fail": "चेकआउट कॉन्फ़िगरेशन पुनर्प्राप्ति में त्रुटि",
-    "get-checkout-detail-fail": "चेकआउट विवरण पुनर्प्राप्ति में त्रुटि",
-    "i-agree-with-the-shop": "मैं इसके लिए सहमत हूँ",
-    "image-size-less-than": "तस्वीर {{max}} MB से छोटी होनी चाहिए",
-    "img-name-too-long": "डालें गए तस्वीर का नाम बहुत लंबा है",
-    "img-size-too-large": "माफ़ करें! तस्वीर फ़ाइल का आकार सीमा से अधिक है!",
-    "incorrect-delivery-or-payment-information": "गलत वितरण या भुगतान जानकारी",
-    "login": "साइन इन करें",
-    "logistics-no-pre-selection": "डिलिवरी पूर्व चयन उपलब्ध नहीं है",
-    "logistics-pre-selection": "डिलिवरी पूर्व चयन उपलब्ध",
-    "max-upload-image": "आप ज़्यादा से ज़्यादा {{max}} इमेज अपलोड कर सकते हैं",
-    "max-upload-img": "माफ़ करें! आप अधिकतम {{maxNum}} इमेज अपलोड पोर्टल सपोर्ट की संख्या तक पहुंच गए हैं!",
-    "more-than-0-int": "कृपया 0 से बड़ी कोई संख्या दर्ज करें",
-    "need-phone-number-to-deliver": "यदि हमें आपके ऑर्डर के बारे में आपसे संपर्क करने की आवश्यकता है",
-    "no-logistics-available": "कोई उपलब्ध डिलिवरी विधि नहीं",
-    "no-order-information-please-confirm": "ऑर्डर जानकारी पुनर्प्राप्त करने में विफल। कृपया सुनिश्चित करें कि ऑर्डर संख्या सही है",
-    "no-order-number-please-confirm": "ऑर्डर संख्या पुनर्प्राप्त करने में विफल। कृपया सुनिश्चित करें कि ऑर्डर संख्या सही है",
-    "or-use-the-following-method-to-log-in": "या निम्न विधियों से साइन इन करें",
-    "order-creation-exception": "ऑर्डर देने में विफल",
-    "other-reason": "अन्य कारण",
-    "password-can-be-changed-after-verification": "सत्यापन के बाद आप पासवर्ड बदल सकते हैं",
-    "pay-params-error": "भुगतान पैरामीटर पुनर्प्राप्त करने में विफल, कृपया पुनः प्रयास करें",
-    "paypal-country-fail": "जिस देश में यह PayPal खाता है, वह डिलीवरी शुल्क भुगतान के लिए देशों की सूची में शामिल नहीं है। कृपया मैन्युअल रूप से चयन करें",
-    "please-complete-the-payment-method-content": "कृपया भुगतान का तरीका पूरा करें",
-    "please-read-and-agree-to-the-user-agreement-first": "कृपया पहले उपयोगकर्ता समझौते को पढ़ें और सहमत हों",
-    "poroceed-to-checkout": "चेक आउट करने के लिए आगे बढ़ें",
-    "price-more-expensive": "कहीं और मिली कम कीमत मिला है",
-    "product-abnormal-back-to-cart": "उत्पाद स्थिति त्रुटि, कृपया कार्ट पर वापस जाएं और पुनः प्रयास करें",
-    "put-up-order-summary": "ऑर्डर सारांश छुपाएं",
-    "register": "साइन अप करें",
-    "repeat-buy": "फिर से खरीदें",
-    "reset-password": "आप खाते {{account}} के लिए पासवर्ड रीसेट कर रहे हैं",
-    "sale-too-slow": "शिपिंग में देरी",
-    "select-cancel-reason": "कृपया रद्द करने का कारण चुनें",
-    "select-return-product-first": "कृपया पहले लौटाए जाने वाले उत्पाद का चयन करें",
-    "set-new-password": "पासवर्ड रीसेट करें",
-    "sku-change-tips": "उत्पाद स्थिति परिवर्तनों का पता चला है, कृपया अपनी शिपिंग/भुगतान विधि की पुन: पुष्टि करें",
-    "sure-cancel-order": "क्या आप वाकई इस ऑर्डर को रद्द करना चाहते हैं?",
-    "update-password": "पासवर्ड बदलें",
-    "update-success": "बदला हुआ",
-    "upload-image-fail": "तस्वीर अपलोड करने में विफल {{name}}",
-    "user-agreement": "स्टोर के उपयोगकर्ता की शर्तें",
-    "verification-code-has-been-sent-to-your-account": "सत्यापन कोड आपके खाते में भेज दिया गया है",
-    "verify-account-to-reset-password": "कृपया अपना खाता सत्यापित करें और पासवर्ड रीसेट करें"
-  },
-  "title": {
-    "policy": {
-      "privacy": "से सहमत हूं",
-      "refund": "धन वापसी नीति",
-      "service": "शर्तें और",
-      "shipping": "शिपिंग नीति"
     }
   },
   "trade": {
-    "activity-price-limit": "आप केवल {{num}} में इस उत्पाद को छूट के साथ खरीद सकते हैं",
-    "activity-product-limit": "आप एक ही समय में छूट के साथ अधिक से अधिक {{stock}} उत्पाद खरीद सकते हैं",
-    "activity-title-limit": "नीचे के उत्पाद क्रय सीमा को पार कर गए हैं, फिर भी चेकआउट के लिए आगे बढ़ें?",
-    "add-to-cart-fail": "माफ़ करें! कार्ट में जोड़ने में विफल। कृपया पुन: प्रयास करें!",
-    "after-sale-order": "बिक्री के बाद ऑर्डर",
-    "agree-user-terms-first": "कृपया पहले उपयोगकर्ता की शर्तों से सहमत हों",
-    "and": "गोपनीयता नीति",
-    "apply-refund": "वापसी के लिए आवेदन करें",
-    "apply-time": "समय की मांग",
-    "at-least-comment-one-before-submit": "जमा करने से पहले कृपया कम से कम एक आइटम को रेट करने का प्रयास करें",
-    "audit-refuse": "अननुमोदित",
-    "back-prev-step": "सूचना पर लौटें",
-    "back-prev-step2": "शिपिंग पर लौटें",
-    "backout-apply": "अनुरोध वापस लें",
-    "backout-refund-apply": "वापसी अनुरोध वापस लें",
-    "bad-userinfo": "उपयोगकर्ता जानकारी में त्रुटि",
-    "bad-userinfo-or-in-blocklist": "उपयोगकर्ता जानकारी में त्रुटि या उपयोगकर्ता अवरुद्ध है",
-    "billing-address-abnormal": "बिलिंग पता में त्रुटि",
-    "billing-address": {
-      "desc": "वह पता चुनें जो आपके कार्ड या भुगतान विधि से मेल खाता हो।",
-      "input-email": "आपके द्वारा चुनी गई भुगतान विधि की बिलिंग जानकारी भेजने के लिए एक ईमेल पता भी देना होगा",
-      "option-another": "किसी भिन्न बिलिंग पते का उपयोग करें",
-      "option-same": "शिपिंग पते के समान",
-      "title": "बिल भेजने का पता"
-    },
-    "buy-number-greater-then-stock": "राशि 1 से अधिक और इन्वेंट्री के राशि से कम होनी चाहिए!",
-    "can-get": "उपलब्ध",
-    "can-not-empty": "खाली नहीं हो सकता है",
-    "can-not-submit-order": "ऑर्डर जमा नहीं कर सकते है",
-    "can-refund-number": "वापसी योग्य राशि",
-    "cancel-order": "ऑर्डर रद्द करें",
-    "choose-refund-product": "लौटाए जाने वाले उत्पाद का चयन करें",
-    "choose-refund-reason": "कृपया वापसी का कारण चुनें",
-    "choose-store": "दुकान बदलें",
-    "come-way-return": "मूल भुगतान खाते में धनवापसी",
-    "comment-order": "ऑर्डर पर विचार करें",
-    "comment-product": "उत्पाद विचार",
-    "complete-payment": "पूर्ण भुगतान",
-    "confirm-email-send-to-you": "आपके ईमेल पर पुष्टिकरण पत्र भेज दिया गया है",
-    "confirm-refund": "वापसी की पुष्टि करें",
-    "contact": "संपर्क",
-    "coupon": "कूपन",
-    "coupon-code": "कूपन कोड",
-    "coupon-code-offer": "कूपन",
-    "coupon-mutra-discount": "इस कूपन कोड का उपयोग अन्य प्रचार या छूट ऑफ़र के संयोजन में नहीं किया जा सकता है",
-    "create-order-time": "ऑर्डर देने का समय",
-    "customerInfo": {
-      "pickupLocation": {
-        "title": "लेने की जगह"
-      }
-    },
-    "damage": "डिलिवरी के दौरान क्षतिग्रस्त उत्पाद",
-    "delete-invalid-product": "अमान्य उत्पाद हटाएं",
-    "delivery-address-abnormal": "प्राप्तकर्ता का पता में त्रुटि",
-    "delivery-fee": "शिपिंग",
-    "delivery-tax": "माल का टैक्स",
-    "delivery-to-home": "घर पहुँचाना",
-    "delivery-way": "डिलिवरी विधि",
-    "enter-a-tip-on-more-than": "परामर्श {{amount}} से अधिक नहीं होनी चाहिए",
-    "express-bill-pic": "लॉजिस्टिक्स एक्सप्रेस का तस्वीर",
-    "express-bills-sn": "लॉजिस्टिक्स एक्सप्रेस की संख्या",
-    "express-company": "लॉजिस्टिक्स कंपनी",
-    "fail-get-product-back-cart": "जांच की गई उत्पाद जानकारी पुनर्प्राप्त करने में विफल। कृपया कार्ट में वापस आएं और फिर से जमा करें",
-    "fast-checkout": "एक्सप्रेस चेकआउट",
-    "field-can-not-longer-than": "{{field}} लंबाई में {{length}} वर्णों से ज्यादा नहीं हो सकता है",
-    "fill-info": "जानकारी",
-    "fill-logistics": "लॉजिस्टिक्स जानकारी भरें",
-    "fill-refund-info": "वापसी की जानकारी भरें",
-    "find-store": "दुकान का चयन करें",
-    "footer-all-rights-reserved": "कॉपीराइट ©{{year}} {{name}}। सर्वाधिकार सुरक्षित।",
-    "free": "नि: शुल्क",
-    "free-shipping": "मुफ़्त शिपिंग",
-    "get-the-order": "एक ऐड-ऑन आइटम चुनें",
-    "give-stars": "रेटिंग",
-    "go-login": "साइन इन पर जाएं",
-    "go-on-shopping": "खरीदारी जारी रखें",
-    "go-pay": "अभी भुगतान करें",
-    "has-number-products": "{{number}} उत्पाद बचे हैं",
-    "has-removed": "अवैध",
-    "i-agree-website": "मैं वेबसाइट के सेवा की",
-    "i-want-recieve-discount-info": "मुझे समाचारों और विशेष ऑफ़र के बारे में अपडेट रखें",
-    "invalid-product": "अमान्य उत्पाद",
-    "is-paying": "भुगतान हो रहा है",
-    "item": "आइटेम",
-    "jump-to-pay-longtips": "\"पूरा हुआ ऑर्डर\" पर क्लिक करने के बाद, आपको अपनी खरीदारी सुरक्षित रूप से पूर्ण करने के लिए {{payChannel}} पर पुनर्निर्देशित किया जाएगा",
-    "leave-your-words": "हमें अपने विचार बताएं और उन्हें अन्य खरीदारों के साथ साझा करें~",
-    "logistics-package": "शिपिंग का तरीका",
-    "man-money-reduce": "{{money}} या अधिक की खरीद राशि के लिए छूट",
-    "man-money-share": "{{money}} या ज्यादा की खरीदारी राशि का आनंद लें",
-    "man-piece-reduce": "{{count}} टुकड़ों या ज्यादा का छूट",
-    "man-piece-share": "{{count}} टुकड़ों या ज्यादा का आनंद लें",
-    "max-refund": "अधिकतम वापसी योग्य राशि",
-    "must-agree-policy": "जारी रखने के लिए आपको वापसी के नीति से सहमत होना होगा!",
-    "must-choose": "चयन करना आवश्यक",
-    "must-fill": "आवश्यक",
-    "must-select": "आवश्यक विकल्प",
-    "need-choose-delivery-way": "सभी तापमान परतों के लिए एक वितरण विधि आवश्यक है",
-    "need-pay": "भुगतान करने की आवश्यकता है",
-    "next-step": "जारी रखें",
-    "next-step-calc": "अगले चरण में हिसाब",
-    "next-step-payment": "भुगतान विधि चुनने के लिए जाएं",
-    "next-step-shipment": "शिपिंग जारी रखें",
-    "next-time-use-shopping-money": "अगली बाज़ार के लिए अनुमानित कमी",
-    "no-pay-way": "अनुपलब्ध भुगतान विधि",
-    "not-as-expected": "उम्मीदों में उत्पाद",
-    "not-support-paypal": "विक्रेता PayPal का समर्थन नहीं करता है",
-    "now-can-not-comment": "अभी विचार नहीं कर सकते!",
-    "number-refund-product": "{{number}} उत्पाद वापसी के लिए",
-    "off-shelf": "अवैध",
-    "only-refund": "केवल धनवापसी",
-    "optional-fill": "वैकल्पिक",
-    "optional-support-jpg": "वैकल्पिक। JPG/PNG समर्थित",
-    "or-fill-info": "या",
-    "order-created-but-data-fail": "ऑर्डर बनाया गया है, लेकिन डेटा वापसी त्रुटि है...",
-    "order-detail": "ऑर्डर का विवरण",
-    "order-detail-query-fail": "आदेश विवरण क्वेरी त्रुटि",
-    "order-info": "ऑर्डर की जानकारी",
-    "order-meno": "ऑर्डर टिप्पणी",
-    "order-status": "ऑर्डर की स्थिति",
-    "other-delivery": "अन्य डिलिवरी विधियां",
-    "other-info": "अन्य सूचना",
-    "other-reason": "अन्य कारण",
-    "others": "अन्य",
-    "over-limit-number": "उत्पाद सीमा को पार कर गया",
-    "passport-id-card-placeholder": "आईडी कार्ड/पासपोर्ट नंबर (वैकल्पिक)",
-    "passport-id-card-tip": "सुचारू कस्टम शुल्क घोषणा और डिलिवरी सुनिश्चित करने के लिए कृपया प्राप्तकर्ता की असली आईडी या पासपोर्ट नंबर दर्ज करें",
-    "pay-failed-err-code": {
-      "3d-overtime": "3DS प्रमाणीकरण विफल, कृपया पुन: प्रयास करें।",
-      "buyer-account-abnormal": "आपके खाते में कुछ समस्याओं के कारण, भुगतान संसाधित नहीं किया जा सकता है। कृपया पुनः प्रयास करें या अन्य भुगतान विधियों का उपयोग करें।",
-      "card-expired": "कार्ड की समय सीमा समाप्त हो गई है, आपका भुगतान संसाधित नहीं किया जा सकता है। पुन: प्रयास करने के लिए कृपया कोई दुसरा कार्ड या भुगतान विधि चुनें।",
-      "change-card": "आपका भुगतान अभी संसाधित नहीं किया जा सकता है, पुन: प्रयास करने के लिए कृपया कोई दुसरा कार्ड या भुगतान विधि चुनें।",
-      "default": "कुछ कारणों से आपका भुगतान संसाधित नहीं किया जा सकता है। कृपया पुनः प्रयास करें या अन्य भुगतान विधियों का उपयोग करें।",
-      "insufficient-balance": "अपर्याप्त शेष राशि, आपका भुगतान संसाधित नहीं किया जा सकता हैं। पुन: प्रयास करने के लिए कृपया कोई दुसरा कार्ड या भुगतान विधि चुनें।",
-      "invalid-card-number": "कार्ड नंबर अमान्य है, आपका भुगतान संसाधित नहीं किया जा सकता है। पुन: प्रयास करने के लिए कृपया कोई दुसरा कार्ड या भुगतान विधि चुनें।",
-      "overpayment": "ऑर्डर राशि क्रय सीमा से अधिक है, आपका भुगतान संसाधित नहीं किया जा सकता है। पुन: प्रयास करने के लिए कृपया कोई दुसरा कार्ड या भुगतान विधि चुनें।",
-      "pin-over-times": "अधिकतम पासवर्ड दर्ज करने की प्रयास पार हो गया हैं, आपका भुगतान संसाधित नहीं किया जा सकता है। कृपया दुसरा कोई भुगतान विधि चुनें और पुनः प्रयास करें।",
-      "user-cancel": "भुगतान रद्द कर दिया गया हैं। यदि आपको जारी रखने की आवश्यकता है तो कृपया पुनः प्रयास करें।",
-      "wrong-password": "गलत पासवर्ड के कारण आपका भुगतान संसाधित नहीं किया जा सकता है। कृपया पुनः प्रयास करें या अन्य भुगतान विधियों का उपयोग करें।"
-    },
-    "pay-fee": "भुगतान शुल्क",
-    "pay-way": "भुगतान विधि",
-    "pay-way-logo-and-more": "और अधिक",
-    "payment-security-description": "सभी लेनदेन सुरक्षित और एन्क्रिप्टेड हैं",
     "payments-name": {
       "COD": "डिलवरी पर नकद देना",
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "क्रेडिट कार्ड"
-    },
-    "pic-upload-fail": "तस्वीर अपलोड करने में विफल {{name}}",
-    "pick-address": "संग्रह करने का पता",
-    "please-choose-area": "कृपया एक क्षेत्र चुनें",
-    "please-choose-delivery-way": "कृपया एक डिलीवरी विधि चुनें",
-    "please-choose-pay-way": "अपने भुगतान के तरीके का चुनाव करें",
-    "please-choose-refund-account": "कृपया धनवापसी खाते का चयन करें!",
-    "please-choose-refund-express": "कृपया वापसी के लिए लॉजिस्टिक्स मोड का चयन करें!",
-    "please-choose-refund-type": "वापसी प्रकार चुनें",
-    "please-choose-store": "कृपया एक दुकान चुनें",
-    "please-fill-80charact-refund-reason": "कृपया अपनी वापसी का कारण 80 अक्षरों में भरें",
-    "please-fill-express-bills-sn": "कृपया लॉजिस्टिक्स एक्सप्रेस नंबर भरें",
-    "please-fill-express-company": "कृपया एक लॉजिस्टिक्स कंपनी भरें",
-    "please-fill-meno": "कृपया टिप्पणी पूर्ण करें",
-    "please-fill-refund-reason": "कृपया वापसी के लिए अपना कारण भरें",
-    "please-input-field": "कृपया {{field}} दर्ज करें",
-    "please-input-legal-passport-id-card": "कृपया एक मान्य आईडी/पासपोर्ट दर्ज करें",
-    "please-pay-within": "कृपया इसके अंदर भुगतान करें",
-    "pod-link": "देखने के लिए दबाएं",
-    "pod-pic": "कस्टम पूर्वावलोकन",
-    "point-discount": "पॉइंट छूट",
-    "point-discount-desc": "{{deductMemberPointAmount}} पॉइंट बचाने के लिए आप {{deductMemberPointNum}} पॉइंट का उपयोग कर सकते हैं",
-    "point-discount-remark": "लागत {{value}} पॉइंट",
-    "policy": {
-      "privacy-policy": "से सहमत हूं",
-      "refund-policy": "धन वापसी नीति"
-    },
-    "private-policy": "से सहमत हूं",
-    "product-amount": "उप-योग",
-    "product-fee": "उप-योग",
-    "product-offline": "उत्पाद को सूची से हटा दिया गया है",
-    "product-package": "पैकेज",
-    "product-preview": "उत्पाद पूर्वावलोकन",
-    "product-remain-please-re-choose": "{{stock}} उत्पाद बाकि है। कृपया राशि फिर से चुनें",
-    "product-removed": "उत्पाद हटा दिया गया है",
-    "product-sold-out": "उत्पाद बिक चुका है",
-    "product-tax": "कमोडिटी टैक्स",
-    "quantity": "राशि",
-    "receiver-info": "शिपिंग पता",
-    "recieve-address-unavailable-rechoose": "प्रापक के पते पर डिलीवरी का कोई उपलब्ध तरीका नहीं है। कृपया पुन: चयन करने के लिए वापस आएं",
-    "reciever-fullname": "प्राप्तकर्ता का पूरा नाम",
-    "reciever-info": "शिपिंग पता",
-    "reciever-name": "प्राप्तकर्ता का उपनाम",
-    "reciever-to": "यहां भेजें",
-    "refund-account": "वापसी खाता",
-    "refund-amount": "वापसी राशि",
-    "refund-amount-bigger-zero": "धनवापसी राशि 0 से अधिक होनी चाहिए",
-    "refund-amount-can-over": "वापसी योग्य राशि अधिकतम वापसी योग्य राशि से अधिक नहीं हो सकती",
-    "refund-detail": "धनवापसी का विवरण",
-    "refund-express": "वापसी के लिए लॉजिस्टिक्स",
-    "refund-logistics-info": "लॉजिस्टिक्स जानकारी वापस करें",
-    "refund-number": "लौटाए गए उत्पादों की राशि",
-    "refund-order-number": "वापसी ऑर्डर संख्या",
-    "refund-order-stataus": "वापसी ऑर्डर की स्थिति",
-    "refund-person": "लौटाए है",
-    "refund-policy": "वापसी नीति",
-    "refund-reason": "वापसी का कारण",
-    "refund-reason-less-60": "वापसी का कारण 60 वर्णों से अधिक नहीं होना चाहिए!",
-    "refund-type": "वापसी प्रकार",
-    "refund-way": "वापसी विधि",
-    "refund-way-intro": "वापसी विधि का परिचय",
-    "refunding": "धन-वापसी कर",
-    "remove-product": "उत्पाद निकालें",
-    "return-and-refund": "वापसी और धनवापसी",
-    "return-apply-fail-SKU": "अनुरोधित माल की संख्या सीमा से अधिक है!",
-    "return-apply-fail-max-amount": "वापसी योग्य राशि अधिकतम वापसी योग्य राशि से अधिक नहीं हो सकती",
-    "return-apply-fail-min-amount": "केवल धनवापसी के लिए, धनवापसी राशि 0 CNY से ज्यादा होनी चाहिए",
-    "return-to-selection-goods": "लौटाए गए माल का चयन",
-    "see-detail": "विवरण देखें",
-    "see-origin-order": "मूल आदेश देखें",
-    "see-refund-progress": "वापसी की प्रगति देखें",
-    "self-mention": "खुद से लाना",
-    "service-fee": "सेवा शुल्क",
-    "service-terms": "शर्तें और",
-    "ship-to": "यहा पर भेजें",
-    "shop-list": "कार्ट ({{count}} )",
-    "shopping-gold-trade-off": "शॉपिंग सबसिडी में कमी",
-    "shopping-list": "आपकी कार्ट",
-    "shopping-money": "शॉपिंग सबसिडि",
-    "shopping-money-deduction": "शॉपिंग सबसिडी में कमी",
-    "sku-changed-title": "{{num}}आइटम बदले गए है, चेकआउट करना जारी रखें?",
-    "sku-limit-title": "नीचे के उत्पाद खरीदारी की सीमा से अधिक हैं, कृपया राशि बदलें",
-    "sku-not-match": "उत्पाद आयाम/विनिर्देश विवरण से भिन्न हैं",
-    "slpayment": {
-      "cardHolderNameErrorTips": "कृपया दोबारा जांच करें।",
-      "cardHolderNamePlaceHolder": "कार्डधारक का नाम",
-      "cardNumber": {
-        "errorTips": "कृपया सही कार्ड नंबर दर्ज करें.",
-        "placeholder": "क्रेडिट कार्ड नंबर",
-        "tips": "सभी लेनदेन सुरक्षित और एन्क्रिप्टेड हैं"
-      },
-      "cardholdername": "कार्डधारक का नाम",
-      "cvv": {
-        "errorTips": "कृपया दोबारा जांच करें।",
-        "placeholder": "सीवीवी",
-        "tips": "आम तौर पर कार्ड के पीछे है"
-      },
-      "expiryDate": {
-        "errorTips": "कृपया सही समय दर्ज करें."
-      },
-      "footer": "आप अभी चेकआउट करने के लिए SHOPLINE भुगतान का उपयोग कर रहे हैं। भुगतान पूरा करके, आप SHOPLINE भुगतान",
-      "service": "की सेवा की शर्तों से सहमत हैं।."
-    },
-    "sold-out": "बिक गया",
-    "some-discount-limit-to-pay-and-delivery": "कुछ छूट केवल एक निश्चित लॉजिस्टिक्स विधि/भुगतान विधि के लिए उपलब्ध हैं",
-    "sorry-all-sku-unusable": "क्षमा करें, सभी आइटम अमान्य हैं, ऑर्डर जमा नहीं किया जा सकता है",
-    "sorry-limit-re-choose": "माफ़ करें! आप हर ऑर्डर में केवल {{promotionRemainStock}} ही खरीद सकते हैं। कृपया अपनी राशि फिर से चुनें",
-    "sorry-product-not-available-re-reorder": "माफ़ करें! आपके द्वारा खरीदे गए कुछ उत्पाद सूची से हटा दिए गए हैं और अमान्य हैं। कृपया दोबारा जमा करने से पहले इसकी जांच करें और इसकी पुष्टि करें",
-    "sorry-rechoose-longtips": "क्षमा करें, आपके द्वारा चुना गया उत्पाद खरीदने के लिए अमान्य है। कृपया फिर से चुनें",
-    "start-refund": "वापसी शुरू करें",
-    "stock-not-enough": "उत्पाद अपर्याप्त है",
-    "sub-total": "उप-योग",
-    "submit-order": "पूरा हुआ ऑर्डर",
-    "summary": "कुल",
-    "supermarket-self-pick": "स्टोर में से खुद पिक-अप",
-    "sure-remove-this-product": "क्या आप वाकई उत्पाद को हटाना चाहते हैं?",
-    "tip": {
-      "add-tip": "टिप जोड़ें"
-    },
-    "total": "कुल",
-    "total-num": "कुल",
-    "use-customer-info": "ग्राहक जानकारी का उपयोग करें",
-    "use-member-account-can": "सदस्य के रूप में जल्दी से चेक आउट करें? आप इसे तुरंत कर सकते हैं",
-    "use-shopping-deduction": "लगभग {{num}} उपयोग योग्य शॉपिंग सब्सिडी घट सकते है",
-    "user-cancel-apply": "उपयोगकर्ता ने अनुरोध वापस ले लिया",
-    "will-discount": "छूट",
-    "wrong-product": "गलत उत्पाद",
-    "you-are-paying-wait-result": "आपका भुगतान अनुरोध जमा किया गया है। {{payChannel}} का भुगतान परिणाम लंबित है",
-    "your-apply-auditing-sure-backout": "आपके वापसी अनुरोध पर विचार की जा रही है। अनुरोध वापस लें?",
-    "your-delivery-need-choose-store": "सभी डिलिवरी विधियों के लिए दुकान की जानकारी आवश्यक है",
-    "your-order-created": "आपका ऑर्डर दे दिया गया है",
-    "your-order-not-pay": "आपने अपने ऑर्डर के लिए भुगतान पूरा नहीं किया है",
-    "your-refund-order-created": "आपका वापसी ऑर्डर दे दिया गया है"
+    }
   },
   "transaction": {
     "general": {
-      "coupon_code_exceed_not_25_characters": "कूपन कोड 25 वर्णों से ज्यादा नहीं हो सकता।",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} कूपन शिपिंग विधि के लिए मान्य है",
-      "discount_code_invalid": "{{discountCode}} सही ढंग से दर्ज किया गया है, लेकिन माल की कीमत या मात्रा आवश्यकताओं को पूरा नहीं करती है",
       "discount_codes_cannot_stack": "यह सामग्री के लिए एक पसंदीदा इवेंट है, जो अन्य पसंदीदा इवेंट के साथ उपयोग नहीं किया जा सकता है",
-      "discounts_cannot_stack": "इस ऑर्डर पर छूट लागू की गई है। आप एक और छूट नहीं जोड़ सकते",
-      "enter_a_valid_discount_code": "छूट कोड गलत दर्ज किया गया है",
+      "discount_off": "छूट",
+      "free_charge": "मुफ़्त शिपिंग",
       "free_shipping": "मुफ़्त शिपिंग",
       "order_seller_discount": "विक्रेता अतिरिक्त छूट",
       "order_tax": "कर",
@@ -1758,355 +691,5 @@
       "shipping_fee": "शिपिंग",
       "trade_coupon_discount": "कूपन"
     }
-  },
-  "user": {
-    "account": "खाता",
-    "code": "पुष्टिकरण कोड",
-    "codeError": "कृपया सत्यापन कोड दर्ज करें",
-    "confirm": "ठीक है",
-    "email": "ईमेल पता",
-    "emailEmptyError": "कृपया ईमेल पता दर्ज करें",
-    "emailError": "कृपया मान्य प्रारूप और 50 से कम वर्णों का ईमेल पता दर्ज करें",
-    "noData": "कोई डेटा उपलब्ध नहीं है",
-    "password": "पासवर्ड",
-    "passwordEmptyError": "कृप्या पासवर्ड डालें",
-    "passwordError": "कृपया एक पासवर्ड सेट करें जिसकी लंबाई कम से कम 8 वर्ण और अधिकतम लंबाई 20 वर्ण हो। पासवर्ड में कम से कम एक वर्ण कैरेक्टर, एक लोअरकेस वर्ण और एक नंबर शामिल होना चाहिए",
-    "passwordMemberError": "कृपया एक पासवर्ड सेट करें जिसकी लंबाई कम से कम 6 वर्ण और अधिकतम लंबाई 18 वर्ण हो।",
-    "phone": "मोबाइल फोन नंबर",
-    "phoneEmptyError": "कृपया मोबाइल फ़ोन नंबर दर्ज करें",
-    "phoneError": "कृपया मान्य प्रारूप के साथ मोबाइल फ़ोन नंबर दर्ज करें",
-    "primevalNewPasswordError": "आपका नया पासवर्ड आपके वर्तमान पासवर्ड नहीं हो सकता हैं",
-    "primevalPassword": "वर्तमान पासवर्ड",
-    "primevalPasswordError": "कृपया अपना वर्तमान पासवर्ड दर्ज करें",
-    "repeatPassword": "पासवर्ड फिर से दर्ज करें",
-    "repeatPasswordEmptyError": "कृपया पासवर्ड फिर से दर्ज करें",
-    "repeatPasswordError": "आपके द्वारा दर्ज किया गया पासवर्ड मेल नहीं खाता है",
-    "resend": "फिर से भेजें",
-    "send": "भेजें",
-    "sendError": "कृपया पहले सत्यापन कोड भेजें",
-    "signIn": "साइन इन करें",
-    "signUp": "साइन अप करें",
-    "subscription-text": "अपडेट प्राप्त करने के लिए ईमेल के लिए मुझे साइन अप करें, विशेष सौदों तक पहुंच, और बहुत कुछ।",
-    "udbResponse": {
-      "err-1": "सेवा के अपवाद",
-      "err-13": "सेवा के अपवाद",
-      "err-4": "सेवा के अपवाद",
-      "err-5": "सेवा के अपवाद",
-      "err-999": "सेवा के अपवाद",
-      "err1001": "पासवर्ड में त्रुटि",
-      "err1002": "उपभोक्ता नहीं हैं",
-      "err1003": "असामान्यता के कारण आपका खाता अक्षम कर दिया गया है; कृपया प्रतिबंध हटाने के लिए व्यापारी से संपर्क करें",
-      "err1004": "बार-बार संचालन। कृपया बाद में पुनः प्रयास करें",
-      "err1005": "कोड समाप्त हो गया है",
-      "err1006": "कोड में त्रुटि",
-      "err1007": "सत्यापन कोड का बार-बार संचालन। कृपया सत्यापन कोड पुनः प्राप्त करें",
-      "err1008": "तृतीय-पक्ष चैनलों को कॉन्फ़िगर किए बिना लॉग इन करें",
-      "err1009": "तृतीय-पक्ष इंटरफ़ेस को कॉल करने में विफल",
-      "err1010": "भेजने में विफल",
-      "err1011": "खाता संख्या सक्रिय नहीं है",
-      "err1012": "सेवा के अपवाद",
-      "err1013": "सेवा के अपवाद",
-      "err1014": "सत्यापन कोड सत्यापित करने में विफल",
-      "err1015": "कृपया डायनामिक सत्यापन कोड सत्यापित करें",
-      "err1016": "सेवा के अपवाद",
-      "err1017": "खाता संख्या के लिए जोखिम है",
-      "err1018": "मेलबॉक्स को जोड़ दिया गया है",
-      "err1020": "लॉग इन समय समाप्त",
-      "err1021": "लॉग इन समय समाप्त",
-      "err1022": "खाता संख्या जोड़ दी गई है",
-      "err1023": "सेवा के अपवाद",
-      "err1024": "सेवा के अपवाद",
-      "err2001": "मोबाइल पंजीकृत किया गया है",
-      "err2002": "ईमेल पंजीकृत किया गया है",
-      "err2003": "इतनी बार कोशिश मत करें",
-      "err2004": "कोड समाप्त हो गया है",
-      "err2005": "कोड में त्रुटि",
-      "err2006": "सत्यापन बहुत बार हुआ है, कृपया दूसरा कोड पाएं",
-      "err2007": "सेवा आपत्ति, बाद में पुन:प्रयास करें",
-      "err2016": "खाता जोखिम में है",
-      "err3001": "सेवा आपत्ति, बाद में पुन:प्रयास करें",
-      "err3002": "जो उपयोगकर्ता मोबाइल फोन/मेलबॉक्स से बंधे नहीं हैं, वे अपना पासवर्ड बदलने का प्रयास करते हैं",
-      "err3003": "इतनी बार कोशिश मत करें",
-      "err3004": "कोड समाप्त हो गया है",
-      "err3005": "कोड में त्रुटि",
-      "err3006": "सत्यापन बहुत बार हुआ है, कृपया दूसरा कोड पाएं",
-      "err3007": "मोबाइल मौजूद नहीं है",
-      "err3008": "ईमेल मौजूद नहीं है",
-      "err3009": "मोबाइल अन्य खातों से बंधा हुआ है",
-      "err3010": "ईमेल अन्य खातों द्वारा बंधा गया है",
-      "err3014": "टेक्स्ट संदेश/मेल टेम्प्लेट रेंडरिंग विफल",
-      "udbResponse": "असामान्यता के कारण आपका खाता अक्षम कर दिया गया है; कृपया प्रतिबंध हटाने के लिए व्यापारी से संपर्क करें"
-    },
-    "username": "ईमेल पता/मोबाइल फोन नंबर",
-    "usernameEmptyError": "कृपया ईमेल पता या मोबाइल फोन नंबर दर्ज करें"
-  },
-  "userCenter": {
-    "account": {
-      "account-binding": "खाता जोड़ना",
-      "account-info": "खाता",
-      "account-subscription-email": "ईमेल पर भेजें",
-      "account-subscription-line": "Line ऐप पर भेजें",
-      "account-subscription-messenger": "Messenger पर भेजें",
-      "account-subscription-phone": "मोबाइल फोन पर भेजें",
-      "bind": "जोड़ा जा रहा है",
-      "change-password": "पासवर्ड बदलें",
-      "email": "ईमेल",
-      "firstName": "नाम",
-      "general-member": "सामान्य सदस्य",
-      "lastName": "उपनाम",
-      "member-level": "सदस्यता स्तर",
-      "memberLevelCom": {
-        "defaultLevel": "सामान्य सदस्य",
-        "discountInterest": "खरीदने जाना",
-        "expire": "{{time}} बाकि",
-        "modalTitle": "क्लास रूचियाँ का विवरण",
-        "tableTitleGrade": "सदस्यता ग्रेड",
-        "tableTitleInterest": "सदस्यों के हित",
-        "upgradeSuccessText": "बधाई हो, आपने सफलतापूर्वक अपग्रेड कर लिया है",
-        "upgradeText0": "<italic>{{money}}</italic> खर्च करने के बाद {{nextLevelName}} में अपग्रेड करें।",
-        "upgradeText1": "<italic>{{money}}</italic> की खरीद के साथ, आप {{nextLevelName}} में अपग्रेड कर सकते हैं"
-      },
-      "modify-email": "ईमेल संशोधित करें",
-      "modify-phone": "फोन संशोधित करें",
-      "nicknameEmptyError": "पहला नाम और अंतिम नाम दोनों को खाली नहीं हो सकता है",
-      "notSet": "सेट नहीं है",
-      "password": "पासवर्ड",
-      "phone": "फोन संशोधित करें",
-      "reset-password-error": "कृपया पहले ईमेल या मोबाइल जोड़े",
-      "subscription-notification": "सदस्यता अधिसूचना",
-      "unsubscribed": "सदस्यता छोड़ दी गई",
-      "username": "नाम",
-      "username-message": "कृपया आपका नाम दर्ज करें",
-      "username-placeholder": "कृपया आपका नाम दर्ज करें"
-    },
-    "address": {
-      "add": "नया पता जोड़ें",
-      "address": "पता",
-      "default": "डिफॉल्ट",
-      "delete-address": "पता हटाएं",
-      "full-tip": "5 पते सहेजे गए हैं और इस समय जोड़े नहीं जा सकते है",
-      "no-data": "वर्तमान में, कोई वितरण पता नहीं है",
-      "ok": "ठीक है"
-    },
-    "buy-record-entry": "खरीदे गए उत्पाद",
-    "cancel": "रद्द करें",
-    "datePicker": {
-      "mobile": {
-        "cancel": "रद्द करें",
-        "confirm": "ठीक है",
-        "title": "तारीख़ चुनें"
-      },
-      "pc": {
-        "clear": "स्पष्ट",
-        "dateFormat": "MM/dd/yyyy",
-        "days0": "रविवार",
-        "days1": "सोमवार",
-        "days2": "मंगलवार",
-        "days3": "बुधवार",
-        "days4": "गुरुवार",
-        "days5": "शुक्रवार",
-        "days6": "शनिवार",
-        "daysMin0": "रवि",
-        "daysMin1": "सोम",
-        "daysMin2": "मंगल",
-        "daysMin3": "बुध",
-        "daysMin4": "गुरु",
-        "daysMin5": "शुक्र",
-        "daysMin6": "शनि",
-        "daysShort0": "रवि",
-        "daysShort1": "सोम",
-        "daysShort2": "मंगल",
-        "daysShort3": "बुध",
-        "daysShort4": "गुरु",
-        "daysShort5": "शुक्र",
-        "daysShort6": "शनि",
-        "firstDay": "0",
-        "months0": "जनवरी",
-        "months1": "फ़रवरी",
-        "months10": "नवंबर",
-        "months11": "दिसंबर",
-        "months2": "मार्च",
-        "months3": "अप्रैल",
-        "months4": "मई",
-        "months5": "जून",
-        "months6": "जुलाई",
-        "months7": "अगस्त",
-        "months8": "सितंबर",
-        "months9": "अक्तूबर",
-        "monthsShort0": "जन",
-        "monthsShort1": "फ़र",
-        "monthsShort10": "नव",
-        "monthsShort11": "दिस",
-        "monthsShort2": "मार्च",
-        "monthsShort3": "अप्रैल",
-        "monthsShort4": "मई",
-        "monthsShort5": "जून",
-        "monthsShort6": "जुल",
-        "monthsShort7": "अग",
-        "monthsShort8": "सित",
-        "monthsShort9": "अक्तू",
-        "timeFormat": "hh:mm aa",
-        "today": "आज"
-      }
-    },
-    "deleteAccount": {
-      "address": "पता",
-      "card": "क्रेडिट कार्ड नंबर।",
-      "deadline": "व्यावसायिक रिपोर्ट के उद्देश्य से, आपका ऑर्डर अभी भी दिखाई देगा। आपका खाता डेटा {{time}} को हटा दिया जाएगा, आप उस तारिख से पहले प्रक्रिया को रद्द कर सकते हैं।",
-      "email": "ईमेल",
-      "ip": "IP पता",
-      "name": "नाम",
-      "nextStep": "अगला",
-      "notify": "आप इस खाते को बंद करने के लिए आवेदन कर सकते हैं। एक बार बंद होने पर, इस खाते की पहचान की कोई भी जानकारी हटा दी जाएगी, जिसमें शामिल हैं:",
-      "revoke": "बंद करना रद्द करें",
-      "revokeMessage": "यह खाता बंद करने की प्रक्रिया में है, खाता डेटा {{time}} को हटा दिया जाएगा, आप उस तारिख से पहले प्रक्रिया को रद्द कर सकते हैं।",
-      "timeout": "ऑपरेशन का समय समाप्त हो गया, कृपया फिर से सत्यापित करें",
-      "title": "खाता बंद करें",
-      "verifyEmailMessage": "खाता बंद करने से पहले, हमें आपकी पहचान सत्यापित करनी होगी\nआपके ईमेल {{email}} पर एक सत्यापन ईमेल मिलेगा",
-      "verifyPhoneMessage": "खाता बंद करने से पहले, हमें आपकी पहचान सत्यापित करनी होगी\nआपके मोबाइल फ़ोन {{phone}} को एक सत्यापन संदेश प्राप्त होगा"
-    },
-    "edit": "संपादित करें",
-    "editAddress": {
-      "address1-message": "512 वर्णों से कम!",
-      "address2-message": "512 वर्णों से कम!",
-      "city-message": "कृपया अपना शहर चुनें!",
-      "common-max": "",
-      "common-min": "{{मिनट}} वर्णों से अधिक",
-      "contact-message": "कृपया अपना नाम दर्ज करें",
-      "country-message": "कृपया अपना देश चुनें!",
-      "default": "डिफ़ॉल्ट पते के रूप में सेट करें",
-      "district-message": "कृपया अपने जिले का चयन करें!",
-      "edit": "शिपिंग पता संपादित करें",
-      "firstName-placeholder": "नाम (वैकल्पिक)",
-      "lastName-message": "कृपया अपना अंतिम नाम दर्ज करें!",
-      "lastName-placeholder": "उपनाम",
-      "name-placeholder": "नाम",
-      "phone-label": "फ़ोन",
-      "phone-message": "कृपया अपना मोबाइल दर्ज करें",
-      "postcode-message": "32 वर्णों से कम!",
-      "province-message": "कृपया अपने प्रांत चुनें!"
-    },
-    "message": {
-      "inputPlaceholder": "क्या ऐसा कुछ है जिसके लिए आप संदेश देना चाहते हैं?",
-      "message": "संदेश",
-      "send": "भेजें"
-    },
-    "orders": "ऑर्डर",
-    "personal-info": "व्यक्तिगत जानकारी",
-    "personal": {
-      "birthday-date": "जन्म तारीख",
-      "date": "तारीख़",
-      "gender": "लिंग",
-      "gender-female": "महिला",
-      "gender-male": "पुरुष",
-      "gender-secret": "गुप्त रखें",
-      "personal-information": "व्यक्तिगत जानकारी",
-      "select-date": "तारीख़ चुनें",
-      "select-date-cancel": "रद्द करें",
-      "select-date-ok": "ठीक है",
-      "select-date-placeholder": "चुने",
-      "unknown": "अज्ञात"
-    },
-    "point": {
-      "actionTypeDesc": {
-        "addPoint": "पॉइंट जोड़ें",
-        "deductFreezePoint": "फ्रीज पॉइंट घटाएं",
-        "deductPoint": "पॉइंट घटाएं",
-        "expirePoint": "खत्म होने का पॉइंट",
-        "freezePoint": "फ्रीज पॉइंट",
-        "releaseFreezePoint": "फ्रीज पॉइंट निकालें",
-        "reverseAddPoint": "रिवर्स ऐड पॉइंट",
-        "reverseDeductPoint": "रिवर्स डिडक्ट पॉइंट"
-      },
-      "date": "{{day}}, {{month}} {{date}}, {{year}}",
-      "day0": "रविवार",
-      "day1": "सोमवार",
-      "day2": "मंगलवार",
-      "day3": "बुधवार",
-      "day4": "गुरूवार",
-      "day5": "शुक्रवार",
-      "day6": "शनिवार",
-      "empty-btn-link": "शॉपिंग के लिए पैसा कैसे पाएं और उसका उपयोग कैसे करें?",
-      "empty-mainText": "आपको अभी तक खरीदारी के पैसे नहीं मिले हैं",
-      "mainview-dedection": "वर्तमान अधिकतम क्रेडिट <italic>{{money}}</italic> है।",
-      "mainview-link": "नियमों को समझें",
-      "mainview-save": "आपने {{historyTotalUsedScore}} शॉपिंग शुल्क का उपयोग करके <italic>{{historyTotalUsedDeduction}}</italic> बचाया है",
-      "modal-title": "शॉपिंग कूपन का विवरण",
-      "month1": "जनवरी",
-      "month10": "अक्टूबर",
-      "month11": "नवम्बर",
-      "month12": "दिसम्बर",
-      "month2": "फ़रवरी",
-      "month3": "मार्च",
-      "month4": "अप्रैल",
-      "month5": "मई",
-      "month6": "जून",
-      "month7": "जुलाई",
-      "month8": "अगस्त",
-      "month9": "सितम्बर",
-      "ok-btn": "ठीक है",
-      "title": "सोना खरीदारी",
-      "unuseHistoryScore": "आपने ख़र्च बचाने के लिए शॉपिंग कूपन का उपयोग नहीं किया है"
-    },
-    "pointList": {
-      "breadcrumb1": "जानकारी",
-      "breadcrumb2": "खरीद मूल्य",
-      "empty": "वर्तमान में, कोई पॉइंट रिकॉर्ड नहीं है",
-      "empty2": "कोई और रिकॉर्ड नहीं",
-      "loaded": "लोड हो रया",
-      "loading": "लोड हो रहा है...",
-      "order": "ऑर्डर देखें:",
-      "total": "विचारों ({{total}})"
-    },
-    "refunds": "धनवापसी",
-    "save": "सहेजे",
-    "sign-out": "साइन आउट",
-    "subscription": {
-      "desc": "स्टोर के बारे में हाल के ख़बर पाएं",
-      "email": "ईमेल",
-      "line": "LINE",
-      "messenger": "Messenger",
-      "modal": {
-        "cancel-text": "सदस्यता रद्द",
-        "eamil-title": "ईमेल द्वारा सदस्यता की प्रचार जानकारी प्राप्त करें",
-        "ok-text": "सदस्यता लें",
-        "phone-title": "फ़ोन प्रोमोशन के लिए सदस्यता लें",
-        "save": "सहेजे"
-      },
-      "not-sub": "सदस्यता नहीं है",
-      "phone": "फोन संशोधित करें",
-      "subed": "सदस्यता लिया",
-      "title": "सदस्यता",
-      "unsub": {
-        "content": "एक बार सदस्यता समाप्त करने के बाद, आपको अब नवीनतम प्रोमोशन नहीं मिलेगा।",
-        "ok-text": "सदस्यता रद्द",
-        "title": "सदस्यता रद्द"
-      }
-    },
-    "unsubscribeFeedback": {
-      "text": "आपको हमारी ओर से कोई और मार्केटिंग अपडेट प्राप्त नहीं होगा। आप किसी भी समय फिर से सदस्यता ले सकते हैं",
-      "title": "आपने <italic>{{name}}</italic> मेलिंग सूची से सदस्यता छोड़ दी है"
-    }
-  },
-  "validate": {
-    "coupon-code-cannot-exceed-25-length": "कूपन कोड 25 वर्णों से ज्यादा नहीं हो सकता।",
-    "discount-code-can-not-accumulate": "यह सामग्री के लिए एक पसंदीदा इवेंट है, जो अन्य पसंदीदा इवेंट के साथ उपयोग नहीं किया जा सकता है",
-    "discount-code-error": "छूट कोड गलत दर्ज किया गया है",
-    "discount-code-user-invalid": "{{discountCode}} सही ढंग से दर्ज किया गया है, लेकिन माल की कीमत या मात्रा आवश्यकताओं को पूरा नहीं करती है",
-    "enter-correct-email": "कृपया मान्य प्रारूप के साथ ईमेल पता दर्ज करें",
-    "enter-correct-phone-number": "कृपया मान्य प्रारूप के साथ मोबाइल फ़ोन नंबर दर्ज करें",
-    "mutual-excluded-by-time-limited": "इस ऑर्डर पर छूट लागू की गई है। आप एक और छूट नहीं जोड़ सकते",
-    "phone-number-less-than-100": "मोबाइल फ़ोन नंबर की लंबाई 100 वर्णों से अधिक नहीं हो सकती है",
-    "shipping_plan_unavailable": "{{discountCode}} कूपन शिपिंग विधि के लिए मान्य है"
-  },
-  "widget": {
-    "order": {
-      "pending-order": "लंबित ऑर्डर"
-    }
-  },
-  "test": {
-    "lang": "",
-    "lang2": "",
-    "lang3": ""
   }
 }

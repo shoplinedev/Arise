@@ -16,8 +16,8 @@
 {{#snippet 'customer/user-center-container' }}
   {{#if isDeleteAccounting}}
     <div class="account__notify">
-      <p>{{t 'userCenter.deleteAccount.revokeMessage' time=(dayjs method='format' init=customer.customerLogoutFrontDto.eraseTime format='YYYY-MM-DD' ) }}</p>
-      <button class="btn revoke-button">{{t 'userCenter.deleteAccount.revoke' }}</button>
+      <p>{{t 'customer.account.revoke_message' time=(dayjs method='format' init=customer.customerLogoutFrontDto.eraseTime format='YYYY-MM-DD' ) }}</p>
+      <button class="btn revoke-button">{{t 'customer.account.revoke' }}</button>
     </div>
   {{/if}}
 

@@ -1,9 +1,9 @@
 <div class="detail-payment common-title">
-  {{snippet 'customer/order/detail/title' title=(t 'order.detail.packages.payment-title')}}
+  {{snippet 'customer/order/detail/title' title=(t 'cart.payment.payment')}}
   <div class="content">
     <div class="content-pay">
       <div class="content-pay-label">
-        {{t 'order.detail.packages.payment-info.method'}}
+        {{t 'cart.payment.method'}}
       </div>
       <div class="content-pay-value">
         {{snippet 'customer/order/detail/payment-method' payMethod=pageData.payInfo.payMethodName}}
@@ -11,7 +11,7 @@
     </div>
     <div class="content-pay">
       <div class="content-pay-label">
-        {{t 'order.detail.packages.payment-info.status'}}
+        {{t 'cart.payment.payment_status'}}
       </div>
       <div class="content-pay-value">
         {{#each pageData.paymentInfoList}}
@@ -21,7 +21,7 @@
             </span>
             <span class="notranslate" data-amount="{{payAmount}}"> {{currency_convert payAmount}}</span>
             <a data-pay-seq="{{paySeq}}" data-index="{{index}}" class="content-pay-value-status-detail">
-              {{t 'order.detail.packages.payment-info.detail'}}
+              {{t 'cart.payment.detail'}}
             </a>
           </p>
         {{/each}}
@@ -30,7 +30,7 @@
     </div>
     <div class="content-pay">
       <div class="content-pay-label">
-        {{t 'order.detail.packages.payment-info.address'}}
+        {{t 'cart.payment.billing_address'}}
       </div>
       <div id="contentPayValueAddress" class="content-pay-value">
         {{!-- 账单地址占位符 --}}

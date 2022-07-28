@@ -11,14 +11,22 @@
 {{ assign 'hasPrivacyPolicy' (inArray customizePaths '/policies/privacy-policy')}}
 {{ assign 'hasTermsOfService' (inArray customizePaths '/policies/terms-of-service')}}
 
-{{ assign 'types' (split shop.store_register_config.types ',')}}
+{{ assign 'registerConfig' shop.store_register_config }}
+{{ assign 'types' (split registerConfig.types ',')}}
+{{ assign 'isMobile' request.is_mobile }}
+
+{{ assign 'genderOptions' (JSONparse (append '[
+  {"value":"0","text":"' (t "customer.account.gender_secret") '"},
+  {"value":"1","text":"' (t "customer.account.gender_male") '"},
+  {"value":"2","text":"' (t "customer.account.gender_female") '"}
+]')) }}
 
 <div class="customer sign-up" id="{{ id }}">
-  <h2 class="customer__title">{{t 'user.signUp'}}</h2>
-  {{!-- <p class="customer__error">{{t 'user.udbResponse.err2002'}}</p> --}}
+  <h2 class="customer__title">{{t 'customer.general.sign_up'}}</h2>
+  {{!-- <p class="customer__error">{{t 'customer.general.error_message_2002'}}</p> --}}
 
   <form class="customer__form">
-    {{snippet 'customer/form-item/username' types=(split shop.store_register_config.types ',') }}
+    {{snippet 'customer/form-item/username' types=(split registerConfig.types ',') }}
 
     {{#formItem "password" "class='customer__form-item'"}}
       {{#snippet
@@ -26,7 +34,7 @@
         attrs='autocomplete="new-password" maxlength="255"'
         name="password"
         type="password"
-        placeholder=(t 'user.password')
+        placeholder=(t 'customer.general.password')
         class="form-item--password"
       }}
         {{#child 'suffix'}}
@@ -35,18 +43,93 @@
       {{/snippet}}
     {{/formItem}}
 
-    {{#if shop.store_register_config.checkTag}}
+    {{#if registerConfig.checkTag}}
       {{#formItem "verifycode" "class='customer__form-item'"}}
         {{#snippet
           'customer/base/sl-input'
           attrs='autocomplete="off"'
           name="verifycode"
           type="text"
-          placeholder=(t 'user.code')
+          placeholder=(t 'customer.general.verification_code')
         }}
           {{#child 'suffix'}}
-            <button class="btn btn-link customer__send-btn customer__form-item--send" disabled>{{ t 'user.send' }}</button>
+            <button class="btn btn-link customer__send-btn customer__form-item--send" disabled>{{ t 'customer.general.send' }}</button>
           {{/child}}
+        {{/snippet}}
+      {{/formItem}}
+    {{/if}}
+
+    {{#if (or registerConfig.firstNameCheck registerConfig.lastNameCheck)}}
+      <div class="customer__form-nickname">
+        {{#if registerConfig.firstNameCheck}}
+          {{#formItem "firstName" "class='customer__form-item'"}}
+            {{#snippet
+              'customer/base/sl-input'
+              attrs='maxlength="128"'
+              name="firstName"
+              type="text"
+              placeholder=(t 'customer.account.first_name')
+              class="form-item__first-name"
+            }}
+            {{/snippet}}
+          {{/formItem}}
+        {{/if}}
+
+        {{#if registerConfig.lastNameCheck}}
+          {{#formItem "lastName" "class='customer__form-item'"}}
+            {{#snippet
+              'customer/base/sl-input'
+              attrs='maxlength="128"'
+              name="lastName"
+              type="text"
+              placeholder=(t 'customer.account.last_name')
+              class="form-item__last-name"
+            }}
+            {{/snippet}}
+          {{/formItem}}
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{#if registerConfig.birthdayCheck}}
+      {{#formItem "birthday" "class='customer__form-item'"}}
+        {{!-- TODO: 这里传 id 是为了适配 DatePicker 组件，DatePicker 组件逻辑待调整 --}}
+        {{#if showType 'page'}}
+          {{ assign 'registerBirthdaySelectId' (cond isMobile 'register-birthday-mobile' 'register-birthday-pc')}}
+        {{else}}
+          {{ assign 'registerBirthdaySelectId' (cond isMobile 'register-birthday-modal-mobile' 'register-birthday-modal-pc')}}
+        {{/if}}
+        {{#snippet
+          'customer/base/sl-input'
+          attrs=(append 'maxlength="255" autocomplete="off" id=' registerBirthdaySelectId)
+          name="birthday"
+          type="text"
+          placeholder=(t 'customer.account.birthday')
+          class="form-item__birthday register-birthday"
+        }}
+          {{#child 'suffix'}}
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g opacity="0.6">
+                <path d="M0.7 2.10039H13.3V12.6004H0.7V2.10039Z" stroke="currentColor" stroke-width="1.4" />
+                <rect x="4.2002" y="0.699219" width="1.4" height="2.8" fill="currentColor" />
+                <rect x="8.3999" y="0.699219" width="1.4" height="2.8" fill="currentColor" />
+                <rect x="2.7998" y="4.90039" width="8.4" height="1.4" fill="currentColor" />
+              </g>
+            </svg>
+          {{/child}}
+        {{/snippet}}
+      {{/formItem}}
+    {{/if}}
+    
+    {{#if registerConfig.genderCheck}}
+      {{#formItem "gender" "class='customer__form-item'"}}
+        {{#snippet
+          'customer/base/sl-select'
+          name="gender"
+          options=genderOptions
+          selected="0"
+          placeholder=(t 'customer.account.gender')
+        }}
         {{/snippet}}
       {{/formItem}}
     {{/if}}
@@ -54,19 +137,19 @@
     <p class="customer__error"></p>
 
     {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button" block=true attrs="type='button'" }}
-      {{t 'user.signUp'}}
+      {{t 'customer.general.sign_up'}}
     {{/snippet}}
 
     {{#if (isFalsey (isEmpty customizePaths))}}
       {{#formItem "policy" "class='customer__form-item sign-up__terms'"}}
         {{#snippet 'customer/base/sl-checkbox' checked=false }}
-          <span>{{ t 'tips.i-agree-with-the-shop' }}</span>
+          <span>{{ t 'customer.register.tips_agree_with_the_shop' }}</span>
           {{#if hasPrivacyPolicy}}
-            <a href="javascript:void(0);" class="sign-up__link sign-up__privacy-policy" data-path="/policies/privacy-policy">{{ t 'trade.policy.privacy-policy' }}</a>
+            <a href="javascript:void(0);" class="sign-up__link sign-up__privacy-policy" data-path="/policies/privacy-policy">{{ t 'customer.register.privacy_policy' }}</a>
           {{/if}}
           {{#if hasTermsOfService}}
-            <span>{{ t 'tips.and' }}</span>
-            <a href="javascript:void(0);" class="sign-up__link sign-up__service-terms" data-path="/policies/terms-of-service">{{ t 'trade.service-terms' }}</a>
+            <span>{{ t 'customer.general.and_button' }}</span>
+            <a href="javascript:void(0);" class="sign-up__link sign-up__service-terms" data-path="/policies/terms-of-service">{{ t 'customer.register.terms_of_service' }}</a>
           {{/if}}
         {{/snippet}}
       {{/formItem}}
@@ -75,7 +158,7 @@
     {{#if (or (inArray types 'email') (inArray types 'username'))}}
       {{#formItem "subscription" "class='customer__form-item sign-up__subscription'"}}
         {{#snippet 'customer/base/sl-checkbox' checked=true }}
-          {{ t 'user.subscription-text' }}
+          {{ t 'customer.general.error_message_1' }}
         {{/snippet}}
       {{/formItem}}
     {{/if}}
@@ -84,7 +167,7 @@
   {{#if showType 'page'}}
     {{!-- 弹窗不显示这个跳转链接 --}}
     <div class="sign-up__footer-link text-center">
-      <a href="/user/signIn{{{get 'search' (urlParse request.uri.url 'json')}}}" class="sign-up__link">{{ t 'trade.go-login' }}</a>
+      <a href="/user/signIn{{{get 'search' (urlParse request.uri.url 'json')}}}" class="sign-up__link">{{ t 'customer.register.go_to_login' }}</a>
     </div>
   {{/if}}
 </div>

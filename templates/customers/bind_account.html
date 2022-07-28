@@ -14,7 +14,7 @@
 {{ assign 'id' 'customer-bind'}}
 
 <div class="customer bind" id="{{ id }}">
-  <h3 class="bind__title">{{ cond (eq mode 'phone') (t 'tips.bind-change-mobile-phone-number') (t 'tips.bind-change-email')}}</h3>
+  <h3 class="bind__title">{{ cond (eq mode 'phone') (t 'customer.general.bind__change_phone') (t 'customer.general.bind__change_email')}}</h3>
 
   <div class="customer__tips"></div>
 
@@ -23,7 +23,7 @@
 
   <div class="customer__footer-link  text-center">
     <a href="/user/center" class="customer--link">
-      {{t 'common.back-to-user-center'}}
+      {{t 'customer.general.back_to__user__center'}}
     </a>
   </div>
 </div>
