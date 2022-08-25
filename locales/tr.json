@@ -31,8 +31,22 @@
       "subtotal": "Ara toplam",
       "tax_included": "Vergi dahil"
     },
+    "checkout": {
+      "max_amount_limit": "Ödeme için maksimum tutarı aştınız"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Aşağıdaki ürünler satın alma limitini aşıyor, yine de ödemeye devam edilsin mi?"
+    },
+    "couponCode": {
+      "exceedLimit": "İndirim kodları miktar sınırını aşıyor",
+      "existCode": "İndirim kodu zaten var",
+      "list": {
+        "unavailable": "Tüm indirim kodlarının süresi doldu"
+      },
+      "notSupport": {
+        "stacked": "İndirim kodları istiflenemez"
+      },
+      "unavailable": "İndirim kodunun süresi doldu"
     },
     "discount": {
       "code_error": "İndirim kodu yanlış girildi",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "misafir olarak devam et"
     },
     "item": {
-      "add_limit2": "Tek bir ürün için eklenebilecek maksimum miktar 999 adettir",
+      "add_limit2": "Tek bir ürün için eklenebilecek maksimum miktar 99999 adettir",
       "invalid_product": "Geçersiz ürünler",
       "item_left": "{{stock}} adet stokta",
       "none_existent": "Ürünler mevcut değil",
@@ -214,6 +228,17 @@
       "username": "Ad",
       "verify_email_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{email}} e-posta adresinize bir doğrulama e-postası alacaksınız",
       "verify_phone_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{phone}} numaralı cep telefonunuza bir doğrulama mesajı alacaksınız"
+    },
+    "activate": {
+      "account_activated": "Hesap aktifleştirildi",
+      "apply_code": "Kodu Kullan",
+      "apply_success": "Uygulandı",
+      "button": "Etkinleştirmek",
+      "copy_success": "Kupon kodu kopyalandı",
+      "discount_title": "Hesabı aktifleştirin ve indirim kodunu alın",
+      "normal_title": "Hesabı aktifleştir",
+      "subscription_text": "Güncellemeleri almak, özel anlaşmalara erişmek ve daha fazlası için e-postalara abone olun.",
+      "success_title": "Harika bir indirim aldığınız için tebrikler"
     },
     "address": {
       "add_address": "Yeni Adres Ekle",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Amazon'da satın alın",
       "go_to_rakuten_by_link": "LOTTE'de satın alın",
       "go_to_yahoo_by_link": "Yahoo'da satın alın",
+      "in_stock": "Stokta var",
+      "inventory_quantity": "Envanter miktarı",
       "leave_us_message": "Lütfen mesajınızı girin",
       "leave_us_message_get_back": "Lütfen bize bir mesaj bırakın ve en kısa sürede size geri dönüş yapacağız",
       "link_preview_does_not_support": "Bağlantı önizleme işlemi desteklenmiyor",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopya",
       "activity_banner_free_shipping": "Ücretsiz Kargo",
       "activity_banner_threshold": "{{threshold}} üzerindeki siparişler",
+      "activity_selector_price_high_to_low": "Fiyat yüksekten düşüğe",
+      "activity_selector_price_low_to_high": "Fiyat düşükten yükseğe",
+      "activity_selector_recommended": "Öner",
       "apply_common": "Uygula",
       "bundle_save_tip": "Birlikte satın alarak {{amount}} tasarruf edin",
       "bundle_title": "Sıklıkla birlikte satın alınan",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Kredi Kartı"
+    },
+    "reduction_code": {
+      "giftcard": "Hediye Kartları"
     }
   },
   "transaction": {

@@ -4,6 +4,17 @@
 
 {{preload_state "tradeSettleConfig"}}
 
+{{#if (boolean settings.show_locale_selector '&&' storeInfo.languageSetting.enableSelector)}}
+    {{!-- 只要开启了语言选择器，就要引入谷歌脚本 --}}
+    {{#partial 'gte'}}
+        {{snippet 'gte'}}
+    {{/partial}}
+    {{assign 'locale_selector' true}}
+    {{snippet 'header/toolbar' settings=settings color_scheme=section.settings.color_scheme}}
+    {{!-- 移动端全局语言、货币选择下拉 --}}
+    {{snippet 'mobile-locale-currency-drawer' }}
+{{/if}}
+
 {{!-- 侧边栏导航 --}}
 {{#snippet 'global_drawer' id="menu-drawer" position='left'}}
   {{#if section.settings.show_user_entry}}
@@ -18,14 +29,31 @@
 
 {{ snippet 'global-border-shadow-style' color_scheme=section.settings.color_scheme sectionId=section.id type='modal' }}
 
+{{!-- 首页透明页头 --}}
+{{assign 'overlay_header' false}}
+{{#if (boolean section.settings.sticky_index '&&' (boolean templateAlias '===' 'Home'))}}
+	{{ assign 'overlay_header' true}}
+{{/if}}
+{{!-- 分类页透明页头 --}}
+{{#if (boolean section.settings.sticky_collection '&&' (boolean templateAlias '===' 'Products'))}}
+	{{#if (isTruthy sortation)}}
+		{{#if (isTruthy sortation.sortation.sortationImg)}}
+			{{ assign 'overlay_header' true}}
+		{{/if}}
+	{{/if}}
+{{/if}}
 {{!-- header --}}
 <div class="header-sticky-wrapper __sl-custom-track-stage-header" data-color-scheme="{{section.settings.color_scheme}}">
-	<div id="stage-headerWrapper" class="header__wrapper">
-    <header class="header__main" id="stage-header" data-sticky={{boolean section.settings.header_style}} data-section-id="{{section.id}}">
-      {{snippet 'header/header-layout-left-down' settings=section.settings  main_menu=main_menu}}
-      {{!-- 点击页头的输入框弹出的搜索框 --}}
-      {{snippet 'header-search' id="header-drawer"}}
-    </header>
+	<div id="stage-headerWrapper" class="header__wrapper {{#if overlay_header}}header--is-light header-wrapper--sticky{{/if}}" data-overlay="{{overlay_header}}">
+    <div id="stage-header" data-sticky={{boolean section.settings.header_style}} data-section-id="{{section.id}}">
+      <div class="header__main-wrap">
+        <header class="header__main">
+          {{snippet 'header/header-layout-left-down' settings=section.settings  main_menu=main_menu}}
+          {{!-- 点击页头的输入框弹出的搜索框 --}}
+          {{snippet 'header-search' id="header-drawer"}}
+        </header>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -126,10 +154,71 @@
       "default": false
     },
     {
+      "type": "select",
+      "id": "mega_menu_images_ratio",
+      "label": "t:sections.header.settings.mega_menu_images_ratio.label",
+      "default": "50",
+      "options": [
+        {
+          "value": "50",
+          "label": "t:sections.header.settings.mega_menu_images_ratio.options__0.label"
+        },
+        {
+          "value": "100",
+          "label": "t:sections.header.settings.mega_menu_images_ratio.options__1.label"
+        },
+        {
+          "value": "75",
+          "label": "t:sections.header.settings.mega_menu_images_ratio.options__2.label"
+        },
+        {
+          "value": "150",
+          "label": "t:sections.header.settings.mega_menu_images_ratio.options__3.label"
+        }
+      ]
+    },
+    {
       "type": "switch",
       "id": "header_style",
       "label": "t:sections.header.settings.header_style.label",
       "default": true
+    },
+    {
+      "type": "switch",
+      "id": "sticky_index",
+      "label": {
+        "zh-hans-cn": "首页启用透明页头",
+        "en": "Transparent header for homepage",
+        "id": "Aktifkan tajuk transparan di beranda",
+        "th": "เปิดใช้งานส่วนหัวโปร่งใสในหน้าแรก",
+        "vi": "Trang chủ sử dụng hiệu ứng đầu trang trong suốt",
+        "ms": "Dayakan pengepala lutsinar pada halaman utama",
+        "zh-hant-tw": "首頁啟用透明頁頭"
+      },
+      "default": false
+    },
+    {
+      "type": "switch",
+      "id": "sticky_collection",
+      "label": {
+        "zh-hans-cn": "分类启用透明页头",
+        "en": "Transparent header for category page",
+        "id": "Kategori aktifkan tajuk transparan",
+        "th": "หมวดหมู่เปิดใช้งานส่วนหัวโปร่งใส",
+        "vi": "Phân loại sử dụng hiệu ứng đầu trang trong suốt",
+        "ms": "Kategori membolehkan pengepala lutsinar",
+        "zh-hant-tw": "分類啟用透明頁頭"
+      },
+      "info": {
+        "zh-hans-cn": "配置分类页封面后生效",
+        "en": "Effective once the cover of collection page is configured",
+        "id": "Berlaku setelah mengonfigurasi sampul halaman kategori",
+        "th": "มีผลหลังจากกำหนดค่าหน้าปกหมวดหมู่",
+        "vi": "Có hiệu lực sau khi bố trí phân loại trang bìa xong",
+        "ms": "Berkuat kuasa selepas mengkonfigurasi kulit halaman kategori",
+        "zh-hant-tw": "配置分類頁封面後生效"
+      },
+      "default": false
     },
     {
       "type": "switch",
@@ -154,6 +243,13 @@
       "id": "show_cart_entry",
       "default": true,
       "label": "t:sections.header.settings.show_cart_entry.label"
+    },
+    {
+      "type": "switch",
+      "id": "show_locale_selector",
+      "label": "t:sections.header.settings.show_locale_selector.label",
+      "info": "t:sections.header.settings.show_locale_selector.info",
+      "default": false
     }
   ]
 }

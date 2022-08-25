@@ -1,37 +1,11 @@
 {{assign 'cart_type' trade_cart_type}}
+
 {{#trade_coupon_formatData 'cart'}}
+
+{{assign "hasValidDiscountCode" (isTruthy (find-in-array promotionCodesList true 'valid'))}}
+{{assign "hasInvalidDiscountCode" (isTruthy (find-in-array promotionCodesList false 'valid'))}}
+
   <div class="trade_coupon__wrapper {{../cart_type}} {{cond (boolean @root.cartInfo.promotionCodeDTO '===' null) 'hide' ''}}">
-    <div class="trade_coupon_invalid_tips {{#unless hasErr}}hide{{/unless}}">
-      <div class="trade_coupon_invalid_tips_content">
-        <div class="trade_coupon_invalid_tips_content_icon">
-          {{include 'snippets/icons/icon_coupon' size=20}}
-        </div>
-        <div class="trade_coupon_invalid_tips_content_info">
-          {{#if discountCodeUnavailable '===' 'DISCOUNT_CODE_INVALID'}}
-            {{!-- 优惠码无效 --}}
-            {{t 'cart.discount.code_error' }}
-          {{ else if discountCodeUnavailable '===' 'DISCOUNT_CODE_NO_REACH'}}
-            {{!-- 优惠码输入正确，但商品价格或数量不符合要求 --}}
-            {{t 'cart.discount.code_item_unmatched' discountCode=discountCode}}
-          {{else if discountCodeUnavailable '===' 'MUTUAL_EXCLUDED_BY_TIME_LIMITED'}}
-            {{!-- 优惠码输入正确，但与限时活动互斥 --}}
-            {{t 'cart.discount.discounts_cannot_stack'}}
-          {{else if discountCodeUnavailable '===' 'MUTUAL_EXCLUDED_BY_LEVEL_PRICE'}}
-            {{!-- 输入正确，但商品价格或数量不符合要求 --}}
-            {{t 'cart.discount.code_item_unmatched' discountCode=discountCode}}
-          {{ else if discountCodeUnavailable '===' 'DISCOUNT_CODE_CAN_NOT_ACCUMULATE'}}
-          {{!-- 商品已经存在一个优惠活动，不可与其他优惠叠加 --}}
-            {{t 'transaction.general.discount_codes_cannot_stack' discountCode=discountCode}}
-          {{else if discountCodeUnavailable '===' 'SHIPPING_PLAN_UNAVAILABLE'}}
-            {{!-- 优惠码不适用当前物流方式 --}}
-            {{t 'transaction.general.coupon_invalid_for_the_shipping_method' discountCode=discountCode}}
-          {{/if}}
-        </div>
-      </div>
-      <div class="trade_coupon_invalid_tips_close">
-        {{include 'snippets/icons/icon_close' size=10}}
-      </div>
-    </div>
     <div class="trade_coupon_input_box">
       {{#input
         wrapperClass='trade_coupon'
@@ -52,11 +26,33 @@
     </div>
     <div class="error-tips hide"></div>
     {{!-- 这一层盒子用来限制flex自适应的宽 --}}
-    <div class="trade_coupon__appliedCodeBox {{#if (boolean hasErr "||" (boolean  discountCode '===' null)) }}hide{{/if}}">
-      <div class="trade_coupon__code">
-        {{include 'snippets/icons/icon_coupon' size=20}}
-        <span class="trade_coupon__code-content">{{discountCode}}</span>
-        <span class="trade_coupon__code__btn-del">{{include 'snippets/icons/icon_close' size=10}}</span>
+    <div class="trade_coupon__appliedCodeBox {{#unless hasValidDiscountCode }}hide{{/unless}}">
+      {{#filter  promotionCodesList true prop='valid'}}
+        <div class="trade_coupon__code">
+          {{include 'snippets/icons/icon_coupon' size=20}}
+          <span class="trade_coupon__code-content">{{promotionCode}}</span>
+          <span class="trade_coupon__code__btn-del">
+            {{include 'snippets/icons/icon_close' size=10}}
+          </span>
+        </div>
+      {{/filter}}
+    </div>
+    <div class="trade_coupon__invalidCodeWrapper {{#unless hasInvalidDiscountCode }}hide{{/unless}}">
+      <div class="trade_coupon__invalidCodeTitle">
+        <span class="trade_coupon__invalidCodeTip">{{ t 'cart.couponCode.list.unavailable' }}</span>
+        <span class="trade_coupon__code__btn-del" style="float: right;">{{include 'snippets/icons/icon_close_reduction_code' size=16}}</span>
+      </div>
+      <div class="trade_coupon__invalidCodeBox">
+        {{#if hasInvalidDiscountCode}}
+          {{#filter promotionCodesList false prop='valid'}}
+            <div class="trade_coupon__code">
+               {{include 'snippets/icons/icon_coupon' size=20}}
+               <span class="trade_coupon__code-content">
+                 {{promotionCode}}
+               </span>
+            </div>
+          {{/filter}}
+        {{/if}}
       </div>
     </div>
   </div>

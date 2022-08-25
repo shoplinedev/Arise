@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+
+  {{#slot 'seo-meta' }}
+    {{snippet 'seo-meta' }}
+  {{/slot}}
+  {{#slot 'title' }}
+    {{assign "seoTitle" (useFallbackLang pageInfo.seoTitle request.locale)}}
+    {{#if seoTitle}}
+      <title>{{seoTitle}}</title>
+    {{else}}
+      <title>{{storeInfo.name}}</title>
+    {{/if}}
+  {{/slot}}
+  {{#if theme.settings.favicon_image}}
+    <link rel="shortcut icon" href="{{theme.settings.favicon_image}}" type="image/png">
+  {{/if}}
+
+  <link rel="dns-prefetch" href="https://cdn.myshopline.com">
+  <link rel="preconnect" href="https://cdn.myshopline.com">
+  <link rel="dns-prefetch" href="https://img.myshopline.com">
+  <link rel="preconnect" href="https://img.myshopline.com">
+  <link rel="dns-prefetch" href="https://img-va.myshopline.com">
+  <link rel="preconnect" href="https://img-va.myshopline.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  {{ content_for_header }}
+  {{#slot 'head' }}{{/slot}}
+</head>
+
+<body class="template--le template__{{ replace template '/' '-' }}">
+  {{ content_for_layout }}
+  {{#slot 'script' }}{{/slot}}
+  {{!-- 自定义代码底部 --}}
+  {{ content_for_footer }}
+</body>
+</html>

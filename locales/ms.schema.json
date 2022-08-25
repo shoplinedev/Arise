@@ -656,6 +656,21 @@
           "info": "[lihat tutorial untuk menetapkan menu super](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
           "label": "Tunjuk gambar menu super"
         },
+        "mega_menu_images_ratio": {
+          "label": " Nisbah imej menu mega",
+          "options__0": {
+            "label": "2:1"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__2": {
+            "label": "4:3"
+          },
+          "options__3": {
+            "label": "2:3"
+          }
+        },
         "mobile_logo_width": {
           "label": "Lebar LOGO versi mudah alih"
         },
@@ -677,11 +692,19 @@
         "show_line_separator": {
           "label": "Tunjuk garis pemisah"
         },
+        "show_locale_selector": {
+          "info": "Jika anda ingin menambah bahasa, anda boleh pergi ke [tetapan bahasa](/admin/settings/lang)",
+          "label": "Tunjuk pemilih bahasa"
+        },
         "show_search_entry": {
           "label": "Paparkan pintu masuk carian"
         },
         "show_user_entry": {
           "label": "Paparkan pintu masuk pusat individu"
+        },
+        "suggested_menu": {
+          "info": "Selepas mengkonfigurasi menu, bar menu akan digunakan untuk memberikan cadangan apabila membuka carian buat kali pertama",
+          "label": "menu cadangan"
         }
       }
     },
@@ -1056,6 +1079,74 @@
     "main-page": {
       "name": "Halaman tersuai"
     },
+    "map": {
+      "name": "Peta",
+      "presets": {
+        "presets__0": {
+          "category": "Paparan kandungan",
+          "name": "Peta"
+        }
+      },
+      "settings": {
+        "address": {
+          "info": "Klik butang untuk melompat ke alamat Peta Google",
+          "label": "Alamat peta"
+        },
+        "btn_text": {
+          "label": "Salinan butang"
+        },
+        "google_api_secret_key": {
+          "info": "Peta akan dipaparkan selepas memasukkan kunci API Peta Google, [lihat cara untuk mendapatkan](https://shoplineapphelp.zendesk.com/hc/articles/4411546876313-%E5%A6%82%E4%BD%95%E6%B3%A8%E5%86%8C-Google-Maps-API-%E5%AF%86%E9%92%A5)",
+          "label": "Kunci API Peta Google"
+        },
+        "group_header__0": {
+          "label": "latar belakang"
+        },
+        "image": {
+          "info": "Gambar dipaparkan apabila Peta Google tidak dikonfigurasikan",
+          "label": "Gambar"
+        },
+        "image_position": {
+          "label": "Kawasan paparan gambar",
+          "options__0": {
+            "label": "Atas kiri"
+          },
+          "options__1": {
+            "label": "Atas tengah"
+          },
+          "options__2": {
+            "label": "Atas kanan"
+          },
+          "options__3": {
+            "label": "Sebelah kiri"
+          },
+          "options__4": {
+            "label": "Tengah"
+          },
+          "options__5": {
+            "label": "Sisi kanan"
+          },
+          "options__6": {
+            "label": "Bawah kiri"
+          },
+          "options__7": {
+            "label": "Bawah tengah"
+          },
+          "options__8": {
+            "label": "Bawah kanan"
+          }
+        },
+        "pushpin": {
+          "label": "Tunjukkan paku payung"
+        },
+        "store_info": {
+          "label": "Alamat dan waktu perniagaan"
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
     "multi-media-splicing": {
       "blocks": {
         "collection": {
@@ -1328,6 +1419,9 @@
         "group_header__0": {
           "label": "Gambar produk"
         },
+        "group_header__1": {
+          "label": "Penapis bar sisi"
+        },
         "per_page_num": {
           "label": "Bilangan produk pada setiap halaman"
         },
@@ -1534,6 +1628,14 @@
               "options__1": {
                 "label": "Bingkai tarik bawah"
               }
+            }
+          }
+        },
+        "stockNumber": {
+          "name": "Tunjukkan kuantiti stok",
+          "settings": {
+            "stockNumber": {
+              "label": "Tunjukkan kuantiti stok"
             }
           }
         },
@@ -1885,6 +1987,9 @@
             "overlay_opacity": {
               "label": "Penutup gambar"
             },
+            "show_text_shadow": {
+              "label": "Tunjukkan bayangan teks"
+            },
             "subheading": {
               "label": "Teks"
             },
@@ -1995,6 +2100,18 @@
           },
           "options__3": {
             "label": "Titik kecil"
+          }
+        },
+        "transition_type": {
+          "label": "Kesan peralihan",
+          "options__0": {
+            "label": "Mudah"
+          },
+          "options__1": {
+            "label": "Gelongsor"
+          },
+          "options__2": {
+            "label": "Penskalaan"
           }
         }
       }
@@ -2203,6 +2320,9 @@
         }
       },
       "settings": {
+        "autoplay": {
+          "label": "Tự động phát video"
+        },
         "background_position": {
           "label": "Kawasan paparan gambar muka depan",
           "options__0": {
@@ -2256,6 +2376,9 @@
         },
         "loop": {
           "label": "Main secara ulang"
+        },
+        "quiet": {
+          "label": "Sama ada auto mute semasa main video secara automatik"
         },
         "title": {
           "label": "Tajuk"
@@ -2994,6 +3117,15 @@
           },
           "options__1": {
             "label": "Paparkan nisbah diskaun"
+          }
+        },
+        "product_discount_tag_style": {
+          "label": "Label promosi",
+          "options__0": {
+            "label": "tag jualan"
+          },
+          "options__1": {
+            "label": "simpan tag"
           }
         },
         "product_mobile_title_show": {

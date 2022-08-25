@@ -656,6 +656,21 @@
           "info": "[ดูวิธีตั้งค่าบทแนะนำเมนูสุดยอด](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
           "label": "แสดงภาพเมนูสุดยอด"
         },
+        "mega_menu_images_ratio": {
+          "label": " อัตราส่วนภาพเมนูเมกะ",
+          "options__0": {
+            "label": "2:1"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__2": {
+            "label": "4:3"
+          },
+          "options__3": {
+            "label": "2:3"
+          }
+        },
         "mobile_logo_width": {
           "label": "ความกว้างของ LOGO บนโทรศัพท์มือถือ"
         },
@@ -677,11 +692,19 @@
         "show_line_separator": {
           "label": "แสดงเส้นแบ่ง"
         },
+        "show_locale_selector": {
+          "info": "หากต้องการเพิ่มภาษา ให้ไปที่ [การตั้งค่าภาษา](/admin/settings/lang)",
+          "label": "แสดงตัวเลือกภาษา"
+        },
         "show_search_entry": {
           "label": "แสดงทางเข้าการค้นหา"
         },
         "show_user_entry": {
           "label": "แสดงทางเข้าศูนย์ส่วนบุคคล"
+        },
+        "suggested_menu": {
+          "info": "หลังจากตั้งค่าเมนูแล้ว แถบเมนูจะถูกนำมาใช้เพื่อให้คำแนะนำเมื่อเปิดการค้นหาครั้งแรก",
+          "label": "เมนูแนะนำ"
         }
       }
     },
@@ -1056,6 +1079,74 @@
     "main-page": {
       "name": "หน้าเพจที่กำหนดเอง"
     },
+    "map": {
+      "name": "แผนที่",
+      "presets": {
+        "presets__0": {
+          "category": "การแสดงเนื้อหา",
+          "name": "แผนที่"
+        }
+      },
+      "settings": {
+        "address": {
+          "info": "คลิกปุ่มเพื่อข้ามไปยังที่อยู่ Google Map ที่เกี่ยวข้อง",
+          "label": "ที่อยู่แผนที่"
+        },
+        "btn_text": {
+          "label": "ข้อความปุ่ม"
+        },
+        "google_api_secret_key": {
+          "info": "หลังจากป้อนคีย์ API ของ Google Maps แล้ว สามารถแสดงแผนที่ได้ [ดูวิธีรับ](https://shoplineapphelp.zendesk.com/hc/articles/4411546876313-%E5%A6%82%E4%BD%95%E6%B3%A8%E5%86%8C-Google-Maps-API-%E5%AF%86%E9%92%A5)",
+          "label": "คีย์ API ของ Google Maps"
+        },
+        "group_header__0": {
+          "label": "พื้นหลัง"
+        },
+        "image": {
+          "info": "รูปภาพจะปรากฏขึ้นเมื่อไม่ได้กำหนดค่า Google Maps",
+          "label": "รูปภาพ"
+        },
+        "image_position": {
+          "label": "พื้นที่แสดงรูปภาพ",
+          "options__0": {
+            "label": "บนซ้าย"
+          },
+          "options__1": {
+            "label": "ด้านบนโดยตรง"
+          },
+          "options__2": {
+            "label": "บนขวา"
+          },
+          "options__3": {
+            "label": "ด้านซ้าย"
+          },
+          "options__4": {
+            "label": "กลาง"
+          },
+          "options__5": {
+            "label": "ด้านขวา"
+          },
+          "options__6": {
+            "label": "ล่างซ้าย"
+          },
+          "options__7": {
+            "label": "ด้านล่างโดยตรง"
+          },
+          "options__8": {
+            "label": "ล่างขวา"
+          }
+        },
+        "pushpin": {
+          "label": "แสดงหมุด"
+        },
+        "store_info": {
+          "label": "ที่อยู่และเวลาทำการ"
+        },
+        "title": {
+          "label": "หัวข้อ"
+        }
+      }
+    },
     "multi-media-splicing": {
       "blocks": {
         "collection": {
@@ -1328,6 +1419,9 @@
         "group_header__0": {
           "label": "ภาพสินค้า"
         },
+        "group_header__1": {
+          "label": "ตัวกรองแถบด้านข้าง"
+        },
         "per_page_num": {
           "label": "จำนวนรายการสินค้าต่อหน้า"
         },
@@ -1534,6 +1628,14 @@
               "options__1": {
                 "label": "กล่องลากลง"
               }
+            }
+          }
+        },
+        "stockNumber": {
+          "name": "แสดงจำนวนสต็อค",
+          "settings": {
+            "stockNumber": {
+              "label": "แสดงจำนวนสต็อค"
             }
           }
         },
@@ -1885,6 +1987,9 @@
             "overlay_opacity": {
               "label": "หน้ากากภาพ"
             },
+            "show_text_shadow": {
+              "label": "แสดงเงาของข้อความ"
+            },
             "subheading": {
               "label": "ข้อความ"
             },
@@ -1995,6 +2100,18 @@
           },
           "options__3": {
             "label": "จุดเล็ก"
+          }
+        },
+        "transition_type": {
+          "label": "เอฟเฟกต์การเปลี่ยนแปลง",
+          "options__0": {
+            "label": "เรียบง่าย"
+          },
+          "options__1": {
+            "label": "สไลด์"
+          },
+          "options__2": {
+            "label": "ซูม"
           }
         }
       }
@@ -2203,6 +2320,9 @@
         }
       },
       "settings": {
+        "autoplay": {
+          "label": "เล่นวิดีโออัตโนมัติ"
+        },
         "background_position": {
           "label": "พื้นที่แสดงภาพปก",
           "options__0": {
@@ -2256,6 +2376,9 @@
         },
         "loop": {
           "label": "เล่นวนซ้ำ"
+        },
+        "quiet": {
+          "label": "การเล่นอัตโนมัติจะถูกปิดเสียงหรือไม่"
         },
         "title": {
           "label": "หัวข้อ"
@@ -2994,6 +3117,15 @@
           },
           "options__1": {
             "label": "แสดงเปอร์เซ็นต์ส่วนลด"
+          }
+        },
+        "product_discount_tag_style": {
+          "label": "ฉลากส่วนลด",
+          "options__0": {
+            "label": "ป้ายขาย"
+          },
+          "options__1": {
+            "label": "บันทึกแท็ก"
           }
         },
         "product_mobile_title_show": {

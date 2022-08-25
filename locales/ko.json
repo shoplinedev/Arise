@@ -31,8 +31,22 @@
       "subtotal": "소계",
       "tax_included": "세금 포함"
     },
+    "checkout": {
+      "max_amount_limit": "최대 결제 금액을 초과했습니다."
+    },
     "checkout_proceeding": {
       "checkout_proceed": "다음 상품은 구매 제한을 초과했습니다. 계속 결산하시겠습니까?"
+    },
+    "couponCode": {
+      "exceedLimit": "할인 코드가 수량 제한을 초과합니다",
+      "existCode": "할인 코드가 이미 있습니다.",
+      "list": {
+        "unavailable": "모든 할인 코드가 만료되었습니다"
+      },
+      "notSupport": {
+        "stacked": "할인 코드는 쌓을 수 없습니다"
+      },
+      "unavailable": "할인 코드가 만료되었습니다"
     },
     "discount": {
       "code_error": "혜택코드 입력 오류",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "계속 방문객의 신분으로 방문하기"
     },
     "item": {
-      "add_limit2": "최다 999 건 상품을 바구니에 추가할 수 있습니다",
+      "add_limit2": "최다 99999 건 상품을 바구니에 추가할 수 있습니다",
       "invalid_product": "실효 상품",
       "item_left": "{{stock}}건이 남았습니다",
       "none_existent": "상품이 존재하지 않습니다",
@@ -214,6 +228,17 @@
       "username": "이름",
       "verify_email_message": "로그아웃 작업을 진행하기 전에, 우리는 당신의 신원을 확인해야 합니다.메일박스 {{email}} 에서 인증번호 메일을 받을 것입니다",
       "verify_phone_message": "로그아웃 작업을 진행하기 전에, 우리는 당신의 신원을 확인해야 합니다.고객님의 핸드폰{{phone}} 에 인증 문자가 올 것입니다"
+    },
+    "activate": {
+      "account_activated": "계정이 활성화되었습니다",
+      "apply_code": "할인 코드를 적용합니다",
+      "apply_success": "이미 사용",
+      "button": "활성화",
+      "copy_success": "쿠폰이 복사되었습니다",
+      "discount_title": "계정을 활성화하고 할인 코드를 받으십시오.",
+      "normal_title": "계정을 활성화시킵니다",
+      "subscription_text": "이메일을 구독해 업데이트 접수, 단독 혜택 방문 등을 합니다.",
+      "success_title": "할인 받으신 것을 축하드립니다"
     },
     "address": {
       "add_address": "새로운 주소 추가하기",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "아마존에서 쇼핑하기",
       "go_to_rakuten_by_link": "롯데에서 쇼핑하기",
       "go_to_yahoo_by_link": "야후에서 쇼핑하기",
+      "in_stock": "재고가 있습니다",
+      "inventory_quantity": "재고수량",
       "leave_us_message": "댓글을 남겨주세요",
       "leave_us_message_get_back": "당신의 문의 내용을 입력하세요. 빨리 회신하겠습니다",
       "link_preview_does_not_support": "링크는 이 작업을 지지하지 않습니다",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "복사",
       "activity_banner_free_shipping": "운임무료",
       "activity_banner_threshold": "가득 {{threshold}}입니다.",
+      "activity_selector_price_high_to_low": "가격은 높은 것부터 낮은 것까지",
+      "activity_selector_price_low_to_high": "가격은 낮은 것부터 높은 것까지",
+      "activity_selector_recommended": "추천한다.",
       "apply_common": "애플리케이션",
       "bundle_save_tip": "함께 구매하면 {{amount}}를 절약할 수 있습니다",
       "bundle_title": "함께 자주 구매되는 것",
@@ -674,6 +704,9 @@
       "Paypal": "PayPal",
       "adjustPay": "manual",
       "third-part": "신용카드"
+    },
+    "reduction_code": {
+      "giftcard": "기프트 카드"
     }
   },
   "transaction": {

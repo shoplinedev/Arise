@@ -25,8 +25,8 @@
   <h2 class="customer__title">{{t 'customer.general.sign_up'}}</h2>
   {{!-- <p class="customer__error">{{t 'customer.general.error_message_2002'}}</p> --}}
 
-  <form class="customer__form">
-    {{snippet 'customer/form-item/username' types=(split registerConfig.types ',') }}
+  <form class="customer__form shopline-element-customer-sign-up-form">
+    {{snippet 'customer/form-item/username' class="shopline-element-customer-sign-up-form-account" types=(split registerConfig.types ',') }}
 
     {{#formItem "password" "class='customer__form-item'"}}
       {{#snippet
@@ -35,7 +35,7 @@
         name="password"
         type="password"
         placeholder=(t 'customer.general.password')
-        class="form-item--password"
+        class="form-item--password shopline-element-customer-sign-up-form-password"
       }}
         {{#child 'suffix'}}
           {{snippet 'icons/icon_close_eye'}}
@@ -47,7 +47,7 @@
       {{#formItem "verifycode" "class='customer__form-item'"}}
         {{#snippet
           'customer/base/sl-input'
-          attrs='autocomplete="off"'
+          attrs='autocomplete="off" maxlength="6"'
           name="verifycode"
           type="text"
           placeholder=(t 'customer.general.verification_code')
@@ -136,7 +136,7 @@
 
     <p class="customer__error"></p>
 
-    {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button" block=true attrs="type='button'" }}
+    {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button shopline-element-customer-sign-up-button" block=true attrs="type='button'" }}
       {{t 'customer.general.sign_up'}}
     {{/snippet}}
 

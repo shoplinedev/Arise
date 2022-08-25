@@ -31,8 +31,22 @@
       "subtotal": "Tổng các mục",
       "tax_included": "Đã bao gồm thuế"
     },
+    "checkout": {
+      "max_amount_limit": "Bạn đã vượt quá số tiền tối đa để thanh toán"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Sản phẩm bên dưới vượt quá giới hạn mua hàng, bạn vẫn muốn tiến hành thanh toán?"
+    },
+    "couponCode": {
+      "exceedLimit": "Mã giảm giá vượt quá giới hạn số lượng",
+      "existCode": "Mã giảm giá đã tồn tại",
+      "list": {
+        "unavailable": "Tất cả các mã giảm giá đã hết hạn"
+      },
+      "notSupport": {
+        "stacked": "Mã giảm giá không thể xếp chồng lên nhau"
+      },
+      "unavailable": "Mã giảm giá đã hết hạn"
     },
     "discount": {
       "code_error": "Vui lòng nhập mã giảm giá hợp lệ",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Tiếp tục với tư cách khách"
     },
     "item": {
-      "add_limit2": "Bạn có thể thêm tối đa 999 sản phẩm vào giỏ hàng",
+      "add_limit2": "Bạn có thể thêm tối đa 99999 sản phẩm vào giỏ hàng",
       "invalid_product": "Sản phẩm không hợp lệ",
       "item_left": "Chỉ còn {{stock}} sản phẩm",
       "none_existent": "Hàng hóa không tồn tại",
@@ -214,6 +228,17 @@
       "username": "Tên",
       "verify_email_message": "Trước khi đóng tài khoản, chúng tôi cần xác minh danh tính của bạn\nBạn sẽ nhận được email xác minh vào email {{email}}",
       "verify_phone_message": "Trước khi đóng tài khoản, chúng tôi cần xác minh danh tính của bạn\nBạn sẽ nhận được tin nhắn xác minh vào số điện thoại di động {{phone}}"
+    },
+    "activate": {
+      "account_activated": "Tài khoản đã được kích hoạt",
+      "apply_code": "Áp dụng mã",
+      "apply_success": "Đã áp dụng",
+      "button": "Sự kích hoạt",
+      "copy_success": "Đã sao chép mã phiếu thưởng",
+      "discount_title": "Kích hoạt tài khoản và nhận mã giảm giá",
+      "normal_title": "Kích hoạt tài khoản",
+      "subscription_text": "Đăng ký để nhận thông tin cập nhật qua email, truy cập vào các ưu đãi độc quyền và hơn thế nữa.",
+      "success_title": "Chúc mừng bạn đã nhận được giảm giá lớn"
     },
     "address": {
       "add_address": "Thêm Địa Chỉ Mới",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Mua trên Amazon",
       "go_to_rakuten_by_link": "Mua trên Rakuten",
       "go_to_yahoo_by_link": "Mua trên Yahoo",
+      "in_stock": "Còn kho",
+      "inventory_quantity": "Số lượng tồn kho",
       "leave_us_message": "Vui lòng nhập nội dung tin nhắn",
       "leave_us_message_get_back": "Vui lòng để lại tin nhắn cho chúng tôi, chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất",
       "link_preview_does_not_support": "Link xem trước không hỗ trợ thao tác này",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Sao chép",
       "activity_banner_free_shipping": "Miễn phí vận chuyển",
       "activity_banner_threshold": "Các đơn hàng vượt quá {{threshold}}",
+      "activity_selector_price_high_to_low": "Giá từ cao đến thấp",
+      "activity_selector_price_low_to_high": "Giá từ thấp đến cao",
+      "activity_selector_recommended": "Đề xuất",
       "apply_common": "Áp dụng",
       "bundle_save_tip": "Mua cùng nhau để tiết kiệm {{amount}}",
       "bundle_title": "Thường được mua cùng",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Thẻ Tín Dụng"
+    },
+    "reduction_code": {
+      "giftcard": "Thẻ quà tặng"
     }
   },
   "transaction": {

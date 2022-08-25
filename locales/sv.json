@@ -31,8 +31,22 @@
       "subtotal": "Totalt",
       "tax_included": "Skatt ingår"
     },
+    "checkout": {
+      "max_amount_limit": "Du har överskridit maxbeloppet för kassan"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Nedan överskrider produkterna köpgränsen, gå alltid till kassan?"
+    },
+    "couponCode": {
+      "exceedLimit": "Rabattkoder överstiger kvantitetsgränsen",
+      "existCode": "Rabattkoden finns redan",
+      "list": {
+        "unavailable": "Alla rabattkoder har gått ut"
+      },
+      "notSupport": {
+        "stacked": "Rabattkoder är inte staplingsbara"
+      },
+      "unavailable": "Rabattkoden har gått ut"
     },
     "discount": {
       "code_error": "Minskningskoden anges felaktigt",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Fortsätt som gäst"
     },
     "item": {
-      "add_limit2": "Den maximala mängden för samma produkt är 999 stycken",
+      "add_limit2": "Den maximala mängden för samma produkt är 99999 stycken",
       "invalid_product": "Ogiltiga produkter",
       "item_left": "{{stock}} delar i stock",
       "none_existent": "Produkten finns inte",
@@ -214,6 +228,17 @@
       "username": "Namn",
       "verify_email_message": "Före avslutning av konto måste vi verifiera er identitet\nEtt verifieringsmail kommer skickas till er epost {{email}}",
       "verify_phone_message": "Före avslutning av kontot måste vi verifiera din identitet\nVi kommer skicka ett verifieringsmedelande till er mobilnummer {{phone}}"
+    },
+    "activate": {
+      "account_activated": "Konto är aktiverat",
+      "apply_code": "Använd kod",
+      "apply_success": "Tillämpad",
+      "button": "Aktivera",
+      "copy_success": "Kopierad kupongkod",
+      "discount_title": "Aktivera konto och få rabattkoden",
+      "normal_title": "Aktivera konto",
+      "subscription_text": "Prenumerera på mejl för att få uppdateringar, få tillgång till exklusiva erbjudanden och mer.",
+      "success_title": "Grattis till att få en bra rabatt"
     },
     "address": {
       "add_address": "Lägg Till en ny Adress",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Köp på Amazon",
       "go_to_rakuten_by_link": "Köp på LOTTE",
       "go_to_yahoo_by_link": "Köp på Yahoo",
+      "in_stock": "I lager",
+      "inventory_quantity": "Lagerstorlekar",
       "leave_us_message": "Ange ditt meddelande",
       "leave_us_message_get_back": "Lämna oss ett meddelande så svarar vi på dig så snart som möjligt",
       "link_preview_does_not_support": "Åtgärden för länköversikten stöds inte",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopiera",
       "activity_banner_free_shipping": "Fri frakt",
       "activity_banner_threshold": "Förfrågningar ovan {{threshold}}",
+      "activity_selector_price_high_to_low": "Pris högt till lågt",
+      "activity_selector_price_low_to_high": "Pris lågt till högt",
+      "activity_selector_recommended": "Rekommendera",
       "apply_common": "Applicera",
       "bundle_save_tip": "Spara {{amount}} för att köpa tillsammans",
       "bundle_title": "Ofta köpt tillsammans",
@@ -674,6 +704,9 @@
       "Paypal": "PayPal",
       "adjustPay": "manual",
       "third-part": "Kreditkort"
+    },
+    "reduction_code": {
+      "giftcard": "Presentkort"
     }
   },
   "transaction": {

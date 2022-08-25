@@ -656,6 +656,21 @@
           "info": "[查看如何设置超级菜单教程](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
           "label": "显示超级菜单图片"
         },
+        "mega_menu_images_ratio": {
+          "label": "超级菜单图片比例",
+          "options__0": {
+            "label": "2:1"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__2": {
+            "label": "4:3"
+          },
+          "options__3": {
+            "label": "2:3"
+          }
+        },
         "mobile_logo_width": {
           "label": "手机端LOGO宽度"
         },
@@ -677,11 +692,19 @@
         "show_line_separator": {
           "label": "显示分割线"
         },
+        "show_locale_selector": {
+          "info": "若要添加语言，可前往[语言设置](/admin/settings/lang)",
+          "label": "展示语言选择器"
+        },
         "show_search_entry": {
           "label": "显示搜索入口"
         },
         "show_user_entry": {
           "label": "显示个人中心入口"
+        },
+        "suggested_menu": {
+          "info": "配置菜单后，首次打开搜索时会使用菜单栏以提供建议",
+          "label": "建议菜单"
         }
       }
     },
@@ -1056,6 +1079,74 @@
     "main-page": {
       "name": "自定义页面"
     },
+    "map": {
+      "name": "地图",
+      "presets": {
+        "presets__0": {
+          "category": "内容展示",
+          "name": "地图"
+        }
+      },
+      "settings": {
+        "address": {
+          "info": "点击按钮将会跳转至对应谷歌地图地址",
+          "label": "地图地址"
+        },
+        "btn_text": {
+          "label": "按钮文案"
+        },
+        "google_api_secret_key": {
+          "info": "输入谷歌地图API密钥后即可显示地图，[查看获取方式](https://shoplineapphelp.zendesk.com/hc/articles/4411546876313-%E5%A6%82%E4%BD%95%E6%B3%A8%E5%86%8C-Google-Maps-API-%E5%AF%86%E9%92%A5)",
+          "label": "谷歌地图API密钥"
+        },
+        "group_header__0": {
+          "label": "背景"
+        },
+        "image": {
+          "info": "图片在未配置谷歌地图时显示",
+          "label": "图片"
+        },
+        "image_position": {
+          "label": "图片展示区域",
+          "options__0": {
+            "label": "左上方"
+          },
+          "options__1": {
+            "label": "正上方"
+          },
+          "options__2": {
+            "label": "右上方"
+          },
+          "options__3": {
+            "label": "左侧"
+          },
+          "options__4": {
+            "label": "正中"
+          },
+          "options__5": {
+            "label": "右侧"
+          },
+          "options__6": {
+            "label": "左下方"
+          },
+          "options__7": {
+            "label": "正下方"
+          },
+          "options__8": {
+            "label": "右下方"
+          }
+        },
+        "pushpin": {
+          "label": "显示图钉"
+        },
+        "store_info": {
+          "label": "地址和营业时间"
+        },
+        "title": {
+          "label": "标题"
+        }
+      }
+    },
     "multi-media-splicing": {
       "blocks": {
         "collection": {
@@ -1328,6 +1419,9 @@
         "group_header__0": {
           "label": "商品图"
         },
+        "group_header__1": {
+          "label": "侧栏筛选"
+        },
         "per_page_num": {
           "label": "每页商品数量"
         },
@@ -1534,6 +1628,14 @@
               "options__1": {
                 "label": "下拉框"
               }
+            }
+          }
+        },
+        "stockNumber": {
+          "name": "显示库存数量",
+          "settings": {
+            "stockNumber": {
+              "label": "显示库存数量"
             }
           }
         },
@@ -1885,6 +1987,9 @@
             "overlay_opacity": {
               "label": "图片遮罩"
             },
+            "show_text_shadow": {
+              "label": "是否显示文字阴影"
+            },
             "subheading": {
               "label": "正文"
             },
@@ -1995,6 +2100,18 @@
           },
           "options__3": {
             "label": "小圆点"
+          }
+        },
+        "transition_type": {
+          "label": "过渡效果",
+          "options__0": {
+            "label": "简单"
+          },
+          "options__1": {
+            "label": "滑动"
+          },
+          "options__2": {
+            "label": "缩放"
           }
         }
       }
@@ -2203,6 +2320,9 @@
         }
       },
       "settings": {
+        "autoplay": {
+          "label": "自动播放视频"
+        },
         "background_position": {
           "label": "封面图展示区域",
           "options__0": {
@@ -2256,6 +2376,9 @@
         },
         "loop": {
           "label": "循环播放"
+        },
+        "quiet": {
+          "label": "自动播放是否静音"
         },
         "title": {
           "label": "标题"
@@ -2994,6 +3117,15 @@
           },
           "options__1": {
             "label": "显示优惠比例"
+          }
+        },
+        "product_discount_tag_style": {
+          "label": "优惠标签",
+          "options__0": {
+            "label": "sale标签"
+          },
+          "options__1": {
+            "label": "save标签"
           }
         },
         "product_mobile_title_show": {

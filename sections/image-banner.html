@@ -85,7 +85,7 @@
         ">
           {{#each blocks}}
             {{#if (trim type) '===' 'title'}}
-            <p class="title title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</p>
+            <h2 class="title title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</h2>
             {{/if}}
 
             {{#if (trim type) '===' 'desc'}}
@@ -143,7 +143,7 @@
           ">
             {{#each blocks}}
               {{#if (trim type) '===' 'title'}}
-              <p class="title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</p>
+              <h2 class="title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</h2>
               {{/if}}
 
               {{#if (trim type) '===' 'desc'}}

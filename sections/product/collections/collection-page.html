@@ -34,8 +34,8 @@ history_browse_products:
 {{ preload_state 'productSortation' }}
 
 <div id="collectionsAjaxInner">
-  <div 
-    class="container section-gap product-list-main" 
+  <div
+    class="container section-gap product-list-main"
     data-section-type="collections-page"
     data-section-id="{{ section.id }}"
   >
@@ -47,7 +47,7 @@ history_browse_products:
           </section>
         </div>
         <div class="product-collection-page-con">
-          <div class="product-list-list __sl-custom-track-{{ cond productSortation.id productSortation.id 'all-products' }}" data-ssr-product-list-left>
+          <div class="product-list-list shopline-element-product-list __sl-custom-track-{{ cond productSortation.id productSortation.id 'all-products' }}" data-ssr-product-list-left>
             <div class="product-list-description-category-top">
               {{#if (boolean (boolean section.settings.category_desc_position '===' 'top') '&&' sortationId)}}
                 {{#if (length (trim sortation.sortation.description)) '>' 0}}
@@ -85,7 +85,7 @@ history_browse_products:
               </div>
             </div>
 
-            <div class="product-list-item-list" data-ssr-product-list-top> 
+            <div class="product-list-item-list" data-ssr-product-list-top>
               {{#if (boolean products.list.length '>' 0)}}
                 {{ snippet 'product/commons/product-item-list' effectPage='productList' gripType=gripType className='__sl-custom-track-product-list-item' colNum=itemNumByRow listData=slice_products_list pageSize=calc_page_size pageNum=products.pageNum total=products.total }}
               {{else}}
@@ -204,15 +204,8 @@ history_browse_products:
     },
     {
       "type": "group_header",
-      "label": {
-        "zh-hans-cn": "侧栏筛选",
-        "en": "Side column filter",
-        "id": "Pemfilteran bilah sisi",
-        "th": "ตัวกรองแถบด้านข้าง",
-        "vi": "Bộ lọc thanh bên",
-        "ms": "Penapis bar sisi",
-        "zh-hant-tw": "側欄篩選"
-      }
+      "label": "t:sections.product_collections_collection-page.settings.group_header__1.label",
+      "id": "group_header__1"
     },
     {
       "type": "switch",

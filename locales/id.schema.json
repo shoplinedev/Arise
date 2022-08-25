@@ -656,6 +656,21 @@
           "info": "[Lihat cara menyiapkan tutorial Super-Menu](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
           "label": "Tampilkan gambar super-menu"
         },
+        "mega_menu_images_ratio": {
+          "label": " Rasio gambar menu mega",
+          "options__0": {
+            "label": "2:1"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__2": {
+            "label": "4:3"
+          },
+          "options__3": {
+            "label": "2:3"
+          }
+        },
         "mobile_logo_width": {
           "label": "Lebar LOGO di port seluler"
         },
@@ -677,11 +692,19 @@
         "show_line_separator": {
           "label": "Tunjukkan garis pemisah"
         },
+        "show_locale_selector": {
+          "info": "Jika perlu menambahkan bahasa, silahkan buka [Pengaturan Bahasa](/admin/settings/lang)",
+          "label": "Tampilkan pilihan bahasa"
+        },
         "show_search_entry": {
           "label": "Tampilkan pintu masuk pencarian"
         },
         "show_user_entry": {
           "label": "Tampilkan pintu masuk pusat pripadi"
+        },
+        "suggested_menu": {
+          "info": "Setelah mengonfigurasi menu, pertama membuka pencarian akan menggunakan menu untuk menyediakan saran",
+          "label": "Menu yang disarankan"
         }
       }
     },
@@ -1056,6 +1079,74 @@
     "main-page": {
       "name": "Halaman Kustom"
     },
+    "map": {
+      "name": "Peta",
+      "presets": {
+        "presets__0": {
+          "category": "Tampilan Isi",
+          "name": "Peta"
+        }
+      },
+      "settings": {
+        "address": {
+          "info": "Klik tombol untuk melompat ke alamat Google Map",
+          "label": "Alamat peta"
+        },
+        "btn_text": {
+          "label": "Tulisan tombol"
+        },
+        "google_api_secret_key": {
+          "info": "Dapat tampilkan peta setelah masukkan kata sandi API Google Map [Lihat cara mendapatkan](https://shoplineapphelp.zendesk.com/hc/articles/4411546876313-%E5%A6%82%E4%BD%95%E6%B3%A8%E5%86%8C-Google-Maps-API-%E5%AF%86%E9%92%A5)",
+          "label": "Kata sandi API Google Map"
+        },
+        "group_header__0": {
+          "label": "latar"
+        },
+        "image": {
+          "info": "Gambar ditampilkan saat Google Map tidak dikonfigurasi",
+          "label": "Gambar"
+        },
+        "image_position": {
+          "label": "Area tampilan gambar",
+          "options__0": {
+            "label": "Kiri atas"
+          },
+          "options__1": {
+            "label": "Tepat di atas"
+          },
+          "options__2": {
+            "label": "Kanan atas"
+          },
+          "options__3": {
+            "label": "Bagian kiri"
+          },
+          "options__4": {
+            "label": "Tengah"
+          },
+          "options__5": {
+            "label": "Bagian kanan"
+          },
+          "options__6": {
+            "label": "Kiri awah"
+          },
+          "options__7": {
+            "label": "Tepat di bawah"
+          },
+          "options__8": {
+            "label": "Kanan Bawah"
+          }
+        },
+        "pushpin": {
+          "label": "Tampilkan pin"
+        },
+        "store_info": {
+          "label": "Alamat dan jam kerja"
+        },
+        "title": {
+          "label": "Judul"
+        }
+      }
+    },
     "multi-media-splicing": {
       "blocks": {
         "collection": {
@@ -1328,6 +1419,9 @@
         "group_header__0": {
           "label": "Gambar produk"
         },
+        "group_header__1": {
+          "label": "Pemfilteran bilah sisi"
+        },
         "per_page_num": {
           "label": "Jumlah produk setiap halaman"
         },
@@ -1534,6 +1628,14 @@
               "options__1": {
                 "label": "Jatuhkan kotak"
               }
+            }
+          }
+        },
+        "stockNumber": {
+          "name": "Tampilkan jumlah stok",
+          "settings": {
+            "stockNumber": {
+              "label": "Tampilkan jumlah stok"
             }
           }
         },
@@ -1885,6 +1987,9 @@
             "overlay_opacity": {
               "label": "Penutup gambar"
             },
+            "show_text_shadow": {
+              "label": "Tampilkan nuansa kata"
+            },
             "subheading": {
               "label": "Teks"
             },
@@ -1995,6 +2100,18 @@
           },
           "options__3": {
             "label": "Titik bulat kecil"
+          }
+        },
+        "transition_type": {
+          "label": "Efek transisi",
+          "options__0": {
+            "label": "Mudah"
+          },
+          "options__1": {
+            "label": "Luncur"
+          },
+          "options__2": {
+            "label": "Zoom"
           }
         }
       }
@@ -2203,6 +2320,9 @@
         }
       },
       "settings": {
+        "autoplay": {
+          "label": "Putar otomatis video"
+        },
         "background_position": {
           "label": "Area tampilan sampul",
           "options__0": {
@@ -2256,6 +2376,9 @@
         },
         "loop": {
           "label": "Pemutaran loop"
+        },
+        "quiet": {
+          "label": "Apakah putar otomatis dibisukan"
         },
         "title": {
           "label": "Judul"
@@ -2994,6 +3117,15 @@
           },
           "options__1": {
             "label": "Tampilkan persentase diskon"
+          }
+        },
+        "product_discount_tag_style": {
+          "label": "Label diskon",
+          "options__0": {
+            "label": "label penjualan"
+          },
+          "options__1": {
+            "label": "simpan tag"
           }
         },
         "product_mobile_title_show": {

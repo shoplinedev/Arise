@@ -62,8 +62,8 @@
                       object-position: {{ background_position }};
                     }
                     {{#if settings.image_padding '===' 'fit'}}
-                      {{#if settings.cover_image}}
-                        {{ assign 'aspect_ratio' (append (multiply (divide settings.cover_image.height settings.cover_image.width) 100) '%') }}
+                      {{#if settings.cover_image.url}}
+                        {{ assign 'aspect_ratio' (append (get 'ratio' (img_size settings.cover_image.url)) '%') }}
                         .multi-media-splicing__content .video--r16-9{
                           padding-top: {{ aspect_ratio }}
                         }
@@ -79,7 +79,7 @@
                     <script type="text/json" id="Video-data-{{ id }}">{{{ stringify settings }}}</script>
                     {{#if (boolean settings.cover_image.url)}}
                       <div class="video__cover">
-                        <img class="video__cover-img lozad" data-src="{{ settings.cover_image.url }}" data-sizes="auto">
+                        <img alt="{{ settings.cover_image.alt }}" class="video__cover-img lozad" data-src="{{ settings.cover_image.url }}" data-sizes="auto">
                         <div class="video-overlay">
                           {{#if settings.video_url}}
                             <div class="video-overlay__button" data-controls="Video-{{ id }}">
@@ -170,7 +170,7 @@
               <div class="multi-media-splicing__content">
                 <div class="collage-image__wrapper">
                   {{#if settings.image.url}}
-                    <img class="lozad multi-media-splicing__image" data-sizes="auto" data-src="{{ settings.image.url }}" />
+                    <img alt="{{ settings.image.alt }}" class="lozad multi-media-splicing__image" data-sizes="auto" data-src="{{ settings.image.url }}" />
                   {{else}}
                     {{ snippet 'icons/icon_image' class='multi-media-splicing__image multi-media-splicing__no-image' }}
                   {{/if}}

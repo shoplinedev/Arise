@@ -13,7 +13,7 @@
   
 <div class="__sl-custom-track-stage-customPage color-scheme-{{ section.settings.color_scheme }} section-gap{{#if (isTruthy section.settings.color_scheme '!==' 'none')}}--padding{{/if}}">
   <div class='container {{ prefix }}__container '>
-    <h1 class='title3 __sl-custom-track-page-title'>{{{ currentPageInfo.name.default }}}</h1>
+    <h2 class='title3 __sl-custom-track-page-title'>{{{ currentPageInfo.name.default }}}</h2>
     <div class="__sl-custom-track-page-content">
       <div class="render-by-page">
         {{ snippet 'custom-page-render' pageConfig=currentPageInfo.htmlConfig forPage=true }}

@@ -2,7 +2,13 @@
   {{add_dataset 'value' value }} {{add_dataset 'showWithZeroValue' showWithZeroValue }} {{add_dataset 'freeShipTxt' freeShipTxt }}
   {{add_dataset 'nextStepCalcTxt' nextStepCalcTxt }}>
   <div class="textLeft {{prefixCls}}">
+         {{#if key '==' "giftCardInfos" }}
+            <span  class="trade_summations_fee__tips">
+                {{t 'trade.reduction_code.giftcard'}} <span class="trade_gift_card_code">(••••{{{lastCharacters}}})</span> 
+            </span>
+      {{else}}
     {{label}}
+    {{/if}}
   </div>
 
   <div class="customer_order_summations__amount textRight {{#if suffixCls }} {{suffixCls}} {{else}}black{{/if}}">

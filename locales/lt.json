@@ -31,8 +31,22 @@
       "subtotal": "Tarpinė suma",
       "tax_included": "Mokesčiai įskaičiuoti"
     },
+    "checkout": {
+      "max_amount_limit": "Viršijote maksimalią apmokėjimo sumą"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Toliau nurodytos prekės viršija pirkimo apribojimą, vis dar tęskite pirkimą?"
+    },
+    "couponCode": {
+      "exceedLimit": "Nuolaidų kodai viršija kiekio limitą",
+      "existCode": "Nuolaidos kodas jau yra",
+      "list": {
+        "unavailable": "Baigėsi visų nuolaidų kodų galiojimo laikas"
+      },
+      "notSupport": {
+        "stacked": "Nuolaidų kodai nesukeliami"
+      },
+      "unavailable": "Baigėsi nuolaidos kodas"
     },
     "discount": {
       "code_error": "Nuolaidos kodas įvestas neteisingai",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Tęskite kaip svečias"
     },
     "item": {
-      "add_limit2": "Maksimalus vienos prekės kiekis – 999 vienetai",
+      "add_limit2": "Maksimalus vienos prekės kiekis – 99999 vienetai",
       "invalid_product": "Negaliojančios prekės",
       "item_left": "{{stock}} vnt. sandėlyje",
       "none_existent": "Prekė neegzistuoja",
@@ -214,6 +228,17 @@
       "username": "Pavadinimas",
       "verify_email_message": "Prieš uždarydami paskyrą, turime patikrinti jūsų tapatybę\nĮ jūsų el. paštą {{email}} bus išsiųstas patikros el. pašto laiškas",
       "verify_phone_message": "Prieš uždarydami paskyrą, turime patikrinti jūsų tapatybę\nĮ jūsų mobilųjį telefoną {{phone}} bus išsiųstas patikros pranešimas"
+    },
+    "activate": {
+      "account_activated": "Paskyra buvo aktyvuota",
+      "apply_code": "Taikykite kodą",
+      "apply_success": "Taikyta",
+      "button": "Aktyvinti",
+      "copy_success": "Kupono kodas nukopijuotas",
+      "discount_title": "Aktyvuokite paskyrą ir gaukite nuolaidos kodą",
+      "normal_title": "Aktyvuokite paskyrą",
+      "subscription_text": "Prenumeruokite el. pašto laiškus, kad gautumėte naujausią informaciją, prieigą prie išskirtinių sandorių ir dar daugiau.",
+      "success_title": "Sveikiname, gavus didelę nuolaidą"
     },
     "address": {
       "add_address": "Pridėti naują adresą",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Pirkite Amazon",
       "go_to_rakuten_by_link": "Pirkite LOTTE",
       "go_to_yahoo_by_link": "Pirkite Yahoo",
+      "in_stock": "Atsargose",
+      "inventory_quantity": "Atsargų duoimenys",
       "leave_us_message": "Prašome įvesti savo pranešimą",
       "leave_us_message_get_back": "Prašome palikti mums pranešimą ir kuo skubiau pateiksime atsakymą",
       "link_preview_does_not_support": "Nuorodos peržiūros operacija nepalaikoma",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopija",
       "activity_banner_free_shipping": "Nemokamas siuntimas",
       "activity_banner_threshold": "Užsakymai virš {{threshold}}",
+      "activity_selector_price_high_to_low": "Kaina nuo didelės iki mažos",
+      "activity_selector_price_low_to_high": "Kaina nuo mažos iki didelės",
+      "activity_selector_recommended": "Rekomenduoti",
       "apply_common": "Taikyti",
       "bundle_save_tip": "Sutaupykite {{amount}} pirkdami kartu",
       "bundle_title": "Dažnai įsigyjama kartu",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Kreditinė kortelė"
+    },
+    "reduction_code": {
+      "giftcard": "Dovanų kortelės"
     }
   },
   "transaction": {

@@ -10,9 +10,13 @@
   {{/if}}
 {{/if}}
 
-<div class="trade_summations_fee {{hideCls}} {{#if showWithZeroValue '!=' true}} {{#if value '==' 0}} hide {{/if}}  {{/if}}" data-key="{{key}}" {{add_dataset 'value' value }}
-  {{add_dataset 'showWithZeroValue' showWithZeroValue }} {{add_dataset 'freeShipTxt' freeShipTxt }} {{add_dataset 'nextStepCalcTxt' nextStepCalcTxt }}>
-  {{#if key '!=' 'deductMemberPointAmount' }}
+<div class="trade_summations_fee {{hideCls}} {{#if showWithZeroValue '!=' true}} {{#if value '==' 0}} hide {{/if}}  {{/if}}" data-key="{{key}}" 
+  {{add_dataset 'showDetail' showDetail }}
+  {{add_dataset 'value' value }}
+  {{add_dataset 'showWithZeroValue' showWithZeroValue }} 
+  {{add_dataset 'freeShipTxt' freeShipTxt }}
+  {{add_dataset 'nextStepCalcTxt' nextStepCalcTxt }}>
+  {{#if key '!==' 'deductMemberPointAmount' }}
       <div class="col textLeft {{prefixCls}}">
     {{label}}
     <span class="trade_summations_fee__tips" data-tips="{{tips}}" {{add_dataset 'hasTips' (boolean tips) }} {{add_dataset 'showTips' showTips }}>
@@ -37,7 +41,7 @@
       <div class="trade_summations_fee__desc {{#if memberPointInfo.use }} hide {{else}} {{/if}}">{{t 'cart.refund.deduct_point' deductMemberPointNum=memberPointInfo.deductMemberPointNum}} <span class="deductMemberPointAmount">{{currency_convert memberPointInfo.deductMemberPointAmount}}</span></div>
     </div>
   {{/if}}
-  <div class="trade_summations__amount col textRight {{#if suffixCls }} {{suffixCls}} {{else}}black{{/if}}">
+  <div class="trade_summations__amount col textRight {{#if showDetail}}showDetail{{/if}} {{#if suffixCls }} {{suffixCls}} {{else}}black{{/if}}">
     <span class="trade_summations__amount_reduce {{#if showReduce }} {{else}} hide {{/if}}">-</span>
     {{#if (typeOf value) '==' 'number' }}
       {{#if useSuperscriptDecimals}}

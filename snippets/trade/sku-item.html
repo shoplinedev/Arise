@@ -12,7 +12,7 @@
   {{/if}}
 {{/if}}
 
-<div class="trade-cart-sku-item{{#and (compare data.maxPurchaseTotalNum '==' 0) (compare data.maxPurchaseReasonCode '==' "STOCK_OVER")}} sold-out{{/and}}{{#if inactive '==' true}} inactive{{/if}}"
+<div class="shopline-element-cart-sku-item trade-cart-sku-item{{#and (compare data.maxPurchaseTotalNum '==' 0) (compare data.maxPurchaseReasonCode '==' "STOCK_OVER")}} sold-out{{/and}}{{#if inactive '==' true}} inactive{{/if}}"
      id="{{trade_cart_type}}{{append '-card-sku-item-' (numToString data.groupId) '-' data.spuId '-' data.skuId '-' (numToString data.uniqueSeq)}}">
     <a class="trade-cart-sku-item-image"
        href="{{#if (compare data.productSource '===' 1)}}/products/{{{data.spuId}}}{{else}}javascript:void(0){{/if}}"
@@ -92,7 +92,7 @@
     <div class="trade-cart-sku-item-info-number">
       <div class="trade-cart-sku-item-info-left">
         {{#or (boolean data.businessFlag '&&' data.businessFlag.singleAdjustNum '===' false)  (compare data.maxPurchaseTotalNum '==' 0)  (or inactive (not (trade_cart_show_remove data skuNumMap)))}}
-          <div class="trade-cart-sku-item-info-sku-number body3">x<span>{{data.num}}</span></div>
+          <div class="trade-cart-sku-item-info-sku-number body3 notranslate">x<span>{{data.num}}</span></div>
           {{else}}
           <div class="trade-cart-sku-item-info-left-stepper">
             {{include 'snippets/trade/stepper' count=data.num findex=findex index=index}}

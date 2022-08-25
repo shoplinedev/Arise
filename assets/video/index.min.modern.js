@@ -54,19 +54,54 @@
             const firstScriptTag = document.getElementsByTagName(library.type)[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         }
+        function allLoad() {
+            const p1 = new Promise((r => load("youtubeSdk", r)));
+            const p2 = new Promise((r => load("vimeo", r)));
+            return Promise.all([ p1, p2 ]);
+        }
         const LibraryLoader = {
-            load
+            load,
+            allLoad
         };
-        const utils_LibraryLoader = LibraryLoader;
-        if ("undefined" === typeof window.__YOUTUBE_IFRAME_API_LOADED__) window.__YOUTUBE_IFRAME_API_LOADED__ = false;
-        const prevOnYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady;
-        window.onYouTubeIframeAPIReady = function() {
-            if ("function" === typeof prevOnYouTubeIframeAPIReady) prevOnYouTubeIframeAPIReady();
-            if (!window.__YOUTUBE_IFRAME_API_LOADED__) {
-                window.SL_EventBus.emit("stage:youTubeReady");
-                window.__YOUTUBE_IFRAME_API_LOADED__ = true;
+        const video_LibraryLoader = LibraryLoader;
+        const playerState = {
+            ended: "ENDED",
+            playing: "PLAYING",
+            paused: "PAUSED",
+            buffering: "BUFFERING"
+        };
+        const state = playerState;
+        function _defineProperty(obj, key, value) {
+            if (key in obj) Object.defineProperty(obj, key, {
+                value,
+                enumerable: true,
+                configurable: true,
+                writable: true
+            }); else obj[key] = value;
+            return obj;
+        }
+        class YoutubeReadyWatcher {
+            constructor() {
+                _defineProperty(this, "ready", false);
+                const _ = this;
+                const prevOnYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady;
+                window.onYouTubeIframeAPIReady = function() {
+                    window.SL_EventBus.emit("stage:youTubeReady");
+                    _.ready = true;
+                    if ("function" === typeof prevOnYouTubeIframeAPIReady) prevOnYouTubeIframeAPIReady();
+                };
             }
-        };
+            $ready() {
+                this.ready = true;
+            }
+            static getInstance() {
+                if (!YoutubeReadyWatcher.instance) YoutubeReadyWatcher.instance = new YoutubeReadyWatcher;
+                return YoutubeReadyWatcher.instance;
+            }
+        }
+        _defineProperty(YoutubeReadyWatcher, "instance", null);
+        const video_YoutubeReadyWatcher = YoutubeReadyWatcher;
+        const ytReadyWatcher = video_YoutubeReadyWatcher.getInstance();
         const videoOptions = {
             ratio: 16 / 9,
             scrollAnimationDuration: 400,
@@ -97,25 +132,30 @@
         class YouTube extends Player {
             constructor(containerId, options = {}) {
                 super();
+                this.player = null;
+                this.loopTimer = null;
+                this.readyPromise = null;
                 this.containerId = containerId;
                 this.options = {
                     ...videoOptions,
                     ...options
                 };
                 this.options.playerVars.loop = options.loop;
-                if (this.options.playerVars.loop) this.options.playerVars.playlist = `${options.videoId}`;
-                if (window.__YOUTUBE_IFRAME_API_LOADED__) this.init(); else {
-                    utils_LibraryLoader.load("youtubeSdk");
+                this.rewriteEvent();
+                if (window.YT && window.YT.Player) ytReadyWatcher.$ready();
+                if (ytReadyWatcher.ready) this.init(); else {
+                    video_LibraryLoader.load("youtubeSdk");
                     window.SL_EventBus.on("stage:youTubeReady", this.init.bind(this));
                 }
             }
             init() {
-                window.__YOUTUBE_IFRAME_API_LOADED__ = true;
-                this.player = new window.YT.Player(this.containerId, this.options);
+                new window.YT.Player(this.containerId, this.options);
             }
             playVideo() {
-                var _this$player;
-                null === (_this$player = this.player) || void 0 === _this$player ? void 0 : _this$player.playVideo();
+                if (this.readyPromise) this.readyPromise.then((() => {
+                    var _this$player;
+                    null === (_this$player = this.player) || void 0 === _this$player ? void 0 : _this$player.playVideo();
+                }));
             }
             mute() {
                 var _this$player2;
@@ -128,8 +168,99 @@
             destroy() {
                 var _this$player4;
                 null === (_this$player4 = this.player) || void 0 === _this$player4 ? void 0 : _this$player4.destroy();
+                this.readyPromise = null;
+            }
+            rewriteEvent() {
+                const self = this;
+                const {onReady, onStateChange} = this.options.events;
+                this.readyPromise = new Promise((r => {
+                    this.options.events.onReady = event => {
+                        r();
+                        this.player = event.target;
+                        if (onReady) onReady(event);
+                    };
+                }));
+                this.options.events.onStateChange = event => {
+                    let status = "";
+                    switch (event.data) {
+                      case 1:
+                        status = state.playing;
+                        break;
+
+                      case 2:
+                        status = state.paused;
+                        break;
+
+                      case 3:
+                        status = state.buffering;
+                        break;
+
+                      default:
+                        status = state.ended;
+                    }
+                    if (status === state.playing && this.options.playerVars.loop) {
+                        clearTimeout(this.loopTimer);
+                        const finalSecond = event.target.getDuration() - 1;
+                        if (finalSecond > 2) {
+                            function loopTheVideo() {
+                                if (event.target.getCurrentTime() > finalSecond) event.target.seekTo(0);
+                                self.loopTimer = setTimeout(loopTheVideo, 500);
+                            }
+                            loopTheVideo();
+                        }
+                    }
+                    if (status === state.paused && this.loopTimer) clearTimeout(this.loopTimer);
+                    if (onStateChange) onStateChange(event);
+                };
             }
         }
+        const LibraryLoader_libraries = {
+            youtubeSdk: {
+                tagId: "youtube-sdk",
+                src: "https://www.youtube.com/iframe_api",
+                type: "script"
+            },
+            vimeo: {
+                tagId: "vimeo-api",
+                src: "https://player.vimeo.com/api/player.js",
+                type: "script"
+            }
+        };
+        const utils_LibraryLoader_status = {
+            requested: "requested",
+            loaded: "loaded"
+        };
+        function LibraryLoader_createScriptTag(library, callback) {
+            const tag = document.createElement("script");
+            tag.src = library.src;
+            tag.addEventListener("load", (function() {
+                Object.assign(library, {
+                    status: utils_LibraryLoader_status.loaded
+                });
+                callback();
+            }));
+            return tag;
+        }
+        function LibraryLoader_load(libraryName, _callback) {
+            const library = LibraryLoader_libraries[libraryName];
+            if (!library) return;
+            if (library.status === utils_LibraryLoader_status.requested) return;
+            const callback = _callback || function() {};
+            if (library.status === utils_LibraryLoader_status.loaded) {
+                callback();
+                return;
+            }
+            library.status = utils_LibraryLoader_status.requested;
+            const tag = LibraryLoader_createScriptTag(library, callback);
+            tag.id = library.tagId;
+            library.element = tag;
+            const firstScriptTag = document.getElementsByTagName(library.type)[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+        const LibraryLoader_LibraryLoader = {
+            load: LibraryLoader_load
+        };
+        const utils_LibraryLoader = LibraryLoader_LibraryLoader;
         let vimeoReady = false;
         const defaults = {
             byline: false,
@@ -193,7 +324,7 @@
             });
             observer.observe(options.element[0]);
         }
-        function _defineProperty(obj, key, value) {
+        function video_defineProperty(obj, key, value) {
             if (key in obj) Object.defineProperty(obj, key, {
                 value,
                 enumerable: true,
@@ -214,12 +345,12 @@
         };
         class Video {
             constructor(container, options = {}) {
-                _defineProperty(this, "container", null);
-                _defineProperty(this, "sectionId", "");
-                _defineProperty(this, "config", {
+                video_defineProperty(this, "container", null);
+                video_defineProperty(this, "sectionId", "");
+                video_defineProperty(this, "config", {
                     id: ""
                 });
-                _defineProperty(this, "settings", {});
+                video_defineProperty(this, "settings", {});
                 this.container = container;
                 this.options = options;
                 this.sectionId = container.data("id");
@@ -305,7 +436,7 @@
                 null === (_this$player = this.player) || void 0 === _this$player ? void 0 : null === (_this$player$destroy = _this$player.destroy) || void 0 === _this$player$destroy ? void 0 : _this$player$destroy.call(_this$player);
             }
         }
-        _defineProperty(Video, "type", "video");
+        video_defineProperty(Video, "type", "video");
     }
 }, __webpack_require__ => {
     var __webpack_exec__ = moduleId => __webpack_require__(__webpack_require__.s = moduleId);

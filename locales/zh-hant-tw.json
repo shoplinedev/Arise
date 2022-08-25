@@ -31,8 +31,22 @@
       "subtotal": "小計",
       "tax_included": "已包含稅費"
     },
+    "checkout": {
+      "max_amount_limit": "你超過了結帳的最大金額"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "以下商品超過購買限制，是否繼續結賬？"
+    },
+    "couponCode": {
+      "exceedLimit": "折扣碼超過數量限制",
+      "existCode": "折扣碼已存在",
+      "list": {
+        "unavailable": "所有折扣碼均已失效"
+      },
+      "notSupport": {
+        "stacked": "折扣碼不能疊加"
+      },
+      "unavailable": "折扣碼失效"
     },
     "discount": {
       "code_error": "請輸入有效的優惠碼",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "繼續以訪客身份訪問"
     },
     "item": {
-      "add_limit2": "最多可添加999件商品至購物車",
+      "add_limit2": "最多可添加99999件商品至購物車",
       "invalid_product": "產品無效",
       "item_left": "剩餘{{stock}}件",
       "none_existent": "商品不存在",
@@ -214,6 +228,17 @@
       "username": "姓名",
       "verify_email_message": "在進行註銷操作前，我們需要驗證您的身份\n您的郵箱{{email}}將收到驗證碼郵件",
       "verify_phone_message": "在進行註銷操作前，我們需要驗證您的身份\n您的手機{{phone}}將收到驗證短信"
+    },
+    "activate": {
+      "account_activated": "該賬號已激活",
+      "apply_code": "應用折扣碼",
+      "apply_success": "已應用",
+      "button": "激活",
+      "copy_success": "優惠券已復制",
+      "discount_title": "激活賬號並獲取折扣碼",
+      "normal_title": "激活賬號",
+      "subscription_text": "訂閱電子郵件以接收更新、訪問獨家優惠等。",
+      "success_title": "恭喜您獲得折扣"
     },
     "address": {
       "add_address": "新增地址",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "前往 Amazon",
       "go_to_rakuten_by_link": "前往 LOTTE",
       "go_to_yahoo_by_link": "前往 Yahoo",
+      "in_stock": "有貨",
+      "inventory_quantity": "庫存數",
       "leave_us_message": "請填寫留言",
       "leave_us_message_get_back": "請留言你的諮詢內容，我們將會盡快與你聯繫",
       "link_preview_does_not_support": "預覽連結不支援此操作",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "複製",
       "activity_banner_free_shipping": "免運費",
       "activity_banner_threshold": "滿{{threshold}}",
+      "activity_selector_price_high_to_low": "價格從高到低",
+      "activity_selector_price_low_to_high": "價格從低到高",
+      "activity_selector_recommended": "推薦",
       "apply_common": "套用",
       "bundle_save_tip": "一起購買可節省 {{amount}}",
       "bundle_title": "經常一起購買",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "信用卡"
+    },
+    "reduction_code": {
+      "giftcard": "禮品卡"
     }
   },
   "transaction": {

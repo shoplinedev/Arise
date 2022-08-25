@@ -13,7 +13,7 @@
         {{/if}}
         <li data-site-nav-menu-id="{{this.id}}" class="d-site--nav__item  {{#if has_dropdown}}site-nav--has-dropdown{{/if}} {{#if is_megamenu}}site-nav--is-megamenu{{/if}}">
             {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
-            <a class="__sl-custom-track-stage-navItem site-nav__link d-site--nav__underline navigation-font-size  {{#if has_dropdown}}site-nav__link--has-dropdown{{/if}}"
+            <a class="__sl-custom-track-stage-navItem site-nav__link d-site--nav__underline navigation-font-size  {{#if has_dropdown}}color-scheme-{{global.settings.color_scheme}} site-nav__link--has-dropdown{{/if}}"
               {{{navItem.hrefAttr}}}>
               {{navItem.name}}
               {{#if has_dropdown}}
@@ -37,7 +37,7 @@
                                     {{assign 'subcollection_drop' (get this.pageLink global.all_collections)}}
                                     {{#if (isTruthy subcollection_drop.sortationCoverImg)}}
                                       {{#if global.section.settings.mega_menu_images}}
-                                        <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem megamenu__colection-image">
+                                        <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem megamenu__colection-image" style="padding-bottom: {{global.settings.mega_menu_images_ratio}}%;">
                                           <img class="lozad megamenu__colection-image-pic" data-sizes="auto" data-src="{{subcollection_drop.sortationCoverImg}}" />
                                         </a>
                                       {{/if}}

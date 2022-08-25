@@ -36,16 +36,16 @@
     <button data-ssr-plugin-pdp-button-sold-out class="sold-out-button btn btn-primary btn-lg disabled pdp_sold_out_{{id}} {{#not isSoldOut}}hide{{/not}}" type="button">
       {{ t 'products.general.sold_out' }}
     </button>
-    <button data-ssr-plugin-pdp-button-addtocart class="__sl-custom-track-add-to-cart-btn add-to-cart btn {{buttonClass}} btn-lg pdp_add_to_cart_{{id}} {{#if isSoldOut}}hide{{/if}}" type="button">
+    <button data-ssr-plugin-pdp-button-addtocart class="__sl-custom-track-add-to-cart-btn add-to-cart shopline-element-add-to-cart btn {{buttonClass}} btn-lg pdp_add_to_cart_{{id}} {{#if isSoldOut}}hide{{/if}}" type="button">
       <span class="pdp_button_text fw-bold">{{ t 'products.product_list.add_to_cart' }}</span>
     </button>
     {{#if productSettleButtonConfig.buyNow}}
-      <button data-ssr-plugin-pdp-button-buy-now class="buy-now btn btn-primary btn-lg pdp_buy_now_{{id}} __sl-custom-track-product-detail-buy-now {{#if isSoldOut}}hide{{/if}}">
+      <button data-ssr-plugin-pdp-button-buy-now class="buy-now shopline-element-buy-now btn btn-primary btn-lg pdp_buy_now_{{id}} __sl-custom-track-product-detail-buy-now {{#if isSoldOut}}hide{{/if}}">
         <span class="pdp_button_text fw-bold">{{t 'cart.cart.buy_now'}}</span>
       </button>
     {{/if}}
     {{#inArray (default productSettleButtonConfig.payments []) PaypalWay}}
-      <div id="pdp_paypal_{{id}}" class="paypay-button disabled {{#if isSoldOut}}hide{{/if}}">
+      <div id="pdp_paypal_{{id}}" class="paypay-button shopline-element-paypal disabled {{#if isSoldOut}}hide{{/if}}">
         {{#if isPreviewProduct}}
           <div class="product-button-paypal-preview-mask"></div>
         {{/if}}

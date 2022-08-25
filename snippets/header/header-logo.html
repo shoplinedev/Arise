@@ -69,14 +69,14 @@
             }
         {{/style}}
         {{#if global.template '===' 'index'}}
-            <h1 class="header__logo title-font">
+            <h1 class="shopline-element-header-logo header__logo title-font">
         {{/if}}
         {{#if global.template '!==' 'index'}}
-            <div class="header__logo title-font">
+            <div class="shopline-element-header-logo header__logo title-font">
         {{/if}}
 
         {{#if (boolean this.settings.logo '&&' this.settings.logo.url)}}
-            {{assign 'header_logo_scale' this.settings.logo.scale}}
+            {{assign 'header_logo_scale' (divide 100 (get 'ratio' (img_size this.settings.logo.url)))}}
             {{assign 'header_logo_height' (divide header_logo_size header_logo_scale)}}
             {{assign 'header_logo_height_mobile' (divide header_logo_size_mobile header_logo_scale)}}
                 <span class="visually-hidden notranslate">{{ global.storeInfo.name }}</span>
@@ -128,11 +128,11 @@
 	{{/style}}
 
 	{{#if template '===' 'index'}}
-		<h1 class="header__logo title-font">
+		<h1 class="shopline-element-header-logo header__logo title-font">
 	{{/if}}
 
 	{{#if template '!==' 'index'}}
-		<div class="header__logo title-font">
+		<div class="shopline-element-header-logo header__logo title-font">
 	{{/if}}
 
 	<a href="{{ rootUrl }}" class="notranslate">

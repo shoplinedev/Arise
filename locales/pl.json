@@ -31,8 +31,22 @@
       "subtotal": "Suma częściowa",
       "tax_included": "Z wliczonym podatkiem"
     },
+    "checkout": {
+      "max_amount_limit": "Przekroczyłeś maksymalną kwotę do kasy"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "poniższe produkty już przekraczają limit zakupów, chcesz dokonać płatności jeszcze?"
+    },
+    "couponCode": {
+      "exceedLimit": "Kody rabatowe przekraczają limit ilościowy",
+      "existCode": "Kod rabatowy już istnieje",
+      "list": {
+        "unavailable": "Wszystkie kody rabatowe wygasły"
+      },
+      "notSupport": {
+        "stacked": "Kodów rabatowych nie można łączyć w stos"
+      },
+      "unavailable": "Kod rabatowy wygasł"
     },
     "discount": {
       "code_error": "Błędnie wpisano kodu promocyjnego",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Odwiedź stronę jako gość"
     },
     "item": {
-      "add_limit2": "Wolno dodać do koszyku najwyżej 999 sztuk produktów",
+      "add_limit2": "Wolno dodać do koszyku najwyżej 99999 sztuk produktów",
       "invalid_product": "Produkt niedostępny",
       "item_left": "Pozostało {{stock}} sztuk",
       "none_existent": "Towar nie jest dostępny",
@@ -214,6 +228,17 @@
       "username": "Nazwa",
       "verify_email_message": "Podczas usunięcia konta, mamy weryfikować twoje identyfikację.Twoja skrzynka {{email}} dostanie e-mail z kodem weryfikacyjnym.",
       "verify_phone_message": "Przed usunięciem konta, mamy weryfikować twoje identyfikację.Twoja komórka {{phone}} dostanie SMS z numerem weryfikacyjnym."
+    },
+    "activate": {
+      "account_activated": "To konto już jest aktywizowane.",
+      "apply_code": "Dostosować kod rabatowy.",
+      "apply_success": "Stosowany",
+      "button": "Aktywować",
+      "copy_success": "Skopiowano kod rabatowy.",
+      "discount_title": "Aktywizować konto i uzyskać kod rabatowy.",
+      "normal_title": "Aktywizować konto.",
+      "subscription_text": "Subskrybuj e-mailem, żeby uzyskać nowe informacje i odwiedzić ekskluzywne rabaty.",
+      "success_title": "Gratuluję, że uzyskałaś rabat."
     },
     "address": {
       "add_address": "Dodaj nowy adres",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Zrób zakupy na Amazon",
       "go_to_rakuten_by_link": "Zrób zakupy na Lotte",
       "go_to_yahoo_by_link": "Zrób zakupy na Yahoo",
+      "in_stock": "Dostępny produkt",
+      "inventory_quantity": "Liczba zapasów",
       "leave_us_message": "Proszę wpisać komentarz",
       "leave_us_message_get_back": "Proszę na pisać swoje komentarze, skontaktujemy się z Panem/Panią jak najszybciej",
       "link_preview_does_not_support": "Link do podglądu nie obsługuje tej operacji",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Skopiuj",
       "activity_banner_free_shipping": "Darmowa dostawa",
       "activity_banner_threshold": "Powyżej {{threshold}}",
+      "activity_selector_price_high_to_low": "Cena od wysokiej do niskiej.",
+      "activity_selector_price_low_to_high": "Cena od niskiej do wysokiej.",
+      "activity_selector_recommended": "Polecenia.",
       "apply_common": "Stosuj",
       "bundle_save_tip": "Kupujesz ich razem oszczędzasz {{amount}}",
       "bundle_title": "Zwykle są zakupione razem",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Karta kredytowa"
+    },
+    "reduction_code": {
+      "giftcard": "karta podarunkowa"
     }
   },
   "transaction": {

@@ -29,7 +29,7 @@
     class="{{ cond (boolean productImageShowStyle '===' 'thumbnail_flatten') 'thumbnail_flatten' '' }} d-none {{ cond (boolean thumbsDirection '==' 'aside') 'd-md-flex' 'd-md-block' }} product_pc_productImageContainer {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImagePos '==' 'right') 'product_layoutRight' 'product_layoutLeft' }} {{ cond (boolean thumbsDirection '==' 'aside') 'product_layoutColumn' 'product_layoutRow' }}"
   >
     {{#if (and (boolean thumbsDirection '==' 'aside')) }}
-      <div class="product_thumbsColumnContainer" style="display: {{#or (isFalsey mediaList.length) (boolean mediaList.length '<=' '1') }}none{{/or}};">
+      <div class="product_thumbsColumnContainer shopline-element-product-thumbs-image" style="display: {{#or (isFalsey mediaList.length) (boolean mediaList.length '<=' '1') }}none{{/or}};">
         {{#if showThumbnailArrow}}
           <div class="arrowTop thumbsArrowTop">
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,7 @@
           <div class="productImageThumbsWrapper">
             {{#each mediaList }}
               <div class="swiper-slide thumbsImageItem">
-                <figure style="padding-bottom:{{append (default (get 'ratio' (img_size resource)) 100) '%'}}">               
+                <figure style="padding-bottom:{{append (default (get 'ratio' (img_size resource)) 100) '%'}}">
                   {{#if type '===' 'VIDEO' }}
                     {{ assign 'resourceUrl' (urlParse resource)}}
 
@@ -64,7 +64,7 @@
               </div>
             {{/each}}
           </div>
-        </div>  
+        </div>
         {{#if showThumbnailArrow}}
           <div class="arrowBottom thumbsArrowBottom">
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +75,7 @@
         {{/if}}
       </div>
     {{/if}}
-    <div class="swiper-container product_productImages {{ cond (boolean productImageScale) 'product_productImageScale' ''}}">
+    <div class="swiper-container product_productImages shopline-element-product-image {{ cond (boolean productImageScale) 'product_productImageScale' ''}}">
       {{#if mediaList.length }}
         <div class="swiper-wrapper">
           {{#each mediaList }}
@@ -155,7 +155,7 @@
       {{/if}}
     </div>
     {{#if (and (boolean thumbsDirection '!=' 'aside')) }}
-      <div class="product_thumbsRowContainer" style="display: {{#or (isFalsey mediaList.length) (boolean mediaList.length '<=' '1') }}none{{/or}};">
+      <div class="product_thumbsRowContainer shopline-element-product-thumbs-image" style="display: {{#or (isFalsey mediaList.length) (boolean mediaList.length '<=' '1') }}none{{/or}};">
         {{#if showThumbnailArrow}}
           <div class="arrowTopBox thumbsArrowTop">
             <div class="arrowTop">
@@ -192,7 +192,7 @@
               </div>
             {{/each}}
           </div>
-        </div>  
+        </div>
         {{#if showThumbnailArrow}}
           <div class="arrowBottomBox thumbsArrowBottom">
             <div class="arrowBottom">
@@ -310,7 +310,7 @@
     data-initial-slide="{{initialSlide}}"
     class="hideBulletsPagination d-md-none product_mobile_productImageContainer {{ cond (boolean selectorId) (append 'execute_productImages_mobile_' selectorId) '' }} {{#isFalsey mobileProductImageIsFull }}middleWidth{{/isFalsey}}"
   >
-    <div class="swiper-container product_productImages">
+    <div class="swiper-container product_productImages shopline-element-product-image">
       {{#if mediaList.length }}
         <div class="swiper-wrapper {{#or (boolean mediaList.length '===' 1) (boolean isVideoFirst.type '===' 'VIDEO') (boolean isVideoLast.type '===' 'VIDEO')}}hasVideoFl{{/or}}">
           {{#each mediaList }}
@@ -319,7 +319,7 @@
 {{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
 
               <div class="swiper-slide videoItem" data-video-platform="{{ cond isYoutube 'youtube' 'sl' }}" data-index="{{ @index }}" data-length="{{ ../mediaList.length }}">
-                <div 
+                <div
                   class="swiper-slide-box"
                   data-image-ratio="{{ videoCoverRatio }}"
                   style="padding-bottom: {{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{videoCoverRatio}}{{/and}}"
@@ -352,7 +352,11 @@
                   {{/if}}
                   {{#and ../needSkuCover (boolean @index '==' 0) }}
                     <div class="product_m_skuImageBox">
-                      {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' class='lozad product_m_skuImage product_photoSwipe_image' skuImageObj=../coverImgObj }}
+                      {{#if (boolean ../templateAlias '===' 'ProductsDetail')}}
+                        {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' isPreload=true useLazyLoad=false class='product_m_skuImage product_photoSwipe_image' skuImageObj=../coverImgObj }}
+                      {{else}}
+                        {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' class='lozad product_m_skuImage product_photoSwipe_image' skuImageObj=../coverImgObj }}
+                      {{/if}}
                       {{#if ../productImageScale }}
                         <div class="scaleSkuImageIcon">
                           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -360,7 +364,7 @@
 <path d="M18.5 17.5L23 22.5" stroke-linecap="round" />
 </svg>
 
-                        </div>  
+                        </div>
                       {{/if}}
                     </div>
                   {{/and}}
@@ -379,16 +383,24 @@
               </div>
             {{else if type '===' 'IMAGE'}}
               <div class="swiper-slide imageItem">
-                <div 
+                <div
                   class="swiper-slide-box"
                   data-image-ratio="{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}"
                   data-sku-image-ratio="{{#and ../needSkuCover (boolean @index '==' 0 )}}{{ append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{/and}}"
                   style="padding-bottom: {{#and ../needSkuCover (boolean @index '==' 0 )}}{{ append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}"
                 >
-                {{ snippet 'product/detail/product-swiper-img' type='mImage' class='lozad product_photoSwipe_image' }}
+                {{#if (boolean ../templateAlias '===' 'ProductsDetail')}}
+                  {{ snippet 'product/detail/product-swiper-img' isPreload=true useLazyLoad=(cond (boolean @index '==' 0 ) false true) type='mImage' class=(cond (boolean @index "!==" 0) 'product_photoSwipe_image' 'lozad product_photoSwipe_image') }}
+                {{else}}
+                  {{ snippet 'product/detail/product-swiper-img' type='mImage' class='lozad product_photoSwipe_image' }}
+                {{/if}}
                   {{#and ../needSkuCover (boolean @index '==' 0 )}}
                     <div class="product_m_skuImageBox">
-                      {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' class='lozad product_m_skuImage product_photoSwipe_image' skuImageObj=../coverImgObj }}
+                      {{#if (boolean ../templateAlias '===' 'ProductsDetail')}}
+                        {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' isPreload=true useLazyLoad=false class='product_m_skuImage product_photoSwipe_image' skuImageObj=../coverImgObj }}
+                      {{else}}
+                        {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' class='lozad product_m_skuImage product_photoSwipe_image' skuImageObj=../coverImgObj }}
+                      {{/if}}
                       {{#if ../productImageScale }}
                         <div class="scaleSkuImageIcon">
                           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -396,7 +408,7 @@
 <path d="M18.5 17.5L23 22.5" stroke-linecap="round" />
 </svg>
 
-                        </div>  
+                        </div>
                       {{/if}}
                     </div>
                   {{/and}}
@@ -409,7 +421,7 @@
 </svg>
 
                       </div>
-                    </div>  
+                    </div>
                   {{/if}}
                 </div>
               </div>
@@ -419,15 +431,19 @@
       {{else}}
         <div class="swiper-wrapper hasVideoFl">
           <div class="swiper-slide">
-            <div 
-              class="swiper-slide-box" 
+            <div
+              class="swiper-slide-box"
               data-image-ratio="100%"
               style="padding-bottom: {{#if needSkuCover }}{{ append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%'}}{{else}}100%{{/if}}"
             >
               <div class="product-detail-empty-image product-noImages"></div>
               {{#if needSkuCover }}
                 <div class="product_m_skuImageBox">
-                  {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' class='lozad product_m_skuImage product_photoSwipe_image' skuImageObj=coverImgObj }}
+                  {{#if (boolean ../templateAlias '===' 'ProductsDetail')}}
+                    {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' isPreload=true useLazyLoad=false class='product_m_skuImage product_photoSwipe_image' skuImageObj=coverImgObj }}
+                  {{else}}
+                    {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' class='lozad product_m_skuImage product_photoSwipe_image' skuImageObj=coverImgObj }}
+                  {{/if}}
                   <!-- <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="lozad product_m_skuImage product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" {{{get 'responsiveAttr' (image_responsive resource pcSize=null mSize=(cond ../mobileProductImageIsFull '100vw' '75vw')) }}} alt="{{ coverImgObj.alt }}"> -->
                   {{#if productImageScale }}
                     <div class="scaleSkuImageIcon">
@@ -436,7 +452,7 @@
 <path d="M18.5 17.5L23 22.5" stroke-linecap="round" />
 </svg>
 
-                    </div>  
+                    </div>
                   {{/if}}
                 </div>
               {{/if}}

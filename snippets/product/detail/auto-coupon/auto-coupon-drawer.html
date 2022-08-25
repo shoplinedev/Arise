@@ -1,5 +1,5 @@
 {{!-- 移动端-自动折扣弹窗 --}}
-{{#snippet 'sales/drawer/common-drawer' title='' id="salesAutoCouponDrawer"}}
+{{#snippet 'sales/drawer/common-drawer' title='' id=(append 'salesAutoCouponDrawer-' seq)}}
   <div class="sales__autoCouponDrawer-list" style="color:{{color}}">
     {{#each list}}
       <div class="sales__autoCouponDrawer-listItem">

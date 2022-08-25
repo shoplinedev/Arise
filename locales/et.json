@@ -31,8 +31,22 @@
       "subtotal": "Vahesum.",
       "tax_included": "Sisaldab maksu"
     },
+    "checkout": {
+      "max_amount_limit": "Ületasite maksmise maksimumsumma"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Allolevad tooted ületavad ostulimiiti, kas soovid siiski kassasse suunduda?"
+    },
+    "couponCode": {
+      "exceedLimit": "Sooduskoodid ületavad kogusepiirangut",
+      "existCode": "Sooduskood on juba olemas",
+      "list": {
+        "unavailable": "Kõik sooduskoodid on aegunud"
+      },
+      "notSupport": {
+        "stacked": "Sooduskoodid ei ole virnastatavad"
+      },
+      "unavailable": "Sooduskood on aegunud"
     },
     "discount": {
       "code_error": "Allahindluse kood on sisestatud valesti",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Jätkake külalisena"
     },
     "item": {
-      "add_limit2": "Ühe toote maksimaalne kogus on 999 tk",
+      "add_limit2": "Ühe toote maksimaalne kogus on 99999 tk",
       "invalid_product": "Lehtetud tooted",
       "item_left": "Laos {{stock}} tükki",
       "none_existent": "Kaupu pole olemas",
@@ -214,6 +228,17 @@
       "username": "Nimi",
       "verify_email_message": "Enne konto sulgemist peame kontrollima teie identiteeti\nTeie e-posti aadress {{email}} saab kontrollimeili",
       "verify_phone_message": "Enne konto sulgemist peame kontrollima teie identiteeti\nTeie mobiiltelefon {{phone}} saab sõnumi"
+    },
+    "activate": {
+      "account_activated": "Konto on aktiveeritud",
+      "apply_code": "Kandke kood",
+      "apply_success": "Rakendatud",
+      "button": "Aktiveerige",
+      "copy_success": "Kupongi kood kopeeritud",
+      "discount_title": "Aktiveerige konto ja saate sooduskoodi",
+      "normal_title": "Aktiveerige konto",
+      "subscription_text": "Liituge e-kirjadega, et saada värskendusi, pääseda juurde eksklusiivsetele pakkumistele ja muule.",
+      "success_title": "Palju õnne suurepärase allahindluse saamise puhul"
     },
     "address": {
       "add_address": "Lisa uus aadress",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Osta Amazonist",
       "go_to_rakuten_by_link": "Osta LOTTEst",
       "go_to_yahoo_by_link": "Osta Yahoost",
+      "in_stock": "Varud on saadaval",
+      "inventory_quantity": "Varude kogus",
       "leave_us_message": "Sisesta oma sõnum",
       "leave_us_message_get_back": "Jäta meile sõnum ja me võtame sinuga esimesel võimalusel ühendust",
       "link_preview_does_not_support": "Toimingut lingi eelvaateks ei toetata",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Koopia",
       "activity_banner_free_shipping": "Tasuta saatmine",
       "activity_banner_threshold": "Tellimused üle {{threshold}}",
+      "activity_selector_price_high_to_low": "Hind kõrge kuni madal",
+      "activity_selector_price_low_to_high": "Hind madal kuni kõrge",
+      "activity_selector_recommended": "Soovitage",
       "apply_common": "Rakenda",
       "bundle_save_tip": "Säästa koos ostmisel {{amount}}",
       "bundle_title": "Ostetakse sageli koos",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Krediitkaart"
+    },
+    "reduction_code": {
+      "giftcard": "Kinkekaardid"
     }
   },
   "transaction": {

@@ -13,8 +13,8 @@
 {{assign 'productPrice' (product_sku_price (default initSku.selectSku initSku.minPriceSku))}}
 {{assign 'showMemberMark' (default initSku.selectSku.showMemberMark initSku.minPriceSku.showMemberMark)}}
 
-{{assign 'discount_text' null}} 
-{{!-- 当存在原价，则计算折扣 --}} 
+{{assign 'discount_text' null}}
+{{!-- 当存在原价，则计算折扣 --}}
 {{#if productPrice.originPrice}}
   {{#if theme.settings.product_discount_style '===' 'number'}}
     {{assign 'discount_text' (subtract productPrice.originPrice productPrice.salesPrice)}}
@@ -26,6 +26,7 @@
 <!-- html content start -->
 <div class="quick-add-modal__wrapper">
   <div class="quick-add-modal__body">
+    <div data-ssr-plugin-title-top></div>
     <div class="quick-add-mpdal-sku">
       {{ snippet 'product/commons/sku-trade/sku-trade' attr=(product_sku_map2array product.sku.skuAttributeMap initSku.selectSku) id=id productSkuStyle=theme.settings.product_sku_style selectSkuSeq=initSku.selectSku.skuSeq}}
     </div>
@@ -37,7 +38,7 @@
     {{/if}}
 
     <div class="product-price">
-      <div class="price body-font body2 product-info-price_{{id}}" product_discount={{theme.settings.product_discount}}>
+      <div class="price body-font body2 product-info-price_{{id}}" product_discount="{{theme.settings.product_discount}}">
         {{#if (boolean theme.settings.superscript_decimals) }}
           <span class="product-price-sales_{{id}} notranslate fw-bold product-price-item">
             {{#currency_convert_price productPrice.salesPrice }}
@@ -73,7 +74,7 @@
         {{#if theme.settings.product_discount}}
           <span
             class="discount body4 product-price-discount_{{id}} {{#or (boolean productPrice.originPrice '<=' productPrice.salesPrice) spuInfo.soldout (boolean discount_text '<=' 0)}}hide{{/or}}"
-            product_discount_style={{theme.settings.product_discount_style}}>
+            product_discount_style="{{theme.settings.product_discount_style}}">
             {{#if (and (is (typeOf productPrice.originPrice) 'number') (is (typeOf productPrice.salesPrice) 'number')) }}
                 {{#if theme.settings.product_discount_style '===' 'number'}}
                   {{#currency_convert_price discount_text}}

@@ -11,6 +11,7 @@
 {{ assign 'image_overlap_display' settings.image_overlap_display }}
 {{ assign 'color_scheme' settings.color_scheme }}
 {{ assign 'mobile_text_align' settings.mobile_text_align }}
+{{ assign 'appBlockPrefix' 'shopline://apps' }}
 
 {{!-- {{ assign 'is_auto_scale' (default image_height '') }} --}}
 {{ assign 'ratio' (append (default (get 'ratio' (img_size image.url)) 100) '%') }}
@@ -54,8 +55,11 @@
           image-with-text__info--m-align-{{ mobile_text_align }}
         ">
           {{#each blocks}}
+            {{#startsWith ../appBlockPrefix type}}
+              {{ render this }}
+            {{/startsWith}}
             {{#if (trim type) '===' 'title'}}
-              <h3 class="title3 image-with-text__title image-with-text__title--size-{{ settings.title_size }}">{{ settings.title }}</h3>
+              <h2 class="title3 image-with-text__title image-with-text__title--size-{{ settings.title_size }}">{{ settings.title }}</h2>
             {{/if}}
             {{#if (trim type) '===' 'content'}}
               <div class="body3 image-with-text__content">{{{ settings.content }}}</div>
@@ -344,6 +348,9 @@
           "default": ""
         }
       ]
+    },
+    {
+      "type": "@app"
     }
   ],
   "presets": [

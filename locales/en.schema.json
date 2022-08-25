@@ -370,7 +370,7 @@
           "label": "Product image"
         },
         "md_cols": {
-          "label": "Number of columns",
+          "label": "Number of columns on mobile",
           "options__0": {
             "label": "1 row"
           },
@@ -656,6 +656,21 @@
           "info": "[How to set up super menu](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
           "label": "Display super menu image"
         },
+        "mega_menu_images_ratio": {
+          "label": "Mega menu image ratio",
+          "options__0": {
+            "label": "2:1"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__2": {
+            "label": "4:3"
+          },
+          "options__3": {
+            "label": "2:3"
+          }
+        },
         "mobile_logo_width": {
           "label": "Mobile Logo width"
         },
@@ -677,11 +692,19 @@
         "show_line_separator": {
           "label": "Display the divider"
         },
+        "show_locale_selector": {
+          "info": "Go to [language setting](/admin/settings/lang) for setup",
+          "label": "Display the language selector"
+        },
         "show_search_entry": {
           "label": "Display search entrance"
         },
         "show_user_entry": {
           "label": "Display Me entrance"
+        },
+        "suggested_menu": {
+          "info": "Once selected, this menu will appear in search bar as a suggestion when customers search for the first time",
+          "label": "Suggested search content"
         }
       }
     },
@@ -1056,6 +1079,74 @@
     "main-page": {
       "name": "Custom page"
     },
+    "map": {
+      "name": "Map",
+      "presets": {
+        "presets__0": {
+          "category": "Content display",
+          "name": "Map"
+        }
+      },
+      "settings": {
+        "address": {
+          "info": "Click and jump to corresponding address on Google Maps",
+          "label": "Address"
+        },
+        "btn_text": {
+          "label": "Button text"
+        },
+        "google_api_secret_key": {
+          "info": "Enter the Google Map API to show the map. [How to get the API key?](https://shoplineapphelp.zendesk.com/hc/articles/4411546876313-%E5%A6%82%E4%BD%95%E6%B3%A8%E5%86%8C-Google-Maps-API-%E5%AF%86%E9%92%A5)",
+          "label": "Google Maps API Key"
+        },
+        "group_header__0": {
+          "label": "Background"
+        },
+        "image": {
+          "info": "Display the image when Google Map is not configured",
+          "label": "Image"
+        },
+        "image_position": {
+          "label": "Image display area",
+          "options__0": {
+            "label": "Upper left"
+          },
+          "options__1": {
+            "label": "Above"
+          },
+          "options__2": {
+            "label": "Upper right"
+          },
+          "options__3": {
+            "label": "Left"
+          },
+          "options__4": {
+            "label": "Center"
+          },
+          "options__5": {
+            "label": "Right"
+          },
+          "options__6": {
+            "label": "Bottom left"
+          },
+          "options__7": {
+            "label": "Below"
+          },
+          "options__8": {
+            "label": "Bottom right"
+          }
+        },
+        "pushpin": {
+          "label": "Display drawing pin"
+        },
+        "store_info": {
+          "label": "Address and opening hours"
+        },
+        "title": {
+          "label": "Title"
+        }
+      }
+    },
     "multi-media-splicing": {
       "blocks": {
         "collection": {
@@ -1328,6 +1419,9 @@
         "group_header__0": {
           "label": "Product image"
         },
+        "group_header__1": {
+          "label": "Side column filter"
+        },
         "per_page_num": {
           "label": "Product quantity on each page"
         },
@@ -1537,6 +1631,14 @@
             }
           }
         },
+        "stockNumber": {
+          "name": "Show stock quantity",
+          "settings": {
+            "stockNumber": {
+              "label": "Show stock quantity"
+            }
+          }
+        },
         "title": {
           "name": "Title"
         }
@@ -1594,7 +1696,7 @@
           "label": "Product image"
         },
         "md_cols": {
-          "label": "Number of columns",
+          "label": "Number of columns on mobile",
           "options__0": {
             "label": "1 row"
           },
@@ -1647,7 +1749,7 @@
           "label": "Product image"
         },
         "md_cols": {
-          "label": "Number of columns",
+          "label": "Number of columns on mobile",
           "options__0": {
             "label": "1 row"
           },
@@ -1885,6 +1987,9 @@
             "overlay_opacity": {
               "label": "Layer mask opacity"
             },
+            "show_text_shadow": {
+              "label": "Show text shadow"
+            },
             "subheading": {
               "label": "Main text"
             },
@@ -1995,6 +2100,18 @@
           },
           "options__3": {
             "label": "Dots"
+          }
+        },
+        "transition_type": {
+          "label": "Transition effect",
+          "options__0": {
+            "label": "Simple"
+          },
+          "options__1": {
+            "label": "Slide"
+          },
+          "options__2": {
+            "label": "Zoom"
           }
         }
       }
@@ -2163,7 +2280,7 @@
           "label": "URL"
         },
         "md_cols": {
-          "label": "Number of columns",
+          "label": "Number of columns on mobile",
           "options__0": {
             "label": "1 row"
           },
@@ -2203,6 +2320,9 @@
         }
       },
       "settings": {
+        "autoplay": {
+          "label": "Video autoplay"
+        },
         "background_position": {
           "label": "Display area of cover image",
           "options__0": {
@@ -2256,6 +2376,9 @@
         },
         "loop": {
           "label": "Loop"
+        },
+        "quiet": {
+          "label": "Mute autoplay sound?"
         },
         "title": {
           "label": "Title"
@@ -2994,6 +3117,15 @@
           },
           "options__1": {
             "label": "Display the discount ratio"
+          }
+        },
+        "product_discount_tag_style": {
+          "label": "Discount tags",
+          "options__0": {
+            "label": "sale tag"
+          },
+          "options__1": {
+            "label": "save tag"
           }
         },
         "product_mobile_title_show": {

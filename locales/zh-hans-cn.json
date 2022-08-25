@@ -31,8 +31,22 @@
       "subtotal": "小计",
       "tax_included": "已包含税费"
     },
+    "checkout": {
+      "max_amount_limit": "你超过了结账的最大金额"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "以下商品超过购买限制，是否继续结账？"
+    },
+    "couponCode": {
+      "exceedLimit": "折扣码超过数量限制",
+      "existCode": "折扣码已存在",
+      "list": {
+        "unavailable": "所有折扣码均已失效"
+      },
+      "notSupport": {
+        "stacked": "折扣码不可叠加"
+      },
+      "unavailable": "折扣码失效"
     },
     "discount": {
       "code_error": "优惠码输入错误",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "继续以访客身份访问"
     },
     "item": {
-      "add_limit2": "最多可添加999件商品至购物车",
+      "add_limit2": "最多可添加99999件商品至购物车",
       "invalid_product": "失效商品",
       "item_left": "剩余{{stock}}件",
       "none_existent": "商品不存在",
@@ -214,6 +228,17 @@
       "username": "姓名",
       "verify_email_message": "在进行注销操作前，我们需要验证您的身份\n您的邮箱{{email}}将收到验证码邮件",
       "verify_phone_message": "在进行注销操作前，我们需要验证您的身份\n您的手机{{phone}}将收到验证短信"
+    },
+    "activate": {
+      "account_activated": "该账号已激活",
+      "apply_code": "应用折扣码",
+      "apply_success": "已应用",
+      "button": "激活",
+      "copy_success": "优惠券已复制",
+      "discount_title": "激活账号并获取折扣码",
+      "normal_title": "激活账号",
+      "subscription_text": "订阅电子邮件以接收更新、访问独家优惠等。",
+      "success_title": "恭喜您获得折扣"
     },
     "address": {
       "add_address": "新增地址",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "去亚马逊购物",
       "go_to_rakuten_by_link": "去乐天购物",
       "go_to_yahoo_by_link": "去雅虎购物",
+      "in_stock": "有货",
+      "inventory_quantity": "库存数",
       "leave_us_message": "请填写留言",
       "leave_us_message_get_back": "请留言你的咨询内容，我们将会尽快与你联系",
       "link_preview_does_not_support": "预览链接不支持此操作",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "复制",
       "activity_banner_free_shipping": "免运费",
       "activity_banner_threshold": "满{{threshold}}",
+      "activity_selector_price_high_to_low": "价格从高到低",
+      "activity_selector_price_low_to_high": "价格从低到高",
+      "activity_selector_recommended": "推荐",
       "apply_common": "应用",
       "bundle_save_tip": "一起购买可节省 {{amount}}",
       "bundle_title": "经常一起购买",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "信用卡"
+    },
+    "reduction_code": {
+      "giftcard": "礼品卡"
     }
   },
   "transaction": {

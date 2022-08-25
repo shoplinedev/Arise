@@ -31,8 +31,22 @@
       "subtotal": "Kopējā",
       "tax_included": "Nodoklis iekļauts"
     },
+    "checkout": {
+      "max_amount_limit": "Jūs pārsniedzāt maksimālo norēķināšanās summu"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Zemāk esošie produkti pārsniedz pirkuma limitu, vienmēr dodieties uz kases aparātu ?"
+    },
+    "couponCode": {
+      "exceedLimit": "Atlaižu kodi pārsniedz daudzuma limitu",
+      "existCode": "Atlaides kods jau pastāv",
+      "list": {
+        "unavailable": "Visi atlaižu kodi ir beigušies"
+      },
+      "notSupport": {
+        "stacked": "Atlaižu kodi nav sakraujami"
+      },
+      "unavailable": "Atlaides kods ir beidzies"
     },
     "discount": {
       "code_error": "Samazināšanas kods bija slikti saprotams",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Turpiniet kā viesis"
     },
     "item": {
-      "add_limit2": "Tā paša produkta maksimālais daudzums ir 999 gabali",
+      "add_limit2": "Tā paša produkta maksimālais daudzums ir 99999 gabali",
       "invalid_product": "Nederīgi produkti",
       "item_left": "{{stock}} rezerves daļas noliktavā",
       "none_existent": "Preču neeksistē",
@@ -214,6 +228,17 @@
       "username": "Vārds",
       "verify_email_message": "Pirms konta slēgšanas mums ir jāpārbauda jūsu identitāte\nJūsu e-pasts {{email}} saņems verifikācijas e-pastu",
       "verify_phone_message": "Pirms konta slēgšanas mums ir jāpārbauda jūsu identitāte\nJūsu mobilais tālrunis {{phone}} saņems verifikācijas ziņojumu"
+    },
+    "activate": {
+      "account_activated": "Konts ir aktivizēts",
+      "apply_code": "Lietot kodu",
+      "apply_success": "Pielietots",
+      "button": "Aktivizēt",
+      "copy_success": "Kopēts kupona kodu",
+      "discount_title": "Aktivizējiet kontu un saņemiet diskonta kodu",
+      "normal_title": "Aktivizējiet kontu",
+      "subscription_text": "Abonējiet e-pastus, lai saņemtu atjauninājumus, piekļūtu ekskluzīviem piedāvājumiem un daudz ko citu.",
+      "success_title": "Apsveicam ar lielas atlaides saņemšanu"
     },
     "address": {
       "add_address": "Pievienojiet jaunu adresi",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Pērciet Amazon",
       "go_to_rakuten_by_link": "Pērciet vietnē LOTTE",
       "go_to_yahoo_by_link": "Pērciet vietnē Yahoo",
+      "in_stock": "Pieejamie krājumi",
+      "inventory_quantity": "Inventāra daudzums",
       "leave_us_message": "Lūdzu, ievadiet savu ziņojumu",
       "leave_us_message_get_back": "Lūdzu, atstājiet mums ziņojumu, un mēs jums atbildēsim, cik drīz vien iespējams",
       "link_preview_does_not_support": "Saites pārskata darbība netiek atbalstīta",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopija",
       "activity_banner_free_shipping": "Bezmaksas piegāde",
       "activity_banner_threshold": "Prasības virs {{threshold}}",
+      "activity_selector_price_high_to_low": "Cena no augstas līdz zemai",
+      "activity_selector_price_low_to_high": "Cena no zemas līdz augstai",
+      "activity_selector_recommended": "Iesakām",
       "apply_common": "Lietot",
       "bundle_save_tip": "saglabāt {{amount}}, pērkot kopā",
       "bundle_title": "Produkti, ko bieži iegādājas kopā",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Kredītkarte"
+    },
+    "reduction_code": {
+      "giftcard": "Dāvanu kartes"
     }
   },
   "transaction": {

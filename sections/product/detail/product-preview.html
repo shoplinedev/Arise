@@ -1,5 +1,5 @@
 ---
-product_comment: 
+product_comment:
   is_plugin: true
 product_activity_config:
   enable: true
@@ -54,20 +54,35 @@ product_activity_config:
   {{assign 'discount_text' sku.skuList.[0].price}}
 {{/if}}
 {{ assign 'brand' (default spu.brand '')}}
+{{ assign 'priceValidUntilAddArgs' (JSONparse '[500000,"second"]') }}
+
 <script type="application/ld+json">
   {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": "{{ spu.title }}",
     "image": ["{{image}}"],
-    "description": "{{ productDesc.description }}",
+    "description": "{{ product.productSeo.desc }}",
     "sku": "{{sku}}",
     "productID": "{{spu.spuSeq}}",
     "brand": {
       "@type": "Brand",
       "name": "{{brand}}"
     },
-    {{#if pluginComment.total}}
+    "gtin": "{{product.sku.skuList.[0].barcode}}",
+    {{#if pluginComment.commentEnable}}
+    "review": {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "{{pluginComment.newestCommentInfo.score}}",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "{{pluginComment.newestCommentInfo.nickName}}"
+      }
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "{{pluginComment.score}}",
@@ -76,6 +91,7 @@ product_activity_config:
     {{/if}}
     "offers": {
       "@type": "Offer",
+      "priceValidUntil": "{{ dayjs method='add,format' add=priceValidUntilAddArgs format='YYYY-MM-DD' }}",
       {{#if (isFalsey spu.inquiry)}}
         "url": "{{shareInfo.url}}",
         "priceCurrency": "{{currencyCode}}",
@@ -284,10 +300,19 @@ product_activity_config:
           "product_custom_tab3": "",
           "product_custom_tab3_fold": true
         }
+      },
+      {
+        "type": "stockNumber",
+        "settings": {
+          "stockNumber": false
+        }
       }
     ]
   },
   "blocks": [
+    {
+      "type": "@app"
+    },
     {
       "type": "title",
       "icon": "title",
@@ -585,6 +610,20 @@ product_activity_config:
           "id": "plainText",
           "limit": 0,
           "label": "t:sections.product_detail_product-preview.blocks.plainText.settings.plainText.label"
+        }
+      ]
+    },
+    {
+      "type": "stockNumber",
+      "icon": "normal",
+      "name": "t:sections.product_detail_product-preview.blocks.stockNumber.name",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "stockNumber",
+          "type": "switch",
+          "label": "t:sections.product_detail_product-preview.blocks.stockNumber.settings.stockNumber.label",
+          "default": false
         }
       ]
     }

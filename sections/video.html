@@ -33,7 +33,7 @@
       <script type="text/json" id="Video-data-{{ section.id }}">{{{ stringify section.settings }}}</script>
       {{#if (boolean section.settings.cover.url)}}
         <div class="video__cover">
-          <img class="video__cover-img lozad" data-src="{{ section.settings.cover.url }}" data-sizes="auto">
+          <img class="video__cover-img lozad" data-src="{{ section.settings.cover.url }}" data-sizes="auto" alt="{{ section.settings.cover.alt }}">
           <div class="video-overlay" style="{{ overlay_background }}">
             {{#if section.settings.url}}
               <div class="video-overlay__button" data-controls="Video-{{ section.id }}">

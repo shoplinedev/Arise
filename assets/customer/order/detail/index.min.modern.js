@@ -8561,7 +8561,7 @@
                 if (!prev) return;
                 return prev && prev.string ? prev.string[current] : prev[current];
             }), window.__I18N__);
-            const regExp = new RegExp(/\{\{([^{}]+)\}\}/g);
+            const regExp = /\{\{([^{}]+)\}\}/g;
             return nullishCoalescingOperator(get_func(value, "replace").exec(regExp, ((...args) => nullishCoalescingOperator(syntax_patch_get(hash, args[1]), args[0]))), path);
         }
         var index_es = __webpack_require__("../shared/browser/node_modules/@sl/logger/lib/index.es.js");
@@ -9127,7 +9127,7 @@
             packageShipCompanyEl.innerText = expressCompany;
             const packageShipNoEl = document.createElement("span");
             packageShipNoEl.className = PackageLogisticsModal_bem("packageShipData-no");
-            packageShipNoEl.innerText = expressCode ? `#${expressCode}` : "";
+            packageShipNoEl.innerText = expressCode ? `${expressCode}` : "";
             if (expressCompany) packageShipDataEl.appendChild(packageShipCompanyEl);
             packageShipDataEl.appendChild(packageShipNoEl);
             packageShipDataWrapEl.appendChild(packageShipDataEl);
@@ -9304,30 +9304,33 @@
             const informationContentEl = document.querySelector(InformationContentElSelector);
             if (!informationContentEl) return;
             const AddressItemDetailContentEl = document.createDocumentFragment();
-            if (telList && 0 !== telList.length) {
-                const addressDetailEl = document.createElement("div");
-                addressDetailEl.className = "information-block";
-                const pEl = document.createElement("div");
-                pEl.className = "information-item";
-                let pElText = "";
-                telList.forEach((addressItemText => {
-                    pElText = `${pElText + addressItemText},`;
-                }));
-                pElText = pElText.replace(/,$/, "");
-                pEl.textContent = pElText;
-                addressDetailEl.appendChild(pEl);
-                AddressItemDetailContentEl.appendChild(addressDetailEl);
-            }
-            if (addressList) {
-                const addressDetailEl = document.createElement("div");
-                addressDetailEl.className = "information-block";
-                addressList.forEach((addressItemText => {
+            {
+                if (telList && 0 !== telList.length) {
+                    const addressDetailEl = document.createElement("div");
+                    addressDetailEl.className = "information-block";
                     const pEl = document.createElement("div");
                     pEl.className = "information-item";
-                    pEl.textContent = `${addressItemText}`;
+                    let pElText = "";
+                    telList.forEach((addressItemText => {
+                        pElText = `${pElText + addressItemText},`;
+                    }));
+                    pElText = pElText.replace(/,$/, "");
+                    pEl.textContent = pElText;
                     addressDetailEl.appendChild(pEl);
-                }));
-                AddressItemDetailContentEl.appendChild(addressDetailEl);
+                    AddressItemDetailContentEl.appendChild(addressDetailEl);
+                }
+                const {shippingRequired = true} = get_default()(pageData, "basicInfo", {}) || {};
+                if (addressList && shippingRequired) {
+                    const addressDetailEl = document.createElement("div");
+                    addressDetailEl.className = "information-block";
+                    addressList.forEach((addressItemText => {
+                        const pEl = document.createElement("div");
+                        pEl.className = "information-item";
+                        pEl.textContent = `${addressItemText}`;
+                        addressDetailEl.appendChild(pEl);
+                    }));
+                    AddressItemDetailContentEl.appendChild(addressDetailEl);
+                }
             }
             informationContentEl.innerHTML = "";
             informationContentEl.appendChild(AddressItemDetailContentEl);
@@ -9372,9 +9375,10 @@
             tmpNode = null;
             return str;
         }
-        function getPayChannelName(payChannelName) {
+        function getPayChannelName(payChannelName, payMethod, defaultDesensitizedPayerAccount) {
             const {value, type} = payChannelName;
             if ("i18n_code" === type) return t(value);
+            if ("GiftCard" === payMethod) return `${value}-(••••${defaultDesensitizedPayerAccount})`;
             return value;
         }
         function renderContentBox(props, instance) {
@@ -9389,10 +9393,10 @@
             boxContentEl.appendChild(mainTitleEL);
             const paymentInfoList = SL_State.get("customer.order.paymentInfoList") || [];
             const payInfo = paymentInfoList && paymentInfoList.find((pay => pay.paySeq === props.paySeq));
-            const {payChannelName, payAmount, payChannelDealId, createTime, updateTime, payStatus} = payInfo || {};
+            const {payChannelName, payAmount, payChannelDealId, createTime, updateTime, payStatus, payMethod, defaultDesensitizedPayerAccount} = payInfo || {};
             const infoList = [ {
                 title: t("cart.payment.channel"),
-                text: getPayChannelName(payChannelName) || "-"
+                text: getPayChannelName(payChannelName, payMethod, defaultDesensitizedPayerAccount) || "-"
             }, {
                 title: t("cart.payment.sum"),
                 isNotranslate: true,
@@ -9540,8 +9544,9 @@
         var dist = __webpack_require__("../shared/browser/node_modules/@yy/sl-http-upload/dist/index.js");
         const toast_LOADING = "loading";
         const toast_getTemplate = (options, type = "default") => {
+            const loadingColor = options.loadingColor || "black";
             const templates = {
-                [toast_LOADING]: `\n      <div class="comment-toast mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="black" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
+                [toast_LOADING]: `\n      <div class="mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="${loadingColor}" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
                 default: `\n      <div class="comment-toast mp-toast mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-toast__content mp-toast__inner">${options.content}</div>\n      </div>\n    `
             };
             return templates[type];

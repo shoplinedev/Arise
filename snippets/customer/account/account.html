@@ -134,7 +134,7 @@
 
       <form class="customer__form" id="delete-account-verify">
         {{#formItem 'verifycode' "class='customer__form-item'"}}
-          {{#snippet 'customer/base/sl-input' attrs='autocomplete="off"' name='verifycode' type='text' placeholder=(t 'customer.general.verification_code')}}
+          {{#snippet 'customer/base/sl-input' attrs='autocomplete="off" maxlength="6"' name='verifycode' type='text' placeholder=(t 'customer.general.verification_code')}}
             {{#child 'suffix'}}
               <button class="btn btn-link customer__send-btn customer__form-item--send">{{ t 'customer.general.send' }}</button>
             {{/child}}

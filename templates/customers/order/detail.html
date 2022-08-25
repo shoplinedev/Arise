@@ -15,7 +15,7 @@
       <div class="detail-status-bar"></div>
       {{snippet 'customer/order/detail/information'}}
       {{snippet 'customer/order/detail/orders-package-list' ordersPackageList=ordersPackageList unshippedItemInfo=unshippedItemInfo }}
-      {{section 'customer/order/detail/summations' pageData=this pageType="orderDetail" settleSumAmount=settleSumAmount }}
+      {{section 'customer/order/detail/summations' pageData=this pageType="orderDetail" settleSumAmount=totalAmount }}
       {{snippet 'customer/order/detail/payment' pageData=this}}
       {{#if otherInfo.buyerRemark}}
         {{snippet 'customer/order/detail/order-remark' content=otherInfo.buyerRemark}}

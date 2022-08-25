@@ -656,6 +656,21 @@
           "info": "[Xem hướng dẫn cài đặt siêu menu như thế nào](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
           "label": "Hiển thị hình ảnh siêu menu"
         },
+        "mega_menu_images_ratio": {
+          "label": " Tỷ lệ hình ảnh menu Mega",
+          "options__0": {
+            "label": "2:1"
+          },
+          "options__1": {
+            "label": "1:1"
+          },
+          "options__2": {
+            "label": "4:3"
+          },
+          "options__3": {
+            "label": "2:3"
+          }
+        },
         "mobile_logo_width": {
           "label": "Độ rộng LOGO giao diện điện thoại"
         },
@@ -677,11 +692,19 @@
         "show_line_separator": {
           "label": "Hiển thị đường phân cách"
         },
+        "show_locale_selector": {
+          "info": "Nếu cần thêm ngôn ngữ, có thể vào phần [Cài đặt ngôn ngữ](/admin/settings/lang)",
+          "label": "Bày ra máy chọn ngôn ngữ"
+        },
         "show_search_entry": {
           "label": "Hiển thị mục nhập tìm kiếm"
         },
         "show_user_entry": {
           "label": "Hiển thị lối vào trung tâm cá nhân"
+        },
+        "suggested_menu": {
+          "info": "Sau khi sắp xếp menu xong, khi lần đầu mở ra để tìm kiếm, sẽ sử dụng thanh munu để đóng góp ý kiến",
+          "label": "Menu kiến nghị"
         }
       }
     },
@@ -1056,6 +1079,74 @@
     "main-page": {
       "name": "Trang tùy chỉnh"
     },
+    "map": {
+      "name": "Bản đồ",
+      "presets": {
+        "presets__0": {
+          "category": "Hiển thị nội dung",
+          "name": "Bản đồ"
+        }
+      },
+      "settings": {
+        "address": {
+          "info": "Nhấp vào nút bấm sẽ nhảy đến địa chỉ bản đồ tương ứng trên Google",
+          "label": "Địa chỉ bản đồ"
+        },
+        "btn_text": {
+          "label": "Nội dung nút"
+        },
+        "google_api_secret_key": {
+          "info": "Sau khi nhập mật khẩu API bản đồ Google xong sẽ lập tức hiển thị bản đồ, [xem phương thức lấy](https://shoplineapphelp.zendesk.com/hc/articles/4411546876313-%E5%A6%82%E4%BD%95%E6%B3%A8%E5%86%8C-Google-Maps-API-%E5%AF%86%E9%92%A5)",
+          "label": "Mật khẩu API bản đồ Google"
+        },
+        "group_header__0": {
+          "label": "Nền"
+        },
+        "image": {
+          "info": "Ảnh hiển thị khi chưa cài đặt bản đồ Google",
+          "label": "Hình ảnh"
+        },
+        "image_position": {
+          "label": "Khu vực hiển thị ảnh",
+          "options__0": {
+            "label": "Phía trên bên trái"
+          },
+          "options__1": {
+            "label": "Phía trên chính giữa"
+          },
+          "options__2": {
+            "label": "Phía trên bên phải"
+          },
+          "options__3": {
+            "label": "Mặt phải"
+          },
+          "options__4": {
+            "label": "Chính giữa"
+          },
+          "options__5": {
+            "label": "Bên phải"
+          },
+          "options__6": {
+            "label": "Phía dưới bên trái"
+          },
+          "options__7": {
+            "label": "Phía dưới chính giữa"
+          },
+          "options__8": {
+            "label": "Phía dưới bên phải"
+          }
+        },
+        "pushpin": {
+          "label": "Hiển thị ghim ảnh"
+        },
+        "store_info": {
+          "label": "Địa chỉ và thời gian kinh doanh"
+        },
+        "title": {
+          "label": "Tiêu đề"
+        }
+      }
+    },
     "multi-media-splicing": {
       "blocks": {
         "collection": {
@@ -1328,6 +1419,9 @@
         "group_header__0": {
           "label": "Hình sản phẩm"
         },
+        "group_header__1": {
+          "label": "Bộ lọc thanh bên"
+        },
         "per_page_num": {
           "label": "Số lượng sản phẩmtrên mỗi trang"
         },
@@ -1534,6 +1628,14 @@
               "options__1": {
                 "label": "Khung kéo xuống"
               }
+            }
+          }
+        },
+        "stockNumber": {
+          "name": "Hiển thị số lượng hàng tồn kho",
+          "settings": {
+            "stockNumber": {
+              "label": "Hiển thị số lượng hàng tồn kho"
             }
           }
         },
@@ -1885,6 +1987,9 @@
             "overlay_opacity": {
               "label": "Che hình ảnh"
             },
+            "show_text_shadow": {
+              "label": "Hiển thị các bóng văn bản"
+            },
             "subheading": {
               "label": "Nội dung chính"
             },
@@ -1995,6 +2100,18 @@
           },
           "options__3": {
             "label": "Điểm tròn nhỏ"
+          }
+        },
+        "transition_type": {
+          "label": "Hiệu ứng quá độ",
+          "options__0": {
+            "label": "Đơn giản"
+          },
+          "options__1": {
+            "label": "Lướt"
+          },
+          "options__2": {
+            "label": "Thu phóng"
           }
         }
       }
@@ -2203,6 +2320,9 @@
         }
       },
       "settings": {
+        "autoplay": {
+          "label": "Tự động phát video"
+        },
         "background_position": {
           "label": "Khu vực hiển thị hình trang bìa",
           "options__0": {
@@ -2256,6 +2376,9 @@
         },
         "loop": {
           "label": "Vòng"
+        },
+        "quiet": {
+          "label": "Tự động phát có bị không có tiếng không?"
         },
         "title": {
           "label": "Tiêu đề"
@@ -2994,6 +3117,15 @@
           },
           "options__1": {
             "label": "Hiển thị tỉ lệ ưu đãi"
+          }
+        },
+        "product_discount_tag_style": {
+          "label": "Nhãn ưu đãi",
+          "options__0": {
+            "label": "thẻ giảm giá"
+          },
+          "options__1": {
+            "label": "lưu thẻ"
           }
         },
         "product_mobile_title_show": {

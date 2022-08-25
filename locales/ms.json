@@ -31,8 +31,22 @@
       "subtotal": "Subjumlah",
       "tax_included": "Termasuk cukai"
     },
+    "checkout": {
+      "max_amount_limit": "Anda melebihi jumlah maksimum untuk pembayaran"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Produk di bawah melebihi had pembelian, masih meneruskan ke semak keluar?"
+    },
+    "couponCode": {
+      "exceedLimit": "Kod diskaun melebihi had kuantiti",
+      "existCode": "Kod diskaun sudah wujud",
+      "list": {
+        "unavailable": "Semua kod diskaun telah tamat tempoh"
+      },
+      "notSupport": {
+        "stacked": "Kod diskaun tidak boleh disusun"
+      },
+      "unavailable": "Kod diskaun telah tamat tempoh"
     },
     "discount": {
       "code_error": "Masukkan kupon yang sah",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Teruskan sebagai tetamu"
     },
     "item": {
-      "add_limit2": "Kuantiti maksimum bagi produk tunggal ialah 999 unit",
+      "add_limit2": "Kuantiti maksimum bagi produk tunggal ialah 99999 unit",
       "invalid_product": "Produk yang tidak sah",
       "item_left": "{{stock}} unit dalam stok",
       "none_existent": "Barang tak ada",
@@ -214,6 +228,17 @@
       "username": "Nama",
       "verify_email_message": "Sebelum menutup akaun, kami perlu mengesahkan identiti anda\nE-mel anda {{email}} akan menerima satu e-mel pengesahan",
       "verify_phone_message": "Sebelum menutup akaun, kami perlu mengesahkan identiti anda\nTelefon mudah alih anda {{phone}} akan menerima satu mesej pengesahan"
+    },
+    "activate": {
+      "account_activated": "Akaun telah diaktifkan",
+      "apply_code": "Gunakan Kod",
+      "apply_success": "Digunakan",
+      "button": "Aktifkan",
+      "copy_success": "Kod kupon disalin",
+      "discount_title": "Aktifkan akaun dan dapatkan kod diskaun",
+      "normal_title": "Aktifkan akaun",
+      "subscription_text": "Langgan e-mel untuk menerima kemas kini, akses kepada tawaran eksklusif dan pelbagai lagi.",
+      "success_title": "Tahniah kerana mendapat jumlah diskaun yang hebat"
     },
     "address": {
       "add_address": "Tambah Alamat Baharu",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Beli dalam Amazon",
       "go_to_rakuten_by_link": "Beli dalam LOTTE",
       "go_to_yahoo_by_link": "Beli dalam Yahoo",
+      "in_stock": "Stok tersedia",
+      "inventory_quantity": "Bilangan inventori",
       "leave_us_message": "Sila masukkan mesej anda",
       "leave_us_message_get_back": "Sila tinggalkan mesej buat kami dan kami akan menghubungi anda secepat mungkin",
       "link_preview_does_not_support": "Operasi untuk pratonton pautan tidak disokong",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Salinan",
       "activity_banner_free_shipping": "Penghantaran Percuma",
       "activity_banner_threshold": "Pesanan melebihi {{threshold}}",
+      "activity_selector_price_high_to_low": "Harga tinggi ke rendah",
+      "activity_selector_price_low_to_high": "Harga rendah ke tinggi",
+      "activity_selector_recommended": "Disyorkan",
       "apply_common": "Gunakan",
       "bundle_save_tip": "Jimat {{amount}} untuk pembelian bersama",
       "bundle_title": "Beli bersama dengan kerap",
@@ -674,6 +704,9 @@
       "Paypal": "PayPal",
       "adjustPay": "manual",
       "third-part": "Kad Kredit"
+    },
+    "reduction_code": {
+      "giftcard": "Kad Hadiah"
     }
   },
   "transaction": {

@@ -1,7 +1,49 @@
 {{assign 'animation_row' 1 }}
 
+{{assign 'locale_selector' false}}
+{{#if (boolean section.settings.show_locale_selector '&&' storeInfo.languageSetting.enableSelector)}}
+	{{assign 'locale_selector' true}}
+{{/if}}
+
 <div data-ssr-plugin-wishlist="menu-drawer" class="drawer-menu__container">
   <div class="drawer-menu__wrapper">
     {{snippet 'drawer-menu-nav' animation_row=animation_row }}
+
+    {{#with this as |global|}}
+      <div class="grid">
+          {{#if global.locale_selector}}
+              {{#with global}}
+                  {{assign 'animation_row' (plus global.animation_row 1)}}
+              {{/with}}
+              <div class="split-bottom stage-drawer__animation--appear appear-delay-{{ animation_row }}"></div>
+              <div class="grid__item stage-drawer__animation--appear appear-delay-{{ global.animation_row }}">
+                  <span class="click body5 locale-currency mobile-nav__link notranslate j-stage-locale __sl-custom-track-stage-locale" data-drawer="menu-drawer-locale">
+                      <span>{{nameOfLocale global.request.locale}}</span>
+                      {{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
+                  </span>
+              </div>
+          {{/if}}
+      </div>
+    {{/with}}
   </div>
 </div>
+
+{{#if locale_selector}}
+	{{assign 'sub_animation_row' 1 }}
+	{{#snippet 'global_drawer' id="menu-drawer-locale" position=drawer_position level=2}}
+		{{#with this as |global|}}
+			<ul class="drawer-menu-locale-currency locale-currency" data-locale>
+				{{#each (traditionalFilter storeInfo.languageSetting.supportLanguages)}}
+					<li class="text-left stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row }} " data-alias="{{this}}" data-name="{{nameOfLocale this}}">
+						{{#with global}}
+							{{assign 'sub_animation_row' (plus global.sub_animation_row 1)}}
+						{{/with}}
+						<span class="click">
+							<span class="notranslate body5 align-middle">{{nameOfLocale this}}</span>
+						</span>
+					</li>
+				{{/each}}
+			</ul>
+		{{/with}}
+	{{/snippet}}
+{{/if}}

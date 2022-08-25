@@ -31,8 +31,22 @@
       "subtotal": "Välisumma",
       "tax_included": "Sisältäen verot"
     },
+    "checkout": {
+      "max_amount_limit": "Ylitit kassalle maksettavan enimmäissumman"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Alla olevat tuotteet ylittävät ostorajan, siirrytäänkö silti kassalle?"
+    },
+    "couponCode": {
+      "exceedLimit": "Alennuskoodit ylittävät määrärajan",
+      "existCode": "Alennuskoodi on jo olemassa",
+      "list": {
+        "unavailable": "Kaikki alennuskoodit ovat vanhentuneet"
+      },
+      "notSupport": {
+        "stacked": "Alennuskoodeja ei voi pinota"
+      },
+      "unavailable": "Alennuskoodi on vanhentunut"
     },
     "discount": {
       "code_error": "Alennuskoodi on syötetty väärin",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Jatka vieraana"
     },
     "item": {
-      "add_limit2": "Yhden tuotteen enimmäismäärä on 999 kappaletta",
+      "add_limit2": "Yhden tuotteen enimmäismäärä on 99999 kappaletta",
       "invalid_product": "Tuotteet, joita alennus ei koske",
       "item_left": "{{stock}} kpl varastossa",
       "none_existent": "Tavaransa ovat olemattomat",
@@ -214,6 +228,17 @@
       "username": "Nimi",
       "verify_email_message": "Ennen tilin sulkemista meidän on vahvistettava henkilöllisyytesi\nSaat sähköpostiisi {{email}} vahvistussähköpostin",
       "verify_phone_message": "Ennen tilin sulkemista meidän on vahvistettava henkilöllisyytesi\nSaat puhelimeesi {{phone}} vahvistusviestin"
+    },
+    "activate": {
+      "account_activated": "Tili on aktivoitu",
+      "apply_code": "Käytä koodia",
+      "apply_success": "Sovellettu",
+      "button": "Aktivoida",
+      "copy_success": "Kuponkikoodi kopioitu",
+      "discount_title": "Aktivoi tili ja hanki alennuskoodi",
+      "normal_title": "Aktivoi tili",
+      "subscription_text": "Tilaa sähköposteja saadaksesi päivityksiä, käyttääksesi eksklusiivisia tarjouksia ja paljon muuta.",
+      "success_title": "Onnittelut suuren alennuksen saamisesta"
     },
     "address": {
       "add_address": "Lisää uusi osoite",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Osta Amazonista",
       "go_to_rakuten_by_link": "Osta LOTTESTA",
       "go_to_yahoo_by_link": "Osta Yahoosta",
+      "in_stock": "Varastossa saatavilla",
+      "inventory_quantity": "Varaston määrä",
       "leave_us_message": "Kirjoita tähän viestisi",
       "leave_us_message_get_back": "Jätäthän meille viestin ja olemme Sinuun päin yhteydessä mahdollisimman pian.",
       "link_preview_does_not_support": "Linkin esikatselun toimintaa ei tueta",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopioida",
       "activity_banner_free_shipping": "Ilmainen toimitus",
       "activity_banner_threshold": "Pyynnöt yli {{threshold}}",
+      "activity_selector_price_high_to_low": "Hinta korkeasta matalaan",
+      "activity_selector_price_low_to_high": "Hinta alhaisesta korkeaan",
+      "activity_selector_recommended": "Suosituksia",
       "apply_common": "Lähetä",
       "bundle_save_tip": "Säästä {{amount}} ostaessasi tuotteet yhdessä",
       "bundle_title": "Usein yhdessä ostetut tuotteet",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Credit-kortti"
+    },
+    "reduction_code": {
+      "giftcard": "Lahjakortit"
     }
   },
   "transaction": {

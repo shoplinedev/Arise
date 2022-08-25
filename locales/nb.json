@@ -31,8 +31,22 @@
       "subtotal": "Delsum",
       "tax_included": "Avgift inkludert"
     },
+    "checkout": {
+      "max_amount_limit": "Du har overskredet maksimumsbeløpet for utsjekking"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Nedenfor produkter overskrider kjøpsgrensen, fortsetter du fortsatt til kassen?"
+    },
+    "couponCode": {
+      "exceedLimit": "Rabattkoder overskrider mengdegrensen",
+      "existCode": "Rabattkoden finnes allerede",
+      "list": {
+        "unavailable": "Alle rabattkoder er utløpt"
+      },
+      "notSupport": {
+        "stacked": "Rabattkoder kan ikke stables"
+      },
+      "unavailable": "Rabattkoden er utløpt"
     },
     "discount": {
       "code_error": "Rabattkoden er feil oppgitt",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Fortsett som gjest"
     },
     "item": {
-      "add_limit2": "Maksimumsantallet for ett enkelt produkt er 999 deler",
+      "add_limit2": "Maksimumsantallet for ett enkelt produkt er 99999 deler",
       "invalid_product": "Ugyldige produkter",
       "item_left": "{{stock}}-stykker på lager",
       "none_existent": "Produktet eksisterer ikke",
@@ -214,6 +228,17 @@
       "username": "Navn",
       "verify_email_message": "Før du avslutter kontoen din, må vi bekrefte identiteten din\nE-post {{email}} mottar bekreftelses-e-post",
       "verify_phone_message": "Før du avslutter kontoen din, må vi bekrefte identiteten din\nMobiltelefonen {{phone}} mottar bekreftelses melding"
+    },
+    "activate": {
+      "account_activated": "Kontoen er aktivert",
+      "apply_code": "Bruk kode",
+      "apply_success": "Anvendt",
+      "button": "Aktivere",
+      "copy_success": "Kopiert kupongkode",
+      "discount_title": "Aktiver konto og få rabattkoden",
+      "normal_title": "Aktiver konto",
+      "subscription_text": "Abonner på e-post for å motta oppdateringer, få tilgang til eksklusive tilbud og mer.",
+      "success_title": "Gratulerer med å få en god rabatt"
     },
     "address": {
       "add_address": "Legg Til ny Adresse",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Kjøp i Amazon",
       "go_to_rakuten_by_link": "Kjøp i LOTTE",
       "go_to_yahoo_by_link": "Kjøp i Yahoo",
+      "in_stock": "På lager",
+      "inventory_quantity": "Lagerstørrelsen",
       "leave_us_message": "Skriv inn meldingen",
       "leave_us_message_get_back": "Legg igjen en beskjed, så ringer vi tilbake så snart som mulig",
       "link_preview_does_not_support": "Operasjonen for forhåndsvisning av kobling støttes ikke",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopiere",
       "activity_banner_free_shipping": "Gratis frakt",
       "activity_banner_threshold": "Forespørsler over {{threshold}}",
+      "activity_selector_price_high_to_low": "Pris høy til lav",
+      "activity_selector_price_low_to_high": "Pris lav til høy",
+      "activity_selector_recommended": "Foreslå",
       "apply_common": "Bruke",
       "bundle_save_tip": "Sparet {{amount}} for å kjøpe sammen",
       "bundle_title": "Ofte kjøpt sammen",
@@ -674,6 +704,9 @@
       "Paypal": "PayPal",
       "adjustPay": "manual",
       "third-part": "Kredittkort"
+    },
+    "reduction_code": {
+      "giftcard": "Gavekort"
     }
   },
   "transaction": {

@@ -31,8 +31,22 @@
       "subtotal": "Subtotal",
       "tax_included": "Impuesto incluido"
     },
+    "checkout": {
+      "max_amount_limit": "Has superado el importe máximo para pagar"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Los siguientes artículos exceden la restricción de compra, ¿continúa pagando?"
+    },
+    "couponCode": {
+      "exceedLimit": "Los códigos de descuento superan el límite de cantidad",
+      "existCode": "El código de descuento ya existe",
+      "list": {
+        "unavailable": "Todos los códigos de descuento han caducado"
+      },
+      "notSupport": {
+        "stacked": "Los códigos de descuento no son acumulables"
+      },
+      "unavailable": "El código de descuento ha caducado"
     },
     "discount": {
       "code_error": "Introduce un código de descuento válido",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Continúa accediendo como visitante"
     },
     "item": {
-      "add_limit2": "Se puede agregar hasta 999 artículos al carrito",
+      "add_limit2": "Se puede agregar hasta 99999 artículos al carrito",
       "invalid_product": "Artículos inválidos",
       "item_left": "Queda {{stock}} artículo(s)",
       "none_existent": "El artículo no existe",
@@ -214,6 +228,17 @@
       "username": "Nombre",
       "verify_email_message": "Necesitamos verificar su identidad antes de que pueda cancelar su cuenta.Su dirección de correo electrónico {{email}} recibirá un código de verificación",
       "verify_phone_message": "Necesitamos verificar su identidad antes de que pueda cancelar su cuenta.Su teléfono móvil {{phone}} recibirá un mensaje de texto de verificación"
+    },
+    "activate": {
+      "account_activated": "La cuenta se ha activado",
+      "apply_code": "Aplicar código de descuento",
+      "apply_success": "Aplicado",
+      "button": "Activar",
+      "copy_success": "Cupón copiado",
+      "discount_title": "Activar cuenta y obtener código de descuento",
+      "normal_title": "Activar cuenta",
+      "subscription_text": "Suscríbase por correo electrónico para recibir actualizaciones, acceder a ofertas exclusivas y más.",
+      "success_title": "Enhorabuena por conseguir el descuento"
     },
     "address": {
       "add_address": "Agregar nueva dirección",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Comprar en Amazon",
       "go_to_rakuten_by_link": "Comprar en LOTTE",
       "go_to_yahoo_by_link": "Comprar en Yahoo",
+      "in_stock": "Disponible",
+      "inventory_quantity": "Número de inventario",
       "leave_us_message": "Completa el mensaje",
       "leave_us_message_get_back": "Deja tu contenido para la consulta, te responderemos lo antes posible",
       "link_preview_does_not_support": "No se admite la operación para la previsualización de URL.",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Copiar",
       "activity_banner_free_shipping": "Envío gratuito",
       "activity_banner_threshold": "Pedido más de {{threshold}}",
+      "activity_selector_price_high_to_low": "Precio alto a bajo",
+      "activity_selector_price_low_to_high": "Precio bajo a alto",
+      "activity_selector_recommended": "Recomendación",
       "apply_common": "Aplicar",
       "bundle_save_tip": "Ahorrará {{amount}} al comprar juntos",
       "bundle_title": "Los clientes que compraron este artículo también compraron",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Tarjeta de crédito"
+    },
+    "reduction_code": {
+      "giftcard": "Tarjeta de regalo"
     }
   },
   "transaction": {

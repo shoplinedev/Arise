@@ -68,7 +68,7 @@
       "
       >
         {{#if section.settings.title}}
-            <div class="text-columns-with-images__title section-title title4 text-center">{{ section.settings.title }}</div>
+            <h2 class="text-columns-with-images__title section-title title4 text-center">{{ section.settings.title }}</h2>
         {{/if}}
         {{ assign 'isMobileRowsMode' false }}
         {{#and (isFalsey show_touch) (boolean mdCols '==' 2)}} 
@@ -84,9 +84,9 @@
                 {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align }}
               </div>
               
-              <div class="text-columns-with-images__inner d-md-none d-block {{ ../container-wrapper-cls }}">                
+              <div class="text-columns-with-images__inner d-md-none d-flex {{ ../container-wrapper-cls }}">                
                 {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align isMobileRowsMode=../isMobileRowsMode }}
-              </div>  
+              </div>
             {{/each}}
           </div>
 

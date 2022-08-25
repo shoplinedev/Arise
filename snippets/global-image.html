@@ -9,8 +9,8 @@
 
 {{#if (or is_auto_scale is_custom_scale)}}
   {{#if is_auto_scale}}
-    {{ assign 'image_width' (default image.width 1) }}
-    {{ assign 'image_height' (default image.height (multiply image_width (default empty-scale 1))) }}
+    {{ assign 'image_width' (default (get 'width' (img_size image.url)) 1) }}
+    {{ assign 'image_height' (default (get 'height' (img_size image.url)) (multiply image_width (default empty-scale 1))) }}
     {{ assign 'image_scale' (divide image_height image_width) }}
   {{else}}
     {{ assign 'image_scale' scale }}

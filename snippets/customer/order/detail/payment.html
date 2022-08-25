@@ -6,7 +6,7 @@
         {{t 'cart.payment.method'}}
       </div>
       <div class="content-pay-value">
-        {{snippet 'customer/order/detail/payment-method' payMethod=pageData.payInfo.payMethodName}}
+        {{snippet 'customer/order/detail/payment-method' payChannelName=pageData.payInfo.payMethodName}}
       </div>
     </div>
     <div class="content-pay">
@@ -17,7 +17,7 @@
         {{#each pageData.paymentInfoList}}
           <p key="{{orderSeq}}" class="content-pay-value-status">
             <span>
-              {{snippet 'customer/order/detail/payment-method' payMethod=payChannelName}} -
+              {{snippet 'customer/order/detail/payment-method' payChannelName=payChannelName payMethod=payMethod defaultDesensitizedPayerAccount=defaultDesensitizedPayerAccount}} -
             </span>
             <span class="notranslate" data-amount="{{payAmount}}"> {{currency_convert payAmount}}</span>
             <a data-pay-seq="{{paySeq}}" data-index="{{index}}" class="content-pay-value-status-detail">

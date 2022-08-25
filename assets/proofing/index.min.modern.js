@@ -5514,7 +5514,7 @@
             const options = {
                 debug: false,
                 environment: APP_ENV,
-                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_036928298"}`,
+                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_a3067104f"}`,
                 dsn: (0, get_env["default"])(void 0 || "SENTRY_DSN") || "",
                 autoSessionTracking: false,
                 ignoreErrors: [ "ReportingObserver [deprecation]" ],

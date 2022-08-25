@@ -31,8 +31,22 @@
       "subtotal": "Subtotal",
       "tax_included": "Skat inkluderet"
     },
+    "checkout": {
+      "max_amount_limit": "Du har overskredet det maksimale beløb for betaling"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Under produkterne overskrider købsgrænsen, fortsætter du stadig med at tjekke ud?"
+    },
+    "couponCode": {
+      "exceedLimit": "Rabatkoder overstiger mængdegrænsen",
+      "existCode": "Rabatkoden findes allerede",
+      "list": {
+        "unavailable": "Alle rabatkoder er udløbet"
+      },
+      "notSupport": {
+        "stacked": "Rabatkoder kan ikke stables"
+      },
+      "unavailable": "Rabatkoden er udløbet"
     },
     "discount": {
       "code_error": "Rabatkoden er angivet forkert",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Fortsæt som gæst"
     },
     "item": {
-      "add_limit2": "Den maksimale mængde af et enkelt produkt er 999 stk.",
+      "add_limit2": "Den maksimale mængde af et enkelt produkt er 99999 stk.",
       "invalid_product": "Ugyldige produkter",
       "item_left": "{{stock}} stykker på lager",
       "none_existent": "Varer findes ikke",
@@ -214,6 +228,17 @@
       "username": "Navn",
       "verify_email_message": "Hvis du lukker kontoen før, skal vi bekræfte din identitet\nDin e-mail {{email}} modtager en bekræftelsesmail",
       "verify_phone_message": "Hvis du lukker kontoen før, skal vi bekræfte din identitet\nDin mobiltelefon {{phone}} modtager en bekræftelsesmeddelelse"
+    },
+    "activate": {
+      "account_activated": "Kontoen er aktiveret",
+      "apply_code": "Brug kode",
+      "apply_success": "Anvendt",
+      "button": "Aktiver",
+      "copy_success": "Kopieret kuponkode",
+      "discount_title": "Aktivér konto og få rabatkoden",
+      "normal_title": "Aktivér konto",
+      "subscription_text": "Abonner på e-mail for at modtage opdateringer, få adgang til eksklusive tilbud og meget mere.",
+      "success_title": "Tillykke med at få en god rabat"
     },
     "address": {
       "add_address": "Tilføj ny adresse",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Køb i Amazona",
       "go_to_rakuten_by_link": "Køb i LOTTE",
       "go_to_yahoo_by_link": "Køb i Yahoo",
+      "in_stock": "Lager tilgængelig",
+      "inventory_quantity": "Lagerantal",
       "leave_us_message": "Indtast din besked",
       "leave_us_message_get_back": "Lad os få en besked, og så vender vi tilbage til Dem så hurtigt som muligt",
       "link_preview_does_not_support": "Handlingen for eksempelvisningen af kæden understøttes ikke",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopie",
       "activity_banner_free_shipping": "Gratis forsendelse",
       "activity_banner_threshold": "Anmodninger over {{threshold}}",
+      "activity_selector_price_high_to_low": "Pris høj til lav",
+      "activity_selector_price_low_to_high": "Pris lav til høj",
+      "activity_selector_recommended": "Anbefale",
       "apply_common": "Anvend",
       "bundle_save_tip": "Gem {{amount}} til at købe sammen",
       "bundle_title": "Ofte købt sammen",
@@ -674,6 +704,9 @@
       "Paypal": "Betaling",
       "adjustPay": "manual",
       "third-part": "Kreditkort"
+    },
+    "reduction_code": {
+      "giftcard": "Gavekort"
     }
   },
   "transaction": {

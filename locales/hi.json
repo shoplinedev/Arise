@@ -31,8 +31,22 @@
       "subtotal": "उप-योग",
       "tax_included": "टैक्स शामिल"
     },
+    "checkout": {
+      "max_amount_limit": "आपने चेकआउट के लिए अधिकतम राशि पार कर ली है"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "नीचे के उत्पाद खरीदारी की सीमा से अधिक हैं, फिर भी चेकआउट के लिए आगे बढ़ें?"
+    },
+    "couponCode": {
+      "exceedLimit": "डिस्काउंट कोड मात्रा सीमा से अधिक है",
+      "existCode": "डिस्काउंट कोड पहले से मौजूद है",
+      "list": {
+        "unavailable": "सभी छूट कोड समाप्त हो गए हैं"
+      },
+      "notSupport": {
+        "stacked": "डिस्काउंट कोड स्टैकेबल नहीं हैं"
+      },
+      "unavailable": "डिस्काउंट कोड समाप्त हो गया है"
     },
     "discount": {
       "code_error": "छूट कोड गलत दर्ज किया गया है",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "अतिथि के रूप में जारी रखें"
     },
     "item": {
-      "add_limit2": "एक उत्पाद की अधिकतम राशि 999 पीस है",
+      "add_limit2": "एक उत्पाद की अधिकतम राशि 99999 पीस है",
       "invalid_product": "अमान्य उत्पाद",
       "item_left": "{{stock}} स्टॉक में है",
       "none_existent": "सामग्री उपलब्ध नहीं है",
@@ -214,6 +228,17 @@
       "username": "नाम",
       "verify_email_message": "खाता बंद करने से पहले, हमें आपकी पहचान सत्यापित करनी होगी\nआपके ईमेल {{email}} पर एक सत्यापन ईमेल मिलेगा",
       "verify_phone_message": "खाता बंद करने से पहले, हमें आपकी पहचान सत्यापित करनी होगी\nआपके मोबाइल फ़ोन {{phone}} को एक सत्यापन संदेश प्राप्त होगा"
+    },
+    "activate": {
+      "account_activated": "खाता सक्रिय कर दिया है",
+      "apply_code": "कूपन कोड डालें",
+      "apply_success": "लागू",
+      "button": "सक्रिय करें",
+      "copy_success": "कूपन कोड कॉपी किया गया",
+      "discount_title": "खाता सक्रिय करें और छूट कोड पाएं",
+      "normal_title": "खाते को सक्रिय करें",
+      "subscription_text": "विशेष सौदों तक पहुंच, और बहुत कुछ ईमेल से अपडेट पाने के लिए सदस्यता लें।",
+      "success_title": "अच्छा छूट मिलने पर बधाई कोड"
     },
     "address": {
       "add_address": "नया पता जोड़ें",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Amazon से खरीदें",
       "go_to_rakuten_by_link": "LOTTE में खरीदें",
       "go_to_yahoo_by_link": "Yahoo में खरीदें",
+      "in_stock": "स्टॉक में",
+      "inventory_quantity": "इन्वेंटरी मात्रा",
       "leave_us_message": "कृपया अपना संदेश लिखें",
       "leave_us_message_get_back": "कृपया हमें एक संदेश दें और हम जल्द से जल्द आपसे संपर्क करेंगे",
       "link_preview_does_not_support": "लिंक पूर्वावलोकन संचालन समर्थित नहीं है",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "कॉपी करें",
       "activity_banner_free_shipping": "शिपिंग मुफ्त",
       "activity_banner_threshold": "{{threshold}} से ज्यादा ऑर्डर",
+      "activity_selector_price_high_to_low": "अधिक से कम मूल्य",
+      "activity_selector_price_low_to_high": "मूल्य नीचे से ऊपर",
+      "activity_selector_recommended": "सिफारिश की गई",
       "apply_common": "प्रयोग करें",
       "bundle_save_tip": "एक साथ खरीदारी करने पर {{amount}} बचाएं",
       "bundle_title": "अक्सर एक साथ खरीदे जाते है",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "क्रेडिट कार्ड"
+    },
+    "reduction_code": {
+      "giftcard": "गिफ्ट कार्ड"
     }
   },
   "transaction": {

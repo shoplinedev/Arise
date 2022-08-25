@@ -31,8 +31,22 @@
       "subtotal": "Subtotaal",
       "tax_included": "Inclusief belasting"
     },
+    "checkout": {
+      "max_amount_limit": "Je hebt het maximale bedrag voor het afrekenen overschreden"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "De volgende artikelen hebben de aankoop limiet overschreden, wilt u doorgaan met afrekenen?"
+    },
+    "couponCode": {
+      "exceedLimit": "Kortingscodes overschrijden de hoeveelheidslimiet",
+      "existCode": "Kortingscode bestaat al",
+      "list": {
+        "unavailable": "Alle kortingscodes zijn verlopen"
+      },
+      "notSupport": {
+        "stacked": "Kortingscodes zijn niet stapelbaar"
+      },
+      "unavailable": "Kortingscode is verlopen"
     },
     "discount": {
       "code_error": "Fout bij kortingscode invullen",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Belijven bezoeken als een gast"
     },
     "item": {
-      "add_limit2": "U kunt maximaal 999 stuks toevoegen aan de winkelwagen",
+      "add_limit2": "U kunt maximaal 99999 stuks toevoegen aan de winkelwagen",
       "invalid_product": "INACTIEVE LIJST",
       "item_left": "{{stock}} stukken overblijven",
       "none_existent": "Item bestaat niet",
@@ -214,6 +228,17 @@
       "username": "Naam",
       "verify_email_message": "Voordat u uw account kunt verwijderen, moeten wij uw identiteit verifiëren.Uw emailadres {{email}} zal een verificatiecode ontvangen",
       "verify_phone_message": "Wij moeten uw identiteit verifiëren voordat wij u kunnen verwijderen.Uw telefoon {{phone}} zal een verificatie-sms ontvangen"
+    },
+    "activate": {
+      "account_activated": "De account is geactiveerd",
+      "apply_code": "Kortingscode toepassen",
+      "apply_success": "Toegepast",
+      "button": "Activeren",
+      "copy_success": "De bon is gekopieerd",
+      "discount_title": "Activeer account en ontvang een kortingscode",
+      "normal_title": "Activeer account",
+      "subscription_text": "Meld u aan voor e-mails om updates te ontvangen, toegang tot exclusieve aanbiedingen en meer.",
+      "success_title": "Gefeliciteerd met het krijgen van een korting"
     },
     "address": {
       "add_address": "Nieuw adres toevoegen",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Ga winkelen bij Amazon",
       "go_to_rakuten_by_link": "Ga winkelen bij Rakuten",
       "go_to_yahoo_by_link": "Ga winkelen bij Yahoo",
+      "in_stock": "Voorraad beschikbaar",
+      "inventory_quantity": "Aantal inventaris",
       "leave_us_message": "Vul de bericht in",
       "leave_us_message_get_back": "Laat een bericht achter met uw vraag en wij zullen zo spoedig mogelijk contact met u opnemen",
       "link_preview_does_not_support": "De voorbeeldlink ondersteunt deze bewerking niet",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopiëren",
       "activity_banner_free_shipping": "Gratis verzending",
       "activity_banner_threshold": "Bestellingen over {{threshold}}",
+      "activity_selector_price_high_to_low": "Prijs van hoog naar laag",
+      "activity_selector_price_low_to_high": "Prijs van laag naar hoog",
+      "activity_selector_recommended": "Aanraden",
       "apply_common": "Toepassen",
       "bundle_save_tip": "Koop samen en bespaar {{amount}}",
       "bundle_title": "Vaak samen gekocht",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Kredietkaart"
+    },
+    "reduction_code": {
+      "giftcard": "Cadeaubonnen"
     }
   },
   "transaction": {

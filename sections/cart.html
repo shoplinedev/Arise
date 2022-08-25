@@ -12,14 +12,14 @@
 
 {{ preload_state 'cartInfo' 'variants' }}
 
-<div class="trade_cart_empty_wrapper{{#if cartInfo.count '!=' 0}} hide{{/if}}">
+<div class="trade_cart_empty_wrapper{{#if cartInfo.count '>' 0}} hide{{/if}}">
   <main class="main_wrapper" role="main">
     {{ snippet 'trade/cart-title' }}
     {{ snippet 'trade/cart-empty' }}
     {{ snippet 'trade/cart-continue-btn' is_empty=true }}
   </main>
 </div>
-<div class="trade_cart_not_empty_wrapper{{#if cartInfo.count '==' 0}} hide{{/if}}">
+<div class="trade_cart_not_empty_wrapper{{#unless (boolean cartInfo.count '>' 0)}} hide{{/unless}}">
   <div class="trade_cart_title_wrapper">
     {{ snippet 'trade/cart-title' }}
   </div>
@@ -37,6 +37,7 @@
         {{ snippet 'trade/coupon' trade_cart_type='main' }}
         {{!-- 金额汇总 --}}
         {{ snippet 'trade/summations' }}
+        {{ snippet 'trade/cart-amount-error-alert' totalAmount=cartInfo.totalAmount }}
         {{!-- 结账信息底部插槽 --}}
         <div class="slot-cart slot-cart-calculation-end" data-slot-cart-calculation-end></div>
         {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_top' }}
@@ -53,6 +54,7 @@
   <div class="cart__stick_container">
     {{!-- 金额汇总 --}}
     {{ snippet 'trade/summations' }}
+    {{ snippet 'trade/cart-amount-error-alert' totalAmount=cartInfo.totalAmount }}
     {{!-- 结账信息底部插槽 --}}
     <div class="slot-cart slot-cart-calculation-end" data-slot-cart-calculation-end></div>
     {{ snippet 'trade/cart-shopping-money-desc' classes='trade_money_desc_top' }}
@@ -62,7 +64,6 @@
     {{!-- 结算模块底部插槽 --}}
     <div class="slot-cart slot-cart-checkout-end slot-cart-checkout-end_top" data-slot-cart-checkout-end></div>
   </div>
-  {{ snippet 'trade/commons/base-modal' modalId='sku-filter' }}
 </div>
 {{!-- 商品列表底部插槽 --}}
 <div class="slot-cart slot-cart-list-end" data-slot-cart-list-end></div>

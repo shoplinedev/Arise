@@ -31,8 +31,22 @@
       "subtotal": "Részösszeg",
       "tax_included": "Tartalmazza az adót"
     },
+    "checkout": {
+      "max_amount_limit": "Túllépte a fizetéshez szükséges maximális összeget"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Az alábbi termékek elérik a vásárlási korlátot, mégis folytatja a fizetést?"
+    },
+    "couponCode": {
+      "exceedLimit": "A kedvezménykódok túllépik a mennyiségi limitet",
+      "existCode": "A kedvezmény kód már létezik",
+      "list": {
+        "unavailable": "Minden kedvezménykód lejárt"
+      },
+      "notSupport": {
+        "stacked": "A kedvezménykódok nem halmozhatók"
+      },
+      "unavailable": "A kedvezmény kód lejárt"
     },
     "discount": {
       "code_error": "A kedvezmény kódja hibásan van megadva",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Továbbra is vendégként"
     },
     "item": {
-      "add_limit2": "Maximális mennyiség egy termékből 999 db",
+      "add_limit2": "Maximális mennyiség egy termékből 99999 db",
       "invalid_product": "Érvénytelen termék",
       "item_left": "{{stock}} darab van raktáron",
       "none_existent": "A termék nem létezik",
@@ -214,6 +228,17 @@
       "username": "Név",
       "verify_email_message": "A fiók lezárása előtt ellenőriznünk kell személyazonosságát\nAz Ön e-mail-címére {{email}} küldünk egy ellenőrző e-mailt",
       "verify_phone_message": "A fiók lezárása előtt ellenőriznünk kell személyazonosságát\nAz Ön mobiltelefonjára {{phone}} küldünk egy ellenőrző üzenetet"
+    },
+    "activate": {
+      "account_activated": "A fiók aktiválva lett",
+      "apply_code": "Kód felhasználása",
+      "apply_success": "Alkalmazott",
+      "button": "Aktiválja",
+      "copy_success": "Kuponkód átmásolva",
+      "discount_title": "Aktiválja fiókját és kedvezménykódot kap",
+      "normal_title": "Fiók aktiválás",
+      "subscription_text": "Iratkozzon fel az e-mailekre és friss híreket kap, valamint hozzáfér az exkluzív ajánlatokhoz és még sok máshoz.",
+      "success_title": "Gratulálunk, nagyszerű kedvezményt kapott"
     },
     "address": {
       "add_address": "Új cím hozzáadása",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Vásároljon az Amazonon",
       "go_to_rakuten_by_link": "Vásároljon a LOTTE-n",
       "go_to_yahoo_by_link": "Vásároljon a Yahoo-n",
+      "in_stock": "Raktáron",
+      "inventory_quantity": "Készlet adatok",
       "leave_us_message": "Kéjük, írja be üzenetét",
       "leave_us_message_get_back": "Kérjük, hagyjon nekünk üzenetet, és a lehető leghamarabb felkeressük",
       "link_preview_does_not_support": "A hivatkozás előnézet nem támogatott",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Másolás",
       "activity_banner_free_shipping": "Ingyenes szállítás",
       "activity_banner_threshold": "Rendelések {{threshold}} felett",
+      "activity_selector_price_high_to_low": "Ár magastól alacsonyig",
+      "activity_selector_price_low_to_high": "Ár alacsonytól magasig",
+      "activity_selector_recommended": "Ajánlott",
       "apply_common": "Alkalmaz",
       "bundle_save_tip": "Ha együtt vásárol, {{amount}} összeget takarít meg",
       "bundle_title": "Gyakran együtt vásárolják",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Hitelkártya"
+    },
+    "reduction_code": {
+      "giftcard": "Ajándékkártyák"
     }
   },
   "transaction": {

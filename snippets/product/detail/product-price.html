@@ -13,18 +13,18 @@
   {{/if}}
 {{/if}}
 
- 
+
 <div class="product-price" id="product-info_{{id}}">
 
   {{#not product.spu.inquiry}}
-    <div class="price product-info-price_{{id}} {{#if productPrice.originPrice '>' productPrice.salesPrice}}product-info-price_hasDiscount{{/if}}" product_discount={{theme.settings.product_discount}}>
+    <div class="price shopline-element-price product-info-price_{{id}} {{#if productPrice.originPrice '>' productPrice.salesPrice}}product-info-price_hasDiscount{{/if}}" product_discount={{theme.settings.product_discount}}>
       {{#if (boolean theme.settings.superscript_decimals) }}
         {{#if theme.settings.product_discount}}
           <div
             class="body4 product-price-discount discount product-price-discount_{{id}} {{#or (boolean productPrice.originPrice '<=' productPrice.salesPrice) spuInfo.soldOut (boolean discount_text '<=' 0)}}hide{{/or}}"
             product_discount_style={{theme.settings.product_discount_style}}>
             {{#if (and (and (is (typeOf productPrice.originPrice) 'number') (is (typeOf productPrice.salesPrice) 'number')) discount_text)}}
-              {{#if theme.settings.product_discount_style '===' 'number'}}   
+              {{#if theme.settings.product_discount_style '===' 'number'}}
                 {{#currency_convert_price discount_text}}
                   {{#if fraction '===' '00'}}
                     {{#if symbolOrder '==' 'prefix'}}

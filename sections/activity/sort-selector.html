@@ -1,0 +1,17 @@
+{{assign 'sortBy' '1'}}
+{{#if request.uri.query.sort_by}}
+  {{assign 'sortBy' request.uri.query.sort_by}}
+{{/if}}
+
+<div class="container text-right sales__activity-sort-selector-container">
+  <div class="sales__activity-sort-selector-inner">
+    <svg class="sales__activity-sort--selector-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0.499919 3.05023L4.94967 7.49998L9.39941 3.05023" stroke="currentColor" stroke-linecap="round" />
+    </svg>
+    <select class="body3 sales__activity-sort-selector sales__activity-sort-selector-hook" name="sort-by">
+      <option {{#if sortBy '===' '1'}}selected{{/if}} value="1">{{t 'sales.general.activity_selector_recommended'}}</option>
+      <option {{#if sortBy '===' '2'}}selected{{/if}} value="2">{{t 'sales.general.activity_selector_price_low_to_high'}}</option>
+      <option {{#if sortBy '===' '3'}}selected{{/if}} value="3">{{t 'sales.general.activity_selector_price_high_to_low'}}</option>
+    </select>
+  </div>
+</div>

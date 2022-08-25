@@ -31,8 +31,22 @@
       "subtotal": "Zwischensumme",
       "tax_included": "Steuern inklusive"
     },
+    "checkout": {
+      "max_amount_limit": "Sie haben den Höchstbetrag für den Checkout überschritten"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Die folgenden Artikel überschreiten die Kaufbeschränkung, gehen Sie weiter zur Kasse?"
+    },
+    "couponCode": {
+      "exceedLimit": "Rabattcodes überschreiten das Mengenlimit",
+      "existCode": "Rabattcode existiert bereits",
+      "list": {
+        "unavailable": "Alle Rabattcodes sind abgelaufen"
+      },
+      "notSupport": {
+        "stacked": "Rabattcodes sind nicht stapelbar"
+      },
+      "unavailable": "Rabattcode ist abgelaufen"
     },
     "discount": {
       "code_error": "Bitte geben Sie einen gültigen Rabattcode ein",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Als Gast fortfahren"
     },
     "item": {
-      "add_limit2": "Fügen Sie bis zu 999 stück zum Warenkorb hinzu",
+      "add_limit2": "Fügen Sie bis zu 99999 stück zum Warenkorb hinzu",
       "invalid_product": "Ungültige Produkte",
       "item_left": "{{stock}} auf Lager",
       "none_existent": "Der Artikel existiert nicht",
@@ -214,6 +228,17 @@
       "username": "Name",
       "verify_email_message": "Bevor Sie Ihr Konto löschen können, müssen wir Ihre Identität überprüfen.Ein E-Mail mit dem Bestätigungscode wird an Ihre angegebene E-Mail-Adresse {{email}} gesendet.",
       "verify_phone_message": "Bevor Sie Ihr Konto löschen können, müssen wir Ihre Identität überprüfen.Eine Bestätigung per SMS wird an Ihr Handy {{phone}} gesendet"
+    },
+    "activate": {
+      "account_activated": "Das Konto wurde bereits aktiviert",
+      "apply_code": "Rabattcode anwenden",
+      "apply_success": "Bereits verwendet",
+      "button": "Aktivieren",
+      "copy_success": "Gutschein bereits kopiert",
+      "discount_title": "Aktivieren Sie Ihr Konto und erhalten Sie einen Rabattcode",
+      "normal_title": "Aktivieren Sie Ihr Konto",
+      "subscription_text": "Abonnieren Sie unseren Newsletter, um E-Mail-Updates zu exklusiven Angeboten und vielem mehr zu erhalten.",
+      "success_title": "Herzlichen Glückwunsch zum Erhalt des Rabatts"
     },
     "address": {
       "add_address": "Neue Adresse hinzufügen",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Zu Amazon",
       "go_to_rakuten_by_link": "Zu LOTTE",
       "go_to_yahoo_by_link": "Zu Yahoo",
+      "in_stock": "Vorrätig",
+      "inventory_quantity": "Lagerbestand",
       "leave_us_message": "Nachricht eingeben",
       "leave_us_message_get_back": "Wir freuen uns auf Ihre Nachricht und werden Sie so schnell wie möglich kontaktieren",
       "link_preview_does_not_support": "Die Link-Vorschau ist nicht verfügbar",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopieren",
       "activity_banner_free_shipping": "kostenloser Versand",
       "activity_banner_threshold": "Ab einem Bestellwert {{threshold}}",
+      "activity_selector_price_high_to_low": "Preis absteigend",
+      "activity_selector_price_low_to_high": "Preis aufsteigend",
+      "activity_selector_recommended": "Empfehlen",
       "apply_common": "Anwenden",
       "bundle_save_tip": "Zusammen kaufen und {{amount}} sparen",
       "bundle_title": "Wird oft zusammen gekauft",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Kreditkarte"
+    },
+    "reduction_code": {
+      "giftcard": "Geschenkkarte"
     }
   },
   "transaction": {

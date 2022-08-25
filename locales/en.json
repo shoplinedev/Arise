@@ -12,7 +12,7 @@
   "cart": {
     "cart": {
       "added_to_cart": "Added to your cart",
-      "buy_now": "BUY NOW",
+      "buy_now": "Buy now",
       "cancel": "Cancel",
       "cart_subtotal": "Cart subtotal",
       "cart_view": "View cart",
@@ -31,8 +31,22 @@
       "subtotal": "Subtotal",
       "tax_included": "Tax included"
     },
+    "checkout": {
+      "max_amount_limit": "You exceeded the maximum amount for checkout"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Below products exceed the purchasing limit, still proceed to checkout?"
+    },
+    "couponCode": {
+      "exceedLimit": "Discount codes exceed quantity limit",
+      "existCode": "Discount code already exists",
+      "list": {
+        "unavailable": "All discount codes have expired"
+      },
+      "notSupport": {
+        "stacked": "Discount codes are not stackable"
+      },
+      "unavailable": "Discount code has expired"
     },
     "discount": {
       "code_error": "Enter a valid discount code",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Continue as a guest"
     },
     "item": {
-      "add_limit2": "You can add up to 999 items to the shopping cart",
+      "add_limit2": "You can add up to 99999 items to the shopping cart",
       "invalid_product": "INVALID PRODUCT",
       "item_left": "Only {{stock}} item(s) left",
       "none_existent": "Product does not exist",
@@ -214,6 +228,17 @@
       "username": "Name",
       "verify_email_message": "Before closing account, we need to verify your identity\nYour email {{email}} will receive a verification email",
       "verify_phone_message": "Before closing account, we need to verify your identity\nYour mobile phone {{phone}} will receive a verification message"
+    },
+    "activate": {
+      "account_activated": "The account has been activated",
+      "apply_code": "Apply Code",
+      "apply_success": "Applied",
+      "button": "Activate",
+      "copy_success": "Coupon code copied",
+      "discount_title": "Activate account and get discount code",
+      "normal_title": "Activate account",
+      "subscription_text": "Subscribe for emails to receive updates, access to exclusive deals, and more.",
+      "success_title": "Congratulations on getting a great discount"
     },
     "address": {
       "add_address": "ADD ADDRESS",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Buy in Amazon",
       "go_to_rakuten_by_link": "Buy in Rakuten",
       "go_to_yahoo_by_link": "Buy in Yahoo",
+      "in_stock": "In stock",
+      "inventory_quantity": "Inventory quantity",
       "leave_us_message": "Please enter your message",
       "leave_us_message_get_back": "Please leave us a message and we will get back to you as soon as possible",
       "link_preview_does_not_support": "The link preview does not support this action",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "copy",
       "activity_banner_free_shipping": "Free Shipping",
       "activity_banner_threshold": "orders over {{threshold}}",
+      "activity_selector_price_high_to_low": "Price high to low",
+      "activity_selector_price_low_to_high": "Price low to high",
+      "activity_selector_recommended": "Recommended",
       "apply_common": "Apply",
       "bundle_save_tip": "Buy together to save {{amount}}",
       "bundle_title": "Frequently bought together",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Credit Card"
+    },
+    "reduction_code": {
+      "giftcard": "Gift Cards"
     }
   },
   "transaction": {

@@ -11,9 +11,23 @@
 {{else if type '===' 'pcSkuImage'}}
 <img  referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="{{ class }}" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" {{{get 'responsiveAttr' (image_responsive coverImgObj.url pcSize=_pcSize mSize=_mSize) }}} alt="{{ coverImgObj.alt }}">
 {{else if type '===' 'mSkuImage'}}
-<img  referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="{{ class }}" data-photoswipe-src="{{ img_url skuImageObj.url width=1800 }}" {{{get 'responsiveAttr' (image_responsive skuImageObj.url pcSize=null mSize=(cond mobileProductImageIsFull '100vw' '75vw')) }}} alt="{{ skuImageObj.alt }}">
+  {{#and (isFalsey useLazyLoad) (isTruthy isPreload)}}
+    {{ assign 'preloadImg' (image_responsive skuImageObj.url pcSize=null mSize=(cond mobileProductImageIsFull '100vw' '75vw')) }}
+    {{#partial 'preload'}}
+      <link rel="preload" as="image" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" href="{{ get 'srcAttr' preloadImg }}" imagesrcset="{{ get 'srcsetAttr' preloadImg }}" imagesizes="{{ get 'sizesAttr' preloadImg }}" >
+      {{ slot_block }}
+    {{/partial}}
+  {{/and}}
+  <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="{{ class }}" data-photoswipe-src="{{ img_url skuImageObj.url width=1800 }}" {{{get 'responsiveAttr' (image_responsive skuImageObj.url pcSize=null mSize=(cond mobileProductImageIsFull '100vw' '75vw') useLazyLoad=useLazyLoad)  }}} alt="{{ skuImageObj.alt }}">
 {{else if type '===' 'mImage'}}
-<img  referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="{{ class }}" data-photoswipe-src="{{ img_url resource width=1800 }}" {{{get 'responsiveAttr' (image_responsive resource pcSize=null mSize=(cond mobileProductImageIsFull '100vw' '75vw')) }}} alt="{{alt}}">
+  {{#and (isFalsey useLazyLoad) (isTruthy isPreload)}}
+    {{ assign 'preloadImg' (image_responsive resource pcSize=null mSize=(cond mobileProductImageIsFull '100vw' '75vw')) }}
+    {{#partial 'preload'}}
+      <link rel="preload" as="image" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" href="{{ get 'srcAttr' preloadImg }}" imagesrcset="{{ get 'srcsetAttr' preloadImg }}" imagesizes="{{ get 'sizesAttr' preloadImg }}" >
+      {{ slot_block }}
+    {{/partial}}
+  {{/and}}
+  <img  referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="{{ class }}" data-photoswipe-src="{{ img_url resource width=1800 }}" {{{get 'responsiveAttr' (image_responsive resource pcSize=null mSize=(cond mobileProductImageIsFull '100vw' '75vw') useLazyLoad=useLazyLoad) }}} alt="{{alt}}">
 {{else if type '===' 'pcTwoColImage'}}
 <div class="imageItem" style="padding-bottom: {{ append (default (get 'ratio' (img_size resource)) 100) '%'}}" data-index="{{ index }}"><span data-spu-col-img="{{resource}}" data-index="{{ index }}"></span><img  referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="{{ img_url resource width=1800 }}" class="lozad product_photoSwipe_image" {{{get 'responsiveAttr' (image_responsive resource mSize=null pcSize=(cond (boolean mediaList.length '>' '1') "3/10" "3/5")) }}} alt="{{alt}}"></div>
 {{else if type '===' 'pcOneColImage'}}

@@ -14,7 +14,7 @@
  --}}
 
 {{#has btns "user" }}
-  <a href="{{user_center}}" class="__sl-custom-track-stage-header-user header__btn {{ classnames }}">
+  <a href="{{user_center}}" class="shopline-element-header-icon-account __sl-custom-track-stage-header-user header__btn {{ classnames }}">
     <div class="header__btn-content">
       <div class="header__btn-icon sl-icon-hover">
         {{ snippet 'icons/icon_header_user' maskID=maskID }}
@@ -25,7 +25,7 @@
 
 
 {{#has btns "search"}}
-  <a class="header__btn sl-icon-hover {{ classnames }} j-stage-header-search">
+  <a class="shopline-element-header-icon-search header__btn sl-icon-hover {{ classnames }} j-stage-header-search">
     {{ snippet 'icons/icon_header_search' }}
   </a>
 {{/has}}
@@ -39,7 +39,7 @@
 {{/has}}
 
 {{#has btns 'cart'}}
-  <div class="header__btn header__cart {{show_cart_point_class}} {{ classnames }}" id="stage-header-cart" data-type="toggle">
+  <div class="shopline-element-header-icon-cart header__btn header__cart {{show_cart_point_class}} {{ classnames }}" id="stage-header-cart" data-type="toggle">
     <div class="header__btn--open __sl-custom-track-stage-header-cart">
       <div class="header__btn-content">
         <div class="header__btn-icon sl-icon-hover">

@@ -1,0 +1,62 @@
+{{ layout 'gift_card' }}
+
+{{ preload_state 'gift_card' }}
+
+{{#partial 'head'}}
+  <link rel="stylesheet" href="{{ assets_url 'product/giftCard/index.min.css' }}" />
+{{/partial}}
+
+{{ assign 'invalid' (or (isFalsey gift_card.enabled) (isTruthy gift_card.expired)) }}
+
+{{#if gift_card.code}}
+<div id="giftCardPage">
+  <div class="storeName">{{ storeInfo.name }}</div>
+  {{#if invalid}}
+    <div class="giftCardStatus">Your giftcard is invalid, please buy another one</div>
+  {{else}}
+    <div class="giftCardStatus">Please receive your giftcard</div>
+  {{/if}}
+  <div class="giftCardWrapper {{#if invalid}}disabled{{/if}}">
+    <div class="giftCardBox">
+      <div class="giftCardBg">
+        <div class="giftCardCode notranslate">{{ gift_card.code }}</div>
+      </div>
+    </div>
+    <div class="giftCardInfo">
+      <div class="balance item">
+        <div class="name">Balance</div>
+        <div class="content notranslate">{{ currency_convert gift_card.balance }}</div>
+      </div>
+      <div class="expirationTime item">
+        <div class="name">Expiry date</div>
+        {{#if gift_card.expires_on}}
+          <div class="content">
+            <div class="ytdDate">
+              {{#if gift_card.expired}}{{ snippet 'icons/icon_giftcard_warning' }}<em>Expired at</em>{{/if}}<span>{{ dayjs method='format' tz=storeInfo.timezone format='MMMM DD,YYYY' init=gift_card.expires_on }}</span>
+            </div>
+            <div class="hmsDate">at {{ dayjs method='format' tz=storeInfo.timezone format='h:mm a' init=gift_card.expires_on }} {{ storeInfo.timezone }}</div>
+          </div>
+        {{else}}
+          <div class="content">Permanent</div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="giftCardUseBox">
+    <a href="/" target="_blank" rel="noopener" class="useBtn">{{#if invalid}}Buy a giftcard{{else}}Use the giftcard{{/if}}</a>
+    {{#if (isFalsey invalid)}}
+      <div class="useExplain">You can enter the giftcard number at checkout for deduction</div>
+    {{/if}}
+  </div>
+</div>
+{{else}}
+<div class="noGiftCardData"></div>
+{{/if}}
+
+{{#partial 'script'}}
+  {{#is_modern_browser}}
+    <script src="{{ assets_url 'product/giftCard/index.min.modern.js' }}"></script>
+  {{else}}
+    <script src="{{ assets_url 'product/giftCard/index.min.js' }}"></script>
+  {{/is_modern_browser}}
+{{/partial}}

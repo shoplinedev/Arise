@@ -31,8 +31,22 @@
       "subtotal": "Subtotal",
       "tax_included": "Termasuk pajak"
     },
+    "checkout": {
+      "max_amount_limit": "Anda melebihi jumlah maksimum untuk checkout"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Produk yang berikut melewati batasan pembelian, apakah yakin membayar lanjut?"
+    },
+    "couponCode": {
+      "exceedLimit": "Kode diskon melebihi batas kuantitas",
+      "existCode": "Kode diskon sudah ada",
+      "list": {
+        "unavailable": "Semua kode diskon telah kedaluwarsa"
+      },
+      "notSupport": {
+        "stacked": "Kode diskon tidak dapat ditumpuk"
+      },
+      "unavailable": "Kode diskon telah kedaluwarsa"
     },
     "discount": {
       "code_error": "Kode kupon salah dimasukkan",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Terus mengakses sebagai tamu"
     },
     "item": {
-      "add_limit2": "Maksimal dapat menambahkan hingga 999 produk ke troli",
+      "add_limit2": "Maksimal dapat menambahkan hingga 99999 produk ke troli",
       "invalid_product": "Produk yang telah tidak valid",
       "item_left": "Sisa {{stock}} buah",
       "none_existent": "Produk tidak ada",
@@ -215,6 +229,17 @@
       "verify_email_message": "Kami perlu memverifikasi identitas Anda sebelum kami melakukan operasi penghapusan\nAlamat email Anda {{email}} akan menerima email kode verifikasi",
       "verify_phone_message": "Kami perlu memverifikasi identitas Anda sebelum kami melakukan operasi penghapusan\nTelepon Anda {{phone}} akan menerima email kode verifikasi"
     },
+    "activate": {
+      "account_activated": "Akun ini telah diaktifkan",
+      "apply_code": "Menggunakan kode diskon",
+      "apply_success": "Telah menggunakan",
+      "button": "Aktifkan",
+      "copy_success": "Kupon telah disalin",
+      "discount_title": "Aktifkan akun dan dapatkan kode diskon",
+      "normal_title": "Aktifkan akun",
+      "subscription_text": "Berlangganan email untuk menerima pembaruan, mengakses diskon eksklusif, dll.",
+      "success_title": "Selamat Anda dapatkan diskon"
+    },
     "address": {
       "add_address": "Tambah alamat baru",
       "address": "Alamat",
@@ -348,7 +373,7 @@
       "phone_error_message": "Silakan masukkan nomor telepon dalam format yang benar",
       "phone_number_error_message": "Silahkan masukkan nomor telepon yang sah",
       "proceed_to_checkout": "Lanjutkan untuk pembayaran",
-      "register": "Daftar",
+      "register": "Pendaftaran",
       "repeat_passport_error": "Dua kali kata sandi yang dimasukkan tidak sama",
       "repeat_password": "Ulangi kata kunci",
       "resend": "Kirim lagi",
@@ -366,7 +391,7 @@
       "set_password": "Silakan setel kata sandi dengan 6-18 digit",
       "sign__out": "Keluar dari login",
       "sign_in": "Login",
-      "sign_up": "Daftar",
+      "sign_up": "Pendaftaran",
       "su": "Min",
       "subscription_desc": "Bisa mendapatkan berita promosi terbaru toko",
       "sun": "Min",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Berbelanja ke Amazon",
       "go_to_rakuten_by_link": "Berbelanja ke LOTTE",
       "go_to_yahoo_by_link": "Berbelanja ke Yahoo",
+      "in_stock": "Ada stok",
+      "inventory_quantity": "Jumlah stok",
       "leave_us_message": "Silakan isi pesan",
       "leave_us_message_get_back": "Silakan tinggalkan pesan pertanyaan Anda, kami akan menghubungi Anda sesegera mungkin",
       "link_preview_does_not_support": "Tautan pratinjau tidak mendukung operasi ini",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Salin",
       "activity_banner_free_shipping": "Pengiriman gratis",
       "activity_banner_threshold": "Penuhi {{threshold}}",
+      "activity_selector_price_high_to_low": "Harga dari tinggi ke rendah",
+      "activity_selector_price_low_to_high": "Harga dari rendah ke tinggi",
+      "activity_selector_recommended": "Rekomendasi",
       "apply_common": "Aplikasi",
       "bundle_save_tip": "Beli bersama dapat hemat {{amount}}",
       "bundle_title": "Sering dibeli bersama",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "kartu kredit"
+    },
+    "reduction_code": {
+      "giftcard": "Kartu hadiah"
     }
   },
   "transaction": {

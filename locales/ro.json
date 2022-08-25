@@ -31,8 +31,22 @@
       "subtotal": "Subtotal",
       "tax_included": "Taxă inclusă"
     },
+    "checkout": {
+      "max_amount_limit": "Ați depășit suma maximă de plată"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Produsele de mai jos depășesc limita de achiziție, tot doriți să finalizați?"
+    },
+    "couponCode": {
+      "exceedLimit": "Codurile de reducere depășesc limita de cantitate",
+      "existCode": "Codul de reducere există deja",
+      "list": {
+        "unavailable": "Toate codurile de reducere au expirat"
+      },
+      "notSupport": {
+        "stacked": "Codurile de reducere nu sunt stivuibile"
+      },
+      "unavailable": "Codul de reducere a expirat"
     },
     "discount": {
       "code_error": "Codul de reducere nu este introdus corect",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Continuați ca oaspete"
     },
     "item": {
-      "add_limit2": "Cantitatea maximă a unui singur produs este de 999 de bucăți",
+      "add_limit2": "Cantitatea maximă a unui singur produs este de 99999 de bucăți",
       "invalid_product": "Produse nevalide",
       "item_left": "{{stock}} (de) bucăți în stoc",
       "none_existent": "Produsul nu exista",
@@ -214,6 +228,17 @@
       "username": "Nume",
       "verify_email_message": "Înainte de a închide contul, trebuie să verificăm identitatea dvs. \nVeți primi pe e-mailul dvs. {{email}} un e-mail pentru verificare",
       "verify_phone_message": "Înainte de a închide contul, trebuie să verificăm identitatea dvs. \nTelefonul dvs. mobil {{phone}} va primi un mesaj de notificare"
+    },
+    "activate": {
+      "account_activated": "Contul a fost activat",
+      "apply_code": "Cod aplicare",
+      "apply_success": "Aplicat",
+      "button": "Activa",
+      "copy_success": "Codul cupon copiat",
+      "discount_title": "Activează contul și primește cod de reducere",
+      "normal_title": "Activează contul",
+      "subscription_text": "Înregistrați-vă pentru e-mailuri pentru a primi actualizări, acces la oferte exclusive, și mai multe.",
+      "success_title": "Felicitări pentru primirea reducerii"
     },
     "address": {
       "add_address": "Adaugă adresă nouă",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Cumpărați de pe Amazon",
       "go_to_rakuten_by_link": "Cumpărați de pe LOTTE",
       "go_to_yahoo_by_link": "Cumpărați de pe Yahoo",
+      "in_stock": "În stoc",
+      "inventory_quantity": "Date de inventar",
       "leave_us_message": "Introduceți mesajul dvs.",
       "leave_us_message_get_back": "Lăsați-ne un mesaj și vom reveni către dvs. cât mai repede posibil",
       "link_preview_does_not_support": "Operația pentru linkul de previzualizare nu este acceptată",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Copiază",
       "activity_banner_free_shipping": "Livrare gratuită",
       "activity_banner_threshold": "Comenzi peste {{threshold}}",
+      "activity_selector_price_high_to_low": "Preț de la mare la mic",
+      "activity_selector_price_low_to_high": "Preț de la mic la mare",
+      "activity_selector_recommended": "Recomandat",
       "apply_common": "Aplică",
       "bundle_save_tip": "Economisiți {{amount}} la cumpărarea împreună",
       "bundle_title": "Cumpărate frecvent împreună",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Card de credit"
+    },
+    "reduction_code": {
+      "giftcard": "Carduri cadou"
     }
   },
   "transaction": {

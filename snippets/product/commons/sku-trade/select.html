@@ -1,9 +1,9 @@
 {{#with this as |global|}}
 {{#if (length attr)}}
-<div class="product-sku-trade-select" data-ssr-plugin-sku id="{{ id }}">
+<div class="product-sku-trade-select shopline-element-sku-trade-select" data-ssr-plugin-sku id="{{ id }}">
   {{#each attr}}
   {{#isFalsey hidden}}
-  <div class="spec-box" data-index="{{ @index }}" data-ssr-plugin-sku-item data-sku-item-name="{{specName}}">
+  <div class="spec-box" data-index="{{ @index }}" data-ssr-plugin-sku-item data-sku-item-name="{{specName}}" data-sku-tooltip-position="{{../product_image_position}}">
     <div class="spec-title"  data-ssr-plugin-sku-item-name>
       <div class="spec-name body3">{{ specName }}</div>
     </div>
@@ -20,7 +20,7 @@
           {{#isTruthy imgUrl}}
             <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  class="select-img" src="{{img_url imgUrl width=32 scale=2 }}" >
           {{/isTruthy}}
-          <span class="select-text">{{ name }}</span>
+          <span class="select-text" data-select-text="{{ name }}">{{ name }}</span>
           <span class="select-checked"></span>
         </div>
       {{/each}}

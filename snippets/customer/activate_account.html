@@ -1,0 +1,81 @@
+{{ assign 'id' (default id 'customer-activate')}}
+{{ preload_state 'customer_address' }}
+{{ preload_state 'shop' }}
+{{ preload_state 'policyList' }}
+
+{{ assign 'customizePaths' (pluck policyList 'customizePath')}}
+{{ assign 'hasPrivacyPolicy' (inArray customizePaths '/policies/privacy-policy')}}
+{{ assign 'hasTermsOfService' (inArray customizePaths '/policies/terms-of-service')}}
+
+{{ assign 'registerConfig' shop.store_register_config }}
+{{ assign 'types' (split registerConfig.types ',')}}
+
+<div class="customer customer-activate-container hidden" id="{{ id }}">
+  <h2 class="customer__title"></h2>
+
+  <div class="customer-activate__discount hidden">
+    <div class="customer-activate__discount-img">
+      <img src="{{ assets_url 'customer/activate-account/images/discount.png'}}" alt="discount" />
+    </div>
+    <div class="customer-activate__discount-text">
+      <div class="customer-activate__discount-text__span activate-code"></div>
+      <div class="customer-activate__discount-text__copy activate-copy">
+        {{snippet 'icons/icon_activate_copy'}}
+      </div>
+    </div>
+  </div>
+
+  {{#snippet 'customer/base/sl-button' class="apply-activate-code hide" block=true attrs="type='button'" }}
+    {{t 'customer.activate.apply_code'}}
+  {{/snippet}}
+
+  {{!-- 激活账号表单 --}}
+  <form class="customer__form">
+    {{#formItem "password" "class='customer__form-item'"}}
+      {{#snippet
+        'customer/base/sl-input'
+        attrs='autocomplete="new-password" maxlength="255"'
+        name="password"
+        type="password"
+        placeholder=(t 'customer.general.password')
+        class="form-item--password"
+      }}
+        {{#child 'suffix'}}
+          {{snippet 'icons/icon_close_eye'}}
+        {{/child}}
+      {{/snippet}}
+    {{/formItem}}
+
+    <p class="customer__error"></p>
+
+    {{#snippet 'customer/base/sl-button' class="customer__form-item submit-button" block=true attrs="type='button'" }}
+      {{t 'customer.activate.button'}}
+    {{/snippet}}
+
+    {{#if (isFalsey (isEmpty customizePaths))}}
+      {{#formItem "policy" "class='customer__form-item sign-up__terms'"}}
+        {{#snippet 'customer/base/sl-checkbox' checked=false }}
+          <span>{{ t 'customer.register.tips_agree_with_the_shop' }}</span>
+          {{#if hasPrivacyPolicy}}
+            <a href="javascript:void(0);" class="sign-up__link sign-up__privacy-policy" data-path="/policies/privacy-policy">{{ t 'customer.register.privacy_policy' }}</a>
+          {{/if}}
+          {{#if hasTermsOfService}}
+            <span>{{ t 'customer.general.and_button' }}</span>
+            <a href="javascript:void(0);" class="sign-up__link sign-up__service-terms" data-path="/policies/terms-of-service">{{ t 'customer.register.terms_of_service' }}</a>
+          {{/if}}
+        {{/snippet}}
+      {{/formItem}}
+    {{/if}}
+    {{#if (or (inArray types 'email') (inArray types 'username'))}}
+      {{#formItem "subscription" "class='customer__form-item sign-up__subscription'"}}
+        {{#snippet 'customer/base/sl-checkbox' checked=true }}
+          {{ t 'customer.activate.subscription_text' }}
+        {{/snippet}}
+      {{/formItem}}
+    {{/if}}
+  </form>
+</div>
+
+{{!-- 用户条款弹窗 --}}
+{{ assign 'modalId' (append id '-modal')}}
+{{#snippet 'product/commons/base-modal' modalId=modalId animationType="fade"}}{{/snippet}}

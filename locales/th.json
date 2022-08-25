@@ -31,8 +31,22 @@
       "subtotal": "ยอดรวม",
       "tax_included": "รวมภาษี"
     },
+    "checkout": {
+      "max_amount_limit": "คุณชำระเงินเกินจำนวนสูงสุดที่กำหนดไว้"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "รายการสินค้าต่อไปนี้เกินขีดจำกัดการซื้อ คุณยังคงดำเนินการชำระเงินหรือไม่?"
+    },
+    "couponCode": {
+      "exceedLimit": "รหัสส่วนลดเกินจำนวนจำกัด",
+      "existCode": "รหัสส่วนลดมีอยู่แล้ว",
+      "list": {
+        "unavailable": "โค้ดส่วนลดทั้งหมดหมดอายุแล้ว"
+      },
+      "notSupport": {
+        "stacked": "รหัสส่วนลดไม่สามารถวางซ้อนกันได้"
+      },
+      "unavailable": "โค้ดส่วนลดหมดอายุ"
     },
     "discount": {
       "code_error": "กรุณาป้อนรหัสส่วนลดที่ถูกต้อง",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "เยี่ยมชมในฐานะแขกต่อไป"
     },
     "item": {
-      "add_limit2": "คุณสามารถเพิ่มได้สูงสุด 999 รายการในตะกร้าสินค้า",
+      "add_limit2": "คุณสามารถเพิ่มได้สูงสุด 99999 รายการในตะกร้าสินค้า",
       "invalid_product": "สินค้าไม่ถูกต้อง",
       "item_left": "เหลือเพียง {{stock}} รายการเท่านั้น",
       "none_existent": "ไม่มีสินค้า",
@@ -214,6 +228,17 @@
       "username": "ชื่อ-นามสกุล",
       "verify_email_message": "ก่อนที่จะลบบัญชีผู้ใช้ เราจำเป็นต้องยืนยันตัวตนของคุณ\nอีเมลของคุณ{{email}}จะได้รับอีเมลรหัสยืนยัน",
       "verify_phone_message": "ก่อนที่จะลบบัญชีผู้ใช้ เราจำเป็นต้องยืนยันตัวตนของคุณ\nโทรศัพท์ของคุณ{{phone}}จะได้รับ SMS ยืนยัน"
+    },
+    "activate": {
+      "account_activated": "เปิดใช้งานบัญชีแล้ว",
+      "apply_code": "ใช้รหัสส่วนลด",
+      "apply_success": "ใช้งานแล้ว",
+      "button": "เปิดใช้งาน",
+      "copy_success": "คัดลอกคูปองแล้ว",
+      "discount_title": "เปิดใช้งานบัญชีและรับรหัสส่วนลด",
+      "normal_title": "เปิดใช้งานบัญชี",
+      "subscription_text": "สมัครรับอีเมลเพื่อรับการอัปเดต การเข้าถึงส่วนลดพิเศษ และอื่นๆ",
+      "success_title": "ยินดีด้วยที่คุณได้รับส่วนลด"
     },
     "address": {
       "add_address": "เพิ่มที่อยู่ใหม่",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "ไปที่ Amazon",
       "go_to_rakuten_by_link": "ไปที่ Rakuten",
       "go_to_yahoo_by_link": "ไปที่ Yahoo",
+      "in_stock": "มีสินค้าคงคลัง",
+      "inventory_quantity": "ปริมาณสินค้าคงคลัง",
       "leave_us_message": "กรุณากรอกข้อความของคุณ",
       "leave_us_message_get_back": "กรุณาฝากข้อความของคุณไว้และเราจะติดต่อกลับโดยเร็วที่สุด",
       "link_preview_does_not_support": "ไม่รองรับการแสดงตัวอย่างลิงก์",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "คัดลอก",
       "activity_banner_free_shipping": "จัดส่งฟรี",
       "activity_banner_threshold": "สั่งซื้อครบ {{threshold}}",
+      "activity_selector_price_high_to_low": "ราคาจากสูงไปต่ำ",
+      "activity_selector_price_low_to_high": "ราคาจากต่ำไปสูง",
+      "activity_selector_recommended": "แนะนำ",
       "apply_common": "ใช้",
       "bundle_save_tip": "ซื้อพร้อมกันประหยัด {{amount}}",
       "bundle_title": "สินค้าที่มักจะซื้อพร้อมกัน",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "บัตรเครดิต"
+    },
+    "reduction_code": {
+      "giftcard": "บัตรของขวัญ"
     }
   },
   "transaction": {

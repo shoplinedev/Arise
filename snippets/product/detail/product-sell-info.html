@@ -1,7 +1,7 @@
 {{ assign "salesIndexArr" (JSONparse '["1", "2", "3", "4"]' )}}
 
 {{!-- 销售信息模块 --}}
-<div class="product-sell-info" id="product-sell-info_{{id}}">
+<div class="product-sell-info shopline-element-sell-info" id="product-sell-info_{{id}}">
   {{#each salesIndexArr}}
     {{#if (trim (get (append 'product_sales_point_' this) ../settings)) }}
       <div class="product-sell-box">

@@ -31,8 +31,8 @@
               {{#with global}}
                 {{ assign 'natural_height' true }}
               {{/with}}
-              {{#if this.settings.image.scale}}
-                {{ assign 'natural_height_ratio' (multiply (divide this.settings.image.height this.settings.image.width) 100) }}
+              {{#if this.settings.image.url}}
+                {{ assign 'natural_height_ratio' (get 'ratio' (img_size this.settings.image.url)) }}
                 {{#style}}
                   @media only screen and (min-width: 750px) {
                     .natural--{{ global.section.id }} {
@@ -48,10 +48,10 @@
               {{/with}}
               {{#if (isTruthy this.settings.image_mobile.url)}}
                 {{!-- 配了m端图片， 用m端的scale --}}
-                {{ assign 'natural_mobile_height_ratio' (multiply (divide this.settings.image_mobile.height this.settings.image_mobile.width) 100) }}
+                {{ assign 'natural_mobile_height_ratio' (get 'ratio' (img_size this.settings.image_mobile.url)) }}
               {{else}}{{#if (boolean (isTruthy this.settings.image.url) '&&' (isFalsey this.settings.image_mobile.url))}}
                 {{!-- 配了pc的图片， m端图片没配， 用pc的scale --}}
-                {{ assign 'natural_mobile_height_ratio' (multiply (divide this.settings.image.height this.settings.image.width) 100) }}
+                {{ assign 'natural_mobile_height_ratio' (get 'ratio' (img_size this.settings.image.url)) }}
               {{/if}}{{/if}}
 
               {{#if (boolean this.settings.image.url '||' this.settings.image_mobile.url)}}
@@ -171,7 +171,7 @@
                           data-src="{{ this.settings.image.url }}" data-sizes="auto"
                           alt="{{ this.settings.image.alt }}"
                           data-aspectratio-url="{{ img_url this.settings.image.url width=100 }}"
-                          data-aspectratio={{ this.settings.image.scale }}
+                          data-aspectratio="{{ divide 100 (get 'ratio' (img_size this.settings.image.url)) }}"
                           onload="this.className += ' is-img-loaded'"
                         >
                       {{else}}
@@ -183,7 +183,7 @@
                           data-src="{{ this.settings.image_mobile.url }}" data-sizes="auto"
                           alt="{{ this.settings.image_mobile.alt }}"
                           data-aspectratio-url="{{ img_url this.settings.image_mobile.url width=100 }}"
-                          data-aspectratio={{ this.settings.image_mobile.scale }}
+                          data-aspectratio="{{ divide 100 (get 'ratio' (img_size this.settings.image_mobile.url)) }}"
                           onload="this.className += ' is-img-loaded'"
                         />
                       {{/if}}
@@ -206,11 +206,7 @@
                   <div class="hero__text-wrap">
                     <div class="container">
                       <div class="hero__text-content {{ this.settings.text_align }}">
-                        <div class="
-                        {{#if (isFalsey has_image)}}
-                          hero__text-shadow
-                        {{/if}}
-                        ">
+                        <div class="{{#if this.settings.show_text_shadow}}hero__text-shadow{{/if}}">
                           {{#if this.settings.top_subheading}}
                             <div class="hero__top-subtitle body3">
                               <div class="animation-cropper">
@@ -414,51 +410,19 @@
     {
       "type": "select",
       "id": "transition_type",
-      "label": {
-        "zh-hans-cn": "过渡效果",
-        "en": "Transition effect",
-        "id": "Efek transisi",
-        "th": "เอฟเฟกต์การเปลี่ยนแปลง",
-        "vi": "Hiệu ứng quá độ",
-        "ms": "Kesan peralihan",
-        "zh-hant-tw": "過渡效果"
-      },
+      "label": "t:sections.slideshow.settings.transition_type.label",
       "default": "simple",
       "options": [
         {
-          "label": {
-            "zh-hans-cn": "简单",
-            "en": "Simple",
-            "id": "Mudah",
-            "th": "เรียบง่าย",
-            "vi": "Đơn giản",
-            "ms": "Mudah",
-            "zh-hant-tw": "簡單"
-          },
+          "label": "t:sections.slideshow.settings.transition_type.options__0.label",
           "value": "simple"
         },
         {
-          "label": {
-            "zh-hans-cn": "滑动",
-            "en": "Slide",
-            "id": "Luncur",
-            "th": "สไลด์",
-            "vi": "Lướt",
-            "ms": "Gelongsor",
-            "zh-hant-tw": "滑動"
-          },
+          "label": "t:sections.slideshow.settings.transition_type.options__1.label",
           "value": "slide"
         },
         {
-          "label": {
-            "zh-hans-cn": "缩放",
-            "en": "Zoom",
-            "id": "Zoom",
-            "th": "ซูม",
-            "vi": "Thu phóng",
-            "ms": "Penskalaan",
-            "zh-hant-tw": "縮放"
-          },
+          "label": "t:sections.slideshow.settings.transition_type.options__2.label",
           "value": "scale"
         }
       ]
@@ -599,6 +563,12 @@
           "unit": "%"
         },
         {
+          "type": "switch",
+          "id": "show_text_shadow",
+          "label": "t:sections.slideshow.blocks.image.settings.show_text_shadow.label",
+          "default": true
+        },
+        {
           "type": "group_header",
           "label": "t:sections.slideshow.blocks.image.settings.group_header__1.label",
           "info": "t:sections.slideshow.blocks.image.settings.group_header__1.info",
@@ -663,7 +633,8 @@
             "link_text": "Shop this",
             "link_text_2": "Shop all",
             "color_accent": "rgba(0,0,0,0)",
-            "overlay_opacity": 0
+            "overlay_opacity": 0,
+            "show_text_shadow": true
           }
         },
         {
@@ -680,7 +651,8 @@
             "link_text": "Shop this",
             "link_text_2": "Shop all",
             "color_accent": "rgba(0,0,0,0)",
-            "overlay_opacity": 0
+            "overlay_opacity": 0,
+            "show_text_shadow": true
           }
         }
       ]

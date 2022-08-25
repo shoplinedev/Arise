@@ -6908,7 +6908,7 @@
                 if (!prev) return;
                 return prev && prev.string ? prev.string[current] : prev[current];
             }), window.__I18N__);
-            const regExp = new RegExp(/\{\{([^{}]+)\}\}/g);
+            const regExp = /\{\{([^{}]+)\}\}/g;
             return nullishCoalescingOperator(get_func(value, "replace").exec(regExp, ((...args) => nullishCoalescingOperator(syntax_patch_get(hash, args[1]), args[0]))), path);
         }
         var js_cookie = __webpack_require__("../shared/browser/node_modules/js-cookie/src/js.cookie.js");
@@ -7023,6 +7023,7 @@
             google: "Google"
         };
         const DEFAULT_FORM_VALUE = "DEFAULT_FORM_VALUE";
+        const ACCOUNT_ACTIVATED = "ACCOUNT_ACTIVATED";
         function uniqueObjectArray(arr, prop, callback) {
             return arr.filter(((item, index) => {
                 let result = true;
@@ -8228,8 +8229,9 @@
         };
         const toast_LOADING = "loading";
         const toast_getTemplate = (options, type = "default") => {
+            const loadingColor = options.loadingColor || "black";
             const templates = {
-                [toast_LOADING]: `\n      <div class="comment-toast mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="black" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
+                [toast_LOADING]: `\n      <div class="mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="${loadingColor}" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
                 default: `\n      <div class="comment-toast mp-toast mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-toast__content mp-toast__inner">${options.content}</div>\n      </div>\n    `
             };
             return templates[type];
@@ -8558,6 +8560,11 @@
                     isverify = verify ? "1" : "0";
                 }
                 eventid = FBPixelEventID;
+            } else if ("activate" === formType) {
+                if ("member" === type) {
+                    getInitConfig = getMemberInitConfig;
+                    isverify = 0;
+                }
             } else if ("reset" === formType) if (uid) {
                 getInitConfig = getUniversalInitConfig(reset_getChangePasswordInitConfig);
                 ticketType = "1";
@@ -8593,7 +8600,7 @@
                     scene
                 };
             }));
-            if ([ "signIn", "signUp", "bind", "reset", "passwordNew" ].includes(formType)) {
+            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "activate" ].includes(formType)) {
                 const token = window.__DF__ && window.__DF__.getToken();
                 if (token) return init(token);
                 return getRiskControlToken().then((dfptoken => init(dfptoken))).catch((() => init()));
@@ -9101,10 +9108,15 @@
                 }
             }
             init() {
+                this.toast = new toast;
                 this.initForm();
                 this.bindEvents();
             }
             initForm() {
+                if (storage.sessionStorage.get(ACCOUNT_ACTIVATED)) {
+                    this.toast.open(t("customer.activate.account_activated"));
+                    storage.sessionStorage.del(ACCOUNT_ACTIVATED);
+                }
                 const formValue = storage.sessionStorage.get(DEFAULT_FORM_VALUE);
                 let fields = this.getFieldConfigs();
                 const {mode} = this.configs;
@@ -9397,6 +9409,7 @@
                     content: "",
                     destroyedOnClosed: false,
                     afterClose: () => {},
+                    closeCallback: () => {},
                     ...options
                 };
                 this.modalId = config.id || `${common_DEFAULT_MODAL_ID_PRE}${++full_uuid}`;
@@ -9450,6 +9463,7 @@
                 this.toggleMaskClassName();
                 this.$modal.addClass(common_animationClassMap.hidden).removeClass(common_animationClassMap.visible);
                 if (force) this.afterAnimation();
+                if ("function" === typeof this.config.closeCallback) this.config.closeCallback(this.$modal);
             }
             toggleMaskClassName() {
                 if (this.config.maskClosable) this.$modal.find(`.${common_bem("mask")}`).toggleClass(common_maskClosableClass, this.visibleState === common_VISIBLE);
@@ -9526,10 +9540,10 @@
                 }));
             }
             onCheckAgreement(value) {
-                if (value) this.$$reports.reportCheckAgreement && this.$$reports.reportCheckAgreement();
+                if (value) this.$$reports && this.$$reports.reportCheckAgreement && this.$$reports.reportCheckAgreement();
             }
             clickPolicyReport(path) {
-                if (path === privacyPolicyPath) this.$$reports.reportClickPrivacyPolicy && this.$$reports.reportClickPrivacyPolicy(); else this.$$reports.reportClickTermsService && this.$$reports.reportClickTermsService();
+                if (path === privacyPolicyPath) this.$$reports && this.$$reports.reportClickPrivacyPolicy && this.$$reports.reportClickPrivacyPolicy(); else this.$$reports && this.$$reports.reportClickTermsService && this.$$reports.reportClickTermsService();
             }
             bindCustomerPolicy() {
                 this.$policy.on("click", ".sign-up__link", (e => {

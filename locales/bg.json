@@ -31,8 +31,22 @@
       "subtotal": "Междинна сума",
       "tax_included": "Включен данък"
     },
+    "checkout": {
+      "max_amount_limit": "Превишихте максималната сума за плащане"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Долните продукти надвишават лимита за пазаруване, продължавате ли към плащането?"
+    },
+    "couponCode": {
+      "exceedLimit": "Кодовете за отстъпка надвишават ограничението за количество",
+      "existCode": "Кодът за отстъпка вече съществува",
+      "list": {
+        "unavailable": "Всички кодове за отстъпка са изтекли"
+      },
+      "notSupport": {
+        "stacked": "Кодовете за отстъпка не могат да се подреждат"
+      },
+      "unavailable": "Кодът за отстъпка е изтекъл"
     },
     "discount": {
       "code_error": "Този код за отстъпка е въведен неправилно",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Продължете като гост"
     },
     "item": {
-      "add_limit2": "Максималното количество от един продукт е 999 броя",
+      "add_limit2": "Максималното количество от един продукт е 99999 броя",
       "invalid_product": "Невалидни продукти",
       "item_left": "{{stock}} броя налични",
       "none_existent": "Продуктът не съществува",
@@ -214,6 +228,17 @@
       "username": "Име",
       "verify_email_message": "Преди затварянето на акаунта, трябва да потвърдим вашата идентичност\nНа вашия имейл {{email}} ще получите имейл за потвърждение",
       "verify_phone_message": "Преди затварянето на акаунта, трябва да потвърдим вашата идентичност\nНа вашия мобилен телефон {{phone}} ще получите съобщение за потвърждение"
+    },
+    "activate": {
+      "account_activated": "Акаунтът е активиран",
+      "apply_code": "Прилагане на кода",
+      "apply_success": "Приложено",
+      "button": "Активирате",
+      "copy_success": "Кодът на купона е копиран",
+      "discount_title": "Активирайте акаунт и получете код за отстъпка",
+      "normal_title": "Активирайте акаунт",
+      "subscription_text": "Абонирайте се за имейли, за да получавате актуализации, достъп до изключителни оферти и много други.",
+      "success_title": "Поздравления за получаването на страхотна отстъпка"
     },
     "address": {
       "add_address": "Добавяне на нов адрес",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Купете в Amazon",
       "go_to_rakuten_by_link": "Купете в LOTTE",
       "go_to_yahoo_by_link": "Купете в Yahoo",
+      "in_stock": "В наличност",
+      "inventory_quantity": "Данни за наличностите",
       "leave_us_message": "Моля, въведете вашето съобщение",
       "leave_us_message_get_back": "Моля, оставете ни съобщение и ще ви отговорим възможно най-скоро",
       "link_preview_does_not_support": "Операцията за визуализация на връзката не се поддържа",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Копиране",
       "activity_banner_free_shipping": "Безплатна доставка",
       "activity_banner_threshold": "Поръчки над {{threshold}}",
+      "activity_selector_price_high_to_low": "Цена от висока към ниска",
+      "activity_selector_price_low_to_high": "Цена от ниска до висока",
+      "activity_selector_recommended": "Препоръчайте",
       "apply_common": "Прилагане",
       "bundle_save_tip": "Спестете {{amount}} като купите заедно",
       "bundle_title": "Често купувани заедно",
@@ -674,6 +704,9 @@
       "Paypal": "PayPal",
       "adjustPay": "manual",
       "third-part": "Кредитна карта"
+    },
+    "reduction_code": {
+      "giftcard": "Подаръчни карти"
     }
   },
   "transaction": {

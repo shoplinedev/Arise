@@ -31,8 +31,22 @@
       "subtotal": "Međuzbroj",
       "tax_included": "Uključen porez"
     },
+    "checkout": {
+      "max_amount_limit": "Premašili ste maksimalni iznos za naplatu"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Proizvodi ispod premašuju ograničenje kupnje, ipak nastaviti s plaćanjem?"
+    },
+    "couponCode": {
+      "exceedLimit": "Kodovi za popust premašuju ograničenje količine",
+      "existCode": "Kod za popust već postoji",
+      "list": {
+        "unavailable": "Svi kodovi za popust su istekli"
+      },
+      "notSupport": {
+        "stacked": "Kodovi za popust se ne mogu slagati"
+      },
+      "unavailable": "Kod za popust je istekao"
     },
     "discount": {
       "code_error": "Kod za popust je pogrešno upisan",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Nastavite kao gost"
     },
     "item": {
-      "add_limit2": "Maksimalna količina jdnog proizvoda je 999 komada",
+      "add_limit2": "Maksimalna količina jdnog proizvoda je 99999 komada",
       "invalid_product": "Nevažeći proizvodi",
       "item_left": "{{stock}} komadi na stanju",
       "none_existent": "Roba ne postoji",
@@ -214,6 +228,17 @@
       "username": "Ime",
       "verify_email_message": "Prije zatvaranja računa, trebamo potvrditi vaš identitet\nE-poruku za potvrdu ćete dobiti na vašu e-poštu {{email}}",
       "verify_phone_message": "Prije zatvaranja računa, trebamo potvrditi vaš identitet\nPoruku za potvrdu ćete dobiti na vaš mobitel {{phone}}"
+    },
+    "activate": {
+      "account_activated": "Račun je aktiviran",
+      "apply_code": "Primijeni kod",
+      "apply_success": "Primijenjeno",
+      "button": "Aktivirati",
+      "copy_success": "Kôd kupona kopiran",
+      "discount_title": "Aktivirajte račun i dobijte kod za popust",
+      "normal_title": "Aktivirajte račun",
+      "subscription_text": "Pretplatite se na e-poštu za primanje ažuriranja, pristup ekskluzivnim ponudama i ostalog.",
+      "success_title": "Čestitamo na dobijanju velikog popusta"
     },
     "address": {
       "add_address": "Dodaj Novu Adresu",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Kupujte u Amazonu",
       "go_to_rakuten_by_link": "Kupujte u LOTTE-u",
       "go_to_yahoo_by_link": "Kupujte u Yahoo-u",
+      "in_stock": "Na lageru",
+      "inventory_quantity": "Količina zaliha",
       "leave_us_message": "Unesite svoju poruku",
       "leave_us_message_get_back": "Molimo ostavite nam poruku i mi ćemo vam se javiti u najkraćem mogućem roku",
       "link_preview_does_not_support": "Operacija za pregled veze nije podržana",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopirati",
       "activity_banner_free_shipping": "Besplatna dostava",
       "activity_banner_threshold": "Narudžbe iznad {{threshold}}",
+      "activity_selector_price_high_to_low": "Cijena od visoke do niske",
+      "activity_selector_price_low_to_high": "Cijena od niske do visoke",
+      "activity_selector_recommended": "Preporuka",
       "apply_common": "Primjena",
       "bundle_save_tip": "Uštedite {{amount}} za zbirnu kupnju",
       "bundle_title": "Često kupovano skupa",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "Kreditnom karticom"
+    },
+    "reduction_code": {
+      "giftcard": "Poklon kartice"
     }
   },
   "transaction": {

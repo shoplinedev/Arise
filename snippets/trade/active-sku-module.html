@@ -10,7 +10,11 @@
 
 <div class="cart-sku-list-promotion">
   {{#if _promotion.benefitType '===' 7}}
-    {{snippet 'sales/promotion-module-gift'}}
+    {{#if _promotion.promotionBenefitList.length '>=' 1}}
+      {{#if _promotion.promotionBenefitList.[0].extMap.hideGiftBanner '!==' 'true'}}
+        {{snippet 'sales/promotion-module-gift'}}
+      {{/if}}
+    {{/if}}
   {{else}}
     {{snippet 'sales/promotion-module-discount'}}
   {{/if}}

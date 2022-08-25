@@ -4900,13 +4900,49 @@
         "./src/assets/commons/components/tooltip/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(__webpack_exports__, {
+                default: () => __WEBPACK_DEFAULT_EXPORT__
+            });
+            var _yy_sl_theme_shared_components_hbs_shared_components_tooltip__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/components/hbs/shared/components/tooltip/index.js");
+            const __WEBPACK_DEFAULT_EXPORT__ = _yy_sl_theme_shared_components_hbs_shared_components_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"];
+        },
+        "./src/assets/commons/jquery.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
+            "use strict";
+            var jquery_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/jquery/src/core.js");
+            var jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default = __webpack_require__.n(jquery_src_core__WEBPACK_IMPORTED_MODULE_0__);
+            __webpack_require__("./node_modules/jquery/src/selector.js");
+            __webpack_require__("./node_modules/jquery/src/traversing.js");
+            __webpack_require__("./node_modules/jquery/src/data.js");
+            __webpack_require__("./node_modules/jquery/src/attributes.js");
+            __webpack_require__("./node_modules/jquery/src/event.js");
+            __webpack_require__("./node_modules/jquery/src/event/trigger.js");
+            __webpack_require__("./node_modules/jquery/src/manipulation.js");
+            __webpack_require__("./node_modules/jquery/src/wrap.js");
+            __webpack_require__("./node_modules/jquery/src/css.js");
+            __webpack_require__("./node_modules/jquery/src/css/showHide.js");
+            __webpack_require__("./node_modules/jquery/src/core/parseHTML.js");
+            __webpack_require__("./node_modules/jquery/src/effects.js");
+            __webpack_require__("./node_modules/jquery/src/effects/animatedSelector.js");
+            __webpack_require__("./node_modules/jquery/src/offset.js");
+            __webpack_require__("./node_modules/jquery/src/dimensions.js");
+            __webpack_require__("./node_modules/jquery/src/deprecated.js");
+            var _components_tooltip__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("./src/assets/commons/components/tooltip/index.js");
+            _components_tooltip__WEBPACK_IMPORTED_MODULE_17__["default"].install(jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default());
+            window.$ = jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default();
+            window.jQuery = jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default();
+            window.__SL_$__ = jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default();
+        },
+        "../shared/browser/components/hbs/shared/components/tooltip/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
+            __webpack_require__.d(__webpack_exports__, {
                 default: () => Tooltip
             });
-            var _utils_throttle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/assets/commons/utils/throttle.js");
-            const getTemplate = options => `\n    <div class="mp-tooltip mp-tooltip--placement-top mp-tooltip--hidden" style="z-index: ${options.zIndex}">\n      <div class="mp-tooltip__content">\n        <div class="mp-tooltip__arrow">\n          <span class="mp-tooltip__arrow-content" style="background: ${options.color}"></span>\n        </div>\n        <div class="mp-tooltip__inner" style="background: ${options.color}">\n          ${options.title}\n        </div>\n      </div>\n    </div>\n  `;
+            var lodash_throttle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/lodash/throttle.js");
+            var lodash_throttle__WEBPACK_IMPORTED_MODULE_0___default = __webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_0__);
+            const getTemplate = options => `\n    <div class="mp-tooltip mp-tooltip--placement-top mp-tooltip--hidden ${options.mobileHide ? "mp-tooltip-mobile--hidden" : ""} " style="z-index: ${options.zIndex}">\n      <div class="mp-tooltip__content">\n        <div class="mp-tooltip__arrow">\n          <span class="mp-tooltip__arrow-content" style="background: ${options.color}"></span>\n        </div>\n        <div class="mp-tooltip__inner" style="background: ${options.color}">\n          ${options.title}\n        </div>\n      </div>\n    </div>\n  `;
             const defaultOptions = {
                 color: "#000",
-                trigger: "hover"
+                trigger: "hover",
+                mobileHide: false
             };
             const HIDDEN_CLASSNAME = "mp-tooltip--hidden";
             const CONTENT_CLASSNAME = "mp-tooltip__inner";
@@ -4923,11 +4959,11 @@
                 const offsetLeft = offset.left + width / 2 - scrollLeft;
                 const tooltipWidth = $tooltip.outerWidth();
                 if (offsetLeft <= tooltipWidth / 2) {
-                    left = tooltipWidth / 2;
-                    x = offsetLeft;
+                    left = tooltipWidth / 2 + 10;
+                    x = offsetLeft - 10;
                 } else if (offsetLeft + tooltipWidth / 2 >= screenWidth) {
-                    left = screenWidth - tooltipWidth / 2;
-                    x = tooltipWidth - screenWidth + offsetLeft;
+                    left = screenWidth - tooltipWidth / 2 - 10;
+                    x = tooltipWidth - screenWidth + offsetLeft + 10;
                 } else {
                     left = offsetLeft;
                     x = tooltipWidth / 2;
@@ -4964,10 +5000,13 @@
                 }
                 init() {
                     this.walk();
-                    const calc = (0, _utils_throttle__WEBPACK_IMPORTED_MODULE_0__["default"])(20, (() => {
+                    const calc = lodash_throttle__WEBPACK_IMPORTED_MODULE_0___default()((() => {
                         this.$tooltips.forEach((tooltip => this.setPosition(__SL_$__(tooltip), this.$target)));
                     }));
                     __SL_$__(document).scroll((() => {
+                        if (this.isShow) calc();
+                    }));
+                    __SL_$__(window).resize((() => {
                         if (this.isShow) calc();
                     }));
                 }
@@ -5055,50 +5094,6 @@
                         __SL_$__(item).remove();
                     }));
                 }
-            }
-        },
-        "./src/assets/commons/jquery.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
-            "use strict";
-            var jquery_src_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/jquery/src/core.js");
-            var jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default = __webpack_require__.n(jquery_src_core__WEBPACK_IMPORTED_MODULE_0__);
-            __webpack_require__("./node_modules/jquery/src/selector.js");
-            __webpack_require__("./node_modules/jquery/src/traversing.js");
-            __webpack_require__("./node_modules/jquery/src/data.js");
-            __webpack_require__("./node_modules/jquery/src/attributes.js");
-            __webpack_require__("./node_modules/jquery/src/event.js");
-            __webpack_require__("./node_modules/jquery/src/event/trigger.js");
-            __webpack_require__("./node_modules/jquery/src/manipulation.js");
-            __webpack_require__("./node_modules/jquery/src/wrap.js");
-            __webpack_require__("./node_modules/jquery/src/css.js");
-            __webpack_require__("./node_modules/jquery/src/css/showHide.js");
-            __webpack_require__("./node_modules/jquery/src/core/parseHTML.js");
-            __webpack_require__("./node_modules/jquery/src/effects.js");
-            __webpack_require__("./node_modules/jquery/src/effects/animatedSelector.js");
-            __webpack_require__("./node_modules/jquery/src/offset.js");
-            __webpack_require__("./node_modules/jquery/src/dimensions.js");
-            __webpack_require__("./node_modules/jquery/src/deprecated.js");
-            var _components_tooltip__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("./src/assets/commons/components/tooltip/index.js");
-            _components_tooltip__WEBPACK_IMPORTED_MODULE_17__["default"].install(jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default());
-            window.$ = jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default();
-            window.jQuery = jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default();
-            window.__SL_$__ = jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default();
-        },
-        "./src/assets/commons/utils/throttle.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-            "use strict";
-            __webpack_require__.d(__webpack_exports__, {
-                default: () => __WEBPACK_DEFAULT_EXPORT__
-            });
-            function __WEBPACK_DEFAULT_EXPORT__(limit, callback) {
-                let waiting = false;
-                return function(...args) {
-                    if (!waiting) {
-                        callback.apply(this, args);
-                        waiting = true;
-                        setTimeout((function() {
-                            waiting = false;
-                        }), limit);
-                    }
-                };
             }
         },
         "../shared/browser/node_modules/dayjs/dayjs.min.js": function(module) {
@@ -5989,6 +5984,10 @@
             }
             module.exports = copyArray;
         },
+        "../shared/browser/node_modules/lodash/_freeGlobal.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var freeGlobal = "object" == typeof __webpack_require__.g && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
+            module.exports = freeGlobal;
+        },
         "../shared/browser/node_modules/lodash/_isKey.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isSymbol = __webpack_require__("../shared/browser/node_modules/lodash/isSymbol.js");
             var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/, reIsPlainProp = /^\w*$/;
@@ -6005,6 +6004,12 @@
                 return value;
             }
             module.exports = identity;
+        },
+        "../shared/browser/node_modules/lodash/_root.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var freeGlobal = __webpack_require__("../shared/browser/node_modules/lodash/_freeGlobal.js");
+            var freeSelf = "object" == typeof self && self && self.Object === Object && self;
+            var root = freeGlobal || freeSelf || Function("return this")();
+            module.exports = root;
         },
         "../shared/browser/node_modules/lodash/_stringToPath.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var memoizeCapped = __webpack_require__("../shared/browser/node_modules/lodash/_memoizeCapped.js");
@@ -6026,6 +6031,81 @@
             }
             module.exports = identity;
         },
+        "../shared/browser/node_modules/lodash/debounce.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var isObject = __webpack_require__("../shared/browser/node_modules/lodash/isObject.js"), now = __webpack_require__("../shared/browser/node_modules/lodash/now.js"), toNumber = __webpack_require__("../shared/browser/node_modules/lodash/toNumber.js");
+            var FUNC_ERROR_TEXT = "Expected a function";
+            var nativeMax = Math.max, nativeMin = Math.min;
+            function debounce(func, wait, options) {
+                var lastArgs, lastThis, maxWait, result, timerId, lastCallTime, lastInvokeTime = 0, leading = false, maxing = false, trailing = true;
+                if ("function" != typeof func) throw new TypeError(FUNC_ERROR_TEXT);
+                wait = toNumber(wait) || 0;
+                if (isObject(options)) {
+                    leading = !!options.leading;
+                    maxing = "maxWait" in options;
+                    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+                    trailing = "trailing" in options ? !!options.trailing : trailing;
+                }
+                function invokeFunc(time) {
+                    var args = lastArgs, thisArg = lastThis;
+                    lastArgs = lastThis = void 0;
+                    lastInvokeTime = time;
+                    result = func.apply(thisArg, args);
+                    return result;
+                }
+                function leadingEdge(time) {
+                    lastInvokeTime = time;
+                    timerId = setTimeout(timerExpired, wait);
+                    return leading ? invokeFunc(time) : result;
+                }
+                function remainingWait(time) {
+                    var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime, timeWaiting = wait - timeSinceLastCall;
+                    return maxing ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
+                }
+                function shouldInvoke(time) {
+                    var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime;
+                    return void 0 === lastCallTime || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
+                }
+                function timerExpired() {
+                    var time = now();
+                    if (shouldInvoke(time)) return trailingEdge(time);
+                    timerId = setTimeout(timerExpired, remainingWait(time));
+                }
+                function trailingEdge(time) {
+                    timerId = void 0;
+                    if (trailing && lastArgs) return invokeFunc(time);
+                    lastArgs = lastThis = void 0;
+                    return result;
+                }
+                function cancel() {
+                    if (void 0 !== timerId) clearTimeout(timerId);
+                    lastInvokeTime = 0;
+                    lastArgs = lastCallTime = lastThis = timerId = void 0;
+                }
+                function flush() {
+                    return void 0 === timerId ? result : trailingEdge(now());
+                }
+                function debounced() {
+                    var time = now(), isInvoking = shouldInvoke(time);
+                    lastArgs = arguments;
+                    lastThis = this;
+                    lastCallTime = time;
+                    if (isInvoking) {
+                        if (void 0 === timerId) return leadingEdge(lastCallTime);
+                        if (maxing) {
+                            clearTimeout(timerId);
+                            timerId = setTimeout(timerExpired, wait);
+                            return invokeFunc(lastCallTime);
+                        }
+                    }
+                    if (void 0 === timerId) timerId = setTimeout(timerExpired, wait);
+                    return result;
+                }
+                debounced.cancel = cancel;
+                debounced.flush = flush;
+                return debounced;
+            }
+            module.exports = debounce;
+        },
         "../shared/browser/node_modules/lodash/get.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var baseGet = __webpack_require__("../shared/browser/node_modules/lodash/_baseGet.js");
             function get(object, path, defaultValue) {
@@ -6038,11 +6118,49 @@
             var isArray = Array.isArray;
             module.exports = isArray;
         },
+        "../shared/browser/node_modules/lodash/isObject.js": module => {
+            function isObject(value) {
+                var type = typeof value;
+                return null != value && ("object" == type || "function" == type);
+            }
+            module.exports = isObject;
+        },
         "../shared/browser/node_modules/lodash/isSymbol.js": module => {
             function stubFalse() {
                 return false;
             }
             module.exports = stubFalse;
+        },
+        "../shared/browser/node_modules/lodash/now.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var root = __webpack_require__("../shared/browser/node_modules/lodash/_root.js");
+            var now = function() {
+                return root.Date.now();
+            };
+            module.exports = now;
+        },
+        "../shared/browser/node_modules/lodash/throttle.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var debounce = __webpack_require__("../shared/browser/node_modules/lodash/debounce.js"), isObject = __webpack_require__("../shared/browser/node_modules/lodash/isObject.js");
+            var FUNC_ERROR_TEXT = "Expected a function";
+            function throttle(func, wait, options) {
+                var leading = true, trailing = true;
+                if ("function" != typeof func) throw new TypeError(FUNC_ERROR_TEXT);
+                if (isObject(options)) {
+                    leading = "leading" in options ? !!options.leading : leading;
+                    trailing = "trailing" in options ? !!options.trailing : trailing;
+                }
+                return debounce(func, wait, {
+                    leading,
+                    maxWait: wait,
+                    trailing
+                });
+            }
+            module.exports = throttle;
+        },
+        "../shared/browser/node_modules/lodash/toNumber.js": module => {
+            function identity(value) {
+                return value;
+            }
+            module.exports = identity;
         },
         "../shared/browser/node_modules/lodash/toPath.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var arrayMap = __webpack_require__("../shared/browser/node_modules/lodash/_arrayMap.js"), copyArray = __webpack_require__("../shared/browser/node_modules/lodash/_copyArray.js"), isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isSymbol = __webpack_require__("../shared/browser/node_modules/lodash/isSymbol.js"), stringToPath = __webpack_require__("../shared/browser/node_modules/lodash/_stringToPath.js"), toKey = __webpack_require__("../shared/browser/node_modules/lodash/_toKey.js"), toString = __webpack_require__("../shared/browser/node_modules/lodash/toString.js");
@@ -6178,10 +6296,10 @@
             const isFunction = fn => "function" === typeof fn;
             const createLogger = (name, description) => {
                 const logger = {
-                    debug: console.debug,
-                    error: console.error,
-                    info: console.info,
-                    log: console.log
+                    debug: window.console.debug,
+                    error: window.console.error,
+                    info: window.console.info,
+                    log: window.console.log
                 };
                 if ("undefined" === typeof window) return logger;
                 if ([ "product" ].includes((0, _get_env__WEBPACK_IMPORTED_MODULE_1__["default"])().APP_ENV)) debug__WEBPACK_IMPORTED_MODULE_0___default() && debug__WEBPACK_IMPORTED_MODULE_0___default().disable();
@@ -6489,68 +6607,6 @@
                 return path;
             }
             (0, createLogger["default"])("helpers", "[matchOrderSign]");
-            function onDomReady(fn) {
-                document.removeEventListener("DOMContentLoaded", fn);
-                if ("loading" !== document.readyState) setTimeout(fn, 1); else document.addEventListener("DOMContentLoaded", (() => {
-                    setTimeout(fn);
-                }));
-            }
-            function reportHeadless() {
-                const report = async () => {
-                    const detectMap = {
-                        h_ua: () => /HeadlessChrome/.test(window.navigator.userAgent),
-                        h_plugin: () => 0 === navigator.plugins.length,
-                        h_lang: () => !navigator.language || !navigator.languages,
-                        h_webdriver: () => navigator.webdriver,
-                        h_chrome: () => !window.chrome,
-                        h_WebGL: () => {
-                            try {
-                                const canvas = document.createElement("canvas");
-                                const gl = canvas.getContext("webgl");
-                                const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
-                                const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
-                                const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-                                if ("Brian Paul" === vendor && "Mesa OffScreen" === renderer) return true;
-                            } catch (error) {}
-                            return false;
-                        },
-                        h_hairline: () => {
-                            let flag = false;
-                            if (window.devicePixelRatio && devicePixelRatio >= 2) {
-                                const testElem = document.createElement("div");
-                                testElem.style.border = ".5px solid transparent";
-                                document.body.appendChild(testElem);
-                                if (1 === testElem.offsetHeight) flag = true;
-                                document.body.removeChild(testElem);
-                                return flag;
-                            }
-                            return flag;
-                        }
-                    };
-                    const result = {};
-                    try {
-                        for (const key in detectMap) {
-                            const flag = await detectMap[key]();
-                            result[key] = String(+flag);
-                        }
-                    } catch (error) {
-                        console.log(error);
-                    }
-                    window.HdSdk && window.HdSdk.shopTracker.report("85000101", result);
-                    window.removeEventListener("DOMContentLoaded", report);
-                };
-                onDomReady(report);
-            }
-            const report_headless = reportHeadless;
-            function autoReport() {
-                const shopTracker = window.HdSdk ? window.HdSdk.shopTracker : null;
-                if (!shopTracker) return;
-                onDomReady((() => {
-                    shopTracker.report("86000101", {
-                        event_name: "142"
-                    });
-                }));
-            }
             var report_const = __webpack_require__("../shared/browser/utils/report/const.js");
             const CLICK_CLASSNAME = "__sl-track_click";
             const EXPOSE_CLASSNAME = "__sl-track_expose";
@@ -6709,8 +6765,6 @@
                         page_path: window.location.pathname + window.location.search
                     } ] ]
                 });
-                autoReport();
-                report_headless();
                 startObserver();
                 clickCollect();
             }

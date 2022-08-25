@@ -6,7 +6,7 @@
   {{#formItem "verifycode" "class='customer__form-item'"}}
     {{#snippet
       'customer/base/sl-input'
-      attrs='maxlength="255"'
+      attrs='maxlength="255" maxlength="6"'
       name="verifycode"
       type="text"
       placeholder=(t 'customer.general.verification_code')

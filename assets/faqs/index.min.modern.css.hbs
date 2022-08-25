@@ -2,30 +2,23 @@ input{
   -webkit-appearance:none;
 }
 .faq__collapse-title{
-  -webkit-box-align:center;
   -webkit-tap-highlight-color:transparent;
-  -webkit-align-items:center;
-          align-items:center;
+  align-items:center;
   cursor:pointer;
-  display:-webkit-box;
-  display:-webkit-flex;
   display:flex;
   text-align:left;
   -webkit-user-select:none;
           user-select:none;
 }
 .faq__collapse-title.active .faq__collapse-icon{
-  -webkit-transform:rotate(0);
-          transform:rotate(0);
+  transform:rotate(0);
 }
 
 .faq__collapse-icon{
-  -webkit-flex-shrink:0;
-          flex-shrink:0;
+  flex-shrink:0;
   font-size:0;
   margin-right:10px;
-  -webkit-transform:rotate(180deg);
-          transform:rotate(180deg);
+  transform:rotate(180deg);
 }
 .color-scheme-1 .faq__collapse-icon path{
   stroke:{{ theme.settings.color_scheme_1_text }};
@@ -43,25 +36,19 @@ input{
   height:0;
   opacity:0;
   overflow:hidden;
-  -webkit-transition:opacity .5s cubic-bezier(.25, .46, .45, .94), height .35s cubic-bezier(.25, .46, .45, .94);
   transition:opacity .5s cubic-bezier(.25, .46, .45, .94), height .35s cubic-bezier(.25, .46, .45, .94);
 }
 .faq__collapse-wrap.active{
   opacity:1;
 }
 .faq__collapse-wrap.active .faq__collapse-content{
-  -webkit-transform:translateY(0);
-          transform:translateY(0);
+  transform:translateY(0);
 }
 .faq__collapse-wrap .faq__collapse-content{
   margin-top:12px;
   overflow:hidden;
-  -webkit-transform:translateY(40px);
-          transform:translateY(40px);
-  -webkit-transition:-webkit-transform .3s cubic-bezier(.25, .46, .45, .94);
-  transition:-webkit-transform .3s cubic-bezier(.25, .46, .45, .94);
+  transform:translateY(40px);
   transition:transform .3s cubic-bezier(.25, .46, .45, .94);
-  transition:transform .3s cubic-bezier(.25, .46, .45, .94), -webkit-transform .3s cubic-bezier(.25, .46, .45, .94);
 }
 
 .faq__collapse-wrap+.faq__collapse-title{
@@ -111,6 +98,7 @@ input{
 }
 .faq__wrapper .faq__title{
   margin-bottom:40px;
+  overflow:hidden;
   text-align:center;
 }
 
@@ -124,5 +112,6 @@ input{
 @media (max-width:749.98px){
   .faq__wrapper .faq__title{
     margin-bottom:30px;
+    overflow:hidden;
   }
 }

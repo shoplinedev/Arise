@@ -3348,7 +3348,7 @@
                 if (!prev) return;
                 return prev && prev.string ? prev.string[current] : prev[current];
             }), window.__I18N__);
-            const regExp = new RegExp(/\{\{([^{}]+)\}\}/g);
+            const regExp = /\{\{([^{}]+)\}\}/g;
             return nullishCoalescingOperator(get_func(value, "replace").exec(regExp, ((...args) => nullishCoalescingOperator(syntax_patch_get(hash, args[1]), args[0]))), path);
         }
         __webpack_require__("../shared/browser/node_modules/lodash/round.js");

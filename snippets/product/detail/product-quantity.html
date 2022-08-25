@@ -1,4 +1,4 @@
-{{ assign 'isTips' (and (not product.spu.soldOut) (boolean selectSku) (not selectSku.infiniteStock) (not selectSku.allowOversold) (boolean selectSku.stock '<' 10) (not selectSku.soldOut) )  }}
+{{ assign 'isTips' (and (not product.spu.soldOut) (boolean selectSku) (not selectSku.infiniteStock) (not selectSku.allowOversold) (boolean selectSku.stock '<' 10) (not selectSku.soldOut) (not stocks) ) }}
 {{ assign 'className' (default className 'text-left')}}
 
 <div class="product-sku-quantity text-md-left {{className}}" id="product-detail-sku-quantity_{{id}}">

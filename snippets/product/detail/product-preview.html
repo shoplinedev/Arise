@@ -11,15 +11,13 @@
   {{#if isAjax}}
     <script>
       window.SL_State && window.SL_State.set("{{ statePrefix }}", {{{ JSONstringify product }}})
-    </script> 
+    </script>
   {{else}}
     {{ preload_state statePrefix }}
   {{/if}}
 {{/if}}
 
-{{#if id '===' 'productDetail'}}
-  {{ preload_state 'productActivity' }}
-{{/if}}
+{{ preload_state 'productActivity' }}
 
 <!-- 判断是否预览环境 -->
 {{#if templateAlias '===' 'PreviewProductsDetail'}}
@@ -45,7 +43,7 @@
 {{ assign 'show_thumbnail_arrow' (boolean section.settings.product_image_pc_show_style '===' 'carousel') }}
 {{!-- 启用视频循环 --}}
 {{ assign 'video_loop' (default section.settings.video_loop false) }}
-{{!-- 展示商品描述 (PDP不跟配置 默认展示) --}} 
+{{!-- 展示商品描述 (PDP不跟配置 默认展示) --}}
 {{ assign 'show_product_desc' (default (cond (boolean id '==' 'productDetail') true section.settings.show_product_desc) true) }}
 {{!-- 商品描述展示位置 --}}
 {{ assign 'product_desc_position' (default section.settings.product_desc_position 'aside') }}
@@ -86,11 +84,22 @@
           </div>
           {{/if}}
           {{!-- 保留isv挂载点 --}}
-          <div class="products-detail-info" data-ssr-blocks-product>
+          <div class="products-detail-info shopline-element-product-info" data-ssr-blocks-product>
             {{#with this as | global |}}
               {{#if blocks}}
                 {{ assign 'isHideSkuSelector' true }}
+                {{ assign 'is_show_stock_number' false }}
+                {{#each blocks as | block |}}
+                  {{#if type '===' 'stockNumber'}}
+                    {{#with global}}
+                      {{ assign 'is_show_stock_number' block.settings.stockNumber }}
+                    {{/with}}
+                  {{/if}}
+                {{/each}}
                 {{#each blocks}}
+                  {{#startsWith 'shopline://apps' type}}
+                    {{ render this }}
+                  {{/startsWith}}
                   {{#if type '===' 'title'}}
                   <div class="product-block-item" data-ssr-block-title>
                     {{ snippet 'product/detail/product-title' product=../product }}
@@ -118,7 +127,7 @@
                   <div class="product-block-item" data-ssr-block-quantity>
                   {{#if (isFalsey ../product.spu.inquiry)}}
                       <div class="products-detail-quantity">
-                        {{ snippet 'product/detail/product-quantity' selectSku=../initSku.selectSku id=../id }}
+                        {{ snippet 'product/detail/product-quantity' selectSku=../initSku.selectSku id=../id stocks=../is_show_stock_number }}
                       </div>
                     {{/if}}
                   </div>
@@ -148,7 +157,7 @@
                   <div class="product-block-item" data-ssr-block-description>
 
                     {{#if ../show_product_desc}}
-                      <div class="product-detail-description" data-ssr-plugin-detail-description>
+                      <div class="product-detail-description shopline-element-product-detail-description" data-ssr-plugin-detail-description>
                         {{ snippet 'product/detail/product-description' description=../description position='aside' }}
                       </div>
                     {{/if}}
@@ -276,6 +285,15 @@
                   {{#if type '===' 'plainText'}}
                   <div class="product-block-item" data-ssr-block-plainText>
                     {{ settings.plainText }}
+                  </div>
+                  {{/if}}
+                  {{#if type '===' 'stockNumber'}}
+                  <div class="product-block-item" data-ssr-block-stockNumber>
+                    {{#if (and (isFalsey ../product.spu.inquiry) settings.stockNumber)}}
+                      <div class="product-stock-wrap">
+                        {{ snippet 'product/detail/product-stock' selectSku=../initSku.selectSku id=../id settings=settings }}
+                      </div>
+                    {{/if}}
                   </div>
                   {{/if}}
                 {{/each}}

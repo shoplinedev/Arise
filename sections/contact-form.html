@@ -27,7 +27,7 @@
 
 <div class="color-scheme-{{ section.settings.color_scheme }} section-gap{{#if (isTruthy section.settings.color_scheme '!==' 'none')}}--padding{{/if}}">
   <div class='__sl-custom-track-stage-contactForm container contact-form' data-section-type="contact-form" data-section-id="{{ section.id }}">
-      <p class="title4 contact-form__title">{{ section.settings.title }}</p>
+      <h2 class="title4 contact-form__title">{{ section.settings.title }}</h2>
       <form class="row contact-form__wrapped" id="contact-form-{{ section.id }}">
         {{#formItem 'name' "class='col-24 col-md-12'"}}
           {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="name" maxlength="255"' name='name' placeholder=(t 'general.general.username') }}

@@ -3907,7 +3907,7 @@
                 if (!prev) return;
                 return prev && prev.string ? prev.string[current] : prev[current];
             }), window.__I18N__);
-            const regExp = new RegExp(/\{\{([^{}]+)\}\}/g);
+            const regExp = /\{\{([^{}]+)\}\}/g;
             return nullishCoalescingOperator(get_func(value, "replace").exec(regExp, ((...args) => nullishCoalescingOperator(syntax_patch_get(hash, args[1]), args[0]))), path);
         }
         const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014 ];
@@ -4471,6 +4471,7 @@
                     content: "",
                     destroyedOnClosed: false,
                     afterClose: () => {},
+                    closeCallback: () => {},
                     ...options
                 };
                 this.modalId = config.id || `${common_DEFAULT_MODAL_ID_PRE}${++uuid}`;
@@ -4524,6 +4525,7 @@
                 this.toggleMaskClassName();
                 this.$modal.addClass(common_animationClassMap.hidden).removeClass(common_animationClassMap.visible);
                 if (force) this.afterAnimation();
+                if ("function" === typeof this.config.closeCallback) this.config.closeCallback(this.$modal);
             }
             toggleMaskClassName() {
                 if (this.config.maskClosable) this.$modal.find(`.${common_bem("mask")}`).toggleClass(common_maskClosableClass, this.visibleState === common_VISIBLE);
@@ -5480,8 +5482,9 @@
         };
         const toast_LOADING = "loading";
         const toast_getTemplate = (options, type = "default") => {
+            const loadingColor = options.loadingColor || "black";
             const templates = {
-                [toast_LOADING]: `\n      <div class="comment-toast mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="black" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
+                [toast_LOADING]: `\n      <div class="mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="${loadingColor}" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
                 default: `\n      <div class="comment-toast mp-toast mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-toast__content mp-toast__inner">${options.content}</div>\n      </div>\n    `
             };
             return templates[type];
@@ -5791,6 +5794,11 @@
                     isverify = verify ? "1" : "0";
                 }
                 eventid = FBPixelEventID;
+            } else if ("activate" === formType) {
+                if ("member" === type) {
+                    getInitConfig = getMemberInitConfig;
+                    isverify = 0;
+                }
             } else if ("reset" === formType) if (uid) {
                 getInitConfig = getUniversalInitConfig(reset_getChangePasswordInitConfig);
                 ticketType = "1";
@@ -5826,7 +5834,7 @@
                     scene
                 };
             }));
-            if ([ "signIn", "signUp", "bind", "reset", "passwordNew" ].includes(formType)) {
+            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "activate" ].includes(formType)) {
                 const token = window.__DF__ && window.__DF__.getToken();
                 if (token) return init(token);
                 return getRiskControlToken().then((dfptoken => init(dfptoken))).catch((() => init()));

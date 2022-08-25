@@ -11,7 +11,7 @@ imgRealWidth 图片真实占位宽度
 {{/if}}
 {{assign 'soldOut' spu.soldOut}}
 {{assign 'title' spu.title}}
-{{assign 'productMinPrice' spu.productMinPrice}} 
+{{assign 'productMinPrice' spu.productMinPrice}}
 {{assign 'showMemberMark' spu.showMemberMark}}
 {{assign 'showFromMark' spu.showFromMark}}
 {{!-- 判断价格的from文案是否后置，只有中日韩语后置 --}}
@@ -45,10 +45,10 @@ imgRealWidth 图片真实占位宽度
 {{/if}}
 {{!-- 下一张图片链接,如果没有下一张图片,不去处理 --}}
 {{#if imageList.[1]}}
-  {{assign 'product_item_next_image_src' imageList.[1] }} 
+  {{assign 'product_item_next_image_src' imageList.[1] }}
   {{assign 'product_item_next_image_alt' (default altList.[1] '')}}
 {{else}}
-  {{assign 'product_item_next_image_src' false }} 
+  {{assign 'product_item_next_image_src' false }}
 {{/if}}
 
 {{assign 'discount_text' null}}
@@ -86,7 +86,7 @@ imgRealWidth 图片真实占位宽度
   {{assign 'product_title_show_type' theme.settings.product_title_show_type}}
 {{/if}}
 
-<div class="product-item__wrapper">
+<div class="product-item__wrapper shopline-element-product-item">
   <div class="product-item__inner-wrap js-product-inner-wrap" data-hover-z-index="{{hoverZIndex}}" data-no-hover-ani-effect="{{noHoverAniEffect}}">
     <a
       data-id="{{spuSeq}}"
@@ -106,26 +106,26 @@ imgRealWidth 图片真实占位宽度
           {{!-- 如果没有下一张图片，不展示hover效果 --}}
           {{#if (boolean product_item_next_image_src '&&' section.settings.product_hover_show_next) }}
             <div class="product-item-next-image"  data-plugin-product-item-next-img-box>
-              {{ snippet 'product/commons/product-process-image' 
-                backgroundColor=backgroundColor 
+              {{ snippet 'product/commons/product-process-image'
+                backgroundColor=backgroundColor
                 fallbacksBgColor="#f3f3f3"
                 imageRatio=finalRatio
-                imageFit=imageFit 
-                src=product_item_next_image_src 
+                imageFit=imageFit
+                src=product_item_next_image_src
                 alt=product_item_next_image_alt
-                placeholderHeight=placeholderHeight 
+                placeholderHeight=placeholderHeight
               }}
             </div>
           {{/if}}
           <div class="product-item-image"  data-plugin-product-item-img-box>
             {{ snippet 'product/commons/product-process-image'
-              backgroundColor=backgroundColor 
-              fallbacksBgColor="#f3f3f3" 
-              imageRatio=finalRatio 
-              imageFit=imageFit  
-              src=product_item_image_src 
+              backgroundColor=backgroundColor
+              fallbacksBgColor="#f3f3f3"
+              imageRatio=finalRatio
+              imageFit=imageFit
+              src=product_item_image_src
               alt=product_item_image_alt
-              placeholderHeight=placeholderHeight 
+              placeholderHeight=placeholderHeight
             }}
           </div>
           {{!-- 没有soldout字段时不展示tag --}}

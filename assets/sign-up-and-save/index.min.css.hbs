@@ -7,23 +7,35 @@ input{
 
 .newsletter{
   -webkit-box-align:center;
+     -moz-box-align:center;
+      -ms-flex-align:center;
   -webkit-box-pack:center;
+     -moz-box-pack:center;
+      -ms-flex-pack:center;
   -webkit-box-orient:vertical;
   -webkit-box-direction:normal;
+     -moz-box-orient:vertical;
+     -moz-box-direction:normal;
   -webkit-align-items:center;
           align-items:center;
   display:-webkit-box;
   display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
   display:flex;
   -webkit-flex-direction:column;
+      -ms-flex-direction:column;
           flex-direction:column;
   -webkit-justify-content:center;
           justify-content:center;
   position:relative;
+  width:100%;
   z-index:3;
 }
 .newsletter__title h2{
+  overflow:hidden;
   text-align:center !important;
+  width:inherit;
 }
 .newsletter__desc{
   margin-top:15px;
@@ -31,10 +43,14 @@ input{
 }
 .newsletter__btnGroup{
   -webkit-box-align:stretch;
+     -moz-box-align:stretch;
+      -ms-flex-align:stretch;
   -webkit-align-items:stretch;
           align-items:stretch;
   display:-webkit-box;
   display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
   display:flex;
   margin-top:15px;
 }
@@ -49,6 +65,8 @@ input{
   color:{{ theme.settings.color_text }};
   display:-webkit-box;
   display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
   display:flex;
   height:auto;
   margin-right:10px;
@@ -59,38 +77,64 @@ input{
 .newsletter__input--wrapper::-webkit-input-placeholder{
   color:currentColor;
 }
+.newsletter__input--wrapper:-moz-placeholder,.newsletter__input--wrapper::-moz-placeholder{
+  color:currentColor;
+}
+.newsletter__input--wrapper:-ms-input-placeholder{
+  color:currentColor;
+}
+.newsletter__input--wrapper::-ms-input-placeholder{
+  color:currentColor;
+}
 .newsletter__input--wrapper::placeholder{
   color:currentColor;
 }
 .color-scheme-1 .newsletter__input--wrapper:after{
-  box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+  -webkit-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
 }
 .color-scheme-1 .newsletter__input--wrapper:hover:after{
-  box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+  -webkit-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
 }
 
 .color-scheme-2 .newsletter__input--wrapper:after{
-  box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+  -webkit-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
 }
 .color-scheme-2 .newsletter__input--wrapper:hover:after{
-  box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+  -webkit-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
 }
 
 .color-scheme-3 .newsletter__input--wrapper:after{
-  box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+  -webkit-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
 }
 .color-scheme-3 .newsletter__input--wrapper:hover:after{
-  box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+  -webkit-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
 }
 
 .newsletter__input--wrapper{
-  border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
   position:relative;
 }
+.newsletter__input--wrapper,.newsletter__input--wrapper:before{
+  -webkit-border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+     -moz-border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+          border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+}
 .newsletter__input--wrapper:before{
-  border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
   bottom:0;
-  box-shadow:{{ append theme.settings.input_shadow_offset_x 'px' }} {{ append theme.settings.input_shadow_offset_y 'px' }} {{ append theme.settings.input_shadow_blur 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_shadow_opacity 100) }};
+  -webkit-box-shadow:{{ append theme.settings.input_shadow_offset_x 'px' }} {{ append theme.settings.input_shadow_offset_y 'px' }} {{ append theme.settings.input_shadow_blur 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_shadow_opacity 100) }};
+     -moz-box-shadow:{{ append theme.settings.input_shadow_offset_x 'px' }} {{ append theme.settings.input_shadow_offset_y 'px' }} {{ append theme.settings.input_shadow_blur 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_shadow_opacity 100) }};
+          box-shadow:{{ append theme.settings.input_shadow_offset_x 'px' }} {{ append theme.settings.input_shadow_offset_y 'px' }} {{ append theme.settings.input_shadow_blur 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_shadow_opacity 100) }};
   content:"";
   left:0;
   pointer-events:none;
@@ -99,37 +143,55 @@ input{
   top:0;
 }
 .newsletter__input--wrapper:after{
-  border-radius:{{ append theme.settings.input_border_radius 'px' }};
+  -webkit-border-radius:{{ append theme.settings.input_border_radius 'px' }};
+     -moz-border-radius:{{ append theme.settings.input_border_radius 'px' }};
+          border-radius:{{ append theme.settings.input_border_radius 'px' }};
   bottom:{{ append theme.settings.input_border_thickness 'px' }};
-  box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+  -webkit-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
   content:"";
   left:{{ append theme.settings.input_border_thickness 'px' }};
   pointer-events:none;
   position:absolute;
   right:{{ append theme.settings.input_border_thickness 'px' }};
   top:{{ append theme.settings.input_border_thickness 'px' }};
-  -webkit-transition:box-shadow .1s ease;
+  -webkit-transition:-webkit-box-shadow .1s ease;
+  transition:-webkit-box-shadow .1s ease;
+  -o-transition:box-shadow .1s ease;
+  -moz-transition:box-shadow .1s ease, -moz-box-shadow .1s ease;
   transition:box-shadow .1s ease;
+  transition:box-shadow .1s ease, -webkit-box-shadow .1s ease, -moz-box-shadow .1s ease;
   z-index:1;
 }
 .newsletter__input--wrapper:hover:after{
-  box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+  -webkit-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
 }
 .newsletter__input{
   border:initial;
-  border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+  -webkit-border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+     -moz-border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+          border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
   height:100%;
   padding:{{ append (add theme.settings.input_border_thickness 15.7) 'px' }} {{ append (add theme.settings.input_border_thickness 12) 'px' }};
   width:100%;
 }
 .newsletter__btn{
   -webkit-box-align:center;
+     -moz-box-align:center;
+      -ms-flex-align:center;
   -webkit-box-pack:center;
+     -moz-box-pack:center;
+      -ms-flex-pack:center;
   -webkit-align-items:center;
           align-items:center;
   cursor:pointer;
   display:-webkit-box !important;
   display:-webkit-flex !important;
+  display:-moz-box !important;
+  display:-ms-flexbox !important;
   display:flex !important;
   height:auto;
   -webkit-justify-content:center;
@@ -144,7 +206,7 @@ input{
 .newsletter__btn span{
   display:inline-block;
 }
-.newsletter__btn.has-icon span,.newsletter__btn svg{
+.newsletter__btn svg,.newsletter__btn.has-icon span{
   display:none;
 }
 .newsletter__btn.has-icon svg{

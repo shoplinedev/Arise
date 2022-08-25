@@ -2,25 +2,15 @@ input{
   -webkit-appearance:none;
 }
 .base-input{
-  -webkit-box-orient:horizontal;
-  -webkit-box-direction:normal;
-  -webkit-box-pack:justify;
-  -webkit-box-align:center;
-  -webkit-align-items:center;
-          align-items:center;
+  align-items:center;
   background-color:#fff;
   box-sizing:border-box;
   color:#2c2c2c;
-  display:-webkit-box;
-  display:-webkit-flex;
   display:flex;
-  -webkit-flex-flow:row nowrap;
-          flex-flow:row nowrap;
+  flex-flow:row nowrap;
   font-size:14px;
-  -webkit-justify-content:space-between;
-          justify-content:space-between;
+  justify-content:space-between;
   line-height:1.4;
-  -webkit-transition:all .3s;
   transition:all .3s;
   width:100%;
 }
@@ -69,7 +59,6 @@ input{
   left:{{ append theme.settings.input_border_thickness 'px' }};
   right:{{ append theme.settings.input_border_thickness 'px' }};
   top:{{ append theme.settings.input_border_thickness 'px' }};
-  -webkit-transition:box-shadow .1s ease;
   transition:box-shadow .1s ease;
   z-index:1;
 }
@@ -78,8 +67,7 @@ input{
 }
 
 .base-input-area.is-textarea .base-input__inpEle:not(:placeholder-shown)+.placeholder,.base-input:focus-within .placeholder,.base-input__inpEle:not(:placeholder-shown)+.placeholder,.base-input__selectEle:not(:placeholder-shown)+.placeholder{
-  -webkit-transform:scale(.8) translateY(-100%);
-          transform:scale(.8) translateY(-100%);
+  transform:scale(.8) translateY(-100%);
   white-space:nowrap;
   word-break:normal;
 }
@@ -108,22 +96,16 @@ input{
 }
 
 .base-input.is-disabled input,.base-input.is-disabled select,.base-input.is-disabled textarea{
-  background-color:rgba(44, 44, 44, .06) !important;
-  color:rgba(44, 44, 44, .4);
+  background-color:rgba(44,44,44,.06) !important;
+  color:rgba(44,44,44,.4);
   cursor:not-allowed;
   pointer-events:none;
 }
 
 .base-input-area{
-  -webkit-box-flex:1;
-  -webkit-box-align:center;
-  -webkit-align-items:center;
-          align-items:center;
-  display:-webkit-box;
-  display:-webkit-flex;
+  align-items:center;
   display:flex;
-  -webkit-flex:1;
-          flex:1;
+  flex:1;
   position:relative;
 }
 
@@ -140,14 +122,11 @@ input{
 }
 
 .base-input .base-input-area select{
-  appearance:none;
+  -moz-appearance:none;
+       appearance:none;
   -webkit-appearance:none;
   padding-right:30px;
   position:relative;
-}
-
-.base-input-area input::-webkit-input-placeholder,.base-input-area textarea::-webkit-input-placeholder{
-  font-size:0;
 }
 
 .base-input-area input::placeholder,.base-input-area textarea::placeholder{
@@ -162,14 +141,9 @@ input{
   position:absolute;
   right:0;
   top:50%;
-  -webkit-transform:translateY(-50%);
-          transform:translateY(-50%);
-  -webkit-transform-origin:left top;
-          transform-origin:left top;
-  -webkit-transition:-webkit-transform .3s ease;
-  transition:-webkit-transform .3s ease;
+  transform:translateY(-50%);
+  transform-origin:left top;
   transition:transform .3s ease;
-  transition:transform .3s ease, -webkit-transform .3s ease;
   word-break:break-word;
   z-index:4;
 }
@@ -186,11 +160,7 @@ input{
 }
 
 .base-input__addonAfter{
-  -webkit-box-align:center;
-  -webkit-align-items:center;
-          align-items:center;
-  display:-webkit-box;
-  display:-webkit-flex;
+  align-items:center;
   display:flex;
   height:100%;
   position:absolute;
@@ -206,6 +176,7 @@ input{
 
 .contact-form__title{
   margin-bottom:30px;
+  overflow:hidden;
   text-align:center;
 }
 .contact-form .base-input{

@@ -31,8 +31,22 @@
       "subtotal": "小計",
       "tax_included": "税込み"
     },
+    "checkout": {
+      "max_amount_limit": "チェックアウトの最大金額を超えました"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "以下の商品が購入制限を超えていますが、引き続き支払いますか？"
+    },
+    "couponCode": {
+      "exceedLimit": "割引コードが数量制限を超えています",
+      "existCode": "割引コードは既に存在します",
+      "list": {
+        "unavailable": "すべての割引コードの有効期限が切れています"
+      },
+      "notSupport": {
+        "stacked": "割引コードはスタックできません"
+      },
+      "unavailable": "割引コードの有効期限が切れています"
     },
     "discount": {
       "code_error": "有効なるクーポンコードを入力してください。",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "ビジターとして続く"
     },
     "item": {
-      "add_limit2": "1 つの製品を最大 999 個購入できます",
+      "add_limit2": "1 つの製品を最大 99999 個購入できます",
       "invalid_product": "無効な商品です",
       "item_left": "{{stock}} pieces in stock",
       "none_existent": "製品が存在しません",
@@ -214,6 +228,17 @@
       "username": "名前",
       "verify_email_message": "アカウントをキャンセルする前に、本人確認を行う必要があります。メールアドレス {{email}} に確認コードが届きます",
       "verify_phone_message": "アカウントをキャンセルする前に、本人確認を行う必要があります。お使いの携帯電話{{phone}}に確認用SMSが届きます"
+    },
+    "activate": {
+      "account_activated": "アカウントが有効化されました",
+      "apply_code": "クーポンコードを適用する",
+      "apply_success": "適用しました",
+      "button": "有効化",
+      "copy_success": "クーポンコードがコピーしました",
+      "discount_title": "アカウントを有効にしてクーポンコードを取得する",
+      "normal_title": "アカウントを有効にする",
+      "subscription_text": "最新情報を受け取り、限定OFFなどにアクセスするため、メールを購読しましょう",
+      "success_title": "おめでとう、クーポンコードを取得しました"
     },
     "address": {
       "add_address": "新しい住所の追加",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Amazon で購入する",
       "go_to_rakuten_by_link": "楽天 で購入する",
       "go_to_yahoo_by_link": "ヤフー で購入する",
+      "in_stock": "在庫あり",
+      "inventory_quantity": "在庫数",
       "leave_us_message": "コメントを入力してください",
       "leave_us_message_get_back": "お問い合わせ内容はコメントで残してください。なるべく早くご連絡いたします",
       "link_preview_does_not_support": "リンクプレビューの操作はサポートされていません",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "コピー",
       "activity_banner_free_shipping": "送料無料",
       "activity_banner_threshold": "{{threshold}}以上",
+      "activity_selector_price_high_to_low": "高価格から低価格へ",
+      "activity_selector_price_low_to_high": "低価格から高価格へ",
+      "activity_selector_recommended": "お勧め",
       "apply_common": "適用",
       "bundle_save_tip": "一緒に購入すれば {{amount}} が節約可能",
       "bundle_title": "よく一緒に購入されている商品",
@@ -674,6 +704,9 @@
       "Paypal": "Paypal",
       "adjustPay": "manual",
       "third-part": "クレジットカード"
+    },
+    "reduction_code": {
+      "giftcard": "ギフトカード"
     }
   },
   "transaction": {

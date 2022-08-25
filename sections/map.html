@@ -1,0 +1,176 @@
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'map/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'map/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+{{ inline_stylesheet 'map/index.min.css' }}
+
+{{ assign 'shoplineMap' section }}
+{{ preload_state 'shoplineMap.settings' }}
+
+{{ assign 'address' (encodeURI (default section.settings.address '')) }}
+{{ assign 'google_map_search_url' (append 'https://maps.google.com/?daddr=' address) }}
+
+<div class="__sl-custom-track-stage-map sl-map container" data-section-type="map" data-section-id="{{ section.id }}">
+  {{!-- 信息块 --}}
+  <div class="sl-map__block-wrapper sl-map__block-wrapper--nature">
+    <div class="sl-map__block">
+      <div class="sl-map__info">
+        {{#if section.settings.title}}
+          <h2 class="sl-map__title title4">{{ section.settings.title }}</h2>
+        {{/if}}
+
+        {{#if section.settings.store_info}}
+          <div class="sl-map__store-info sl-richtext body3">{{{ section.settings.store_info }}}</div>
+        {{/if}}
+
+        {{#if (and section.settings.address section.settings.btn_text)}}
+          <a class="__sl-custom-track-stage-map-button sl-map__btn btn btn-primary" href="{{ google_map_search_url }}" target="__blank">
+            {{#if section.settings.pushpin}}
+              {{ snippet 'icons/icon_location1' classes='btn-icon' }}
+            {{/if}}
+            <span class="btn-text">{{ section.settings.btn_text }}</span>
+          </a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  
+  {{!-- 展示块 --}}
+  <div class="sl-map__block-wrapper sl-map__block-wrapper--full">
+    <div class="sl-map__block">
+      <div class="sl-map__display">
+        {{#if section.settings.google_api_secret_key}}
+          {{ assign 'iframe_url' (append 'https://www.google.com/maps/embed/v1/place?key=' section.settings.google_api_secret_key '&q=' address '&language=' request.locale) }}
+          <iframe class="sl-map__iframe" frameborder="0" src="{{ iframe_url }}"></iframe>
+        {{else}}{{#if section.settings.image}}
+          {{ snippet 'global-image' image=section.settings.image scale=1 image-style=(append 'object-position: ' section.settings.image_position ';') pcSize='1/2' }}
+        {{else}}
+          {{ snippet 'icons/icon_slideshow_placeholder' class='sl-map__empty-img' }}
+        {{/if}}{{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#schema}}
+{
+  "name": "t:sections.map.name",
+  "type": "map",
+  "class": "section-gap",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.map.settings.title.label",
+      "default": "Our store"
+    },
+    {
+      "type": "richtext",
+      "id": "store_info",
+      "label": "t:sections.map.settings.store_info.label",
+      "default": "<div>\n<div>235 Fake St.</div>\n<div>London, UK</div>\n<div>&nbsp;</div>\n<div>Mon - Fri, 10am - 9pm</div>\n<div>Saturday, 10am - 9pm</div>\n<div>Sunday, 11am - 5pm</div>\n</div>"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "t:sections.map.settings.address.label",
+      "info": "t:sections.map.settings.address.info",
+      "default": "London"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "t:sections.map.settings.btn_text.label",
+      "default": "Get directions"
+    },
+    {
+      "type": "switch",
+      "id": "pushpin",
+      "label": "t:sections.map.settings.pushpin.label",
+      "default": true
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.map.settings.group_header__0.label",
+      "id": "group_header__0"
+    },
+    {
+      "type": "text",
+      "id": "google_api_secret_key",
+      "label": "t:sections.map.settings.google_api_secret_key.label",
+      "info": "t:sections.map.settings.google_api_secret_key.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.map.settings.image.label",
+      "info": "t:sections.map.settings.image.info"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "t:sections.map.settings.image_position.label",
+      "default": "center center",
+      "options": [
+        {
+          "value": "20% 0",
+          "label": "t:sections.map.settings.image_position.options__0.label"
+        },
+        {
+          "value": "top center",
+          "label": "t:sections.map.settings.image_position.options__1.label"
+        },
+        {
+          "value": "80% 0",
+          "label": "t:sections.map.settings.image_position.options__2.label"
+        },
+        {
+          "value": "20% 50%",
+          "label": "t:sections.map.settings.image_position.options__3.label"
+        },
+        {
+          "value": "center center",
+          "label": "t:sections.map.settings.image_position.options__4.label"
+        },
+        {
+          "value": "80% 50%",
+          "label": "t:sections.map.settings.image_position.options__5.label"
+        },
+        {
+          "value": "20% 100%",
+          "label": "t:sections.map.settings.image_position.options__6.label"
+        },
+        {
+          "value": "bottom center",
+          "label": "t:sections.map.settings.image_position.options__7.label"
+        },
+        {
+          "value": "80% 100%",
+          "label": "t:sections.map.settings.image_position.options__8.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.map.presets.presets__0.name",
+      "category": "t:sections.map.presets.presets__0.category",
+      "settings": {
+        "title": "Our store",
+        "store_info": "<div>\n<div>235 Fake St.</div>\n<div>London, UK</div>\n<div>Mon - Fri, 10am - 9pm</div>\n<div>Saturday, 10am - 9pm</div>\n<div>Sunday, 11am - 5pm</div>\n</div>",
+        "address": "London",
+        "btn_text": "Get directions",
+        "pushpin": true,
+        "google_api_secret_key": "",
+        "image": "",
+        "image_position": "center center"
+      }
+    }
+  ]
+}
+{{/schema}}

@@ -3,16 +3,10 @@
   white-space:nowrap;
 }
 .navbar__container{
-  -webkit-box-align:center;
-  -webkit-box-pack:justify;
-  -webkit-align-items:center;
-          align-items:center;
+  align-items:center;
   border-bottom:1px solid {{ theme.settings.color_entry_line }};
-  display:-webkit-box;
-  display:-webkit-flex;
   display:flex;
-  -webkit-justify-content:space-between;
-          justify-content:space-between;
+  justify-content:space-between;
   margin-bottom:40px;
 }
 @media (max-width:767.98px){
@@ -94,23 +88,22 @@
   padding:0;
   position:absolute;
   top:50%;
-  -webkit-transform:translate3d(-50%, -50%, 0);
-          transform:translate3d(-50%, -50%, 0);
+  transform:translate3d(-50%, -50%, 0);
   z-index:1010;
 }
 .mp-toast.comment-toast{
   width:-webkit-fit-content;
+  width:-moz-fit-content;
   width:fit-content;
 }
 .mp-toast.comment-toast__inner{
   border-radius:0;
 }
 .mp-toast__inner{
-  -webkit-font-feature-settings:"tnum";
-          font-feature-settings:"tnum";
+  font-feature-settings:"tnum";
   background:#000;
   border-radius:4px;
-  box-shadow:0 4px 20px rgba(0, 0, 0, .15);
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
   color:#fff;
   display:inline-block;
   font-size:14px;
@@ -127,25 +120,16 @@
   display:none !important;
 }
 .mp-toast--loading{
-  -webkit-box-orient:vertical;
-  -webkit-box-direction:normal;
-  -webkit-box-align:center;
-  -webkit-box-pack:center;
-  -webkit-align-items:center;
-          align-items:center;
-  background-color:rgba(0, 0, 0, .7);
+  align-items:center;
+  background-color:rgba(0,0,0,.7);
   border-radius:8px;
   color:#fff;
   color:#c8c9cc;
-  display:-webkit-box;
-  display:-webkit-flex;
   display:flex;
-  -webkit-flex-direction:column;
-          flex-direction:column;
+  flex-direction:column;
   font-size:14px;
   font-size:0;
-  -webkit-justify-content:center;
-          justify-content:center;
+  justify-content:center;
   max-width:70%;
   min-height:88px;
   padding:16px;
@@ -191,8 +175,7 @@
   stroke:currentColor;
   stroke-width:3;
   stroke-linecap:round;
-  -webkit-animation:mp-circular 1.5s ease-in-out infinite;
-          animation:mp-circular 1.5s ease-in-out infinite;
+  animation:mp-circular 1.5s ease-in-out infinite;
 }
 .mp-loading__text{
   color:#969799;
@@ -204,8 +187,7 @@
   vertical-align:middle;
 }
 .mp-loading__spinner{
-  -webkit-animation:mp-rotate .8s linear infinite;
-          animation:mp-rotate .8s linear infinite;
+  animation:mp-rotate .8s linear infinite;
   height:30px;
   max-height:100%;
   max-width:100%;
@@ -213,23 +195,7 @@
   width:100%;
 }
 .mp-loading__spinner--circular{
-  -webkit-animation-duration:2s;
-          animation-duration:2s;
-}
-
-@-webkit-keyframes mp-circular{
-  0%{
-    stroke-dasharray:1, 200;
-    stroke-dashoffset:0;
-  }
-  50%{
-    stroke-dasharray:90, 150;
-    stroke-dashoffset:-40;
-  }
-  to{
-    stroke-dasharray:90, 150;
-    stroke-dashoffset:-120;
-  }
+  animation-duration:2s;
 }
 
 @keyframes mp-circular{
@@ -246,24 +212,12 @@
     stroke-dashoffset:-120;
   }
 }
-@-webkit-keyframes mp-rotate{
-  0%{
-    -webkit-transform:rotate(0deg);
-            transform:rotate(0deg);
-  }
-  to{
-    -webkit-transform:rotate(1turn);
-            transform:rotate(1turn);
-  }
-}
 @keyframes mp-rotate{
   0%{
-    -webkit-transform:rotate(0deg);
-            transform:rotate(0deg);
+    transform:rotate(0deg);
   }
   to{
-    -webkit-transform:rotate(1turn);
-            transform:rotate(1turn);
+    transform:rotate(1turn);
   }
 }
 @media (max-width:320px){
@@ -281,16 +235,6 @@ input{
   max-height:600px;
   overflow:auto;
   padding-right:20px;
-}
-@-webkit-keyframes antRotate{
-  0%{
-    -webkit-transform:rotate(0);
-            transform:rotate(0);
-  }
-  to{
-    -webkit-transform:rotate(1turn);
-            transform:rotate(1turn);
-  }
 }
 .customer-message-list .msg-list{
   overflow:hidden;
@@ -328,7 +272,7 @@ input{
   font-size:14px;
 }
 .customer-message-list .msg-list .msg-wrap{
-  background:rgba(0, 0, 0, .03);
+  background:rgba(0,0,0,.03);
   border-radius:4px;
   box-sizing:border-box;
   margin-top:8px;
@@ -356,30 +300,23 @@ input{
   opacity:1;
 }
 .customer-message-list .msg-list .msg-image .mask{
-  background:rgba(50, 52, 54, .7);
+  background:rgba(50,52,54,.7);
   height:100%;
   left:0;
   opacity:0;
   position:absolute;
   top:0;
-  -webkit-transition:all .2s;
   transition:all .2s;
   width:100%;
 }
 .customer-message-list .msg-loading{
-  -webkit-box-pack:center;
-  display:-webkit-box;
-  display:-webkit-flex;
   display:flex;
   height:30px;
-  -webkit-justify-content:center;
-          justify-content:center;
-  -webkit-transition:all .2s;
+  justify-content:center;
   transition:all .2s;
 }
 .customer-message-list .msg-loading svg{
-  -webkit-animation:antRotate 1.6s infinite linear;
-          animation:antRotate 1.6s infinite linear;
+  animation:antRotate 1.6s infinite linear;
 }
 .customer-message-list .msg-loading.hidden{
   opacity:0;
@@ -387,20 +324,16 @@ input{
 
 @keyframes antRotate{
   0%{
-    -webkit-transform:rotate(0);
-            transform:rotate(0);
+    transform:rotate(0);
   }
   to{
-    -webkit-transform:rotate(1turn);
-            transform:rotate(1turn);
+    transform:rotate(1turn);
   }
 }
 .sl-upload__input{
   position:relative;
 }
 .sl-upload__input--img{
-  display:-webkit-box;
-  display:-webkit-flex;
   display:flex;
 }
 .sl-upload__input input[type=file]{
@@ -414,14 +347,11 @@ input{
   z-index:12;
 }
 .sl-upload__loading{
-  display:-webkit-box;
-  display:-webkit-flex;
   display:flex;
   display:none;
 }
 .sl-upload__loading>svg{
-  -webkit-animation:antRotate 1.6s infinite linear;
-          animation:antRotate 1.6s infinite linear;
+  animation:antRotate 1.6s infinite linear;
 }
 
 .customer-message-input{
@@ -441,22 +371,13 @@ input{
   resize:none;
   width:100%;
 }
-.customer-message-input .msg-input-area::-webkit-input-placeholder{
-  color:{{ rgba  theme.settings.color_text  0.6 }};
-}
 .customer-message-input .msg-input-area::placeholder{
   color:{{ rgba  theme.settings.color_text  0.6 }};
 }
 .customer-message-input .msg-input-control{
-  -webkit-box-align:end;
-  -webkit-box-pack:justify;
-  -webkit-align-items:end;
-          align-items:end;
-  display:-webkit-box;
-  display:-webkit-flex;
+  align-items:end;
   display:flex;
-  -webkit-justify-content:space-between;
-          justify-content:space-between;
+  justify-content:space-between;
 }
 .customer-message-input .msg-input-control .msg-input-send{
   cursor:pointer;
@@ -473,8 +394,6 @@ input{
 }
 .customer-message-input .msg-input-control .msg-input-upload__preview--close{
   cursor:pointer;
-  display:-webkit-box;
-  display:-webkit-flex;
   display:flex;
   height:20px;
   position:absolute;
@@ -492,12 +411,11 @@ input{
   position:fixed;
   right:0;
   top:0;
-  -webkit-transition:all .3s;
   transition:all .3s;
   z-index:1000;
 }
 .customer-message-preview-modal-mask{
-  background-color:rgba(0, 0, 0, .8);
+  background-color:rgba(0,0,0,.8);
   bottom:0;
   left:0;
   position:absolute;
@@ -505,25 +423,20 @@ input{
   top:0;
 }
 .customer-message-preview-modal-content{
+  align-items:center;
   bottom:0;
+  display:flex;
+  justify-content:center;
   left:0;
   position:absolute;
   right:0;
   top:0;
 }
-.customer-message-preview-modal-content,.customer-message-preview-modal-wrap{
-  -webkit-box-align:center;
-  -webkit-box-pack:center;
-  -webkit-align-items:center;
-          align-items:center;
-  display:-webkit-box;
-  display:-webkit-flex;
-  display:flex;
-  -webkit-justify-content:center;
-          justify-content:center;
-}
 .customer-message-preview-modal-wrap{
+  align-items:center;
   box-sizing:border-box;
+  display:flex;
+  justify-content:center;
   max-height:100%;
   max-width:100%;
   padding:48px;
@@ -551,9 +464,7 @@ input{
 .customer-message-preview-modal-wrap img{
   max-width:100%;
   opacity:0;
-  -webkit-transform:scale(.3);
-          transform:scale(.3);
-  -webkit-transition:all .2s;
+  transform:scale(.3);
   transition:all .2s;
 }
 .customer-message-preview-modal.fade-in{
@@ -561,6 +472,5 @@ input{
 }
 .customer-message-preview-modal.fade-in .customer-message-preview-modal-wrap img{
   opacity:1;
-  -webkit-transform:scale(1);
-          transform:scale(1);
+  transform:scale(1);
 }

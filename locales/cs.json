@@ -31,8 +31,22 @@
       "subtotal": "Mezisoučet",
       "tax_included": "Včetně daně"
     },
+    "checkout": {
+      "max_amount_limit": "Překročili jste maximální částku pro placení"
+    },
     "checkout_proceeding": {
       "checkout_proceed": "Níže uvedené produkty překračují nákupní limit, přesto pokračovat k pokladně?"
+    },
+    "couponCode": {
+      "exceedLimit": "Slevové kódy překračují limit množství",
+      "existCode": "Slevový kód již existuje",
+      "list": {
+        "unavailable": "Platnost všech slevových kódů vypršela"
+      },
+      "notSupport": {
+        "stacked": "Slevové kódy nejsou stohovatelné"
+      },
+      "unavailable": "Platnost slevového kódu vypršela"
     },
     "discount": {
       "code_error": "Slevový kód je zadán nesprávně",
@@ -56,7 +70,7 @@
       "continue_as_a_guest": "Pokračujte jako host"
     },
     "item": {
-      "add_limit2": "Maximální množství jednoho produktu je 999 kusů",
+      "add_limit2": "Maximální množství jednoho produktu je 99999 kusů",
       "invalid_product": "Neplatné produkty",
       "item_left": "{{stock}} kusů skladem",
       "none_existent": "Produkt neexistuje",
@@ -214,6 +228,17 @@
       "username": "Jméno",
       "verify_email_message": "Před uzavřením účtu, musíme ověřit vaši totožnost\nVáš e-mail {{email}} obdrží ověřovací e-mail",
       "verify_phone_message": "Před uzavřením účtu, musíme ověřit vaši totožnost\nVáš mobilní telefon {{phone}} obdrží ověřovací zprávu"
+    },
+    "activate": {
+      "account_activated": "Účet byl aktivován",
+      "apply_code": "Použít Kód",
+      "apply_success": "Aplikované",
+      "button": "Aktivovat",
+      "copy_success": "Kód kupónu zkopírován",
+      "discount_title": "Aktivujte účet a získejte slevový kód",
+      "normal_title": "Aktivovat účet",
+      "subscription_text": "Přihlaste se k odběru e-mailů a získejte aktualizace, přístup k exkluzivním nabídkám, a více.",
+      "success_title": "Gratulujeme k získání skvělou slevu"
     },
     "address": {
       "add_address": "Přidat Novou Adresu",
@@ -501,6 +526,8 @@
       "go_to_amazon_by_link": "Koupit v Amazon",
       "go_to_rakuten_by_link": "Koupit na platformě LOTTE",
       "go_to_yahoo_by_link": "Koupit platformě Yahoo",
+      "in_stock": "Na skladě",
+      "inventory_quantity": "Množství inventáře",
       "leave_us_message": "Zadejte prosím svou zprávu",
       "leave_us_message_get_back": "Zanechte nám prosím zprávu a my se vám ozveme co nejdříve",
       "link_preview_does_not_support": "Operace pro náhled odkazu není podporována",
@@ -579,6 +606,9 @@
       "activity_banner_copy_text": "Kopie",
       "activity_banner_free_shipping": "Doprava Zdarma",
       "activity_banner_threshold": "Objednávky nad {{threshold}}",
+      "activity_selector_price_high_to_low": "Cena vysoká až nízká",
+      "activity_selector_price_low_to_high": "Cena nízká až vysoká",
+      "activity_selector_recommended": "Doporučovat",
       "apply_common": "Použít",
       "bundle_save_tip": "Ušetřete {{amount}} za společný nákup",
       "bundle_title": "Často Koupeno Společně",
@@ -674,6 +704,9 @@
       "Paypal": "PayPal",
       "adjustPay": "manual",
       "third-part": "Kreditní Karta"
+    },
+    "reduction_code": {
+      "giftcard": "Dárkové Poukazy"
     }
   },
   "transaction": {

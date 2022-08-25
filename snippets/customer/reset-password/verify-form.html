@@ -4,7 +4,7 @@
   {{#formItem "verifycode" "class='customer__form-item'"}}
     {{#snippet
       'customer/base/sl-input'
-      attrs='autocomplete="off"'
+      attrs='autocomplete="off" maxlength="6"'
       name="verifycode"
       type="text"
       placeholder=(t 'customer.general.verification_code')
