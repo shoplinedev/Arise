@@ -1,7 +1,11 @@
 {{ assign 'natural_height' false }}
 {{ assign 'natural_mobile_height' false }}
 {{ assign 'transition_type' (get 'transition_type' section.settings 'simple') }}
-{{ inline_stylesheet 'slideshow/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'slideshow/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'slideshow/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}
@@ -131,6 +135,7 @@
                 {{/if}}
               {{/style}}
 
+              {{ assign 'not_first_slide' (if @index '!==' 0) }}
               {{ assign 'link_item' (useLink this.settings.link global.request.uri.query) }}
               {{ assign 'link_2_item' (useLink this.settings.link_2 global.request.uri.query) }}
               {{ assign 'ele_link_item' (JSONparse '{}') }}
@@ -167,8 +172,8 @@
                     {{#if has_image}}
                       {{#if this.settings.image.url}}
                         <img
-                          class="hero__image lozad {{#if has_mobile_image}}d-none d-md-block{{/if}}"
-                          data-src="{{ this.settings.image.url }}" data-sizes="auto"
+                          class="hero__image {{#if not_first_slide}}lozad{{/if}} {{#if has_mobile_image}}d-none d-md-block{{/if}}"
+                          {{{ get 'responsiveAttr' (image_responsive this.settings.image.url mSize=(cond has_mobile_image null '100vw') useLazyLoad=not_first_slide) }}}
                           alt="{{ this.settings.image.alt }}"
                           data-aspectratio-url="{{ img_url this.settings.image.url width=100 }}"
                           data-aspectratio="{{ divide 100 (get 'ratio' (img_size this.settings.image.url)) }}"
@@ -179,8 +184,8 @@
                       {{/if}}
                       {{#if this.settings.image_mobile.url}}
                         <img
-                          class="hero__image lozad hero__image--mobile d-md-none"
-                          data-src="{{ this.settings.image_mobile.url }}" data-sizes="auto"
+                          class="hero__image {{#if not_first_slide}}lozad{{/if}} hero__image--mobile d-md-none"
+                          {{{ get 'responsiveAttr' (image_responsive this.settings.image_mobile.url pcSize=null mSize='100vw' useLazyLoad=not_first_slide) }}}
                           alt="{{ this.settings.image_mobile.alt }}"
                           data-aspectratio-url="{{ img_url this.settings.image_mobile.url width=100 }}"
                           data-aspectratio="{{ divide 100 (get 'ratio' (img_size this.settings.image_mobile.url)) }}"

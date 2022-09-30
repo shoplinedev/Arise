@@ -5,6 +5,22 @@
       "read_btn_text": "Přečtěte si více",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Komentář",
+      "comment_audit_tip": "Váš komentář byl odeslán a je třeba jej zkontrolovat.",
+      "comment_empty": "Vyplňte prosím komentáře",
+      "email": "Mail",
+      "email_empty": "E-mail nesmí být prázdný",
+      "email_format": "Zadejte prosím správný email",
+      "form_title": "Komentář",
+      "loadmore": "načíst další",
+      "name": "Název",
+      "name_empty": "Vyplňte prosím jméno",
+      "submit": "Předložit",
+      "submit_audit_tip": "Úspěšně odesláno, čeká se na kontrolu",
+      "success": "Úspěšně odesláno",
+      "title": "{{comment_length}} komentářů"
+    },
     "general": {
       "back_to": "Vrátit {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Podrobnosti objednávky",
       "package_amount": "Položky v balíčku {{num}} ({{item}}položek)",
       "pay_amount": "zaplatit částku",
+      "paymentVoucher": {
+        "downloadDoc": "Stahování",
+        "format": "Formát",
+        "formatLimit": "Podporuje soubory ve formátu .jpg, .png, pdf velikostí menší než 20 MB. Můžete nahrát maximálně 5 obrazů",
+        "uploadAmount": "{{num}} byl(y) nahrán poukaz (y)",
+        "uploadLimit": "Nahrajte prosím soubory ve formátu: .jpg, .png velikostí menší než 20 MB"
+      },
       "payment_voucher_confirmation": "Mám to",
       "payment_voucher_transfer_success": "Platba byla úspěšně převedena",
       "payment_voucher_waiting_for_payment": "Čekání na platbu",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Neplatná E-mailová adresa"
+    },
     "account": {
       "account_binding": "Vázání Účtu",
       "account_information": "Účet",
@@ -197,6 +223,10 @@
       "bind": "Vazba",
       "birthday": "Datum Narozenin",
       "change_password": "Změňte heslo",
+      "confirm_btn": "Potvrdit",
+      "confirm_subscription_modal_btn": "Potvrďte Předplatné",
+      "confirm_subscription_modal_content": "Předplatné jste již odeslali. Na tuto e-mailovou adresu byl zaslán potvrzovací e-mail. Můžete buď potvrdit ve svém e-mailu nebo kliknout na toto tlačítko.",
+      "confirm_subscription_modal_title": "Potvrďte svůj e-mail pro předplatné.",
       "credit_card_number": "Č. kreditní karty",
       "deadline": "Pro účely obchodní zprávy bude vaše objednávka stále viditelná. Data vašeho účtu budou smazána na {{time}}, proces můžete zrušit před tímto datem",
       "delete_account": "Zavřít účet",
@@ -211,6 +241,7 @@
       "ip_address": "IP adresa",
       "last_name": "Příjmení",
       "modify_email": "Upravit E-mail",
+      "modify_email_modal_title": "Upravit E-mail",
       "modify_phone": "Upravit Telefon",
       "name": "Jméno",
       "next": "Další",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Nejprve prosím svažte e-mail nebo mobilní telefon",
       "revoke": "Zrušit uzavření",
       "revoke_message": "Tento účet je v procesu uzavření, data účtu budou smazána na {{time}}, proces můžete zrušit před tímto datem",
+      "save_btn": "ULOŽIT",
       "select__date": "Vyberte Datum",
+      "subscribe_confirm_tip": "Děkujeme za předplatné.",
       "timeout_tip": "Časový limit operace vypršel, zkontrolujte to znovu",
       "username": "Jméno",
       "verify_email_message": "Před uzavřením účtu, musíme ověřit vaši totožnost\nVáš e-mail {{email}} obdrží ověřovací e-mail",
@@ -238,7 +271,8 @@
       "discount_title": "Aktivujte účet a získejte slevový kód",
       "normal_title": "Aktivovat účet",
       "subscription_text": "Přihlaste se k odběru e-mailů a získejte aktualizace, přístup k exkluzivním nabídkám, a více.",
-      "success_title": "Gratulujeme k získání skvělou slevu"
+      "success_title": "Gratulujeme k získání skvělou slevu",
+      "token_expired": "Platnost odkazu vypršela"
     },
     "address": {
       "add_address": "Přidat Novou Adresu",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Zapomenout heslo",
+      "reset_password": "OBNOVIT HESLO",
       "tips_password_can_be_changed_after_verification": "Heslo můžete změnit po ověření",
-      "tips_reset_password": "Resetujete heslo pro účet {{account}}"
+      "tips_reset_password": "Resetujete heslo pro účet {{account}}",
+      "token_expired": "Platnost odkazu na obnovení hesla vypršela"
     },
     "general": {
       "account": "ÚČET",
@@ -333,6 +369,10 @@
       "error_message_3009": "Mobil byl vázán jinými účty",
       "error_message_3010": "E-mail byl svázán s jinými účty",
       "error_message_3014": "Vykreslení šablony textových zpráv/ e-mailů se nezdařilo",
+      "error_message_3015": "Účet byl aktivován",
+      "error_message_3022": "Platnost odkazu vypršela",
+      "error_message_3023": "Odkaz je ve špatném formátu",
+      "error_message_3024": "Odkaz je špatný",
       "error_message_4": "Výjimka služby",
       "error_message_5": "Výjimka služby",
       "error_message_6": "Výjimka služby",
@@ -416,7 +456,8 @@
       "wednesday": "Středa"
     },
     "login": {
-      "member_login_common": "Přihlášení člena"
+      "member_login_common": "Přihlášení člena",
+      "subscribe_confirm_tip": "Děkujeme za předplatné. Přihlaste se pro lepší zážitek."
     },
     "message": {
       "input_placeholder": "Je něco, pro co chcete zanechat zprávu?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mailové",
       "email_subscription_text": "Získejte propagační informace o předplatném E-mailem",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Mobilní Telefon",
       "phone_subscription_text": "Přihlaste se k odběru telefonické propagace",
@@ -474,6 +515,7 @@
       "send_success": "Děkujeme, že jste nás kontaktovali, ozveme se vám co nejdříve."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Chybný formát e-mailové adresy",
       "subscribe_success": "Přihlásit úspěch"
     },
@@ -499,6 +541,14 @@
       "refund": "Zásady pro vrácení peněz",
       "service": "Podmínka",
       "shipping": "Přepravní politika"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "čas nahrání",
+        "detail": "Detail"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "VYPRODÁNO",
       "products": "produktů",
       "recommend": "Doporučeno",
+      "sale": "Prodej",
       "save": "Sleva {{{priceDom}}}",
       "save_byjs": "Sleva {{priceDom}}",
       "save_ratio": "{{price}}% ze ceny",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Kopie",
       "activity_banner_free_shipping": "Doprava Zdarma",
       "activity_banner_threshold": "Objednávky nad {{threshold}}",
+      "activity_selector_new_arrivals": "Nově příchozí",
       "activity_selector_price_high_to_low": "Cena vysoká až nízká",
       "activity_selector_price_low_to_high": "Cena nízká až vysoká",
       "activity_selector_recommended": "Doporučovat",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Kupte si {{threshold}}, využijte {{willSave}} slevu pro {{benefitCount}} položek",
         "b12_t1_s3_free": "Gratuluji! Máte {{benefitCount}} položky ZDARMA!",
         "b12_t1_s3_normal": "Gratuluji! Máte slevu {{saved}} na {{benefitCount}} položek!",
+        "b14_t1_s1": "Kupte {{nextMinThreshold}} kusy za {{willSave}}",
+        "b14_t1_s2": "Gratuluji! Ty máte {{currentMinThreshold}} kusů za {{saved}}. Kupte si {{threshold}} více a užijte si {{nextMinThreshold}} kusů za {{willSave}}!",
+        "b14_t1_s3": "Gratulujeme! Máte {{currentMinThreshold}} kusů za {{saved}}!",
         "b1_t0_s1": "Kupte ještě {{threshold}} a ušetřete {{willSave}}",
         "b1_t0_s2": "Ušetřete již {{saved}}! {{br}}Kupte ještě {{threshold}} a ušetřete {{willSave}}",
         "b1_t0_s3": "Gratulujeme! Uložili jste {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Koupit {{threshold}} ušetřit {{save}}",
         "b2_t1": "Kupte {{threshold}} a získejte SLEVU {{save}}",
         "label": "Sleva:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Kupte {{nextMinThreshold}} kusy za {{willSave}}",
+            "step2": "Gratuluji! Ty máte {{currentMinThreshold}} kusů za {{saved}}. Kupte si {{threshold}} více a užijte si {{nextMinThreshold}} kusů za {{willSave}}!",
+            "step3": "Gratulujeme! Máte {{currentMinThreshold}} kusů za {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Zaokrouhlování"
+      }
+    },
     "payments-name": {
       "COD": "Dobírka",
       "Paypal": "PayPal",
@@ -716,6 +785,11 @@
       "discount_off": "Sleva",
       "free_charge": "Doprava zdarma",
       "free_shipping": "doprava zdarma",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Prodejce extra sleva",
       "order_tax": "Daň",
       "order_tip": "Spropitné",

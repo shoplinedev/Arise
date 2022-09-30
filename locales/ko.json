@@ -5,6 +5,22 @@
       "read_btn_text": "더 보기",
       "title": "블로그"
     },
+    "comment": {
+      "comment": "논평",
+      "comment_audit_tip": "귀하의 의견이 제출되었으며 검토가 필요합니다.",
+      "comment_empty": "댓글을 작성해주세요",
+      "email": "이메일",
+      "email_empty": "이메일은 비워둘 수 없습니다.",
+      "email_format": "정확한 이메일을 입력하세요",
+      "form_title": "논평",
+      "loadmore": "더 로드",
+      "name": "성명",
+      "name_empty": "이름을 기입해주세요",
+      "submit": "제출하다",
+      "submit_audit_tip": "제출 완료, 검토 대기 중",
+      "success": "성공적으로 제출됨",
+      "title": "{{comment_length}}개의 댓글"
+    },
     "general": {
       "back_to": "되돌아가다{{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "주문 상세정보",
       "package_amount": "Package {{num}}（{{item}} items）",
       "pay_amount": "지불 금액",
+      "paymentVoucher": {
+        "downloadDoc": "문서를 다운로드합니다",
+        "format": "형식",
+        "formatLimit": "JPG, PNG, GIF, PDF 파일 20MB 이내 업로드가 지원됩니다.최대 5장까지 이미지 업로드가 가능합니다.",
+        "uploadAmount": "{{num}}개의 증빙서류가 업로드되었습니다",
+        "uploadLimit": "20MB 이내의 JPG, PNG, GIF, PDF 파일을 업로드 하십시오."
+      },
       "payment_voucher_confirmation": "알았다",
       "payment_voucher_transfer_success": "결제가 성공적으로 이체되었습니다",
       "payment_voucher_waiting_for_payment": "결제 대기 중",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "잘못된 이메일 주소입니다"
+    },
     "account": {
       "account_binding": "아이디 귀속",
       "account_information": "계정입니다",
@@ -197,6 +223,10 @@
       "bind": "귀속",
       "birthday": "생일",
       "change_password": "비밀번호 변경",
+      "confirm_btn": "Patvirtinti",
+      "confirm_subscription_modal_btn": "구독을 확인합니다.",
+      "confirm_subscription_modal_content": "이전에 구독을 제출하셨습니다. 이메일이 이 이메일함으로 발송되었음을 확인합니다. 이메일에서 확인하거나 이 버튼을 클릭할 수 있습니다.",
+      "confirm_subscription_modal_title": "이메일 구독을 확인하세요.",
       "credit_card_number": "신용카드 번호입니다",
       "deadline": "업무보고의 목적으로 당신의 주문서를 볼 수 있을 것입니다.계정 데이터는 {{time}}에서 삭제됩니다.이 날짜 이전에 이 과정을 취소할 수 있습니다.",
       "delete_account": "계좌를 해지합니다",
@@ -211,6 +241,7 @@
       "ip_address": "IP 주소입니다",
       "last_name": "성씨",
       "modify_email": "이메일 수정",
+      "modify_email_modal_title": "이메일 수정",
       "modify_phone": "핸드폰 수정",
       "name": "이름입니다",
       "next": "다음",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "우선 이메일 혹인 핸드폰을 귀속하세요",
       "revoke": "로그아웃을 취소합니다",
       "revoke_message": "계정이 로그아웃 중이고, 계정 데이터는 {{time}} 삭제되며, 해당 날짜까지 로그아웃을 취소할 수 있습니다.",
+      "save_btn": "저장",
       "select__date": "날짜 선택",
+      "subscribe_confirm_tip": "구독해 주셔서 감사합니다.",
       "timeout_tip": "작업 시간이 초과되었습니다 재검증하십시오.",
       "username": "이름",
       "verify_email_message": "로그아웃 작업을 진행하기 전에, 우리는 당신의 신원을 확인해야 합니다.메일박스 {{email}} 에서 인증번호 메일을 받을 것입니다",
@@ -238,7 +271,8 @@
       "discount_title": "계정을 활성화하고 할인 코드를 받으십시오.",
       "normal_title": "계정을 활성화시킵니다",
       "subscription_text": "이메일을 구독해 업데이트 접수, 단독 혜택 방문 등을 합니다.",
-      "success_title": "할인 받으신 것을 축하드립니다"
+      "success_title": "할인 받으신 것을 축하드립니다",
+      "token_expired": "링크가 만료되었습니다"
     },
     "address": {
       "add_address": "새로운 주소 추가하기",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "비밀번호 잊어버렸습니다",
+      "reset_password": "비밀번호 재설정",
       "tips_password_can_be_changed_after_verification": "검증 완성후 비밀번호를 수정할 수 있습니다",
-      "tips_reset_password": "당신은 아이디{{account}} 비밀번호를 재설정중입니다"
+      "tips_reset_password": "당신은 아이디{{account}} 비밀번호를 재설정중입니다",
+      "token_expired": "비밀번호 재설정 링크가 비활성화되었습니다"
     },
     "general": {
       "account": "계좌",
@@ -333,6 +369,10 @@
       "error_message_3009": "핸드폰 번호 이미 귀속됨",
       "error_message_3010": "이메일 이미 귀속됨",
       "error_message_3014": "메시지/이메일 템플릿 렌더링 실패",
+      "error_message_3015": "계정이 활성화되었습니다",
+      "error_message_3022": "링크가 비활성화됨",
+      "error_message_3023": "잘못된 링크 형식",
+      "error_message_3024": "링크 인자 오류",
       "error_message_4": "서비스가 이상합니다",
       "error_message_5": "서비스가 이상합니다",
       "error_message_6": "서비스가 이상합니다",
@@ -416,7 +456,8 @@
       "wednesday": "수"
     },
     "login": {
-      "member_login_common": "회원 등록"
+      "member_login_common": "회원 등록",
+      "subscribe_confirm_tip": "가입해 주셔서 감사합니다. 로그인하셔서 더 좋은 경험을 하실 수 있습니다."
     },
     "message": {
       "input_placeholder": "댓글을 남기겠습니까?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "이메일",
       "email_subscription_text": "이메일을 통해 구독한 판촉 정보를 받을수 있습니다",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "핸드폰",
       "phone_subscription_text": "핸드폰을 통해 구독한 판촉 정보를 접수합니다",
@@ -474,6 +515,7 @@
       "send_success": "연락 주셔서 감사합니다.빠른 시일 내에 회답 드리겠습니다."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "이메일 주소 격식이 틀렸습니다",
       "subscribe_success": "구독 성공"
     },
@@ -499,6 +541,14 @@
       "refund": "환불 정책",
       "service": "서비스 조항",
       "shipping": "배송 정책"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "업로드 시간",
+        "detail": "상세"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "상품 판매",
       "products": "상품",
       "recommend": "추천",
+      "sale": "판매",
       "save": "{{{priceDom}}} 혜택",
       "save_byjs": "{{priceDom}} 혜택",
       "save_ratio": "{{price}}% OFF",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "복사",
       "activity_banner_free_shipping": "운임무료",
       "activity_banner_threshold": "가득 {{threshold}}입니다.",
+      "activity_selector_new_arrivals": "최신 출시",
       "activity_selector_price_high_to_low": "가격은 높은 것부터 낮은 것까지",
       "activity_selector_price_low_to_high": "가격은 낮은 것부터 높은 것까지",
       "activity_selector_recommended": "추천한다.",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "{{threshold}}개, {{benefitCount}}개 구매하시면 {{willSave}}감면입니다",
         "b12_t1_s3_free": "축하합니다, {{benefitCount}}개의 상품을 무료로 이용하실 수 있습니다",
         "b12_t1_s3_normal": "축하합니다, {{benefitCount}}개의 상품 공제를 받으실 수 있습니다 {{saved}} 개 상품 감면 감면됩니다",
+        "b14_t1_s1": "{{willSave}}에 {{nextMinThreshold}} 개 구매",
+        "b14_t1_s2": "축하합니다! {{saved}}에 대한 {{currentMinThreshold}}이 있습니다. {{willSave}}에 {{nextMinThreshold}}을 즐기려면 {{threshold}}개 더 구입하세요!",
+        "b14_t1_s3": "축하합니다! {{saved}}에 대한 {{currentMinThreshold}}이 있습니다!",
         "b1_t0_s1": "{{threshold}} 사거나 {{willSave}} 더욱 많이 절약",
         "b1_t0_s2": "이미 {{saved}} 절약했습니다!{{br}}{{threshold}} 더 사면 {{willSave}} 을 절약",
         "b1_t0_s3": "축하합니다! 당신은 {{saved}} 을 절약했습니다!",
@@ -695,10 +750,24 @@
         "b2_t0": "{{threshold}} 건 사면 {{save}} 절약",
         "b2_t1": "{{threshold}} 사면 {{save}} 절약",
         "label": "감소:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "{{willSave}}에 {{nextMinThreshold}} 개 구매",
+            "step2": "축하합니다! {{saved}}에 대한 {{currentMinThreshold}}이 있습니다. {{willSave}}에 {{nextMinThreshold}}을 즐기려면 {{threshold}}개 더 구입하세요!",
+            "step3": "축하합니다! {{saved}}에 대한 {{currentMinThreshold}}이 있습니다!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "반올림"
+      }
+    },
     "payments-name": {
       "COD": "물건을 받고 지불합니다",
       "Paypal": "PayPal",
@@ -716,6 +785,11 @@
       "discount_off": "할인",
       "free_charge": "무료배송",
       "free_shipping": "무료 배송",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "상춤 자체정의 할인",
       "order_tax": "세",
       "order_tip": "팁",

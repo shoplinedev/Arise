@@ -9,11 +9,12 @@
     <div class="trade-transfer-voucher ">
         <div class="trade-transfer-voucher_img">
             <img src="{{voucherUrl}}" alt="transfer voucher" 
-                data-time="{{dayjs method='format' init=uploadTime format='MMMM DD,YYYY h:mma'}}" 
+                data-time="{{dayjs method='format' init=uploadTime format='YYYY-MM-DD HH:mm'}}" 
                 data-reference="{{#if transRef}}{{transRef}}{{else}}-{{/if}}" 
                 data-receiver="{{receiverAccount}}" 
                 data-currency="{{currency}}"
-                data-amount="{{#if amount}}{{currency (multiply amount 100) code=currency}}{{else}}{{amount}}{{/if}}"
+                data-file-type="{{fileType}}"
+                data-amount="{{#if amount}}{{money_with_currency (multiply amount 100) code=currency}}{{else}}{{amount}}{{/if}}"
             >
         </div>
     </div>

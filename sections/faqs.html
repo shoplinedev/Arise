@@ -1,6 +1,10 @@
 {{ assign 'color_scheme' section.settings.color_scheme }}
 
-{{ inline_stylesheet 'faqs/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'faqs/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'faqs/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}

@@ -5,6 +5,22 @@
       "read_btn_text": "Узнайте больше",
       "title": "Блог"
     },
+    "comment": {
+      "comment": "Комментарий",
+      "comment_audit_tip": "Ваш комментарий был отправлен и нуждается в проверке.",
+      "comment_empty": "Пожалуйста, заполните комментарии",
+      "email": "Почта",
+      "email_empty": "Электронная почта не может быть пустой",
+      "email_format": "Пожалуйста, введите правильный адрес электронной почты",
+      "form_title": "Комментарий",
+      "loadmore": "Загрузи больше",
+      "name": "Имя и фамилия",
+      "name_empty": "Пожалуйста, заполните имя",
+      "submit": "Разместить",
+      "submit_audit_tip": "Отправлено успешно, ожидает проверки",
+      "success": "Отправлено успешно",
+      "title": "{{comment_length}} комментариев"
+    },
     "general": {
       "back_to": "Возвращаться {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Подробности о заказе",
       "package_amount": "Package {{num}}（{{item}} items）",
       "pay_amount": "сумма платежа",
+      "paymentVoucher": {
+        "downloadDoc": "Скачать файл",
+        "format": "Формат",
+        "formatLimit": "Поддерживать загрузку файлов JPG, PNG, GIF, PDF в пределах 20 МБ. Максимально можно загрузить 5 картин.",
+        "uploadAmount": "Загружено {{num}} свидетельств",
+        "uploadLimit": "Пожалуйста, загрузите файлы JPG, PNG, GIF, PDF в пределах 20 МБ"
+      },
       "payment_voucher_confirmation": "Понятно",
       "payment_voucher_transfer_success": "Платеж успешно переведен",
       "payment_voucher_waiting_for_payment": "ожидается платеж",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Недействительный адрес электронной почты"
+    },
     "account": {
       "account_binding": "Аккаунт привязан",
       "account_information": "Аккаунт",
@@ -197,6 +223,10 @@
       "bind": "Привязка",
       "birthday": "Дата рождения",
       "change_password": "Измените пароль",
+      "confirm_btn": "Konfirmovať",
+      "confirm_subscription_modal_btn": "Подтвердите подписку",
+      "confirm_subscription_modal_content": "Вы ранее оформили подписку. Письмо с подтверждением уже отправили на почту. Вы можете подтвердить его в своем электронном письме или нажать эту кнопку.",
+      "confirm_subscription_modal_title": "Пожалуйста, подтвердите подписку на электронную почту.",
       "credit_card_number": "Номер кредитной карты",
       "deadline": "Для цели доклада об операции ваш заказ по-прежнему будет виден. Данные вашего аккаунта будут удалены в {{time}}, до этой даты вы можете отменить этот процесс.",
       "delete_account": "Аннулировать аккаунт",
@@ -211,6 +241,7 @@
       "ip_address": "Адрес IP",
       "last_name": "Фамилия",
       "modify_email": "Измените электронную почту",
+      "modify_email_modal_title": "Измените электронную почту",
       "modify_phone": "Мобильный телефон",
       "name": "Имя и фамилия",
       "next": "Следующий шаг",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Пожалуйста, сначала привяжите электронную почту или мобильный телефон",
       "revoke": "Отменить аннулирование",
       "revoke_message": "Аккаунт находится в состоянии аннулирования, данные аккаунта будут удалены в {{time}}, до этой даты вы можете отменить этот процесс аннулирования.",
+      "save_btn": "Сохранение",
       "select__date": "Пожалуйста, выберите дату",
+      "subscribe_confirm_tip": "Спасибо за подписку.",
       "timeout_tip": "Операция тайм-аут, проверьте еще раз",
       "username": "Имя и фамилия",
       "verify_email_message": "Перед аннулированием нам необходимо подтвердить вашу личность.На ваш адрес электронной почты {{email}} вы будете получать письмо с кодом подтверждения.",
@@ -238,7 +271,8 @@
       "discount_title": "Активируйте аккаунт и получите код скидки",
       "normal_title": "Активируйте аккаунт",
       "subscription_text": "Подпишитесь на электронные письма, чтобы получать обновления, получать доступ к эксклюзивным льготам и т.д..",
-      "success_title": "Поздравляю, что вы получили скидку"
+      "success_title": "Поздравляю, что вы получили скидку",
+      "token_expired": "Срок действия вашей сслыки истек"
     },
     "address": {
       "add_address": "Добавить новый адрес",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Забыть пароль",
+      "reset_password": "СБРОС ПАРОЛЯ",
       "tips_password_can_be_changed_after_verification": "После проверки можно изменить пароль",
-      "tips_reset_password": "Вы заменяете пароль для своего счета {{account}}"
+      "tips_reset_password": "Вы заменяете пароль для своего счета {{account}}",
+      "token_expired": "Срок действия ссылки для сброса пароля истек"
     },
     "general": {
       "account": "УЧЕТНАЯ ЗАПИСЬ",
@@ -333,6 +369,10 @@
       "error_message_3009": "Номер мобильного телефона привязан",
       "error_message_3010": "Электронная почта привязана",
       "error_message_3014": "Не удалось расписать шаблон сообщения / электронного письма.",
+      "error_message_3015": "Аккаунт активирован",
+      "error_message_3022": "Срок действия ссылки истек",
+      "error_message_3023": "Неверный формат ссылки",
+      "error_message_3024": "Ошибочные параметры ссылки",
       "error_message_4": "Аномальный сервис",
       "error_message_5": "Аномальный сервис",
       "error_message_6": "Аномальный сервис",
@@ -416,7 +456,8 @@
       "wednesday": "Среда"
     },
     "login": {
-      "member_login_common": "Логин членов"
+      "member_login_common": "Логин членов",
+      "subscribe_confirm_tip": "Спасибо за подписку. Вы можете войти в систему для получения лучшего опыта."
     },
     "message": {
       "input_placeholder": "У вас есть что для оставления сообщения?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "Электронная почта",
       "email_subscription_text": "Получайте информацию о стимулировании продажи подписки по электронной почте",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Мобильный телефон",
       "phone_subscription_text": "Получайте информацию о стимулировании продажи подписки по мобильному телефону",
@@ -474,6 +515,7 @@
       "send_success": "Спасибо, что связались с нами, мы будем ответить вам как можно быстрее"
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Неправильный формат адреса электронной почты",
       "subscribe_success": "Успешная подписка"
     },
@@ -499,6 +541,14 @@
       "refund": "Политика возврата",
       "service": "с условиями услуг сайта",
       "shipping": "Политика доставки"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "время загрузки",
+        "detail": "Детали"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "Продукты распроданы",
       "products": "Товар",
       "recommend": "Рекомендация",
+      "sale": "распродажа",
       "save": "Скидка {{{priceDom}}}",
       "save_byjs": "Скидка {{priceDom}}",
       "save_ratio": "Скидка {{price}}%",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Копирование",
       "activity_banner_free_shipping": "Бесплатная доставка",
       "activity_banner_threshold": "Полно {{threshold}}",
+      "activity_selector_new_arrivals": "Новейшие товары",
       "activity_selector_price_high_to_low": "Цена от высокой к низкой",
       "activity_selector_price_low_to_high": "Цена от низкой к высокой",
       "activity_selector_recommended": "Рекомендация",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Купите {{threshold}} штук, {{benefitCount}} товаров могут облегчить {{willSave}}",
         "b12_t1_s3_free": "Поздравляем! Вы получили {{benefitCount}} штук из этих товаров бесплатно!",
         "b12_t1_s3_normal": "Поздравляем! Вы получили облегчение {{saved}} на {{benefitCount}} штук из этих товаров!",
+        "b14_t1_s1": "Купить {{nextMinThreshold}}шт.{{willSave}}",
+        "b14_t1_s2": "Поздравляем! Вы получили {{currentMinThreshold}} штук {{saved}}. Купите еще {{threshold}} и получите {{nextMinThreshold}}{{willSave}}!",
+        "b14_t1_s3": "Поздравляем! Вы получили {{currentMinThreshold}}штук{{saved}}!",
         "b1_t0_s1": "Купите {{threshold}} или больше , можно сэкономить {{willSave}}",
         "b1_t0_s2": "Сэкономили {{saved}} ! {{br}}Купите еще {{threshold}} и сэкономьте {{willSave}}",
         "b1_t0_s3": "Поздравляю! Вы сэкономили {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Купите {{threshold}}, можно сэкономить {{save}}",
         "b2_t1": "Купите {{threshold}} штук , можно сэкономить {{save}}",
         "label": "Скидка:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Купить {{nextMinThreshold}}шт.{{willSave}}",
+            "step2": "Поздравляем! Вы получили {{currentMinThreshold}} штук {{saved}}. Купите еще {{threshold}} и получите {{nextMinThreshold}}{{willSave}}!",
+            "step3": "Поздравляем! Вы получили {{currentMinThreshold}}штук{{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Округление"
+      }
+    },
     "payments-name": {
       "COD": "Оплата при доставке товара",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Скидка",
       "free_charge": "Бесплатная доставка",
       "free_shipping": "Бесплатная доставка",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Индивидуальная скидка продавца",
       "order_tax": "налог",
       "order_tip": "Чаевые",

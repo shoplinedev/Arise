@@ -1331,7 +1331,8 @@
                         onChangeView: !1,
                         onRenderCell: !1,
                         onShow: !1,
-                        onHide: !1
+                        onHide: !1,
+                        onClickDayName: !1
                     };
                     function a(e) {
                         let t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : document;
@@ -1584,13 +1585,17 @@
                         constructor(e) {
                             let {dp: t, type: s, opts: a} = e;
                             M(this, "handleClick", (e => {
-                                let t = y(e.target, ".air-datepicker-cell");
-                                if (!t) return;
-                                let i = t.adpCell;
-                                if (i.isDisabled) return;
+                                let t = e.target.adpCell;
+                                if (t.isDisabled) return;
                                 if (!this.dp.isMinViewReached) return void this.dp.down();
-                                let s = this.dp._checkIfDateIsSelected(i.date, i.type);
-                                s ? this.dp._handleAlreadySelectedDates(s, i.date) : this.dp.selectDate(i.date);
+                                let i = this.dp._checkIfDateIsSelected(t.date, t.type);
+                                i ? this.dp._handleAlreadySelectedDates(i, t.date) : this.dp.selectDate(t.date);
+                            })), M(this, "handleDayNameClick", (e => {
+                                let t = e.target.getAttribute("data-day-index");
+                                this.opts.onClickDayName({
+                                    dayIndex: Number(t),
+                                    datepicker: this.dp
+                                });
                             })), M(this, "onChangeCurrentView", (e => {
                                 e !== this.type ? this.hide() : (this.show(), this.render());
                             })), M(this, "onMouseOverCell", (e => {
@@ -1598,8 +1603,9 @@
                                 this.dp.setFocusDate(!!t && t.adpCell.date);
                             })), M(this, "onMouseOutCell", (() => {
                                 this.dp.setFocusDate(!1);
-                            })), M(this, "onClickCell", (e => {
-                                this.handleClick(e);
+                            })), M(this, "onClickBody", (e => {
+                                let {onClickDayName: t} = this.opts, i = e.target;
+                                i.closest(".air-datepicker-cell") && this.handleClick(e), t && i.closest(".air-datepicker-body--day-name") && this.handleDayNameClick(e);
                             })), M(this, "onMouseDown", (e => {
                                 this.pressed = !0;
                                 let t = y(e.target, ".air-datepicker-cell"), i = t && t.adpCell;
@@ -1652,7 +1658,7 @@
                         _bindEvents() {
                             let {range: e, dynamicRange: t} = this.opts;
                             v(this.$el, "mouseover", this.onMouseOverCell), v(this.$el, "mouseout", this.onMouseOutCell), 
-                            v(this.$el, "click", this.onClickCell), e && t && (v(this.$el, "mousedown", this.onMouseDown), 
+                            v(this.$el, "click", this.onClickBody), e && t && (v(this.$el, "mousedown", this.onMouseDown), 
                             v(this.$el, "mousemove", this.onMouseMove), v(window.document, "mouseup", this.onMouseUp));
                         }
                         _bindDatepickerEvents() {
@@ -1665,12 +1671,14 @@
                             }), this.$names = a(".air-datepicker-body--day-names", this.$el), this.$cells = a(".air-datepicker-body--cells", this.$el);
                         }
                         _getDayNamesHtml() {
-                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.dp.locale.firstDay, t = "", s = this.dp.isWeekend, a = e, n = 0;
-                            for (;n < 7; ) {
-                                let e = a % 7, r = c("air-datepicker-body--day-name", {
-                                    [i.cssClassWeekend]: s(e)
-                                }), h = this.dp.locale.daysMin[e];
-                                t += '<div class="'.concat(r, '">').concat(h, "</div>"), n++, a++;
+                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.dp.locale.firstDay, t = "", s = this.dp.isWeekend, {onClickDayName: a} = this.opts, n = e, r = 0;
+                            for (;r < 7; ) {
+                                let e = n % 7, h = c("air-datepicker-body--day-name", {
+                                    [i.cssClassWeekend]: s(e),
+                                    "-clickable-": !!a
+                                }), o = this.dp.locale.daysMin[e];
+                                t += '<div class="'.concat(h, "\" data-day-index='").concat(e, "'>").concat(o, "</div>"), 
+                                r++, n++;
                             }
                             return t;
                         }
@@ -1856,7 +1864,7 @@
                             onClick: e => e.clear()
                         }
                     };
-                    class H {
+                    class x {
                         constructor(e) {
                             let {dp: t, opts: i} = e;
                             this.dp = t, this.opts = i, this.init();
@@ -1902,7 +1910,7 @@
                             this.generateButtons();
                         }
                     }
-                    function x(e, t, i) {
+                    function H(e, t, i) {
                         return t in e ? Object.defineProperty(e, t, {
                             value: i,
                             enumerable: !0,
@@ -1913,25 +1921,25 @@
                     class L {
                         constructor() {
                             let {opts: e, dp: t} = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-                            x(this, "toggleTimepickerIsActive", (e => {
+                            H(this, "toggleTimepickerIsActive", (e => {
                                 this.dp.timepickerIsActive = e;
-                            })), x(this, "onChangeSelectedDate", (e => {
+                            })), H(this, "onChangeSelectedDate", (e => {
                                 let {date: t, updateTime: i = !1} = e;
                                 t && (this.setMinMaxTime(t), this.setCurrentTime(!!i && t), this.addTimeToDate(t));
-                            })), x(this, "onChangeLastSelectedDate", (e => {
+                            })), H(this, "onChangeLastSelectedDate", (e => {
                                 e && (this.setTime(e), this.render());
-                            })), x(this, "onChangeInputRange", (e => {
+                            })), H(this, "onChangeInputRange", (e => {
                                 let t = e.target;
                                 this[t.getAttribute("name")] = t.value, this.updateText(), this.dp.trigger(i.eventChangeTime, {
                                     hours: this.hours,
                                     minutes: this.minutes
                                 });
-                            })), x(this, "onMouseEnterLeave", (e => {
+                            })), H(this, "onMouseEnterLeave", (e => {
                                 let t = e.target.getAttribute("name"), i = this.$minutesText;
                                 "hours" === t && (i = this.$hoursText), i.classList.toggle("-focus-");
-                            })), x(this, "onFocus", (() => {
+                            })), H(this, "onFocus", (() => {
                                 this.toggleTimepickerIsActive(!0);
-                            })), x(this, "onBlur", (() => {
+                            })), H(this, "onBlur", (() => {
                                 this.toggleTimepickerIsActive(!1);
                             })), this.opts = e, this.dp = t;
                             let {timeFormat: s} = this.dp.locale;
@@ -2052,7 +2060,7 @@
                             writable: !0
                         }) : e[t] = i, e;
                     }
-                    class E {
+                    class A {
                         constructor(e) {
                             let {dp: t, opts: i} = e;
                             O(this, "pressedKeys", new Set), O(this, "hotKeys", new Map([ [ [ [ "Control", "ArrowRight" ], [ "Control", "ArrowUp" ] ], e => e.month++ ], [ [ [ "Control", "ArrowLeft" ], [ "Control", "ArrowDown" ] ], e => e.month-- ], [ [ [ "Shift", "ArrowRight" ], [ "Shift", "ArrowUp" ] ], e => e.year++ ], [ [ [ "Shift", "ArrowLeft" ], [ "Shift", "ArrowDown" ] ], e => e.year-- ], [ [ [ "Alt", "ArrowRight" ], [ "Alt", "ArrowUp" ] ], e => e.year += 10 ], [ [ [ "Alt", "ArrowLeft" ], [ "Alt", "ArrowDown" ] ], e => e.year -= 10 ], [ [ "Control", "Shift", "ArrowUp" ], (e, t) => t.up() ] ])), 
@@ -2153,7 +2161,7 @@
                             this.pressedKeys.delete(e);
                         }
                     }
-                    let A = {
+                    let E = {
                         on(e, t) {
                             this.__events || (this.__events = {}), this.__events[e] ? this.__events[e].push(t) : this.__events[e] = [ t ];
                         },
@@ -2325,7 +2333,7 @@
                                             opts: this.opts,
                                             type: e
                                         });
-                                        this.$content.appendChild(t.$el);
+                                        this.shouldUpdateDOM && this.$content.appendChild(t.$el);
                                     }
                                     this.opts.onChangeView && this.opts.onChangeView(e);
                                 }
@@ -2415,12 +2423,13 @@
                                 id: o
                             }), I.appendChild(R)), !s || P || t || this._createMobileOverlay(), this._handleLocale(), 
                             this._bindSubEvents(), this._createMinMaxDates(), this._limitViewDateByMaxMinDates(), 
-                            this.elIsInput && (i || this._bindEvents(), r && !h && (this.keyboardNav = new E({
+                            this.elIsInput && (i || this._bindEvents(), r && !h && (this.keyboardNav = new A({
                                 dp: this,
                                 opts: e
                             }))), a && this.selectDate(a, {
                                 silent: !0
-                            }), this.opts.visible && !t && this.show(), t && this._createComponents();
+                            }), this.opts.visible && !t && this.show(), s && !t && this.$el.setAttribute("readonly", !0), 
+                            t && this._createComponents();
                         }
                         _createMobileOverlay() {
                             P = n({
@@ -2468,7 +2477,7 @@
                         _addButtons() {
                             this.$buttons = n({
                                 className: "air-datepicker--buttons"
-                            }), this.$datepicker.appendChild(this.$buttons), this.buttons = new H({
+                            }), this.$datepicker.appendChild(this.$buttons), this.buttons = new x({
                                 dp: this,
                                 opts: this.opts
                             }), this.$buttons.appendChild(this.buttons.$el);
@@ -2495,7 +2504,7 @@
                                 let e = o ? r : "";
                                 this.locale.dateFormat = [ this.locale.dateFormat, o || "" ].join(e);
                             }
-                            a && (this.locale.dateFormat = this.locale.timeFormat);
+                            a && "function" != typeof t && (this.locale.dateFormat = this.locale.timeFormat);
                         }
                         _setPositionClasses(e) {
                             if ("function" == typeof e) return void this.$datepicker.classList.add("-custom-position-");
@@ -2605,9 +2614,14 @@
                             }), this._updateLastSelectedDate(t));
                         }
                         clear() {
-                            this.selectedDates = [], this.rangeDateFrom = !1, this.rangeDateTo = !1, this.trigger(i.eventChangeSelectedDate, {
-                                action: i.actionUnselectDate
-                            });
+                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                            return this.selectedDates = [], this.rangeDateFrom = !1, this.rangeDateTo = !1, 
+                            this.trigger(i.eventChangeSelectedDate, {
+                                action: i.actionUnselectDate,
+                                silent: e.silent
+                            }), new Promise((e => {
+                                setTimeout(e);
+                            }));
                         }
                         show() {
                             let {onShow: e, isMobile: t} = this.opts;
@@ -2662,6 +2676,9 @@
                         _hasTransition() {
                             return window.getComputedStyle(this.$datepicker).getPropertyValue("transition-duration").split(", ").reduce(((e, t) => parseFloat(t) + e), 0) > 0;
                         }
+                        get shouldUpdateDOM() {
+                            return this.visible || this.treatAsInline;
+                        }
                         get parsedViewDate() {
                             return o(this.viewDate);
                         }
@@ -2693,8 +2710,8 @@
                         }
                     }
                     var j;
-                    return N(K, "defaults", s), N(K, "version", "3.1.0"), N(K, "defaultContainerId", "air-datepicker-global-container"), 
-                    j = K.prototype, Object.assign(j, A), t.default;
+                    return N(K, "defaults", s), N(K, "version", "3.2.1"), N(K, "defaultContainerId", "air-datepicker-global-container"), 
+                    j = K.prototype, Object.assign(j, E), t.default;
                 }();
             }));
         },
@@ -6921,6 +6938,12 @@
         });
         const updateUserInfo = () => request_request.put("/carts/cart/cart-buyer-update");
         const setSubscriptionStateNoLogin = data => request_request.post("/user/front/sub/stateNoLogin", data);
+        const getRetrieveTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/token/init.do", {
+            params
+        });
+        const getActivateTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/activate/token/init.do", {
+            params
+        });
         const getRetrieveInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/init.do", {
             params
         });
@@ -6949,20 +6972,29 @@
         const DEFAULT_PHONE_ISO2 = "cn";
         const DEFAULT_PHONE_CODE = "cn+86";
         const DEFAULT_FORM_VALUE = "DEFAULT_FORM_VALUE";
+        const ACCOUNT_ACTIVATED = "ACCOUNT_ACTIVATED";
+        const RESET_PASSWORD_TOKEN_EXPIRED = "RESET_PASSWORD_TOKEN_EXPIRED";
+        const ACCOUNT_ACTIVATED_TOKEN_EXPIRED = "ACCOUNT_ACTIVATED_TOKEN_EXPIRED";
         function getLanguage() {
-            return window && window.SL_State && window.SL_State.get("request.cookie.lang") || DEFAULT_LANGUAGE;
+            return window && window.SL_State && window.SL_State.get("request.locale") || DEFAULT_LANGUAGE;
         }
-        const getRedirectUrl = () => {
-            let redirectUrl = (0, url.getUrlQuery)("redirectUrl");
-            let state = (0, url.getUrlQuery)("state");
+        const getState = href => {
             try {
-                if (state) {
-                    state = JSON.parse(state);
-                    redirectUrl = state.redirectUrl || redirectUrl;
-                }
+                const locationHref = href || window.location.href;
+                const decodeUrl = window.decodeURIComponent(locationHref.replace(window.location.hash, ""));
+                return JSON.parse(decodeUrl.match(/\{(.*)\}/)[0]);
             } catch (e) {
-                console.error(e);
+                try {
+                    return JSON.parse((0, url.getUrlQuery)("state"));
+                } catch (e) {
+                    return {};
+                }
             }
+        };
+        const getRedirectUrl = () => {
+            let {redirectUrl} = (0, url.getUrlAllQuery)();
+            const state = getState();
+            redirectUrl = state && state.redirectUrl && window.decodeURIComponent(state.redirectUrl) || redirectUrl;
             return redirectUrl;
         };
         function redirectPage(pathname) {
@@ -6977,9 +7009,11 @@
         const jumpWithSearchParams = path => {
             window.location.href = `${path}${window.location.search}`;
         };
-        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014 ];
+        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014, 3015, 3022, 3023, 3024 ];
         const MOBILE_REGISTERED = "2001";
         const EMAIL_REGISTERED = "2002";
+        const TOKEN_ERROR_CODE = [ "3022", "3023", "3024" ];
+        const ACCOUNT_ACTIVATED_CODE = [ "3015" ];
         var isPlainObject = __webpack_require__("../shared/browser/node_modules/lodash/isPlainObject.js");
         var isPlainObject_default = __webpack_require__.n(isPlainObject);
         const isBrowser = "undefined" !== typeof window && "undefined" !== typeof navigator;
@@ -7069,8 +7103,8 @@
         const MEMBER_PASSWORD_PATTERN = /^.{6,18}$/i;
         const PHONE_PATTERN = {
             "+86": /^1[3-9]\d{9}$/,
-            "+886": /^09\d{8}$/,
-            "+852": /^(5[1234569]\d{6}|6\d{7}|9[0-8]\d{6})$/
+            "+886": /^0?9\d{8}$/,
+            "+852": /^(5|6|7|9)\d{7}$/
         };
         const pattern_CODE_PHONE_PATTERN = /^(\w+(\+\d+))-(.*)$/;
         const INTERNATIONAL_PHONE_PATTERN = /^(00|\+)[1-9]{1}([0-9]){9,16}$/;
@@ -8799,18 +8833,16 @@
                     isverify = verify ? "1" : "0";
                 }
                 eventid = FBPixelEventID;
-            } else if ("activate" === formType) {
-                if ("member" === type) {
-                    getInitConfig = getMemberInitConfig;
-                    isverify = 0;
-                }
+            } else if ("activate" === formType) if (token) getInitConfig = getActivateTokenInitConfig; else {
+                getInitConfig = getMemberInitConfig;
+                isverify = 0;
             } else if ("reset" === formType) if (uid) {
                 getInitConfig = getUniversalInitConfig(reset_getChangePasswordInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve(); else if ("bind" === formType && "member" === type) {
                 if ("email" === mode) getInitConfig = getUniversalInitConfig(getBindEmailInitConfig); else if ("phone" === mode) getInitConfig = getUniversalInitConfig(getBindPhoneInitConfig);
                 ticketType = "1";
-            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("delete-account" === formType) {
+            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("passwordNewToken" === formType && "preview" !== token) getInitConfig = getRetrieveTokenInitConfig; else if ("delete-account" === formType) {
                 getInitConfig = getUniversalInitConfig(getDeleteAccountInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve();
@@ -8836,10 +8868,24 @@
                     _mask,
                     _method,
                     oauthToken,
-                    scene
+                    scene,
+                    emailMask: data && data.email
                 };
+            })).catch((e => {
+                if ("activate" === formType) {
+                    if (ACCOUNT_ACTIVATED_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED, true);
+                        redirectPage(SIGN_IN);
+                    } else if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED_TOKEN_EXPIRED, true);
+                        redirectPage(SIGN_IN);
+                    }
+                } else if ("passwordNewToken" === formType) if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                    storage.sessionStorage.set(RESET_PASSWORD_TOKEN_EXPIRED, true);
+                    redirectPage(SIGN_IN);
+                }
             }));
-            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "activate" ].includes(formType)) {
+            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "passwordNewToken", "activate" ].includes(formType)) {
                 const token = window.__DF__ && window.__DF__.getToken();
                 if (token) return init(token);
                 return getRiskControlToken().then((dfptoken => init(dfptoken))).catch((() => init()));
@@ -9299,8 +9345,11 @@
                 }));
             }
             async getCustomerConfig() {
-                const {mode} = this.query;
-                let queryParams = this.configs;
+                const {mode, token} = this.query;
+                let queryParams = {
+                    ...this.configs,
+                    token
+                };
                 if (mode) queryParams = {
                     ...queryParams,
                     mode

@@ -1,0 +1,19 @@
+
+{{!-- 编辑邮箱，未开启身份验证时直接弹框修改 --}}
+{{#snippet
+  'product/commons/base-modal'
+   modalId=id
+   containerClassName="customer-center-modal__container customer-center-modify-email-modal__container"
+}}
+  <div class="customer-center-modify-email-modal__content">
+    <div class="customer-center-modify-email-modal__title">{{ t 'customer.account.modify_email_modal_title' }}</div>
+
+    <form  class="customer-center-modify-email-modal__form" id={{ append id '-form' }}>
+      {{snippet 'customer/form-item/username' types=(split 'email' ',') }}
+
+      {{#snippet 'customer/base/sl-button' class="customer-center-modify-email-modal__saveBtn submit-button" block=true }}
+        {{ t 'customer.account.save_btn' }}
+      {{/snippet}}
+    </form>
+  </div>
+{{/snippet}}

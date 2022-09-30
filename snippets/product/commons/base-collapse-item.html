@@ -1,11 +1,21 @@
+{{assign 'pageData' (get id pages)}}
 <div class="base-collapse-item {{ cond isSyncData 'base-collapse-item-sync' 'base-collapse-item-async' }} {{ cond fold '' 'active' }} {{ customClass }}" data-pageid={{ id }}>
   <div class="base-collapse-item__header {{ customTitleClass }}">
-    <span class="base-collapse-item__title">{{ title }}</span>
+    {{#and icon (boolean icon '!=' 'none')}}
+    <span class="base-collapse-item__icon">{{snippet "product/commons/additional-icons" icon=icon icon_color=theme.settings.color_text}}</span>
+    {{/and}}
+    <span class="base-collapse-item__title">
+      {{cond title title pageData.name.default }}
+    </span>
     <span class="base-collapse-item__arrow">{{ snippet 'product/collections/collections-sidebar-iconArrow'}}</span>
   </div>
   <div class="base-collapse-item__wrap">
     <div class="base-collapse-item__content body3" {{#if isDetail}} data-ssr-plugin-detail-description {{/if}}>
-      {{{ content }}}
+      <div class="desc">{{{desc}}}</div>
+      <div class="main-page-content">
+        {{{pageData.htmlConfig}}}
+        {{{ content }}}
+      </div>
     </div>
   </div>
 </div>

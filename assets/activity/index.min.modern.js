@@ -22,6 +22,7 @@
                 selection = document.getSelection();
                 mark = document.createElement("span");
                 mark.textContent = text;
+                mark.ariaHidden = "true";
                 mark.style.all = "unset";
                 mark.style.position = "fixed";
                 mark.style.top = 0;
@@ -365,7 +366,7 @@
         var dayjs_min_default = __webpack_require__.n(dayjs_min);
         var copy_to_clipboard = __webpack_require__("./node_modules/copy-to-clipboard/index.js");
         var copy_to_clipboard_default = __webpack_require__.n(copy_to_clipboard);
-        var CurrencyConvert = __webpack_require__("../shared/browser/utils/currency/CurrencyConvert.js");
+        var CurrencyConvert = __webpack_require__("../shared/browser/utils/newCurrency/CurrencyConvert.js");
         var state_selector = __webpack_require__("../shared/browser/utils/state-selector.js");
         var i18n = __webpack_require__("../shared/browser/utils/i18n.js");
         var components_toast = __webpack_require__("../shared/browser/components/hbs/shared/components/toast/index.js");
@@ -755,11 +756,11 @@
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
         var _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/i18n.js");
-        var _yy_sl_theme_shared_utils_currency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/currency/CurrencyConvert.js");
+        var _yy_sl_theme_shared_utils_newCurrency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/newCurrency/CurrencyConvert.js");
         var _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/components/hbs/sales/shoppingPromotionReminder/index.js");
-        const getPromotionReminder = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_currency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat);
+        const getPromotionReminder = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_newCurrency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat);
         const getShoppingReminderTranslate = (promotion, configs, options) => {
-            const config = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_currency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat)(promotion, configs, options);
+            const config = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_newCurrency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat)(promotion, configs, options);
             return (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)(config.path, config.params);
         };
         const __WEBPACK_DEFAULT_EXPORT__ = getPromotionReminder;
@@ -777,7 +778,8 @@
             BUY_X_GET_Y: 12,
             NTH_PRICE: 11,
             FREELOWESTPRICE: 9,
-            FREESHOPPING: 3
+            FREESHOPPING: 3,
+            NTH_FIXED_PRICE: 14
         };
         const ThresholdTypeEnum = {
             PRICE: 0,
@@ -785,6 +787,15 @@
         };
         function defaultSafeString(str) {
             return str;
+        }
+        function getBenefitValue(benefitType, current, isNext = false) {
+            if (benefitType === BenefitTypeEnum.FREELOWESTPRICE) return (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount");
+            if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE) {
+                const extMap = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "extMap");
+                return isNext ? (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(extMap, "nextFixedPrice") : (0, 
+                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(extMap, "fixedPrice");
+            }
+            return (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit");
         }
         function shoppingPromotionReminder(currency, safeString = defaultSafeString) {
             function setWrapper(value, warper) {
@@ -797,12 +808,13 @@
                 if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.DISCOUNT || (0, 
                 _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.BUY_X_GET_Y || (0, 
                 _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
-                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.PRICE || (0, 
+                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.NTH_FIXED_PRICE || (0, 
+                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.PRICE || (0, 
                 _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "thresholdType") === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
                 if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.FREELOWESTPRICE) return num;
                 return "";
             }
-            function getShoppingReminderConfig(promotion, configs = {}, options) {
+            function getShoppingReminderConfig(promotion, configs = {}, options = {}) {
                 const {lineBreak = false, warper} = configs;
                 const {benefitType, promotionBenefitList = []} = nc(promotion, {});
                 if (promotionBenefitList.length) {
@@ -840,21 +852,25 @@
                     return {
                         path: thresholdType > -1 ? completePath : " ",
                         params: {
-                            saved: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? (0, 
-                            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount") : (0, 
-                            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit"), {
+                            saved: setWrapper(formatBenefitNum(getBenefitValue(benefitType, current), {
                                 benefitType
                             }, options), {
                                 ...warper,
-                                class: `sales__promotionReminder-saved ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                                class: `sales__promotionReminder-saved  custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            willSave: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? (0, 
-                            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefitCount") : (0, 
-                            _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"), {
+                            willSave: setWrapper(formatBenefitNum(getBenefitValue(benefitType, next, true), {
                                 benefitType
                             }, options), {
                                 ...warper,
                                 class: `sales__promotionReminder-willSave custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
+                            currentMinThreshold: setWrapper((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "minThreshold"), {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
+                            nextMinThreshold: setWrapper((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "minThreshold"), {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
                             threshold: setWrapper(formatBenefitNum((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "amount"), {
                                 thresholdType
@@ -894,9 +910,9 @@
         var misc = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/misc.js");
         var time = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
         var esm_logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
-        var env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
         var esm_global = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
         var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
+        var flags_IS_DEBUG_BUILD = "undefined" === typeof __SENTRY_DEBUG__ ? true : __SENTRY_DEBUG__;
         var esm_scope = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/scope.js");
         var object = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
         var Session = function() {
@@ -1122,7 +1138,7 @@
                 try {
                     return client.getIntegration(integration);
                 } catch (_oO) {
-                    (0, env.isDebugBuild)() && esm_logger.logger.warn("Cannot retrieve integration " + integration.id + " from the current Hub");
+                    flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Cannot retrieve integration " + integration.id + " from the current Hub");
                     return null;
                 }
             };
@@ -1190,7 +1206,7 @@
                 var carrier = getMainCarrier();
                 var sentry = carrier.__SENTRY__;
                 if (sentry && sentry.extensions && "function" === typeof sentry.extensions[method]) return sentry.extensions[method].apply(this, args);
-                (0, env.isDebugBuild)() && esm_logger.logger.warn("Extension method " + method + " couldn't be found, doing nothing.");
+                flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Extension method " + method + " couldn't be found, doing nothing.");
             };
             return Hub;
         }();
@@ -1232,15 +1248,14 @@
             return !!(carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub);
         }
         function getHubFromCarrier(carrier) {
-            if (carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub) return carrier.__SENTRY__.hub;
-            carrier.__SENTRY__ = carrier.__SENTRY__ || {};
-            carrier.__SENTRY__.hub = new Hub;
-            return carrier.__SENTRY__.hub;
+            return (0, esm_global.getGlobalSingleton)("hub", (function() {
+                return new Hub;
+            }), carrier);
         }
         function setHubOnCarrier(carrier, hub) {
             if (!carrier) return false;
-            carrier.__SENTRY__ = carrier.__SENTRY__ || {};
-            carrier.__SENTRY__.hub = hub;
+            var __SENTRY__ = carrier.__SENTRY__ = carrier.__SENTRY__ || {};
+            __SENTRY__.hub = hub;
             return true;
         }
     },
@@ -1499,10 +1514,9 @@
             return Scope;
         }();
         function getGlobalEventProcessors() {
-            var global = (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.getGlobalObject)();
-            global.__SENTRY__ = global.__SENTRY__ || {};
-            global.__SENTRY__.globalEventProcessors = global.__SENTRY__.globalEventProcessors || [];
-            return global.__SENTRY__.globalEventProcessors;
+            return (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.getGlobalSingleton)("globalEventProcessors", (function() {
+                return [];
+            }));
         }
         function addGlobalEventProcessor(callback) {
             getGlobalEventProcessors().push(callback);
@@ -1517,6 +1531,13 @@
         var FINISH_REASON_TAG = "finishReason";
         var IDLE_TRANSACTION_FINISH_REASONS = [ "heartbeatFailed", "idleTimeout", "documentHidden" ];
     },
+    "../shared/browser/node_modules/@sentry/tracing/esm/flags.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            IS_DEBUG_BUILD: () => IS_DEBUG_BUILD
+        });
+        var IS_DEBUG_BUILD = "undefined" === typeof __SENTRY_DEBUG__ ? true : __SENTRY_DEBUG__;
+    },
     "../shared/browser/node_modules/@sentry/tracing/esm/hubextensions.js": (module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
@@ -1525,10 +1546,11 @@
         });
         var tslib_es6 = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
         var hub = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
-        var env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
         var logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+        var is = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
         var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
         var instrument = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/instrument.js");
+        var flags = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/flags.js");
         var utils = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/utils.js");
         function registerErrorInstrumentation() {
             (0, instrument.addInstrumentationHandler)("error", errorCallback);
@@ -1538,7 +1560,7 @@
             var activeTransaction = (0, utils.getActiveTransaction)();
             if (activeTransaction) {
                 var status_1 = "internal_error";
-                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Transaction: " + status_1 + " -> Global error occured");
+                flags.IS_DEBUG_BUILD && logger.logger.log("[Tracing] Transaction: " + status_1 + " -> Global error occured");
                 activeTransaction.setStatus(status_1);
             }
         }
@@ -1594,30 +1616,30 @@
                 });
             }
             if (!isValidSampleRate(sampleRate)) {
-                (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Discarding transaction because of invalid sample rate.");
+                flags.IS_DEBUG_BUILD && logger.logger.warn("[Tracing] Discarding transaction because of invalid sample rate.");
                 transaction.sampled = false;
                 return transaction;
             }
             if (!sampleRate) {
-                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Discarding transaction because " + ("function" === typeof options.tracesSampler ? "tracesSampler returned 0 or false" : "a negative sampling decision was inherited or tracesSampleRate is set to 0"));
+                flags.IS_DEBUG_BUILD && logger.logger.log("[Tracing] Discarding transaction because " + ("function" === typeof options.tracesSampler ? "tracesSampler returned 0 or false" : "a negative sampling decision was inherited or tracesSampleRate is set to 0"));
                 transaction.sampled = false;
                 return transaction;
             }
             transaction.sampled = Math.random() < sampleRate;
             if (!transaction.sampled) {
-                (0, env.isDebugBuild)() && logger.logger.log("[Tracing] Discarding transaction because it's not included in the random sample (sampling rate = " + Number(sampleRate) + ")");
+                flags.IS_DEBUG_BUILD && logger.logger.log("[Tracing] Discarding transaction because it's not included in the random sample (sampling rate = " + Number(sampleRate) + ")");
                 return transaction;
             }
-            (0, env.isDebugBuild)() && logger.logger.log("[Tracing] starting " + transaction.op + " transaction - " + transaction.name);
+            flags.IS_DEBUG_BUILD && logger.logger.log("[Tracing] starting " + transaction.op + " transaction - " + transaction.name);
             return transaction;
         }
         function isValidSampleRate(rate) {
-            if (isNaN(rate) || !("number" === typeof rate || "boolean" === typeof rate)) {
-                (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be a boolean or a number between 0 and 1. Got " + JSON.stringify(rate) + " of type " + JSON.stringify(typeof rate) + ".");
+            if ((0, is.isNaN)(rate) || !("number" === typeof rate || "boolean" === typeof rate)) {
+                flags.IS_DEBUG_BUILD && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be a boolean or a number between 0 and 1. Got " + JSON.stringify(rate) + " of type " + JSON.stringify(typeof rate) + ".");
                 return false;
             }
             if (rate < 0 || rate > 1) {
-                (0, env.isDebugBuild)() && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be between 0 and 1. Got " + rate + ".");
+                flags.IS_DEBUG_BUILD && logger.logger.warn("[Tracing] Given sample rate is invalid. Sample rate must be between 0 and 1. Got " + rate + ".");
                 return false;
             }
             return true;
@@ -1701,9 +1723,9 @@
         });
         var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
         var _sentry_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/time.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
         var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
         var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/constants.js");
+        var _flags__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/flags.js");
         var _span__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/span.js");
         var _transaction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/transaction.js");
         var DEFAULT_IDLE_TIMEOUT = 1e3;
@@ -1746,7 +1768,7 @@
                 _this._beforeFinishCallbacks = [];
                 if (_idleHub && _onScope) {
                     clearActiveTransaction(_idleHub);
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Setting idle transaction on scope. Span ID: " + _this.spanId);
+                    _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Setting idle transaction on scope. Span ID: " + _this.spanId);
                     _idleHub.configureScope((function(scope) {
                         return scope.setSpan(_this);
                     }));
@@ -1763,7 +1785,7 @@
                 this._finished = true;
                 this.activities = {};
                 if (this.spanRecorder) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] finishing IdleTransaction", new Date(1e3 * endTimestamp).toISOString(), this.op);
+                    _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] finishing IdleTransaction", new Date(1e3 * endTimestamp).toISOString(), this.op);
                     try {
                         for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__values)(this._beforeFinishCallbacks), _c = _b.next(); !_c.done; _c = _b.next()) {
                             var callback = _c.value;
@@ -1785,14 +1807,14 @@
                         if (!span.endTimestamp) {
                             span.endTimestamp = endTimestamp;
                             span.setStatus("cancelled");
-                            (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] cancelling span since transaction ended early", JSON.stringify(span, void 0, 2));
+                            _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] cancelling span since transaction ended early", JSON.stringify(span, void 0, 2));
                         }
                         var keepSpan = span.startTimestamp < endTimestamp;
-                        if (!keepSpan) (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] discarding Span since it happened after Transaction was finished", JSON.stringify(span, void 0, 2));
+                        if (!keepSpan) _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] discarding Span since it happened after Transaction was finished", JSON.stringify(span, void 0, 2));
                         return keepSpan;
                     }));
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] flushing IdleTransaction");
-                } else (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] No active IdleTransaction");
+                    _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] flushing IdleTransaction");
+                } else _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] No active IdleTransaction");
                 if (this._onScope) clearActiveTransaction(this._idleHub);
                 return _super.prototype.finish.call(this, endTimestamp);
             };
@@ -1811,7 +1833,7 @@
                         _this._popActivity(id);
                     };
                     this.spanRecorder = new IdleTransactionSpanRecorder(pushActivity, popActivity, this.spanId, maxlen);
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Starting heartbeat");
+                    _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("Starting heartbeat");
                     this._pingHeartbeat();
                 }
                 this.spanRecorder.add(this);
@@ -1821,16 +1843,16 @@
                     clearTimeout(this._initTimeout);
                     this._initTimeout = void 0;
                 }
-                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] pushActivity: " + spanId);
+                _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] pushActivity: " + spanId);
                 this.activities[spanId] = true;
-                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
+                _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
             };
             IdleTransaction.prototype._popActivity = function(spanId) {
                 var _this = this;
                 if (this.activities[spanId]) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] popActivity " + spanId);
+                    _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] popActivity " + spanId);
                     delete this.activities[spanId];
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
+                    _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
                 }
                 if (0 === Object.keys(this.activities).length) {
                     var timeout = this._idleTimeout;
@@ -1849,7 +1871,7 @@
                 if (heartbeatString === this._prevHeartbeatString) this._heartbeatCounter += 1; else this._heartbeatCounter = 1;
                 this._prevHeartbeatString = heartbeatString;
                 if (this._heartbeatCounter >= 3) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] Transaction finished because of no change for 3 heart beats");
+                    _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("[Tracing] Transaction finished because of no change for 3 heart beats");
                     this.setStatus("deadline_exceeded");
                     this.setTag(_constants__WEBPACK_IMPORTED_MODULE_5__.FINISH_REASON_TAG, _constants__WEBPACK_IMPORTED_MODULE_5__.IDLE_TRANSACTION_FINISH_REASONS[0]);
                     this.finish();
@@ -1857,7 +1879,7 @@
             };
             IdleTransaction.prototype._pingHeartbeat = function() {
                 var _this = this;
-                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_3__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("pinging Heartbeat -> current counter: " + this._heartbeatCounter);
+                _flags__WEBPACK_IMPORTED_MODULE_3__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.logger.log("pinging Heartbeat -> current counter: " + this._heartbeatCounter);
                 setTimeout((function() {
                     _this._beat();
                 }), HEARTBEAT_INTERVAL);
@@ -2068,9 +2090,9 @@
         var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
         var _sentry_hub__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
         var _sentry_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-        var _sentry_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
         var _sentry_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
         var _sentry_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/object.js");
+        var _flags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/flags.js");
         var _span__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/span.js");
         var Transaction = function(_super) {
             (0, tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(Transaction, _super);
@@ -2103,12 +2125,12 @@
                 var _this = this;
                 if (void 0 !== this.endTimestamp) return;
                 if (!this.name) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.warn("Transaction has no name, falling back to `<unlabeled transaction>`.");
+                    _flags__WEBPACK_IMPORTED_MODULE_4__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.warn("Transaction has no name, falling back to `<unlabeled transaction>`.");
                     this.name = "<unlabeled transaction>";
                 }
                 _super.prototype.finish.call(this, endTimestamp);
                 if (true !== this.sampled) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Discarding transaction because its trace was not chosen to be sampled.");
+                    _flags__WEBPACK_IMPORTED_MODULE_4__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Discarding transaction because its trace was not chosen to be sampled.");
                     var client = this._hub.getClient();
                     var transport = client && client.getTransport && client.getTransport();
                     if (transport && transport.recordLostEvent) transport.recordLostEvent("sample_rate", "transaction");
@@ -2135,10 +2157,10 @@
                 };
                 var hasMeasurements = Object.keys(this._measurements).length > 0;
                 if (hasMeasurements) {
-                    (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Measurements] Adding measurements to transaction", JSON.stringify(this._measurements, void 0, 2));
+                    _flags__WEBPACK_IMPORTED_MODULE_4__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Measurements] Adding measurements to transaction", JSON.stringify(this._measurements, void 0, 2));
                     transaction.measurements = this._measurements;
                 }
-                (0, _sentry_utils__WEBPACK_IMPORTED_MODULE_4__.isDebugBuild)() && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Finishing " + this.op + " transaction: " + this.name + ".");
+                _flags__WEBPACK_IMPORTED_MODULE_4__.IS_DEBUG_BUILD && _sentry_utils__WEBPACK_IMPORTED_MODULE_5__.logger.log("[Tracing] Finishing " + this.op + " transaction: " + this.name + ".");
                 return this._hub.captureEvent(transaction);
             };
             Transaction.prototype.toContext = function() {
@@ -2258,29 +2280,29 @@
             }
         }
     },
-    "../shared/browser/node_modules/@sentry/utils/esm/env.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+    "../shared/browser/node_modules/@sentry/utils/esm/flags.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
-            isDebugBuild: () => isDebugBuild,
-            isBrowserBundle: () => isBrowserBundle
+            IS_DEBUG_BUILD: () => IS_DEBUG_BUILD
         });
-        var __SENTRY_DEBUG__ = true;
-        function isDebugBuild() {
-            return __SENTRY_DEBUG__;
-        }
-        function isBrowserBundle() {
-            return "undefined" !== typeof __SENTRY_BROWSER_BUNDLE__ && !!__SENTRY_BROWSER_BUNDLE__;
-        }
+        var IS_DEBUG_BUILD = "undefined" === typeof __SENTRY_DEBUG__ ? true : __SENTRY_DEBUG__;
     },
     "../shared/browser/node_modules/@sentry/utils/esm/global.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
-            getGlobalObject: () => getGlobalObject
+            getGlobalObject: () => getGlobalObject,
+            getGlobalSingleton: () => getGlobalSingleton
         });
         var _node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
         var fallbackGlobalObject = {};
         function getGlobalObject() {
             return (0, _node__WEBPACK_IMPORTED_MODULE_0__.isNodeEnv)() ? __webpack_require__.g : "undefined" !== typeof window ? window : "undefined" !== typeof self ? self : fallbackGlobalObject;
+        }
+        function getGlobalSingleton(name, creator, obj) {
+            var global = obj || getGlobalObject();
+            var __SENTRY__ = global.__SENTRY__ = global.__SENTRY__ || {};
+            var singleton = __SENTRY__[name] || (__SENTRY__[name] = creator());
+            return singleton;
         }
     },
     "../shared/browser/node_modules/@sentry/utils/esm/instrument.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -2289,7 +2311,7 @@
             addInstrumentationHandler: () => addInstrumentationHandler
         });
         var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-        var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var _flags__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/flags.js");
         var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
         var _is__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
         var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
@@ -2332,7 +2354,7 @@
                 break;
 
               default:
-                (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("unknown instrumentation type:", type);
+                _flags__WEBPACK_IMPORTED_MODULE_1__.IS_DEBUG_BUILD && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("unknown instrumentation type:", type);
                 return;
             }
         }
@@ -2350,7 +2372,7 @@
                     try {
                         handler(data);
                     } catch (e) {
-                        (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.error("Error while triggering instrumentation handler.\nType: " + type + "\nName: " + (0, 
+                        _flags__WEBPACK_IMPORTED_MODULE_1__.IS_DEBUG_BUILD && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.error("Error while triggering instrumentation handler.\nType: " + type + "\nName: " + (0, 
                         _stacktrace__WEBPACK_IMPORTED_MODULE_4__.getFunctionName)(handler) + "\nError:", e);
                     }
                 }
@@ -2652,6 +2674,7 @@
             isRegExp: () => isRegExp,
             isThenable: () => isThenable,
             isSyntheticEvent: () => isSyntheticEvent,
+            isNaN: () => isNaN,
             isInstanceOf: () => isInstanceOf
         });
         var objectToString = Object.prototype.toString;
@@ -2702,6 +2725,9 @@
         function isSyntheticEvent(wat) {
             return isPlainObject(wat) && "nativeEvent" in wat && "preventDefault" in wat && "stopPropagation" in wat;
         }
+        function isNaN(wat) {
+            return "number" === typeof wat && wat !== wat;
+        }
         function isInstanceOf(wat, base) {
             try {
                 return wat instanceof base;
@@ -2717,8 +2743,8 @@
             consoleSandbox: () => consoleSandbox,
             logger: () => logger
         });
-        var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-        var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _flags__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/flags.js");
         var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
         var global = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalObject)();
         var PREFIX = "Sentry Logger ";
@@ -2729,62 +2755,48 @@
             var originalConsole = global.console;
             var wrappedLevels = {};
             CONSOLE_LEVELS.forEach((function(level) {
-                if (level in global.console && originalConsole[level].__sentry_original__) {
+                var originalWrappedFunc = originalConsole[level] && originalConsole[level].__sentry_original__;
+                if (level in global.console && originalWrappedFunc) {
                     wrappedLevels[level] = originalConsole[level];
-                    originalConsole[level] = originalConsole[level].__sentry_original__;
+                    originalConsole[level] = originalWrappedFunc;
                 }
             }));
-            var result = callback();
-            Object.keys(wrappedLevels).forEach((function(level) {
-                originalConsole[level] = wrappedLevels[level];
-            }));
-            return result;
-        }
-        var Logger = function() {
-            function Logger() {
-                this._enabled = false;
+            try {
+                return callback();
+            } finally {
+                Object.keys(wrappedLevels).forEach((function(level) {
+                    originalConsole[level] = wrappedLevels[level];
+                }));
             }
-            Logger.prototype.disable = function() {
-                this._enabled = false;
-            };
-            Logger.prototype.enable = function() {
-                this._enabled = true;
-            };
-            Logger.prototype.log = function() {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                if (!this._enabled) return;
-                consoleSandbox((function() {
-                    var _a;
-                    (_a = global.console).log.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Log]:" ], args));
-                }));
-            };
-            Logger.prototype.warn = function() {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                if (!this._enabled) return;
-                consoleSandbox((function() {
-                    var _a;
-                    (_a = global.console).warn.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Warn]:" ], args));
-                }));
-            };
-            Logger.prototype.error = function() {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
-                if (!this._enabled) return;
-                consoleSandbox((function() {
-                    var _a;
-                    (_a = global.console).error.apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__spread)([ PREFIX + "[Error]:" ], args));
-                }));
-            };
-            return Logger;
-        }();
-        var sentryGlobal = global.__SENTRY__ || {};
-        var logger = sentryGlobal.logger || new Logger;
-        if ((0, _env__WEBPACK_IMPORTED_MODULE_2__.isDebugBuild)()) {
-            sentryGlobal.logger = logger;
-            global.__SENTRY__ = sentryGlobal;
         }
+        function makeLogger() {
+            var enabled = false;
+            var logger = {
+                enable: function() {
+                    enabled = true;
+                },
+                disable: function() {
+                    enabled = false;
+                }
+            };
+            if (_flags__WEBPACK_IMPORTED_MODULE_1__.IS_DEBUG_BUILD) CONSOLE_LEVELS.forEach((function(name) {
+                logger[name] = function() {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                    if (enabled) consoleSandbox((function() {
+                        var _a;
+                        (_a = global.console)[name].apply(_a, (0, tslib__WEBPACK_IMPORTED_MODULE_2__.__spread)([ PREFIX + "[" + name + "]:" ], args));
+                    }));
+                };
+            })); else CONSOLE_LEVELS.forEach((function(name) {
+                logger[name] = function() {
+                    return;
+                };
+            }));
+            return logger;
+        }
+        var logger;
+        if (_flags__WEBPACK_IMPORTED_MODULE_1__.IS_DEBUG_BUILD) logger = (0, _global__WEBPACK_IMPORTED_MODULE_0__.getGlobalSingleton)("logger", makeLogger); else logger = makeLogger();
     },
     "../shared/browser/node_modules/@sentry/utils/esm/misc.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
@@ -2879,14 +2891,16 @@
     "../shared/browser/node_modules/@sentry/utils/esm/node.js": (module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
-            isNodeEnv: () => isNodeEnv,
             dynamicRequire: () => dynamicRequire,
+            isNodeEnv: () => isNodeEnv,
             loadModule: () => loadModule
         });
-        var _env__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        function isBrowserBundle() {
+            return "undefined" !== typeof __SENTRY_BROWSER_BUNDLE__ && !!__SENTRY_BROWSER_BUNDLE__;
+        }
         module = __webpack_require__.hmd(module);
         function isNodeEnv() {
-            return !(0, _env__WEBPACK_IMPORTED_MODULE_0__.isBrowserBundle)() && "[object process]" === Object.prototype.toString.call("undefined" !== typeof process ? process : 0);
+            return !isBrowserBundle() && "[object process]" === Object.prototype.toString.call("undefined" !== typeof process ? process : 0);
         }
         function dynamicRequire(mod, request) {
             return mod.require(request);
@@ -2911,14 +2925,14 @@
             markFunctionWrapped: () => markFunctionWrapped,
             getOriginalFunction: () => getOriginalFunction,
             urlEncode: () => urlEncode,
-            getWalkSource: () => getWalkSource,
+            convertToPlainObject: () => convertToPlainObject,
             extractExceptionKeysForMessage: () => extractExceptionKeysForMessage,
             dropUndefinedKeys: () => dropUndefinedKeys
         });
-        var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
-        var _browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/browser.js");
+        var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/tslib/tslib.es6.js");
+        var _browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/browser.js");
         var _is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/is.js");
-        var _string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/string.js");
+        var _string__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/string.js");
         function fill(source, name, replacementFactory) {
             if (!(name in source)) return;
             var original = source[name];
@@ -2948,62 +2962,57 @@
                 return encodeURIComponent(key) + "=" + encodeURIComponent(object[key]);
             })).join("&");
         }
-        function getWalkSource(value) {
-            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isError)(value)) {
-                var error = value;
-                var err = {
-                    message: error.message,
-                    name: error.name,
-                    stack: error.stack
-                };
-                for (var i in error) if (Object.prototype.hasOwnProperty.call(error, i)) err[i] = error[i];
-                return err;
-            }
-            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isEvent)(value)) {
+        function convertToPlainObject(value) {
+            var newObj = value;
+            if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isError)(value)) newObj = (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({
+                message: value.message,
+                name: value.name,
+                stack: value.stack
+            }, getOwnProperties(value)); else if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isEvent)(value)) {
                 var event_1 = value;
-                var source = {};
-                source.type = event_1.type;
-                try {
-                    source.target = (0, _is__WEBPACK_IMPORTED_MODULE_0__.isElement)(event_1.target) ? (0, 
-                    _browser__WEBPACK_IMPORTED_MODULE_1__.htmlTreeAsString)(event_1.target) : Object.prototype.toString.call(event_1.target);
-                } catch (_oO) {
-                    source.target = "<unknown>";
-                }
-                try {
-                    source.currentTarget = (0, _is__WEBPACK_IMPORTED_MODULE_0__.isElement)(event_1.currentTarget) ? (0, 
-                    _browser__WEBPACK_IMPORTED_MODULE_1__.htmlTreeAsString)(event_1.currentTarget) : Object.prototype.toString.call(event_1.currentTarget);
-                } catch (_oO) {
-                    source.currentTarget = "<unknown>";
-                }
-                if ("undefined" !== typeof CustomEvent && (0, _is__WEBPACK_IMPORTED_MODULE_0__.isInstanceOf)(value, CustomEvent)) source.detail = event_1.detail;
-                for (var attr in event_1) if (Object.prototype.hasOwnProperty.call(event_1, attr)) source[attr] = event_1[attr];
-                return source;
+                newObj = (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({
+                    type: event_1.type,
+                    target: serializeEventTarget(event_1.target),
+                    currentTarget: serializeEventTarget(event_1.currentTarget)
+                }, getOwnProperties(event_1));
+                if ("undefined" !== typeof CustomEvent && (0, _is__WEBPACK_IMPORTED_MODULE_0__.isInstanceOf)(value, CustomEvent)) newObj.detail = event_1.detail;
             }
-            return value;
+            return newObj;
+        }
+        function serializeEventTarget(target) {
+            try {
+                return (0, _is__WEBPACK_IMPORTED_MODULE_0__.isElement)(target) ? (0, _browser__WEBPACK_IMPORTED_MODULE_2__.htmlTreeAsString)(target) : Object.prototype.toString.call(target);
+            } catch (_oO) {
+                return "<unknown>";
+            }
+        }
+        function getOwnProperties(obj) {
+            var extractedProps = {};
+            for (var property in obj) if (Object.prototype.hasOwnProperty.call(obj, property)) extractedProps[property] = obj[property];
+            return extractedProps;
         }
         function extractExceptionKeysForMessage(exception, maxLength) {
             if (void 0 === maxLength) maxLength = 40;
-            var keys = Object.keys(getWalkSource(exception));
+            var keys = Object.keys(convertToPlainObject(exception));
             keys.sort();
             if (!keys.length) return "[object has no keys]";
-            if (keys[0].length >= maxLength) return (0, _string__WEBPACK_IMPORTED_MODULE_2__.truncate)(keys[0], maxLength);
+            if (keys[0].length >= maxLength) return (0, _string__WEBPACK_IMPORTED_MODULE_3__.truncate)(keys[0], maxLength);
             for (var includedKeys = keys.length; includedKeys > 0; includedKeys--) {
                 var serialized = keys.slice(0, includedKeys).join(", ");
                 if (serialized.length > maxLength) continue;
                 if (includedKeys === keys.length) return serialized;
-                return (0, _string__WEBPACK_IMPORTED_MODULE_2__.truncate)(serialized, maxLength);
+                return (0, _string__WEBPACK_IMPORTED_MODULE_3__.truncate)(serialized, maxLength);
             }
             return "";
         }
         function dropUndefinedKeys(val) {
             var e_1, _a;
             if ((0, _is__WEBPACK_IMPORTED_MODULE_0__.isPlainObject)(val)) {
-                var obj = val;
                 var rv = {};
                 try {
-                    for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_3__.__values)(Object.keys(obj)), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    for (var _b = (0, tslib__WEBPACK_IMPORTED_MODULE_1__.__values)(Object.keys(val)), _c = _b.next(); !_c.done; _c = _b.next()) {
                         var key = _c.value;
-                        if ("undefined" !== typeof obj[key]) rv[key] = dropUndefinedKeys(obj[key]);
+                        if ("undefined" !== typeof val[key]) rv[key] = dropUndefinedKeys(val[key]);
                     }
                 } catch (e_1_1) {
                     e_1 = {
@@ -3146,7 +3155,7 @@
             supportsReferrerPolicy: () => supportsReferrerPolicy,
             supportsHistory: () => supportsHistory
         });
-        var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
+        var _flags__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/flags.js");
         var _global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
         var _logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
         function supportsFetch() {
@@ -3176,7 +3185,7 @@
                 if (sandbox.contentWindow && sandbox.contentWindow.fetch) result = isNativeFetch(sandbox.contentWindow.fetch);
                 doc.head.removeChild(sandbox);
             } catch (err) {
-                (0, _env__WEBPACK_IMPORTED_MODULE_1__.isDebugBuild)() && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ", err);
+                _flags__WEBPACK_IMPORTED_MODULE_1__.IS_DEBUG_BUILD && _logger__WEBPACK_IMPORTED_MODULE_2__.logger.warn("Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ", err);
             }
             return result;
         }
@@ -3461,10 +3470,10 @@
     "../shared/browser/utils/sentry.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
         "use strict";
         var esm_hub = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/hub.js");
-        var esm_env = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/env.js");
         var esm_logger = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/logger.js");
+        var flags_IS_DEBUG_BUILD = "undefined" === typeof __SENTRY_DEBUG__ ? true : __SENTRY_DEBUG__;
         function initAndBind(clientClass, options) {
-            if (true === options.debug) if ((0, esm_env.isDebugBuild)()) esm_logger.logger.enable(); else console.warn("[Sentry] Cannot initialize SDK with `debug` option using a non-debug bundle.");
+            if (true === options.debug) if (flags_IS_DEBUG_BUILD) esm_logger.logger.enable(); else console.warn("[Sentry] Cannot initialize SDK with `debug` option using a non-debug bundle.");
             var hub = (0, esm_hub.getCurrentHub)();
             var scope = hub.getScope();
             if (scope) scope.update(options.initialScope);
@@ -3511,22 +3520,22 @@
         }
         function _shouldDropEvent(event, options) {
             if (options.ignoreInternal && _isSentryError(event)) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to being internal Sentry Error.\nEvent: " + (0, 
+                flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Event dropped due to being internal Sentry Error.\nEvent: " + (0, 
                 misc.getEventDescription)(event));
                 return true;
             }
             if (_isIgnoredError(event, options.ignoreErrors)) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to being matched by `ignoreErrors` option.\nEvent: " + (0, 
+                flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Event dropped due to being matched by `ignoreErrors` option.\nEvent: " + (0, 
                 misc.getEventDescription)(event));
                 return true;
             }
             if (_isDeniedUrl(event, options.denyUrls)) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to being matched by `denyUrls` option.\nEvent: " + (0, 
+                flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Event dropped due to being matched by `denyUrls` option.\nEvent: " + (0, 
                 misc.getEventDescription)(event) + ".\nUrl: " + _getEventFilterUrl(event));
                 return true;
             }
             if (!_isAllowedUrl(event, options.allowUrls)) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to not being matched by `allowUrls` option.\nEvent: " + (0, 
+                flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Event dropped due to not being matched by `allowUrls` option.\nEvent: " + (0, 
                 misc.getEventDescription)(event) + ".\nUrl: " + _getEventFilterUrl(event));
                 return true;
             }
@@ -3560,7 +3569,7 @@
                 var _a = event.exception.values && event.exception.values[0] || {}, _b = _a.type, type = void 0 === _b ? "" : _b, _c = _a.value, value = void 0 === _c ? "" : _c;
                 return [ "" + value, type + ": " + value ];
             } catch (oO) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Cannot extract message for event " + (0, 
+                flags_IS_DEBUG_BUILD && esm_logger.logger.error("Cannot extract message for event " + (0, 
                 misc.getEventDescription)(event));
                 return [];
             }
@@ -3589,7 +3598,7 @@
                 } catch (e) {}
                 return frames_1 ? _getLastValidUrl(frames_1) : null;
             } catch (oO) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Cannot extract url for event " + (0, 
+                flags_IS_DEBUG_BUILD && esm_logger.logger.error("Cannot extract url for event " + (0, 
                 misc.getEventDescription)(event));
                 return null;
             }
@@ -3614,7 +3623,7 @@
         }();
         var esm_global = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/global.js");
         var instrument = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/instrument.js");
-        var SDK_VERSION = "6.19.2";
+        var SDK_VERSION = "6.19.7";
         var esm_scope = __webpack_require__("../shared/browser/node_modules/@sentry/hub/esm/scope.js");
         var setPrototypeOf = Object.setPrototypeOf || ({
             __proto__: []
@@ -3639,6 +3648,7 @@
             }
             return SentryError;
         }(Error);
+        var flags = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/flags.js");
         var DSN_REGEX = /^(?:(\w+):)\/\/(?:(\w+)(?::(\w+))?@)([\w.-]+)(?::(\d+))?\/(.+)/;
         function isValidProtocol(protocol) {
             return "http" === protocol || "https" === protocol;
@@ -3687,7 +3697,7 @@
             };
         }
         function validateDsn(dsn) {
-            if (!(0, esm_env.isDebugBuild)()) return;
+            if (!flags.IS_DEBUG_BUILD) return;
             var port = dsn.port, projectId = dsn.projectId, protocol = dsn.protocol;
             var requiredComponents = [ "protocol", "publicKey", "host", "projectId" ];
             requiredComponents.forEach((function(component) {
@@ -3735,65 +3745,68 @@
             if (void 0 === depth) depth = +1 / 0;
             if (void 0 === maxProperties) maxProperties = +1 / 0;
             try {
-                return walk("", input, depth, maxProperties);
-            } catch (_oO) {
-                return "**non-serializable**";
+                return visit("", input, depth, maxProperties);
+            } catch (err) {
+                return {
+                    ERROR: "**non-serializable** (" + err + ")"
+                };
             }
         }
         function normalizeToSize(object, depth, maxSize) {
             if (void 0 === depth) depth = 3;
             if (void 0 === maxSize) maxSize = 100 * 1024;
-            var serialized = normalize(object, depth);
-            if (jsonSize(serialized) > maxSize) return normalizeToSize(object, depth - 1, maxSize);
-            return serialized;
+            var normalized = normalize(object, depth);
+            if (jsonSize(normalized) > maxSize) return normalizeToSize(object, depth - 1, maxSize);
+            return normalized;
         }
-        function walk(key, value, depth, maxProperties, memo) {
+        function visit(key, value, depth, maxProperties, memo) {
             if (void 0 === depth) depth = +1 / 0;
             if (void 0 === maxProperties) maxProperties = +1 / 0;
             if (void 0 === memo) memo = memoBuilder();
             var _a = (0, tslib_es6.__read)(memo, 2), memoize = _a[0], unmemoize = _a[1];
-            if (0 === depth) return serializeValue(value);
-            if (null !== value && void 0 !== value && "function" === typeof value.toJSON) return value.toJSON();
-            var serializable = makeSerializable(value, key);
-            if ((0, is.isPrimitive)(serializable)) return serializable;
-            var source = (0, object.getWalkSource)(value);
-            var acc = Array.isArray(value) ? [] : {};
+            var valueWithToJSON = value;
+            if (valueWithToJSON && "function" === typeof valueWithToJSON.toJSON) try {
+                return valueWithToJSON.toJSON();
+            } catch (err) {}
+            if (null === value || [ "number", "boolean", "string" ].includes(typeof value) && !(0, 
+            is.isNaN)(value)) return value;
+            var stringified = stringifyValue(key, value);
+            if (!stringified.startsWith("[object ")) return stringified;
+            if (0 === depth) return stringified.replace("object ", "");
             if (memoize(value)) return "[Circular ~]";
-            var propertyCount = 0;
-            for (var innerKey in source) {
-                if (!Object.prototype.hasOwnProperty.call(source, innerKey)) continue;
-                if (propertyCount >= maxProperties) {
-                    acc[innerKey] = "[MaxProperties ~]";
+            var normalized = Array.isArray(value) ? [] : {};
+            var numAdded = 0;
+            var visitable = (0, is.isError)(value) || (0, is.isEvent)(value) ? (0, object.convertToPlainObject)(value) : value;
+            for (var visitKey in visitable) {
+                if (!Object.prototype.hasOwnProperty.call(visitable, visitKey)) continue;
+                if (numAdded >= maxProperties) {
+                    normalized[visitKey] = "[MaxProperties ~]";
                     break;
                 }
-                propertyCount += 1;
-                var innerValue = source[innerKey];
-                acc[innerKey] = walk(innerKey, innerValue, depth - 1, maxProperties, memo);
+                var visitValue = visitable[visitKey];
+                normalized[visitKey] = visit(visitKey, visitValue, depth - 1, maxProperties, memo);
+                numAdded += 1;
             }
             unmemoize(value);
-            return acc;
+            return normalized;
         }
-        function serializeValue(value) {
-            if ("string" === typeof value) return value;
-            var type = Object.prototype.toString.call(value);
-            if ("[object Object]" === type) return "[Object]";
-            if ("[object Array]" === type) return "[Array]";
-            var serializable = makeSerializable(value);
-            return (0, is.isPrimitive)(serializable) ? serializable : type;
-        }
-        function makeSerializable(value, key) {
-            if ("domain" === key && value && "object" === typeof value && value._events) return "[Domain]";
-            if ("domainEmitter" === key) return "[DomainEmitter]";
-            if ("undefined" !== typeof __webpack_require__.g && value === __webpack_require__.g) return "[Global]";
-            if ("undefined" !== typeof window && value === window) return "[Window]";
-            if ("undefined" !== typeof document && value === document) return "[Document]";
-            if ((0, is.isSyntheticEvent)(value)) return "[SyntheticEvent]";
-            if ("number" === typeof value && value !== value) return "[NaN]";
-            if (void 0 === value) return "[undefined]";
-            if ("function" === typeof value) return "[Function: " + (0, esm_stacktrace.getFunctionName)(value) + "]";
-            if ("symbol" === typeof value) return "[" + String(value) + "]";
-            if ("bigint" === typeof value) return "[BigInt: " + String(value) + "]";
-            return value;
+        function stringifyValue(key, value) {
+            try {
+                if ("domain" === key && value && "object" === typeof value && value._events) return "[Domain]";
+                if ("domainEmitter" === key) return "[DomainEmitter]";
+                if ("undefined" !== typeof __webpack_require__.g && value === __webpack_require__.g) return "[Global]";
+                if ("undefined" !== typeof window && value === window) return "[Window]";
+                if ("undefined" !== typeof document && value === document) return "[Document]";
+                if ((0, is.isSyntheticEvent)(value)) return "[SyntheticEvent]";
+                if ("number" === typeof value && value !== value) return "[NaN]";
+                if (void 0 === value) return "[undefined]";
+                if ("function" === typeof value) return "[Function: " + (0, esm_stacktrace.getFunctionName)(value) + "]";
+                if ("symbol" === typeof value) return "[" + String(value) + "]";
+                if ("bigint" === typeof value) return "[BigInt: " + String(value) + "]";
+                return "[object " + Object.getPrototypeOf(value).constructor.name + "]";
+            } catch (err) {
+                return "**non-serializable** (" + err + ")";
+            }
         }
         function utf8Length(value) {
             return ~-encodeURI(value).split(/%..|./).length;
@@ -3834,7 +3847,7 @@
             if (-1 !== installedIntegrations.indexOf(integration.name)) return;
             integration.setupOnce(esm_scope.addGlobalEventProcessor, esm_hub.getCurrentHub);
             installedIntegrations.push(integration.name);
-            (0, esm_env.isDebugBuild)() && esm_logger.logger.log("Integration installed: " + integration.name);
+            flags_IS_DEBUG_BUILD && esm_logger.logger.log("Integration installed: " + integration.name);
         }
         function setupIntegrations(options) {
             var integrations = {};
@@ -3857,7 +3870,7 @@
             BaseClient.prototype.captureException = function(exception, hint, scope) {
                 var _this = this;
                 if ((0, misc.checkOrSetAlreadyCaught)(exception)) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log(ALREADY_SEEN_ERROR);
+                    flags_IS_DEBUG_BUILD && esm_logger.logger.log(ALREADY_SEEN_ERROR);
                     return;
                 }
                 var eventId = hint && hint.event_id;
@@ -3881,7 +3894,7 @@
             };
             BaseClient.prototype.captureEvent = function(event, hint, scope) {
                 if (hint && hint.originalException && (0, misc.checkOrSetAlreadyCaught)(hint.originalException)) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log(ALREADY_SEEN_ERROR);
+                    flags_IS_DEBUG_BUILD && esm_logger.logger.log(ALREADY_SEEN_ERROR);
                     return;
                 }
                 var eventId = hint && hint.event_id;
@@ -3892,10 +3905,10 @@
             };
             BaseClient.prototype.captureSession = function(session) {
                 if (!this._isEnabled()) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("SDK not enabled, will not capture session.");
+                    flags_IS_DEBUG_BUILD && esm_logger.logger.warn("SDK not enabled, will not capture session.");
                     return;
                 }
-                if (!("string" === typeof session.release)) (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Discarded session because of missing or non-string release"); else {
+                if (!("string" === typeof session.release)) flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Discarded session because of missing or non-string release"); else {
                     this._sendSession(session);
                     session.update({
                         init: false
@@ -3933,7 +3946,7 @@
                 try {
                     return this._integrations[integration.id] || null;
                 } catch (_oO) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Cannot retrieve integration " + integration.id + " from the current Client");
+                    flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Cannot retrieve integration " + integration.id + " from the current Client");
                     return null;
                 }
             };
@@ -4019,7 +4032,7 @@
                 if (finalScope) result = finalScope.applyToEvent(prepared, hint);
                 return result.then((function(evt) {
                     if (evt) evt.sdkProcessingMetadata = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, evt.sdkProcessingMetadata), {
-                        normalizeDepth: normalize(normalizeDepth)
+                        normalizeDepth: normalize(normalizeDepth) + " (" + typeof normalizeDepth + ")"
                     });
                     if ("number" === typeof normalizeDepth && normalizeDepth > 0) return _this._normalizeEvent(evt, normalizeDepth, normalizeMaxBreadth);
                     return evt;
@@ -4042,7 +4055,7 @@
                     extra: normalize(event.extra, depth, maxBreadth)
                 });
                 if (event.contexts && event.contexts.trace) normalized.contexts.trace = event.contexts.trace;
-                event.sdkProcessingMetadata = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, event.sdkProcessingMetadata), {
+                normalized.sdkProcessingMetadata = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, normalized.sdkProcessingMetadata), {
                     baseClientNormalized: true
                 });
                 return normalized;
@@ -4073,7 +4086,7 @@
                 return this._processEvent(event, hint, scope).then((function(finalEvent) {
                     return finalEvent.event_id;
                 }), (function(reason) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error(reason);
+                    flags_IS_DEBUG_BUILD && esm_logger.logger.error(reason);
                     return;
                 }));
             };
@@ -4222,6 +4235,11 @@
             if (void 0 === items) items = [];
             return [ headers, items ];
         }
+        function getEnvelopeType(envelope) {
+            var _a = (0, tslib_es6.__read)(envelope, 2), _b = (0, tslib_es6.__read)(_a[1], 1), _c = (0, 
+            tslib_es6.__read)(_b[0], 1), firstItemHeader = _c[0];
+            return firstItemHeader.type;
+        }
         function serializeEnvelope(envelope) {
             var _a = (0, tslib_es6.__read)(envelope, 2), headers = _a[0], items = _a[1];
             var serializedHeaders = JSON.stringify(headers);
@@ -4277,6 +4295,14 @@
             var eventType = event.type || "event";
             var transactionSampling = (event.sdkProcessingMetadata || {}).transactionSampling;
             var _a = transactionSampling || {}, samplingMethod = _a.method, sampleRate = _a.rate;
+            enhanceEventWithSdkInfo(event, api.metadata.sdk);
+            event.tags = event.tags || {};
+            event.extra = event.extra || {};
+            if (!(event.sdkProcessingMetadata && event.sdkProcessingMetadata.baseClientNormalized)) {
+                event.tags.skippedNormalization = true;
+                event.extra.normalizeDepth = event.sdkProcessingMetadata ? event.sdkProcessingMetadata.normalizeDepth : "unset";
+            }
+            delete event.sdkProcessingMetadata;
             var envelopeHeaders = (0, tslib_es6.__assign)((0, tslib_es6.__assign)({
                 event_id: event.event_id,
                 sent_at: (new Date).toISOString()
@@ -4369,7 +4395,7 @@
         var BaseBackend = function() {
             function BaseBackend(options) {
                 this._options = options;
-                if (!this._options.dsn) (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("No DSN provided, backend will not do anything.");
+                if (!this._options.dsn) flags_IS_DEBUG_BUILD && esm_logger.logger.warn("No DSN provided, backend will not do anything.");
                 this._transport = this._setupTransport();
             }
             BaseBackend.prototype.eventFromException = function(_exception, _hint) {
@@ -4383,25 +4409,25 @@
                     var api = initAPIDetails(this._options.dsn, this._options._metadata, this._options.tunnel);
                     var env = createEventEnvelope(event, api);
                     void this._newTransport.send(env).then(null, (function(reason) {
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Error while sending event:", reason);
+                        flags_IS_DEBUG_BUILD && esm_logger.logger.error("Error while sending event:", reason);
                     }));
                 } else void this._transport.sendEvent(event).then(null, (function(reason) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Error while sending event:", reason);
+                    flags_IS_DEBUG_BUILD && esm_logger.logger.error("Error while sending event:", reason);
                 }));
             };
             BaseBackend.prototype.sendSession = function(session) {
                 if (!this._transport.sendSession) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Dropping session because custom transport doesn't implement sendSession");
+                    flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Dropping session because custom transport doesn't implement sendSession");
                     return;
                 }
                 if (this._newTransport && this._options.dsn && this._options._experiments && this._options._experiments.newTransport) {
                     var api = initAPIDetails(this._options.dsn, this._options._metadata, this._options.tunnel);
                     var _a = (0, tslib_es6.__read)(createSessionEnvelope(session, api), 1), env = _a[0];
                     void this._newTransport.send(env).then(null, (function(reason) {
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Error while sending session:", reason);
+                        flags_IS_DEBUG_BUILD && esm_logger.logger.error("Error while sending session:", reason);
                     }));
                 } else void this._transport.sendSession(session).then(null, (function(reason) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Error while sending session:", reason);
+                    flags_IS_DEBUG_BUILD && esm_logger.logger.error("Error while sending session:", reason);
                 }));
             };
             BaseBackend.prototype.getTransport = function() {
@@ -4674,24 +4700,6 @@
                 drain
             };
         }
-        function createClientReportEnvelope(discarded_events, dsn, timestamp) {
-            var clientReportItem = [ {
-                type: "client_report"
-            }, {
-                timestamp: timestamp || (0, time.dateTimestampInSeconds)(),
-                discarded_events
-            } ];
-            return createEnvelope(dsn ? {
-                dsn
-            } : {}, [ clientReportItem ]);
-        }
-        function eventStatusFromHttpCode(code) {
-            if (code >= 200 && code < 300) return "success";
-            if (429 === code) return "rate_limit";
-            if (code >= 400 && code < 500) return "invalid";
-            if (code >= 500) return "failed";
-            return "unknown";
-        }
         var DEFAULT_RETRY_AFTER = 60 * 1e3;
         function parseRetryAfterHeader(header, now) {
             if (void 0 === now) now = Date.now();
@@ -4750,11 +4758,62 @@
             } else if (retryAfterHeader) updatedRateLimits.all = now + parseRetryAfterHeader(retryAfterHeader, now);
             return updatedRateLimits;
         }
+        function eventStatusFromHttpCode(code) {
+            if (code >= 200 && code < 300) return "success";
+            if (429 === code) return "rate_limit";
+            if (code >= 400 && code < 500) return "invalid";
+            if (code >= 500) return "failed";
+            return "unknown";
+        }
+        var DEFAULT_TRANSPORT_BUFFER_SIZE = 30;
+        function createTransport(options, makeRequest, buffer) {
+            if (void 0 === buffer) buffer = makePromiseBuffer(options.bufferSize || DEFAULT_TRANSPORT_BUFFER_SIZE);
+            var rateLimits = {};
+            var flush = function(timeout) {
+                return buffer.drain(timeout);
+            };
+            function send(envelope) {
+                var envCategory = getEnvelopeType(envelope);
+                var category = "event" === envCategory ? "error" : envCategory;
+                var request = {
+                    category,
+                    body: serializeEnvelope(envelope)
+                };
+                if (isRateLimited(rateLimits, category)) return (0, syncpromise.rejectedSyncPromise)({
+                    status: "rate_limit",
+                    reason: getRateLimitReason(rateLimits, category)
+                });
+                var requestTask = function() {
+                    return makeRequest(request).then((function(_a) {
+                        var body = _a.body, headers = _a.headers, reason = _a.reason, statusCode = _a.statusCode;
+                        var status = eventStatusFromHttpCode(statusCode);
+                        if (headers) rateLimits = updateRateLimits(rateLimits, headers);
+                        if ("success" === status) return (0, syncpromise.resolvedSyncPromise)({
+                            status,
+                            reason
+                        });
+                        return (0, syncpromise.rejectedSyncPromise)({
+                            status,
+                            reason: reason || body || ("rate_limit" === status ? getRateLimitReason(rateLimits, category) : "Unknown transport error")
+                        });
+                    }));
+                };
+                return buffer.add(requestTask);
+            }
+            return {
+                send,
+                flush
+            };
+        }
+        function getRateLimitReason(rateLimits, category) {
+            return "Too many " + category + " requests, backing off until: " + new Date(disabledUntil(rateLimits, category)).toISOString();
+        }
         function forget(promise) {
             void promise.then(null, (function(e) {
                 console.error(e);
             }));
         }
+        var esm_flags_IS_DEBUG_BUILD = "undefined" === typeof __SENTRY_DEBUG__ ? true : __SENTRY_DEBUG__;
         var global = (0, esm_global.getGlobalObject)();
         var cachedFetchImpl;
         function getNativeFetchImplementation() {
@@ -4770,7 +4829,7 @@
                 if (contentWindow && contentWindow.fetch) fetchImpl = contentWindow.fetch;
                 document.head.removeChild(sandbox);
             } catch (e) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ", e);
+                esm_flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ", e);
             }
             return cachedFetchImpl = fetchImpl.bind(global);
         }
@@ -4790,6 +4849,43 @@
                     keepalive: true
                 }));
             }
+        }
+        function makeNewFetchTransport(options, nativeFetch) {
+            if (void 0 === nativeFetch) nativeFetch = getNativeFetchImplementation();
+            function makeRequest(request) {
+                var requestOptions = (0, tslib_es6.__assign)({
+                    body: request.body,
+                    method: "POST",
+                    referrerPolicy: "origin"
+                }, options.requestOptions);
+                return nativeFetch(options.url, requestOptions).then((function(response) {
+                    return response.text().then((function(body) {
+                        return {
+                            body,
+                            headers: {
+                                "x-sentry-rate-limits": response.headers.get("X-Sentry-Rate-Limits"),
+                                "retry-after": response.headers.get("Retry-After")
+                            },
+                            reason: response.statusText,
+                            statusCode: response.status
+                        };
+                    }));
+                }));
+            }
+            return createTransport({
+                bufferSize: options.bufferSize
+            }, makeRequest);
+        }
+        function createClientReportEnvelope(discarded_events, dsn, timestamp) {
+            var clientReportItem = [ {
+                type: "client_report"
+            }, {
+                timestamp: timestamp || (0, time.dateTimestampInSeconds)(),
+                discarded_events
+            } ];
+            return createEnvelope(dsn ? {
+                dsn
+            } : {}, [ clientReportItem ]);
         }
         function requestTypeToCategory(ty) {
             var tyStr = ty;
@@ -4822,7 +4918,7 @@
                 var _a;
                 if (!this.options.sendClientReports) return;
                 var key = requestTypeToCategory(category) + ":" + reason;
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("Adding outcome: " + key);
+                esm_flags_IS_DEBUG_BUILD && esm_logger.logger.log("Adding outcome: " + key);
                 this._outcomes[key] = (_a = this._outcomes[key], null !== _a && void 0 !== _a ? _a : 0) + 1;
             };
             BaseTransport.prototype._flushOutcomes = function() {
@@ -4830,10 +4926,10 @@
                 var outcomes = this._outcomes;
                 this._outcomes = {};
                 if (!Object.keys(outcomes).length) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("No outcomes to flush");
+                    esm_flags_IS_DEBUG_BUILD && esm_logger.logger.log("No outcomes to flush");
                     return;
                 }
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("Flushing outcomes:\n" + JSON.stringify(outcomes, null, 2));
+                esm_flags_IS_DEBUG_BUILD && esm_logger.logger.log("Flushing outcomes:\n" + JSON.stringify(outcomes, null, 2));
                 var url = getEnvelopeEndpointWithUrlEncodedAuth(this._api.dsn, this._api.tunnel);
                 var discardedEvents = Object.keys(outcomes).map((function(key) {
                     var _a = (0, tslib_es6.__read)(key.split(":"), 2), category = _a[0], reason = _a[1];
@@ -4847,14 +4943,14 @@
                 try {
                     sendReport(url, serializeEnvelope(envelope));
                 } catch (e) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error(e);
+                    esm_flags_IS_DEBUG_BUILD && esm_logger.logger.error(e);
                 }
             };
             BaseTransport.prototype._handleResponse = function(_a) {
                 var requestType = _a.requestType, response = _a.response, headers = _a.headers, resolve = _a.resolve, reject = _a.reject;
                 var status = eventStatusFromHttpCode(response.status);
                 this._rateLimits = updateRateLimits(this._rateLimits, headers);
-                if (this._isRateLimited(requestType) && (0, esm_env.isDebugBuild)()) (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Too many " + requestType + " requests, backing off until: " + this._disabledUntil(requestType));
+                if (this._isRateLimited(requestType)) esm_flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Too many " + requestType + " requests, backing off until: " + this._disabledUntil(requestType));
                 if ("success" === status) {
                     resolve({
                         status
@@ -4922,6 +5018,34 @@
             };
             return FetchTransport;
         }(BaseTransport);
+        var XHR_READYSTATE_DONE = 4;
+        function makeNewXHRTransport(options) {
+            function makeRequest(request) {
+                return new syncpromise.SyncPromise((function(resolve, _reject) {
+                    var xhr = new XMLHttpRequest;
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XHR_READYSTATE_DONE) {
+                            var response = {
+                                body: xhr.response,
+                                headers: {
+                                    "x-sentry-rate-limits": xhr.getResponseHeader("X-Sentry-Rate-Limits"),
+                                    "retry-after": xhr.getResponseHeader("Retry-After")
+                                },
+                                reason: xhr.statusText,
+                                statusCode: xhr.status
+                            };
+                            resolve(response);
+                        }
+                    };
+                    xhr.open("POST", options.url);
+                    for (var header in options.headers) if (Object.prototype.hasOwnProperty.call(options.headers, header)) xhr.setRequestHeader(header, options.headers[header]);
+                    xhr.send(request.body);
+                }));
+            }
+            return createTransport({
+                bufferSize: options.bufferSize
+            }, makeRequest);
+        }
         var XHRTransport = function(_super) {
             (0, tslib_es6.__extends)(XHRTransport, _super);
             function XHRTransport() {
@@ -4987,8 +5111,21 @@
                     sendClientReports: this._options.sendClientReports,
                     _metadata: this._options._metadata
                 });
+                var api = initAPIDetails(transportOptions.dsn, transportOptions._metadata, transportOptions.tunnel);
+                var url = getEnvelopeEndpointWithUrlEncodedAuth(api.dsn, api.tunnel);
                 if (this._options.transport) return new this._options.transport(transportOptions);
-                if ((0, supports.supportsFetch)()) return new FetchTransport(transportOptions);
+                if ((0, supports.supportsFetch)()) {
+                    var requestOptions = (0, tslib_es6.__assign)({}, transportOptions.fetchParameters);
+                    this._newTransport = makeNewFetchTransport({
+                        requestOptions,
+                        url
+                    });
+                    return new FetchTransport(transportOptions);
+                }
+                this._newTransport = makeNewXHRTransport({
+                    url,
+                    headers: transportOptions.headers
+                });
                 return new XHRTransport(transportOptions);
             };
             return BrowserBackend;
@@ -5088,11 +5225,11 @@
             if (void 0 === options) options = {};
             if (!helpers_global.document) return;
             if (!options.eventId) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Missing eventId option in showReportDialog call");
+                esm_flags_IS_DEBUG_BUILD && esm_logger.logger.error("Missing eventId option in showReportDialog call");
                 return;
             }
             if (!options.dsn) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Missing dsn option in showReportDialog call");
+                esm_flags_IS_DEBUG_BUILD && esm_logger.logger.error("Missing dsn option in showReportDialog call");
                 return;
             }
             var script = helpers_global.document.createElement("script");
@@ -5268,7 +5405,7 @@
                 var document = (0, esm_global.getGlobalObject)().document;
                 if (!document) return;
                 if (!this._isEnabled()) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.error("Trying to call showReportDialog with Sentry Client disabled");
+                    esm_flags_IS_DEBUG_BUILD && esm_logger.logger.error("Trying to call showReportDialog with Sentry Client disabled");
                     return;
                 }
                 injectReportDialog((0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, options), {
@@ -5514,7 +5651,7 @@
             return event;
         }
         function globalHandlerLog(type) {
-            (0, esm_env.isDebugBuild)() && esm_logger.logger.log("Global Handler attached: " + type);
+            esm_flags_IS_DEBUG_BUILD && esm_logger.logger.log("Global Handler attached: " + type);
         }
         function addMechanismAndCapture(hub, error, event, type) {
             (0, misc.addExceptionMechanism)(event, {
@@ -5571,7 +5708,7 @@
                     if (self) {
                         try {
                             if (dedupe_shouldDropEvent(currentEvent, self._previousEvent)) {
-                                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Event dropped due to being a duplicate of previously captured event.");
+                                esm_flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Event dropped due to being a duplicate of previously captured event.");
                                 return null;
                             }
                         } catch (_oO) {
@@ -5705,7 +5842,7 @@
             var window = (0, esm_global.getGlobalObject)();
             var document = window.document;
             if ("undefined" === typeof document) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Session tracking in non-browser environment with @sentry/browser is not supported.");
+                esm_flags_IS_DEBUG_BUILD && esm_logger.logger.warn("Session tracking in non-browser environment with @sentry/browser is not supported.");
                 return;
             }
             var hub = (0, esm_hub.getCurrentHub)();
@@ -5719,6 +5856,7 @@
         var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
         var get_default = __webpack_require__.n(get);
         var hubextensions = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/hubextensions.js");
+        var esm_flags = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/flags.js");
         var idletransaction = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/idletransaction.js");
         var utils = __webpack_require__("../shared/browser/node_modules/@sentry/tracing/esm/utils.js");
         var TRACEPARENT_REGEXP = new RegExp("^[ \\t]*" + "([0-9a-f]{32})?" + "-?([0-9a-f]{16})?" + "-?([01])?" + "[ \\t]*$");
@@ -5742,13 +5880,13 @@
                 var activeTransaction = (0, utils.getActiveTransaction)();
                 if (backgroundtab_global.document.hidden && activeTransaction) {
                     var statusType = "cancelled";
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Transaction: " + statusType + " -> since tab moved to the background, op: " + activeTransaction.op);
+                    esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Tracing] Transaction: " + statusType + " -> since tab moved to the background, op: " + activeTransaction.op);
                     if (!activeTransaction.status) activeTransaction.setStatus(statusType);
                     activeTransaction.setTag("visibilitychange", "document.hidden");
                     activeTransaction.setTag(constants.FINISH_REASON_TAG, constants.IDLE_TRANSACTION_FINISH_REASONS[2]);
                     activeTransaction.finish();
                 }
-            })); else (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] Could not set up background tab detection due to lack of global document");
+            })); else esm_flags.IS_DEBUG_BUILD && esm_logger.logger.warn("[Tracing] Could not set up background tab detection due to lack of global document");
         }
         var node = __webpack_require__("../shared/browser/node_modules/@sentry/utils/esm/node.js");
         var bindReporter = function(callback, metric, reportAllChanges) {
@@ -5927,7 +6065,7 @@
             MetricsInstrumentation.prototype.addPerformanceEntries = function(transaction) {
                 var _this = this;
                 if (!metrics_global || !metrics_global.performance || !metrics_global.performance.getEntries || !time.browserPerformanceTimeOrigin) return;
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Adding & adjusting spans using Performance API");
+                esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Tracing] Adding & adjusting spans using Performance API");
                 var timeOrigin = (0, utils.msToSec)(time.browserPerformanceTimeOrigin);
                 var responseStartTimestamp;
                 var requestStartTimestamp;
@@ -5949,7 +6087,7 @@
                         var firstHidden = getVisibilityWatcher();
                         var shouldRecord = entry.startTime < firstHidden.firstHiddenTime;
                         if ("first-paint" === entry.name && shouldRecord) {
-                            (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding FP");
+                            esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Measurements] Adding FP");
                             _this._measurements["fp"] = {
                                 value: entry.startTime
                             };
@@ -5958,7 +6096,7 @@
                             };
                         }
                         if ("first-contentful-paint" === entry.name && shouldRecord) {
-                            (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding FCP");
+                            esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Measurements] Adding FCP");
                             _this._measurements["fcp"] = {
                                 value: entry.startTime
                             };
@@ -5978,7 +6116,7 @@
                 if ("pageload" === transaction.op) {
                     var timeOrigin_1 = (0, utils.msToSec)(time.browserPerformanceTimeOrigin);
                     if ("number" === typeof responseStartTimestamp) {
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding TTFB");
+                        esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Measurements] Adding TTFB");
                         this._measurements["ttfb"] = {
                             value: 1e3 * (responseStartTimestamp - transaction.startTimestamp)
                         };
@@ -5992,7 +6130,7 @@
                         var measurementTimestamp = timeOrigin_1 + (0, utils.msToSec)(oldValue);
                         var normalizedValue = Math.abs(1e3 * (measurementTimestamp - transaction.startTimestamp));
                         var delta = normalizedValue - oldValue;
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Normalized " + name + " from " + oldValue + " to " + normalizedValue + " (" + delta + ")");
+                        esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Measurements] Normalized " + name + " from " + oldValue + " to " + normalizedValue + " (" + delta + ")");
                         _this._measurements[name].value = normalizedValue;
                     }));
                     if (this._measurements["mark.fid"] && this._measurements["fid"]) _startChild(transaction, {
@@ -6029,7 +6167,7 @@
                 getCLS((function(metric) {
                     var entry = metric.entries.pop();
                     if (!entry) return;
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding CLS");
+                    esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Measurements] Adding CLS");
                     _this._measurements["cls"] = {
                         value: metric.value
                     };
@@ -6043,7 +6181,7 @@
                     if (!entry) return;
                     var timeOrigin = (0, utils.msToSec)(time.browserPerformanceTimeOrigin);
                     var startTime = (0, utils.msToSec)(entry.startTime);
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding LCP");
+                    esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Measurements] Adding LCP");
                     _this._measurements["lcp"] = {
                         value: metric.value
                     };
@@ -6060,7 +6198,7 @@
                     if (!entry) return;
                     var timeOrigin = (0, utils.msToSec)(time.browserPerformanceTimeOrigin);
                     var startTime = (0, utils.msToSec)(entry.startTime);
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding FID");
+                    esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Measurements] Adding FID");
                     _this._measurements["fid"] = {
                         value: metric.value
                     };
@@ -6144,14 +6282,14 @@
         }
         function tagMetricInfo(transaction, lcpEntry, clsEntry) {
             if (lcpEntry) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding LCP Data");
+                esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Measurements] Adding LCP Data");
                 if (lcpEntry.element) transaction.setTag("lcp.element", (0, browser.htmlTreeAsString)(lcpEntry.element));
                 if (lcpEntry.id) transaction.setTag("lcp.id", lcpEntry.id);
                 if (lcpEntry.url) transaction.setTag("lcp.url", lcpEntry.url.trim().slice(0, 200));
                 transaction.setTag("lcp.size", lcpEntry.size);
             }
             if (clsEntry && clsEntry.sources) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Measurements] Adding CLS Data");
+                esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Measurements] Adding CLS Data");
                 clsEntry.sources.forEach((function(source, index) {
                     return transaction.setTag("cls.source." + (index + 1), (0, browser.htmlTreeAsString)(source.node));
                 }));
@@ -6261,7 +6399,7 @@
             if (void 0 === startTransactionOnPageLoad) startTransactionOnPageLoad = true;
             if (void 0 === startTransactionOnLocationChange) startTransactionOnLocationChange = true;
             if (!router_global || !router_global.location) {
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("Could not initialize routing instrumentation due to invalid location");
+                esm_flags.IS_DEBUG_BUILD && esm_logger.logger.warn("Could not initialize routing instrumentation due to invalid location");
                 return;
             }
             var startingUrl = router_global.location.href;
@@ -6279,7 +6417,7 @@
                 if (from !== to) {
                     startingUrl = void 0;
                     if (activeTransaction) {
-                        (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Finishing current transaction with op: " + activeTransaction.op);
+                        esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Tracing] Finishing current transaction with op: " + activeTransaction.op);
                         activeTransaction.finish();
                     }
                     activeTransaction = customStartTransaction({
@@ -6305,8 +6443,7 @@
                 var tracingOrigins = defaultRequestInstrumentationOptions.tracingOrigins;
                 if (_options) {
                     this._configuredIdleTimeout = _options.idleTimeout;
-                    if (_options.tracingOrigins && Array.isArray(_options.tracingOrigins) && 0 !== _options.tracingOrigins.length) tracingOrigins = _options.tracingOrigins; else (0, 
-                    esm_env.isDebugBuild)() && (this._emitOptionsWarning = true);
+                    if (_options.tracingOrigins && Array.isArray(_options.tracingOrigins) && 0 !== _options.tracingOrigins.length) tracingOrigins = _options.tracingOrigins; else esm_flags.IS_DEBUG_BUILD && (this._emitOptionsWarning = true);
                 }
                 this.options = (0, tslib_es6.__assign)((0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, DEFAULT_BROWSER_TRACING_OPTIONS), _options), {
                     tracingOrigins
@@ -6318,8 +6455,8 @@
                 var _this = this;
                 this._getCurrentHub = getCurrentHub;
                 if (this._emitOptionsWarning) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] You need to define `tracingOrigins` in the options. Set an array of urls or patterns to trace.");
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] We added a reasonable default for you: " + defaultRequestInstrumentationOptions.tracingOrigins);
+                    esm_flags.IS_DEBUG_BUILD && esm_logger.logger.warn("[Tracing] You need to define `tracingOrigins` in the options. Set an array of urls or patterns to trace.");
+                    esm_flags.IS_DEBUG_BUILD && esm_logger.logger.warn("[Tracing] We added a reasonable default for you: " + defaultRequestInstrumentationOptions.tracingOrigins);
                 }
                 var _a = this.options, instrumentRouting = _a.routingInstrumentation, startTransactionOnLocationChange = _a.startTransactionOnLocationChange, startTransactionOnPageLoad = _a.startTransactionOnPageLoad, markBackgroundTransactions = _a.markBackgroundTransactions, traceFetch = _a.traceFetch, traceXHR = _a.traceXHR, tracingOrigins = _a.tracingOrigins, shouldCreateSpanForRequest = _a.shouldCreateSpanForRequest;
                 instrumentRouting((function(context) {
@@ -6336,7 +6473,7 @@
             BrowserTracing.prototype._createRouteTransaction = function(context) {
                 var _this = this;
                 if (!this._getCurrentHub) {
-                    (0, esm_env.isDebugBuild)() && esm_logger.logger.warn("[Tracing] Did not create " + context.op + " transaction because _getCurrentHub is invalid.");
+                    esm_flags.IS_DEBUG_BUILD && esm_logger.logger.warn("[Tracing] Did not create " + context.op + " transaction because _getCurrentHub is invalid.");
                     return;
                 }
                 var _a = this.options, beforeNavigate = _a.beforeNavigate, idleTimeout = _a.idleTimeout, maxTransactionDuration = _a.maxTransactionDuration;
@@ -6348,8 +6485,8 @@
                 var finalContext = void 0 === modifiedContext ? (0, tslib_es6.__assign)((0, tslib_es6.__assign)({}, expandedContext), {
                     sampled: false
                 }) : modifiedContext;
-                if (false === finalContext.sampled) (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Will not send " + finalContext.op + " transaction because of beforeNavigate.");
-                (0, esm_env.isDebugBuild)() && esm_logger.logger.log("[Tracing] Starting " + finalContext.op + " transaction on scope");
+                if (false === finalContext.sampled) esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Tracing] Will not send " + finalContext.op + " transaction because of beforeNavigate.");
+                esm_flags.IS_DEBUG_BUILD && esm_logger.logger.log("[Tracing] Starting " + finalContext.op + " transaction on scope");
                 var hub = this._getCurrentHub();
                 var location = (0, esm_global.getGlobalObject)().location;
                 var idleTransaction = (0, hubextensions.startIdleTransaction)(hub, finalContext, idleTimeout, true, {
@@ -6419,7 +6556,7 @@
             const options = {
                 debug: false,
                 environment: APP_ENV,
-                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_a3067104f"}`,
+                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_f274af2bc"}`,
                 dsn: (0, get_env["default"])(void 0 || "SENTRY_DSN") || "",
                 autoSessionTracking: false,
                 ignoreErrors: [ "ReportingObserver [deprecation]" ],

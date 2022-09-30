@@ -3,10 +3,10 @@
 (self["webpackChunkArise"] = self["webpackChunkArise"] || []).push([ [ "product-search" ], {
     "./src/assets/product/search/main.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
         var state_selector = __webpack_require__("../shared/browser/utils/state-selector.js");
-        var currency = __webpack_require__("../shared/browser/utils/currency/index.js");
+        var newCurrency = __webpack_require__("../shared/browser/utils/newCurrency/index.js");
         var utils = __webpack_require__("../shared/browser/report/product/utils/index.js");
         var baseReport = __webpack_require__("../shared/browser/report/common/baseReport.js");
-        const {formatCurrency} = currency["default"];
+        const {formatCurrency} = newCurrency["default"];
         class SearchItemReport extends baseReport.BaseReport {
             searchResults(reportData) {
                 (0, utils.validParams)(reportData);

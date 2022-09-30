@@ -5,6 +5,22 @@
       "read_btn_text": "Διαβάστε περισσότερα",
       "title": "Ιστολόγιο"
     },
+    "comment": {
+      "comment": "Σχόλιο",
+      "comment_audit_tip": "Το σχόλιό σας έχει υποβληθεί και πρέπει να ελεγχθεί.",
+      "comment_empty": "Παρακαλώ συμπληρώστε τα σχόλια",
+      "email": "Ταχυδρομείο",
+      "email_empty": "Το e-mail δεν μπορεί να είναι κενό",
+      "email_format": "Παρακαλώ εισάγετε το σωστό email",
+      "form_title": "Σχόλιο",
+      "loadmore": "φόρτωσε περισσότερα",
+      "name": "Όνομα",
+      "name_empty": "Παρακαλώ συμπληρώστε το όνομα",
+      "submit": "υποβάλλουν",
+      "submit_audit_tip": "Υποβλήθηκε με επιτυχία, εκκρεμεί έλεγχος",
+      "success": "Υποβλήθηκε με επιτυχία",
+      "title": "{{comment_length}} σχόλια"
+    },
     "general": {
       "back_to": "Επιστροφή {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Λεπτομέρειες παραγγελίας",
       "package_amount": "Πακέτο{{num}}({{item}} items)",
       "pay_amount": "ποσό πληρωμής",
+      "paymentVoucher": {
+        "downloadDoc": "Μεταφόρτωση αρχείου",
+        "format": "Μορφοποίηση",
+        "formatLimit": "Υποστηρίζει αρχεία .jpg, .png, .pdf με μέγεθος αρχείου μικρότερο από 20ΜΒ. Μπορείτε να αναφορτώσετε 5 εικόνες το πολύ",
+        "uploadAmount": "Αναφορτώθηκαν {{num}} κουπόνι(α)",
+        "uploadLimit": "Παρακαλούμε να αναφορτώνετε αρχεία .jpg, .png, .pdf με μέγεθος μικρότερο από 20ΜΒ"
+      },
       "payment_voucher_confirmation": "Το έπιασα",
       "payment_voucher_transfer_success": "Η πληρωμή μεταφέρθηκε με επιτυχία",
       "payment_voucher_waiting_for_payment": "Αναμονή για πληρωμή",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Μη έγκυρη διεύθυνση email"
+    },
     "account": {
       "account_binding": "Δέσμευση λογαριασμού",
       "account_information": "Λογαριασμός",
@@ -197,6 +223,10 @@
       "bind": "Δεσμευτικός",
       "birthday": "Ημερομηνία γενεθλίων",
       "change_password": "Αλλάξτε τον κωδικό πρόσβασης",
+      "confirm_btn": "Επιβεβαίωση",
+      "confirm_subscription_modal_btn": "Επιβεβαίωση συνδρομής",
+      "confirm_subscription_modal_content": "Έχετε υποβάλει συνδρομή στο παρελθόν. Ένα email επιβεβαίωσης έχει σταλεί σε αυτήν τη διεύθυνση email. Μπορείτε να το επιβεβαιώσετε στο email σας ή να κάνετε κλικ σε αυτό το κουμπί.",
+      "confirm_subscription_modal_title": "Επιβεβαιώστε τη συνδρομή σας μέσω email.",
       "credit_card_number": "Πιστωτική κάρτα υπ’αριθ.",
       "deadline": "Για λόγους και σκοπούς επιχειρηματικής αναφοράς, η παραγγελία σας θα εξακολουθεί να είναι ορατή. Τα δεδομένα του λογαριασμού σας θα διαγραφούν στις {{time}}, μπορείτε όμως να ακυρώσετε τη διαδικασία πριν από αυτήν την ημερομηνία",
       "delete_account": "Κλείσιμο λογαριασμού",
@@ -211,6 +241,7 @@
       "ip_address": "Διεύθυνση IP",
       "last_name": "Επώνυμο",
       "modify_email": "Τροποποίηση email",
+      "modify_email_modal_title": "Τροποποίηση email",
       "modify_phone": "Τροποποίηση τηλεφώνου",
       "name": "Όνομα",
       "next": "Επόμενο",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Συνδέστε πρώτα το email ή το κινητό τηλέφωνο",
       "revoke": "Ακύρωση κλεισίματος",
       "revoke_message": "Ο λογαριασμός αυτός βρίσκεται πλέον στη διαδικασία κλεισίματος, και τα δεδομένα του λογαριασμού θα διαγραφούν στις {{time}}, μπορείτε όμως να ακυρώσετε τη διαδικασία πριν από αυτήν την ημερομηνία",
+      "save_btn": "ΑΠΟΘΗΚΕΥΣΗ",
       "select__date": "Επιλογή ημερομηνίας",
+      "subscribe_confirm_tip": "Ευχαριστούμε για τη συνδρομή σας.",
       "timeout_tip": "Το χρονικό όριο λειτουργίας έληξε, επαληθεύστε ξανά",
       "username": "Όνομα",
       "verify_email_message": "Πριν κλείσουμε τον λογαριασμό, θα πρέπει να επαληθεύσουμε την ταυτότητά σας\nΘα λάβετε στο email σας {{email}} ένα email επαλήθευσης",
@@ -238,7 +271,8 @@
       "discount_title": "Ενεργοποιήστε τον λογαριασμό και λάβετε τον κωδικό έκπτωσης",
       "normal_title": "Ενεργοποιήστε τον λογαριασμό",
       "subscription_text": "Εγγραφείτε για email ώστε να λαμβάνετε ενημερώσεις, πρόσβαση σε αποκλειστικές προσφορές και πολλά άλλα ακόμη.",
-      "success_title": "Συγχαρητήρια για την εξαιρετική έκπτωση"
+      "success_title": "Συγχαρητήρια για την εξαιρετική έκπτωση",
+      "token_expired": "Ο σύνδεσμός σας έχει λήξει"
     },
     "address": {
       "add_address": "Προσθήκη νέας διεύθυνσης",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Ξεχάσατε τον κωδικό",
+      "reset_password": "ΕΠΑΝΑΦΟΡΑ ΚΩΔΙΚΟΥ ΠΡΟΣΒΑΣΗΣ",
       "tips_password_can_be_changed_after_verification": "Μπορείτε να αλλάξετε τον κωδικό πρόσβασης μετά την επαλήθευση",
-      "tips_reset_password": "Επαναφέρετε τον κωδικό πρόσβασης του λογαριασμό {{account}}"
+      "tips_reset_password": "Επαναφέρετε τον κωδικό πρόσβασης του λογαριασμό {{account}}",
+      "token_expired": "Ο σύνδεσμος επαναφοράς του κωδικού πρόσβασής σας έχει λήξει"
     },
     "general": {
       "account": "ΛΟΓΑΡΙΑΣΜΟΣ",
@@ -333,6 +369,10 @@
       "error_message_3009": "Το κινητό έχει δεσμευτεί από άλλους λογαριασμούς",
       "error_message_3010": "Το email έχει δεσμευτεί από άλλους λογαριασμούς",
       "error_message_3014": "Αποτυχία αποστολής δείγματος γραπτού μηνύματος/αλληλογραφίας",
+      "error_message_3015": "Έχει ενεργοποιηθεί ο λογαριασμός",
+      "error_message_3022": "Ο σύνδεσμος έληξε",
+      "error_message_3023": "Ο σύνδεσμος είναι λανθασμένος",
+      "error_message_3024": "Σφάλμα παραμέτρου σύνδεσης",
       "error_message_4": "Εξαιρέσεις παροχής υπηρεσιών",
       "error_message_5": "Εξαιρέσεις παροχής υπηρεσιών",
       "error_message_6": "Εξαιρέσεις παροχής υπηρεσιών",
@@ -416,7 +456,8 @@
       "wednesday": "Τετάρτη"
     },
     "login": {
-      "member_login_common": "Είσοδος μέλους"
+      "member_login_common": "Είσοδος μέλους",
+      "subscribe_confirm_tip": "Ευχαριστούμε για τη συνδρομή σας. Μπορείτε πλέον να συνδεθείτε για μια καλύτερη εμπειρία."
     },
     "message": {
       "input_placeholder": "Υπάρχει κάτι για το οποίο θέλετε να αφήσετε ένα μήνυμα;",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mail",
       "email_subscription_text": "Παραλάβετε την προωθητική πληροφορία της εγγραφής μέσω ηλεκτρονικού μηνύματος",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Κινητό τηλέφωνο",
       "phone_subscription_text": "Εγγραφή στην τηλεφωνική προώθηση",
@@ -474,6 +515,7 @@
       "send_success": "Σας ευχαριστούμε που επικοινωνήσατε μαζί μας, θα σας απαντήσουμε το συντομότερο δυνατό. "
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Μη έγκυρο ηλεκτρονικό ταχυδρομείο",
       "subscribe_success": "Επιτυχία εγγραφής"
     },
@@ -499,6 +541,14 @@
       "refund": "Πολιτική επιστροφής",
       "service": "Όρους χρήσης του ιστοτόπου",
       "shipping": "Πολιτική αποστολής"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "χρόνος μεταφόρτωσης",
+        "detail": "Λεπτομέρεια"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "ΕΞΑΝΤΛΗΜΈΝΑ",
       "products": "προϊόντα",
       "recommend": "Συνιστάται",
+      "sale": "πώληση",
       "save": "Έκπτωση {{{priceDom}}}",
       "save_byjs": "Έκπτωση {{priceDom}}",
       "save_ratio": "Έκπτωση {{price}}%",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Αντίγραφο",
       "activity_banner_free_shipping": "Δωρεάν μεταφορά",
       "activity_banner_threshold": "Παραγγελίες άνω του {{threshold}}",
+      "activity_selector_new_arrivals": "Νέες αφίξεις",
       "activity_selector_price_high_to_low": "Τιμή υψηλή προς χαμηλή",
       "activity_selector_price_low_to_high": "Τιμή χαμηλή προς υψηλή",
       "activity_selector_recommended": "Συνιστάται",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Αγοράστε {{threshold}}, απολαύστε {{willSave}} έκπτωση για {{benefitCount}} είδη",
         "b12_t1_s3_free": "Συγχαρητήρια! Έχετε αποκτήσει {{benefitCount}} είδη δωρεαν!",
         "b12_t1_s3_normal": "Συγχαρητήρια! Έχετε αποκτήσει {{saved}} έκπτωση για {{benefitCount}} είδη!",
+        "b14_t1_s1": "Αγοράστε {{nextMinThreshold}} τεμάχια για {{willSave}}",
+        "b14_t1_s2": "Συγχαρητήρια! Έχετε {{currentMinThreshold}} τεμάχια για {{saved}}. Αγοράστε {{threshold}} επιπλέον για να απολαύσετε {{nextMinThreshold}} τεμάχια για {{willSave}}!",
+        "b14_t1_s3": "Συγχαρητήρια! Έχετε {{currentMinThreshold}} τεμάχια για {{saved}}!",
         "b1_t0_s1": "Αγοράστε {{threshold}} περισσότερα για εξοικονόμηση {{willSave}}",
         "b1_t0_s2": "Αποθηκεύστε ήδη το {{saved}}! {{br}}Αγοράστε {{threshold}} περισσότερα για εξοικονόμηση {{willSave}}",
         "b1_t0_s3": "Συγχαρητήρια! Αποθηκεύσατε το{{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Αγορά {{threshold}} αποθήκευση {{save}}",
         "b2_t1": "Αγορά {{threshold}} ΑΠΟΚΤΉΣΤΕ ΕΚΠΤΩΣΗ {{save}}",
         "label": "Έκπτωση:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Αγοράστε {{nextMinThreshold}} τεμάχια για {{willSave}}",
+            "step2": "Συγχαρητήρια! Έχετε {{currentMinThreshold}} τεμάχια για {{saved}}. Αγοράστε {{threshold}} επιπλέον για να απολαύσετε {{nextMinThreshold}} τεμάχια για {{willSave}}!",
+            "step3": "Συγχαρητήρια! Έχετε {{currentMinThreshold}} τεμάχια για {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Στρογγυλοποίηση"
+      }
+    },
     "payments-name": {
       "COD": "Με αντικαταβολή",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Έκπτωση",
       "free_charge": "Δωρεάν αποστολή",
       "free_shipping": "δωρεάν αποστολή",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Επιπλέον έκπτωση πωλητή",
       "order_tax": "Φόρος",
       "order_tip": "Υπόδειξη",

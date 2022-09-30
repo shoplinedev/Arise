@@ -6,8 +6,8 @@
         __webpack_require__("./src/assets/product/commons/js/product-item.js");
         var report = __webpack_require__("../shared/browser/utils/report/index.js");
         var tool = __webpack_require__("../shared/browser/utils/report/tool.js");
-        var currency = __webpack_require__("../shared/browser/utils/currency/index.js");
-        const {formatCurrency} = currency["default"];
+        var newCurrency = __webpack_require__("../shared/browser/utils/newCurrency/index.js");
+        const {formatCurrency} = newCurrency["default"];
         const currentSpu = window.SL_State.get("product.spu");
         const EVENT_ID = "60006253";
         const report_parent = "#page-product-detail";

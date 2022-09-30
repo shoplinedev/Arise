@@ -6,10 +6,10 @@
         var axios_default = __webpack_require__.n(axios);
         var query_string = __webpack_require__("../shared/browser/node_modules/query-string/index.js");
         var baseReport = __webpack_require__("../shared/browser/report/common/baseReport.js");
-        var currency = __webpack_require__("../shared/browser/utils/currency/index.js");
+        var newCurrency = __webpack_require__("../shared/browser/utils/newCurrency/index.js");
         var state_selector = __webpack_require__("../shared/browser/utils/state-selector.js");
         var syntax_patch = __webpack_require__("../shared/browser/utils/syntax-patch.js");
-        const {formatCurrency} = currency["default"];
+        const {formatCurrency} = newCurrency["default"];
         const http = axios_default().create({
             baseURL: "/leproxy",
             timeout: 3e4,
@@ -43,8 +43,6 @@
                 sectionId: sectionName,
                 context: {
                     historyBrowseProducts: productInfoVoList,
-                    storeInfo: state_selector.SL_State.get("storeInfo"),
-                    currencyRates: state_selector.SL_State.get("currencyRates"),
                     ...context
                 }
             };

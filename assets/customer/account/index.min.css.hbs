@@ -1262,6 +1262,14 @@ input{
   text-transform:uppercase;
 }
 
+.air-datepicker-body--day-name.-clickable-{
+  cursor:pointer;
+}
+
+.air-datepicker-body--day-name.-clickable-:hover{
+  color:var(--adp-day-name-color-hover);
+}
+
 .air-datepicker-body--cells{
   display:grid;
 }
@@ -1554,6 +1562,7 @@ input{
   height:100%;
   margin:0;
   padding:0;
+  width:100%;
 }
 
 .air-datepicker-time--row input[type=range]::-webkit-slider-thumb{
@@ -1701,6 +1710,7 @@ input{
   --adp-nav-action-size:32px;
   --adp-nav-color-secondary:var(--adp-color-secondary);
   --adp-day-name-color:#ff9a19;
+  --adp-day-name-color-hover:#8ad5f4;
   --adp-day-cell-width:1fr;
   --adp-day-cell-height:32px;
   --adp-month-cell-height:42px;
@@ -2820,6 +2830,16 @@ body .rolldate-container .rolldate-dim{
 .account-item__delete a>span{
   margin-left:4px;
 }
+.account-item[data-type=email-content] .account-item__content{
+  display:none;
+}
+.account-item[data-type=email-content][data-has-email] .account-item__content[data-has-email-content],.account-item[data-type=email-content][data-no-email] .account-item__content[data-no-email-content]{
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+}
 .account .hide{
   display:none;
 }
@@ -2894,6 +2914,23 @@ body .rolldate-container .rolldate-dim{
 }
 .delete-account__cancel>span{
   cursor:pointer;
+}
+
+.customer-center-modify-email-modal__container{
+  width:620px;
+}
+.customer-center-modify-email-modal__content{
+  margin:20px auto 16px;
+  max-width:400px;
+}
+.customer-center-modify-email-modal__title{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:16px;
+  text-align:center;
+}
+.customer-center-modify-email-modal__saveBtn{
+  margin-top:16px;
 }
 
 .address--empty{
@@ -3280,6 +3317,13 @@ body .rolldate-container .rolldate-dim{
   margin-right:4px;
   width:16px;
 }
+.subscription-item__confirming{
+  display:none;
+}
+.subscription-item .subscription-email-unvalid-tip{
+  color:#f86140;
+  display:none;
+}
 .subscription-item[data-subscribed] .subscription-item__btn{
   display:none;
 }
@@ -3328,6 +3372,34 @@ body .rolldate-container .rolldate-dim{
     display:-ms-flexbox;
     display:flex;
   }
+}
+.subscription-item[data-sub-state="3"] .subscription-item__confirming{
+  display:block;
+}
+.subscription-item[data-sub-state="3"] .subscription-item__btn{
+  display:none;
+}
+.subscription-item[data-sub-state="4"] .subscription-email-unvalid-tip{
+  display:block;
+}
+.subscription-item[data-sub-state="4"] .subscription-item__btn{
+  display:none;
+}
+
+.subscribe__form__item--disabled{
+  background:#f1f1f1;
+  -webkit-border-radius:4px;
+     -moz-border-radius:4px;
+          border-radius:4px;
+}
+.subscribe__form__item--disabled .sl-input__area input{
+  color:{{ rgba  theme.settings.color_text  0.4 }};
+}
+.subscribe__form__item--disabled.sl-input:after{
+  border-color:#ddddd8;
+  -webkit-border-radius:4px;
+     -moz-border-radius:4px;
+          border-radius:4px;
 }
 
 .customer-center-sub-modal__container{
@@ -3466,6 +3538,29 @@ body .rolldate-container .rolldate-dim{
     max-width:none;
     min-width:80px;
   }
+}
+
+.customer-center-confirmSubEmail-modal__container{
+  width:620px;
+}
+.customer-center-confirmSubEmail-modal__content{
+  margin:20px auto 16px;
+  max-width:400px;
+}
+.customer-center-confirmSubEmail-modal__title{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:16px;
+  text-align:center;
+}
+.customer-center-confirmSubEmail-modal__desc{
+  font-size:12px;
+  margin-bottom:16px;
+}
+.customer-center-confirmSubEmail-modal__saveBtn{
+  margin-top:16px;
+}
+@media (max-width:767.98px){
   .mp-modal__wrapper .mp-modal__container.customer-center-modal__container{
     bottom:auto;
     height:auto;

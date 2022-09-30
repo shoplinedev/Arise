@@ -8,7 +8,11 @@
   {{/is_modern_browser}}
 </script>
   
-{{ inline_stylesheet 'product/recently-viewed/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'product/recently-viewed/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'product/recently-viewed/index.min.css' }}
+{{/is_modern_browser}}
 
 {{ assign 'show_product_number' section.settings.show_product_number }}
 <div class="{{#isFalsey (boolean hiddenMount)}}section-gap container{{/isFalsey}}" 

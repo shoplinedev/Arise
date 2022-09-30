@@ -3,7 +3,11 @@ blogs:
   limit: {{ section.settings.limit }}
 ---
 
-{{inline_stylesheet 'blog-section/index.min.css'}}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'blog-section/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'blog-section/index.min.css' }}
+{{/is_modern_browser}}
 {{ assign 'collectionId' section.settings.blog_collection_id }}
 {{ assign 'blogData' (get_blogs_data collectionId all_blogs section.settings.limit) }}
 

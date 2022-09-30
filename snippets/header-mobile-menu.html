@@ -23,6 +23,9 @@
     </nav>
   </div>
 
+  {{#inArray (cond global.storeInfo.storeTags global.storeInfo.storeTags (arrayify "")) "DEVELOPER"}}
+  {{!-- 开发店铺不展示 --}}
+  {{else}}
   <div class="header-menu__account">
     <a href="{{ url }}" class="body5 account__link">
       {{#if global.request.is_login}}
@@ -34,6 +37,7 @@
       {{/unless}}
     </a>
   </div>
+  {{/inArray}}
 
   <div class="header-menu__footer"></div>
 </div>

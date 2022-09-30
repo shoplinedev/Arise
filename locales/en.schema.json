@@ -37,7 +37,7 @@
       }
     },
     "apps": {
-      "name": "app-block-section",
+      "name": "Apps",
       "settings": {
         "include_margins": {
           "label": "Make section margins the same as theme"
@@ -490,6 +490,12 @@
         "product_id": {
           "label": "Product"
         },
+        "product_image_show_sku_image": {
+          "label": "Master image shows SKU image"
+        },
+        "product_show_swiper_arrow": {
+          "label": "Display sliding arrow"
+        },
         "show_background": {
           "label": "Display background color block"
         },
@@ -689,6 +695,13 @@
         "show_cart_entry": {
           "label": "Display shopping cart entrance"
         },
+        "show_currency_flags": {
+          "label": "Display the currency symbol"
+        },
+        "show_currency_selector": {
+          "info": "Go to [currency setting](/admin/settings/base) for setup",
+          "label": "Display the currency selector"
+        },
         "show_line_separator": {
           "label": "Display the divider"
         },
@@ -701,6 +714,13 @@
         },
         "show_user_entry": {
           "label": "Display Me entrance"
+        },
+        "sticky_collection": {
+          "info": "Effective once the cover of collection page is configured",
+          "label": "Transparent header for category page"
+        },
+        "sticky_index": {
+          "label": "Transparent header for homepage"
         },
         "suggested_menu": {
           "info": "Once selected, this menu will appear in search bar as a suggestion when customers search for the first time",
@@ -1227,7 +1247,7 @@
             },
             "video_url": {
               "info": "Enter the embedded link from YouTube or Vimeo",
-              "label": "Video link"
+              "label": "Select a video"
             }
           }
         }
@@ -1422,6 +1442,9 @@
         "group_header__1": {
           "label": "Side column filter"
         },
+        "infinite_scroll": {
+          "label": "Enable infinite scroll"
+        },
         "per_page_num": {
           "label": "Product quantity on each page"
         },
@@ -1450,6 +1473,21 @@
           },
           "options__4": {
             "label": "2:3"
+          }
+        },
+        "product_sub_title": {
+          "label": "",
+          "options__0": {
+            "label": "Don't display"
+          },
+          "options__1": {
+            "label": "Full display"
+          },
+          "options__2": {
+            "label": "Display at most 1 row"
+          },
+          "options__3": {
+            "label": "Display at most 2 rows"
           }
         },
         "sorter_enable": {
@@ -1493,20 +1531,155 @@
             "product_custom_tab1": {
               "label": "Custom content 1"
             },
+            "product_custom_tab1_desc": {
+              "label": "File description"
+            },
             "product_custom_tab1_fold": {
               "label": "Folded display"
+            },
+            "product_custom_tab1_icon": {
+              "label": "Logo",
+              "options__0": {
+                "label": "Don't display"
+              },
+              "options__1": {
+                "label": "Secure payment"
+              },
+              "options__10": {
+                "label": "Logistics"
+              },
+              "options__11": {
+                "label": "Discount tag"
+              },
+              "options__2": {
+                "label": "Package"
+              },
+              "options__3": {
+                "label": "Email"
+              },
+              "options__4": {
+                "label": "Locate"
+              },
+              "options__5": {
+                "label": "Customer"
+              },
+              "options__6": {
+                "label": "Chat"
+              },
+              "options__7": {
+                "label": "Gifts"
+              },
+              "options__8": {
+                "label": "Mobile phone No."
+              },
+              "options__9": {
+                "label": "Help Center"
+              }
+            },
+            "product_custom_tab1_title": {
+              "label": "Title"
             },
             "product_custom_tab2": {
               "label": "Custom content 2"
             },
+            "product_custom_tab2_desc": {
+              "label": "File description"
+            },
             "product_custom_tab2_fold": {
               "label": "Folded display"
+            },
+            "product_custom_tab2_icon": {
+              "label": "Logo",
+              "options__0": {
+                "label": "Don't display"
+              },
+              "options__1": {
+                "label": "Secure payment"
+              },
+              "options__10": {
+                "label": "Logistics"
+              },
+              "options__11": {
+                "label": "Discount tag"
+              },
+              "options__2": {
+                "label": "Package"
+              },
+              "options__3": {
+                "label": "Email"
+              },
+              "options__4": {
+                "label": "Locate"
+              },
+              "options__5": {
+                "label": "Customer"
+              },
+              "options__6": {
+                "label": "Chat"
+              },
+              "options__7": {
+                "label": "Gifts"
+              },
+              "options__8": {
+                "label": "Mobile phone No."
+              },
+              "options__9": {
+                "label": "Help Center"
+              }
+            },
+            "product_custom_tab2_title": {
+              "label": "Title"
             },
             "product_custom_tab3": {
               "label": "Custom content 3"
             },
+            "product_custom_tab3_desc": {
+              "label": "File description"
+            },
             "product_custom_tab3_fold": {
               "label": "Folded display"
+            },
+            "product_custom_tab3_icon": {
+              "label": "Logo",
+              "options__0": {
+                "label": "Don't display"
+              },
+              "options__1": {
+                "label": "Secure payment"
+              },
+              "options__10": {
+                "label": "Logistics"
+              },
+              "options__11": {
+                "label": "Discount tag"
+              },
+              "options__2": {
+                "label": "Package"
+              },
+              "options__3": {
+                "label": "Email"
+              },
+              "options__4": {
+                "label": "Locate"
+              },
+              "options__5": {
+                "label": "Customer"
+              },
+              "options__6": {
+                "label": "Chat"
+              },
+              "options__7": {
+                "label": "Gifts"
+              },
+              "options__8": {
+                "label": "Mobile phone No."
+              },
+              "options__9": {
+                "label": "Help Center"
+              }
+            },
+            "product_custom_tab3_title": {
+              "label": "Title"
             }
           }
         },
@@ -1660,6 +1833,9 @@
             "label": "Tiled thumbnails"
           }
         },
+        "product_image_show_sku_image": {
+          "label": "Master image shows SKU image"
+        },
         "product_image_size": {
           "label": "Product size on PC",
           "options__0": {
@@ -1683,6 +1859,13 @@
           "options__1": {
             "label": "Display thumbnails"
           }
+        },
+        "product_show_swiper_arrow": {
+          "label": "Display sliding arrow"
+        },
+        "video_autoplay": {
+          "info": "Once enabled, video will be automatically muted, and YouTube videos cannot be played with sounds",
+          "label": "Video autoplay"
         },
         "video_loop": {
           "label": "Enable video loop"
@@ -2385,7 +2568,7 @@
         },
         "url": {
           "info": "Enter the embedded link from YouTube or Vimeo",
-          "label": "Video link"
+          "label": "Select a video"
         }
       }
     }
@@ -2465,6 +2648,9 @@
           },
           "options__1": {
             "label": "Enter the shopping cart page"
+          },
+          "options__2": {
+            "label": "Successful add-to-cart notification"
           }
         }
       }

@@ -1,4 +1,8 @@
-{{ inline_stylesheet 'video/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'video/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'video/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}
@@ -24,56 +28,14 @@
         object-position: {{ background_position }};
       }
     {{/style}}
+    {{ object_set section.settings 'video_url' section.settings.url }}
     <div
-      class="video video--{{ section.id }} video--r16-9 global-media-border-shadow"
+      class="global-media-border-shadow"
       data-id="{{ section.id }}"
       data-section-id="{{ section.id }}"
       data-section-type="video"
     >
-      <script type="text/json" id="Video-data-{{ section.id }}">{{{ stringify section.settings }}}</script>
-      {{#if (boolean section.settings.cover.url)}}
-        <div class="video__cover">
-          <img class="video__cover-img lozad" data-src="{{ section.settings.cover.url }}" data-sizes="auto" alt="{{ section.settings.cover.alt }}">
-          <div class="video-overlay" style="{{ overlay_background }}">
-            {{#if section.settings.url}}
-              <div class="video-overlay__button" data-controls="Video-{{ section.id }}">
-                {{ snippet 'icons/icon_video_play' }}
-              </div>
-            {{/if}}
-          </div>
-        </div>
-      {{/if}}
-      <div class="video__controll">
-        {{#contains section.settings.url 'youtube.com/watch'}}
-
-          {{ assign 'video_id' (split section.settings.url 'v=') }}
-          {{ assign 'video_id' (first (split (itemAt video_id 1) '&')) }}
-
-          <div
-            class="video-data"
-            id="Video-{{ section.id }}"
-            data-video-id="{{ video_id }}"
-            data-type="youtube"
-            data-url="{{ section.settings.url }}"
-          >
-          </div>
-        {{else}}
-          {{#contains section.settings.url 'vimeo.com'}}
-            {{ assign 'video_id' (split section.settings.url '.com/') }}
-            {{ assign 'video_id' (itemAt video_id 1) }}
-            <div
-              class="video-data is-vimeo"
-              id="Video-{{ section.id }}"
-              data-video-id="{{ video_id }}"
-              data-type="vimeo"
-              data-url="{{ section.settings.url }}"
-            >
-            </div>
-          {{else}}
-            {{ snippet 'icons/icon_video_placeholder' }}
-          {{/contains}}
-        {{/contains}}
-      </div>
+      {{ snippet 'video-item' }}
     </div>
   </div>
 </section>
@@ -90,12 +52,24 @@
       "default": "Video"
     },
     {
-      "type": "text",
+      "type": "video_text",
       "id": "url",
       "format": "video",
       "placeholder": "https://www.youtube.com/watch?v=V7BEzkRBp_g",
       "info": "t:sections.video.settings.url.info",
       "label": "t:sections.video.settings.url.label"
+    },
+    {
+      "type": "switch",
+      "id": "autoplay",
+      "label": "t:sections.video.settings.autoplay.label",
+      "default": false
+    },
+    {
+      "type": "switch",
+      "id": "quiet",
+      "label": "t:sections.video.settings.quiet.label",
+      "default": true
     },
     {
       "type": "switch",

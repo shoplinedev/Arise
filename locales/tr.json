@@ -5,6 +5,22 @@
       "read_btn_text": "Devamını oku",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Yorum",
+      "comment_audit_tip": "Yorumunuz gönderildi ve gözden geçirilmesi gerekiyor.",
+      "comment_empty": "Lütfen yorumları doldurun",
+      "email": "Posta",
+      "email_empty": "E-posta boş bırakılamaz",
+      "email_format": "Lütfen doğru e-posta girin",
+      "form_title": "Yorum",
+      "loadmore": "daha fazla yükle",
+      "name": "Ad",
+      "name_empty": "Lütfen adı doldurun",
+      "submit": "Sunmak",
+      "submit_audit_tip": "Başarıyla gönderildi, incelenmeyi bekliyor",
+      "success": "Başarıyla gönderildi",
+      "title": "{{comment_length}} yorum"
+    },
     "general": {
       "back_to": "{{{collectionTitle}}} döndür"
     }
@@ -107,6 +123,13 @@
       "order_details": "Sipariş detayları",
       "package_amount": "Paket {{num}}（{{item}} öğe）",
       "pay_amount": "Ödeme miktarı",
+      "paymentVoucher": {
+        "downloadDoc": "Dosya indir",
+        "format": "Format",
+        "formatLimit": "20MB’den daha düşük dosya boyutuna sahip .jpg, .png, .pdf dosyalarını desteklemektedir. En fazla 5 görüntü yükleyebilirsiniz",
+        "uploadAmount": "{{num}} kupon yüklendi",
+        "uploadLimit": "Lütfen 20MB’den daha düşük dosya boyutuna sahip .jpg, .png, .pdf dosyası yükleyin"
+      },
       "payment_voucher_confirmation": "Anladım",
       "payment_voucher_transfer_success": "Ödeme başarıyla aktarıldı",
       "payment_voucher_waiting_for_payment": "Ödeme için bekleniyor",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Geçersiz E-posta Adresi"
+    },
     "account": {
       "account_binding": "Hesap Bağlama",
       "account_information": "Hesap",
@@ -197,6 +223,10 @@
       "bind": "Bağlama",
       "birthday": "Doğum Tarihi",
       "change_password": "Parolayı değiştir",
+      "confirm_btn": "Xác nhận",
+      "confirm_subscription_modal_btn": "Aboneliği Onayla",
+      "confirm_subscription_modal_content": "Daha önceden abonelik gönderdiniz. Onay e-postası bu e-posta adresine gönderildi. E-postanızdan ya da bu tuşu tıklayarak onaylayabilirsiniz.",
+      "confirm_subscription_modal_title": "E-posta aboneliğinizi onaylayın.",
       "credit_card_number": "Kredi kartı numarası",
       "deadline": "İşletme raporlaması amacıyla sipariş bilgileriniz görünür olmaya devam edecektir. Hesap verileriniz {{time}} tarihinde silinecektir, bu tarihten önce işlemi iptal edebilirsiniz",
       "delete_account": "Hesabı kapat",
@@ -211,6 +241,7 @@
       "ip_address": "IP adresi",
       "last_name": "Soyad",
       "modify_email": "E-postayı Değiştir",
+      "modify_email_modal_title": "E-postayı Değiştir",
       "modify_phone": "Telefonu Değiştir",
       "name": "Ad",
       "next": "Sonraki",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Lütfen önce e-postayı veya cep telefonunu bağlayın",
       "revoke": "Kapatmayı iptal edin",
       "revoke_message": "Bu hesap kapatılmak üzere işleme alınmış durumdadır, hesap verileriniz {{time}} tarihinde silinecektir, bu tarihten önce işlemi iptal edebilirsiniz",
+      "save_btn": "KAYDET",
       "select__date": "Tarih seç",
+      "subscribe_confirm_tip": "Abone olduğunuz için teşekkür ederiz.",
       "timeout_tip": "İşlem zaman aşımına uğradı, lütfen tekrar doğrulayın",
       "username": "Ad",
       "verify_email_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{email}} e-posta adresinize bir doğrulama e-postası alacaksınız",
@@ -238,7 +271,8 @@
       "discount_title": "Hesabı aktifleştirin ve indirim kodunu alın",
       "normal_title": "Hesabı aktifleştir",
       "subscription_text": "Güncellemeleri almak, özel anlaşmalara erişmek ve daha fazlası için e-postalara abone olun.",
-      "success_title": "Harika bir indirim aldığınız için tebrikler"
+      "success_title": "Harika bir indirim aldığınız için tebrikler",
+      "token_expired": "Link geçerliliği sona erdi"
     },
     "address": {
       "add_address": "Yeni Adres Ekle",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Parolanızı mı unuttunuz",
+      "reset_password": "PAROLAYI SIFIRLA",
       "tips_password_can_be_changed_after_verification": "Doğrulamadan sonra parolayı değiştirebilirsiniz",
-      "tips_reset_password": "{{account}} hesabının parolasını sıfırlıyorsunuz"
+      "tips_reset_password": "{{account}} hesabının parolasını sıfırlıyorsunuz",
+      "token_expired": "Parola sıfırlama linkinizin geçerliliği sona erdi"
     },
     "general": {
       "account": "HESAP",
@@ -333,6 +369,10 @@
       "error_message_3009": "Cep numarası diğer hesaplar tarafından bağlandı",
       "error_message_3010": "E-posta başka hesaplar tarafından bağlandı",
       "error_message_3014": "Metin mesajı/posta şablonu görselleştirme başarısız",
+      "error_message_3015": "Hesap aktifleştirildi",
+      "error_message_3022": "Link geçerliliği sona erdi",
+      "error_message_3023": "Link yanlış formata sahip",
+      "error_message_3024": "Link yanlış",
       "error_message_4": "Servis istisnaları",
       "error_message_5": "Servis istisnaları",
       "error_message_6": "Servis istisnaları",
@@ -416,7 +456,8 @@
       "wednesday": "Çarşamba"
     },
     "login": {
-      "member_login_common": "Üye girişi"
+      "member_login_common": "Üye girişi",
+      "subscribe_confirm_tip": "Abone olduğunuz için teşekkür ederiz. Daha iyi bir deneyim için giriş yapabilirsiniz."
     },
     "message": {
       "input_placeholder": "Mesaj bırakmak istediğiniz bir şey var mı?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-posta",
       "email_subscription_text": "Abonelikteki promosyon bilgilerini e-posta ile alın",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Cep telefonu",
       "phone_subscription_text": "Telefon promosyonuna abone ol",
@@ -474,6 +515,7 @@
       "send_success": "Bizimle iletişime geçtiğiniz için teşekkür ederiz, mümkün olan en kısa sürede size dönüş yapacağız."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "E-posta adresi formatı hatalı",
       "subscribe_success": "Abonelik başarılı"
     },
@@ -499,6 +541,14 @@
       "refund": "Geri ödeme politikası",
       "service": "Hizmet Kullanım Şartları",
       "shipping": "Kargo politikası"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "yükleme zamanı",
+        "detail": "Detay"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "TÜMÜ SATILDI",
       "products": "ürünleri",
       "recommend": "Önerilen",
+      "sale": "satış",
       "save": "{{{priceDom}}} tasarruf edin",
       "save_byjs": "{{priceDom}} tasarruf edin",
       "save_ratio": "{{price}}% İNDİRİM",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Kopya",
       "activity_banner_free_shipping": "Ücretsiz Kargo",
       "activity_banner_threshold": "{{threshold}} üzerindeki siparişler",
+      "activity_selector_new_arrivals": "Yeni gelenler",
       "activity_selector_price_high_to_low": "Fiyat yüksekten düşüğe",
       "activity_selector_price_low_to_high": "Fiyat düşükten yükseğe",
       "activity_selector_recommended": "Öner",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "{{threshold}} satın alın, {{benefitCount}} öğe için {{willSave}} indirim keyfini çıkarın",
         "b12_t1_s3_free": "Tebrikler! ücretsiz {{benefitCount}} öğe aldınız!",
         "b12_t1_s3_normal": "Tebrikler! {{benefitCount}} öğe için {{saved}} indirim aldınız!",
+        "b14_t1_s1": "{{willSave}} karşılığında {{nextMinThreshold}} adet satın alın",
+        "b14_t1_s2": "Tebrikler! {{saved}} karşılığında {{currentMinThreshold}} adet satın aldınız. {{nextMinThreshold}} tanenin keyfini çıkarmak için {{willSave}} karşılığında {{threshold}} adet daha satın alın!",
+        "b14_t1_s3": "Tebrikler! {{saved}} karşılığında {{currentMinThreshold}} adet satın aldınız!",
         "b1_t0_s1": "{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
         "b1_t0_s2": "Şu ana kadar {{saved}} tararruf edildi! {{br}}{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
         "b1_t0_s3": "Tebrikler! {{saved}} tasarruf ettiniz!",
@@ -695,10 +750,24 @@
         "b2_t0": "{{threshold}} satın alın, {{save}} tasarruf edin",
         "b2_t1": "{{threshold}} satın alın, {{save}} indirim kazanın",
         "label": "İndirim:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "{{willSave}} karşılığında {{nextMinThreshold}} adet satın alın",
+            "step2": "Tebrikler! {{saved}} karşılığında {{currentMinThreshold}} adet satın aldınız. {{nextMinThreshold}} tanenin keyfini çıkarmak için {{willSave}} karşılığında {{threshold}} adet daha satın alın!",
+            "step3": "Tebrikler! {{saved}} karşılığında {{currentMinThreshold}} adet satın aldınız!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Yuvarlama"
+      }
+    },
     "payments-name": {
       "COD": "Kapıda ödeme",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "İndirim",
       "free_charge": "Ücretsiz kargo",
       "free_shipping": "ücretsiz kargo",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Satıcı ekstra indirimi",
       "order_tax": "Vergi",
       "order_tip": "Bahşiş",

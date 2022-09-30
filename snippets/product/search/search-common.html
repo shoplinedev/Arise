@@ -14,7 +14,11 @@
   {{/is_modern_browser}}
 </script>
   
-<link rel="stylesheet" href="{{ assets_url 'product/search/index.min.css' }}" />
+{{#is_modern_browser}}
+  <link rel="stylesheet" href="{{ assets_url 'product/search/index.min.modern.css' }}" />
+{{else}}
+  <link rel="stylesheet" href="{{ assets_url 'product/search/index.min.css' }}" />
+{{/is_modern_browser}}
 {{/partial}}
 
 
@@ -40,7 +44,7 @@
           'event',
           'view_item_list',
           {
-            items: [{{#forEach products.list}}{id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}Search Result{{/if}}',name: '{{ title }}', price: '{{ currency_format productMinPrice }}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}] 
+            items: [{{#forEach products.list}}{id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}Search Result{{/if}}',name: '{{ title }}', price: '{{ money_format productMinPrice }}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}] 
           } 
         ],
       ],
@@ -49,7 +53,7 @@
           'event',
          'view_item_list',
           {
-            items: [{{#forEach products.list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}Search Result{{/if}}',item_name: '{{ title }}', price: '{{ currency_format productMinPrice }}', index: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}] 
+            items: [{{#forEach products.list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}Search Result{{/if}}',item_name: '{{ title }}', price: '{{ money_format productMinPrice }}', index: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}] 
           } 
         ] 
       ],

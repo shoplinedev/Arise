@@ -1,0 +1,11 @@
+<div class="trade-checkout-payment-voucher_text" id="tradeCheckoutPaymentVoucherText" style="display: {{#if (boolean uploadedNum '>' 0)}}block{{else}}none{{/if}}">
+  <svg width="16" height="16" viewBox="0 0 16 17" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M8 15.2571C11.866 15.2571 15 12.1231 15 8.25708C15 4.39109 11.866 1.25708 8 1.25708C4.13401 1.25708 1 4.39109 1 8.25708C1 12.1231 4.13401 15.2571 8 15.2571ZM6.02191 10.4974L4.29182 8.61502L4.18294 8.49656L4.1765 8.48946C3.92533 8.2086 3.9442 7.77575 4.22052 7.51822C4.49919 7.25851 4.93416 7.27545 5.19207 7.55606L5.19855 7.56312L5.31369 7.68839L6.08897 8.53192L7.0238 9.54906L7.03753 9.564L7.05199 9.5493L8.02074 8.56488L10.9489 5.58933L11.0674 5.46893L11.0742 5.46208C11.3414 5.19049 11.7767 5.1885 12.0464 5.45764C12.3139 5.7245 12.318 6.15774 12.0575 6.4298L12.0508 6.4367L11.9389 6.55049L8.02094 10.5318L7.5089 11.0521C7.37693 11.1862 7.1963 11.2602 7.00884 11.257C6.82137 11.2538 6.64335 11.1736 6.516 11.035L6.02191 10.4974Z"
+      fill="currentColor"
+    ></path>
+  </svg>
+  <span id="tradeCheckoutPaymentUploadNum" data-num="{{num}}">{{t 'cart.order.paymentVoucher.uploadAmount' num=num}}</span>
+</div>

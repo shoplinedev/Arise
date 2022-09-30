@@ -1,4 +1,8 @@
-{{inline_stylesheet 'blog/list/index.min.css'}}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'blog/list/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'blog/list/index.min.css' }}
+{{/is_modern_browser}}
 
 <main class="blogs-container container">
   {{ assign 'homeText' (t 'general.general.home') }}
@@ -8,11 +12,20 @@
   {{ assign 'pageSize' (default (get 'blogs.pageSize' blogs) 12) }}
   {{ assign 'blogs' (default (get 'blogs.list' blogs) (JSONparse '[]')) }}
 
+  {{ assign 'listHandle' (url_decode request.uri.params.listHandle) }}
+  {{ assign 'tagHandle' (url_decode request.uri.params.tagHandle) }}
+  {{ assign 'listPath' (append '/blogs/' listHandle) }}
 
   {{#if (length blogs) '>' 0}}
     {{#if section.settings.is_show_breadcrumb}}
       {{ assign 'routes' (JSONparse (append '[{"name":"' homeText '","link":"/"}]')) }}
-      {{ array-push routes (object_create name=title) }}
+
+      {{#if tagHandle}}
+        {{ array-push routes (object_create name=title link=listPath) }}
+        {{ array-push routes (object_create name=tagHandle) }}
+      {{else}}
+        {{ array-push routes (object_create name=title) }}
+      {{/if}}
 
       {{ snippet 'blogs/breadcrumb' classes='blogs__breadcrumb d-none d-md-flex' routes=routes }}
     {{/if}}
@@ -26,6 +39,7 @@
             <li class="blogs__item">
               {{
                 snippet 'blogs/simple-blog'
+                pathPrefix=global.listPath
                 info=this
                 showAuthor=global.section.settings.is_show_author
                 showDate=global.section.settings.is_show_date

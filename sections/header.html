@@ -1,26 +1,30 @@
 {{assign 'drawer_position' 'right'}}
 {{assign 'main_menu' (get section.settings.main_menu_link_list navigations) }}
 {{assign 'settings' section.settings}}
+{{assign 'show_toolbar' false}}
 
 {{preload_state "tradeSettleConfig"}}
 
-{{#if (boolean settings.show_locale_selector '&&' storeInfo.languageSetting.enableSelector)}}
-    {{!-- 只要开启了语言选择器，就要引入谷歌脚本 --}}
-    {{#partial 'gte'}}
-        {{snippet 'gte'}}
-    {{/partial}}
-    {{assign 'locale_selector' true}}
-    {{snippet 'header/toolbar' settings=settings color_scheme=section.settings.color_scheme}}
-    {{!-- 移动端全局语言、货币选择下拉 --}}
-    {{snippet 'mobile-locale-currency-drawer' }}
+{{#if (boolean section.settings.show_locale_selector '||'  section.settings.show_currency_selector) }}
+	{{assign 'show_toolbar' true}}
+{{/if}}
+
+{{#if show_toolbar}}
+  {{snippet 'header/toolbar'}}
+  {{!-- 移动端全局语言、货币选择下拉 --}}
+  {{snippet 'mobile-locale-currency-drawer' }}
 {{/if}}
 
 {{!-- 侧边栏导航 --}}
 {{#snippet 'global_drawer' id="menu-drawer" position='left'}}
   {{#if section.settings.show_user_entry}}
+  {{#inArray (cond storeInfo.storeTags storeInfo.storeTags (arrayify "")) "DEVELOPER"}}
+  {{!-- 开发店铺不展示 --}}
+  {{else}}
     {{#child 'head'}}
       {{snippet 'header-btns' btns='user' classnames='menu-drawer__header'}}
     {{/child}}
+  {{/inArray}}
   {{/if}}
   {{#child}}
     {{snippet 'drawer-menu' main_menu=main_menu drawer_position='left' blockObj=blockObj}}
@@ -50,7 +54,7 @@
         <header class="header__main">
           {{snippet 'header/header-layout-left-down' settings=section.settings  main_menu=main_menu}}
           {{!-- 点击页头的输入框弹出的搜索框 --}}
-          {{snippet 'header-search' id="header-drawer"}}
+          {{snippet 'header-search' id="header-drawer" suggestMenu=section.settings.suggested_menu}}
         </header>
       </div>
     </div>
@@ -186,38 +190,14 @@
     {
       "type": "switch",
       "id": "sticky_index",
-      "label": {
-        "zh-hans-cn": "首页启用透明页头",
-        "en": "Transparent header for homepage",
-        "id": "Aktifkan tajuk transparan di beranda",
-        "th": "เปิดใช้งานส่วนหัวโปร่งใสในหน้าแรก",
-        "vi": "Trang chủ sử dụng hiệu ứng đầu trang trong suốt",
-        "ms": "Dayakan pengepala lutsinar pada halaman utama",
-        "zh-hant-tw": "首頁啟用透明頁頭"
-      },
+      "label": "t:sections.header.settings.sticky_index.label",
       "default": false
     },
     {
       "type": "switch",
       "id": "sticky_collection",
-      "label": {
-        "zh-hans-cn": "分类启用透明页头",
-        "en": "Transparent header for category page",
-        "id": "Kategori aktifkan tajuk transparan",
-        "th": "หมวดหมู่เปิดใช้งานส่วนหัวโปร่งใส",
-        "vi": "Phân loại sử dụng hiệu ứng đầu trang trong suốt",
-        "ms": "Kategori membolehkan pengepala lutsinar",
-        "zh-hant-tw": "分類啟用透明頁頭"
-      },
-      "info": {
-        "zh-hans-cn": "配置分类页封面后生效",
-        "en": "Effective once the cover of collection page is configured",
-        "id": "Berlaku setelah mengonfigurasi sampul halaman kategori",
-        "th": "มีผลหลังจากกำหนดค่าหน้าปกหมวดหมู่",
-        "vi": "Có hiệu lực sau khi bố trí phân loại trang bìa xong",
-        "ms": "Berkuat kuasa selepas mengkonfigurasi kulit halaman kategori",
-        "zh-hant-tw": "配置分類頁封面後生效"
-      },
+      "label": "t:sections.header.settings.sticky_collection.label",
+      "info": "t:sections.header.settings.sticky_collection.info",
       "default": false
     },
     {
@@ -231,6 +211,13 @@
       "id": "show_search_entry",
       "default": true,
       "label": "t:sections.header.settings.show_search_entry.label"
+    },
+    {
+      "type": "menu_picker",
+      "id": "suggested_menu",
+      "default": "",
+      "label": "t:sections.header.settings.suggested_menu.label",
+      "info": "t:sections.header.settings.suggested_menu.info"
     },
     {
       "type": "switch",
@@ -250,6 +237,19 @@
       "label": "t:sections.header.settings.show_locale_selector.label",
       "info": "t:sections.header.settings.show_locale_selector.info",
       "default": false
+    },
+    {
+      "type": "switch",
+      "id": "show_currency_selector",
+      "label": "t:sections.header.settings.show_currency_selector.label",
+      "info": "t:sections.header.settings.show_currency_selector.info",
+      "default": false
+    },
+    {
+      "type": "switch",
+      "id": "show_currency_flags",
+      "label": "t:sections.header.settings.show_currency_flags.label",
+      "default": true
     }
   ]
 }

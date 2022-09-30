@@ -9,7 +9,7 @@
       <ul id="suggest-menu-list">
         {{assign 'navItem' (navLink childNode request.uri.query request.locale all_collections)}}
         <li>
-          <a class="body2" {{{navItem.hrefAttr}}}>{{childNode.name}}</a>
+          <a class="body2 fw-bold" {{{navItem.hrefAttr}}}>{{childNode.name}}</a>
         </li>
         {{#each childNode.nodeTree}}
           {{assign 'navItem' (navLink this ../request.uri.query ../request.locale ../all_collections)}}
@@ -31,6 +31,21 @@
       <div class="container">
         {{!-- <div class="header__search--form-wrapper"> --}}
           <div class="header__search--form">
+            {{#if suggestMenu}}
+              {{assign 'childNode' (get suggestMenu navigations) }}
+              <ul id="suggest-menu-list">
+                {{assign 'navItem' (navLink childNode request.uri.query request.locale all_collections)}}
+                <li>
+                  <a class="body2 fw-bold" {{{navItem.hrefAttr}}}>{{childNode.name}}</a>
+                </li>
+                {{#each childNode.nodeTree}}
+                  {{assign 'navItem' (navLink this ../request.uri.query ../request.locale ../all_collections)}}
+                  <li>
+                    <a class="body3" {{{navItem.hrefAttr}}}>{{navItem.name}}</a>
+                  </li>
+                {{/each}}
+              </ul>
+            {{/if}}
             <button data-id="header-drawer" type="button" class="header__search--btn j-stage-force-search">
               {{ snippet 'icons/icon_header_search' }}
             </button>

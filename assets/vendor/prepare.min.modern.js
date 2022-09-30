@@ -4929,7 +4929,7 @@
             _components_tooltip__WEBPACK_IMPORTED_MODULE_17__["default"].install(jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default());
             window.$ = jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default();
             window.jQuery = jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default();
-            window.__SL_$__ = jquery_src_core__WEBPACK_IMPORTED_MODULE_0___default();
+            window.__SL_$__ = window.$ || window.jQuery;
         },
         "../shared/browser/components/hbs/shared/components/tooltip/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
             "use strict";

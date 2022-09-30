@@ -39,7 +39,7 @@
           {{#if (and promotion (not hasGiftPlugin))}}
             {{ assign "config" (sales_promotion_reminder_translate promotion)}}
             {{ assign "_cartReminderKey" (javascript_template 'sales.promotion.cart_reminder.b${benefitType}_t${thresholdType}_s${step}${extra}' benefitType=config.benefitType thresholdType=config.thresholdType step=config.step extra=config.extra) }}
-            {{ noTranslationHTML (t _cartReminderKey  saved=config.params.saved willSave=config.params.willSave threshold=config.params.threshold benefitCount=config.params.benefitCount br=config.params.br upperLimit=config.params.upperLimit) }}
+            {{ noTranslationHTML (t _cartReminderKey  saved=config.params.saved willSave=config.params.willSave threshold=config.params.threshold benefitCount=config.params.benefitCount br=config.params.br upperLimit=config.params.upperLimit currentMinThreshold=config.params.currentMinThreshold nextMinThreshold=config.params.nextMinThreshold) }}
           {{/if}}
         </span>
       </div>
@@ -50,7 +50,7 @@
         <span id="activity-cartTotalInfo">
           {{!-- 购物车金额 --}}
           <span class="activity__cartTotal body3">{{ t "cart.cart.subtotal"  }} :
-            <span id="activity-cartTotal" class="notranslate" data-amount="{{default activeItem.totalAmount 0}}">{{ currency_convert (default activeItem.totalAmount 0)}}</span>
+            <span id="activity-cartTotal" class="notranslate" data-amount="{{default activeItem.totalAmount 0}}">{{ money_exchange_convert_with_currency (default activeItem.totalAmount 0)}}</span>
           </span>
           <br />
           {{!-- 当前活动商品数量 --}}

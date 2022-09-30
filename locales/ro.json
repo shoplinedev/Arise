@@ -5,6 +5,22 @@
       "read_btn_text": "Citeste mai mult",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "cometariu",
+      "comment_audit_tip": "Comentariul dvs. a fost trimis și trebuie revizuit.",
+      "comment_empty": "Vă rugăm să completați comentariile",
+      "email": "Adresă poștală",
+      "email_empty": "E-mailul nu poate fi gol",
+      "email_format": "Vă rugăm să introduceți adresa de e-mail corectă",
+      "form_title": "cometariu",
+      "loadmore": "incarca mai mult",
+      "name": "Nume",
+      "name_empty": "Vă rugăm să completați numele",
+      "submit": "Trimite",
+      "submit_audit_tip": "Trimis cu succes, în așteptarea examinării",
+      "success": "trimis cu succes",
+      "title": "{{comment_length}} comentarii"
+    },
     "general": {
       "back_to": "Returnează {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Detalii comandă",
       "package_amount": "Pachet {{num}}（articole {{item}}）",
       "pay_amount": "plătiți suma",
+      "paymentVoucher": {
+        "downloadDoc": "Descărcare fișier",
+        "format": "Format",
+        "formatLimit": "Acceptă fișiere .jpg, .png, .pdf mai mici de 20 MB. Puteți încărca până la 5 imagini",
+        "uploadAmount": "Au fost încărcate {{num}} cupon",
+        "uploadLimit": "Încărcați fișiere .jpg, .png, .pdf mai mici de 20 MB"
+      },
       "payment_voucher_confirmation": "Am înțeles",
       "payment_voucher_transfer_success": "Plata a fost transferată cu succes",
       "payment_voucher_waiting_for_payment": "asteptand plata",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Adresă de e-mail nevalidă"
+    },
     "account": {
       "account_binding": "Asociere cont",
       "account_information": "Cont",
@@ -197,6 +223,10 @@
       "bind": "Se asociază",
       "birthday": "Zi de naştere",
       "change_password": "Schimbă parolă",
+      "confirm_btn": "Подтверждение",
+      "confirm_subscription_modal_btn": "Confirmați abonarea",
+      "confirm_subscription_modal_content": "Ați solicitat o cerere de abonare anterior. Un e-mail de confirmare a fost trimis la această adresă de e-mail. Puteți fie să confirmați în e-mailul dumneavoastră, fie să faceți clic pe acest buton.",
+      "confirm_subscription_modal_title": "Confirmați abonarea prin e-mail.",
       "credit_card_number": "Nr. credit card",
       "deadline": "Cu scop de raport afacere, comanda dvs. va fi în continuare vizibilă. Datele contul dvs. vor fi șterse la {{time}}, puteți anula acest process înainte de data",
       "delete_account": "Închideți contul",
@@ -211,6 +241,7 @@
       "ip_address": "Adresa IP",
       "last_name": "Nume",
       "modify_email": "Modifică e-mail",
+      "modify_email_modal_title": "Modifică e-mail",
       "modify_phone": "Modifică telefon",
       "name": "Numele",
       "next": "Următorul",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Asociați mai întâi adresa de e-mail sau numărul de telefon mobil",
       "revoke": "Anula închidere",
       "revoke_message": "Acest con teste sub procesare pentru închidere, datele contului vor fi șterse la {{time}}, puteți anula acest process înainte de acea dată",
+      "save_btn": "ECONOMISEȘTE",
       "select__date": "Selectați dată",
+      "subscribe_confirm_tip": "Vă mulțumim pentru abonare.",
       "timeout_tip": "Operațiunea a expirat, vă rugăm să verificați din nou",
       "username": "Nume",
       "verify_email_message": "Înainte de a închide contul, trebuie să verificăm identitatea dvs. \nVeți primi pe e-mailul dvs. {{email}} un e-mail pentru verificare",
@@ -238,7 +271,8 @@
       "discount_title": "Activează contul și primește cod de reducere",
       "normal_title": "Activează contul",
       "subscription_text": "Înregistrați-vă pentru e-mailuri pentru a primi actualizări, acces la oferte exclusive, și mai multe.",
-      "success_title": "Felicitări pentru primirea reducerii"
+      "success_title": "Felicitări pentru primirea reducerii",
+      "token_expired": "Link-ul tău a expirat"
     },
     "address": {
       "add_address": "Adaugă adresă nouă",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Parolă uitată",
+      "reset_password": "RESETAȚI PAROLA",
       "tips_password_can_be_changed_after_verification": "Puteți schimba parola după verificare",
-      "tips_reset_password": "Ați resetat parola pentru contul {{account}}"
+      "tips_reset_password": "Ați resetat parola pentru contul {{account}}",
+      "token_expired": "Link-ul tău pentru resetare parolă a expirat"
     },
     "general": {
       "account": "CONT",
@@ -333,6 +369,10 @@
       "error_message_3009": "Mobilul a fost asociat cu alte conturi",
       "error_message_3010": "E-mailul a fost asociat cu alte conturi",
       "error_message_3014": "Transmitere nereușită mesaj text/șablon de e-mail",
+      "error_message_3015": "Contul a fost activat",
+      "error_message_3022": "Link expirat",
+      "error_message_3023": "Link-ul este incorect",
+      "error_message_3024": "Eroare link parametru",
       "error_message_4": "Service pentru excepții",
       "error_message_5": "Service pentru excepții",
       "error_message_6": "Service pentru excepții",
@@ -416,7 +456,8 @@
       "wednesday": "Miercuri"
     },
     "login": {
-      "member_login_common": "Autentificare membru"
+      "member_login_common": "Autentificare membru",
+      "subscribe_confirm_tip": "Vă mulțumim pentru abonare. Pentru a beneficia de o experiență mai bună, vă puteți autentifica."
     },
     "message": {
       "input_placeholder": "Doriți să lăsați un mesaj?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mail",
       "email_subscription_text": "Obțineți informațiile despre promoția pentru abonament pe e-mail",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Telefon mobil",
       "phone_subscription_text": "Abonare promoție prin telefon",
@@ -474,6 +515,7 @@
       "send_success": "Vă mulțumim că ne-ați contactat și vom reveni către dvs. cât mai curând posibil."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Eroare formatare adresă de e-mail",
       "subscribe_success": "Abonare reușită"
     },
@@ -499,6 +541,14 @@
       "refund": "Politică de rambursare",
       "service": "Condițiile de utilizare a site-ului",
       "shipping": "Politică de livrare"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "timpul de încărcare",
+        "detail": "Detaliu"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "VÂNDUT",
       "products": "produsele",
       "recommend": "Recomandate",
+      "sale": "Vânzare",
       "save": "Reducere {{{priceDom}}}",
       "save_byjs": "Reducere {{priceDom}}",
       "save_ratio": "Reducere {{price}}%",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Copiază",
       "activity_banner_free_shipping": "Livrare gratuită",
       "activity_banner_threshold": "Comenzi peste {{threshold}}",
+      "activity_selector_new_arrivals": "Noi sosiți",
       "activity_selector_price_high_to_low": "Preț de la mare la mic",
       "activity_selector_price_low_to_high": "Preț de la mic la mare",
       "activity_selector_recommended": "Recomandat",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Cumpără {{benefitCount}} obiecte, obții {{willSave}} reduceri pentru {{benefitCount}} obiecte",
         "b12_t1_s3_free": "Felicitări! Ați primit {{benefitCount}} obiecte gratis!",
         "b12_t1_s3_normal": "Felicitări! Ați primit {{saved}} reduceri pentru {{benefitCount}} obiecte!",
+        "b14_t1_s1": "Cumpără {{nextMinThreshold}} bucăți pentru {{willSave}}",
+        "b14_t1_s2": "FELICITĂRI! Ai {{currentMinThreshold}} bucăți pentru {{saved}}. Cumpără încă {{threshold}} pentru a te bucura de {{nextMinThreshold}} bucăți pentru {{willSave}}!",
+        "b14_t1_s3": "Felicitări! Ai primit {{currentMinThreshold}} bucăți pentru {{saved}}!",
         "b1_t0_s1": "Cumpărați mai mult de {{threshold}} pentru a economisi {{willSave}}",
         "b1_t0_s2": "Economisiți {{saved}} deja ! {{br}}Cumpărați mai mult de {{threshold}} pentru a economisi {{willSave}}",
         "b1_t0_s3": "Felicitări! Ați economisit {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Cumpărați {{threshold}} pentru a economisi {{save}}",
         "b2_t1": "Cumpărați {{threshold}} OBȚINEȚI O REDUCERE de {{save}}",
         "label": "Reducere:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Cumpără {{nextMinThreshold}} bucăți pentru {{willSave}}",
+            "step2": "FELICITĂRI! Ai {{currentMinThreshold}} bucăți pentru {{saved}}. Cumpără încă {{threshold}} pentru a te bucura de {{nextMinThreshold}} bucăți pentru {{willSave}}!",
+            "step3": "Felicitări! Ai primit {{currentMinThreshold}} bucăți pentru {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Rotunjire"
+      }
+    },
     "payments-name": {
       "COD": "Numerar la livrare",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Reducere",
       "free_charge": "Livrare gratuită",
       "free_shipping": "livrare gratuită",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Reducere suplimentară vânzător",
       "order_tax": "Impozit",
       "order_tip": "Sfat",

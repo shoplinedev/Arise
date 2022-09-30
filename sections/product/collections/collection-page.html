@@ -3,7 +3,7 @@
 products:
   # 是否预取商品描述信息，默认值：false
   description: true
-  limit: {{ cond request.is_mobile 48 section.settings.per_page_num }}
+  limit: {{ section.settings.per_page_num }}
 
 # 最近浏览商品
 history_browse_products:
@@ -20,10 +20,14 @@ history_browse_products:
   {{/is_modern_browser}}
 </script>
   
-{{ inline_stylesheet 'product/collections/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'product/collections/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'product/collections/index.min.css' }}
+{{/is_modern_browser}}
 
 {{ assign 'isPreview' request.design_mode }}
-{{ assign 'perPageNum' (cond request.is_mobile 48 section.settings.per_page_num) }}
+{{ assign 'perPageNum' section.settings.per_page_num }}
 {{ assign 'calc_page_size' (toInt (default request.uri.query.page_size perPageNum)) }}
 {{ assign 'itemNumByRow' 4 }}
 {{ assign 'slice_products_list' products.list }}
@@ -138,7 +142,7 @@ history_browse_products:
       "label": "t:sections.product_collections_collection-page.settings.per_page_num.label",
       "default": 16,
       "min": 8,
-      "max": 24,
+      "max": 48,
       "step": 4
     },
     {

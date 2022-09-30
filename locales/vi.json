@@ -5,6 +5,22 @@
       "read_btn_text": "Đọc thêm",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Bình luận",
+      "comment_audit_tip": "Bình luận của bạn đã được gửi và cần được xem xét.",
+      "comment_empty": "Vui lòng điền vào các bình luận",
+      "email": "Mail",
+      "email_empty": "E-mail không được để trống",
+      "email_format": "Vui lòng nhập email chính xác",
+      "form_title": "Bình luận",
+      "loadmore": "tải thêm",
+      "name": "Tên",
+      "name_empty": "Vui lòng điền tên",
+      "submit": "Gửi đi",
+      "submit_audit_tip": "Đã gửi thành công, đang chờ xem xét",
+      "success": "gửi thành công",
+      "title": "{{comment_length}} nhận xét"
+    },
     "general": {
       "back_to": "Quay lại {{collectionTitle}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Chi tiết đơn hàng",
       "package_amount": "{{num}} kiện hàng ({{item}} sản phẩm)",
       "pay_amount": "Số tiền trả",
+      "paymentVoucher": {
+        "downloadDoc": "Tải xuống tài liệu văn bản",
+        "format": "Định dạng",
+        "formatLimit": "Hỗ trợ tải lên các tệp JPG, PNG, GIF, PDF trong khoảng 20MB. Có thể tải lên tối đa 5 ảnh.",
+        "uploadAmount": "Đã tải lên{{num}} ảnh phiếu mua hàng",
+        "uploadLimit": "Vui lòng tải lên các tệp JPG, PNG, GIF, PDF trong vòng 20MB"
+      },
       "payment_voucher_confirmation": "Hiểu rồi",
       "payment_voucher_transfer_success": "Thanh toán được chuyển thành công",
       "payment_voucher_waiting_for_payment": "Đang chờ thanh toán",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Địa chỉ email không hợp lệ"
+    },
     "account": {
       "account_binding": "Liên Kết Tài Khoản",
       "account_information": "Tài khoản",
@@ -197,6 +223,10 @@
       "bind": "Liên kết",
       "birthday": "Ngày Sinh Nhật",
       "change_password": "Thay đổi mật khẩu",
+      "confirm_btn": "",
+      "confirm_subscription_modal_btn": "Xác nhận đăng ký",
+      "confirm_subscription_modal_content": "Bạn đã gửi đăng ký trước đó. Email xác nhận đã được gửi đến địa chỉ email này. Bạn có thể vào email hoặc nhấn vào nút này để xác nhận.",
+      "confirm_subscription_modal_title": "Xác nhận đăng ký qua E-mail của bạn.",
       "credit_card_number": "Số thẻ tín dụng",
       "deadline": "Vì mục đích báo cáo kinh doanh, hệ thống sẽ vẫn hiển thị đơn hàng của bạn. Dữ liệu tài khoản của bạn sẽ bị xóa vào lúc {{time}}, bạn có thể hủy quá trình này trước ngày đó",
       "delete_account": "Đóng tài khoản",
@@ -211,6 +241,7 @@
       "ip_address": "Địa chỉ IP",
       "last_name": "Họ",
       "modify_email": "Chỉnh sửa Email",
+      "modify_email_modal_title": "Chỉnh sửa Email",
       "modify_phone": "Chỉnh Sửa số Điện Thoại cố Định",
       "name": "Tên",
       "next": "Tiếp",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Vui lòng liên kết email hoặc số điện thoại di động trước",
       "revoke": "Hủy đóng",
       "revoke_message": "Tài khoản này đang được xử lý để đóng, dữ liệu tài khoản sẽ bị xóa vào lúc {{time}}, bạn có thể hủy quá trình này trước ngày đó",
+      "save_btn": "LƯU",
       "select__date": "Chọn Ngày",
+      "subscribe_confirm_tip": "Cảm ơn bạn đã đăng ký.",
       "timeout_tip": "Đã quá thời gian thao tác, vui lòng xác minh lại",
       "username": "Tên",
       "verify_email_message": "Trước khi đóng tài khoản, chúng tôi cần xác minh danh tính của bạn\nBạn sẽ nhận được email xác minh vào email {{email}}",
@@ -238,7 +271,8 @@
       "discount_title": "Kích hoạt tài khoản và nhận mã giảm giá",
       "normal_title": "Kích hoạt tài khoản",
       "subscription_text": "Đăng ký để nhận thông tin cập nhật qua email, truy cập vào các ưu đãi độc quyền và hơn thế nữa.",
-      "success_title": "Chúc mừng bạn đã nhận được giảm giá lớn"
+      "success_title": "Chúc mừng bạn đã nhận được giảm giá lớn",
+      "token_expired": "Liên kết đã hết hạn"
     },
     "address": {
       "add_address": "Thêm Địa Chỉ Mới",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Quên mật khẩu",
+      "reset_password": "ĐẶT LẠI MẬT KHẨU",
       "tips_password_can_be_changed_after_verification": "Bạn có thể thay đổi mật khẩu sau khi xác minh",
-      "tips_reset_password": "Bạn đang đặt lại mật khẩu cho tài khoản {{account}}"
+      "tips_reset_password": "Bạn đang đặt lại mật khẩu cho tài khoản {{account}}",
+      "token_expired": "Liên kết mật khẩu đặt lại của bạn đã hết hạn"
     },
     "general": {
       "account": "TÀI KHOẢN",
@@ -333,6 +369,10 @@
       "error_message_3009": "Số điện thoại di động đã bị gán vào tài khoản khác",
       "error_message_3010": "Email đã bị gán vào tài khoản khác",
       "error_message_3014": "Tìm nạp mẫu thư/tin nhắn không thành công",
+      "error_message_3015": "Tài khoản đã được kích hoạt",
+      "error_message_3022": "Liên kết đã hết hạn",
+      "error_message_3023": "Liên kết sai định dạng",
+      "error_message_3024": "Liên kết sai",
       "error_message_4": "Ngoại lệ dịch vụ",
       "error_message_5": "Ngoại lệ dịch vụ",
       "error_message_6": "Ngoại lệ dịch vụ",
@@ -416,7 +456,8 @@
       "wednesday": "Thứ Tư"
     },
     "login": {
-      "member_login_common": "Đăng nhập"
+      "member_login_common": "Đăng nhập",
+      "subscribe_confirm_tip": "Cảm ơn bạn đã đăng ký. Bạn có thể đăng nhập để có trải nghiệm tốt hơn."
     },
     "message": {
       "input_placeholder": "Bạn có muốn để lại tin nhắn không?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mail",
       "email_subscription_text": "Nhận thông tin khuyến mãi của đăng ký qua email",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Số Điện Thoại Cố Định",
       "phone_subscription_text": "Đăng ký nhận ưu đãi qua điện thoại",
@@ -474,6 +515,7 @@
       "send_success": "Cảm ơn bạn đã liên hệ chúng tôi, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Email không hợp lệ",
       "subscribe_success": "Đăng ký thành công"
     },
@@ -499,6 +541,14 @@
       "refund": "Chính sách hoàn tiền",
       "service": "Điều khoản dịch vụ",
       "shipping": "Chính sách vận chuyển"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "thời gian tải lên",
+        "detail": "Chi tiết"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "HẾT HÀNG",
       "products": "Sản phẩm",
       "recommend": "Được đề xuất",
+      "sale": "Sản phẩm bán chạy",
       "save": "Giảm {{{priceDom}}}",
       "save_byjs": "Giảm {{priceDom}}",
       "save_ratio": "Giảm {{price}}%",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Sao chép",
       "activity_banner_free_shipping": "Miễn phí vận chuyển",
       "activity_banner_threshold": "Các đơn hàng vượt quá {{threshold}}",
+      "activity_selector_new_arrivals": "Hàng mới về",
       "activity_selector_price_high_to_low": "Giá từ cao đến thấp",
       "activity_selector_price_low_to_high": "Giá từ thấp đến cao",
       "activity_selector_recommended": "Đề xuất",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Mua {{threshold}}, được giảm {{willSave}} cho {{benefitCount}} trong số mặt hàng",
         "b12_t1_s3_free": "Xin chúc mừng! Bạn đã được MIỄN PHÍ {{benefitCount}} mặt hàng!",
         "b12_t1_s3_normal": "Xin chúc mừng! Bạn đã được giảm {{saved}} cho {{benefitCount}} mặt hàng!",
+        "b14_t1_s1": "Mua {{nextMinThreshold}} sản phẩm với giá {{willSave}}",
+        "b14_t1_s2": "Xin chúc mừng! Bạn vừa nhận được {{currentMinThreshold}} sản phẩm với giá {{saved}}. Mua thêm {{threshold}} để được ưu đãi mua {{nextMinThreshold}} sản phẩm với giá {{willSave}}!",
+        "b14_t1_s3": "Xin chúc mừng! Bạn vừa nhận được {{currentMinThreshold}} sản phẩm với giá {{saved}}!",
         "b1_t0_s1": "Mua trên {{threshold}} để tiết kiệm {{willSave}}",
         "b1_t0_s2": "Đã tiết kiệm {{saved}}! {{br}}Mua thêm {{threshold}} để tiết kiệm {{willSave}}",
         "b1_t0_s3": "Xin chúc mừng! Bạn đã tiết kiệm {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Mua {{threshold}} giảm giá {{save}}",
         "b2_t1": "Mua {{threshold}} sản phẩm giảm giá {{save}}",
         "label": "Giảm giá:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Mua {{nextMinThreshold}} sản phẩm với giá {{willSave}}",
+            "step2": "Xin chúc mừng! Bạn vừa nhận được {{currentMinThreshold}} sản phẩm với giá {{saved}}. Mua thêm {{threshold}} để được ưu đãi mua {{nextMinThreshold}} sản phẩm với giá {{willSave}}!",
+            "step3": "Xin chúc mừng! Bạn vừa nhận được {{currentMinThreshold}} sản phẩm với giá {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Làm tròn"
+      }
+    },
     "payments-name": {
       "COD": "Thanh toán khi giao hàng",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Giảm giá",
       "free_charge": "Miễn phí vận chuyển",
       "free_shipping": "Miễn phí vận chuyển",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Khuyến mãi của cửa hàng",
       "order_tax": "Thuế",
       "order_tip": "Tiền típ",

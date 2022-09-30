@@ -1,4 +1,8 @@
-{{ inline_stylesheet 'blog/detail/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'blog/detail/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'blog/detail/index.min.css' }}
+{{/is_modern_browser}}
 
 <main class="blog-container container">
   {{ assign 'settings' section.settings }}
@@ -16,6 +20,9 @@
     {{ assign 'coverImageData' (JSONparse coverImagePath) }}
     {{ assign 'coverImage' (object_create url=coverImageData.mediaUrl alt=coverImageData.alt) }}
   {{/if}}
+  {{ assign 'comment_list' (get 'list' blog.commentList) }}
+  {{ assign 'comment_length' (length comment_list) }}
+  {{ assign 'comment_limit' 10 }}
 
   {{ assign 'listHandle' (url_decode request.uri.params.listHandle) }}
   {{ assign 'detailHandle' (url_decode request.uri.params.detailHandle) }}
@@ -132,6 +139,31 @@
 </div>
 
   </div>
+
+  {{#if comment_length}}
+    <div class="blog__comments">
+      <h2 class="blog__comments-title title3">{{ t 'blog.comment.title' comment_length=comment_length }}</h2>
+      <div class="blog__comments-list" data-block-limit="{{ comment_limit }}">
+        {{#each comment_list}}
+          {{ snippet 'blogs/comment-item' comment=this }}
+        {{/each}}
+      </div>
+      {{#if comment_length '>' comment_limit}}
+        <div class="blog__comments-loadmore body3">
+          <a class="blog__comments-loadmore-btn">
+            {{ t 'blog.comment.loadmore' }}
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6L11 1" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
+
+  {{#if blog.commentConfig '!=' 0}}
+    {{ snippet 'blogs/comment-form' id=blog.id commentConfig=blog.commentConfig }}
+  {{/if}}
 
   <a class="blog__back-link body3" href="{{ collectionPath }}" title="{{ collectionTitle }}">
     {{ snippet 'icons/icon_arrow_left_line' classes='back-link__icon' }}

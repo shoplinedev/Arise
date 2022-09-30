@@ -1505,13 +1505,13 @@
         }), (error => Promise.reject(error)));
         const utils_request = instance;
         const request_request = utils_request;
+        const HOME = "/";
+        const url_SIGN_IN = "/user/signIn";
+        "undefined" === typeof window || window.location.origin;
         const getSubscriptions = params => request_request.get("/user/front/sub/state", {
             params
         });
         const postUnSubscribe = data => request_request.post("/user/front/sub/unSubscribe", data);
-        const HOME = "/";
-        const SIGN_IN = "/user/signIn";
-        "undefined" === typeof window || window.location.origin;
         var eventemitter3 = __webpack_require__("../shared/browser/node_modules/eventemitter3/index.js");
         var eventemitter3_default = __webpack_require__.n(eventemitter3);
         if (!window.SL_EventBus) {
@@ -1706,7 +1706,7 @@
             }
             init() {
                 const isLogin = SL_State.get("request.is_login");
-                if (!isLogin) window.location.href = SIGN_IN;
+                if (!isLogin) window.location.href = url_SIGN_IN;
                 getSubscriptions({
                     subscribeAccountTypes: "email",
                     subscribeChannel: "center"

@@ -1,4 +1,4 @@
-{{ assign 'total' (currency_number totalAmount) }}
+{{ assign 'total' (money_number totalAmount) }}
 <div class="cart-amount-error-alert body3 {{#if total '<=' 999999999999999}}hide{{/if}}">
   {{t 'cart.checkout.max_amount_limit'}}
 </div>

@@ -43,7 +43,7 @@
             product_discount_style={{theme.settings.product_discount_style}}>
             {{#if (and (and (is (typeOf productPrice.originPrice) 'number') (is (typeOf productPrice.salesPrice) 'number')) discount_text)}}
               {{#if theme.settings.product_discount_style '===' 'number'}}   
-                {{#currency_convert_price discount_text}}
+                {{#money_exchange_convert_price discount_text}}
                   {{#if fraction '===' '00'}}
                     {{#if symbolOrder '==' 'prefix'}}
                       {{assign 'priceVal' (append currencySymbol integer) }}
@@ -51,10 +51,10 @@
                       {{assign 'priceVal' (append integer currencySymbol) }}
                     {{/if}}
                   {{else}}
-                    {{assign 'priceVal' (currency_convert discount_text) }}
+                    {{assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
                   {{/if}}
                   {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate" >' priceVal '</span>') }}}
-                {{/currency_convert_price}}
+                {{/money_exchange_convert_price}}
               {{else}}
                 {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate">' discount_text '% ' '</span>')}}}
               {{/if}}
@@ -62,25 +62,25 @@
           </div>
         {{/if}}
         <div class="body1 product-sales-price product-price-sales_{{id}} notranslate">
-          {{#currency_convert_price productPrice.salesPrice }}
+          {{#money_exchange_convert_price productPrice.salesPrice }}
             {{#if symbolOrder '==' 'prefix'}}
               <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
             {{else}}
               <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
             {{/if}}
-          {{/currency_convert_price}}
+          {{/money_exchange_convert_price}}
         </div>
         <span class="product-price-vip_{{id}} vipPrice {{cond showMemberMark '' 'hide'}}" data-vip-tag="big"></span>
         {{!-- (含税费) --}}
         {{ snippet 'product/detail/product-tax' bool=true }}
         <div class="body2 product-origin-price originPrice notranslate product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
-          {{#currency_convert_price productPrice.originPrice }}
+          {{#money_exchange_convert_price productPrice.originPrice }}
             {{#if symbolOrder '==' 'prefix'}}
               <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
             {{else}}
               <span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span>
             {{/if}}
-          {{/currency_convert_price}}
+          {{/money_exchange_convert_price}}
         </div>
       {{else}}
         {{#if theme.settings.product_discount}}
@@ -89,18 +89,18 @@
             product_discount_style={{theme.settings.product_discount_style}}>
             {{#if (and (and (is (typeOf productPrice.originPrice) 'number') (is (typeOf productPrice.salesPrice) 'number')) discount_text)}}
               {{#if theme.settings.product_discount_style '===' 'number'}}
-                {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate">' (currency_convert discount_text) '</span>')}}}
+                {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate">' (money_exchange_convert_with_currency discount_text) '</span>')}}}
               {{else}}
                 {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate">' discount_text '% ' '</span>')}}}
               {{/if}}
             {{/if}}
           </span>
         {{/if}}
-        <span class="body1 product-sales-price product-price-sales_{{id}} notranslate">{{ currency_convert productPrice.salesPrice }}</span>
+        <span class="body1 product-sales-price product-price-sales_{{id}} notranslate">{{ money_exchange_convert_with_currency productPrice.salesPrice }}</span>
         <span class="product-price-vip_{{id}} vipPrice {{cond showMemberMark '' 'hide'}}" data-vip-tag="big"></span>
         {{!-- (含税费) --}}
         {{ snippet 'product/detail/product-tax' bool=true }}
-        <span class="body2 product-origin-price originPrice notranslate product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">{{ currency_convert productPrice.originPrice }}</span>
+        <span class="body2 product-origin-price originPrice notranslate product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">{{ money_exchange_convert_with_currency productPrice.originPrice }}</span>
       {{/if}}
     </div>
   {{/not}}

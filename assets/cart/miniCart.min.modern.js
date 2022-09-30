@@ -1751,6 +1751,595 @@
                 stripBOM
             };
         },
+        "./node_modules/@sl/currency-tools-core/lib/index.js": function(__unused_webpack_module, exports, __webpack_require__) {
+            (function(global, factory) {
+                true ? factory(exports) : 0;
+            })(0, (function(exports) {
+                "use strict";
+                function _slicedToArray(arr, i) {
+                    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+                }
+                function _arrayWithHoles(arr) {
+                    if (Array.isArray(arr)) return arr;
+                }
+                function _iterableToArrayLimit(arr, i) {
+                    var _i = null == arr ? null : "undefined" !== typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+                    if (null == _i) return;
+                    var _arr = [];
+                    var _n = true;
+                    var _d = false;
+                    var _s, _e;
+                    try {
+                        for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+                            _arr.push(_s.value);
+                            if (i && _arr.length === i) break;
+                        }
+                    } catch (err) {
+                        _d = true;
+                        _e = err;
+                    } finally {
+                        try {
+                            if (!_n && null != _i["return"]) _i["return"]();
+                        } finally {
+                            if (_d) throw _e;
+                        }
+                    }
+                    return _arr;
+                }
+                function _unsupportedIterableToArray(o, minLen) {
+                    if (!o) return;
+                    if ("string" === typeof o) return _arrayLikeToArray(o, minLen);
+                    var n = Object.prototype.toString.call(o).slice(8, -1);
+                    if ("Object" === n && o.constructor) n = o.constructor.name;
+                    if ("Map" === n || "Set" === n) return Array.from(o);
+                    if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+                }
+                function _arrayLikeToArray(arr, len) {
+                    if (null == len || len > arr.length) len = arr.length;
+                    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+                    return arr2;
+                }
+                function _nonIterableRest() {
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+                }
+                var commonjsGlobal = "undefined" !== typeof globalThis ? globalThis : "undefined" !== typeof window ? window : "undefined" !== typeof __webpack_require__.g ? __webpack_require__.g : "undefined" !== typeof self ? self : {};
+                var INFINITY = 1 / 0, MAX_INTEGER = 17976931348623157e292, NAN = 0 / 0;
+                var symbolTag = "[object Symbol]";
+                var reTrim = /^\s+|\s+$/g;
+                var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+                var reIsBinary = /^0b[01]+$/i;
+                var reIsOctal = /^0o[0-7]+$/i;
+                var freeParseInt = parseInt;
+                var freeGlobal = "object" == typeof commonjsGlobal && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+                var freeSelf = "object" == typeof self && self && self.Object === Object && self;
+                var root = freeGlobal || freeSelf || Function("return this")();
+                var objectProto = Object.prototype;
+                var objectToString = objectProto.toString;
+                var Symbol$1 = root.Symbol;
+                var nativeMin = Math.min;
+                var symbolProto = Symbol$1 ? Symbol$1.prototype : void 0, symbolToString = symbolProto ? symbolProto.toString : void 0;
+                function baseToString(value) {
+                    if ("string" == typeof value) return value;
+                    if (isSymbol(value)) return symbolToString ? symbolToString.call(value) : "";
+                    var result = value + "";
+                    return "0" == result && 1 / value == -INFINITY ? "-0" : result;
+                }
+                function createRound(methodName) {
+                    var func = Math[methodName];
+                    return function(number, precision) {
+                        number = toNumber(number);
+                        precision = nativeMin(toInteger(precision), 292);
+                        if (precision) {
+                            var pair = (toString(number) + "e").split("e"), value = func(pair[0] + "e" + (+pair[1] + precision));
+                            pair = (toString(value) + "e").split("e");
+                            return +(pair[0] + "e" + (+pair[1] - precision));
+                        }
+                        return func(number);
+                    };
+                }
+                function isObject(value) {
+                    var type = typeof value;
+                    return !!value && ("object" == type || "function" == type);
+                }
+                function isObjectLike(value) {
+                    return !!value && "object" == typeof value;
+                }
+                function isSymbol(value) {
+                    return "symbol" == typeof value || isObjectLike(value) && objectToString.call(value) == symbolTag;
+                }
+                function toFinite(value) {
+                    if (!value) return 0 === value ? value : 0;
+                    value = toNumber(value);
+                    if (value === INFINITY || value === -INFINITY) {
+                        var sign = value < 0 ? -1 : 1;
+                        return sign * MAX_INTEGER;
+                    }
+                    return value === value ? value : 0;
+                }
+                function toInteger(value) {
+                    var result = toFinite(value), remainder = result % 1;
+                    return result === result ? remainder ? result - remainder : result : 0;
+                }
+                function toNumber(value) {
+                    if ("number" == typeof value) return value;
+                    if (isSymbol(value)) return NAN;
+                    if (isObject(value)) {
+                        var other = "function" == typeof value.valueOf ? value.valueOf() : value;
+                        value = isObject(other) ? other + "" : other;
+                    }
+                    if ("string" != typeof value) return 0 === value ? value : +value;
+                    value = value.replace(reTrim, "");
+                    var isBinary = reIsBinary.test(value);
+                    return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+                }
+                function toString(value) {
+                    return null == value ? "" : baseToString(value);
+                }
+                var round = createRound("round");
+                var lodash_round = round;
+                var defaultCurrency = "CNY";
+                var defaultCurrencyDigit = 2;
+                var defaultPresentDigit = 2;
+                var standardFormatMap = {
+                    amount: {
+                        value: "amount",
+                        decimalSymbol: ".",
+                        groupSymbol: ",",
+                        format: "amount"
+                    },
+                    amount_no_decimals: {
+                        value: "amount_no_decimals",
+                        decimalSymbol: "",
+                        groupSymbol: ",",
+                        format: "amount_no_decimals"
+                    },
+                    amount_with_comma_separator: {
+                        value: "amount_with_comma_separator",
+                        decimalSymbol: ",",
+                        groupSymbol: ".",
+                        format: "amount_with_comma_separator"
+                    },
+                    amount_no_decimals_with_comma_separator: {
+                        value: "amount_no_decimals_with_comma_separator",
+                        decimalSymbol: "",
+                        groupSymbol: ".",
+                        format: "amount_no_decimals_with_comma_separator"
+                    },
+                    amount_with_apostrophe_separator: {
+                        value: "amount_with_apostrophe_separator",
+                        decimalSymbol: ".",
+                        groupSymbol: "'",
+                        format: "amount_with_apostrophe_separator"
+                    },
+                    amount_no_decimals_with_space_separator: {
+                        value: "amount_no_decimals_with_space_separator",
+                        decimalSymbol: "",
+                        groupSymbol: " ",
+                        format: "amount_no_decimals_with_space_separator"
+                    },
+                    amount_with_space_separator: {
+                        value: "amount_with_space_separator",
+                        decimalSymbol: ",",
+                        groupSymbol: " ",
+                        format: "amount_with_space_separator"
+                    }
+                };
+                var CUSTOM_FORMAT_REGEX = /.*\{\{(.*)\}\}/;
+                var ORIGIN_FORMAT_REGEX = /(\{\{.*\}\})/;
+                var DEFAULT_FORMAT = "{{amount}}";
+                var defaultFormatStr = "amount";
+                var SymbolOrderEnum;
+                (function(SymbolOrderEnum) {
+                    SymbolOrderEnum["PREFIX"] = "prefix";
+                    SymbolOrderEnum["SUFFIX"] = "suffix";
+                })(SymbolOrderEnum || (SymbolOrderEnum = {}));
+                function isNodeEnv() {
+                    return "[object process]" === Object.prototype.toString.call("undefined" !== typeof process ? process : 0);
+                }
+                function formatNumberByGroupSymbol(num, symbol) {
+                    return "".concat(num || 0).replace(/(\d)(?=(?:\d{3})+$)/g, "$1".concat(symbol));
+                }
+                function parseIntegerAndFractionPartByStr(originValue, precision, decimalSymbol) {
+                    var value = lodash_round(originValue, precision);
+                    var integerPart;
+                    var fractionPart;
+                    if (0 === precision || !decimalSymbol) {
+                        integerPart = lodash_round(value);
+                        fractionPart = "";
+                    } else {
+                        integerPart = Math.floor(value);
+                        fractionPart = "".concat(lodash_round(value - integerPart, precision)).replace(/^0?\.?/, "").padEnd(precision, "0");
+                    }
+                    return {
+                        integerPart,
+                        fractionPart
+                    };
+                }
+                var storeCurrency;
+                var defaultToCurrency;
+                var currencyRates;
+                var currencyConfig;
+                var standardFormatMapValue = Object.entries(standardFormatMap).map((function(_ref) {
+                    var _ref2 = _slicedToArray(_ref, 2), value = _ref2[1];
+                    return value.value;
+                }));
+                var currencyPrecisionsMap = new Map;
+                var currencySymbolsMap = new Map;
+                var currencyCustomFormatWithoutCurrencyMap = new Map;
+                var currencyCustomFormatWithCurrencyMap = new Map;
+                var currencyDefaultFormatWithoutCurrencyMap = new Map;
+                var currencyDefaultFormatWithCurrencyMap = new Map;
+                var currencySymbolOrderMap = new Map;
+                var currencyDecimalSymbolsMap = new Map;
+                var currencyGroupSymbolsMap = new Map;
+                var reset = function() {
+                    currencyPrecisionsMap.clear();
+                    currencySymbolsMap.clear();
+                    currencyCustomFormatWithoutCurrencyMap.clear();
+                    currencyCustomFormatWithCurrencyMap.clear();
+                    currencyDefaultFormatWithoutCurrencyMap.clear();
+                    currencyDefaultFormatWithCurrencyMap.clear();
+                    currencySymbolOrderMap.clear();
+                    currencyDecimalSymbolsMap.clear();
+                    currencyGroupSymbolsMap.clear();
+                };
+                var setStoreCurrency = function(code) {
+                    storeCurrency = code;
+                };
+                var getStoreCurrency = function() {
+                    return storeCurrency;
+                };
+                var setCurrencyRates = function(rates) {
+                    currencyRates = rates;
+                };
+                var getCurrencyRates = function() {
+                    return currencyRates;
+                };
+                var setDefaultToCurrency = function(code) {
+                    defaultToCurrency = code;
+                };
+                var getDefaultToCurrency = function() {
+                    return defaultToCurrency;
+                };
+                var setCurrencyConfig = function(config) {
+                    currencyConfig = config;
+                    var ratesData = {};
+                    currencyConfig.forEach((function(config) {
+                        ratesData[config.currencyCode] = config.exchangeRate;
+                    }));
+                    setCurrencyRates(ratesData);
+                    if (isNodeEnv()) reset();
+                };
+                var getCurrencyConfig = function() {
+                    return currencyConfig;
+                };
+                var getCurrencyConfigByCode = function(code) {
+                    return getCurrencyConfig().find((function(item) {
+                        return item.currencyCode === code;
+                    }));
+                };
+                var isStandardFormatMapKeyType = function(x) {
+                    return standardFormatMapValue.includes(x || "");
+                };
+                var commonFormatParse = function(config) {
+                    var format = config.match(CUSTOM_FORMAT_REGEX);
+                    if (format && format.length) {
+                        var customString = (format[1] || "").trim();
+                        if (!isStandardFormatMapKeyType(customString)) return null;
+                        return standardFormatMap[customString];
+                    }
+                    return null;
+                };
+                var parseCustomFormat = function(code, config, withCurrency) {
+                    var _map$get;
+                    var map = withCurrency ? currencyDefaultFormatWithCurrencyMap : currencyDefaultFormatWithoutCurrencyMap;
+                    var format = commonFormatParse(config);
+                    var finalFormat = null === (_map$get = map.get(code)) || void 0 === _map$get ? void 0 : _map$get.format;
+                    if (format) return format;
+                    if (isStandardFormatMapKeyType(finalFormat)) return standardFormatMap[finalFormat];
+                    return standardFormatMap[defaultFormatStr];
+                };
+                var parseDefaultFormat = function(config) {
+                    return commonFormatParse(config) || standardFormatMap[defaultFormatStr];
+                };
+                var parsePrecision = function(code, precision) {
+                    currencyPrecisionsMap.set(code, precision);
+                };
+                var parseCurrencySymbol = function(code, currencySymbol) {
+                    currencySymbolsMap.set(code, currencySymbol);
+                };
+                var getOriginalFormatConfig = function(config, code, withCurrency) {
+                    var _format$, _get;
+                    var format = config.match(CUSTOM_FORMAT_REGEX);
+                    if (null !== format && void 0 !== format && format.length && standardFormatMapValue.includes((null === format || void 0 === format ? void 0 : null === (_format$ = format[1]) || void 0 === _format$ ? void 0 : _format$.trim()) || "")) return config;
+                    return (null === (_get = (withCurrency ? currencyDefaultFormatWithCurrencyMap : currencyDefaultFormatWithoutCurrencyMap).get(code)) || void 0 === _get ? void 0 : _get.origin) || DEFAULT_FORMAT;
+                };
+                var parseDefaultFormatWithoutCurrency = function(code, config) {
+                    var _parseDefaultFormat = parseDefaultFormat(config), format = _parseDefaultFormat.format;
+                    currencyDefaultFormatWithoutCurrencyMap.set(code, {
+                        format,
+                        origin: config
+                    });
+                };
+                var parseDefaultFormatWithCurrency = function(code, config) {
+                    var _parseDefaultFormat2 = parseDefaultFormat(config), format = _parseDefaultFormat2.format;
+                    currencyDefaultFormatWithCurrencyMap.set(code, {
+                        format,
+                        origin: config
+                    });
+                };
+                var parseCustomFormatWithoutCurrency = function(code, config) {
+                    var _parseCustomFormat = parseCustomFormat(code, config, false), format = _parseCustomFormat.format, decimalSymbol = _parseCustomFormat.decimalSymbol, groupSymbol = _parseCustomFormat.groupSymbol;
+                    currencyDecimalSymbolsMap.set(code, decimalSymbol);
+                    currencyGroupSymbolsMap.set(code, groupSymbol);
+                    currencyCustomFormatWithoutCurrencyMap.set(code, {
+                        format,
+                        origin: getOriginalFormatConfig(config, code, false)
+                    });
+                };
+                var parseCustomFormatWithCurrency = function(code, config) {
+                    var _parseCustomFormat2 = parseCustomFormat(code, config, true), format = _parseCustomFormat2.format, decimalSymbol = _parseCustomFormat2.decimalSymbol, groupSymbol = _parseCustomFormat2.groupSymbol;
+                    currencyDecimalSymbolsMap.set(code, decimalSymbol);
+                    currencyGroupSymbolsMap.set(code, groupSymbol);
+                    currencyCustomFormatWithCurrencyMap.set(code, {
+                        format,
+                        origin: getOriginalFormatConfig(config, code, true)
+                    });
+                };
+                var parseCurrencySymbolOrder = function(code, config) {
+                    if (!config) {
+                        console.error("".concat(code, "无对应的messageWithoutDefaultCurrency配置"));
+                        return;
+                    }
+                    if ((null === config || void 0 === config ? void 0 : config.trimStart().indexOf("{{")) > 0) currencySymbolOrderMap.set(code, SymbolOrderEnum.PREFIX); else currencySymbolOrderMap.set(code, SymbolOrderEnum.SUFFIX);
+                };
+                var parseCurrencyConfig = function(code) {
+                    var config = getCurrencyConfigByCode(code);
+                    if (!config) {
+                        console.error("获取".concat(code, "对应的货币配置失败"));
+                        return;
+                    }
+                    var messageWithoutDefaultCurrency = config.messageWithoutDefaultCurrency, messageWithCurrency = config.messageWithCurrency, messageWithoutCurrency = config.messageWithoutCurrency, messageWithDefaultCurrency = config.messageWithDefaultCurrency, currencyCode = config.currencyCode, _config$rate = config.rate, rate = void 0 === _config$rate ? defaultCurrencyDigit : _config$rate, currencySymbol = config.currencySymbol;
+                    parsePrecision(currencyCode, rate);
+                    parseCurrencySymbol(currencyCode, currencySymbol);
+                    parseCurrencySymbolOrder(currencyCode, messageWithoutDefaultCurrency);
+                    parseDefaultFormatWithoutCurrency(currencyCode, messageWithoutDefaultCurrency);
+                    parseDefaultFormatWithCurrency(currencyCode, messageWithDefaultCurrency);
+                    parseCustomFormatWithoutCurrency(currencyCode, messageWithoutCurrency);
+                    parseCustomFormatWithCurrency(currencyCode, messageWithCurrency);
+                };
+                var combineFormatPart = function() {
+                    var str = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                    var originFormat = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "";
+                    return originFormat.replace(ORIGIN_FORMAT_REGEX, str);
+                };
+                var parseNumberByFormatStr = function(value, formatStr, precision) {
+                    var _standardFormatMap$fo = standardFormatMap[formatStr], groupSymbol = _standardFormatMap$fo.groupSymbol, decimalSymbol = _standardFormatMap$fo.decimalSymbol;
+                    var isNegative = value < 0;
+                    var _parseIntegerAndFract = parseIntegerAndFractionPartByStr(isNegative ? -value : value, precision, decimalSymbol), fractionPart = _parseIntegerAndFract.fractionPart, integerPart = _parseIntegerAndFract.integerPart;
+                    var integerPartWithGroupSymbol = formatNumberByGroupSymbol(integerPart, groupSymbol);
+                    return {
+                        integer: "".concat(isNegative ? "-" : "").concat(integerPartWithGroupSymbol),
+                        fraction: fractionPart,
+                        groupSymbol,
+                        decimalSymbol
+                    };
+                };
+                var getFormatParts = function(value, options) {
+                    var code = (null === options || void 0 === options ? void 0 : options.code) || storeCurrency || defaultCurrency;
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    var group = getGroupSymbolByCode(code);
+                    var decimal = getDecimalSymbolByCode(code);
+                    var symbol = getSymbolByCode(code);
+                    var symbolOrder = getSymbolOrderByCode(code);
+                    var _ref3 = currencyCustomFormatWithoutCurrencyMap.get(code) || {}, format = _ref3.format;
+                    var finalFormat = isStandardFormatMapKeyType(format) ? format : defaultFormatStr;
+                    var _parseNumberByFormatS = parseNumberByFormatStr(value, finalFormat, defaultCurrencyDigit), integer = _parseNumberByFormatS.integer, fraction = _parseNumberByFormatS.fraction;
+                    var rst = [];
+                    var integerArr = (null === integer || void 0 === integer ? void 0 : integer.split(group)) || [];
+                    integerArr.forEach((function(item, index) {
+                        rst.push({
+                            type: "integer",
+                            value: item
+                        });
+                        if (index !== integerArr.length - 1) rst.push({
+                            type: "group",
+                            value: group
+                        });
+                    }));
+                    rst.push({
+                        type: "decimal",
+                        value: decimal
+                    });
+                    rst.push({
+                        type: "fraction",
+                        value: null === fraction || void 0 === fraction ? void 0 : fraction.trim()
+                    });
+                    if ("prefix" === symbolOrder) rst.unshift({
+                        type: "currency",
+                        value: symbol
+                    }); else rst.push({
+                        type: "currency",
+                        value: symbol
+                    });
+                    return rst;
+                };
+                var convertCalc = function(value) {
+                    var _rates$to, _rates$from;
+                    var from = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : defaultCurrency;
+                    var to = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : defaultToCurrency;
+                    var ratesData = arguments.length > 3 ? arguments[3] : void 0;
+                    var rates = ratesData || getCurrencyRates();
+                    if (from === to) return value;
+                    return value * (null !== (_rates$to = null === rates || void 0 === rates ? void 0 : rates[to]) && void 0 !== _rates$to ? _rates$to : 1) / (null !== (_rates$from = null === rates || void 0 === rates ? void 0 : rates[from]) && void 0 !== _rates$from ? _rates$from : 1);
+                };
+                var commonConvertFormat = function(value, withCurrency, options) {
+                    var map = withCurrency ? currencyCustomFormatWithCurrencyMap : currencyCustomFormatWithoutCurrencyMap;
+                    var formatFn = withCurrency ? format : formatWithoutCurrency;
+                    var _ref4 = options || {}, _ref4$from = _ref4.from, from = void 0 === _ref4$from ? storeCurrency : _ref4$from, _ref4$to = _ref4.to, to = void 0 === _ref4$to ? defaultToCurrency : _ref4$to, rates = _ref4.currencyRates;
+                    if (!map.get(from)) parseCurrencyConfig(from);
+                    if (!map.get(to)) parseCurrencyConfig(to);
+                    var rateData = rates || getCurrencyRates();
+                    var rst = convertCalc(value, from, to, rateData);
+                    return formatFn(rst, {
+                        code: to
+                    });
+                };
+                var convertFormat = function(value, options) {
+                    return commonConvertFormat(value, true, options);
+                };
+                var convertFormatWithoutCurrency = function(value, options) {
+                    return commonConvertFormat(value, false, options);
+                };
+                var commonFormat = function(value) {
+                    var _options$digits;
+                    var withCurrency = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : true;
+                    var options = arguments.length > 2 ? arguments[2] : void 0;
+                    var map = withCurrency ? currencyCustomFormatWithCurrencyMap : currencyCustomFormatWithoutCurrencyMap;
+                    var code = (null === options || void 0 === options ? void 0 : options.code) || storeCurrency || defaultCurrency;
+                    if (!map.get(code)) parseCurrencyConfig(code);
+                    var _ref5 = map.get(code) || {}, format = _ref5.format, origin = _ref5.origin;
+                    var precision = null !== (_options$digits = null === options || void 0 === options ? void 0 : options.digits) && void 0 !== _options$digits ? _options$digits : defaultCurrencyDigit;
+                    var finalFormat = isStandardFormatMapKeyType(format) ? format : defaultFormatStr;
+                    var _parseNumberByFormatS2 = parseNumberByFormatStr(value / Math.pow(10, precision), finalFormat, precision), integer = _parseNumberByFormatS2.integer, fraction = _parseNumberByFormatS2.fraction, decimalSymbol = _parseNumberByFormatS2.decimalSymbol;
+                    var str;
+                    if (decimalSymbol && precision) str = "".concat(integer).concat(decimalSymbol).concat(null !== fraction && void 0 !== fraction ? fraction : ""); else str = integer;
+                    var res = combineFormatPart(str, origin);
+                    return res;
+                };
+                var format = function(value, options) {
+                    return commonFormat(value, true, options);
+                };
+                var formatWithoutCurrency = function(value, options) {
+                    return commonFormat(value, false, options);
+                };
+                var formatMoneyWithoutCurrency = function(value, options) {
+                    var map = currencyCustomFormatWithoutCurrencyMap;
+                    var code = (null === options || void 0 === options ? void 0 : options.code) || storeCurrency || defaultCurrency;
+                    if (!map.get(code)) parseCurrencyConfig(code);
+                    var _ref6 = map.get(code) || {}, format = _ref6.format;
+                    var finalFormat = isStandardFormatMapKeyType(format) ? format : defaultFormatStr;
+                    var precision = defaultCurrencyDigit;
+                    var _parseNumberByFormatS3 = parseNumberByFormatStr(value / Math.pow(10, precision), finalFormat, precision), integer = _parseNumberByFormatS3.integer, fraction = _parseNumberByFormatS3.fraction, decimalSymbol = _parseNumberByFormatS3.decimalSymbol;
+                    var str;
+                    if (decimalSymbol && precision) str = "".concat(integer).concat(decimalSymbol).concat(null !== fraction && void 0 !== fraction ? fraction : ""); else str = integer;
+                    return str;
+                };
+                var getDigitsByCode = function(code) {
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencyPrecisionsMap.get(code);
+                };
+                var getSymbolByCode = function(code) {
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencySymbolsMap.get(code);
+                };
+                var getSymbolOrderByCode = function() {
+                    var code = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : defaultCurrency;
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencySymbolOrderMap.get(code);
+                };
+                var formatNumber = function(value) {
+                    var decimalDigits = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : defaultCurrencyDigit;
+                    var v = "number" !== typeof value ? Number(value) : value;
+                    return v / Math.pow(10, decimalDigits);
+                };
+                var unformatNumber = function(value) {
+                    var decimalDigits = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : defaultCurrencyDigit;
+                    var v = lodash_round(("number" !== typeof value ? Number(value) : value) * Math.pow(10, decimalDigits), 0);
+                    return v;
+                };
+                var formatCurrency = function(value) {
+                    return formatNumber(value, defaultCurrencyDigit);
+                };
+                var unformatCurrency = function(value) {
+                    return unformatNumber(value, defaultCurrencyDigit);
+                };
+                var formatPercent = function(value) {
+                    return formatNumber(value, defaultPresentDigit);
+                };
+                var unformatPercent = function(value) {
+                    return unformatNumber(value, defaultPresentDigit);
+                };
+                var getDecimalSymbolByCode = function(code) {
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencyDecimalSymbolsMap.get(code);
+                };
+                var getGroupSymbolByCode = function(code) {
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencyGroupSymbolsMap.get(code);
+                };
+                var getConvertPrice = function(value, options) {
+                    var _ref7 = options || {}, from = _ref7.from, code = _ref7.code, to = _ref7.to, rates = _ref7.currencyRates;
+                    var fromCurrencyCode = from || storeCurrency || defaultCurrency;
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(fromCurrencyCode)) parseCurrencyConfig(fromCurrencyCode);
+                    var toCurrencyCode = to || code || defaultToCurrency;
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(toCurrencyCode)) parseCurrencyConfig(toCurrencyCode);
+                    var fromPrice = formatNumber(value);
+                    var toPrice = convertCalc(fromPrice, fromCurrencyCode, toCurrencyCode, rates || currencyRates);
+                    var formatPartsResult = getFormatParts(toPrice, {
+                        code: toCurrencyCode
+                    });
+                    var convertResult = {
+                        group: "",
+                        integer: "",
+                        decimal: "",
+                        fraction: "",
+                        symbolOrder: "",
+                        currencySymbol: ""
+                    };
+                    convertResult.symbolOrder = getSymbolOrderByCode(toCurrencyCode);
+                    formatPartsResult.forEach((function(item) {
+                        var value = item.value || "";
+                        if ("currency" === (null === item || void 0 === item ? void 0 : item.type)) convertResult.currencySymbol = value;
+                        if ("integer" === (null === item || void 0 === item ? void 0 : item.type)) if (convertResult.integer) convertResult.integer = "".concat(convertResult.integer).concat(convertResult.group || "").concat(value); else convertResult.integer = value;
+                        if ("group" === (null === item || void 0 === item ? void 0 : item.type)) convertResult.group = value;
+                        if ("decimal" === (null === item || void 0 === item ? void 0 : item.type)) convertResult.decimal = value;
+                        if ("fraction" === (null === item || void 0 === item ? void 0 : item.type)) convertResult.fraction = value;
+                    }));
+                    return convertResult;
+                };
+                exports.convertCalc = convertCalc;
+                exports.convertFormat = convertFormat;
+                exports.convertFormatWithoutCurrency = convertFormatWithoutCurrency;
+                exports.covertCalc = convertCalc;
+                exports.defaultCurrency = defaultCurrency;
+                exports.defaultCurrencyDigit = defaultCurrencyDigit;
+                exports.defaultPresentDigit = defaultPresentDigit;
+                exports.format = format;
+                exports.formatCurrency = formatCurrency;
+                exports.formatMoneyWithoutCurrency = formatMoneyWithoutCurrency;
+                exports.formatNumber = formatNumber;
+                exports.formatPercent = formatPercent;
+                exports.formatWithoutCurrency = formatWithoutCurrency;
+                exports.getConvertPrice = getConvertPrice;
+                exports.getCurrencyConfig = getCurrencyConfig;
+                exports.getCurrencyRates = getCurrencyRates;
+                exports.getDecimalSymbolByCode = getDecimalSymbolByCode;
+                exports.getDefaultToCurrency = getDefaultToCurrency;
+                exports.getDigitsByCode = getDigitsByCode;
+                exports.getFormatParts = getFormatParts;
+                exports.getGroupSymbolByCode = getGroupSymbolByCode;
+                exports.getStoreCurrency = getStoreCurrency;
+                exports.getSymbolByCode = getSymbolByCode;
+                exports.getSymbolOrderByCode = getSymbolOrderByCode;
+                exports.parseCustomFormat = parseCustomFormat;
+                exports.parseCustomFormatWithCurrency = parseCustomFormatWithCurrency;
+                exports.parseCustomFormatWithoutCurrency = parseCustomFormatWithoutCurrency;
+                exports.parseDefaultFormat = parseDefaultFormat;
+                exports.parseDefaultFormatWithCurrency = parseDefaultFormatWithCurrency;
+                exports.parseDefaultFormatWithoutCurrency = parseDefaultFormatWithoutCurrency;
+                exports.setCurrencyConfig = setCurrencyConfig;
+                exports.setCurrencyRates = setCurrencyRates;
+                exports.setDefaultToCurrency = setDefaultToCurrency;
+                exports.setStoreCurrency = setStoreCurrency;
+                exports.unformatCurrency = unformatCurrency;
+                exports.unformatNumber = unformatNumber;
+                exports.unformatPercent = unformatPercent;
+                Object.defineProperty(exports, "__esModule", {
+                    value: true
+                });
+            }));
+        },
         "./node_modules/dayjs/dayjs.min.js": function(module) {
             !function(t, e) {
                 true ? module.exports = e() : 0;
@@ -2231,6 +2820,147 @@
                     return customDecodeURIComponent(encodedURI);
                 }
             };
+        },
+        "./node_modules/eventemitter3/index.js": module => {
+            "use strict";
+            var has = Object.prototype.hasOwnProperty, prefix = "~";
+            function Events() {}
+            if (Object.create) {
+                Events.prototype = Object.create(null);
+                if (!(new Events).__proto__) prefix = false;
+            }
+            function EE(fn, context, once) {
+                this.fn = fn;
+                this.context = context;
+                this.once = once || false;
+            }
+            function addListener(emitter, event, fn, context, once) {
+                if ("function" !== typeof fn) throw new TypeError("The listener must be a function");
+                var listener = new EE(fn, context || emitter, once), evt = prefix ? prefix + event : event;
+                if (!emitter._events[evt]) emitter._events[evt] = listener, emitter._eventsCount++; else if (!emitter._events[evt].fn) emitter._events[evt].push(listener); else emitter._events[evt] = [ emitter._events[evt], listener ];
+                return emitter;
+            }
+            function clearEvent(emitter, evt) {
+                if (0 === --emitter._eventsCount) emitter._events = new Events; else delete emitter._events[evt];
+            }
+            function EventEmitter() {
+                this._events = new Events;
+                this._eventsCount = 0;
+            }
+            EventEmitter.prototype.eventNames = function() {
+                var events, name, names = [];
+                if (0 === this._eventsCount) return names;
+                for (name in events = this._events) if (has.call(events, name)) names.push(prefix ? name.slice(1) : name);
+                if (Object.getOwnPropertySymbols) return names.concat(Object.getOwnPropertySymbols(events));
+                return names;
+            };
+            EventEmitter.prototype.listeners = function(event) {
+                var evt = prefix ? prefix + event : event, handlers = this._events[evt];
+                if (!handlers) return [];
+                if (handlers.fn) return [ handlers.fn ];
+                for (var i = 0, l = handlers.length, ee = new Array(l); i < l; i++) ee[i] = handlers[i].fn;
+                return ee;
+            };
+            EventEmitter.prototype.listenerCount = function(event) {
+                var evt = prefix ? prefix + event : event, listeners = this._events[evt];
+                if (!listeners) return 0;
+                if (listeners.fn) return 1;
+                return listeners.length;
+            };
+            EventEmitter.prototype.emit = function(event, a1, a2, a3, a4, a5) {
+                var evt = prefix ? prefix + event : event;
+                if (!this._events[evt]) return false;
+                var args, i, listeners = this._events[evt], len = arguments.length;
+                if (listeners.fn) {
+                    if (listeners.once) this.removeListener(event, listeners.fn, void 0, true);
+                    switch (len) {
+                      case 1:
+                        return listeners.fn.call(listeners.context), true;
+
+                      case 2:
+                        return listeners.fn.call(listeners.context, a1), true;
+
+                      case 3:
+                        return listeners.fn.call(listeners.context, a1, a2), true;
+
+                      case 4:
+                        return listeners.fn.call(listeners.context, a1, a2, a3), true;
+
+                      case 5:
+                        return listeners.fn.call(listeners.context, a1, a2, a3, a4), true;
+
+                      case 6:
+                        return listeners.fn.call(listeners.context, a1, a2, a3, a4, a5), true;
+                    }
+                    for (i = 1, args = new Array(len - 1); i < len; i++) args[i - 1] = arguments[i];
+                    listeners.fn.apply(listeners.context, args);
+                } else {
+                    var j, length = listeners.length;
+                    for (i = 0; i < length; i++) {
+                        if (listeners[i].once) this.removeListener(event, listeners[i].fn, void 0, true);
+                        switch (len) {
+                          case 1:
+                            listeners[i].fn.call(listeners[i].context);
+                            break;
+
+                          case 2:
+                            listeners[i].fn.call(listeners[i].context, a1);
+                            break;
+
+                          case 3:
+                            listeners[i].fn.call(listeners[i].context, a1, a2);
+                            break;
+
+                          case 4:
+                            listeners[i].fn.call(listeners[i].context, a1, a2, a3);
+                            break;
+
+                          default:
+                            if (!args) for (j = 1, args = new Array(len - 1); j < len; j++) args[j - 1] = arguments[j];
+                            listeners[i].fn.apply(listeners[i].context, args);
+                        }
+                    }
+                }
+                return true;
+            };
+            EventEmitter.prototype.on = function(event, fn, context) {
+                return addListener(this, event, fn, context, false);
+            };
+            EventEmitter.prototype.once = function(event, fn, context) {
+                return addListener(this, event, fn, context, true);
+            };
+            EventEmitter.prototype.removeListener = function(event, fn, context, once) {
+                var evt = prefix ? prefix + event : event;
+                if (!this._events[evt]) return this;
+                if (!fn) {
+                    clearEvent(this, evt);
+                    return this;
+                }
+                var listeners = this._events[evt];
+                if (listeners.fn) {
+                    if (listeners.fn === fn && (!once || listeners.once) && (!context || listeners.context === context)) clearEvent(this, evt);
+                } else {
+                    for (var i = 0, events = [], length = listeners.length; i < length; i++) if (listeners[i].fn !== fn || once && !listeners[i].once || context && listeners[i].context !== context) events.push(listeners[i]);
+                    if (events.length) this._events[evt] = 1 === events.length ? events[0] : events; else clearEvent(this, evt);
+                }
+                return this;
+            };
+            EventEmitter.prototype.removeAllListeners = function(event) {
+                var evt;
+                if (event) {
+                    evt = prefix ? prefix + event : event;
+                    if (this._events[evt]) clearEvent(this, evt);
+                } else {
+                    this._events = new Events;
+                    this._eventsCount = 0;
+                }
+                return this;
+            };
+            EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
+            EventEmitter.prototype.addListener = EventEmitter.prototype.on;
+            EventEmitter.prefixed = prefix;
+            EventEmitter.EventEmitter = EventEmitter;
+            if (true) module.exports = EventEmitter;
         },
         "./node_modules/filter-obj/index.js": module => {
             "use strict";
@@ -10579,6 +11309,595 @@
                 });
             }));
         },
+        "../shared/browser/node_modules/@sl/currency-tools-core/lib/index.js": function(__unused_webpack_module, exports, __webpack_require__) {
+            (function(global, factory) {
+                true ? factory(exports) : 0;
+            })(0, (function(exports) {
+                "use strict";
+                function _slicedToArray(arr, i) {
+                    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+                }
+                function _arrayWithHoles(arr) {
+                    if (Array.isArray(arr)) return arr;
+                }
+                function _iterableToArrayLimit(arr, i) {
+                    var _i = null == arr ? null : "undefined" !== typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+                    if (null == _i) return;
+                    var _arr = [];
+                    var _n = true;
+                    var _d = false;
+                    var _s, _e;
+                    try {
+                        for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+                            _arr.push(_s.value);
+                            if (i && _arr.length === i) break;
+                        }
+                    } catch (err) {
+                        _d = true;
+                        _e = err;
+                    } finally {
+                        try {
+                            if (!_n && null != _i["return"]) _i["return"]();
+                        } finally {
+                            if (_d) throw _e;
+                        }
+                    }
+                    return _arr;
+                }
+                function _unsupportedIterableToArray(o, minLen) {
+                    if (!o) return;
+                    if ("string" === typeof o) return _arrayLikeToArray(o, minLen);
+                    var n = Object.prototype.toString.call(o).slice(8, -1);
+                    if ("Object" === n && o.constructor) n = o.constructor.name;
+                    if ("Map" === n || "Set" === n) return Array.from(o);
+                    if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+                }
+                function _arrayLikeToArray(arr, len) {
+                    if (null == len || len > arr.length) len = arr.length;
+                    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+                    return arr2;
+                }
+                function _nonIterableRest() {
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+                }
+                var commonjsGlobal = "undefined" !== typeof globalThis ? globalThis : "undefined" !== typeof window ? window : "undefined" !== typeof __webpack_require__.g ? __webpack_require__.g : "undefined" !== typeof self ? self : {};
+                var INFINITY = 1 / 0, MAX_INTEGER = 17976931348623157e292, NAN = 0 / 0;
+                var symbolTag = "[object Symbol]";
+                var reTrim = /^\s+|\s+$/g;
+                var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+                var reIsBinary = /^0b[01]+$/i;
+                var reIsOctal = /^0o[0-7]+$/i;
+                var freeParseInt = parseInt;
+                var freeGlobal = "object" == typeof commonjsGlobal && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+                var freeSelf = "object" == typeof self && self && self.Object === Object && self;
+                var root = freeGlobal || freeSelf || Function("return this")();
+                var objectProto = Object.prototype;
+                var objectToString = objectProto.toString;
+                var Symbol$1 = root.Symbol;
+                var nativeMin = Math.min;
+                var symbolProto = Symbol$1 ? Symbol$1.prototype : void 0, symbolToString = symbolProto ? symbolProto.toString : void 0;
+                function baseToString(value) {
+                    if ("string" == typeof value) return value;
+                    if (isSymbol(value)) return symbolToString ? symbolToString.call(value) : "";
+                    var result = value + "";
+                    return "0" == result && 1 / value == -INFINITY ? "-0" : result;
+                }
+                function createRound(methodName) {
+                    var func = Math[methodName];
+                    return function(number, precision) {
+                        number = toNumber(number);
+                        precision = nativeMin(toInteger(precision), 292);
+                        if (precision) {
+                            var pair = (toString(number) + "e").split("e"), value = func(pair[0] + "e" + (+pair[1] + precision));
+                            pair = (toString(value) + "e").split("e");
+                            return +(pair[0] + "e" + (+pair[1] - precision));
+                        }
+                        return func(number);
+                    };
+                }
+                function isObject(value) {
+                    var type = typeof value;
+                    return !!value && ("object" == type || "function" == type);
+                }
+                function isObjectLike(value) {
+                    return !!value && "object" == typeof value;
+                }
+                function isSymbol(value) {
+                    return "symbol" == typeof value || isObjectLike(value) && objectToString.call(value) == symbolTag;
+                }
+                function toFinite(value) {
+                    if (!value) return 0 === value ? value : 0;
+                    value = toNumber(value);
+                    if (value === INFINITY || value === -INFINITY) {
+                        var sign = value < 0 ? -1 : 1;
+                        return sign * MAX_INTEGER;
+                    }
+                    return value === value ? value : 0;
+                }
+                function toInteger(value) {
+                    var result = toFinite(value), remainder = result % 1;
+                    return result === result ? remainder ? result - remainder : result : 0;
+                }
+                function toNumber(value) {
+                    if ("number" == typeof value) return value;
+                    if (isSymbol(value)) return NAN;
+                    if (isObject(value)) {
+                        var other = "function" == typeof value.valueOf ? value.valueOf() : value;
+                        value = isObject(other) ? other + "" : other;
+                    }
+                    if ("string" != typeof value) return 0 === value ? value : +value;
+                    value = value.replace(reTrim, "");
+                    var isBinary = reIsBinary.test(value);
+                    return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+                }
+                function toString(value) {
+                    return null == value ? "" : baseToString(value);
+                }
+                var round = createRound("round");
+                var lodash_round = round;
+                var defaultCurrency = "CNY";
+                var defaultCurrencyDigit = 2;
+                var defaultPresentDigit = 2;
+                var standardFormatMap = {
+                    amount: {
+                        value: "amount",
+                        decimalSymbol: ".",
+                        groupSymbol: ",",
+                        format: "amount"
+                    },
+                    amount_no_decimals: {
+                        value: "amount_no_decimals",
+                        decimalSymbol: "",
+                        groupSymbol: ",",
+                        format: "amount_no_decimals"
+                    },
+                    amount_with_comma_separator: {
+                        value: "amount_with_comma_separator",
+                        decimalSymbol: ",",
+                        groupSymbol: ".",
+                        format: "amount_with_comma_separator"
+                    },
+                    amount_no_decimals_with_comma_separator: {
+                        value: "amount_no_decimals_with_comma_separator",
+                        decimalSymbol: "",
+                        groupSymbol: ".",
+                        format: "amount_no_decimals_with_comma_separator"
+                    },
+                    amount_with_apostrophe_separator: {
+                        value: "amount_with_apostrophe_separator",
+                        decimalSymbol: ".",
+                        groupSymbol: "'",
+                        format: "amount_with_apostrophe_separator"
+                    },
+                    amount_no_decimals_with_space_separator: {
+                        value: "amount_no_decimals_with_space_separator",
+                        decimalSymbol: "",
+                        groupSymbol: " ",
+                        format: "amount_no_decimals_with_space_separator"
+                    },
+                    amount_with_space_separator: {
+                        value: "amount_with_space_separator",
+                        decimalSymbol: ",",
+                        groupSymbol: " ",
+                        format: "amount_with_space_separator"
+                    }
+                };
+                var CUSTOM_FORMAT_REGEX = /.*\{\{(.*)\}\}/;
+                var ORIGIN_FORMAT_REGEX = /(\{\{.*\}\})/;
+                var DEFAULT_FORMAT = "{{amount}}";
+                var defaultFormatStr = "amount";
+                var SymbolOrderEnum;
+                (function(SymbolOrderEnum) {
+                    SymbolOrderEnum["PREFIX"] = "prefix";
+                    SymbolOrderEnum["SUFFIX"] = "suffix";
+                })(SymbolOrderEnum || (SymbolOrderEnum = {}));
+                function isNodeEnv() {
+                    return "[object process]" === Object.prototype.toString.call("undefined" !== typeof process ? process : 0);
+                }
+                function formatNumberByGroupSymbol(num, symbol) {
+                    return "".concat(num || 0).replace(/(\d)(?=(?:\d{3})+$)/g, "$1".concat(symbol));
+                }
+                function parseIntegerAndFractionPartByStr(originValue, precision, decimalSymbol) {
+                    var value = lodash_round(originValue, precision);
+                    var integerPart;
+                    var fractionPart;
+                    if (0 === precision || !decimalSymbol) {
+                        integerPart = lodash_round(value);
+                        fractionPart = "";
+                    } else {
+                        integerPart = Math.floor(value);
+                        fractionPart = "".concat(lodash_round(value - integerPart, precision)).replace(/^0?\.?/, "").padEnd(precision, "0");
+                    }
+                    return {
+                        integerPart,
+                        fractionPart
+                    };
+                }
+                var storeCurrency;
+                var defaultToCurrency;
+                var currencyRates;
+                var currencyConfig;
+                var standardFormatMapValue = Object.entries(standardFormatMap).map((function(_ref) {
+                    var _ref2 = _slicedToArray(_ref, 2), value = _ref2[1];
+                    return value.value;
+                }));
+                var currencyPrecisionsMap = new Map;
+                var currencySymbolsMap = new Map;
+                var currencyCustomFormatWithoutCurrencyMap = new Map;
+                var currencyCustomFormatWithCurrencyMap = new Map;
+                var currencyDefaultFormatWithoutCurrencyMap = new Map;
+                var currencyDefaultFormatWithCurrencyMap = new Map;
+                var currencySymbolOrderMap = new Map;
+                var currencyDecimalSymbolsMap = new Map;
+                var currencyGroupSymbolsMap = new Map;
+                var reset = function() {
+                    currencyPrecisionsMap.clear();
+                    currencySymbolsMap.clear();
+                    currencyCustomFormatWithoutCurrencyMap.clear();
+                    currencyCustomFormatWithCurrencyMap.clear();
+                    currencyDefaultFormatWithoutCurrencyMap.clear();
+                    currencyDefaultFormatWithCurrencyMap.clear();
+                    currencySymbolOrderMap.clear();
+                    currencyDecimalSymbolsMap.clear();
+                    currencyGroupSymbolsMap.clear();
+                };
+                var setStoreCurrency = function(code) {
+                    storeCurrency = code;
+                };
+                var getStoreCurrency = function() {
+                    return storeCurrency;
+                };
+                var setCurrencyRates = function(rates) {
+                    currencyRates = rates;
+                };
+                var getCurrencyRates = function() {
+                    return currencyRates;
+                };
+                var setDefaultToCurrency = function(code) {
+                    defaultToCurrency = code;
+                };
+                var getDefaultToCurrency = function() {
+                    return defaultToCurrency;
+                };
+                var setCurrencyConfig = function(config) {
+                    currencyConfig = config;
+                    var ratesData = {};
+                    currencyConfig.forEach((function(config) {
+                        ratesData[config.currencyCode] = config.exchangeRate;
+                    }));
+                    setCurrencyRates(ratesData);
+                    if (isNodeEnv()) reset();
+                };
+                var getCurrencyConfig = function() {
+                    return currencyConfig;
+                };
+                var getCurrencyConfigByCode = function(code) {
+                    return getCurrencyConfig().find((function(item) {
+                        return item.currencyCode === code;
+                    }));
+                };
+                var isStandardFormatMapKeyType = function(x) {
+                    return standardFormatMapValue.includes(x || "");
+                };
+                var commonFormatParse = function(config) {
+                    var format = config.match(CUSTOM_FORMAT_REGEX);
+                    if (format && format.length) {
+                        var customString = (format[1] || "").trim();
+                        if (!isStandardFormatMapKeyType(customString)) return null;
+                        return standardFormatMap[customString];
+                    }
+                    return null;
+                };
+                var parseCustomFormat = function(code, config, withCurrency) {
+                    var _map$get;
+                    var map = withCurrency ? currencyDefaultFormatWithCurrencyMap : currencyDefaultFormatWithoutCurrencyMap;
+                    var format = commonFormatParse(config);
+                    var finalFormat = null === (_map$get = map.get(code)) || void 0 === _map$get ? void 0 : _map$get.format;
+                    if (format) return format;
+                    if (isStandardFormatMapKeyType(finalFormat)) return standardFormatMap[finalFormat];
+                    return standardFormatMap[defaultFormatStr];
+                };
+                var parseDefaultFormat = function(config) {
+                    return commonFormatParse(config) || standardFormatMap[defaultFormatStr];
+                };
+                var parsePrecision = function(code, precision) {
+                    currencyPrecisionsMap.set(code, precision);
+                };
+                var parseCurrencySymbol = function(code, currencySymbol) {
+                    currencySymbolsMap.set(code, currencySymbol);
+                };
+                var getOriginalFormatConfig = function(config, code, withCurrency) {
+                    var _format$, _get;
+                    var format = config.match(CUSTOM_FORMAT_REGEX);
+                    if (null !== format && void 0 !== format && format.length && standardFormatMapValue.includes((null === format || void 0 === format ? void 0 : null === (_format$ = format[1]) || void 0 === _format$ ? void 0 : _format$.trim()) || "")) return config;
+                    return (null === (_get = (withCurrency ? currencyDefaultFormatWithCurrencyMap : currencyDefaultFormatWithoutCurrencyMap).get(code)) || void 0 === _get ? void 0 : _get.origin) || DEFAULT_FORMAT;
+                };
+                var parseDefaultFormatWithoutCurrency = function(code, config) {
+                    var _parseDefaultFormat = parseDefaultFormat(config), format = _parseDefaultFormat.format;
+                    currencyDefaultFormatWithoutCurrencyMap.set(code, {
+                        format,
+                        origin: config
+                    });
+                };
+                var parseDefaultFormatWithCurrency = function(code, config) {
+                    var _parseDefaultFormat2 = parseDefaultFormat(config), format = _parseDefaultFormat2.format;
+                    currencyDefaultFormatWithCurrencyMap.set(code, {
+                        format,
+                        origin: config
+                    });
+                };
+                var parseCustomFormatWithoutCurrency = function(code, config) {
+                    var _parseCustomFormat = parseCustomFormat(code, config, false), format = _parseCustomFormat.format, decimalSymbol = _parseCustomFormat.decimalSymbol, groupSymbol = _parseCustomFormat.groupSymbol;
+                    currencyDecimalSymbolsMap.set(code, decimalSymbol);
+                    currencyGroupSymbolsMap.set(code, groupSymbol);
+                    currencyCustomFormatWithoutCurrencyMap.set(code, {
+                        format,
+                        origin: getOriginalFormatConfig(config, code, false)
+                    });
+                };
+                var parseCustomFormatWithCurrency = function(code, config) {
+                    var _parseCustomFormat2 = parseCustomFormat(code, config, true), format = _parseCustomFormat2.format, decimalSymbol = _parseCustomFormat2.decimalSymbol, groupSymbol = _parseCustomFormat2.groupSymbol;
+                    currencyDecimalSymbolsMap.set(code, decimalSymbol);
+                    currencyGroupSymbolsMap.set(code, groupSymbol);
+                    currencyCustomFormatWithCurrencyMap.set(code, {
+                        format,
+                        origin: getOriginalFormatConfig(config, code, true)
+                    });
+                };
+                var parseCurrencySymbolOrder = function(code, config) {
+                    if (!config) {
+                        console.error("".concat(code, "无对应的messageWithoutDefaultCurrency配置"));
+                        return;
+                    }
+                    if ((null === config || void 0 === config ? void 0 : config.trimStart().indexOf("{{")) > 0) currencySymbolOrderMap.set(code, SymbolOrderEnum.PREFIX); else currencySymbolOrderMap.set(code, SymbolOrderEnum.SUFFIX);
+                };
+                var parseCurrencyConfig = function(code) {
+                    var config = getCurrencyConfigByCode(code);
+                    if (!config) {
+                        console.error("获取".concat(code, "对应的货币配置失败"));
+                        return;
+                    }
+                    var messageWithoutDefaultCurrency = config.messageWithoutDefaultCurrency, messageWithCurrency = config.messageWithCurrency, messageWithoutCurrency = config.messageWithoutCurrency, messageWithDefaultCurrency = config.messageWithDefaultCurrency, currencyCode = config.currencyCode, _config$rate = config.rate, rate = void 0 === _config$rate ? defaultCurrencyDigit : _config$rate, currencySymbol = config.currencySymbol;
+                    parsePrecision(currencyCode, rate);
+                    parseCurrencySymbol(currencyCode, currencySymbol);
+                    parseCurrencySymbolOrder(currencyCode, messageWithoutDefaultCurrency);
+                    parseDefaultFormatWithoutCurrency(currencyCode, messageWithoutDefaultCurrency);
+                    parseDefaultFormatWithCurrency(currencyCode, messageWithDefaultCurrency);
+                    parseCustomFormatWithoutCurrency(currencyCode, messageWithoutCurrency);
+                    parseCustomFormatWithCurrency(currencyCode, messageWithCurrency);
+                };
+                var combineFormatPart = function() {
+                    var str = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                    var originFormat = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "";
+                    return originFormat.replace(ORIGIN_FORMAT_REGEX, str);
+                };
+                var parseNumberByFormatStr = function(value, formatStr, precision) {
+                    var _standardFormatMap$fo = standardFormatMap[formatStr], groupSymbol = _standardFormatMap$fo.groupSymbol, decimalSymbol = _standardFormatMap$fo.decimalSymbol;
+                    var isNegative = value < 0;
+                    var _parseIntegerAndFract = parseIntegerAndFractionPartByStr(isNegative ? -value : value, precision, decimalSymbol), fractionPart = _parseIntegerAndFract.fractionPart, integerPart = _parseIntegerAndFract.integerPart;
+                    var integerPartWithGroupSymbol = formatNumberByGroupSymbol(integerPart, groupSymbol);
+                    return {
+                        integer: "".concat(isNegative ? "-" : "").concat(integerPartWithGroupSymbol),
+                        fraction: fractionPart,
+                        groupSymbol,
+                        decimalSymbol
+                    };
+                };
+                var getFormatParts = function(value, options) {
+                    var code = (null === options || void 0 === options ? void 0 : options.code) || storeCurrency || defaultCurrency;
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    var group = getGroupSymbolByCode(code);
+                    var decimal = getDecimalSymbolByCode(code);
+                    var symbol = getSymbolByCode(code);
+                    var symbolOrder = getSymbolOrderByCode(code);
+                    var _ref3 = currencyCustomFormatWithoutCurrencyMap.get(code) || {}, format = _ref3.format;
+                    var finalFormat = isStandardFormatMapKeyType(format) ? format : defaultFormatStr;
+                    var _parseNumberByFormatS = parseNumberByFormatStr(value, finalFormat, defaultCurrencyDigit), integer = _parseNumberByFormatS.integer, fraction = _parseNumberByFormatS.fraction;
+                    var rst = [];
+                    var integerArr = (null === integer || void 0 === integer ? void 0 : integer.split(group)) || [];
+                    integerArr.forEach((function(item, index) {
+                        rst.push({
+                            type: "integer",
+                            value: item
+                        });
+                        if (index !== integerArr.length - 1) rst.push({
+                            type: "group",
+                            value: group
+                        });
+                    }));
+                    rst.push({
+                        type: "decimal",
+                        value: decimal
+                    });
+                    rst.push({
+                        type: "fraction",
+                        value: null === fraction || void 0 === fraction ? void 0 : fraction.trim()
+                    });
+                    if ("prefix" === symbolOrder) rst.unshift({
+                        type: "currency",
+                        value: symbol
+                    }); else rst.push({
+                        type: "currency",
+                        value: symbol
+                    });
+                    return rst;
+                };
+                var convertCalc = function(value) {
+                    var _rates$to, _rates$from;
+                    var from = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : defaultCurrency;
+                    var to = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : defaultToCurrency;
+                    var ratesData = arguments.length > 3 ? arguments[3] : void 0;
+                    var rates = ratesData || getCurrencyRates();
+                    if (from === to) return value;
+                    return value * (null !== (_rates$to = null === rates || void 0 === rates ? void 0 : rates[to]) && void 0 !== _rates$to ? _rates$to : 1) / (null !== (_rates$from = null === rates || void 0 === rates ? void 0 : rates[from]) && void 0 !== _rates$from ? _rates$from : 1);
+                };
+                var commonConvertFormat = function(value, withCurrency, options) {
+                    var map = withCurrency ? currencyCustomFormatWithCurrencyMap : currencyCustomFormatWithoutCurrencyMap;
+                    var formatFn = withCurrency ? format : formatWithoutCurrency;
+                    var _ref4 = options || {}, _ref4$from = _ref4.from, from = void 0 === _ref4$from ? storeCurrency : _ref4$from, _ref4$to = _ref4.to, to = void 0 === _ref4$to ? defaultToCurrency : _ref4$to, rates = _ref4.currencyRates;
+                    if (!map.get(from)) parseCurrencyConfig(from);
+                    if (!map.get(to)) parseCurrencyConfig(to);
+                    var rateData = rates || getCurrencyRates();
+                    var rst = convertCalc(value, from, to, rateData);
+                    return formatFn(rst, {
+                        code: to
+                    });
+                };
+                var convertFormat = function(value, options) {
+                    return commonConvertFormat(value, true, options);
+                };
+                var convertFormatWithoutCurrency = function(value, options) {
+                    return commonConvertFormat(value, false, options);
+                };
+                var commonFormat = function(value) {
+                    var _options$digits;
+                    var withCurrency = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : true;
+                    var options = arguments.length > 2 ? arguments[2] : void 0;
+                    var map = withCurrency ? currencyCustomFormatWithCurrencyMap : currencyCustomFormatWithoutCurrencyMap;
+                    var code = (null === options || void 0 === options ? void 0 : options.code) || storeCurrency || defaultCurrency;
+                    if (!map.get(code)) parseCurrencyConfig(code);
+                    var _ref5 = map.get(code) || {}, format = _ref5.format, origin = _ref5.origin;
+                    var precision = null !== (_options$digits = null === options || void 0 === options ? void 0 : options.digits) && void 0 !== _options$digits ? _options$digits : defaultCurrencyDigit;
+                    var finalFormat = isStandardFormatMapKeyType(format) ? format : defaultFormatStr;
+                    var _parseNumberByFormatS2 = parseNumberByFormatStr(value / Math.pow(10, precision), finalFormat, precision), integer = _parseNumberByFormatS2.integer, fraction = _parseNumberByFormatS2.fraction, decimalSymbol = _parseNumberByFormatS2.decimalSymbol;
+                    var str;
+                    if (decimalSymbol && precision) str = "".concat(integer).concat(decimalSymbol).concat(null !== fraction && void 0 !== fraction ? fraction : ""); else str = integer;
+                    var res = combineFormatPart(str, origin);
+                    return res;
+                };
+                var format = function(value, options) {
+                    return commonFormat(value, true, options);
+                };
+                var formatWithoutCurrency = function(value, options) {
+                    return commonFormat(value, false, options);
+                };
+                var formatMoneyWithoutCurrency = function(value, options) {
+                    var map = currencyCustomFormatWithoutCurrencyMap;
+                    var code = (null === options || void 0 === options ? void 0 : options.code) || storeCurrency || defaultCurrency;
+                    if (!map.get(code)) parseCurrencyConfig(code);
+                    var _ref6 = map.get(code) || {}, format = _ref6.format;
+                    var finalFormat = isStandardFormatMapKeyType(format) ? format : defaultFormatStr;
+                    var precision = defaultCurrencyDigit;
+                    var _parseNumberByFormatS3 = parseNumberByFormatStr(value / Math.pow(10, precision), finalFormat, precision), integer = _parseNumberByFormatS3.integer, fraction = _parseNumberByFormatS3.fraction, decimalSymbol = _parseNumberByFormatS3.decimalSymbol;
+                    var str;
+                    if (decimalSymbol && precision) str = "".concat(integer).concat(decimalSymbol).concat(null !== fraction && void 0 !== fraction ? fraction : ""); else str = integer;
+                    return str;
+                };
+                var getDigitsByCode = function(code) {
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencyPrecisionsMap.get(code);
+                };
+                var getSymbolByCode = function(code) {
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencySymbolsMap.get(code);
+                };
+                var getSymbolOrderByCode = function() {
+                    var code = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : defaultCurrency;
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencySymbolOrderMap.get(code);
+                };
+                var formatNumber = function(value) {
+                    var decimalDigits = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : defaultCurrencyDigit;
+                    var v = "number" !== typeof value ? Number(value) : value;
+                    return v / Math.pow(10, decimalDigits);
+                };
+                var unformatNumber = function(value) {
+                    var decimalDigits = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : defaultCurrencyDigit;
+                    var v = lodash_round(("number" !== typeof value ? Number(value) : value) * Math.pow(10, decimalDigits), 0);
+                    return v;
+                };
+                var formatCurrency = function(value) {
+                    return formatNumber(value, defaultCurrencyDigit);
+                };
+                var unformatCurrency = function(value) {
+                    return unformatNumber(value, defaultCurrencyDigit);
+                };
+                var formatPercent = function(value) {
+                    return formatNumber(value, defaultPresentDigit);
+                };
+                var unformatPercent = function(value) {
+                    return unformatNumber(value, defaultPresentDigit);
+                };
+                var getDecimalSymbolByCode = function(code) {
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencyDecimalSymbolsMap.get(code);
+                };
+                var getGroupSymbolByCode = function(code) {
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(code)) parseCurrencyConfig(code);
+                    return currencyGroupSymbolsMap.get(code);
+                };
+                var getConvertPrice = function(value, options) {
+                    var _ref7 = options || {}, from = _ref7.from, code = _ref7.code, to = _ref7.to, rates = _ref7.currencyRates;
+                    var fromCurrencyCode = from || storeCurrency || defaultCurrency;
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(fromCurrencyCode)) parseCurrencyConfig(fromCurrencyCode);
+                    var toCurrencyCode = to || code || defaultToCurrency;
+                    if (!currencyCustomFormatWithoutCurrencyMap.get(toCurrencyCode)) parseCurrencyConfig(toCurrencyCode);
+                    var fromPrice = formatNumber(value);
+                    var toPrice = convertCalc(fromPrice, fromCurrencyCode, toCurrencyCode, rates || currencyRates);
+                    var formatPartsResult = getFormatParts(toPrice, {
+                        code: toCurrencyCode
+                    });
+                    var convertResult = {
+                        group: "",
+                        integer: "",
+                        decimal: "",
+                        fraction: "",
+                        symbolOrder: "",
+                        currencySymbol: ""
+                    };
+                    convertResult.symbolOrder = getSymbolOrderByCode(toCurrencyCode);
+                    formatPartsResult.forEach((function(item) {
+                        var value = item.value || "";
+                        if ("currency" === (null === item || void 0 === item ? void 0 : item.type)) convertResult.currencySymbol = value;
+                        if ("integer" === (null === item || void 0 === item ? void 0 : item.type)) if (convertResult.integer) convertResult.integer = "".concat(convertResult.integer).concat(convertResult.group || "").concat(value); else convertResult.integer = value;
+                        if ("group" === (null === item || void 0 === item ? void 0 : item.type)) convertResult.group = value;
+                        if ("decimal" === (null === item || void 0 === item ? void 0 : item.type)) convertResult.decimal = value;
+                        if ("fraction" === (null === item || void 0 === item ? void 0 : item.type)) convertResult.fraction = value;
+                    }));
+                    return convertResult;
+                };
+                exports.convertCalc = convertCalc;
+                exports.convertFormat = convertFormat;
+                exports.convertFormatWithoutCurrency = convertFormatWithoutCurrency;
+                exports.covertCalc = convertCalc;
+                exports.defaultCurrency = defaultCurrency;
+                exports.defaultCurrencyDigit = defaultCurrencyDigit;
+                exports.defaultPresentDigit = defaultPresentDigit;
+                exports.format = format;
+                exports.formatCurrency = formatCurrency;
+                exports.formatMoneyWithoutCurrency = formatMoneyWithoutCurrency;
+                exports.formatNumber = formatNumber;
+                exports.formatPercent = formatPercent;
+                exports.formatWithoutCurrency = formatWithoutCurrency;
+                exports.getConvertPrice = getConvertPrice;
+                exports.getCurrencyConfig = getCurrencyConfig;
+                exports.getCurrencyRates = getCurrencyRates;
+                exports.getDecimalSymbolByCode = getDecimalSymbolByCode;
+                exports.getDefaultToCurrency = getDefaultToCurrency;
+                exports.getDigitsByCode = getDigitsByCode;
+                exports.getFormatParts = getFormatParts;
+                exports.getGroupSymbolByCode = getGroupSymbolByCode;
+                exports.getStoreCurrency = getStoreCurrency;
+                exports.getSymbolByCode = getSymbolByCode;
+                exports.getSymbolOrderByCode = getSymbolOrderByCode;
+                exports.parseCustomFormat = parseCustomFormat;
+                exports.parseCustomFormatWithCurrency = parseCustomFormatWithCurrency;
+                exports.parseCustomFormatWithoutCurrency = parseCustomFormatWithoutCurrency;
+                exports.parseDefaultFormat = parseDefaultFormat;
+                exports.parseDefaultFormatWithCurrency = parseDefaultFormatWithCurrency;
+                exports.parseDefaultFormatWithoutCurrency = parseDefaultFormatWithoutCurrency;
+                exports.setCurrencyConfig = setCurrencyConfig;
+                exports.setCurrencyRates = setCurrencyRates;
+                exports.setDefaultToCurrency = setDefaultToCurrency;
+                exports.setStoreCurrency = setStoreCurrency;
+                exports.unformatCurrency = unformatCurrency;
+                exports.unformatNumber = unformatNumber;
+                exports.unformatPercent = unformatPercent;
+                Object.defineProperty(exports, "__esModule", {
+                    value: true
+                });
+            }));
+        },
         "../shared/browser/node_modules/@sl/logger-sentry/lib/index.es.js": (module, __webpack_exports__, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(__webpack_exports__, {
@@ -12691,32 +14010,6 @@
                 return init((function() {}));
             }));
         },
-        "../shared/browser/node_modules/lodash/_SetCache.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js");
-            function castArray() {
-                if (!arguments.length) return [];
-                var value = arguments[0];
-                return isArray(value) ? value : [ value ];
-            }
-            module.exports = castArray;
-        },
-        "../shared/browser/node_modules/lodash/_Stack.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var listCacheClear = __webpack_require__("../shared/browser/node_modules/lodash/_listCacheClear.js"), listCacheDelete = __webpack_require__("../shared/browser/node_modules/lodash/_listCacheDelete.js"), listCacheGet = __webpack_require__("../shared/browser/node_modules/lodash/_listCacheGet.js"), listCacheHas = __webpack_require__("../shared/browser/node_modules/lodash/_listCacheHas.js"), listCacheSet = __webpack_require__("../shared/browser/node_modules/lodash/_listCacheSet.js");
-            function ListCache(entries) {
-                var index = -1, length = null == entries ? 0 : entries.length;
-                this.clear();
-                while (++index < length) {
-                    var entry = entries[index];
-                    this.set(entry[0], entry[1]);
-                }
-            }
-            ListCache.prototype.clear = listCacheClear;
-            ListCache.prototype["delete"] = listCacheDelete;
-            ListCache.prototype.get = listCacheGet;
-            ListCache.prototype.has = listCacheHas;
-            ListCache.prototype.set = listCacheSet;
-            module.exports = ListCache;
-        },
         "../shared/browser/node_modules/lodash/_arrayMap.js": module => {
             function arrayMap(array, iteratee) {
                 var index = -1, length = null == array ? 0 : array.length, result = Array(length);
@@ -12724,31 +14017,6 @@
                 return result;
             }
             module.exports = arrayMap;
-        },
-        "../shared/browser/node_modules/lodash/_arraySome.js": module => {
-            function arraySome(array, predicate) {
-                var index = -1, length = null == array ? 0 : array.length;
-                while (++index < length) if (predicate(array[index], index, array)) return true;
-                return false;
-            }
-            module.exports = arraySome;
-        },
-        "../shared/browser/node_modules/lodash/_assocIndexOf.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var eq = __webpack_require__("../shared/browser/node_modules/lodash/eq.js");
-            function assocIndexOf(array, key) {
-                var length = array.length;
-                while (length--) if (eq(array[length][0], key)) return length;
-                return -1;
-            }
-            module.exports = assocIndexOf;
-        },
-        "../shared/browser/node_modules/lodash/_baseFindIndex.js": module => {
-            function baseFindIndex(array, predicate, fromIndex, fromRight) {
-                var length = array.length, index = fromIndex + (fromRight ? 1 : -1);
-                while (fromRight ? index-- : ++index < length) if (predicate(array[index], index, array)) return index;
-                return -1;
-            }
-            module.exports = baseFindIndex;
         },
         "../shared/browser/node_modules/lodash/_baseGet.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var castPath = __webpack_require__("../shared/browser/node_modules/lodash/_castPath.js"), toKey = __webpack_require__("../shared/browser/node_modules/lodash/_toKey.js");
@@ -12759,155 +14027,6 @@
                 return index && index == length ? object : void 0;
             }
             module.exports = baseGet;
-        },
-        "../shared/browser/node_modules/lodash/_baseGetTag.js": module => {
-            var objectProto = Object.prototype;
-            var nativeObjectToString = objectProto.toString;
-            function objectToString(value) {
-                return nativeObjectToString.call(value);
-            }
-            module.exports = objectToString;
-        },
-        "../shared/browser/node_modules/lodash/_baseHasIn.js": module => {
-            function baseHasIn(object, key) {
-                return null != object && key in Object(object);
-            }
-            module.exports = baseHasIn;
-        },
-        "../shared/browser/node_modules/lodash/_baseIndexOf.js": module => {
-            function strictIndexOf(array, value, fromIndex) {
-                var index = fromIndex - 1, length = array.length;
-                while (++index < length) if (array[index] === value) return index;
-                return -1;
-            }
-            module.exports = strictIndexOf;
-        },
-        "../shared/browser/node_modules/lodash/_baseIsEqual.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseIsEqualDeep = __webpack_require__("../shared/browser/node_modules/lodash/_baseIsEqualDeep.js"), isObjectLike = __webpack_require__("../shared/browser/node_modules/lodash/isObjectLike.js");
-            function baseIsEqual(value, other, bitmask, customizer, stack) {
-                if (value === other) return true;
-                if (null == value || null == other || !isObjectLike(value) && !isObjectLike(other)) return value !== value && other !== other;
-                return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
-            }
-            module.exports = baseIsEqual;
-        },
-        "../shared/browser/node_modules/lodash/_baseIsEqualDeep.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var Stack = __webpack_require__("../shared/browser/node_modules/lodash/_Stack.js"), equalArrays = __webpack_require__("../shared/browser/node_modules/lodash/_equalArrays.js"), equalByTag = __webpack_require__("../shared/browser/node_modules/lodash/_equalByTag.js"), equalObjects = __webpack_require__("../shared/browser/node_modules/lodash/_equalObjects.js"), getTag = __webpack_require__("../shared/browser/node_modules/lodash/_getTag.js"), isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isBuffer = __webpack_require__("../shared/browser/node_modules/lodash/isBuffer.js"), isTypedArray = __webpack_require__("../shared/browser/node_modules/lodash/isTypedArray.js");
-            var COMPARE_PARTIAL_FLAG = 1;
-            var argsTag = "[object Arguments]", arrayTag = "[object Array]", objectTag = "[object Object]";
-            var objectProto = Object.prototype;
-            var hasOwnProperty = objectProto.hasOwnProperty;
-            function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
-                var objIsArr = isArray(object), othIsArr = isArray(other), objTag = objIsArr ? arrayTag : getTag(object), othTag = othIsArr ? arrayTag : getTag(other);
-                objTag = objTag == argsTag ? objectTag : objTag;
-                othTag = othTag == argsTag ? objectTag : othTag;
-                var objIsObj = objTag == objectTag, othIsObj = othTag == objectTag, isSameTag = objTag == othTag;
-                if (isSameTag && isBuffer(object)) {
-                    if (!isBuffer(other)) return false;
-                    objIsArr = true;
-                    objIsObj = false;
-                }
-                if (isSameTag && !objIsObj) {
-                    stack || (stack = new Stack);
-                    return objIsArr || isTypedArray(object) ? equalArrays(object, other, bitmask, customizer, equalFunc, stack) : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
-                }
-                if (!(bitmask & COMPARE_PARTIAL_FLAG)) {
-                    var objIsWrapped = objIsObj && hasOwnProperty.call(object, "__wrapped__"), othIsWrapped = othIsObj && hasOwnProperty.call(other, "__wrapped__");
-                    if (objIsWrapped || othIsWrapped) {
-                        var objUnwrapped = objIsWrapped ? object.value() : object, othUnwrapped = othIsWrapped ? other.value() : other;
-                        stack || (stack = new Stack);
-                        return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
-                    }
-                }
-                if (!isSameTag) return false;
-                stack || (stack = new Stack);
-                return equalObjects(object, other, bitmask, customizer, equalFunc, stack);
-            }
-            module.exports = baseIsEqualDeep;
-        },
-        "../shared/browser/node_modules/lodash/_baseIsMatch.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var Stack = __webpack_require__("../shared/browser/node_modules/lodash/_Stack.js"), baseIsEqual = __webpack_require__("../shared/browser/node_modules/lodash/_baseIsEqual.js");
-            var COMPARE_PARTIAL_FLAG = 1, COMPARE_UNORDERED_FLAG = 2;
-            function baseIsMatch(object, source, matchData, customizer) {
-                var index = matchData.length, length = index, noCustomizer = !customizer;
-                if (null == object) return !length;
-                object = Object(object);
-                while (index--) {
-                    var data = matchData[index];
-                    if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) return false;
-                }
-                while (++index < length) {
-                    data = matchData[index];
-                    var key = data[0], objValue = object[key], srcValue = data[1];
-                    if (noCustomizer && data[2]) {
-                        if (void 0 === objValue && !(key in object)) return false;
-                    } else {
-                        var stack = new Stack;
-                        if (customizer) var result = customizer(objValue, srcValue, key, object, source, stack);
-                        if (!(void 0 === result ? baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack) : result)) return false;
-                    }
-                }
-                return true;
-            }
-            module.exports = baseIsMatch;
-        },
-        "../shared/browser/node_modules/lodash/_baseIteratee.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseMatches = __webpack_require__("../shared/browser/node_modules/lodash/_baseMatches.js"), baseMatchesProperty = __webpack_require__("../shared/browser/node_modules/lodash/_baseMatchesProperty.js"), identity = __webpack_require__("../shared/browser/node_modules/lodash/identity.js"), isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), property = __webpack_require__("../shared/browser/node_modules/lodash/property.js");
-            function baseIteratee(value) {
-                if ("function" == typeof value) return value;
-                if (null == value) return identity;
-                if ("object" == typeof value) return isArray(value) ? baseMatchesProperty(value[0], value[1]) : baseMatches(value);
-                return property(value);
-            }
-            module.exports = baseIteratee;
-        },
-        "../shared/browser/node_modules/lodash/_baseMatches.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseIsMatch = __webpack_require__("../shared/browser/node_modules/lodash/_baseIsMatch.js"), getMatchData = __webpack_require__("../shared/browser/node_modules/lodash/_getMatchData.js"), matchesStrictComparable = __webpack_require__("../shared/browser/node_modules/lodash/_matchesStrictComparable.js");
-            function baseMatches(source) {
-                var matchData = getMatchData(source);
-                if (1 == matchData.length && matchData[0][2]) return matchesStrictComparable(matchData[0][0], matchData[0][1]);
-                return function(object) {
-                    return object === source || baseIsMatch(object, source, matchData);
-                };
-            }
-            module.exports = baseMatches;
-        },
-        "../shared/browser/node_modules/lodash/_baseMatchesProperty.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseIsEqual = __webpack_require__("../shared/browser/node_modules/lodash/_baseIsEqual.js"), get = __webpack_require__("../shared/browser/node_modules/lodash/get.js"), hasIn = __webpack_require__("../shared/browser/node_modules/lodash/hasIn.js"), isKey = __webpack_require__("../shared/browser/node_modules/lodash/_isKey.js"), isStrictComparable = __webpack_require__("../shared/browser/node_modules/lodash/_isStrictComparable.js"), matchesStrictComparable = __webpack_require__("../shared/browser/node_modules/lodash/_matchesStrictComparable.js"), toKey = __webpack_require__("../shared/browser/node_modules/lodash/_toKey.js");
-            var COMPARE_PARTIAL_FLAG = 1, COMPARE_UNORDERED_FLAG = 2;
-            function baseMatchesProperty(path, srcValue) {
-                if (isKey(path) && isStrictComparable(srcValue)) return matchesStrictComparable(toKey(path), srcValue);
-                return function(object) {
-                    var objValue = get(object, path);
-                    return void 0 === objValue && objValue === srcValue ? hasIn(object, path) : baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG);
-                };
-            }
-            module.exports = baseMatchesProperty;
-        },
-        "../shared/browser/node_modules/lodash/_baseProperty.js": module => {
-            function baseProperty(key) {
-                return function(object) {
-                    return null == object ? void 0 : object[key];
-                };
-            }
-            module.exports = baseProperty;
-        },
-        "../shared/browser/node_modules/lodash/_basePropertyDeep.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseGet = __webpack_require__("../shared/browser/node_modules/lodash/_baseGet.js");
-            function basePropertyDeep(path) {
-                return function(object) {
-                    return baseGet(object, path);
-                };
-            }
-            module.exports = basePropertyDeep;
-        },
-        "../shared/browser/node_modules/lodash/_cacheHas.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseIndexOf = __webpack_require__("../shared/browser/node_modules/lodash/_baseIndexOf.js");
-            function arrayIncludes(array, value) {
-                var length = null == array ? 0 : array.length;
-                return !!length && baseIndexOf(array, value, 0) > -1;
-            }
-            module.exports = arrayIncludes;
         },
         "../shared/browser/node_modules/lodash/_castPath.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isKey = __webpack_require__("../shared/browser/node_modules/lodash/_isKey.js"), stringToPath = __webpack_require__("../shared/browser/node_modules/lodash/_stringToPath.js"), toString = __webpack_require__("../shared/browser/node_modules/lodash/toString.js");
@@ -12926,180 +14045,9 @@
             }
             module.exports = copyArray;
         },
-        "../shared/browser/node_modules/lodash/_createFind.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseIteratee = __webpack_require__("../shared/browser/node_modules/lodash/_baseIteratee.js"), isArrayLike = __webpack_require__("../shared/browser/node_modules/lodash/isArrayLike.js"), keys = __webpack_require__("../shared/browser/node_modules/lodash/keys.js");
-            function createFind(findIndexFunc) {
-                return function(collection, predicate, fromIndex) {
-                    var iterable = Object(collection);
-                    if (!isArrayLike(collection)) {
-                        var iteratee = baseIteratee(predicate, 3);
-                        collection = keys(collection);
-                        predicate = function(key) {
-                            return iteratee(iterable[key], key, iterable);
-                        };
-                    }
-                    var index = findIndexFunc(collection, predicate, fromIndex);
-                    return index > -1 ? iterable[iteratee ? collection[index] : index] : void 0;
-                };
-            }
-            module.exports = createFind;
-        },
-        "../shared/browser/node_modules/lodash/_createRound.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var root = __webpack_require__("../shared/browser/node_modules/lodash/_root.js"), toInteger = __webpack_require__("../shared/browser/node_modules/lodash/toInteger.js"), toNumber = __webpack_require__("../shared/browser/node_modules/lodash/toNumber.js"), toString = __webpack_require__("../shared/browser/node_modules/lodash/toString.js");
-            var nativeIsFinite = root.isFinite, nativeMin = Math.min;
-            function createRound(methodName) {
-                var func = Math[methodName];
-                return function(number, precision) {
-                    number = toNumber(number);
-                    precision = null == precision ? 0 : nativeMin(toInteger(precision), 292);
-                    if (precision && nativeIsFinite(number)) {
-                        var pair = (toString(number) + "e").split("e"), value = func(pair[0] + "e" + (+pair[1] + precision));
-                        pair = (toString(value) + "e").split("e");
-                        return +(pair[0] + "e" + (+pair[1] - precision));
-                    }
-                    return func(number);
-                };
-            }
-            module.exports = createRound;
-        },
-        "../shared/browser/node_modules/lodash/_equalArrays.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var SetCache = __webpack_require__("../shared/browser/node_modules/lodash/_SetCache.js"), arraySome = __webpack_require__("../shared/browser/node_modules/lodash/_arraySome.js"), cacheHas = __webpack_require__("../shared/browser/node_modules/lodash/_cacheHas.js");
-            var COMPARE_PARTIAL_FLAG = 1, COMPARE_UNORDERED_FLAG = 2;
-            function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
-                var isPartial = bitmask & COMPARE_PARTIAL_FLAG, arrLength = array.length, othLength = other.length;
-                if (arrLength != othLength && !(isPartial && othLength > arrLength)) return false;
-                var arrStacked = stack.get(array);
-                var othStacked = stack.get(other);
-                if (arrStacked && othStacked) return arrStacked == other && othStacked == array;
-                var index = -1, result = true, seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache : void 0;
-                stack.set(array, other);
-                stack.set(other, array);
-                while (++index < arrLength) {
-                    var arrValue = array[index], othValue = other[index];
-                    if (customizer) var compared = isPartial ? customizer(othValue, arrValue, index, other, array, stack) : customizer(arrValue, othValue, index, array, other, stack);
-                    if (void 0 !== compared) {
-                        if (compared) continue;
-                        result = false;
-                        break;
-                    }
-                    if (seen) {
-                        if (!arraySome(other, (function(othValue, othIndex) {
-                            if (!cacheHas(seen, othIndex) && (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) return seen.push(othIndex);
-                        }))) {
-                            result = false;
-                            break;
-                        }
-                    } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
-                        result = false;
-                        break;
-                    }
-                }
-                stack["delete"](array);
-                stack["delete"](other);
-                return result;
-            }
-            module.exports = equalArrays;
-        },
-        "../shared/browser/node_modules/lodash/_equalByTag.js": module => {
-            function eq(value, other) {
-                return value === other || value !== value && other !== other;
-            }
-            module.exports = eq;
-        },
-        "../shared/browser/node_modules/lodash/_equalObjects.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var getAllKeys = __webpack_require__("../shared/browser/node_modules/lodash/_getAllKeys.js");
-            var COMPARE_PARTIAL_FLAG = 1;
-            var objectProto = Object.prototype;
-            var hasOwnProperty = objectProto.hasOwnProperty;
-            function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
-                var isPartial = bitmask & COMPARE_PARTIAL_FLAG, objProps = getAllKeys(object), objLength = objProps.length, othProps = getAllKeys(other), othLength = othProps.length;
-                if (objLength != othLength && !isPartial) return false;
-                var index = objLength;
-                while (index--) {
-                    var key = objProps[index];
-                    if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) return false;
-                }
-                var objStacked = stack.get(object);
-                var othStacked = stack.get(other);
-                if (objStacked && othStacked) return objStacked == other && othStacked == object;
-                var result = true;
-                stack.set(object, other);
-                stack.set(other, object);
-                var skipCtor = isPartial;
-                while (++index < objLength) {
-                    key = objProps[index];
-                    var objValue = object[key], othValue = other[key];
-                    if (customizer) var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack) : customizer(objValue, othValue, key, object, other, stack);
-                    if (!(void 0 === compared ? objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack) : compared)) {
-                        result = false;
-                        break;
-                    }
-                    skipCtor || (skipCtor = "constructor" == key);
-                }
-                if (result && !skipCtor) {
-                    var objCtor = object.constructor, othCtor = other.constructor;
-                    if (objCtor != othCtor && "constructor" in object && "constructor" in other && !("function" == typeof objCtor && objCtor instanceof objCtor && "function" == typeof othCtor && othCtor instanceof othCtor)) result = false;
-                }
-                stack["delete"](object);
-                stack["delete"](other);
-                return result;
-            }
-            module.exports = equalObjects;
-        },
         "../shared/browser/node_modules/lodash/_freeGlobal.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var freeGlobal = "object" == typeof __webpack_require__.g && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
             module.exports = freeGlobal;
-        },
-        "../shared/browser/node_modules/lodash/_getAllKeys.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var overArg = __webpack_require__("../shared/browser/node_modules/lodash/_overArg.js");
-            var nativeKeys = overArg(Object.keys, Object);
-            module.exports = nativeKeys;
-        },
-        "../shared/browser/node_modules/lodash/_getMatchData.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var isStrictComparable = __webpack_require__("../shared/browser/node_modules/lodash/_isStrictComparable.js"), keys = __webpack_require__("../shared/browser/node_modules/lodash/keys.js");
-            function getMatchData(object) {
-                var result = keys(object), length = result.length;
-                while (length--) {
-                    var key = result[length], value = object[key];
-                    result[length] = [ key, value, isStrictComparable(value) ];
-                }
-                return result;
-            }
-            module.exports = getMatchData;
-        },
-        "../shared/browser/node_modules/lodash/_getTag.js": module => {
-            var objectProto = Object.prototype;
-            var nativeObjectToString = objectProto.toString;
-            function objectToString(value) {
-                return nativeObjectToString.call(value);
-            }
-            module.exports = objectToString;
-        },
-        "../shared/browser/node_modules/lodash/_hasPath.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var castPath = __webpack_require__("../shared/browser/node_modules/lodash/_castPath.js"), isArguments = __webpack_require__("../shared/browser/node_modules/lodash/isArguments.js"), isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isIndex = __webpack_require__("../shared/browser/node_modules/lodash/_isIndex.js"), isLength = __webpack_require__("../shared/browser/node_modules/lodash/isLength.js"), toKey = __webpack_require__("../shared/browser/node_modules/lodash/_toKey.js");
-            function hasPath(object, path, hasFunc) {
-                path = castPath(path, object);
-                var index = -1, length = path.length, result = false;
-                while (++index < length) {
-                    var key = toKey(path[index]);
-                    if (!(result = null != object && hasFunc(object, key))) break;
-                    object = object[key];
-                }
-                if (result || ++index != length) return result;
-                length = null == object ? 0 : object.length;
-                return !!length && isLength(length) && isIndex(key, length) && (isArray(object) || isArguments(object));
-            }
-            module.exports = hasPath;
-        },
-        "../shared/browser/node_modules/lodash/_isIndex.js": module => {
-            var MAX_SAFE_INTEGER = 9007199254740991;
-            var reIsUint = /^(?:0|[1-9]\d*)$/;
-            function isIndex(value, length) {
-                var type = typeof value;
-                length = null == length ? MAX_SAFE_INTEGER : length;
-                return !!length && ("number" == type || "symbol" != type && reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length;
-            }
-            module.exports = isIndex;
         },
         "../shared/browser/node_modules/lodash/_isKey.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isSymbol = __webpack_require__("../shared/browser/node_modules/lodash/isSymbol.js");
@@ -13112,83 +14060,11 @@
             }
             module.exports = isKey;
         },
-        "../shared/browser/node_modules/lodash/_isStrictComparable.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var isObject = __webpack_require__("../shared/browser/node_modules/lodash/isObject.js");
-            function isStrictComparable(value) {
-                return value === value && !isObject(value);
-            }
-            module.exports = isStrictComparable;
-        },
-        "../shared/browser/node_modules/lodash/_listCacheClear.js": module => {
-            function listCacheClear() {
-                this.__data__ = [];
-                this.size = 0;
-            }
-            module.exports = listCacheClear;
-        },
-        "../shared/browser/node_modules/lodash/_listCacheDelete.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var assocIndexOf = __webpack_require__("../shared/browser/node_modules/lodash/_assocIndexOf.js");
-            var arrayProto = Array.prototype;
-            var splice = arrayProto.splice;
-            function listCacheDelete(key) {
-                var data = this.__data__, index = assocIndexOf(data, key);
-                if (index < 0) return false;
-                var lastIndex = data.length - 1;
-                if (index == lastIndex) data.pop(); else splice.call(data, index, 1);
-                --this.size;
-                return true;
-            }
-            module.exports = listCacheDelete;
-        },
-        "../shared/browser/node_modules/lodash/_listCacheGet.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var assocIndexOf = __webpack_require__("../shared/browser/node_modules/lodash/_assocIndexOf.js");
-            function listCacheGet(key) {
-                var data = this.__data__, index = assocIndexOf(data, key);
-                return index < 0 ? void 0 : data[index][1];
-            }
-            module.exports = listCacheGet;
-        },
-        "../shared/browser/node_modules/lodash/_listCacheHas.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var assocIndexOf = __webpack_require__("../shared/browser/node_modules/lodash/_assocIndexOf.js");
-            function listCacheHas(key) {
-                return assocIndexOf(this.__data__, key) > -1;
-            }
-            module.exports = listCacheHas;
-        },
-        "../shared/browser/node_modules/lodash/_listCacheSet.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var assocIndexOf = __webpack_require__("../shared/browser/node_modules/lodash/_assocIndexOf.js");
-            function listCacheSet(key, value) {
-                var data = this.__data__, index = assocIndexOf(data, key);
-                if (index < 0) {
-                    ++this.size;
-                    data.push([ key, value ]);
-                } else data[index][1] = value;
-                return this;
-            }
-            module.exports = listCacheSet;
-        },
-        "../shared/browser/node_modules/lodash/_matchesStrictComparable.js": module => {
-            function matchesStrictComparable(key, srcValue) {
-                return function(object) {
-                    if (null == object) return false;
-                    return object[key] === srcValue && (void 0 !== srcValue || key in Object(object));
-                };
-            }
-            module.exports = matchesStrictComparable;
-        },
         "../shared/browser/node_modules/lodash/_memoizeCapped.js": module => {
             function identity(value) {
                 return value;
             }
             module.exports = identity;
-        },
-        "../shared/browser/node_modules/lodash/_overArg.js": module => {
-            function overArg(func, transform) {
-                return function(arg) {
-                    return func(transform(arg));
-                };
-            }
-            module.exports = overArg;
         },
         "../shared/browser/node_modules/lodash/_root.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var freeGlobal = __webpack_require__("../shared/browser/node_modules/lodash/_freeGlobal.js");
@@ -13291,29 +14167,6 @@
             }
             module.exports = debounce;
         },
-        "../shared/browser/node_modules/lodash/eq.js": module => {
-            function eq(value, other) {
-                return value === other || value !== value && other !== other;
-            }
-            module.exports = eq;
-        },
-        "../shared/browser/node_modules/lodash/find.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var createFind = __webpack_require__("../shared/browser/node_modules/lodash/_createFind.js"), findIndex = __webpack_require__("../shared/browser/node_modules/lodash/findIndex.js");
-            var find = createFind(findIndex);
-            module.exports = find;
-        },
-        "../shared/browser/node_modules/lodash/findIndex.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseFindIndex = __webpack_require__("../shared/browser/node_modules/lodash/_baseFindIndex.js"), baseIteratee = __webpack_require__("../shared/browser/node_modules/lodash/_baseIteratee.js"), toInteger = __webpack_require__("../shared/browser/node_modules/lodash/toInteger.js");
-            var nativeMax = Math.max;
-            function findIndex(array, predicate, fromIndex) {
-                var length = null == array ? 0 : array.length;
-                if (!length) return -1;
-                var index = null == fromIndex ? 0 : toInteger(fromIndex);
-                if (index < 0) index = nativeMax(length + index, 0);
-                return baseFindIndex(array, baseIteratee(predicate, 3), index);
-            }
-            module.exports = findIndex;
-        },
         "../shared/browser/node_modules/lodash/get.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var baseGet = __webpack_require__("../shared/browser/node_modules/lodash/_baseGet.js");
             function get(object, path, defaultValue) {
@@ -13322,58 +14175,9 @@
             }
             module.exports = get;
         },
-        "../shared/browser/node_modules/lodash/hasIn.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseHasIn = __webpack_require__("../shared/browser/node_modules/lodash/_baseHasIn.js"), hasPath = __webpack_require__("../shared/browser/node_modules/lodash/_hasPath.js");
-            function hasIn(object, path) {
-                return null != object && hasPath(object, path, baseHasIn);
-            }
-            module.exports = hasIn;
-        },
-        "../shared/browser/node_modules/lodash/identity.js": module => {
-            function identity(value) {
-                return value;
-            }
-            module.exports = identity;
-        },
-        "../shared/browser/node_modules/lodash/isArguments.js": module => {
-            function stubFalse() {
-                return false;
-            }
-            module.exports = stubFalse;
-        },
         "../shared/browser/node_modules/lodash/isArray.js": module => {
             var isArray = Array.isArray;
             module.exports = isArray;
-        },
-        "../shared/browser/node_modules/lodash/isArrayLike.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var isFunction = __webpack_require__("../shared/browser/node_modules/lodash/isFunction.js"), isLength = __webpack_require__("../shared/browser/node_modules/lodash/isLength.js");
-            function isArrayLike(value) {
-                return null != value && isLength(value.length) && !isFunction(value);
-            }
-            module.exports = isArrayLike;
-        },
-        "../shared/browser/node_modules/lodash/isBuffer.js": module => {
-            function stubFalse() {
-                return false;
-            }
-            module.exports = stubFalse;
-        },
-        "../shared/browser/node_modules/lodash/isFunction.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseGetTag = __webpack_require__("../shared/browser/node_modules/lodash/_baseGetTag.js"), isObject = __webpack_require__("../shared/browser/node_modules/lodash/isObject.js");
-            var asyncTag = "[object AsyncFunction]", funcTag = "[object Function]", genTag = "[object GeneratorFunction]", proxyTag = "[object Proxy]";
-            function isFunction(value) {
-                if (!isObject(value)) return false;
-                var tag = baseGetTag(value);
-                return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
-            }
-            module.exports = isFunction;
-        },
-        "../shared/browser/node_modules/lodash/isLength.js": module => {
-            var MAX_SAFE_INTEGER = 9007199254740991;
-            function isLength(value) {
-                return "number" == typeof value && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-            }
-            module.exports = isLength;
         },
         "../shared/browser/node_modules/lodash/isObject.js": module => {
             function isObject(value) {
@@ -13382,28 +14186,11 @@
             }
             module.exports = isObject;
         },
-        "../shared/browser/node_modules/lodash/isObjectLike.js": module => {
-            function isObjectLike(value) {
-                return null != value && "object" == typeof value;
-            }
-            module.exports = isObjectLike;
-        },
         "../shared/browser/node_modules/lodash/isSymbol.js": module => {
             function stubFalse() {
                 return false;
             }
             module.exports = stubFalse;
-        },
-        "../shared/browser/node_modules/lodash/isTypedArray.js": module => {
-            function stubFalse() {
-                return false;
-            }
-            module.exports = stubFalse;
-        },
-        "../shared/browser/node_modules/lodash/keys.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var overArg = __webpack_require__("../shared/browser/node_modules/lodash/_overArg.js");
-            var nativeKeys = overArg(Object.keys, Object);
-            module.exports = nativeKeys;
         },
         "../shared/browser/node_modules/lodash/now.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var root = __webpack_require__("../shared/browser/node_modules/lodash/_root.js");
@@ -13411,18 +14198,6 @@
                 return root.Date.now();
             };
             module.exports = now;
-        },
-        "../shared/browser/node_modules/lodash/property.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var baseProperty = __webpack_require__("../shared/browser/node_modules/lodash/_baseProperty.js"), basePropertyDeep = __webpack_require__("../shared/browser/node_modules/lodash/_basePropertyDeep.js"), isKey = __webpack_require__("../shared/browser/node_modules/lodash/_isKey.js"), toKey = __webpack_require__("../shared/browser/node_modules/lodash/_toKey.js");
-            function property(path) {
-                return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
-            }
-            module.exports = property;
-        },
-        "../shared/browser/node_modules/lodash/round.js": (module, __unused_webpack_exports, __webpack_require__) => {
-            var createRound = __webpack_require__("../shared/browser/node_modules/lodash/_createRound.js");
-            var round = createRound("round");
-            module.exports = round;
         },
         "../shared/browser/node_modules/lodash/throttle.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var debounce = __webpack_require__("../shared/browser/node_modules/lodash/debounce.js"), isObject = __webpack_require__("../shared/browser/node_modules/lodash/isObject.js");
@@ -13441,12 +14216,6 @@
                 });
             }
             module.exports = throttle;
-        },
-        "../shared/browser/node_modules/lodash/toInteger.js": module => {
-            function identity(value) {
-                return value;
-            }
-            module.exports = identity;
         },
         "../shared/browser/node_modules/lodash/toNumber.js": module => {
             function identity(value) {
@@ -14152,381 +14921,31 @@
         const __PRELOAD_STATE__ = window.__PRELOAD_STATE__ || {};
         if (!window.SL_State) window.SL_State = new SLState(__PRELOAD_STATE__);
         const {SL_State: state_selector_SL_State} = window;
-        var lodash_round = __webpack_require__("../shared/browser/node_modules/lodash/round.js");
-        var round_default = __webpack_require__.n(lodash_round);
-        var lodash_findIndex = __webpack_require__("../shared/browser/node_modules/lodash/findIndex.js");
-        var findIndex_default = __webpack_require__.n(lodash_findIndex);
-        var lodash_find = __webpack_require__("../shared/browser/node_modules/lodash/find.js");
-        var find_default = __webpack_require__.n(lodash_find);
-        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
-        var get_default = __webpack_require__.n(get);
-        var toPath = __webpack_require__("../shared/browser/node_modules/lodash/toPath.js");
-        var toPath_default = __webpack_require__.n(toPath);
-        function syntax_patch_nullishCoalescingOperator(...args) {
-            const val = args.find((item => {
-                if ("function" === typeof item) {
-                    const result = item();
-                    return null !== result && void 0 !== result;
-                }
-                return null !== item && void 0 !== item;
-            }));
-            if (null === val || void 0 === val) return args[args.length - 1];
-            return val;
-        }
-        function syntax_patch_get(obj, ...args) {
-            return get_default()(obj, ...args);
-        }
-        function get_func(obj, path) {
-            const pathList = toPath_default()(path);
-            const parentPath = pathList.splice(0, pathList.length - 1);
-            const key = pathList[0];
-            const parent = parentPath.length ? get_default()(obj, parentPath) : obj;
-            const exec = (...args) => {
-                if (parent && "function" === typeof parent[key]) return parent[key](...args);
-                return;
-            };
-            return {
-                value: parent ? parent[key] : void 0,
-                exec
-            };
-        }
-        const HARD_CODE_CONFIG = [ {
-            code: "TWD",
-            digit: 0
-        }, {
-            code: "HUF",
-            digit: 0
-        }, {
-            code: "RUB",
-            digit: 0
-        }, {
-            code: "CVE",
-            digit: 0
-        }, {
-            code: "AFN",
-            digit: 2
-        }, {
-            code: "ALL",
-            digit: 2
-        }, {
-            code: "IRR",
-            digit: 2
-        }, {
-            code: "KPW",
-            digit: 2
-        }, {
-            code: "LAK",
-            digit: 2
-        }, {
-            code: "LBP",
-            digit: 2
-        }, {
-            code: "MMK",
-            digit: 2
-        }, {
-            code: "RSD",
-            digit: 2
-        }, {
-            code: "SLL",
-            digit: 2
-        }, {
-            code: "SOS",
-            digit: 2
-        }, {
-            code: "SYP",
-            digit: 2
-        }, {
-            code: "UYU",
-            digit: 2
-        }, {
-            code: "YER",
-            digit: 2
-        }, {
-            code: "KWD",
-            digit: 2
-        }, {
-            code: "OMR",
-            digit: 2
-        }, {
-            code: "BHD",
-            digit: 2
-        }, {
-            code: "IDR",
-            digit: 0
-        } ];
-        const SYMBOL_HARD_CODE_CONFIG = {
-            AUD: {
-                en: "zh-hans-cn"
-            },
-            TWD: {
-                "zh-hant-tw": "zh-hant-hk"
-            },
-            MXN: {
-                es: "en"
-            },
-            CLP: {
-                es: "es-CL"
-            }
-        };
-        const CURRENCY_DISPLAY_HARDCODE = {
-            PHP: {
-                currencyDisplay: "code"
-            }
-        };
+        var lib = __webpack_require__("../shared/browser/node_modules/@sl/currency-tools-core/lib/index.js");
         const storeCurrency = state_selector_SL_State.get("storeInfo.currency");
-        const storeLang = state_selector_SL_State.get("request.locale");
-        const currencyRates = state_selector_SL_State.get("currencyRates");
-        const defaultCurrency = "CNY";
-        const defaultCurrencyDigit = 2;
-        const defaultPresentDigit = 2;
-        const defaultLang = "zh-hans-cn";
-        const digitsMap = new Map;
-        const formatUtilMap = new Map;
-        const symbolsMap = new Map;
-        const hardcoreConfigs = HARD_CODE_CONFIG;
-        const hardcodeDigit = code => {
-            const hardcoreConfig = hardcoreConfigs.find((config => config.code === code));
-            return {
-                minimumFractionDigits: syntax_patch_nullishCoalescingOperator(hardcoreConfig && hardcoreConfig.digit, void 0),
-                maximumFractionDigits: syntax_patch_nullishCoalescingOperator(hardcoreConfig && hardcoreConfig.digit, void 0)
-            };
+        const toDefault = state_selector_SL_State.get("currencyCode") || storeCurrency;
+        const {currencyDetailList} = window.Shopline.currencyConfig;
+        (0, lib.setCurrencyConfig)(currencyDetailList);
+        (0, lib.setStoreCurrency)(storeCurrency);
+        (0, lib.setDefaultToCurrency)(toDefault);
+        state_selector_SL_State.on("currencyCode", (code => {
+            (0, lib.setDefaultToCurrency)(code);
+        }));
+        const setDefault = () => {
+            const toDefault = state_selector_SL_State.get("currencyCode") || state_selector_SL_State.get("storeInfo.currency");
+            (0, lib.setDefaultToCurrency)(toDefault);
         };
-        const hardCodeCurrencyDisplay = code => syntax_patch_nullishCoalescingOperator(CURRENCY_DISPLAY_HARDCODE[code], {});
-        const hardCodeSymbol = (code, lang) => {
-            const newLang = SYMBOL_HARD_CODE_CONFIG[code] && SYMBOL_HARD_CODE_CONFIG[code][lang];
-            return syntax_patch_nullishCoalescingOperator(newLang, lang);
+        const CurrencyConvert_convertFormat = (...args) => {
+            setDefault();
+            return (0, lib.convertFormat)(...args);
         };
-        const formatGenerator = (code, lang) => {
-            const realLang = hardCodeSymbol(code, lang);
-            return new Intl.NumberFormat(realLang, {
-                style: "currency",
-                currency: code,
-                ...hardCodeCurrencyDisplay(code),
-                ...hardcodeDigit(code)
-            });
+        const getConvertPrice = (...args) => {
+            setDefault();
+            return (0, lib.getConvertPrice)(...args);
         };
-        const cacheKeyGenerator = ({code, lang}) => {
-            const countryCode = code && code.toUpperCase();
-            const language = lang && lang.toUpperCase();
-            if (countryCode && language) return `${countryCode}-${language}`;
-            if (countryCode) return countryCode;
-            if (language) return language;
-        };
-        const format = (value, options = {}) => {
-            const decimalDigits = defaultCurrencyDigit;
-            const code = options && options.code || storeCurrency || defaultCurrency;
-            const lang = options && options.lang || storeLang || defaultLang;
-            const digits = 10 ** decimalDigits;
-            let f = null;
-            if (formatUtilMap.get(cacheKeyGenerator({
-                code,
-                lang
-            }))) f = formatUtilMap.get(cacheKeyGenerator({
-                code,
-                lang
-            })); else {
-                f = formatGenerator(code, lang);
-                formatUtilMap.set(cacheKeyGenerator({
-                    code,
-                    lang
-                }), f);
-                digitsMap.set(code, f.resolvedOptions().maximumFractionDigits);
-            }
-            return f.format(value / digits);
-        };
-        const covertCalc = (value, from, to, dataSource = {}) => {
-            if (from === to) return value;
-            const dataSourceTo = dataSource && dataSource[to];
-            const dataSourceFrom = dataSource && dataSource[from];
-            return value * syntax_patch_nullishCoalescingOperator(dataSourceTo, 1) / syntax_patch_nullishCoalescingOperator(dataSourceFrom, 1);
-        };
-        const currency_convertFormat = (value, options = {}) => {
-            const fromDefault = state_selector_SL_State.get("storeInfo.currency");
-            const toDefault = state_selector_SL_State.get("currencyCode");
-            const locale = state_selector_SL_State.get("request.locale");
-            const {from = fromDefault, to = toDefault, lang = locale} = options;
-            const data = state_selector_SL_State.get("currencyRates");
-            const rst = covertCalc(value, from, to, data);
-            return format(rst, {
-                code: to,
-                lang
-            });
-        };
-        const getDigitsByCode = code => {
-            if ("number" === typeof digitsMap.get(cacheKeyGenerator({
-                code
-            }))) return digitsMap.get(cacheKeyGenerator({
-                code
-            }));
-            const digit = formatGenerator(code, "zh-cn").resolvedOptions().maximumFractionDigits;
-            digitsMap.set(cacheKeyGenerator({
-                code
-            }), digit);
-            return digit;
-        };
-        const getSymbolByCode = (code, lang = "zh-cn") => {
-            if (symbolsMap.get(cacheKeyGenerator({
-                code,
-                lang
-            }))) return symbolsMap.get(cacheKeyGenerator({
-                code,
-                lang
-            }));
-            let symbol = "";
-            const format = formatGenerator(code, lang);
-            if (format.formatToParts) {
-                const findSymbol = find_default()(format.formatToParts(), [ "type", "currency" ]);
-                symbol = findSymbol && findSymbol.value;
-            } else {
-                const realLang = hardCodeSymbol(code, lang);
-                const intl = new Intl.NumberFormat(realLang, {
-                    style: "currency",
-                    currency: code,
-                    ...hardCodeCurrencyDisplay(code),
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0
-                });
-                const newSymbol = intl.format(0).replace("0", "");
-                symbol = newSymbol && newSymbol.trim();
-            }
-            symbolsMap.set(cacheKeyGenerator({
-                code,
-                lang
-            }), symbol);
-            return symbol;
-        };
-        const getSymbolOrderByCode = (code, lang = "zh-cn") => {
-            let order = 0;
-            const format = formatGenerator(code, lang);
-            if (format.formatToParts) order = findIndex_default()(format.formatToParts(), [ "type", "currency" ]);
-            return order > 0 ? "suffix" : "prefix";
-        };
-        const unformatNumber = (value, decimalDigits = defaultCurrencyDigit) => {
-            const v = round_default()(("number" !== typeof value ? Number(value) : value) * 10 ** decimalDigits, 0);
-            return v;
-        };
-        const unformatCurrency = value => unformatNumber(value, defaultCurrencyDigit);
-        const unformatPercent = value => unformatNumber(value, defaultPresentDigit);
-        const formatNumber = (value, decimalDigits = defaultCurrencyDigit) => {
-            const v = "number" !== typeof value ? Number(value) : value;
-            return v / 10 ** decimalDigits;
-        };
-        const formatCurrency = value => formatNumber(value, defaultCurrencyDigit);
-        const formatPercent = value => formatNumber(value, defaultPresentDigit);
-        const getDecimalSymbolByCode = (code, lang) => {
-            let decimal = "";
-            const format = formatGenerator(code, lang);
-            if (format.formatToParts) {
-                const findDecimal = find_default()(format.formatToParts(1), [ "type", "decimal" ]);
-                decimal = findDecimal && findDecimal.value;
-            } else {
-                const realLang = hardCodeSymbol(code, lang);
-                const intl = new Intl.NumberFormat(realLang, {
-                    currency: code,
-                    ...hardCodeCurrencyDisplay(code),
-                    useGrouping: false
-                });
-                decimal = intl.format(.1).replace(/[0-9]*/g, "");
-            }
-            return decimal;
-        };
-        const getGroupSymbolByCode = (code, lang) => {
-            let group = "";
-            const format = formatGenerator(code, lang);
-            if (format.formatToParts) {
-                const findGroup = find_default()(format.formatToParts(1e4), [ "type", "group" ]);
-                group = findGroup && findGroup.value;
-            } else {
-                const realLang = hardCodeSymbol(code, lang);
-                const decimal = getDecimalSymbolByCode(code, realLang);
-                group = "." === decimal ? "," : ".";
-            }
-            return group;
-        };
-        const getFormatParts = (value, options) => {
-            const {code, lang} = options;
-            const format = formatGenerator(code, lang);
-            if (format.formatToParts) return format.formatToParts(value);
-            const formatStr = format.format(value);
-            const group = getGroupSymbolByCode(code, lang);
-            const decimal = getDecimalSymbolByCode(code, lang);
-            const symbolOrder = getSymbolOrderByCode(code, lang);
-            const symbol = getSymbolByCode(code, lang);
-            const rst = [];
-            const [integerValue, fraction] = formatStr.replace(symbol, "").split(decimal);
-            integerValue.split(group).forEach(((item, index) => {
-                rst.push({
-                    type: "integer",
-                    value: item
-                });
-                if (index !== integerValue.length - 1) rst.push({
-                    type: "group",
-                    value: group
-                });
-            }));
-            rst.push({
-                type: "decimal",
-                value: decimal
-            });
-            rst.push({
-                type: "fraction",
-                value: fraction.trim()
-            });
-            if ("prefix" === symbolOrder) rst.unshift({
-                type: "currency",
-                value: symbol
-            }); else rst.push({
-                type: "currency",
-                value: symbol
-            });
-            return rst;
-        };
-        const getConvertPrice = (money, options) => {
-            const fromCurrencyCode = storeCurrency;
-            const toCurrencyCode = options && options.code;
-            const lang = options && options.lang;
-            const covertMoneyByRate = covertCalc(money, fromCurrencyCode, toCurrencyCode, currencyRates);
-            const covertMoney = formatCurrency(covertMoneyByRate);
-            const formatPartsResult = getFormatParts(covertMoney, {
-                code: toCurrencyCode,
-                lang
-            });
-            const convertResult = {
-                group: "",
-                integer: "",
-                decimal: "",
-                fraction: "",
-                symbolOrder: "",
-                currencySymbol: ""
-            };
-            convertResult.symbolOrder = getSymbolOrderByCode(toCurrencyCode, lang);
-            formatPartsResult.forEach((item => {
-                const type = item && item.type;
-                if ("currency" === type) convertResult.currencySymbol = item.value;
-                if ("integer" === type) if (convertResult.integer) convertResult.integer = `${convertResult.integer}${convertResult.group || ""}${item.value}`; else convertResult.integer = item.value;
-                if ("group" === type) convertResult.group = item.value;
-                if ("decimal" === type) convertResult.decimal = item.value;
-                if ("fraction" === type) convertResult.fraction = item.value;
-            }));
-            return convertResult;
-        };
-        const currency = {
-            format,
-            unformatNumber,
-            formatNumber,
-            unformatCurrency,
-            unformatPercent,
-            formatCurrency,
-            formatPercent,
-            getDigitsByCode,
-            getSymbolByCode,
-            getSymbolOrderByCode,
-            getDecimalSymbolByCode,
-            getGroupSymbolByCode,
-            getFormatParts,
-            getConvertPrice,
-            convertFormat: currency_convertFormat,
-            covertCalc
+        const convertFormatWithoutCurrency = (...args) => {
+            setDefault();
+            return (0, lib.convertFormatWithoutCurrency)(...args);
         };
         const HD_EVENT_NAME = {
             GO_TO_CHECKOUT: "trade:goToCheckout:report",
@@ -14824,6 +15243,31 @@
             }
         }
         const topDrawer = TopDrawer;
+        function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+            try {
+                var info = gen[key](arg);
+                var value = info.value;
+            } catch (error) {
+                reject(error);
+                return;
+            }
+            if (info.done) resolve(value); else Promise.resolve(value).then(_next, _throw);
+        }
+        function _asyncToGenerator(fn) {
+            return function() {
+                var self = this, args = arguments;
+                return new Promise((function(resolve, reject) {
+                    var gen = fn.apply(self, args);
+                    function _next(value) {
+                        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+                    }
+                    function _throw(err) {
+                        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+                    }
+                    _next(void 0);
+                }));
+            };
+        }
         function _defineProperty(obj, key, value) {
             if (key in obj) Object.defineProperty(obj, key, {
                 value,
@@ -14833,11 +15277,66 @@
             }); else obj[key] = value;
             return obj;
         }
+        var regenerator = __webpack_require__("./node_modules/@babel/runtime/regenerator/index.js");
+        var regenerator_default = __webpack_require__.n(regenerator);
+        var getRandomValues;
+        var rnds8 = new Uint8Array(16);
+        function rng() {
+            if (!getRandomValues) {
+                getRandomValues = "undefined" !== typeof crypto && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || "undefined" !== typeof msCrypto && "function" === typeof msCrypto.getRandomValues && msCrypto.getRandomValues.bind(msCrypto);
+                if (!getRandomValues) throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
+            }
+            return getRandomValues(rnds8);
+        }
+        const regex = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
+        function validate(uuid) {
+            return "string" === typeof uuid && regex.test(uuid);
+        }
+        const esm_browser_validate = validate;
+        var byteToHex = [];
+        for (var i = 0; i < 256; ++i) byteToHex.push((i + 256).toString(16).substr(1));
+        function stringify(arr) {
+            var offset = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;
+            var uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+            if (!esm_browser_validate(uuid)) throw TypeError("Stringified UUID is invalid");
+            return uuid;
+        }
+        const esm_browser_stringify = stringify;
+        function v4(options, buf, offset) {
+            options = options || {};
+            var rnds = options.random || (options.rng || rng)();
+            rnds[6] = 15 & rnds[6] | 64;
+            rnds[8] = 63 & rnds[8] | 128;
+            if (buf) {
+                offset = offset || 0;
+                for (var i = 0; i < 16; ++i) buf[offset + i] = rnds[i];
+                return buf;
+            }
+            return esm_browser_stringify(rnds);
+        }
+        const esm_browser_v4 = v4;
+        var getEventID = function() {
+            return "".concat(Date.now(), "_").concat(esm_browser_v4().replace(/-/g, ""));
+        };
+        var getAddtoCartReportParams = function(payAmount, currency, eventID, dataId) {
+            var params = {
+                dataId,
+                payAmount,
+                currency,
+                eventId: eventID || "addToCart".concat(getEventID()),
+                eventTime: Date.now(),
+                eventName: "AddToCart"
+            };
+            return params;
+        };
+        __webpack_require__("./node_modules/lodash/lodash.js");
         function parsePathToArray_parsePathToArray(path) {
             if ("string" !== typeof path) throw new TypeError("path must be string");
             return path.replace(/\]/, "").split(/[.[]/);
         }
         const lib_utils_parsePathToArray = parsePathToArray_parsePathToArray;
+        var node_modules_eventemitter3 = __webpack_require__("./node_modules/eventemitter3/index.js");
+        var node_modules_eventemitter3_default = __webpack_require__.n(node_modules_eventemitter3);
         function ownKeys(object, enumerableOnly) {
             var keys = Object.keys(object);
             if (Object.getOwnPropertySymbols) {
@@ -14859,7 +15358,7 @@
             }
             return target;
         }
-        var store_SL_EventEmitter = window.SL_EventEmitter;
+        var store_SL_EventEmitter = node_modules_eventemitter3_default();
         var StoreEvent;
         (function(StoreEvent) {
             StoreEvent["ADD"] = "add";
@@ -14867,25 +15366,25 @@
             StoreEvent["REMOVE"] = "remove";
         })(StoreEvent || (StoreEvent = {}));
         var SL_EE = store_SL_EventEmitter;
-        var store = {};
+        var store_store = {};
         var emitter = new SL_EE;
         emitter.on(StoreEvent.ADD, (function(ctx) {
-            store = _objectSpread(_objectSpread({}, store), ctx);
+            store_store = _objectSpread(_objectSpread({}, store_store), ctx);
         }));
         emitter.on(StoreEvent.SET, (function(ctx) {
-            store = ctx;
+            store_store = ctx;
         }));
         emitter.on(StoreEvent.REMOVE, (function(storeName) {
-            delete store[storeName];
+            delete store_store[storeName];
         }));
-        _objectSpread({}, store);
-        var store_get = function(path) {
-            if (!path) return store;
+        _objectSpread({}, store_store);
+        var get = function(path) {
+            if (!path) return store_store;
             var keys = lib_utils_parsePathToArray(path);
             var value = keys.reduce((function(prev, current) {
                 if (!prev) return;
                 return prev[current];
-            }), store);
+            }), store_store);
             return value || null;
         };
         var add = function(ctx) {
@@ -14898,10 +15397,821 @@
             return emitter.emit(StoreEvent.REMOVE, ctx);
         };
         const utils_store = {
-            get: store_get,
+            get,
             add,
             set,
             remove
+        };
+        var currencyConvert_convertCalc = function(value) {
+            var _rates$to, _rates$from;
+            var from = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : defaultCurrency;
+            var to = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : defaultCurrency;
+            var ratesData = arguments.length > 3 ? arguments[3] : void 0;
+            var rates = ratesData || getCurrencyRates();
+            if (from === to) return value;
+            return value * (null !== (_rates$to = null === rates || void 0 === rates ? void 0 : rates[to]) && void 0 !== _rates$to ? _rates$to : 1) / (null !== (_rates$from = null === rates || void 0 === rates ? void 0 : rates[from]) && void 0 !== _rates$from ? _rates$from : 1);
+        };
+        var currencyConvert_convertFormat = function(value, options) {
+            var from = options.from, to = options.to, lang = options.lang, rates = options.currencyRates;
+            var rateData = rates || getCurrencyRates();
+            var rst = currencyConvert_convertCalc(value, from, to, rateData);
+            return format(rst, {
+                code: to,
+                lang
+            });
+        };
+        var HARD_CODE_CONFIG = [ {
+            code: "TWD",
+            digit: 0
+        }, {
+            code: "HUF",
+            digit: 0
+        }, {
+            code: "RUB",
+            digit: 0
+        }, {
+            code: "CVE",
+            digit: 0
+        }, {
+            code: "AFN",
+            digit: 2
+        }, {
+            code: "ALL",
+            digit: 2
+        }, {
+            code: "IRR",
+            digit: 2
+        }, {
+            code: "KPW",
+            digit: 2
+        }, {
+            code: "LAK",
+            digit: 2
+        }, {
+            code: "LBP",
+            digit: 2
+        }, {
+            code: "MMK",
+            digit: 2
+        }, {
+            code: "RSD",
+            digit: 2
+        }, {
+            code: "SLL",
+            digit: 2
+        }, {
+            code: "SOS",
+            digit: 2
+        }, {
+            code: "SYP",
+            digit: 2
+        }, {
+            code: "UYU",
+            digit: 2
+        }, {
+            code: "YER",
+            digit: 2
+        }, {
+            code: "KWD",
+            digit: 2
+        }, {
+            code: "OMR",
+            digit: 2
+        }, {
+            code: "BHD",
+            digit: 2
+        }, {
+            code: "IDR",
+            digit: 0
+        } ];
+        var SYMBOL_HARD_CODE_CONFIG = {
+            AUD: {
+                en: "zh-hans-cn"
+            },
+            TWD: {
+                "zh-hant-tw": "zh-hant-hk"
+            },
+            MXN: {
+                es: "en"
+            },
+            CLP: {
+                es: "es-CL"
+            }
+        };
+        var CURRENCY_DISPLAY_HARDCODE = {
+            PHP: {
+                currencyDisplay: "code"
+            }
+        };
+        function currency_ownKeys(object, enumerableOnly) {
+            var keys = Object.keys(object);
+            if (Object.getOwnPropertySymbols) {
+                var symbols = Object.getOwnPropertySymbols(object);
+                enumerableOnly && (symbols = symbols.filter((function(sym) {
+                    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+                }))), keys.push.apply(keys, symbols);
+            }
+            return keys;
+        }
+        function currency_objectSpread(target) {
+            for (var i = 1; i < arguments.length; i++) {
+                var source = null != arguments[i] ? arguments[i] : {};
+                i % 2 ? currency_ownKeys(Object(source), !0).forEach((function(key) {
+                    _defineProperty(target, key, source[key]);
+                })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : currency_ownKeys(Object(source)).forEach((function(key) {
+                    Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+                }));
+            }
+            return target;
+        }
+        var currency_storeCurrency;
+        var storeLang;
+        var currencyRates;
+        var defaultCurrency = "CNY";
+        var defaultCurrencyDigit = 2;
+        var defaultLang = "zh-hans-cn";
+        var digitsMap = new Map;
+        var formatUtilMap = new Map;
+        new Map;
+        var hardCodeConfigs = HARD_CODE_CONFIG;
+        var hardcodeDigit = function(code) {
+            var _hardcoreConfig$digit, _hardcoreConfig$digit2;
+            var hardcoreConfig = hardCodeConfigs.find((function(config) {
+                return config.code === code;
+            }));
+            return {
+                minimumFractionDigits: null !== (_hardcoreConfig$digit = null === hardcoreConfig || void 0 === hardcoreConfig ? void 0 : hardcoreConfig.digit) && void 0 !== _hardcoreConfig$digit ? _hardcoreConfig$digit : void 0,
+                maximumFractionDigits: null !== (_hardcoreConfig$digit2 = null === hardcoreConfig || void 0 === hardcoreConfig ? void 0 : hardcoreConfig.digit) && void 0 !== _hardcoreConfig$digit2 ? _hardcoreConfig$digit2 : void 0
+            };
+        };
+        var hardCodeCurrencyDisplay = function(code) {
+            var _CURRENCY_DISPLAY_HAR;
+            return null !== (_CURRENCY_DISPLAY_HAR = CURRENCY_DISPLAY_HARDCODE[code]) && void 0 !== _CURRENCY_DISPLAY_HAR ? _CURRENCY_DISPLAY_HAR : {};
+        };
+        var hardCodeSymbol = function(code, lang) {
+            var _SYMBOL_HARD_CODE_CON, _SYMBOL_HARD_CODE_CON2;
+            return null !== (_SYMBOL_HARD_CODE_CON = null === (_SYMBOL_HARD_CODE_CON2 = SYMBOL_HARD_CODE_CONFIG[code]) || void 0 === _SYMBOL_HARD_CODE_CON2 ? void 0 : _SYMBOL_HARD_CODE_CON2[lang]) && void 0 !== _SYMBOL_HARD_CODE_CON ? _SYMBOL_HARD_CODE_CON : lang;
+        };
+        var getCurrencyRates = function() {
+            return currencyRates;
+        };
+        var formatGenerator = function(code, lang) {
+            var realLang = hardCodeSymbol(code, lang);
+            return new Intl.NumberFormat(realLang, currency_objectSpread(currency_objectSpread({
+                style: "currency",
+                currency: code
+            }, hardCodeCurrencyDisplay(code)), hardcodeDigit(code)));
+        };
+        var cacheKeyGenerator = function(_ref) {
+            var code = _ref.code, lang = _ref.lang;
+            var countryCode = null === code || void 0 === code ? void 0 : code.toUpperCase();
+            var language = null === lang || void 0 === lang ? void 0 : lang.toUpperCase();
+            if (countryCode && language) return "".concat(countryCode, "-").concat(language);
+            if (countryCode) return countryCode;
+            if (language) return language;
+            return "";
+        };
+        var format = function(value, options) {
+            var code = (null === options || void 0 === options ? void 0 : options.code) || currency_storeCurrency || defaultCurrency;
+            var lang = (null === options || void 0 === options ? void 0 : options.lang) || storeLang || defaultLang;
+            var digits = (null === options || void 0 === options ? void 0 : options.digits) || Math.pow(10, defaultCurrencyDigit);
+            var f;
+            if (formatUtilMap.get(cacheKeyGenerator({
+                code,
+                lang
+            }))) f = formatUtilMap.get(cacheKeyGenerator({
+                code,
+                lang
+            })); else {
+                f = formatGenerator(code, lang);
+                formatUtilMap.set(cacheKeyGenerator({
+                    code,
+                    lang
+                }), f);
+                digitsMap.set(code, f.resolvedOptions().maximumFractionDigits);
+            }
+            return f.format(value / digits);
+        };
+        var formatNumber = function(value) {
+            var decimalDigits = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : defaultCurrencyDigit;
+            var v = "number" !== typeof value ? Number(value) : value;
+            return v / Math.pow(10, decimalDigits);
+        };
+        var formatCurrency = function(value) {
+            return formatNumber(value, defaultCurrencyDigit);
+        };
+        function unique(arr) {
+            return Array.from(new Set(arr));
+        }
+        function addToCartThirdReport(items, eventId) {
+            var _window, _window2, _items$, _window3, _window4;
+            var GAItems = [];
+            var GA4Items = [];
+            var GARItems = [];
+            var GARSkuIds = (null === (_window = window) || void 0 === _window ? void 0 : _window.SL_GetReportArg) && (null === (_window2 = window) || void 0 === _window2 ? void 0 : _window2.SL_GetReportArg("GAR", "sku_id"));
+            items.forEach((function(item) {
+                var id = item.itemNo || item.id;
+                var variant = item.variant || "";
+                GAItems.push({
+                    id,
+                    name: item.productName,
+                    price: formatCurrency(item.price),
+                    quantity: item.quantity,
+                    variant
+                });
+                GA4Items.push({
+                    item_id: id,
+                    item_name: item.productName,
+                    price: formatCurrency(item.price),
+                    quantity: item.quantity,
+                    item_variant: variant
+                });
+                GARItems.push({
+                    id: GARSkuIds ? GARSkuIds("".concat(item.id)) : item.id,
+                    google_business_vertical: "retail"
+                });
+            }));
+            var total = formatCurrency(items.reduce((function(a, p) {
+                return a + p.price * p.quantity;
+            }), 0));
+            items.map((function(_ref) {
+                var spuId = _ref.spuId;
+                return spuId;
+            })).join(",");
+            items.map((function(_ref2) {
+                var id = _ref2.id;
+                return id;
+            })).join(",");
+            var contentName = (null === items || void 0 === items ? void 0 : null === (_items$ = items[0]) || void 0 === _items$ ? void 0 : _items$.productName) || "";
+            items.reduce((function(a, p) {
+                return a + p.quantity;
+            }), 0);
+            var SL_State = null === (_window3 = window) || void 0 === _window3 ? void 0 : _window3.SL_State;
+            var SL_EventBus = null === (_window4 = window) || void 0 === _window4 ? void 0 : _window4.SL_EventBus;
+            var currency = null === SL_State || void 0 === SL_State ? void 0 : SL_State.get("storeInfo.currency");
+            var spuIds = (null === items || void 0 === items ? void 0 : items.map((function(v) {
+                return v.spuId;
+            }))) || [];
+            null === SL_EventBus || void 0 === SL_EventBus ? void 0 : SL_EventBus.emit("global:thirdPartReport", {
+                GA: [ [ "event", "add_to_cart", {
+                    items: GAItems
+                } ] ],
+                GAAds: [ [ "event", "conversion", {
+                    value: total,
+                    currency
+                }, "ADD-TO-CART" ] ],
+                GAR: [ [ "event", "add_to_cart", {
+                    value: total,
+                    items: GARItems
+                } ] ],
+                GARemarketing: [ [ "event", "add_to_cart", {
+                    ecomm_prodid: items.map((function(v) {
+                        return GARSkuIds ? GARSkuIds(v.id) : v.id;
+                    })),
+                    ecomm_pagetype: "cart",
+                    ecomm_totalvalue: total
+                } ] ],
+                GA4: [ [ "event", "add_to_cart", {
+                    currency,
+                    value: total,
+                    items: GA4Items
+                } ] ],
+                FBPixel: [ [ "track", "AddToCart", {
+                    content_ids: unique(spuIds),
+                    content_name: contentName,
+                    content_category: "",
+                    content_type: "product_group",
+                    currency,
+                    value: total
+                }, {
+                    eventID: eventId
+                } ] ]
+            });
+            items.forEach((function(item) {
+                var _window5, _window5$Shopline$eve;
+                var price = formatCurrency(item.price);
+                null === (_window5 = window) || void 0 === _window5 ? void 0 : null === (_window5$Shopline$eve = _window5.Shopline.event) || void 0 === _window5$Shopline$eve ? void 0 : _window5$Shopline$eve.emit("DataReport::AddToCart", {
+                    data: {
+                        content_spu_id: item.spuId,
+                        content_sku_id: item.id,
+                        content_category: "",
+                        content_name: item.productName,
+                        currency,
+                        price,
+                        value: price,
+                        quantity: item.quantity
+                    },
+                    interior: "DataReport::AddToCart"
+                });
+            }));
+        }
+        function addToCartHdReport(option) {
+            var _window6, _window6$HdSdk;
+            var spuId = option.spuId, skuId = option.skuId, num = option.num, price = option.price, name = option.name, page = option.page, event_status = option.event_status, cartId = option.cartId, _option$url = option.url, url = void 0 === _option$url ? "" : _option$url;
+            null === (_window6 = window) || void 0 === _window6 ? void 0 : null === (_window6$HdSdk = _window6.HdSdk) || void 0 === _window6$HdSdk ? void 0 : _window6$HdSdk.shopTracker.report("60006263", {
+                page,
+                event_name: "additem",
+                event_category: "cart",
+                product_type: "product",
+                product_id: spuId,
+                variantion_id: skuId,
+                quantity: num,
+                price: formatCurrency(price),
+                product_name: name,
+                event_status,
+                cart_id: cartId,
+                url
+            });
+        }
+        function batchAddToCartHdReport(items, event_status, cartId) {
+            items.forEach((function(item) {
+                var hdReportData = {
+                    page: item.page,
+                    spuId: item.spuId,
+                    skuId: item.id,
+                    num: item.quantity,
+                    price: item.price,
+                    name: item.productName,
+                    event_status,
+                    cartId: cartId || "",
+                    url: (null === item || void 0 === item ? void 0 : item.url) || ""
+                };
+                addToCartHdReport(hdReportData);
+            }));
+        }
+        function addToCartHdReportV2(option, event_status, cartId) {
+            var _window7, _window7$SL_State, _HdSdk, _HdSdk$shopTracker;
+            var _ref3 = option || {}, items = _ref3.items, page = _ref3.page, module = _ref3.module, appKey = _ref3.appKey, dataId = _ref3.dataId, eventId = _ref3.eventId;
+            var currency = null === (_window7 = window) || void 0 === _window7 ? void 0 : null === (_window7$SL_State = _window7.SL_State) || void 0 === _window7$SL_State ? void 0 : _window7$SL_State.get("storeInfo.currency");
+            null === (_HdSdk = window.HdSdk) || void 0 === _HdSdk ? void 0 : null === (_HdSdk$shopTracker = _HdSdk.shopTracker) || void 0 === _HdSdk$shopTracker ? void 0 : _HdSdk$shopTracker.collect({
+                page,
+                module,
+                component: 101,
+                addtocart_type: "addtocart",
+                event_name: "AddToCart",
+                currency,
+                data_id: dataId,
+                event_id: eventId,
+                event_status,
+                value: formatCurrency(items.reduce((function(prev, data) {
+                    return prev + (data.price || 0) * (data.quantity || 0);
+                }), 0)),
+                items: items.map((function(data) {
+                    return {
+                        sku_id: data.id,
+                        spu_id: data.spuId,
+                        variant: data.variant,
+                        price: formatCurrency(data.price),
+                        quantity: "".concat(data.quantity)
+                    };
+                })),
+                app_id: appKey,
+                cart_id: cartId
+            });
+        }
+        var axios = __webpack_require__("./node_modules/@sl/cart/node_modules/axios/index.js");
+        var axios_default = __webpack_require__.n(axios);
+        var query_string = __webpack_require__("./node_modules/query-string/index.js");
+        function request_ownKeys(object, enumerableOnly) {
+            var keys = Object.keys(object);
+            if (Object.getOwnPropertySymbols) {
+                var symbols = Object.getOwnPropertySymbols(object);
+                enumerableOnly && (symbols = symbols.filter((function(sym) {
+                    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+                }))), keys.push.apply(keys, symbols);
+            }
+            return keys;
+        }
+        function request_objectSpread(target) {
+            for (var i = 1; i < arguments.length; i++) {
+                var source = null != arguments[i] ? arguments[i] : {};
+                i % 2 ? request_ownKeys(Object(source), !0).forEach((function(key) {
+                    _defineProperty(target, key, source[key]);
+                })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : request_ownKeys(Object(source)).forEach((function(key) {
+                    Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+                }));
+            }
+            return target;
+        }
+        var instance = axios_default().create({
+            baseURL: "/",
+            timeout: 3e4,
+            withCredentials: true,
+            paramsSerializer: function(params) {
+                return query_string.stringify(params);
+            }
+        });
+        instance.interceptors.response.use((function(res) {
+            var status = res.status, data = res.data, config = res.config;
+            if ("/leproxy" === config.baseURL) {
+                if (200 !== status || "0" !== data.rescode) return Promise.reject(request_objectSpread({
+                    message: data.resmsg
+                }, data));
+            } else if (200 !== status || !(data.success || "SUCCESS" === data.code)) return Promise.reject(data);
+            return data;
+        }), (function(error) {
+            return Promise.reject(error);
+        }));
+        const request = instance;
+        const api = {
+            endpointCartAdd: "/leproxy/api/carts/cart/add",
+            endpointCartUpdate: "/leproxy/api/carts/cart/update",
+            endpointCartChange: "/leproxy/api/carts/cart",
+            endpointCartDelete: "/leproxy/api/carts/cart/delete",
+            endpointDataReportAdd: "/leproxy/api/carts/data-report/add",
+            endpointCartAddV2: "/leproxy/api/carts/ajax-cart/add.js",
+            endpointCartId: "/leproxy/api/carts/cart/cart-id"
+        };
+        var fetchAddToCart = function() {
+            var _ref = _asyncToGenerator(regenerator_default().mark((function _callee(payload) {
+                var items, dataReportReq;
+                return regenerator_default().wrap((function(_context) {
+                    while (1) switch (_context.prev = _context.next) {
+                      case 0:
+                        items = payload.items, dataReportReq = payload.dataReportReq;
+                        return _context.abrupt("return", request.post(api.endpointCartAdd, {
+                            items,
+                            dataReportReq
+                        }));
+
+                      case 2:
+                      case "end":
+                        return _context.stop();
+                    }
+                }), _callee);
+            })));
+            return function(_x) {
+                return _ref.apply(this, arguments);
+            };
+        }();
+        var fetchUpdateCart = function() {
+            var _ref2 = _asyncToGenerator(regenerator_default().mark((function _callee2(payload) {
+                var items;
+                return regenerator_default().wrap((function(_context2) {
+                    while (1) switch (_context2.prev = _context2.next) {
+                      case 0:
+                        items = payload.items;
+                        return _context2.abrupt("return", request.post(api.endpointCartUpdate, {
+                            items
+                        }));
+
+                      case 2:
+                      case "end":
+                        return _context2.stop();
+                    }
+                }), _callee2);
+            })));
+            return function(_x2) {
+                return _ref2.apply(this, arguments);
+            };
+        }();
+        var fetchChangeCart = function() {
+            var _ref3 = _asyncToGenerator(regenerator_default().mark((function _callee3(payload) {
+                var item;
+                return regenerator_default().wrap((function(_context3) {
+                    while (1) switch (_context3.prev = _context3.next) {
+                      case 0:
+                        item = payload.item;
+                        return _context3.abrupt("return", request.put(api.endpointCartChange, item));
+
+                      case 2:
+                      case "end":
+                        return _context3.stop();
+                    }
+                }), _callee3);
+            })));
+            return function(_x3) {
+                return _ref3.apply(this, arguments);
+            };
+        }();
+        var fetchChangeClear = function() {
+            var _ref4 = _asyncToGenerator(regenerator_default().mark((function _callee4() {
+                return regenerator_default().wrap((function(_context4) {
+                    while (1) switch (_context4.prev = _context4.next) {
+                      case 0:
+                        return _context4.abrupt("return", request["delete"](api.endpointCartDelete));
+
+                      case 1:
+                      case "end":
+                        return _context4.stop();
+                    }
+                }), _callee4);
+            })));
+            return function() {
+                return _ref4.apply(this, arguments);
+            };
+        }();
+        var fetchDataReportAdd = function() {
+            var _ref5 = _asyncToGenerator(regenerator_default().mark((function _callee5(payload) {
+                var ids, dataReportReq;
+                return regenerator_default().wrap((function(_context5) {
+                    while (1) switch (_context5.prev = _context5.next) {
+                      case 0:
+                        ids = payload.ids, dataReportReq = payload.dataReportReq;
+                        return _context5.abrupt("return", request.post(api.endpointDataReportAdd, {
+                            ids,
+                            dataReportReq
+                        }));
+
+                      case 2:
+                      case "end":
+                        return _context5.stop();
+                    }
+                }), _callee5);
+            })));
+            return function(_x4) {
+                return _ref5.apply(this, arguments);
+            };
+        }();
+        var fetchAddToCartV2 = function() {
+            var _ref6 = _asyncToGenerator(regenerator_default().mark((function _callee6(payload) {
+                var items;
+                return regenerator_default().wrap((function(_context6) {
+                    while (1) switch (_context6.prev = _context6.next) {
+                      case 0:
+                        items = payload.items;
+                        return _context6.abrupt("return", request.post(api.endpointCartAddV2, {
+                            items
+                        }));
+
+                      case 2:
+                      case "end":
+                        return _context6.stop();
+                    }
+                }), _callee6);
+            })));
+            return function(_x5) {
+                return _ref6.apply(this, arguments);
+            };
+        }();
+        var fetchCartId = function() {
+            var _ref7 = _asyncToGenerator(regenerator_default().mark((function _callee7() {
+                return regenerator_default().wrap((function(_context7) {
+                    while (1) switch (_context7.prev = _context7.next) {
+                      case 0:
+                        return _context7.abrupt("return", request.get(api.endpointCartId));
+
+                      case 1:
+                      case "end":
+                        return _context7.stop();
+                    }
+                }), _callee7);
+            })));
+            return function() {
+                return _ref7.apply(this, arguments);
+            };
+        }();
+        function api_cart_ownKeys(object, enumerableOnly) {
+            var keys = Object.keys(object);
+            if (Object.getOwnPropertySymbols) {
+                var symbols = Object.getOwnPropertySymbols(object);
+                enumerableOnly && (symbols = symbols.filter((function(sym) {
+                    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+                }))), keys.push.apply(keys, symbols);
+            }
+            return keys;
+        }
+        function api_cart_objectSpread(target) {
+            for (var i = 1; i < arguments.length; i++) {
+                var source = null != arguments[i] ? arguments[i] : {};
+                i % 2 ? api_cart_ownKeys(Object(source), !0).forEach((function(key) {
+                    _defineProperty(target, key, source[key]);
+                })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : api_cart_ownKeys(Object(source)).forEach((function(key) {
+                    Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+                }));
+            }
+            return target;
+        }
+        var api_cart_isFunction = function(fn) {
+            return "function" === typeof fn;
+        };
+        var ApiCartAdd = function(data) {
+            var _window, _window2, _window2$HdSdk, _window2$HdSdk$shopTr, _window2$HdSdk$shopTr2;
+            var items = data.items, hdReportV2Data = data.hdReportV2Data, onSuccess = data.onSuccess, onError = data.onError, cartId = data.cartId;
+            var payAmount = items.reduce((function(a, p) {
+                return a + p.price * p.quantity;
+            }), 0);
+            var currency = null === (_window = window) || void 0 === _window ? void 0 : _window.SL_State.get("storeInfo.currency");
+            var eventId = "addToCart".concat(getEventID());
+            var dataId = (null === (_window2 = window) || void 0 === _window2 ? void 0 : null === (_window2$HdSdk = _window2.HdSdk) || void 0 === _window2$HdSdk ? void 0 : null === (_window2$HdSdk$shopTr = _window2$HdSdk.shopTracker) || void 0 === _window2$HdSdk$shopTr ? void 0 : null === (_window2$HdSdk$shopTr2 = _window2$HdSdk$shopTr.getDataId) || void 0 === _window2$HdSdk$shopTr2 ? void 0 : _window2$HdSdk$shopTr2.call(_window2$HdSdk$shopTr)) || "";
+            var dataReportReq = getAddtoCartReportParams(payAmount, currency, eventId, dataId);
+            fetchAddToCart({
+                items: items.map((function(v) {
+                    return {
+                        skuId: v.id,
+                        spuId: v.spuId,
+                        num: v.quantity,
+                        properties: v.properties
+                    };
+                })),
+                dataReportReq
+            }).then((function(res) {
+                if (res.success) {
+                    var _window3, _window3$Shopline;
+                    null === onSuccess || void 0 === onSuccess ? void 0 : onSuccess(res);
+                    var event = null === (_window3 = window) || void 0 === _window3 ? void 0 : null === (_window3$Shopline = _window3.Shopline) || void 0 === _window3$Shopline ? void 0 : _window3$Shopline.event;
+                    if (event) event.emit("Cart::NavigateCart");
+                    batchAddToCartHdReport(items, 1, cartId);
+                    addToCartThirdReport(items, eventId);
+                    if (hdReportV2Data) addToCartHdReportV2(api_cart_objectSpread(api_cart_objectSpread({
+                        items
+                    }, hdReportV2Data), {}, {
+                        dataId,
+                        eventId
+                    }), 1, cartId);
+                } else {
+                    null === onError || void 0 === onError ? void 0 : onError(res);
+                    batchAddToCartHdReport(items, 0, cartId);
+                    if (hdReportV2Data) addToCartHdReportV2(api_cart_objectSpread(api_cart_objectSpread({
+                        items
+                    }, hdReportV2Data), {}, {
+                        dataId,
+                        eventId
+                    }), 0, cartId);
+                }
+            })).catch((function(err) {
+                null === onError || void 0 === onError ? void 0 : onError(err);
+                batchAddToCartHdReport(items, 0, cartId);
+                if (hdReportV2Data) addToCartHdReportV2(api_cart_objectSpread(api_cart_objectSpread({
+                    items
+                }, hdReportV2Data), {}, {
+                    dataId,
+                    eventId
+                }), 0, cartId);
+            }));
+        };
+        var ApiCartUpdate = function(data) {
+            var _ref = data || {}, updates = _ref.updates, onSuccess = _ref.onSuccess, onError = _ref.onError;
+            var itemList = updates.map((function(v) {
+                return {
+                    skuId: v.id,
+                    spuId: v.spuId,
+                    num: v.quantity,
+                    properties: v.properties,
+                    groupId: v.itemId
+                };
+            }));
+            try {
+                fetchUpdateCart({
+                    items: itemList
+                }).then((function(res) {
+                    if (null !== res && void 0 !== res && res.success) onSuccess && api_cart_isFunction(onSuccess) && onSuccess(res); else onError && api_cart_isFunction(onError) && onError(res);
+                }));
+            } catch (error) {
+                onError && api_cart_isFunction(onError) && onError(error);
+            }
+        };
+        var ApiCartChange = function(data) {
+            var _ref2 = data || {}, changes = _ref2.changes, onSuccess = _ref2.onSuccess, onError = _ref2.onError;
+            var item = {
+                skuId: changes.id,
+                spuId: changes.spuId,
+                num: changes.quantity,
+                properties: changes.properties,
+                groupId: changes.itemId
+            };
+            try {
+                fetchChangeCart({
+                    item
+                }).then((function(res) {
+                    if (null !== res && void 0 !== res && res.success) onSuccess && api_cart_isFunction(onSuccess) && onSuccess(res); else onError && api_cart_isFunction(onError) && onError(res);
+                }));
+            } catch (error) {
+                onError && api_cart_isFunction(onError) && onError(error);
+            }
+        };
+        var ApiCartClear = function(data) {
+            var _ref3 = data || {}, onSuccess = _ref3.onSuccess, onError = _ref3.onError;
+            try {
+                fetchChangeClear().then((function(res) {
+                    if (null !== res && void 0 !== res && res.success) onSuccess && api_cart_isFunction(onSuccess) && onSuccess(res); else onError && api_cart_isFunction(onError) && onError(res);
+                }));
+            } catch (error) {
+                onError && api_cart_isFunction(onError) && onError(error);
+            }
+        };
+        var addDataReport = function(items, eventId, dataId) {
+            var _window4;
+            var payAmount = items.reduce((function(a, p) {
+                return a + p.price * p.quantity;
+            }), 0);
+            var currency = null === (_window4 = window) || void 0 === _window4 ? void 0 : _window4.SL_State.get("storeInfo.currency");
+            var dataReportReq = getAddtoCartReportParams(payAmount, currency, eventId, dataId);
+            fetchDataReportAdd({
+                ids: items.map((function(v) {
+                    return v.id;
+                })),
+                dataReportReq
+            });
+        };
+        function isJsonParse(str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        }
+        var initInterceptorAjaxAddToCart = function() {
+            var _window5, _window6;
+            (null === (_window5 = window) || void 0 === _window5 ? void 0 : _window5.__AJAX_INTERCEPTOR__) && (null === (_window6 = window) || void 0 === _window6 ? void 0 : _window6.__AJAX_INTERCEPTOR__(function() {
+                var _ref4 = _asyncToGenerator(regenerator_default().mark((function _callee(request, response) {
+                    var _reqData$items, _window$HdSdk, _window$HdSdk$shopTra, _window$HdSdk$shopTra2, _data, reqData, _res, cartId, DEFAULT_PAGE, eventId, reportItems, dataId;
+                    return regenerator_default().wrap((function(_context) {
+                        while (1) switch (_context.prev = _context.next) {
+                          case 0:
+                            _context.prev = 0;
+                            if (!(request.url.indexOf("/ajax-cart/add.js") > 0 && response)) {
+                                _context.next = 22;
+                                break;
+                            }
+                            _data = isJsonParse(response.response) ? JSON.parse(response.response) : {};
+                            reqData = isJsonParse(request.body) ? JSON.parse(request.body) : {};
+                            _context.next = 6;
+                            return fetchCartId();
+
+                          case 6:
+                            _res = _context.sent;
+                            cartId = _res.data;
+                            DEFAULT_PAGE = -999;
+                            eventId = "addToCart".concat(getEventID());
+                            reportItems = (null === (_reqData$items = reqData.items) || void 0 === _reqData$items ? void 0 : _reqData$items.map((function(v) {
+                                var _data$items, _item$variant_options;
+                                var item = null === (_data$items = _data.items) || void 0 === _data$items ? void 0 : _data$items.find((function(v1) {
+                                    return v1.id === v.id;
+                                }));
+                                if (!item) return null;
+                                return {
+                                    id: item.id,
+                                    quantity: v.quantity,
+                                    spuId: item.product_id,
+                                    name: item.title,
+                                    productName: item.product_title,
+                                    price: 100 * (item.price || 0),
+                                    page: DEFAULT_PAGE,
+                                    itemNo: item.sku,
+                                    variant: null === (_item$variant_options = item.variant_options) || void 0 === _item$variant_options ? void 0 : _item$variant_options.join(","),
+                                    properties: item.properties,
+                                    url: item.url
+                                };
+                            })).filter(Boolean)) || [];
+                            dataId = (null === (_window$HdSdk = window.HdSdk) || void 0 === _window$HdSdk ? void 0 : null === (_window$HdSdk$shopTra = _window$HdSdk.shopTracker) || void 0 === _window$HdSdk$shopTra ? void 0 : null === (_window$HdSdk$shopTra2 = _window$HdSdk$shopTra.getDataId) || void 0 === _window$HdSdk$shopTra2 ? void 0 : _window$HdSdk$shopTra2.call(_window$HdSdk$shopTra)) || "";
+                            if (!(200 === (null === response || void 0 === response ? void 0 : response.status) && reportItems.length > 0 && !(null !== _data && void 0 !== _data && _data.errors))) {
+                                _context.next = 20;
+                                break;
+                            }
+                            _context.next = 15;
+                            return addDataReport(reportItems, eventId, dataId);
+
+                          case 15:
+                            batchAddToCartHdReport(reportItems, 1, cartId);
+                            addToCartThirdReport(reportItems, eventId);
+                            addToCartHdReportV2({
+                                items: reportItems,
+                                page: DEFAULT_PAGE,
+                                module: DEFAULT_PAGE,
+                                dataId,
+                                eventId
+                            }, 1, cartId);
+                            _context.next = 22;
+                            break;
+
+                          case 20:
+                            batchAddToCartHdReport(reportItems, 0, cartId);
+                            addToCartHdReportV2({
+                                items: reportItems,
+                                page: DEFAULT_PAGE,
+                                module: DEFAULT_PAGE,
+                                dataId,
+                                eventId
+                            }, 0, cartId);
+
+                          case 22:
+                            _context.next = 26;
+                            break;
+
+                          case 24:
+                            _context.prev = 24;
+                            _context.t0 = _context["catch"](0);
+
+                          case 26:
+                          case "end":
+                            return _context.stop();
+                        }
+                    }), _callee, null, [ [ 0, 24 ] ]);
+                })));
+                return function(_x, _x2) {
+                    return _ref4.apply(this, arguments);
+                };
+            }()));
+        };
+        var ApiCart = {
+            ApiCartAdd,
+            ApiCartUpdate,
+            ApiCartChange,
+            ApiCartClear,
+            ApiCartAddV2: fetchAddToCartV2,
+            initInterceptorAjaxAddToCart
         };
         var _window;
         var CartEventBusEnum = {
@@ -14921,8 +16231,44 @@
                 cartInfo: data
             });
         }));
+        cartData_SL_EventBus.on("InitInterceptorAjaxAddToCart", (function() {
+            window.ApiCartAddV2 = ApiCart.ApiCartAddV2;
+            ApiCart.initInterceptorAjaxAddToCart();
+        }));
         var lodash_escape = __webpack_require__("./node_modules/lodash/escape.js");
         var escape_default = __webpack_require__.n(lodash_escape);
+        var lodash_get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
+        var get_default = __webpack_require__.n(lodash_get);
+        var toPath = __webpack_require__("../shared/browser/node_modules/lodash/toPath.js");
+        var toPath_default = __webpack_require__.n(toPath);
+        function syntax_patch_nullishCoalescingOperator(...args) {
+            const val = args.find((item => {
+                if ("function" === typeof item) {
+                    const result = item();
+                    return null !== result && void 0 !== result;
+                }
+                return null !== item && void 0 !== item;
+            }));
+            if (null === val || void 0 === val) return args[args.length - 1];
+            return val;
+        }
+        function syntax_patch_get(obj, ...args) {
+            return get_default()(obj, ...args);
+        }
+        function get_func(obj, path) {
+            const pathList = toPath_default()(path);
+            const parentPath = pathList.splice(0, pathList.length - 1);
+            const key = pathList[0];
+            const parent = parentPath.length ? get_default()(obj, parentPath) : obj;
+            const exec = (...args) => {
+                if (parent && "function" === typeof parent[key]) return parent[key](...args);
+                return;
+            };
+            return {
+                value: parent ? parent[key] : void 0,
+                exec
+            };
+        }
         function i18n_parsePathToArray(path) {
             if ("string" !== typeof path) throw new TypeError("path must be string");
             return path.replace(/\]/, "").split(/[.[]/);
@@ -14952,7 +16298,7 @@
             if (void 0 === amount) return "";
             const num = Number(amount) || 0;
             if (type === TypeEnum.NUMBER) return num;
-            if (type === TypeEnum.AMOUNT) return `<span data-amount="${num}">${currency_convertFormat(num)}</span>`;
+            if (type === TypeEnum.AMOUNT) return `<span data-amount="${num}">${CurrencyConvert_convertFormat(num)}</span>`;
             return "";
         }
         const getI18nKey = (step, configs, type) => {
@@ -15026,7 +16372,8 @@
             BUY_X_GET_Y: 12,
             NTH_PRICE: 11,
             FREELOWESTPRICE: 9,
-            FREESHOPPING: 3
+            FREESHOPPING: 3,
+            NTH_FIXED_PRICE: 14
         };
         const ThresholdTypeEnum = {
             PRICE: 0,
@@ -15034,6 +16381,14 @@
         };
         function defaultSafeString(str) {
             return str;
+        }
+        function getBenefitValue(benefitType, current, isNext = false) {
+            if (benefitType === BenefitTypeEnum.FREELOWESTPRICE) return syntax_patch_get(current, "benefitCount");
+            if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE) {
+                const extMap = syntax_patch_get(current, "extMap");
+                return isNext ? syntax_patch_get(extMap, "nextFixedPrice") : syntax_patch_get(extMap, "fixedPrice");
+            }
+            return syntax_patch_get(current, "benefit");
         }
         function shoppingPromotionReminder_shoppingPromotionReminder(currency, safeString = defaultSafeString) {
             function setWrapper(value, warper) {
@@ -15044,11 +16399,11 @@
                 const num = Number(str) || 0;
                 if (syntax_patch_get(type, "thresholdType") === ThresholdTypeEnum.NUMBER) return num;
                 if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.DISCOUNT || syntax_patch_get(type, "benefitType") === BenefitTypeEnum.BUY_X_GET_Y || syntax_patch_get(type, "benefitType") === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
-                if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.PRICE || syntax_patch_get(type, "thresholdType") === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
+                if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.NTH_FIXED_PRICE || syntax_patch_get(type, "benefitType") === BenefitTypeEnum.PRICE || syntax_patch_get(type, "thresholdType") === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
                 if (syntax_patch_get(type, "benefitType") === BenefitTypeEnum.FREELOWESTPRICE) return num;
                 return "";
             }
-            function getShoppingReminderConfig(promotion, configs = {}, options) {
+            function getShoppingReminderConfig(promotion, configs = {}, options = {}) {
                 const {lineBreak = false, warper} = configs;
                 const {benefitType, promotionBenefitList = []} = shoppingPromotionReminder_nc(promotion, {});
                 if (promotionBenefitList.length) {
@@ -15081,17 +16436,25 @@
                     return {
                         path: thresholdType > -1 ? completePath : " ",
                         params: {
-                            saved: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? syntax_patch_get(current, "benefitCount") : syntax_patch_get(current, "benefit"), {
+                            saved: setWrapper(formatBenefitNum(getBenefitValue(benefitType, current), {
                                 benefitType
                             }, options), {
                                 ...warper,
-                                class: `sales__promotionReminder-saved ${shoppingPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
+                                class: `sales__promotionReminder-saved  custom-sale-color ${shoppingPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
                             }),
-                            willSave: setWrapper(formatBenefitNum(benefitType === BenefitTypeEnum.FREELOWESTPRICE ? syntax_patch_get(next, "benefitCount") : syntax_patch_get(next, "benefit"), {
+                            willSave: setWrapper(formatBenefitNum(getBenefitValue(benefitType, next, true), {
                                 benefitType
                             }, options), {
                                 ...warper,
                                 class: `sales__promotionReminder-willSave custom-sale-color ${shoppingPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
+                            }),
+                            currentMinThreshold: setWrapper(syntax_patch_get(current, "minThreshold"), {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${shoppingPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
+                            }),
+                            nextMinThreshold: setWrapper(syntax_patch_get(next, "minThreshold"), {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${shoppingPromotionReminder_nc(syntax_patch_get(warper, "class"), "")}`
                             }),
                             threshold: setWrapper(formatBenefitNum(syntax_patch_get(next, "amount"), {
                                 thresholdType
@@ -15119,7 +16482,7 @@
             return getShoppingReminderConfig;
         }
         const sales_shoppingPromotionReminder = shoppingPromotionReminder_shoppingPromotionReminder;
-        const getPromotionReminder = sales_shoppingPromotionReminder(currency_convertFormat);
+        const getPromotionReminder = sales_shoppingPromotionReminder(CurrencyConvert_convertFormat);
         const reminder_getPromotionReminder = getPromotionReminder;
         const getPromotionBarContent = (promotion, rootWrapper) => {
             const isPCMainCart = rootWrapper.hasClass("main") && rootWrapper.hasClass("is-pc");
@@ -15167,11 +16530,11 @@
             const content = getContent(...args);
             return `\n    <div class="cart-sku-list-promotion">\n      ${content}\n    </div>\n  `;
         };
-        var n, o, index_es_t, i = function() {
-            return i = Object.assign || function(n) {
+        var n, o, index_es_t, index_es_i = function() {
+            return index_es_i = Object.assign || function(n) {
                 for (var o, t = 1, i = arguments.length; t < i; t++) for (var r in o = arguments[t]) Object.prototype.hasOwnProperty.call(o, r) && (n[r] = o[r]);
                 return n;
-            }, i.apply(this, arguments);
+            }, index_es_i.apply(this, arguments);
         };
         !function(n) {
             n.P0 = "P0", n.P1 = "P1", n.P2 = "P2";
@@ -15187,22 +16550,22 @@
                 action: "",
                 transports: []
             }, this.withOwner = function(o) {
-                return new n(i(i({}, r.options), {
+                return new n(index_es_i(index_es_i({}, r.options), {
                     owner: o
                 }));
             }, this.pipeOwner = function(o) {
                 var t = "";
-                return t = r.options.owner ? "".concat(r.options.owner, ".").concat(o) : o, new n(i(i({}, r.options), {
+                return t = r.options.owner ? "".concat(r.options.owner, ".").concat(o) : o, new n(index_es_i(index_es_i({}, r.options), {
                     owner: t
                 }));
             }, this.withAction = function(o) {
-                return new n(i(i({}, r.options), {
+                return new n(index_es_i(index_es_i({}, r.options), {
                     action: o
                 }));
             }, this.pipeTransport = function() {
                 for (var o = [], t = 0; t < arguments.length; t++) o[t] = arguments[t];
                 var e = r.options.transports.concat(o);
-                return new n(i(i({}, r.options), {
+                return new n(index_es_i(index_es_i({}, r.options), {
                     transports: e
                 }));
             }, this.report = function(n, o, t) {
@@ -15212,7 +16575,7 @@
                         var o = n(t);
                         o && (t = o);
                     }));
-                }(i(i({
+                }(index_es_i(index_es_i({
                     level: n,
                     owner: r.options.owner,
                     action: r.options.action
@@ -15227,7 +16590,7 @@
                 r.report(index_es_t.Warn, n, o);
             }, this.error = function(n, o) {
                 r.report(index_es_t.Error, n, o);
-            }, this.options = i(i({}, this.options), o);
+            }, this.options = index_es_i(index_es_i({}, this.options), o);
         }, e = new r;
         Object.defineProperty(e, "options", {
             writable: !1,
@@ -15274,11 +16637,11 @@
             };
         }
         const [main_sessionStorage, main_localStorage] = [ "sessionStorage", "localStorage" ].map(getStorage);
-        const utils = {
+        const main_utils = {
             sessionStorage: main_sessionStorage,
             localStorage: main_localStorage
         };
-        const main = utils;
+        const main = main_utils;
         const platformType = {
             pc: "pc",
             pad: "pad",
@@ -15373,15 +16736,37 @@
             if (-1 === lastDotIndex) return `${dirname}/${filename}${clipper}`;
             return `${dirname}/${filename.slice(0, lastDotIndex)}${clipper}${filename.slice(lastDotIndex)}`;
         }
+        const newCurrency = {
+            format: lib.format,
+            unformatNumber: lib.unformatNumber,
+            formatNumber: lib.formatNumber,
+            unformatCurrency: lib.unformatCurrency,
+            unformatPercent: lib.unformatPercent,
+            formatCurrency: lib.formatCurrency,
+            formatPercent: lib.formatPercent,
+            getDigitsByCode: lib.getDigitsByCode,
+            getSymbolByCode: lib.getSymbolByCode,
+            getSymbolOrderByCode: lib.getSymbolOrderByCode,
+            getDecimalSymbolByCode: lib.getDecimalSymbolByCode,
+            getGroupSymbolByCode: lib.getGroupSymbolByCode,
+            getFormatParts: lib.getFormatParts,
+            getConvertPrice,
+            convertFormat: CurrencyConvert_convertFormat,
+            covertCalc: lib.covertCalc,
+            convertFormatWithoutCurrency,
+            formatWithoutCurrency: lib.formatWithoutCurrency,
+            formatMoneyWithoutCurrency: lib.formatMoneyWithoutCurrency
+        };
         function convertPrice(price) {
-            const formattedPrice = currency_convertFormat(price);
-            const code = state_selector_SL_State.get("currencyCode");
-            const lang = state_selector_SL_State.get("request.locale");
-            const decimalSymbol = currency.getDecimalSymbolByCode(code, lang);
-            const priceArr = formattedPrice.split(decimalSymbol);
+            const {symbolOrder, currencySymbol, integer, fraction} = newCurrency.getConvertPrice(price);
+            let formattedPriceStr = "";
+            if ("prefix" === symbolOrder) formattedPriceStr = `${currencySymbol}${integer}<sup class="body6">${fraction}</sup>`; else formattedPriceStr = `${integer}<sup class="body6">${fraction}</sup><span>${currencySymbol}</span>`;
             return {
-                integer: null === priceArr || void 0 === priceArr ? void 0 : priceArr[0],
-                decimal: (null === priceArr || void 0 === priceArr ? void 0 : priceArr[1]) || ""
+                symbolOrder,
+                currencySymbol,
+                integer,
+                fraction,
+                formattedPriceStr
             };
         }
         function getSyncData(key) {
@@ -16610,7 +17995,7 @@
             }
         }
         new TradeHdReport;
-        const {formatNumber: cartHdReport_formatNumber} = currency;
+        const {formatNumber: cartHdReport_formatNumber} = newCurrency;
         class CartHdReport extends TradeHdReport {
             getCartPageId() {
                 if ("/cart" === window.location.pathname) return 60006254;
@@ -16856,7 +18241,7 @@
                         items: params.items && params.items.map((item => ({
                             item_id: item.itemNo || item.productId,
                             item_name: item.name,
-                            price: currency.formatCurrency(item.price),
+                            price: newCurrency.formatCurrency(item.price),
                             quantity: item.num,
                             item_variant: (item.skuAttr || []).join(",")
                         })))
@@ -16939,7 +18324,7 @@
             return res;
         };
         var uuid = __webpack_require__("../shared/browser/node_modules/uuid/index.js");
-        function getEventID() {
+        function tool_getEventID() {
             return `${Date.now()}_${(0, uuid.v4)().replace(/-/g, "")}`;
         }
         Symbol("REPORT_ADD_CART");
@@ -16996,7 +18381,7 @@
                 ...ext,
                 payAmount,
                 currency,
-                eventId: eid || `addToCart${eventID}` || `addToCart${getEventID()}`,
+                eventId: eid || `addToCart${eventID}` || `addToCart${tool_getEventID()}`,
                 eventTime: Date.now()
             };
             return params;
@@ -17006,7 +18391,7 @@
                 product_id: item.productSeq,
                 variantion_id: item.productSku,
                 quantity: item.productNum,
-                price: `${currency.formatNumber(Number(item && item.productPrice) || 0)}`,
+                price: `${newCurrency.formatNumber(Number(item && item.productPrice) || 0)}`,
                 product_name: item.productName
             })));
             window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.report(id, {
@@ -17048,7 +18433,7 @@
             src_js_cookie.set(`${seq}_fb_data`, {
                 tp: eventID ? 2 : 1,
                 et: Date.now(),
-                ed: eventID || getEventID()
+                ed: eventID || tool_getEventID()
             });
         };
         const reportCheckout = data => {
@@ -17083,7 +18468,7 @@
                     res.productItems.push({
                         skuId: itemNo || skuId,
                         quantity: num,
-                        price: null === currency || void 0 === currency ? void 0 : currency.formatCurrency(price || 0).toString(),
+                        price: null === newCurrency || void 0 === newCurrency ? void 0 : newCurrency.formatCurrency(price || 0).toString(),
                         name,
                         variant: (skuAttr || []).join(",")
                     });
@@ -17091,7 +18476,7 @@
                     const product = {
                         skuId: (null === params || void 0 === params ? void 0 : params.itemNo) || (null === params || void 0 === params ? void 0 : params.skuId),
                         quantity: null === params || void 0 === params ? void 0 : params.num,
-                        price: null === currency || void 0 === currency ? void 0 : currency.formatCurrency(params.price || 0).toString(),
+                        price: null === newCurrency || void 0 === newCurrency ? void 0 : newCurrency.formatCurrency(params.price || 0).toString(),
                         name: null === params || void 0 === params ? void 0 : params.name,
                         variant: ((null === params || void 0 === params ? void 0 : params.skuAttr) || []).join(",")
                     };
@@ -17103,12 +18488,12 @@
                     res.productItems.push({
                         skuId: itemNo || skuId,
                         quantity: num,
-                        price: null === currency || void 0 === currency ? void 0 : currency.formatCurrency(price || 0).toString(),
+                        price: null === newCurrency || void 0 === newCurrency ? void 0 : newCurrency.formatCurrency(price || 0).toString(),
                         name,
                         variant: (skuAttr || []).join(",")
                     });
                 }));
-                res.value = null === currency || void 0 === currency ? void 0 : currency.formatCurrency(res.value || 0).toString();
+                res.value = null === newCurrency || void 0 === newCurrency ? void 0 : newCurrency.formatCurrency(res.value || 0).toString();
                 cartReport_logger.info(`normal 主站购物车 数据上报 设置移除商品params setRemoveItemParams`, {
                     data: {
                         cartToken,
@@ -17126,7 +18511,7 @@
                     ...rest,
                     skuId: itemNo || skuId,
                     name,
-                    price: null === currency || void 0 === currency ? void 0 : currency.formatCurrency(price || 0).toString(),
+                    price: null === newCurrency || void 0 === newCurrency ? void 0 : newCurrency.formatCurrency(price || 0).toString(),
                     variant: skuAttrs,
                     itemNo
                 };
@@ -17186,7 +18571,7 @@
                 });
                 if (!cartInfo.activeItems) return;
                 const params = {
-                    amount: null === currency || void 0 === currency ? void 0 : currency.formatCurrency(cartInfo.realAmount || 0),
+                    amount: null === newCurrency || void 0 === newCurrency ? void 0 : newCurrency.formatCurrency(cartInfo.realAmount || 0),
                     items: []
                 };
                 const {activeItems} = cartInfo;
@@ -18699,20 +20084,20 @@
             getPriceInfo(data) {
                 const isShowScribingPrice = parseInt(data.promotionAmount, 10) > 0 && parseInt(data.productPrice, 10) > parseInt(data.price, 10);
                 if (useSuperScriptDecimals) {
-                    const {integer: productPriceInteger, decimal: productPriceDecimal} = convertPrice(data.productPrice);
-                    const {integer: priceInteger, decimal: priceDecimal} = convertPrice(data.price);
-                    if (isShowScribingPrice) return `<span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount=${data.productPrice}>${productPriceInteger}<sup class="body6">${productPriceDecimal}</sup></span><span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}><span>${priceInteger}<sup class="body6">${priceDecimal}</sup></span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
-                    return `<span class="trade-cart-sku-item-real-price notranslate body2 text_bold" data-amount=${data.price}><span>${priceInteger}<sup class="body6">${priceDecimal}</sup></span>${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+                    const {formattedPriceStr: productPriceFormattedPriceStr} = convertPrice(data.productPrice);
+                    const {formattedPriceStr: priceFormattedPriceStr} = convertPrice(data.price);
+                    if (isShowScribingPrice) return `<span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount=${data.productPrice}>${productPriceFormattedPriceStr}</span><span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}><span>${priceFormattedPriceStr}></span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+                    return `<span class="trade-cart-sku-item-real-price notranslate body2 text_bold" data-amount=${data.price}><span>${priceFormattedPriceStr}></span>${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
                 }
-                if (isShowScribingPrice) return `<span class="trade-cart-sku-item-info-amount-through notranslate" data-amount=${data.productPrice}>${currency_convertFormat(data.productPrice)}</span><span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}>${currency_convertFormat(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
-                return `<span class="trade-cart-sku-item-real-price notranslate" data-amount=${data.price}>${currency_convertFormat(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+                if (isShowScribingPrice) return `<span class="trade-cart-sku-item-info-amount-through notranslate" data-amount=${data.productPrice}>${CurrencyConvert_convertFormat(data.productPrice)}</span><span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}>${CurrencyConvert_convertFormat(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+                return `<span class="trade-cart-sku-item-real-price notranslate" data-amount=${data.price}>${CurrencyConvert_convertFormat(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
             }
             getVipTag(data) {
                 return 1 === parseInt(data.priceType, 10) ? `<span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>` : "";
             }
             getPromotionAmountInfo(data) {
                 var _data$businessFlag3;
-                if (parseInt(data.promotionAmount, 10) > 0) return `\n      <div class="trade-cart-sku-item-info-discount body4">\n        <div>\n          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n            <path fill-rule="evenodd" clip-rule="evenodd"\n              d="M1.02892 5.44639C1.01074 5.59863 1.06342 5.7508 1.17184 5.85922L6.10552 10.7929C6.49605 11.1834 7.12921 11.1834 7.51974 10.7929L10.793 7.51962C11.1835 7.12909 11.1835 6.49593 10.793 6.1054L5.85934 1.17172C5.75092 1.0633 5.59875 1.01062 5.44651 1.0288L1.89069 1.45337C1.66152 1.48074 1.48086 1.6614 1.4535 1.89057L1.02892 5.44639ZM4.00013 3.00001C4.55241 3.00001 5.00013 3.44772 5.00013 4.00001C5.00013 4.55229 4.55241 5.00001 4.00013 5.00001C3.44785 5.00001 3.00013 4.55229 3.00013 4.00001C3.00013 3.44772 3.44785 3.00001 4.00013 3.00001Z"\n              />\n          </svg><span>&nbsp;${i18n_t("sales.general.discount_common")}</span>\n        </div>\n        <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion" data-amount=${data.promotionAmount}>${currency_convertFormat(data.promotionAmount)}</span><span>)</span></div>\n      </div>`;
+                if (parseInt(data.promotionAmount, 10) > 0) return `\n      <div class="trade-cart-sku-item-info-discount body4">\n        <div>\n          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n            <path fill-rule="evenodd" clip-rule="evenodd"\n              d="M1.02892 5.44639C1.01074 5.59863 1.06342 5.7508 1.17184 5.85922L6.10552 10.7929C6.49605 11.1834 7.12921 11.1834 7.51974 10.7929L10.793 7.51962C11.1835 7.12909 11.1835 6.49593 10.793 6.1054L5.85934 1.17172C5.75092 1.0633 5.59875 1.01062 5.44651 1.0288L1.89069 1.45337C1.66152 1.48074 1.48086 1.6614 1.4535 1.89057L1.02892 5.44639ZM4.00013 3.00001C4.55241 3.00001 5.00013 3.44772 5.00013 4.00001C5.00013 4.55229 4.55241 5.00001 4.00013 5.00001C3.44785 5.00001 3.00013 4.55229 3.00013 4.00001C3.00013 3.44772 3.44785 3.00001 4.00013 3.00001Z"\n              />\n          </svg><span>&nbsp;${i18n_t("sales.general.discount_common")}</span>\n        </div>\n        <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion" data-amount=${data.promotionAmount}>${CurrencyConvert_convertFormat(data.promotionAmount)}</span><span>)</span></div>\n      </div>`;
                 if (data && null !== data && void 0 !== data && data.businessFlag && !(null !== data && void 0 !== data && null !== (_data$businessFlag3 = data.businessFlag) && void 0 !== _data$businessFlag3 && _data$businessFlag3.discountable)) return `<div class="trade-cart-sku-item-info-discount sale-color body4">${i18n_t("cart.promotion.no_promotion")}</div>`;
                 return "";
             }
@@ -18947,213 +20332,6 @@
             });
             return Constructor;
         }
-        __webpack_require__("./node_modules/lodash/lodash.js");
-        var currencyConvert_convertCalc = function(value) {
-            var _rates$to, _rates$from;
-            var from = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : currency_defaultCurrency;
-            var to = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : currency_defaultCurrency;
-            var ratesData = arguments.length > 3 ? arguments[3] : void 0;
-            var rates = ratesData || getCurrencyRates();
-            if (from === to) return value;
-            return value * (null !== (_rates$to = null === rates || void 0 === rates ? void 0 : rates[to]) && void 0 !== _rates$to ? _rates$to : 1) / (null !== (_rates$from = null === rates || void 0 === rates ? void 0 : rates[from]) && void 0 !== _rates$from ? _rates$from : 1);
-        };
-        var currencyConvert_convertFormat = function(value, options) {
-            var from = options.from, to = options.to, lang = options.lang, rates = options.currencyRates;
-            var rateData = rates || getCurrencyRates();
-            var rst = currencyConvert_convertCalc(value, from, to, rateData);
-            return currency_format(rst, {
-                code: to,
-                lang
-            });
-        };
-        var convertFormatCommon = function(value, options) {
-            var _window, _store$get;
-            var SL_State = null === (_window = window) || void 0 === _window ? void 0 : _window.SL_State;
-            var fromDefault = SL_State.get("storeInfo.currency");
-            var toDefault = SL_State.get("currencyCode");
-            var locale = SL_State.get("request.locale");
-            var current2Currency = null === (_store$get = utils_store.get()) || void 0 === _store$get ? void 0 : _store$get.currencyCode;
-            var current2Rate = SL_State.get("currencyRates");
-            var _options$from = options.from, from = void 0 === _options$from ? fromDefault : _options$from, _options$to = options.to, to = void 0 === _options$to ? current2Currency || toDefault : _options$to, _options$lang = options.lang, lang = void 0 === _options$lang ? locale : _options$lang, _options$currencyRate = options.currencyRates, rates = void 0 === _options$currencyRate ? current2Rate : _options$currencyRate;
-            var rateData = rates || getCurrencyRates();
-            var rst = currencyConvert_convertCalc(value, from, to, rateData);
-            return currency_format(rst, {
-                code: to,
-                lang
-            });
-        };
-        var hardCodeConfig_HARD_CODE_CONFIG = [ {
-            code: "TWD",
-            digit: 0
-        }, {
-            code: "HUF",
-            digit: 0
-        }, {
-            code: "RUB",
-            digit: 0
-        }, {
-            code: "CVE",
-            digit: 0
-        }, {
-            code: "AFN",
-            digit: 2
-        }, {
-            code: "ALL",
-            digit: 2
-        }, {
-            code: "IRR",
-            digit: 2
-        }, {
-            code: "KPW",
-            digit: 2
-        }, {
-            code: "LAK",
-            digit: 2
-        }, {
-            code: "LBP",
-            digit: 2
-        }, {
-            code: "MMK",
-            digit: 2
-        }, {
-            code: "RSD",
-            digit: 2
-        }, {
-            code: "SLL",
-            digit: 2
-        }, {
-            code: "SOS",
-            digit: 2
-        }, {
-            code: "SYP",
-            digit: 2
-        }, {
-            code: "UYU",
-            digit: 2
-        }, {
-            code: "YER",
-            digit: 2
-        }, {
-            code: "KWD",
-            digit: 2
-        }, {
-            code: "OMR",
-            digit: 2
-        }, {
-            code: "BHD",
-            digit: 2
-        }, {
-            code: "IDR",
-            digit: 0
-        } ];
-        var hardCodeConfig_SYMBOL_HARD_CODE_CONFIG = {
-            AUD: {
-                en: "zh-hans-cn"
-            },
-            TWD: {
-                "zh-hant-tw": "zh-hant-hk"
-            },
-            MXN: {
-                es: "en"
-            },
-            CLP: {
-                es: "es-CL"
-            }
-        };
-        var hardCodeConfig_CURRENCY_DISPLAY_HARDCODE = {
-            PHP: {
-                currencyDisplay: "code"
-            }
-        };
-        function currency_ownKeys(object, enumerableOnly) {
-            var keys = Object.keys(object);
-            if (Object.getOwnPropertySymbols) {
-                var symbols = Object.getOwnPropertySymbols(object);
-                enumerableOnly && (symbols = symbols.filter((function(sym) {
-                    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-                }))), keys.push.apply(keys, symbols);
-            }
-            return keys;
-        }
-        function currency_objectSpread(target) {
-            for (var i = 1; i < arguments.length; i++) {
-                var source = null != arguments[i] ? arguments[i] : {};
-                i % 2 ? currency_ownKeys(Object(source), !0).forEach((function(key) {
-                    _defineProperty(target, key, source[key]);
-                })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : currency_ownKeys(Object(source)).forEach((function(key) {
-                    Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-                }));
-            }
-            return target;
-        }
-        var currency_storeCurrency;
-        var currency_storeLang;
-        var currency_currencyRates;
-        var currency_defaultCurrency = "CNY";
-        var currency_defaultCurrencyDigit = 2;
-        var currency_defaultLang = "zh-hans-cn";
-        var currency_digitsMap = new Map;
-        var currency_formatUtilMap = new Map;
-        new Map;
-        var hardCodeConfigs = hardCodeConfig_HARD_CODE_CONFIG;
-        var currency_hardcodeDigit = function(code) {
-            var _hardcoreConfig$digit, _hardcoreConfig$digit2;
-            var hardcoreConfig = hardCodeConfigs.find((function(config) {
-                return config.code === code;
-            }));
-            return {
-                minimumFractionDigits: null !== (_hardcoreConfig$digit = null === hardcoreConfig || void 0 === hardcoreConfig ? void 0 : hardcoreConfig.digit) && void 0 !== _hardcoreConfig$digit ? _hardcoreConfig$digit : void 0,
-                maximumFractionDigits: null !== (_hardcoreConfig$digit2 = null === hardcoreConfig || void 0 === hardcoreConfig ? void 0 : hardcoreConfig.digit) && void 0 !== _hardcoreConfig$digit2 ? _hardcoreConfig$digit2 : void 0
-            };
-        };
-        var currency_hardCodeCurrencyDisplay = function(code) {
-            var _CURRENCY_DISPLAY_HAR;
-            return null !== (_CURRENCY_DISPLAY_HAR = hardCodeConfig_CURRENCY_DISPLAY_HARDCODE[code]) && void 0 !== _CURRENCY_DISPLAY_HAR ? _CURRENCY_DISPLAY_HAR : {};
-        };
-        var currency_hardCodeSymbol = function(code, lang) {
-            var _SYMBOL_HARD_CODE_CON, _SYMBOL_HARD_CODE_CON2;
-            return null !== (_SYMBOL_HARD_CODE_CON = null === (_SYMBOL_HARD_CODE_CON2 = hardCodeConfig_SYMBOL_HARD_CODE_CONFIG[code]) || void 0 === _SYMBOL_HARD_CODE_CON2 ? void 0 : _SYMBOL_HARD_CODE_CON2[lang]) && void 0 !== _SYMBOL_HARD_CODE_CON ? _SYMBOL_HARD_CODE_CON : lang;
-        };
-        var getCurrencyRates = function() {
-            return currency_currencyRates;
-        };
-        var currency_formatGenerator = function(code, lang) {
-            var realLang = currency_hardCodeSymbol(code, lang);
-            return new Intl.NumberFormat(realLang, currency_objectSpread(currency_objectSpread({
-                style: "currency",
-                currency: code
-            }, currency_hardCodeCurrencyDisplay(code)), currency_hardcodeDigit(code)));
-        };
-        var currency_cacheKeyGenerator = function(_ref) {
-            var code = _ref.code, lang = _ref.lang;
-            var countryCode = null === code || void 0 === code ? void 0 : code.toUpperCase();
-            var language = null === lang || void 0 === lang ? void 0 : lang.toUpperCase();
-            if (countryCode && language) return "".concat(countryCode, "-").concat(language);
-            if (countryCode) return countryCode;
-            if (language) return language;
-            return "";
-        };
-        var currency_format = function(value, options) {
-            var code = (null === options || void 0 === options ? void 0 : options.code) || currency_storeCurrency || currency_defaultCurrency;
-            var lang = (null === options || void 0 === options ? void 0 : options.lang) || currency_storeLang || currency_defaultLang;
-            var digits = (null === options || void 0 === options ? void 0 : options.digits) || Math.pow(10, currency_defaultCurrencyDigit);
-            var f;
-            if (currency_formatUtilMap.get(currency_cacheKeyGenerator({
-                code,
-                lang
-            }))) f = currency_formatUtilMap.get(currency_cacheKeyGenerator({
-                code,
-                lang
-            })); else {
-                f = currency_formatGenerator(code, lang);
-                currency_formatUtilMap.set(currency_cacheKeyGenerator({
-                    code,
-                    lang
-                }), f);
-                currency_digitsMap.set(code, f.resolvedOptions().maximumFractionDigits);
-            }
-            return f.format(value / digits);
-        };
         function lib_currency_ownKeys(object, enumerableOnly) {
             var keys = Object.keys(object);
             if (Object.getOwnPropertySymbols) {
@@ -19213,7 +20391,24 @@
             return Currency;
         }();
         _defineProperty(Currency, "instance", void 0);
-        const lib_currency = Currency;
+        const currency = Currency;
+        var currency_tools_core_lib = __webpack_require__("./node_modules/@sl/currency-tools-core/lib/index.js");
+        (0, currency_tools_core_lib.setCurrencyConfig)(window.Shopline.currencyConfig.currencyDetailList);
+        var newCurrency_convertFormat = function(value, options) {
+            var _window, _store$get;
+            var SL_State = null === (_window = window) || void 0 === _window ? void 0 : _window.SL_State;
+            var fromDefault = SL_State.get("storeInfo.currency");
+            var toDefault = SL_State.get("currencyCode");
+            var current2Currency = null === (_store$get = utils_store.get()) || void 0 === _store$get ? void 0 : _store$get.currencyCode;
+            var _options$from = options.from, from = void 0 === _options$from ? fromDefault : _options$from, _options$to = options.to, to = void 0 === _options$to ? current2Currency || toDefault : _options$to;
+            return (0, currency_tools_core_lib.convertFormat)(value, {
+                from,
+                to
+            });
+        };
+        const utils_newCurrency = {
+            convertFormat: newCurrency_convertFormat
+        };
         var ETypeKey;
         (function(ETypeKey) {
             ETypeKey["DISCOUNT_CODE"] = "discountCode";
@@ -19238,7 +20433,7 @@
             var isAmount = "number" === typeof text;
             var amountTxt = text;
             var current = null === (_store$get = utils_store.get()) || void 0 === _store$get ? void 0 : _store$get.currentCart;
-            if (isAmount) if ("SL_CART" === current) amountTxt = lib_currency.instance.convertFormat(text || 0); else amountTxt = convertFormatCommon(text || 0, {});
+            if (isAmount) if ("SL_CART" === current) amountTxt = currency.instance.convertFormat(text || 0); else amountTxt = utils_newCurrency.convertFormat(text || 0, {});
             return '\n  <div class="trade_summations__amount col textRight black">\n    <span style="display:flex;">\n        '.concat(isAmount ? '<span class="trade_summations__amount_reduce">-</span>' : "", '\n        <span class="trade_summations__amount-box">\n          <span class="trade_summations__amount-price">\n              ').concat(amountTxt, "\n          </span>\n        </span>\n    </span>\n  </div>");
         };
         var getDiscountCodeDom = function(data) {
@@ -19637,7 +20832,7 @@
                         pointAmountEl.removeClass("hide");
                     }
                     let formattedValue = deductMemberPointAmount;
-                    if ("number" === typeof deductMemberPointAmount || !deductMemberPointAmount) formattedValue = currency_convertFormat(deductMemberPointAmount);
+                    if ("number" === typeof deductMemberPointAmount || !deductMemberPointAmount) formattedValue = CurrencyConvert_convertFormat(deductMemberPointAmount);
                     descEl.html(i18n_t("cart.refund.deduct_point", {
                         deductMemberPointNum: `${null !== deductMemberPointNum && void 0 !== deductMemberPointNum ? deductMemberPointNum : 0}`,
                         deductMemberPointAmount: `<span class="deductMemberPointAmount">${formattedValue}</span>`
@@ -19676,10 +20871,10 @@
                     }
                     if ("codePromotionAmount" === key && "string" === typeof value) $matchedEles.find(`.trade_summations__amount-box`).text(value); else {
                         let formattedValue = value;
-                        if ("number" === typeof value) formattedValue = currency_convertFormat(value);
+                        if ("number" === typeof value) formattedValue = CurrencyConvert_convertFormat(value);
                         if (trade_summations_useSuperScriptDecimals && "number" === typeof value) {
-                            const {integer, decimal} = convertPrice(value);
-                            $matchedEles.find(`.trade_summations__amount-box`).html(`${integer}<sup class="body6">${decimal}</sup>`);
+                            const {formattedPriceStr} = convertPrice(value);
+                            $matchedEles.find(`.trade_summations__amount-box`).html(formattedPriceStr);
                         } else $matchedEles.find(`.trade_summations__amount-box`).text(formattedValue);
                         if ("number" === typeof value) $matchedEles.find(`.trade_summations__amount-box`).attr("data-amount", value); else $matchedEles.find(`.trade_summations__amount-box`).removeAttr("data-amount");
                     }
@@ -19746,7 +20941,7 @@
                     eventBus.on(eventBusEnum.UPDATE, this.updateAmount);
                     eventBus.on("global:currency:format", (() => {
                         var _store$get2;
-                        return this.updateAmount(null === (_store$get2 = utils_store.get()) || void 0 === _store$get2 ? void 0 : _store$get2.cartInfo);
+                        return this.updateAmount((null === (_store$get2 = utils_store.get()) || void 0 === _store$get2 ? void 0 : _store$get2.cartInfo) || {});
                     }));
                     this.initModalEventListener();
                 }));
@@ -19827,33 +21022,6 @@
         function _toConsumableArray(arr) {
             return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
         }
-        function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-            try {
-                var info = gen[key](arg);
-                var value = info.value;
-            } catch (error) {
-                reject(error);
-                return;
-            }
-            if (info.done) resolve(value); else Promise.resolve(value).then(_next, _throw);
-        }
-        function _asyncToGenerator(fn) {
-            return function() {
-                var self = this, args = arguments;
-                return new Promise((function(resolve, reject) {
-                    var gen = fn.apply(self, args);
-                    function _next(value) {
-                        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-                    }
-                    function _throw(err) {
-                        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-                    }
-                    _next(void 0);
-                }));
-            };
-        }
-        var regenerator = __webpack_require__("./node_modules/@babel/runtime/regenerator/index.js");
-        var regenerator_default = __webpack_require__.n(regenerator);
         var constant_HD_EVENT_NAME = {
             GO_TO_CHECKOUT: "trade:goToCheckout:report",
             PAYPAL_CHECKOUT: "trade:spb:report",
@@ -20625,50 +21793,6 @@
                 } catch (e) {}
             }));
         }));
-        var axios = __webpack_require__("./node_modules/@sl/cart/node_modules/axios/index.js");
-        var axios_default = __webpack_require__.n(axios);
-        var query_string = __webpack_require__("./node_modules/query-string/index.js");
-        function request_ownKeys(object, enumerableOnly) {
-            var keys = Object.keys(object);
-            if (Object.getOwnPropertySymbols) {
-                var symbols = Object.getOwnPropertySymbols(object);
-                enumerableOnly && (symbols = symbols.filter((function(sym) {
-                    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-                }))), keys.push.apply(keys, symbols);
-            }
-            return keys;
-        }
-        function request_objectSpread(target) {
-            for (var i = 1; i < arguments.length; i++) {
-                var source = null != arguments[i] ? arguments[i] : {};
-                i % 2 ? request_ownKeys(Object(source), !0).forEach((function(key) {
-                    _defineProperty(target, key, source[key]);
-                })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : request_ownKeys(Object(source)).forEach((function(key) {
-                    Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-                }));
-            }
-            return target;
-        }
-        var instance = axios_default().create({
-            baseURL: "/",
-            timeout: 3e4,
-            withCredentials: true,
-            paramsSerializer: function(params) {
-                return query_string.stringify(params);
-            }
-        });
-        instance.interceptors.response.use((function(res) {
-            var status = res.status, data = res.data, config = res.config;
-            if ("/leproxy" === config.baseURL) {
-                if (200 !== status || "0" !== data.rescode) return Promise.reject(request_objectSpread({
-                    message: data.resmsg
-                }, data));
-            } else if (200 !== status || !(data.success || "SUCCESS" === data.code)) return Promise.reject(data);
-            return data;
-        }), (function(error) {
-            return Promise.reject(error);
-        }));
-        const request = instance;
         var services_window;
         function services_ownKeys(object, enumerableOnly) {
             var keys = Object.keys(object);
@@ -21243,7 +22367,7 @@
             };
         };
         const {GO_TO_CHECKOUT} = HD_EVENT_NAME;
-        function isJsonParse(str) {
+        function checkout_isJsonParse(str) {
             try {
                 JSON.parse(str);
             } catch (e) {
@@ -21308,7 +22432,7 @@
                 let _discountCode = discountCode;
                 if (!associateCart) {
                     const tradeExtraInfoStr = sessionStorage.getItem("tradeExtraInfo");
-                    const tradeExtraInfo = isJsonParse(tradeExtraInfoStr) ? JSON.parse(tradeExtraInfoStr) : {};
+                    const tradeExtraInfo = checkout_isJsonParse(tradeExtraInfoStr) ? JSON.parse(tradeExtraInfoStr) : {};
                     _discountCode = tradeExtraInfo && tradeExtraInfo.discountCode && tradeExtraInfo.discountCode.value;
                 }
                 const reqParams = {
@@ -22484,10 +23608,10 @@
             }
             getPriceInfo(data) {
                 if (banner_useSuperScriptDecimals) {
-                    const {integer, decimal} = convertPrice(data);
-                    return `${integer}<sup class="body6">${decimal}</sup>`;
+                    const {formattedPriceStr} = convertPrice(data);
+                    return formattedPriceStr;
                 }
-                return `${currency_convertFormat(data)}`;
+                return `${CurrencyConvert_convertFormat(data)}`;
             }
             getImageUrl(src) {
                 return imgUrl(src, {
@@ -22574,18 +23698,9 @@
                     const amountNode = cartRootNode.find("[data-amount]");
                     amountNode.each((function() {
                         if (cart_useSuperScriptDecimals && !__SL_$__(this).hasClass("is-promotion")) {
-                            const {integer, decimal} = convertPrice(__SL_$__(this).attr("data-amount"));
-                            __SL_$__(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
-                        } else __SL_$__(this).text(currency_convertFormat(__SL_$__(this).attr("data-amount")));
-                    }));
-                }));
-                window.SL_EventBus.on("stage:locale:change", (() => {
-                    const amountNode = cartRootNode.find("[data-amount]");
-                    amountNode.each((function() {
-                        if (cart_useSuperScriptDecimals && !__SL_$__(this).hasClass("is-promotion")) {
-                            const {integer, decimal} = convertPrice(__SL_$__(this).attr("data-amount"));
-                            __SL_$__(this).html(`${integer}<sup class="body6">${decimal}</sup>`);
-                        } else __SL_$__(this).text(currency_convertFormat(__SL_$__(this).attr("data-amount")));
+                            const {formattedPriceStr} = convertPrice(__SL_$__(this).attr("data-amount"));
+                            __SL_$__(this).html(formattedPriceStr);
+                        } else __SL_$__(this).text(CurrencyConvert_convertFormat(__SL_$__(this).attr("data-amount")));
                     }));
                 }));
             }

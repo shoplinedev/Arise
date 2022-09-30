@@ -37,7 +37,7 @@
       }
     },
     "apps": {
-      "name": "app-block-section",
+      "name": "Aplikasi",
       "settings": {
         "include_margins": {
           "label": "Buat margin bagian sama dengan tema"
@@ -490,6 +490,12 @@
         "product_id": {
           "label": "Produk"
         },
+        "product_image_show_sku_image": {
+          "label": "Gambar utama menampilkan gambar SKU"
+        },
+        "product_show_swiper_arrow": {
+          "label": "Menampilkan panah slide"
+        },
         "show_background": {
           "label": "Tampilkan blok warna latar belakang"
         },
@@ -689,6 +695,13 @@
         "show_cart_entry": {
           "label": "Tampilkan pintu masuk troli"
         },
+        "show_currency_flags": {
+          "label": "Tampilkan simbol mata uang"
+        },
+        "show_currency_selector": {
+          "info": "Jika perlu menambahkan mata uang, silahkan buka [Pengaturan Mata Uang](/admin/settings/base)",
+          "label": "Tampilkan pilihan mata uang"
+        },
         "show_line_separator": {
           "label": "Tunjukkan garis pemisah"
         },
@@ -701,6 +714,13 @@
         },
         "show_user_entry": {
           "label": "Tampilkan pintu masuk pusat pripadi"
+        },
+        "sticky_collection": {
+          "info": "Berlaku setelah mengonfigurasi sampul halaman kategori",
+          "label": "Kategori aktifkan tajuk transparan"
+        },
+        "sticky_index": {
+          "label": "Aktifkan tajuk transparan di beranda"
         },
         "suggested_menu": {
           "info": "Setelah mengonfigurasi menu, pertama membuka pencarian akan menggunakan menu untuk menyediakan saran",
@@ -1227,7 +1247,7 @@
             },
             "video_url": {
               "info": "Masukkan Youtube atau Vimeo terbenam link",
-              "label": "Link video"
+              "label": "Pilih video"
             }
           }
         }
@@ -1422,6 +1442,9 @@
         "group_header__1": {
           "label": "Pemfilteran bilah sisi"
         },
+        "infinite_scroll": {
+          "label": "Aktifkan pengguliran tanpa batas"
+        },
         "per_page_num": {
           "label": "Jumlah produk setiap halaman"
         },
@@ -1450,6 +1473,21 @@
           },
           "options__4": {
             "label": "2:3"
+          }
+        },
+        "product_sub_title": {
+          "label": "",
+          "options__0": {
+            "label": "Tidak tampilkan"
+          },
+          "options__1": {
+            "label": "Tampilan penuh"
+          },
+          "options__2": {
+            "label": "Tampilkan hingga 1 baris"
+          },
+          "options__3": {
+            "label": "Tampilkan hingga 2 baris"
           }
         },
         "sorter_enable": {
@@ -1493,20 +1531,155 @@
             "product_custom_tab1": {
               "label": "Konten kustom 1"
             },
+            "product_custom_tab1_desc": {
+              "label": "Deskripsi teks"
+            },
             "product_custom_tab1_fold": {
               "label": "Tampilan lipat"
+            },
+            "product_custom_tab1_icon": {
+              "label": "Ikon",
+              "options__0": {
+                "label": "Tidak tampilkan"
+              },
+              "options__1": {
+                "label": "Pembayaran aman"
+              },
+              "options__10": {
+                "label": "Pengiriman"
+              },
+              "options__11": {
+                "label": "Label diskon"
+              },
+              "options__2": {
+                "label": "Paket"
+              },
+              "options__3": {
+                "label": "Email"
+              },
+              "options__4": {
+                "label": "Pemosisian"
+              },
+              "options__5": {
+                "label": "Pelanggan"
+              },
+              "options__6": {
+                "label": "Obrol"
+              },
+              "options__7": {
+                "label": "Hadiah"
+              },
+              "options__8": {
+                "label": "HP"
+              },
+              "options__9": {
+                "label": "informasi bantuan"
+              }
+            },
+            "product_custom_tab1_title": {
+              "label": "Judul"
             },
             "product_custom_tab2": {
               "label": "Konten kustom 2"
             },
+            "product_custom_tab2_desc": {
+              "label": "Deskripsi teks"
+            },
             "product_custom_tab2_fold": {
               "label": "Tampilan lipat"
+            },
+            "product_custom_tab2_icon": {
+              "label": "Ikon",
+              "options__0": {
+                "label": "Tidak tampilkan"
+              },
+              "options__1": {
+                "label": "Pembayaran aman"
+              },
+              "options__10": {
+                "label": "Pengiriman"
+              },
+              "options__11": {
+                "label": "Label diskon"
+              },
+              "options__2": {
+                "label": "Paket"
+              },
+              "options__3": {
+                "label": "Email"
+              },
+              "options__4": {
+                "label": "Pemosisian"
+              },
+              "options__5": {
+                "label": "Pelanggan"
+              },
+              "options__6": {
+                "label": "Obrol"
+              },
+              "options__7": {
+                "label": "Hadiah"
+              },
+              "options__8": {
+                "label": "HP"
+              },
+              "options__9": {
+                "label": "informasi bantuan"
+              }
+            },
+            "product_custom_tab2_title": {
+              "label": "Judul"
             },
             "product_custom_tab3": {
               "label": "Konten kustom 3"
             },
+            "product_custom_tab3_desc": {
+              "label": "Deskripsi teks"
+            },
             "product_custom_tab3_fold": {
               "label": "Tampilan lipat"
+            },
+            "product_custom_tab3_icon": {
+              "label": "Ikon",
+              "options__0": {
+                "label": "Tidak tampilkan"
+              },
+              "options__1": {
+                "label": "Pembayaran aman"
+              },
+              "options__10": {
+                "label": "Pengiriman"
+              },
+              "options__11": {
+                "label": "Label diskon"
+              },
+              "options__2": {
+                "label": "Paket"
+              },
+              "options__3": {
+                "label": "Email"
+              },
+              "options__4": {
+                "label": "Pemosisian"
+              },
+              "options__5": {
+                "label": "Pelanggan"
+              },
+              "options__6": {
+                "label": "Obrol"
+              },
+              "options__7": {
+                "label": "Hadiah"
+              },
+              "options__8": {
+                "label": "HP"
+              },
+              "options__9": {
+                "label": "informasi bantuan"
+              }
+            },
+            "product_custom_tab3_title": {
+              "label": "Judul"
             }
           }
         },
@@ -1660,6 +1833,9 @@
             "label": "Ubin thumbnail"
           }
         },
+        "product_image_show_sku_image": {
+          "label": "Gambar utama menampilkan gambar SKU"
+        },
         "product_image_size": {
           "label": "Ukuran gambar komoditas port PC",
           "options__0": {
@@ -1683,6 +1859,13 @@
           "options__1": {
             "label": "Memperlihatkan gambar mini"
           }
+        },
+        "product_show_swiper_arrow": {
+          "label": "Menampilkan panah slide"
+        },
+        "video_autoplay": {
+          "info": "Setelah fungsi ini diaktifkan, video dibisukan secara default. Jika video YouTube diaktifkan, tidak ada suara yang dapat diputar",
+          "label": "Putar otomatis video"
         },
         "video_loop": {
           "label": "Aktifkan loop video"
@@ -2385,7 +2568,7 @@
         },
         "url": {
           "info": "Masukkan Youtube atau Vimeo terbenam link",
-          "label": "Link video"
+          "label": "Pilih video"
         }
       }
     }
@@ -2465,6 +2648,9 @@
           },
           "options__1": {
             "label": "Masuki halaman troli"
+          },
+          "options__2": {
+            "label": "Tips pembelian tambahan berhasil"
           }
         }
       }

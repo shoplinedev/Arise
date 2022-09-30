@@ -5,6 +5,22 @@
       "read_btn_text": "Read More",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Comment",
+      "comment_audit_tip": "Your comment is submitted but needs to be moderated.",
+      "comment_empty": "Please fill in the comments",
+      "email": "Email",
+      "email_empty": "E-mail can not be empty",
+      "email_format": "Please enter correct email",
+      "form_title": "Comment",
+      "loadmore": "More comments",
+      "name": "Name",
+      "name_empty": "Please fill in name",
+      "submit": "Submit",
+      "submit_audit_tip": "Submitted successfully, pending review",
+      "success": "Submitted successfully",
+      "title": "{{comment_length}} comments"
+    },
     "general": {
       "back_to": "Back to {{{collectionTitle}}}."
     }
@@ -107,6 +123,13 @@
       "order_details": "Order details",
       "package_amount": "Package {{num}}（{{item}} items）",
       "pay_amount": "pay amount",
+      "paymentVoucher": {
+        "downloadDoc": "Download file",
+        "format": "Format",
+        "formatLimit": "Supports .jpg, .png, .pdf files with file size less than 20MB. You can upload at most 5 images",
+        "uploadAmount": "{{num}} payment proof(s) were uploaded",
+        "uploadLimit": "Please upload .jpg, .png, .pdf files with size less than 20MB"
+      },
       "payment_voucher_confirmation": "Got it",
       "payment_voucher_transfer_success": "Payment transferred successfully",
       "payment_voucher_waiting_for_payment": "Waiting for payment",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Invalid Email Address"
+    },
     "account": {
       "account_binding": "Account Binding",
       "account_information": "Account",
@@ -197,6 +223,10 @@
       "bind": "Binding",
       "birthday": "Birthday",
       "change_password": "Change the password",
+      "confirm_btn": "Confirm",
+      "confirm_subscription_modal_btn": "Confirm Subscription",
+      "confirm_subscription_modal_content": "You have submitted a subscription before. A confirm email has been sent to this email address. You can either confirm in your email or click this button",
+      "confirm_subscription_modal_title": "Confrim your E-mail subscription",
       "credit_card_number": "Credit card number",
       "deadline": "For the purpose of business report, your order will still be visible. Your account data will be deleted at {{time}}, you can cancel the process before that date.",
       "delete_account": "Delete account",
@@ -211,6 +241,7 @@
       "ip_address": "IP address",
       "last_name": "Last Name",
       "modify_email": "Modify Email",
+      "modify_email_modal_title": "Modify Email",
       "modify_phone": "Modify Phone",
       "name": "Name",
       "next": "Next",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Please bind email or mobile phone first",
       "revoke": "Cancel closing",
       "revoke_message": "This account is under process for closing, account data will be deleted at {{time}}, you can cancel the process before that date.",
+      "save_btn": "SAVE",
       "select__date": "Select Date",
+      "subscribe_confirm_tip": "Thanks for your subscription",
       "timeout_tip": "Operation timed out, please verify again",
       "username": "Name",
       "verify_email_message": "Before closing account, we need to verify your identity\nYour email {{email}} will receive a verification email",
@@ -238,7 +271,8 @@
       "discount_title": "Activate account and get discount code",
       "normal_title": "Activate account",
       "subscription_text": "Subscribe for emails to receive updates, access to exclusive deals, and more.",
-      "success_title": "Congratulations on getting a great discount"
+      "success_title": "Congratulations on getting a great discount",
+      "token_expired": "The link has expired"
     },
     "address": {
       "add_address": "ADD ADDRESS",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Forgot password",
+      "reset_password": "RESET PASSWORD",
       "tips_password_can_be_changed_after_verification": "You can change password after verification",
-      "tips_reset_password": "You're resetting password for account {{account}}"
+      "tips_reset_password": "You're resetting password for account {{account}}",
+      "token_expired": "Your reset password link has expired"
     },
     "general": {
       "account": "ACCOUNT",
@@ -333,6 +369,10 @@
       "error_message_3009": "The mobile has been bound by other accounts",
       "error_message_3010": "The email has been bound by other accounts",
       "error_message_3014": "Send code failed",
+      "error_message_3015": "The account has been activated",
+      "error_message_3022": "The link has expired",
+      "error_message_3023": "The link has a wrong format",
+      "error_message_3024": "The link is wrong",
       "error_message_4": "The system is busy, please try again later",
       "error_message_5": "The system is busy, please try again later",
       "error_message_6": "The system is busy, please try again later",
@@ -416,7 +456,8 @@
       "wednesday": "Wednesday"
     },
     "login": {
-      "member_login_common": "Member login"
+      "member_login_common": "Member login",
+      "subscribe_confirm_tip": "Thanks for your subscription. You can login for better experience."
     },
     "message": {
       "input_placeholder": "Would you like to leave a message?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mail",
       "email_subscription_text": "Subscribe E-mail promotion",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Phone",
       "phone_subscription_text": "Subscribe phone promotion",
@@ -474,13 +515,14 @@
       "send_success": "Thank you for contacting us, we will get back to you as soon as possible."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Invalid email address",
       "subscribe_success": "Subscribed successfully"
     },
     "general": {
       "accept": "Accept",
       "decline": "Decline",
-      "home": "Home page",
+      "home": "Home",
       "link": "Privacy Policy",
       "tel_phone": "Phone number",
       "tips": "This website uses cookies to ensure you can get the best experience on our website.",
@@ -501,9 +543,17 @@
       "shipping": "Shipping policy"
     }
   },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "Upload time",
+        "detail": "Details"
+      }
+    }
+  },
   "products": {
     "collection": {
-      "collection": "Categories"
+      "collection": "Collections"
     },
     "general": {
       "no_product_data_found": "No product data found. Please try again later",
@@ -557,8 +607,9 @@
       "price_low_to_high": "Price low to high",
       "product_has_been_removed": "The product has been removed from shelves",
       "product_sold_out": "SOLD OUT",
-      "products": "Products",
+      "products": "All Products",
       "recommend": "Recommended",
+      "sale": "Sale",
       "save": "Save {{{priceDom}}}",
       "save_byjs": "Save {{priceDom}}",
       "save_ratio": "{{price}}% OFF",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "copy",
       "activity_banner_free_shipping": "Free Shipping",
       "activity_banner_threshold": "orders over {{threshold}}",
+      "activity_selector_new_arrivals": "New arrivals",
       "activity_selector_price_high_to_low": "Price high to low",
       "activity_selector_price_low_to_high": "Price low to high",
       "activity_selector_recommended": "Recommended",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Buy {{threshold}}, enjoy {{willSave}} off for {{benefitCount}} of the items",
         "b12_t1_s3_free": "Congratulations! You’ve got {{benefitCount}} items for FREE!",
         "b12_t1_s3_normal": "Congratulations! You’ve got {{saved}} off for {{benefitCount}} items!",
+        "b14_t1_s1": "Buy {{nextMinThreshold}} items for {{willSave}}",
+        "b14_t1_s2": "Congratulations! You've got {{currentMinThreshold}} for {{saved}}! Buy {{threshold}} more to enjoy {{nextMinThreshold}} for {{willSave}}!",
+        "b14_t1_s3": "Congratulations! You've got {{currentMinThreshold}} for {{saved}}!",
         "b1_t0_s1": "Buy {{threshold}} or more to save {{willSave}}",
         "b1_t0_s2": "Saved {{saved}} already! {{br}}Buy {{threshold}} more to save {{willSave}}",
         "b1_t0_s3": "Congratulations! You've saved {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Buy {{threshold}} save {{save}}",
         "b2_t1": "Buy {{threshold}} GET {{save}} OFF",
         "label": "Discount:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Buy {{nextMinThreshold}} items for {{willSave}}",
+            "step2": "Congratulations! You've got {{currentMinThreshold}} for {{saved}}! Buy {{threshold}} more to enjoy {{nextMinThreshold}} for {{willSave}}!",
+            "step3": "Congratulations! You've got {{currentMinThreshold}} for {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Rounding"
+      }
+    },
     "payments-name": {
       "COD": "Cash on delivery",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Discount",
       "free_charge": "Free shipping",
       "free_shipping": "Free Shipping",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": "Rounding"
+        }
+      },
       "order_seller_discount": "Seller discount",
       "order_tax": "Tax",
       "order_tip": "Tip",

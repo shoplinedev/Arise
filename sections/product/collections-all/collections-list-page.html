@@ -7,7 +7,11 @@
   {{/is_modern_browser}}
 </script>
   
-{{ inline_stylesheet 'product/collections-all/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'product/collections-all/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'product/collections-all/index.min.css' }}
+{{/is_modern_browser}}
 
 {{ assign 'collection_order_ids' (product_blocks_order_translate section 'blocks' 'block_order') }}
 {{ assign 'collections-filter-all' (JSONparse '[]') }}
@@ -26,6 +30,10 @@
 {{/if}}
 <div class="section-gap container">
   <div class="collection-list-main">
+    <div class="collection-list-crumbs">
+      <a href="/" class="collection-list-header-title-url custom-body4">{{ t 'general.general.home' }} /</a>
+      <a class="collection-list-header-title-url custom-body4" style="opacity: .6;">{{ t 'products.collection.collection' }}</a>
+    </div>
     <h1 class="collection-list-header title2">{{ t 'products.collection.collection' }}</h1>
     {{ snippet 'product/commons/collection-item-list' colNum=3 mbColNum=1 collectionData=(cond (is section.settings.display_type 'all') collections-all collections-filter-all) }}
   </div>

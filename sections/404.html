@@ -1,4 +1,8 @@
-{{inline_stylesheet '404/index.min.css'}}
+{{#is_modern_browser}}
+  {{ inline_stylesheet '404/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet '404/index.min.css' }}
+{{/is_modern_browser}}
 
 {{assign 'prefix' 'stage__notFound'}}
 

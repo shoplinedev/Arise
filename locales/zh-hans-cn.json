@@ -5,6 +5,22 @@
       "read_btn_text": "查看更多",
       "title": "博客"
     },
+    "comment": {
+      "comment": "评论",
+      "comment_audit_tip": "您的评论已提交，但需要审核。",
+      "comment_empty": "请填写评论内容",
+      "email": "邮箱",
+      "email_empty": "邮箱不能为空",
+      "email_format": "请输入正确邮箱",
+      "form_title": "发表评论",
+      "loadmore": "加载更多",
+      "name": "姓名",
+      "name_empty": "请填写名字",
+      "submit": "提交",
+      "submit_audit_tip": "提交成功,待审核",
+      "success": "提交成功",
+      "title": "{{comment_length}} 评论"
+    },
     "general": {
       "back_to": "返回 {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "订单详情",
       "package_amount": "Package {{num}}（{{item}} items）",
       "pay_amount": "支付金额",
+      "paymentVoucher": {
+        "downloadDoc": "下载文档",
+        "format": "格式",
+        "formatLimit": "支持上传20MB以内的JPG、PNG、GIF、PDF文件。最多可上传5张图片。",
+        "uploadAmount": "{{num}}张凭证已上传",
+        "uploadLimit": "请上传20MB以内的JPG，PNG，GIF，PDF文件"
+      },
       "payment_voucher_confirmation": "知道了",
       "payment_voucher_transfer_success": "汇款成功",
       "payment_voucher_waiting_for_payment": "待付款",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "无效的邮箱地址"
+    },
     "account": {
       "account_binding": "账户绑定",
       "account_information": "账户",
@@ -197,6 +223,10 @@
       "bind": "绑定",
       "birthday": "生日",
       "change_password": "更改密码",
+      "confirm_btn": "确认",
+      "confirm_subscription_modal_btn": "确认订阅",
+      "confirm_subscription_modal_content": "您此前已提交订阅。 确认邮件已发送到此邮箱。 您可以在您的电子邮件中进行确认或单击此按钮。",
+      "confirm_subscription_modal_title": "请确认您的邮箱订阅。",
       "credit_card_number": "信用卡号",
       "deadline": "出于业务报告的目的，您的订单仍将可见。您的账户数据将于{{time}}被删除，您可在该日期之前取消此过程",
       "delete_account": "注销账户",
@@ -211,6 +241,7 @@
       "ip_address": "IP地址",
       "last_name": "姓氏",
       "modify_email": "修改电子邮件",
+      "modify_email_modal_title": "修改电子邮件",
       "modify_phone": "手机",
       "name": "名称",
       "next": "下一步",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "请先绑定电子邮件或手机",
       "revoke": "取消注销",
       "revoke_message": "账号处于注销中，账户数据将于{{time}}被删除，您可在该日期之前撤销此注销流程",
+      "save_btn": "保存",
       "select__date": "请选择日期",
+      "subscribe_confirm_tip": "感谢您的订阅。",
       "timeout_tip": "操作超时，请重新验证",
       "username": "姓名",
       "verify_email_message": "在进行注销操作前，我们需要验证您的身份\n您的邮箱{{email}}将收到验证码邮件",
@@ -238,7 +271,8 @@
       "discount_title": "激活账号并获取折扣码",
       "normal_title": "激活账号",
       "subscription_text": "订阅电子邮件以接收更新、访问独家优惠等。",
-      "success_title": "恭喜您获得折扣"
+      "success_title": "恭喜您获得折扣",
+      "token_expired": "您的链接已失效"
     },
     "address": {
       "add_address": "新增地址",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "忘记密码",
+      "reset_password": "重置密码",
       "tips_password_can_be_changed_after_verification": "完成验证后可修改密码",
-      "tips_reset_password": "你正在为账号{{account}}重置密码"
+      "tips_reset_password": "你正在为账号{{account}}重置密码",
+      "token_expired": "您的重置密码链接已失效"
     },
     "general": {
       "account": "账户",
@@ -333,6 +369,10 @@
       "error_message_3009": "手机号已存在绑定",
       "error_message_3010": "邮箱已存在绑定",
       "error_message_3014": "短信/邮件模板渲染失败",
+      "error_message_3015": "该账号已激活",
+      "error_message_3022": "链接已失效",
+      "error_message_3023": "链接格式错误",
+      "error_message_3024": "链接参数错误",
       "error_message_4": "服务异常",
       "error_message_5": "服务异常",
       "error_message_6": "服务异常",
@@ -416,7 +456,8 @@
       "wednesday": "周三"
     },
     "login": {
-      "member_login_common": "会员登录"
+      "member_login_common": "会员登录",
+      "subscribe_confirm_tip": "感谢您的订阅。您可以登录以获得更好的体验。"
     },
     "message": {
       "input_placeholder": "您有什么要留言的吗？",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "电子邮件",
       "email_subscription_text": "通过电子邮件接收订阅的促销信息",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "手机",
       "phone_subscription_text": "通过手机接收订阅的促销信息",
@@ -474,6 +515,7 @@
       "send_success": "谢谢您联系我们，我们将尽快回复您。"
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "电子邮件地址格式错误",
       "subscribe_success": "订阅成功"
     },
@@ -499,6 +541,14 @@
       "refund": "退款政策",
       "service": "服务条款",
       "shipping": "发货政策"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "上传时间",
+        "detail": "详细"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "商品售罄",
       "products": "商品",
       "recommend": "推荐",
+      "sale": "热销",
       "save": "优惠 {{{priceDom}}}",
       "save_byjs": "优惠 {{priceDom}}",
       "save_ratio": "优惠 {{price}}%",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "复制",
       "activity_banner_free_shipping": "免运费",
       "activity_banner_threshold": "满{{threshold}}",
+      "activity_selector_new_arrivals": "最新上架",
       "activity_selector_price_high_to_low": "价格从高到低",
       "activity_selector_price_low_to_high": "价格从低到高",
       "activity_selector_recommended": "推荐",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "买{{threshold}}件，{{benefitCount}}件商品可减免{{willSave}}",
         "b12_t1_s3_free": "恭喜！您已获得其中{{benefitCount}}件商品免费!",
         "b12_t1_s3_normal": "恭喜！您已获得其中{{benefitCount}}件商品减免{{saved}}!",
+        "b14_t1_s1": "买{{nextMinThreshold}}件{{willSave}}",
+        "b14_t1_s2": "恭喜！您已获得{{currentMinThreshold}}件{{saved}}！再买{{threshold}}件可享{{nextMinThreshold}}件{{willSave}}!",
+        "b14_t1_s3": "恭喜！您已获得{{currentMinThreshold}}件{{saved}}!",
         "b1_t0_s1": "买{{threshold}}或更多节省{{willSave}}",
         "b1_t0_s2": "已经节省{{saved}}！{{br}}再买{{threshold}}节省{{willSave}}",
         "b1_t0_s3": "恭喜你！您节省了{{saved}}！",
@@ -695,10 +750,24 @@
         "b2_t0": "买{{threshold}}节省{{save}}",
         "b2_t1": "买{{threshold}}件节省{{save}}",
         "label": "折扣："
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "买{{nextMinThreshold}}件{{willSave}}",
+            "step2": "恭喜！您已获得{{currentMinThreshold}}件{{saved}}！再买{{threshold}}件可享{{nextMinThreshold}}件{{willSave}}!",
+            "step3": "恭喜！您已获得{{currentMinThreshold}}件{{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "舍入"
+      }
+    },
     "payments-name": {
       "COD": "货到付款",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "折扣",
       "free_charge": "免邮费",
       "free_shipping": "包邮",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": "舍入"
+        }
+      },
       "order_seller_discount": "商家自定义折扣",
       "order_tax": "税费",
       "order_tip": "小费",

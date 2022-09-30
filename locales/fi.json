@@ -5,6 +5,22 @@
       "read_btn_text": "Lue lisää",
       "title": "Blogi"
     },
+    "comment": {
+      "comment": "Kommentti",
+      "comment_audit_tip": "Kommenttisi on lähetetty ja se on tarkistettava.",
+      "comment_empty": "Ole hyvä ja täytä kommentit",
+      "email": "Posti",
+      "email_empty": "Sähköposti ei voi olla tyhjä",
+      "email_format": "Anna oikea sähköpostiosoite",
+      "form_title": "Kommentti",
+      "loadmore": "lataa lisää",
+      "name": "Nimi",
+      "name_empty": "Täytä nimi",
+      "submit": "Lähetä",
+      "submit_audit_tip": "Lähetetty onnistuneesti, odottaa tarkistusta",
+      "success": "Lähetetty onnistuneesti",
+      "title": "{{comment_length}} kommenttia"
+    },
     "general": {
       "back_to": "Palata takaisin {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Tilauksen tiedot",
       "package_amount": "Paketti{{num}}（{{item}} tuotetta ）",
       "pay_amount": "maksaa summa",
+      "paymentVoucher": {
+        "downloadDoc": "Ladataan tiedostoa",
+        "format": "Muoto",
+        "formatLimit": "Tuetaan .jpg-, .png- ja .pdf-tiedostomuotoja, joiden tiedostokoko on alle 20 Mt. Voit ladata enintään 5 kuvaa",
+        "uploadAmount": "{{num}} kuponki(a) ladattiin",
+        "uploadLimit": "Lataa .jpg-, .png- ja .pdf-tiedostoja, joiden tiedostokoko on alle 20 Mt."
+      },
       "payment_voucher_confirmation": "Sain sen",
       "payment_voucher_transfer_success": "Maksu siirretty onnistuneesti",
       "payment_voucher_waiting_for_payment": "odottaa maksua",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Virheellinen sähköpostiosoite"
+    },
     "account": {
       "account_binding": "Tilin linkittäminen",
       "account_information": "Tili",
@@ -197,6 +223,10 @@
       "bind": "Linkitys",
       "birthday": "Syntymäpäivä",
       "change_password": "Vaihda salasana",
+      "confirm_btn": "Vahvistaa",
+      "confirm_subscription_modal_btn": "Vahvista tilaus",
+      "confirm_subscription_modal_content": "Olet tehnyt tilauksen aiemmin. Vahvistusviesti on lähetetty tähän sähköpostiosoitteeseen. Voit vahvistaa sähköpostillasi tai napsauttaa tätä painiketta.",
+      "confirm_subscription_modal_title": "Vahvista sähköpostitilauksesi.",
       "credit_card_number": "Luottokortin korttinumero",
       "deadline": "Liiketoimintaraportin syystä tilauksesi on edelleen näkyvissä. Tilitietosi poistetaan {{time}} ja ennen sitä päivää voit peruuttaa sulkemisprosessin",
       "delete_account": "Sulje tili",
@@ -211,6 +241,7 @@
       "ip_address": "IP-osoite",
       "last_name": "Sukunimi",
       "modify_email": "Muokkaa sähköpostia",
+      "modify_email_modal_title": "Muokkaa sähköpostia",
       "modify_phone": "Muokkaa puhelinnumeroa",
       "name": "Nimi",
       "next": "Seuraava",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Linkitä ensin sähköposti tai matkapuhelinnumero",
       "revoke": "Peruuta sulkeminen",
       "revoke_message": "Tämä tili suljetaan parhaillaan, tilitiedot poistetaan {{time}} ja ennen sitä päivää voit peruuttaa sulkemisprosessin",
+      "save_btn": "TALLENNA",
       "select__date": "Valitse päivämäärä",
+      "subscribe_confirm_tip": "Kiitos tilaamisesta.",
       "timeout_tip": "Operaatio aikakatkaistiinn, vahvista uudelleen",
       "username": "Nimi",
       "verify_email_message": "Ennen tilin sulkemista meidän on vahvistettava henkilöllisyytesi\nSaat sähköpostiisi {{email}} vahvistussähköpostin",
@@ -238,7 +271,8 @@
       "discount_title": "Aktivoi tili ja hanki alennuskoodi",
       "normal_title": "Aktivoi tili",
       "subscription_text": "Tilaa sähköposteja saadaksesi päivityksiä, käyttääksesi eksklusiivisia tarjouksia ja paljon muuta.",
-      "success_title": "Onnittelut suuren alennuksen saamisesta"
+      "success_title": "Onnittelut suuren alennuksen saamisesta",
+      "token_expired": "Linkki on vanhentunut"
     },
     "address": {
       "add_address": "Lisää uusi osoite",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Unohdin salasanan",
+      "reset_password": "SALASANAN VAIHTAMINEN",
       "tips_password_can_be_changed_after_verification": "Voit vaihtaa salasanaa vahvistuksen jälkeen",
-      "tips_reset_password": "Olet vaihtamassa tilin {{account}} salasanaa"
+      "tips_reset_password": "Olet vaihtamassa tilin {{account}} salasanaa",
+      "token_expired": "Salasanan palautus linkki on vanhentunut"
     },
     "general": {
       "account": "TILI",
@@ -333,6 +369,10 @@
       "error_message_3009": "Tämä matkapuhelinnumero on linkitetty muihin tileihin",
       "error_message_3010": "Tämä sähköpostiosoite on linkitetty muihin tileihin",
       "error_message_3014": "Koodin lähettäminen epäonnistui",
+      "error_message_3015": "Tili on aktivoitu",
+      "error_message_3022": "Linkki on vanhentunut",
+      "error_message_3023": "Linkki on väärässä muodossa",
+      "error_message_3024": "Linkki ei ole hyvä.",
       "error_message_4": "Palvelu Poikkeus",
       "error_message_5": "Palvelu Poikkeus",
       "error_message_6": "Palvelu Poikkeus",
@@ -416,7 +456,8 @@
       "wednesday": "Keskiviikko"
     },
     "login": {
-      "member_login_common": "Kirjaudu jäsenpalveluun"
+      "member_login_common": "Kirjaudu jäsenpalveluun",
+      "subscribe_confirm_tip": "Kiitos tilaamisesta. Voit kirjautua sisään paremman kokemuksen saamiseksi."
     },
     "message": {
       "input_placeholder": "Onko jotain, josta haluat jättää viestin?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "Sähköposti",
       "email_subscription_text": "Saat tiedot kampanjoista sähköpostitse tilattuasi uutiskirjeemme",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Matkapuhelinnumero",
       "phone_subscription_text": "Tilaa markkinointiviesti tekstiviestinä",
@@ -474,6 +515,7 @@
       "send_success": "Kiitos yhteydenotosta, ja vastaamme sinulle mahdollisimman pian."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Virhe sähköpostiosoitteen muodossa",
       "subscribe_success": "Tilaaminen onnistui"
     },
@@ -499,6 +541,14 @@
       "refund": "Palautusoikeus",
       "service": "Käyttöehdot",
       "shipping": "Toimitusehdot"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "latausaika",
+        "detail": "Yksityiskohta"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "LOPPUUNMYYTY",
       "products": "tuotetta",
       "recommend": "Suositeltuja",
+      "sale": "Myyntiin",
       "save": "Alennus {{{priceDom}}}",
       "save_byjs": "Alennus {{priceDom}}",
       "save_ratio": "{{price}}% alennus",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Kopioida",
       "activity_banner_free_shipping": "Ilmainen toimitus",
       "activity_banner_threshold": "Pyynnöt yli {{threshold}}",
+      "activity_selector_new_arrivals": "Uudet arkistot",
       "activity_selector_price_high_to_low": "Hinta korkeasta matalaan",
       "activity_selector_price_low_to_high": "Hinta alhaisesta korkeaan",
       "activity_selector_recommended": "Suosituksia",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Osta {{threshold}}, nauti {{benefitCount}} tuotteen {{willSave}}-alennuksesta",
         "b12_t1_s3_free": "Onneksi olkoon! Olet saanut {{benefitCount}} kohdetta ILMAISEKSI!",
         "b12_t1_s3_normal": "Onneksi olkoon! Olet saanut {{saved}} -alennuksen {{benefitCount}} tuotteesta!",
+        "b14_t1_s1": "Osta {{nextMinThreshold}} kappaletta hintaan {{willSave}}",
+        "b14_t1_s2": "Onneksi olkoon! Olet saanut {{currentMinThreshold}} kappaletta hintaan {{saved}}. Osta {{threshold}} lisää ja saat {{nextMinThreshold}} kappaletta hintaan {{willSave}}!",
+        "b14_t1_s3": "Onneksi olkoon! Olet saanut {{currentMinThreshold}} kappaletta hintaan {{saved}}!",
         "b1_t0_s1": "Ostaessasi {{threshold}} lisää säästääksesi {{willSave}}",
         "b1_t0_s2": "Säästä jo {{saved}}! {{br}} Ostaessasi {{threshold}} lisää säästääksesi {{willSave}}",
         "b1_t0_s3": "Onnittelut! Olet jo säästänyt {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Ostaessasi {{threshold}} säästät {{save}}",
         "b2_t1": "Ostaessasi {{threshold}} SAAT {{save}} ALENNUSTA",
         "label": "Alennus:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Osta {{nextMinThreshold}} kappaletta hintaan {{willSave}}",
+            "step2": "Onneksi olkoon! Olet saanut {{currentMinThreshold}} kappaletta hintaan {{saved}}. Osta {{threshold}} lisää ja saat {{nextMinThreshold}} kappaletta hintaan {{willSave}}!",
+            "step3": "Onneksi olkoon! Olet saanut {{currentMinThreshold}} kappaletta hintaan {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Pyöristys"
+      }
+    },
     "payments-name": {
       "COD": "Postiennakko",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Alennus",
       "free_charge": "Ilmainen toimitus",
       "free_shipping": "Ilmainen toimitus",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Myyjän antama lisäalennus",
       "order_tax": "Verottaa",
       "order_tip": "Tippi",

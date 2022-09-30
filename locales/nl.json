@@ -5,6 +5,22 @@
       "read_btn_text": "Meer lezen",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Opmerking",
+      "comment_audit_tip": "Uw opmerking is ingediend en moet worden beoordeeld.",
+      "comment_empty": "Gelieve de opmerkingen in te vullen",
+      "email": "E-mail",
+      "email_empty": "E-mail mag niet leeg zijn",
+      "email_format": "Voer het juiste e-mailadres in",
+      "form_title": "Opmerking",
+      "loadmore": "meer laden",
+      "name": "Naam",
+      "name_empty": "Vul a.u.b. naam in",
+      "submit": "indienen",
+      "submit_audit_tip": "Succesvol ingediend, in afwachting van beoordeling",
+      "success": "Succesvol ingediend",
+      "title": "{{comment_length}} reacties"
+    },
     "general": {
       "back_to": "Ga terug naar {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Bestelling gegevens",
       "package_amount": "Pakkje {{num}}（{{item}} items）",
       "pay_amount": "bedrag betalen",
+      "paymentVoucher": {
+        "downloadDoc": "Bestand downloaden",
+        "format": "Formaat",
+        "formatLimit": "Ondersteunt .jpg, .png, .pdf bestanden met een bestandsgrootte kleiner dan 20MB. U kunt maximaal 5 afbeeldingen uploaden",
+        "uploadAmount": "{{num}} betalingsbewijs(en) geüpload",
+        "uploadLimit": "Upload .jpg, .png, .pdf bestanden alstublieft met een grootte van minder dan 20MB"
+      },
       "payment_voucher_confirmation": "Ik snap het",
       "payment_voucher_transfer_success": "Betaling succesvol overgemaakt",
       "payment_voucher_waiting_for_payment": "wachten op betaling",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Ongeldig e-mailadres"
+    },
     "account": {
       "account_binding": "Account verbinden",
       "account_information": "Account",
@@ -197,6 +223,10 @@
       "bind": "Verbinden",
       "birthday": "Geboortedatum",
       "change_password": "Wachtwoord wijzigen",
+      "confirm_btn": "Potwierdź",
+      "confirm_subscription_modal_btn": "Abonnement bevestigen",
+      "confirm_subscription_modal_content": "U heeft eerder een inschrijving ingediend. Er is een bevestigingsmail naar dit e-mailadres gestuurd. U kunt dit bevestigen in uw e-mail of door op deze knop te klikken.",
+      "confirm_subscription_modal_title": "Gelieve uw e-mail inschrijving te bevestigen.",
       "credit_card_number": "Krediet kaart nummer",
       "deadline": "Voor zakelijke rapportagedoeleinden blijft uw bestelling zichtbaar. Uw accountgegevens zullen worden verwijderd op {{time}} en u kunt dit proces voor die datum annuleren",
       "delete_account": "Account verwijderen",
@@ -211,6 +241,7 @@
       "ip_address": "IP-adres",
       "last_name": "Achternaam",
       "modify_email": "E-mail wijzigen",
+      "modify_email_modal_title": "E-mail wijzigen",
       "modify_phone": "Telefoon",
       "name": "Naam",
       "next": "Volgende stap",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Verbind eerst e-mailadres of telefoon",
       "revoke": "Annuleren van een verwijdering",
       "revoke_message": "De account wordt momenteel verwijderd, de accountgegevens worden op {{time}} verwijderd en u hebt tot die datum de tijd om het verwijderingsproces te annuleren",
+      "save_btn": "Bewaren",
       "select__date": "Kies de datum",
+      "subscribe_confirm_tip": "Bedankt voor uw inschrijving.",
       "timeout_tip": "Het operatie is verlopen, controleer opnieuw a.u.b.",
       "username": "Naam",
       "verify_email_message": "Voordat u uw account kunt verwijderen, moeten wij uw identiteit verifiëren.Uw emailadres {{email}} zal een verificatiecode ontvangen",
@@ -238,7 +271,8 @@
       "discount_title": "Activeer account en ontvang een kortingscode",
       "normal_title": "Activeer account",
       "subscription_text": "Meld u aan voor e-mails om updates te ontvangen, toegang tot exclusieve aanbiedingen en meer.",
-      "success_title": "Gefeliciteerd met het krijgen van een korting"
+      "success_title": "Gefeliciteerd met het krijgen van een korting",
+      "token_expired": "Uw link is verlopen"
     },
     "address": {
       "add_address": "Nieuw adres toevoegen",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Wachtwoord vergeten",
+      "reset_password": "WACHTWOORD RESETTEN",
       "tips_password_can_be_changed_after_verification": "Wachtwoord kan worden gewijzigd na het voltooien van de validatie",
-      "tips_reset_password": "U bent uw wachtwoord aan het resetten voor account {{account}}"
+      "tips_reset_password": "U bent uw wachtwoord aan het resetten voor account {{account}}",
+      "token_expired": "Uw link om uw wachtwoord te resetten is verlopen"
     },
     "general": {
       "account": "REKENING",
@@ -333,6 +369,10 @@
       "error_message_3009": "Telefoonnummer al gebonden",
       "error_message_3010": "E-mail al gebonden",
       "error_message_3014": "SMS/email sjabloon rendering mislukt",
+      "error_message_3015": "De account is geactiveerd",
+      "error_message_3022": "De link is verlopen",
+      "error_message_3023": "Link formaat fout",
+      "error_message_3024": "Link parameter fout",
       "error_message_4": "Service fout",
       "error_message_5": "Service fout",
       "error_message_6": "Service fout",
@@ -416,7 +456,8 @@
       "wednesday": "woensdag"
     },
     "login": {
-      "member_login_common": "Inloggen als lid"
+      "member_login_common": "Inloggen als lid",
+      "subscribe_confirm_tip": "Bedankt voor uw inschrijving. U kunt inloggen voor een betere ervaring."
     },
     "message": {
       "input_placeholder": "Heeft u een bericht achter te laten?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mail",
       "email_subscription_text": "Ontvang geabonneerde promoties via e-mail",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Telefoon",
       "phone_subscription_text": "Ontvang geabonneerde promoties via telefoon",
@@ -474,6 +515,7 @@
       "send_success": "Bedankt dat u contact met ons opneemt, we zullen zo snel mogelijk u antwoorden"
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Onjuist formaat van e-mail adres",
       "subscribe_success": "Abonneren succes"
     },
@@ -499,6 +541,14 @@
       "refund": "Teruggavebeleid",
       "service": "Dienst voorwaarden",
       "shipping": "Verzendingsovereenkomst"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "Upload tijd",
+        "detail": "Details"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "Het artikel is uitverkocht",
       "products": "Producten",
       "recommend": "Aanbevelingen",
+      "sale": "Uitverkoop",
       "save": "Bespaar {{{priceDom}}}",
       "save_byjs": "Bespaar {{priceDom}}",
       "save_ratio": "{{price}}% korting",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Kopiëren",
       "activity_banner_free_shipping": "Gratis verzending",
       "activity_banner_threshold": "Bestellingen over {{threshold}}",
+      "activity_selector_new_arrivals": "Nieuwe Aankomsten",
       "activity_selector_price_high_to_low": "Prijs van hoog naar laag",
       "activity_selector_price_low_to_high": "Prijs van laag naar hoog",
       "activity_selector_recommended": "Aanraden",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Koop {{threshold}}, geniet {{willSave}} korting voor {{benefitCount}} van de items",
         "b12_t1_s3_free": "Gefeliciteerd! U hebt {{benefitCount}} items GRATIS gekregen!",
         "b12_t1_s3_normal": "Gefeliciteerd! U heeft {{saved}} korting gekregen voor {{benefitCount}} items!",
+        "b14_t1_s1": "Koop {{nextMinThreshold}} stukken voor {{willSave}}",
+        "b14_t1_s2": "Gefeliciteerd! U hebt {{currentMinThreshold}} stukken gekregen voor {{saved}}. Koop er {{threshold}} meer en krijg er {{nextMinThreshold}} voor {{willSave}}!",
+        "b14_t1_s3": "Gefeliciteerd! U hebt {{currentMinThreshold}} stukken gekregen voor {{saved}}!",
         "b1_t0_s1": "Koop {{threshold}} of meer en bespaar {{willSave}}",
         "b1_t0_s2": "Al {{saved}} bespaard! {{br}}Koop {{threshold}} meer en bespaar {{willSave}}",
         "b1_t0_s3": "Gefiliciteerd! U heeft {{saved}} bespaard",
@@ -695,10 +750,24 @@
         "b2_t0": "Koop {{threshold}} en bespaar {{save}}",
         "b2_t1": "Koop {{threshold}} stukken en bespaar {{save}}",
         "label": "Korting:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Koop {{nextMinThreshold}} stukken voor {{willSave}}",
+            "step2": "Gefeliciteerd! U hebt {{currentMinThreshold}} stukken gekregen voor {{saved}}. Koop er {{threshold}} meer en krijg er {{nextMinThreshold}} voor {{willSave}}!",
+            "step3": "Gefeliciteerd! U hebt {{currentMinThreshold}} stukken gekregen voor {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Afronding"
+      }
+    },
     "payments-name": {
       "COD": "Rembours",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Korting",
       "free_charge": "Gratis bezorging",
       "free_shipping": "Bezorging inbegrepen",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Handelaar extra korting",
       "order_tax": "Belasting",
       "order_tip": "Tips",

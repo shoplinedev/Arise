@@ -12,7 +12,7 @@
   {{#if benefitType '===' 1}}
     {{assign 'discountAmount' benefitCondition.benefit.benefitAmount}}
     {{#if discountAmount '>' 0}}
-      {{ assign 'discountValText' (javascript_template wrapper2 val=(currency_convert discountAmount) number=discountAmount )}}     
+      {{ assign 'discountValText' (javascript_template wrapper2 val=(money_exchange_convert_with_currency discountAmount) number=discountAmount )}}     
       {{ assign 'discountText' (replace (t 'sales.discount_coupon.coupon_discount_content') "{discount}" discountValText.string)}}
     {{/if}}
   {{/if}}
@@ -50,7 +50,7 @@
     {{!-- 买x送y 门槛文案 --}}
     {{#if (and (compare minThreshold '>' 0) (compare benefitEventType '!==' -1))}}
       {{#if benefitEventType '===' 0}}
-        {{ assign 'thresholdValText' (javascript_template wrapper2 val=(currency_convert minThreshold) number=minThreshold )}}
+        {{ assign 'thresholdValText' (javascript_template wrapper2 val=(money_exchange_convert_with_currency minThreshold) number=minThreshold )}}
       {{/if}}
       {{#if benefitEventType '===' 1}}
         {{ assign 'thresholdValText' (javascript_template wrapper1 val=minThreshold)}}
@@ -60,7 +60,7 @@
   {{else if (and (compare minThreshold '>' 0) (compare benefitEventType '!==' -1))}}
     {{!-- 其他类型门槛文案 --}}
     {{#if benefitEventType '===' 0}}
-      {{ assign 'thresholdValText' (javascript_template wrapper2 val=(currency_convert minThreshold) number=minThreshold )}}
+      {{ assign 'thresholdValText' (javascript_template wrapper2 val=(money_exchange_convert_with_currency minThreshold) number=minThreshold )}}
     {{/if}}
     {{#if benefitEventType '===' 1}}
       {{ assign 'thresholdValText' (javascript_template wrapper1 val=minThreshold )}}
@@ -72,7 +72,7 @@
   {{!-- 免邮上限 --}}
   {{assign 'shippingPriceRangeText' ''}}
   {{#if prerequisiteShippingPriceRange '>' 0}}
-    {{ assign 'shippingPriceRangeValText' (javascript_template '<span data-amount="${number}">${val}</span>' val=(currency_convert prerequisiteShippingPriceRange) number=prerequisiteShippingPriceRange)}}
+    {{ assign 'shippingPriceRangeValText' (javascript_template '<span data-amount="${number}">${val}</span>' val=(money_exchange_convert_with_currency prerequisiteShippingPriceRange) number=prerequisiteShippingPriceRange)}}
     {{ assign 'shippingPriceRangeText' (replace (t 'sales.discount_coupon.shipping_rate_below') '{value}' shippingPriceRangeValText.string)}}
   {{/if}}
 

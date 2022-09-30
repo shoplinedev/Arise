@@ -3,7 +3,11 @@ collection_products:
   limit: {{ multiply section.settings.products_num 1 }}
 ---
 
-{{ inline_stylesheet 'featured-collection/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'featured-collection/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'featured-collection/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}
@@ -109,7 +113,7 @@ collection_products:
       "label": "t:sections.featured-collection.settings.products_num.label",
       "min": 2,
       "max": 12,
-      "step": 2,
+      "step": 1,
       "default": 4
     },
     {

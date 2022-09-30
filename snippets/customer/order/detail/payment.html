@@ -19,7 +19,7 @@
             <span>
               {{snippet 'customer/order/detail/payment-method' payChannelName=payChannelName payMethod=payMethod defaultDesensitizedPayerAccount=defaultDesensitizedPayerAccount}} -
             </span>
-            <span class="notranslate" data-amount="{{payAmount}}"> {{currency_convert payAmount}}</span>
+            <span class="notranslate" data-amount="{{payAmount}}"> {{money_exchange_convert_with_currency payAmount}}</span>
             <a data-pay-seq="{{paySeq}}" data-index="{{index}}" class="content-pay-value-status-detail">
               {{t 'cart.payment.detail'}}
             </a>

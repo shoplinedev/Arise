@@ -17,7 +17,7 @@
       <span class="customer_order_summations__amount-box">
         <span class="customer_order_summations__amount-price">
           {{#if (typeOf value) '==' 'number' }}
-            <span class="notranslate" data-amount="{{value}}">{{currency_convert value}}</span>
+            <span class="notranslate" data-amount="{{value}}">{{money_exchange_convert_with_currency value}}</span>
           {{else }}
             {{!-- 如果是字符，则传入来的是多语言的key --}}
             {{t value}}
@@ -32,7 +32,7 @@
     {{else if (boolean  key '==' 'settleSumAmount' '&&' pageData.basicInfo.taxesIncluded)}}
       {{!-- 含税订单，要在总额下面展示对应的含税价 --}}
       <div class="customer_order_summations_remark">
-        {{ noTranslationHTML (t 'cart.order.tax_included' price=(javascript_template '<span class="notranslate" data-amount="${amount}">${num}</span>' num=(currency_convert pageData.priceInfo.taxesIncludedSumAmount) amount=pageData.priceInfo.taxesIncludedSumAmount) ) }}
+        {{ noTranslationHTML (t 'cart.order.tax_included' price=(javascript_template '<span class="notranslate" data-amount="${amount}">${num}</span>' num=(money_exchange_convert_with_currency pageData.priceInfo.taxesIncludedSumAmount) amount=pageData.priceInfo.taxesIncludedSumAmount) ) }}
       </div>
     {{/if}}
   </div>

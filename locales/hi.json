@@ -5,6 +5,22 @@
       "read_btn_text": "अधिक पढ़ें",
       "title": "ब्लॉग"
     },
+    "comment": {
+      "comment": "टिप्पणी",
+      "comment_audit_tip": "आपकी टिप्पणी सबमिट कर दी गई है और इसकी समीक्षा की जानी चाहिए।",
+      "comment_empty": "कृपया टिप्पणियों में भरें",
+      "email": "मेल",
+      "email_empty": "ई-मेल खाली नहीं हो सकता",
+      "email_format": "कृपया सही ईमेल दर्ज करें",
+      "form_title": "टिप्पणी",
+      "loadmore": "और लोड करें",
+      "name": "नाम",
+      "name_empty": "कृपया नाम भरें",
+      "submit": "प्रस्तुत",
+      "submit_audit_tip": "सफलतापूर्वक सबमिट किया गया, समीक्षा लंबित",
+      "success": "सफलतापूर्वक जमा",
+      "title": "{{comment_length}} टिप्पणियां"
+    },
     "general": {
       "back_to": "वापसी {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "ऑर्डर का विवरण",
       "package_amount": "पैकेज {{num}}（{{item}} आइटम）",
       "pay_amount": "भुगतान राशि",
+      "paymentVoucher": {
+        "downloadDoc": "फ़ाइल डाउनलोड करें",
+        "format": "प्रारूप",
+        "formatLimit": "20MB से कम फाइल के .jpg, .png, .pdf फ़ाइलों का समर्थन करता है। आप अधिकतम 5 तस्वीर अपलोड कर सकते हैं",
+        "uploadAmount": "{{num}} वाउचर(रें) अपलोड किए गए थे",
+        "uploadLimit": "कृपया 20MB से कम साइज वाली .jpg, .png, .pdf फ़ाइलें अपलोड करें"
+      },
       "payment_voucher_confirmation": "समझ लिया",
       "payment_voucher_transfer_success": "भुगतान सफलतापूर्वक स्थानांतरित हो गया",
       "payment_voucher_waiting_for_payment": "भुगतान की प्रतीक्षा करना",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "गलत ईमेल पता"
+    },
     "account": {
       "account_binding": "खाता जोड़ना",
       "account_information": "खाता",
@@ -197,6 +223,10 @@
       "bind": "जोड़ा जा रहा है",
       "birthday": "जन्म तारीख",
       "change_password": "पासवर्ड बदलें",
+      "confirm_btn": "पुष्टि करें",
+      "confirm_subscription_modal_btn": "सदस्यता की पुष्टि करें",
+      "confirm_subscription_modal_content": "आपने पहले एक सदस्यता सबमिट की है। एक पुष्टिकरण ईमेल इस ईमेल पते पर भेज दिया गया है। आप या तो अपने ईमेल में पुष्टि कर सकते हैं या इस बटन पर क्लिक करें।",
+      "confirm_subscription_modal_title": "अपने ईमेल सदस्यता की पुष्टि करें।",
       "credit_card_number": "क्रेडिट कार्ड नंबर।",
       "deadline": "व्यावसायिक रिपोर्ट के उद्देश्य से, आपका ऑर्डर अभी भी दिखाई देगा। आपका खाता डेटा {{time}} को हटा दिया जाएगा, आप उस तारिख से पहले प्रक्रिया को रद्द कर सकते हैं।",
       "delete_account": "खाता बंद करें",
@@ -211,6 +241,7 @@
       "ip_address": "IP पता",
       "last_name": "उपनाम",
       "modify_email": "ईमेल संशोधित करें",
+      "modify_email_modal_title": "ईमेल संशोधित करें",
       "modify_phone": "फोन संशोधित करें",
       "name": "नाम",
       "next": "अगला",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "कृपया पहले ईमेल या मोबाइल जोड़े",
       "revoke": "बंद करना रद्द करें",
       "revoke_message": "यह खाता बंद करने की प्रक्रिया में है, खाता डेटा {{time}} को हटा दिया जाएगा, आप उस तारिख से पहले प्रक्रिया को रद्द कर सकते हैं।",
+      "save_btn": "सहेजे",
       "select__date": "तारीख़ चुनें",
+      "subscribe_confirm_tip": "आपकी सदस्यता के लिए धन्यवाद।",
       "timeout_tip": "ऑपरेशन का समय समाप्त हो गया, कृपया फिर से सत्यापित करें",
       "username": "नाम",
       "verify_email_message": "खाता बंद करने से पहले, हमें आपकी पहचान सत्यापित करनी होगी\nआपके ईमेल {{email}} पर एक सत्यापन ईमेल मिलेगा",
@@ -238,7 +271,8 @@
       "discount_title": "खाता सक्रिय करें और छूट कोड पाएं",
       "normal_title": "खाते को सक्रिय करें",
       "subscription_text": "विशेष सौदों तक पहुंच, और बहुत कुछ ईमेल से अपडेट पाने के लिए सदस्यता लें।",
-      "success_title": "अच्छा छूट मिलने पर बधाई कोड"
+      "success_title": "अच्छा छूट मिलने पर बधाई कोड",
+      "token_expired": "लिंक की वैधता समाप्त हुआ"
     },
     "address": {
       "add_address": "नया पता जोड़ें",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "पासवर्ड भूल गए है",
+      "reset_password": "पासवर्ड रीसेट करें",
       "tips_password_can_be_changed_after_verification": "सत्यापन के बाद आप पासवर्ड बदल सकते हैं",
-      "tips_reset_password": "आप खाते {{account}} के लिए पासवर्ड रीसेट कर रहे हैं"
+      "tips_reset_password": "आप खाते {{account}} के लिए पासवर्ड रीसेट कर रहे हैं",
+      "token_expired": "आपका पासवर्ड लिंक की वैधता समाप्त हुआ"
     },
     "general": {
       "account": "खाता",
@@ -333,6 +369,10 @@
       "error_message_3009": "मोबाइल अन्य खातों से बंधा हुआ है",
       "error_message_3010": "ईमेल अन्य खातों द्वारा बंधा गया है",
       "error_message_3014": "टेक्स्ट संदेश/मेल टेम्प्लेट रेंडरिंग विफल",
+      "error_message_3015": "खाता सक्रिय कर दिया है",
+      "error_message_3022": "लिंक की वैधता समाप्त हुआ",
+      "error_message_3023": "लिंक का तरीका गलत है",
+      "error_message_3024": "लिंक गलत है",
       "error_message_4": "सेवा के अपवाद",
       "error_message_5": "सेवा के अपवाद",
       "error_message_6": "सेवा के अपवाद",
@@ -416,7 +456,8 @@
       "wednesday": "बुधवार"
     },
     "login": {
-      "member_login_common": "सदस्य साइन इन"
+      "member_login_common": "सदस्य साइन इन",
+      "subscribe_confirm_tip": "आपकी सदस्यता के लिए धन्यवाद। आप बेहतर अनुभव के लिए लॉगिन कर सकते हैं।"
     },
     "message": {
       "input_placeholder": "क्या ऐसा कुछ है जिसके लिए आप संदेश देना चाहते हैं?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "ईमेल",
       "email_subscription_text": "ईमेल द्वारा सदस्यता की प्रचार जानकारी प्राप्त करें",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "फोन संशोधित करें",
       "phone_subscription_text": "फ़ोन प्रोमोशन के लिए सदस्यता लें",
@@ -474,6 +515,7 @@
       "send_success": "हमसे संपर्क करने के लिए धन्यवाद, हम जल्द से जल्द आपसे संपर्क करेंगे।"
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "ई-मेल पता प्रारूप में त्रुटि",
       "subscribe_success": "सदस्यता लेने में सफल"
     },
@@ -499,6 +541,14 @@
       "refund": "धन वापसी नीति",
       "service": "शर्तें और",
       "shipping": "शिपिंग नीति"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "अपलोड समय",
+        "detail": "विवरण"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "बिक गया",
       "products": "उत्पाद",
       "recommend": "सिफारिश किया गया",
+      "sale": "अच्छी संख्या में बेचें",
       "save": "ऑफ़र {{{priceDom}}}",
       "save_byjs": "ऑफ़र {{priceDom}}",
       "save_ratio": "{{price}}% छूट",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "कॉपी करें",
       "activity_banner_free_shipping": "शिपिंग मुफ्त",
       "activity_banner_threshold": "{{threshold}} से ज्यादा ऑर्डर",
+      "activity_selector_new_arrivals": "नवागन्तुक",
       "activity_selector_price_high_to_low": "अधिक से कम मूल्य",
       "activity_selector_price_low_to_high": "मूल्य नीचे से ऊपर",
       "activity_selector_recommended": "सिफारिश की गई",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों पर {{willSave}} की छूट का आनंद लें",
         "b12_t1_s3_free": "बधाई हो! आपके पास {{benefitCount}} आइटम मुफ़्त हैं!",
         "b12_t1_s3_normal": "बधाई हो! आपको {{benefitCount}} आइटम पर {{saved}} की छूट मिलती है!",
+        "b14_t1_s1": "{{willSave}} में {{nextMinThreshold}} टुकड़े खरीदें",
+        "b14_t1_s2": "बधाई हो! आपको {{saved}} में {{currentMinThreshold}} टुकड़े मिले हैं। {{willSave}} में {{nextMinThreshold}} टुकड़े का आनंद लेने के लिए {{threshold}} और खरीदें!",
+        "b14_t1_s3": "बधाई हो! आपके पास {{saved}} में {{currentMinThreshold}} टुकड़े हैं!",
         "b1_t0_s1": "{{willSave}} बचाने के लिए {{threshold}} और खरीदें",
         "b1_t0_s2": "पहले ही {{saved}} सेव कर लें! {{willSave}} बचाने के लिए {{br}}{{threshold}} और खरीदें",
         "b1_t0_s3": "बधाई हो! आपने {{saved}} बचाया है!",
@@ -695,10 +750,24 @@
         "b2_t0": "{{threshold}} खरीदें {{save}} बचाएं",
         "b2_t1": "{{threshold}} खरीदें {{save}} की छूट पाएं",
         "label": "की छूट:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "{{willSave}} में {{nextMinThreshold}} टुकड़े खरीदें",
+            "step2": "बधाई हो! आपको {{saved}} में {{currentMinThreshold}} टुकड़े मिले हैं। {{willSave}} में {{nextMinThreshold}} टुकड़े का आनंद लेने के लिए {{threshold}} और खरीदें!",
+            "step3": "बधाई हो! आपके पास {{saved}} में {{currentMinThreshold}} टुकड़े हैं!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "गोलाई"
+      }
+    },
     "payments-name": {
       "COD": "डिलवरी पर नकद देना",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "छूट",
       "free_charge": "मुफ़्त शिपिंग",
       "free_shipping": "मुफ़्त शिपिंग",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "विक्रेता अतिरिक्त छूट",
       "order_tax": "कर",
       "order_tip": "टिप",

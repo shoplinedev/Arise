@@ -5,6 +5,22 @@
       "read_btn_text": "Vedi di più",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Commento",
+      "comment_audit_tip": "Il tuo commento è stato inviato e deve essere rivisto.",
+      "comment_empty": "Si prega di compilare i commenti",
+      "email": "E-mail",
+      "email_empty": "L'e-mail non può essere vuota",
+      "email_format": "Si prega di inserire l'e-mail corretta",
+      "form_title": "Commento",
+      "loadmore": "carica di più",
+      "name": "Nome",
+      "name_empty": "Si prega di compilare il nome",
+      "submit": "Sottoscrivi",
+      "submit_audit_tip": "Inserito correttamente, in attesa di revisione",
+      "success": "Inviato con successo",
+      "title": "{{comment_length}} commenti"
+    },
     "general": {
       "back_to": "Tornare a {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Dettagli dell'ordine",
       "package_amount": "Pacchetto {{num}}（{{item}} items）",
       "pay_amount": "pagare l'importo",
+      "paymentVoucher": {
+        "downloadDoc": "Scarica il file",
+        "format": "Formato",
+        "formatLimit": "Supporta i file JPG, PNG, GIF, PDF di dimensione inferiore a 20 MB. Puoi caricare fino a 5 immagini.",
+        "uploadAmount": "{{num}} prove di pagamento caricate",
+        "uploadLimit": "Carica i file JPG, PNG, GIF, PDF di dimensione inferiore a 20 MB"
+      },
       "payment_voucher_confirmation": "Fatto",
       "payment_voucher_transfer_success": "Pagamento trasferito con successo",
       "payment_voucher_waiting_for_payment": "aspettando il pagamento",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Indirizzo e-mail invalido"
+    },
     "account": {
       "account_binding": "Associazione dell'account",
       "account_information": "Conto",
@@ -197,6 +223,10 @@
       "bind": "Associa",
       "birthday": "Compleanno",
       "change_password": "Cambia la password",
+      "confirm_btn": "確認",
+      "confirm_subscription_modal_btn": "Conferma l'abbonamento",
+      "confirm_subscription_modal_content": "Avevi già inviato un abbonamento. Un'e-mail di conferma è stata inviata a questo indirizzo e-mail. Puoi confermare nella tua e-mail o fare clic su questo pulsante.",
+      "confirm_subscription_modal_title": "Conferma il tuo abbonamento e-mail.",
       "credit_card_number": "Numero di carta di credito",
       "deadline": "Il tuo ordine sarà ancora visibile ai fini del rapporto commerciale. I dati del tuo account verranno rimossi al giorno di {{time}}, puoi annullare questo processo prima di questa data",
       "delete_account": "Elimina l'account",
@@ -211,6 +241,7 @@
       "ip_address": "Indirizzo IP",
       "last_name": "Cognome",
       "modify_email": "Modifica l'email",
+      "modify_email_modal_title": "Modifica l'email",
       "modify_phone": "Cellulare",
       "name": "Nome",
       "next": "Avanti",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Associa prima l'e-mail o il cellulare per favore",
       "revoke": "Annulla l'eliminazione",
       "revoke_message": "L'account è in fase di eliminazione, i dati dell'account verranno rimossi al giorno di {{time}}, puoi annullare questo processo di eliminazione prima di questa data",
+      "save_btn": "Salva",
       "select__date": "Seleziona una data",
+      "subscribe_confirm_tip": "Grazie per il tuo abbonamento.",
       "timeout_tip": "L’operazione scaduta, verifica di nuovo per favore",
       "username": "Nome",
       "verify_email_message": "Dobbiamo verificare la tua identità prima di eliminare l'account.Riceverai un'email con il codice di verifica alla tua casella di posta {{email}}",
@@ -238,7 +271,8 @@
       "discount_title": "Attiva l'account e ottieni il codice di sconto",
       "normal_title": "Attiva l'account",
       "subscription_text": "Iscriviti alle e-mail per ricevere aggiornamenti, accedi a offerte esclusive e molto altro ancora",
-      "success_title": "Congratulazioni per ottenere uno sconto"
+      "success_title": "Congratulazioni per ottenere uno sconto",
+      "token_expired": "Il tuo link è stato scaduto"
     },
     "address": {
       "add_address": "Aggiungi un nuovo indirizzo",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Password dimenticata",
+      "reset_password": "RESETTA LA PASSWORD",
       "tips_password_can_be_changed_after_verification": "La password può essere modificata dopo la verifica",
-      "tips_reset_password": "Stai reimpostando la password per il tuo account {{account}}"
+      "tips_reset_password": "Stai reimpostando la password per il tuo account {{account}}",
+      "token_expired": "Il link per resettare la password è stato scaduto"
     },
     "general": {
       "account": "ACCOUNT",
@@ -333,6 +369,10 @@
       "error_message_3009": "Il numero di cellulare è già stato associato",
       "error_message_3010": "L'email è già stato associato",
       "error_message_3014": "SMS/modello di e-mail non viene generato con successo",
+      "error_message_3015": "L'account è stato attivato",
+      "error_message_3022": "Il link è stato scaduto",
+      "error_message_3023": "Il link ha una forma scorretta",
+      "error_message_3024": "Il parametro del link è scorretto",
       "error_message_4": "Errore del servizio",
       "error_message_5": "Errore del servizio",
       "error_message_6": "Errore del servizio",
@@ -416,7 +456,8 @@
       "wednesday": "mercoledì"
     },
     "login": {
-      "member_login_common": "Accesso membri"
+      "member_login_common": "Accesso membri",
+      "subscribe_confirm_tip": "Grazie per il tuo abbonamento. Puoi accedere per un'esperienza migliore."
     },
     "message": {
       "input_placeholder": "Hai qualcosa per lasciare un messaggio?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mail",
       "email_subscription_text": "Ricevi le promozioni sottoscritte in e-mail",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Cellulare",
       "phone_subscription_text": "Ricevi le promozioni sottoscritte in cellulare",
@@ -474,6 +515,7 @@
       "send_success": "Grazie per averci contattato, ti risponderemo al più presto possibile."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Il formato dell'indirizzo email è sbagliato",
       "subscribe_success": "Sottoscrizione con successo"
     },
@@ -499,6 +541,14 @@
       "refund": "Politica di rimborso",
       "service": "Termini di servizio",
       "shipping": "Politica di spedizione"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "tempo di caricamento",
+        "detail": "Dettagli"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "Esaurito",
       "products": "Prodotti",
       "recommend": "Consigliati",
+      "sale": "Saldi",
       "save": "Risparmia {{{priceDom}}}",
       "save_byjs": "Risparmia {{priceDom}}",
       "save_ratio": "Sconto di {{price}}%",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Copia",
       "activity_banner_free_shipping": "Spedizione gratuita",
       "activity_banner_threshold": "Raggiungi {{threshold}}",
+      "activity_selector_new_arrivals": "Nuovi arrivi",
       "activity_selector_price_high_to_low": "Prezzo dall'alto al basso",
       "activity_selector_price_low_to_high": "Prezzo dal basso all'alto",
       "activity_selector_recommended": "Suggerimenti",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Acquista {{threshold}} pezzi, goditi un risparmio di {{willSave}} per {{benefitCount}} pezzi di articoli",
         "b12_t1_s3_free": "Congratulazioni! Hai {{benefitCount}} pezzi GRATUITI di questi articoli!",
         "b12_t1_s3_normal": "Congratulazioni! Hai un risparmio di {{saved}} per {{benefitCount}} pezzi di questi articoli!",
+        "b14_t1_s1": "Acquista {{nextMinThreshold}}pezzi per {{willSave}}",
+        "b14_t1_s2": "Congratulazioni! Hai avuto {{currentMinThreshold}} pezzi per {{saved}}. Acquista {{threshold}} in più ad avere {{nextMinThreshold}} per {{willSave}}!",
+        "b14_t1_s3": "Congratulazioni! Hai avuto {{currentMinThreshold}} pezzi per {{saved}}!",
         "b1_t0_s1": "Acquista {{threshold}} o in più per risparmiare {{willSave}}",
         "b1_t0_s2": "Hai risparmiato {{saved}}!{{br}}Acquista {{threshold}} per risparmiare {{willSave}}",
         "b1_t0_s3": "Congratulazioni! Hai risparmiato {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Acquista {{threshold}} per risparmiare {{save}}",
         "b2_t1": "Acquista {{threshold}} pezzi per risparmiare {{save}}",
         "label": "Sconto di:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Acquista {{nextMinThreshold}}pezzi per {{willSave}}",
+            "step2": "Congratulazioni! Hai avuto {{currentMinThreshold}} pezzi per {{saved}}. Acquista {{threshold}} in più ad avere {{nextMinThreshold}} per {{willSave}}!",
+            "step3": "Congratulazioni! Hai avuto {{currentMinThreshold}} pezzi per {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Arrotondamento"
+      }
+    },
     "payments-name": {
       "COD": "Pagamento alla consegna",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Sconto",
       "free_charge": "Spedizione gratuita",
       "free_shipping": "Spedizione gratuita",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Sconto personalizzato del venditore",
       "order_tax": "Imposta",
       "order_tip": "Mancia",

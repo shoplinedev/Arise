@@ -1,4 +1,8 @@
-{{ inline_stylesheet 'announcement-bar/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'announcement-bar/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'announcement-bar/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}

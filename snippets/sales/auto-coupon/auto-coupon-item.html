@@ -1,2 +1,2 @@
 {{ assign "config" (sales_promotion_tag_translate benefitCondition benefitType)}}
-{{javascript_template template (toRegex '\{\s*(\w+)\s*\}' flags="g") condition=config.params.threshold.string discount=config.params.save.string benefitCount=config.params.benefitCount.string paymentCount=config.params.paymentCount.string}}
+{{javascript_template template (toRegex '\{\s*(\w+)\s*\}' flags="g") condition=config.params.threshold.string discount=config.params.save.string benefitCount=config.params.benefitCount.string paymentCount=config.params.paymentCount.string fixedPrice=config.params.fixedPrice.string}}

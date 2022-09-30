@@ -5,6 +5,22 @@
       "read_btn_text": "อ่านเพิ่มเติม",
       "title": "บล็อก"
     },
+    "comment": {
+      "comment": "ความคิดเห็น",
+      "comment_audit_tip": "ความคิดเห็นของคุณถูกส่งไปแล้วและจำเป็นต้องได้รับการตรวจสอบ",
+      "comment_empty": "กรุณากรอกความคิดเห็น",
+      "email": "ไปรษณีย์",
+      "email_empty": "อีเมลต้องไม่ว่างเปล่า",
+      "email_format": "กรุณากรอกอีเมลที่ถูกต้อง",
+      "form_title": "ความคิดเห็น",
+      "loadmore": "โหลดเพิ่ม",
+      "name": "ชื่อ",
+      "name_empty": "กรุณากรอกชื่อ",
+      "submit": "ส่ง",
+      "submit_audit_tip": "ส่งเรียบร้อยแล้ว รอการตรวจสอบ",
+      "success": "ส่งเรียบร้อยแล้ว",
+      "title": "{{comment_length}} ความคิดเห็น"
+    },
     "general": {
       "back_to": "กลับไปที่ {{collectionTitle}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "รายละเอียดคำสั่งซื้อ",
       "package_amount": "พัสดุ {{num}}（{{item}} รายการ）",
       "pay_amount": "จำนวนเงินที่จ่าย",
+      "paymentVoucher": {
+        "downloadDoc": "ดาวน์โหลดเอกสาร",
+        "format": "รูปแบบ",
+        "formatLimit": "รองรับการอัปโหลดไฟล์ JPG, PNG, GIF, PDF ภายใน 20MB สามารถอัปโหลดภาพได้สูงสุด 5 ภาพ",
+        "uploadAmount": "อัปโหลดใบสำคัญแล้ว {{num}} ใบ",
+        "uploadLimit": "โปรดอัปโหลดไฟล์ JPG, PNG, GIF, PDF ภายใน 20MB"
+      },
       "payment_voucher_confirmation": "เข้าใจแล้ว",
       "payment_voucher_transfer_success": "โอนเงินเรียบร้อย",
       "payment_voucher_waiting_for_payment": "รอการชำระเงิน",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "ที่อยู่อีเมลที่ไม่ถูกต้อง"
+    },
     "account": {
       "account_binding": "การผูกบัญชี",
       "account_information": "บัญชี",
@@ -197,6 +223,10 @@
       "bind": "การผูก",
       "birthday": "วันเกิด",
       "change_password": "เปลี่ยนรหัสผ่าน",
+      "confirm_btn": "Onayla",
+      "confirm_subscription_modal_btn": "ยืนยันการสมัครสมาชิก",
+      "confirm_subscription_modal_content": "คุณได้ส่งการสมัครสมาชิกก่อนหน้านี้ อีเมลยืนยันถูกส่งไปยังกล่องจดหมายนี้แล้ว คุณสามารถยืนยันในอีเมลของคุณหรือคลิกปุ่มนี้",
+      "confirm_subscription_modal_title": "โปรดยืนยันการสมัครอีเมลของคุณ",
       "credit_card_number": "หมายเลขบัตรเครดิต",
       "deadline": "คำสั่งซื้อของคุณจะยังคงมองเห็นได้เพื่อวัตถุประสงค์ในการรายงานทางธุรกิจ ข้อมูลบัญชีของคุณจะถูกลบในวันที่{{time}} คุณสามารถยกเลิกขั้นตอนนี้ก่อนวันที่ดังกล่าว",
       "delete_account": "ลบบัญชีผู้ใช้",
@@ -211,6 +241,7 @@
       "ip_address": "ที่อยู่ IP",
       "last_name": "นามสกุล",
       "modify_email": "แก้ไขอีเมล",
+      "modify_email_modal_title": "แก้ไขอีเมล",
       "modify_phone": "แก้ไขโทรศัพท์",
       "name": "ชื่อ",
       "next": "ขั้นตอนต่อไป",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "โปรดผูกอีเมลหรือโทรศัพท์มือถือก่อน",
       "revoke": "ยกเลิกการลบบัญชีผู้ใช้",
       "revoke_message": "บัญชีผู้ใช้กำลังถูกลบออก ข้อมูลบัญชีจะถูกลบเมื่อวันที่ {{time}} คุณสามารถยกเลิกขั้นตอนการลบบัญชีผู้ใช้ก่อนวันที่ดังกล่าว",
+      "save_btn": "บันทึก",
       "select__date": "เลือกวันที่",
+      "subscribe_confirm_tip": "ขอบคุณสำหรับการสมัครสมาชิก",
       "timeout_tip": "หมดเวลาดำเนินการ โปรดยืนยันอีกครั้ง",
       "username": "ชื่อ-นามสกุล",
       "verify_email_message": "ก่อนที่จะลบบัญชีผู้ใช้ เราจำเป็นต้องยืนยันตัวตนของคุณ\nอีเมลของคุณ{{email}}จะได้รับอีเมลรหัสยืนยัน",
@@ -238,7 +271,8 @@
       "discount_title": "เปิดใช้งานบัญชีและรับรหัสส่วนลด",
       "normal_title": "เปิดใช้งานบัญชี",
       "subscription_text": "สมัครรับอีเมลเพื่อรับการอัปเดต การเข้าถึงส่วนลดพิเศษ และอื่นๆ",
-      "success_title": "ยินดีด้วยที่คุณได้รับส่วนลด"
+      "success_title": "ยินดีด้วยที่คุณได้รับส่วนลด",
+      "token_expired": "ลิงก์ของคุณหมดอายุ"
     },
     "address": {
       "add_address": "เพิ่มที่อยู่ใหม่",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "ลืมรหัสผ่าน",
+      "reset_password": "รีเซ็ตรหัสผ่าน",
       "tips_password_can_be_changed_after_verification": "คุณสามารถเปลี่ยนรหัสผ่านได้หลังจากยืนยันตัวตนแล้ว",
-      "tips_reset_password": "คุณกำลังตั้งค่ารหัสผ่านใหม่สำหรับบัญชี {{account}}"
+      "tips_reset_password": "คุณกำลังตั้งค่ารหัสผ่านใหม่สำหรับบัญชี {{account}}",
+      "token_expired": "ลิงก์รีเซ็ตรหัสผ่านของคุณหมดอายุแล้ว"
     },
     "general": {
       "account": "บัญชีผู้ใช้",
@@ -333,6 +369,10 @@
       "error_message_3009": "โทรศัพท์มือถือถูกผูกโดยบัญชีอื่นแล้ว",
       "error_message_3010": "อีเมลถูกผูกโดยบัญชีอื่นแล้ว",
       "error_message_3014": "ส่งรหัสไม่สำเร็จ",
+      "error_message_3015": "เปิดใช้งานบัญชีแล้ว",
+      "error_message_3022": "ลิงก์หมดอายุ",
+      "error_message_3023": "ลิงก์ผิดรูปแบบ",
+      "error_message_3024": "พารามิเตอร์ลิงก์เกิดข้อผิดพลาด",
       "error_message_4": "การบริการผิดปกติ",
       "error_message_5": "การบริการผิดปกติ",
       "error_message_6": "การบริการผิดปกติ",
@@ -416,7 +456,8 @@
       "wednesday": "วันพุธ"
     },
     "login": {
-      "member_login_common": "ลงชื่อเข้าใช้ในฐานะสมาชิก"
+      "member_login_common": "ลงชื่อเข้าใช้ในฐานะสมาชิก",
+      "subscribe_confirm_tip": "ขอบคุณสำหรับการสมัครสมาชิก คุณสามารถเข้าสู่ระบบเพื่อการใช้งานที่ดียิ่งขึ้น"
     },
     "message": {
       "input_placeholder": "คุณต้องการฝากข้อความไว้หรือไม่?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "อีเมล",
       "email_subscription_text": "สมัครรับโปรโมชั่นทางอีเมล",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "แอปส่งข้อความ",
       "phone": "โทรศัพท์มือถือ",
       "phone_subscription_text": "สมัครใช้รับโปรโมชั่นทางโทรศัพท์",
@@ -474,6 +515,7 @@
       "send_success": "ขอบคุณที่ติดต่อเรา เราจะติดต่อกลับโดยเร็วที่สุด"
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "รูปแบบอีเมลไม่ถูกต้อง",
       "subscribe_success": "สมัครสมาชิกสำเร็จแล้ว"
     },
@@ -499,6 +541,14 @@
       "refund": "นโยบายการคืนเงิน",
       "service": "เงื่อนไขการให้บริการ",
       "shipping": "นโยบายการจัดส่งสินค้า"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "เวลาอัพโหลด",
+        "detail": "รายละเอียด"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "ขายหมดแล้ว",
       "products": "สินค้า",
       "recommend": "แนะนำ",
+      "sale": "สินค้าขายดี",
       "save": "ประหยัด {{{priceDom}}}",
       "save_byjs": "ประหยัด {{priceDom}}",
       "save_ratio": "ส่วนลด {{price}}%",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "คัดลอก",
       "activity_banner_free_shipping": "จัดส่งฟรี",
       "activity_banner_threshold": "สั่งซื้อครบ {{threshold}}",
+      "activity_selector_new_arrivals": "ลงรายการใหม่ล่าสุด",
       "activity_selector_price_high_to_low": "ราคาจากสูงไปต่ำ",
       "activity_selector_price_low_to_high": "ราคาจากต่ำไปสูง",
       "activity_selector_recommended": "แนะนำ",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "ซื้อสินค้า {{threshold}} รายการ จะมีสินค้า {{benefitCount}} รายการรับส่วนลด {{willSave}}",
         "b12_t1_s3_free": "ขอแสดงความยินดี คุณได้รับสินค้าฟรี {{benefitCount}} รายการ",
         "b12_t1_s3_normal": "ขอแสดงความยินดี คุณมีสินค้า {{benefitCount}} รายการรับส่วนลด {{saved}}",
+        "b14_t1_s1": "ซื้อ{{nextMinThreshold}}ชิ้น{{willSave}}",
+        "b14_t1_s2": "ขอแสดงความยินดี! คุณได้รับ{{currentMinThreshold}}ชิ้น{{saved}} ซื้อเพิ่มอีก{{threshold}}จะได้รับ{{nextMinThreshold}}ชิ้น{{willSave}}!",
+        "b14_t1_s3": "ขอแสดงความยินดี! คุณได้รับ{{currentMinThreshold}}ชิ้น{{saved}}!",
         "b1_t0_s1": "ซื้อ {{threshold}} หรือมากกว่าเพื่อประหยัด {{willSave}}",
         "b1_t0_s2": "ประหยัดไป {{saved}} แล้ว! {{br}} ซื้ออีก {{threshold}} เพื่อประหยัดอีก {{willSave}}",
         "b1_t0_s3": "ยินดีด้วย! คุณประหยัดไป {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "ซื้อ {{threshold}} ประหยัด {{save}}",
         "b2_t1": "ซื้อ {{threshold}} รับส่วนลด {{save}}",
         "label": "ส่วนลด:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "ซื้อ{{nextMinThreshold}}ชิ้น{{willSave}}",
+            "step2": "ขอแสดงความยินดี! คุณได้รับ{{currentMinThreshold}}ชิ้น{{saved}} ซื้อเพิ่มอีก{{threshold}}จะได้รับ{{nextMinThreshold}}ชิ้น{{willSave}}!",
+            "step3": "ขอแสดงความยินดี! คุณได้รับ{{currentMinThreshold}}ชิ้น{{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "ปัดเศษ"
+      }
+    },
     "payments-name": {
       "COD": "เก็บเงินปลายทาง",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "ส่วนลด",
       "free_charge": "จัดส่งฟรี",
       "free_shipping": "จัดส่งฟรี",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "ส่วนลดที่กำหนดโดยร้านค้า",
       "order_tax": "ภาษี",
       "order_tip": "ทิป",

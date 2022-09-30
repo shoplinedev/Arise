@@ -17,7 +17,11 @@
   {{/is_modern_browser}}
 </script>
   
-  <link rel="stylesheet" href="{{ assets_url 'product/detail/index.min.css' }}" />
+  {{#is_modern_browser}}
+    <link rel="stylesheet" href="{{ assets_url 'product/detail/index.min.modern.css' }}" />
+  {{else}}
+    <link rel="stylesheet" href="{{ assets_url 'product/detail/index.min.css' }}" />
+  {{/is_modern_browser}}
 {{/partial}}
 
 {{#partial 'seo-meta'}}

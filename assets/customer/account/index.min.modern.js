@@ -1148,6 +1148,7 @@
         "../shared/browser/biz-com/customer/utils/url.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(__webpack_exports__, {
+                getUrlQuery: () => getUrlQuery,
                 getUrlAllQuery: () => getUrlAllQuery
             });
             var url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/url/url.js");
@@ -1167,9 +1168,9 @@
             function getUrlQuery(key) {
                 if ("undefined" !== typeof window) {
                     const locationHref = window.location.href;
-                    const urlParse = url.parse(decodeURIComponent(locationHref));
+                    const urlParse = url__WEBPACK_IMPORTED_MODULE_0__.parse(decodeURIComponent(locationHref));
                     const urlQuery = urlParse && urlParse.query;
-                    const urlQueryObj = querystring.parse(urlQuery);
+                    const urlQueryObj = querystring__WEBPACK_IMPORTED_MODULE_1__.parse(urlQuery);
                     const hitUrlQuery = urlQueryObj[key];
                     if (hitUrlQuery) {
                         if (hitUrlQuery && -1 !== hitUrlQuery.indexOf("?")) {
@@ -1207,7 +1208,7 @@
                 return href;
             }
             function getUrlPathId(u = window.location.href, index = -1) {
-                const urlParse = url.parse(u);
+                const urlParse = url__WEBPACK_IMPORTED_MODULE_0__.parse(u);
                 const urlArr = urlParse && urlParse.pathname && urlParse.pathname.replace(/^\//, "").split("/") || [];
                 if (index < 0) return urlArr[urlArr.length + index];
                 return urlArr[index];
@@ -1330,7 +1331,8 @@
                         onChangeView: !1,
                         onRenderCell: !1,
                         onShow: !1,
-                        onHide: !1
+                        onHide: !1,
+                        onClickDayName: !1
                     };
                     function a(e) {
                         let t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : document;
@@ -1583,13 +1585,17 @@
                         constructor(e) {
                             let {dp: t, type: s, opts: a} = e;
                             M(this, "handleClick", (e => {
-                                let t = y(e.target, ".air-datepicker-cell");
-                                if (!t) return;
-                                let i = t.adpCell;
-                                if (i.isDisabled) return;
+                                let t = e.target.adpCell;
+                                if (t.isDisabled) return;
                                 if (!this.dp.isMinViewReached) return void this.dp.down();
-                                let s = this.dp._checkIfDateIsSelected(i.date, i.type);
-                                s ? this.dp._handleAlreadySelectedDates(s, i.date) : this.dp.selectDate(i.date);
+                                let i = this.dp._checkIfDateIsSelected(t.date, t.type);
+                                i ? this.dp._handleAlreadySelectedDates(i, t.date) : this.dp.selectDate(t.date);
+                            })), M(this, "handleDayNameClick", (e => {
+                                let t = e.target.getAttribute("data-day-index");
+                                this.opts.onClickDayName({
+                                    dayIndex: Number(t),
+                                    datepicker: this.dp
+                                });
                             })), M(this, "onChangeCurrentView", (e => {
                                 e !== this.type ? this.hide() : (this.show(), this.render());
                             })), M(this, "onMouseOverCell", (e => {
@@ -1597,8 +1603,9 @@
                                 this.dp.setFocusDate(!!t && t.adpCell.date);
                             })), M(this, "onMouseOutCell", (() => {
                                 this.dp.setFocusDate(!1);
-                            })), M(this, "onClickCell", (e => {
-                                this.handleClick(e);
+                            })), M(this, "onClickBody", (e => {
+                                let {onClickDayName: t} = this.opts, i = e.target;
+                                i.closest(".air-datepicker-cell") && this.handleClick(e), t && i.closest(".air-datepicker-body--day-name") && this.handleDayNameClick(e);
                             })), M(this, "onMouseDown", (e => {
                                 this.pressed = !0;
                                 let t = y(e.target, ".air-datepicker-cell"), i = t && t.adpCell;
@@ -1651,7 +1658,7 @@
                         _bindEvents() {
                             let {range: e, dynamicRange: t} = this.opts;
                             v(this.$el, "mouseover", this.onMouseOverCell), v(this.$el, "mouseout", this.onMouseOutCell), 
-                            v(this.$el, "click", this.onClickCell), e && t && (v(this.$el, "mousedown", this.onMouseDown), 
+                            v(this.$el, "click", this.onClickBody), e && t && (v(this.$el, "mousedown", this.onMouseDown), 
                             v(this.$el, "mousemove", this.onMouseMove), v(window.document, "mouseup", this.onMouseUp));
                         }
                         _bindDatepickerEvents() {
@@ -1664,12 +1671,14 @@
                             }), this.$names = a(".air-datepicker-body--day-names", this.$el), this.$cells = a(".air-datepicker-body--cells", this.$el);
                         }
                         _getDayNamesHtml() {
-                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.dp.locale.firstDay, t = "", s = this.dp.isWeekend, a = e, n = 0;
-                            for (;n < 7; ) {
-                                let e = a % 7, r = c("air-datepicker-body--day-name", {
-                                    [i.cssClassWeekend]: s(e)
-                                }), h = this.dp.locale.daysMin[e];
-                                t += '<div class="'.concat(r, '">').concat(h, "</div>"), n++, a++;
+                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.dp.locale.firstDay, t = "", s = this.dp.isWeekend, {onClickDayName: a} = this.opts, n = e, r = 0;
+                            for (;r < 7; ) {
+                                let e = n % 7, h = c("air-datepicker-body--day-name", {
+                                    [i.cssClassWeekend]: s(e),
+                                    "-clickable-": !!a
+                                }), o = this.dp.locale.daysMin[e];
+                                t += '<div class="'.concat(h, "\" data-day-index='").concat(e, "'>").concat(o, "</div>"), 
+                                r++, n++;
                             }
                             return t;
                         }
@@ -1855,7 +1864,7 @@
                             onClick: e => e.clear()
                         }
                     };
-                    class H {
+                    class x {
                         constructor(e) {
                             let {dp: t, opts: i} = e;
                             this.dp = t, this.opts = i, this.init();
@@ -1901,7 +1910,7 @@
                             this.generateButtons();
                         }
                     }
-                    function x(e, t, i) {
+                    function H(e, t, i) {
                         return t in e ? Object.defineProperty(e, t, {
                             value: i,
                             enumerable: !0,
@@ -1912,25 +1921,25 @@
                     class L {
                         constructor() {
                             let {opts: e, dp: t} = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
-                            x(this, "toggleTimepickerIsActive", (e => {
+                            H(this, "toggleTimepickerIsActive", (e => {
                                 this.dp.timepickerIsActive = e;
-                            })), x(this, "onChangeSelectedDate", (e => {
+                            })), H(this, "onChangeSelectedDate", (e => {
                                 let {date: t, updateTime: i = !1} = e;
                                 t && (this.setMinMaxTime(t), this.setCurrentTime(!!i && t), this.addTimeToDate(t));
-                            })), x(this, "onChangeLastSelectedDate", (e => {
+                            })), H(this, "onChangeLastSelectedDate", (e => {
                                 e && (this.setTime(e), this.render());
-                            })), x(this, "onChangeInputRange", (e => {
+                            })), H(this, "onChangeInputRange", (e => {
                                 let t = e.target;
                                 this[t.getAttribute("name")] = t.value, this.updateText(), this.dp.trigger(i.eventChangeTime, {
                                     hours: this.hours,
                                     minutes: this.minutes
                                 });
-                            })), x(this, "onMouseEnterLeave", (e => {
+                            })), H(this, "onMouseEnterLeave", (e => {
                                 let t = e.target.getAttribute("name"), i = this.$minutesText;
                                 "hours" === t && (i = this.$hoursText), i.classList.toggle("-focus-");
-                            })), x(this, "onFocus", (() => {
+                            })), H(this, "onFocus", (() => {
                                 this.toggleTimepickerIsActive(!0);
-                            })), x(this, "onBlur", (() => {
+                            })), H(this, "onBlur", (() => {
                                 this.toggleTimepickerIsActive(!1);
                             })), this.opts = e, this.dp = t;
                             let {timeFormat: s} = this.dp.locale;
@@ -2051,7 +2060,7 @@
                             writable: !0
                         }) : e[t] = i, e;
                     }
-                    class E {
+                    class A {
                         constructor(e) {
                             let {dp: t, opts: i} = e;
                             O(this, "pressedKeys", new Set), O(this, "hotKeys", new Map([ [ [ [ "Control", "ArrowRight" ], [ "Control", "ArrowUp" ] ], e => e.month++ ], [ [ [ "Control", "ArrowLeft" ], [ "Control", "ArrowDown" ] ], e => e.month-- ], [ [ [ "Shift", "ArrowRight" ], [ "Shift", "ArrowUp" ] ], e => e.year++ ], [ [ [ "Shift", "ArrowLeft" ], [ "Shift", "ArrowDown" ] ], e => e.year-- ], [ [ [ "Alt", "ArrowRight" ], [ "Alt", "ArrowUp" ] ], e => e.year += 10 ], [ [ [ "Alt", "ArrowLeft" ], [ "Alt", "ArrowDown" ] ], e => e.year -= 10 ], [ [ "Control", "Shift", "ArrowUp" ], (e, t) => t.up() ] ])), 
@@ -2152,7 +2161,7 @@
                             this.pressedKeys.delete(e);
                         }
                     }
-                    let A = {
+                    let E = {
                         on(e, t) {
                             this.__events || (this.__events = {}), this.__events[e] ? this.__events[e].push(t) : this.__events[e] = [ t ];
                         },
@@ -2324,7 +2333,7 @@
                                             opts: this.opts,
                                             type: e
                                         });
-                                        this.$content.appendChild(t.$el);
+                                        this.shouldUpdateDOM && this.$content.appendChild(t.$el);
                                     }
                                     this.opts.onChangeView && this.opts.onChangeView(e);
                                 }
@@ -2414,12 +2423,13 @@
                                 id: o
                             }), I.appendChild(R)), !s || P || t || this._createMobileOverlay(), this._handleLocale(), 
                             this._bindSubEvents(), this._createMinMaxDates(), this._limitViewDateByMaxMinDates(), 
-                            this.elIsInput && (i || this._bindEvents(), r && !h && (this.keyboardNav = new E({
+                            this.elIsInput && (i || this._bindEvents(), r && !h && (this.keyboardNav = new A({
                                 dp: this,
                                 opts: e
                             }))), a && this.selectDate(a, {
                                 silent: !0
-                            }), this.opts.visible && !t && this.show(), t && this._createComponents();
+                            }), this.opts.visible && !t && this.show(), s && !t && this.$el.setAttribute("readonly", !0), 
+                            t && this._createComponents();
                         }
                         _createMobileOverlay() {
                             P = n({
@@ -2467,7 +2477,7 @@
                         _addButtons() {
                             this.$buttons = n({
                                 className: "air-datepicker--buttons"
-                            }), this.$datepicker.appendChild(this.$buttons), this.buttons = new H({
+                            }), this.$datepicker.appendChild(this.$buttons), this.buttons = new x({
                                 dp: this,
                                 opts: this.opts
                             }), this.$buttons.appendChild(this.buttons.$el);
@@ -2494,7 +2504,7 @@
                                 let e = o ? r : "";
                                 this.locale.dateFormat = [ this.locale.dateFormat, o || "" ].join(e);
                             }
-                            a && (this.locale.dateFormat = this.locale.timeFormat);
+                            a && "function" != typeof t && (this.locale.dateFormat = this.locale.timeFormat);
                         }
                         _setPositionClasses(e) {
                             if ("function" == typeof e) return void this.$datepicker.classList.add("-custom-position-");
@@ -2604,9 +2614,14 @@
                             }), this._updateLastSelectedDate(t));
                         }
                         clear() {
-                            this.selectedDates = [], this.rangeDateFrom = !1, this.rangeDateTo = !1, this.trigger(i.eventChangeSelectedDate, {
-                                action: i.actionUnselectDate
-                            });
+                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                            return this.selectedDates = [], this.rangeDateFrom = !1, this.rangeDateTo = !1, 
+                            this.trigger(i.eventChangeSelectedDate, {
+                                action: i.actionUnselectDate,
+                                silent: e.silent
+                            }), new Promise((e => {
+                                setTimeout(e);
+                            }));
                         }
                         show() {
                             let {onShow: e, isMobile: t} = this.opts;
@@ -2661,6 +2676,9 @@
                         _hasTransition() {
                             return window.getComputedStyle(this.$datepicker).getPropertyValue("transition-duration").split(", ").reduce(((e, t) => parseFloat(t) + e), 0) > 0;
                         }
+                        get shouldUpdateDOM() {
+                            return this.visible || this.treatAsInline;
+                        }
                         get parsedViewDate() {
                             return o(this.viewDate);
                         }
@@ -2692,8 +2710,8 @@
                         }
                     }
                     var j;
-                    return N(K, "defaults", s), N(K, "version", "3.1.0"), N(K, "defaultContainerId", "air-datepicker-global-container"), 
-                    j = K.prototype, Object.assign(j, A), t.default;
+                    return N(K, "defaults", s), N(K, "version", "3.2.1"), N(K, "defaultContainerId", "air-datepicker-global-container"), 
+                    j = K.prototype, Object.assign(j, E), t.default;
                 }();
             }));
         },
@@ -4105,6 +4123,14 @@
             }
             module.exports = baseGet;
         },
+        "../shared/browser/node_modules/lodash/_baseGetTag.js": module => {
+            var objectProto = Object.prototype;
+            var nativeObjectToString = objectProto.toString;
+            function objectToString(value) {
+                return nativeObjectToString.call(value);
+            }
+            module.exports = objectToString;
+        },
         "../shared/browser/node_modules/lodash/_castPath.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isKey = __webpack_require__("../shared/browser/node_modules/lodash/_isKey.js"), stringToPath = __webpack_require__("../shared/browser/node_modules/lodash/_stringToPath.js"), toString = __webpack_require__("../shared/browser/node_modules/lodash/toString.js");
             function castPath(value, object) {
@@ -4126,6 +4152,11 @@
             var freeGlobal = "object" == typeof __webpack_require__.g && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
             module.exports = freeGlobal;
         },
+        "../shared/browser/node_modules/lodash/_getPrototype.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var overArg = __webpack_require__("../shared/browser/node_modules/lodash/_overArg.js");
+            var getPrototype = overArg(Object.getPrototypeOf, Object);
+            module.exports = getPrototype;
+        },
         "../shared/browser/node_modules/lodash/_isKey.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isSymbol = __webpack_require__("../shared/browser/node_modules/lodash/isSymbol.js");
             var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/, reIsPlainProp = /^\w*$/;
@@ -4142,6 +4173,14 @@
                 return value;
             }
             module.exports = identity;
+        },
+        "../shared/browser/node_modules/lodash/_overArg.js": module => {
+            function overArg(func, transform) {
+                return function(arg) {
+                    return func(transform(arg));
+                };
+            }
+            module.exports = overArg;
         },
         "../shared/browser/node_modules/lodash/_root.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var freeGlobal = __webpack_require__("../shared/browser/node_modules/lodash/_freeGlobal.js");
@@ -4262,6 +4301,28 @@
                 return null != value && ("object" == type || "function" == type);
             }
             module.exports = isObject;
+        },
+        "../shared/browser/node_modules/lodash/isObjectLike.js": module => {
+            function isObjectLike(value) {
+                return null != value && "object" == typeof value;
+            }
+            module.exports = isObjectLike;
+        },
+        "../shared/browser/node_modules/lodash/isPlainObject.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var baseGetTag = __webpack_require__("../shared/browser/node_modules/lodash/_baseGetTag.js"), getPrototype = __webpack_require__("../shared/browser/node_modules/lodash/_getPrototype.js"), isObjectLike = __webpack_require__("../shared/browser/node_modules/lodash/isObjectLike.js");
+            var objectTag = "[object Object]";
+            var funcProto = Function.prototype, objectProto = Object.prototype;
+            var funcToString = funcProto.toString;
+            var hasOwnProperty = objectProto.hasOwnProperty;
+            var objectCtorString = funcToString.call(Object);
+            function isPlainObject(value) {
+                if (!isObjectLike(value) || baseGetTag(value) != objectTag) return false;
+                var proto = getPrototype(value);
+                if (null === proto) return true;
+                var Ctor = hasOwnProperty.call(proto, "constructor") && proto.constructor;
+                return "function" == typeof Ctor && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
+            }
+            module.exports = isPlainObject;
         },
         "../shared/browser/node_modules/lodash/isSymbol.js": module => {
             function stubFalse() {
@@ -6330,6 +6391,51 @@
             reportSignUpSuccess: () => login_modal_reportSignUpSuccess,
             reportToForgetPassword: () => login_modal_reportToForgetPassword
         });
+        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
+        var get_default = __webpack_require__.n(get);
+        var toPath = __webpack_require__("../shared/browser/node_modules/lodash/toPath.js");
+        var toPath_default = __webpack_require__.n(toPath);
+        function nullishCoalescingOperator(...args) {
+            const val = args.find((item => {
+                if ("function" === typeof item) {
+                    const result = item();
+                    return null !== result && void 0 !== result;
+                }
+                return null !== item && void 0 !== item;
+            }));
+            if (null === val || void 0 === val) return args[args.length - 1];
+            return val;
+        }
+        function syntax_patch_get(obj, ...args) {
+            return get_default()(obj, ...args);
+        }
+        function get_func(obj, path) {
+            const pathList = toPath_default()(path);
+            const parentPath = pathList.splice(0, pathList.length - 1);
+            const key = pathList[0];
+            const parent = parentPath.length ? get_default()(obj, parentPath) : obj;
+            const exec = (...args) => {
+                if (parent && "function" === typeof parent[key]) return parent[key](...args);
+                return;
+            };
+            return {
+                value: parent ? parent[key] : void 0,
+                exec
+            };
+        }
+        function parsePathToArray(path) {
+            if ("string" !== typeof path) throw new TypeError("path must be string");
+            return path.replace(/\]/, "").split(/[.[]/);
+        }
+        function t(path, hash) {
+            const keys = parsePathToArray(path);
+            const value = keys.reduce(((prev, current) => {
+                if (!prev) return;
+                return prev && prev.string ? prev.string[current] : prev[current];
+            }), window.__I18N__);
+            const regExp = /\{\{([^{}]+)\}\}/g;
+            return nullishCoalescingOperator(get_func(value, "replace").exec(regExp, ((...args) => nullishCoalescingOperator(syntax_patch_get(hash, args[1]), args[0]))), path);
+        }
         const getCookie = key => window && window.SL_State && window.SL_State.get(`request.cookie.${key}`);
         var axios = __webpack_require__("../shared/browser/node_modules/axios/index.js");
         var axios_default = __webpack_require__.n(axios);
@@ -6368,7 +6474,7 @@
             params
         });
         const HOME = "/";
-        const url_SIGN_IN = "/user/signIn";
+        const SIGN_IN = "/user/signIn";
         const UNSUB = "/user/unsubscribe";
         "undefined" === typeof window || window.location.origin;
         function toSignOut() {
@@ -6378,6 +6484,12 @@
                 appid,
                 subappid
             }).then((() => true));
+        }
+        async function signOutAndJump(beforeJump) {
+            const isSignOut = await toSignOut();
+            if (true !== isSignOut) return;
+            if (beforeJump instanceof Function) beforeJump();
+            window.location.href = SIGN_IN;
         }
         const report = (eventid, params) => {
             window.HdSdk && window.HdSdk.shopTracker.report(eventid, params);
@@ -6509,11 +6621,11 @@
         const {SL_EventBus} = window;
         const {SL_EventEmitter} = window;
         window.SL_EventBus, window.SL_EventEmitter;
-        function parsePathToArray(path) {
+        function parsePathToArray_parsePathToArray(path) {
             if ("string" !== typeof path) throw new TypeError("path must be string");
             return path.replace(/\]/, "").split(/[.[]/);
         }
-        const utils_parsePathToArray = parsePathToArray;
+        const utils_parsePathToArray = parsePathToArray_parsePathToArray;
         class SLState {
             constructor(state) {
                 this.bus = new SL_EventEmitter;
@@ -6551,6 +6663,120 @@
         const __PRELOAD_STATE__ = window.__PRELOAD_STATE__ || {};
         if (!window.SL_State) window.SL_State = new SLState(__PRELOAD_STATE__);
         const {SL_State} = window;
+        var url = __webpack_require__("../shared/browser/biz-com/customer/utils/url.js");
+        function getEnv(key) {
+            const ENV = window.__ENV__ || {};
+            if (key) return ENV[key];
+            return ENV;
+        }
+        const IS_PROD = [ "preview", "product" ].includes(getEnv().APP_ENV || "");
+        const THIRD_DEFAULT_REGION = "CN";
+        const DEFAULT_LANGUAGE = "en";
+        const UDB_PARAMS = {
+            type: "member",
+            appid: IS_PROD ? "1165600903" : "1163336839",
+            subappid: "5",
+            mode: "username"
+        };
+        const DEFAULT_PHONE_ISO2 = "cn";
+        const DEFAULT_PHONE_CODE = "cn+86";
+        const DEFAULT_PHONE_CODE2 = "+86";
+        const ACCOUNT_ACTIVATED = "ACCOUNT_ACTIVATED";
+        const CONFIRM_SUBSCRIBE_EMAIL = "confirmSubscribeEmail";
+        const SUBSCRIBE_STATUS_MAP = {
+            CANCEL: 0,
+            SUBSCRIBE: 1,
+            UNSUBSCRIBE: 2,
+            CONFIRMING: 3,
+            UNVALID: 4,
+            DELETED: 5
+        };
+        const RESET_PASSWORD_TOKEN_EXPIRED = "RESET_PASSWORD_TOKEN_EXPIRED";
+        const ACCOUNT_ACTIVATED_TOKEN_EXPIRED = "ACCOUNT_ACTIVATED_TOKEN_EXPIRED";
+        const toast_LOADING = "loading";
+        const toast_getTemplate = (options, type = "default") => {
+            const loadingColor = options.loadingColor || "black";
+            const templates = {
+                [toast_LOADING]: `\n      <div class="mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="${loadingColor}" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
+                default: `\n      <div class="comment-toast mp-toast mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-toast__content mp-toast__inner">${options.content}</div>\n      </div>\n    `
+            };
+            return templates[type];
+        };
+        const OPTION_TARGET = "body";
+        const defaultOptions = {
+            duration: 1500,
+            content: "",
+            target: OPTION_TARGET
+        };
+        const toast_HIDDEN_CLASSNAME = "mp-toast__hidden";
+        const CONTENT_CLASSNAME = "mp-toast__content";
+        class Toast {
+            constructor(options = {}) {
+                this.options = {
+                    ...defaultOptions,
+                    fullscreen: !options.target || options.target === OPTION_TARGET,
+                    ...options
+                };
+                this.$toast = null;
+                this.$target = null;
+                this.timer = null;
+                this.instance = null;
+                this.render();
+            }
+            static init(options) {
+                return this.getSingleton(options);
+            }
+            static loading(options) {
+                return this.getSingleton(options, toast_LOADING);
+            }
+            static getSingleton(options = {}, type) {
+                let {instance} = this;
+                if (!instance) {
+                    instance = new Toast(options);
+                    this.instance = instance;
+                }
+                if (instance.type !== type) {
+                    instance.type = type;
+                    if (instance.$toast) instance.$toast.remove();
+                    instance.render();
+                }
+                instance.open(options.content || "", options.duration);
+                return instance;
+            }
+            render() {
+                const template = toast_getTemplate(this.options, this.type || this.options.type);
+                this.$toast = __SL_$__(template);
+                this.$target = __SL_$__(this.options.target);
+                const {$target} = this;
+                if ("static" === $target.css("position")) $target.css("position", "relative");
+                $target.append(this.$toast);
+            }
+            open(content = "", duration) {
+                const {options, $target} = this;
+                if ("static" === $target.css("position")) $target.css("position", "relative");
+                if (this.timer) {
+                    clearTimeout(this.timer);
+                    this.timer = null;
+                }
+                const {$toast} = this;
+                const $text = $toast.find(`.${CONTENT_CLASSNAME}`);
+                $text.html(content || this.options.content || "");
+                $toast.removeClass(toast_HIDDEN_CLASSNAME);
+                const durationTime = "number" === typeof duration ? duration : options.duration;
+                if (0 !== durationTime) this.timer = setTimeout(this.close.bind(this), durationTime);
+            }
+            close() {
+                if (this.timer) {
+                    clearTimeout(this.timer);
+                    this.timer = null;
+                }
+                this.$toast.addClass(toast_HIDDEN_CLASSNAME);
+                if ("function" === typeof this.options.onClose) this.options.onClose();
+                this.$target.css("position", "");
+            }
+        }
+        Toast.type = null;
+        const toast_toast = Toast;
         const tabTypeToReport = {
             center: reportClickCenterTab,
             message: reportClickMessageTab,
@@ -6559,14 +6785,23 @@
         __SL_$__((() => {
             const isLogin = SL_State.get("request.is_login");
             if (!isLogin) toSignOut().then((() => {
-                window.location.href = url_SIGN_IN;
+                window.location.href = SIGN_IN;
             }));
+            const toast = new toast_toast;
+            const from = (0, url.getUrlQuery)("from");
+            if (from === CONFIRM_SUBSCRIBE_EMAIL) {
+                const hasToast = !!sessionStorage.getItem(CONFIRM_SUBSCRIBE_EMAIL);
+                if (!hasToast) {
+                    sessionStorage.setItem(CONFIRM_SUBSCRIBE_EMAIL, true);
+                    toast.open(t("customer.account.subscribe_confirm_tip"));
+                }
+            }
             const $center = __SL_$__("#user-center");
             reportThirdPartPageView();
             $center.find(".signout-link").click((() => {
                 toSignOut().then((() => {
                     reportSignOut();
-                    window.location.href = url_SIGN_IN;
+                    window.location.href = SIGN_IN;
                 }));
             }));
             $center.find(".navbar").on("click", ".navbar__item", (e => {
@@ -6704,6 +6939,12 @@
         const getLoginInitConfig = params => request_udbRequest.get("/udb/lgn/login/init.do", {
             params
         });
+        const getRetrieveTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/token/init.do", {
+            params
+        });
+        const getActivateTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/activate/token/init.do", {
+            params
+        });
         const getRetrieveInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/init.do", {
             params
         });
@@ -6711,6 +6952,19 @@
             params
         });
         const revokeDeleteAccount = () => request_request.post("/user/front/userinfo/cancelEraseData");
+        function withLoginStatusCheck(response) {
+            return new Promise(((res, rej) => {
+                response.then((data => {
+                    res(data);
+                })).catch((err => {
+                    if ("CUS0401" === err.code) {
+                        signOutAndJump();
+                        return;
+                    }
+                    rej(err);
+                }));
+            }));
+        }
         const updateAccountInfo = data => request_request.post("/user/front/userinfo/updateAccountInfo", data);
         const deleteAccountInfo = data => request_request.post("/user/front/userinfo/applyForEraseData", data);
         const updateSubscriptions = data => request_request.post("/user/front/sub/state", data);
@@ -6722,135 +6976,8 @@
         async function updateLineAuth(params) {
             return request_request.post("/user/front/sub/authorize", params);
         }
-        const toast_LOADING = "loading";
-        const toast_getTemplate = (options, type = "default") => {
-            const loadingColor = options.loadingColor || "black";
-            const templates = {
-                [toast_LOADING]: `\n      <div class="mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="${loadingColor}" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
-                default: `\n      <div class="comment-toast mp-toast mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-toast__content mp-toast__inner">${options.content}</div>\n      </div>\n    `
-            };
-            return templates[type];
-        };
-        const OPTION_TARGET = "body";
-        const defaultOptions = {
-            duration: 1500,
-            content: "",
-            target: OPTION_TARGET
-        };
-        const toast_HIDDEN_CLASSNAME = "mp-toast__hidden";
-        const CONTENT_CLASSNAME = "mp-toast__content";
-        class Toast {
-            constructor(options = {}) {
-                this.options = {
-                    ...defaultOptions,
-                    fullscreen: !options.target || options.target === OPTION_TARGET,
-                    ...options
-                };
-                this.$toast = null;
-                this.$target = null;
-                this.timer = null;
-                this.instance = null;
-                this.render();
-            }
-            static init(options) {
-                return this.getSingleton(options);
-            }
-            static loading(options) {
-                return this.getSingleton(options, toast_LOADING);
-            }
-            static getSingleton(options = {}, type) {
-                let {instance} = this;
-                if (!instance) {
-                    instance = new Toast(options);
-                    this.instance = instance;
-                }
-                if (instance.type !== type) {
-                    instance.type = type;
-                    if (instance.$toast) instance.$toast.remove();
-                    instance.render();
-                }
-                instance.open(options.content || "", options.duration);
-                return instance;
-            }
-            render() {
-                const template = toast_getTemplate(this.options, this.type || this.options.type);
-                this.$toast = __SL_$__(template);
-                this.$target = __SL_$__(this.options.target);
-                const {$target} = this;
-                if ("static" === $target.css("position")) $target.css("position", "relative");
-                $target.append(this.$toast);
-            }
-            open(content = "", duration) {
-                const {options, $target} = this;
-                if ("static" === $target.css("position")) $target.css("position", "relative");
-                if (this.timer) {
-                    clearTimeout(this.timer);
-                    this.timer = null;
-                }
-                const {$toast} = this;
-                const $text = $toast.find(`.${CONTENT_CLASSNAME}`);
-                $text.html(content || this.options.content || "");
-                $toast.removeClass(toast_HIDDEN_CLASSNAME);
-                const durationTime = "number" === typeof duration ? duration : options.duration;
-                if (0 !== durationTime) this.timer = setTimeout(this.close.bind(this), durationTime);
-            }
-            close() {
-                if (this.timer) {
-                    clearTimeout(this.timer);
-                    this.timer = null;
-                }
-                this.$toast.addClass(toast_HIDDEN_CLASSNAME);
-                if ("function" === typeof this.options.onClose) this.options.onClose();
-                this.$target.css("position", "");
-            }
-        }
-        Toast.type = null;
-        const toast = Toast;
-        var get = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
-        var get_default = __webpack_require__.n(get);
-        var toPath = __webpack_require__("../shared/browser/node_modules/lodash/toPath.js");
-        var toPath_default = __webpack_require__.n(toPath);
-        function nullishCoalescingOperator(...args) {
-            const val = args.find((item => {
-                if ("function" === typeof item) {
-                    const result = item();
-                    return null !== result && void 0 !== result;
-                }
-                return null !== item && void 0 !== item;
-            }));
-            if (null === val || void 0 === val) return args[args.length - 1];
-            return val;
-        }
-        function syntax_patch_get(obj, ...args) {
-            return get_default()(obj, ...args);
-        }
-        function get_func(obj, path) {
-            const pathList = toPath_default()(path);
-            const parentPath = pathList.splice(0, pathList.length - 1);
-            const key = pathList[0];
-            const parent = parentPath.length ? get_default()(obj, parentPath) : obj;
-            const exec = (...args) => {
-                if (parent && "function" === typeof parent[key]) return parent[key](...args);
-                return;
-            };
-            return {
-                value: parent ? parent[key] : void 0,
-                exec
-            };
-        }
-        function i18n_parsePathToArray(path) {
-            if ("string" !== typeof path) throw new TypeError("path must be string");
-            return path.replace(/\]/, "").split(/[.[]/);
-        }
-        function t(path, hash) {
-            const keys = i18n_parsePathToArray(path);
-            const value = keys.reduce(((prev, current) => {
-                if (!prev) return;
-                return prev && prev.string ? prev.string[current] : prev[current];
-            }), window.__I18N__);
-            const regExp = /\{\{([^{}]+)\}\}/g;
-            return nullishCoalescingOperator(get_func(value, "replace").exec(regExp, ((...args) => nullishCoalescingOperator(syntax_patch_get(hash, args[1]), args[0]))), path);
-        }
+        const updateSensitiveAccountInfo = data => withLoginStatusCheck(request_request.post("/user/front/userinfo/updateAccountSensitive", data));
+        const confirmEmailSubscribe = data => withLoginStatusCheck(request_request.post("/user/front/sub/email/allow/subscribe", data));
         var debounce = __webpack_require__("../shared/browser/node_modules/lodash/debounce.js");
         var debounce_default = __webpack_require__.n(debounce);
         const loginModalPageIdMap = {
@@ -6973,14 +7100,6 @@
                 component: 109,
                 action_type: report_ActionType.click,
                 event_id: 1007
-            });
-        };
-        const reportClickSubscribeEmailEditIcon = () => {
-            reportCenterEvent({
-                module: report_Module.userCenter.subscribe,
-                component: 102,
-                action_type: report_ActionType.click,
-                event_id: 1591
             });
         };
         const reportInputSubscribeNewEmail = debounce_default()((() => {
@@ -7182,8 +7301,8 @@
         const MEMBER_PASSWORD_PATTERN = /^.{6,18}$/i;
         const PHONE_PATTERN = {
             "+86": /^1[3-9]\d{9}$/,
-            "+886": /^09\d{8}$/,
-            "+852": /^(5[1234569]\d{6}|6\d{7}|9[0-8]\d{6})$/
+            "+886": /^0?9\d{8}$/,
+            "+852": /^(5|6|7|9)\d{7}$/
         };
         const pattern_CODE_PHONE_PATTERN = /^(\w+(\+\d+))-(.*)$/;
         const INTERNATIONAL_PHONE_PATTERN = /^(00|\+)[1-9]{1}([0-9]){9,16}$/;
@@ -7334,26 +7453,31 @@
             return formFields[type](args);
         }));
         const getFormFields = getFormFieldsHelper;
-        var url = __webpack_require__("../shared/browser/biz-com/customer/utils/url.js");
-        function getEnv(key) {
-            const ENV = window.__ENV__ || {};
-            if (key) return ENV[key];
-            return ENV;
-        }
-        const IS_PROD = [ "preview", "product" ].includes(getEnv().APP_ENV || "");
-        const THIRD_DEFAULT_REGION = "CN";
-        const DEFAULT_LANGUAGE = "en";
-        const UDB_PARAMS = {
-            type: "member",
-            appid: IS_PROD ? "1165600903" : "1163336839",
-            subappid: "5",
-            mode: "username"
-        };
-        const DEFAULT_PHONE_ISO2 = "cn";
-        const DEFAULT_PHONE_CODE = "cn+86";
-        const DEFAULT_PHONE_CODE2 = "+86";
         function getLanguage() {
-            return window && window.SL_State && window.SL_State.get("request.cookie.lang") || DEFAULT_LANGUAGE;
+            return window && window.SL_State && window.SL_State.get("request.locale") || DEFAULT_LANGUAGE;
+        }
+        const getState = href => {
+            try {
+                const locationHref = href || window.location.href;
+                const decodeUrl = window.decodeURIComponent(locationHref.replace(window.location.hash, ""));
+                return JSON.parse(decodeUrl.match(/\{(.*)\}/)[0]);
+            } catch (e) {
+                try {
+                    return JSON.parse((0, url.getUrlQuery)("state"));
+                } catch (e) {
+                    return {};
+                }
+            }
+        };
+        const getRedirectUrl = () => {
+            let {redirectUrl} = (0, url.getUrlAllQuery)();
+            const state = getState();
+            redirectUrl = state && state.redirectUrl && window.decodeURIComponent(state.redirectUrl) || redirectUrl;
+            return redirectUrl;
+        };
+        function redirectPage(pathname) {
+            const redirectUrl = getRedirectUrl();
+            window.location.href = redirectUrl || pathname;
         }
         const formatRequestBody = data => ({
             ...data || {},
@@ -8033,7 +8157,9 @@
             }
         }
         const form_item_password = Password;
-        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014 ];
+        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014, 3015, 3022, 3023, 3024 ];
+        const TOKEN_ERROR_CODE = [ "3022", "3023", "3024" ];
+        const ACCOUNT_ACTIVATED_CODE = [ "3015" ];
         const keyMaps = {
             "-1": "2",
             "-13": "3",
@@ -8244,7 +8370,7 @@
                 __SL_$__(`#${this.formId} .submit-button`).click((async e => {
                     if (isLoading) return;
                     if (!(window && window.navigator && window.navigator.onLine)) {
-                        toast.init({
+                        toast_toast.init({
                             content: t("customer.general.network_error_message")
                         });
                         return;
@@ -8412,6 +8538,46 @@
             }));
         };
         const getRiskControlToken = () => loadRiskControl().then((df => df && df.getToken()));
+        var isPlainObject = __webpack_require__("../shared/browser/node_modules/lodash/isPlainObject.js");
+        var isPlainObject_default = __webpack_require__.n(isPlainObject);
+        const isBrowser = "undefined" !== typeof window && "undefined" !== typeof navigator;
+        function getStorage(storageName) {
+            return {
+                get(key) {
+                    if (!isBrowser) return;
+                    const storage = window[storageName];
+                    const numRe = /^\d+$/;
+                    const jsonRe = /(^\{.*\}$)|(^\[.*\]$)/;
+                    const boolRe = /^(true|false|null)$/;
+                    let val = storage.getItem(key);
+                    try {
+                        if ("string" === typeof val && val && (numRe.test(val) || boolRe.test(val) || jsonRe.test(val))) val = JSON.parse(val);
+                    } catch (e) {
+                        console.warn("json.parse storage value err:", e);
+                        val = {};
+                    }
+                    return val;
+                },
+                set(key, val) {
+                    if (!isBrowser) return;
+                    let value = val;
+                    if (isPlainObject_default()(value) || value instanceof Array) value = JSON.stringify(value);
+                    const storage = window[storageName];
+                    storage[key] = value;
+                },
+                del(key) {
+                    if (!isBrowser) return;
+                    const storage = window[storageName];
+                    storage.removeItem(key);
+                }
+            };
+        }
+        const [storage_sessionStorage, localStorage] = [ "sessionStorage", "localStorage" ].map(getStorage);
+        const utils = {
+            sessionStorage: storage_sessionStorage,
+            localStorage
+        };
+        const storage = utils;
         const extLangRequestBody = data => ({
             ...data || {},
             lang: getLanguage()
@@ -8459,18 +8625,16 @@
                     isverify = verify ? "1" : "0";
                 }
                 eventid = FBPixelEventID;
-            } else if ("activate" === formType) {
-                if ("member" === type) {
-                    getInitConfig = getMemberInitConfig;
-                    isverify = 0;
-                }
+            } else if ("activate" === formType) if (token) getInitConfig = getActivateTokenInitConfig; else {
+                getInitConfig = getMemberInitConfig;
+                isverify = 0;
             } else if ("reset" === formType) if (uid) {
                 getInitConfig = getUniversalInitConfig(reset_getChangePasswordInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve(); else if ("bind" === formType && "member" === type) {
                 if ("email" === mode) getInitConfig = getUniversalInitConfig(getBindEmailInitConfig); else if ("phone" === mode) getInitConfig = getUniversalInitConfig(getBindPhoneInitConfig);
                 ticketType = "1";
-            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("delete-account" === formType) {
+            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("passwordNewToken" === formType && "preview" !== token) getInitConfig = getRetrieveTokenInitConfig; else if ("delete-account" === formType) {
                 getInitConfig = getUniversalInitConfig(getDeleteAccountInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve();
@@ -8496,10 +8660,24 @@
                     _mask,
                     _method,
                     oauthToken,
-                    scene
+                    scene,
+                    emailMask: data && data.email
                 };
+            })).catch((e => {
+                if ("activate" === formType) {
+                    if (ACCOUNT_ACTIVATED_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED, true);
+                        redirectPage(SIGN_IN);
+                    } else if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED_TOKEN_EXPIRED, true);
+                        redirectPage(SIGN_IN);
+                    }
+                } else if ("passwordNewToken" === formType) if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                    storage.sessionStorage.set(RESET_PASSWORD_TOKEN_EXPIRED, true);
+                    redirectPage(SIGN_IN);
+                }
             }));
-            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "activate" ].includes(formType)) {
+            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "passwordNewToken", "activate" ].includes(formType)) {
                 const token = window.__DF__ && window.__DF__.getToken();
                 if (token) return init(token);
                 return getRiskControlToken().then((dfptoken => init(dfptoken))).catch((() => init()));
@@ -8841,8 +9019,11 @@
                 }));
             }
             async getCustomerConfig() {
-                const {mode} = this.query;
-                let queryParams = this.configs;
+                const {mode, token} = this.query;
+                let queryParams = {
+                    ...this.configs,
+                    token
+                };
                 if (mode) queryParams = {
                     ...queryParams,
                     mode
@@ -8984,6 +9165,63 @@
             }
         }
         const delete_account = DeleteAccount;
+        class ModifyEmail {
+            constructor({id, onSuccess}) {
+                this.email = SL_State.get("customer.userInfoDTO").email;
+                this.modifyEmailModal = null;
+                this.id = id;
+                this.onSuccess = onSuccess;
+                this.toast = new toast_toast;
+                this.init();
+            }
+            init() {
+                this.initModal();
+                this.initForm();
+            }
+            initModal() {
+                this.modifyEmailModal = new Modal({
+                    modalId: this.id
+                });
+            }
+            initForm() {
+                const fields = getFormFields([ "email" ]);
+                this.form = new commons_form({
+                    id: `${this.id}-form`,
+                    fields,
+                    onSubmit: data => {
+                        const newEmail = data.email;
+                        updateSensitiveAccountInfo({
+                            email: newEmail
+                        }).then((() => {
+                            const userInfoDTO = SL_State.get("customer.userInfoDTO");
+                            SL_State.set("customer.userInfoDTO", {
+                                ...userInfoDTO,
+                                email: newEmail
+                            });
+                            this.email = newEmail;
+                            this.modifyEmailModal.hide();
+                            this.onSuccess(newEmail);
+                        })).catch((e => {
+                            if ("EMAIL_REPEAT" === e.code || "EU0202" === e.code) this.toast.open(t("customer.account.email_repeat_tip")); else this.toast.open(t("customer.account.unknow_error_tip"));
+                        }));
+                    }
+                });
+                this.form.formInstance.on("valuesChange", (({changedValue}) => {
+                    this.onFieldValueChange && this.onFieldValueChange(changedValue);
+                }));
+            }
+            show() {
+                const {formInstance} = this.form;
+                formInstance.setDomValue(formInstance.el, "email", this.email);
+                formInstance.setLocalsValue("email", this.email);
+                formInstance.resetErrStatus();
+                this.modifyEmailModal.show();
+            }
+            hide() {
+                this.modifyEmailModal.hide();
+            }
+        }
+        const modify_email = ModifyEmail;
         class Account extends card {
             constructor({id, editable}) {
                 super({
@@ -9017,7 +9255,7 @@
                             return;
                         }
                         typeToReportEvent && typeToReportEvent[type] && typeToReportEvent[type]();
-                        window.location.href = token ? `${path}?captcha=${token}` : path;
+                        if ("email" === type) if (this.userInfo.checkTag) window.location.href = token ? `${path}?captcha=${token}` : path; else this.openModifyEmailModal(); else window.location.href = token ? `${path}?captcha=${token}` : path;
                     };
                     if ("delete" === type) {
                         this.openDeleteModal();
@@ -9032,7 +9270,7 @@
             toResetPassword(path, token) {
                 const {phone, email} = this.userInfo;
                 if (!phone && !email) {
-                    toast.init({
+                    toast_toast.init({
                         content: t("customer.account.reset_password_error_hint")
                     });
                     return;
@@ -9073,6 +9311,18 @@
                 } catch (e) {
                     console.error(e);
                 }
+            }
+            openModifyEmailModal() {
+                if (!this.modifyEmailModal) this.modifyEmailModal = new modify_email({
+                    id: "customer-center-modify-email-modal",
+                    onSuccess: newEmail => {
+                        __SL_$__(`#${this.id} [data-type="email-content"]`).removeAttr("data-no-email").attr("data-has-email", true);
+                        __SL_$__(`#${this.id} .account-item__email`).text(newEmail);
+                        __SL_$__(`#${this.id} [data-show="detail"]`).show();
+                        __SL_$__(`#${this.id} [data-show="edit"]`).hide();
+                    }
+                });
+                this.modifyEmailModal.show();
             }
             getFormValue() {
                 return {
@@ -9727,7 +9977,7 @@
                 });
                 modal.init();
                 this.modal = modal;
-                if (!this.state) this.$unSubBtn.hide();
+                if (this.state !== SUBSCRIBE_STATUS_MAP.SUBSCRIBE) this.$unSubBtn.hide();
             }
             onUpdateSub(data) {
                 return updateSubscriptions({
@@ -9764,8 +10014,8 @@
             }
             show() {
                 this.modal.show();
-                const {subscribeAccount} = this;
-                let defaultValue = subscribeAccount || "";
+                const userInfo = SL_State.get("customer.userInfoDTO");
+                let defaultValue = userInfo[this.type] || "";
                 let iso2 = "";
                 let code = "";
                 if ("phone" === this.type) {
@@ -9799,7 +10049,17 @@
                     }), 0);
                 } else if ("email" === this.type) if (!defaultValue) defaultValue = this.userInfo.email || "";
                 this.setFormFields(defaultValue);
-                if (!this.state) this.$unSubBtn.hide(); else this.$unSubBtn.show();
+                const SLInput = __SL_$__(`#${this.id}-form .sl-input`);
+                if (userInfo[this.type]) {
+                    SLInput.addClass("subscribe__form__item--disabled");
+                    SLInput.find(`[name="${this.type}"]`).attr("disabled", true);
+                    SLInput.find(".form-item__codeSelect").attr("disabled", true);
+                } else {
+                    SLInput.removeClass("subscribe__form__item--disabled");
+                    SLInput.find(`[name="${this.type}"]`).attr("disabled", false);
+                    SLInput.find(".form-item__codeSelect").attr("disabled", false);
+                }
+                if (this.state !== SUBSCRIBE_STATUS_MAP.SUBSCRIBE) this.$unSubBtn.hide(); else this.$unSubBtn.show();
             }
             hide() {
                 this.modal.hide();
@@ -9852,6 +10112,56 @@
             }
         }
         const unsub_modal = UnSubModal;
+        class ConfirmSubModal {
+            constructor({id, onSuccess}) {
+                const customer_subscription = SL_State.get("customer_subscription");
+                this.email = customer_subscription && customer_subscription.email && customer_subscription.email.subscribeAccount;
+                this.confirmSubModal = null;
+                this.id = id;
+                this.onSuccess = onSuccess;
+                this.toast = new toast_toast;
+                this.init();
+            }
+            init() {
+                this.initModal();
+                this.initForm();
+            }
+            initModal() {
+                this.confirmSubModal = new Modal({
+                    modalId: this.id
+                });
+            }
+            initForm() {
+                const fields = getFormFields([ "email" ]);
+                this.form = new commons_form({
+                    id: `${this.id}-form`,
+                    fields,
+                    onSubmit: data => {
+                        confirmEmailSubscribe({
+                            subscribeAccount: data.email
+                        }).then((() => {
+                            this.onSuccess();
+                            this.hide();
+                        })).catch((() => {
+                            this.toast.open(t("customer.account.unknow_error_tip"));
+                        }));
+                    }
+                });
+            }
+            show() {
+                const {formInstance} = this.form;
+                formInstance.setDomValue(formInstance.el, "email", this.email);
+                formInstance.setLocalsValue("email", this.email);
+                const SLInput = __SL_$__(`#${this.id}-form .sl-input`);
+                SLInput.addClass("subscribe__form__item--disabled");
+                SLInput.find(`[name="email"]`).attr("disabled", true);
+                this.confirmSubModal.show();
+            }
+            hide() {
+                this.confirmSubModal.hide();
+            }
+        }
+        const confirm_sub_modal = ConfirmSubModal;
         const subscription_customer_subscription = SL_State.get("customer_subscription");
         class Subscription extends card {
             constructor({id, editable}) {
@@ -9861,12 +10171,16 @@
                 });
                 this.type = null;
                 this.unsubModal = null;
+                this.confirmSubModal = null;
                 this.subEmailModal = null;
                 this.subPhoneModal = null;
                 this.$subEmailItem = __SL_$__(`#${this.id} .subscription-item[data-type="email"]`);
-                this.$subEmailBtn = this.$subEmailItem.find(".subscription-item__btn, .subscription-item__edit");
+                this.$subEmailBtn = this.$subEmailItem.find(".subscription-item__btn");
+                this.$unsubEmailBtn = this.$subEmailItem.find(".subscription-item__edit");
+                this.$confirmSubEmailBtn = this.$subEmailItem.find(".subscription-item__confirming");
                 this.$subPhoneItem = __SL_$__(`#${this.id} .subscription-item[data-type="phone"]`);
-                this.$subPhoneBtn = this.$subPhoneItem.find(".subscription-item__btn, .subscription-item__edit");
+                this.$subPhoneBtn = this.$subPhoneItem.find(".subscription-item__btn");
+                this.$unsubPhoneBtn = this.$subPhoneItem.find(".subscription-item__edit");
                 this.$subMessengerItem = __SL_$__(`#${this.id} .subscription-item[data-type="messenger"]`);
                 this.$unsubMessengerBtn = this.$subMessengerItem.find(".subscription-item__edit");
                 this.$subLinetem = __SL_$__(`#${this.id} .subscription-item[data-type="line"]`);
@@ -9904,6 +10218,7 @@
                         this.unsubModal.hide();
                         if ("email" === this.type) {
                             this.$subEmailItem.removeAttr("data-subscribed");
+                            this.$subEmailItem.attr("data-sub-state", SUBSCRIBE_STATUS_MAP.CANCEL);
                             this.subEmailModal.state = 0;
                             this.subEmailModal.subscribeAccount = "";
                         } else if ("phone" === this.type) {
@@ -9939,6 +10254,7 @@
                     onSuccess: () => {
                         this.handleSubSuccess("email");
                         this.$subEmailItem.attr("data-subscribed", true);
+                        this.$subEmailItem.attr("data-sub-state", SUBSCRIBE_STATUS_MAP.SUBSCRIBE);
                         this.subEmailModal.hide();
                     },
                     onUnsub: () => {
@@ -9959,17 +10275,32 @@
                         this.handleUnsub(type);
                     }
                 });
-                this.$subEmailBtn.on("click", (e => {
-                    const {type} = e.target;
-                    if ("button" === type) reportClickSubscribeEmailButton(); else reportClickSubscribeEmailEditIcon();
+                this.confirmSubModal = new confirm_sub_modal({
+                    id: "customer-center-confirmSubEmail-modal",
+                    onSuccess: () => {
+                        this.$subEmailItem.attr("data-subscribed", true);
+                        this.$subEmailItem.attr("data-sub-state", SUBSCRIBE_STATUS_MAP.SUBSCRIBE);
+                    }
+                });
+                this.$subEmailBtn.on("click", (() => {
+                    reportClickSubscribeEmailButton();
                     this.subEmailModal.show();
                     this.type = "email";
+                }));
+                this.$unsubEmailBtn.on("click", (() => {
+                    window.location.href = UNSUB;
                 }));
                 this.$subPhoneBtn.on("click", (e => {
                     const {type} = e.target;
                     if ("button" === type) reportClickSubscribePhoneButton(); else reportClickSubscribePhoneEditIcon();
                     this.subPhoneModal.show();
                     this.type = "phone";
+                }));
+                this.$unsubPhoneBtn.on("click", (() => {
+                    this.handleUnsub("phone");
+                }));
+                this.$confirmSubEmailBtn.on("click", (() => {
+                    this.confirmSubModal.show();
                 }));
             }
             handleUnsub(type) {

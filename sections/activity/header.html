@@ -57,7 +57,7 @@
           <div class="coupon-left">
             {{#if (compare activity.benefitType '===' 1)}}
               {{!-- 金额 --}}
-              {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=(javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(currency_convert benefitCondition.benefit.benefitAmount))))}}
+              {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=(javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(money_exchange_convert_with_currency benefitCondition.benefit.benefitAmount))))}}
             {{else if (compare activity.benefitType '===' 2)}}
               {{!-- 折扣 --}}
               {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
@@ -77,7 +77,7 @@
               {{!-- 买x送y门槛文案 --}}
               {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
                 {{!-- 金额 --}}
-                {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))}}
+                {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))}}
               {{else}}
                 {{!-- 百分比折扣 --}}
                 {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
@@ -87,7 +87,7 @@
               {{!-- 其他折扣码门槛文案 --}}
               {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
                 {{!-- 金额 --}}
-                {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))}}
+                {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))}}
                 {{ assign '__threshold' __threshold.string}}
               {{else}}
                 {{!-- 百分比折扣 --}}

@@ -2,6 +2,22 @@
 {{ assign 'productWidth' (get productImageSize productImageSizeObj) }}
 {{ assign 'mediaList' spu.mediaList}}
 
+{{#if (isFalsey showSkuImg)}}
+  {{ assign 'mainMediaList' (JSONparse '[]') }}
+  {{ assign 'skuMediaList' (JSONparse '[]')}}
+  {{#each product.sku.skuList}}
+    {{#each imageList}}
+      {{array-push ../../skuMediaList this}}
+    {{/each}}
+  {{/each}}
+  {{#each mediaList}}
+    {{#if (isFalsey (inArray ../skuMediaList resource)) }}
+      {{array-push ../mainMediaList this}}
+    {{/if}}
+  {{/each}}
+  {{ assign 'mediaList' mainMediaList}}
+{{/if}}
+
 {{ assign 'coverImgObj' selectSku.imageBeanList.[0]}}
 
 {{ assign 'isVideoFirst' (first mediaList)}}
@@ -10,7 +26,11 @@
 <input type="hidden" value="{{ productImageScale }}" class="product_productImageScale_{{selectorId}}">
 <input type="hidden" value="{{ videoMute }}" class="product_productVideoMute_{{selectorId}}">
 <input type="hidden" value="{{ videoLoop }}" class="product_productVideoLoop_{{selectorId}}">
+<input type="hidden" value="{{ videoAutoplay }}" class="product_productVideoAutoplay_{{selectorId}}">
 <input type="hidden" value="{{ productImageSize }}" class="product_productImageSize_{{selectorId}}">
+<input type="hidden" value="{{ showSkuImg }}" class="product_productImageShowSkuImg_{{selectorId}}">
+<input type="hidden" value="{{ showSwiperArrow }}" class="product_productImageShowSwiperArrow_{{selectorId}}">
+
     <input type="hidden" value="{{ productImageShowStyle }}" class="product_productImageShowStyle_{{ selectorId }}">
     <input type="hidden" value="{{ productMobileThumbnailImageHide }}" class="product_productMobileThumbnailImageHide_{{ selectorId }}">
 
@@ -19,6 +39,8 @@
 {{ assign 'skuInMediaListIndex' (array_find_index mediaList coverImgObj.url 'resource') }}
 {{ assign 'needSkuCover' (boolean coverImgObj '&&' (boolean skuInMediaListIndex '==' -1)) }}
 {{ assign 'initialSlide' (cond (boolean needSkuCover '||' (boolean skuInMediaListIndex '==' -1) ) 0 skuInMediaListIndex) }}
+
+<input type="hidden" value="{{ needSkuCover }}" class="product_productImageNeedSkuCover_{{selectorId}}">
 
 {{#if (boolean productImageShowStyle '!=' 'flatten') true }}
 <div class="d-none d-md-block">
@@ -139,12 +161,36 @@
             {{/if}}
           {{/each}}
         </div>
+        {{#if showSwiperArrow}}
+          <div class="product-photo-swiper-button product-photo-swiper-button-prev swiper-button-prev_pc_{{selectorId}}">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 1L3 6L8 11" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>  
+</div>
+<div class="product-photo-swiper-button product-photo-swiper-button-next swiper-button-next_pc_{{selectorId}}">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+</div>
+        {{/if}}
       {{else}}
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="product-detail-empty-image" style="padding-bottom:{{#if needSkuCover }}{{append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%'}}{{else}}100%{{/if}}"></div>
           </div>
         </div>
+        {{#if showSwiperArrow}}
+          <div class="product-photo-swiper-button product-photo-swiper-button-prev swiper-button-prev_pc_{{selectorId}}">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 1L3 6L8 11" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>  
+</div>
+<div class="product-photo-swiper-button product-photo-swiper-button-next swiper-button-next_pc_{{selectorId}}">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+</div>
+        {{/if}}
       {{/if}}
       {{#if needSkuCover }}
         <div class="product_pc_skuImage" style="display: block">
@@ -211,7 +257,7 @@
       {{#if mediaList.length}}
       {{ assign 'firstItem' (first mediaList) }}
       {{ assign 'exceptFirstMediaList' (after mediaList 1) }}
-      <div class="product_productImages_tile {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">
+      <div class="product_productImages_tile shopline-element-product-image {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">
         <div class="row row-cols-md-1 gx-md-4 flattenFirstItem">
           <div class="flattenFirstItemWrapper">
             <div class="normalItem" style="display: {{ cond coverImgObj.url 'none' 'block' }}">
@@ -294,7 +340,7 @@
         </div>
       </div>
     {{else}}
-      <div class="product_productImages_tile product-detail-empty-image {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">
+      <div class="product_productImages_tile shopline-element-product-image product-detail-empty-image {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}" style="padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') '100%' }}">
         <div class="product_pc_skuImage_flatten" style="width: 100%; position:absolute; display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
           {{#if coverImgObj.url}}
             <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}">

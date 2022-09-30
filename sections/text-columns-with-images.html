@@ -39,7 +39,11 @@
 {{ assign 'noSpacing' 'false' }}
 {{/if}}
 
-{{ inline_stylesheet 'text-columns-with-images/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'text-columns-with-images/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'text-columns-with-images/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}

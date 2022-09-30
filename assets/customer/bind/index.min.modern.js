@@ -2631,6 +2631,14 @@
             }
             module.exports = baseGet;
         },
+        "../shared/browser/node_modules/lodash/_baseGetTag.js": module => {
+            var objectProto = Object.prototype;
+            var nativeObjectToString = objectProto.toString;
+            function objectToString(value) {
+                return nativeObjectToString.call(value);
+            }
+            module.exports = objectToString;
+        },
         "../shared/browser/node_modules/lodash/_castPath.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isKey = __webpack_require__("../shared/browser/node_modules/lodash/_isKey.js"), stringToPath = __webpack_require__("../shared/browser/node_modules/lodash/_stringToPath.js"), toString = __webpack_require__("../shared/browser/node_modules/lodash/toString.js");
             function castPath(value, object) {
@@ -2648,6 +2656,11 @@
             }
             module.exports = copyArray;
         },
+        "../shared/browser/node_modules/lodash/_getPrototype.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var overArg = __webpack_require__("../shared/browser/node_modules/lodash/_overArg.js");
+            var getPrototype = overArg(Object.getPrototypeOf, Object);
+            module.exports = getPrototype;
+        },
         "../shared/browser/node_modules/lodash/_isKey.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var isArray = __webpack_require__("../shared/browser/node_modules/lodash/isArray.js"), isSymbol = __webpack_require__("../shared/browser/node_modules/lodash/isSymbol.js");
             var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/, reIsPlainProp = /^\w*$/;
@@ -2664,6 +2677,14 @@
                 return value;
             }
             module.exports = identity;
+        },
+        "../shared/browser/node_modules/lodash/_overArg.js": module => {
+            function overArg(func, transform) {
+                return function(arg) {
+                    return func(transform(arg));
+                };
+            }
+            module.exports = overArg;
         },
         "../shared/browser/node_modules/lodash/_stringToPath.js": (module, __unused_webpack_exports, __webpack_require__) => {
             var memoizeCapped = __webpack_require__("../shared/browser/node_modules/lodash/_memoizeCapped.js");
@@ -2696,6 +2717,28 @@
         "../shared/browser/node_modules/lodash/isArray.js": module => {
             var isArray = Array.isArray;
             module.exports = isArray;
+        },
+        "../shared/browser/node_modules/lodash/isObjectLike.js": module => {
+            function isObjectLike(value) {
+                return null != value && "object" == typeof value;
+            }
+            module.exports = isObjectLike;
+        },
+        "../shared/browser/node_modules/lodash/isPlainObject.js": (module, __unused_webpack_exports, __webpack_require__) => {
+            var baseGetTag = __webpack_require__("../shared/browser/node_modules/lodash/_baseGetTag.js"), getPrototype = __webpack_require__("../shared/browser/node_modules/lodash/_getPrototype.js"), isObjectLike = __webpack_require__("../shared/browser/node_modules/lodash/isObjectLike.js");
+            var objectTag = "[object Object]";
+            var funcProto = Function.prototype, objectProto = Object.prototype;
+            var funcToString = funcProto.toString;
+            var hasOwnProperty = objectProto.hasOwnProperty;
+            var objectCtorString = funcToString.call(Object);
+            function isPlainObject(value) {
+                if (!isObjectLike(value) || baseGetTag(value) != objectTag) return false;
+                var proto = getPrototype(value);
+                if (null === proto) return true;
+                var Ctor = hasOwnProperty.call(proto, "constructor") && proto.constructor;
+                return "function" == typeof Ctor && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
+            }
+            module.exports = isPlainObject;
         },
         "../shared/browser/node_modules/lodash/isSymbol.js": module => {
             function stubFalse() {
@@ -3915,8 +3958,8 @@
         const MEMBER_PASSWORD_PATTERN = /^.{6,18}$/i;
         const PHONE_PATTERN = {
             "+86": /^1[3-9]\d{9}$/,
-            "+886": /^09\d{8}$/,
-            "+852": /^(5[1234569]\d{6}|6\d{7}|9[0-8]\d{6})$/
+            "+886": /^0?9\d{8}$/,
+            "+852": /^(5|6|7|9)\d{7}$/
         };
         const pattern_CODE_PHONE_PATTERN = /^(\w+(\+\d+))-(.*)$/;
         const INTERNATIONAL_PHONE_PATTERN = /^(00|\+)[1-9]{1}([0-9]){9,16}$/;
@@ -4091,20 +4134,29 @@
         };
         const DEFAULT_PHONE_ISO2 = "cn";
         const DEFAULT_PHONE_CODE = "cn+86";
+        const ACCOUNT_ACTIVATED = "ACCOUNT_ACTIVATED";
+        const RESET_PASSWORD_TOKEN_EXPIRED = "RESET_PASSWORD_TOKEN_EXPIRED";
+        const ACCOUNT_ACTIVATED_TOKEN_EXPIRED = "ACCOUNT_ACTIVATED_TOKEN_EXPIRED";
         function getLanguage() {
-            return window && window.SL_State && window.SL_State.get("request.cookie.lang") || DEFAULT_LANGUAGE;
+            return window && window.SL_State && window.SL_State.get("request.locale") || DEFAULT_LANGUAGE;
         }
-        const getRedirectUrl = () => {
-            let redirectUrl = (0, url.getUrlQuery)("redirectUrl");
-            let state = (0, url.getUrlQuery)("state");
+        const getState = href => {
             try {
-                if (state) {
-                    state = JSON.parse(state);
-                    redirectUrl = state.redirectUrl || redirectUrl;
-                }
+                const locationHref = href || window.location.href;
+                const decodeUrl = window.decodeURIComponent(locationHref.replace(window.location.hash, ""));
+                return JSON.parse(decodeUrl.match(/\{(.*)\}/)[0]);
             } catch (e) {
-                console.error(e);
+                try {
+                    return JSON.parse((0, url.getUrlQuery)("state"));
+                } catch (e) {
+                    return {};
+                }
             }
+        };
+        const getRedirectUrl = () => {
+            let {redirectUrl} = (0, url.getUrlAllQuery)();
+            const state = getState();
+            redirectUrl = state && state.redirectUrl && window.decodeURIComponent(state.redirectUrl) || redirectUrl;
             return redirectUrl;
         };
         function redirectPage(pathname) {
@@ -4831,7 +4883,9 @@
             }
         }
         const form_item_password = Password;
-        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014 ];
+        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014, 3015, 3022, 3023, 3024 ];
+        const TOKEN_ERROR_CODE = [ "3022", "3023", "3024" ];
+        const ACCOUNT_ACTIVATED_CODE = [ "3015" ];
         const keyMaps = {
             "-1": "2",
             "-13": "3",
@@ -5241,6 +5295,12 @@
         const getLoginInitConfig = params => request_udbRequest.get("/udb/lgn/login/init.do", {
             params
         });
+        const getRetrieveTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/token/init.do", {
+            params
+        });
+        const getActivateTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/activate/token/init.do", {
+            params
+        });
         const getRetrieveInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/init.do", {
             params
         });
@@ -5323,6 +5383,46 @@
         };
         const getRiskControlToken = () => loadRiskControl().then((df => df && df.getToken()));
         const getCookie = key => window && window.SL_State && window.SL_State.get(`request.cookie.${key}`);
+        var isPlainObject = __webpack_require__("../shared/browser/node_modules/lodash/isPlainObject.js");
+        var isPlainObject_default = __webpack_require__.n(isPlainObject);
+        const isBrowser = "undefined" !== typeof window && "undefined" !== typeof navigator;
+        function getStorage(storageName) {
+            return {
+                get(key) {
+                    if (!isBrowser) return;
+                    const storage = window[storageName];
+                    const numRe = /^\d+$/;
+                    const jsonRe = /(^\{.*\}$)|(^\[.*\]$)/;
+                    const boolRe = /^(true|false|null)$/;
+                    let val = storage.getItem(key);
+                    try {
+                        if ("string" === typeof val && val && (numRe.test(val) || boolRe.test(val) || jsonRe.test(val))) val = JSON.parse(val);
+                    } catch (e) {
+                        console.warn("json.parse storage value err:", e);
+                        val = {};
+                    }
+                    return val;
+                },
+                set(key, val) {
+                    if (!isBrowser) return;
+                    let value = val;
+                    if (isPlainObject_default()(value) || value instanceof Array) value = JSON.stringify(value);
+                    const storage = window[storageName];
+                    storage[key] = value;
+                },
+                del(key) {
+                    if (!isBrowser) return;
+                    const storage = window[storageName];
+                    storage.removeItem(key);
+                }
+            };
+        }
+        const [sessionStorage, localStorage] = [ "sessionStorage", "localStorage" ].map(getStorage);
+        const utils = {
+            sessionStorage,
+            localStorage
+        };
+        const storage = utils;
         const extLangRequestBody = data => ({
             ...data || {},
             lang: getLanguage()
@@ -5370,18 +5470,16 @@
                     isverify = verify ? "1" : "0";
                 }
                 eventid = FBPixelEventID;
-            } else if ("activate" === formType) {
-                if ("member" === type) {
-                    getInitConfig = getMemberInitConfig;
-                    isverify = 0;
-                }
+            } else if ("activate" === formType) if (token) getInitConfig = getActivateTokenInitConfig; else {
+                getInitConfig = getMemberInitConfig;
+                isverify = 0;
             } else if ("reset" === formType) if (uid) {
                 getInitConfig = getUniversalInitConfig(reset_getChangePasswordInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve(); else if ("bind" === formType && "member" === type) {
                 if ("email" === mode) getInitConfig = getUniversalInitConfig(getBindEmailInitConfig); else if ("phone" === mode) getInitConfig = getUniversalInitConfig(getBindPhoneInitConfig);
                 ticketType = "1";
-            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("delete-account" === formType) {
+            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("passwordNewToken" === formType && "preview" !== token) getInitConfig = getRetrieveTokenInitConfig; else if ("delete-account" === formType) {
                 getInitConfig = getUniversalInitConfig(getDeleteAccountInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve();
@@ -5407,10 +5505,24 @@
                     _mask,
                     _method,
                     oauthToken,
-                    scene
+                    scene,
+                    emailMask: data && data.email
                 };
+            })).catch((e => {
+                if ("activate" === formType) {
+                    if (ACCOUNT_ACTIVATED_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED, true);
+                        redirectPage(SIGN_IN);
+                    } else if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED_TOKEN_EXPIRED, true);
+                        redirectPage(SIGN_IN);
+                    }
+                } else if ("passwordNewToken" === formType) if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                    storage.sessionStorage.set(RESET_PASSWORD_TOKEN_EXPIRED, true);
+                    redirectPage(SIGN_IN);
+                }
             }));
-            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "activate" ].includes(formType)) {
+            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "passwordNewToken", "activate" ].includes(formType)) {
                 const token = window.__DF__ && window.__DF__.getToken();
                 if (token) return init(token);
                 return getRiskControlToken().then((dfptoken => init(dfptoken))).catch((() => init()));
@@ -5872,8 +5984,11 @@
                 }));
             }
             async getCustomerConfig() {
-                const {mode} = this.query;
-                let queryParams = this.configs;
+                const {mode, token} = this.query;
+                let queryParams = {
+                    ...this.configs,
+                    token
+                };
                 if (mode) queryParams = {
                     ...queryParams,
                     mode

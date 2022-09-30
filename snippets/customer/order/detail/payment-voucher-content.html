@@ -24,8 +24,14 @@
         {{/if}}
         </div>
         
+        {{assign 'uploadedNum' dataList.length }}
+        {{#if (boolean (boolean uploadedNum '>' 0 '&&' boolean uploadedNum '<' 5) '||' (boolean noNeedToUpload '===' false))}}
+            {{snippet 'customer/order/detail/voucher-uploaded-text' num=uploadedNum }}
+            {{snippet 'customer/order/detail/voucher-upload-error' }}
+        {{/if}}
+   
         {{#if (boolean dataList.length '>' 4)}}
-            <div class="trade-transfer-voucher_limit-tip hide">{{t 'cart.order.voucher_amount_limit'}}</div>
+            <div class="trade-transfer-voucher_limit-tip">{{t 'cart.order.voucher_amount_limit'}}</div>
         {{/if}}
         {{#unless noNeedToUpload}}
             {{snippet 'customer/order/detail/voucher-upload' type="button" hide=(boolean dataList.length '>' 0)}}

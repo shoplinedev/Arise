@@ -1,7 +1,11 @@
 {{ assign 'currentPageInfo' (get section.settings.page_id pages) }}
 {{ assign 'prefix' 'stage-main-page' }}
 
-{{ inline_stylesheet 'custom-page/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'custom-page/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'custom-page/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}

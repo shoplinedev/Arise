@@ -3,6 +3,11 @@
 {{ assign 'isMobile' request.is_mobile}}
 {{ assign 'modalId' (default request.uri.query.modalId 'login-modal') }}
 
+<script>
+  window.__I18N__ = window.__I18N__ || {};
+  window.__I18N__['customer'] = {{{JSONstringify (t 'customer')}}}
+</script>
+
 <div class="login-modal" id="login-modal-container">
   {{#if isMobile}}
     <div class="login-modal__tabs">

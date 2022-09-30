@@ -5,6 +5,22 @@
       "read_btn_text": "Skaityti daugiau",
       "title": "Dienoraštis"
     },
+    "comment": {
+      "comment": "komentuoti",
+      "comment_audit_tip": "Jūsų komentaras pateiktas ir jį reikia peržiūrėti.",
+      "comment_empty": "Prašome užpildyti komentarus",
+      "email": "Paštas",
+      "email_empty": "El. pašto laukas negali būti tuščias",
+      "email_format": "Įveskite teisingą el. pašto adresą",
+      "form_title": "komentuoti",
+      "loadmore": "pakrauti daugiau",
+      "name": "Vardas ir pavardė",
+      "name_empty": "Prašome įrašyti vardą",
+      "submit": "Pateikti",
+      "submit_audit_tip": "Sėkmingai pateikta, laukiama peržiūros",
+      "success": "Sėkmingai pateikta",
+      "title": "{{comment_length}} komentarai"
+    },
     "general": {
       "back_to": "Grąžinti {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Užsakymo duomenys",
       "package_amount": "Pakuotė {{num}}({{item}} prekės)",
       "pay_amount": "mokėti sumą",
+      "paymentVoucher": {
+        "downloadDoc": "Atsisiųsti rinkmeną",
+        "format": "Formatas",
+        "formatLimit": "Palaiko .jpg, .png, .pdf rinkmenas, kai rinkmenos dydis mažesnis nei 20 MB. Galite įkelti daugiausiai 5 vaizdus",
+        "uploadAmount": "{{num}} kuponas (-ai) buvo įkeltas (-i)",
+        "uploadLimit": "Prašome įkelti .jpg, .png, .pdf rinkmenas, kurių dydis yra mažesnis nei 20MB"
+      },
       "payment_voucher_confirmation": "Supratau",
       "payment_voucher_transfer_success": "Mokėjimas sėkmingai pervestas",
       "payment_voucher_waiting_for_payment": "Laukiama apmokėjimo",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Negaliojantis el. pašto adresas"
+    },
     "account": {
       "account_binding": "Paskyros susiejimas",
       "account_information": "Paskyra",
@@ -197,6 +223,10 @@
       "bind": "Susiejama",
       "birthday": "Gimimo data",
       "change_password": "Pakeisti slaptažodį",
+      "confirm_btn": "Apstiprināt",
+      "confirm_subscription_modal_btn": "Patvirtinti prenumeratą",
+      "confirm_subscription_modal_content": "Pateikėte prenumeratą anksčiau. Patvirtinimo el. pašto laiškas buvo išsiųstas šiuo el. pašto adresu. Galite patvirtinti savo el. pašto laišku arba spausdami šį mygtuką.",
+      "confirm_subscription_modal_title": "Patvirtinkite savo el. pašto prenumeratą.",
       "credit_card_number": "Kreditinės kortelės Nr.",
       "deadline": "Verslo ataskaitos tikslu, jūsų užsakymas bus vis dar matomas. Jūsų paskyros duomenys bus pašalintas {{time}}, galite atšaukti procedūrą prieš tą datą",
       "delete_account": "Uždaryti paskyrą",
@@ -211,6 +241,7 @@
       "ip_address": "IP adresas",
       "last_name": "Pavardė",
       "modify_email": "Keisti el. paštą",
+      "modify_email_modal_title": "Keisti el. paštą",
       "modify_phone": "Keisti telefoną",
       "name": "Vardas ir pavardė",
       "next": "Kita",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Prašome pirma susieti el. paštą ar mobilųjį telefoną",
       "revoke": "Atšaukti uždarymą",
       "revoke_message": "Šiai paskyrai taikoma uždarymo procedūra, paskyros duomenys bus pašalintos {{time}}, galite atšaukti procedūrą prieš tą datą",
+      "save_btn": "IŠSAUGOTI",
       "select__date": "Pasirinkti datą",
+      "subscribe_confirm_tip": "Dėkojame už jūsų prenumeratą.",
       "timeout_tip": "Baigėsi operacijos skirtasis laikas, patikrinkite dar kartą",
       "username": "Pavadinimas",
       "verify_email_message": "Prieš uždarydami paskyrą, turime patikrinti jūsų tapatybę\nĮ jūsų el. paštą {{email}} bus išsiųstas patikros el. pašto laiškas",
@@ -238,7 +271,8 @@
       "discount_title": "Aktyvuokite paskyrą ir gaukite nuolaidos kodą",
       "normal_title": "Aktyvuokite paskyrą",
       "subscription_text": "Prenumeruokite el. pašto laiškus, kad gautumėte naujausią informaciją, prieigą prie išskirtinių sandorių ir dar daugiau.",
-      "success_title": "Sveikiname, gavus didelę nuolaidą"
+      "success_title": "Sveikiname, gavus didelę nuolaidą",
+      "token_expired": "Jūsų nuoroda nebegalioja"
     },
     "address": {
       "add_address": "Pridėti naują adresą",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Pamiršote slaptažodį",
+      "reset_password": "ATKURTI SLAPTAŽODĮ",
       "tips_password_can_be_changed_after_verification": "Galite keisti slaptažodį po patikrinimo",
-      "tips_reset_password": "Atkuriate paskyros {{account}} slaptažodį"
+      "tips_reset_password": "Atkuriate paskyros {{account}} slaptažodį",
+      "token_expired": "Jūsų slaptažodžio atkūrimo nuoroda nebegalioja"
     },
     "general": {
       "account": "PASKYRA",
@@ -333,6 +369,10 @@
       "error_message_3009": "Mobilusis buvo susietas su kitomis paskyromis",
       "error_message_3010": "El. paštas buvo susietas su kitomis paskyromis",
       "error_message_3014": "Nepavyko pateikti SMS / pašto šablono",
+      "error_message_3015": "Paskyra buvo aktyvuota",
+      "error_message_3022": "Nuoroda nebegalioja",
+      "error_message_3023": "Nuoroda netinkamai suformuota",
+      "error_message_3024": "Nuorodos parametro klaida",
       "error_message_4": "Paslaugos išimtys",
       "error_message_5": "Paslaugos išimtys",
       "error_message_6": "Paslaugos išimtys",
@@ -416,7 +456,8 @@
       "wednesday": "trečiadienis"
     },
     "login": {
-      "member_login_common": "Nario prisijungimas"
+      "member_login_common": "Nario prisijungimas",
+      "subscribe_confirm_tip": "Dėkojame už jūsų prenumeratą. Galite prisijungti geresnei patirčiai."
     },
     "message": {
       "input_placeholder": "Ar norėtumėte palikti pranešimą?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "El. paštas",
       "email_subscription_text": "Gaukite prenumeratos rėmimo duomenis el. Paštu",
-      "l_i_n_e": "„LINE“",
+      "line": "„LINE“",
       "messenger": "Messenger",
       "phone": "Mobilusis telefonas",
       "phone_subscription_text": "Prenumeruoti telefono skatinimą",
@@ -474,6 +515,7 @@
       "send_success": "Dėkoju, kad kreipiamės į mus ir atsakysime jums kuo skubiau."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "El. pašto adreso formato klaida",
       "subscribe_success": "Prenumeruoti sėkmę"
     },
@@ -499,6 +541,14 @@
       "refund": "Grąžinimo politika",
       "service": "paslaugos teikimo sąlygos",
       "shipping": "Siuntimo politika"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "įkėlimo laikas",
+        "detail": "Detalė"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "IŠPARDUOTA",
       "products": "prekės",
       "recommend": "Rekomenduojamas",
+      "sale": "Išpardavimas",
       "save": "Pasiūlymas {{{priceDom}}}",
       "save_byjs": "Pasiūlymas {{priceDom}}",
       "save_ratio": "{{price}}% nuolaida",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Kopija",
       "activity_banner_free_shipping": "Nemokamas siuntimas",
       "activity_banner_threshold": "Užsakymai virš {{threshold}}",
+      "activity_selector_new_arrivals": "Naujienos",
       "activity_selector_price_high_to_low": "Kaina nuo didelės iki mažos",
       "activity_selector_price_low_to_high": "Kaina nuo mažos iki didelės",
       "activity_selector_recommended": "Rekomenduoti",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Pirkite {{threshold}}, mėgaukitės {{willSave}} nuolaida už {{benefitCount}} prekes",
         "b12_t1_s3_free": "Sveikiname! Gavote {{benefitCount}} prekes nemokamai!",
         "b12_t1_s3_normal": "Sveikiname! Gavote {{saved}} nuolaidą už {{benefitCount}} prekes!",
+        "b14_t1_s1": "Įsigykite {{nextMinThreshold}} vnt. už {{willSave}}",
+        "b14_t1_s2": "Sveikiname! Turite {{currentMinThreshold}} vnt. už {{saved}}, Įsigykite {{threshold}} daugiau, kad mėgautumėtės {{nextMinThreshold}} vnt. už {{willSave}}!",
+        "b14_t1_s3": "Sveikiname! Turite {{currentMinThreshold}} vnt. už {{saved}}!",
         "b1_t0_s1": "Įsigykite {{threshold}} daugiau, kad sutaupytumėte {{willSave}}",
         "b1_t0_s2": "Jau {{saved}} sutaupoyta! {{br}}Įsigykite {{threshold}} daugiau, kad sutaupytumėte {{willSave}}",
         "b1_t0_s3": "Sveikiname! Sutaupėte {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Įsigykite {{threshold}}, kad sutaupytumėte {{save}}",
         "b2_t1": "Įsigykite {{threshold}}, Kad Gautumėte {{save}} nuolaidą",
         "label": "Nuolaida:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Įsigykite {{nextMinThreshold}} vnt. už {{willSave}}",
+            "step2": "Sveikiname! Turite {{currentMinThreshold}} vnt. už {{saved}}, Įsigykite {{threshold}} daugiau, kad mėgautumėtės {{nextMinThreshold}} vnt. už {{willSave}}!",
+            "step3": "Sveikiname! Turite {{currentMinThreshold}} vnt. už {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Apvalinimas"
+      }
+    },
     "payments-name": {
       "COD": "Apmokėti grynais pristačius",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Nuolaida",
       "free_charge": "Nemokamas pristatymas",
       "free_shipping": "Nemokamas pristatymas",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Pardavėjo(s) papildoma nuolaida",
       "order_tax": "Mokesčiai",
       "order_tip": "Patarimas",

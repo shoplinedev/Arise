@@ -336,9 +336,9 @@
         var report = __webpack_require__("../shared/browser/utils/report/index.js");
         var product_product_item = __webpack_require__("../shared/browser/report/product/product-item.js");
         var state_selector = __webpack_require__("../shared/browser/utils/state-selector.js");
-        var currency = __webpack_require__("../shared/browser/utils/currency/index.js");
+        var newCurrency = __webpack_require__("../shared/browser/utils/newCurrency/index.js");
         var _SL_State$get, _SL_State$get2;
-        const {formatCurrency} = currency["default"];
+        const {formatCurrency} = newCurrency["default"];
         const hdReport = new product_product_item["default"];
         const eventid = "60006260";
         const productItemClassName = "__sl-custom-track-product-list-item";

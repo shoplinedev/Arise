@@ -1,6 +1,3 @@
-input{
-  -webkit-appearance:none;
-}
 .blog-breadcrumb{
   -webkit-box-align:center;
      -moz-box-align:center;
@@ -185,6 +182,311 @@ input{
   height:24px;
   width:24px;
 }
+input{
+  -webkit-appearance:none;
+}
+.base-input{
+  -webkit-box-orient:horizontal;
+  -webkit-box-direction:normal;
+     -moz-box-orient:horizontal;
+     -moz-box-direction:normal;
+  -webkit-box-pack:justify;
+     -moz-box-pack:justify;
+      -ms-flex-pack:justify;
+  -webkit-box-align:center;
+     -moz-box-align:center;
+      -ms-flex-align:center;
+  -webkit-align-items:center;
+          align-items:center;
+  background-color:#fff;
+  -webkit-box-sizing:border-box;
+     -moz-box-sizing:border-box;
+          box-sizing:border-box;
+  color:#2c2c2c;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-flex-flow:row nowrap;
+      -ms-flex-flow:row nowrap;
+          flex-flow:row nowrap;
+  font-size:14px;
+  -webkit-justify-content:space-between;
+          justify-content:space-between;
+  line-height:1.4;
+  -webkit-transition:all .3s;
+  -o-transition:all .3s;
+  -moz-transition:all .3s;
+  transition:all .3s;
+  width:100%;
+}
+.color-scheme-1 .base-input:after{
+  -webkit-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+}
+.color-scheme-1 .base-input:hover:after{
+  -webkit-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+}
+
+.color-scheme-2 .base-input:after{
+  -webkit-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+}
+.color-scheme-2 .base-input:hover:after{
+  -webkit-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+}
+
+.color-scheme-3 .base-input:after{
+  -webkit-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+}
+.color-scheme-3 .base-input:hover:after{
+  -webkit-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+}
+
+.base-input{
+  position:relative;
+}
+.base-input,.base-input:before{
+  -webkit-border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+     -moz-border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+          border-radius:{{ append (cond (lte theme.settings.input_border_radius 0) 0 (add theme.settings.input_border_radius theme.settings.input_border_thickness))  'px' }};
+}
+.base-input:before{
+  bottom:0;
+  -webkit-box-shadow:{{ append theme.settings.input_shadow_offset_x 'px' }} {{ append theme.settings.input_shadow_offset_y 'px' }} {{ append theme.settings.input_shadow_blur 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_shadow_opacity 100) }};
+     -moz-box-shadow:{{ append theme.settings.input_shadow_offset_x 'px' }} {{ append theme.settings.input_shadow_offset_y 'px' }} {{ append theme.settings.input_shadow_blur 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_shadow_opacity 100) }};
+          box-shadow:{{ append theme.settings.input_shadow_offset_x 'px' }} {{ append theme.settings.input_shadow_offset_y 'px' }} {{ append theme.settings.input_shadow_blur 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_shadow_opacity 100) }};
+  left:0;
+  right:0;
+  top:0;
+}
+.base-input:after,.base-input:before{
+  content:"";
+  pointer-events:none;
+  position:absolute;
+}
+.base-input:after{
+  -webkit-border-radius:{{ append theme.settings.input_border_radius 'px' }};
+     -moz-border-radius:{{ append theme.settings.input_border_radius 'px' }};
+          border-radius:{{ append theme.settings.input_border_radius 'px' }};
+  bottom:{{ append theme.settings.input_border_thickness 'px' }};
+  -webkit-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append theme.settings.input_border_thickness 'px' }} var(--btn-border-background-color);
+  left:{{ append theme.settings.input_border_thickness 'px' }};
+  right:{{ append theme.settings.input_border_thickness 'px' }};
+  top:{{ append theme.settings.input_border_thickness 'px' }};
+  -webkit-transition:-webkit-box-shadow .1s ease;
+  transition:-webkit-box-shadow .1s ease;
+  -o-transition:box-shadow .1s ease;
+  -moz-transition:box-shadow .1s ease, -moz-box-shadow .1s ease;
+  transition:box-shadow .1s ease;
+  transition:box-shadow .1s ease, -webkit-box-shadow .1s ease, -moz-box-shadow .1s ease;
+  z-index:1;
+}
+.base-input:hover:after{
+  -webkit-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+     -moz-box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+          box-shadow:0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }}, 0 0 0 {{ append (add theme.settings.input_border_thickness 1) 'px' }} var(--btn-border-background-color);
+}
+
+.base-input-area.is-textarea .base-input__inpEle:not(:-moz-placeholder-shown)+.placeholder,.base-input__inpEle:not(:-moz-placeholder-shown)+.placeholder,.base-input__selectEle:not(:-moz-placeholder-shown)+.placeholder{
+  -moz-transform:scale(.8) translateY(-100%);
+       transform:scale(.8) translateY(-100%);
+  white-space:nowrap;
+  word-break:normal;
+}
+
+.base-input-area.is-textarea .base-input__inpEle:not(:-ms-input-placeholder)+.placeholder,.base-input__inpEle:not(:-ms-input-placeholder)+.placeholder,.base-input__selectEle:not(:-ms-input-placeholder)+.placeholder{
+  -ms-transform:scale(.8) translateY(-100%);
+      transform:scale(.8) translateY(-100%);
+  white-space:nowrap;
+  word-break:normal;
+}
+
+.base-input-area.is-textarea .base-input__inpEle:not(:placeholder-shown)+.placeholder,.base-input:focus-within .placeholder,.base-input__inpEle:not(:placeholder-shown)+.placeholder,.base-input__selectEle:not(:placeholder-shown)+.placeholder{
+  -webkit-transform:scale(.8) translateY(-100%);
+     -moz-transform:scale(.8) translateY(-100%);
+      -ms-transform:scale(.8) translateY(-100%);
+       -o-transform:scale(.8) translateY(-100%);
+          transform:scale(.8) translateY(-100%);
+  white-space:nowrap;
+  word-break:normal;
+}
+
+.base-input input:focus,.base-input textarea:focus{
+  outline:0;
+}
+
+.base-input:focus-within:after,.base-input:focus:after{
+  -webkit-box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }};
+     -moz-box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }};
+          box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_text (divide theme.settings.input_border_opacity 100) }};
+}
+.color-scheme-1 .base-input:focus-within:after,.color-scheme-1 .base-input:focus:after{
+  -webkit-box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }};
+     -moz-box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }};
+          box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_scheme_1_text (divide theme.settings.input_border_opacity 100) }};
+}
+
+.color-scheme-2 .base-input:focus-within:after,.color-scheme-2 .base-input:focus:after{
+  -webkit-box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }};
+     -moz-box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }};
+          box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_scheme_2_text (divide theme.settings.input_border_opacity 100) }};
+}
+
+.color-scheme-3 .base-input:focus-within:after,.color-scheme-3 .base-input:focus:after{
+  -webkit-box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }};
+     -moz-box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }};
+          box-shadow:0 0 0 {{append (add 1 theme.settings.input_border_thickness) 'px'}} {{ rgba theme.settings.color_scheme_3_text (divide theme.settings.input_border_opacity 100) }};
+}
+
+.base-input.is-disabled{
+  cursor:not-allowed;
+}
+
+.base-input.is-disabled input,.base-input.is-disabled select,.base-input.is-disabled textarea{
+  background-color:rgba(44,44,44,.06) !important;
+  color:rgba(44,44,44,.4);
+  cursor:not-allowed;
+  pointer-events:none;
+}
+
+.base-input-area{
+  -webkit-box-flex:1;
+     -moz-box-flex:1;
+  -webkit-box-align:center;
+     -moz-box-align:center;
+      -ms-flex-align:center;
+  -webkit-align-items:center;
+          align-items:center;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-flex:1;
+      -ms-flex:1;
+          flex:1;
+  position:relative;
+}
+
+.base-input .base-input-area input,.base-input .base-input-area select,.base-input .base-input-area textarea{
+  background:none;
+  border:none;
+  -webkit-border-radius:{{ append theme.settings.input_border_radius 'px' }};
+     -moz-border-radius:{{ append theme.settings.input_border_radius 'px' }};
+          border-radius:{{ append theme.settings.input_border_radius 'px' }};
+  -webkit-box-shadow:none !important;
+     -moz-box-shadow:none !important;
+          box-shadow:none !important;
+  color:#2c2c2c;
+  line-height:1.15;
+  margin:{{ append theme.settings.input_border_thickness 'px' }};
+  padding:24px 6px 8px 16px;
+  width:100%;
+}
+
+.base-input .base-input-area select{
+  -moz-appearance:none;
+       appearance:none;
+  -webkit-appearance:none;
+  padding-right:30px;
+  position:relative;
+}
+
+.base-input-area input::-webkit-input-placeholder,.base-input-area textarea::-webkit-input-placeholder{
+  font-size:0;
+}
+
+.base-input-area input:-moz-placeholder,.base-input-area input::-moz-placeholder,.base-input-area textarea:-moz-placeholder,.base-input-area textarea::-moz-placeholder{
+  font-size:0;
+}
+
+.base-input-area input:-ms-input-placeholder,.base-input-area textarea:-ms-input-placeholder{
+  font-size:0;
+}
+
+.base-input-area input::-ms-input-placeholder,.base-input-area textarea::-ms-input-placeholder{
+  font-size:0;
+}
+
+.base-input-area input::placeholder,.base-input-area textarea::placeholder{
+  font-size:0;
+}
+
+.base-input-area .placeholder{
+  color:#2c2c2c;
+  left:{{append (add 16 theme.settings.input_border_thickness) 'px'}};
+  opacity:.6;
+  pointer-events:none;
+  position:absolute;
+  right:0;
+  top:50%;
+  -webkit-transform:translateY(-50%);
+     -moz-transform:translateY(-50%);
+      -ms-transform:translateY(-50%);
+       -o-transform:translateY(-50%);
+          transform:translateY(-50%);
+  -webkit-transform-origin:left top;
+     -moz-transform-origin:left top;
+      -ms-transform-origin:left top;
+       -o-transform-origin:left top;
+          transform-origin:left top;
+  -webkit-transition:-webkit-transform .3s ease;
+  transition:-webkit-transform .3s ease;
+  -o-transition:-o-transform .3s ease;
+  -moz-transition:transform .3s ease, -moz-transform .3s ease;
+  transition:transform .3s ease;
+  transition:transform .3s ease, -webkit-transform .3s ease, -moz-transform .3s ease, -o-transform .3s ease;
+  word-break:break-word;
+  z-index:4;
+}
+
+.base-input-area.is-textarea{
+  padding-top:{{append (add 24 theme.settings.input_border_thickness) 'px'}};
+}
+.base-input-area.is-textarea textarea{
+  padding-top:0;
+  resize:vertical;
+}
+.base-input-area.is-textarea .placeholder{
+  top:{{append (add 22 theme.settings.input_border_thickness) 'px'}};
+}
+
+.base-input__addonAfter{
+  -webkit-box-align:center;
+     -moz-box-align:center;
+      -ms-flex-align:center;
+  -webkit-align-items:center;
+          align-items:center;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  height:100%;
+  position:absolute;
+  right:6px;
+  z-index:1;
+}
+
+.base-input__staticAddonAfter{
+  padding-bottom:6px;
+  padding-right:6px;
+  padding-top:6px;
+}
 
 .blog-container{
   padding-bottom:40px;
@@ -289,17 +591,154 @@ input{
 .blog__shards{
   margin-bottom:40px;
 }
-@media (min-width:750px){
-  .blog__shards{
-    margin-bottom:75px;
-  }
-}
 .blog__shards .third-party-share{
   -webkit-box-pack:start;
      -moz-box-pack:start;
       -ms-flex-pack:start;
   -webkit-justify-content:flex-start;
           justify-content:flex-start;
+}
+
+.blog__comments{
+  margin-bottom:40px;
+}
+.blog__comments-list{
+  -webkit-transition:height .2s ease-in-out;
+  -o-transition:height .2s ease-in-out;
+  -moz-transition:height .2s ease-in-out;
+  transition:height .2s ease-in-out;
+}
+.blog__comments-title{
+  text-align:center;
+}
+.blog__comments .comment-item{
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+     -moz-box-orient:vertical;
+     -moz-box-direction:normal;
+  -webkit-box-align:start;
+     -moz-box-align:start;
+      -ms-flex-align:start;
+  -webkit-align-items:flex-start;
+          align-items:flex-start;
+  background:{{ theme.settings.color_page_background }};
+  border:1px solid {{ theme.settings.color_entry_line }};
+  -webkit-box-shadow:0 2px 20px {{ rgba  theme.settings.color_text  0.05 }};
+     -moz-box-shadow:0 2px 20px {{ rgba  theme.settings.color_text  0.05 }};
+          box-shadow:0 2px 20px {{ rgba  theme.settings.color_text  0.05 }};
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-flex-direction:column;
+      -ms-flex-direction:column;
+          flex-direction:column;
+  gap:10px;
+  margin-top:20px;
+  padding:20px;
+}
+.blog__comments .comment-item-author{
+  width:100%;
+}
+@media (min-width:750px){
+  .blog__comments .comment-item-author{
+    font-weight:500;
+  }
+}
+.blog__comments .comment-item-time{
+  opacity:.4;
+}
+@media (max-width:749.98px){
+  .blog__comments .comment-item-time{
+    font-size:11px;
+  }
+}
+.blog__comments .comment-item-content{
+  stroke:{{ theme.settings.color_text }};
+  font-size:14px;
+  white-space:pre-line;
+  width:100%;
+}
+.blog__comments .comment-item-audit{
+  -webkit-box-orient:horizontal;
+  -webkit-box-direction:normal;
+     -moz-box-orient:horizontal;
+     -moz-box-direction:normal;
+  -webkit-box-align:start;
+     -moz-box-align:start;
+      -ms-flex-align:start;
+  -webkit-align-items:flex-start;
+          align-items:flex-start;
+  background:{{ rgba  theme.settings.color_text  0.04 }};
+  -webkit-border-radius:4px;
+     -moz-border-radius:4px;
+          border-radius:4px;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-flex-direction:row;
+      -ms-flex-direction:row;
+          flex-direction:row;
+  gap:8px;
+  padding:4px 12px;
+  width:100%;
+}
+.blog__comments .comment-item-audit .body4{
+  font-size:14px;
+}
+.blog__comments .comment-item-audit>svg{
+      -ms-flex-negative:0;
+  stroke:{{ theme.settings.color_text }};
+  -webkit-flex-shrink:0;
+          flex-shrink:0;
+  margin-top:4px;
+}
+.blog__comments-loadmore{
+  font-size:16px;
+  margin-top:20px;
+  text-align:center;
+}
+.blog__comments-loadmore a{
+  cursor:pointer;
+}
+
+.blog__form{
+  margin-bottom:75px;
+}
+.blog__form .base-input{
+  background-color:{{ theme.settings.color_page_background }};
+}
+.blog__form-title{
+  margin-bottom:20px;
+  text-align:center;
+}
+@media (max-width:749.98px){
+  .blog__form__action{
+    text-align:center;
+  }
+}
+.blog__form-textarea textarea{
+  height:160px;
+}
+.blog__form-submit{
+  width:auto;
+}
+.blog__form .base-input{
+  background-color:unset;
+}
+.blog__form .base-input .placeholder,.blog__form .base-input input,.blog__form .base-input textarea{
+  color:{{ theme.settings.color_text }};
+}
+.blog__form .base-input .placeholder{
+  opacity:.5;
+}
+.blog__form .errClass .base-input:after{
+  -webkit-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} #f04949;
+     -moz-box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} #f04949;
+          box-shadow:0 0 0 {{ append theme.settings.input_border_thickness 'px' }} #f04949;
 }
 
 .blog__back-link{

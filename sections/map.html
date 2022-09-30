@@ -7,7 +7,11 @@
   {{/is_modern_browser}}
 </script>
   
-{{ inline_stylesheet 'map/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'map/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'map/index.min.css' }}
+{{/is_modern_browser}}
 
 {{ assign 'shoplineMap' section }}
 {{ preload_state 'shoplineMap.settings' }}

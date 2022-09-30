@@ -100,6 +100,7 @@
       "card_shadow_blur": 5,
       "card_shadow_opacity": 0,
       "product_discount": true,
+      "product_discount_tag_style": "save",
       "product_discount_style": "number",
       "product_discount_position": "left_bottom",
       "product_discount_radius": "2",
@@ -164,8 +165,11 @@
           "header_style": true,
           "show_line_separator": true,
           "show_search_entry": true,
+          "suggested_menu": "",
           "show_user_entry": true,
           "show_cart_entry": true,
+          "show_currency_flags": true,
+          "show_currency_selector": false,
           "show_locale_selector": false
         },
         "disabled": false
@@ -360,6 +364,7 @@
         "card_shadow_blur": 5,
         "card_shadow_opacity": 0,
         "product_discount": true,
+        "product_discount_tag_style": "save",
         "product_discount_style": "number",
         "product_discount_position": "left_bottom",
         "product_discount_radius": "2",
@@ -423,16 +428,20 @@
             "header_style": true,
             "show_line_separator": true,
             "show_search_entry": true,
+            "suggested_menu": "",
             "show_user_entry": true,
-            "show_cart_entry": true
+            "show_cart_entry": true,
+            "show_currency_flags": true,
+            "show_currency_selector": false,
+            "show_locale_selector": false
           },
           "disabled": false
         },
         "footer": {
           "type": "footer",
           "settings": {
-            "show_locale_selector": false,
             "show_currency_selector": false,
+            "show_locale_selector": false,
             "show_currency_flags": true,
             "show_pay_channel": {
               "show": false,

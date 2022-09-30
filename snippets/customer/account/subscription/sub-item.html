@@ -1,4 +1,4 @@
-<div class="subscription-item" data-type={{ key }} {{ cond (boolean data.state '==' 1) 'data-subscribed' '' }}>
+<div class="subscription-item" data-type={{ key }} data-sub-state={{data.state}} {{ cond (boolean data.state '==' 1) 'data-subscribed' '' }}>
   <div class="subscription-item__wrapper">
     <span class="subscription-item__title">{{ t (append 'customer.subscription.' key) }}</span>
 
@@ -14,22 +14,22 @@
       <span>{{ t 'customer.subscription.subscription_hint' }}</span>
       {{snippet 'icons/icon_complete'}}
     </div>
-    {{!-- 编辑 --}}
+    {{!-- 去掉编辑, hover时变为取消订阅 --}}
     <div class="subscription-item__edit">
-      {{assign 'showEdit' false }}
-      {{#if key 'phone' }}
-        {{assign 'showEdit' true }}
-      {{else if key 'email' }}
-        {{assign 'showEdit' true }}
-      {{/if}}
-
-      {{#if showEdit}}
-        {{snippet 'icons/icon_edit'}}
-        <span>{{ t 'customer.general.edit' }}</span>
-      {{else}}
         {{snippet 'icons/icon_cancel'}}
         <span>{{ t 'customer.subscription.unsubscribe_confirm_text' }}</span>
-      {{/if}}
     </div>
+
+    {{!-- 订阅确认中显示确认按钮 --}}
+    {{#if key 'email'}}
+    <div class="subscription-item__confirming">
+       <button class="btn btn-primary btn-sm" type="button">{{ t 'customer.account.confirm_btn' }}</button>
+     </div>
+    {{/if}}
   </div>
+
+  {{!-- 无效邮件在下方显示提示 --}}
+  {{#if key 'email'}}
+    <div class="subscription-email-unvalid-tip">{{t 'customer.accoount.email_subscribe_invalid_tip'}}</div>
+  {{/if}}
 </div>

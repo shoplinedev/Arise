@@ -17,7 +17,7 @@
     {{/if}}
   {{/if}}
   {{#if benefitCondition.benefitEvent.type '===' 0}}
-    {{assign 'threshold' (noTranslationHTML (t "sales.general.product_tabs_threshold" threshold=(javascript_template '<span data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(currency_convert benefitCondition.benefitEvent.minThreshold))))}}
+    {{assign 'threshold' (noTranslationHTML (t "sales.general.product_tabs_threshold" threshold=(javascript_template '<span data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))))}}
   {{else}}
     {{assign 'threshold' (t 'sales.general.product_tabs_threshold' threshold=benefitCondition.benefitEvent.minThreshold)}}
   {{/if}}

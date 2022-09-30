@@ -5,6 +5,22 @@
       "read_btn_text": "Прочетете още",
       "title": "Блог"
     },
+    "comment": {
+      "comment": "Коментирайте",
+      "comment_audit_tip": "Вашият коментар е изпратен и трябва да бъде прегледан.",
+      "comment_empty": "Моля, попълнете коментарите",
+      "email": "Поща",
+      "email_empty": "Имейлът не може да бъде празен",
+      "email_format": "Моля, въведете правилен имейл",
+      "form_title": "Коментирайте",
+      "loadmore": "зареди още",
+      "name": "Име",
+      "name_empty": "Моля, попълнете име",
+      "submit": "Изпращане",
+      "submit_audit_tip": "Изпратено успешно, чака преглед",
+      "success": "Изпратено успешно",
+      "title": "{{comment_length}} коментара"
+    },
     "general": {
       "back_to": "Върнете {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Подробности за поръчката",
       "package_amount": "Пакет {{num}}（{{item}} артикула）",
       "pay_amount": "заплати сума",
+      "paymentVoucher": {
+        "downloadDoc": "Изтегляне на файл",
+        "format": "Формат",
+        "formatLimit": "Поддържа .jpg, .png, .pdf файлове с размер под 20 MB. Можете да качите най-много 5 изображения",
+        "uploadAmount": "Качени са {{num}} ваучер(а)",
+        "uploadLimit": "Моля, качвайте .jpg, .png, .pdf файлове с размер, по-малък от 20 MB"
+      },
       "payment_voucher_confirmation": "Схванах го",
       "payment_voucher_transfer_success": "Плащането е преведено успешно",
       "payment_voucher_waiting_for_payment": "В очакване на плащане",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Невалиден имейл адрес"
+    },
     "account": {
       "account_binding": "Свързване на акаунт",
       "account_information": "Сметка",
@@ -197,6 +223,10 @@
       "bind": "Свързване",
       "birthday": "Дата на раждане",
       "change_password": "Промяна на паролата",
+      "confirm_btn": "Потвърди",
+      "confirm_subscription_modal_btn": "Потвърдете абонамента",
+      "confirm_subscription_modal_content": "Вече сте подавали абонамент. На този имейл адрес е изпратен имейл за потвърждение. Можете да потвърдите в имейла си или да натиснете този бутон.",
+      "confirm_subscription_modal_title": "Потвърдете абонамента си за имейл.",
       "credit_card_number": "№ на кредитна сметка",
       "deadline": "За целта на бизнес отчета, вашата поръчка ще продължи да бъде видима. Данните на акаунта ви ще бъдат изтрити на {{time}}, можете да анулирате този процес преди тази дата",
       "delete_account": "Затваряне на акаунт",
@@ -211,6 +241,7 @@
       "ip_address": "IP адрес",
       "last_name": "Фамилия",
       "modify_email": "Промяна на имейл",
+      "modify_email_modal_title": "Промяна на имейл",
       "modify_phone": "Промяна на телефон",
       "name": "Име",
       "next": "Напред",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Моля, първо свържете имейл или мобилен телефон",
       "revoke": "Анулиране на затварянето",
       "revoke_message": "Този акаунт е в процес на затваряне, данните на акаунта ще бъдат изтрити на {{time}}, можете да анулирате този процес преди тази дата",
+      "save_btn": "ЗАПАЗВАНЕ",
       "select__date": "Изберете дата",
+      "subscribe_confirm_tip": "Благодаря за абонамента.",
       "timeout_tip": "Операцията изтече, моля потвърдете отново",
       "username": "Име",
       "verify_email_message": "Преди затварянето на акаунта, трябва да потвърдим вашата идентичност\nНа вашия имейл {{email}} ще получите имейл за потвърждение",
@@ -238,7 +271,8 @@
       "discount_title": "Активирайте акаунт и получете код за отстъпка",
       "normal_title": "Активирайте акаунт",
       "subscription_text": "Абонирайте се за имейли, за да получавате актуализации, достъп до изключителни оферти и много други.",
-      "success_title": "Поздравления за получаването на страхотна отстъпка"
+      "success_title": "Поздравления за получаването на страхотна отстъпка",
+      "token_expired": "Вашият линк е изтекъл"
     },
     "address": {
       "add_address": "Добавяне на нов адрес",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Забравена парола",
+      "reset_password": "ВЪЗСТАНОВЯВАНЕ НА ПАРОЛА",
       "tips_password_can_be_changed_after_verification": "Можете да промените паролата след потвърждение",
-      "tips_reset_password": "Възстановявате на парола за акаунт {{account}}"
+      "tips_reset_password": "Възстановявате на парола за акаунт {{account}}",
+      "token_expired": "Вашият линк за възстановяване на паролата е изтекъл"
     },
     "general": {
       "account": "СМЕТКА",
@@ -333,6 +369,10 @@
       "error_message_3009": "Мобилният номер е обвързан с други акаунти",
       "error_message_3010": "Имейлът е обвързан с други акаунти",
       "error_message_3014": "Неуспешно предаване на шаблона на текстовото съобщение/имейла",
+      "error_message_3015": "Акаунтът е активиран",
+      "error_message_3022": "Линкът е изтекъл",
+      "error_message_3023": "Линкът е неправилен.",
+      "error_message_3024": "Грешка в параметъра на линка",
       "error_message_4": "Изключения при обслужване",
       "error_message_5": "Изключения при обслужване",
       "error_message_6": "Изключения при обслужване",
@@ -416,7 +456,8 @@
       "wednesday": "сряда"
     },
     "login": {
-      "member_login_common": "Вписване на член"
+      "member_login_common": "Вписване на член",
+      "subscribe_confirm_tip": "Благодаря за абонамента. Можете да влезете за по-добро преживяване."
     },
     "message": {
       "input_placeholder": "Има ли нещо, за което да оставите съобщение?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "Имейл",
       "email_subscription_text": "Получавайте промоционална информация за абонамента по имейл",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Мобилен телефон",
       "phone_subscription_text": "Абониране за телефонна промоция",
@@ -474,6 +515,7 @@
       "send_success": "Благодарим ви, че се свързахте с нас, ще ви върнем обаждането възможно най-скоро."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Грешка във формата на имейл адреса",
       "subscribe_success": "Успешно абониране"
     },
@@ -499,6 +541,14 @@
       "refund": "Политика за възстановяване на суми",
       "service": "Условията за ползване",
       "shipping": "Политика за доставки"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "време за качване",
+        "detail": "Детайл"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "ПРОДАДЕНО",
       "products": "продукта",
       "recommend": "Препоръчано",
+      "sale": "Продажба",
       "save": "Отстъпка {{{priceDom}}}",
       "save_byjs": "Отстъпка {{priceDom}}",
       "save_ratio": "{{price}}% намаление",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Копиране",
       "activity_banner_free_shipping": "Безплатна доставка",
       "activity_banner_threshold": "Поръчки над {{threshold}}",
+      "activity_selector_new_arrivals": "Новопристигналите",
       "activity_selector_price_high_to_low": "Цена от висока към ниска",
       "activity_selector_price_low_to_high": "Цена от ниска до висока",
       "activity_selector_recommended": "Препоръчайте",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Купете {{threshold}} и получете {{willSave}} отстъпка за {{benefitCount}} артикула",
         "b12_t1_s3_free": "Поздравления! Имате {{benefitCount}} артикула безплатно!",
         "b12_t1_s3_normal": "Поздравления! Имате {{saved}} отстъпка за {{benefitCount}} артикула!",
+        "b14_t1_s1": "Купете {{nextMinThreshold}} броя за {{willSave}}",
+        "b14_t1_s2": "Поздравления! Получавате {{currentMinThreshold}} броя за {{saved}}. Купете още {{threshold}} и се насладете на {{nextMinThreshold}} броя за {{willSave}}!",
+        "b14_t1_s3": "Поздравления! Получавате {{currentMinThreshold}} броя за {{saved}}!",
         "b1_t0_s1": "Купете още {{threshold}} и спестете {{willSave}}",
         "b1_t0_s2": "Вече спестихте {{saved}}! {{br}}Купете още {{threshold}} и спестете {{willSave}}",
         "b1_t0_s3": "Поздравления! Спестихте {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Купете {{threshold}} спестете {{save}}",
         "b2_t1": "Купете {{threshold}} Вземете {{save}} ОТСТЪПКА",
         "label": "Намаление:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Купете {{nextMinThreshold}} броя за {{willSave}}",
+            "step2": "Поздравления! Получавате {{currentMinThreshold}} броя за {{saved}}. Купете още {{threshold}} и се насладете на {{nextMinThreshold}} броя за {{willSave}}!",
+            "step3": "Поздравления! Получавате {{currentMinThreshold}} броя за {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Закръгляне"
+      }
+    },
     "payments-name": {
       "COD": "В брой при доставка",
       "Paypal": "PayPal",
@@ -716,6 +785,11 @@
       "discount_off": "Отстъпка",
       "free_charge": "Безплатна доставка",
       "free_shipping": "безплатна доставка",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Допълнителна отстъпка от продавача",
       "order_tax": "данък",
       "order_tip": "Бакшиш",

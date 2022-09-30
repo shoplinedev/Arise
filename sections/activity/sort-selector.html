@@ -10,6 +10,7 @@
     </svg>
     <select class="body3 sales__activity-sort-selector sales__activity-sort-selector-hook" name="sort-by">
       <option {{#if sortBy '===' '1'}}selected{{/if}} value="1">{{t 'sales.general.activity_selector_recommended'}}</option>
+      <option {{#if sortBy '===' '4'}}selected{{/if}} value="4">{{t 'sales.general.activity_selector_new_arrivals'}}</option>
       <option {{#if sortBy '===' '2'}}selected{{/if}} value="2">{{t 'sales.general.activity_selector_price_low_to_high'}}</option>
       <option {{#if sortBy '===' '3'}}selected{{/if}} value="3">{{t 'sales.general.activity_selector_price_high_to_low'}}</option>
     </select>

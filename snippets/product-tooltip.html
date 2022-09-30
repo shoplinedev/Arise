@@ -53,7 +53,7 @@
         {{#if (boolean productPrice.originPrice '&&' (boolean discount_text '>' 0)) }}
           <span class="product-tooltip__badge body4">
             {{#if theme.settings.product_discount_style '===' 'number'}}
-              {{#currency_convert_price discount_text}}
+              {{#money_exchange_convert_price discount_text}}
                 {{#if fraction '===' '00'}}
                   {{#if symbolOrder '==' 'prefix'}}
                     {{assign 'priceVal' (append currencySymbol integer) }}
@@ -61,10 +61,10 @@
                     {{assign 'priceVal' (append integer currencySymbol) }}
                   {{/if}}
                 {{else}}
-                  {{assign 'priceVal' (currency_convert discount_text) }}
+                  {{assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
                 {{/if}}
                   {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate"  data-product-price="' discount_text '" data-product-save-price="true">' priceVal '</span>') }}}
-              {{/currency_convert_price}}
+              {{/money_exchange_convert_price}}
             {{else}}
                {{t 'products.product_list.save_ratio' price=discount_text }}
             {{/if}}
@@ -74,13 +74,13 @@
       <div class="product-tooltip__price">
         <div class="price body2 notranslate {{#if (isFalsey productPrice.originPrice)}}is-normal{{/if}}" data-product-price="{{ productPrice.salesPrice }}">
           {{#if (boolean theme.settings.superscript_decimals) }}
-            {{#currency_convert_price productPrice.salesPrice}}
+            {{#money_exchange_convert_price productPrice.salesPrice}}
               <span class="price__compare-at" style="order: {{#if symbolOrder '==' 'prefix'}}0{{else}}1{{/if}};">{{ currencySymbol }}</span>
               <span class="price__integer">{{ integer }}</span>
               <span class="price__decimal">{{ fraction }}</span>
-            {{/currency_convert_price}}
+            {{/money_exchange_convert_price}}
           {{else}}
-            {{ currency_convert productPrice.salesPrice }}
+            {{ money_exchange_convert_with_currency productPrice.salesPrice }}
           {{/if}}
         </div>
         {{#if firstSku.showMemberMark}}
@@ -91,13 +91,13 @@
         {{#if productPrice.originPrice}}
           <div class="price body5 is-original notranslate" data-product-price="{{ productPrice.originPrice }}">
             {{#if (boolean theme.settings.superscript_decimals) }}
-              {{#currency_convert_price productPrice.originPrice}}
+              {{#money_exchange_convert_price productPrice.originPrice}}
                 <span class="price__compare-at" style="order: {{#if symbolOrder '==' 'prefix'}}0{{else}}1{{/if}};">{{ currencySymbol }}</span>
                 <span class="price__integer">{{ integer }}</span>
                 <span class="price__decimal">{{ fraction }}</span>
-              {{/currency_convert_price}}
+              {{/money_exchange_convert_price}}
             {{else}}
-              {{ currency_convert productPrice.originPrice }}
+              {{ money_exchange_convert_with_currency productPrice.originPrice }}
             {{/if}}
           </div>
         {{/if}}

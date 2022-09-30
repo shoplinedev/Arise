@@ -1,4 +1,8 @@
-{{ inline_stylesheet 'testimonials/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'testimonials/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'testimonials/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}

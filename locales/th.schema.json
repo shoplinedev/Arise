@@ -37,7 +37,7 @@
       }
     },
     "apps": {
-      "name": "app-block-section",
+      "name": "แอปพลิเคชัน",
       "settings": {
         "include_margins": {
           "label": "ทำให้ระยะขอบของส่วนเหมือนกับธีม"
@@ -490,6 +490,12 @@
         "product_id": {
           "label": "สินค้า"
         },
+        "product_image_show_sku_image": {
+          "label": "ภาพหลักแสดงภาพ SKU"
+        },
+        "product_show_swiper_arrow": {
+          "label": "แสดงลูกศรเลื่อน"
+        },
         "show_background": {
           "label": "แสดงบล็อกสีพื้นหลัง"
         },
@@ -689,6 +695,13 @@
         "show_cart_entry": {
           "label": "แสดงทางเข้าตะกร้าสินค้า"
         },
+        "show_currency_flags": {
+          "label": "แสดงสัญลักษณ์สกุลเงิน"
+        },
+        "show_currency_selector": {
+          "info": "หากต้องการเพิ่มสกุลเงิน ให้ไปที่ [การตั้งค่าสกุลเงิน](/admin/settings/base)",
+          "label": "แสดงตัวเลือกสกุลเงิน"
+        },
         "show_line_separator": {
           "label": "แสดงเส้นแบ่ง"
         },
@@ -701,6 +714,13 @@
         },
         "show_user_entry": {
           "label": "แสดงทางเข้าศูนย์ส่วนบุคคล"
+        },
+        "sticky_collection": {
+          "info": "มีผลหลังจากกำหนดค่าหน้าปกหมวดหมู่",
+          "label": "หมวดหมู่เปิดใช้งานส่วนหัวโปร่งใส"
+        },
+        "sticky_index": {
+          "label": "เปิดใช้งานส่วนหัวโปร่งใสในหน้าแรก"
         },
         "suggested_menu": {
           "info": "หลังจากตั้งค่าเมนูแล้ว แถบเมนูจะถูกนำมาใช้เพื่อให้คำแนะนำเมื่อเปิดการค้นหาครั้งแรก",
@@ -1227,7 +1247,7 @@
             },
             "video_url": {
               "info": "ป้อนลิงก์ YouTube หรือ Vimeo แบบฝัง",
-              "label": "ลิงก์วิดีโอ"
+              "label": "เลือกวีดีโอ"
             }
           }
         }
@@ -1422,6 +1442,9 @@
         "group_header__1": {
           "label": "ตัวกรองแถบด้านข้าง"
         },
+        "infinite_scroll": {
+          "label": "เปิดใช้งานการเลื่อนไม่สิ้นสุด"
+        },
         "per_page_num": {
           "label": "จำนวนรายการสินค้าต่อหน้า"
         },
@@ -1450,6 +1473,21 @@
           },
           "options__4": {
             "label": "2:3"
+          }
+        },
+        "product_sub_title": {
+          "label": "",
+          "options__0": {
+            "label": "ไม่แสดง"
+          },
+          "options__1": {
+            "label": "แสดงทั้วหมด"
+          },
+          "options__2": {
+            "label": "แสดงไม่เกิน 1 แถว"
+          },
+          "options__3": {
+            "label": "แสดงได้ถึง 2 แถว"
           }
         },
         "sorter_enable": {
@@ -1493,20 +1531,155 @@
             "product_custom_tab1": {
               "label": "เนื้อหาที่กำหนดเอง 1"
             },
+            "product_custom_tab1_desc": {
+              "label": "คำอธิบายข้อความ"
+            },
             "product_custom_tab1_fold": {
               "label": "แสดงแบบเก็บ"
+            },
+            "product_custom_tab1_icon": {
+              "label": "ไอคอน",
+              "options__0": {
+                "label": "ไม่แสดง"
+              },
+              "options__1": {
+                "label": "การชำระเงินที่ปลอดภัย"
+              },
+              "options__10": {
+                "label": "โลจิสติกส์"
+              },
+              "options__11": {
+                "label": "ป้ายส่วนลด"
+              },
+              "options__2": {
+                "label": "พัสดุ"
+              },
+              "options__3": {
+                "label": "อีเมล"
+              },
+              "options__4": {
+                "label": "ตำแหน่ง"
+              },
+              "options__5": {
+                "label": "ลูกค้า"
+              },
+              "options__6": {
+                "label": "สนทนา"
+              },
+              "options__7": {
+                "label": "ของขวัญ"
+              },
+              "options__8": {
+                "label": "โทรศัพท์มือถือ"
+              },
+              "options__9": {
+                "label": "ข้อมูลช่วยเหลือ"
+              }
+            },
+            "product_custom_tab1_title": {
+              "label": "หัวข้อ"
             },
             "product_custom_tab2": {
               "label": "เนื้อหาที่กำหนดเอง2"
             },
+            "product_custom_tab2_desc": {
+              "label": "คำอธิบายข้อความ"
+            },
             "product_custom_tab2_fold": {
               "label": "แสดงแบบเก็บ"
+            },
+            "product_custom_tab2_icon": {
+              "label": "ไอคอน",
+              "options__0": {
+                "label": "ไม่แสดง"
+              },
+              "options__1": {
+                "label": "การชำระเงินที่ปลอดภัย"
+              },
+              "options__10": {
+                "label": "โลจิสติกส์"
+              },
+              "options__11": {
+                "label": "ป้ายส่วนลด"
+              },
+              "options__2": {
+                "label": "พัสดุ"
+              },
+              "options__3": {
+                "label": "อีเมล"
+              },
+              "options__4": {
+                "label": "ตำแหน่ง"
+              },
+              "options__5": {
+                "label": "ลูกค้า"
+              },
+              "options__6": {
+                "label": "สนทนา"
+              },
+              "options__7": {
+                "label": "ของขวัญ"
+              },
+              "options__8": {
+                "label": "โทรศัพท์มือถือ"
+              },
+              "options__9": {
+                "label": "ข้อมูลช่วยเหลือ"
+              }
+            },
+            "product_custom_tab2_title": {
+              "label": "หัวข้อ"
             },
             "product_custom_tab3": {
               "label": "เนื้อหาที่กำหนดเอง3"
             },
+            "product_custom_tab3_desc": {
+              "label": "คำอธิบายข้อความ"
+            },
             "product_custom_tab3_fold": {
               "label": "แสดงแบบเก็บ"
+            },
+            "product_custom_tab3_icon": {
+              "label": "ไอคอน",
+              "options__0": {
+                "label": "ไม่แสดง"
+              },
+              "options__1": {
+                "label": "การชำระเงินที่ปลอดภัย"
+              },
+              "options__10": {
+                "label": "โลจิสติกส์"
+              },
+              "options__11": {
+                "label": "ป้ายส่วนลด"
+              },
+              "options__2": {
+                "label": "พัสดุ"
+              },
+              "options__3": {
+                "label": "อีเมล"
+              },
+              "options__4": {
+                "label": "ตำแหน่ง"
+              },
+              "options__5": {
+                "label": "ลูกค้า"
+              },
+              "options__6": {
+                "label": "สนทนา"
+              },
+              "options__7": {
+                "label": "ของขวัญ"
+              },
+              "options__8": {
+                "label": "โทรศัพท์มือถือ"
+              },
+              "options__9": {
+                "label": "ข้อมูลช่วยเหลือ"
+              }
+            },
+            "product_custom_tab3_title": {
+              "label": "หัวข้อ"
             }
           }
         },
@@ -1660,6 +1833,9 @@
             "label": "ภาพขนาดย่อเรียงต่อกัน"
           }
         },
+        "product_image_show_sku_image": {
+          "label": "ภาพหลักแสดงภาพ SKU"
+        },
         "product_image_size": {
           "label": "ขนาดภาพสินค้าบนคอมพิวเตอร์",
           "options__0": {
@@ -1683,6 +1859,13 @@
           "options__1": {
             "label": "แสดงภาพขนาดย่อ"
           }
+        },
+        "product_show_swiper_arrow": {
+          "label": "แสดงลูกศรเลื่อน"
+        },
+        "video_autoplay": {
+          "info": "หลังจากเปิดวิดีโอจะถูกปิดเสียงโดยค่าเริ่มต้น หากเป็นวิดีโอ YouTube เสียงจะไม่สามารถเล่นได้",
+          "label": "เล่นวิดีโออัตโนมัติ"
         },
         "video_loop": {
           "label": "เปิดใช้งานวิดีโอวนซ้ำ"
@@ -2385,7 +2568,7 @@
         },
         "url": {
           "info": "ป้อนลิงก์ YouTube หรือ Vimeo แบบฝัง",
-          "label": "ลิงก์วิดีโอ"
+          "label": "เลือกวีดีโอ"
         }
       }
     }
@@ -2465,6 +2648,9 @@
           },
           "options__1": {
             "label": "เข้าสู่หน้าตะกร้าสินค้า"
+          },
+          "options__2": {
+            "label": "แจ้งการเพิ่มเข้าในตะกร้าสำเร็จ"
           }
         }
       }

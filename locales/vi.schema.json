@@ -37,7 +37,7 @@
       }
     },
     "apps": {
-      "name": "app-block-section",
+      "name": "Ứng dụng",
       "settings": {
         "include_margins": {
           "label": "Đặt lề của phần giống như chủ đề"
@@ -490,6 +490,12 @@
         "product_id": {
           "label": "Sản phẩm"
         },
+        "product_image_show_sku_image": {
+          "label": "Hình ảnh chính hiển thị hình ảnh SKU"
+        },
+        "product_show_swiper_arrow": {
+          "label": "Hiển thị mũi tên trượt"
+        },
         "show_background": {
           "label": "Hiển thị các khối màu nền"
         },
@@ -689,6 +695,13 @@
         "show_cart_entry": {
           "label": "Hiển thị mục nhập giỏ hàng"
         },
+        "show_currency_flags": {
+          "label": "Hiển thị ký hiệu tiền tệ"
+        },
+        "show_currency_selector": {
+          "info": "Nếu cần thêm tiền tệ, có thể vào phần [Cài đặt tiền tệ](/admin/settings/base)",
+          "label": "Bày ra máy chọn tiền tệ"
+        },
         "show_line_separator": {
           "label": "Hiển thị đường phân cách"
         },
@@ -701,6 +714,13 @@
         },
         "show_user_entry": {
           "label": "Hiển thị lối vào trung tâm cá nhân"
+        },
+        "sticky_collection": {
+          "info": "Có hiệu lực sau khi bố trí phân loại trang bìa xong",
+          "label": "Phân loại sử dụng hiệu ứng đầu trang trong suốt"
+        },
+        "sticky_index": {
+          "label": "Trang chủ sử dụng hiệu ứng đầu trang trong suốt"
         },
         "suggested_menu": {
           "info": "Sau khi sắp xếp menu xong, khi lần đầu mở ra để tìm kiếm, sẽ sử dụng thanh munu để đóng góp ý kiến",
@@ -1227,7 +1247,7 @@
             },
             "video_url": {
               "info": "Nhập YouTube hoặc Vimeo để liên kết",
-              "label": "Liên kết video"
+              "label": "Chọn video"
             }
           }
         }
@@ -1422,6 +1442,9 @@
         "group_header__1": {
           "label": "Bộ lọc thanh bên"
         },
+        "infinite_scroll": {
+          "label": "Kích hoạt cuộn vô hạn"
+        },
         "per_page_num": {
           "label": "Số lượng sản phẩmtrên mỗi trang"
         },
@@ -1450,6 +1473,21 @@
           },
           "options__4": {
             "label": "2:3"
+          }
+        },
+        "product_sub_title": {
+          "label": "",
+          "options__0": {
+            "label": "Không hiển thị"
+          },
+          "options__1": {
+            "label": "Bày ra hoàn chỉnh"
+          },
+          "options__2": {
+            "label": "Bày ra tối đa 1 hàng"
+          },
+          "options__3": {
+            "label": "Bày ra tối đa 2 hàng"
           }
         },
         "sorter_enable": {
@@ -1493,20 +1531,155 @@
             "product_custom_tab1": {
               "label": "Nội dung tuỳ chỉnh 1"
             },
+            "product_custom_tab1_desc": {
+              "label": "Mô tả văn bản"
+            },
             "product_custom_tab1_fold": {
               "label": "Hiển thị dạng gấp"
+            },
+            "product_custom_tab1_icon": {
+              "label": "icon",
+              "options__0": {
+                "label": "Không hiển thị"
+              },
+              "options__1": {
+                "label": "Thanh toán an toàn"
+              },
+              "options__10": {
+                "label": "Vận chuyển"
+              },
+              "options__11": {
+                "label": "Nhãn chiết khấu"
+              },
+              "options__2": {
+                "label": "Đóng gói"
+              },
+              "options__3": {
+                "label": "E-mail"
+              },
+              "options__4": {
+                "label": "Định vị"
+              },
+              "options__5": {
+                "label": "Khách hàng"
+              },
+              "options__6": {
+                "label": "Nói chuyện"
+              },
+              "options__7": {
+                "label": "Qùa tặng"
+              },
+              "options__8": {
+                "label": "Điện thoại di động"
+              },
+              "options__9": {
+                "label": "Thông tin hữu ích"
+              }
+            },
+            "product_custom_tab1_title": {
+              "label": "Tiêu đề"
             },
             "product_custom_tab2": {
               "label": "Nội dung tuỳ chỉnh 2"
             },
+            "product_custom_tab2_desc": {
+              "label": "Mô tả văn bản"
+            },
             "product_custom_tab2_fold": {
               "label": "Hiển thị dạng gấp"
+            },
+            "product_custom_tab2_icon": {
+              "label": "icon",
+              "options__0": {
+                "label": "Không hiển thị"
+              },
+              "options__1": {
+                "label": "Thanh toán an toàn"
+              },
+              "options__10": {
+                "label": "Vận chuyển"
+              },
+              "options__11": {
+                "label": "Nhãn chiết khấu"
+              },
+              "options__2": {
+                "label": "Đóng gói"
+              },
+              "options__3": {
+                "label": "E-mail"
+              },
+              "options__4": {
+                "label": "Định vị"
+              },
+              "options__5": {
+                "label": "Khách hàng"
+              },
+              "options__6": {
+                "label": "Nói chuyện"
+              },
+              "options__7": {
+                "label": "Qùa tặng"
+              },
+              "options__8": {
+                "label": "Điện thoại di động"
+              },
+              "options__9": {
+                "label": "Thông tin hữu ích"
+              }
+            },
+            "product_custom_tab2_title": {
+              "label": "Tiêu đề"
             },
             "product_custom_tab3": {
               "label": "Nội dung tuỳ chỉnh 3"
             },
+            "product_custom_tab3_desc": {
+              "label": "Mô tả văn bản"
+            },
             "product_custom_tab3_fold": {
               "label": "Hiển thị dạng gấp"
+            },
+            "product_custom_tab3_icon": {
+              "label": "icon",
+              "options__0": {
+                "label": "Không hiển thị"
+              },
+              "options__1": {
+                "label": "Thanh toán an toàn"
+              },
+              "options__10": {
+                "label": "Vận chuyển"
+              },
+              "options__11": {
+                "label": "Nhãn chiết khấu"
+              },
+              "options__2": {
+                "label": "Đóng gói"
+              },
+              "options__3": {
+                "label": "E-mail"
+              },
+              "options__4": {
+                "label": "Định vị"
+              },
+              "options__5": {
+                "label": "Khách hàng"
+              },
+              "options__6": {
+                "label": "Nói chuyện"
+              },
+              "options__7": {
+                "label": "Qùa tặng"
+              },
+              "options__8": {
+                "label": "Điện thoại di động"
+              },
+              "options__9": {
+                "label": "Thông tin hữu ích"
+              }
+            },
+            "product_custom_tab3_title": {
+              "label": "Tiêu đề"
             }
           }
         },
@@ -1660,6 +1833,9 @@
             "label": "Ô hình ảnh thu nhỏ"
           }
         },
+        "product_image_show_sku_image": {
+          "label": "Hình ảnh chính hiển thị hình ảnh SKU"
+        },
         "product_image_size": {
           "label": "Kích thước hình ảnh sản phẩm đầu máy tính",
           "options__0": {
@@ -1683,6 +1859,13 @@
           "options__1": {
             "label": "Hiển thị hình ảnh thu nhỏ"
           }
+        },
+        "product_show_swiper_arrow": {
+          "label": "Hiển thị mũi tên trượt"
+        },
+        "video_autoplay": {
+          "info": "Sau khi mở, video mặc định bị tắt tiếng, nếu là video Youtube thì không thể phát âm thanh",
+          "label": "Tự động phát video"
         },
         "video_loop": {
           "label": "Dùng video tuần hoàn"
@@ -2385,7 +2568,7 @@
         },
         "url": {
           "info": "Nhập YouTube hoặc Vimeo để liên kết",
-          "label": "Liên kết video"
+          "label": "Chọn video"
         }
       }
     }
@@ -2465,6 +2648,9 @@
           },
           "options__1": {
             "label": "Vào trang giỏ hàng"
+          },
+          "options__2": {
+            "label": "Đã thêm thành công lời nhắc mua thêm"
           }
         }
       }

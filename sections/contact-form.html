@@ -1,6 +1,10 @@
 {{ assign 'prefix' 'stage-custom-page--form' }}
 
-{{ inline_stylesheet 'contact-form/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'contact-form/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'contact-form/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}
@@ -33,7 +37,7 @@
           {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="name" maxlength="255"' name='name' placeholder=(t 'general.general.username') }}
         {{/formItem}}
         {{#formItem 'email' "class='col-24 col-md-12'"}}
-          {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="email" maxlength="255"' name='email' placeholder=(t 'customer.email.mail_common') }}
+          {{ snippet 'product/commons/base-input' required='true' inputRestAttr='autocomplete="email" maxlength="255"' name='email' placeholder=(t 'customer.email.mail_common') }}
         {{/formItem}}
         {{#formItem 'phone' "class='col-24'"}}
           {{ snippet 'product/commons/base-input' inputRestAttr='autocomplete="tel" maxlength="255"' name='phone' placeholder=(t 'general.general.tel_phone') }}

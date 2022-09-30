@@ -5,6 +5,22 @@
       "read_btn_text": "Läs mer",
       "title": "Blogg"
     },
+    "comment": {
+      "comment": "Kommentar",
+      "comment_audit_tip": "Din kommentar har skickats och måste granskas.",
+      "comment_empty": "Vänligen fyll i kommentarerna",
+      "email": "Mail",
+      "email_empty": "E-post får inte vara tom",
+      "email_format": "Ange korrekt e-postadress",
+      "form_title": "Kommentar",
+      "loadmore": "ladda mer",
+      "name": "Efternamn",
+      "name_empty": "Vänligen fyll i namn",
+      "submit": "Skicka in",
+      "submit_audit_tip": "Skickat, väntar på granskning",
+      "success": "Framgångsrikt inskickat",
+      "title": "{{comment_length}} kommentarer"
+    },
     "general": {
       "back_to": "Returnera {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Beställ information",
       "package_amount": "Paket{{num}}({{item}} artiklar)",
       "pay_amount": "betala belopp",
+      "paymentVoucher": {
+        "downloadDoc": "Ladda ner filen",
+        "format": "Format",
+        "formatLimit": "Stöder .jpg filer .png .pdf mindre än 20 MB i storlek. Du kan ladda upp högst 5 bilder",
+        "uploadAmount": "{{num}} kupong (s) laddades upp",
+        "uploadLimit": "Läs in .jpg filer .png .pdf mindre än 20 MB"
+      },
       "payment_voucher_confirmation": "Jag fattar",
       "payment_voucher_transfer_success": "Betalningen har överförts",
       "payment_voucher_waiting_for_payment": "Väntar på utbetalning",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Ogiltig e-postadress"
+    },
     "account": {
       "account_binding": "Kontolänk",
       "account_information": "Kontoen",
@@ -197,6 +223,10 @@
       "bind": "Obligatorisk",
       "birthday": "Födelsedag",
       "change_password": "Ändra lösenordet",
+      "confirm_btn": "ยืนยัน",
+      "confirm_subscription_modal_btn": "Bekräfta ditt prenumeration",
+      "confirm_subscription_modal_content": "Du har tidigare skickat ett prenumeration. Ett bekräftelsemail har skickats till den här e-postadressen. Du kan bekräfta i din e-post eller klicka på den här knappen.",
+      "confirm_subscription_modal_title": "Bekräfta din prenumerationen via e-post.",
       "credit_card_number": "Kreditkort Nr.",
       "deadline": "För företagsrapportens skull kommer din beställning fortfarande att vara synlig. Dina kontouppgifter kommer att raderas vid {{time}}, du kan avbryta processen före det datumet",
       "delete_account": "Avsluta konto",
@@ -211,6 +241,7 @@
       "ip_address": "IP adress",
       "last_name": "Efternamn",
       "modify_email": "Ändra e-postmeddelandet",
+      "modify_email_modal_title": "Ändra e-postmeddelandet",
       "modify_phone": "Ändra Telefonen",
       "name": "Namn",
       "next": "Nästa",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Aktivera först e-postmeddelandet eller mobiltelefonen",
       "revoke": "Avbryt avslutning",
       "revoke_message": "Det här kontot håller på att stängas, kontodata kommer att raderas vid {{time}}, du kan avbryta processen före det datumet",
+      "save_btn": "SPARA",
       "select__date": "Välj ett Datum",
+      "subscribe_confirm_tip": "Tack för prenumerationen.",
       "timeout_tip": "Driften avbröts, Kontrollera att din igen",
       "username": "Namn",
       "verify_email_message": "Före avslutning av konto måste vi verifiera er identitet\nEtt verifieringsmail kommer skickas till er epost {{email}}",
@@ -238,7 +271,8 @@
       "discount_title": "Aktivera konto och få rabattkoden",
       "normal_title": "Aktivera konto",
       "subscription_text": "Prenumerera på mejl för att få uppdateringar, få tillgång till exklusiva erbjudanden och mer.",
-      "success_title": "Grattis till att få en bra rabatt"
+      "success_title": "Grattis till att få en bra rabatt",
+      "token_expired": "Länken har upphört att gälla"
     },
     "address": {
       "add_address": "Lägg Till en ny Adress",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Lösenord glömt",
+      "reset_password": "ÅTERSTÄLL DITT LÖSENORD",
       "tips_password_can_be_changed_after_verification": "Du kan ändra lösenordet efter verifiering",
-      "tips_reset_password": "Du återställer Lösenord för kontot {{account}}"
+      "tips_reset_password": "Du återställer Lösenord för kontot {{account}}",
+      "token_expired": "Länken för återställning av lösenord har upphört att gälla"
     },
     "general": {
       "account": "KONTO",
@@ -333,6 +369,10 @@
       "error_message_3009": "Mobiltelefonen har anslutits av andra konton",
       "error_message_3010": "E-postmeddelandet länkades av andra konton",
       "error_message_3014": "Det gick inte att returnera textmeddelande / e-postmeddelanden",
+      "error_message_3015": "Konto är aktiverat",
+      "error_message_3022": "Länken har upphört att gälla",
+      "error_message_3023": "Länken är i fel format",
+      "error_message_3024": "Länken är fel",
       "error_message_4": "Service Undantag",
       "error_message_5": "Service Undantag",
       "error_message_6": "Service Undantag",
@@ -416,7 +456,8 @@
       "wednesday": "onsdag"
     },
     "login": {
-      "member_login_common": "Medlemsregistrering"
+      "member_login_common": "Medlemsregistrering",
+      "subscribe_confirm_tip": "Tack för prenumerationen. Du kan logga in för en bättre upplevelse."
     },
     "message": {
       "input_placeholder": "Är det något du vill lämna ett meddelande till?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-post",
       "email_subscription_text": "Få kampanjinformation från prenumerationen via E-post",
-      "l_i_n_e": "LINJE",
+      "line": "LINJE",
       "messenger": "Budbärare",
       "phone": "Mobiltelefon",
       "phone_subscription_text": "Registrera dig för telefonkampanjen",
@@ -474,6 +515,7 @@
       "send_success": "Tack för att du kontaktar oss, vi återkommer till dig så snart som möjligt."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "E-postadressformatfel",
       "subscribe_success": "Prenumerera framgång"
     },
@@ -499,6 +541,14 @@
       "refund": "Återbetalningspolicy",
       "service": "Servicevillkor",
       "shipping": "leverans policy"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "uppladdningstid",
+        "detail": "Detalj"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "SLUTSÅLT",
       "products": "produkter",
       "recommend": "Rådde",
+      "sale": "Försäljning",
       "save": "Rabatt {{{priceDom}}}",
       "save_byjs": "Rabatt {{priceDom}}",
       "save_ratio": "{{price}}% reduktion",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Kopiera",
       "activity_banner_free_shipping": "Fri frakt",
       "activity_banner_threshold": "Förfrågningar ovan {{threshold}}",
+      "activity_selector_new_arrivals": "Nya arkiv",
       "activity_selector_price_high_to_low": "Pris högt till lågt",
       "activity_selector_price_low_to_high": "Pris lågt till högt",
       "activity_selector_recommended": "Rekommendera",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Köp {{threshold}}, dra nytta av rabatt {{willSave}} för {{benefitCount}} saker",
         "b12_t1_s3_free": "Grattis! Du har {{benefitCount}} GRATIS saker!",
         "b12_t1_s3_normal": "Grattis! Du har {{saved}} rabatt {{benefitCount}} saker!",
+        "b14_t1_s1": "Köp {{nextMinThreshold}} priser för {{willSave}}",
+        "b14_t1_s2": "Grattis! Du har {{currentMinThreshold}} priser för {{saved}}. Köp {{threshold}} fler för att njuta av {{nextMinThreshold}} stycken för {{willSave}}!",
+        "b14_t1_s3": "Grattis! Du har {{currentMinThreshold}} priser för {{saved}}!",
         "b1_t0_s1": "Köp {{threshold}} mer för att spara {{willSave}}",
         "b1_t0_s2": "Spara {{saved}} nu! {{br}} Köp {{threshold}} mer för att spara {{willSave}}",
         "b1_t0_s3": "Grattis! Du har sparat {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Köp {{threshold}} spara {{save}}",
         "b2_t1": "Köp {{threshold}} Få {{save}} AV",
         "label": "Rabatt:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Köp {{nextMinThreshold}} priser för {{willSave}}",
+            "step2": "Grattis! Du har {{currentMinThreshold}} priser för {{saved}}. Köp {{threshold}} fler för att njuta av {{nextMinThreshold}} stycken för {{willSave}}!",
+            "step3": "Grattis! Du har {{currentMinThreshold}} priser för {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Avrundning"
+      }
+    },
     "payments-name": {
       "COD": "Leverans mot återbetalning",
       "Paypal": "PayPal",
@@ -716,6 +785,11 @@
       "discount_off": "Rabatt",
       "free_charge": "Gratis leverans",
       "free_shipping": "gratis leverans",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Ytterligare rabatt från säljaren",
       "order_tax": "Beskatta",
       "order_tip": "Dricks",

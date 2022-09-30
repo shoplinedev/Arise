@@ -9,9 +9,13 @@
         "product_image_pc_show_style": "flatten",
         "product_image_size": "medium",
         "video_loop": false,
+        "video_autoplay": false,
         "product_info_sticky": true,
         "product_mobile_thumbnail_image_hide": "hide",
-        "default_selected_sku": true
+        "default_selected_sku": true,
+        "product_image_show_sku_image": true,
+        "product_show_swiper_arrow": false
+
       },
       "blocks": {
         "block-1": {
@@ -65,10 +69,19 @@
           "type": "product-additional",
           "settings": {
             "product_custom_tab1": "",
+            "product_custom_tab1_title": "",
+            "product_custom_tab1_desc": "",
+            "product_custom_tab1_icon": "none",
             "product_custom_tab1_fold": true,
             "product_custom_tab2": "",
+            "product_custom_tab2_title": "",
+            "product_custom_tab2_desc": "",
+            "product_custom_tab2_icon": "none",
             "product_custom_tab2_fold": true,
             "product_custom_tab3": "",
+            "product_custom_tab3_title": "",
+            "product_custom_tab3_desc": "",
+            "product_custom_tab3_icon": "none",
             "product_custom_tab3_fold": true
           }
         },

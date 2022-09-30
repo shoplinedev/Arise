@@ -1,4 +1,8 @@
-{{ inline_stylesheet 'multi-media-splicing/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'multi-media-splicing/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'multi-media-splicing/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}
@@ -90,34 +94,47 @@
                       </div>
                     {{/if}}
                     <div class="video__controll {{#if (boolean settings.video_url '&&' settings.cover_image '&&' settings.cover_image.url)}}d-none{{/if}}">
-                      {{#contains settings.video_url 'youtube.com/watch'}}
-
-                        {{ assign 'video_id' (split settings.video_url 'v=') }}
-                        {{ assign 'video_id' (first (split (itemAt video_id 1) '&')) }}
+                      {{#contains settings.video_url 'fromFileSelect'}}                        
+                        {{ assign 'video_id' (split settings.video_url '.mp4') }}
+                        {{ assign 'video_id' (last (split (itemAt video_id 0) '/')) }}
                         <div
-                          class="video-data"
+                          class="video-data is-sl-video"
                           id="Video-{{ id }}"
                           data-video-id="{{ video_id }}"
-                          data-type="youtube"
-                          data-url="{{ settings.video_url }}"
+                          data-type="slvideo"
+                          data-url="{{ settings.video_url }}"   
+                          style="height: 100%"                                                 
                         >
                         </div>
                       {{else}}
-                        {{#contains settings.video_url 'vimeo.com'}}
-                          {{ assign 'video_id' (split settings.video_url '.com/') }}
-                          {{ assign 'video_id' (itemAt video_id 1) }}
+                        {{#contains settings.video_url 'youtube.com/watch'}}
+                          {{ assign 'video_id' (split settings.video_url 'v=') }}
+                          {{ assign 'video_id' (first (split (itemAt video_id 1) '&')) }}
                           <div
-                            class="video-data is-vimeo"
+                            class="video-data"
                             id="Video-{{ id }}"
                             data-video-id="{{ video_id }}"
-                            data-type="vimeo"
+                            data-type="youtube"
                             data-url="{{ settings.video_url }}"
                           >
                           </div>
                         {{else}}
-                          {{#not (boolean settings.cover_image '&&' settings.cover_image.url)}}
-                            {{ snippet 'icons/icon_video_placeholder' }}
-                          {{/not}}
+                          {{#contains settings.video_url 'vimeo.com'}}
+                            {{ assign 'video_id' (split settings.video_url '.com/') }}
+                            {{ assign 'video_id' (itemAt video_id 1) }}
+                            <div
+                              class="video-data is-vimeo"
+                              id="Video-{{ id }}"
+                              data-video-id="{{ video_id }}"
+                              data-type="vimeo"
+                              data-url="{{ settings.video_url }}"
+                            >
+                            </div>
+                          {{else}}
+                            {{#not (boolean settings.cover_image '&&' settings.cover_image.url)}}
+                              {{ snippet 'icons/icon_video_placeholder' }}
+                            {{/not}}
+                          {{/contains}}
                         {{/contains}}
                       {{/contains}}
                     </div>
@@ -203,7 +220,7 @@
         },
         {
           "id": "video_url",
-          "type": "text",
+          "type": "video_text",
           "label": "t:sections.multi-media-splicing.blocks.video.settings.video_url.label",
           "format": "video",
           "placeholder": "https://www.youtube.com/watch?v=V7BEzkRBp_g",

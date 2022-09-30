@@ -1,0 +1,105 @@
+{{ assign 'ratio_class' 'video--r16-9' }}
+{{#if section.settings.ratio '===' '3:2' }}
+  {{ assign 'ratio_class' 'video--r3-2' }}
+{{/if}}
+
+{{#if section.settings.ratio '===' '4:3' }}
+  {{ assign 'ratio_class' 'video--r4-3' }}
+{{/if}}
+
+{{#if section.settings.ratio '===' '16:9' }}
+  {{ assign 'ratio_class' 'video--r16-9' }}
+{{/if}}
+
+{{#if section.settings.ratio '===' '21:9' }}
+  {{ assign 'ratio_class' 'video--r21-9' }}
+{{/if}}
+
+{{#style}}
+  {{ assign 'background_position' (join (split section.settings.background_position '-') ' ') }}
+  .video--{{ section.id }} .video__cover .video-bg-img {
+    object-position: {{ background_position }};
+  }
+{{/style}}
+<div
+  class="video video--{{ section.id }} {{ ratio_class }}"
+  data-id="{{ section.id }}"
+>
+  <script type="text/json" id="Video-data-{{ section.id }}">{{{ stringify section.settings }}}</script>
+  {{#unless section.settings.autoplay}}
+    {{#if (boolean section.settings.cover.url)}}
+      <div class="video__cover">
+        <img class="video-bg-img video__cover-img lozad"
+        data-src="{{section.settings.cover.url}}" data-sizes="auto"  alt="{{section.settings.cover.alt}}"
+>
+        <div class="video-overlay">
+          {{#if section.settings.video_url}}
+            <div class="video-overlay__button" data-controls="Video-{{ section.id }}">
+              {{snippet 'icons/icon_video_play'}}
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+  {{/unless}}
+  <div class="video__controll">
+    {{#contains section.settings.video_url 'fromFileSelect' }}
+      {{ assign 'video_id' (split section.settings.video_url '.com/') }}
+      {{ assign 'video_id' (itemAt video_id 1) }}
+      <div
+        class="video-data is-sl-video"
+        id="Video-{{ section.id }}"
+        data-video-id="{{ video_id }}"
+        data-type="slvideo"
+        data-url="{{ section.settings.video_url }}"
+        data-autoplay="{{ section.settings.autoplay }}"
+        data-slient="{{ section.settings.slient }}"
+        data-aspect-ratio="{{ section.settings.ratio }}"
+        data-quiet="{{section.settings.quiet}}"
+        style="height: 100%"
+      >
+      </div>
+    {{else}}
+      {{#contains section.settings.video_url 'youtube.com/watch'}}
+        {{ assign 'video_id' (split section.settings.video_url 'v=') }}
+        {{ assign 'video_id' (first (split (itemAt video_id 1) '&')) }}
+
+        <div
+          class="video-data"
+          id="Video-{{ section.id }}"
+          data-video-id="{{ video_id }}"
+          data-type="youtube"
+          data-url="{{ section.settings.video_url }}"
+          data-autoplay="{{ section.settings.autoplay }}"
+          data-slient="{{ section.settings.slient }}"
+          data-aspect-ratio="{{ section.settings.ratio }}"
+          data-quiet="{{section.settings.quiet}}"
+          data-loop="{{section.settings.loop}}"
+        >
+        </div>
+      {{else}}
+        {{#contains section.settings.video_url 'vimeo.com'}}
+          {{ assign 'video_id' (split section.settings.video_url '.com/') }}
+          {{ assign 'video_id' (itemAt video_id 1) }}
+          <div
+            class="video-data is-vimeo"
+            id="Video-{{ section.id }}"
+            data-video-id="{{ video_id }}"
+            data-type="vimeo"
+            data-url="{{ section.settings.video_url }}"
+            data-autoplay="{{ section.settings.autoplay }}"
+            data-slient="{{ section.settings.slient }}"
+            data-aspect-ratio="{{ section.settings.ratio }}"
+            data-quiet="{{section.settings.quiet}}"
+            data-has-cover="{{ boolean section.settings.cover.url }}"
+          >
+          </div>
+        {{else}}
+          {{ snippet 'icons/icon_video_placeholder' }}
+        {{/contains}}
+      {{/contains}}
+    {{/contains}}
+  </div>
+</div>
+
+

@@ -3354,6 +3354,12 @@
         const saveThirdChannelInfo = data => request_request.post("/user/front/users/saveThirdChannelInfo", data);
         const signInUpdate = data => request_request.post("/user/front/users/update", data);
         const updateUserInfo = () => request_request.put("/carts/cart/cart-buyer-update");
+        const getRetrieveTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/token/init.do", {
+            params
+        });
+        const getActivateTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/activate/token/init.do", {
+            params
+        });
         const getRetrieveInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/init.do", {
             params
         });
@@ -3403,6 +3409,9 @@
         };
         const DEFAULT_FORM_VALUE = "DEFAULT_FORM_VALUE";
         const ACCOUNT_ACTIVATED = "ACCOUNT_ACTIVATED";
+        const CONFIRM_SUBSCRIBE_EMAIL = "confirmSubscribeEmail";
+        const RESET_PASSWORD_TOKEN_EXPIRED = "RESET_PASSWORD_TOKEN_EXPIRED";
+        const ACCOUNT_ACTIVATED_TOKEN_EXPIRED = "ACCOUNT_ACTIVATED_TOKEN_EXPIRED";
         function uniqueObjectArray(arr, prop, callback) {
             return arr.filter(((item, index) => {
                 let result = true;
@@ -3411,19 +3420,25 @@
             }));
         }
         function getLanguage() {
-            return window && window.SL_State && window.SL_State.get("request.cookie.lang") || DEFAULT_LANGUAGE;
+            return window && window.SL_State && window.SL_State.get("request.locale") || DEFAULT_LANGUAGE;
         }
-        const getRedirectUrl = () => {
-            let redirectUrl = (0, url.getUrlQuery)("redirectUrl");
-            let state = (0, url.getUrlQuery)("state");
+        const getState = href => {
             try {
-                if (state) {
-                    state = JSON.parse(state);
-                    redirectUrl = state.redirectUrl || redirectUrl;
-                }
+                const locationHref = href || window.location.href;
+                const decodeUrl = window.decodeURIComponent(locationHref.replace(window.location.hash, ""));
+                return JSON.parse(decodeUrl.match(/\{(.*)\}/)[0]);
             } catch (e) {
-                console.error(e);
+                try {
+                    return JSON.parse((0, url.getUrlQuery)("state"));
+                } catch (e) {
+                    return {};
+                }
             }
+        };
+        const getRedirectUrl = () => {
+            let {redirectUrl} = (0, url.getUrlAllQuery)();
+            const state = getState();
+            redirectUrl = state && state.redirectUrl && window.decodeURIComponent(state.redirectUrl) || redirectUrl;
             return redirectUrl;
         };
         function redirectPage(pathname) {
@@ -3622,8 +3637,8 @@
         const MEMBER_PASSWORD_PATTERN = /^.{6,18}$/i;
         const PHONE_PATTERN = {
             "+86": /^1[3-9]\d{9}$/,
-            "+886": /^09\d{8}$/,
-            "+852": /^(5[1234569]\d{6}|6\d{7}|9[0-8]\d{6})$/
+            "+886": /^0?9\d{8}$/,
+            "+852": /^(5|6|7|9)\d{7}$/
         };
         const pattern_CODE_PHONE_PATTERN = /^(\w+(\+\d+))-(.*)$/;
         const INTERNATIONAL_PHONE_PATTERN = /^(00|\+)[1-9]{1}([0-9]){9,16}$/;
@@ -4426,9 +4441,11 @@
             }
         }
         const form_item_password = Password;
-        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014 ];
+        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014, 3015, 3022, 3023, 3024 ];
         const MOBILE_REGISTERED = "2001";
         const EMAIL_REGISTERED = "2002";
+        const TOKEN_ERROR_CODE = [ "3022", "3023", "3024" ];
+        const ACCOUNT_ACTIVATED_CODE = [ "3015" ];
         const keyMaps = {
             "-1": "2",
             "-13": "3",
@@ -4936,18 +4953,16 @@
                     isverify = verify ? "1" : "0";
                 }
                 eventid = FBPixelEventID;
-            } else if ("activate" === formType) {
-                if ("member" === type) {
-                    getInitConfig = getMemberInitConfig;
-                    isverify = 0;
-                }
+            } else if ("activate" === formType) if (token) getInitConfig = getActivateTokenInitConfig; else {
+                getInitConfig = getMemberInitConfig;
+                isverify = 0;
             } else if ("reset" === formType) if (uid) {
                 getInitConfig = getUniversalInitConfig(reset_getChangePasswordInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve(); else if ("bind" === formType && "member" === type) {
                 if ("email" === mode) getInitConfig = getUniversalInitConfig(getBindEmailInitConfig); else if ("phone" === mode) getInitConfig = getUniversalInitConfig(getBindPhoneInitConfig);
                 ticketType = "1";
-            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("delete-account" === formType) {
+            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("passwordNewToken" === formType && "preview" !== token) getInitConfig = getRetrieveTokenInitConfig; else if ("delete-account" === formType) {
                 getInitConfig = getUniversalInitConfig(getDeleteAccountInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve();
@@ -4973,10 +4988,24 @@
                     _mask,
                     _method,
                     oauthToken,
-                    scene
+                    scene,
+                    emailMask: data && data.email
                 };
+            })).catch((e => {
+                if ("activate" === formType) {
+                    if (ACCOUNT_ACTIVATED_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED, true);
+                        redirectPage(SIGN_IN);
+                    } else if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED_TOKEN_EXPIRED, true);
+                        redirectPage(SIGN_IN);
+                    }
+                } else if ("passwordNewToken" === formType) if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                    storage.sessionStorage.set(RESET_PASSWORD_TOKEN_EXPIRED, true);
+                    redirectPage(SIGN_IN);
+                }
             }));
-            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "activate" ].includes(formType)) {
+            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "passwordNewToken", "activate" ].includes(formType)) {
                 const token = window.__DF__ && window.__DF__.getToken();
                 if (token) return init(token);
                 return getRiskControlToken().then((dfptoken => init(dfptoken))).catch((() => init()));
@@ -5438,8 +5467,11 @@
                 }));
             }
             async getCustomerConfig() {
-                const {mode} = this.query;
-                let queryParams = this.configs;
+                const {mode, token} = this.query;
+                let queryParams = {
+                    ...this.configs,
+                    token
+                };
                 if (mode) queryParams = {
                     ...queryParams,
                     mode
@@ -5487,11 +5519,27 @@
                 this.toast = new toast;
                 this.initForm();
                 this.bindEvents();
+                this.showConfirmSubscribeTip();
+            }
+            showConfirmSubscribeTip() {
+                const from = (0, url.getUrlQuery)("from");
+                if (from === CONFIRM_SUBSCRIBE_EMAIL) {
+                    const tips = t(`customer.login.subscribe_confirm_tip`);
+                    __SL_$__(`#${this.formId} .sign-in__from_confirm_email`).show().text(tips);
+                }
             }
             initForm() {
                 if (storage.sessionStorage.get(ACCOUNT_ACTIVATED)) {
                     this.toast.open(t("customer.activate.account_activated"));
                     storage.sessionStorage.del(ACCOUNT_ACTIVATED);
+                }
+                if (storage.sessionStorage.get(ACCOUNT_ACTIVATED_TOKEN_EXPIRED)) {
+                    __SL_$__(`#${this.formId} .sign-in__has-registered`).show().text(t("customer.activate.token_expired"));
+                    storage.sessionStorage.del(ACCOUNT_ACTIVATED_TOKEN_EXPIRED);
+                }
+                if (storage.sessionStorage.get(RESET_PASSWORD_TOKEN_EXPIRED)) {
+                    __SL_$__(`#${this.formId} .sign-in__has-registered`).show().text(t("customer.forget_password.token_expired"));
+                    storage.sessionStorage.del(RESET_PASSWORD_TOKEN_EXPIRED);
                 }
                 const formValue = storage.sessionStorage.get(DEFAULT_FORM_VALUE);
                 let fields = this.getFieldConfigs();

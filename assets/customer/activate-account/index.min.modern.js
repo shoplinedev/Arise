@@ -5075,8 +5075,8 @@
         const MEMBER_PASSWORD_PATTERN = /^.{6,18}$/i;
         const PHONE_PATTERN = {
             "+86": /^1[3-9]\d{9}$/,
-            "+886": /^09\d{8}$/,
-            "+852": /^(5[1234569]\d{6}|6\d{7}|9[0-8]\d{6})$/
+            "+886": /^0?9\d{8}$/,
+            "+852": /^(5|6|7|9)\d{7}$/
         };
         const pattern_CODE_PHONE_PATTERN = /^(\w+(\+\d+))-(.*)$/;
         const INTERNATIONAL_PHONE_PATTERN = /^(00|\+)[1-9]{1}([0-9]){9,16}$/;
@@ -5096,8 +5096,9 @@
         };
         const DEFAULT_PHONE_ISO2 = "cn";
         const DEFAULT_PHONE_CODE = "cn+86";
-        const DEFAULT_FORM_VALUE = "DEFAULT_FORM_VALUE";
         const ACCOUNT_ACTIVATED = "ACCOUNT_ACTIVATED";
+        const RESET_PASSWORD_TOKEN_EXPIRED = "RESET_PASSWORD_TOKEN_EXPIRED";
+        const ACCOUNT_ACTIVATED_TOKEN_EXPIRED = "ACCOUNT_ACTIVATED_TOKEN_EXPIRED";
         const formatPhone = phone => {
             const result = {};
             if (phone) {
@@ -5423,8 +5424,10 @@
             }
         }
         const form_item_password = Password;
-        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014 ];
+        const UDB_RESPONSE_LANGUAGE_ERROR_CODES = [ -1, -4, -5, -13, -999, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1020, 1021, 1022, 1023, 1024, 2001, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2016, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3014, 3019, 2014, 3015, 3022, 3023, 3024 ];
         const EMAIL_REGISTERED = "2002";
+        const TOKEN_ERROR_CODE = [ "3022", "3023", "3024" ];
+        const ACCOUNT_ACTIVATED_CODE = [ "3015" ];
         const keyMaps = {
             "-1": "2",
             "-13": "3",
@@ -6116,6 +6119,15 @@
         });
         const updateUserInfo = () => request_request.put("/carts/cart/cart-buyer-update");
         const setSubscriptionStateNoLogin = data => request_request.post("/user/front/sub/stateNoLogin", data);
+        const getRetrieveTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/token/init.do", {
+            params
+        });
+        const activateByToken = params => request_udbRequest.get("/udb/aq/pwd/activate/token/modify.do", {
+            params
+        });
+        const getActivateTokenInitConfig = params => request_udbRequest.get("/udb/aq/pwd/activate/token/init.do", {
+            params
+        });
         const getRetrieveInitConfig = params => request_udbRequest.get("/udb/aq/pwd/retrieve/init.do", {
             params
         });
@@ -6314,21 +6326,67 @@
         };
         const getRiskControlToken = () => loadRiskControl().then((df => df && df.getToken()));
         const getCookie = key => window && window.SL_State && window.SL_State.get(`request.cookie.${key}`);
+        var isPlainObject = __webpack_require__("../shared/browser/node_modules/lodash/isPlainObject.js");
+        var isPlainObject_default = __webpack_require__.n(isPlainObject);
+        const isBrowser = "undefined" !== typeof window && "undefined" !== typeof navigator;
+        function getStorage(storageName) {
+            return {
+                get(key) {
+                    if (!isBrowser) return;
+                    const storage = window[storageName];
+                    const numRe = /^\d+$/;
+                    const jsonRe = /(^\{.*\}$)|(^\[.*\]$)/;
+                    const boolRe = /^(true|false|null)$/;
+                    let val = storage.getItem(key);
+                    try {
+                        if ("string" === typeof val && val && (numRe.test(val) || boolRe.test(val) || jsonRe.test(val))) val = JSON.parse(val);
+                    } catch (e) {
+                        console.warn("json.parse storage value err:", e);
+                        val = {};
+                    }
+                    return val;
+                },
+                set(key, val) {
+                    if (!isBrowser) return;
+                    let value = val;
+                    if (isPlainObject_default()(value) || value instanceof Array) value = JSON.stringify(value);
+                    const storage = window[storageName];
+                    storage[key] = value;
+                },
+                del(key) {
+                    if (!isBrowser) return;
+                    const storage = window[storageName];
+                    storage.removeItem(key);
+                }
+            };
+        }
+        const [sessionStorage, localStorage] = [ "sessionStorage", "localStorage" ].map(getStorage);
+        const utils = {
+            sessionStorage,
+            localStorage
+        };
+        const storage = utils;
         var url = __webpack_require__("../shared/browser/biz-com/customer/utils/url.js");
         function getLanguage() {
-            return window && window.SL_State && window.SL_State.get("request.cookie.lang") || DEFAULT_LANGUAGE;
+            return window && window.SL_State && window.SL_State.get("request.locale") || DEFAULT_LANGUAGE;
         }
-        const getRedirectUrl = () => {
-            let redirectUrl = (0, url.getUrlQuery)("redirectUrl");
-            let state = (0, url.getUrlQuery)("state");
+        const getState = href => {
             try {
-                if (state) {
-                    state = JSON.parse(state);
-                    redirectUrl = state.redirectUrl || redirectUrl;
-                }
+                const locationHref = href || window.location.href;
+                const decodeUrl = window.decodeURIComponent(locationHref.replace(window.location.hash, ""));
+                return JSON.parse(decodeUrl.match(/\{(.*)\}/)[0]);
             } catch (e) {
-                console.error(e);
+                try {
+                    return JSON.parse((0, url.getUrlQuery)("state"));
+                } catch (e) {
+                    return {};
+                }
             }
+        };
+        const getRedirectUrl = () => {
+            let {redirectUrl} = (0, url.getUrlAllQuery)();
+            const state = getState();
+            redirectUrl = state && state.redirectUrl && window.decodeURIComponent(state.redirectUrl) || redirectUrl;
             return redirectUrl;
         };
         function redirectPage(pathname) {
@@ -6382,18 +6440,16 @@
                     isverify = verify ? "1" : "0";
                 }
                 eventid = FBPixelEventID;
-            } else if ("activate" === formType) {
-                if ("member" === type) {
-                    getInitConfig = getMemberInitConfig;
-                    isverify = 0;
-                }
+            } else if ("activate" === formType) if (token) getInitConfig = getActivateTokenInitConfig; else {
+                getInitConfig = getMemberInitConfig;
+                isverify = 0;
             } else if ("reset" === formType) if (uid) {
                 getInitConfig = getUniversalInitConfig(reset_getChangePasswordInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve(); else if ("bind" === formType && "member" === type) {
                 if ("email" === mode) getInitConfig = getUniversalInitConfig(getBindEmailInitConfig); else if ("phone" === mode) getInitConfig = getUniversalInitConfig(getBindPhoneInitConfig);
                 ticketType = "1";
-            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("delete-account" === formType) {
+            } else if ("passwordNew" === formType) getInitConfig = getRetrieveInitConfig; else if ("passwordNewToken" === formType && "preview" !== token) getInitConfig = getRetrieveTokenInitConfig; else if ("delete-account" === formType) {
                 getInitConfig = getUniversalInitConfig(getDeleteAccountInitConfig);
                 ticketType = "1";
             } else getInitConfig = () => Promise.resolve();
@@ -6419,10 +6475,24 @@
                     _mask,
                     _method,
                     oauthToken,
-                    scene
+                    scene,
+                    emailMask: data && data.email
                 };
+            })).catch((e => {
+                if ("activate" === formType) {
+                    if (ACCOUNT_ACTIVATED_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED, true);
+                        redirectPage(SIGN_IN);
+                    } else if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                        storage.sessionStorage.set(ACCOUNT_ACTIVATED_TOKEN_EXPIRED, true);
+                        redirectPage(SIGN_IN);
+                    }
+                } else if ("passwordNewToken" === formType) if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                    storage.sessionStorage.set(RESET_PASSWORD_TOKEN_EXPIRED, true);
+                    redirectPage(SIGN_IN);
+                }
             }));
-            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "activate" ].includes(formType)) {
+            if ([ "signIn", "signUp", "bind", "reset", "passwordNew", "passwordNewToken", "activate" ].includes(formType)) {
                 const token = window.__DF__ && window.__DF__.getToken();
                 if (token) return init(token);
                 return getRiskControlToken().then((dfptoken => init(dfptoken))).catch((() => init()));
@@ -6884,8 +6954,11 @@
                 }));
             }
             async getCustomerConfig() {
-                const {mode} = this.query;
-                let queryParams = this.configs;
+                const {mode, token} = this.query;
+                let queryParams = {
+                    ...this.configs,
+                    token
+                };
                 if (mode) queryParams = {
                     ...queryParams,
                     mode
@@ -7016,46 +7089,7 @@
         const getDiscountValue = params => request_request.get("/user/front/user/center/getDiscountValue", {
             params
         });
-        var isPlainObject = __webpack_require__("../shared/browser/node_modules/lodash/isPlainObject.js");
-        var isPlainObject_default = __webpack_require__.n(isPlainObject);
-        const isBrowser = "undefined" !== typeof window && "undefined" !== typeof navigator;
-        function getStorage(storageName) {
-            return {
-                get(key) {
-                    if (!isBrowser) return;
-                    const storage = window[storageName];
-                    const numRe = /^\d+$/;
-                    const jsonRe = /(^\{.*\}$)|(^\[.*\]$)/;
-                    const boolRe = /^(true|false|null)$/;
-                    let val = storage.getItem(key);
-                    try {
-                        if ("string" === typeof val && val && (numRe.test(val) || boolRe.test(val) || jsonRe.test(val))) val = JSON.parse(val);
-                    } catch (e) {
-                        console.warn("json.parse storage value err:", e);
-                        val = {};
-                    }
-                    return val;
-                },
-                set(key, val) {
-                    if (!isBrowser) return;
-                    let value = val;
-                    if (isPlainObject_default()(value) || value instanceof Array) value = JSON.stringify(value);
-                    const storage = window[storageName];
-                    storage[key] = value;
-                },
-                del(key) {
-                    if (!isBrowser) return;
-                    const storage = window[storageName];
-                    storage.removeItem(key);
-                }
-            };
-        }
-        const [sessionStorage, localStorage] = [ "sessionStorage", "localStorage" ].map(getStorage);
-        const utils = {
-            sessionStorage,
-            localStorage
-        };
-        const storage = utils;
+        const queryEmailByToken = data => request_request.post("/user/front/userinfo/queryEmailByToken", data);
         class ActivateAccount extends customer {
             constructor({id}) {
                 super({
@@ -7065,7 +7099,9 @@
                 this.policy = null;
                 this.subscribe = null;
                 this.registerForm = null;
+                this.subsEmail = null;
                 this.email = new URLSearchParams(window.location.search).get("email");
+                this.token = this.query.token;
                 this.status = "register";
                 this.discountCode = null;
                 this.applyed = false;
@@ -7079,9 +7115,23 @@
                 this.$discountCodeImg = __SL_$__(`#${this.formId} .customer-activate__discount-img img`);
             }
             beforeCreate() {
-                if (!this.email) this.getEmailCustomConfig(); else {
+                this.$form.on("submit", (e => {
+                    e.preventDefault();
+                }));
+                if (!this.token && !this.email) this.getEmailCustomConfig(); else if (this.token) {
                     const registerTypes = state_selector_SL_State.get("shop.store_register_config.types").split(",");
-                    if (!registerTypes.includes("email")) redirectPage(SIGN_IN); else checkAccountState({
+                    if (!registerTypes.includes("email")) redirectPage(SIGN_IN); else {
+                        this.getEmailCustomConfig();
+                        queryEmailByToken({
+                            token: this.token,
+                            scene: "activateUser"
+                        }).then((({data}) => {
+                            this.subsEmail = data;
+                        }));
+                    }
+                } else if (this.email) {
+                    this.subsEmail = this.email;
+                    checkAccountState({
                         account: this.email
                     }).then((({data}) => {
                         if (data) {
@@ -7126,7 +7176,7 @@
                     id: this.formId,
                     fields: getFormFields([ "password" ]),
                     onSubmit: data => {
-                        if (!this.email) return Promise.resolve();
+                        if (!this.token && !this.email) return Promise.resolve();
                         return this.onSubmit(data).catch((e => {
                             this.onError(e);
                         }));
@@ -7160,32 +7210,53 @@
                 }
                 if (data && "undefined" !== typeof data.subscription) this.subscribe && this.subscribe.setSubscriptionEmail(data && data.subscription);
                 const params = this.UDBParams;
-                const payload = {
-                    acct: this.email,
-                    passwd: data.password,
-                    eventid: this.eid,
-                    extinfo: JSON.stringify({
-                        discountCodeFlag: !!this.discountCode
-                    })
-                };
-                return checkAccount(super.formatRequestBody({
-                    ...params,
-                    acct: payload.acct
-                })).then((({stoken}) => {
-                    super.updateToken(params, {
-                        stoken
-                    });
+                if (this.token) {
+                    const payload = {
+                        pwd: data.password,
+                        token: this.token,
+                        extinfo: JSON.stringify({
+                            discountCodeFlag: !!this.discountCode
+                        })
+                    };
                     return this.onSignUp({
                         payload,
                         params
                     });
-                })).catch((res => {
-                    this.subscribe && this.subscribe.onSubscribeEmail && this.subscribe.onSubscribeEmail(payload && payload.acct);
-                    return Promise.reject(res);
-                }));
+                }
+                if (this.email) {
+                    const payload = {
+                        acct: this.email,
+                        passwd: data.password,
+                        eventid: this.eid,
+                        extinfo: JSON.stringify({
+                            discountCodeFlag: !!this.discountCode
+                        })
+                    };
+                    return checkAccount(super.formatRequestBody({
+                        ...params,
+                        acct: payload.acct
+                    })).then((({stoken}) => {
+                        super.updateToken(params, {
+                            stoken
+                        });
+                        return this.onSignUp({
+                            payload,
+                            params
+                        });
+                    })).catch((res => {
+                        this.subscribe && this.subscribe.onSubscribeEmail && this.subscribe.onSubscribeEmail(payload && payload.acct);
+                        return Promise.reject(res);
+                    }));
+                }
             }
             onSignUp({payload, params}) {
-                return signUpMember(super.formatRequestBody({
+                if (this.token) return activateByToken(super.formatRequestBody({
+                    ...payload,
+                    ...params
+                })).then((({data: resData}) => this.onSignUpSuccess(resData && resData.extUIMsg && resData.extUIMsg.ck || {}))).finally((() => {
+                    this.subscribe && this.subscribe.onSubscribeEmail && this.subscribe.onSubscribeEmail(this.subsEmail);
+                }));
+                if (this.email) return signUpMember(super.formatRequestBody({
                     ...payload,
                     ...params
                 })).then((({data: resData}) => this.onSignUpSuccess(resData && resData.extUIMsg && resData.extUIMsg.ck || {}))).finally((() => {
@@ -7244,11 +7315,11 @@
                 const registeredCode = [ EMAIL_REGISTERED ];
                 if (!e) return;
                 if (registeredCode.includes(e.rescode)) {
-                    const formValue = this.registerForm && this.registerForm.getValue();
-                    storage.sessionStorage.set(DEFAULT_FORM_VALUE, {
-                        username: this.email,
-                        password: formValue.password
-                    });
+                    redirectPage(SIGN_IN);
+                    return;
+                }
+                if (TOKEN_ERROR_CODE.includes(e.rescode)) {
+                    storage.sessionStorage.set(ACCOUNT_ACTIVATED_TOKEN_EXPIRED, true);
                     redirectPage(SIGN_IN);
                     return;
                 }

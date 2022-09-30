@@ -19,11 +19,11 @@
           <div class="account-item__name">
             <div class="account-item__firstname">
               <div class="account-item__title">{{ t 'customer.account.first_name' }}</div>
-              {{ snippet 'customer/base/sl-input' attrs='maxlength="255"' }}
+              {{ snippet 'customer/base/sl-input' attrs='maxlength="128"' }}
             </div>
             <div class="account-item__lastname">
               <div class="account-item__title">{{ t 'customer.account.last_name' }}</div>
-              {{ snippet 'customer/base/sl-input' attrs='maxlength="255"' }}
+              {{ snippet 'customer/base/sl-input' attrs='maxlength="128"' }}
             </div>
           </div>
           <div class="account-item__modify--error hide">
@@ -34,23 +34,23 @@
     </div>
 
     {{!-- 邮箱 --}}
-    <div class="account-item">
+    <div class="account-item" data-type="email-content" {{ cond (or (boolean userInfo.email '==' null) (boolean userInfo.email '==' '')) 'data-no-email' 'data-has-email' }}>
       <div class="account-item__title">{{ t 'customer.account.email' }}</div>
-      <div class="account-item__content">
-        {{#if userInfo.email}}
-          <span class="account-item__value notranslate">{{ userInfo.email }}</span>
-          <div class="account-item__modify" data-show="edit">
+      <div class="account-item__content" data-has-email-content>
+          <span class="account-item__value notranslate account-item__email">{{ userInfo.email }}</span>
+          <div class="account-item__modify"  data-show="edit">
             <a href="javascript:void(0)" data-type="email" data-path="/user/bind?mode=email">
               {{ snippet 'icons/icon_edit' }}
               <span class="account-item__modify-text">{{ t 'customer.account.modify_email' }}</span>
             </a>
           </div>
-        {{else}}
+      </div>
+
+      <div class="account-item__content" data-no-email-content>
           <a class="account-item__modify" href="javascript:void(0)" data-type="email" data-path="/user/bind?mode=email">
             {{ snippet 'icons/icon_add' }}
             <span class="account-item__modify-text">{{ t 'customer.account.bind' }}</span>
           </a>
-        {{/if}}
       </div>
     </div>
 
@@ -174,3 +174,5 @@
     </div>
   {{/snippet}}
 {{/if}}
+
+{{ snippet 'customer/account/modify-email' id='customer-center-modify-email-modal' }}

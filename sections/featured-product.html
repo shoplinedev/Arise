@@ -1,4 +1,8 @@
-{{ inline_stylesheet 'featured-product/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'featured-product/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'featured-product/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}
@@ -72,6 +76,18 @@
       "id": "default_selected_sku",
       "label": "t:sections.featured-product.settings.default_selected_sku.label",
       "default": true
+    },
+    {
+      "id": "product_image_show_sku_image",
+      "type": "switch",
+      "label": "t:sections.featured-product.settings.product_image_show_sku_image.label",
+      "default": true
+    },
+    {
+      "id": "product_show_swiper_arrow",
+      "type": "switch",
+      "label": "t:sections.featured-product.settings.product_show_swiper_arrow.label",
+      "default": false
     },
     {
       "type": "switch",
@@ -200,7 +216,9 @@
         "show_background": false,
         "video_loop": false,
         "video_mute": true,
-        "default_selected_sku": true
+        "default_selected_sku": true,
+        "product_image_show_sku_image": true,
+        "product_show_swiper_arrow": false
       },
       "blocks": [
         {

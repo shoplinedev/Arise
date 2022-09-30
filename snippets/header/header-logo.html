@@ -68,10 +68,10 @@
               }
             }
         {{/style}}
-        {{#if global.template '===' 'index'}}
+        {{#if global.templateAlias '===' 'Home'}}
             <h1 class="shopline-element-header-logo header__logo title-font">
         {{/if}}
-        {{#if global.template '!==' 'index'}}
+        {{#if global.templateAlias '!==' 'Home'}}
             <div class="shopline-element-header-logo header__logo title-font">
         {{/if}}
 
@@ -109,10 +109,10 @@
                 <a href="{{ global.rootUrl }}" class="notranslate">{{ global.storeInfo.name }}</a>
         {{/if}}
 
-        {{#if global.template '===' 'index'}}
+        {{#if global.templateAlias '===' 'Home'}}
             </h1>
         {{/if}}
-        {{#if global.template '!==' 'index'}}
+        {{#if global.templateAlias '!==' 'Home'}}
             </div>
         {{/if}}
     {{/with}}
@@ -127,11 +127,11 @@
     }
 	{{/style}}
 
-	{{#if template '===' 'index'}}
+	{{#if templateAlias '===' 'Home'}}
 		<h1 class="shopline-element-header-logo header__logo title-font">
 	{{/if}}
 
-	{{#if template '!==' 'index'}}
+	{{#if templateAlias '!==' 'Home'}}
 		<div class="shopline-element-header-logo header__logo title-font">
 	{{/if}}
 
@@ -139,11 +139,11 @@
 		{{ storeInfo.name }}
 	</a>
 
-	{{#if template '===' 'index'}}
+	{{#if templateAlias '===' 'Home'}}
 		</h1>
 	{{/if}}
 
-	{{#if template '!==' 'index'}}
+	{{#if templateAlias '!==' 'Home'}}
 		</div>
 	{{/if}}
 {{/if}}

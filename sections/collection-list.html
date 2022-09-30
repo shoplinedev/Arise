@@ -3,7 +3,11 @@ collection_products:
   limit: 0
 ---
 {{!-- 不需要商品数据只需要分类数据 所以设置为0 提高响应速度 --}}
-{{ inline_stylesheet 'collection-list/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'collection-list/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'collection-list/index.min.css' }}
+{{/is_modern_browser}}
 {{!-- <link rel="stylesheet" href="{{ assets_url 'collection-list/index.min.css' }}"/> --}}
 
 <script>

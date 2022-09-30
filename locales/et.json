@@ -5,6 +5,22 @@
       "read_btn_text": "Loe rohkem",
       "title": "Blogi"
     },
+    "comment": {
+      "comment": "Kommenteeri",
+      "comment_audit_tip": "Teie kommentaar on esitatud ja vajab ülevaatamist.",
+      "comment_empty": "Palun täitke kommentaarid",
+      "email": "Post",
+      "email_empty": "E-post ei tohi olla tühi",
+      "email_format": "Palun sisesta õige email",
+      "form_title": "Kommenteeri",
+      "loadmore": "lae rohkem",
+      "name": "Nimi",
+      "name_empty": "Palun sisestage nimi",
+      "submit": "Esita",
+      "submit_audit_tip": "Esitatud edukalt, ootel ülevaatust",
+      "success": "Esitatud edukalt",
+      "title": "{{comment_length}} kommentaari"
+    },
     "general": {
       "back_to": "Tagasta {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Tellimuse üksikasjad",
       "package_amount": "Pakk {{num}}（{{item}} toodet）",
       "pay_amount": "maksta summa",
+      "paymentVoucher": {
+        "downloadDoc": "Laadige fail alla",
+        "format": "Vormingus",
+        "formatLimit": "Toetus .jpg, .png .pdf-failidele alla 20 MB. Saate üles laadida kuni 5 pilti",
+        "uploadAmount": "{{num}} maksetõend on üles laaditud",
+        "uploadLimit": "Üleslaadimine.jpg .png .pdf faili alla 20 MB"
+      },
       "payment_voucher_confirmation": "Sain aru",
       "payment_voucher_transfer_success": "Makse edastamine õnnestus",
       "payment_voucher_waiting_for_payment": "Ootan makset",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Sobimatu e-posti aadress"
+    },
     "account": {
       "account_binding": "Konto sidumine",
       "account_information": "Konto",
@@ -197,6 +223,10 @@
       "bind": "Sidumine",
       "birthday": "Sünnikuupäev",
       "change_password": "Muuda salasõna",
+      "confirm_btn": "Kinnitada",
+      "confirm_subscription_modal_btn": "Tellimus kinnitamine",
+      "confirm_subscription_modal_content": "Esitasite varem tellimus. Sellele e-posti aadressile on saadetud kinnitusmeil. Saate seda oma e-kirjas kinnitada või klõpsata sellel nupul.",
+      "confirm_subscription_modal_title": "Kinnitage oma tellimus e-posti teel.",
       "credit_card_number": "Krediitkaardi number",
       "deadline": "Kommertsaruannete loomiseks on teie tellimus alati nähtav. Teie konto andmed kustutatakse {{time}}, saate protsessi enne seda kuupäeva tühistada",
       "delete_account": "Sulgemisarve",
@@ -211,6 +241,7 @@
       "ip_address": "IP-aadress",
       "last_name": "Perekonnanimi",
       "modify_email": "Muuda e-kirja",
+      "modify_email_modal_title": "Muuda e-kirja",
       "modify_phone": "Muuda telefoni",
       "name": "Nimi",
       "next": "Edasi",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Kõigepealt seo e-kiri või mobiiltelefon",
       "revoke": "Tühistamine",
       "revoke_message": "See konto on suletud, konto andmed kustutatakse {{time}}, protseduuri saate enne seda kuupäeva tühistada",
+      "save_btn": "SALVESTA",
       "select__date": "Vali kuupäev",
+      "subscribe_confirm_tip": "Täname teid tellimus eest.",
       "timeout_tip": "Toiming aegus, kinnitage uuesti",
       "username": "Nimi",
       "verify_email_message": "Enne konto sulgemist peame kontrollima teie identiteeti\nTeie e-posti aadress {{email}} saab kontrollimeili",
@@ -238,7 +271,8 @@
       "discount_title": "Aktiveerige konto ja saate sooduskoodi",
       "normal_title": "Aktiveerige konto",
       "subscription_text": "Liituge e-kirjadega, et saada värskendusi, pääseda juurde eksklusiivsetele pakkumistele ja muule.",
-      "success_title": "Palju õnne suurepärase allahindluse saamise puhul"
+      "success_title": "Palju õnne suurepärase allahindluse saamise puhul",
+      "token_expired": "Link on aegunud"
     },
     "address": {
       "add_address": "Lisa uus aadress",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Parool ununenud",
+      "reset_password": "PAROOLI LÄHTESTAMINE",
       "tips_password_can_be_changed_after_verification": "Pärast kinnituse saamist saad parooli ära muuta",
-      "tips_reset_password": "Oled lähtestamas konto {{account}} parooli"
+      "tips_reset_password": "Oled lähtestamas konto {{account}} parooli",
+      "token_expired": "Parooli lähtestamise Ühendus on aegunud"
     },
     "general": {
       "account": "KONTO",
@@ -333,6 +369,10 @@
       "error_message_3009": "Mobiil on seotud teiste kontodega",
       "error_message_3010": "E-posti aadress on seotud teiste kontodega",
       "error_message_3014": "Koodi saatmine ebaõnnestus",
+      "error_message_3015": "Konto on aktiveeritud",
+      "error_message_3022": "Link on aegunud",
+      "error_message_3023": "Link on vales vormingus",
+      "error_message_3024": "Link vales",
       "error_message_4": "Teenuse erandid",
       "error_message_5": "Teenuse erandid",
       "error_message_6": "Teenuse erandid",
@@ -416,7 +456,8 @@
       "wednesday": "kolmapäev"
     },
     "login": {
-      "member_login_common": "Liikme sisselogimine"
+      "member_login_common": "Liikme sisselogimine",
+      "subscribe_confirm_tip": "Täname teid tellimus eest. Parema kogemuse saamiseks võite registreeruda."
     },
     "message": {
       "input_placeholder": "Kas soovid millegi kohta sõnumi jätta?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-posti",
       "email_subscription_text": "Tellimuse pakkumise informatsiooni saamine e-posti teel",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Mobiiltelefon",
       "phone_subscription_text": "Telli telefonikampaania",
@@ -474,6 +515,7 @@
       "send_success": "Täname, et võtsite meiega ühendust ja me vastame teile niipea kui võimalik."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Vale e-posti aadressi formaat",
       "subscribe_success": "Tellimine õnnestus"
     },
@@ -499,6 +541,14 @@
       "refund": "Tagasimaksete põhimõtted",
       "service": "Kasutustingimused",
       "shipping": "Saatmise põhimõtted"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "üleslaadimise aeg",
+        "detail": "Detail"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "VÄLJA MÜÜDUD",
       "products": "toodet",
       "recommend": "Soovitatud",
+      "sale": "Müüa nagu soojad saiad",
       "save": "Soodushind {{{priceDom}}}",
       "save_byjs": "Soodushind {{priceDom}}",
       "save_ratio": "{{price}}% allahindlus",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Koopia",
       "activity_banner_free_shipping": "Tasuta saatmine",
       "activity_banner_threshold": "Tellimused üle {{threshold}}",
+      "activity_selector_new_arrivals": "Uustulnuk",
       "activity_selector_price_high_to_low": "Hind kõrge kuni madal",
       "activity_selector_price_low_to_high": "Hind madal kuni kõrge",
       "activity_selector_recommended": "Soovitage",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Ostke {{threshold}}, nautida {{willSave}} allahindlust {{benefitCount}} kaupadele",
         "b12_t1_s3_free": "Palju õnne! Teil on {{benefitCount}} TASUTA üksused!",
         "b12_t1_s3_normal": "Palju õnne! Teil on {{saved}} allahindlust {{benefitCount}} üksused!",
+        "b14_t1_s1": "Osta {{nextMinThreshold}} tükki jaoks {{willSave}}",
+        "b14_t1_s2": "Palju õnne! Teil on {{currentMinThreshold}} tükki {{saved}}. Ostke rohkem {{threshold}}, et nautida {{nextMinThreshold}} tükki {{willSave}}!",
+        "b14_t1_s3": "Palju õnne! Teil on {{currentMinThreshold}} tükki {{saved}}!",
         "b1_t0_s1": "Osta veel {{threshold}}, et säästa {{willSave}}",
         "b1_t0_s2": "Säästa juba {{saved}}! {{br}}Osta {{threshold}} rohkem, et säästa {{willSave}}",
         "b1_t0_s3": "Õnnitlused! Oled säästnud {{saved}}.",
@@ -695,10 +750,24 @@
         "b2_t0": "Osta {{threshold}}, et säästa {{save}}",
         "b2_t1": "Osta {{threshold}} SAA {{save}} ALLAHINDLUST",
         "label": "Soodustus:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Osta {{nextMinThreshold}} tükki jaoks {{willSave}}",
+            "step2": "Palju õnne! Teil on {{currentMinThreshold}} tükki {{saved}}. Ostke rohkem {{threshold}}, et nautida {{nextMinThreshold}} tükki {{willSave}}!",
+            "step3": "Palju õnne! Teil on {{currentMinThreshold}} tükki {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Ümardamine"
+      }
+    },
     "payments-name": {
       "COD": "Tasumine kättesaamisel",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Soodushind",
       "free_charge": "Tasuta saatmine",
       "free_shipping": "tasuta saatmine",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Müüja täiendav soodustus",
       "order_tax": "Maksud",
       "order_tip": "Nõuanne",

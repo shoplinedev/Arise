@@ -37,7 +37,7 @@
       }
     },
     "apps": {
-      "name": "app-block-section",
+      "name": "應用",
       "settings": {
         "include_margins": {
           "label": "使節邊距與主題相同"
@@ -490,6 +490,12 @@
         "product_id": {
           "label": "商品"
         },
+        "product_image_show_sku_image": {
+          "label": "主圖展示SKU圖片"
+        },
+        "product_show_swiper_arrow": {
+          "label": "展示滑動箭頭"
+        },
         "show_background": {
           "label": "顯示背景色塊"
         },
@@ -689,6 +695,13 @@
         "show_cart_entry": {
           "label": "顯示購物車入口"
         },
+        "show_currency_flags": {
+          "label": "展示貨幣符號"
+        },
+        "show_currency_selector": {
+          "info": "若要添加貨幣，可前往[貨幣設置](/admin/settings/base)",
+          "label": "展示貨幣選擇器"
+        },
         "show_line_separator": {
           "label": "顯示分割線"
         },
@@ -701,6 +714,13 @@
         },
         "show_user_entry": {
           "label": "顯示個人中心入口"
+        },
+        "sticky_collection": {
+          "info": "配置分類頁封面後生效",
+          "label": "分類啟用透明頁頭"
+        },
+        "sticky_index": {
+          "label": "首頁啟用透明頁頭"
         },
         "suggested_menu": {
           "info": "配置菜單後，首次打開搜索時會使用菜單欄以提供建議",
@@ -1227,7 +1247,7 @@
             },
             "video_url": {
               "info": "輸入YouTube或Vimeo嵌入鏈接",
-              "label": "視頻鏈接"
+              "label": "選擇視頻"
             }
           }
         }
@@ -1422,6 +1442,9 @@
         "group_header__1": {
           "label": "側欄篩選"
         },
+        "infinite_scroll": {
+          "label": "啟用無限滾動"
+        },
         "per_page_num": {
           "label": "每頁商品數量"
         },
@@ -1450,6 +1473,21 @@
           },
           "options__4": {
             "label": "2:3"
+          }
+        },
+        "product_sub_title": {
+          "label": "",
+          "options__0": {
+            "label": "不顯示"
+          },
+          "options__1": {
+            "label": "完整展示"
+          },
+          "options__2": {
+            "label": "最多展示1行"
+          },
+          "options__3": {
+            "label": "最多展示2行"
           }
         },
         "sorter_enable": {
@@ -1493,20 +1531,155 @@
             "product_custom_tab1": {
               "label": "自定義內容1"
             },
+            "product_custom_tab1_desc": {
+              "label": "文本描述"
+            },
             "product_custom_tab1_fold": {
               "label": "折疊展示"
+            },
+            "product_custom_tab1_icon": {
+              "label": "圖標",
+              "options__0": {
+                "label": "不顯示"
+              },
+              "options__1": {
+                "label": "安全支付"
+              },
+              "options__10": {
+                "label": "物流"
+              },
+              "options__11": {
+                "label": "折扣標籤"
+              },
+              "options__2": {
+                "label": "包裹"
+              },
+              "options__3": {
+                "label": "電子郵箱"
+              },
+              "options__4": {
+                "label": "定位"
+              },
+              "options__5": {
+                "label": "顧客"
+              },
+              "options__6": {
+                "label": "聊天"
+              },
+              "options__7": {
+                "label": "禮物"
+              },
+              "options__8": {
+                "label": "手機"
+              },
+              "options__9": {
+                "label": "幫助信息"
+              }
+            },
+            "product_custom_tab1_title": {
+              "label": "標題"
             },
             "product_custom_tab2": {
               "label": "自定義內容2"
             },
+            "product_custom_tab2_desc": {
+              "label": "文本描述"
+            },
             "product_custom_tab2_fold": {
               "label": "折疊展示"
+            },
+            "product_custom_tab2_icon": {
+              "label": "圖標",
+              "options__0": {
+                "label": "不顯示"
+              },
+              "options__1": {
+                "label": "安全支付"
+              },
+              "options__10": {
+                "label": "物流"
+              },
+              "options__11": {
+                "label": "折扣標籤"
+              },
+              "options__2": {
+                "label": "包裹"
+              },
+              "options__3": {
+                "label": "電子郵箱"
+              },
+              "options__4": {
+                "label": "定位"
+              },
+              "options__5": {
+                "label": "顧客"
+              },
+              "options__6": {
+                "label": "聊天"
+              },
+              "options__7": {
+                "label": "禮物"
+              },
+              "options__8": {
+                "label": "手機"
+              },
+              "options__9": {
+                "label": "幫助信息"
+              }
+            },
+            "product_custom_tab2_title": {
+              "label": "標題"
             },
             "product_custom_tab3": {
               "label": "自定義內容3"
             },
+            "product_custom_tab3_desc": {
+              "label": "文本描述"
+            },
             "product_custom_tab3_fold": {
               "label": "折疊展示"
+            },
+            "product_custom_tab3_icon": {
+              "label": "圖標",
+              "options__0": {
+                "label": "不顯示"
+              },
+              "options__1": {
+                "label": "安全支付"
+              },
+              "options__10": {
+                "label": "物流"
+              },
+              "options__11": {
+                "label": "折扣標籤"
+              },
+              "options__2": {
+                "label": "包裹"
+              },
+              "options__3": {
+                "label": "電子郵箱"
+              },
+              "options__4": {
+                "label": "定位"
+              },
+              "options__5": {
+                "label": "顧客"
+              },
+              "options__6": {
+                "label": "聊天"
+              },
+              "options__7": {
+                "label": "禮物"
+              },
+              "options__8": {
+                "label": "手機"
+              },
+              "options__9": {
+                "label": "幫助信息"
+              }
+            },
+            "product_custom_tab3_title": {
+              "label": "標題"
             }
           }
         },
@@ -1660,6 +1833,9 @@
             "label": "縮略圖平鋪"
           }
         },
+        "product_image_show_sku_image": {
+          "label": "主圖展示SKU圖片"
+        },
         "product_image_size": {
           "label": "電腦端商品圖片大小",
           "options__0": {
@@ -1683,6 +1859,13 @@
           "options__1": {
             "label": "顯示縮略圖"
           }
+        },
+        "product_show_swiper_arrow": {
+          "label": "展示滑動箭頭"
+        },
+        "video_autoplay": {
+          "info": "開啟後視頻默認靜音，若為YouTube視頻則無法播放聲音",
+          "label": "自動播放視頻"
         },
         "video_loop": {
           "label": "啟用視頻循環"
@@ -2385,7 +2568,7 @@
         },
         "url": {
           "info": "輸入YouTube或Vimeo嵌入鏈接",
-          "label": "視頻鏈接"
+          "label": "選擇視頻"
         }
       }
     }
@@ -2465,6 +2648,9 @@
           },
           "options__1": {
             "label": "進入購物車頁"
+          },
+          "options__2": {
+            "label": "已成功加購提示"
           }
         }
       }

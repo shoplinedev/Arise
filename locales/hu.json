@@ -5,6 +5,22 @@
       "read_btn_text": "Olvass tovább",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Megjegyzés",
+      "comment_audit_tip": "Megjegyzését elküldtük, és azt felül kell vizsgálni.",
+      "comment_empty": "Kérjük, töltse ki a megjegyzéseket",
+      "email": "Levél",
+      "email_empty": "Az e-mail nem lehet üres",
+      "email_format": "Kérjük, adja meg a helyes e-mail címet",
+      "form_title": "Megjegyzés",
+      "loadmore": "töltsön be többet",
+      "name": "Név",
+      "name_empty": "Kérjük, írja be a nevet",
+      "submit": "Beküldés",
+      "submit_audit_tip": "Sikeresen elküldve, ellenőrzésre vár",
+      "success": "Sikeresen elküldve",
+      "title": "{{comment_length}} megjegyzés"
+    },
     "general": {
       "back_to": "Visszaküldés: {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Megrendelés részletei",
       "package_amount": "Csomag {{num}}({{item}} tétel)",
       "pay_amount": "fizetési összeget",
+      "paymentVoucher": {
+        "downloadDoc": "Fájl letöltése",
+        "format": "Formátum",
+        "formatLimit": "A 20 MB-nál kisebb méretű .jpg, .png, .pdf fájlokat támogatja. Legfeljebb 5 képet tölthet fel",
+        "uploadAmount": "{{num}} utalvány feltöltve",
+        "uploadLimit": "20 MB-nál kisebb méretű .jpg, .png, .pdf fájlokat töltsön fel."
+      },
       "payment_voucher_confirmation": "Megvan",
       "payment_voucher_transfer_success": "A fizetés sikeresen átutalva",
       "payment_voucher_waiting_for_payment": "fizetésre vár",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Érvénytelen e-mail-cím"
+    },
     "account": {
       "account_binding": "Fiók összekapcsolása",
       "account_information": "Fiók",
@@ -197,6 +223,10 @@
       "bind": "Összekapcsolás",
       "birthday": "Születésnap",
       "change_password": "Jelszó módosítása",
+      "confirm_btn": "megerősít",
+      "confirm_subscription_modal_btn": "Feliratkozás megerősítése",
+      "confirm_subscription_modal_content": "Ön korábban elküldte feliratkozását. Egy megerősítő e-mailt küldtünk erre az e-mail-címre. Megerősítheti e-mailben vagy kattintson erre a gombra.",
+      "confirm_subscription_modal_title": "Erősítse meg e-mail feliratkozását.",
       "credit_card_number": "Hitelkártya szám",
       "deadline": "Üzleti jelentés céljából a rendelése továbbra is látható lesz. Az Ön fiókadatait a következő időpontban töröljük: {{time}}, a folyamatot ezen időpont előtt megszakíthatja",
       "delete_account": "Fiók lezárása",
@@ -211,6 +241,7 @@
       "ip_address": "IP cím",
       "last_name": "Vezetéknév",
       "modify_email": "E-mail módosítása",
+      "modify_email_modal_title": "E-mail módosítása",
       "modify_phone": "Telefon módosítása",
       "name": "Név",
       "next": "Tovább",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Kérjük, csatoljon e-mailt vagy a mobiltelefont",
       "revoke": "Lezárás megszakítása",
       "revoke_message": "Ennek a fióknak a lezárása folyamatban van, az Ön fiókadatait a következő időpontban töröljük: {{time}}, a folyamatot ezen időpont előtt megszakíthatja",
+      "save_btn": "MENTÉS",
       "select__date": "Dátum választás",
+      "subscribe_confirm_tip": "Köszönjük, hogy feliratkozott.",
       "timeout_tip": "A művelet időtúllépése, újraértékelése",
       "username": "Név",
       "verify_email_message": "A fiók lezárása előtt ellenőriznünk kell személyazonosságát\nAz Ön e-mail-címére {{email}} küldünk egy ellenőrző e-mailt",
@@ -238,7 +271,8 @@
       "discount_title": "Aktiválja fiókját és kedvezménykódot kap",
       "normal_title": "Fiók aktiválás",
       "subscription_text": "Iratkozzon fel az e-mailekre és friss híreket kap, valamint hozzáfér az exkluzív ajánlatokhoz és még sok máshoz.",
-      "success_title": "Gratulálunk, nagyszerű kedvezményt kapott"
+      "success_title": "Gratulálunk, nagyszerű kedvezményt kapott",
+      "token_expired": "Az Ön hivatkozása lejárt"
     },
     "address": {
       "add_address": "Új cím hozzáadása",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Elfelejtett jelszó",
+      "reset_password": "JELSZÓ VISSZAÁLLÍTÁSA",
       "tips_password_can_be_changed_after_verification": "Az ellenőrzés után módosíthatja a jelszót",
-      "tips_reset_password": "Visszaállítja a(z) {{account}} fiók jelszavát"
+      "tips_reset_password": "Visszaállítja a(z) {{account}} fiók jelszavát",
+      "token_expired": "Az Ön jelszó-visszaállító hivatkozása lejárt"
     },
     "general": {
       "account": "FIÓK",
@@ -333,6 +369,10 @@
       "error_message_3009": "A mobil más fiókokhoz lett csatolva",
       "error_message_3010": "Az e-mail más fiókokhoz lett csatolva",
       "error_message_3014": "Szöveges üzenet/levél sablon megjelenítés nem sikerült",
+      "error_message_3015": "A fiók aktiválva lett",
+      "error_message_3022": "A hivatkozás lejárt",
+      "error_message_3023": "A hivatkozás hibás",
+      "error_message_3024": "Hivatkozásparaméter-hiba",
       "error_message_4": "Szolgáltatás kivételek",
       "error_message_5": "Szolgáltatás kivételek",
       "error_message_6": "Szolgáltatás kivételek",
@@ -416,7 +456,8 @@
       "wednesday": "Szerda"
     },
     "login": {
-      "member_login_common": "Bejelentkezés tagoknak"
+      "member_login_common": "Bejelentkezés tagoknak",
+      "subscribe_confirm_tip": "Köszönjük, hogy feliratkozott. Bejelentkezzen be a jobb élményért."
     },
     "message": {
       "input_placeholder": "Van valami, amit el akar mondani?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mail",
       "email_subscription_text": "Kapja meg e-mailben az előfizetéssel kapcsolatos promóciós információkat",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Mobiltelefon",
       "phone_subscription_text": "Feliratkozás telefon promócióra",
@@ -474,6 +515,7 @@
       "send_success": "Köszönjük, hogy felvette velünk a kapcsolatot, a lehető leghamarabb fel fogjuk venni Önnel a kapcsolatot. "
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Hibás e-mail cím formátum",
       "subscribe_success": "Sikeres feliratkozás"
     },
@@ -499,6 +541,14 @@
       "refund": "Visszatérítési szabályzat",
       "service": "Szolgáltatási feltételeit",
       "shipping": "Szállítási szabályzat"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "feltöltési idő",
+        "detail": "Részlet"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "ELFOGYOTT",
       "products": "termék",
       "recommend": "Ajánlott",
+      "sale": "Eladás",
       "save": "Kedvezmény {{{priceDom}}}",
       "save_byjs": "Kedvezmény {{priceDom}}",
       "save_ratio": "{{price}}% kedvezmény",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Másolás",
       "activity_banner_free_shipping": "Ingyenes szállítás",
       "activity_banner_threshold": "Rendelések {{threshold}} felett",
+      "activity_selector_new_arrivals": "Újonnan érkezők",
       "activity_selector_price_high_to_low": "Ár magastól alacsonyig",
       "activity_selector_price_low_to_high": "Ár alacsonytól magasig",
       "activity_selector_recommended": "Ajánlott",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Vásároljon {{threshold}} tételt, és {{benefitCount}} tételre {{willSave}} kedvezményt kap",
         "b12_t1_s3_free": "Gratulálunk! {{benefitCount}} tételt kapott ingyen!",
         "b12_t1_s3_normal": "Gratulálunk! {{benefitCount}} tételre {{saved}} kedvezményt kapott!",
+        "b14_t1_s1": "Vegyen {{nextMinThreshold}} darabot {{willSave}}-ért",
+        "b14_t1_s2": "Gratulálunk! {{currentMinThreshold}} darabot {{saved}}-ért kapott. Vegyen még {{threshold}} darabot és további {{nextMinThreshold}} darabot kap {{willSave}}-ért!",
+        "b14_t1_s3": "Gratulálunk! {{currentMinThreshold}} darabot {{saved}}-ért kapott!",
         "b1_t0_s1": "Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
         "b1_t0_s2": "Már{{saved}} összeget takarított meg! {{br}}Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
         "b1_t0_s3": "Gratulálunk! {saved}} összeget takarított meg!",
@@ -695,10 +750,24 @@
         "b2_t0": "Vásároljon {{threshold}} összegben és spóroljon {{save}}",
         "b2_t1": "Vásároljon {{threshold}} ÖSSZEGBEN ÉS {{save}} KEDVEZMÉNYT kap",
         "label": "Kedvezmény:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Vegyen {{nextMinThreshold}} darabot {{willSave}}-ért",
+            "step2": "Gratulálunk! {{currentMinThreshold}} darabot {{saved}}-ért kapott. Vegyen még {{threshold}} darabot és további {{nextMinThreshold}} darabot kap {{willSave}}-ért!",
+            "step3": "Gratulálunk! {{currentMinThreshold}} darabot {{saved}}-ért kapott!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Kerekítés"
+      }
+    },
     "payments-name": {
       "COD": "Készpénzben átvételkor",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Kedvezmény",
       "free_charge": "Ingyenes szállítás",
       "free_shipping": "ingyenes szállítás",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Eladói extra kedvezmény",
       "order_tax": "Adó",
       "order_tip": "Borravaló",

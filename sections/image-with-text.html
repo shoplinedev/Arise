@@ -16,7 +16,11 @@
 {{!-- {{ assign 'is_auto_scale' (default image_height '') }} --}}
 {{ assign 'ratio' (append (default (get 'ratio' (img_size image.url)) 100) '%') }}
 
-{{ inline_stylesheet 'image-with-text/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'image-with-text/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'image-with-text/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}

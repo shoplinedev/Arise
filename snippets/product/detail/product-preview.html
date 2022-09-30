@@ -43,6 +43,8 @@
 {{ assign 'show_thumbnail_arrow' (boolean section.settings.product_image_pc_show_style '===' 'carousel') }}
 {{!-- 启用视频循环 --}}
 {{ assign 'video_loop' (default section.settings.video_loop false) }}
+{{!-- 启用视频自动播放 --}}
+{{ assign 'video_autoplay' (default section.settings.video_autoplay false) }}
 {{!-- 展示商品描述 (PDP不跟配置 默认展示) --}}
 {{ assign 'show_product_desc' (default (cond (boolean id '==' 'productDetail') true section.settings.show_product_desc) true) }}
 {{!-- 商品描述展示位置 --}}
@@ -59,6 +61,13 @@
 {{ assign 'product_info_sticky' (default section.settings.product_info_sticky true) }}
 {{!-- 移动端是否显示缩略图 --}}
 {{ assign 'product_mobile_thumbnail_image_hide' (default section.settings.product_mobile_thumbnail_image_hide 'hide') }}
+{{!-- 商品图是否包含sku图 --}}
+{{ assign 'product_image_show_sku_image' (default section.settings.product_image_show_sku_image true) }}
+{{!-- 展示滑动箭头 --}}
+{{ assign 'product_show_swiper_arrow' (default section.settings.product_show_swiper_arrow false) }}
+{{ assign 'spuInfo' product.spu }}
+{{ assign 'sortationList' product.spu.sortationList }}
+{{ assign 'curLinkData' request.uri }}
 
 <div class="product-preview-container __sl-custom-track-{{ id }}"
   data-bnm="{{ product_mobile_thumbnail_image_hide }}"
@@ -67,7 +76,7 @@
   <div class="product-preview-row product-detail-img-postion__{{ product_image_position }}">
     <div class="product-detail-col-img__{{ product_image_size }} product-detail-col-img">
       <div class="{{#and (boolean product_image_show_style '!=' 'flatten') (isTruthy product_info_sticky)}}product-detail-sticky{{/and}}" id="{{#and (boolean product_image_show_style '!=' 'flatten') (isTruthy product_info_sticky)}}product-detail-sticky_{{ id }}{{/and}}">
-        {{ snippet 'product/detail/product-swiper' selectorId=id showThumbnailArrow=show_thumbnail_arrow mobileProductImageIsFull=(if image_width_in_mobile 'full') thumbsDirection=thumbnail_position productImagePos=product_image_position productImageScale=product_image_scale videoMute=video_mute videoLoop=video_loop spu=product.spu selectSku=initSku.selectSku productImageSize=product_image_size productImageShowStyle=product_image_show_style productMobileThumbnailImageHide=product_mobile_thumbnail_image_hide }}
+        {{ snippet 'product/detail/product-swiper' selectorId=id showThumbnailArrow=show_thumbnail_arrow mobileProductImageIsFull=(if image_width_in_mobile 'full') thumbsDirection=thumbnail_position productImagePos=product_image_position productImageScale=product_image_scale videoMute=video_mute videoLoop=video_loop videoAutoplay=video_autoplay spu=product.spu selectSku=initSku.selectSku productImageSize=product_image_size showSkuImg=product_image_show_sku_image showSwiperArrow=product_show_swiper_arrow productImageShowStyle=product_image_show_style productMobileThumbnailImageHide=product_mobile_thumbnail_image_hide }}
         <script>window.lazySizes.loader.immediatelyCheckElems()</script>
       </div>
     </div>
@@ -81,6 +90,17 @@
           {{#if id 'productDetail'}}
           <div class="product-crumbs">
             <a class="body4" href="/">{{ t 'general.general.home' }}</a> /
+            {{#if curLinkData.params.collectionHandle}}
+            {{#forEach sortationList}}
+            {{ assign 'collectionHandle' (decodeURI ../curLinkData.params.collectionHandle) }}
+            {{#if collectionHandle uniqueKey}}
+            <a class="product-crumbs-cateName" href="/collections/{{ collectionHandle }}">{{ sortationName }}</a> /
+            {{/if}}
+            {{/forEach}}
+            {{else}}{{#if sortationList.length 1}}
+            <a class="product-crumbs-cateName" href="/collections/{{ sortationList.[0].uniqueKey }}">{{ sortationList.[0].sortationName }}</a> /
+            {{/if}}{{/if}}
+            <a class="product-crumbs-productName" style="opacity: .6;">{{ spuInfo.title }}</a>
           </div>
           {{/if}}
           {{!-- 保留isv挂载点 --}}
@@ -261,18 +281,18 @@
                   </div>
                   {{/if}}
                   {{#if type '===' 'product-additional'}}
-                  <div class="product-block-item" data-ssr-block-product-additional>
+                  <div class="product-block-item product-block-item__additional" data-ssr-block-product-additional>
                     <div class="product-detail-collapse product-detail-collapse_{{ ../id }}">
                       {{#snippet 'product/commons/base-collapse'}}
-                        {{#if settings.product_custom_tab1}}
-                          {{ snippet 'product/commons/base-collapse-item' customTitleClass='body2' id=settings.product_custom_tab1 fold=settings.product_custom_tab1_fold }}
-                        {{/if}}
-                        {{#if settings.product_custom_tab2}}
-                          {{ snippet 'product/commons/base-collapse-item' customTitleClass='body2' id=settings.product_custom_tab2 fold=settings.product_custom_tab2_fold }}
-                        {{/if}}
-                        {{#if settings.product_custom_tab3}}
-                          {{ snippet 'product/commons/base-collapse-item' customTitleClass='body2' id=settings.product_custom_tab3 fold=settings.product_custom_tab3_fold }}
-                        {{/if}}
+                        {{#or settings.product_custom_tab1 settings.product_custom_tab1_title settings.product_custom_tab1_desc (boolean settings.product_custom_tab1_icon '!=' 'none')}}
+                          {{ snippet 'product/commons/base-collapse-item' customTitleClass='body2' id=settings.product_custom_tab1 fold=settings.product_custom_tab1_fold title=settings.product_custom_tab1_title desc=settings.product_custom_tab1_desc isSyncData=true icon=settings.product_custom_tab1_icon }}
+                        {{/or}}
+                        {{#or settings.product_custom_tab2 settings.product_custom_tab2_title settings.product_custom_tab2_desc (boolean settings.product_custom_tab2_icon '!=' 'none')}}
+                          {{ snippet 'product/commons/base-collapse-item' customTitleClass='body2' id=settings.product_custom_tab2 fold=settings.product_custom_tab2_fold title=settings.product_custom_tab2_title desc=settings.product_custom_tab2_desc isSyncData=true icon=settings.product_custom_tab2_icon }}
+                        {{/or}}
+                        {{#or settings.product_custom_tab3 settings.product_custom_tab3_title settings.product_custom_tab3_desc (boolean settings.product_custom_tab3_icon '!=' 'none')}}
+                          {{ snippet 'product/commons/base-collapse-item' customTitleClass='body2' id=settings.product_custom_tab3 fold=settings.product_custom_tab3_fold title=settings.product_custom_tab3_title desc=settings.product_custom_tab3_desc isSyncData=true icon=settings.product_custom_tab3_icon }}
+                        {{/or}}
                       {{/snippet}}
                     </div>
                   </div>

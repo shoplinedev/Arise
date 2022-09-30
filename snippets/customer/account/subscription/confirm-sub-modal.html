@@ -1,0 +1,21 @@
+{{!-- 用户确认邮箱订阅弹窗 --}}
+{{#snippet
+  'product/commons/base-modal'
+   modalId=id
+   containerClassName="customer-center-modal__container customer-center-confirmSubEmail-modal__container"
+}}
+  <div class="customer-center-confirmSubEmail-modal__content">
+    <div class="customer-center-confirmSubEmail-modal__title">{{ t 'customer.account.confirm_subscription_modal_title' }}</div>
+    <div class="customer-center-confirmSubEmail-modal__desc">
+      {{ t 'customer.account.confirm_subscription_modal_content' }}
+    </div>
+
+    <form  class="customer-center-confirmSubEmail-modal__form" id={{ append id '-form' }}>
+      {{snippet 'customer/form-item/username' types=(split 'email' ',') }}
+
+      {{#snippet 'customer/base/sl-button' class="customer-center-confirmSubEmail-modal__saveBtn submit-button" block=true }}
+        {{ t 'customer.account.confirm_subscription_modal_btn' }}
+      {{/snippet}}
+    </form>
+  </div>
+{{/snippet}}

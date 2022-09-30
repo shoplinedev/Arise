@@ -1,8 +1,19 @@
 {{assign 'animation_row' 1 }}
-
+{{assign 'show_currency_symbol' false}}
+{{assign 'currency_selector' false}}
+{{#if (boolean section.settings.show_currency_selector '&&' currencyConfig.enable)}}
+	{{assign 'currency_selector' true}}
+{{/if}}
 {{assign 'locale_selector' false}}
 {{#if (boolean section.settings.show_locale_selector '&&' storeInfo.languageSetting.enableSelector)}}
 	{{assign 'locale_selector' true}}
+{{/if}}
+{{#if section.settings.show_currency_flags}}
+	{{assign 'show_currency_symbol' true}}
+{{/if}}
+
+{{#if (isTruthy currencyConfig.referenceCurrencies)}}
+	{{assign 'initialCurrency' (find-in-array currencyConfig.referenceCurrencies currencyCode 'currencyCode')}}
 {{/if}}
 
 <div data-ssr-plugin-wishlist="menu-drawer" class="drawer-menu__container">
@@ -23,6 +34,18 @@
                   </span>
               </div>
           {{/if}}
+
+          {{#if global.currency_selector}}
+						{{#with global}}
+							{{assign 'animation_row' (plus global.animation_row 1)}}
+						{{/with}}
+						<div class="grid__item stage-drawer__animation--appear appear-delay-{{ global.animation_row }}">
+							<span class="click body5 locale-currency mobile-nav__link notranslate j-stage-currency __sl-custom-track-stage-currency" data-drawer="menu-drawer-currency">
+								<span>{{#if global.show_currency_symbol}}{{global.initialCurrency.currencySymbol}}{{/if}} {{global.initialCurrency.currencyCode}}</span>
+								{{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
+							</span>
+						</div>
+					{{/if}}
       </div>
     {{/with}}
   </div>
@@ -44,6 +67,49 @@
 					</li>
 				{{/each}}
 			</ul>
+		{{/with}}
+	{{/snippet}}
+{{/if}}
+
+{{#if currency_selector}}
+	{{assign 'sub_animation_row_currency' 1 }}
+	{{#snippet 'global_drawer' id="menu-drawer-currency" position=drawer_position level=2}}
+		{{#with this as |global|}}
+			<div class="drawer-menu-locale-currency locale-currency" data-currency>
+				<div class="currency-search stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row_currency }}">
+					<i>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="11.1429" cy="10.2859" r="6.42857" stroke="currentColor" stroke-width="0.857143" />
+							<path d="M15.8572 15L19.7143 19.2857" stroke="currentColor" stroke-width="0.857143" stroke-linecap="round" />
+						</svg>
+					</i>
+					<input class="j-stage-currency-search body5" type="text">
+				</div>
+
+				{{#with global}}
+					{{assign 'sub_animation_row_currency' (plus global.sub_animation_row_currency 1)}}
+				{{/with}}
+
+				<div class="scroll-container">
+					<ul class="currency-list" data-show-symbol="{{global.show_currency_symbol}}">
+						{{#each global.currencyConfig.referenceCurrencies}}
+							<li class="stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row_currency }}" data-currency-code="{{currencyCode}}"
+								data-currency-symbol="{{currencySymbol}}">
+								{{#with global}}
+									{{assign 'sub_animation_row_currency' (plus global.sub_animation_row_currency 1)}}
+								{{/with}}
+								<span class="click">
+									<span class="body5 notranslate">{{#if global.show_currency_symbol}}{{currencySymbol}}{{/if}} {{currencyCode}}</span>
+								</span>
+							</li>
+						{{/each}}
+					</ul>
+
+					<p class="currency-list--empty body6 text-center stage-no-currency">
+						{{t 'header.noCurrencyFallback'}}
+					</p>
+				</div>
+			</div>
 		{{/with}}
 	{{/snippet}}
 {{/if}}

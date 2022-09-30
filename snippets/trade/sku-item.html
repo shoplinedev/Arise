@@ -1,16 +1,5 @@
 {{!-- 是否使用价格缩小显示 --}}
 {{assign 'useSuperscriptDecimals' (boolean @root.theme.settings.superscript_decimals)}}
-{{#if useSuperscriptDecimals}}
-  {{!-- 小数位分隔符 --}}
-  {{assign 'splitSymbol' (currency_decimal_symbol code=@root.currencyCode lang=@root.request.locale) }}
-  {{#if splitSymbol}}
-    {{assign 'productPriceArr' (split (currency_convert data.productPrice) splitSymbol)}}
-    {{assign 'priceArr' (split (currency_convert data.price) splitSymbol)}}
-  {{else}}
-    {{assign 'productPriceArr' (arrayify (currency_convert data.productPrice))}}
-    {{assign 'priceArr' (arrayify (currency_convert data.price))}}
-  {{/if}}
-{{/if}}
 
 <div class="shopline-element-cart-sku-item trade-cart-sku-item{{#and (compare data.maxPurchaseTotalNum '==' 0) (compare data.maxPurchaseReasonCode '==' "STOCK_OVER")}} sold-out{{/and}}{{#if inactive '==' true}} inactive{{/if}}"
      id="{{trade_cart_type}}{{append '-card-sku-item-' (numToString data.groupId) '-' data.spuId '-' data.skuId '-' (numToString data.uniqueSeq)}}">
@@ -106,11 +95,22 @@
         <div class="trade-cart-sku-item-info-amount body3{{#if (boolean (toInt data.promotionAmount) '>' 0 '&&' (toInt data.productPrice) '>' (toInt data.price))}} has-discount{{/if}}">
           {{#if useSuperscriptDecimals}}
             {{#if (boolean (toInt data.promotionAmount) '>' 0 '&&' (toInt data.productPrice) '>' (toInt data.price))}}
-              <span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount={{data.productPrice}}>{{itemAt productPriceArr 0}}<sup
-                  class="body6">{{ itemAt productPriceArr 1 }}</sup></span>
+              {{#money_exchange_convert_price data.productPrice }}
+                {{#if symbolOrder '==' 'prefix'}}
+                  <span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount={{data.productPrice}}>{{ currencySymbol }}{{ integer }}<sup class="body6">{{ fraction }}</sup></span>
+                {{else}}
+                  <span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount={{data.productPrice}}>{{ integer }}<sup
+                    class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span></span>
+                {{/if}}
+              {{/money_exchange_convert_price}}
             {{/if}}
-            <span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount={{data.price}}><span>{{itemAt priceArr 0}}
-              <sup class="body6">{{ itemAt priceArr 1 }}</sup></span>
+            {{#money_exchange_convert_price data.price }}
+              {{#if symbolOrder '==' 'prefix'}}
+                <span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount={{data.price}}><span>{{ currencySymbol }}{{ integer }}<sup class="body6">{{ fraction }}</sup></span>
+              {{else}}
+                 <span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount={{data.price}}><span>{{ integer }}<sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span></span>
+              {{/if}}
+            {{/money_exchange_convert_price}}
               {{#if (toInt data.priceType) '==' 1}}
                 <span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>
               {{/if}}
@@ -119,10 +119,10 @@
             </span>
           {{else}}
             {{#if (boolean (toInt data.promotionAmount) '>' 0 '&&' (toInt data.productPrice) '>' (toInt data.price))}}
-              <span class="trade-cart-sku-item-info-amount-through notranslate" data-amount={{data.productPrice}}>{{currency_convert data.productPrice}}</span>
+              <span class="trade-cart-sku-item-info-amount-through notranslate" data-amount={{data.productPrice}}>{{money_exchange_convert_with_currency data.productPrice}}</span>
             {{/if}}
             <span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price" data-amount={{data.price}}>
-              {{currency_convert data.price}}{{#if (toInt data.priceType) '==' 1}}<span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>{{/if}}
+              {{money_exchange_convert_with_currency data.price}}{{#if (toInt data.priceType) '==' 1}}<span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>{{/if}}
               {{!-- 实际价格右侧插槽 --}}
               <span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>
             </span>
@@ -138,7 +138,7 @@
               </svg><span>&nbsp;{{t 'sales.general.discount_common'}}</span>
             </div>
             <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion"
-                data-amount={{data.promotionAmount}}>{{currency_convert data.promotionAmount}}</span><span>)</span>
+                data-amount={{data.promotionAmount}}>{{money_exchange_convert_with_currency data.promotionAmount}}</span><span>)</span>
             </div>
           </div>
         {{/if}}

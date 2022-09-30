@@ -35,7 +35,7 @@
           'event',
           'view_item_list',
           {
-            items: [{{#forEach products_list}}{id: '{{ reportSkuId }}', name: '{{ title }}', price: '{{ currency_format productMinPrice }}', list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}All Products{{/if}}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
+            items: [{{#forEach products_list}}{id: '{{ reportSkuId }}', name: '{{ title }}', price: '{{ money_format productMinPrice }}', list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}All Products{{/if}}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
           },
         ],
       ],
@@ -44,7 +44,7 @@
           'event',
           'view_item_list',
           {
-            items: [{{#forEach products_list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_name: '{{ title }}', price: '{{ currency_format productMinPrice }}', item_list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}All Products{{/if}}', index: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
+            items: [{{#forEach products_list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_name: '{{ title }}', price: '{{ money_format productMinPrice }}', item_list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}All Products{{/if}}', index: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
           },
         ],
       ],

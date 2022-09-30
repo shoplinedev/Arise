@@ -5,6 +5,22 @@
       "read_btn_text": "Mehr sehen",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Kommentar",
+      "comment_audit_tip": "Ihr Kommentar wurde übermittelt und muss überprüft werden.",
+      "comment_empty": "Bitte füllen Sie die Kommentare aus",
+      "email": "E-Mail",
+      "email_empty": "E-Mail darf nicht leer sein",
+      "email_format": "Bitte geben Sie die richtige E-Mail-Adresse ein",
+      "form_title": "Kommentar",
+      "loadmore": "Mehr laden",
+      "name": "Name",
+      "name_empty": "Bitte Namen eintragen",
+      "submit": "einreichen",
+      "submit_audit_tip": "Erfolgreich übermittelt, Überprüfung ausstehend",
+      "success": "erfolgreich eingereicht",
+      "title": "{{comment_length}} Kommentare"
+    },
     "general": {
       "back_to": "Geh zurück zu {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Bestelldetails",
       "package_amount": "Paket {{num}}（{{item}} Artikel）",
       "pay_amount": "Auszahlungsbetrag",
+      "paymentVoucher": {
+        "downloadDoc": "Dokumente herunterladen",
+        "format": "Format",
+        "formatLimit": "Beim Hochladen sind JPG-, PNG-, GIF- und PDF-Dateien mit einer Größe bis zu 20 MB unterstützt. Sie können maximal 5 Bilder hochladen.",
+        "uploadAmount": "{{num}} Gutschein(e) wurden hochgeladen",
+        "uploadLimit": "Bitte laden Sie Ihre JPG-, PNG-, GIF- und PDF-Dateien bis zu 20 MB hoch"
+      },
       "payment_voucher_confirmation": "Habe es",
       "payment_voucher_transfer_success": "Zahlung erfolgreich überwiesen",
       "payment_voucher_waiting_for_payment": "Warten auf Zahlung",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Ungültige E-Mail Adresse"
+    },
     "account": {
       "account_binding": "Kontodaten",
       "account_information": "Konto",
@@ -197,6 +223,10 @@
       "bind": "Daten",
       "birthday": "Geburtstag",
       "change_password": "Kennwort ändern",
+      "confirm_btn": "Bestätigen",
+      "confirm_subscription_modal_btn": "Bestätigen Sie das Abonnement",
+      "confirm_subscription_modal_content": "Sie haben bereits ein Abonnement eingereicht. Eine Bestätigungsmail wurde an diese E-Mail-Adresse gesendet. Sie können in der E-Mail bestätigen oder diese Schaltfläche anklicken.",
+      "confirm_subscription_modal_title": "Bitte bestätigen Sie Ihr E-Mail-Abonnement.",
       "credit_card_number": "Kreditkartennummern",
       "deadline": "Für die Geschäftsberichterstattung bleibt Ihre Bestellung weiterhin sichtbar.Ihre Kontodaten werden am {{time}} gelöscht, Sie können diesen Vorgang vor diesem Datum abbrechen",
       "delete_account": "Konto löschen",
@@ -211,6 +241,7 @@
       "ip_address": "IP-Adresse",
       "last_name": "Nachname",
       "modify_email": "E-Mail bearbeiten",
+      "modify_email_modal_title": "E-Mail bearbeiten",
       "modify_phone": "Telefonnummer bearbeiten",
       "name": "Name",
       "next": "Nächste Schritt",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Bitte geben Sie zuerst E-Mail oder Mobiltelefon an",
       "revoke": "Löschen abbrechen",
       "revoke_message": "Ihr Konto wird gelöscht, alle Kontodaten werden am {{time}} gelöscht, Sie können diesen Vorgang vor diesem Datum abbrechen",
+      "save_btn": "SPEICHERN",
       "select__date": "Datum auswählen",
+      "subscribe_confirm_tip": "Vielen Dank für Ihr Abonnement.",
       "timeout_tip": "Der Vorgang ist abgelaufen, bitte erneut überprüfen",
       "username": "Name",
       "verify_email_message": "Bevor Sie Ihr Konto löschen können, müssen wir Ihre Identität überprüfen.Ein E-Mail mit dem Bestätigungscode wird an Ihre angegebene E-Mail-Adresse {{email}} gesendet.",
@@ -238,7 +271,8 @@
       "discount_title": "Aktivieren Sie Ihr Konto und erhalten Sie einen Rabattcode",
       "normal_title": "Aktivieren Sie Ihr Konto",
       "subscription_text": "Abonnieren Sie unseren Newsletter, um E-Mail-Updates zu exklusiven Angeboten und vielem mehr zu erhalten.",
-      "success_title": "Herzlichen Glückwunsch zum Erhalt des Rabatts"
+      "success_title": "Herzlichen Glückwunsch zum Erhalt des Rabatts",
+      "token_expired": "Ihr Link ist nicht mehr gültig"
     },
     "address": {
       "add_address": "Neue Adresse hinzufügen",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Kennwort vergessen",
+      "reset_password": "PASSWORT ZURÜCKSETZEN",
       "tips_password_can_be_changed_after_verification": "Sie können das Kennwort nach der Überprüfung ändern",
-      "tips_reset_password": "Sie setzen das Kennwort für das Konto {{account}} zurück"
+      "tips_reset_password": "Sie setzen das Kennwort für das Konto {{account}} zurück",
+      "token_expired": "Ihr Link zum Zurücksetzen Ihres Passworts ist nicht mehr gültig"
     },
     "general": {
       "account": "KONTO",
@@ -333,6 +369,10 @@
       "error_message_3009": "Die Mobiltelefonnummer ist mit anderen Konten verknüpft",
       "error_message_3010": "Die E-Mail-Adresse ist mit anderen Konten verknüpft",
       "error_message_3014": "Code konnte nicht gesendet werden",
+      "error_message_3015": "Das Konto wurde bereits aktiviert",
+      "error_message_3022": "Der Link ist abgelaufen",
+      "error_message_3023": "Der Link hat ein falsches Format",
+      "error_message_3024": "Falsche Link-Parameter",
       "error_message_4": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_5": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_6": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
@@ -416,7 +456,8 @@
       "wednesday": "Mittwoch"
     },
     "login": {
-      "member_login_common": "Anmeldung für Mitglieder"
+      "member_login_common": "Anmeldung für Mitglieder",
+      "subscribe_confirm_tip": "Danke fürs Abonnieren! Sie können sich einloggen, um eine bessere Erfahrung zu erleben."
     },
     "message": {
       "input_placeholder": "Gibt es etwas, für das Sie eine Nachricht hinterlassen möchten?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-Mail",
       "email_subscription_text": "E-Mail-Angebote abonnieren",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Mobiltelefon",
       "phone_subscription_text": "Telefon-Angebote abonnieren",
@@ -474,6 +515,7 @@
       "send_success": "Vielen Dank für Ihre Kontaktaufnahme. Wir werden uns so schnell wie möglich bei Ihnen melden."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Ungültiges Format der E-Mail-Adresse",
       "subscribe_success": "Abonniert"
     },
@@ -499,6 +541,14 @@
       "refund": "Rückgaberecht",
       "service": "Nutzungsbedingungen",
       "shipping": "Versandbedingungen"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "Upload-Zeit",
+        "detail": "Details"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "AUSVERKAUFT",
       "products": "Produkte",
       "recommend": "Empfohlen",
+      "sale": "\nVerkauf ",
       "save": "{{{priceDom}}} sparen",
       "save_byjs": "{{priceDom}} sparen",
       "save_ratio": "{{price}}% Rabatt",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Kopieren",
       "activity_banner_free_shipping": "kostenloser Versand",
       "activity_banner_threshold": "Ab einem Bestellwert {{threshold}}",
+      "activity_selector_new_arrivals": "Neuheiten",
       "activity_selector_price_high_to_low": "Preis absteigend",
       "activity_selector_price_low_to_high": "Preis aufsteigend",
       "activity_selector_recommended": "Empfehlen",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "{{threshold}} Stk kaufen und erhalten Sie eine Reduzierung {{willSave}} auf {{benefitCount}} Stk Artikel",
         "b12_t1_s3_free": "Herzlichen Glückwunsch! Sie haben {{benefitCount}} Stk Artikel kostenlos erhalten!",
         "b12_t1_s3_normal": "Herzlichen Glückwunsch! Sie haben einen Rabatt {{saved}} für {{benefitCount}} Stk Artikel erhalten",
+        "b14_t1_s1": "{{nextMinThreshold}} Stücke {{willSave}} kaufen",
+        "b14_t1_s2": "Herzlichen Glückwunsch! Sie haben bereits {{currentMinThreshold}} Stücke {{saved}} erhalten. Kaufen Sie weitere {{threshold}} Stücke mehr, um {{nextMinThreshold}} Stücke {{willSave}} zu bekommen!",
+        "b14_t1_s3": "Herzlichen Glückwunsch! Sie haben bereits {{currentMinThreshold}} Stücke {{saved}} erhalten!",
         "b1_t0_s1": "{{threshold}} oder mehr kaufen, {{willSave}} sparen",
         "b1_t0_s2": "{{saved}} gespart! {{br}}Mehr als {{threshold}} kaufen und {{willSave}} sparen",
         "b1_t0_s3": "{{saved}} gespart! Herzlichen Glückwunsch!",
@@ -695,10 +750,24 @@
         "b2_t0": "{{threshold}} kaufen, {{save}} sparen",
         "b2_t1": "{{threshold}} stück kaufen, {{save}} sparen",
         "label": "Rabatt:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "{{nextMinThreshold}} Stücke {{willSave}} kaufen",
+            "step2": "Herzlichen Glückwunsch! Sie haben bereits {{currentMinThreshold}} Stücke {{saved}} erhalten. Kaufen Sie weitere {{threshold}} Stücke mehr, um {{nextMinThreshold}} Stücke {{willSave}} zu bekommen!",
+            "step3": "Herzlichen Glückwunsch! Sie haben bereits {{currentMinThreshold}} Stücke {{saved}} erhalten!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Rundung"
+      }
+    },
     "payments-name": {
       "COD": "Bargeld bei Lieferung",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Rabatt",
       "free_charge": "Kostenloser Versand",
       "free_shipping": "Gratis Versand",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "händlerdefinierter Rabatt",
       "order_tax": "Steuer",
       "order_tip": "Trinkgeld",

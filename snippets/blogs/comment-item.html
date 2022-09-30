@@ -1,0 +1,15 @@
+<div class="comment-item">
+  <div class="comment-item-author body3">{{comment.author}}</div>
+  <div class="comment-item-time body6">{{dayjs method='format' init=comment.createTime format='MMM DD,YYYY'}}</div>
+  <div class="comment-item-content body4">{{comment.content}}</div>
+  {{#if comment.status '!=' 1}}
+    <div class="comment-item-audit body4">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.7">
+        <path d="M1 5.5L4.5 9L11 2.5" stroke-width="1.5" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <p>{{t 'blog.comment.comment_audit_tip' }}</p>
+    </div>
+  {{/if}}
+</div>

@@ -5,6 +5,22 @@
       "read_btn_text": "Baca Lagi",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Komen",
+      "comment_audit_tip": "Ulasan anda telah diserahkan dan perlu disemak.",
+      "comment_empty": "Sila isikan komen",
+      "email": "Mel",
+      "email_empty": "E-mel tidak boleh kosong",
+      "email_format": "Sila masukkan e-mel yang betul",
+      "form_title": "Komen",
+      "loadmore": "Tambah lagi",
+      "name": "Nama",
+      "name_empty": "Sila isi nama",
+      "submit": "serahkan",
+      "submit_audit_tip": "Berjaya diserahkan, menunggu semakan",
+      "success": "Dihantar dengan jayanya",
+      "title": "{{comment_length}} ulasan"
+    },
     "general": {
       "back_to": "Kembalikan {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Butiran pesanan",
       "package_amount": "Pakej {{num}} ({{item}} item)",
       "pay_amount": "membayar jumlah",
+      "paymentVoucher": {
+        "downloadDoc": "Muat turun fail",
+        "format": "Format",
+        "formatLimit": "Sokong muat naik fail JPG, PNG, GIF, PDF dalam saiz 20MB. Maksimum 5 gambar",
+        "uploadAmount": "{{num}} baucar telah dimuat naik",
+        "uploadLimit": "Sila muat naik fail JPG, PNG, GIF, PDF dalam saiz 20MB"
+      },
       "payment_voucher_confirmation": "faham",
       "payment_voucher_transfer_success": "Pembayaran berjaya dipindahkan",
       "payment_voucher_waiting_for_payment": "Menunggu pembayaran",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Alamat E-mel Tidak Sah"
+    },
     "account": {
       "account_binding": "Pengikatan Akaun",
       "account_information": "Akaun",
@@ -197,6 +223,10 @@
       "bind": "Mengikat",
       "birthday": "Tarikh Lahir",
       "change_password": "Ubah kata laluan",
+      "confirm_btn": "Bekrefte",
+      "confirm_subscription_modal_btn": "Sahkan Langganan",
+      "confirm_subscription_modal_content": "Anda telah menyerahkan langganan sebelum ini. E-mel pengesahan telah dihantar ke alamat e-mel ini. Anda boleh sama ada mengesahkan dalam e-mel anda atau klik butang ini.",
+      "confirm_subscription_modal_title": "Sahkan langganan E-mel anda.",
       "credit_card_number": "No. kad kredit",
       "deadline": "Bagi tujuan laporan perniagaan, pesanan anda akan masih kelihatan. Data akaun anda akan dihapuskan pada {{time}}, anda masih boleh membatalkan proses sebelum tarikh tersebut",
       "delete_account": "Tutup akaun",
@@ -211,6 +241,7 @@
       "ip_address": "Alamat IP",
       "last_name": "Nama keluarga",
       "modify_email": "Ubah Suai E-mel",
+      "modify_email_modal_title": "Ubah Suai E-mel",
       "modify_phone": "Ubai Suai Telefon",
       "name": "Nama",
       "next": "Seterusnya",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Sila ikat e-mel dan telefon bimbit dahulu",
       "revoke": "Membatalkan penutupan",
       "revoke_message": "Akaun ini sedang dalam proses penutupan, data akaun akan dihapuskan pada {{time}}, anda masih boleh membatalkan proses sebelum tarikh tersebut",
+      "save_btn": "SIMPAN",
       "select__date": "Pilih Tarikh",
+      "subscribe_confirm_tip": "Terima kasih atas langganan anda.",
       "timeout_tip": "Operasi habis waktunya, silakan autentikasi lagi",
       "username": "Nama",
       "verify_email_message": "Sebelum menutup akaun, kami perlu mengesahkan identiti anda\nE-mel anda {{email}} akan menerima satu e-mel pengesahan",
@@ -238,7 +271,8 @@
       "discount_title": "Aktifkan akaun dan dapatkan kod diskaun",
       "normal_title": "Aktifkan akaun",
       "subscription_text": "Langgan e-mel untuk menerima kemas kini, akses kepada tawaran eksklusif dan pelbagai lagi.",
-      "success_title": "Tahniah kerana mendapat jumlah diskaun yang hebat"
+      "success_title": "Tahniah kerana mendapat jumlah diskaun yang hebat",
+      "token_expired": "Pautan telah tamat tempoh"
     },
     "address": {
       "add_address": "Tambah Alamat Baharu",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Terlupa kata laluan",
+      "reset_password": "MENETAPKAN SEMULA KATA LALUAN",
       "tips_password_can_be_changed_after_verification": "Anda boleh mengubah kata laluan selepas penentusahan",
-      "tips_reset_password": "Anda menetapkan semula kata laluan untuk akaun {{account}}"
+      "tips_reset_password": "Anda menetapkan semula kata laluan untuk akaun {{account}}",
+      "token_expired": "Pautan tetapan semula kata laluan anda telah tamat tempoh"
     },
     "general": {
       "account": "AKAUN",
@@ -333,6 +369,10 @@
       "error_message_3009": "Telefon bimbit telah diikat dengan akaun lain",
       "error_message_3010": "E-mel telah diikat dengan akaun lain",
       "error_message_3014": "Pemaparan mesej teks/templat mel gagal",
+      "error_message_3015": "Akaun telah diaktifkan",
+      "error_message_3022": "Pautan telah tamat tempoh",
+      "error_message_3023": "Pautan mempunyai format yang salah",
+      "error_message_3024": "Pautan adalah salah",
       "error_message_4": "Pengecualian perkhidmatan",
       "error_message_5": "Pengecualian perkhidmatan",
       "error_message_6": "Pengecualian perkhidmatan",
@@ -416,7 +456,8 @@
       "wednesday": "Rabu"
     },
     "login": {
-      "member_login_common": "Daftar masuk ahli"
+      "member_login_common": "Daftar masuk ahli",
+      "subscribe_confirm_tip": "Terima kasih atas langganan anda. Anda boleh log masuk untuk pengalaman yang lebih baik."
     },
     "message": {
       "input_placeholder": "Adakah terdapat apa-apa mesej yang anda ingin tinggalkan?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mel",
       "email_subscription_text": "Terima maklumat promosi langganan melalui E-mel",
-      "l_i_n_e": "LINE",
+      "line": "LINE",
       "messenger": "Messenger",
       "phone": "Telefon Bimbit",
       "phone_subscription_text": "Langgan promosi melalui telefon",
@@ -474,6 +515,7 @@
       "send_success": "Terima kasih kerana menghubungi kami, kami akan menghubungi anda secepat mungkin."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Ralat format alamat e-mel",
       "subscribe_success": "Langganan berjaya"
     },
@@ -499,6 +541,14 @@
       "refund": "Dasar bayaran balik",
       "service": "Terma Perkhidmatan",
       "shipping": "Dasar penghantaran"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "masa muat naik",
+        "detail": "Perincian"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "HABIS DIJUAL",
       "products": "produk",
       "recommend": "Disyorkan",
+      "sale": "Jualan",
       "save": "Diskaun {{{priceDom}}}",
       "save_byjs": "Diskaun {{priceDom}}",
       "save_ratio": "{{price}}% diskaun",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Salinan",
       "activity_banner_free_shipping": "Penghantaran Percuma",
       "activity_banner_threshold": "Pesanan melebihi {{threshold}}",
+      "activity_selector_new_arrivals": "Baru tiba",
       "activity_selector_price_high_to_low": "Harga tinggi ke rendah",
       "activity_selector_price_low_to_high": "Harga rendah ke tinggi",
       "activity_selector_recommended": "Disyorkan",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Beli {{threshold}}, nikmati potongan sebanyak {{willSave}} bagi {{benefitCount}} item",
         "b12_t1_s3_free": "Tahniah! Anda telah mendapat {{benefitCount}} item secara PERCUMA!",
         "b12_t1_s3_normal": "Tahniah! Anda telah mendapat potongan sebanyak {{saved}} bagi {{benefitCount}} item!",
+        "b14_t1_s1": "Beli {{nextMinThreshold}} unit dengan harga {{willSave}}",
+        "b14_t1_s2": "Tahniah! Anda telah memperoleh {{currentMinThreshold}} unit dengan harga {{saved}}. Beli {{threshold}} unit lagi untuk membeli {{nextMinThreshold}} unit dengan harga {{willSave}}!",
+        "b14_t1_s3": "Tahniah! Anda telah memperoleh {{currentMinThreshold}} unit dengan harga {{saved}}!",
         "b1_t0_s1": "Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
         "b1_t0_s2": "Sudah jimat {{saved}}! {{br}}Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
         "b1_t0_s3": "Tahniah! Anda telah menjimatkan {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Beli {{threshold}} jimat {{save}}",
         "b2_t1": "Beli {{threshold}} Dapat {{save}} DISKAUN",
         "label": "Diskaun:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Beli {{nextMinThreshold}} unit dengan harga {{willSave}}",
+            "step2": "Tahniah! Anda telah memperoleh {{currentMinThreshold}} unit dengan harga {{saved}}. Beli {{threshold}} unit lagi untuk membeli {{nextMinThreshold}} unit dengan harga {{willSave}}!",
+            "step3": "Tahniah! Anda telah memperoleh {{currentMinThreshold}} unit dengan harga {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Membundarkan"
+      }
+    },
     "payments-name": {
       "COD": "Bayar tunai waktu terima",
       "Paypal": "PayPal",
@@ -716,6 +785,11 @@
       "discount_off": "Diskaun",
       "free_charge": "Penghantaran percuma",
       "free_shipping": "penghantaranpercuma",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Diskaun tambahan penjual",
       "order_tax": "Cukai",
       "order_tip": "Tip",

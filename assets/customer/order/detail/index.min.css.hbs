@@ -1870,7 +1870,7 @@
     font-size:{{ transFontsize  theme.settings.type_title_size  0.5555555556 }};
   }
 }
-.body-font,.body1,.body2,.body3,.body4,.body5,.body6,.detail_pay_modal_box-wrap .detail_pay_modal_box-content-sub-title,.detail_pay_modal_box-wrap .detail_pay_modal_main-title,.trade-checkout-payment-voucher_desc,.trade-checkout-payment-voucher_title,.trade-transfer-voucher_info,.trade-transfer-voucher_info-item-value,.trade-transfer-voucher_limit-tip,.trade-transfer-voucher_show-more,.trade_summations .trade_summations_fee .settleSumAmount .text_bold{
+.body-font,.body1,.body2,.body3,.body4,.body5,.body6,.detail_pay_modal_box-wrap .detail_pay_modal_box-content-sub-title,.detail_pay_modal_box-wrap .detail_pay_modal_main-title,.trade-checkout-payment-voucher_desc,.trade-checkout-payment-voucher_error,.trade-checkout-payment-voucher_text,.trade-checkout-payment-voucher_title,.trade-transfer-voucher_info,.trade-transfer-voucher_info-item-value,.trade-transfer-voucher_limit-tip,.trade-transfer-voucher_show-more,.trade_summations .trade_summations_fee .settleSumAmount .text_bold{
   font-family:{{ get 'family' (google_font_spec theme.settings.type_body_font) }};
   font-style:{{ get 'style' (google_font_spec theme.settings.type_body_font) }};
   font-weight:{{ default (get 'weight' (google_font_spec theme.settings.type_body_font)) 400 }};
@@ -3532,6 +3532,10 @@
 @media (max-width:749.98px){
   .footer__block-container{
     margin-bottom:0;
+  }
+
+  .footer__block-social-container{
+    min-height:20px;
   }
 
   .footer__body{
@@ -9845,11 +9849,6 @@ input[type=radio]{
   overflow-y:auto;
 }
 
-[data-slot-mini-cart-checkout-end]{
-  max-height:100px;
-  overflow-y:auto;
-}
-
 .cart-amount-error-alert{
   background-color:rgba(240,73,73,.05);
   -webkit-border-radius:2px;
@@ -14036,11 +14035,29 @@ img.lozad[src],img.lozad[srcset]{
   margin:16px 0;
   width:100%;
 }
-.trade-checkout-payment-voucher_desc{
+.trade-checkout-payment-voucher_desc,.trade-checkout-payment-voucher_text{
   color:{{ rgba  theme.settings.color_text  0.6 }};
   font-size:14px;
   line-height:20px;
   margin-top:8px;
+}
+.trade-checkout-payment-voucher_text span{
+  position:relative;
+  top:-3px;
+}
+.trade-checkout-payment-voucher_text svg{
+  color:{{ theme.settings.btn-primary }};
+}
+.trade-checkout-payment-voucher_error{
+  color:#ff4b40;
+  display:none;
+  font-size:14px;
+  line-height:20px;
+  margin-top:8px;
+}
+.trade-checkout-payment-voucher_error span{
+  position:relative;
+  top:-2px;
 }
 
 .trade-transfer-voucher-wrapper{
@@ -14607,6 +14624,8 @@ img.lozad[src],img.lozad[srcset]{
   -webkit-border-radius:0 !important;
      -moz-border-radius:0 !important;
           border-radius:0 !important;
+  height:592px !important;
+  width:860px !important;
 }
 #__preview-voucher-container .__preview-voucher-wrapper .__preview-voucher-img-box{
   -webkit-box-flex:0;
@@ -14614,8 +14633,14 @@ img.lozad[src],img.lozad[srcset]{
   -webkit-flex:none;
       -ms-flex:none;
           flex:none;
+  height:500px !important;
+  width:500px !important;
 }
 #__preview-voucher-container .__preview-voucher-wrapper .__preview-voucher-footer button{
+  --btn-border-background-color:none;
+  -webkit-border-radius:4px !important;
+     -moz-border-radius:4px !important;
+          border-radius:4px !important;
   font-weight:700;
 }
 [data-button_style=square] #__preview-voucher-container .__preview-voucher-wrapper .__preview-voucher-footer button{
@@ -14636,6 +14661,11 @@ img.lozad[src],img.lozad[srcset]{
           border-radius:46px;
 }
 
+#__preview-voucher-container .__preview-voucher-wrapper .__preview-voucher-footer button:after,#__preview-voucher-container .__preview-voucher-wrapper .__preview-voucher-footer button:before{
+  height:0 !important;
+  width:0 !important;
+}
+
 body .sl-popup-modal__close-icon{
   color:{{ theme.settings.color_text }} !important;
 }
@@ -14645,7 +14675,12 @@ body .__preview-voucher-data-box{
 body .__preview-voucher-data-box-item-label{
   color:{{ rgba  theme.settings.color_text  0.6 }} !important;
 }
-body .__preview-voucher-data-box-item-value{
+body .__preview-voucher-data-box-item-title{
+  font-size:16px;
+  font-weight:700;
+  line-height:22px;
+}
+body .__preview-voucher-data-box-item-title,body .__preview-voucher-data-box-item-value{
   color:{{ theme.settings.color_text }} !important;
 }
 body #__preview-voucher-container{

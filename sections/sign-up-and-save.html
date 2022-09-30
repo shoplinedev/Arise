@@ -5,7 +5,11 @@
 {{!-- {{assign 'placeholder' section.settings.placeholder }} --}}
 {{ assign 'color_scheme' section.settings.color_scheme }}
 
-{{ inline_stylesheet 'sign-up-and-save/index.min.css' }}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'sign-up-and-save/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'sign-up-and-save/index.min.css' }}
+{{/is_modern_browser}}
 
 <script>
   {{#is_modern_browser}}

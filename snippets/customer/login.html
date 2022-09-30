@@ -13,6 +13,7 @@
 <div class="customer sign-in" data-track-page="128" id="{{ id }}">
   <h2 class="customer__title">{{t 'customer.general.sign_in'}}</h2>
   <p class="sign-in__has-registered"></p>
+  <p class="sign-in__from_confirm_email"></p>
 
   <form class="customer__form shopline-element-customer-sign-in-form">
     {{snippet 'customer/form-item/username' class="shopline-element-customer-sign-in-account" types=(split shop.store_register_config.types ',') }}

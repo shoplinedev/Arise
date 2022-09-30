@@ -1,4 +1,8 @@
-{{inline_stylesheet 'rich-text/index.min.css'}}
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'rich-text/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'rich-text/index.min.css' }}
+{{/is_modern_browser}}
 {{assign 'color_scheme' section.settings.color_scheme}}
 {{assign 'normal_width' section.settings.normal_width}}
 {{assign 'blocks' section.blocks}}

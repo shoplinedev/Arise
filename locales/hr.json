@@ -5,6 +5,22 @@
       "read_btn_text": "Čitaj više",
       "title": "Blog"
     },
+    "comment": {
+      "comment": "Komentar",
+      "comment_audit_tip": "Vaš komentar je poslan i treba ga pregledati.",
+      "comment_empty": "Molimo ispunite komentare",
+      "email": "Pošta",
+      "email_empty": "E-mail ne smije biti prazan",
+      "email_format": "Molimo unesite točan email",
+      "form_title": "Komentar",
+      "loadmore": "Učitaj više",
+      "name": "Ime",
+      "name_empty": "Molimo unesite ime",
+      "submit": "podnijeti",
+      "submit_audit_tip": "Uspješno poslano, čeka se pregled",
+      "success": "Uspješno poslano",
+      "title": "{{comment_length}} komentara"
+    },
     "general": {
       "back_to": "Vrati {{{collectionTitle}}}"
     }
@@ -107,6 +123,13 @@
       "order_details": "Detalji narudžbe",
       "package_amount": "Paket {{num}}（{{item}} stavki）",
       "pay_amount": "platiti iznos",
+      "paymentVoucher": {
+        "downloadDoc": "Preuzmi datoteku",
+        "format": "Format",
+        "formatLimit": "Podržava .jpg, .png, .pdf datoteke veličine do 20 MB. Možete učitati do 5 slika",
+        "uploadAmount": "Učitan(o) je {{num}} vaučer(a)",
+        "uploadLimit": "Učitajte .jpg, .png, .pdf datoteke veličine do 20 MB"
+      },
       "payment_voucher_confirmation": "shvaćam",
       "payment_voucher_transfer_success": "Plaćanje je uspješno preneseno",
       "payment_voucher_waiting_for_payment": "Čeka se plaćanje",
@@ -190,6 +213,9 @@
     }
   },
   "customer": {
+    "accoount": {
+      "email_subscribe_invalid_tip": "Nevažeća adresa e-pošte"
+    },
     "account": {
       "account_binding": "Uvezivanje Naloga",
       "account_information": "Račun",
@@ -197,6 +223,10 @@
       "bind": "Obvezujući",
       "birthday": "Datum Rođenja",
       "change_password": "Promijeni lozinku",
+      "confirm_btn": "Potvrdite",
+      "confirm_subscription_modal_btn": "Potvrdite pretplatu",
+      "confirm_subscription_modal_content": "Već ste se pretplatili. E-pošta za potvrdu poslana je na ovu adresu e-pošte.Možete potvrditi u svojoj e-pošti ili klikom na ovaj gumb.",
+      "confirm_subscription_modal_title": "Potvrdite pretplatu na e-poštu.",
       "credit_card_number": "Broj kreditne kartice",
       "deadline": "Za potrebe poslovnog izvješća, vaša će narudžba i dalje biti vidljiva. Ovaj račun je u postupku zatvaranja, podaci o računu će biti obrisani u {{time}}, možete otkazati postupak zatvaranja prije tog datuma",
       "delete_account": "Zatvori račun",
@@ -211,6 +241,7 @@
       "ip_address": "IP adresu",
       "last_name": "Prezime",
       "modify_email": "Izmijenite Email",
+      "modify_email_modal_title": "Izmijenite Email",
       "modify_phone": "Izmijenite Telefon",
       "name": "Ime",
       "next": "Sljedeće",
@@ -223,7 +254,9 @@
       "reset_password_error_hint": "Molimo prvo povežite email ili mobitel",
       "revoke": "Otkažite zatvaranje",
       "revoke_message": "Ovaj račun je u postupku zatvaranja, podaci o računu bit će izbrisani u {{time}}, možete otkazati postupak prije tog datuma",
+      "save_btn": "SAČUVAJ",
       "select__date": "Odaberi Datum",
+      "subscribe_confirm_tip": "Hvala na pretplati.",
       "timeout_tip": "Vrijeme operacije je isteklo, provjerite ponovo",
       "username": "Ime",
       "verify_email_message": "Prije zatvaranja računa, trebamo potvrditi vaš identitet\nE-poruku za potvrdu ćete dobiti na vašu e-poštu {{email}}",
@@ -238,7 +271,8 @@
       "discount_title": "Aktivirajte račun i dobijte kod za popust",
       "normal_title": "Aktivirajte račun",
       "subscription_text": "Pretplatite se na e-poštu za primanje ažuriranja, pristup ekskluzivnim ponudama i ostalog.",
-      "success_title": "Čestitamo na dobijanju velikog popusta"
+      "success_title": "Čestitamo na dobijanju velikog popusta",
+      "token_expired": "Poveznica je istekla"
     },
     "address": {
       "add_address": "Dodaj Novu Adresu",
@@ -259,8 +293,10 @@
     },
     "forget_password": {
       "forget_password_tips": "Zaboravljena lozinka",
+      "reset_password": "PONOVNO POSTAVLJANJE ZAPORKE",
       "tips_password_can_be_changed_after_verification": "Možete promijeniti lozinku nakon provjere",
-      "tips_reset_password": "Poništavate lozinku za račun {{account}}"
+      "tips_reset_password": "Poništavate lozinku za račun {{account}}",
+      "token_expired": "Vaša poveznica za ponovno postavljanje zaporke je istekla"
     },
     "general": {
       "account": "NALOG",
@@ -333,6 +369,10 @@
       "error_message_3009": "Mobitel je vezan drugim nalozima",
       "error_message_3010": "E-mail je vezan drugim nalozima",
       "error_message_3014": "Renderiranje predloška tekstualne poruke/e-pošte nije uspjelo",
+      "error_message_3015": "Račun je aktiviran",
+      "error_message_3022": "Veza je istekla",
+      "error_message_3023": "Poveznica ima pogrešan format",
+      "error_message_3024": "Poveznica je pogrešna",
       "error_message_4": "Iznimke usluga",
       "error_message_5": "Iznimke usluga",
       "error_message_6": "Iznimke usluga",
@@ -416,7 +456,8 @@
       "wednesday": "srijeda"
     },
     "login": {
-      "member_login_common": "Prijava članova"
+      "member_login_common": "Prijava članova",
+      "subscribe_confirm_tip": "Hvala na pretplati. Možete se prijaviti za bolje iskustvo."
     },
     "message": {
       "input_placeholder": "Želite li iz nekog razloga ostaviti poruku?",
@@ -435,7 +476,7 @@
     "subscription": {
       "email": "E-mail",
       "email_subscription_text": "Primite informacije o promociji pretplate putem e-pošte",
-      "l_i_n_e": "LINIJA",
+      "line": "LINIJA",
       "messenger": "Messenger",
       "phone": "Mobitel",
       "phone_subscription_text": "Pretplati se preko mobitela",
@@ -474,6 +515,7 @@
       "send_success": "Hvala Vam što ste nas kontaktirali. Javit ćemo Vam se u  najkraćem mogućem roku."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_reg_exp_error": "Pogreška formata adrese e-pošte",
       "subscribe_success": "Uspješna pretplata"
     },
@@ -499,6 +541,14 @@
       "refund": "Politika povrata novca",
       "service": "Uvjeti pružanja usluge",
       "shipping": "Politika dostave"
+    }
+  },
+  "order": {
+    "detail": {
+      "orderstatus": {
+        "UploadTime": "vrijeme učitavanja",
+        "detail": "Detalj"
+      }
     }
   },
   "products": {
@@ -559,6 +609,7 @@
       "product_sold_out": "PRODANO",
       "products": "proizvodi",
       "recommend": "Preporučeno",
+      "sale": "Prodavati se kao alva",
       "save": "Popust {{{priceDom}}}",
       "save_byjs": "Popust {{priceDom}}",
       "save_ratio": "{{price}}% popusta",
@@ -606,6 +657,7 @@
       "activity_banner_copy_text": "Kopirati",
       "activity_banner_free_shipping": "Besplatna dostava",
       "activity_banner_threshold": "Narudžbe iznad {{threshold}}",
+      "activity_selector_new_arrivals": "Nova kolekcija",
       "activity_selector_price_high_to_low": "Cijena od visoke do niske",
       "activity_selector_price_low_to_high": "Cijena od niske do visoke",
       "activity_selector_recommended": "Preporuka",
@@ -663,6 +715,9 @@
         "b12_t1_s1_normal": "Kupite {{threshold}}, uživajte u {{willSave}} popustu za {{benefitCount}} artikle",
         "b12_t1_s3_free": "Čestitamo! Dobili ste {{benefitCount}} artikle besplatno!",
         "b12_t1_s3_normal": "Čestitamo! Dobili ste {{saved}} popust na {{benefitCount}} artikle!",
+        "b14_t1_s1": "Kupite {{nextMinThreshold}} komada za {{willSave}}",
+        "b14_t1_s2": "Čestitamo! Dobili ste {{currentMinThreshold}} komada za {{saved}}! Kupite {{threshold}} više da dobijete {{nextMinThreshold}} komada za {{willSave}}!",
+        "b14_t1_s3": "Čestitamo! Dobili ste {{currentMinThreshold}} komada za {{saved}}!",
         "b1_t0_s1": "Kupi {{threshold}} više za uštedu {{willSave}}",
         "b1_t0_s2": "Uštedi čak {{saved}}! {{br}}Kupi {{threshold}} više za uštedu {{willSave}}",
         "b1_t0_s3": "Čestitamo! Uštedjeli ste {{saved}}!",
@@ -695,10 +750,24 @@
         "b2_t0": "Kupi {{threshold}} uštedi {{save}}",
         "b2_t1": "Kupi {{threshold}} UZMI {{save}} UMANJENO",
         "label": "Popust:"
+      },
+      "reminder": {
+        "benefit14": {
+          "threshold1": {
+            "step1": "Kupite {{nextMinThreshold}} komada za {{willSave}}",
+            "step2": "Čestitamo! Dobili ste {{currentMinThreshold}} komada za {{saved}}! Kupite {{threshold}} više da dobijete {{nextMinThreshold}} komada za {{willSave}}!",
+            "step3": "Čestitamo! Dobili ste {{currentMinThreshold}} komada za {{saved}}!"
+          }
+        }
       }
     }
   },
   "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Zaokruživanje"
+      }
+    },
     "payments-name": {
       "COD": "Pouzećem",
       "Paypal": "Paypal",
@@ -716,6 +785,11 @@
       "discount_off": "Popust",
       "free_charge": "Besplatna dostava",
       "free_shipping": "Besplatna dostava",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
       "order_seller_discount": "Dodatni popust prodavatelju",
       "order_tax": "Porez",
       "order_tip": "Napojnica",

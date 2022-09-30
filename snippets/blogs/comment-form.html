@@ -1,0 +1,30 @@
+<div class="blog__form">
+  <h2 class="blog__form-title title3">{{t 'blog.comment.form_title'}}</h2>
+  <form class="row" style="--sl-gutter-y: 20px" id="blog-comment-form" data-blog-id="{{id}}" data-comment-config="{{commentConfig}}">
+    {{#formItem "author" "class='col-24 col-md-12'"}}
+      {{snippet
+        'product/commons/base-input'
+        inputRestAttr='autocomplete="name" maxlength="1024"'
+        name="author" placeholder=(t 'blog.comment.name')
+      }}
+    {{/formItem}}
+    {{#formItem "email" "class='col-24 col-md-12'"}}
+      {{snippet
+        'product/commons/base-input'
+        inputRestAttr='autocomplete="email" maxlength="1024"'
+        name="email" placeholder=(t 'blog.comment.email')
+      }}
+    {{/formItem}}
+    {{#formItem "content" "class='col-24'"}}
+      {{snippet
+        'product/commons/base-input'
+        wrapperClass='blog__form-textarea'
+        inputRestAttr='autocomplete="off" maxlength="10240"'
+        name="content" type="textarea" placeholder=(t 'blog.comment.comment')
+      }}
+    {{/formItem}}
+    <div class="col-24 blog__form__action">
+      <button class="btn btn-primary blog__form-submit">{{t 'blog.comment.submit'}}</button>
+    </div>
+  </form>
+</div>

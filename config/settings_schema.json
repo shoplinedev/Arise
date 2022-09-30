@@ -1099,6 +1099,22 @@
         "default": true
       },
       {
+        "id": "product_discount_tag_style",
+        "type": "select",
+        "label": "t:settings_schema.product.settings.product_discount_tag_style.label",
+        "options": [
+          {
+            "value": "sale",
+            "label": "t:settings_schema.product.settings.product_discount_tag_style.options__0.label"
+          },
+          {
+            "value": "save",
+            "label": "t:settings_schema.product.settings.product_discount_tag_style.options__1.label"
+          }
+        ],
+        "default": "save"
+      },
+      {
         "id": "product_discount_style",
         "type": "select",
         "label": "t:settings_schema.product.settings.product_discount_style.label",
