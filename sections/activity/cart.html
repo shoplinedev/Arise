@@ -9,6 +9,7 @@
   {{#if cartInfo.activeItems}}
     {{ assign 'activeItem' (find-in-array cartInfo.activeItems activity.activitySeq 'promotion.activitySeq') }}
     {{#if activeItem}}
+      {{ assign 'promotionBenefit' (itemAt activeItem.promotion.promotionBenefitList 0)}}
       {{ assign 'promotion' activeItem.promotion}}
     {{/if}}
 
@@ -23,7 +24,9 @@
     {{ assign 'benefit' (default benefitCondition.benefit.discount benefitCondition.benefit.benefitAmount)}}
     {{ assign 'amount' benefitCondition.benefitEvent.minThreshold}}
     {{ assign 'benefitCount' benefitCondition.benefit.benefitCount}}
-    {{ assign 'promotion' (object_create benefitType=benefitType promotionBenefitList=(arrayify (object_create type=type benefit=benefit amount=amount benefitCount=benefitCount)))}}
+    {{ assign 'extMap' (object_create bannerText=cartBannerText.hitNone)}}
+    {{ assign 'promotionBenefit' (object_create type=type benefit=benefit amount=amount benefitCount=benefitCount extMap=extMap)}}
+    {{ assign 'promotion' (object_create benefitType=benefitType promotionBenefitList=(arrayify promotionBenefit))}}
   {{/if}}
 
   <div class="activity__cart custom-body-color {{hasHide}}" id="activity-cart">
@@ -34,12 +37,11 @@
         {{ assign 'hasHide' 'd-none'}}
       {{/if}}
       <div class="activity__salesTip container body4 {{hasHide}}">
-        <span id="activity-salesTip">
+        <span id="activity-salesTip" class="notranslate">
           {{!-- 购物提示文案 --}}
           {{#if (and promotion (not hasGiftPlugin))}}
             {{ assign "config" (sales_promotion_reminder_translate promotion)}}
-            {{ assign "_cartReminderKey" (javascript_template 'sales.promotion.cart_reminder.b${benefitType}_t${thresholdType}_s${step}${extra}' benefitType=config.benefitType thresholdType=config.thresholdType step=config.step extra=config.extra) }}
-            {{ noTranslationHTML (t _cartReminderKey  saved=config.params.saved willSave=config.params.willSave threshold=config.params.threshold benefitCount=config.params.benefitCount br=config.params.br upperLimit=config.params.upperLimit currentMinThreshold=config.params.currentMinThreshold nextMinThreshold=config.params.nextMinThreshold) }}
+            {{ noTranslationHTML (javascript_template promotionBenefit.extMap.bannerText config.params (toRegex '\{\s*(\w+)\s*\}' flags="g"))}}
           {{/if}}
         </span>
       </div>

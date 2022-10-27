@@ -4,11 +4,7 @@ products:
   # 是否预取商品描述信息，默认值：false
   description: true
   limit: {{ section.settings.per_page_num }}
-
-# 最近浏览商品
-history_browse_products:
-  # 是否预取，默认值：false
-  enable: true
+  cursor: {{ cond (isFalsey request.uri.query.loadMore) (cond section.settings.infinite_scroll 1 request.uri.query.page_num) request.uri.query.page_num }}
 ---
 
 
@@ -33,10 +29,17 @@ history_browse_products:
 {{ assign 'slice_products_list' products.list }}
 {{ assign 'gripType' 'small_grid' }}
 {{ assign 'productSortation' (object_create id=sortationId sortation=sortation) }}
+{{ assign 'infiniteScroll' section.settings.infinite_scroll }}
+{{ assign 'infiniteScrollNeedLoadMore' (isTruthy request.uri.query.loadMore) }}
 {{ assign 'child_category_list' (navigation_to_category all_collections navigations.head sortationId) }}
-{{ preload_state 'products' }}
-{{ preload_state 'productSortation' }}
+{{ assign 'subTitleShowType' section.settings.product_sub_title }}
 
+{{#if (isFalsey infiniteScrollNeedLoadMore)}}
+  {{ preload_state 'products' }}
+  {{ preload_state 'productSortation' }}
+{{/if}}
+
+{{#if (isFalsey infiniteScrollNeedLoadMore)}}
 <div id="collectionsAjaxInner">
   <div
     class="container section-gap product-list-main"
@@ -91,11 +94,23 @@ history_browse_products:
 
             <div class="product-list-item-list" data-ssr-product-list-top>
               {{#if (boolean products.list.length '>' 0)}}
-                {{ snippet 'product/commons/product-item-list' effectPage='productList' gripType=gripType className='__sl-custom-track-product-list-item' colNum=itemNumByRow listData=slice_products_list pageSize=calc_page_size pageNum=products.pageNum total=products.total }}
+                {{ snippet 'product/commons/product-item-list' subTitleShowType=subTitleShowType listClassName='product-infinite-list-container' infiniteScroll=infiniteScroll effectPage='productList' gripType=gripType className='__sl-custom-track-product-list-item' colNum=itemNumByRow listData=slice_products_list pageSize=calc_page_size pageNum=products.pageNum total=products.total }}
               {{else}}
                 <span class="body3">{{ t 'products.product_list.no_product' }}</span>
               {{/if}}
             </div>
+            {{#if (and (isFalsey products.lastPage) infiniteScroll)}}
+              <div class="product-list-infinite-scroll-anchor" data-pageNum="{{ products.pageNum }}"></div>
+            {{/if}}
+            {{#if infiniteScroll}}
+              <div class="product-list-infinite-scroll-loading">
+                <div class="infinite-loading-icon">{{ snippet 'icons/icon_infinite_loading' }}</div>
+                <span class="body3">{{ t 'products.product_list.load_more_tip' }}</span>
+              </div>
+              {{#and (isTruthy products.lastPage) (boolean products.realTotal '>' 0)}}
+                <div class="product-infinite-list-lastPage body3">{{ t 'products.product_list.more__product_num' num=products.realTotal }}</div>
+              {{/and}}
+            {{/if}}
             <div class="product-list-description-category">
               {{#if (boolean (boolean section.settings.category_desc_position '===' 'bottom') '&&' sortationId '&&' sortation.sortation.description)}}
                 <div class="product-list-description-bottom">
@@ -106,12 +121,25 @@ history_browse_products:
           </div>
         </div>
       </div>
+      {{#if infiniteScroll}}
+        <input type="hidden" class="product-list-is-infinite-scroll-mode">
+      {{/if}}
     </div>
   </div>
 
   {{!-- 推荐商品 --}}
   {{ snippet 'product/product-recommend' }}
 </div>
+{{else}}
+  {{#each products.list as | item |}}
+    <div class="col product-item-list">
+      {{ snippet 'product/commons/product-item' hoverZIndex=2 previewQuery=../previewQuery spu=item forbiddenBtn=../forbiddenBtn index=@index className=../className }}
+    </div>
+  {{/each}}
+  {{#if (isTruthy products.lastPage)}}
+    <div class="product-infinite-list-lastPage body3">{{ t 'products.product_list.more__product_num' num=products.realTotal }}</div>
+  {{/if}}
+{{/if}}
 
 
 
@@ -147,9 +175,39 @@ history_browse_products:
     },
     {
       "type": "switch",
+      "id": "infinite_scroll",
+      "label": "t:sections.product_collections_collection-page.settings.infinite_scroll.label",
+      "default": false
+    },
+    {
+      "type": "switch",
       "id": "sorter_enable",
       "label": "t:sections.product_collections_collection-page.settings.sorter_enable.label",
       "default": true
+    },
+    {
+      "type": "select",
+      "id": "product_sub_title",
+      "label": "t:sections.product_collections_collection-page.settings.product_sub_title.label",
+      "options": [
+        {
+          "value": "hide",
+          "label": "t:sections.product_collections_collection-page.settings.product_sub_title.options__0.label"
+        },
+        {
+          "value": "fullShow",
+          "label": "t:sections.product_collections_collection-page.settings.product_sub_title.options__1.label"
+        },
+        {
+          "value": "onelineShow",
+          "label": "t:sections.product_collections_collection-page.settings.product_sub_title.options__2.label"
+        },
+        {
+          "value": "twolineShow",
+          "label": "t:sections.product_collections_collection-page.settings.product_sub_title.options__3.label"
+        }
+      ],
+      "default": "hide"
     },
     {
       "type": "group_header",
@@ -315,11 +373,13 @@ history_browse_products:
       "category_desc_position": "top",
       "sorter_enable": true,
       "per_page_num": 16,
+      "infinite_scroll": false,
       "product_image_ratio": "0",
       "product_fill_type": "contain",
       "product_hover_show_next": false,
       "filter_enable": true,
-      "support_multiple": true
+      "support_multiple": true,
+      "product_sub_title": "hide"
     },
     "blocks": [
       {

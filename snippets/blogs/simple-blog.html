@@ -6,6 +6,7 @@
 
 {{ assign 'showDesc' (default showDesc true) }}
 {{ assign 'coverRatio' (default coverRatio 0.75) }}
+{{ assign 'showMore' (default showMore true) }}
 
 {{#if coverRatio '!==' 'auto'}}
   {{ assign 'coverRatio' (toFloat coverRatio) }}
@@ -22,10 +23,10 @@
     {{ assign 'linkUrl' 'javascript:void(0);' }}
 
     {{#if (isTruthy id)}}
-      {{ assign 'linkUrl' (append global.pathPrefixParam '/' (default id '')) }}
+      {{ assign 'linkUrl' (append global.pathPrefixParam '/' (default handle id)) }}
     {{/if}}
 
-    <div class="simple-blog __sl-custom-track-stage-blog-item">
+    <div {{{ global.shopline_attributes }}} class="simple-blog __sl-custom-track-stage-blog-item">
       {{#if global.showCover}}
         <a class="simple-blog__image-wrapper" href="{{ linkUrl }}" title="{{ title }}">
           {{#snippet
@@ -65,10 +66,21 @@
             <p class="simple-blog__description body3">{{ digest }}</p>
           </a>
         {{/and}}
-        <a class="simple-blog__btn" href="{{ linkUrl }}" title="{{ title }}">
-          <span>{{ global.btn_text }}</span>
-          <span class="btn-arrow"> {{ snippet 'icons/icon_arrow_down' }}</span>
-        </a>
+        {{#if global.showTag}}
+          <div class="simple-blog__tags">
+            {{#each blogTagList as |blogTag|}}
+              {{#snippet "blogs/tag" blogListHandle=global.collectionId tagName=blogTag.tagName}}
+                <span class="recent-blog__tag text">{{blogTag.tagName}}</span>
+              {{/snippet}}
+            {{/each}}
+          </div>
+        {{/if}}
+        {{#if global.showMore}}
+          <a class="simple-blog__btn" href="{{ linkUrl }}" title="{{ title }}">
+            <span>{{ global.btn_text }}</span>
+            <span class="btn-arrow"> {{ snippet 'icons/icon_arrow_down' }}</span>
+          </a>
+        {{/if}}
       </div>
     </div> 
   {{/with}}

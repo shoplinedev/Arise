@@ -372,6 +372,8 @@
         var components_toast = __webpack_require__("../shared/browser/components/hbs/shared/components/toast/index.js");
         var request = __webpack_require__("../shared/browser/utils/request.js");
         var getPromotionReminder = __webpack_require__("../shared/browser/components/hbs/cartSalesPromotion/js/content/reminder/getPromotionReminder.js");
+        var syntax_patch = __webpack_require__("../shared/browser/utils/syntax-patch.js");
+        var template = __webpack_require__("../shared/browser/utils/template.js");
         function _defineProperty(obj, key, value) {
             if (key in obj) Object.defineProperty(obj, key, {
                 value,
@@ -447,7 +449,7 @@
             if (!cartNode.length) return;
             const activity = state_selector.SL_State.get("activity");
             function getDefualtPromotion() {
-                const {benefitType, benefitConditions} = activity;
+                const {benefitType, benefitConditions, cartBannerText} = activity;
                 const condition = benefitConditions[0];
                 if (condition) {
                     const {benefitEvent, benefit} = condition;
@@ -458,7 +460,10 @@
                             hit: false,
                             benefit: 1 === benefitEvent.type ? benefit.discount : benefit.benefitAmount,
                             amount: benefitEvent.minThreshold,
-                            benefitCount: benefit.benefitCount
+                            benefitCount: benefit.benefitCount,
+                            extMap: {
+                                bannerText: (0, syntax_patch.get)(cartBannerText, "hitNone")
+                            }
                         } ]
                     };
                 }
@@ -488,8 +493,15 @@
                     const activeItem = null === activeItems || void 0 === activeItems ? void 0 : activeItems.find((({promotion}) => (null === promotion || void 0 === promotion ? void 0 : promotion.activitySeq) === (null === activity || void 0 === activity ? void 0 : activity.activitySeq)));
                     const hasGiftPlugin = (null === activeItems || void 0 === activeItems ? void 0 : activeItems.findIndex((({promotion}) => (null === promotion || void 0 === promotion ? void 0 : promotion.benefitType) === GIFT_PLUGIN_TYPE))) > -1;
                     if (!hasGiftPlugin) {
-                        node.innerHTML = (0, getPromotionReminder.getShoppingReminderTranslate)((null === activeItem || void 0 === activeItem ? void 0 : activeItem.promotion) || getDefualtPromotion());
-                        __SL_$__(node).parents().removeClass("d-none");
+                        const promotion = (0, syntax_patch.get)(activeItem, "promotion") || getDefualtPromotion();
+                        const {extMap} = promotion.promotionBenefitList[0];
+                        if (extMap && extMap.bannerText) {
+                            const config = (0, getPromotionReminder["default"])(promotion);
+                            node.innerHTML = (0, template["default"])(extMap.bannerText, config.params, {
+                                prefix: "{"
+                            });
+                            __SL_$__(node).parents().removeClass("d-none");
+                        }
                     }
                 }
             }, {
@@ -752,17 +764,12 @@
     "../shared/browser/components/hbs/cartSalesPromotion/js/content/reminder/getPromotionReminder.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
-            getShoppingReminderTranslate: () => getShoppingReminderTranslate,
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
-        var _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/i18n.js");
+        __webpack_require__("../shared/browser/utils/i18n.js");
         var _yy_sl_theme_shared_utils_newCurrency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/newCurrency/CurrencyConvert.js");
         var _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/components/hbs/sales/shoppingPromotionReminder/index.js");
         const getPromotionReminder = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_newCurrency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat);
-        const getShoppingReminderTranslate = (promotion, configs, options) => {
-            const config = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_newCurrency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat)(promotion, configs, options);
-            return (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)(config.path, config.params);
-        };
         const __WEBPACK_DEFAULT_EXPORT__ = getPromotionReminder;
     },
     "../shared/browser/components/hbs/sales/shoppingPromotionReminder/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -789,6 +796,7 @@
             return str;
         }
         function getBenefitValue(benefitType, current, isNext = false) {
+            if (benefitType === BenefitTypeEnum.PRICE && !isNext) return (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "amount");
             if (benefitType === BenefitTypeEnum.FREELOWESTPRICE) return (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount");
             if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE) {
                 const extMap = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "extMap");
@@ -801,17 +809,28 @@
             function setWrapper(value, warper) {
                 return safeString(warper ? `<span class="notranslate ${warper.class}" style="font-size: 14px; font-weight: bold;${nc(warper.style, "")}"> ${value} </span>` : value);
             }
-            function formatBenefitNum(str, type, options) {
+            function formatThreshold(str, types, options = {}) {
+                if (void 0 === str) return "";
+                let num = Number(str) || 0;
+                const thresholdType = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(types, "thresholdType");
+                const benefitType = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(types, "benefitType");
+                if (benefitType === BenefitTypeEnum.BUY_X_GET_Y && num < 0) {
+                    const minThreshold = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(types, "minThreshold");
+                    const distance = Math.abs(num) % minThreshold;
+                    if (0 === distance) num = Number(minThreshold);
+                    num = distance;
+                }
+                if (thresholdType === ThresholdTypeEnum.NUMBER) return num;
+                if (thresholdType === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
+                return "";
+            }
+            function formatBenefitNum(str, types, options = {}) {
                 if (void 0 === str) return "";
                 const num = Number(str) || 0;
-                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "thresholdType") === ThresholdTypeEnum.NUMBER) return num;
-                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.DISCOUNT || (0, 
-                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.BUY_X_GET_Y || (0, 
-                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
-                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.NTH_FIXED_PRICE || (0, 
-                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.PRICE || (0, 
-                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "thresholdType") === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
-                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.FREELOWESTPRICE) return num;
+                const benefitType = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(types, "benefitType");
+                if (benefitType === BenefitTypeEnum.DISCOUNT || benefitType === BenefitTypeEnum.BUY_X_GET_Y || benefitType === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
+                if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE || benefitType === BenefitTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
+                if (benefitType === BenefitTypeEnum.FREELOWESTPRICE) return num;
                 return "";
             }
             function getShoppingReminderConfig(promotion, configs = {}, options = {}) {
@@ -839,54 +858,122 @@
                     const basePath = `sales.promotion.cart_reminder.b${benefitType}_t${thresholdType}_s${step}`;
                     let completePath = basePath;
                     const {meetThreshold} = extMap;
+                    let extra = "";
                     if (benefitType === BenefitTypeEnum.BUY_X_GET_Y) if (1 === step && "true" === meetThreshold) if (0 === Number((0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) completePath = `${basePath}_achieve_free`; else completePath = `${basePath}_achieve_normal`; else if (0 === Number((0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit")) || 0 === Number((0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) completePath = `${basePath}_free`; else completePath = `${basePath}_normal`;
-                    if (benefitType === BenefitTypeEnum.NTH_PRICE) if (0 === Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit"))) completePath = `${basePath}_free`; else if (0 === Number((0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) completePath = `${basePath}_next_free`; else completePath = `${basePath}_normal`;
+                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) {
+                        completePath = `${basePath}_achieve_free`;
+                        extra = "_achieve_free";
+                    } else {
+                        completePath = `${basePath}_achieve_normal`;
+                        extra = "_achieve_normal";
+                    } else if (0 === Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit")) || 0 === Number((0, 
+                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) {
+                        completePath = `${basePath}_free`;
+                        extra = "_free";
+                    } else {
+                        completePath = `${basePath}_normal`;
+                        extra = "_normal";
+                    }
+                    if (benefitType === BenefitTypeEnum.NTH_PRICE) if (0 === Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit"))) {
+                        completePath = `${basePath}_free`;
+                        extra = "_free";
+                    } else if (0 === Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) {
+                        completePath = `${basePath}_next_free`;
+                        extra = "_next_free";
+                    } else {
+                        completePath = `${basePath}_normal`;
+                        extra = "_normal";
+                    }
                     const {prerequisiteShippingPriceRange} = extMap;
-                    if (benefitType === BenefitTypeEnum.FREESHOPPING) if (prerequisiteShippingPriceRange) completePath = `${basePath}_upper_limit`; else completePath = `${basePath}_unlimited`;
-                    const benefitCount = Number(nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount"), (0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefitCount")));
+                    if (benefitType === BenefitTypeEnum.FREESHOPPING) if (prerequisiteShippingPriceRange) {
+                        completePath = `${basePath}_upper_limit`;
+                        extra = "_upper_limit";
+                    } else {
+                        completePath = `${basePath}_unlimited`;
+                        extra = "_unlimited";
+                    }
+                    const saved = formatBenefitNum(getBenefitValue(benefitType, current), {
+                        benefitType
+                    }, options);
+                    const willSave = formatBenefitNum(getBenefitValue(benefitType, next, true), {
+                        benefitType
+                    }, options);
+                    const threshold = formatThreshold((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "amount"), {
+                        thresholdType,
+                        benefitType,
+                        minThreshold: Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "minThreshold"))
+                    }, options);
+                    let savedCount = Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount"));
+                    let willSaveCount = Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefitCount"));
+                    let fixedAmount;
+                    let nextFixedAmount;
+                    if (benefitType === BenefitTypeEnum.BUY_X_GET_Y) {
+                        if (current) savedCount = Number(nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "extMap.realBenefitValue"), savedCount));
+                        if (next) willSaveCount = Number(nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "extMap.realBenefitValue"), willSaveCount));
+                    }
+                    if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE) {
+                        savedCount = Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "minThreshold"));
+                        willSaveCount = Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "minThreshold"));
+                        const benefit = current || next;
+                        fixedAmount = formatBenefitNum(Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(benefit, "extMap.fixedPrice")), {
+                            benefitType
+                        }, options);
+                        nextFixedAmount = formatBenefitNum(Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(benefit, "extMap.nextFixedPrice")), {
+                            benefitType
+                        }, options);
+                    }
+                    const benefitCount = Number(nc(savedCount, willSaveCount));
                     return {
                         path: thresholdType > -1 ? completePath : " ",
                         params: {
-                            saved: setWrapper(formatBenefitNum(getBenefitValue(benefitType, current), {
-                                benefitType
-                            }, options), {
+                            saved: setWrapper(saved, {
                                 ...warper,
-                                class: `sales__promotionReminder-saved  custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                                class: `sales__promotionReminder-saved custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            willSave: setWrapper(formatBenefitNum(getBenefitValue(benefitType, next, true), {
-                                benefitType
-                            }, options), {
+                            willSave: setWrapper(willSave, {
                                 ...warper,
                                 class: `sales__promotionReminder-willSave custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            currentMinThreshold: setWrapper((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "minThreshold"), {
+                            threshold: setWrapper(threshold, {
                                 ...warper,
                                 class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            nextMinThreshold: setWrapper((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "minThreshold"), {
+                            savedCount: setWrapper(savedCount, {
                                 ...warper,
-                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            threshold: setWrapper(formatBenefitNum((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "amount"), {
-                                thresholdType
-                            }, options), {
+                            willSaveCount: setWrapper(willSaveCount, {
                                 ...warper,
-                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            br: lineBreak ? setWrapper("<br/>") : setWrapper("<i></i>"),
+                            fixedAmount: setWrapper(fixedAmount, {
+                                ...warper,
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
+                            nextFixedAmount: setWrapper(nextFixedAmount, {
+                                ...warper,
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
                             upperLimit: benefitType === BenefitTypeEnum.FREESHOPPING && prerequisiteShippingPriceRange ? currency && currency(prerequisiteShippingPriceRange, options) : void 0,
+                            extMap,
+                            br: lineBreak ? setWrapper("<br/>") : setWrapper("<i></i>"),
                             benefitCount: benefitCount >= 0 ? setWrapper(benefitCount, {
                                 ...warper,
-                                class: `sales__promotionReminder--benefitCount ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }) : "",
-                            extMap
+                            currentMinThreshold: setWrapper(savedCount, {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
+                            nextMinThreshold: setWrapper(willSaveCount, {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            })
                         },
-                        step
+                        benefitType,
+                        thresholdType,
+                        step,
+                        extra
                     };
                 }
                 return {
@@ -6556,7 +6643,7 @@
             const options = {
                 debug: false,
                 environment: APP_ENV,
-                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_f274af2bc"}`,
+                release: `${APP_ENV}@${"undefined_theme_Arise_1.0.0_0fb375dfb"}`,
                 dsn: (0, get_env["default"])(void 0 || "SENTRY_DSN") || "",
                 autoSessionTracking: false,
                 ignoreErrors: [ "ReportingObserver [deprecation]" ],
@@ -6608,6 +6695,28 @@
         } catch (e) {
             console.error(e);
         }
+    },
+    "../shared/browser/utils/template.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => __WEBPACK_DEFAULT_EXPORT__
+        });
+        var lodash_get__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
+        var lodash_get__WEBPACK_IMPORTED_MODULE_0___default = __webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_0__);
+        const regStrFormat = regStr => regStr.replace(/([\^\$\{\}\[\]\.\?\+\*\(\)\\])/g, "\\$1");
+        const template = (text, data, options = {}) => {
+            const {prefix = "${", suffix = "}", replaceAll} = options || {};
+            const reg = new RegExp(`${regStrFormat(prefix)}\\s*(\\w+)\\s*${regStrFormat(suffix)}`, "g");
+            if ("string" === typeof text) {
+                if (data && Object.keys(data).length) return text.replace(reg, ((o, p) => {
+                    const val = lodash_get__WEBPACK_IMPORTED_MODULE_0___default()(data, p);
+                    return !replaceAll && ("string" === typeof val || "number" === typeof val) ? val : o;
+                }));
+                return text;
+            }
+            return "";
+        };
+        const __WEBPACK_DEFAULT_EXPORT__ = template;
     }
 }, __webpack_require__ => {
     var __webpack_exec__ = moduleId => __webpack_require__(__webpack_require__.s = moduleId);

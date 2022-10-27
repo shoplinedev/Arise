@@ -64,7 +64,7 @@ collection_products:
       <div 
        class="row row-cols-{{ section.settings.md_cols }} row-cols-md-{{ section.settings.pc_cols }} {{ prefix }}__list-container {{#if slice_in_mobile}} slice_in_mobile{{/if}}">
         {{#each list}}
-          <div class='{{ ../prefix }}__item-wrap'>
+          <div class='{{ ../prefix }}__item-wrap' {{{ this.shopline_attributes }}}>
             {{#if ../forbiddenBtn}}
               {{ snippet 'product/commons/product-item' moduleType='featured-collection' section=../section hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width backgroundColor='#f3f3f3' }} 
             {{else}}

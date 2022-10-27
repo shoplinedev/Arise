@@ -11,6 +11,8 @@ imgRealWidth 图片真实占位宽度
 {{/if}}
 {{assign 'soldOut' spu.soldOut}}
 {{assign 'title' spu.title}}
+{{assign 'subTitle' spu.subTitle}}
+{{assign 'subTitleShowType' (default subTitleShowType 'hide')}}
 {{assign 'productMinPrice' spu.productMinPrice}}
 {{assign 'showMemberMark' spu.showMemberMark}}
 {{assign 'showFromMark' spu.showFromMark}}
@@ -86,7 +88,7 @@ imgRealWidth 图片真实占位宽度
   {{assign 'product_title_show_type' theme.settings.product_title_show_type}}
 {{/if}}
 
-<div class="product-item__wrapper shopline-element-product-item">
+<div class="product-item__wrapper shopline-element-product-item" {{{shopline_attributes}}}>
   <div class="product-item__inner-wrap js-product-inner-wrap" data-hover-z-index="{{hoverZIndex}}" data-no-hover-ani-effect="{{noHoverAniEffect}}">
     <a
       data-id="{{spuSeq}}"
@@ -209,6 +211,9 @@ imgRealWidth 图片真实占位宽度
           <div class="product-item-title product-grid-font body3  {{#if product_title_show_type '===' 'display_up_to_1_rows'}}display-1-row{{/if}}{{#if product_title_show_type '===' 'display_up_to_2_rows'}}display-2-row{{/if}} {{#if (isFalsey product_mobile_title_show)}}mobile-hide{{/if}}">
             {{ title }}
           </div>
+          {{#if subTitleShowType '!==' 'hide'}}
+            <div class="product-item-sub-title {{ subTitleShowType }}">{{ subTitle }}</div>
+          {{/if}}
           {{#if description}}
             <div class="product-item-description product-grid-font body3">
               {{description}}

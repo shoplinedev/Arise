@@ -55,7 +55,7 @@
           {{/if}}{{/if}}
 
           {{#if (trim type) '===' 'video'}}
-            <div class="__sl-custom-track-stage-multiMediaSplicing-item multi-media-splicing__card collage-video collage-image__{{ settings.image_padding }} {{ card_class }} global-card-border-shadow">
+            <div {{{ shopline_attributes }}} class="__sl-custom-track-stage-multiMediaSplicing-item multi-media-splicing__card collage-video collage-image__{{ settings.image_padding }} {{ card_class }} global-card-border-shadow">
               <section
                 class="video__container video-padding__{{ settings.image_padding }}"
               >
@@ -147,7 +147,7 @@
             {{#if settings.product_id}}
               {{ assign 'product' (get settings.product_id ../../all_products) }}
             {{/if}}
-            <div class="multi-media-splicing__card collage-product collage-image__{{ settings.image_padding }} {{ card_class }}">
+            <div {{{ shopline_attributes }}} class="multi-media-splicing__card collage-product collage-image__{{ settings.image_padding }} {{ card_class }}">
               {{ assign 'hasImageClass' '' }}
               {{ assign 'product_spu' (get 'spu' product) }}
               {{ assign 'backgroundColor' (default (get 'color_page_background' ../../theme.settings) '#f3f3f3') }}
@@ -165,7 +165,7 @@
                 {{ assign 'backgroundColor' '#f3f3f3' }}
               {{/if}}
               <div class="multi-media-splicing__content multi-media-splicing__procontent {{ hasImageClass }}">
-                {{ snippet 'product/commons/product-item' moduleType='multi-media-splicing' section=this spu=product_spu imageList=images forbiddenBtn=true noHoverAniEffect=true imageFit=imageFit backgroundColor=backgroundColor }}
+                {{ snippet 'product/commons/product-item' moduleType='multi-media-splicing' section=this spu=product_spu imageList=images forbiddenBtn=true noHoverAniEffect=true imageFit=imageFit backgroundColor=backgroundColor shopline_attributes='' }}
               </div>
             </div>
           {{else}}{{#if (trim type) '===' 'collection'}}
@@ -175,15 +175,15 @@
             {{#if (isFalsey (get 'image' firstCategory))}}
               {{ assign 'hasImageClass' 'multi-media-splicing__no-image' }}
             {{/if}}
-            <div class="multi-media-splicing__card collage-collection collage-image__{{ settings.image_padding }} {{ card_class }}">
+            <div {{{ shopline_attributes }}} class="multi-media-splicing__card collage-collection collage-image__{{ settings.image_padding }} {{ card_class }}">
               <div class="multi-media-splicing__content {{ hasImageClass }}">
               {{!-- 获取配色方案的文本色值 --}}
               {{ assign 'titleColor' (get (append 'color_scheme_' ../../settings.color_scheme '_text') ../../theme.settings) }}
-              {{ snippet 'product/commons/collection-item' sortationData=category titleColor=titleColor imageFit=imageFit }}
+              {{ snippet 'product/commons/collection-item' sortationData=category titleColor=titleColor imageFit=imageFit shopline_attributes='' }}
               </div>
             </div>
           {{else}}{{#if (trim type) '===' 'image'}}
-            <div class="multi-media-splicing__card collage-image collage-image__{{ settings.image_padding }} {{ card_class }} global-card-border-shadow">
+            <div {{{ shopline_attributes }}} class="multi-media-splicing__card collage-image collage-image__{{ settings.image_padding }} {{ card_class }} global-card-border-shadow">
               <div class="multi-media-splicing__content">
                 <div class="collage-image__wrapper">
                   {{#if settings.image.url}}

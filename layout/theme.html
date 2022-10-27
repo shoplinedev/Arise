@@ -71,6 +71,7 @@
   {{ preload_state 'request' }}
   {{ preload_state 'theme.settings.cart_open_type' 'theme.settings.superscript_decimals' }}
   {{ preload_state 'cartInfo' 'payChannelInfo' }}
+  {{ preload_state 'fastCheckout' }}
 </head>
 
 <body class="template--le template__{{ replace template '/' '-' }}"
@@ -98,7 +99,8 @@
     window.__I18N__['transaction'] = {{{ JSONstringify (t 'transaction') }}};
     window.__I18N__['sales'] = {{{ JSONstringify (t 'sales') }}};
     window.__I18N__['general'] = {{{ JSONstringify (t 'general') }}};
-    window.__I18N__['blog'] = {{{ JSONstringify (t 'blog') }}}
+    window.__I18N__['blog'] = {{{ JSONstringify (t 'blog') }}};
+    window.__I18N__['unvisiable'] = {{{ JSONstringify (t 'unvisiable') }}};
     
   </script>
   {{#if storeInfo.languageSetting.enableSelector}}

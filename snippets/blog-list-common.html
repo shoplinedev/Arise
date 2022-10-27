@@ -1,6 +1,12 @@
 {{ assign 'seoTitle' storeInfo.name }}
 {{#if blogs.seoTitle}}
-  {{ assign 'seoTitle' (append blogs.seoTitle ' - ' seoTitle) }}
+  {{ assign 'seoTitle' blogs.seoTitle }}
+{{/if}}
+
+{{!-- tag 页面需要把 tag 透出 --}}
+{{ assign 'tagHandle' request.uri.params.tagHandle }}
+{{#if (isTruthy tagHandle)}}
+  {{ assign 'seoTitle' (append 'Blog - tagged' (decodeURI tagHandle) ' - ' storeInfo.name) }}
 {{/if}}
 
 {{#partial 'title'}}
@@ -57,7 +63,7 @@
 
 {{! 没有desc 不展示 }}
 {{#if seoDescription}}
-  <meta name="description" content="{{seoDescription}}" />
+  <meta name="description" content="{{sanitize seoDescription}}" />
 {{/if}}
 
 {{! 商详页之前的标签 先保留其他页面不需要传入  }}
@@ -84,7 +90,7 @@
 {{/if}}
 
 {{#if ogDescription}}
-  <meta property="og:description" content="{{ogDescription}}" />
+  <meta property="og:description" content="{{sanitize ogDescription}}" />
 {{/if}}
 
 {{! meta fb type }}
@@ -104,7 +110,7 @@
 
 {{! meta description }}
 {{#if ogDescription}}
-  <meta name="twitter:description" content="{{ogDescription}}" />
+  <meta name="twitter:description" content="{{sanitize ogDescription}}" />
 {{/if}}
 
 {{! meta twitter card }}

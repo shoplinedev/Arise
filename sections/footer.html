@@ -25,19 +25,19 @@
           {{#each blocks}}           
             {{!-- 快速导航 --}}
             {{#if type '===' 'menu'}}
-              <div class="footer__block">
+              <div class="footer__block" {{{this.shopline_attributes}}}>
                 {{ snippet 'footer-menu' sectionId=section.id }} 
               </div>
             {{/if}}
             {{!-- 自定义内容 --}}
             {{#if type '===' 'custom'}}
-              <div class="footer__block">
+              <div class="footer__block" {{{this.shopline_attributes}}}>
                 {{ snippet 'footer-custom' }}
               </div>
             {{/if}}
             {{!-- 图片 --}}
             {{#if type '===' 'image'}} 
-              <div class="footer__block-image">
+              <div class="footer__block-image" {{{this.shopline_attributes}}}>
                 {{ snippet 'footer-image' }}
               </div>
             {{/if}}

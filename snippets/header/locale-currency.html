@@ -47,7 +47,7 @@
 					<div class="dropdown--scroll">
 						<ul class="currency-list" data-show-symbol="{{global.show_currency_symbol}}">
 							{{#each global.currencyConfig.referenceCurrencies}}
-								<li data-currency-code="{{currencyCode}}" data-currency-symbol="{{currencySymbol}}">
+								<li data-currency-code="{{currencyCode}}" data-currency-symbol="{{currencySymbol}}" {{{ this.shopline_attributes }}}>
 									<span class="click">
 										<span class="body5 notranslate">{{#if global.show_currency_symbol}}{{currencySymbol}}{{/if}} {{currencyCode}}</span>
 									</span>
@@ -73,7 +73,7 @@
 				</button>
 				<ul class="dropdown__list">
 					{{#each (traditionalFilter storeInfo.languageSetting.supportLanguages)}}
-						<li class="text-left" data-alias="{{this}}" data-name="{{nameOfLocale this}}">
+						<li class="text-left" data-alias="{{this}}" data-name="{{nameOfLocale this}}" {{{ this.shopline_attributes }}}>
 							<span class="click">
 								<span class="body5 align-middle">{{nameOfLocale this}}</span>
 							</span>

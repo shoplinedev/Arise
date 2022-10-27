@@ -973,3 +973,38 @@ input{
     margin-top:-60px;
   }
 }
+@keyframes autoScroll{
+  0%{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(1turn);
+  }
+}
+.product-list-infinite-scroll-loading{
+  align-items:center;
+  display:none;
+  justify-content:center;
+  margin:20px 0;
+}
+.product-list-infinite-scroll-loading .infinite-loading-icon{
+  animation:.5s autoScroll infinite linear;
+  line-height:0;
+  margin-right:8px;
+}
+
+.product-infinite-list-lastPage,.product-list-infinite-scroll-loading>span{
+  color:{{ theme.settings.color_light_text }};
+}
+
+.product-infinite-list-lastPage{
+  margin:20px 0;
+  width:100%;
+}
+
+@media (max-width:749.98px){
+
+  .product-infinite-list-lastPage,.product-list-infinite-scroll-loading{
+    margin:40px 0;
+  }
+}

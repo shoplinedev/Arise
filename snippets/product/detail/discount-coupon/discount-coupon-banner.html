@@ -107,7 +107,7 @@
         {{/if}}
       {{/each}}
       {{#each arr}}
-        <span class="sales__discountCouponBanner-couponItem sales__discountCouponBanner-couponItem-hook">
+        <span class="sales__discountCouponBanner-couponItem sales__discountCouponBanner-couponItem-hook" {{{ this.shopline_attributes }}}>
           <span>
             {{#if benefitType '===' 12}}
               {{noTranslationHTML __buyXGetYDiscountText}}

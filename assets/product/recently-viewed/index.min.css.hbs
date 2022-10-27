@@ -817,6 +817,27 @@ input{
 .product-item-info .product-item-title.display-2-row{
   -webkit-line-clamp:2;
 }
+.product-item-info .product-item-sub-title{
+  -webkit-line-clamp:5;
+  -webkit-box-orient:vertical;
+  color:{{ theme.settings.color_text }};
+  display:-webkit-box;
+  font-size:12px;
+  letter-spacing:.2em;
+  line-height:1.6;
+  margin:6px 0;
+  opacity:.5;
+  overflow:hidden;
+  -o-text-overflow:ellipsis;
+     text-overflow:ellipsis;
+  word-break:break-word;
+}
+.product-item-info .product-item-sub-title.onelineShow{
+  -webkit-line-clamp:1;
+}
+.product-item-info .product-item-sub-title.twolineShow{
+  -webkit-line-clamp:2;
+}
 .product-item-info .product-item-description{
   display:none;
 }

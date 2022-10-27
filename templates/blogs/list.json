@@ -12,8 +12,38 @@
         "is_show_cover": true,
         "cover_img_ratio": "0.75",
         "is_show_digest": true,
-        "is_show_breadcrumb": true
-      }
+        "is_show_breadcrumb": true,
+        "is_show_sidebar": false,
+        "position": "right",
+        "is_show_tag": false,
+        "is_show_read_more": false
+      },
+      "blocks": {
+        "category1": {
+          "type": "category",
+          "settings": {
+            "title": "Categories"
+          }
+        },
+        "recent-blog1": {
+          "type": "recent-blog",
+          "settings": {
+            "title": "Recent Post",
+            "blog_num": 3,
+            "is_show_tag": false,
+            "is_show_date": true,
+            "is_show_abstract": false,
+            "is_show_author": false
+          }
+        },
+        "tag1": {
+          "type": "tag",
+          "settings": {
+            "title": "Tags"
+          }
+        }
+      },
+      "block_order": ["category1", "recent-blog1", "tag1"]
     }
   },
 

@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Next",
+      "previous": "Previous",
+      "read_more": "Read more",
+      "related_articles": "Related articles"
+    },
     "blog_list": {
       "empty_desc": "There are no blog posts in this blog.",
       "read_btn_text": "Read More",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Only {{stock}} left"
     },
+    "subscription": {
+      "information": "Subscription"
+    },
     "tips": {
       "agree_with_the_shop": "I agree to the",
       "change_binding_after_verification": "You can connect/change {{value}} after verification",
@@ -348,6 +357,7 @@
       "error_message_1022": "Account bound successfully",
       "error_message_1023": "The system is busy, please try again later",
       "error_message_1024": "The system is busy, please try again later",
+      "error_message_1035": "Please send verification code",
       "error_message_2": "The system is busy, please try again later",
       "error_message_2001": "The mobile has been registered",
       "error_message_2002": "The email has been registered",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "No relevant currency found",
       "search_input_placeholder": "Enter here and click search"
     },
+    "order_tracking": {
+      "code": "Verification code",
+      "email": "Email",
+      "form_error": "Query failed",
+      "orderId": "Order ID",
+      "orderId_error": "Order id cannot be empty",
+      "query_illegal": "The order does not exist",
+      "risk_black_user": "This account is at risk",
+      "risk_interception": "The order does not exist",
+      "submit_btn": "View order",
+      "username": "Email/Phone Number"
+    },
     "policy": {
       "privacy": "Privacy Policy",
       "refund": "Refund policy",
@@ -598,6 +620,7 @@
       "filter": "Filter",
       "from_price_html": "From {{price}}",
       "less": "less",
+      "load_more_tip": "Loading more items",
       "more": "more",
       "more__product_num": "{{num}} products",
       "new_arrivals": "New arrivals",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Results",
       "results_found_for": "{{count}} results found for \"{{keyword}}\"",
       "search": "search",
-      "search_no_results": "Your search for \"{{keyword}}\" did not yield any results"
+      "search_no_results": "Your search for \"{{keyword}}\" did not yield any results",
+      "single_results": "{{count}} Result",
+      "single_results_found": "{{count}} result found for \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Recently Viewed Products"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "for shipping fee below {value}",
       "specified_customer": "for specified customers",
       "threshold": "Buy {threshold}"
+    },
+    "flash": {
+      "day": "day",
+      "days": "days"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} OFF",
@@ -797,6 +826,13 @@
       "point_discount": "Points discount",
       "shipping_fee": "Shipping fee",
       "trade_coupon_discount": "Coupon"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Code error",
+      "err2005": "Code error",
+      "err3005": "Code error"
     }
   }
 }

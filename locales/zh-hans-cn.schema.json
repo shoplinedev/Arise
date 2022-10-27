@@ -1036,20 +1036,174 @@
       }
     },
     "main-blog-detail": {
+      "blocks": {
+        "category": {
+          "name": "菜单导航",
+          "settings": {
+            "menu": {
+              "label": "选择菜单导航"
+            },
+            "title": {
+              "label": "标题"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "最近博客文章",
+          "settings": {
+            "blog_num": {
+              "label": "博客文章数量"
+            },
+            "blogs_data": {
+              "label": "选择博客集"
+            },
+            "is_show_abstract": {
+              "label": "显示摘要"
+            },
+            "is_show_author": {
+              "label": "显示作者"
+            },
+            "is_show_date": {
+              "label": "显示日期"
+            },
+            "is_show_tag": {
+              "label": "显示标签"
+            },
+            "title": {
+              "label": "标题"
+            }
+          }
+        },
+        "tag": {
+          "name": "标签",
+          "settings": {
+            "title": {
+              "label": "Tags"
+            }
+          }
+        }
+      },
       "name": "博客",
       "settings": {
+        "group_header__0": {
+          "label": "侧栏设置"
+        },
+        "group_header__1": {
+          "label": "文章设置"
+        },
+        "group_header__2": {
+          "label": "相关文章设置"
+        },
         "is_show_author": {
           "label": "显示作者"
         },
         "is_show_breadcrumb": {
           "label": "显示面包屑"
         },
+        "is_show_comment": {
+          "label": "显示评论"
+        },
         "is_show_date": {
           "label": "显示日期"
+        },
+        "is_show_prev_next": {
+          "label": "显示上下篇文章"
+        },
+        "is_show_related_abstract": {
+          "label": "显示摘要"
+        },
+        "is_show_related_articles": {
+          "label": "显示相关文章"
+        },
+        "is_show_related_author": {
+          "label": "显示作者"
+        },
+        "is_show_related_date": {
+          "label": "显示日期"
+        },
+        "is_show_related_read_more": {
+          "label": "显示\"Read More\"链接"
+        },
+        "is_show_related_tag": {
+          "label": "显示标签"
+        },
+        "is_show_sidebar": {
+          "label": "显示侧栏"
+        },
+        "is_show_tag": {
+          "label": "显示标签"
+        },
+        "position": {
+          "label": "位置",
+          "options__0": {
+            "label": "右侧列"
+          },
+          "options__1": {
+            "label": "左侧列"
+          }
+        },
+        "related_align": {
+          "label": "内容对齐",
+          "options__0": {
+            "label": "左对齐"
+          },
+          "options__1": {
+            "label": "居中"
+          },
+          "options__2": {
+            "label": "右对齐"
+          }
         }
       }
     },
     "main-blog-list": {
+      "blocks": {
+        "category": {
+          "name": "菜单导航",
+          "settings": {
+            "menu": {
+              "label": "选择菜单导航"
+            },
+            "title": {
+              "label": "标题"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "最近博客文章",
+          "settings": {
+            "blog_num": {
+              "label": "博客文章数量"
+            },
+            "blogs_data": {
+              "label": "选择博客集"
+            },
+            "is_show_abstract": {
+              "label": "显示摘要"
+            },
+            "is_show_author": {
+              "label": "显示作者"
+            },
+            "is_show_date": {
+              "label": "显示日期"
+            },
+            "is_show_tag": {
+              "label": "显示标签"
+            },
+            "title": {
+              "label": "标题"
+            }
+          }
+        },
+        "tag": {
+          "name": "标签",
+          "settings": {
+            "title": {
+              "label": "Tags"
+            }
+          }
+        }
+      },
       "name": "博客集合",
       "settings": {
         "cover_img_ratio": {
@@ -1070,6 +1224,15 @@
             "label": "16:9"
           }
         },
+        "group_header__0": {
+          "label": "侧栏设置"
+        },
+        "group_header__1": {
+          "label": "样式设置"
+        },
+        "group_header__2": {
+          "label": "内容设置"
+        },
         "is_show_author": {
           "label": "显示作者"
         },
@@ -1085,6 +1248,15 @@
         "is_show_desc": {
           "label": "显示摘要"
         },
+        "is_show_read_more": {
+          "label": "显示\"Read More\"链接"
+        },
+        "is_show_sidebar": {
+          "label": "显示侧栏"
+        },
+        "is_show_tag": {
+          "label": "显示标签"
+        },
         "layout": {
           "label": "布局",
           "options__0": {
@@ -1092,6 +1264,15 @@
           },
           "options__1": {
             "label": "列表"
+          }
+        },
+        "position": {
+          "label": "位置",
+          "options__0": {
+            "label": "右侧列"
+          },
+          "options__1": {
+            "label": "左侧列"
           }
         }
       }
@@ -1300,6 +1481,23 @@
     },
     "notFoundPage": {
       "name": "404页面"
+    },
+    "order-tracking": {
+      "name": "订单查询",
+      "settings": {
+        "group_header__0": {
+          "label": "查询订货单详情"
+        },
+        "group_header__1": {
+          "label": "查询历史订单"
+        },
+        "history_order_title": {
+          "label": "标题"
+        },
+        "title": {
+          "label": "标题"
+        }
+      }
     },
     "product_collections-all_collections-list-page": {
       "block_info": "设置中展示指定商品分类时选择才生效",

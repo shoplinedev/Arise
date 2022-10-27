@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Lanjut",
+      "previous": "Sebelumnya",
+      "read_more": "lihat lebih banyak",
+      "related_articles": "Blog Terkait"
+    },
     "blog_list": {
       "empty_desc": "Di Blog ini tidak ada artikel blog.",
       "read_btn_text": "Lihat selanjutnya",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Masih sisa {{stock}} buah stok"
     },
+    "subscription": {
+      "information": "Berlangganan"
+    },
     "tips": {
       "agree_with_the_shop": "Saya setutu perjanjian toko",
       "change_binding_after_verification": "Setelah verifikasi bisa mengikat/mengubah mengikat{{value}}",
@@ -348,6 +357,7 @@
       "error_message_1022": "Akun yang terikat",
       "error_message_1023": "Layanan abnormal",
       "error_message_1024": "Layanan abnormal",
+      "error_message_1035": "Silakan kirim kode verifikasi",
       "error_message_2": "Layanan abnormal",
       "error_message_2001": "Nomor telepon sudah didaftar",
       "error_message_2002": "Email sudah didaftar",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Tidak menemukan mata uang terkait",
       "search_input_placeholder": "Masuk di sini dan klik cari"
     },
+    "order_tracking": {
+      "code": "Kode verifikasi",
+      "email": "Surel",
+      "form_error": "Kueri gagal",
+      "orderId": "Id pemesanan",
+      "orderId_error": "ID pesanan tidak boleh kosong",
+      "query_illegal": "pesanan tidak ada",
+      "risk_black_user": "Akun ini dalam bahaya",
+      "risk_interception": "pesanan tidak ada",
+      "submit_btn": "Tampilan Pemesanan",
+      "username": "Email/Nomor Telepon"
+    },
     "policy": {
       "privacy": "kebijakan pribadi",
       "refund": "Kebijakan pengembalian uang",
@@ -598,6 +620,7 @@
       "filter": "Saring",
       "from_price_html": "dari {{price}}",
       "less": "Label yang lebih sedikit",
+      "load_more_tip": "Muat lebih banyak proyek",
       "more": "Label lain",
       "more__product_num": "{{num}} produk-produk",
       "new_arrivals": "Unggah produk terbaru",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} buah catatan",
       "results_found_for": "Temukan \"{{keyword}}\"buah catatan {{count}}",
       "search": "Mencari",
-      "search_no_results": "Yang Anda dicari \"{{keyword}}\" tidak ada catatan apapun"
+      "search_no_results": "Yang Anda dicari \"{{keyword}}\" tidak ada catatan apapun",
+      "single_results": "{{count}} buah catatan",
+      "single_results_found": "Temukan \"{{keyword}}\"buah catatan {{count}}"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Produk yang baru dilihat"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Biaya ongkos lebih kurang dari{value}",
       "specified_customer": "Tunjukkan pelanggan bisa digunakannya",
       "threshold": "Beli{threshold}"
+    },
+    "flash": {
+      "day": "Hari",
+      "days": "Hari"
     },
     "general": {
       "activity_banner_benefit": "Diskon {{benefit}}",
@@ -797,6 +826,13 @@
       "point_discount": "Diskon poin",
       "shipping_fee": "Biaya pengiriman",
       "trade_coupon_discount": "Diskon"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Kode verifikasi salah",
+      "err2005": "Kode verifikasi salah",
+      "err3005": "Kode verifikasi salah"
     }
   }
 }

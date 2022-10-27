@@ -14,7 +14,7 @@
     {{#each benefitConditions}}
       {{#if @index "<" 3}}
 
-        {{ snippet 'activity/promotion-tag' className="sales__promotion-tags-tag sales__promotion-tags-tag-hook" benefitCondition=this benefitType=../benefitType }}
+        {{ snippet 'activity/promotion-tag' className="sales__promotion-tags-tag sales__promotion-tags-tag-hook" benefitCondition=this benefitType=../benefitType shopline_attributes=this.shopline_attributes }}
       {{/if}}
     {{/each}}
     {{!-- 商品详情页展示布局 --}}
@@ -39,7 +39,7 @@
         </div>
         <div class="sales__promotionTags-items-body">
           {{#each benefitConditions}}
-            <div class="sales__promotionTags-item">
+            <div class="sales__promotionTags-item" {{{ this.shopline_attributes }}}>
 
               {{ snippet 'activity/promotion-tag' benefitCondition=this benefitType=../benefitType }}
             </div>
@@ -52,7 +52,7 @@
   {{!-- 活动页展示布局 --}}
   {{#if scene '!==' "pdp"}}
     {{#each benefitConditions}}
-      <span class="sales__promotionTags-item">
+      <span class="sales__promotionTags-item" {{{ this.shopline_attributes }}}>
 
         {{ snippet 'activity/promotion-tag' benefitCondition=this benefitType=../benefitType }}
       </span>

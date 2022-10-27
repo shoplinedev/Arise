@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Następny",
+      "previous": "Poprzedni",
+      "read_more": "Zobacz więcej",
+      "related_articles": "Powiązane blogi"
+    },
     "blog_list": {
       "empty_desc": "W tym blogu jeszcze nie ma artykułów",
       "read_btn_text": "Czytać więcej",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Jeszcze {{stock}} pozostałe"
     },
+    "subscription": {
+      "information": "Subskrybować "
+    },
     "tips": {
       "agree_with_the_shop": "Zgadza się ze sklepem",
       "change_binding_after_verification": "Po weryfikacji już można ustalić/zmienić{{value}}",
@@ -348,6 +357,7 @@
       "error_message_1022": "Konto jest powiązane.",
       "error_message_1023": "Usługa działa nienormalnie",
       "error_message_1024": "Usługa działa nienormalnie",
+      "error_message_1035": "Prześlij kod weryfikacyjny",
       "error_message_2": "Usługa działa nienormalnie",
       "error_message_2001": "Ten numer telefonu już jest rejestrowany",
       "error_message_2002": "Ten e-mail już jest rejestrowany",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Nie znaleziono tej waluty",
       "search_input_placeholder": "Tutaj napisz i kliknij znajdź"
     },
+    "order_tracking": {
+      "code": "Kod weryfikacyjny",
+      "email": "E-mail",
+      "form_error": "Zapytanie nie powiodło się",
+      "orderId": "Identyfikator zamówienia",
+      "orderId_error": "Identyfikator zamówienia nie może być pusty",
+      "query_illegal": "zamówienie nie istnieje",
+      "risk_black_user": "To konto jest zagrożone",
+      "risk_interception": "zamówienie nie istnieje",
+      "submit_btn": "Zobacz zamówienie",
+      "username": "E-mail/numer telefonu"
+    },
     "policy": {
       "privacy": "Polityka prywatności",
       "refund": "Polityka zwrotów",
@@ -598,6 +620,7 @@
       "filter": "Filtr",
       "from_price_html": "z {{price}}",
       "less": "Mniej etykiet",
+      "load_more_tip": "Ładuje więcej przedmiotów",
       "more": "Więcej etykiet",
       "more__product_num": "{{num}} Produktów",
       "new_arrivals": "Najnowsze towary",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} śladów",
       "results_found_for": "Znaleziono {{count}} śladów z \"{{keyword}}\"",
       "search": "Szukaj",
-      "search_no_results": "Brak śladów z \"{{keyword}}\""
+      "search_no_results": "Brak śladów z \"{{keyword}}\"",
+      "single_results": "{{count}} śladów",
+      "single_results_found": "Znaleziono {{count}} śladów z \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Ostatnio oglądane produkty"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Koszt za dostawę jest niższy niż {value}",
       "specified_customer": "Dla przeznaczonych klientów",
       "threshold": "Kupić {threshold}"
+    },
+    "flash": {
+      "day": "Dzień",
+      "days": "Dnie"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}}% zniżki",
@@ -797,6 +826,13 @@
       "point_discount": "zniżka na punkty",
       "shipping_fee": "Koszty za dostawę",
       "trade_coupon_discount": "Zniżka"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Fałszywy kod weryfikacyjny",
+      "err2005": "Fałszywy kod weryfikacyjny",
+      "err3005": "Fałszywy kod weryfikacyjny"
     }
   }
 }

@@ -24,10 +24,11 @@ blogs:
       <div class="blogs__list-wrapper">
         <ul class="row row-cols-1 {{#if global.section.settings.layout '==' 'grid' }}row-cols-md-3{{/if}} blogs__list blogs__list--{{ global.section.settings.layout }}">
           {{#each blogData.blogs}}
-            <li class="blogs__item ">
+            <li class="blogs__item " {{{ this.shopline_attributes }}}>
               {{
                 snippet 'blogs/simple-blog'
                 pathPrefix=(append '/blogs/' global.blogData.collection.id)
+                collectionId=global.collectionId
                 info=this
                 showAuthor=global.section.settings.is_show_author
                 showDate=global.section.settings.is_show_date

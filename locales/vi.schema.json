@@ -1036,20 +1036,174 @@
       }
     },
     "main-blog-detail": {
+      "blocks": {
+        "category": {
+          "name": "điều hướng menu",
+          "settings": {
+            "menu": {
+              "label": "chọn điều hướng menu"
+            },
+            "title": {
+              "label": "Tiêu đề"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "Các bài đăng trên blog gần đây",
+          "settings": {
+            "blog_num": {
+              "label": "Số lượng bài đăng trên blog"
+            },
+            "blogs_data": {
+              "label": "Chọn Bộ sưu tập Blog"
+            },
+            "is_show_abstract": {
+              "label": "Hiển thị tóm tắt"
+            },
+            "is_show_author": {
+              "label": "Hiển thị tác giả"
+            },
+            "is_show_date": {
+              "label": "Hiển thị ngày tháng"
+            },
+            "is_show_tag": {
+              "label": "nhãn hiệu"
+            },
+            "title": {
+              "label": "Tiêu đề"
+            }
+          }
+        },
+        "tag": {
+          "name": "Nhãn mác",
+          "settings": {
+            "title": {
+              "label": "Thẻ"
+            }
+          }
+        }
+      },
       "name": "Blog",
       "settings": {
+        "group_header__0": {
+          "label": "Cài đặt thanh bên"
+        },
+        "group_header__1": {
+          "label": "Cài đặt bài viết"
+        },
+        "group_header__2": {
+          "label": "Cài đặt bài viết liên quan"
+        },
         "is_show_author": {
           "label": "Hiển thị tác giả"
         },
         "is_show_breadcrumb": {
           "label": "HIển thị vị trí"
         },
+        "is_show_comment": {
+          "label": "Hiển thị các bình luận"
+        },
         "is_show_date": {
           "label": "Hiển thị ngày tháng"
+        },
+        "is_show_prev_next": {
+          "label": "Hiển thị bài viết tiếp theo"
+        },
+        "is_show_related_abstract": {
+          "label": "Hiển thị tóm tắt"
+        },
+        "is_show_related_articles": {
+          "label": "Hiển thị các bài viết liên quan"
+        },
+        "is_show_related_author": {
+          "label": "Hiển thị tác giả"
+        },
+        "is_show_related_date": {
+          "label": "Hiển thị ngày tháng"
+        },
+        "is_show_related_read_more": {
+          "label": "Hiển thị liên kết \"Đọc thêm\""
+        },
+        "is_show_related_tag": {
+          "label": "nhãn hiệu"
+        },
+        "is_show_sidebar": {
+          "label": "hiển thị thanh bên"
+        },
+        "is_show_tag": {
+          "label": "nhãn hiệu"
+        },
+        "position": {
+          "label": "Địa điểm",
+          "options__0": {
+            "label": "Cột bên phải"
+          },
+          "options__1": {
+            "label": "Cột bên trái"
+          }
+        },
+        "related_align": {
+          "label": "liên kết nội dung",
+          "options__0": {
+            "label": "Xếp thẳng trái"
+          },
+          "options__1": {
+            "label": "Căn giữa"
+          },
+          "options__2": {
+            "label": "Xếp thẳng phải"
+          }
         }
       }
     },
     "main-blog-list": {
+      "blocks": {
+        "category": {
+          "name": "điều hướng menu",
+          "settings": {
+            "menu": {
+              "label": "chọn điều hướng menu"
+            },
+            "title": {
+              "label": "Tiêu đề"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "Các bài đăng trên blog gần đây",
+          "settings": {
+            "blog_num": {
+              "label": "Số lượng bài đăng trên blog"
+            },
+            "blogs_data": {
+              "label": "Chọn Bộ sưu tập Blog"
+            },
+            "is_show_abstract": {
+              "label": "Hiển thị tóm tắt"
+            },
+            "is_show_author": {
+              "label": "Hiển thị tác giả"
+            },
+            "is_show_date": {
+              "label": "Hiển thị ngày tháng"
+            },
+            "is_show_tag": {
+              "label": "nhãn hiệu"
+            },
+            "title": {
+              "label": "Tiêu đề"
+            }
+          }
+        },
+        "tag": {
+          "name": "Nhãn mác",
+          "settings": {
+            "title": {
+              "label": "Thẻ"
+            }
+          }
+        }
+      },
       "name": "Bộ sưu tập blog",
       "settings": {
         "cover_img_ratio": {
@@ -1070,6 +1224,15 @@
             "label": "16:9"
           }
         },
+        "group_header__0": {
+          "label": "Cài đặt thanh bên"
+        },
+        "group_header__1": {
+          "label": "cài đặt phong cách"
+        },
+        "group_header__2": {
+          "label": "Cài đặt nội dung"
+        },
         "is_show_author": {
           "label": "Hiển thị tác giả"
         },
@@ -1085,6 +1248,15 @@
         "is_show_desc": {
           "label": "Hiển thị tóm tắt"
         },
+        "is_show_read_more": {
+          "label": "Hiển thị liên kết \"Đọc thêm\""
+        },
+        "is_show_sidebar": {
+          "label": "hiển thị thanh bên"
+        },
+        "is_show_tag": {
+          "label": "nhãn hiệu"
+        },
         "layout": {
           "label": "Bố cục",
           "options__0": {
@@ -1092,6 +1264,15 @@
           },
           "options__1": {
             "label": "Xếp hàng"
+          }
+        },
+        "position": {
+          "label": "Địa điểm",
+          "options__0": {
+            "label": "Cột bên phải"
+          },
+          "options__1": {
+            "label": "Cột bên trái"
           }
         }
       }
@@ -1301,6 +1482,23 @@
     "notFoundPage": {
       "name": "Trang 404"
     },
+    "order-tracking": {
+      "name": "Theo dõi đơn hàng",
+      "settings": {
+        "group_header__0": {
+          "label": "Xem đơn đặt hàng"
+        },
+        "group_header__1": {
+          "label": "Truy vấn đơn đặt hàng lịch sử"
+        },
+        "history_order_title": {
+          "label": "Tiêu đề"
+        },
+        "title": {
+          "label": "Tiêu đề"
+        }
+      }
+    },
     "product_collections-all_collections-list-page": {
       "block_info": "Phải chọn trong mục cài đặt hiển thị phân loại sản phẩm chỉ định thì mới hiển thị được",
       "blocks": {
@@ -1476,7 +1674,7 @@
           }
         },
         "product_sub_title": {
-          "label": "",
+          "label": "Thông tin tóm tắt sản phẩm",
           "options__0": {
             "label": "Không hiển thị"
           },

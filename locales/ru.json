@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Следующий",
+      "previous": "Предыдущий",
+      "read_more": "узнать больше",
+      "related_articles": "Связанные блоги"
+    },
     "blog_list": {
       "empty_desc": "В этом блоге нет статей",
       "read_btn_text": "Узнайте больше",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Осталось {{stock}} наличность"
     },
+    "subscription": {
+      "information": "Подписка"
+    },
     "tips": {
       "agree_with_the_shop": "Я согласен с магазином",
       "change_binding_after_verification": "После проверки можно привязать / перевязать {{value}}",
@@ -348,6 +357,7 @@
       "error_message_1022": "Аккаунт привязан",
       "error_message_1023": "Аномальный сервис",
       "error_message_1024": "Аномальный сервис",
+      "error_message_1035": "Пожалуйста, пришлите код подтверждения",
       "error_message_2": "Аномальный сервис",
       "error_message_2001": "Номер мобильного телефона зарегистрирован",
       "error_message_2002": "Почта зарегистрирована",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Связанная валюта не найдена",
       "search_input_placeholder": "Введите здесь и нажмите поиск"
     },
+    "order_tracking": {
+      "code": "Код подтверждения",
+      "email": "Эл. адрес",
+      "form_error": "Ошибка запроса",
+      "orderId": "номер заказа",
+      "orderId_error": "Идентификатор заказа не может быть пустым",
+      "query_illegal": "порядок не существует",
+      "risk_black_user": "Этот аккаунт находится под угрозой",
+      "risk_interception": "порядок не существует",
+      "submit_btn": "Посмотреть заказ",
+      "username": "Электронная почта/номер телефона"
+    },
     "policy": {
       "privacy": "политики конфиденциальности",
       "refund": "Политика возврата",
@@ -598,6 +620,7 @@
       "filter": "Отбор",
       "from_price_html": "От {{price}}",
       "less": "Меньше этикеток",
+      "load_more_tip": "Загрузите больше пунктов",
       "more": "Больше этикеток",
       "more__product_num": "{{num}} Продукты",
       "new_arrivals": "Новейшие продукты на полках",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} записей",
       "results_found_for": "Найдено {{count}} записей \"{{keyword}}\"",
       "search": "Поиск",
-      "search_no_results": "{{keyword}}, который вы искали, нет никакой записи"
+      "search_no_results": "{{keyword}}, который вы искали, нет никакой записи",
+      "single_results": "{{count}} записей",
+      "single_results_found": "Найдено {{count}} записей \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Недавно просмотренные продукты"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Фрахт меньше {value}",
       "specified_customer": "Для назначенных клиентов",
       "threshold": "Купить {threshold}"
+    },
+    "flash": {
+      "day": "День",
+      "days": "День"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} скидка",
@@ -797,6 +826,13 @@
       "point_discount": "Скидка по интегралам",
       "shipping_fee": "Фрахт",
       "trade_coupon_discount": "Льгота"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Код подтверждения неправилен",
+      "err2005": "Неправильный код подтверждения",
+      "err3005": "Неправильный код подтверждения"
     }
   }
 }

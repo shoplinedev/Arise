@@ -53,7 +53,7 @@
 
 {{! 没有desc 不展示 }}
 {{#if seoDescription}}
-  <meta name="description" content="{{seoDescription}}" />
+  <meta name="description" content="{{sanitize seoDescription}}" />
 {{/if}}
 
 {{! 商详页之前的标签 先保留其他页面不需要传入  }}
@@ -80,7 +80,7 @@
 {{/if}}
 
 {{#if ogDescription}}
-  <meta property="og:description" content="{{ogDescription}}" />
+  <meta property="og:description" content="{{sanitize ogDescription}}" />
 {{/if}}
 
 {{! meta fb type }}
@@ -100,7 +100,7 @@
 
 {{! meta description }}
 {{#if ogDescription}}
-  <meta name="twitter:description" content="{{ogDescription}}" />
+  <meta name="twitter:description" content="{{sanitize ogDescription}}" />
 {{/if}}
 
 {{! meta twitter card }}

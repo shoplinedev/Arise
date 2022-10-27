@@ -24,6 +24,6 @@
   {{#each data.itemList}}
     {{ include 'snippets/trade/sku-item' data=this image-width=../image-width skuNumMap=../skuNumMap trade_cart_type=../trade_cart_type findex=../index index=@index }}
     {{!-- 单个商品底部插槽 --}}
-    <div class="slot-cart slot-cart-item-end" data-slot-cart-item-end></div>
+    <div class="slot-cart slot-cart-item-end" {{{ this.shopline_attributes }}} data-slot-cart-item-end></div>
   {{/each}}
 </div>

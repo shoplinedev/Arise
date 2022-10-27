@@ -3,9 +3,10 @@
         "use strict";
         var _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/i18n.js");
         var _yy_sl_theme_shared_utils_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/form/index.js");
-        var _yy_sl_theme_shared_utils_emailReg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/utils/emailReg.js");
+        var _yy_sl_theme_shared_utils_emailReg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../shared/browser/utils/emailReg.js");
         var _yy_sl_theme_shared_utils_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/utils/request.js");
-        var _commons_components_toast__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./src/assets/commons/components/toast/index.js");
+        var _yy_sl_theme_shared_utils_sectionsLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/utils/sectionsLoad/index.js");
+        var _commons_components_toast__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./src/assets/commons/components/toast/index.js");
         __webpack_require__("./src/assets/stage/blog/detail/script/report.js");
         function _defineProperty(obj, key, value) {
             if (key in obj) Object.defineProperty(obj, key, {
@@ -17,7 +18,7 @@
             return obj;
         }
         const SEND_API = "/site/render/blogComment/addBlogComment";
-        const toast = new _commons_components_toast__WEBPACK_IMPORTED_MODULE_3__["default"]({
+        const toast = new _commons_components_toast__WEBPACK_IMPORTED_MODULE_4__["default"]({
             content: "content",
             className: "blog-form__toast",
             duration: 5e3
@@ -36,7 +37,7 @@
                 required: true
             }, {
                 message: (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)("blog.comment.email_format"),
-                pattern: _yy_sl_theme_shared_utils_emailReg__WEBPACK_IMPORTED_MODULE_5__.EMAIL_VALID_REGEXP
+                pattern: _yy_sl_theme_shared_utils_emailReg__WEBPACK_IMPORTED_MODULE_6__.EMAIL_VALID_REGEXP
             } ]
         }, {
             name: "content",
@@ -47,12 +48,11 @@
             } ]
         } ];
         class BlogDetail {
-            constructor() {
+            constructor(container) {
                 _defineProperty(this, "commentForm", null);
                 _defineProperty(this, "submitBtn", null);
                 this.initLoadMore();
-                this.submitBtn = Array.from(document.getElementsByClassName("blog__form-submit")).pop();
-                if (!this.submitBtn) return;
+                this.submitBtn = container.find(".blog__form-submit");
                 this.initSubmitBtn();
                 this.commentForm = _yy_sl_theme_shared_utils_form__WEBPACK_IMPORTED_MODULE_1__["default"].takeForm(`blog-comment-form`);
                 this.commentForm.init();
@@ -66,11 +66,10 @@
                 }));
             }
             initSubmitBtn() {
-                this.submitBtn.onclick = async event => {
+                this.submitBtn.on("click", (async event => {
                     event.preventDefault();
                     await this.validateForm();
                     const contactData = this.commentForm.getFieldsValue();
-                    console.log(contactData);
                     try {
                         const {data} = await _yy_sl_theme_shared_utils_request__WEBPACK_IMPORTED_MODULE_2__["default"].post(SEND_API, {
                             ...contactData,
@@ -84,7 +83,7 @@
                     } catch (error) {
                         toast.open("Network Error");
                     }
-                };
+                }));
             }
             initLoadMore() {
                 const loadMore = Array.from(document.getElementsByClassName("blog__comments-loadmore")).pop();
@@ -104,6 +103,10 @@
                     }));
                 };
             }
+            onUnload() {
+                this.commentForm.destroy();
+                this.submitBtn.off("click");
+            }
         }
         _defineProperty(BlogDetail, "type", "blog-detail");
         function redirectBlogComment(commentId) {
@@ -113,7 +116,7 @@
             if (old) query.set("comment", `${old},${commentId}`); else query.set("comment", commentId);
             window.location.href = `${url.origin + url.pathname}?${query.toString()}`;
         }
-        new BlogDetail;
+        (0, _yy_sl_theme_shared_utils_sectionsLoad__WEBPACK_IMPORTED_MODULE_3__.registrySectionConstructor)(BlogDetail.type, BlogDetail);
     },
     "./src/assets/stage/blog/detail/script/report.js": () => {
         (function() {

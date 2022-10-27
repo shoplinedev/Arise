@@ -52,7 +52,7 @@
                     data: query
                 };
                 query.mode = mode;
-                queryPath = `/page${state_selector.SL_State.get("request.uri.path") || window.location.pathname}`;
+                queryPath = `/page${state_selector.SL_State.get("request.uri.url") || window.location.pathname + window.location.search}`;
             }
             const {data} = await http.post(queryPath, query);
             const html = "SINGLE" === mode ? data && data.html : data;

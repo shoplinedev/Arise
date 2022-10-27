@@ -38,7 +38,7 @@
         {{#if data.skuAttributes}}
           {{#unless (isEmpty data.skuAttributes)}}
             {{#each data.skuAttributes}}
-              <div class="trade-cart-sku-item-info-spec body3">
+              <div class="trade-cart-sku-item-info-spec body3" {{{ this.shopline_attributes }}}>
                 <div class="trade-cart-sku-item-info-spec-key">{{this.attributeName}}:</div>
                 <div class="trade-cart-sku-item-info-spec-value">{{this.attributeValue}}</div>
               </div>
@@ -47,7 +47,7 @@
         {{/if}}
         {{#if data.properties}}
           {{#each data.properties}}
-            <div class="trade-cart-sku-item-info-spec body3">
+            <div class="trade-cart-sku-item-info-spec body3" {{{ this.shopline_attributes }}}>
               <div class="trade-cart-sku-item-info-spec-key">{{this.name}}:</div>
               {{#if this.type '==' 'text'}}
                 <div class="trade-cart-sku-item-info-spec-value">{{this.value}}</div>
@@ -63,10 +63,16 @@
             </div>
           {{/each}}
         {{/if}}
+        {{#if data.subscriptionInfo.sellingPlanName}}
+          <div class="trade-cart-sku-item-info-spec body3">
+            <div class="trade-cart-sku-item-info-spec-key">{{t 'cart.subscription.information'}}:</div>
+            <div class="trade-cart-sku-item-info-spec-value">{{data.subscriptionInfo.sellingPlanName}}</div>
+          </div>
+        {{/if}}
         {{#if data.customProductTips}}
           {{#unless (isEmpty data.customProductTips)}}
             {{#each data.customProductTips}}
-              <div class="trade-cart-sku-item-info-customTip notranslate">{{this}}</div>
+              <div class="trade-cart-sku-item-info-customTip notranslate" {{{ this.shopline_attributes }}}>{{this}}</div>
             {{/each}}
           {{/unless}}
         {{/if}}
@@ -75,9 +81,6 @@
       {{!-- 单个商品底部 --}}
       <div class="slot-cart slot-cart-item-info" data-slot-cart-item-info></div>
 
-    {{#if (boolean data.priceType '===' 2)}}
-      <span class="flash-sale" data-flash-sale-data="{{JSONstringify data}}" data-flash-sale-item-id="{{trade_cart_type}}{{append '-card-sku-item-' (numToString data.groupId) '-' data.spuId '-' data.skuId '-' (numToString data.uniqueSeq)}}"></span>
-    {{/if}}
     <div class="trade-cart-sku-item-info-number">
       <div class="trade-cart-sku-item-info-left">
         {{#or (boolean data.businessFlag '&&' data.businessFlag.singleAdjustNum '===' false)  (compare data.maxPurchaseTotalNum '==' 0)  (or inactive (not (trade_cart_show_remove data skuNumMap)))}}
@@ -127,7 +130,7 @@
               <span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>
             </span>
           {{/if}}
-          
+
         </div>
         {{#if (toInt data.promotionAmount) '>' 0}}
           <div class="trade-cart-sku-item-info-discount sale-color body4">

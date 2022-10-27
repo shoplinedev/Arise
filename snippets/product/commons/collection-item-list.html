@@ -5,6 +5,6 @@
 
 <div class="row row-cols-1 row-cols-md-3 shopline-element-collection-list">
   {{#each _collections}}
-    {{snippet 'product/commons/collection-item' mSize="1" pcSize="1/3" index=@index sortationData=this imageRatio=../section.settings.collection_image_ratio imageFit=../section.settings.collection_fill_type}}
+    {{snippet 'product/commons/collection-item' mSize="1" pcSize="1/3" index=@index sortationData=this imageRatio=../section.settings.collection_image_ratio imageFit=../section.settings.collection_fill_type shopline_attributes=this.shopline_attributes}}
   {{/each}}
 </div>

@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Ďalšie",
+      "previous": "Predchádzajúce",
+      "read_more": "pozrieť viac",
+      "related_articles": "Súvisiace blogy"
+    },
     "blog_list": {
       "empty_desc": "V tomto blogu nie sú žiadne blogové príspevky.",
       "read_btn_text": "Čítaj viac",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Zostáva iba {{stock}}"
     },
+    "subscription": {
+      "information": "Predplatné"
+    },
     "tips": {
       "agree_with_the_shop": "Súhlasím s",
       "change_binding_after_verification": "Po overení môžete zadať/zmeniť {{value}}",
@@ -348,6 +357,7 @@
       "error_message_1022": "Číslo účtu je zviazané",
       "error_message_1023": "Abnormálna služba",
       "error_message_1024": "Abnormálna služba",
+      "error_message_1035": "Pošlite overovací kód",
       "error_message_2": "Abnormálna služba",
       "error_message_2001": "Mobil bol zaregistrovaný",
       "error_message_2002": "E-mail bol zaregistrovaný",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Nenašla sa žiadna relevantná mena",
       "search_input_placeholder": "Napísať a vyhľadať"
     },
+    "order_tracking": {
+      "code": "Overovací kód",
+      "email": "Email",
+      "form_error": "Dopyt zlyhal",
+      "orderId": "Číslo objednávky",
+      "orderId_error": "ID objednávky nemôže byť prázdne",
+      "query_illegal": "poriadok neexistuje",
+      "risk_black_user": "Tento účet je ohrozený",
+      "risk_interception": "poriadok neexistuje",
+      "submit_btn": "Prehľad objednávky",
+      "username": "Email/telefónne číslo"
+    },
     "policy": {
       "privacy": "Zásadami ochrany osobných údajov",
       "refund": "Pravidlá vrátenia peňazí",
@@ -598,6 +620,7 @@
       "filter": "Filter",
       "from_price_html": "Od {{price}}",
       "less": "menej štítkov",
+      "load_more_tip": "Načítava sa viac položiek",
       "more": "viac značiek",
       "more__product_num": "{{num}} produkty",
       "new_arrivals": "Nový prírastok",
@@ -623,7 +646,9 @@
       "ount_results": "Výsledky: {{count}}",
       "results_found_for": "Pre výraz „{{keyword}}“ sa našlo {{count}} výsledkov",
       "search": "Vyhľadávanie",
-      "search_no_results": "Vaše hľadanie \"{{keyword}}\" neprinieslo žiadne výsledky"
+      "search_no_results": "Vaše hľadanie \"{{keyword}}\" neprinieslo žiadne výsledky",
+      "single_results": "Výsledky: {{count}}",
+      "single_results_found": "Pre výraz „{{keyword}}“ sa našlo {{count}} výsledkov"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Naposledy prezerané produkty"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Dopravné je menej ako {value}",
       "specified_customer": "Pre určených zákazníkov",
       "threshold": "Kúpiť {threshold}"
+    },
+    "flash": {
+      "day": "deň",
+      "days": "dni"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} vypnuté",
@@ -797,6 +826,13 @@
       "point_discount": "Zľavové body",
       "shipping_fee": "Doprava",
       "trade_coupon_discount": "Kupón"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Chyba kódu",
+      "err2005": "Chyba kódu",
+      "err3005": "Chyba kódu"
     }
   }
 }

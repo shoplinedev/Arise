@@ -331,6 +331,94 @@
                 });
             }
         }
+        function initWhenVisible(options) {
+            const threshold = options.threshold ? options.threshold : 0;
+            const observer = new IntersectionObserver((entries => {
+                entries.forEach((entry => {
+                    console.log("infinite scroll observe...", entry);
+                    if (entry.isIntersecting) if ("function" === typeof options.callback) options.callback(entry);
+                }));
+            }), {
+                rootMargin: `0px 0px ${threshold}px 0px`
+            });
+            observer.observe(options.observeElement[0]);
+            return observer;
+        }
+        class InfiniteScrollList {
+            constructor(options) {
+                this.loading = false;
+                this.options = options;
+                this.anchorObserverTarget = null;
+                this.init(options);
+                this.destroyUpdateSectionEvent = this.listerUpdateSection();
+            }
+            deletePageNumParamByUrl() {
+                const hasPageNumParam = (0, url.getUrlQuery)("page_num");
+                if (hasPageNumParam) {
+                    const fixUrl = (0, url.delParam)("page_num");
+                    window.history.pushState({}, "", fixUrl);
+                }
+            }
+            init(options) {
+                this.deletePageNumParamByUrl();
+                if (this.anchorObserverTarget) this.anchorObserverTarget.disconnect();
+                const infiniteScrollAnchor = __SL_$__(".product-list-infinite-scroll-anchor");
+                const isInitLastPage = infiniteScrollAnchor.length <= 0;
+                if (isInitLastPage) return;
+                const _options = {
+                    observeElement: infiniteScrollAnchor,
+                    callback: () => {
+                        this.loadMore();
+                    },
+                    ...options
+                };
+                this.anchorObserverTarget = initWhenVisible(_options);
+            }
+            listerUpdateSection() {
+                const bindInit = this.init.bind(this);
+                window.Shopline.event.on("Product::UpdateSection::Filter", bindInit);
+                window.Shopline.event.on("plugin::filter::updateSection", bindInit);
+                return () => {
+                    window.Shopline.event.off("Product::UpdateSection::Filter", bindInit);
+                    window.Shopline.event.off("plugin::filter::updateSection", bindInit);
+                };
+            }
+            handleLoading(isLoad) {
+                this.loading = isLoad;
+                if (isLoad) __SL_$__(".product-list-infinite-scroll-loading").css("display", "flex"); else __SL_$__(".product-list-infinite-scroll-loading").css("display", "none");
+            }
+            loadMore() {
+                const observeEle = __SL_$__(".product-list-infinite-scroll-anchor");
+                const appendEle = __SL_$__(".product-infinite-list-container");
+                const lastPageEle = __SL_$__(".product-infinite-list-lastPage");
+                const isLoadMoreLastPage = lastPageEle.length > 0;
+                if (isLoadMoreLastPage) this.anchorObserverTarget.disconnect();
+                if (this.loading || isLoadMoreLastPage) return;
+                const pageNum = Number(observeEle.attr("data-pageNum")) + 1;
+                this.handleLoading(true);
+                const requestUrl = (0, url.changeURLArg)(window.location.search, "page_num", pageNum, false);
+                const collectionPath = window.location.pathname;
+                axios_default().get(`${collectionPath}${requestUrl}&view=ajax&isJsonSettings=true&loadMore=true`).then((res => {
+                    const {data} = res;
+                    if (data) {
+                        const children = __SL_$__(data).children();
+                        appendEle.append(children);
+                        observeEle.attr("data-pageNum", pageNum);
+                        updateSection({
+                            content: appendEle
+                        });
+                    }
+                })).catch((err => {
+                    console.error(`InfiniteScrollList ${err}`);
+                })).finally((() => {
+                    this.handleLoading(false);
+                }));
+            }
+            destroy() {
+                if (this.anchorObserverTarget) this.anchorObserverTarget.disconnect();
+                if (this.destroyUpdateSectionEvent) this.destroyUpdateSectionEvent();
+            }
+        }
         __webpack_require__("./src/assets/product/commons/js/preview-modal/index.js");
         __webpack_require__("./src/assets/product/commons/js/product-item.js");
         var report = __webpack_require__("../shared/browser/utils/report/index.js");
@@ -447,15 +535,15 @@
         sideBar.init();
         class CollectionsPage {
             constructor() {
-                _defineProperty(this, "instance", null);
                 sort();
+                const isListInfiniteScroll = __SL_$__(".product-list-is-infinite-scroll-mode").length > 0;
+                if (isListInfiniteScroll) this.infiniteScrollInstance = new InfiniteScrollList({
+                    threshold: 400
+                });
                 (0, createShadowDom["default"])();
             }
             onUnload() {
-                if (this.instance) {
-                    var _this$instance;
-                    null === (_this$instance = this.instance) || void 0 === _this$instance ? void 0 : _this$instance.destory();
-                }
+                if (this.infiniteScrollInstance) this.infiniteScrollInstance.destroy();
             }
         }
         _defineProperty(CollectionsPage, "type", "collections-page");

@@ -24,19 +24,19 @@
       <div class="newsletter">
           {{#each blocks}}
             {{#if (trim type) '===' 'title'}}
-              <div class="newsletter__title">
+              <div {{{ this.shopline_attributes }}} class="newsletter__title">
                 <h2 class="section-title title4">{{ settings.title }}</h2>
               </div>
             {{/if}}
             {{#if (trim type) '===' 'desc'}}
-              <div class="newsletter__desc body3 sl-richtext">{{{ settings.description }}}</div>
+              <div {{{ this.shopline_attributes }}} class="newsletter__desc body3 sl-richtext">{{{ settings.description }}}</div>
             {{/if}}
             {{#if (trim type) '===' 'button'}}
-              <div class="newsletter__btnGroup">
+              <div {{{ this.shopline_attributes }}} class="newsletter__btnGroup">
                 <div class="newsletter__input--wrapper">
                   <input class="newsletter__input __sl-custom-track-stage-newsletter-input" placeholder="{{ settings.placeholder }}"></input>
                 </div>
-              
+
                 <button class="__sl-custom-track-stage-newsletter-button newsletter__btn btn btn-primary fw-bold {{#isFalsey (trim settings.button_text)}}has-icon{{/isFalsey}}">
                   <span>{{ settings.button_text }}</span>
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@
                 </button>
               </div>
             {{/if}}
-          {{/each}}                        
+          {{/each}}
       </div>
   </div>
 </div>

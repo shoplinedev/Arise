@@ -8,12 +8,12 @@
         {{#if @root.tradeSettleConfig.paymentSecurity.imageType '>' 0}}
           <div class='trade-cart-safety-logo-list trade-cart-safety-logo-list-mobile'>
               {{#each @root.tradeSettleConfig.paymentSecurity.mobileImages }}
-              <img data-src="{{this}}" class="safety-logo-{{#if @root.tradeSettleConfig.paymentSecurity.imageType '>' 1}}image{{else}}icon{{/if}} lazyload lozad" />
+              <img {{{ this.shopline_attributes }}} data-src="{{this}}" class="safety-logo-{{#if @root.tradeSettleConfig.paymentSecurity.imageType '>' 1}}image{{else}}icon{{/if}} lazyload lozad" />
               {{/each }}
           </div>
           <div class='trade-cart-safety-logo-list trade-cart-safety-logo-list-pc'>
               {{#each @root.tradeSettleConfig.paymentSecurity.pcImages }}
-              <img data-src="{{this}}" class="safety-logo-{{#if @root.tradeSettleConfig.paymentSecurity.imageType '>' 1}}image{{else}}icon{{/if}} lazyload lozad" />
+              <img {{{ this.shopline_attributes }}} data-src="{{this}}" class="safety-logo-{{#if @root.tradeSettleConfig.paymentSecurity.imageType '>' 1}}image{{else}}icon{{/if}} lazyload lozad" />
               {{/each }}
           </div>
         {{/if}}

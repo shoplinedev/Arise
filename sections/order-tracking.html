@@ -1,0 +1,129 @@
+{{#is_modern_browser}}
+  {{ inline_stylesheet 'order-tracking/index.min.modern.css' }}
+{{else}}
+  {{ inline_stylesheet 'order-tracking/index.min.css' }}
+{{/is_modern_browser}}
+
+<script>
+  {{#is_modern_browser}}
+    window.__loaded_js__.set('{{ assets_url 'order-tracking/index.min.modern.js' }}')
+  {{else}}
+    window.__loaded_js__.set('{{ assets_url 'order-tracking/index.min.js' }}')
+  {{/is_modern_browser}}
+</script>
+  
+<div class="order-tracking__container" data-section-type="order-tracking" data-section-id="{{ section.id }}">
+  <div class="order-tracking__order-box">
+    <form class="order-tracking__form" id="JorderTrackingForm">
+      <div class="JfindOrder">
+        <h2 class="title4 order-tracking__title">
+          {{ section.settings.title }}
+        </h2>
+        {{#formItem 'username' "class='order-tracking__form-item'"}}
+          <div class="sl-input">
+            <div class="sl-input__area">
+              <input type="text" name="username" value="" placeholder="{{ t 'general.order_tracking.username' }}" class="sl-input__inpEle" />
+              <span class="placeholder">
+                {{ t 'general.order_tracking.username' }}
+              </span>
+            </div>
+          </div>
+        {{/formItem}}
+        {{#formItem 'orderId' "class='order-tracking__form-item'"}}
+          <div class="sl-input">
+            <div class="sl-input__area">
+              <input type="text" name="orderId" value="" placeholder="{{ t 'general.order_tracking.orderId' }}" class="sl-input__inpEle" />
+              <span class="placeholder">
+                {{ t 'general.order_tracking.orderId' }}
+              </span>
+            </div>
+          </div>
+        {{/formItem}}
+        <div class="order-tracking__form-item order-tracking__submit-btn">
+          <button type="button" class="sl-btn btn btn-primary submit-button" id="JorderView">
+            {{ t 'general.order_tracking.submit_btn' }}
+            {{ snippet 'btn-loading-spinner' }}
+          </button>
+        </div>
+        <div class="order-tracking__change-btn">
+          <button type="button" class="sl-btn btn btn-link order-tracking__change-form-btn">
+            {{ section.settings.history_order_title }}
+          </button>
+        </div>
+      </div>
+      <div class="JhistoryOrder" style="display: none">
+        <h2 class="title4 order-tracking__title">
+          {{ section.settings.history_order_title }}
+        </h2>
+        {{#formItem 'email' "class='order-tracking__form-item'"}}
+          <div class="sl-input">
+            <div class="sl-input__area">
+              <input type="text" name="email" value="" placeholder="{{ t 'general.order_tracking.email' }}" class="sl-input__inpEle" />
+              <span class="placeholder">
+                {{ t 'general.order_tracking.email' }}
+              </span>
+            </div>
+          </div>
+        {{/formItem}}
+        {{#formItem 'verifycode' "class='order-tracking__form-item'"}}
+          <div class="sl-input">
+            <div class="sl-input__area">
+              <input type="text" name="verifycode" value="" placeholder="{{ t 'general.order_tracking.code' }}" class="sl-input__inpEle" />
+              <span class="placeholder">
+                {{ t 'general.order_tracking.code' }}
+              </span>
+            </div>
+            <div class="sl-input__suffix">
+              <button type="button" id="JsendCode" class="sl-btn btn order-tracking__send-btn order-tracking__form-item--send" disabled>
+                {{ t 'customer.general.send' }}
+                {{ snippet 'btn-loading-spinner' }}
+              </button>
+            </div>
+          </div>
+        {{/formItem}}
+        <div class="order-tracking__form-item order-tracking__submit-btn">
+          <button type="button" class="sl-btn btn btn-primary submit-button">
+            {{ t 'general.order_tracking.submit_btn' }}
+            {{ snippet 'btn-loading-spinner' }}
+          </button>
+        </div>
+        <div class="order-tracking__change-btn">
+          <button type="button" class="sl-btn btn btn-link order-tracking__change-form-btn">
+            {{ section.settings.title }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{{#schema}}
+{
+  "name": "t:sections.order-tracking.name",
+  "type": "order-tracking",
+  "class": "section-gap",
+  "settings": [
+    {
+      "type": "group_header",
+      "label": "t:sections.order-tracking.settings.group_header__0.label",
+      "id": "group_header__0"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.order-tracking.settings.title.label",
+      "default": "Find Your Orders"
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.order-tracking.settings.group_header__1.label",
+      "id": "group_header__1"
+    },
+    {
+      "type": "text",
+      "id": "history_order_title",
+      "label": "t:sections.order-tracking.settings.history_order_title.label",
+      "default": "View History Orders"
+    }
+  ]
+}
+{{/schema}}

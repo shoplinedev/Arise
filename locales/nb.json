@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Neste",
+      "previous": "Tidligere",
+      "read_more": "se mer",
+      "related_articles": "Relaterte blogger"
+    },
     "blog_list": {
       "empty_desc": "Det er ingen blogginnlegg i denne bloggen.",
       "read_btn_text": "Les mer",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Bare {{stock}} igjen"
     },
+    "subscription": {
+      "information": "Abonnement "
+    },
     "tips": {
       "agree_with_the_shop": "Jeg godtar",
       "change_binding_after_verification": "Du kan koble til/endre {{value}} etter bekreftelse",
@@ -348,6 +357,7 @@
       "error_message_1022": "Kontonummeret er bindende",
       "error_message_1023": "Service unntak",
       "error_message_1024": "Service unntak",
+      "error_message_1035": "Vennligst send bekreftelseskode",
       "error_message_2": "Service unntak",
       "error_message_2001": "Mobilen er registrert",
       "error_message_2002": "E-posten er registrert",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Finner ingen relevant valuta",
       "search_input_placeholder": "Skriv inn her, og trykk søk"
     },
+    "order_tracking": {
+      "code": "Bekreftelseskode",
+      "email": "E-post",
+      "form_error": "Søket mislyktes",
+      "orderId": "Bestillings ID",
+      "orderId_error": "Bestillings-ID kan ikke være tom",
+      "query_illegal": "rekkefølgen eksisterer ikke",
+      "risk_black_user": "Denne kontoen er i faresonen",
+      "risk_interception": "rekkefølgen eksisterer ikke",
+      "submit_btn": "Se bestilling",
+      "username": "E-post/telefonnummer"
+    },
     "policy": {
       "privacy": "Personvernpolicy",
       "refund": "Retningslinjer for refusjon",
@@ -598,6 +620,7 @@
       "filter": "Filter",
       "from_price_html": "Fra {{price}}",
       "less": "mindre",
+      "load_more_tip": "Laster inn flere varer",
       "more": "mer",
       "more__product_num": "{{num}} Produkter",
       "new_arrivals": "Nyankomne",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Resultater",
       "results_found_for": "{{count}}-resultater funnet for \"{{keyword}}\"",
       "search": "Søke",
-      "search_no_results": "Søket etter \"{{keyword}}\" ga ingen resultater"
+      "search_no_results": "Søket etter \"{{keyword}}\" ga ingen resultater",
+      "single_results": "{{count}} Resultater",
+      "single_results_found": "{{count}}-resultater funnet for \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Nylig Viste Produkter"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Frakt er mindre enn {value}",
       "specified_customer": "For enkelte kunder",
       "threshold": "Kjøp {threshold}"
+    },
+    "flash": {
+      "day": "dag",
+      "days": "dager"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} av",
@@ -797,6 +826,13 @@
       "point_discount": "Poengrabatt",
       "shipping_fee": "Skipsfart",
       "trade_coupon_discount": "Kupong"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Kodefeil",
+      "err2005": "Kodefeil",
+      "err3005": "Kodefeil"
     }
   }
 }

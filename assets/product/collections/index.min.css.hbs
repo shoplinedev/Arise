@@ -1390,3 +1390,85 @@ input{
     margin-top:-60px;
   }
 }
+@-webkit-keyframes autoScroll{
+  0%{
+    -webkit-transform:rotate(0deg);
+            transform:rotate(0deg);
+  }
+  to{
+    -webkit-transform:rotate(1turn);
+            transform:rotate(1turn);
+  }
+}
+@-moz-keyframes autoScroll{
+  0%{
+    -moz-transform:rotate(0deg);
+         transform:rotate(0deg);
+  }
+  to{
+    -moz-transform:rotate(1turn);
+         transform:rotate(1turn);
+  }
+}
+@-o-keyframes autoScroll{
+  0%{
+    -o-transform:rotate(0deg);
+       transform:rotate(0deg);
+  }
+  to{
+    -o-transform:rotate(1turn);
+       transform:rotate(1turn);
+  }
+}
+@keyframes autoScroll{
+  0%{
+    -webkit-transform:rotate(0deg);
+       -moz-transform:rotate(0deg);
+         -o-transform:rotate(0deg);
+            transform:rotate(0deg);
+  }
+  to{
+    -webkit-transform:rotate(1turn);
+       -moz-transform:rotate(1turn);
+         -o-transform:rotate(1turn);
+            transform:rotate(1turn);
+  }
+}
+.product-list-infinite-scroll-loading{
+  -webkit-box-align:center;
+     -moz-box-align:center;
+      -ms-flex-align:center;
+  -webkit-box-pack:center;
+     -moz-box-pack:center;
+      -ms-flex-pack:center;
+  -webkit-align-items:center;
+          align-items:center;
+  display:none;
+  -webkit-justify-content:center;
+          justify-content:center;
+  margin:20px 0;
+}
+.product-list-infinite-scroll-loading .infinite-loading-icon{
+  -webkit-animation:.5s autoScroll infinite linear;
+     -moz-animation:.5s autoScroll infinite linear;
+       -o-animation:.5s autoScroll infinite linear;
+          animation:.5s autoScroll infinite linear;
+  line-height:0;
+  margin-right:8px;
+}
+
+.product-infinite-list-lastPage,.product-list-infinite-scroll-loading>span{
+  color:{{ theme.settings.color_light_text }};
+}
+
+.product-infinite-list-lastPage{
+  margin:20px 0;
+  width:100%;
+}
+
+@media (max-width:749.98px){
+
+  .product-infinite-list-lastPage,.product-list-infinite-scroll-loading{
+    margin:40px 0;
+  }
+}

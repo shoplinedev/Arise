@@ -44,7 +44,7 @@
             <div class="testimonials__swiper-box">
               <ul class="testimonials__swiper">
                 {{#each blocks as | block |}}
-                  <li class="testimonials__slide">
+                  <li class="testimonials__slide" {{{ block.shopline_attributes }}}>
                     <div class="testimonial__avatar testimonial__avatar--{{ global.picture_radius }}">
                       {{ snippet 'global-image' image=block.settings.avatar breakpoints='80,160,240' pcSize='80px' mSize='80px' }}
                     </div>

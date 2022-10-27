@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Nākamais",
+      "previous": "Iepriekšējais",
+      "read_more": "redzēt vairāk",
+      "related_articles": "Saistītie emuāri"
+    },
     "blog_list": {
       "empty_desc": "Šajā emuārā nav neviena emuāra ieraksta.",
       "read_btn_text": "Lasīt vairāk",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Palicis tikai {{stock}}"
     },
+    "subscription": {
+      "information": "Abonements"
+    },
     "tips": {
       "agree_with_the_shop": "Es piekrītu",
       "change_binding_after_verification": "Pēc verifikācijas varat izveidot savienojumu / mainīt {{value}}",
@@ -348,6 +357,7 @@
       "error_message_1022": "Konta numurs ir piesaistīts",
       "error_message_1023": "Pakalpojumu izņēmumi",
       "error_message_1024": "Pakalpojumu izņēmumi",
+      "error_message_1035": "Lūdzu, nosūtiet verifikācijas kodu",
       "error_message_2": "Pakalpojumu izņēmumi",
       "error_message_2001": "Mobilais tika reģistrēts",
       "error_message_2002": "E-pasts ir saglabāts",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Atbilstošā valūta netika atrasta",
       "search_input_placeholder": "Ierakstiet šeit un pieskarieties meklēšanas"
     },
+    "order_tracking": {
+      "code": "Verifikācijas kods",
+      "email": "E-pasts",
+      "form_error": "Vaicājums neizdevās",
+      "orderId": "Pasūtījuma ID",
+      "orderId_error": "Pasūtījuma ID lauks nedrīkst būt tukšs",
+      "query_illegal": "pasūtījums neeksistē",
+      "risk_black_user": "Šis konts ir apdraudēts",
+      "risk_interception": "pasūtījums neeksistē",
+      "submit_btn": "Skatīt pasūtījumu",
+      "username": "E-pasta/tālruņa numurs"
+    },
     "policy": {
       "privacy": "Konfidencialitātes politika",
       "refund": "Atmaksa politika",
@@ -598,6 +620,7 @@
       "filter": "Filtrēt",
       "from_price_html": "No {{price}}",
       "less": "mazāk",
+      "load_more_tip": "Notiek citu vienumu ielāde",
       "more": "vairāk",
       "more__product_num": "{{num}} Produktiem",
       "new_arrivals": "Jauna ierašanās",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} rezultāti",
       "results_found_for": "{{count}} rezultāti atrasti \"{{keyword}}\"",
       "search": "Meklē",
-      "search_no_results": "Jūsu meklēšana “{{keyword}}” nedarbojās"
+      "search_no_results": "Jūsu meklēšana “{{keyword}}” nedarbojās",
+      "single_results": "{{count}} rezultāti",
+      "single_results_found": "{{count}} rezultāti atrasti \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Jaunākie produkti, ar kuriem konsultējās"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Frakts ir mazāks nekā {value}",
       "specified_customer": "Noteiktiem klientiem",
       "threshold": "Iegādāties {threshold}"
+    },
+    "flash": {
+      "day": "diena",
+      "days": "dienas"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} izslēgts",
@@ -797,6 +826,13 @@
       "point_discount": "Piegādes vietas",
       "shipping_fee": "Nosūtīšanas",
       "trade_coupon_discount": "Kupons"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Koda kļūda",
+      "err2005": "Koda kļūda",
+      "err3005": "Koda kļūda"
     }
   }
 }

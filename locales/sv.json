@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Nästa",
+      "previous": "Tidigare",
+      "read_more": "se mer",
+      "related_articles": "Relaterade bloggar"
+    },
     "blog_list": {
       "empty_desc": "Det finns inga blogginlägg i den här bloggen.",
       "read_btn_text": "Läs mer",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Mer än {{stock}} kvar"
     },
+    "subscription": {
+      "information": "Abonnemang"
+    },
     "tips": {
       "agree_with_the_shop": "Jag håller med",
       "change_binding_after_verification": "Kan aktivera / ändra {{value}} efter verifiering",
@@ -348,6 +357,7 @@
       "error_message_1022": "Kontonumret är bindande",
       "error_message_1023": "Service Undantag",
       "error_message_1024": "Service Undantag",
+      "error_message_1035": "Skicka verifieringskod",
       "error_message_2": "Service Undantag",
       "error_message_2001": "Mobiltelefonen sparades",
       "error_message_2002": "E-postmeddelandet har sparats",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Ingen motsvarande valuta hittades",
       "search_input_placeholder": "Skriv här och tryck på sökningen"
     },
+    "order_tracking": {
+      "code": "Verifierings kod",
+      "email": "E-post",
+      "form_error": "Frågan misslyckades",
+      "orderId": "Beställnings-ID",
+      "orderId_error": "Order-id får inte vara tomt",
+      "query_illegal": "ordning finns inte",
+      "risk_black_user": "Detta konto är i riskzonen",
+      "risk_interception": "ordning finns inte",
+      "submit_btn": "Se beställning",
+      "username": "E-post/telefonnummer"
+    },
     "policy": {
       "privacy": "Sekretesspolicy",
       "refund": "Återbetalningspolicy",
@@ -598,6 +620,7 @@
       "filter": "Filtrera",
       "from_price_html": "Från {{price}}",
       "less": "mindre",
+      "load_more_tip": "Laddar fler objekt",
       "more": "mer",
       "more__product_num": "{{num}} Produkter",
       "new_arrivals": "Ny ankomst",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Resultat",
       "results_found_for": "{{count}} resultat hittade för \"{{keyword}}\"",
       "search": "Sök",
-      "search_no_results": "Din sökning efter \"{{keyword}}\" gav inga resultat"
+      "search_no_results": "Din sökning efter \"{{keyword}}\" gav inga resultat",
+      "single_results": "{{count}} Resultat",
+      "single_results_found": "{{count}} resultat hittade för \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Senaste Konsulterade Produkter"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Frakten är mindre än {value}",
       "specified_customer": "För vissa kunder",
       "threshold": "Köp {threshold}"
+    },
+    "flash": {
+      "day": "dag",
+      "days": "dagar"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} av",
@@ -797,6 +826,13 @@
       "point_discount": "Leverans av poäng",
       "shipping_fee": "Sjöfart",
       "trade_coupon_discount": "Kupong"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Kodfel",
+      "err2005": "Kodfel",
+      "err3005": "Kodfel"
     }
   }
 }

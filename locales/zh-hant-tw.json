@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "下一篇",
+      "previous": "上一篇",
+      "read_more": "查看更多",
+      "related_articles": "相關博客"
+    },
     "blog_list": {
       "empty_desc": "此博客中沒有博客文章",
       "read_btn_text": "查看更多",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "庫存剩餘{{stock}}"
     },
+    "subscription": {
+      "information": "訂閱"
+    },
     "tips": {
       "agree_with_the_shop": "我同意",
       "change_binding_after_verification": "您可以在驗證後連結/變更 {{value}}",
@@ -330,7 +339,7 @@
       "error_message_1003": "帳戶暫時受到鎖定",
       "error_message_1004": "操作頻繁，請稍後重試",
       "error_message_1005": "代碼過期",
-      "error_message_1006": "代碼錯誤",
+      "error_message_1006": "驗證碼錯誤",
       "error_message_1007": "驗證碼操作頻繁，請重新獲取驗證碼",
       "error_message_1008": "未配置第三方渠道登錄",
       "error_message_1009": "調用第三方接口失敗",
@@ -348,12 +357,13 @@
       "error_message_1022": "賬號已綁定",
       "error_message_1023": "服務異常",
       "error_message_1024": "服務異常",
+      "error_message_1035": "請發送驗證碼",
       "error_message_2": "服務異常",
       "error_message_2001": "該手機已經註冊",
       "error_message_2002": "該電子郵件已經註冊",
       "error_message_2003": "請勿太頻繁嘗試",
       "error_message_2004": "代碼過期",
-      "error_message_2005": "代碼錯誤",
+      "error_message_2005": "驗證碼錯誤",
       "error_message_2006": "驗證次數過多，請取得另一組代碼",
       "error_message_2007": "服務異常，稍後重試",
       "error_message_2016": "賬號有風險",
@@ -362,7 +372,7 @@
       "error_message_3002": "不正當操作",
       "error_message_3003": "請勿太頻繁嘗試",
       "error_message_3004": "代碼過期",
-      "error_message_3005": "代碼錯誤",
+      "error_message_3005": "驗證碼錯誤",
       "error_message_3006": "驗證次數過多，請取得另一組代碼",
       "error_message_3007": "該手機不存在",
       "error_message_3008": "該電子郵件不存在",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "未找到相關貨幣",
       "search_input_placeholder": "在此輸入後輕按搜尋"
     },
+    "order_tracking": {
+      "code": "驗證碼",
+      "email": "Email",
+      "form_error": "查詢失敗",
+      "orderId": "Order ID",
+      "orderId_error": "訂單編號不能為空",
+      "query_illegal": "訂單不存在",
+      "risk_black_user": "此帳號存在風險",
+      "risk_interception": "訂單不存在",
+      "submit_btn": "查看訂單",
+      "username": "Email/Phone Number"
+    },
     "policy": {
       "privacy": "隱私權政策",
       "refund": "退款政策",
@@ -598,6 +620,7 @@
       "filter": "篩選",
       "from_price_html": "{{price}} 起",
       "less": "更少標籤",
+      "load_more_tip": "加載更多項目",
       "more": "更多標籤",
       "more__product_num": "{{num}} 商品",
       "new_arrivals": "新品",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} 條記錄",
       "results_found_for": "找到 \"{{keyword}}\" 的 {{count}} 個記錄",
       "search": "搜索",
-      "search_no_results": "您搜索的 \"{{keyword}}\" 沒有任何記錄"
+      "search_no_results": "您搜索的 \"{{keyword}}\" 沒有任何記錄",
+      "single_results": "{{count}} 條記錄",
+      "single_results_found": "找到 \"{{keyword}}\" 的 {{count}} 個記錄"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "最近瀏覽商品"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "運費低於{value}",
       "specified_customer": "指定客戶可用",
       "threshold": "買{threshold}"
+    },
+    "flash": {
+      "day": "天",
+      "days": "天"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}}折",
@@ -797,6 +826,13 @@
       "point_discount": "積分折扣",
       "shipping_fee": "運送",
       "trade_coupon_discount": "優惠"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "驗證碼錯誤",
+      "err2005": "驗證碼錯誤",
+      "err3005": "驗證碼錯誤"
     }
   }
 }

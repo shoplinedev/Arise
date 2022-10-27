@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>首页</title>
+  {{ content_for_header }}
   {{#if theme.settings.favicon_image}}
     <link rel="shortcut icon" href="{{theme.settings.favicon_image}}" type="image/png">
   {{/if}}
@@ -17,6 +18,8 @@
   data-type_navigation_uppercase="{{ theme.settings.type_navigation_uppercase }}">
   {{ content_for_layout }}
   {{#slot 'script' }}{{/slot}}
+
+  {{ content_for_footer }}
 </body>
 
 </html>

@@ -27,7 +27,7 @@
 <div class="collection-item-list-row shopline-element-collection-list" style="overflow: auto;">
   <div class="row collection-item-list-row-wrap" style="flex-wrap: nowrap;">
     {{#each _collections}}
-      {{snippet 'product/commons/collection-item' pcSize="18/100" mSize="29/100" sortationData=this}}
+      {{snippet 'product/commons/collection-item' pcSize="18/100" mSize="29/100" sortationData=this shopline_attributes=this.shopline_attributes}}
     {{/each}}
   </div>
 </div>

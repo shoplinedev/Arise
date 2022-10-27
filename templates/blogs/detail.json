@@ -8,8 +8,46 @@
       "settings": {
         "is_show_author": true,
         "is_show_date": true,
-        "is_show_breadcrumb": true
-      }
+        "is_show_breadcrumb": true,
+        "is_show_sidebar": false,
+        "position": "right",
+        "is_show_tag": true,
+        "is_show_related_articles": true,
+        "is_show_comment": true,
+        "is_show_prev_next": true,
+        "related_align": "left",
+        "is_show_related_tag": false,
+        "is_show_related_date": true,
+        "is_show_related_abstract": true,
+        "is_show_related_author": false,
+        "is_show_related_read_more": false
+      },
+      "blocks": {
+        "category1": {
+          "type": "category",
+          "settings": {
+            "title": "Categories"
+          }
+        },
+        "recent-blog1": {
+          "type": "recent-blog",
+          "settings": {
+            "title": "Recent Post",
+            "blog_num": 3,
+            "is_show_tag": false,
+            "is_show_date": true,
+            "is_show_abstract": false,
+            "is_show_author": false
+          }
+        },
+        "tag1": {
+          "type": "tag",
+          "settings": {
+            "title": "Tags"
+          }
+        }
+      },
+      "block_order": ["category1", "recent-blog1", "tag1"]
     }
   },
 

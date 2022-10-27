@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Sonraki",
+      "previous": "Öncesi",
+      "read_more": "daha fazla gör",
+      "related_articles": "İlgili Bloglar"
+    },
     "blog_list": {
       "empty_desc": "Bu blogda blog yazısı yok.",
       "read_btn_text": "Devamını oku",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Yalnızca {{stock}} kaldı"
     },
+    "subscription": {
+      "information": "Abonelik"
+    },
     "tips": {
       "agree_with_the_shop": "Katılıyorum",
       "change_binding_after_verification": "Doğrulamadan sonra {{value}} bağlayabilir/değiştirebilirsiniz",
@@ -348,6 +357,7 @@
       "error_message_1022": "Hesap numarası bağlandı",
       "error_message_1023": "Servis istisnaları",
       "error_message_1024": "Servis istisnaları",
+      "error_message_1035": "Lütfen doğrulama kodu gönderin",
       "error_message_2": "Servis istisnaları",
       "error_message_2001": "Cep numarası kaydedildi",
       "error_message_2002": "E-posta kaydedildi",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "İlgili para birimi bulunamadı",
       "search_input_placeholder": "Buraya girin ve aramaya dokunun"
     },
+    "order_tracking": {
+      "code": "Doğrulama kodu",
+      "email": "E-posta",
+      "form_error": "Sorgu başarısız",
+      "orderId": "Sipariş Kimliği",
+      "orderId_error": "Sipariş kimliği boş olamaz",
+      "query_illegal": "sipariş mevcut değil",
+      "risk_black_user": "Bu hesap risk altında",
+      "risk_interception": "sipariş mevcut değil",
+      "submit_btn": "Siparişi görüntüle",
+      "username": "E-posta/Telefon Numarası"
+    },
     "policy": {
       "privacy": "Gizlilik Politikası",
       "refund": "Geri ödeme politikası",
@@ -598,6 +620,7 @@
       "filter": "Filtre",
       "from_price_html": "{{price}} başlayan fiyatlarla",
       "less": "az",
+      "load_more_tip": "Daha fazla öğe yükleniyor",
       "more": "daha fazla",
       "more__product_num": "{{num}} ürün",
       "new_arrivals": "Yeni gelenler",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Sonuç",
       "results_found_for": "\"{{keyword}}\" için {{count}} sonuç bulundu",
       "search": "Ara",
-      "search_no_results": "\"{{keyword}}\" aramanız için herhangi bir sonuç bulunamadı"
+      "search_no_results": "\"{{keyword}}\" aramanız için herhangi bir sonuç bulunamadı",
+      "single_results": "{{count}} Sonuç",
+      "single_results_found": "\"{{keyword}}\" için {{count}} sonuç bulundu"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Son Görüntülenen Ürünler"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Navlun {value} değerinden daha az",
       "specified_customer": "Belirlenmiş müşteriler için",
       "threshold": "{threshold} satın al"
+    },
+    "flash": {
+      "day": "gün",
+      "days": "günler"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} kapali",
@@ -797,6 +826,13 @@
       "point_discount": "Puan indirimi",
       "shipping_fee": "Kargo",
       "trade_coupon_discount": "Kupon"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Kod hatası",
+      "err2005": "Kod hatası",
+      "err3005": "Kod hatası"
     }
   }
 }

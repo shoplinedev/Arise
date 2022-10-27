@@ -1,21 +1,21 @@
 {{#partial 'title'}}
-  <title>Collections - {{ storeInfo.name }}</title>
+<title>Collections</title>
 {{/partial}}
 
 {{#partial 'seo-meta'}}
-  {{ assign 'ogTitle' 'Collections' }}
-  {{ assign 'ogDescription' storeInfo.name }}
-  {{ assign 'url' (append request.uri.domain request.uri.path) }}
-  {{#if page_image}}
-    {{ assign 'image' page_image }}
-  {{else}}
-    {{ assign 'image' theme.settings.co_checkout_image.url }}
-  {{/if}}
-  {{ assign 'seoTitle' 'Collections' }}
-  {{ assign 'seoDescription' '' }}
-  {{ assign 'keywords' '' }}
-  {{ assign 'card' 'summary_large_image' }}
-  {{ assign 'type' 'collection' }}
+{{ assign 'ogTitle' 'Collections' }}
+{{ assign 'ogDescription' storeInfo.name }}
+{{ assign 'url' (append request.uri.domain request.uri.url) }}
+{{#if page_image}}
+{{ assign 'image' page_image }}
+{{else}}
+{{ assign 'image' theme.settings.co_checkout_image.url }}
+{{/if}}
+{{ assign 'seoTitle' 'Collections' }}
+{{ assign 'seoDescription' '' }}
+{{ assign 'keywords' '' }}
+{{ assign 'card' 'summary_large_image' }}
+{{ assign 'type' 'collection' }}
 
   
 
@@ -44,7 +44,7 @@
 
 {{! 没有desc 不展示 }}
 {{#if seoDescription}}
-  <meta name="description" content="{{seoDescription}}" />
+  <meta name="description" content="{{sanitize seoDescription}}" />
 {{/if}}
 
 {{! 商详页之前的标签 先保留其他页面不需要传入  }}
@@ -71,7 +71,7 @@
 {{/if}}
 
 {{#if ogDescription}}
-  <meta property="og:description" content="{{ogDescription}}" />
+  <meta property="og:description" content="{{sanitize ogDescription}}" />
 {{/if}}
 
 {{! meta fb type }}
@@ -91,7 +91,7 @@
 
 {{! meta description }}
 {{#if ogDescription}}
-  <meta name="twitter:description" content="{{ogDescription}}" />
+  <meta name="twitter:description" content="{{sanitize ogDescription}}" />
 {{/if}}
 
 {{! meta twitter card }}

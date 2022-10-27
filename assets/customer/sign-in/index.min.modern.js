@@ -3039,6 +3039,657 @@
                 return exports.pick(input, exclusionFilter, options);
             };
         },
+        "../shared/browser/node_modules/scroll-lock/dist/scroll-lock.js": function(module) {
+            (function(root, factory) {
+                if (true) module.exports = factory();
+            })(0, (function() {
+                return function(modules) {
+                    var installedModules = {};
+                    function __nested_webpack_require_607__(moduleId) {
+                        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+                        var module = installedModules[moduleId] = {
+                            i: moduleId,
+                            l: false,
+                            exports: {}
+                        };
+                        modules[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_607__);
+                        module.l = true;
+                        return module.exports;
+                    }
+                    __nested_webpack_require_607__.m = modules;
+                    __nested_webpack_require_607__.c = installedModules;
+                    __nested_webpack_require_607__.d = function(exports, name, getter) {
+                        if (!__nested_webpack_require_607__.o(exports, name)) Object.defineProperty(exports, name, {
+                            enumerable: true,
+                            get: getter
+                        });
+                    };
+                    __nested_webpack_require_607__.r = function(exports) {
+                        if ("undefined" !== typeof Symbol && Symbol.toStringTag) Object.defineProperty(exports, Symbol.toStringTag, {
+                            value: "Module"
+                        });
+                        Object.defineProperty(exports, "__esModule", {
+                            value: true
+                        });
+                    };
+                    __nested_webpack_require_607__.t = function(value, mode) {
+                        if (1 & mode) value = __nested_webpack_require_607__(value);
+                        if (8 & mode) return value;
+                        if (4 & mode && "object" === typeof value && value && value.__esModule) return value;
+                        var ns = Object.create(null);
+                        __nested_webpack_require_607__.r(ns);
+                        Object.defineProperty(ns, "default", {
+                            enumerable: true,
+                            value
+                        });
+                        if (2 & mode && "string" != typeof value) for (var key in value) __nested_webpack_require_607__.d(ns, key, function(key) {
+                            return value[key];
+                        }.bind(null, key));
+                        return ns;
+                    };
+                    __nested_webpack_require_607__.n = function(module) {
+                        var getter = module && module.__esModule ? function() {
+                            return module["default"];
+                        } : function() {
+                            return module;
+                        };
+                        __nested_webpack_require_607__.d(getter, "a", getter);
+                        return getter;
+                    };
+                    __nested_webpack_require_607__.o = function(object, property) {
+                        return Object.prototype.hasOwnProperty.call(object, property);
+                    };
+                    __nested_webpack_require_607__.p = "";
+                    return __nested_webpack_require_607__(__nested_webpack_require_607__.s = 0);
+                }([ function(module, __webpack_exports__, __nested_webpack_require_5303__) {
+                    "use strict";
+                    __nested_webpack_require_5303__.r(__webpack_exports__);
+                    var argumentAsArray = function(argument) {
+                        return Array.isArray(argument) ? argument : [ argument ];
+                    };
+                    var isElement = function(target) {
+                        return target instanceof Node;
+                    };
+                    var isElementList = function(nodeList) {
+                        return nodeList instanceof NodeList;
+                    };
+                    var eachNode = function(nodeList, callback) {
+                        if (nodeList && callback) {
+                            nodeList = isElementList(nodeList) ? nodeList : [ nodeList ];
+                            for (var i = 0; i < nodeList.length; i++) if (true === callback(nodeList[i], i, nodeList.length)) break;
+                        }
+                    };
+                    var throwError = function(message) {
+                        return console.error("[scroll-lock] ".concat(message));
+                    };
+                    var arrayAsSelector = function(array) {
+                        if (Array.isArray(array)) {
+                            var selector = array.join(", ");
+                            return selector;
+                        }
+                    };
+                    var nodeListAsArray = function(nodeList) {
+                        var nodes = [];
+                        eachNode(nodeList, (function(node) {
+                            return nodes.push(node);
+                        }));
+                        return nodes;
+                    };
+                    var findParentBySelector = function($el, selector) {
+                        var self = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : true;
+                        var $root = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : document;
+                        if (self && -1 !== nodeListAsArray($root.querySelectorAll(selector)).indexOf($el)) return $el;
+                        while (($el = $el.parentElement) && -1 === nodeListAsArray($root.querySelectorAll(selector)).indexOf($el)) ;
+                        return $el;
+                    };
+                    var elementHasSelector = function($el, selector) {
+                        var $root = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : document;
+                        var has = -1 !== nodeListAsArray($root.querySelectorAll(selector)).indexOf($el);
+                        return has;
+                    };
+                    var elementHasOverflowHidden = function($el) {
+                        if ($el) {
+                            var computedStyle = getComputedStyle($el);
+                            var overflowIsHidden = "hidden" === computedStyle.overflow;
+                            return overflowIsHidden;
+                        }
+                    };
+                    var elementScrollTopOnStart = function($el) {
+                        if ($el) {
+                            if (elementHasOverflowHidden($el)) return true;
+                            var scrollTop = $el.scrollTop;
+                            return scrollTop <= 0;
+                        }
+                    };
+                    var elementScrollTopOnEnd = function($el) {
+                        if ($el) {
+                            if (elementHasOverflowHidden($el)) return true;
+                            var scrollTop = $el.scrollTop;
+                            var scrollHeight = $el.scrollHeight;
+                            var scrollTopWithHeight = scrollTop + $el.offsetHeight;
+                            return scrollTopWithHeight >= scrollHeight;
+                        }
+                    };
+                    var elementScrollLeftOnStart = function($el) {
+                        if ($el) {
+                            if (elementHasOverflowHidden($el)) return true;
+                            var scrollLeft = $el.scrollLeft;
+                            return scrollLeft <= 0;
+                        }
+                    };
+                    var elementScrollLeftOnEnd = function($el) {
+                        if ($el) {
+                            if (elementHasOverflowHidden($el)) return true;
+                            var scrollLeft = $el.scrollLeft;
+                            var scrollWidth = $el.scrollWidth;
+                            var scrollLeftWithWidth = scrollLeft + $el.offsetWidth;
+                            return scrollLeftWithWidth >= scrollWidth;
+                        }
+                    };
+                    var elementIsScrollableField = function($el) {
+                        var selector = 'textarea, [contenteditable="true"]';
+                        return elementHasSelector($el, selector);
+                    };
+                    var elementIsInputRange = function($el) {
+                        var selector = 'input[type="range"]';
+                        return elementHasSelector($el, selector);
+                    };
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "disablePageScroll", (function() {
+                        return disablePageScroll;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "enablePageScroll", (function() {
+                        return enablePageScroll;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "getScrollState", (function() {
+                        return getScrollState;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "clearQueueScrollLocks", (function() {
+                        return clearQueueScrollLocks;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "getTargetScrollBarWidth", (function() {
+                        return scroll_lock_getTargetScrollBarWidth;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "getCurrentTargetScrollBarWidth", (function() {
+                        return scroll_lock_getCurrentTargetScrollBarWidth;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "getPageScrollBarWidth", (function() {
+                        return getPageScrollBarWidth;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "getCurrentPageScrollBarWidth", (function() {
+                        return getCurrentPageScrollBarWidth;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "addScrollableTarget", (function() {
+                        return scroll_lock_addScrollableTarget;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "removeScrollableTarget", (function() {
+                        return scroll_lock_removeScrollableTarget;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "addScrollableSelector", (function() {
+                        return scroll_lock_addScrollableSelector;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "removeScrollableSelector", (function() {
+                        return scroll_lock_removeScrollableSelector;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "addLockableTarget", (function() {
+                        return scroll_lock_addLockableTarget;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "addLockableSelector", (function() {
+                        return scroll_lock_addLockableSelector;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "setFillGapMethod", (function() {
+                        return scroll_lock_setFillGapMethod;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "addFillGapTarget", (function() {
+                        return scroll_lock_addFillGapTarget;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "removeFillGapTarget", (function() {
+                        return scroll_lock_removeFillGapTarget;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "addFillGapSelector", (function() {
+                        return scroll_lock_addFillGapSelector;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "removeFillGapSelector", (function() {
+                        return scroll_lock_removeFillGapSelector;
+                    }));
+                    __nested_webpack_require_5303__.d(__webpack_exports__, "refillGaps", (function() {
+                        return refillGaps;
+                    }));
+                    function _objectSpread(target) {
+                        for (var i = 1; i < arguments.length; i++) {
+                            var source = null != arguments[i] ? arguments[i] : {};
+                            var ownKeys = Object.keys(source);
+                            if ("function" === typeof Object.getOwnPropertySymbols) ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter((function(sym) {
+                                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+                            })));
+                            ownKeys.forEach((function(key) {
+                                _defineProperty(target, key, source[key]);
+                            }));
+                        }
+                        return target;
+                    }
+                    function _defineProperty(obj, key, value) {
+                        if (key in obj) Object.defineProperty(obj, key, {
+                            value,
+                            enumerable: true,
+                            configurable: true,
+                            writable: true
+                        }); else obj[key] = value;
+                        return obj;
+                    }
+                    var FILL_GAP_AVAILABLE_METHODS = [ "padding", "margin", "width", "max-width", "none" ];
+                    var TOUCH_DIRECTION_DETECT_OFFSET = 3;
+                    var state = {
+                        scroll: true,
+                        queue: 0,
+                        scrollableSelectors: [ "[data-scroll-lock-scrollable]" ],
+                        lockableSelectors: [ "body", "[data-scroll-lock-lockable]" ],
+                        fillGapSelectors: [ "body", "[data-scroll-lock-fill-gap]", "[data-scroll-lock-lockable]" ],
+                        fillGapMethod: FILL_GAP_AVAILABLE_METHODS[0],
+                        startTouchY: 0,
+                        startTouchX: 0
+                    };
+                    var disablePageScroll = function(target) {
+                        if (state.queue <= 0) {
+                            state.scroll = false;
+                            scroll_lock_hideLockableOverflow();
+                            fillGaps();
+                        }
+                        scroll_lock_addScrollableTarget(target);
+                        state.queue++;
+                    };
+                    var enablePageScroll = function(target) {
+                        state.queue > 0 && state.queue--;
+                        if (state.queue <= 0) {
+                            state.scroll = true;
+                            scroll_lock_showLockableOverflow();
+                            unfillGaps();
+                        }
+                        scroll_lock_removeScrollableTarget(target);
+                    };
+                    var getScrollState = function() {
+                        return state.scroll;
+                    };
+                    var clearQueueScrollLocks = function() {
+                        state.queue = 0;
+                    };
+                    var scroll_lock_getTargetScrollBarWidth = function($target) {
+                        var onlyExists = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                        if (isElement($target)) {
+                            var currentOverflowYProperty = $target.style.overflowY;
+                            if (onlyExists) {
+                                if (!getScrollState()) $target.style.overflowY = $target.getAttribute("data-scroll-lock-saved-overflow-y-property");
+                            } else $target.style.overflowY = "scroll";
+                            var width = scroll_lock_getCurrentTargetScrollBarWidth($target);
+                            $target.style.overflowY = currentOverflowYProperty;
+                            return width;
+                        } else return 0;
+                    };
+                    var scroll_lock_getCurrentTargetScrollBarWidth = function($target) {
+                        if (isElement($target)) if ($target === document.body) {
+                            var documentWidth = document.documentElement.clientWidth;
+                            var windowWidth = window.innerWidth;
+                            var currentWidth = windowWidth - documentWidth;
+                            return currentWidth;
+                        } else {
+                            var borderLeftWidthCurrentProperty = $target.style.borderLeftWidth;
+                            var borderRightWidthCurrentProperty = $target.style.borderRightWidth;
+                            $target.style.borderLeftWidth = "0px";
+                            $target.style.borderRightWidth = "0px";
+                            var _currentWidth = $target.offsetWidth - $target.clientWidth;
+                            $target.style.borderLeftWidth = borderLeftWidthCurrentProperty;
+                            $target.style.borderRightWidth = borderRightWidthCurrentProperty;
+                            return _currentWidth;
+                        } else return 0;
+                    };
+                    var getPageScrollBarWidth = function() {
+                        var onlyExists = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : false;
+                        return scroll_lock_getTargetScrollBarWidth(document.body, onlyExists);
+                    };
+                    var getCurrentPageScrollBarWidth = function() {
+                        return scroll_lock_getCurrentTargetScrollBarWidth(document.body);
+                    };
+                    var scroll_lock_addScrollableTarget = function(target) {
+                        if (target) {
+                            var targets = argumentAsArray(target);
+                            targets.map((function($targets) {
+                                eachNode($targets, (function($target) {
+                                    if (isElement($target)) $target.setAttribute("data-scroll-lock-scrollable", ""); else throwError('"'.concat($target, '" is not a Element.'));
+                                }));
+                            }));
+                        }
+                    };
+                    var scroll_lock_removeScrollableTarget = function(target) {
+                        if (target) {
+                            var targets = argumentAsArray(target);
+                            targets.map((function($targets) {
+                                eachNode($targets, (function($target) {
+                                    if (isElement($target)) $target.removeAttribute("data-scroll-lock-scrollable"); else throwError('"'.concat($target, '" is not a Element.'));
+                                }));
+                            }));
+                        }
+                    };
+                    var scroll_lock_addScrollableSelector = function(selector) {
+                        if (selector) {
+                            var selectors = argumentAsArray(selector);
+                            selectors.map((function(selector) {
+                                state.scrollableSelectors.push(selector);
+                            }));
+                        }
+                    };
+                    var scroll_lock_removeScrollableSelector = function(selector) {
+                        if (selector) {
+                            var selectors = argumentAsArray(selector);
+                            selectors.map((function(selector) {
+                                state.scrollableSelectors = state.scrollableSelectors.filter((function(sSelector) {
+                                    return sSelector !== selector;
+                                }));
+                            }));
+                        }
+                    };
+                    var scroll_lock_addLockableTarget = function(target) {
+                        if (target) {
+                            var targets = argumentAsArray(target);
+                            targets.map((function($targets) {
+                                eachNode($targets, (function($target) {
+                                    if (isElement($target)) $target.setAttribute("data-scroll-lock-lockable", ""); else throwError('"'.concat($target, '" is not a Element.'));
+                                }));
+                            }));
+                            if (!getScrollState()) scroll_lock_hideLockableOverflow();
+                        }
+                    };
+                    var scroll_lock_addLockableSelector = function(selector) {
+                        if (selector) {
+                            var selectors = argumentAsArray(selector);
+                            selectors.map((function(selector) {
+                                state.lockableSelectors.push(selector);
+                            }));
+                            if (!getScrollState()) scroll_lock_hideLockableOverflow();
+                            scroll_lock_addFillGapSelector(selector);
+                        }
+                    };
+                    var scroll_lock_setFillGapMethod = function(method) {
+                        if (method) if (-1 !== FILL_GAP_AVAILABLE_METHODS.indexOf(method)) {
+                            state.fillGapMethod = method;
+                            refillGaps();
+                        } else {
+                            var methods = FILL_GAP_AVAILABLE_METHODS.join(", ");
+                            throwError('"'.concat(method, '" method is not available!\nAvailable fill gap methods: ').concat(methods, "."));
+                        }
+                    };
+                    var scroll_lock_addFillGapTarget = function(target) {
+                        if (target) {
+                            var targets = argumentAsArray(target);
+                            targets.map((function($targets) {
+                                eachNode($targets, (function($target) {
+                                    if (isElement($target)) {
+                                        $target.setAttribute("data-scroll-lock-fill-gap", "");
+                                        if (!state.scroll) scroll_lock_fillGapTarget($target);
+                                    } else throwError('"'.concat($target, '" is not a Element.'));
+                                }));
+                            }));
+                        }
+                    };
+                    var scroll_lock_removeFillGapTarget = function(target) {
+                        if (target) {
+                            var targets = argumentAsArray(target);
+                            targets.map((function($targets) {
+                                eachNode($targets, (function($target) {
+                                    if (isElement($target)) {
+                                        $target.removeAttribute("data-scroll-lock-fill-gap");
+                                        if (!state.scroll) scroll_lock_unfillGapTarget($target);
+                                    } else throwError('"'.concat($target, '" is not a Element.'));
+                                }));
+                            }));
+                        }
+                    };
+                    var scroll_lock_addFillGapSelector = function(selector) {
+                        if (selector) {
+                            var selectors = argumentAsArray(selector);
+                            selectors.map((function(selector) {
+                                if (-1 === state.fillGapSelectors.indexOf(selector)) {
+                                    state.fillGapSelectors.push(selector);
+                                    if (!state.scroll) scroll_lock_fillGapSelector(selector);
+                                }
+                            }));
+                        }
+                    };
+                    var scroll_lock_removeFillGapSelector = function(selector) {
+                        if (selector) {
+                            var selectors = argumentAsArray(selector);
+                            selectors.map((function(selector) {
+                                state.fillGapSelectors = state.fillGapSelectors.filter((function(fSelector) {
+                                    return fSelector !== selector;
+                                }));
+                                if (!state.scroll) scroll_lock_unfillGapSelector(selector);
+                            }));
+                        }
+                    };
+                    var refillGaps = function() {
+                        if (!state.scroll) fillGaps();
+                    };
+                    var scroll_lock_hideLockableOverflow = function() {
+                        var selector = arrayAsSelector(state.lockableSelectors);
+                        scroll_lock_hideLockableOverflowSelector(selector);
+                    };
+                    var scroll_lock_showLockableOverflow = function() {
+                        var selector = arrayAsSelector(state.lockableSelectors);
+                        scroll_lock_showLockableOverflowSelector(selector);
+                    };
+                    var scroll_lock_hideLockableOverflowSelector = function(selector) {
+                        var $targets = document.querySelectorAll(selector);
+                        eachNode($targets, (function($target) {
+                            scroll_lock_hideLockableOverflowTarget($target);
+                        }));
+                    };
+                    var scroll_lock_showLockableOverflowSelector = function(selector) {
+                        var $targets = document.querySelectorAll(selector);
+                        eachNode($targets, (function($target) {
+                            scroll_lock_showLockableOverflowTarget($target);
+                        }));
+                    };
+                    var scroll_lock_hideLockableOverflowTarget = function($target) {
+                        if (isElement($target) && "true" !== $target.getAttribute("data-scroll-lock-locked")) {
+                            var computedStyle = window.getComputedStyle($target);
+                            $target.setAttribute("data-scroll-lock-saved-overflow-y-property", computedStyle.overflowY);
+                            $target.setAttribute("data-scroll-lock-saved-inline-overflow-property", $target.style.overflow);
+                            $target.setAttribute("data-scroll-lock-saved-inline-overflow-y-property", $target.style.overflowY);
+                            $target.style.overflow = "hidden";
+                            $target.setAttribute("data-scroll-lock-locked", "true");
+                        }
+                    };
+                    var scroll_lock_showLockableOverflowTarget = function($target) {
+                        if (isElement($target) && "true" === $target.getAttribute("data-scroll-lock-locked")) {
+                            $target.style.overflow = $target.getAttribute("data-scroll-lock-saved-inline-overflow-property");
+                            $target.style.overflowY = $target.getAttribute("data-scroll-lock-saved-inline-overflow-y-property");
+                            $target.removeAttribute("data-scroll-lock-saved-overflow-property");
+                            $target.removeAttribute("data-scroll-lock-saved-inline-overflow-property");
+                            $target.removeAttribute("data-scroll-lock-saved-inline-overflow-y-property");
+                            $target.removeAttribute("data-scroll-lock-locked");
+                        }
+                    };
+                    var fillGaps = function() {
+                        state.fillGapSelectors.map((function(selector) {
+                            scroll_lock_fillGapSelector(selector);
+                        }));
+                    };
+                    var unfillGaps = function() {
+                        state.fillGapSelectors.map((function(selector) {
+                            scroll_lock_unfillGapSelector(selector);
+                        }));
+                    };
+                    var scroll_lock_fillGapSelector = function(selector) {
+                        var $targets = document.querySelectorAll(selector);
+                        var isLockable = -1 !== state.lockableSelectors.indexOf(selector);
+                        eachNode($targets, (function($target) {
+                            scroll_lock_fillGapTarget($target, isLockable);
+                        }));
+                    };
+                    var scroll_lock_fillGapTarget = function($target) {
+                        var isLockable = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                        if (isElement($target)) {
+                            var scrollBarWidth;
+                            if ("" === $target.getAttribute("data-scroll-lock-lockable") || isLockable) scrollBarWidth = scroll_lock_getTargetScrollBarWidth($target, true); else {
+                                var $lockableParent = findParentBySelector($target, arrayAsSelector(state.lockableSelectors));
+                                scrollBarWidth = scroll_lock_getTargetScrollBarWidth($lockableParent, true);
+                            }
+                            if ("true" === $target.getAttribute("data-scroll-lock-filled-gap")) scroll_lock_unfillGapTarget($target);
+                            var computedStyle = window.getComputedStyle($target);
+                            $target.setAttribute("data-scroll-lock-filled-gap", "true");
+                            $target.setAttribute("data-scroll-lock-current-fill-gap-method", state.fillGapMethod);
+                            if ("margin" === state.fillGapMethod) {
+                                var currentMargin = parseFloat(computedStyle.marginRight);
+                                $target.style.marginRight = "".concat(currentMargin + scrollBarWidth, "px");
+                            } else if ("width" === state.fillGapMethod) $target.style.width = "calc(100% - ".concat(scrollBarWidth, "px)"); else if ("max-width" === state.fillGapMethod) $target.style.maxWidth = "calc(100% - ".concat(scrollBarWidth, "px)"); else if ("padding" === state.fillGapMethod) {
+                                var currentPadding = parseFloat(computedStyle.paddingRight);
+                                $target.style.paddingRight = "".concat(currentPadding + scrollBarWidth, "px");
+                            }
+                        }
+                    };
+                    var scroll_lock_unfillGapSelector = function(selector) {
+                        var $targets = document.querySelectorAll(selector);
+                        eachNode($targets, (function($target) {
+                            scroll_lock_unfillGapTarget($target);
+                        }));
+                    };
+                    var scroll_lock_unfillGapTarget = function($target) {
+                        if (isElement($target)) if ("true" === $target.getAttribute("data-scroll-lock-filled-gap")) {
+                            var currentFillGapMethod = $target.getAttribute("data-scroll-lock-current-fill-gap-method");
+                            $target.removeAttribute("data-scroll-lock-filled-gap");
+                            $target.removeAttribute("data-scroll-lock-current-fill-gap-method");
+                            if ("margin" === currentFillGapMethod) $target.style.marginRight = ""; else if ("width" === currentFillGapMethod) $target.style.width = ""; else if ("max-width" === currentFillGapMethod) $target.style.maxWidth = ""; else if ("padding" === currentFillGapMethod) $target.style.paddingRight = "";
+                        }
+                    };
+                    var onResize = function(e) {
+                        refillGaps();
+                    };
+                    var onTouchStart = function(e) {
+                        if (!state.scroll) {
+                            state.startTouchY = e.touches[0].clientY;
+                            state.startTouchX = e.touches[0].clientX;
+                        }
+                    };
+                    var scroll_lock_onTouchMove = function(e) {
+                        if (!state.scroll) {
+                            var startTouchY = state.startTouchY, startTouchX = state.startTouchX;
+                            var currentClientY = e.touches[0].clientY;
+                            var currentClientX = e.touches[0].clientX;
+                            if (e.touches.length < 2) {
+                                var selector = arrayAsSelector(state.scrollableSelectors);
+                                var direction = {
+                                    up: startTouchY < currentClientY,
+                                    down: startTouchY > currentClientY,
+                                    left: startTouchX < currentClientX,
+                                    right: startTouchX > currentClientX
+                                };
+                                var directionWithOffset = {
+                                    up: startTouchY + TOUCH_DIRECTION_DETECT_OFFSET < currentClientY,
+                                    down: startTouchY - TOUCH_DIRECTION_DETECT_OFFSET > currentClientY,
+                                    left: startTouchX + TOUCH_DIRECTION_DETECT_OFFSET < currentClientX,
+                                    right: startTouchX - TOUCH_DIRECTION_DETECT_OFFSET > currentClientX
+                                };
+                                var handle = function handle($el) {
+                                    var skip = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                                    if ($el) {
+                                        var parentScrollableEl = findParentBySelector($el, selector, false);
+                                        if (elementIsInputRange($el)) return false;
+                                        if (skip || elementIsScrollableField($el) && findParentBySelector($el, selector) || elementHasSelector($el, selector)) {
+                                            var prevent = false;
+                                            if (elementScrollLeftOnStart($el) && elementScrollLeftOnEnd($el)) {
+                                                if (direction.up && elementScrollTopOnStart($el) || direction.down && elementScrollTopOnEnd($el)) prevent = true;
+                                            } else if (elementScrollTopOnStart($el) && elementScrollTopOnEnd($el)) {
+                                                if (direction.left && elementScrollLeftOnStart($el) || direction.right && elementScrollLeftOnEnd($el)) prevent = true;
+                                            } else if (directionWithOffset.up && elementScrollTopOnStart($el) || directionWithOffset.down && elementScrollTopOnEnd($el) || directionWithOffset.left && elementScrollLeftOnStart($el) || directionWithOffset.right && elementScrollLeftOnEnd($el)) prevent = true;
+                                            if (prevent) if (parentScrollableEl) handle(parentScrollableEl, true); else if (e.cancelable) e.preventDefault();
+                                        } else handle(parentScrollableEl);
+                                    } else if (e.cancelable) e.preventDefault();
+                                };
+                                handle(e.target);
+                            }
+                        }
+                    };
+                    var onTouchEnd = function(e) {
+                        if (!state.scroll) {
+                            state.startTouchY = 0;
+                            state.startTouchX = 0;
+                        }
+                    };
+                    if ("undefined" !== typeof window) window.addEventListener("resize", onResize);
+                    if ("undefined" !== typeof document) {
+                        document.addEventListener("touchstart", onTouchStart);
+                        document.addEventListener("touchmove", scroll_lock_onTouchMove, {
+                            passive: false
+                        });
+                        document.addEventListener("touchend", onTouchEnd);
+                    }
+                    var deprecatedMethods = {
+                        hide: function(target) {
+                            throwError('"hide" is deprecated! Use "disablePageScroll" instead. \n https://github.com/FL3NKEY/scroll-lock#disablepagescrollscrollabletarget');
+                            disablePageScroll(target);
+                        },
+                        show: function(target) {
+                            throwError('"show" is deprecated! Use "enablePageScroll" instead. \n https://github.com/FL3NKEY/scroll-lock#enablepagescrollscrollabletarget');
+                            enablePageScroll(target);
+                        },
+                        toggle: function(target) {
+                            throwError('"toggle" is deprecated! Do not use it.');
+                            if (getScrollState()) disablePageScroll(); else enablePageScroll(target);
+                        },
+                        getState: function() {
+                            throwError('"getState" is deprecated! Use "getScrollState" instead. \n https://github.com/FL3NKEY/scroll-lock#getscrollstate');
+                            return getScrollState();
+                        },
+                        getWidth: function() {
+                            throwError('"getWidth" is deprecated! Use "getPageScrollBarWidth" instead. \n https://github.com/FL3NKEY/scroll-lock#getpagescrollbarwidth');
+                            return getPageScrollBarWidth();
+                        },
+                        getCurrentWidth: function() {
+                            throwError('"getCurrentWidth" is deprecated! Use "getCurrentPageScrollBarWidth" instead. \n https://github.com/FL3NKEY/scroll-lock#getcurrentpagescrollbarwidth');
+                            return getCurrentPageScrollBarWidth();
+                        },
+                        setScrollableTargets: function(target) {
+                            throwError('"setScrollableTargets" is deprecated! Use "addScrollableTarget" instead. \n https://github.com/FL3NKEY/scroll-lock#addscrollabletargetscrollabletarget');
+                            scroll_lock_addScrollableTarget(target);
+                        },
+                        setFillGapSelectors: function(selector) {
+                            throwError('"setFillGapSelectors" is deprecated! Use "addFillGapSelector" instead. \n https://github.com/FL3NKEY/scroll-lock#addfillgapselectorfillgapselector');
+                            scroll_lock_addFillGapSelector(selector);
+                        },
+                        setFillGapTargets: function(target) {
+                            throwError('"setFillGapTargets" is deprecated! Use "addFillGapTarget" instead. \n https://github.com/FL3NKEY/scroll-lock#addfillgaptargetfillgaptarget');
+                            scroll_lock_addFillGapTarget(target);
+                        },
+                        clearQueue: function() {
+                            throwError('"clearQueue" is deprecated! Use "clearQueueScrollLocks" instead. \n https://github.com/FL3NKEY/scroll-lock#clearqueuescrolllocks');
+                            clearQueueScrollLocks();
+                        }
+                    };
+                    var scrollLock = _objectSpread({
+                        disablePageScroll,
+                        enablePageScroll,
+                        getScrollState,
+                        clearQueueScrollLocks,
+                        getTargetScrollBarWidth: scroll_lock_getTargetScrollBarWidth,
+                        getCurrentTargetScrollBarWidth: scroll_lock_getCurrentTargetScrollBarWidth,
+                        getPageScrollBarWidth,
+                        getCurrentPageScrollBarWidth,
+                        addScrollableSelector: scroll_lock_addScrollableSelector,
+                        removeScrollableSelector: scroll_lock_removeScrollableSelector,
+                        addScrollableTarget: scroll_lock_addScrollableTarget,
+                        removeScrollableTarget: scroll_lock_removeScrollableTarget,
+                        addLockableSelector: scroll_lock_addLockableSelector,
+                        addLockableTarget: scroll_lock_addLockableTarget,
+                        addFillGapSelector: scroll_lock_addFillGapSelector,
+                        removeFillGapSelector: scroll_lock_removeFillGapSelector,
+                        addFillGapTarget: scroll_lock_addFillGapTarget,
+                        removeFillGapTarget: scroll_lock_removeFillGapTarget,
+                        setFillGapMethod: scroll_lock_setFillGapMethod,
+                        refillGaps,
+                        _state: state
+                    }, deprecatedMethods);
+                    __webpack_exports__["default"] = scrollLock;
+                } ])["default"];
+            }));
+        },
         "../shared/browser/node_modules/split-on-first/index.js": module => {
             "use strict";
             module.exports = (string, separator) => {
@@ -3500,7 +4151,7 @@
         }
         const __PRELOAD_STATE__ = window.__PRELOAD_STATE__ || {};
         if (!window.SL_State) window.SL_State = new SLState(__PRELOAD_STATE__);
-        const {SL_State} = window;
+        const {SL_State: state_selector_SL_State} = window;
         const THIRD_BUTTON_CLASS = "sign-in__third-button";
         class ThirdPartLogin {
             constructor({formId, form, isModal, $$reports}) {
@@ -3525,9 +4176,9 @@
                 }));
             }
             formatThirdPartUrls() {
-                const storeRegisterConfig = SL_State && SL_State.get("shop.store_register_config");
+                const storeRegisterConfig = state_selector_SL_State && state_selector_SL_State.get("shop.store_register_config");
                 const {thirdLoginConfigVos, platformChannelId, types, subAppid} = storeRegisterConfig;
-                const {countryCode = THIRD_DEFAULT_REGION} = SL_State && SL_State.get("customer_address");
+                const {countryCode = THIRD_DEFAULT_REGION} = state_selector_SL_State && state_selector_SL_State.get("customer_address");
                 const {appid: SLAppid} = this.form.configs;
                 const THIRD_REDIRET_URL = `${window.location.origin}${SIGN_IN}`;
                 if (!thirdLoginConfigVos) return [];
@@ -4621,10 +5272,24 @@
             return formItems;
         };
         const toast_LOADING = "loading";
+        function whichAnimationEndEvent() {
+            let t, el = document.createElement("fakeelement");
+            const animations = {
+                animation: "animationend",
+                OAnimation: "oAnimationEnd",
+                MozAnimation: "animationend",
+                WebkitAnimation: "webkitAnimationEnd"
+            };
+            for (t in animations) if (void 0 !== el.style[t]) {
+                console.log("anim...");
+                return animations[t];
+            }
+        }
         const toast_getTemplate = (options, type = "default") => {
             const loadingColor = options.loadingColor || "black";
             const templates = {
                 [toast_LOADING]: `\n      <div class="mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="${loadingColor}" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
+                showSuccess: `\n      <div class="mp-toast mp-toast--loading mp-toast--success-container mp-toast--loading-style2 ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <div class="mp-loading__success-box">\n            <svg class="arrow" width="20" height="20" viewBox="0 0 20 20">\n              <circle cx="10" cy="10" r="8.75" fill="none" stroke="${loadingColor}" stroke-width="2.5" class="circle"></circle>\n              <polyline points="4.5,10 9,14 14.5,6.5" fill="none" stroke="${loadingColor}" stroke-width="2.5" class="hookmark" stroke-linecap="round" stroke-linejoin="round"\n              ></polyline>\n            </svg>\n          </div>\n        </div>\n      </div>\n    `,
                 default: `\n      <div class="comment-toast mp-toast mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-toast__content mp-toast__inner">${options.content}</div>\n      </div>\n    `
             };
             return templates[type];
@@ -4701,6 +5366,26 @@
                 if ("function" === typeof this.options.onClose) this.options.onClose();
                 this.$target.css("position", "");
             }
+            showSuccessAni(options = {}, callback) {
+                const {$target} = this;
+                this.close();
+                const buttonTxt = $target.find(".pdp_button_text");
+                buttonTxt.addClass("showSuccessAni");
+                const successAniTemp = toast_getTemplate(options, "showSuccess");
+                $target.append(successAniTemp);
+                const hookWrapDom = $target.find(".mp-toast--success-container");
+                const hookNode = $target.find(".hookmark");
+                if (hookNode.length > 0) {
+                    const animationEnd = whichAnimationEndEvent();
+                    hookNode.one(animationEnd, (function(event) {
+                        if (callback && "function" === typeof callback) setTimeout((() => {
+                            hookWrapDom.remove();
+                            buttonTxt.removeClass("showSuccessAni");
+                            callback(event, $target);
+                        }), options.delay || 0);
+                    }));
+                }
+            }
         }
         Toast.type = null;
         const toast = Toast;
@@ -4713,6 +5398,7 @@
                 this.onSubmit = onSubmit;
                 this.onValidate = onValidate;
                 this.formItemInstances = {};
+                this.isLoading = false;
                 this.defaultFormValue = formValue;
                 this.init();
                 return this;
@@ -4735,10 +5421,19 @@
             bindEvents() {
                 this.bindFormSubmit();
             }
+            setLoading(isLoading) {
+                const $btn = __SL_$__(`#${this.formId} .submit-button`);
+                if (isLoading) {
+                    this.isLoading = true;
+                    $btn.addClass(form_BUTTON_LOADING_CLASS);
+                } else {
+                    this.isLoading = false;
+                    $btn.removeClass(form_BUTTON_LOADING_CLASS);
+                }
+            }
             bindFormSubmit() {
-                let isLoading = false;
                 __SL_$__(`#${this.formId} .submit-button`).click((async e => {
-                    if (isLoading) return;
+                    if (this.isLoading) return;
                     if (!(window && window.navigator && window.navigator.onLine)) {
                         toast.init({
                             content: t("customer.general.network_error_message")
@@ -4749,19 +5444,18 @@
                     try {
                         await this.validateForm();
                         const data = this.getFormValue();
-                        isLoading = true;
-                        __SL_$__(e.target).addClass(form_BUTTON_LOADING_CLASS);
+                        this.setLoading(true);
                         await (this.onSubmit && this.onSubmit(data));
                     } catch (err) {
-                        if (!err.rescode) return;
-                        const lastField = this.fields[this.fields.length - 1];
-                        if (lastField.name) this.formInstance.setErrMsgIntoDom([ {
-                            name: lastField.name,
-                            messages: [ getUdbErrorMessage(err) ]
-                        } ]);
+                        if (err.rescode) {
+                            const lastField = this.fields[this.fields.length - 1];
+                            if (lastField.name && getUdbErrorMessage(err)) this.formInstance.setErrMsgIntoDom([ {
+                                name: lastField.name,
+                                messages: [ getUdbErrorMessage(err) ]
+                            } ]);
+                        }
                     }
-                    isLoading = false;
-                    __SL_$__(e.target).removeClass(form_BUTTON_LOADING_CLASS);
+                    this.setLoading(false);
                 }));
                 this.bindInputActive();
             }
@@ -4935,7 +5629,7 @@
             };
         };
         const getUdbInfo = ({params, formType, FBPixelEventID = ""}) => {
-            const {type, appid, subappid, mode, verify, token} = params;
+            const {type, appid, subappid, mode, token} = params;
             const uid = getCookie("osudb_uid");
             let loginType = "email";
             let isverify;
@@ -4948,10 +5642,7 @@
                 eventid = FBPixelEventID;
                 if ("member" === type && "email" !== mode) loginType = "acct";
             } else if ("signUp" === formType) {
-                if ("member" === type) {
-                    getInitConfig = getMemberInitConfig;
-                    isverify = verify ? "1" : "0";
-                }
+                if ("member" === type) getInitConfig = getMemberInitConfig;
                 eventid = FBPixelEventID;
             } else if ("activate" === formType) if (token) getInitConfig = getActivateTokenInitConfig; else {
                 getInitConfig = getMemberInitConfig;
@@ -5484,6 +6175,357 @@
             }
         }
         const customer = Customer;
+        function gen(name, mods) {
+            if (!mods) return "";
+            if ("string" === typeof mods) return ` ${name}--${mods}`;
+            if (Array.isArray(mods)) return mods.reduce(((ret, item) => ret + gen(name, item)), "");
+            return Object.keys(mods).reduce(((ret, key) => ret + (mods[key] ? gen(name, key) : "")), "");
+        }
+        function createBEM(name) {
+            return (el, mods) => {
+                if (el && "string" !== typeof el) {
+                    mods = el;
+                    el = "";
+                }
+                el = el ? `${name}__${el}` : name;
+                return `${el}${gen(el, mods)}`;
+            };
+        }
+        function createNamespace(commonName, name) {
+            name = `${commonName}-${name}`;
+            return createBEM(name);
+        }
+        var scroll_lock = __webpack_require__("../shared/browser/node_modules/scroll-lock/dist/scroll-lock.js");
+        const common_bem = createNamespace("mp", "modal");
+        const common_DEFAULT_MODAL_ID_PRE = "MpModal";
+        const common_VISIBLE = "visible";
+        const common_HIDDEN = "hidden";
+        const common_animationClassMap = {
+            visible: common_bem("visibleAnimation"),
+            hidden: common_bem("notVisibleAnimation")
+        };
+        const common_visibleClassName = common_bem("visible");
+        const common_maskClosableClass = common_bem("closable");
+        function isInvalid(param) {
+            return !param || "string" !== typeof param;
+        }
+        function isJqueryInstance(dom) {
+            return dom && dom instanceof __SL_$__ && dom.length > 0;
+        }
+        function getEventHandlerName(event, selector, namepsace) {
+            if (!selector) return [ event, namepsace ].join("-");
+            if (isJqueryInstance(selector)) return selector;
+            return [ selector, event, namepsace ].join("-");
+        }
+        function getNamespace(event, namespace) {
+            if (isInvalid(event) && isInvalid(namespace)) throw new Error("one of these two parameters must be provided!");
+            if (isInvalid(event)) return `.${namespace}`;
+            return [ event, namespace ].join(".");
+        }
+        const eventInvalidErrorMessage = "event param must be provided and it must be a string type";
+        function on({eventName, handler, selector, scope} = {}) {
+            if (isInvalid(eventName)) throw new Error(eventInvalidErrorMessage);
+            if (!isJqueryInstance(scope)) throw new Error("scope must be a jQuery Object");
+            if ("function" !== typeof handler) throw new TypeError("handler must be a function");
+            if (selector) {
+                if (isInvalid(selector)) throw new TypeError("selector must be a string!");
+                scope.on(eventName, selector, handler);
+            } else scope.on(eventName, handler);
+        }
+        function off({eventName, selector, handler, scope} = {}) {
+            if (isInvalid(eventName)) throw new Error(eventInvalidErrorMessage);
+            if (!isJqueryInstance(scope)) throw new Error("scope must be a jQuery Object");
+            if (selector) {
+                if (isInvalid(selector)) throw new TypeError("selector must be a string!");
+                if ("function" === typeof handler) scope.off(eventName, selector, handler); else scope.off(eventName, selector);
+            } else scope.off(eventName);
+        }
+        function onConsistent(event, selector, handler) {
+            if (isInvalid(event)) throw new Error(eventInvalidErrorMessage);
+            if (!handler) {
+                handler = selector;
+                selector = null;
+            }
+            const eventHandlerKey = this.getEventHandlerName(event, selector);
+            const ns = this.getEventNamespace(event);
+            this.$eventHandlers.set(eventHandlerKey, handler);
+            return scope => {
+                on({
+                    eventName: ns,
+                    selector,
+                    handler,
+                    scope
+                });
+            };
+        }
+        function offConsistent(event, selector) {
+            if (isInvalid(event)) throw new Error(eventInvalidErrorMessage);
+            const eventHandlerName = this.getEventHandlerName(event, selector);
+            const handler = this.$eventHandlers.get(eventHandlerName);
+            const ns = this.getEventNamespace(event);
+            return scope => {
+                off({
+                    eventName: ns,
+                    selector,
+                    handler,
+                    scope
+                });
+                if (handler) this.$eventHandlers.delete(eventHandlerName);
+            };
+        }
+        class EventManager {
+            constructor(namespace = "", portals) {
+                this.$win = __SL_$__(window);
+                this.$doc = __SL_$__(document);
+                this.$portals = portals ? __SL_$__(portals) : null;
+                this.namespace = "string" === typeof namespace ? namespace : "";
+                this.$eventHandlers = new Map;
+                this.$winEventHandlers = new Map;
+            }
+            getEventNamespace(event) {
+                return getNamespace(event, this.namespace);
+            }
+            getEventHandlerName(event, selector) {
+                return getEventHandlerName(event, selector, this.namespace);
+            }
+            getPortals() {
+                return isJqueryInstance(this.$portals) ? this.$portals : this.$doc;
+            }
+            $setNamespace(namespace) {
+                this.namespace = namespace;
+            }
+            $setPortals(portals) {
+                this.$portals = portals ? __SL_$__(portals) : null;
+            }
+            $on(event, selector, handler) {
+                const onEvent = onConsistent.call(this, event, selector, handler);
+                onEvent(this.$doc);
+            }
+            $onPortals(event, selector, handler) {
+                const $dom = this.getPortals();
+                const onEvent = onConsistent.call(this, event, selector, handler);
+                onEvent($dom);
+            }
+            $onWin(event, handler) {
+                this.$winEventHandlers.set(this.getEventHandlerName(event), handler);
+                this.$win.on(this.getEventNamespace(event), handler);
+            }
+            $off(event, selector) {
+                const offEvent = offConsistent.call(this, event, selector);
+                offEvent(this.$doc);
+            }
+            $offPortals(event, selector) {
+                const $dom = this.getPortals();
+                const offEvent = offConsistent.call(this, event, selector);
+                offEvent($dom);
+            }
+            $offWin(event) {
+                const eventHandlerName = this.getEventHandlerName(event);
+                const handler = this.$winEventHandlers.get(eventHandlerName);
+                this.$win.off(this.getEventNamespace(event));
+                if (handler) this.$winEventHandlers.delete(eventHandlerName);
+            }
+            $offAll() {
+                const ns = this.getEventNamespace();
+                this.$win.off(ns);
+                this.$doc.off(ns);
+                if (isJqueryInstance(this.$portals)) this.$portals.off(ns);
+                this.$eventHandlers.clear();
+                this.$winEventHandlers.clear();
+            }
+            prepareTransition($el, callback, endCallback) {
+                function removeClass() {
+                    $el.removeClass("is-transitioning");
+                    $el.off("transitionend", removeClass);
+                    if (endCallback) endCallback();
+                }
+                $el.on("transitionend", removeClass);
+                $el.addClass("is-transitioning");
+                $el.width();
+                if ("function" === typeof callback) callback();
+            }
+        }
+        let full_uuid = 0;
+        class ModalWithHtml extends EventManager {
+            constructor(options = {}) {
+                super("mp:modal:full");
+                const config = {
+                    zIndex: 1e3,
+                    containerClassName: "",
+                    closable: true,
+                    maskClosable: true,
+                    bodyClassName: "",
+                    content: "",
+                    destroyedOnClosed: false,
+                    afterClose: () => {},
+                    closeCallback: () => {},
+                    ...options
+                };
+                this.modalId = config.id || `${common_DEFAULT_MODAL_ID_PRE}${++full_uuid}`;
+                this.zIndex = config.zIndex;
+                this.config = config;
+                this.destroyed = false;
+                this.init();
+            }
+            init() {
+                const $modal = __SL_$__(`#${this.modalId}`);
+                if ($modal.length > 0) {
+                    this.$modal = $modal;
+                    this.$setPortals($modal);
+                    return;
+                }
+                this.$modal = this.buildModalHtml();
+                this.$setPortals(this.$modal);
+                this.bindEvents();
+            }
+            buildModalHtml() {
+                const {zIndex, closable, containerClassName, bodyClassName, content, children} = this.config;
+                const modalHtml = `\n      <div id="${this.modalId}" class="${common_bem("wrapper")}">\n        <div class="${common_bem("mask")}"></div>\n        <div class="${common_bem("container")}">\n          ${closable ? `<span class="${common_bem("close")}">\n            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M19.1998 4.80005L4.7998 19.2" stroke="currentColor" stroke-width="2"/>\n              <path d="M4.7998 4.79995L19.1998 19.2" stroke="currentColor" stroke-width="2"/>\n            </svg>          \n          </span>` : ""}\n          <div class="${common_bem("body")} ${bodyClassName}">\n            ${content}\n          </div>\n        </div>\n      </div>\n    `;
+                const $modal = __SL_$__(modalHtml);
+                if (containerClassName) $modal.find(`.${common_bem("container")}`).addClass(containerClassName);
+                if (bodyClassName) $modal.find(`.${common_bem("body")}`).addClass(bodyClassName);
+                if (children) $modal.find(`.${common_bem("body")}`).append(children);
+                if (("number" === typeof zIndex || "string" === typeof zIndex) && "" !== zIndex) $modal.css("z-index", zIndex);
+                return $modal;
+            }
+            setContent(content) {
+                this.config.content = content;
+                this.$modal.find(`.${common_bem("body")}`).html(content);
+            }
+            show() {
+                if (this.destroyed) {
+                    this.destroyed = false;
+                    this.unBindEvents = this.bindEvents();
+                }
+                const $modalBody = this.$modal.find(`.${common_bem("body")}`);
+                this.$modal.appendTo(document.body);
+                (0, scroll_lock.disablePageScroll)($modalBody.get(0));
+                this.visibleState = common_VISIBLE;
+                this.$modal.addClass([ common_visibleClassName, common_animationClassMap.visible ]).removeClass(common_animationClassMap.hidden);
+                this.toggleMaskClassName();
+            }
+            hide(force) {
+                const $modalBody = this.$modal.find(`.${common_bem("body")}`);
+                this.visibleState = common_HIDDEN;
+                (0, scroll_lock.enablePageScroll)($modalBody.get(0));
+                window.SL_EventBus.emit("global:popup:close");
+                this.toggleMaskClassName();
+                this.$modal.addClass(common_animationClassMap.hidden).removeClass(common_animationClassMap.visible);
+                if (force) this.afterAnimation();
+                if ("function" === typeof this.config.closeCallback) this.config.closeCallback(this.$modal);
+            }
+            toggleMaskClassName() {
+                if (this.config.maskClosable) this.$modal.find(`.${common_bem("mask")}`).toggleClass(common_maskClosableClass, this.visibleState === common_VISIBLE);
+            }
+            afterAnimation() {
+                this.$modal.toggleClass(common_visibleClassName, this.visibleState === common_VISIBLE);
+                if ("function" === typeof this.config.afterClose) this.config.afterClose(this.$modal);
+                this.destroy();
+            }
+            destroy() {
+                if (this.config.destroyedOnClosed && this.visibleState === common_HIDDEN) {
+                    this.$modal.remove();
+                    this.detachEvents();
+                    this.destroyed = true;
+                }
+            }
+            bindEvents() {
+                this.$onPortals("click", `.${common_bem("close")}`, this.hide.bind(this, false));
+                if (this.config.maskClosable) this.$onPortals("click", `.${common_bem("mask")}`, this.hide.bind(this, false));
+                this.$onPortals("animationend", `.${common_bem("container")}`, this.afterAnimation.bind(this));
+            }
+            detachEvents() {
+                this.$offAll();
+            }
+        }
+        const captcha_config = {
+            SDK_URL_OSS: "r2cdn.myshopline.cn/static/rs/acuf/prod/latest/bundle.iife.js",
+            SDK_URL_S3: "https://r2cdn.myshopline.com/static/rs/acuf/prod/latest/bundle.iife.js",
+            IS_MAINLAND: false,
+            APP_ENV: getEnv().APP_ENV || "product",
+            APP_CODE: "m3tdgo"
+        };
+        const CAPTCHA_CONTROL_URL = captcha_config.IS_MAINLAND ? captcha_config.SDK_URL_OSS : captcha_config.SDK_URL_S3;
+        let captchaInstance = null;
+        const loadArmorCaptcha = ({wrapId = "content", lang, onSuccess, onFail, onClose}) => {
+            if (captchaInstance) return Promise.resolve(captchaInstance);
+            return loadScript(CAPTCHA_CONTROL_URL).then((() => {
+                const {ArmorCaptcha} = window;
+                captchaInstance = new ArmorCaptcha({
+                    wrapId,
+                    lang,
+                    onSuccess,
+                    onFail,
+                    onClose,
+                    origin: window.location.origin,
+                    appCode: captcha_config.APP_CODE,
+                    captchaScene: "user"
+                });
+                return captchaInstance;
+            }));
+        };
+        let cacheModal = null;
+        let cacheArmorCaptcha = null;
+        let lang = null;
+        const contentId = `captcha-content`;
+        const openCaptchaModal = async ({onSuccess}) => {
+            if (cacheModal) {
+                cacheModal.show();
+                cacheArmorCaptcha && cacheArmorCaptcha.reset();
+                if (lang !== getLanguage()) cacheArmorCaptcha.changeLanguage(getLanguage());
+                return;
+            }
+            cacheModal = new ModalWithHtml({
+                zIndex: 1e3,
+                containerClassName: "captcha-modal-container",
+                closable: false,
+                maskClosable: true,
+                bodyClassName: "captcha-modal-body",
+                content: `<div id="${contentId}" class="captcha-content"></div>`,
+                destroyedOnClosed: false
+            });
+            cacheModal.show();
+            __SL_$__(`#${cacheModal.modalId}`).find(".mp-modal__mask").addClass("captcha-transparent");
+            __SL_$__(`#${cacheModal.modalId}`).on("click", ".captcha-modal-container", (e => {
+                const $target = __SL_$__(e.target).parents(".captcha-content");
+                if ($target.length < 1) cacheModal.hide();
+            }));
+            lang = getLanguage();
+            cacheArmorCaptcha = await loadArmorCaptcha({
+                wrapId: contentId,
+                lang,
+                onSuccess: token => {
+                    cacheModal.hide();
+                    onSuccess && onSuccess(token);
+                }
+            });
+        };
+        let captchaToken = null;
+        const isFunction = fn => "function" === typeof fn;
+        const captcha_modal_CAPTCHA_CODE = [ "2019", "2020", "3018", "3021", "1015", "2015" ];
+        const wrapArmorCaptcha = async ({beforeCapture, onCaptureCaptcha, onCaptchaVerifySuccess, onError}) => {
+            if (!captchaToken) isFunction(beforeCapture) && await beforeCapture();
+            try {
+                isFunction(onCaptureCaptcha) && await onCaptureCaptcha(captchaToken);
+                captchaToken = null;
+            } catch (e) {
+                captchaToken = null;
+                if (captcha_modal_CAPTCHA_CODE.includes(e.rescode)) {
+                    openCaptchaModal({
+                        onSuccess: async token => {
+                            captchaToken = token;
+                            try {
+                                isFunction(onCaptchaVerifySuccess) && await onCaptchaVerifySuccess(token, e || {});
+                            } catch (e) {
+                                onError && onError(e);
+                            }
+                        }
+                    });
+                    return Promise.reject(false);
+                }
+                return Promise.reject(e);
+            }
+        };
         class Login extends customer {
             constructor({id = "login", isModal = false, success = null}) {
                 super({
@@ -5600,11 +6642,29 @@
                 if (window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value) extInfo.memberReferralCode = window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value;
                 if (Object.keys(extInfo).length > 0) payload.extinfo = JSON.stringify(extInfo);
                 this.$$reports.reportSubmitLogin && this.$$reports.reportSubmitLogin();
-                return loginAccount(super.formatRequestBody({
-                    ...payload,
-                    ...params
-                })).then((() => this.signInCallback(null, data, mode))).catch((e => {
+                const onLogin = (captchaToken, updateParams = {}) => {
+                    const formData = this.loginForm.getFormValue();
+                    this.loginForm.setLoading(true);
+                    return loginAccount(super.formatRequestBody({
+                        ...payload,
+                        ...params,
+                        pwd: formData.password,
+                        captcha: captchaToken,
+                        stoken: updateParams.stoken || params.stoken
+                    })).then((() => this.signInCallback(null, data, mode)));
+                };
+                return wrapArmorCaptcha({
+                    onCaptureCaptcha: onLogin,
+                    onCaptchaVerifySuccess: (captchaToken, prevRequestResult) => onLogin(captchaToken, {
+                        stoken: prevRequestResult && prevRequestResult.stoken
+                    }),
+                    onError: e => {
+                        this.setError(e);
+                        this.loginForm.setLoading(false);
+                    }
+                }).catch((e => {
                     this.setError(e);
+                    this.loginForm.setLoading(false);
                 }));
             }
             signInCallback(thirdNickName, data, mode) {
@@ -5637,10 +6697,12 @@
                 super.$$reports && super.$$reports.riskReportSignIn && super.$$reports.riskReportSignIn(reportIsFirst);
                 Promise.all(promises).catch((e => {
                     console.warn("signInCallback catch", e);
+                    this.loginForm.setLoading(false);
                 })).finally((() => {
                     this.$$reports && this.$$reports.reportSignInPageLeave && this.$$reports.reportSignInPageLeave(getRedirectOriginUrl());
                     if (this.success) {
                         this.success && this.success();
+                        this.loginForm.setLoading(false);
                         return;
                     }
                     redirectPage(USER_CENTER);

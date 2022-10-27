@@ -88,16 +88,16 @@
         ">
           {{#each blocks}}
             {{#if (trim type) '===' 'title'}}
-            <h2 class="title title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</h2>
+            <h2 {{{ this.shopline_attributes }}} class="title title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</h2>
             {{/if}}
 
             {{#if (trim type) '===' 'desc'}}
-            <p class="desc body1">{{ settings.description }}</p>
+            <p {{{ this.shopline_attributes }}} class="desc body1">{{ settings.description }}</p>
             {{/if}}
             {{#if (trim type) '===' 'button'}}
             {{ assign 'outline_button' settings.outline_button }}
             {{ assign 'outline_button_2' settings.outline_button_2 }}
-            <div class="control-wrap">
+            <div class="control-wrap" {{{ this.shopline_attributes }}}>
               <div class="control">
                 {{#if settings.button_text}}
                   {{ assign 'link_item' (useLink settings.link global.request.uri.query) }}
@@ -109,7 +109,6 @@
                 {{/if}}
               </div>
             </div>
-
             {{/if}}
           {{/each}}
         </div>
@@ -146,16 +145,16 @@
           ">
             {{#each blocks}}
               {{#if (trim type) '===' 'title'}}
-              <h2 class="title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</h2>
+              <h2 {{{ this.shopline_attributes }}} class="title2 title-font title2--size-{{ settings.title_size }}">{{ newline_to_br settings.title }}</h2>
               {{/if}}
 
               {{#if (trim type) '===' 'desc'}}
-              <p class="desc body1">{{ settings.description }}</p>
+              <p {{{ this.shopline_attributes }}} class="desc body1">{{ settings.description }}</p>
               {{/if}}
               {{#if (trim type) '===' 'button'}}
               {{ assign 'outline_button' settings.outline_button }}
               {{ assign 'outline_button_2' settings.outline_button_2 }}
-              <div class="control-wrap">
+              <div class="control-wrap" {{{ this.shopline_attributes }}}>
                 <div class="control">
                   {{#if settings.button_text}}
                     {{ assign 'link_item' (useLink settings.link global.request.uri.query) }}
@@ -167,7 +166,6 @@
                   {{/if}}
                 </div>
               </div>
-
               {{/if}}
             {{/each}}
           </div>

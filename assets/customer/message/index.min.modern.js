@@ -4205,10 +4205,7 @@
         __webpack_require__.u = chunkId => chunkId + ".js";
     })();
     (() => {
-        __webpack_require__.miniCssF = chunkId => {
-            if ("message" === chunkId) return "customer/message/index.min.modern.css";
-            return;
-        };
+        __webpack_require__.miniCssF = chunkId => {};
     })();
     (() => {
         __webpack_require__.g = function() {
@@ -4578,10 +4575,24 @@
         [ "preview", "product" ].includes(getEnv().APP_ENV || "");
         const CONFIRM_SUBSCRIBE_EMAIL = "confirmSubscribeEmail";
         const toast_LOADING = "loading";
+        function whichAnimationEndEvent() {
+            let t, el = document.createElement("fakeelement");
+            const animations = {
+                animation: "animationend",
+                OAnimation: "oAnimationEnd",
+                MozAnimation: "animationend",
+                WebkitAnimation: "webkitAnimationEnd"
+            };
+            for (t in animations) if (void 0 !== el.style[t]) {
+                console.log("anim...");
+                return animations[t];
+            }
+        }
         const toast_getTemplate = (options, type = "default") => {
             const loadingColor = options.loadingColor || "black";
             const templates = {
                 [toast_LOADING]: `\n      <div class="mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="${loadingColor}" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
+                showSuccess: `\n      <div class="mp-toast mp-toast--loading mp-toast--success-container mp-toast--loading-style2 ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <div class="mp-loading__success-box">\n            <svg class="arrow" width="20" height="20" viewBox="0 0 20 20">\n              <circle cx="10" cy="10" r="8.75" fill="none" stroke="${loadingColor}" stroke-width="2.5" class="circle"></circle>\n              <polyline points="4.5,10 9,14 14.5,6.5" fill="none" stroke="${loadingColor}" stroke-width="2.5" class="hookmark" stroke-linecap="round" stroke-linejoin="round"\n              ></polyline>\n            </svg>\n          </div>\n        </div>\n      </div>\n    `,
                 default: `\n      <div class="comment-toast mp-toast mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-toast__content mp-toast__inner">${options.content}</div>\n      </div>\n    `
             };
             return templates[type];
@@ -4657,6 +4668,26 @@
                 this.$toast.addClass(toast_HIDDEN_CLASSNAME);
                 if ("function" === typeof this.options.onClose) this.options.onClose();
                 this.$target.css("position", "");
+            }
+            showSuccessAni(options = {}, callback) {
+                const {$target} = this;
+                this.close();
+                const buttonTxt = $target.find(".pdp_button_text");
+                buttonTxt.addClass("showSuccessAni");
+                const successAniTemp = toast_getTemplate(options, "showSuccess");
+                $target.append(successAniTemp);
+                const hookWrapDom = $target.find(".mp-toast--success-container");
+                const hookNode = $target.find(".hookmark");
+                if (hookNode.length > 0) {
+                    const animationEnd = whichAnimationEndEvent();
+                    hookNode.one(animationEnd, (function(event) {
+                        if (callback && "function" === typeof callback) setTimeout((() => {
+                            hookWrapDom.remove();
+                            buttonTxt.removeClass("showSuccessAni");
+                            callback(event, $target);
+                        }), options.delay || 0);
+                    }));
+                }
             }
         }
         Toast.type = null;

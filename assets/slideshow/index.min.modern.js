@@ -872,6 +872,14 @@
             onUnload() {
                 if (this.slideshow) this.slideshow.destroy();
             }
+            onBlockDeselect() {
+                if (this.slideshow.swiper.params.autoplay.enabled) this.slideshow.swiper.autoplay.start();
+            }
+            onBlockSelect(e) {
+                const {index = null} = e.detail;
+                if (null !== index) this.slideshow.swiper.slideTo(index + 1);
+                this.slideshow.swiper.autoplay.stop();
+            }
         }
         _defineProperty(SlideshowSection, "type", "slideshow");
         (0, sectionsLoad.registrySectionConstructor)("slideshow", SlideshowSection);

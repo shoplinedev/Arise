@@ -33,7 +33,7 @@
       {{/if}}
 
       {{#if currentRate '<=' global.maxRate}}
-        <li class="rate__item">
+        <li class="rate__item" {{{ this.shopline_attributes }}}>
           <span class="rate__icon">
             {{ snippet 'icons/icon_star' }}
           </span>

@@ -135,7 +135,8 @@
                 {{/if}}
               {{/style}}
 
-              {{ assign 'not_first_slide' (if @index '!==' 0) }}
+              {{!-- 非前3个组件的轮播图首图不做直出 --}}
+              {{ assign 'not_lcp_slide' (not (and (not (has (after global.sections_order 3) global.section.id)) (if @index '===' 0))) }}
               {{ assign 'link_item' (useLink this.settings.link global.request.uri.query) }}
               {{ assign 'link_2_item' (useLink this.settings.link_2 global.request.uri.query) }}
               {{ assign 'ele_link_item' (JSONparse '{}') }}
@@ -149,6 +150,7 @@
               {{/and}}
 
               <{{ ele }}
+                {{{ this.shopline_attributes }}}
                 {{#eq ele 'a'}}
                   {{{ ele_link_item.hrefAttr }}}
                 {{/eq}}
@@ -172,8 +174,8 @@
                     {{#if has_image}}
                       {{#if this.settings.image.url}}
                         <img
-                          class="hero__image {{#if not_first_slide}}lozad{{/if}} {{#if has_mobile_image}}d-none d-md-block{{/if}}"
-                          {{{ get 'responsiveAttr' (image_responsive this.settings.image.url mSize=(cond has_mobile_image null '100vw') useLazyLoad=not_first_slide) }}}
+                          class="hero__image {{#if not_lcp_slide}}lozad{{/if}} {{#if has_mobile_image}}d-none d-md-block{{/if}}"
+                          {{{ get 'responsiveAttr' (image_responsive this.settings.image.url mSize=(cond has_mobile_image null '100vw') useLazyLoad=not_lcp_slide) }}}
                           alt="{{ this.settings.image.alt }}"
                           data-aspectratio-url="{{ img_url this.settings.image.url width=100 }}"
                           data-aspectratio="{{ divide 100 (get 'ratio' (img_size this.settings.image.url)) }}"
@@ -184,8 +186,8 @@
                       {{/if}}
                       {{#if this.settings.image_mobile.url}}
                         <img
-                          class="hero__image {{#if not_first_slide}}lozad{{/if}} hero__image--mobile d-md-none"
-                          {{{ get 'responsiveAttr' (image_responsive this.settings.image_mobile.url pcSize=null mSize='100vw' useLazyLoad=not_first_slide) }}}
+                          class="hero__image {{#if not_lcp_slide}}lozad{{/if}} hero__image--mobile d-md-none"
+                          {{{ get 'responsiveAttr' (image_responsive this.settings.image_mobile.url pcSize=null mSize='100vw' useLazyLoad=not_lcp_slide) }}}
                           alt="{{ this.settings.image_mobile.alt }}"
                           data-aspectratio-url="{{ img_url this.settings.image_mobile.url width=100 }}"
                           data-aspectratio="{{ divide 100 (get 'ratio' (img_size this.settings.image_mobile.url)) }}"

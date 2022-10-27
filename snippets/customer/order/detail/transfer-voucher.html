@@ -6,7 +6,7 @@
 {{assign '__showMoreStr__' (t 'order.detail.orderstatus.action.ShowMore')}}
 
 {{#each dataList}}
-    <div class="trade-transfer-voucher ">
+    <div class="trade-transfer-voucher" {{{ this.shopline_attributes }}}>
         <div class="trade-transfer-voucher_img">
             <img src="{{voucherUrl}}" alt="transfer voucher" 
                 data-time="{{dayjs method='format' init=uploadTime format='YYYY-MM-DD HH:mm'}}" 

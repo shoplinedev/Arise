@@ -57,7 +57,7 @@
 		{{#with this as |global|}}
 			<ul class="drawer-menu-locale-currency locale-currency" data-locale>
 				{{#each (traditionalFilter storeInfo.languageSetting.supportLanguages)}}
-					<li class="text-left stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row }} " data-alias="{{this}}" data-name="{{nameOfLocale this}}">
+					<li class="text-left stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row }} " data-alias="{{this}}" data-name="{{nameOfLocale this}}" {{{ this.shopline_attributes }}}>
 						{{#with global}}
 							{{assign 'sub_animation_row' (plus global.sub_animation_row 1)}}
 						{{/with}}

@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Tiếp theo",
+      "previous": "Trước",
+      "read_more": "xem thêm",
+      "related_articles": "Blog liên quan"
+    },
     "blog_list": {
       "empty_desc": "Không có bài đăng nào trên blog này.",
       "read_btn_text": "Đọc thêm",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Chỉ còn {{stock}} sản phẩm"
     },
+    "subscription": {
+      "information": "Đăng ký"
+    },
     "tips": {
       "agree_with_the_shop": "Tôi đồng ý với",
       "change_binding_after_verification": "Bạn có thể kết nối/thay đổi {{value}} sau khi hoàn thành xác minh",
@@ -348,6 +357,7 @@
       "error_message_1022": "Đã liên kết số tài khoản",
       "error_message_1023": "Ngoại lệ dịch vụ",
       "error_message_1024": "Ngoại lệ dịch vụ",
+      "error_message_1035": "Vui lòng gửi mã xác minh",
       "error_message_2": "Ngoại lệ dịch vụ",
       "error_message_2001": "Số điện thoại di động đã được đăng ký",
       "error_message_2002": "Email đã được đăng ký",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Không tìm thấy đơn vị tiền tệ liên quan",
       "search_input_placeholder": "Nhập vào đây và nhấp để tìm kiếm"
     },
+    "order_tracking": {
+      "code": "Mã xác nhận",
+      "email": "E-mail",
+      "form_error": "Truy vấn không thành công",
+      "orderId": "ID đặt hàng",
+      "orderId_error": "Id đơn đặt hàng không được để trống",
+      "query_illegal": "đơn đặt hàng không tồn tại",
+      "risk_black_user": "Tài khoản này đang gặp rủi ro",
+      "risk_interception": "đơn đặt hàng không tồn tại",
+      "submit_btn": "Xem đơn đặt hàng",
+      "username": "Email / Số điện thoại"
+    },
     "policy": {
       "privacy": "Chính sách quyền riêng tư",
       "refund": "Chính sách hoàn tiền",
@@ -598,6 +620,7 @@
       "filter": "Lọc",
       "from_price_html": "Từ {{price}}",
       "less": "ít hơn",
+      "load_more_tip": "Đang tải thêm các mặt hàng",
       "more": "nhiều hơn",
       "more__product_num": "{{num}} sản phẩm",
       "new_arrivals": "Hàng mới về",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} kết quả",
       "results_found_for": "Tìm thấy {{count}} kết quả cho từ khóa \"{{keyword}}\"",
       "search": "Tìm kiếm",
-      "search_no_results": "Không tìm thấy kết quả phù hợp cho từ khóa \"{{keyword}}\""
+      "search_no_results": "Không tìm thấy kết quả phù hợp cho từ khóa \"{{keyword}}\"",
+      "single_results": "{{count}} kết quả",
+      "single_results_found": "Tìm thấy {{count}} kết quả cho từ khóa \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Sản phẩm đã xem gần đây"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "đối với phí vận chuyển dưới {value}",
       "specified_customer": "đối với khách hàng cụ thể",
       "threshold": "Mua {threshold}"
+    },
+    "flash": {
+      "day": "ngày",
+      "days": "ngày"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} tắt",
@@ -797,6 +826,13 @@
       "point_discount": "Giảm giá sử dụng điểm",
       "shipping_fee": "Phí vận chuyển",
       "trade_coupon_discount": "Phiếu giảm giá"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Mã sai",
+      "err2005": "Mã sai",
+      "err3005": "Mã sai"
     }
   }
 }

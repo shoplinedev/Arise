@@ -12,15 +12,15 @@
   <div class="container {{#unless normal_width}}rich-text__normal-width{{/unless}}">
     {{#each blocks}}
       {{#if (trim type) '===' 'heading'}}
-        <h2 class="title4{{#if settings.heading_size}} rich-text__title rich-text__title-size-{{settings.heading_size}}{{/if}}">{{settings.heading}}</h2>
+        <h2 {{{ this.shopline_attributes }}} class="title4{{#if settings.heading_size}} rich-text__title rich-text__title-size-{{settings.heading_size}}{{/if}}">{{settings.heading}}</h2>
       {{/if}}
       {{#if (trim type) '===' 'text'}}
-        <div class="sl-richtext body2">{{{settings.text}}}</div>
+        <div {{{ this.shopline_attributes }}} class="sl-richtext body2">{{{settings.text}}}</div>
       {{/if}}
       {{#if (trim type) '===' 'button'}}
         {{#if settings.button_text}}
           {{assign 'link_item' (useLink settings.jump_link)}}
-          <a class="__sl-custom-track-stage-richText-button btn btn-{{#if (isTruthy settings.outline_button)}}extra{{else}}primary{{/if}} richtext__btn " {{{link_item.hrefAttr}}}>{{settings.button_text}}</a>
+          <a {{{ this.shopline_attributes }}} class="__sl-custom-track-stage-richText-button btn btn-{{#if (isTruthy settings.outline_button)}}extra{{else}}primary{{/if}} richtext__btn " {{{link_item.hrefAttr}}}>{{settings.button_text}}</a>
         {{/if}}
       {{/if}}
     {{/each}}

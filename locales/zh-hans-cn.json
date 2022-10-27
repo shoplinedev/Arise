@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "下一篇",
+      "previous": "上一篇",
+      "read_more": "查看更多",
+      "related_articles": "相关博客"
+    },
     "blog_list": {
       "empty_desc": "此博客中没有博客文章",
       "read_btn_text": "查看更多",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "还剩{{stock}}个库存"
     },
+    "subscription": {
+      "information": "订阅"
+    },
     "tips": {
       "agree_with_the_shop": "我同意店铺的",
       "change_binding_after_verification": "完成验证后可绑定/改绑{{value}}",
@@ -348,6 +357,7 @@
       "error_message_1022": "账号已绑定",
       "error_message_1023": "服务异常",
       "error_message_1024": "服务异常",
+      "error_message_1035": "请发送验证码",
       "error_message_2": "服务异常",
       "error_message_2001": "手机号已注册",
       "error_message_2002": "邮箱已注册",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "未找到相关货币",
       "search_input_placeholder": "在此处输入并按搜索"
     },
+    "order_tracking": {
+      "code": "验证码",
+      "email": "Email",
+      "form_error": "查询失败",
+      "orderId": "Order ID",
+      "orderId_error": "订单id不能为空",
+      "query_illegal": "该订单不存在",
+      "risk_black_user": "此帐号存在风险",
+      "risk_interception": "该订单不存在",
+      "submit_btn": "查看订单",
+      "username": "Email/Phone Number"
+    },
     "policy": {
       "privacy": "隐私政策",
       "refund": "退款政策",
@@ -598,6 +620,7 @@
       "filter": "筛选",
       "from_price_html": "{{price}} 起",
       "less": "更少标签",
+      "load_more_tip": "加载更多项目",
       "more": "更多标签",
       "more__product_num": "{{num}} 商品",
       "new_arrivals": "最新上架",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} 条记录",
       "results_found_for": "找到 \"{{keyword}}\" 的 {{count}} 个记录",
       "search": "搜索",
-      "search_no_results": "您搜索的 \"{{keyword}}\" 没有任何记录"
+      "search_no_results": "您搜索的 \"{{keyword}}\" 没有任何记录",
+      "single_results": "{{count}} 条记录",
+      "single_results_found": "找到 \"{{keyword}}\" 的 {{count}} 个记录"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "最近浏览商品"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "运费低于{value}",
       "specified_customer": "指定客户可用",
       "threshold": "买{threshold}"
+    },
+    "flash": {
+      "day": "天",
+      "days": "天"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}}折",
@@ -797,6 +826,13 @@
       "point_discount": "积分折扣",
       "shipping_fee": "运费",
       "trade_coupon_discount": "优惠"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "验证码错误",
+      "err2005": "验证码错误",
+      "err3005": "验证码错误"
     }
   }
 }

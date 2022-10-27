@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "ต่อไป",
+      "previous": "ก่อนหน้า",
+      "read_more": "ดูเพิ่มเติม",
+      "related_articles": "บล็อกที่เกี่ยวข้อง"
+    },
     "blog_list": {
       "empty_desc": "ไม่มีการโพสต์บทความในบล็อกนี้",
       "read_btn_text": "อ่านเพิ่มเติม",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "สินค้าเหลือเพียง {{stock}} ชิ้น"
     },
+    "subscription": {
+      "information": "สมัครสมาชิก"
+    },
     "tips": {
       "agree_with_the_shop": "ฉันยอมรับ",
       "change_binding_after_verification": "คุณสามารถเชื่อมต่อ/เปลี่ยนแปลง {{value}} ได้หลังจากการยืนยันตัวตน",
@@ -348,6 +357,7 @@
       "error_message_1022": "บัญชีถูกผูกไว้",
       "error_message_1023": "การบริการผิดปกติ",
       "error_message_1024": "การบริการผิดปกติ",
+      "error_message_1035": "กรุณาส่งรหัสยืนยัน",
       "error_message_2": "การบริการผิดปกติ",
       "error_message_2001": "โทรศัพท์มือถือนี้ลงทะเบียนแล้ว",
       "error_message_2002": "อีเมลนี้ลงทะเบียนแล้ว",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "ไม่พบสกุลเงินที่เกี่ยวข้อง",
       "search_input_placeholder": "พิมพ์ที่นี่แล้วแตะค้นหา"
     },
+    "order_tracking": {
+      "code": "รหัสยืนยัน",
+      "email": "อีเมล",
+      "form_error": "แบบสอบถามล้มเหลว",
+      "orderId": "รหัสคำสั่งซื้อ",
+      "orderId_error": "ต้องระบุรหัสคำสั่งซื้อ",
+      "query_illegal": "ไม่มีคำสั่งซื้อ",
+      "risk_black_user": "บัญชีนี้มีความเสี่ยง",
+      "risk_interception": "ไม่มีคำสั่งซื้อ",
+      "submit_btn": "ดูคำสั่งซื้อ",
+      "username": "อีเมล/หมายเลขโทรศัพท์"
+    },
     "policy": {
       "privacy": "นโยบายความเป็นส่วนตัว",
       "refund": "นโยบายการคืนเงิน",
@@ -598,6 +620,7 @@
       "filter": "กรอง",
       "from_price_html": "จาก {{price}}",
       "less": "น้อยลง",
+      "load_more_tip": "โหลดรายการเพิ่มเติม",
       "more": "เพิ่มเติม",
       "more__product_num": "{{num}} สินค้า",
       "new_arrivals": "สินค้าใหม่",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} ผลลัพธ์",
       "results_found_for": "พบ {{count}} ผลลัพธ์สำหรับ \"{{keyword}}\"",
       "search": "ค้นหา",
-      "search_no_results": "ไม่พบผลลัพธ์ \"{{keyword}}\" ที่คุณค้นหา"
+      "search_no_results": "ไม่พบผลลัพธ์ \"{{keyword}}\" ที่คุณค้นหา",
+      "single_results": "{{count}} ผลลัพธ์",
+      "single_results_found": "พบ {{count}} ผลลัพธ์สำหรับ \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "สินค้าที่ดูล่าสุด"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "สำหรับค่าจัดส่งที่น้อยกว่า {value}",
       "specified_customer": "ใช้ได้สำหรับลูกค้าที่ตรงตามเงื่อนไขที่กำหนดเท่านั้น",
       "threshold": "ซื้อ {threshold}"
+    },
+    "flash": {
+      "day": "วัน",
+      "days": "วัน"
     },
     "general": {
       "activity_banner_benefit": "ส่วนลด {{benefit}}",
@@ -797,6 +826,13 @@
       "point_discount": "คะแนนส่วนลด",
       "shipping_fee": "ค่าธรรมเนียมการจัดส่ง",
       "trade_coupon_discount": "คูปอง"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "รหัสผิดพลาด",
+      "err2005": "รหัสผิดพลาด",
+      "err3005": "รหัสผิดพลาด"
     }
   }
 }

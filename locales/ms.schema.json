@@ -1036,20 +1036,174 @@
       }
     },
     "main-blog-detail": {
+      "blocks": {
+        "category": {
+          "name": "navigasi menu",
+          "settings": {
+            "menu": {
+              "label": "pilih navigasi menu"
+            },
+            "title": {
+              "label": "Tajuk"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "Catatan Blog Terkini",
+          "settings": {
+            "blog_num": {
+              "label": "Bilangan catatan blog"
+            },
+            "blogs_data": {
+              "label": "Pilih Koleksi Blog"
+            },
+            "is_show_abstract": {
+              "label": "Tunjuk ringkasan"
+            },
+            "is_show_author": {
+              "label": "Tunjuk pengarang"
+            },
+            "is_show_date": {
+              "label": "Tunjuk Tarikh"
+            },
+            "is_show_tag": {
+              "label": "tunjukkan label"
+            },
+            "title": {
+              "label": "Tajuk"
+            }
+          }
+        },
+        "tag": {
+          "name": "Tag",
+          "settings": {
+            "title": {
+              "label": "Tag"
+            }
+          }
+        }
+      },
       "name": "Blog",
       "settings": {
+        "group_header__0": {
+          "label": "Tetapan bar sisi"
+        },
+        "group_header__1": {
+          "label": "Tetapan Artikel"
+        },
+        "group_header__2": {
+          "label": "Tetapan Artikel Berkaitan"
+        },
         "is_show_author": {
           "label": "Tunjuk pengarang"
         },
         "is_show_breadcrumb": {
           "label": "Tunjuk面包屑"
         },
+        "is_show_comment": {
+          "label": "Tunjukkan ulasan"
+        },
         "is_show_date": {
           "label": "Tunjuk Tarikh"
+        },
+        "is_show_prev_next": {
+          "label": "Tunjukkan artikel seterusnya"
+        },
+        "is_show_related_abstract": {
+          "label": "Tunjuk ringkasan"
+        },
+        "is_show_related_articles": {
+          "label": "Tunjukkan artikel berkaitan"
+        },
+        "is_show_related_author": {
+          "label": "Tunjuk pengarang"
+        },
+        "is_show_related_date": {
+          "label": "Tunjuk Tarikh"
+        },
+        "is_show_related_read_more": {
+          "label": "Tunjukkan pautan \"Baca Lagi\"."
+        },
+        "is_show_related_tag": {
+          "label": "tunjukkan label"
+        },
+        "is_show_sidebar": {
+          "label": "tunjukkan bar sisi"
+        },
+        "is_show_tag": {
+          "label": "tunjukkan label"
+        },
+        "position": {
+          "label": "Lokasi",
+          "options__0": {
+            "label": "lajur kanan"
+          },
+          "options__1": {
+            "label": "lajur kiri"
+          }
+        },
+        "related_align": {
+          "label": "penjajaran kandungan",
+          "options__0": {
+            "label": "Jajar ke kiri"
+          },
+          "options__1": {
+            "label": "Berpusat"
+          },
+          "options__2": {
+            "label": "Sejajar ke kanan"
+          }
         }
       }
     },
     "main-blog-list": {
+      "blocks": {
+        "category": {
+          "name": "navigasi menu",
+          "settings": {
+            "menu": {
+              "label": "pilih navigasi menu"
+            },
+            "title": {
+              "label": "Tajuk"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "Catatan Blog Terkini",
+          "settings": {
+            "blog_num": {
+              "label": "Bilangan catatan blog"
+            },
+            "blogs_data": {
+              "label": "Pilih Koleksi Blog"
+            },
+            "is_show_abstract": {
+              "label": "Tunjuk ringkasan"
+            },
+            "is_show_author": {
+              "label": "Tunjuk pengarang"
+            },
+            "is_show_date": {
+              "label": "Tunjuk Tarikh"
+            },
+            "is_show_tag": {
+              "label": "tunjukkan label"
+            },
+            "title": {
+              "label": "Tajuk"
+            }
+          }
+        },
+        "tag": {
+          "name": "Tag",
+          "settings": {
+            "title": {
+              "label": "Tag"
+            }
+          }
+        }
+      },
       "name": "Koleksi blog",
       "settings": {
         "cover_img_ratio": {
@@ -1070,6 +1224,15 @@
             "label": "16:9"
           }
         },
+        "group_header__0": {
+          "label": "Tetapan bar sisi"
+        },
+        "group_header__1": {
+          "label": "tetapan gaya"
+        },
+        "group_header__2": {
+          "label": "Tetapan kandungan"
+        },
         "is_show_author": {
           "label": "Tunjuk pengarang"
         },
@@ -1085,6 +1248,15 @@
         "is_show_desc": {
           "label": "Tunjuk ringkasan"
         },
+        "is_show_read_more": {
+          "label": "Tunjukkan pautan \"Baca Lagi\"."
+        },
+        "is_show_sidebar": {
+          "label": "tunjukkan bar sisi"
+        },
+        "is_show_tag": {
+          "label": "tunjukkan label"
+        },
         "layout": {
           "label": "susun atur",
           "options__0": {
@@ -1092,6 +1264,15 @@
           },
           "options__1": {
             "label": "Senarai"
+          }
+        },
+        "position": {
+          "label": "Lokasi",
+          "options__0": {
+            "label": "lajur kanan"
+          },
+          "options__1": {
+            "label": "lajur kiri"
           }
         }
       }
@@ -1301,6 +1482,23 @@
     "notFoundPage": {
       "name": "Halaman 404"
     },
+    "order-tracking": {
+      "name": "Penjejakan Pesanan",
+      "settings": {
+        "group_header__0": {
+          "label": "Lihat Pesanan"
+        },
+        "group_header__1": {
+          "label": "Tanya pesanan sejarah"
+        },
+        "history_order_title": {
+          "label": "Tajuk"
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
     "product_collections-all_collections-list-page": {
       "block_info": "Pemilihan hanya berkuat kuasa apabila kategori produk yang ditentukan dipaparkan dalam tetapan",
       "blocks": {
@@ -1476,7 +1674,7 @@
           }
         },
         "product_sub_title": {
-          "label": "",
+          "label": "Maklumat ringkasan produk",
           "options__0": {
             "label": "Tidak paparkan"
           },

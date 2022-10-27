@@ -1,5 +1,6 @@
+{{assign 'noExistSubscription' (boolean cartInfo.subscriptionInfo '&&' cartInfo.subscriptionInfo.existSubscription '===' false)}}
 <div class="{{trade_cart_type}}__trade-cart-checkout">
-  {{#if payChannelInfo.showSpbBtn}}
+  {{#if (boolean payChannelInfo.showSpbBtn '&&' noExistSubscription)}}
   <div id="{{id}}" class="shopline-element-cart-paypal trade-cart-paypal" style="margin-bottom: 10px;"></div>
   {{/if}}
   <button type="button" data-sl-module="button__trade-cart-checkout" class="shopline-element-cart-checkout btn btn-primary btn-sm" id="{{id}}-slibing" style="width: 100%;">

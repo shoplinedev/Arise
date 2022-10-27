@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Επόμενο",
+      "previous": "Προηγούμενος",
+      "read_more": "δείτε περισσότερα",
+      "related_articles": "Σχετικά ιστολόγια"
+    },
     "blog_list": {
       "empty_desc": "Δεν υπάρχουν αναρτήσεις ιστολογίου σε αυτό το ιστολόγιο.",
       "read_btn_text": "Διαβάστε περισσότερα",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Απομένουν μόνο {{stock}}"
     },
+    "subscription": {
+      "information": "Συνδρομή"
+    },
     "tips": {
       "agree_with_the_shop": "Συμφωνώ ως προς το",
       "change_binding_after_verification": "Μπορείτε να συνδεθείτε/αλλάξετε το {{value}} μετά την επαλήθευση",
@@ -348,6 +357,7 @@
       "error_message_1022": "Ο αριθμός λογαριασμού έχει δεσμευτεί",
       "error_message_1023": "Εξαιρέσεις παροχής υπηρεσιών",
       "error_message_1024": "Εξαιρέσεις παροχής υπηρεσιών",
+      "error_message_1035": "Στείλτε τον κωδικό επαλήθευσης",
       "error_message_2": "Εξαιρέσεις παροχής υπηρεσιών",
       "error_message_2001": "Το κινητό έχει καταχωρηθεί",
       "error_message_2002": "Το email έχει καταχωρηθεί",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Δεν βρέθηκε σχετικό νόμισμα",
       "search_input_placeholder": "Πληκτρολογήστε εδώ και πατήστε αναζήτηση"
     },
+    "order_tracking": {
+      "code": "Κωδικός επαλήθευσης",
+      "email": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
+      "form_error": "Το ερώτημα απέτυχε",
+      "orderId": "Αριθμός Παραγγελίας",
+      "orderId_error": "Το αναγνωριστικό παραγγελίας δεν μπορεί να είναι κενό",
+      "query_illegal": "τάξη δεν υπάρχει",
+      "risk_black_user": "Αυτός ο λογαριασμός βρίσκεται σε κίνδυνο",
+      "risk_interception": "τάξη δεν υπάρχει",
+      "submit_btn": "Προβολή παραγγελίας",
+      "username": "Email/Αριθμός τηλεφώνου"
+    },
     "policy": {
       "privacy": "Πολιτική Απορρήτου",
       "refund": "Πολιτική επιστροφής",
@@ -598,6 +620,7 @@
       "filter": "Φίλτρο",
       "from_price_html": "Από {{price}}",
       "less": "Λιγότερο",
+      "load_more_tip": "Φόρτωση περισσότερων στοιχείων",
       "more": "Περισσότερο",
       "more__product_num": "{{num}} Προϊόντα",
       "new_arrivals": "Νέα άφιξη",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Αποτελέσματα",
       "results_found_for": "Βρέθηκαν {{count}} αποτελέσματα για \"{{keyword}}\"",
       "search": "Αναζήτηση",
-      "search_no_results": "Η αναζήτησή σας για το \"{{keyword}}\" δεν έφερε αποτελέσματα"
+      "search_no_results": "Η αναζήτησή σας για το \"{{keyword}}\" δεν έφερε αποτελέσματα",
+      "single_results": "{{count}} Αποτελέσματα",
+      "single_results_found": "Βρέθηκαν {{count}} αποτελέσματα για \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Προϊόντα που προβλήθηκαν πρόσφατα"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Το κόστος αποστολής (ναύλος) είναι μικρότερο από {value}",
       "specified_customer": "Για συγκεκριμένους πελάτες",
       "threshold": "Αγορά {threshold}"
+    },
+    "flash": {
+      "day": "ημέρα",
+      "days": "ημέρεσ"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} εκτός",
@@ -797,6 +826,13 @@
       "point_discount": "Έκπτωση πόντων",
       "shipping_fee": "Αποστολή",
       "trade_coupon_discount": "Κουπόνι"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Σφάλμα κωδικού",
+      "err2005": "Σφάλμα κωδικού",
+      "err3005": "Σφάλμα κωδικού"
     }
   }
 }

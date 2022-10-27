@@ -92,7 +92,7 @@
         <div class="account-item__title">{{ t 'customer.account.account_binding' }}</div>
         <div class="account-item__content">
           {{#each userInfo.thirdInfoList}}
-            <div class="account-item__info">
+            <div class="account-item__info" {{{ this.shopline_attributes }}}>
               {{#if loginSource '===' 'facebook'}}
                 {{ snippet 'icons/icon_facebook' }}
               {{else}}{{#if loginSource '===' 'line'}}

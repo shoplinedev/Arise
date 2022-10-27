@@ -22,17 +22,17 @@ mbColNum: 移动端展示列数 默认2
 {{ assign 'productListCls' ( default (get gripType listLayoutObj) (get 'small_grid' listLayoutObj) ) }}
 
 {{#if effectPage '==' 'productList'}}
-<div class="{{ append 'product-list-item-parent-controller row ' productListCls }}" id="product-list-container">
+<div class="{{ append 'product-list-item-parent-controller row ' productListCls }} {{ append (cond listClassName listClassName '')}}" id="product-list-container">
 {{else}}
 <div class="product-list-item-parent-controller row row-cols-{{_mbColNum}} row-cols-md-{{_colNum}}">
 {{/if}}
   {{#each listData as |item|}}
     <div class="col product-item-list">
-      {{snippet 'product/commons/product-item' previewQuery=../previewQuery spu=item forbiddenBtn=../forbiddenBtn index=@index className=../className }}
+      {{snippet 'product/commons/product-item' subTitleShowType=../subTitleShowType previewQuery=../previewQuery spu=item forbiddenBtn=../forbiddenBtn index=@index className=../className }}
     </div>
   {{/each}}
 </div>
 
-{{#if (boolean total '>' pageSize)}}
+{{#if (boolean total '>' pageSize '&&' (isFalsey infiniteScroll))}}
   {{snippet 'product/commons/pagination' mode='href' id="pagination"  total=total pageSize=pageSize current=pageNum request=request }}
 {{/if}}

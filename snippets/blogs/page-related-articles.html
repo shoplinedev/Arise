@@ -1,0 +1,75 @@
+{{ assign 'btnText' (default btnText (t 'blogList.container.readBtnText')) }}
+
+<div class="page-related-articles">
+  <div class="title3 page-related-articles__title title4">{{t 'blog.blog.related_articles'}}</div>
+
+  <div class="page-related-articles__main">
+    {{#each data as |blog|}}
+      {{#if @index '<' 3}}
+        {{#with blog}}
+          {{ assign 'align' ../align }}
+          {{ assign 'listHandle' (default collectionCustomizePath collectionId) }}
+          {{ assign 'linkUrl' (append '/blogs/' listHandle '/' handle) }}
+          {{#if blog.coverImagePath}}
+            {{assign "coverImageData" (JSONparse blog.coverImagePath)}}
+            {{assign "coverImageInfo" (img_size coverImageData.mediaUrl)}}
+            {{assign "coverImageObj" (object_create url=coverImageData.mediaUrl alt=coverImageData.alt width=coverImageInfo.width height=coverImageInfo.height)}}
+          {{/if}}
+
+          <div class="related-articles">
+            <a class="related-articles__image-wrapper" href="{{ linkUrl }}" title="{{ title }}">
+              {{#snippet
+                'global-image'
+                image=coverImageObj
+                image-class="related-articles__image"
+                empty-scale=0.75
+                scale=1
+                pcSize="1/3"
+                mSize="1/2"
+              }}
+              {{/snippet}}
+            </a>
+            <div class="related-articles__main" style="text-align: {{align}};">
+              <div class="related-articles__info">
+                <a class="related-articles__title-wrap" href="{{ linkUrl }}" title="{{ title }}">
+                  <div class="related-articles__title title6"><span>{{ title }}</span></div>
+                </a>
+                {{ assign "showDate" ../showDate}}
+                {{ assign "showAuthor" ../showAuthor}}
+                {{#if (and (or publishTime author) (or showDate showAuthor))}}
+                  <p class="related-articles__extra-info body4" style="{{#if (boolean align '===' 'center')}}justify-content: center;{{/if}}{{#if (boolean align '===' 'right')}}justify-content: flex-end;{{/if}}">
+                    {{ assign 'showDate' (and publishTime showDate) }}
+                    {{ assign 'showAuthor' (and author showAuthor) }}
+                    {{#if showDate}}<a class="text" href="{{ linkUrl }}" title="{{ title }}">{{dayjs method='format' init=publishTime format='MMM DD,YYYY' }}</a>{{/if}}
+                    {{#if (and showDate showAuthor)}}<span class="separator">|</span>{{/if}}
+                    {{#if showAuthor}}<a class="text" href="{{ linkUrl }}" title="{{ title }}">{{ author }}</a>{{/if}}
+                  </p>
+                {{/if}}
+              </div>
+              {{ assign "showDesc" ../showDesc}}
+              {{#and showDesc digest}}
+                <a href="{{ linkUrl }}" title="{{ title }}">
+                  <p class="related-articles__description body3">{{ digest }}</p>
+                </a>
+              {{/and}}
+              {{ assign "showTag" ../showTag}}
+              {{#and showTag blogTagList}}
+                <div class="related-articles__tag">
+                  {{#each blogTagList as |tag|}}
+                    {{#snippet "blogs/tag" class="related-articles__tag-item" blogListHandle=../listHandle tagName=tag.tagName}}
+                      {{tag.tagName}}
+                    {{/snippet}}
+                  {{/each}}
+                </div>
+              {{/and}}
+              {{ assign "showMore" ../showMore}}
+              {{#if showMore}}
+                <a class="related-articles__btn btn-link" href="{{ linkUrl }}" title="{{ title }}">{{t 'blog.blog.read_more'}}</a>
+              {{/if}}
+            </div>
+          </div> 
+        {{/with}}
+      {{/if}}
+    {{/each}}
+  </div>
+</div>

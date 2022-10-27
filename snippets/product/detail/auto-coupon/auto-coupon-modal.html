@@ -2,7 +2,7 @@
 <div class="sales__autoCouponModal-container">
   <div class="sales__autoCouponModal-list">
     {{#each list}}
-      <div class="sales__autoCouponModal-listItem">
+      <div class="sales__autoCouponModal-listItem" {{{ this.shopline_attributes }}}>
         {{ snippet 'sales/auto-coupon/auto-coupon-item' benefitCondition=this benefitType=../benefitType template=../template  }}
       </div>
     {{/each}}

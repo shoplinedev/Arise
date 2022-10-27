@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Следващия",
+      "previous": "Предишен",
+      "read_more": "виж повече",
+      "related_articles": "Свързани блогове"
+    },
     "blog_list": {
       "empty_desc": "В този блог няма публикации в блога.",
       "read_btn_text": "Прочетете още",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Само {{stock}} останали"
     },
+    "subscription": {
+      "information": "Абонамент"
+    },
     "tips": {
       "agree_with_the_shop": "Съгласен съм с",
       "change_binding_after_verification": "Можете да свържете/промените {{value}} след потвърждение",
@@ -348,6 +357,7 @@
       "error_message_1022": "Номерът на сметката е обвързан",
       "error_message_1023": "Изключения при обслужване",
       "error_message_1024": "Изключения при обслужване",
+      "error_message_1035": "Моля, изпратете код за потвърждение",
       "error_message_2": "Изключения при обслужване",
       "error_message_2001": "Мобилният номер е регистриран",
       "error_message_2002": "Имейлът е регистриран",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Не е намерена съответната валута",
       "search_input_placeholder": "Пишете тук и чукнете за търсене"
     },
+    "order_tracking": {
+      "code": "Код за потвърждение",
+      "email": "електронна поща",
+      "form_error": "Неуспешна заявка",
+      "orderId": "ID на поръчката",
+      "orderId_error": "ID на поръчката не може да бъде празен",
+      "query_illegal": "ред не съществува",
+      "risk_black_user": "Този акаунт е изложен на риск",
+      "risk_interception": "ред не съществува",
+      "submit_btn": "Преглед на поръчката",
+      "username": "Имейл/телефонен номер"
+    },
     "policy": {
       "privacy": "Декларацията за поверителност на уебсайта",
       "refund": "Политика за възстановяване на суми",
@@ -598,6 +620,7 @@
       "filter": "Филтър",
       "from_price_html": "От {{price}}",
       "less": "По-малко",
+      "load_more_tip": "Зареждат се още елементи",
       "more": "Повече",
       "more__product_num": "{{num}} Продукти",
       "new_arrivals": "Нови продукти",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} резултата",
       "results_found_for": "Намерени {{count}} резултата за \"{{keyword}}\"",
       "search": "Търсене",
-      "search_no_results": "Вашето търсене за \"{{keyword}}\" не даде никакви резултати"
+      "search_no_results": "Вашето търсене за \"{{keyword}}\" не даде никакви резултати",
+      "single_results": "{{count}} резултата",
+      "single_results_found": "Намерени {{count}} резултата за \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Наскоро разгледане продукти"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Транспортните разходи са по-малко от {value}",
       "specified_customer": "За определени клиенти",
       "threshold": "Купи {threshold}"
+    },
+    "flash": {
+      "day": "ден",
+      "days": "дни"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} отстъпка",
@@ -797,6 +826,13 @@
       "point_discount": "Отстъпка за точки",
       "shipping_fee": "Доставка",
       "trade_coupon_discount": "Купон"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Грешка в кода",
+      "err2005": "Грешка в кода",
+      "err3005": "Грешка в кода"
     }
   }
 }

@@ -1,0 +1,9 @@
+<div class="sidebar-bar-item-main">
+  <div class="body1 tag-item">
+    {{#each tagList as |tag|}}
+      {{#snippet "blogs/tag" class="tag-item__tag" blogListHandle=../collectionId tagName=tag.tagName}}
+        {{tag.tagName}}
+      {{/snippet}}
+    {{/each}}
+  </div>
+</div>

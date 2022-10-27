@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Seuraava",
+      "previous": "Edellinen",
+      "read_more": "Katso lisää",
+      "related_articles": "Aiheeseen liittyvät blogit"
+    },
     "blog_list": {
       "empty_desc": "Tässä blogissa ei ole blogikirjoituksia.",
       "read_btn_text": "Lue lisää",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Vain {{stock}} kpl jäljellä"
     },
+    "subscription": {
+      "information": "Tilaus"
+    },
     "tips": {
       "agree_with_the_shop": "Hyväksyn",
       "change_binding_after_verification": "Voit yhdistää/vaihtaa {{value}} vahvistuksen jälkeen",
@@ -348,6 +357,7 @@
       "error_message_1022": "Tilinumero on sidottu",
       "error_message_1023": "Palvelu Poikkeus",
       "error_message_1024": "Palvelu Poikkeus",
+      "error_message_1035": "Lähetä vahvistuskoodi",
       "error_message_2": "Palvelu Poikkeus",
       "error_message_2001": "Matkapuhelinnumero on jo rekisteröity",
       "error_message_2002": "Sähköpostiosoite on jo rekisteröity",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Sopivaa valuuttaa ei löytynyt",
       "search_input_placeholder": "Kirjoita hakusana tähän ja napsauta Hae-painiketta"
     },
+    "order_tracking": {
+      "code": "Vahvistuskoodi",
+      "email": "Sähköposti",
+      "form_error": "Kysely epäonnistui",
+      "orderId": "tilausnumero",
+      "orderId_error": "Tilaustunnus ei voi olla tyhjä",
+      "query_illegal": "järjestystä ei ole olemassa",
+      "risk_black_user": "Tämä tili on vaarassa",
+      "risk_interception": "järjestystä ei ole olemassa",
+      "submit_btn": "Katso tilaus",
+      "username": "Sähköposti/Puhelinnumero"
+    },
     "policy": {
       "privacy": "Tietosuojakäytäntö",
       "refund": "Palautusoikeus",
@@ -598,6 +620,7 @@
       "filter": "Suodatin",
       "from_price_html": "Alkaen {{price}}",
       "less": "vähemmän",
+      "load_more_tip": "Ladataan lisää kohteita",
       "more": "lisää",
       "more__product_num": "{{num}} Tuotteet",
       "new_arrivals": "Uusimmat",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} tulosta",
       "results_found_for": "{{count}} tulosta löytyi haulle ”{{keyword}}”",
       "search": "Etsi",
-      "search_no_results": "Hakuasi ”{{keyword}}” vastaavia tuloksia ei löytynyt"
+      "search_no_results": "Hakuasi ”{{keyword}}” vastaavia tuloksia ei löytynyt",
+      "single_results": "{{count}} tulosta",
+      "single_results_found": "{{count}} tulosta löytyi haulle ”{{keyword}}”"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Äskeittäin katsotut tuotteet"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Rahti on pienempi kuin {value}",
       "specified_customer": "Kiinteille asiakkaille",
       "threshold": "Osta {threshold}"
+    },
+    "flash": {
+      "day": "päivä",
+      "days": "päivää"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} inaktivoitu",
@@ -797,6 +826,13 @@
       "point_discount": "Alennus pisteistä",
       "shipping_fee": "Toimitus",
       "trade_coupon_discount": "Kuponki"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Koodivirhe",
+      "err2005": "Koodivirhe",
+      "err3005": "Koodivirhe"
     }
   }
 }

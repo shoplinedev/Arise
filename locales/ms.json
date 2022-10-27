@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Seterusnya",
+      "previous": "Sebelumnya",
+      "read_more": "lihat lagi",
+      "related_articles": "Blog Berkaitan"
+    },
     "blog_list": {
       "empty_desc": "Tiada catatan blog dalam blog ini.",
       "read_btn_text": "Baca Lagi",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Hanya {{stock}} yang tinggal"
     },
+    "subscription": {
+      "information": "Pelangganan"
+    },
     "tips": {
       "agree_with_the_shop": "Saya bersetuju dengan",
       "change_binding_after_verification": "Anda boleh menyambungkan/mengubah {{value}} selepas penentusahan",
@@ -348,6 +357,7 @@
       "error_message_1022": "Nombor akaun telah terikat",
       "error_message_1023": "Pengecualian perkhidmatan",
       "error_message_1024": "Pengecualian perkhidmatan",
+      "error_message_1035": "Sila hantar kod pengesahan",
       "error_message_2": "Pengecualian perkhidmatan",
       "error_message_2001": "Telefon bimbit telah didaftarkan",
       "error_message_2002": "E-mel telah didaftarkan",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Tiada mata wang berkaitan ditemui",
       "search_input_placeholder": "Taip di sini dan ketik cari"
     },
+    "order_tracking": {
+      "code": "Kod pengesahan",
+      "email": "E-mel",
+      "form_error": "Pertanyaan gagal",
+      "orderId": "ID Pesanan",
+      "orderId_error": "Id pesanan tidak boleh kosong",
+      "query_illegal": "perintah tidak wujud",
+      "risk_black_user": "Akaun ini berisiko",
+      "risk_interception": "perintah tidak wujud",
+      "submit_btn": "Lihat Pesanan",
+      "username": "E-mel/Nombor Telefon"
+    },
     "policy": {
       "privacy": "Dasar Privasi Tapak Web",
       "refund": "Dasar bayaran balik",
@@ -598,6 +620,7 @@
       "filter": "Penapis",
       "from_price_html": "Dari {{price}}",
       "less": "kurang",
+      "load_more_tip": "Memuatkan lebih banyak item",
       "more": "lebih",
       "more__product_num": "{{num}} produk-produk",
       "new_arrivals": "Ketibaan baharu",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Hasil",
       "results_found_for": "{{count}} hasil ditemui untuk \"{{keyword}}\"",
       "search": "Cari",
-      "search_no_results": "Carian anda untuk \"{{keyword}}\" tidak memberikan sebarang hasil"
+      "search_no_results": "Carian anda untuk \"{{keyword}}\" tidak memberikan sebarang hasil",
+      "single_results": "{{count}} Hasil",
+      "single_results_found": "{{count}} hasil ditemui untuk \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Produk Dipaparkan Baru-baru Ini"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Barangan kurang daripada {value}",
       "specified_customer": "Untuk pelanggan tertentu",
       "threshold": "Beli {threshold}"
+    },
+    "flash": {
+      "day": "hari",
+      "days": "hari"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} tutup",
@@ -797,6 +826,13 @@
       "point_discount": "Diskaun mata",
       "shipping_fee": "Penghantaran",
       "trade_coupon_discount": "Kupon"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Ralat kod",
+      "err2005": "Ralat kod",
+      "err3005": "Ralat kod"
     }
   }
 }

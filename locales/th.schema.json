@@ -1036,20 +1036,174 @@
       }
     },
     "main-blog-detail": {
+      "blocks": {
+        "category": {
+          "name": "การนำทางเมนู",
+          "settings": {
+            "menu": {
+              "label": "เลือกเมนูการนำทาง"
+            },
+            "title": {
+              "label": "หัวข้อ"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "โพสต์บล็อกล่าสุด",
+          "settings": {
+            "blog_num": {
+              "label": "จำนวนบล็อกโพสต์"
+            },
+            "blogs_data": {
+              "label": "เลือกคอลเลกชันบล็อก"
+            },
+            "is_show_abstract": {
+              "label": "แสดงสรุป"
+            },
+            "is_show_author": {
+              "label": "แสดงผู้เขียน"
+            },
+            "is_show_date": {
+              "label": "แสดงวันที่"
+            },
+            "is_show_tag": {
+              "label": "แสดงฉลาก"
+            },
+            "title": {
+              "label": "หัวข้อ"
+            }
+          }
+        },
+        "tag": {
+          "name": "แท็ก",
+          "settings": {
+            "title": {
+              "label": "แท็ก"
+            }
+          }
+        }
+      },
       "name": "บล็อก",
       "settings": {
+        "group_header__0": {
+          "label": "การตั้งค่าแถบด้านข้าง"
+        },
+        "group_header__1": {
+          "label": "ตั้งค่าบทความ"
+        },
+        "group_header__2": {
+          "label": "บทความที่เกี่ยวข้อง การตั้งค่า"
+        },
         "is_show_author": {
           "label": "แสดงผู้เขียน"
         },
         "is_show_breadcrumb": {
           "label": "แสดงเมนูที่ใช้นำทางในเว็บไซ"
         },
+        "is_show_comment": {
+          "label": "แสดงความคิดเห็น"
+        },
         "is_show_date": {
           "label": "แสดงวันที่"
+        },
+        "is_show_prev_next": {
+          "label": "แสดงบทความถัดไป"
+        },
+        "is_show_related_abstract": {
+          "label": "แสดงสรุป"
+        },
+        "is_show_related_articles": {
+          "label": "แสดงบทความที่เกี่ยวข้อง"
+        },
+        "is_show_related_author": {
+          "label": "แสดงผู้เขียน"
+        },
+        "is_show_related_date": {
+          "label": "แสดงวันที่"
+        },
+        "is_show_related_read_more": {
+          "label": "แสดงลิงก์ \"อ่านเพิ่มเติม\""
+        },
+        "is_show_related_tag": {
+          "label": "แสดงฉลาก"
+        },
+        "is_show_sidebar": {
+          "label": "แสดงแถบด้านข้าง"
+        },
+        "is_show_tag": {
+          "label": "แสดงฉลาก"
+        },
+        "position": {
+          "label": "ที่ตั้ง",
+          "options__0": {
+            "label": "คอลัมน์ขวา"
+          },
+          "options__1": {
+            "label": "คอลัมน์ซ้าย"
+          }
+        },
+        "related_align": {
+          "label": "การจัดตำแหน่งเนื้อหา",
+          "options__0": {
+            "label": "ชิดซ้าย"
+          },
+          "options__1": {
+            "label": "ศูนย์กลาง"
+          },
+          "options__2": {
+            "label": "ชิดขวา"
+          }
         }
       }
     },
     "main-blog-list": {
+      "blocks": {
+        "category": {
+          "name": "การนำทางเมนู",
+          "settings": {
+            "menu": {
+              "label": "เลือกเมนูการนำทาง"
+            },
+            "title": {
+              "label": "หัวข้อ"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "โพสต์บล็อกล่าสุด",
+          "settings": {
+            "blog_num": {
+              "label": "จำนวนบล็อกโพสต์"
+            },
+            "blogs_data": {
+              "label": "เลือกคอลเลกชันบล็อก"
+            },
+            "is_show_abstract": {
+              "label": "แสดงสรุป"
+            },
+            "is_show_author": {
+              "label": "แสดงผู้เขียน"
+            },
+            "is_show_date": {
+              "label": "แสดงวันที่"
+            },
+            "is_show_tag": {
+              "label": "แสดงฉลาก"
+            },
+            "title": {
+              "label": "หัวข้อ"
+            }
+          }
+        },
+        "tag": {
+          "name": "แท็ก",
+          "settings": {
+            "title": {
+              "label": "แท็ก"
+            }
+          }
+        }
+      },
       "name": "คอลเลกชั่นบล็อก",
       "settings": {
         "cover_img_ratio": {
@@ -1070,6 +1224,15 @@
             "label": "16:9"
           }
         },
+        "group_header__0": {
+          "label": "การตั้งค่าแถบด้านข้าง"
+        },
+        "group_header__1": {
+          "label": "การตั้งค่าสไตล์"
+        },
+        "group_header__2": {
+          "label": "การตั้งค่าเนื้อหา"
+        },
         "is_show_author": {
           "label": "แสดงผู้เขียน"
         },
@@ -1085,6 +1248,15 @@
         "is_show_desc": {
           "label": "แสดงสรุป"
         },
+        "is_show_read_more": {
+          "label": "แสดงลิงก์ \"อ่านเพิ่มเติม\""
+        },
+        "is_show_sidebar": {
+          "label": "แสดงแถบด้านข้าง"
+        },
+        "is_show_tag": {
+          "label": "แสดงฉลาก"
+        },
         "layout": {
           "label": "เลย์เอาต์",
           "options__0": {
@@ -1092,6 +1264,15 @@
           },
           "options__1": {
             "label": "รายการ"
+          }
+        },
+        "position": {
+          "label": "ที่ตั้ง",
+          "options__0": {
+            "label": "คอลัมน์ขวา"
+          },
+          "options__1": {
+            "label": "คอลัมน์ซ้าย"
           }
         }
       }
@@ -1301,6 +1482,23 @@
     "notFoundPage": {
       "name": "หน้า 404"
     },
+    "order-tracking": {
+      "name": "ติดตามการสั่งซื้อ",
+      "settings": {
+        "group_header__0": {
+          "label": "ดูคำสั่งซื้อ"
+        },
+        "group_header__1": {
+          "label": "สอบถามคำสั่งซื้อย้อนหลัง"
+        },
+        "history_order_title": {
+          "label": "หัวข้อ"
+        },
+        "title": {
+          "label": "หัวข้อ"
+        }
+      }
+    },
     "product_collections-all_collections-list-page": {
       "block_info": "การเลือกจะมีผลก็ต่อเมื่อหมวดหมู่สินค้าที่ระบุแสดงในการตั้งค่า",
       "blocks": {
@@ -1476,7 +1674,7 @@
           }
         },
         "product_sub_title": {
-          "label": "",
+          "label": "ข้อมูลสรุปสินค้า",
           "options__0": {
             "label": "ไม่แสดง"
           },

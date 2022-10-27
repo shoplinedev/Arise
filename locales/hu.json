@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Következő",
+      "previous": "Előző",
+      "read_more": "többet látni",
+      "related_articles": "Kapcsolódó blogok"
+    },
     "blog_list": {
       "empty_desc": "Nincsenek blogbejegyzések ebben a blogban.",
       "read_btn_text": "Olvass tovább",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Csak {{stock}} maradt"
     },
+    "subscription": {
+      "information": "Feliratkozás"
+    },
     "tips": {
       "agree_with_the_shop": "Elfogadom az",
       "change_binding_after_verification": "Az ellenőrzés után csatolhatja/módosíthatja a(z) {{value}}-t",
@@ -348,6 +357,7 @@
       "error_message_1022": "A fiókszám csatlakoztatva van",
       "error_message_1023": "Szolgáltatás kivételek",
       "error_message_1024": "Szolgáltatás kivételek",
+      "error_message_1035": "Kérjük, küldje el az ellenőrző kódot",
       "error_message_2": "Szolgáltatás kivételek",
       "error_message_2001": "A mobil regisztrálva van",
       "error_message_2002": "Az email regisztrálva lett",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Nem található releváns pénznem",
       "search_input_placeholder": "Írja ide és érintse meg a keresést"
     },
+    "order_tracking": {
+      "code": "Ellenőrző kód",
+      "email": "Email",
+      "form_error": "A lekérdezés sikertelen",
+      "orderId": "Rendelés azonosító",
+      "orderId_error": "A rendelési azonosító nem lehet üres",
+      "query_illegal": "sorrend nem létezik",
+      "risk_black_user": "Ez a fiók veszélyben van",
+      "risk_interception": "sorrend nem létezik",
+      "submit_btn": "Megtekintési sorrend",
+      "username": "E-mail/Telefonszám"
+    },
     "policy": {
       "privacy": "az Adatvédelmi szabályzatát",
       "refund": "Visszatérítési szabályzat",
@@ -598,6 +620,7 @@
       "filter": "Szűrő",
       "from_price_html": "{{price}} ártól",
       "less": "Kevesebb",
+      "load_more_tip": "További elemek betöltése",
       "more": "Több",
       "more__product_num": "{{num}} Termékek",
       "new_arrivals": "Újonnan érkezett",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} találat",
       "results_found_for": "{{count}} találat a \"{{keyword}}” kulcsszóra",
       "search": "Keresés",
-      "search_no_results": "A „{{keyword}}\" keresés nem hozott eredményt"
+      "search_no_results": "A „{{keyword}}\" keresés nem hozott eredményt",
+      "single_results": "{{count}} találat",
+      "single_results_found": "{{count}} találat a \"{{keyword}}” kulcsszóra"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Nemrég megtekintett termékek"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "A szállítás kevesebb, mint {value}",
       "specified_customer": "Meghatározott ügyfelek részére",
       "threshold": "{threshold} vásárlás"
+    },
+    "flash": {
+      "day": "nap",
+      "days": "napok"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} kedvezmény",
@@ -797,6 +826,13 @@
       "point_discount": "Pontkedvezmény",
       "shipping_fee": "Szállítás",
       "trade_coupon_discount": "Kupon"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Kód hiba",
+      "err2005": "Kód hiba",
+      "err3005": "Kód hiba"
     }
   }
 }

@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "další",
+      "previous": "Předchozí",
+      "read_more": "vidět víc",
+      "related_articles": "Související blogy"
+    },
     "blog_list": {
       "empty_desc": "Na tomto blogu nejsou žádné blogové příspěvky.",
       "read_btn_text": "Přečtěte si více",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Zbývá jen {{stock}}"
     },
+    "subscription": {
+      "information": "Předplatné"
+    },
     "tips": {
       "agree_with_the_shop": "Souhlasím s",
       "change_binding_after_verification": "Po ověření se můžete připojit / změnit {{value}}",
@@ -348,6 +357,7 @@
       "error_message_1022": "Číslo účtu je vázáno",
       "error_message_1023": "Výjimka služby",
       "error_message_1024": "Výjimka služby",
+      "error_message_1035": "Zašlete prosím ověřovací kód",
       "error_message_2": "Výjimka služby",
       "error_message_2001": "Mobil byl zaregistrován",
       "error_message_2002": "E-mail byl zaregistrován",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Nebyla nalezena žádná relevantní měna",
       "search_input_placeholder": "Sem napište a klepněte na hledat"
     },
+    "order_tracking": {
+      "code": "Ověřovací kód",
+      "email": "E-mailem",
+      "form_error": "Dotaz se nezdařil",
+      "orderId": "číslo objednávky",
+      "orderId_error": "ID objednávky nemůže být prázdné",
+      "query_illegal": "řád neexistuje",
+      "risk_black_user": "Tento účet je ohrožen",
+      "risk_interception": "řád neexistuje",
+      "submit_btn": "Zobrazit objednávku",
+      "username": "Email/telefonní číslo"
+    },
     "policy": {
       "privacy": "Zásady Ochrany Osobních Údajů",
       "refund": "Zásady pro vrácení peněz",
@@ -598,6 +620,7 @@
       "filter": "Filtrovat",
       "from_price_html": "Od {{price}}",
       "less": "méně",
+      "load_more_tip": "Načítání dalších položek",
       "more": "více",
       "more__product_num": "{{num}} výrobků",
       "new_arrivals": "Nový příjezd",
@@ -623,7 +646,9 @@
       "ount_results": "Výsledky {{count}}",
       "results_found_for": "Pro výraz „{{keyword}}“ bylo nalezeno {{count}} výsledků",
       "search": "Vyhledávání",
-      "search_no_results": "Vaše hledání \"{{keyword}}\" nepřineslo žádné výsledky"
+      "search_no_results": "Vaše hledání \"{{keyword}}\" nepřineslo žádné výsledky",
+      "single_results": "Výsledky {{count}}",
+      "single_results_found": "Pro výraz „{{keyword}}“ bylo nalezeno {{count}} výsledků"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Nedávno Prohlížené Výrobky"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Dopravné je méně než {value}",
       "specified_customer": "Pro specifické zákazníky",
       "threshold": "Koupit {threshold}"
+    },
+    "flash": {
+      "day": "den",
+      "days": "dny"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} vypnuto",
@@ -797,6 +826,13 @@
       "point_discount": "Bodová sleva",
       "shipping_fee": "Doprava",
       "trade_coupon_discount": "Kupón"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Chyba kódu",
+      "err2005": "Chyba kódu",
+      "err3005": "Chyba kódu"
     }
   }
 }

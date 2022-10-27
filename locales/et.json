@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Edasi",
+      "previous": "Eelmine",
+      "read_more": "näe rohkem",
+      "related_articles": "Seotud blogid"
+    },
     "blog_list": {
       "empty_desc": "Selles blogis pole ühtegi blogipostitust.",
       "read_btn_text": "Loe rohkem",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Laos ainult {{stock}}"
     },
+    "subscription": {
+      "information": "Tellimus"
+    },
     "tips": {
       "agree_with_the_shop": "Nõustun järgmisega:",
       "change_binding_after_verification": "Saad pärast kinnitamist {{value}} ühendada/muuta",
@@ -348,6 +357,7 @@
       "error_message_1022": "Konto number on lingitud",
       "error_message_1023": "Teenuse erandid",
       "error_message_1024": "Teenuse erandid",
+      "error_message_1035": "Palun saatke kinnituskood",
       "error_message_2": "Teenuse erandid",
       "error_message_2001": "Mobiil on registreeritud",
       "error_message_2002": "E-posti aadress on registreeritud",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Asjakohast valuutat ei leitud",
       "search_input_placeholder": "Sisesta siia ja puuduta otsingut"
     },
+    "order_tracking": {
+      "code": "Kinnituskood",
+      "email": "Meil",
+      "form_error": "Päring ebaõnnestus",
+      "orderId": "Tellimuse ID",
+      "orderId_error": "Tellimuse ID ei tohi olla tühi",
+      "query_illegal": "tellimust pole olemas",
+      "risk_black_user": "See konto on ohus",
+      "risk_interception": "tellimust pole olemas",
+      "submit_btn": "Vaata tellimust",
+      "username": "E-post/telefoninumber"
+    },
     "policy": {
       "privacy": "Privaatsuspoliitika",
       "refund": "Tagasimaksete põhimõtted",
@@ -598,6 +620,7 @@
       "filter": "Filter",
       "from_price_html": "Alates {{price}}",
       "less": "vähem",
+      "load_more_tip": "Rohkemate üksuste laadimine",
       "more": "rohkem",
       "more__product_num": "{{num}} Tooted",
       "new_arrivals": "Uus kaup",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} tulemust",
       "results_found_for": "{{count}} tulemust leiti otsingule \"{{keyword}}\"",
       "search": "Otsing",
-      "search_no_results": "Sinu otsing \"{{keyword}}\" ei andnud tulemusi"
+      "search_no_results": "Sinu otsing \"{{keyword}}\" ei andnud tulemusi",
+      "single_results": "{{count}} tulemust",
+      "single_results_found": "{{count}} tulemust leiti otsingule \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Hiljuti vaadatud tooted"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Kaubavedu on väiksem kui {value}",
       "specified_customer": "Kindlaksmääratud klientide jaoks",
       "threshold": "Osta {threshold}"
+    },
+    "flash": {
+      "day": "päev",
+      "days": "päeva"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} maha",
@@ -797,6 +826,13 @@
       "point_discount": "Soodustus punktidelt",
       "shipping_fee": "Saatmine",
       "trade_coupon_discount": "Kupong"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Koodiviga",
+      "err2005": "Koodiviga",
+      "err3005": "Koodiviga"
     }
   }
 }

@@ -63,10 +63,10 @@
               {{ render this }}
             {{/startsWith}}
             {{#if (trim type) '===' 'title'}}
-              <h2 class="title3 image-with-text__title image-with-text__title--size-{{ settings.title_size }}">{{ settings.title }}</h2>
+              <h2 {{{ this.shopline_attributes }}} class="title3 image-with-text__title image-with-text__title--size-{{ settings.title_size }}">{{ settings.title }}</h2>
             {{/if}}
             {{#if (trim type) '===' 'content'}}
-              <div class="body3 image-with-text__content">{{{ settings.content }}}</div>
+              <div {{{ this.shopline_attributes }}} class="body3 image-with-text__content">{{{ settings.content }}}</div>
             {{/if}}
             {{#if (trim type) '===' 'sub_title'}}
               <div class="body3 image-with-text__sub-title image-with-text__sub-title--size-{{ settings.text_size }} ls-30p">{{{ settings.text }}}</div>
@@ -74,7 +74,7 @@
             {{#if (trim type) '===' 'button'}}
               {{#if (trim settings.button_text)}}
                 {{ assign 'link_obj' (useLink settings.link ../query) }}
-                <a {{{ link_obj.hrefAttr }}} class="image-with-text__btn btn btn-primary __sl-custom-track-stage-imageWithText-button">
+                <a {{{ this.shopline_attributes }}} {{{ link_obj.hrefAttr }}} class="image-with-text__btn btn btn-primary __sl-custom-track-stage-imageWithText-button">
                   {{ settings.button_text }}
                 </a>
               {{/if}}

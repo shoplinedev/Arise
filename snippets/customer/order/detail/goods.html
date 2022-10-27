@@ -40,7 +40,7 @@
     {{/if}}
     {{#if ordersItemList}}
       {{#each ordersItemList}}
-        <div class="goods-item">
+        <div class="goods-item" {{{ this.shopline_attributes }}}>
           {{snippet 'customer/order/detail/goods-item' productInfo=this }}
         </div>
       {{/each}}

@@ -1,0 +1,17 @@
+{{#with item}}
+  <div class="nav-list sidebar-bar-item-main">
+    <dl class="">
+      {{ assign 'navigation' (get menu @root.navigations) }}
+        {{#each navigation.nodeTree as | navItem |}}
+          {{ assign 'query' @root.request.uri.query}}
+          {{ assign 'locale' @root.request.locale}}
+          {{ assign 'allCollections' @root.all_collections}}
+          {{ assign 'allProducts' @root.all_products}}
+          {{ assign 'navDetail' (navLink navItem query locale allCollections allProducts ) }}
+          <dd class="nav-list__item body1">
+            <a class="body1 text" {{{navDetail.hrefAttr}}} rel="noreferrer"><span>{{navDetail.name}}</span></a>
+          </dd>
+        {{/each}}
+    </dl>
+  </div>
+{{/with}}

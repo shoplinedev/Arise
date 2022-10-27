@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "다음",
+      "previous": "이전의",
+      "read_more": "더보기",
+      "related_articles": "관련 블로그"
+    },
     "blog_list": {
       "empty_desc": "이 블로그에는 블로그 글이 없습니다",
       "read_btn_text": "더 보기",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "{{stock}}개 재고 남음"
     },
+    "subscription": {
+      "information": "구독"
+    },
     "tips": {
       "agree_with_the_shop": "가게를 동의합니다",
       "change_binding_after_verification": "검증 완성후 귀속/귀속 변경{{value}}",
@@ -348,6 +357,7 @@
       "error_message_1022": "계정이 연동되었습니다.",
       "error_message_1023": "서비스가 이상합니다",
       "error_message_1024": "서비스가 이상합니다",
+      "error_message_1035": "인증 코드를 보내주세요",
       "error_message_2": "서비스가 이상합니다",
       "error_message_2001": "핸드폰 번호 이미 등록됨",
       "error_message_2002": "이메일 이미 등록됨",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "상관 화폐를 찾지 못했습니다",
       "search_input_placeholder": "여기에 입력하고 검색을 누르세요"
     },
+    "order_tracking": {
+      "code": "확인 코드",
+      "email": "이메일",
+      "form_error": "쿼리 실패",
+      "orderId": "주문 아이디",
+      "orderId_error": "주문 ID는 비워둘 수 없습니다.",
+      "query_illegal": "주문이 존재하지 않습니다",
+      "risk_black_user": "이 계정은 위험합니다",
+      "risk_interception": "주문이 존재하지 않습니다",
+      "submit_btn": "주문보기",
+      "username": "이메일/전화번호"
+    },
     "policy": {
       "privacy": "개인정보 정책",
       "refund": "환불 정책",
@@ -598,6 +620,7 @@
       "filter": "선택",
       "from_price_html": "{{price}}에서",
       "less": "태그를 줄입니다",
+      "load_more_tip": "더 많은 항목을 불러옵니다",
       "more": "태그를 추가합니다.",
       "more__product_num": "상품 개수는 {{num}} 개",
       "new_arrivals": "최신 출시",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} 개 기록",
       "results_found_for": "\"{{keyword}}\" 의 {{count}} 개 기록을 찾았습니다",
       "search": "검색.",
-      "search_no_results": "당신이 검색한 \"{{keyword}}\" 는 아무런 기록이 없습니다"
+      "search_no_results": "당신이 검색한 \"{{keyword}}\" 는 아무런 기록이 없습니다",
+      "single_results": "{{count}} 개 기록",
+      "single_results_found": "\"{{keyword}}\" 의 {{count}} 개 기록을 찾았습니다"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "최근 둘러본 상품"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "운임이 {value}보다 낮습니다.",
       "specified_customer": "고객이 사용할 수 있도록 지정합니다",
       "threshold": "{threshold}을 삽니다."
+    },
+    "flash": {
+      "day": "일",
+      "days": "일"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} 절입니다",
@@ -797,6 +826,13 @@
       "point_discount": "포인트 할인",
       "shipping_fee": "배송비",
       "trade_coupon_discount": "혜택"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "검증번호 오류",
+      "err2005": "검증번호 오류",
+      "err3005": "검증번호 오류"
     }
   }
 }

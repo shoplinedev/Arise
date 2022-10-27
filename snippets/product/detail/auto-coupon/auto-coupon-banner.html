@@ -60,7 +60,7 @@
     {{/if}}
     {{#each benefitConditions}}
       {{#if @index "<" 2}}
-        <span class="sales__autoCouponBanner-couponItem sales__autoCouponBanner-couponItem-hook">
+        <span class="sales__autoCouponBanner-couponItem sales__autoCouponBanner-couponItem-hook" {{{ this.shopline_attributes }}}>
           <span>
             {{ snippet 'sales/auto-coupon/auto-coupon-item' benefitCondition=this benefitType=../benefitType template=../template  }}
           </span>

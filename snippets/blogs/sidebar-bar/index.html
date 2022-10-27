@@ -1,0 +1,53 @@
+<div class="blog__sidebar {{#if settings.position '===' 'left'}}blog__sidebar--left{{/if}}">
+  {{#with sectionData}}
+    {{#each block_order as |blockId|}}
+      {{#with (lookup ../blocks blockId) as |itemData|}}
+        {{#if type "===" "category"}}
+          <div class="sidebar-item" {{{this.shopline_attributes}}}>
+            <div class="sidebar-title title5">
+                {{this.settings.title}}
+              </div>
+            {{snippet "blogs/sidebar-bar/nav-list" item=this.settings}}
+          </div>
+        {{/if}}
+        {{#if type "===" "recent-blog"}}
+          {{ assign 'collectionId' this.settings.blogs_data }}
+          {{ assign 'mock' (isFalsey collectionId)}}
+          {{ assign 'blogData' (get_blogs_data collectionId @root.all_blogs this.settings.blog_num mock) }}
+          {{ assign 'collectionHandle' blogData.collection.handle }}
+          <div class="sidebar-item" {{{this.shopline_attributes}}}>
+            <div class="sidebar-title title5">
+              {{this.settings.title}}
+            </div>
+            {{#each blogData.blogs as |blog|}}
+              {{#if ../settings.blog_num '>' @index}}
+                {{snippet
+                  "blogs/sidebar-bar/recent-blog-item"
+                  info=this
+                  collectionHandle=../collectionHandle
+                  showAuthor=itemData.settings.is_show_author
+                  showDate=itemData.settings.is_show_date
+                  showDesc=itemData.settings.is_show_abstract
+                  showTag=itemData.settings.is_show_tag
+                  pcSize="1/3"
+                }}
+              {{/if}}
+            {{/each}}
+          </div>
+        {{/if}}
+        {{#if type "===" "tag"}}
+          <div class="sidebar-item" {{{this.shopline_attributes}}}>
+            <div class="sidebar-title title5">
+              {{this.settings.title}}
+            </div>
+            {{
+              snippet "blogs/sidebar-bar/tag-list" 
+              tagList=../../../tagList 
+              collectionId=../../../listHandle
+            }}
+          </div>
+        {{/if}}
+      {{/with}}
+    {{/each}}
+  {{/with}}
+</div>

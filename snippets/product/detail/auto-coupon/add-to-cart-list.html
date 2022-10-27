@@ -2,7 +2,7 @@
   <div class="sales__add-to-cart-list-title">{{t 'products.product_details.buy_more_save_more'}}</div>
   <div id="addToCartList" class="sales__add-to-cart-list-content">
     {{#each benefitConditions}}
-      {{ snippet 'product/detail/auto-coupon/add-to-cart-item' benefitCondition=this benefitType=../benefitType template=../template}}
+      {{ snippet 'product/detail/auto-coupon/add-to-cart-item' benefitCondition=this benefitType=../benefitType template=../template shopline_attributes=this.shopline_attributes}}
     {{/each}}
   </div>
 </div>

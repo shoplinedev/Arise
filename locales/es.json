@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "próximo",
+      "previous": "Anterior",
+      "read_more": "ver más",
+      "related_articles": "Blogs relacionados"
+    },
     "blog_list": {
       "empty_desc": "No hay artículos en este blog",
       "read_btn_text": "Ver más",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Solo quedan {{stock}}"
     },
+    "subscription": {
+      "information": "Suscripción"
+    },
     "tips": {
       "agree_with_the_shop": "Estoy de acuerdo con",
       "change_binding_after_verification": "Puedes vincular/cambiar {{value}} después de la verificación",
@@ -348,6 +357,7 @@
       "error_message_1022": "La cuenta está vinculada",
       "error_message_1023": "Error de servicio",
       "error_message_1024": "Error de servicio",
+      "error_message_1035": "Por favor envíe el código de verificación",
       "error_message_2": "Error de servicio",
       "error_message_2001": "El número de celular ha sido registrado",
       "error_message_2002": "El correo electrónico ha sido registrado",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Ninguna moneda relacionada encontrada",
       "search_input_placeholder": "Escribe aquí y busca"
     },
+    "order_tracking": {
+      "code": "Código de verificación",
+      "email": "Correo electrónico",
+      "form_error": "Consulta fallida",
+      "orderId": "Solicitar ID",
+      "orderId_error": "El ID de pedido no puede estar vacío",
+      "query_illegal": "orden no existe",
+      "risk_black_user": "Esta cuenta está en riesgo",
+      "risk_interception": "orden no existe",
+      "submit_btn": "Ver pedido",
+      "username": "Correo electrónico/Número de teléfono"
+    },
     "policy": {
       "privacy": "Política de Privacidad del sitio web",
       "refund": "Politica de reembolso",
@@ -598,6 +620,7 @@
       "filter": "Filtrar",
       "from_price_html": "DESDE {{price}}",
       "less": "Menos etiquetas",
+      "load_more_tip": "Cargar más ítems",
       "more": "Más etiquetas",
       "more__product_num": "{{num}} Artículos",
       "new_arrivals": "Recién llegados",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} registros",
       "results_found_for": "{{count}} registros de “{{keyword}}” encontrados",
       "search": "Buscar",
-      "search_no_results": "No hay ningún registro para “{{keyword}}” que buscaste"
+      "search_no_results": "No hay ningún registro para “{{keyword}}” que buscaste",
+      "single_results": "{{count}} registros",
+      "single_results_found": "{{count}} registros de “{{keyword}}” encontrados"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Artículos que has visto"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Costo de envío menos de {value}",
       "specified_customer": "Para clientes especificados",
       "threshold": "Comprar {threshold}"
+    },
+    "flash": {
+      "day": "Día",
+      "days": "Día"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} de descuento",
@@ -797,6 +826,13 @@
       "point_discount": "Descuento de puntos",
       "shipping_fee": "Costo de envío",
       "trade_coupon_discount": "Cupón"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Error del código de verificación",
+      "err2005": "Error del código de verificación",
+      "err3005": "Error del código de verificación"
     }
   }
 }

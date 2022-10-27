@@ -15561,13 +15561,14 @@
         async function putCartItem(svc, skuInfo) {
             return svc.request.put(_internal_constant__WEBPACK_IMPORTED_MODULE_0__["default"].endpointCart, skuInfo);
         }
-        async function addCartItem(svc, {spuId, skuId, num, orderFrom, dataReportReq}) {
+        async function addCartItem(svc, {spuId, skuId, num, orderFrom, dataReportReq, sellingPlanId}) {
             return svc.request.post(_internal_constant__WEBPACK_IMPORTED_MODULE_0__["default"].endpointCart, {
                 orderFrom,
                 item: {
                     spuId,
                     skuId,
-                    num
+                    num,
+                    sellingPlanId
                 },
                 dataReportReq
             });
@@ -16353,14 +16354,15 @@
             async rerenderCartDom() {
                 await _utils_event_bus__WEBPACK_IMPORTED_MODULE_2__["default"].emit(CartEventBusEnum.UPDATE, this._cartDetail);
             }
-            async addSku({spuId, skuId, num, orderFrom, dataReportReq}) {
+            async addSku({spuId, skuId, num, orderFrom, dataReportReq, sellingPlanId}) {
                 if (!spuId || !skuId || num < 0) return _domain_model_response__WEBPACK_IMPORTED_MODULE_11__["default"].rejectWithCode(_constant_responseCode__WEBPACK_IMPORTED_MODULE_8__["default"].FA_INVALID_PARAMS);
                 const res = await _domain_adapter_svc_cart__WEBPACK_IMPORTED_MODULE_3__["default"].addCartItem(this._svc, {
                     spuId,
                     skuId,
                     num,
                     orderFrom,
-                    dataReportReq
+                    dataReportReq,
+                    sellingPlanId
                 });
                 if (_domain_model_response__WEBPACK_IMPORTED_MODULE_11__["default"].isResolved(res)) await this.getCartDetail();
                 return res;
@@ -16397,15 +16399,19 @@
                 return _domain_model_helpers__WEBPACK_IMPORTED_MODULE_14__["default"].reducer({
                     associateCart: true,
                     useMemberPoint
-                }).next(discountCode ? _domain_adapter_svc_order__WEBPACK_IMPORTED_MODULE_6__["default"].withAbandonOrderDiscountCode : null, discountCode).next(abandonSeq ? _domain_adapter_svc_order__WEBPACK_IMPORTED_MODULE_6__["default"].withAbandonOrderInfo : null, abandonSeq, abandonMark).next(_domain_adapter_svc_order__WEBPACK_IMPORTED_MODULE_6__["default"].withAbandonOrderProductList, (itemList || []).map((item => ({
-                    productSku: item.skuId,
-                    productSeq: item.spuId,
-                    productNum: item.num,
-                    productPrice: item.price,
-                    productName: item.name,
-                    groupId: item.groupId,
-                    productSource: item.productSource
-                }))))();
+                }).next(discountCode ? _domain_adapter_svc_order__WEBPACK_IMPORTED_MODULE_6__["default"].withAbandonOrderDiscountCode : null, discountCode).next(abandonSeq ? _domain_adapter_svc_order__WEBPACK_IMPORTED_MODULE_6__["default"].withAbandonOrderInfo : null, abandonSeq, abandonMark).next(_domain_adapter_svc_order__WEBPACK_IMPORTED_MODULE_6__["default"].withAbandonOrderProductList, (itemList || []).map((item => {
+                    var _item$subscriptionInf;
+                    return {
+                        productSku: item.skuId,
+                        productSeq: item.spuId,
+                        productNum: item.num,
+                        productPrice: item.price,
+                        productName: item.name,
+                        groupId: item.groupId,
+                        productSource: item.productSource,
+                        sellingPlanId: null === (_item$subscriptionInf = item.subscriptionInfo) || void 0 === _item$subscriptionInf ? void 0 : _item$subscriptionInf.sellingPlanId
+                    };
+                })))();
             }
             async toggleVoucher(used) {
                 const res = await _domain_adapter_svc_voucher__WEBPACK_IMPORTED_MODULE_4__["default"].toggleVoucher(this._svc, !!used);
@@ -16872,7 +16878,7 @@
         const OPEN_TOP_CART = Symbol("OPEN_TOP_CART");
         const cartOpenType = state_selector.SL_State.get("theme.settings.cart_open_type");
         service["default"].init();
-        if (window.location.pathname.includes("/cart")) dynamicImportMiniCart(); else if ("newpage" !== cartOpenType) setTimeout(dynamicImportMiniCart, 6e3);
+        if (window.location.pathname.includes("/cart")) dynamicImportMiniCart(); else if ("newpage" !== cartOpenType && "cartremain" !== cartOpenType) setTimeout(dynamicImportMiniCart, 6e3);
         const interior = window.SL_EventBus;
         const noop = () => {};
         listenCartReport();
@@ -16897,7 +16903,7 @@
         interior.on("REFRESH_CART", (async () => {
             await cart["default"].takeCartService().getCartDetail();
         }));
-        window.SL_EventBus.on(interior_event.ADD_TO_CART, (async ({spuId, skuId, num, price, success, error, complete, eventID, reportParamsExt}) => {
+        window.SL_EventBus.on(interior_event.ADD_TO_CART, (async ({spuId, skuId, num, price, success, error, complete, eventID, reportParamsExt, sellingPlanId}) => {
             var _window;
             const dataReportReq = (0, tradeReport.setAddtoCart)(price, null === (_window = window) || void 0 === _window ? void 0 : _window.SL_State.get("storeInfo.currency"), eventID, reportParamsExt);
             const skuParams = {
@@ -16905,16 +16911,18 @@
                 skuId,
                 num,
                 orderFrom: (0, dataAccessor.getSyncData)("orderFrom"),
-                dataReportReq
+                dataReportReq,
+                sellingPlanId
             };
             try {
-                if ("newpage" !== cartOpenType) {
+                if ("newpage" !== cartOpenType && "cartremain" !== cartOpenType) {
                     closeMiniCart();
                     await dynamicImportMiniCart();
                     window.SL_EventBus.emit("NEED_OPEN_TOP_CART", {
                         spuId,
                         skuId,
-                        num
+                        num,
+                        sellingPlanId
                     });
                 }
                 const isDismissParams = [ "orderFrom" ].some((key => !skuParams[key] && 0 !== skuParams[key]));
@@ -16948,6 +16956,7 @@
                     } catch (e) {
                         console.error(e);
                     }
+                    if ("cartremain" === cartOpenType) return;
                     if ("newpage" !== cartOpenType) window.SL_EventBus.emit(OPEN_TOP_CART); else interior.emit(interior_event.OPEN_MINI_CART);
                 }
             } catch (e) {
@@ -17929,11 +17938,27 @@
                 $btns.removeAttr("style");
             }), 300));
         }));
+        const tryDecodeURIComponent = str => {
+            try {
+                return decodeURIComponent(str);
+            } catch (e) {
+                return str;
+            }
+        };
         const judgePageType = () => {
             const pageType = window.SL_State.get("templateAlias");
             const title = window.SL_State.get("sortation.sortation.title");
-            if ("Products" === pageType && title) return title;
-            if ("Products" === pageType && !title) return "All Products";
+            if ("Products" === pageType) {
+                const {pathname, search} = window.location;
+                let collectionName = "";
+                if (title) collectionName = title; else collectionName = "All Products";
+                if ("/collections/types" === pathname || "/collections/brands" === pathname) collectionName = tryDecodeURIComponent(pathname.replace("/collections/", "") + search); else {
+                    const pathnameArr = pathname.split("/");
+                    if ("" === pathnameArr[pathnameArr.length - 1]) pathnameArr.pop();
+                    if ("collections" === pathnameArr[1] && 4 === pathnameArr.length) collectionName += tryDecodeURIComponent(pathname.replace("/collections/", "") + search);
+                }
+                return collectionName;
+            }
             if ("ProductsSearch" === pageType) return "Search Result";
         };
         function thirdPartReport({id, name, price, index}) {
@@ -18285,7 +18310,7 @@
                     var _modalInstanceMap$get4;
                     const res = await fetchModalContent(uniqueKey, modalPrefix);
                     children.empty().append(res.data);
-                    initQuickAddModal(`${modalPrefix}${spuSeq}`, children, modal, spuSeq, null === data || void 0 === data ? void 0 : data.position);
+                    initQuickAddModal(`${modalPrefix}${spuSeq}`, children, modal, spuSeq, null === data || void 0 === data ? void 0 : data.position, modal.$modal);
                     modalInstanceMap.set(spuSeq, modal);
                     (0, quickView_click["default"])({
                         type: "init",
@@ -18310,16 +18335,16 @@
                 }
             }
         }
-        function initQuickAddModal(id, el, modal, spuSeq, position) {
+        function initQuickAddModal(id, el, modal, spuSeq, position, modalContainer) {
             const sku = window.SL_State.get(`${id}.sku`);
             const spu = window.SL_State.get(`${id}.spu`);
             initWidgets({
                 id,
                 sku,
                 spu
-            }, el, modal, spuSeq, position);
+            }, el, modal, spuSeq, position, modalContainer);
         }
-        function initWidgets({id, sku, spu}, el, modal, spuSeq, position) {
+        function initWidgets({id, sku, spu}, el, modal, spuSeq, position, modalContainer) {
             let activeSkuCache = {};
             const ButtonGroup = new product_button["default"]({
                 id,
@@ -18349,6 +18374,7 @@
                 sku,
                 spu,
                 mixins: window.skuMixins,
+                modalContainer,
                 onInit: (trade, activeSku) => {
                     var _window3, _window3$SL_State;
                     activeSkuCache = activeSku;
@@ -18393,7 +18419,7 @@
                 }
             });
             try {
-                const modalContainer = modal.$modal;
+                const _modalContainer = modal.$modal;
                 (0, preview_init["default"])({
                     id,
                     position,
@@ -18401,7 +18427,7 @@
                     module: "quickAddToCartModal",
                     product: window.SL_State.get(id),
                     modalContainer: modal.$modal,
-                    modalContainerElement: modalContainer && modalContainer[0],
+                    modalContainerElement: _modalContainer && _modalContainer[0],
                     instances: {
                         buttonGroup: ButtonGroup,
                         quantityStepper,
@@ -18521,6 +18547,8 @@
                         num,
                         eventID
                     });
+                    const cartOpenType = window.SL_State.get("theme.settings.cart_open_type");
+                    if ("cartremain" === cartOpenType) (new toast["default"]).open((0, i18n.t)("products.product_details.submission_successfully"), 1500);
                 },
                 complete: () => {
                     toggleAddLoading(false);
@@ -18848,11 +18876,11 @@
         });
         var i18n = __webpack_require__("../shared/browser/utils/i18n.js");
         var paypal = __webpack_require__("../shared/browser/components/paypal/index.js");
-        var dataAccessor = __webpack_require__("../shared/browser/utils/dataAccessor.js");
         var pageMapping = __webpack_require__("../shared/browser/utils/report/pageMapping.js");
         var newCurrency = __webpack_require__("../shared/browser/utils/newCurrency/index.js");
         var checkout = __webpack_require__("../shared/browser/utils/checkout.js");
         var tool = __webpack_require__("../shared/browser/utils/report/tool.js");
+        var dataAccessor = __webpack_require__("../shared/browser/utils/dataAccessor.js");
         var syntax_patch = __webpack_require__("../shared/browser/utils/syntax-patch.js");
         class EventAddCheckoutEnd {
             constructor(name) {
@@ -18881,7 +18909,25 @@
             }
         }
         const checkoutEnd = new EventAddCheckoutEnd;
-        var utils = __webpack_require__("../shared/browser/report/product/utils/index.js");
+        var utils = __webpack_require__("../shared/browser/components/smart-payment/utils.js");
+        var smart_payment = __webpack_require__("../shared/browser/components/smart-payment/index.js");
+        var tradeReport = __webpack_require__("../shared/browser/utils/tradeReport/index.js");
+        var state_selector = __webpack_require__("../shared/browser/utils/state-selector.js");
+        var product_utils = __webpack_require__("../shared/browser/report/product/utils/index.js");
+        var api_logger = __webpack_require__("../shared/browser/events/utils/api-logger.js");
+        const EVENT_NAME = "Product::Paypal-Fallback";
+        const logger = (0, api_logger["default"])(EVENT_NAME);
+        const external = window.Shopline && window.Shopline.event;
+        const paypalFallback = data => {
+            if (external) {
+                logger.info(`[emit Product::Paypal-Fallback]`, data);
+                return external.emit(EVENT_NAME, {
+                    data
+                });
+            }
+        };
+        paypalFallback.apiName = EVENT_NAME;
+        const paypal_fallback = paypalFallback;
         var globalEvent = __webpack_require__("./src/assets/commons/cart/globalEvent.js");
         var toast = __webpack_require__("./src/assets/commons/components/toast/index.js");
         var debounce = __webpack_require__("./src/assets/commons/utils/debounce.js");
@@ -18903,7 +18949,9 @@
             constructor({id, cartRoot, buyNowRoot, payPayId, soldOutRoot, spu, onAddSuccess, onAddError, sku, modalType, position}) {
                 this.getReportCartId();
                 this.addButton = cartRoot;
+                this.addLoadingStatus = false;
                 this.buyButton = buyNowRoot;
+                this.buyLoadingStatus = false;
                 this.payPayId = payPayId;
                 this.soldOutRoot = soldOutRoot;
                 this.onAddSuccess = onAddSuccess;
@@ -18915,12 +18963,13 @@
                 this.toast = new toast["default"];
                 this.initLoading();
                 this.num = 1;
+                this.id = id;
                 this.page = String(id).startsWith("productRecommendModal") ? "123" : pageMapping["default"][window.SL_State.get("templateAlias")];
                 this.modalType = modalType;
                 this.position = position;
             }
             async getReportCartId() {
-                this.cartId = await (0, utils.getCartId)();
+                this.cartId = await (0, product_utils.getCartId)();
             }
             initLoading() {
                 this.addLoading = new toast["default"]({
@@ -18938,14 +18987,40 @@
                 });
                 this.buyLoading.close();
             }
-            initPaypal() {
-                var _this$buttonConfig, _this$buttonConfig$or;
-                if (0 === __SL_$__(`#${this.payPayId}`).length) return;
-                let dataId;
-                let eventID;
-                this.buttonConfig = window.SL_State.get("productSettleButtonConfig");
-                const stage = checkoutEnd.getUuidAndMonitorCheckoutEnd("trade:spb:report", (status => {
-                    var _this$activeSku, _this$sku, _this$spu, _this$spu$sortationLi, _this$spu$sortationLi2, _this$spu2, _this$spu2$sortationL, _this$spu2$sortationL2;
+            transProducts(products) {
+                return null === products || void 0 === products ? void 0 : products.map((item => ({
+                    productNum: item.num,
+                    productSeq: item.spuId,
+                    productSku: item.skuId,
+                    productPrice: item.price
+                })));
+            }
+            needReport() {
+                var _window$HdSdk, _window$HdSdk$shopTra, _this$activeSku, _this$sku;
+                const dataId = null === (_window$HdSdk = window.HdSdk) || void 0 === _window$HdSdk ? void 0 : null === (_window$HdSdk$shopTra = _window$HdSdk.shopTracker) || void 0 === _window$HdSdk$shopTra ? void 0 : _window$HdSdk$shopTra.getDataId();
+                const eventID = (0, tool.getEventID)();
+                const {name, price, spuSeq: spuId, skuSeq: skuId, itemNo} = this.activeSku;
+                return {
+                    eventID: (0, product_button_report.addToCartThirdReport)({
+                        eventID,
+                        itemNo,
+                        spuId,
+                        name,
+                        price,
+                        num: this.num,
+                        skuId,
+                        variant: getVariant(null === (_this$activeSku = this.activeSku) || void 0 === _this$activeSku ? void 0 : _this$activeSku.skuAttributeIds, null === (_this$sku = this.sku) || void 0 === _this$sku ? void 0 : _this$sku.skuAttributeMap)
+                    }),
+                    dataId,
+                    eventName: "AddToCart"
+                };
+            }
+            get stage() {
+                var _window$HdSdk2, _window$HdSdk2$shopTr;
+                const dataId = null === (_window$HdSdk2 = window.HdSdk) || void 0 === _window$HdSdk2 ? void 0 : null === (_window$HdSdk2$shopTr = _window$HdSdk2.shopTracker) || void 0 === _window$HdSdk2$shopTr ? void 0 : _window$HdSdk2$shopTr.getDataId();
+                const eventID = (0, tool.getEventID)();
+                return checkoutEnd.getUuidAndMonitorCheckoutEnd("trade:spb:report", (async status => {
+                    var _this$activeSku2, _this$sku2, _this$spu, _this$spu$sortationLi, _this$spu$sortationLi2, _this$spu2, _this$spu2$sortationL, _this$spu2$sortationL2;
                     const {name, price, spuSeq: spuId, skuSeq: skuId} = this.activeSku;
                     (0, product_button_report.paypalHdReport)({
                         event_name: "quick_payment",
@@ -18957,7 +19032,7 @@
                         page: this.page,
                         event_status: status,
                         modalType: this.modalType,
-                        variant: getVariant(null === (_this$activeSku = this.activeSku) || void 0 === _this$activeSku ? void 0 : _this$activeSku.skuAttributeIds, null === (_this$sku = this.sku) || void 0 === _this$sku ? void 0 : _this$sku.skuAttributeMap),
+                        variant: getVariant(null === (_this$activeSku2 = this.activeSku) || void 0 === _this$activeSku2 ? void 0 : _this$activeSku2.skuAttributeIds, null === (_this$sku2 = this.sku) || void 0 === _this$sku2 ? void 0 : _this$sku2.skuAttributeMap),
                         collectionId: null === (_this$spu = this.spu) || void 0 === _this$spu ? void 0 : null === (_this$spu$sortationLi = _this$spu.sortationList) || void 0 === _this$spu$sortationLi ? void 0 : null === (_this$spu$sortationLi2 = _this$spu$sortationLi[0]) || void 0 === _this$spu$sortationLi2 ? void 0 : _this$spu$sortationLi2.sortationId,
                         collectionName: null === (_this$spu2 = this.spu) || void 0 === _this$spu2 ? void 0 : null === (_this$spu2$sortationL = _this$spu2.sortationList) || void 0 === _this$spu2$sortationL ? void 0 : null === (_this$spu2$sortationL2 = _this$spu2$sortationL[0]) || void 0 === _this$spu2$sortationL2 ? void 0 : _this$spu2$sortationL2.sortationName,
                         position: this.position,
@@ -18966,28 +19041,12 @@
                         cartId: this.cartId
                     });
                 }));
-                setChannel();
+            }
+            renderPaypal() {
+                var _this$buttonConfig, _this$buttonConfig$or, _this$PayPalButton;
                 this.PayPalButton = new paypal["default"]({
-                    stage,
-                    needReport: () => {
-                        var _window$HdSdk, _window$HdSdk$shopTra, _this$activeSku2, _this$sku2;
-                        dataId = null === (_window$HdSdk = window.HdSdk) || void 0 === _window$HdSdk ? void 0 : null === (_window$HdSdk$shopTra = _window$HdSdk.shopTracker) || void 0 === _window$HdSdk$shopTra ? void 0 : _window$HdSdk$shopTra.getDataId();
-                        eventID = (0, tool.getEventID)();
-                        const {name, price, spuSeq: spuId, skuSeq: skuId} = this.activeSku;
-                        return {
-                            eventID: (0, product_button_report.addToCartThirdReport)({
-                                eventID,
-                                spuId,
-                                name,
-                                price,
-                                num: this.num,
-                                skuId,
-                                variant: getVariant(null === (_this$activeSku2 = this.activeSku) || void 0 === _this$activeSku2 ? void 0 : _this$activeSku2.skuAttributeIds, null === (_this$sku2 = this.sku) || void 0 === _this$sku2 ? void 0 : _this$sku2.skuAttributeMap)
-                            }),
-                            dataId,
-                            eventName: "AddToCart"
-                        };
-                    },
+                    stage: this.stage,
+                    needReport: () => this.needReport(),
                     beforeCreateOrder: () => {},
                     domId: this.payPayId,
                     height: __SL_$__(`#${this.payPayId}`).height(),
@@ -19005,7 +19064,73 @@
                         __SL_$__(this.buyButton).filter(".product-more-payment-button").html((0, i18n.t)("products.product_details.more_payment_options"));
                     }
                 });
-                this.PayPalButton.render();
+                null === (_this$PayPalButton = this.PayPalButton) || void 0 === _this$PayPalButton ? void 0 : _this$PayPalButton.render();
+            }
+            getDataReportReq() {
+                return (0, tradeReport.setPayPalReportReq)({
+                    products: this.transProducts(this.products),
+                    needReport: () => this.needReport()
+                });
+            }
+            async renderSmartPayment() {
+                var _this$buttonConfig2, _this$buttonConfig2$o, _this$SmartPaymentCom;
+                this.SmartPaymentComponent = new smart_payment.SmartPayment({
+                    props: {
+                        domId: this.payPayId,
+                        dynamic: null === (_this$buttonConfig2 = this.buttonConfig) || void 0 === _this$buttonConfig2 ? void 0 : null === (_this$buttonConfig2$o = _this$buttonConfig2.originConfig) || void 0 === _this$buttonConfig2$o ? void 0 : _this$buttonConfig2$o.system,
+                        styleOptions: {
+                            height: __SL_$__(`#${this.payPayId}`).height()
+                        }
+                    },
+                    emitData: {
+                        stage: this.stage,
+                        product: this.transProducts(this.products)
+                    },
+                    beforeCreateOrder: async () => {
+                        try {
+                            const {url: returnUrl, needLogin, abandonedInfo} = await checkout["default"].save(this.transProducts(this.products), {
+                                stage: this.stage,
+                                query: {
+                                    spb: true
+                                }
+                            });
+                            if (needLogin) {
+                                window.location.href = returnUrl;
+                                return {
+                                    valid: false
+                                };
+                            }
+                            const {orderFrom} = state_selector.SL_State.get("checkout.otherInfo") || {};
+                            return {
+                                abandonedOrderInfo: abandonedInfo,
+                                orderFrom: (0, dataAccessor.getSyncData)("orderFrom") || orderFrom,
+                                returnUrl,
+                                dataReportReq: this.getDataReportReq()
+                            };
+                        } catch (error) {
+                            return {
+                                valid: false
+                            };
+                        }
+                    },
+                    onToast: ({message}) => this.toast.open(message),
+                    onDynamicNotify: () => {
+                        if (!this.buttonConfig.buyNow) this.extraBuyNow();
+                        __SL_$__(`#${this.payPayId}`).remove();
+                        __SL_$__(this.buyButton).filter(".product-more-payment-button").remove();
+                    },
+                    afterInit: () => {
+                        if (!this.activeSku) this.setPaypalDisabled();
+                        __SL_$__(this.buyButton).filter(".product-more-payment-button").html((0, i18n.t)("productDetail.morePaymentOptions"));
+                    }
+                });
+                await (null === (_this$SmartPaymentCom = this.SmartPaymentComponent) || void 0 === _this$SmartPaymentCom ? void 0 : _this$SmartPaymentCom.init());
+            }
+            async initPaypal() {
+                if (0 === __SL_$__(`#${this.payPayId}`).length) return;
+                this.buttonConfig = window.SL_State.get("productSettleButtonConfig");
+                setChannel();
+                if ((0, utils.isPaypalGrey)()) await this.renderSmartPayment(); else this.renderPaypal();
                 __SL_$__(document).on("click", `#${this.payPayId} .product-button-paypal-preview-mask`, (() => {
                     this.toast.open((0, i18n.t)("products.product_details.link_preview_does_not_support"));
                 }));
@@ -19013,9 +19138,17 @@
             extraBuyNow() {
                 const buyNow = `<button data-ssr-plugin-pdp-button-buy-now class="buy-now shopline-element-buy-now btn btn-primary btn-lg ${this.buyButton.substr(1)} __sl-custom-track-product-detail-buy-now paypalAddBuyNow">\n        <span class="pdp_button_text fw-bold">${(0, 
                 i18n.t)("cart.cart.buy_now")}</span>\n      </button>`;
-                __SL_$__(this.addButton).after(buyNow);
+                const buyNowEl = __SL_$__(buyNow);
+                __SL_$__(this.addButton).after(buyNowEl);
                 this.bindBuyNow();
                 this.setTradeButtonHide(this.activeSku ? !this.activeSku.available : this.spu.soldOut);
+                paypal_fallback({
+                    id: this.id,
+                    el: {
+                        buyNow: buyNowEl.get(0)
+                    },
+                    instance: this
+                });
                 this.buyLoading = new toast["default"]({
                     duration: 0,
                     target: this.buyButton,
@@ -19038,11 +19171,28 @@
                     this[loadingName].close();
                     __SL_$__(dom).find(".pdp_button_text").removeClass("loading");
                 }
+                this[`${loadingName}Status`] = loading;
+            }
+            handleATCSuccess() {
+                const cartOpenType = window.SL_State.get("theme.settings.cart_open_type");
+                const addBtnColor = __SL_$__(this.addButton).css("color");
+                if ("cartremain" === cartOpenType) {
+                    const addLoadingInstance = this.addLoading;
+                    if (addLoadingInstance && addLoadingInstance.showSuccessAni) addLoadingInstance.showSuccessAni({
+                        loadingColor: addBtnColor
+                    }, (() => {
+                        var _this$onAddSuccess;
+                        null === (_this$onAddSuccess = this.onAddSuccess) || void 0 === _this$onAddSuccess ? void 0 : _this$onAddSuccess.call(this);
+                    })); else console.error(`judgeCartOpenTypeByATCStatus: add loading instance ${addLoadingInstance}`);
+                } else {
+                    var _this$onAddSuccess2;
+                    null === (_this$onAddSuccess2 = this.onAddSuccess) || void 0 === _this$onAddSuccess2 ? void 0 : _this$onAddSuccess2.call(this);
+                }
             }
             initEvent() {
                 const $this = this;
                 __SL_$__(this.addButton).on("click", (0, debounce["default"])(300, (() => {
-                    var _window$HdSdk2, _window$HdSdk2$shopTr, _this$activeSku3, _this$sku3, _this$spu3, _this$spu3$sortationL, _this$spu3$sortationL2, _this$spu4, _this$spu4$sortationL, _this$spu4$sortationL2;
+                    var _window$HdSdk3, _window$HdSdk3$shopTr, _this$activeSku3, _this$sku3, _this$spu3, _this$spu3$sortationL, _this$spu3$sortationL2, _this$spu4, _this$spu4$sortationL, _this$spu4$sortationL2;
                     if ($this.isPreview()) {
                         this.toast.open((0, i18n.t)("products.product_details.link_preview_does_not_support"));
                         return;
@@ -19051,10 +19201,11 @@
                         this.toast.open((0, i18n.t)("products.product_list.select_product_all_options"));
                         return;
                     }
+                    if (this.addLoadingStatus) return;
                     this.setLoading("add", true);
                     const {spuSeq: spuId, skuSeq: skuId, name, price} = this.activeSku;
                     const {num} = this;
-                    const dataId = null === (_window$HdSdk2 = window.HdSdk) || void 0 === _window$HdSdk2 ? void 0 : null === (_window$HdSdk2$shopTr = _window$HdSdk2.shopTracker) || void 0 === _window$HdSdk2$shopTr ? void 0 : _window$HdSdk2$shopTr.getDataId();
+                    const dataId = null === (_window$HdSdk3 = window.HdSdk) || void 0 === _window$HdSdk3 ? void 0 : null === (_window$HdSdk3$shopTr = _window$HdSdk3.shopTracker) || void 0 === _window$HdSdk3$shopTr ? void 0 : _window$HdSdk3$shopTr.getDataId();
                     const eventID = (0, tool.getEventID)();
                     const hdReportData = {
                         page: this.page,
@@ -19091,7 +19242,7 @@
                             this.onAddError(...e);
                         },
                         success: () => {
-                            var _this$activeSku4, _this$sku4, _this$onAddSuccess;
+                            var _this$activeSku4, _this$sku4;
                             setChannel();
                             (0, product_button_report.addToCartHdReport)({
                                 ...hdReportData,
@@ -19106,7 +19257,7 @@
                                 eventID,
                                 variant: getVariant(null === (_this$activeSku4 = this.activeSku) || void 0 === _this$activeSku4 ? void 0 : _this$activeSku4.skuAttributeIds, null === (_this$sku4 = this.sku) || void 0 === _this$sku4 ? void 0 : _this$sku4.skuAttributeMap)
                             });
-                            null === (_this$onAddSuccess = this.onAddSuccess) || void 0 === _this$onAddSuccess ? void 0 : _this$onAddSuccess.call(this);
+                            this.handleATCSuccess();
                         },
                         complete: () => {
                             this.setLoading("add", false);
@@ -19146,7 +19297,7 @@
                 }));
                 const $this = this;
                 __SL_$__(this.buyButton).on("click", (0, debounce["default"])(300, (() => {
-                    var _window$HdSdk3, _window$HdSdk3$shopTr;
+                    var _window$HdSdk4, _window$HdSdk4$shopTr;
                     if ($this.isPreview()) {
                         this.toast.open((0, i18n.t)("products.product_details.link_preview_does_not_support"));
                         return;
@@ -19166,7 +19317,7 @@
                     const {name, price, spuSeq: spuId, skuSeq: skuId} = this.activeSku;
                     const {num} = this;
                     setChannel();
-                    dataId = null === (_window$HdSdk3 = window.HdSdk) || void 0 === _window$HdSdk3 ? void 0 : null === (_window$HdSdk3$shopTr = _window$HdSdk3.shopTracker) || void 0 === _window$HdSdk3$shopTr ? void 0 : _window$HdSdk3$shopTr.getDataId();
+                    dataId = null === (_window$HdSdk4 = window.HdSdk) || void 0 === _window$HdSdk4 ? void 0 : null === (_window$HdSdk4$shopTr = _window$HdSdk4.shopTracker) || void 0 === _window$HdSdk4$shopTr ? void 0 : _window$HdSdk4$shopTr.getDataId();
                     eventID = (0, tool.getEventID)();
                     checkout["default"].jump(product, {
                         stage,
@@ -19207,24 +19358,30 @@
                 this.setPayPalProduct();
             }
             setPaypalDisabled() {
-                var _this$PayPalButton2;
+                var _this$PayPalButton3, _this$SmartPaymentCom3;
                 if (!this.activeSku) {
-                    var _this$PayPalButton;
-                    null === (_this$PayPalButton = this.PayPalButton) || void 0 === _this$PayPalButton ? void 0 : _this$PayPalButton.setDisabled(true);
+                    var _this$PayPalButton2, _this$SmartPaymentCom2;
+                    null === (_this$PayPalButton2 = this.PayPalButton) || void 0 === _this$PayPalButton2 ? void 0 : _this$PayPalButton2.setDisabled(true);
+                    null === (_this$SmartPaymentCom2 = this.SmartPaymentComponent) || void 0 === _this$SmartPaymentCom2 ? void 0 : _this$SmartPaymentCom2.setDisabled(true);
                     return;
                 }
-                null === (_this$PayPalButton2 = this.PayPalButton) || void 0 === _this$PayPalButton2 ? void 0 : _this$PayPalButton2.setDisabled(false);
+                null === (_this$PayPalButton3 = this.PayPalButton) || void 0 === _this$PayPalButton3 ? void 0 : _this$PayPalButton3.setDisabled(false);
+                null === (_this$SmartPaymentCom3 = this.SmartPaymentComponent) || void 0 === _this$SmartPaymentCom3 ? void 0 : _this$SmartPaymentCom3.setDisabled(false);
+            }
+            get products() {
+                var _this$activeSku7, _this$activeSku8, _this$spu7, _this$activeSku9;
+                return [ {
+                    spuId: null === (_this$activeSku7 = this.activeSku) || void 0 === _this$activeSku7 ? void 0 : _this$activeSku7.spuSeq,
+                    skuId: null === (_this$activeSku8 = this.activeSku) || void 0 === _this$activeSku8 ? void 0 : _this$activeSku8.skuSeq,
+                    num: this.num,
+                    name: null === (_this$spu7 = this.spu) || void 0 === _this$spu7 ? void 0 : _this$spu7.title,
+                    price: null === (_this$activeSku9 = this.activeSku) || void 0 === _this$activeSku9 ? void 0 : _this$activeSku9.price
+                } ];
             }
             setPayPalProduct() {
+                var _this$PayPalButton4;
                 if (0 === __SL_$__(`#${this.payPayId}`).length || !this.activeSku) return;
-                const product = [ {
-                    spuId: this.activeSku.spuSeq,
-                    skuId: this.activeSku.skuSeq,
-                    num: this.num,
-                    name: this.spu.title,
-                    price: this.activeSku.price
-                } ];
-                this.PayPalButton.setProducts(product);
+                null === (_this$PayPalButton4 = this.PayPalButton) || void 0 === _this$PayPalButton4 ? void 0 : _this$PayPalButton4.setProducts(this.products);
             }
             setTradeButtonHide(show) {
                 var _SL_$__2, _SL_$__$filter2;
@@ -21430,6 +21587,7 @@
                 spu,
                 mixins: window.skuMixins,
                 dataPool: skuDataPool,
+                modalContainer,
                 onInit: (trade, activeSku) => {
                     var _window3, _window3$SL_State, _quantityStepper$skuS3, _quantityStepper$skuS4;
                     thirdPartReport({
@@ -22146,9 +22304,13 @@
             return (null === (_specList$index = specList[index]) || void 0 === _specList$index ? void 0 : null === (_specList$index$specA = _specList$index.specAttrList) || void 0 === _specList$index$specA ? void 0 : _specList$index$specA.find((item => item.id === currentAttrId))) || null;
         }
         class BaseSkuTrade {
-            constructor({sku, spu, initialSkuSeq, dataPool, root, domReady, onInit, onChange, onDestory, mixins}) {
+            constructor({sku, spu, initialSkuSeq, dataPool, modalContainer, root, domReady, onInit, onChange, onDestory, mixins}) {
                 this.mixins = mixins;
                 this.root = __SL_$__(root);
+                const quickViewModal = modalContainer ? modalContainer.find(".product-preview-modal-content") : null;
+                const quickAddModal = modalContainer ? modalContainer.find(".quick-add-modal__container .mp-modal__body") : null;
+                const isExistQuickViewModal = quickViewModal && quickViewModal.length > 0;
+                this.targetContainer = isExistQuickViewModal ? quickViewModal : quickAddModal;
                 if (dataPool) this.dataPool = dataPool; else this.dataPool = new DataWatcher["default"];
                 if (!this.dataPool.inited) {
                     this.dataPool.sku = sku || {};
@@ -22312,6 +22474,7 @@
                         if (!isInMobile && null !== specItem && void 0 !== specItem && specItem.onlyShowAttrImg) {
                             var _specItem$specAttrLis;
                             valueJQ.tooltip({
+                                targetContainer: this.targetContainer,
                                 title: null === (_specItem$specAttrLis = specItem.specAttrList[i]) || void 0 === _specItem$specAttrLis ? void 0 : _specItem$specAttrLis.name
                             });
                         }
@@ -22335,6 +22498,7 @@
                             if (imgUrl) {
                                 valueJQ = __SL_$__(`<div class="attr-value with-img"><img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ""}  class="value-img" src="${imgUrl}"></div>`);
                                 if (!isInMobile && spec.onlyShowAttrImg) valueJQ.tooltip({
+                                    targetContainer: this.targetContainer,
                                     title: value.name
                                 }); else valueJQ.append(`<span class="value-text">${value.name}</span>`);
                             } else valueJQ = __SL_$__(`<div class="attr-value"><span>${value.name}</span></div>`);
@@ -22603,7 +22767,7 @@
             }
         }
         const sku_trade_select = SkuTradeSelect;
-        function initSku({id, sku, spu, mixins, onInit, onChange, dataPool}) {
+        function initSku({id, sku, spu, mixins, onInit, onChange, dataPool, modalContainer}) {
             const dataDom = __SL_$__(`#product-sku-trade-data_${id}`);
             const skuStyle = dataDom.data("skustyle");
             const selectSku = dataDom.data("selectsku");
@@ -22616,6 +22780,7 @@
                 dataPool,
                 mixins,
                 initialSkuSeq: selectSku,
+                modalContainer,
                 onInit: (tradeData, activeSku, root) => {
                     null === onInit || void 0 === onInit ? void 0 : onInit(tradeData, activeSku, root);
                     window.SL_EventBus.emit("product:sku:init", [ activeSku, id ]);
@@ -22955,12 +23120,12 @@
             return executedEvents;
         };
         const LOGIN_MODAL = "Customer::LoginModal";
+        const LOGIN_MODAL_RENDER = "Customer::LoginModalRender";
         const REGISTER = "Customer::Register";
         const interior_event_LOGIN_MODAL = Symbol("LOGIN_MODAL");
         var axios = __webpack_require__("../shared/browser/node_modules/axios/index.js");
         var axios_default = __webpack_require__.n(axios);
-        __webpack_require__("../shared/browser/components/hbs/shared/components/modal/lite.js");
-        var full = __webpack_require__("../shared/browser/components/hbs/shared/components/modal/full.js");
+        var components_modal = __webpack_require__("../shared/browser/components/hbs/shared/components/modal/index.js");
         function baseGet(object, path) {
             path = path.split(".");
             let index = 0;
@@ -22997,7 +23162,7 @@
             }));
         }
         const renderModal = async (options = {}, lifeCycle = {}) => {
-            const modal = new full["default"]({
+            const modal = new components_modal.ModalWithHtml({
                 id: "loginModal",
                 ...options,
                 bodyClassName: BODY_CLASS,
@@ -23048,10 +23213,12 @@
                         modal.show();
                         lifeCycle && lifeCycle.onShow(modal);
                     }
+                    login_modal_external.emit(LOGIN_MODAL_RENDER);
                     onSuccess && onSuccess(modal);
                     return;
                 }
                 modal = await renderModal(data, lifeCycle);
+                login_modal_external.emit(LOGIN_MODAL_RENDER);
                 onSuccess && onSuccess(modal);
             } catch (e) {
                 onError && onError(e);
@@ -24575,7 +24742,8 @@
                 "zh-hans-cn": "zh-CN",
                 "zh-hant-tw": "zh-TW",
                 "zh-hant-hk": "zh-TW",
-                nb: "no"
+                nb: "no",
+                "pt-pt": "pt"
             };
             return null !== (_hardLandKey$alias = hardLandKey[alias]) && void 0 !== _hardLandKey$alias ? _hardLandKey$alias : alias;
         };
@@ -26739,6 +26907,14 @@
             }
         }
     },
+    "../shared/browser/components/hbs/shared/components/modal/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            ModalWithHtml: () => _full__WEBPACK_IMPORTED_MODULE_1__["default"]
+        });
+        __webpack_require__("../shared/browser/components/hbs/shared/components/modal/lite.js");
+        var _full__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/components/hbs/shared/components/modal/full.js");
+    },
     "../shared/browser/components/hbs/shared/components/modal/lite.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
@@ -26850,10 +27026,24 @@
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
         const LOADING = "loading";
+        function whichAnimationEndEvent() {
+            let t, el = document.createElement("fakeelement");
+            const animations = {
+                animation: "animationend",
+                OAnimation: "oAnimationEnd",
+                MozAnimation: "animationend",
+                WebkitAnimation: "webkitAnimationEnd"
+            };
+            for (t in animations) if (void 0 !== el.style[t]) {
+                console.log("anim...");
+                return animations[t];
+            }
+        }
         const getTemplate = (options, type = "default") => {
             const loadingColor = options.loadingColor || "black";
             const templates = {
                 [LOADING]: `\n      <div class="mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="${loadingColor}" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
+                showSuccess: `\n      <div class="mp-toast mp-toast--loading mp-toast--success-container mp-toast--loading-style2 ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <div class="mp-loading__success-box">\n            <svg class="arrow" width="20" height="20" viewBox="0 0 20 20">\n              <circle cx="10" cy="10" r="8.75" fill="none" stroke="${loadingColor}" stroke-width="2.5" class="circle"></circle>\n              <polyline points="4.5,10 9,14 14.5,6.5" fill="none" stroke="${loadingColor}" stroke-width="2.5" class="hookmark" stroke-linecap="round" stroke-linejoin="round"\n              ></polyline>\n            </svg>\n          </div>\n        </div>\n      </div>\n    `,
                 default: `\n      <div class="comment-toast mp-toast mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-toast__content mp-toast__inner">${options.content}</div>\n      </div>\n    `
             };
             return templates[type];
@@ -26929,6 +27119,26 @@
                 this.$toast.addClass(HIDDEN_CLASSNAME);
                 if ("function" === typeof this.options.onClose) this.options.onClose();
                 this.$target.css("position", "");
+            }
+            showSuccessAni(options = {}, callback) {
+                const {$target} = this;
+                this.close();
+                const buttonTxt = $target.find(".pdp_button_text");
+                buttonTxt.addClass("showSuccessAni");
+                const successAniTemp = getTemplate(options, "showSuccess");
+                $target.append(successAniTemp);
+                const hookWrapDom = $target.find(".mp-toast--success-container");
+                const hookNode = $target.find(".hookmark");
+                if (hookNode.length > 0) {
+                    const animationEnd = whichAnimationEndEvent();
+                    hookNode.one(animationEnd, (function(event) {
+                        if (callback && "function" === typeof callback) setTimeout((() => {
+                            hookWrapDom.remove();
+                            buttonTxt.removeClass("showSuccessAni");
+                            callback(event, $target);
+                        }), options.delay || 0);
+                    }));
+                }
             }
         }
         Toast.type = null;
@@ -27877,6 +28087,77 @@
             }
             return queryParams;
         };
+    },
+    "../shared/browser/components/smart-payment/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            SmartPayment: () => SmartPayment
+        });
+        var _sl_smart_payment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sl/smart-payment/lib/index.js");
+        var _yy_sl_theme_shared_utils_logger_sentry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/logger/sentry.js");
+        var _utils_event_bus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/utils/event-bus.js");
+        var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../shared/browser/components/smart-payment/utils.js");
+        var _utils_tradeReport_const__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/utils/tradeReport/const.js");
+        const {PAYPAL_CHECKOUT} = _utils_tradeReport_const__WEBPACK_IMPORTED_MODULE_4__.HD_EVENT_NAME;
+        const logger = _yy_sl_theme_shared_utils_logger_sentry__WEBPACK_IMPORTED_MODULE_1__["default"].pipeOwner("SmartPayment");
+        const loggerPrefix = "[shared]快速支付SDK";
+        class SmartPayment {
+            constructor(config) {
+                this.config = config;
+            }
+            async renderSmartPayment() {
+                const payments = (0, _utils__WEBPACK_IMPORTED_MODULE_3__.getPayments)();
+                if (!(payments && Array.isArray(payments))) {
+                    logger.error(`${loggerPrefix} payments入参非法`, {
+                        data: {
+                            payments
+                        }
+                    });
+                    return;
+                }
+                this.currentController = new _sl_smart_payment__WEBPACK_IMPORTED_MODULE_0__.Payment({
+                    ...this.config,
+                    payments,
+                    afterCreateOrder: status => {
+                        _utils_event_bus__WEBPACK_IMPORTED_MODULE_2__.SL_EventBus.emit(PAYPAL_CHECKOUT, {
+                            data: {
+                                event_status: status,
+                                ...this.config.emitData
+                            }
+                        });
+                        if ((0, _utils__WEBPACK_IMPORTED_MODULE_3__.isFn)(this.config.afterCreateOrder)) this.config.afterCreateOrder(status);
+                    },
+                    logger
+                });
+                await this.currentController.render();
+            }
+            async init() {
+                await this.renderSmartPayment();
+            }
+            setDisabled(disabled) {
+                this.currentController.setDisabled(disabled);
+            }
+        }
+    },
+    "../shared/browser/components/smart-payment/utils.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            getPayments: () => getPayments,
+            isPaypalGrey: () => isPaypalGrey,
+            isFn: () => isFn
+        });
+        var _sl_smart_payment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sl/smart-payment/lib/index.js");
+        const getPayments = code => {
+            const payments = window && window.__PRELOAD_STATE__ && window.__PRELOAD_STATE__.fastCheckout && window.__PRELOAD_STATE__.fastCheckout.payments;
+            if (!payments) return;
+            if (!code) return payments;
+            return payments.find((item => item.channelCode === code));
+        };
+        const isPaypalGrey = () => {
+            const payment = getPayments(_sl_smart_payment__WEBPACK_IMPORTED_MODULE_0__.ChannelCode.Paypal);
+            if (payment) return payment.systemCode === _sl_smart_payment__WEBPACK_IMPORTED_MODULE_0__.SystemCode.StandardEC;
+        };
+        const isFn = object => object && "function" === typeof object;
     },
     "../shared/browser/events/data-report/enum/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
@@ -31446,17 +31727,26 @@
     "../shared/browser/node_modules/@sl/logger-sentry/lib/index.es.js": (module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
-            default: () => U
+            default: () => H
         });
         var _sl_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sl/logger/lib/index.es.js");
         module = __webpack_require__.hmd(module);
-        var e = function() {
-            return e = Object.assign || function(t) {
+        var e = function(t, n) {
+            return e = Object.setPrototypeOf || {
+                __proto__: []
+            } instanceof Array && function(t, e) {
+                t.__proto__ = e;
+            } || function(t, e) {
+                for (var n in e) e.hasOwnProperty(n) && (t[n] = e[n]);
+            }, e(t, n);
+        };
+        var n = function() {
+            return n = Object.assign || function(t) {
                 for (var e, n = 1, r = arguments.length; n < r; n++) for (var i in e = arguments[n]) Object.prototype.hasOwnProperty.call(e, i) && (t[i] = e[i]);
                 return t;
-            }, e.apply(this, arguments);
+            }, n.apply(this, arguments);
         };
-        function n(t, e) {
+        function r(t, e) {
             var n = "function" == typeof Symbol && t[Symbol.iterator];
             if (!n) return t;
             var r, i, s = n.call(t), o = [];
@@ -31475,36 +31765,36 @@
             }
             return o;
         }
-        function r() {
-            for (var t = [], e = 0; e < arguments.length; e++) t = t.concat(n(arguments[e]));
+        function i() {
+            for (var t = [], e = 0; e < arguments.length; e++) t = t.concat(r(arguments[e]));
             return t;
         }
-        function i() {
+        function s() {
             return !("undefined" != typeof __SENTRY_BROWSER_BUNDLE__ && __SENTRY_BROWSER_BUNDLE__) && "[object process]" === Object.prototype.toString.call("undefined" != typeof process ? process : 0);
         }
-        var s = {};
-        function o() {
-            return i() ? __webpack_require__.g : "undefined" != typeof window ? window : "undefined" != typeof self ? self : s;
+        var o = {};
+        function a() {
+            return s() ? __webpack_require__.g : "undefined" != typeof window ? window : "undefined" != typeof self ? self : o;
         }
-        function a(t, e, n) {
-            var r = n || o(), i = r.__SENTRY__ = r.__SENTRY__ || {};
+        function c(t, e, n) {
+            var r = n || a(), i = r.__SENTRY__ = r.__SENTRY__ || {};
             return i[t] || (i[t] = e());
         }
-        var c = Object.prototype.toString;
-        function u(t) {
+        var u = Object.prototype.toString;
+        function p(t) {
             return function(t, e) {
-                return c.call(t) === "[object " + e + "]";
+                return u.call(t) === "[object " + e + "]";
             }(t, "Object");
         }
-        function p(t) {
+        function h(t) {
             return Boolean(t && t.then && "function" == typeof t.then);
         }
-        var h, f = "undefined" == typeof __SENTRY_DEBUG__ || __SENTRY_DEBUG__, _ = o(), l = [ "debug", "info", "warn", "error", "log", "assert" ];
-        function d(t) {
-            var e = o();
+        var f, _ = "undefined" == typeof __SENTRY_DEBUG__ || __SENTRY_DEBUG__, l = a(), d = [ "debug", "info", "warn", "error", "log", "assert" ];
+        function g(t) {
+            var e = a();
             if (!("console" in e)) return t();
             var n = e.console, r = {};
-            l.forEach((function(t) {
+            d.forEach((function(t) {
                 var i = n[t] && n[t].__sentry_original__;
                 t in e.console && i && (r[t] = n[t], n[t] = i);
             }));
@@ -31516,7 +31806,7 @@
                 }));
             }
         }
-        function g() {
+        function v() {
             var t = !1, e = {
                 enable: function() {
                     t = !0;
@@ -31525,21 +31815,21 @@
                     t = !1;
                 }
             };
-            return f ? l.forEach((function(n) {
+            return _ ? d.forEach((function(n) {
                 e[n] = function() {
-                    for (var e = [], i = 0; i < arguments.length; i++) e[i] = arguments[i];
-                    t && d((function() {
+                    for (var e = [], r = 0; r < arguments.length; r++) e[r] = arguments[r];
+                    t && g((function() {
                         var t;
-                        (t = _.console)[n].apply(t, r([ "Sentry Logger [" + n + "]:" ], e));
+                        (t = l.console)[n].apply(t, i([ "Sentry Logger [" + n + "]:" ], e));
                     }));
                 };
-            })) : l.forEach((function(t) {
+            })) : d.forEach((function(t) {
                 e[t] = function() {};
             })), e;
         }
-        function v(t) {
+        function y(t) {
             var e, n;
-            if (u(t)) {
+            if (p(t)) {
                 var r = {};
                 try {
                     for (var i = function(t) {
@@ -31556,7 +31846,7 @@
                         throw new TypeError(e ? "Object is not iterable." : "Symbol.iterator is not defined.");
                     }(Object.keys(t)), s = i.next(); !s.done; s = i.next()) {
                         var o = s.value;
-                        void 0 !== t[o] && (r[o] = v(t[o]));
+                        void 0 !== t[o] && (r[o] = y(t[o]));
                     }
                 } catch (t) {
                     e = {
@@ -31571,10 +31861,10 @@
                 }
                 return r;
             }
-            return Array.isArray(t) ? t.map(v) : t;
+            return Array.isArray(t) ? t.map(y) : t;
         }
-        function y() {
-            var t = o(), e = t.crypto || t.msCrypto;
+        function x() {
+            var t = a(), e = t.crypto || t.msCrypto;
             if (void 0 !== e && e.getRandomValues) {
                 var n = new Uint16Array(8);
                 e.getRandomValues(n), n[3] = 4095 & n[3] | 16384, n[4] = 16383 & n[4] | 32768;
@@ -31589,8 +31879,8 @@
                 return ("x" === t ? e : 3 & e | 8).toString(16);
             }));
         }
-        h = f ? a("logger", g) : g();
-        var x, S = function() {
+        f = _ ? c("logger", v) : v();
+        var S, m = function() {
             function t(t) {
                 var e = this;
                 this._state = 0, this._handlers = [], this._resolve = function(t) {
@@ -31598,7 +31888,7 @@
                 }, this._reject = function(t) {
                     e._setResult(2, t);
                 }, this._setResult = function(t, n) {
-                    0 === e._state && (p(n) ? n.then(e._resolve, e._reject) : (e._state = t, e._value = n, 
+                    0 === e._state && (h(n) ? n.then(e._resolve, e._reject) : (e._state = t, e._value = n, 
                     e._executeHandlers()));
                 }, this._executeHandlers = function() {
                     if (0 !== e._state) {
@@ -31652,13 +31942,13 @@
         !function(t) {
             t.Fatal = "fatal", t.Error = "error", t.Warning = "warning", t.Log = "log", t.Info = "info", 
             t.Debug = "debug", t.Critical = "critical";
-        }(x || (x = {}));
-        var m = {
+        }(S || (S = {}));
+        var b = {
             nowSeconds: function() {
                 return Date.now() / 1e3;
             }
         };
-        var b = i() ? function() {
+        var E = s() ? function() {
             try {
                 return (t = module, e = "perf_hooks", t.require(e)).performance;
             } catch (t) {
@@ -31666,38 +31956,38 @@
             }
             var t, e;
         }() : function() {
-            var t = o().performance;
+            var t = a().performance;
             if (t && t.now) return {
                 now: function() {
                     return t.now();
                 },
                 timeOrigin: Date.now() - t.now()
             };
-        }(), E = void 0 === b ? m : {
+        }(), w = void 0 === E ? b : {
             nowSeconds: function() {
-                return (b.timeOrigin + b.now()) / 1e3;
+                return (E.timeOrigin + E.now()) / 1e3;
             }
-        }, w = m.nowSeconds.bind(m), k = E.nowSeconds.bind(E);
+        }, k = b.nowSeconds.bind(b), T = w.nowSeconds.bind(w);
         !function() {
-            var t = o().performance;
+            var t = a().performance;
             if (t && t.now) {
-                var e = 36e5, n = t.now(), r = Date.now(), i = t.timeOrigin ? Math.abs(t.timeOrigin + n - r) : e, s = i < e, a = t.timing && t.timing.navigationStart, c = "number" == typeof a ? Math.abs(a + n - r) : e;
+                var e = 36e5, n = t.now(), r = Date.now(), i = t.timeOrigin ? Math.abs(t.timeOrigin + n - r) : e, s = i < e, o = t.timing && t.timing.navigationStart, c = "number" == typeof o ? Math.abs(o + n - r) : e;
                 (s || c < e) && i <= c && t.timeOrigin;
             }
         }();
-        var T = function() {
+        var L = function() {
             function t() {
                 this._notifyingListeners = !1, this._scopeListeners = [], this._eventProcessors = [], 
                 this._breadcrumbs = [], this._user = {}, this._tags = {}, this._extra = {}, this._contexts = {}, 
                 this._sdkProcessingMetadata = {};
             }
-            return t.clone = function(n) {
-                var i = new t;
-                return n && (i._breadcrumbs = r(n._breadcrumbs), i._tags = e({}, n._tags), i._extra = e({}, n._extra), 
-                i._contexts = e({}, n._contexts), i._user = n._user, i._level = n._level, i._span = n._span, 
-                i._session = n._session, i._transactionName = n._transactionName, i._fingerprint = n._fingerprint, 
-                i._eventProcessors = r(n._eventProcessors), i._requestSession = n._requestSession), 
-                i;
+            return t.clone = function(e) {
+                var r = new t;
+                return e && (r._breadcrumbs = i(e._breadcrumbs), r._tags = n({}, e._tags), r._extra = n({}, e._extra), 
+                r._contexts = n({}, e._contexts), r._user = e._user, r._level = e._level, r._span = e._span, 
+                r._session = e._session, r._transactionName = e._transactionName, r._fingerprint = e._fingerprint, 
+                r._eventProcessors = i(e._eventProcessors), r._requestSession = e._requestSession), 
+                r;
             }, t.prototype.addScopeListener = function(t) {
                 this._scopeListeners.push(t);
             }, t.prototype.addEventProcessor = function(t) {
@@ -31713,16 +32003,16 @@
             }, t.prototype.setRequestSession = function(t) {
                 return this._requestSession = t, this;
             }, t.prototype.setTags = function(t) {
-                return this._tags = e(e({}, this._tags), t), this._notifyScopeListeners(), this;
-            }, t.prototype.setTag = function(t, n) {
+                return this._tags = n(n({}, this._tags), t), this._notifyScopeListeners(), this;
+            }, t.prototype.setTag = function(t, e) {
                 var r;
-                return this._tags = e(e({}, this._tags), ((r = {})[t] = n, r)), this._notifyScopeListeners(), 
+                return this._tags = n(n({}, this._tags), ((r = {})[t] = e, r)), this._notifyScopeListeners(), 
                 this;
             }, t.prototype.setExtras = function(t) {
-                return this._extra = e(e({}, this._extra), t), this._notifyScopeListeners(), this;
-            }, t.prototype.setExtra = function(t, n) {
+                return this._extra = n(n({}, this._extra), t), this._notifyScopeListeners(), this;
+            }, t.prototype.setExtra = function(t, e) {
                 var r;
-                return this._extra = e(e({}, this._extra), ((r = {})[t] = n, r)), this._notifyScopeListeners(), 
+                return this._extra = n(n({}, this._extra), ((r = {})[t] = e, r)), this._notifyScopeListeners(), 
                 this;
             }, t.prototype.setFingerprint = function(t) {
                 return this._fingerprint = t, this._notifyScopeListeners(), this;
@@ -31732,9 +32022,9 @@
                 return this._transactionName = t, this._notifyScopeListeners(), this;
             }, t.prototype.setTransaction = function(t) {
                 return this.setTransactionName(t);
-            }, t.prototype.setContext = function(t, n) {
+            }, t.prototype.setContext = function(t, e) {
                 var r;
-                return null === n ? delete this._contexts[t] : this._contexts = e(e({}, this._contexts), ((r = {})[t] = n, 
+                return null === e ? delete this._contexts[t] : this._contexts = n(n({}, this._contexts), ((r = {})[t] = e, 
                 r)), this._notifyScopeListeners(), this;
             }, t.prototype.setSpan = function(t) {
                 return this._span = t, this._notifyScopeListeners(), this;
@@ -31748,63 +32038,63 @@
                 this;
             }, t.prototype.getSession = function() {
                 return this._session;
-            }, t.prototype.update = function(n) {
-                if (!n) return this;
-                if ("function" == typeof n) {
-                    var r = n(this);
+            }, t.prototype.update = function(e) {
+                if (!e) return this;
+                if ("function" == typeof e) {
+                    var r = e(this);
                     return r instanceof t ? r : this;
                 }
-                return n instanceof t ? (this._tags = e(e({}, this._tags), n._tags), this._extra = e(e({}, this._extra), n._extra), 
-                this._contexts = e(e({}, this._contexts), n._contexts), n._user && Object.keys(n._user).length && (this._user = n._user), 
-                n._level && (this._level = n._level), n._fingerprint && (this._fingerprint = n._fingerprint), 
-                n._requestSession && (this._requestSession = n._requestSession)) : u(n) && (this._tags = e(e({}, this._tags), n.tags), 
-                this._extra = e(e({}, this._extra), n.extra), this._contexts = e(e({}, this._contexts), n.contexts), 
-                n.user && (this._user = n.user), n.level && (this._level = n.level), n.fingerprint && (this._fingerprint = n.fingerprint), 
-                n.requestSession && (this._requestSession = n.requestSession)), this;
+                return e instanceof t ? (this._tags = n(n({}, this._tags), e._tags), this._extra = n(n({}, this._extra), e._extra), 
+                this._contexts = n(n({}, this._contexts), e._contexts), e._user && Object.keys(e._user).length && (this._user = e._user), 
+                e._level && (this._level = e._level), e._fingerprint && (this._fingerprint = e._fingerprint), 
+                e._requestSession && (this._requestSession = e._requestSession)) : p(e) && (this._tags = n(n({}, this._tags), e.tags), 
+                this._extra = n(n({}, this._extra), e.extra), this._contexts = n(n({}, this._contexts), e.contexts), 
+                e.user && (this._user = e.user), e.level && (this._level = e.level), e.fingerprint && (this._fingerprint = e.fingerprint), 
+                e.requestSession && (this._requestSession = e.requestSession)), this;
             }, t.prototype.clear = function() {
                 return this._breadcrumbs = [], this._tags = {}, this._extra = {}, this._user = {}, 
                 this._contexts = {}, this._level = void 0, this._transactionName = void 0, this._fingerprint = void 0, 
                 this._requestSession = void 0, this._span = void 0, this._session = void 0, this._notifyScopeListeners(), 
                 this;
-            }, t.prototype.addBreadcrumb = function(t, n) {
-                var i = "number" == typeof n ? Math.min(n, 100) : 100;
-                if (i <= 0) return this;
-                var s = e({
-                    timestamp: w()
+            }, t.prototype.addBreadcrumb = function(t, e) {
+                var r = "number" == typeof e ? Math.min(e, 100) : 100;
+                if (r <= 0) return this;
+                var s = n({
+                    timestamp: k()
                 }, t);
-                return this._breadcrumbs = r(this._breadcrumbs, [ s ]).slice(-i), this._notifyScopeListeners(), 
+                return this._breadcrumbs = i(this._breadcrumbs, [ s ]).slice(-r), this._notifyScopeListeners(), 
                 this;
             }, t.prototype.clearBreadcrumbs = function() {
                 return this._breadcrumbs = [], this._notifyScopeListeners(), this;
-            }, t.prototype.applyToEvent = function(t, n) {
-                if (this._extra && Object.keys(this._extra).length && (t.extra = e(e({}, this._extra), t.extra)), 
-                this._tags && Object.keys(this._tags).length && (t.tags = e(e({}, this._tags), t.tags)), 
-                this._user && Object.keys(this._user).length && (t.user = e(e({}, this._user), t.user)), 
-                this._contexts && Object.keys(this._contexts).length && (t.contexts = e(e({}, this._contexts), t.contexts)), 
+            }, t.prototype.applyToEvent = function(t, e) {
+                if (this._extra && Object.keys(this._extra).length && (t.extra = n(n({}, this._extra), t.extra)), 
+                this._tags && Object.keys(this._tags).length && (t.tags = n(n({}, this._tags), t.tags)), 
+                this._user && Object.keys(this._user).length && (t.user = n(n({}, this._user), t.user)), 
+                this._contexts && Object.keys(this._contexts).length && (t.contexts = n(n({}, this._contexts), t.contexts)), 
                 this._level && (t.level = this._level), this._transactionName && (t.transaction = this._transactionName), 
                 this._span) {
-                    t.contexts = e({
+                    t.contexts = n({
                         trace: this._span.getTraceContext()
                     }, t.contexts);
-                    var i = this._span.transaction && this._span.transaction.name;
-                    i && (t.tags = e({
-                        transaction: i
+                    var r = this._span.transaction && this._span.transaction.name;
+                    r && (t.tags = n({
+                        transaction: r
                     }, t.tags));
                 }
-                return this._applyFingerprint(t), t.breadcrumbs = r(t.breadcrumbs || [], this._breadcrumbs), 
+                return this._applyFingerprint(t), t.breadcrumbs = i(t.breadcrumbs || [], this._breadcrumbs), 
                 t.breadcrumbs = t.breadcrumbs.length > 0 ? t.breadcrumbs : void 0, t.sdkProcessingMetadata = this._sdkProcessingMetadata, 
-                this._notifyEventProcessors(r(a("globalEventProcessors", (function() {
+                this._notifyEventProcessors(i(c("globalEventProcessors", (function() {
                     return [];
-                })), this._eventProcessors), t, n);
+                })), this._eventProcessors), t, e);
             }, t.prototype.setSDKProcessingMetadata = function(t) {
-                return this._sdkProcessingMetadata = e(e({}, this._sdkProcessingMetadata), t), this;
-            }, t.prototype._notifyEventProcessors = function(t, n, r, i) {
+                return this._sdkProcessingMetadata = n(n({}, this._sdkProcessingMetadata), t), this;
+            }, t.prototype._notifyEventProcessors = function(t, e, r, i) {
                 var s = this;
-                return void 0 === i && (i = 0), new S((function(o, a) {
+                return void 0 === i && (i = 0), new m((function(o, a) {
                     var c = t[i];
-                    if (null === n || "function" != typeof c) o(n); else {
-                        var u = c(e({}, n), r);
-                        p(u) ? u.then((function(e) {
+                    if (null === e || "function" != typeof c) o(e); else {
+                        var u = c(n({}, e), r);
+                        h(u) ? u.then((function(e) {
                             return s._notifyEventProcessors(t, e, r, i + 1).then(o);
                         })).then(null, a) : s._notifyEventProcessors(t, u, r, i + 1).then(o).then(null, a);
                     }
@@ -31820,18 +32110,18 @@
                 t.fingerprint && !t.fingerprint.length && delete t.fingerprint;
             }, t;
         }();
-        var L = function() {
+        var O = function() {
             function t(t) {
-                this.errors = 0, this.sid = y(), this.duration = 0, this.status = "ok", this.init = !0, 
+                this.errors = 0, this.sid = x(), this.duration = 0, this.status = "ok", this.init = !0, 
                 this.ignoreDuration = !1;
-                var e = k();
+                var e = T();
                 this.timestamp = e, this.started = e, t && this.update(t);
             }
             return t.prototype.update = function(t) {
                 if (void 0 === t && (t = {}), t.user && (!this.ipAddress && t.user.ip_address && (this.ipAddress = t.user.ip_address), 
                 this.did || t.did || (this.did = t.user.id || t.user.email || t.user.username)), 
-                this.timestamp = t.timestamp || k(), t.ignoreDuration && (this.ignoreDuration = t.ignoreDuration), 
-                t.sid && (this.sid = 32 === t.sid.length ? t.sid : y()), void 0 !== t.init && (this.init = t.init), 
+                this.timestamp = t.timestamp || T(), t.ignoreDuration && (this.ignoreDuration = t.ignoreDuration), 
+                t.sid && (this.sid = 32 === t.sid.length ? t.sid : x()), void 0 !== t.init && (this.init = t.init), 
                 !this.did && t.did && (this.did = "" + t.did), "number" == typeof t.started && (this.started = t.started), 
                 this.ignoreDuration) this.duration = void 0; else if ("number" == typeof t.duration) this.duration = t.duration; else {
                     var e = this.timestamp - this.started;
@@ -31847,7 +32137,7 @@
                     status: "exited"
                 }) : this.update();
             }, t.prototype.toJSON = function() {
-                return v({
+                return y({
                     sid: "" + this.sid,
                     init: this.init,
                     started: new Date(1e3 * this.started).toISOString(),
@@ -31864,9 +32154,9 @@
                     }
                 });
             }, t;
-        }(), O = "undefined" == typeof __SENTRY_DEBUG__ || __SENTRY_DEBUG__, N = function() {
+        }(), N = "undefined" == typeof __SENTRY_DEBUG__ || __SENTRY_DEBUG__, R = function() {
             function t(t, e, n) {
-                void 0 === e && (e = new T), void 0 === n && (n = 4), this._version = n, this._stack = [ {} ], 
+                void 0 === e && (e = new L), void 0 === n && (n = 4), this._version = n, this._stack = [ {} ], 
                 this.getStackTop().scope = e, t && this.bindClient(t);
             }
             return t.prototype.isOlderThan = function(t) {
@@ -31874,7 +32164,7 @@
             }, t.prototype.bindClient = function(t) {
                 this.getStackTop().client = t, t && t.setupIntegrations && t.setupIntegrations();
             }, t.prototype.pushScope = function() {
-                var t = T.clone(this.getScope());
+                var t = L.clone(this.getScope());
                 return this.getStack().push({
                     client: this.getClient(),
                     scope: t
@@ -31896,9 +32186,9 @@
                 return this._stack;
             }, t.prototype.getStackTop = function() {
                 return this._stack[this._stack.length - 1];
-            }, t.prototype.captureException = function(t, n) {
-                var r = this._lastEventId = n && n.event_id ? n.event_id : y(), i = n;
-                if (!n) {
+            }, t.prototype.captureException = function(t, e) {
+                var r = this._lastEventId = e && e.event_id ? e.event_id : x(), i = e;
+                if (!e) {
                     var s = void 0;
                     try {
                         throw new Error("Sentry syntheticException");
@@ -31910,11 +32200,11 @@
                         syntheticException: s
                     };
                 }
-                return this._invokeClient("captureException", t, e(e({}, i), {
+                return this._invokeClient("captureException", t, n(n({}, i), {
                     event_id: r
                 })), r;
-            }, t.prototype.captureMessage = function(t, n, r) {
-                var i = this._lastEventId = r && r.event_id ? r.event_id : y(), s = r;
+            }, t.prototype.captureMessage = function(t, e, r) {
+                var i = this._lastEventId = r && r.event_id ? r.event_id : x(), s = r;
                 if (!r) {
                     var o = void 0;
                     try {
@@ -31927,25 +32217,25 @@
                         syntheticException: o
                     };
                 }
-                return this._invokeClient("captureMessage", t, n, e(e({}, s), {
+                return this._invokeClient("captureMessage", t, e, n(n({}, s), {
                     event_id: i
                 })), i;
-            }, t.prototype.captureEvent = function(t, n) {
-                var r = n && n.event_id ? n.event_id : y();
-                return "transaction" !== t.type && (this._lastEventId = r), this._invokeClient("captureEvent", t, e(e({}, n), {
+            }, t.prototype.captureEvent = function(t, e) {
+                var r = e && e.event_id ? e.event_id : x();
+                return "transaction" !== t.type && (this._lastEventId = r), this._invokeClient("captureEvent", t, n(n({}, e), {
                     event_id: r
                 })), r;
             }, t.prototype.lastEventId = function() {
                 return this._lastEventId;
-            }, t.prototype.addBreadcrumb = function(t, n) {
+            }, t.prototype.addBreadcrumb = function(t, e) {
                 var r = this.getStackTop(), i = r.scope, s = r.client;
                 if (i && s) {
                     var o = s.getOptions && s.getOptions() || {}, a = o.beforeBreadcrumb, c = void 0 === a ? null : a, u = o.maxBreadcrumbs, p = void 0 === u ? 100 : u;
                     if (!(p <= 0)) {
-                        var h = w(), f = e({
+                        var h = k(), f = n({
                             timestamp: h
-                        }, t), _ = c ? d((function() {
-                            return c(f, n);
+                        }, t), _ = c ? g((function() {
+                            return c(f, e);
                         })) : f;
                         null !== _ && i.addBreadcrumb(_, p);
                     }
@@ -31984,7 +32274,7 @@
                 try {
                     return e.getIntegration(t);
                 } catch (e) {
-                    return O && h.warn("Cannot retrieve integration " + t.id + " from the current Hub"), 
+                    return N && f.warn("Cannot retrieve integration " + t.id + " from the current Hub"), 
                     null;
                 }
             }, t.prototype.startSpan = function(t) {
@@ -32000,8 +32290,8 @@
                 var t = this.getStackTop(), e = t && t.scope, n = e && e.getSession();
                 n && n.close(), this._sendSessionUpdate(), e && e.setSession();
             }, t.prototype.startSession = function(t) {
-                var n = this.getStackTop(), r = n.scope, i = n.client, s = i && i.getOptions() || {}, a = s.release, c = s.environment, u = (o().navigator || {}).userAgent, p = new L(e(e(e({
-                    release: a,
+                var e = this.getStackTop(), r = e.scope, i = e.client, s = i && i.getOptions() || {}, o = s.release, c = s.environment, u = (a().navigator || {}).userAgent, p = new O(n(n(n({
+                    release: o,
                     environment: c
                 }, r && {
                     user: r.getUser()
@@ -32022,36 +32312,36 @@
                     r && n && n.captureSession && n.captureSession(r);
                 }
             }, t.prototype._invokeClient = function(t) {
-                for (var e, n = [], i = 1; i < arguments.length; i++) n[i - 1] = arguments[i];
+                for (var e, n = [], r = 1; r < arguments.length; r++) n[r - 1] = arguments[r];
                 var s = this.getStackTop(), o = s.scope, a = s.client;
-                a && a[t] && (e = a)[t].apply(e, r(n, [ o ]));
+                a && a[t] && (e = a)[t].apply(e, i(n, [ o ]));
             }, t.prototype._callExtensionMethod = function(t) {
                 for (var e = [], n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
-                var r = R(), i = r.__SENTRY__;
+                var r = j(), i = r.__SENTRY__;
                 if (i && i.extensions && "function" == typeof i.extensions[t]) return i.extensions[t].apply(this, e);
-                O && h.warn("Extension method " + t + " couldn't be found, doing nothing.");
+                N && f.warn("Extension method " + t + " couldn't be found, doing nothing.");
             }, t;
         }();
-        function R() {
-            var t = o();
+        function j() {
+            var t = a();
             return t.__SENTRY__ = t.__SENTRY__ || {
                 extensions: {},
                 hub: void 0
             }, t;
         }
         function C(t) {
-            var e = R(), n = M(e);
+            var e = j(), n = M(e);
             return D(e, t), n;
         }
-        function j() {
-            var t = R();
-            return A(t) && !M(t).isOlderThan(4) || D(t, new N), i() ? function(t) {
+        function A() {
+            var t = j();
+            return P(t) && !M(t).isOlderThan(4) || D(t, new R), s() ? function(t) {
                 try {
-                    var e = R().__SENTRY__, n = e && e.extensions && e.extensions.domain && e.extensions.domain.active;
+                    var e = j().__SENTRY__, n = e && e.extensions && e.extensions.domain && e.extensions.domain.active;
                     if (!n) return M(t);
-                    if (!A(n) || M(n).isOlderThan(4)) {
+                    if (!P(n) || M(n).isOlderThan(4)) {
                         var r = M(t).getStackTop();
-                        D(n, new N(r.client, T.clone(r.scope)));
+                        D(n, new R(r.client, L.clone(r.scope)));
                     }
                     return M(n);
                 } catch (e) {
@@ -32059,90 +32349,111 @@
                 }
             }(t) : M(t);
         }
-        function A(t) {
+        function P(t) {
             return !!(t && t.__SENTRY__ && t.__SENTRY__.hub);
         }
         function M(t) {
-            return a("hub", (function() {
-                return new N;
+            return c("hub", (function() {
+                return new R;
             }), t);
         }
         function D(t, e) {
             return !!t && ((t.__SENTRY__ = t.__SENTRY__ || {}).hub = e, !0);
         }
-        function P(t) {
+        function B(t) {
             for (var e = [], n = 1; n < arguments.length; n++) e[n - 1] = arguments[n];
-            var i = j();
-            if (i && i[t]) return i[t].apply(i, r(e));
+            var r = A();
+            if (r && r[t]) return r[t].apply(r, i(e));
             throw new Error("No hub defined or " + t + " was not found on the hub, please open a bug report.");
         }
-        function B(t, n) {
+        function I(t, e) {
             var r = new Error(t);
-            return P("captureMessage", t, "string" == typeof n ? n : void 0, e({
+            return B("captureMessage", t, "string" == typeof e ? e : void 0, n({
                 originalException: t,
                 syntheticException: r
-            }, "string" != typeof n ? {
-                captureContext: n
+            }, "string" != typeof e ? {
+                captureContext: e
             } : void 0));
         }
-        var I = function(t) {
-            var e = t.message, n = t.owner, r = t.action, i = t.status, s = t.errorLevel, o = t.data, a = [ {
-                key: "owner",
-                value: n
-            }, {
-                key: "action",
-                value: r
-            }, {
-                key: "status",
-                value: i
-            }, {
-                key: "errorLevel",
-                value: s
-            } ];
-            return "".concat(e).concat(a.map((function(t) {
-                return e = t.key, n = t.value, "".concat(n ? "\n[".concat(e, ": ").concat(n, "]") : "");
-                var e, n;
-            })).join("")).concat(o ? "\n".concat(JSON.stringify(o, null, 2)) : "");
-        }, Y = function(t, e) {
-            var n = e;
-            return n && n instanceof Error ? n.message = "".concat(null == e ? void 0 : e.message, ": ").concat(t) : n = t, 
-            n;
-        }, U = function(n) {
-            var r, i, s = n.level, o = n.data, a = n.owner, c = n.action, u = n.error, p = I(n), h = e({
-                "event.owner": a,
-                "event.action": c
-            }, n.tags), f = Y(p, u);
+        var Y = function(t) {
+            function n() {
+                var e = null !== t && t.apply(this, arguments) || this;
+                return e.name = "Logger Error", e;
+            }
+            return function(t, n) {
+                function r() {
+                    this.constructor = t;
+                }
+                e(t, n), t.prototype = null === n ? Object.create(n) : (r.prototype = n.prototype, 
+                new r);
+            }(n, t), n;
+        }(Error), U = function(t) {
+            var e = t.message, n = t.owner, r = t.action, i = t.status, s = t.errorLevel, o = t.data;
+            return {
+                title: e,
+                context: [ {
+                    key: "owner",
+                    value: n
+                }, {
+                    key: "action",
+                    value: r
+                }, {
+                    key: "status",
+                    value: i
+                }, {
+                    key: "errorLevel",
+                    value: s
+                } ].map((function(t) {
+                    return e = t.key, n = t.value, "".concat(n ? "\n[".concat(e, ": ").concat(n, "]") : "");
+                    var e, n;
+                })).join(""),
+                data: o ? "\n".concat(JSON.stringify(o, null, 2)) : ""
+            };
+        }, q = function(t) {
+            var e = {};
+            return [ "owner", "action" ].forEach((function(n) {
+                (t[n] || 0 === t[n]) && (e["event.".concat(n)] = t[n]);
+            })), n(n({}, t.tags), e);
+        }, W = function(t, e) {
+            var n;
+            return e instanceof Error ? (e.message = "".concat(t.title).concat(e.message ? " [reason: ".concat(e.message, "]") : "").concat(t.context), 
+            n = e) : (null == e ? void 0 : e.reportError) instanceof Error ? (e.reportError.message = "".concat(t.title).concat(e.reportError.message ? " [reason: ".concat(e.reportError.message, "]") : "").concat(t.context), 
+            n = e.reportError) : n = new Y("".concat(t.title).concat(t.context)), n;
+        }, H = function(e) {
+            var r, i, s = e.level, o = e.data, a = e.error, c = U(e), u = q(e), p = W(c, a);
             switch (s) {
               case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Info:
-                P("addBreadcrumb", {
-                    category: n.owner,
-                    message: p,
-                    level: x.Info
+                B("addBreadcrumb", {
+                    category: e.owner,
+                    message: "".concat(c.title).concat(c.context).concat(c.data),
+                    level: S.Info
                 });
                 break;
 
               case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Log:
-                B(p, {
+                I("".concat(c.title).concat(c.context).concat(c.data), {
                     extra: o,
-                    tags: h,
-                    level: x.Log
+                    tags: u,
+                    level: S.Log
                 });
                 break;
 
               case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Warn:
-                B(p, {
+                I("".concat(c.title).concat(c.context).concat(c.data), {
                     extra: o,
-                    tags: h,
-                    level: x.Warning
+                    tags: u,
+                    level: S.Warning
                 });
                 break;
 
               case _sl_logger__WEBPACK_IMPORTED_MODULE_0__.LogLevel.Error:
-                r = f, i = {
-                    extra: o,
-                    tags: h,
-                    level: x.Error
-                }, P("captureException", r, {
+                r = p, i = {
+                    extra: n({
+                        error: a
+                    }, o),
+                    tags: u,
+                    level: S.Error
+                }, B("captureException", r, {
                     captureContext: i,
                     originalException: r,
                     syntheticException: new Error("Sentry syntheticException")
@@ -32150,7 +32461,7 @@
                 break;
 
               default:
-                console.error("不是期望的上报类型", s, p);
+                console.error("不是期望的上报类型", s, c);
             }
         };
     },
@@ -32158,74 +32469,1003 @@
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
             LogLevel: () => t,
-            default: () => e
+            consoleTransport: () => i,
+            default: () => p
         });
-        var n, o, t, i = function() {
-            return i = Object.assign || function(n) {
-                for (var o, t = 1, i = arguments.length; t < i; t++) for (var r in o = arguments[t]) Object.prototype.hasOwnProperty.call(o, r) && (n[r] = o[r]);
-                return n;
-            }, i.apply(this, arguments);
+        var o, n, t, e = function() {
+            return e = Object.assign || function(o) {
+                for (var n, t = 1, e = arguments.length; t < e; t++) for (var r in n = arguments[t]) Object.prototype.hasOwnProperty.call(n, r) && (o[r] = n[r]);
+                return o;
+            }, e.apply(this, arguments);
         };
-        !function(n) {
-            n.P0 = "P0", n.P1 = "P1", n.P2 = "P2";
-        }(n || (n = {})), function(n) {
-            n.Start = "开始", n.Success = "成功", n.Failure = "失败";
-        }(o || (o = {})), function(n) {
-            n.Info = "info", n.Log = "log", n.Warn = "warn", n.Error = "error";
+        function r(o, n, t, e) {
+            var r, i = arguments.length, c = i < 3 ? n : null === e ? e = Object.getOwnPropertyDescriptor(n, t) : e;
+            if ("object" == typeof Reflect && "function" == typeof Reflect.decorate) c = Reflect.decorate(o, n, t, e); else for (var a = o.length - 1; a >= 0; a--) (r = o[a]) && (c = (i < 3 ? r(c) : i > 3 ? r(n, t, c) : r(n, t)) || c);
+            return i > 3 && c && Object.defineProperty(n, t, c), c;
+        }
+        !function(o) {
+            o.P0 = "P0", o.P1 = "P1", o.P2 = "P2";
+        }(o || (o = {})), function(o) {
+            o.Start = "开始", o.Success = "成功", o.Failure = "失败";
+        }(n || (n = {})), function(o) {
+            o.Info = "info", o.Log = "log", o.Warn = "warn", o.Error = "error";
         }(t || (t = {}));
-        var r = function n(o) {
-            var r = this;
-            this.options = {
-                owner: "",
-                action: "",
-                transports: []
-            }, this.withOwner = function(o) {
-                return new n(i(i({}, r.options), {
-                    owner: o
+        var i = function(o) {
+            var n = o.level, e = o.message, r = function(o, n) {
+                var t = {};
+                for (var e in o) Object.prototype.hasOwnProperty.call(o, e) && n.indexOf(e) < 0 && (t[e] = o[e]);
+                if (null != o && "function" == typeof Object.getOwnPropertySymbols) {
+                    var r = 0;
+                    for (e = Object.getOwnPropertySymbols(o); r < e.length; r++) n.indexOf(e[r]) < 0 && Object.prototype.propertyIsEnumerable.call(o, e[r]) && (t[e[r]] = o[e[r]]);
+                }
+                return t;
+            }(o, [ "level", "message" ]);
+            switch (n) {
+              case t.Info:
+                console.debug("%c".concat(e), "color: #fff; background-color: #6e6e6e;", r);
+                break;
+
+              case t.Log:
+                console.log("%c".concat(e), "color: #fff; background-color: #2a53cd;", r);
+                break;
+
+              case t.Warn:
+                console.warn(e, r);
+                break;
+
+              case t.Error:
+                console.error(e, r);
+                break;
+
+              default:
+                console.error("不是期望的上报类型", n, e, r);
+            }
+        }, s = function(o, n, t) {
+            var e = t.value;
+            t.value = function() {
+                for (var o = [], t = 0; t < arguments.length; t++) o[t] = arguments[t];
+                try {
+                    var r = e.apply(this, o);
+                    return r;
+                } catch (o) {
+                    return console.error("logger: ".concat(n, "方法执行出错"), o), p;
+                }
+            };
+        }, l = function() {
+            function o(o) {
+                var n = this;
+                this.options = {
+                    owner: "",
+                    action: "",
+                    transports: []
+                }, this.report = function(o, t, r) {
+                    !function(o, n) {
+                        var t = o;
+                        n.forEach((function(o) {
+                            var n = o(t);
+                            n && (t = n);
+                        }));
+                    }(e(e({
+                        level: o,
+                        owner: n.options.owner,
+                        action: n.options.action
+                    }, r), {
+                        message: t
+                    }), n.options.transports);
+                }, this.options = e(e({}, this.options), o);
+            }
+            return o.prototype.withOwner = function(n) {
+                return new o(e(e({}, this.options), {
+                    owner: n
                 }));
-            }, this.pipeOwner = function(o) {
+            }, o.prototype.pipeOwner = function(n) {
+                if (!n) return this;
                 var t = "";
-                return t = r.options.owner ? "".concat(r.options.owner, ".").concat(o) : o, new n(i(i({}, r.options), {
+                return t = this.options.owner ? "".concat(this.options.owner, ".").concat(n) : n, 
+                new o(e(e({}, this.options), {
                     owner: t
                 }));
-            }, this.withAction = function(o) {
-                return new n(i(i({}, r.options), {
-                    action: o
+            }, o.prototype.withAction = function(n) {
+                return new o(e(e({}, this.options), {
+                    action: n
                 }));
-            }, this.pipeTransport = function() {
-                for (var o = [], t = 0; t < arguments.length; t++) o[t] = arguments[t];
-                var e = r.options.transports.concat(o);
-                return new n(i(i({}, r.options), {
-                    transports: e
+            }, o.prototype.pipeTransport = function() {
+                for (var n = [], t = 0; t < arguments.length; t++) n[t] = arguments[t];
+                var r = this.options.transports.concat(n);
+                return new o(e(e({}, this.options), {
+                    transports: r
                 }));
-            }, this.report = function(n, o, t) {
-                !function(n, o) {
-                    var t = n;
-                    o.forEach((function(n) {
-                        var o = n(t);
-                        o && (t = o);
-                    }));
-                }(i(i({
-                    level: n,
-                    owner: r.options.owner,
-                    action: r.options.action
-                }, t), {
-                    message: o
-                }), r.options.transports);
-            }, this.info = function(n, o) {
-                r.report(t.Info, n, o);
-            }, this.log = function(n, o) {
-                r.report(t.Log, n, o);
-            }, this.warn = function(n, o) {
-                r.report(t.Warn, n, o);
-            }, this.error = function(n, o) {
-                r.report(t.Error, n, o);
-            }, this.options = i(i({}, this.options), o);
-        }, e = new r;
-        Object.defineProperty(e, "options", {
+            }, o.prototype.info = function(o, n) {
+                this.report(t.Info, o, n);
+            }, o.prototype.log = function(o, n) {
+                this.report(t.Log, o, n);
+            }, o.prototype.warn = function(o, n) {
+                this.report(t.Warn, o, n);
+            }, o.prototype.error = function(o, n) {
+                this.report(t.Error, o, n);
+            }, r([ s ], o.prototype, "withOwner", null), r([ s ], o.prototype, "pipeOwner", null), 
+            r([ s ], o.prototype, "withAction", null), r([ s ], o.prototype, "pipeTransport", null), 
+            r([ s ], o.prototype, "info", null), r([ s ], o.prototype, "log", null), r([ s ], o.prototype, "warn", null), 
+            r([ s ], o.prototype, "error", null), o;
+        }(), p = new l;
+        Object.defineProperty(p, "options", {
             writable: !1,
             configurable: !1
         });
+    },
+    "../shared/browser/node_modules/@sl/smart-payment/lib/index.js": function(__unused_webpack_module, exports, __webpack_require__) {
+        !function(e, t) {
+            true ? t(exports) : 0;
+        }(0, (function(e) {
+            "use strict";
+            function t(e, t, n, r) {
+                var o, i = arguments.length, a = i < 3 ? t : null === r ? r = Object.getOwnPropertyDescriptor(t, n) : r;
+                if ("object" == typeof Reflect && "function" == typeof Reflect.decorate) a = Reflect.decorate(e, t, n, r); else for (var s = e.length - 1; s >= 0; s--) (o = e[s]) && (a = (i < 3 ? o(a) : i > 3 ? o(t, n, a) : o(t, n)) || a);
+                return i > 3 && a && Object.defineProperty(t, n, a), a;
+            }
+            "undefined" != typeof globalThis ? globalThis : "undefined" != typeof window ? window : "undefined" != typeof __webpack_require__.g ? __webpack_require__.g : "undefined" != typeof self && self;
+            var n = {
+                exports: {}
+            };
+            !function(e, t) {
+                e.exports = function() {
+                    var e = function() {}, t = {}, n = {}, r = {};
+                    function o(e, t) {
+                        e = e.push ? e : [ e ];
+                        var o, i, a, s = [], c = e.length, d = c;
+                        for (o = function(e, n) {
+                            n.length && s.push(e), --d || t(s);
+                        }; c--; ) i = e[c], (a = n[i]) ? o(i, a) : (r[i] = r[i] || []).push(o);
+                    }
+                    function i(e, t) {
+                        if (e) {
+                            var o = r[e];
+                            if (n[e] = t, o) for (;o.length; ) o[0](e, t), o.splice(0, 1);
+                        }
+                    }
+                    function a(t, n) {
+                        t.call && (t = {
+                            success: t
+                        }), n.length ? (t.error || e)(n) : (t.success || e)(t);
+                    }
+                    function s(t, n, r, o) {
+                        var i, a, c = document, d = r.async, l = (r.numRetries || 0) + 1, p = r.before || e, h = t.replace(/[\?|#].*$/, ""), u = t.replace(/^(css|img)!/, "");
+                        o = o || 0, /(^css!|\.css$)/.test(h) ? ((a = c.createElement("link")).rel = "stylesheet", 
+                        a.href = u, (i = "hideFocus" in a) && a.relList && (i = 0, a.rel = "preload", a.as = "style")) : /(^img!|\.(png|gif|jpg|svg|webp)$)/.test(h) ? (a = c.createElement("img")).src = u : ((a = c.createElement("script")).src = t, 
+                        a.async = void 0 === d || d), a.onload = a.onerror = a.onbeforeload = function(e) {
+                            var c = e.type[0];
+                            if (i) try {
+                                a.sheet.cssText.length || (c = "e");
+                            } catch (e) {
+                                18 != e.code && (c = "e");
+                            }
+                            if ("e" == c) {
+                                if ((o += 1) < l) return s(t, n, r, o);
+                            } else if ("preload" == a.rel && "style" == a.as) return a.rel = "stylesheet";
+                            n(t, c, e.defaultPrevented);
+                        }, !1 !== p(t, a) && c.head.appendChild(a);
+                    }
+                    function c(e, t, n) {
+                        var r, o, i = (e = e.push ? e : [ e ]).length, a = i, c = [];
+                        for (r = function(e, n, r) {
+                            if ("e" == n && c.push(e), "b" == n) {
+                                if (!r) return;
+                                c.push(e);
+                            }
+                            --i || t(c);
+                        }, o = 0; o < a; o++) s(e[o], r, n);
+                    }
+                    function d(e, n, r) {
+                        var o, s;
+                        if (n && n.trim && (o = n), s = (o ? r : n) || {}, o) {
+                            if (o in t) throw "LoadJS";
+                            t[o] = !0;
+                        }
+                        function d(t, n) {
+                            c(e, (function(e) {
+                                a(s, e), t && a({
+                                    success: t,
+                                    error: n
+                                }, e), i(o, e);
+                            }), s);
+                        }
+                        if (s.returnPromise) return new Promise(d);
+                        d();
+                    }
+                    return d.ready = function(e, t) {
+                        return o(e, (function(e) {
+                            a(t, e);
+                        })), d;
+                    }, d.done = function(e) {
+                        i(e, []);
+                    }, d.reset = function() {
+                        t = {}, n = {}, r = {};
+                    }, d.isDefined = function(e) {
+                        return e in t;
+                    }, d;
+                }();
+            }(n);
+            var r = n.exports;
+            function o(e) {
+                for (var t = 1; t < arguments.length; t++) {
+                    var n = arguments[t];
+                    for (var r in n) e[r] = n[r];
+                }
+                return e;
+            }
+            var i, a, s, c, d, l, p = function e(t, n) {
+                function r(e, r, i) {
+                    if ("undefined" != typeof document) {
+                        "number" == typeof (i = o({}, n, i)).expires && (i.expires = new Date(Date.now() + 864e5 * i.expires)), 
+                        i.expires && (i.expires = i.expires.toUTCString()), e = encodeURIComponent(e).replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent).replace(/[()]/g, escape);
+                        var a = "";
+                        for (var s in i) i[s] && (a += "; " + s, !0 !== i[s] && (a += "=" + i[s].split(";")[0]));
+                        return document.cookie = e + "=" + t.write(r, e) + a;
+                    }
+                }
+                return Object.create({
+                    set: r,
+                    get: function(e) {
+                        if ("undefined" != typeof document && (!arguments.length || e)) {
+                            for (var n = document.cookie ? document.cookie.split("; ") : [], r = {}, o = 0; o < n.length; o++) {
+                                var i = n[o].split("="), a = i.slice(1).join("=");
+                                try {
+                                    var s = decodeURIComponent(i[0]);
+                                    if (r[s] = t.read(a, s), e === s) break;
+                                } catch (e) {}
+                            }
+                            return e ? r[e] : r;
+                        }
+                    },
+                    remove: function(e, t) {
+                        r(e, "", o({}, t, {
+                            expires: -1
+                        }));
+                    },
+                    withAttributes: function(t) {
+                        return e(this.converter, o({}, this.attributes, t));
+                    },
+                    withConverter: function(t) {
+                        return e(o({}, this.converter, t), this.attributes);
+                    }
+                }, {
+                    attributes: {
+                        value: Object.freeze(n)
+                    },
+                    converter: {
+                        value: Object.freeze(t)
+                    }
+                });
+            }({
+                read: function(e) {
+                    return '"' === e[0] && (e = e.slice(1, -1)), e.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent);
+                },
+                write: function(e) {
+                    return encodeURIComponent(e).replace(/%(2[346BF]|3[AC-F]|40|5[BDE]|60|7[BCD])/g, decodeURIComponent);
+                }
+            }, {
+                path: "/"
+            });
+            !function(e) {
+                e.Init = "init", e.CreateOrder = "createOrder", e.Pay = "pay";
+            }(i || (i = {})), e.PayMode = void 0, (a = e.PayMode || (e.PayMode = {})).Continue = "continue", 
+            a.PayNow = "pay_now", a.All = "all", e.ChannelCode = void 0, (e.ChannelCode || (e.ChannelCode = {})).Paypal = "Paypal", 
+            e.SystemCode = void 0, (e.SystemCode || (e.SystemCode = {})).StandardEC = "standard_ec", 
+            function(e) {
+                e.Stg = "stg", e.Prod = "prod";
+            }(s || (s = {})), function(e) {
+                e.Done = "done", e.Pending = "pending", e.Await = "await";
+            }(c || (c = {})), function(e) {
+                e[e.Fail = 0] = "Fail", e[e.Success = 1] = "Success";
+            }(d || (d = {})), function(e) {
+                e.RedirectOrPopup = "RedirectOrPopup";
+            }(l || (l = {}));
+            const h = "rememberedCb", u = "loadPayPalRemembered", f = {
+                props: {
+                    payMode: e.PayMode.Continue,
+                    timeout: {
+                        switch: !1,
+                        delay: 5e3
+                    },
+                    styleOptions: {
+                        layout: "horizontal",
+                        color: "gold",
+                        shape: "rect",
+                        label: "paypal",
+                        tagline: !1,
+                        height: 55
+                    },
+                    timing: !1,
+                    currency: p.get("currency_code") || "USD"
+                }
+            };
+            class y {
+                initialData;
+                paypalInstanceName;
+                constructor(e) {
+                    this.initialData = e, this.paypalInstanceName = e?.scriptParams?.["data-namespace"] || "paypal", 
+                    window.__PAYPALSPB_LOADJS || (window.__PAYPALSPB_LOADJS = r, window.__PAYPALSPB_LOADJS.ids = {}), 
+                    this.loadPaypal();
+                }
+                loadPaypal() {
+                    let e = "https://www.paypal.com/sdk/js";
+                    this.initialData?.queryParams && (e += `${this.initialData.queryParams}`);
+                    let t = e;
+                    const n = {
+                        success: () => {
+                            window.__PAYPALSPB_LOADJS.ids[t] = !0, this.initPaypal();
+                        }
+                    };
+                    if (this.initialData?.scriptParams) {
+                        const e = this.initialData?.scriptParams || {};
+                        n.before = (n, r) => {
+                            Object.keys(e).forEach((n => {
+                                const o = e[n];
+                                o && r.setAttribute(n, o), t += `${n}&${o}`;
+                            }));
+                        }, e?.["data-namespace"] && (this.paypalInstanceName = e["data-namespace"]), Object.keys(e).forEach((n => {
+                            const r = e[n];
+                            t += `${n}&${r}`;
+                        }));
+                    }
+                    window.__PAYPALSPB_LOADJS.ids[t] ? window.__PAYPALSPB_LOADJS.ready(t, n) : (window.__PAYPALSPB_LOADJS.ids[t] = !0, 
+                    window.__PAYPALSPB_LOADJS([ e ], t, n));
+                }
+                initPaypal() {
+                    window[this.paypalInstanceName].Buttons(this.initialData).render(`#${this.initialData.domId}`);
+                }
+            }
+            const m = (e, t) => {
+                const n = [];
+                return Object.keys(t).forEach((e => t[e] && n.push(`${e}=${t[e]}`))), -1 === e.search(/\?/) ? e += `?${n.join("&")}` : e += `&${n.join("&")}`, 
+                e;
+            }, g = t => {
+                const n = t, r = t.props.payMode === e.PayMode.Continue;
+                if (t?.paymentInfo) {
+                    const {configData: o, channelSdkInitConfig: i, captureInfo: {autoCapture: a}} = t.paymentInfo;
+                    let s = ((t, n) => {
+                        let r = "";
+                        const o = e => {
+                            const {key: t, value: n, isCoverAll: o, whitelist: i, blacklist: a} = e, {storeId: s} = window.Shopline || {};
+                            o ? Array.isArray(a) && !a.includes(s) && (r = m(r, {
+                                [t]: n
+                            })) : Array.isArray(i) && i.includes(s) && (r = m(r, {
+                                [t]: n
+                            }));
+                        };
+                        return Array.isArray(t) && t?.forEach((t => {
+                            t.scope === e.PayMode.All ? o(t) : (n && t.scope === e.PayMode.Continue && o(t), 
+                            n || t.scope !== e.PayMode.PayNow || o(t));
+                        })), r;
+                    })(JSON.parse(i), r);
+                    s = m(s, {
+                        currency: t.props.currency || "USD",
+                        intent: a ? "capture" : "authorize",
+                        commit: !!r,
+                        "merchant-id": o.paypalMerchantId,
+                        "client-id": o.clientId
+                    }), n.props = {
+                        ...t.props,
+                        queryParams: s,
+                        ...o
+                    };
+                }
+                return n;
+            }, b = e => {
+                const t = Math.floor(e);
+                return t >= 5e3 && t <= 1e4 ? "warn" : t > 1e4 ? "error" : "info";
+            }, w = ({styleTag: e, domId: t, height: n, isContinueMode: r, isVerticalLayout: o}) => {
+                e.innerHTML = r && !o ? `\n        #${t} {\n          overflow: hidden;\n          text-align: center;\n          height: ${n}px;\n        }\n        /** 背景底色 */\n        #${t}.paypal__bg::before,\n        #${t}.paypal__bg::after {\n          content:'';\n          position: absolute;\n          top: 0;\n          bottom: 0;\n          left: 0;\n          width: calc(50% - 3px);\n          border-radius: 4px;\n          background-color: #ffc439;\n        }\n        #${t}.paypal__bg::after {\n          left: unset;\n          right: 0;\n        }\n        [data-button_style=square] .paypal__bg::before,\n        [data-button_style=square] .paypal__bg::after{\n          border-radius: 0 !important;\n        }\n        [data-button_style=rounded] .paypal__bg::before,\n        [data-button_style=rounded] .paypal__bg::after{\n          border-radius: 9999px !important;\n        }\n      ` : `\n        #${t} {\n          min-height: ${n}px;\n        }\n        `;
+                const i = [ "90deg", "hsla(0, 0%, 74.5%, 0.2) 25%", "hsla(0, 0%, 50.6%, 0.24) 37%", "hsla(0, 0%, 74.5%, 0.2) 63%" ].join(", ");
+                e.innerHTML += `\n      #${t} {\n        position: relative;\n      }\n      #${t} .paypal__skeleton--animated {\n        margin: 0 auto;\n        border-radius: 4px;\n        width: 100%;\n        height: ${n}px;\n        position: absolute;\n      }\n  \n      .paypal__skeleton--animated {\n        background: linear-gradient(${i});\n        background-size: 400% 100%;\n        animation: skeleton 2s linear infinite;\n      }\n  \n      \n            @keyframes skeleton {\n              0% {\n                background-position: 100% 50%;\n              }\n              100% {\n                background-position: 0 50%;\n              }\n            }\n          \n      `;
+            };
+            const P = new class {
+                options={};
+                create(e) {
+                    this.options = e;
+                }
+                get(e, t = {}) {
+                    e = this.buildUrl(e, t.params);
+                    return this.dispatchRequest(e, {
+                        method: "GET",
+                        ...this.options,
+                        ...t,
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json;charset=UTF-8",
+                            ...t.headers
+                        }
+                    });
+                }
+                post(e, t, n = {}) {
+                    const r = {
+                        Accept: "application/json"
+                    };
+                    let o = t || n.data || null;
+                    return "form" === n.requestType ? (r["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8", 
+                    o = this.serialize(o)) : (r["Content-Type"] = "application/json;charset=UTF-8", 
+                    o = o ? JSON.stringify(o) : null), this.dispatchRequest(e, {
+                        method: "POST",
+                        body: o,
+                        ...this.options,
+                        ...n,
+                        headers: {
+                            ...r,
+                            ...n.headers
+                        }
+                    });
+                }
+                dispatchRequest(e, t) {
+                    return new Promise(((n, r) => {
+                        const o = new window.XMLHttpRequest;
+                        let i = !1;
+                        const {body: a} = t, s = this.options.baseUrl && !/^(https?:)?(\/\/)/.test(e) ? `${this.options.baseUrl}${e}` : e;
+                        o.open(t.method || "", s), t.headers && Object.keys(t.headers).forEach((e => {
+                            o.setRequestHeader(e, t.headers?.[e] || "");
+                        }));
+                        const c = {
+                            options: t,
+                            url: s
+                        };
+                        if (o.onreadystatechange = () => {
+                            if (4 === o.readyState) {
+                                c.statusCode = o.status;
+                                let e = "";
+                                try {
+                                    e = JSON.parse(o.responseText);
+                                } catch (t) {
+                                    e = o.responseText;
+                                }
+                                if (/^(2|3)\d{2}$/.test(o.status.toString())) {
+                                    try {
+                                        n({
+                                            data: e,
+                                            ...c
+                                        });
+                                    } catch (t) {
+                                        n({
+                                            data: e,
+                                            ...c
+                                        });
+                                    }
+                                    return;
+                                }
+                                r({
+                                    data: e,
+                                    ...c
+                                });
+                            }
+                        }, o.send(a), o.onabort = function(e) {
+                            i = !0, c.statusCode = o.status, r({
+                                error: e,
+                                ...c
+                            });
+                        }, o.onerror = e => {
+                            c.statusCode = o.status, r({
+                                error: e,
+                                ...c
+                            });
+                        }, o.ontimeout = () => {}, t.timeout) {
+                            if (i) return;
+                            setTimeout((() => {
+                                o.abort();
+                                const e = new Error("XMLHttpRequest timeout");
+                                e.code = "ETIMEDOUT", c.statusCode = o.status, r({
+                                    error: e,
+                                    ...c
+                                });
+                            }), t.timeout);
+                        }
+                    }));
+                }
+                buildUrl(e, t) {
+                    const n = Object.prototype.toString.call(t);
+                    if (!t || "[object Object]" !== n) return e;
+                    const r = Object.keys(t);
+                    return (e = decodeURIComponent(e).indexOf("?") > -1 ? `${e}&` : `${e}?`) + r.map((e => `${e}=${t[e]}`)).join("&");
+                }
+                serialize=e => {
+                    const t = Object.prototype.toString.call(e);
+                    return e && "[object Object]" === t ? Object.keys(e).map((t => encodeURIComponent(t) + "=" + encodeURIComponent(e[t]))).join("&") : "";
+                };
+            };
+            var C;
+            !function(e) {
+                e.Error = "error", e.Warn = "warn", e.Log = "log", e.Info = "info";
+            }(C || (C = {}));
+            const O = new class {
+                currentLogger;
+                setLogger(e) {
+                    e && (this.currentLogger = e);
+                }
+                createFn({fnName: e, message: t, context: n}) {
+                    this.currentLogger ? D(this.currentLogger[e]) && this.currentLogger[e](`${t}`, n) : console[e](`${t}`, n || "");
+                }
+                warn(e, t) {
+                    this.createFn({
+                        fnName: C.Warn,
+                        message: e,
+                        context: t
+                    });
+                }
+                info(e, t) {
+                    this.createFn({
+                        fnName: C.Info,
+                        message: e,
+                        context: t
+                    });
+                }
+                log(e, t) {
+                    this.createFn({
+                        fnName: C.Log,
+                        message: e,
+                        context: t
+                    });
+                }
+                error(e, t) {
+                    this.createFn({
+                        fnName: C.Error,
+                        message: e,
+                        context: t
+                    });
+                }
+            };
+            function v(e) {
+                const {validate: t, handleError: n, handleDynamicNotify: r, dynamicJsonpCallback: o, handleDynamic: i, handleRenderTimeout: a, beforeInit: s, beforeCreateOrder: c, afterCreateOrder: d, removeSkeleton: l, getLoggerPrefix: p} = e.prototype, h = {
+                    validate: t,
+                    handleError: n,
+                    handleDynamicNotify: r,
+                    dynamicJsonpCallback: o,
+                    handleDynamic: i,
+                    handleRenderTimeout: a,
+                    beforeInit: s,
+                    beforeCreateOrder: c,
+                    afterCreateOrder: d,
+                    removeSkeleton: l
+                }, u = e => async function(...t) {
+                    const n = p.apply(this, t), r = `【${e}】`;
+                    try {
+                        return O.info(`${n} ${r}[开始执行]`), h[e].apply(this, t);
+                    } catch (e) {
+                        throw O.error(`${n} ${r}[执行失败]`, {
+                            error: e
+                        }), e;
+                    }
+                };
+                Object.keys(h).forEach((t => {
+                    e.prototype[t] = u(t);
+                }));
+            }
+            let I, A = class {
+                config;
+                payMode;
+                dynamicRemembered={
+                    loadingStatus: c.Await,
+                    info: {},
+                    cbFnList: []
+                };
+                isHidePayPalButton;
+                isRendered;
+                element;
+                initTimer;
+                initActions;
+                createOrderParams;
+                returnUrl;
+                disabledStyleTag;
+                loggerPrefix="[sl/smart-payment PayPal]";
+                initTime=0;
+                skeleton;
+                constructor(t) {
+                    this.validate(t), this.config = g(T(f, t)), this.handleDomHeight(), this.payMode = t.props.payMode || e.PayMode.Continue, 
+                    this.returnUrl = "", this.loggerPrefix += `[当前dom为:${this.config.props.domId}]`, 
+                    O.currentLogger || O.setLogger(this.config.logger);
+                }
+                validate(e) {
+                    const t = $(e), {result: n, errorTip: r} = t.validate();
+                    n || O.error(`constructor error ${r}`);
+                }
+                handleDomHeight() {
+                    var e;
+                    this.config.props.styleOptions = {
+                        ...this.config.props.styleOptions,
+                        height: (e = this.config.props.styleOptions?.height, e ? e > 55 ? (O.warn("[按钮高度传入异常]", {
+                            data: {
+                                height: e
+                            }
+                        }), 55) : e < 25 ? (O.warn("[按钮高度传入异常]", {
+                            data: {
+                                height: e
+                            }
+                        }), 25) : e : 45)
+                    };
+                }
+                get isContinueMode() {
+                    return this.payMode === e.PayMode.Continue;
+                }
+                get isVerticalLayout() {
+                    return "vertical" === this.config.props.styleOptions?.layout;
+                }
+                getLoggerPrefix() {
+                    return this.loggerPrefix;
+                }
+                handleError(e, t) {
+                    O.error("handleError", {
+                        action: t,
+                        error: e,
+                        data: {
+                            type: t
+                        }
+                    }), D(this.config.onError) && this.config.onError(e, t);
+                }
+                handleDynamicNotify(e) {
+                    const {paypal: t} = e || {};
+                    this.isHidePayPalButton = !t, !t && D(this.config.onDynamicNotify) && this.config.onDynamicNotify({
+                        ...e,
+                        isHidePayPalButton: !0
+                    });
+                }
+                dynamicJsonpCallback=e => {
+                    if (this.dynamicRemembered = {
+                        ...this.dynamicRemembered,
+                        info: e,
+                        loadingStatus: c.Done
+                    }, this.handleDynamicNotify(e), this.dynamicRemembered?.cbFnList) try {
+                        this.dynamicRemembered.cbFnList.forEach((t => t(e))), this.dynamicRemembered.cbFnList = [];
+                    } catch (e) {
+                        this.dynamicRemembered.cbFnList = [];
+                    }
+                };
+                async handleDynamic() {
+                    return (0, {
+                        [c.Done]: () => {
+                            this.handleDynamicNotify(this.dynamicRemembered.info);
+                        },
+                        [c.Pending]: () => {
+                            this.dynamicRemembered.cbFnList.push(this.render.bind(this));
+                        },
+                        [c.Await]: () => {
+                            var e;
+                            this.dynamicRemembered.loadingStatus = c.Pending, window.rememberedCb = this.dynamicJsonpCallback, 
+                            r([ (e = h, `https://www.paypal.com/checkoutnow/remembered?callback=${e}`) ], u), 
+                            r.ready(u, {
+                                error: () => {
+                                    this.handleError(new Error("[加载登录态判定 script 失败]:rememberedCb"), i.Init);
+                                }
+                            });
+                        }
+                    }[this.dynamicRemembered.loadingStatus])();
+                }
+                handlePay(e) {
+                    const {nextAction: t, context: {returnUrl: n}} = e;
+                    return this.returnUrl = n, t.data.popupData.id || "";
+                }
+                async continueMode(t, n) {
+                    if (!this.createOrderParams || !1 === this.createOrderParams.valid) return "";
+                    try {
+                        const t = (t => ({
+                            abandonedOrderInfo: t.abandonedOrderInfo,
+                            orderFrom: t.orderFrom,
+                            channelCode: e.ChannelCode.Paypal,
+                            payInfo: {
+                                cancelUrl: window.location.href,
+                                returnUrl: t.returnUrl,
+                                captureInfo: t?.captureInfo
+                            },
+                            dataReportReq: t.dataReportReq
+                        }))(this.createOrderParams), r = await (e => P.post("/leproxy/api/trade/center/pay/fast-checkout/prepare-pay", {
+                            ...e
+                        }))(t), o = r.data?.data, i = {
+                            nextAction: JSON.parse(o?.nextAction || "{}"),
+                            context: o?.context
+                        };
+                        return O.log("continueMode", {
+                            data: {
+                                data: o,
+                                payOptions: i
+                            },
+                            actions: n
+                        }), this.handlePay(i);
+                    } catch (e) {
+                        return this.handleError(e, i.Pay), "";
+                    }
+                }
+                async payNowMode(e, t) {
+                    try {
+                        if (D(this.config.createOrder)) {
+                            const n = await this.config.createOrder(e, t);
+                            return O.log("payNowMode，createOrder 入参", {
+                                res: n
+                            }), this.handlePay(n);
+                        }
+                        return "";
+                    } catch (e) {
+                        return this.handleError(e, i.Pay), "";
+                    }
+                }
+                handleRenderTimeout() {
+                    I && (I.disconnect(), I = null), this.initTimer = setTimeout((() => {
+                        this.element && (this.element.innerHTML = "");
+                        const e = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+                        I = new e((e => {
+                            e.forEach((() => {
+                                this.element && (this.element.innerHTML = "");
+                            }));
+                        }));
+                        const t = {
+                            childList: !0,
+                            attributes: !1,
+                            subtree: !1
+                        };
+                        throw this.element && I.observe(this.element, t), setTimeout((() => {
+                            I && (I.disconnect(), I = null);
+                        }), 5e3), this.handleError(new Error(`[初始化渲染失败][超时未调用onInit][当前超时时间:${this.config.props?.timeout?.delay}ms]`), i.Init), 
+                        new Error(`[初始化渲染失败][超时未调用onInit][当前超时时间:${this.config.props?.timeout?.delay}ms]`);
+                    }), this.config.props?.timeout?.delay);
+                }
+                setDisabled(e) {
+                    if (this.element) try {
+                        if (e) {
+                            this.initActions && this.initActions.disable();
+                            const t = (({node: e, disabled: t, domId: n, height: r}) => {
+                                const o = document.createElement("style");
+                                if (o.innerHTML = `\n    #${n || "shopline-paypal"}::before {\n      width: 0 !important;\n    }\n    #${n || "shopline-paypal"}::after {\n      content: '';\n      display: block;\n      z-index: 100;\n      width: 100% !important;\n      height: ${r}px;\n      border-radius: 4px;\n      cursor: not-allowed;\n      position: absolute;\n      top: 0;\n      left: 0 !important;\n      background: transparent !important;\n    }\n\n    #${n} {\n      opacity: ${t ? .3 : 1};\n    }\n  `, 
+                                e) return e.parentElement?.insertBefore(o, e), o;
+                            })({
+                                node: this.element,
+                                disabled: e,
+                                domId: this.config.props.domId,
+                                height: this.config.props.styleOptions?.height || ""
+                            });
+                            return void (this.disabledStyleTag = t);
+                        }
+                        this.initActions && this.initActions.enable(), this.disabledStyleTag && this.element.parentElement && this.element.parentElement.removeChild(this.disabledStyleTag);
+                    } catch (e) {
+                        console.error("此处报错不影响功能，无需关注", e);
+                    }
+                }
+                beforeInit() {
+                    this.initTime = x.now(), D(this.config.beforeInit) && this.config.beforeInit();
+                }
+                afterInit(e, t) {
+                    try {
+                        const n = x.now() - this.initTime;
+                        O.log("afterInit", {
+                            data: {
+                                data: e,
+                                actions: t,
+                                duration: n,
+                                level: b(n)
+                            }
+                        }), D(this.config.afterInit) && this.config.afterInit();
+                    } catch (e) {
+                        this.handleError(e);
+                    }
+                }
+                async beforeCreateOrder() {
+                    if (!D(this.config.beforeCreateOrder)) return;
+                    return await this.config.beforeCreateOrder();
+                }
+                afterCreateOrder(e) {
+                    D(this.config.afterCreateOrder) && this.config.afterCreateOrder(e);
+                }
+                removeSkeleton(e) {
+                    let t = null;
+                    t && clearTimeout(t), t = setTimeout((() => {
+                        e && (this.skeleton && e.removeChild(this.skeleton), this.isContinueMode && e.classList.add("paypal__bg"));
+                    }), 300);
+                }
+                async render() {
+                    const {props: e} = this.config;
+                    if (e.dynamic && await this.handleDynamic(), this.isHidePayPalButton) return null;
+                    if (this.isRendered) return null;
+                    const t = document.getElementById(e.domId);
+                    if (!t) return this.handleError(new Error("[onError][初始化失败][找不到挂载的DOM]"), i.Init), 
+                    null;
+                    this.element = t, e.timeout && e.timeout.switch && this.handleRenderTimeout();
+                    const n = (({node: e, domId: t, height: n, isContinueMode: r, isVerticalLayout: o, wrapperClass: i, wrapperStyle: a}) => {
+                        const s = document.createElement("div");
+                        s.classList.add("paypal__skeleton--animated");
+                        const c = document.createElement("style");
+                        if (w({
+                            styleTag: c,
+                            domId: t,
+                            height: n,
+                            isContinueMode: r,
+                            isVerticalLayout: o
+                        }), e) {
+                            if (i && e.classList.add(i), a) {
+                                let t = {};
+                                const n = e.getAttribute("style")?.replace(/\s+/g, "") || "", r = e => {
+                                    const t = {};
+                                    return e.split(";").forEach((e => {
+                                        const [n, r] = e.split(":"), o = n?.replace(/-[^0-9]/g, (e => e.charAt(1).toUpperCase()));
+                                        o && (t[o] = r);
+                                    })), t;
+                                }, o = e => "object" != typeof e ? "" : Object.entries(e).map((e => e.join(":"))).join(";").replace(/[A-Z]/g, (e => `-${e.charAt(0).toLowerCase()}`));
+                                "string" == typeof a ? t = {
+                                    ...r(n),
+                                    ...r(a)
+                                } : "object" == typeof a && (t = {
+                                    ...r(n),
+                                    ...a
+                                }), e.style = o(t);
+                            }
+                            return e.parentElement?.insertBefore(c, e), e.appendChild(s), s;
+                        }
+                    })({
+                        node: t,
+                        domId: e.domId,
+                        height: e.styleOptions?.height || "",
+                        isContinueMode: this.isContinueMode,
+                        isVerticalLayout: this.isVerticalLayout,
+                        wrapperClass: e.wrapperClass,
+                        wrapperStyle: e.wrapperStyle
+                    });
+                    this.skeleton = n, O.log("render start", {
+                        data: {
+                            config: this.config
+                        }
+                    }), this.beforeInit();
+                    const r = {
+                        domId: e.domId,
+                        clientId: e.clientId,
+                        currency: e.currency,
+                        queryParams: e.queryParams,
+                        scriptParams: e.scriptParams,
+                        style: e.styleOptions,
+                        onInit: (e, t) => {
+                            this.afterInit(e, t), this.initTimer && clearTimeout(this.initTimer), this.initActions = t;
+                        },
+                        onClick: async (e, t) => {
+                            const n = await this.beforeCreateOrder();
+                            if (O.log("onClick 用户点击了按钮", {
+                                data: {
+                                    data: e,
+                                    params: n,
+                                    actions: t
+                                }
+                            }), n) {
+                                if (!1 === n.valid) return t.reject();
+                                this.initActions?.enable(), this.isContinueMode && (this.createOrderParams = {
+                                    ...n,
+                                    captureInfo: this.config?.paymentInfo?.captureInfo
+                                });
+                            }
+                        },
+                        createOrder: async (e, t) => {
+                            O.log("createOrder PayPal开始下单", {
+                                data: {
+                                    data: e,
+                                    actions: t
+                                }
+                            });
+                            try {
+                                const n = (this.isContinueMode ? await this.continueMode(e, t) : await this.payNowMode(e, t)) || "";
+                                return this.afterCreateOrder(n ? d.Success : d.Fail), n;
+                            } catch {
+                                return this.afterCreateOrder(d.Fail), "";
+                            }
+                        },
+                        onApprove: async (e, t) => {
+                            O.log("onApprove PayPal 下单成功，触发回调", {
+                                data: {
+                                    data: e,
+                                    actions: t,
+                                    returnUrl: this.returnUrl
+                                }
+                            }), window.location.href = this.returnUrl;
+                        },
+                        onCancel: async (e, t) => {
+                            let n;
+                            O.log(`onCancel[订单${e?.orderID}用户取消了支付]`, {
+                                data: e
+                            }), D(t?.redirect) && D(this.config.onCancel) && (n = await this.config.onCancel(e), 
+                            t?.redirect(n));
+                        },
+                        onError: e => {
+                            this.handleError(e);
+                        }
+                    }, o = new y(r);
+                    return o && this.removeSkeleton(t), o;
+                }
+            };
+            A = t([ v ], A);
+            var L = A;
+            const D = e => "function" == typeof e;
+            function S(e) {
+                return "[object Object]" === Object.prototype.toString.call(e);
+            }
+            function _(e) {
+                return !e || !!e.nodeType || "object" != typeof e ? e : JSON.parse(JSON.stringify(e));
+            }
+            function T(e, t) {
+                if (function(e) {
+                    return void 0 === e;
+                }(n = t) || function(e) {
+                    return null === e;
+                }(n)) return _(e);
+                var n;
+                if (!S(t) || !S(e)) return _(t);
+                const r = {};
+                return Object.keys(e).map((n => {
+                    r[n] = T(e[n], t[n]);
+                })), Object.keys(t).map((e => {
+                    r[e] || (r[e] = _(t[e]));
+                })), r;
+            }
+            function $(t) {
+                return {
+                    [e.ChannelCode.Paypal]: {
+                        validate: () => t.props && S(t.props) ? {
+                            result: !0
+                        } : {
+                            result: !1,
+                            errorTip: "props 传值不合法"
+                        },
+                        getConfig: () => t,
+                        component: L
+                    }
+                }[t.channelCode];
+            }
+            const x = window.performance && "function" == typeof window.performance.now ? window.performance : Date;
+            let E = class {
+                configData;
+                renderList=[];
+                loggerPrefix="[sl/smart-payment]";
+                constructor(e) {
+                    this.configData = e, O.setLogger(this.configData.logger);
+                }
+                getLoggerPrefix() {
+                    return this.loggerPrefix;
+                }
+                async render() {
+                    O.log("render", {
+                        data: {
+                            config: this.configData
+                        }
+                    }), this.configData.payments && Array.isArray(this.configData.payments) || O.error("render error 传值有误[payments]");
+                    const {payments: e} = this.configData;
+                    for (const t of e) try {
+                        const e = $({
+                            channelCode: t.channelCode,
+                            paymentInfo: t,
+                            ...this.configData
+                        });
+                        if (!e) continue;
+                        const {result: n, errorTip: r} = e.validate();
+                        n || O.error(`render error ${r}`);
+                        const o = e.getConfig(), i = new (0, e.component)({
+                            ...o
+                        });
+                        await i.render(), this.renderList.push({
+                            channelCode: o.channelCode,
+                            params: o,
+                            instance: i
+                        });
+                    } catch (e) {
+                        O.error("render error", {
+                            error: e
+                        });
+                    }
+                }
+                getPaymentMethods() {
+                    return this.renderList.map((e => ({
+                        channelCode: e.channelCode,
+                        params: e.params
+                    })));
+                }
+                setDisabled(e) {
+                    this.renderList.forEach((t => {
+                        t.instance.setDisabled(e);
+                    }));
+                }
+            };
+            E = t([ v ], E);
+            var k = E;
+            e.Payment = k, e.Paypal = L, Object.defineProperty(e, "__esModule", {
+                value: !0
+            });
+        }));
     },
     "../shared/browser/node_modules/axios/index.js": (module, __unused_webpack_exports, __webpack_require__) => {
         module.exports = __webpack_require__("../shared/browser/node_modules/axios/lib/axios.js");
@@ -36002,6 +37242,23 @@
         var lodash_get__WEBPACK_IMPORTED_MODULE_3___default = __webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_3__);
         var _stage_const__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../shared/browser/report/stage/const.js");
         var _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../shared/browser/utils/syntax-patch.js");
+        function tryDecodeURIComponent(str) {
+            try {
+                return decodeURIComponent(str);
+            } catch (e) {
+                return str;
+            }
+        }
+        const getTagBrandTypeReportCollectionName = title => {
+            const {pathname, search} = window.location;
+            let collectionName = title;
+            if ("/collections/types" === pathname || "/collections/brands" === pathname) collectionName = tryDecodeURIComponent(pathname.replace("/collections/", "") + search); else {
+                const pathnameArr = pathname.split("/");
+                if ("" === pathnameArr[pathnameArr.length - 1]) pathnameArr.pop();
+                if ("collections" === pathnameArr[1] && 4 === pathnameArr.length) collectionName += tryDecodeURIComponent(pathname.replace("/collections/", "") + search);
+            }
+            return collectionName;
+        };
         const {formatCurrency} = _yy_sl_theme_shared_utils_newCurrency__WEBPACK_IMPORTED_MODULE_2__["default"];
         const pageItemMap = {
             101: {
@@ -36035,7 +37292,7 @@
                         spu_id: spuSeq,
                         position: index + 1,
                         collection_id: (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_5__.nullishCoalescingOperator)(lodash_get__WEBPACK_IMPORTED_MODULE_3___default()(productSortation, "sortation.sortation.sortationId"), ""),
-                        collection_name: (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_5__.nullishCoalescingOperator)(lodash_get__WEBPACK_IMPORTED_MODULE_3___default()(productSortation, "sortation.sortation.title"), ""),
+                        collection_name: getTagBrandTypeReportCollectionName((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_5__.nullishCoalescingOperator)(lodash_get__WEBPACK_IMPORTED_MODULE_3___default()(productSortation, "sortation.sortation.title"), "")),
                         price: formatCurrency(productMinPrice),
                         quantity: 1
                     })))
@@ -36916,6 +38173,7 @@
     "../shared/browser/utils/form/form.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
+            ValidateTrigger: () => ValidateTrigger,
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
         var _yy_sl_theme_shared_utils_event_bus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/event-bus.js");
@@ -37417,8 +38675,11 @@
         });
         var _sl_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/@sl/logger/lib/index.es.js");
         var _sl_logger_sentry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/node_modules/@sl/logger-sentry/lib/index.es.js");
-        const newLogger = _sl_logger__WEBPACK_IMPORTED_MODULE_0__["default"].pipeTransport(_sl_logger_sentry__WEBPACK_IMPORTED_MODULE_1__["default"]);
-        const __WEBPACK_DEFAULT_EXPORT__ = newLogger;
+        var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/utils/logger/env.js");
+        const transports = [ _sl_logger_sentry__WEBPACK_IMPORTED_MODULE_1__["default"] ];
+        if (_env__WEBPACK_IMPORTED_MODULE_2__["default"].appEnvInDevelop()) transports.unshift(_sl_logger__WEBPACK_IMPORTED_MODULE_0__.consoleTransport);
+        const baseLogger = _sl_logger__WEBPACK_IMPORTED_MODULE_0__["default"].pipeTransport(...transports);
+        const __WEBPACK_DEFAULT_EXPORT__ = baseLogger;
     },
     "../shared/browser/utils/logger/sentryReport.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
@@ -37983,6 +39244,10 @@
                 this.constructorMap = new Map;
                 window.document.addEventListener("shopline:section:load", this._onSectionLoad.bind(this));
                 window.document.addEventListener("shopline:section:unload", this._onSectionUnload.bind(this));
+                window.document.addEventListener("shopline:section:select", this._onSectionSelect.bind(this));
+                window.document.addEventListener("shopline:section:deselect", this._onSectionDeselect.bind(this));
+                window.document.addEventListener("shopline:block:select", this._onBlockSelect.bind(this));
+                window.document.addEventListener("shopline:block:deselect", this._onBlockDeselect.bind(this));
             }
             _createInstace(container, constructorParam) {
                 const id = container.data("section-id");
@@ -38008,6 +39273,34 @@
                         instance.onUnload.call(instance);
                         this.sectionInstances.delete(sectionId);
                     }
+                }
+            }
+            _onSectionSelect(e) {
+                const {sectionId} = e.detail;
+                if (this.sectionInstances.has(sectionId)) {
+                    const instance = this.sectionInstances.get(sectionId);
+                    if ("function" === typeof instance.onSectionSelect) instance.onSectionSelect(e);
+                }
+            }
+            _onSectionDeselect(e) {
+                const {sectionId} = e.detail;
+                if (this.sectionInstances.has(sectionId)) {
+                    const instance = this.sectionInstances.get(sectionId);
+                    if ("function" === typeof instance.onSectionDeselect) instance.onSectionDeselect(e);
+                }
+            }
+            _onBlockSelect(e) {
+                const {sectionId} = e.detail;
+                if (this.sectionInstances.has(sectionId)) {
+                    const instance = this.sectionInstances.get(sectionId);
+                    if ("function" === typeof instance.onBlockSelect) instance.onBlockSelect(e);
+                }
+            }
+            _onBlockDeselect(e) {
+                const {sectionId} = e.detail;
+                if (this.sectionInstances.has(sectionId)) {
+                    const instance = this.sectionInstances.get(sectionId);
+                    if ("function" === typeof instance.onBlockDeselect) instance.onBlockDeselect(e);
                 }
             }
         }

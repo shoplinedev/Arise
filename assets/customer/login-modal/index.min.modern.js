@@ -7050,6 +7050,7 @@
         const CONFIRM_SUBSCRIBE_EMAIL = "confirmSubscribeEmail";
         const RESET_PASSWORD_TOKEN_EXPIRED = "RESET_PASSWORD_TOKEN_EXPIRED";
         const ACCOUNT_ACTIVATED_TOKEN_EXPIRED = "ACCOUNT_ACTIVATED_TOKEN_EXPIRED";
+        const REGISTER_EXTRA_INFO = "REGISTER_EXTRA_INFO";
         function uniqueObjectArray(arr, prop, callback) {
             return arr.filter(((item, index) => {
                 let result = true;
@@ -8262,10 +8263,24 @@
             return formItems;
         };
         const toast_LOADING = "loading";
+        function whichAnimationEndEvent() {
+            let t, el = document.createElement("fakeelement");
+            const animations = {
+                animation: "animationend",
+                OAnimation: "oAnimationEnd",
+                MozAnimation: "animationend",
+                WebkitAnimation: "webkitAnimationEnd"
+            };
+            for (t in animations) if (void 0 !== el.style[t]) {
+                console.log("anim...");
+                return animations[t];
+            }
+        }
         const toast_getTemplate = (options, type = "default") => {
             const loadingColor = options.loadingColor || "black";
             const templates = {
                 [toast_LOADING]: `\n      <div class="mp-toast mp-toast--loading mp-toast--loading-style2 mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <span class="mp-loading__spinner mp-loading__spinner--circular">\n            <svg class="mp-loading__circular" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n              <path d="M18.3333 9.99999C18.3333 14.6024 14.6024 18.3333 10 18.3333C5.39762 18.3333 1.66666 14.6024 1.66666 9.99999C1.66666 5.39762 5.39762 1.66666 10 1.66666" stroke="${loadingColor}" stroke-width="2.5" stroke-linecap="round"/>\n            </svg>\n          </span>\n        </div>\n        <div class="mp-toast__content mp-toast__text">${options.content}</div>\n      </div>\n    `,
+                showSuccess: `\n      <div class="mp-toast mp-toast--loading mp-toast--success-container mp-toast--loading-style2 ${options.className || ""}">\n        <div class="mp-loading mp-loading--circular mp-toast__loading">\n          <div class="mp-loading__success-box">\n            <svg class="arrow" width="20" height="20" viewBox="0 0 20 20">\n              <circle cx="10" cy="10" r="8.75" fill="none" stroke="${loadingColor}" stroke-width="2.5" class="circle"></circle>\n              <polyline points="4.5,10 9,14 14.5,6.5" fill="none" stroke="${loadingColor}" stroke-width="2.5" class="hookmark" stroke-linecap="round" stroke-linejoin="round"\n              ></polyline>\n            </svg>\n          </div>\n        </div>\n      </div>\n    `,
                 default: `\n      <div class="comment-toast mp-toast mp-toast__hidden ${options.fullscreen && "mp-toast__fullscreen"} ${options.className || ""}">\n        <div class="mp-toast__content mp-toast__inner">${options.content}</div>\n      </div>\n    `
             };
             return templates[type];
@@ -8342,6 +8357,26 @@
                 if ("function" === typeof this.options.onClose) this.options.onClose();
                 this.$target.css("position", "");
             }
+            showSuccessAni(options = {}, callback) {
+                const {$target} = this;
+                this.close();
+                const buttonTxt = $target.find(".pdp_button_text");
+                buttonTxt.addClass("showSuccessAni");
+                const successAniTemp = toast_getTemplate(options, "showSuccess");
+                $target.append(successAniTemp);
+                const hookWrapDom = $target.find(".mp-toast--success-container");
+                const hookNode = $target.find(".hookmark");
+                if (hookNode.length > 0) {
+                    const animationEnd = whichAnimationEndEvent();
+                    hookNode.one(animationEnd, (function(event) {
+                        if (callback && "function" === typeof callback) setTimeout((() => {
+                            hookWrapDom.remove();
+                            buttonTxt.removeClass("showSuccessAni");
+                            callback(event, $target);
+                        }), options.delay || 0);
+                    }));
+                }
+            }
         }
         Toast.type = null;
         const toast = Toast;
@@ -8354,6 +8389,7 @@
                 this.onSubmit = onSubmit;
                 this.onValidate = onValidate;
                 this.formItemInstances = {};
+                this.isLoading = false;
                 this.defaultFormValue = formValue;
                 this.init();
                 return this;
@@ -8376,10 +8412,19 @@
             bindEvents() {
                 this.bindFormSubmit();
             }
+            setLoading(isLoading) {
+                const $btn = __SL_$__(`#${this.formId} .submit-button`);
+                if (isLoading) {
+                    this.isLoading = true;
+                    $btn.addClass(form_BUTTON_LOADING_CLASS);
+                } else {
+                    this.isLoading = false;
+                    $btn.removeClass(form_BUTTON_LOADING_CLASS);
+                }
+            }
             bindFormSubmit() {
-                let isLoading = false;
                 __SL_$__(`#${this.formId} .submit-button`).click((async e => {
-                    if (isLoading) return;
+                    if (this.isLoading) return;
                     if (!(window && window.navigator && window.navigator.onLine)) {
                         toast.init({
                             content: t("customer.general.network_error_message")
@@ -8390,19 +8435,18 @@
                     try {
                         await this.validateForm();
                         const data = this.getFormValue();
-                        isLoading = true;
-                        __SL_$__(e.target).addClass(form_BUTTON_LOADING_CLASS);
+                        this.setLoading(true);
                         await (this.onSubmit && this.onSubmit(data));
                     } catch (err) {
-                        if (!err.rescode) return;
-                        const lastField = this.fields[this.fields.length - 1];
-                        if (lastField.name) this.formInstance.setErrMsgIntoDom([ {
-                            name: lastField.name,
-                            messages: [ getUdbErrorMessage(err) ]
-                        } ]);
+                        if (err.rescode) {
+                            const lastField = this.fields[this.fields.length - 1];
+                            if (lastField.name && getUdbErrorMessage(err)) this.formInstance.setErrMsgIntoDom([ {
+                                name: lastField.name,
+                                messages: [ getUdbErrorMessage(err) ]
+                            } ]);
+                        }
                     }
-                    isLoading = false;
-                    __SL_$__(e.target).removeClass(form_BUTTON_LOADING_CLASS);
+                    this.setLoading(false);
                 }));
                 this.bindInputActive();
             }
@@ -8576,7 +8620,7 @@
             };
         };
         const getUdbInfo = ({params, formType, FBPixelEventID = ""}) => {
-            const {type, appid, subappid, mode, verify, token} = params;
+            const {type, appid, subappid, mode, token} = params;
             const uid = getCookie("osudb_uid");
             let loginType = "email";
             let isverify;
@@ -8589,10 +8633,7 @@
                 eventid = FBPixelEventID;
                 if ("member" === type && "email" !== mode) loginType = "acct";
             } else if ("signUp" === formType) {
-                if ("member" === type) {
-                    getInitConfig = getMemberInitConfig;
-                    isverify = verify ? "1" : "0";
-                }
+                if ("member" === type) getInitConfig = getMemberInitConfig;
                 eventid = FBPixelEventID;
             } else if ("activate" === formType) if (token) getInitConfig = getActivateTokenInitConfig; else {
                 getInitConfig = getMemberInitConfig;
@@ -9125,172 +9166,6 @@
             }
         }
         const customer = Customer;
-        class Login extends customer {
-            constructor({id = "login", isModal = false, success = null}) {
-                super({
-                    id,
-                    formType: "signIn",
-                    success,
-                    isModal
-                });
-                this.loginForm = null;
-                this.thirdPartLogin = null;
-            }
-            beforeCreate() {
-                if (window.location.pathname.includes("/user/signIn") && window.SL_State && window.SL_State.get("request.cookie.osudb_uid")) {
-                    window.location.href = USER_CENTER;
-                    return false;
-                }
-                this.$$reports && this.$$reports.reportSignInPageView && this.$$reports.reportSignInPageView();
-                this.thirdPartLogin = new third_part_login({
-                    formId: this.formId,
-                    form: this,
-                    isModal: this.isModal,
-                    $$reports: this.$$reports
-                });
-                const {code, state} = this.query;
-                if (code) {
-                    this.thirdPartLogin && this.thirdPartLogin.thirdPlatformCallback(code, state, (nickname => {
-                        this.signInCallback(nickname);
-                    }));
-                    return false;
-                }
-            }
-            init() {
-                this.toast = new toast;
-                this.initForm();
-                this.bindEvents();
-                this.showConfirmSubscribeTip();
-            }
-            showConfirmSubscribeTip() {
-                const from = (0, url.getUrlQuery)("from");
-                if (from === CONFIRM_SUBSCRIBE_EMAIL) {
-                    const tips = t(`customer.login.subscribe_confirm_tip`);
-                    __SL_$__(`#${this.formId} .sign-in__from_confirm_email`).show().text(tips);
-                }
-            }
-            initForm() {
-                if (storage.sessionStorage.get(ACCOUNT_ACTIVATED)) {
-                    this.toast.open(t("customer.activate.account_activated"));
-                    storage.sessionStorage.del(ACCOUNT_ACTIVATED);
-                }
-                if (storage.sessionStorage.get(ACCOUNT_ACTIVATED_TOKEN_EXPIRED)) {
-                    __SL_$__(`#${this.formId} .sign-in__has-registered`).show().text(t("customer.activate.token_expired"));
-                    storage.sessionStorage.del(ACCOUNT_ACTIVATED_TOKEN_EXPIRED);
-                }
-                if (storage.sessionStorage.get(RESET_PASSWORD_TOKEN_EXPIRED)) {
-                    __SL_$__(`#${this.formId} .sign-in__has-registered`).show().text(t("customer.forget_password.token_expired"));
-                    storage.sessionStorage.del(RESET_PASSWORD_TOKEN_EXPIRED);
-                }
-                const formValue = storage.sessionStorage.get(DEFAULT_FORM_VALUE);
-                let fields = this.getFieldConfigs();
-                const {mode} = this.configs;
-                const accountFieldType = getAccountFieldType(mode);
-                if (formValue) {
-                    const isPhone = /^\d+$/.test(formValue[accountFieldType]);
-                    const tips = t(`customer.general.error_message_${isPhone ? MOBILE_REGISTERED : EMAIL_REGISTERED}`);
-                    __SL_$__(`#${this.formId} .sign-in__has-registered`).show().text(tips);
-                    fields = fields.map((field => ({
-                        ...field,
-                        value: formValue[field.name]
-                    })));
-                    if ("email" === mode) __SL_$__(`#${this.formId} input[name="email"]`).val(formValue.email);
-                    storage.sessionStorage.del(DEFAULT_FORM_VALUE);
-                }
-                this.loginForm = new commons_form({
-                    id: this.formId,
-                    fields,
-                    formValue: formValue || {},
-                    onSubmit: data => this.onSignIn(data)
-                });
-            }
-            getFieldConfigs() {
-                const FIELD_TYPES = [ "loginPassword" ];
-                const {mode} = this.configs;
-                const accountFieldType = getAccountFieldType(mode);
-                return getFormFields([ accountFieldType ].concat(FIELD_TYPES));
-            }
-            bindEvents() {
-                __SL_$__(`#${this.formId} .sign-in__guest-button`).click((() => redirectPage()));
-                this.reportNavigation();
-                this.loginForm && this.loginForm.formInstance && this.loginForm.formInstance.on("valuesChange", (() => {
-                    this.clearError();
-                }));
-            }
-            reportNavigation() {
-                const pathToReport = {
-                    "/user/passwordNew": this.$$reports && this.$$reports.reportToForgetPassword,
-                    "/user/signUp": this.$$reports && this.$$reports.reportToSignUp
-                };
-                __SL_$__(`#${this.formId} .sign-in__buttons`).on("click", "a", (e => {
-                    e.preventDefault();
-                    const path = __SL_$__(e.currentTarget).attr("href");
-                    pathToReport[path] && pathToReport[path]();
-                    window.location.href = path;
-                }));
-            }
-            onSignIn(data) {
-                const {mode = "email"} = this.configs;
-                const params = this.UDBParams;
-                const payload = {
-                    acct: data[mode],
-                    pwd: data.password,
-                    eventid: this.eid
-                };
-                const extInfo = {};
-                if (window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value) extInfo.memberReferralCode = window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value;
-                if (Object.keys(extInfo).length > 0) payload.extinfo = JSON.stringify(extInfo);
-                this.$$reports.reportSubmitLogin && this.$$reports.reportSubmitLogin();
-                return loginAccount(super.formatRequestBody({
-                    ...payload,
-                    ...params
-                })).then((() => this.signInCallback(null, data, mode))).catch((e => {
-                    this.setError(e);
-                }));
-            }
-            signInCallback(thirdNickName, data, mode) {
-                const {code, state} = this.query;
-                this.$$reports.reportLoginSuccess && this.$$reports.reportLoginSuccess();
-                const isThirdLogin = !!(code && thirdNickName);
-                const requestBody = {
-                    language: getLanguage(),
-                    isThird: false
-                };
-                const promises = [ signInUpdate({
-                    ...requestBody,
-                    isThird: isThirdLogin
-                }) ];
-                updateUserInfo();
-                const loginParams = {
-                    method: data && data[mode] && data[mode].includes("@") ? "Email" : "Phone"
-                };
-                const isFirst = 0 === Number(js_cookie_default().get("osudb_ustate"));
-                if (isThirdLogin) {
-                    const {method, saveInfo} = this.thirdPartLogin && this.thirdPartLogin.saveThirdChannelInfo(state, {
-                        isFirst,
-                        thirdNickName
-                    });
-                    promises.push(saveInfo);
-                    loginParams.method = method;
-                }
-                if (!isFirst || !isThirdLogin) this.$$reports && this.$$reports.thirdReportSignInCallback && this.$$reports.thirdReportSignInCallback(loginParams.method);
-                const reportIsFirst = code && isFirst ? 1 : 0;
-                super.$$reports && super.$$reports.riskReportSignIn && super.$$reports.riskReportSignIn(reportIsFirst);
-                Promise.all(promises).catch((e => {
-                    console.warn("signInCallback catch", e);
-                })).finally((() => {
-                    this.$$reports && this.$$reports.reportSignInPageLeave && this.$$reports.reportSignInPageLeave(getRedirectOriginUrl());
-                    if (this.success) {
-                        this.success && this.success();
-                        return;
-                    }
-                    redirectPage(USER_CENTER);
-                }));
-            }
-        }
-        const sign_in = Login;
-        var intersectionBy = __webpack_require__("../shared/browser/node_modules/lodash/intersectionBy.js");
-        var intersectionBy_default = __webpack_require__.n(intersectionBy);
         function gen(name, mods) {
             if (!mods) return "";
             if ("string" === typeof mods) return ` ${name}--${mods}`;
@@ -9554,6 +9429,280 @@
                 this.$offAll();
             }
         }
+        const captcha_config = {
+            SDK_URL_OSS: "r2cdn.myshopline.cn/static/rs/acuf/prod/latest/bundle.iife.js",
+            SDK_URL_S3: "https://r2cdn.myshopline.com/static/rs/acuf/prod/latest/bundle.iife.js",
+            IS_MAINLAND: false,
+            APP_ENV: getEnv().APP_ENV || "product",
+            APP_CODE: "m3tdgo"
+        };
+        const CAPTCHA_CONTROL_URL = captcha_config.IS_MAINLAND ? captcha_config.SDK_URL_OSS : captcha_config.SDK_URL_S3;
+        let captchaInstance = null;
+        const loadArmorCaptcha = ({wrapId = "content", lang, onSuccess, onFail, onClose}) => {
+            if (captchaInstance) return Promise.resolve(captchaInstance);
+            return loadScript(CAPTCHA_CONTROL_URL).then((() => {
+                const {ArmorCaptcha} = window;
+                captchaInstance = new ArmorCaptcha({
+                    wrapId,
+                    lang,
+                    onSuccess,
+                    onFail,
+                    onClose,
+                    origin: window.location.origin,
+                    appCode: captcha_config.APP_CODE,
+                    captchaScene: "user"
+                });
+                return captchaInstance;
+            }));
+        };
+        let cacheModal = null;
+        let cacheArmorCaptcha = null;
+        let lang = null;
+        const contentId = `captcha-content`;
+        const openCaptchaModal = async ({onSuccess}) => {
+            if (cacheModal) {
+                cacheModal.show();
+                cacheArmorCaptcha && cacheArmorCaptcha.reset();
+                if (lang !== getLanguage()) cacheArmorCaptcha.changeLanguage(getLanguage());
+                return;
+            }
+            cacheModal = new ModalWithHtml({
+                zIndex: 1e3,
+                containerClassName: "captcha-modal-container",
+                closable: false,
+                maskClosable: true,
+                bodyClassName: "captcha-modal-body",
+                content: `<div id="${contentId}" class="captcha-content"></div>`,
+                destroyedOnClosed: false
+            });
+            cacheModal.show();
+            __SL_$__(`#${cacheModal.modalId}`).find(".mp-modal__mask").addClass("captcha-transparent");
+            __SL_$__(`#${cacheModal.modalId}`).on("click", ".captcha-modal-container", (e => {
+                const $target = __SL_$__(e.target).parents(".captcha-content");
+                if ($target.length < 1) cacheModal.hide();
+            }));
+            lang = getLanguage();
+            cacheArmorCaptcha = await loadArmorCaptcha({
+                wrapId: contentId,
+                lang,
+                onSuccess: token => {
+                    cacheModal.hide();
+                    onSuccess && onSuccess(token);
+                }
+            });
+        };
+        let captchaToken = null;
+        const isFunction = fn => "function" === typeof fn;
+        const captcha_modal_CAPTCHA_CODE = [ "2019", "2020", "3018", "3021", "1015", "2015" ];
+        const wrapArmorCaptcha = async ({beforeCapture, onCaptureCaptcha, onCaptchaVerifySuccess, onError}) => {
+            if (!captchaToken) isFunction(beforeCapture) && await beforeCapture();
+            try {
+                isFunction(onCaptureCaptcha) && await onCaptureCaptcha(captchaToken);
+                captchaToken = null;
+            } catch (e) {
+                captchaToken = null;
+                if (captcha_modal_CAPTCHA_CODE.includes(e.rescode)) {
+                    openCaptchaModal({
+                        onSuccess: async token => {
+                            captchaToken = token;
+                            try {
+                                isFunction(onCaptchaVerifySuccess) && await onCaptchaVerifySuccess(token, e || {});
+                            } catch (e) {
+                                onError && onError(e);
+                            }
+                        }
+                    });
+                    return Promise.reject(false);
+                }
+                return Promise.reject(e);
+            }
+        };
+        class Login extends customer {
+            constructor({id = "login", isModal = false, success = null}) {
+                super({
+                    id,
+                    formType: "signIn",
+                    success,
+                    isModal
+                });
+                this.loginForm = null;
+                this.thirdPartLogin = null;
+            }
+            beforeCreate() {
+                if (window.location.pathname.includes("/user/signIn") && window.SL_State && window.SL_State.get("request.cookie.osudb_uid")) {
+                    window.location.href = USER_CENTER;
+                    return false;
+                }
+                this.$$reports && this.$$reports.reportSignInPageView && this.$$reports.reportSignInPageView();
+                this.thirdPartLogin = new third_part_login({
+                    formId: this.formId,
+                    form: this,
+                    isModal: this.isModal,
+                    $$reports: this.$$reports
+                });
+                const {code, state} = this.query;
+                if (code) {
+                    this.thirdPartLogin && this.thirdPartLogin.thirdPlatformCallback(code, state, (nickname => {
+                        this.signInCallback(nickname);
+                    }));
+                    return false;
+                }
+            }
+            init() {
+                this.toast = new toast;
+                this.initForm();
+                this.bindEvents();
+                this.showConfirmSubscribeTip();
+            }
+            showConfirmSubscribeTip() {
+                const from = (0, url.getUrlQuery)("from");
+                if (from === CONFIRM_SUBSCRIBE_EMAIL) {
+                    const tips = t(`customer.login.subscribe_confirm_tip`);
+                    __SL_$__(`#${this.formId} .sign-in__from_confirm_email`).show().text(tips);
+                }
+            }
+            initForm() {
+                if (storage.sessionStorage.get(ACCOUNT_ACTIVATED)) {
+                    this.toast.open(t("customer.activate.account_activated"));
+                    storage.sessionStorage.del(ACCOUNT_ACTIVATED);
+                }
+                if (storage.sessionStorage.get(ACCOUNT_ACTIVATED_TOKEN_EXPIRED)) {
+                    __SL_$__(`#${this.formId} .sign-in__has-registered`).show().text(t("customer.activate.token_expired"));
+                    storage.sessionStorage.del(ACCOUNT_ACTIVATED_TOKEN_EXPIRED);
+                }
+                if (storage.sessionStorage.get(RESET_PASSWORD_TOKEN_EXPIRED)) {
+                    __SL_$__(`#${this.formId} .sign-in__has-registered`).show().text(t("customer.forget_password.token_expired"));
+                    storage.sessionStorage.del(RESET_PASSWORD_TOKEN_EXPIRED);
+                }
+                const formValue = storage.sessionStorage.get(DEFAULT_FORM_VALUE);
+                let fields = this.getFieldConfigs();
+                const {mode} = this.configs;
+                const accountFieldType = getAccountFieldType(mode);
+                if (formValue) {
+                    const isPhone = /^\d+$/.test(formValue[accountFieldType]);
+                    const tips = t(`customer.general.error_message_${isPhone ? MOBILE_REGISTERED : EMAIL_REGISTERED}`);
+                    __SL_$__(`#${this.formId} .sign-in__has-registered`).show().text(tips);
+                    fields = fields.map((field => ({
+                        ...field,
+                        value: formValue[field.name]
+                    })));
+                    if ("email" === mode) __SL_$__(`#${this.formId} input[name="email"]`).val(formValue.email);
+                    storage.sessionStorage.del(DEFAULT_FORM_VALUE);
+                }
+                this.loginForm = new commons_form({
+                    id: this.formId,
+                    fields,
+                    formValue: formValue || {},
+                    onSubmit: data => this.onSignIn(data)
+                });
+            }
+            getFieldConfigs() {
+                const FIELD_TYPES = [ "loginPassword" ];
+                const {mode} = this.configs;
+                const accountFieldType = getAccountFieldType(mode);
+                return getFormFields([ accountFieldType ].concat(FIELD_TYPES));
+            }
+            bindEvents() {
+                __SL_$__(`#${this.formId} .sign-in__guest-button`).click((() => redirectPage()));
+                this.reportNavigation();
+                this.loginForm && this.loginForm.formInstance && this.loginForm.formInstance.on("valuesChange", (() => {
+                    this.clearError();
+                }));
+            }
+            reportNavigation() {
+                const pathToReport = {
+                    "/user/passwordNew": this.$$reports && this.$$reports.reportToForgetPassword,
+                    "/user/signUp": this.$$reports && this.$$reports.reportToSignUp
+                };
+                __SL_$__(`#${this.formId} .sign-in__buttons`).on("click", "a", (e => {
+                    e.preventDefault();
+                    const path = __SL_$__(e.currentTarget).attr("href");
+                    pathToReport[path] && pathToReport[path]();
+                    window.location.href = path;
+                }));
+            }
+            onSignIn(data) {
+                const {mode = "email"} = this.configs;
+                const params = this.UDBParams;
+                const payload = {
+                    acct: data[mode],
+                    pwd: data.password,
+                    eventid: this.eid
+                };
+                const extInfo = {};
+                if (window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value) extInfo.memberReferralCode = window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value;
+                if (Object.keys(extInfo).length > 0) payload.extinfo = JSON.stringify(extInfo);
+                this.$$reports.reportSubmitLogin && this.$$reports.reportSubmitLogin();
+                const onLogin = (captchaToken, updateParams = {}) => {
+                    const formData = this.loginForm.getFormValue();
+                    this.loginForm.setLoading(true);
+                    return loginAccount(super.formatRequestBody({
+                        ...payload,
+                        ...params,
+                        pwd: formData.password,
+                        captcha: captchaToken,
+                        stoken: updateParams.stoken || params.stoken
+                    })).then((() => this.signInCallback(null, data, mode)));
+                };
+                return wrapArmorCaptcha({
+                    onCaptureCaptcha: onLogin,
+                    onCaptchaVerifySuccess: (captchaToken, prevRequestResult) => onLogin(captchaToken, {
+                        stoken: prevRequestResult && prevRequestResult.stoken
+                    }),
+                    onError: e => {
+                        this.setError(e);
+                        this.loginForm.setLoading(false);
+                    }
+                }).catch((e => {
+                    this.setError(e);
+                    this.loginForm.setLoading(false);
+                }));
+            }
+            signInCallback(thirdNickName, data, mode) {
+                const {code, state} = this.query;
+                this.$$reports.reportLoginSuccess && this.$$reports.reportLoginSuccess();
+                const isThirdLogin = !!(code && thirdNickName);
+                const requestBody = {
+                    language: getLanguage(),
+                    isThird: false
+                };
+                const promises = [ signInUpdate({
+                    ...requestBody,
+                    isThird: isThirdLogin
+                }) ];
+                updateUserInfo();
+                const loginParams = {
+                    method: data && data[mode] && data[mode].includes("@") ? "Email" : "Phone"
+                };
+                const isFirst = 0 === Number(js_cookie_default().get("osudb_ustate"));
+                if (isThirdLogin) {
+                    const {method, saveInfo} = this.thirdPartLogin && this.thirdPartLogin.saveThirdChannelInfo(state, {
+                        isFirst,
+                        thirdNickName
+                    });
+                    promises.push(saveInfo);
+                    loginParams.method = method;
+                }
+                if (!isFirst || !isThirdLogin) this.$$reports && this.$$reports.thirdReportSignInCallback && this.$$reports.thirdReportSignInCallback(loginParams.method);
+                const reportIsFirst = code && isFirst ? 1 : 0;
+                super.$$reports && super.$$reports.riskReportSignIn && super.$$reports.riskReportSignIn(reportIsFirst);
+                Promise.all(promises).catch((e => {
+                    console.warn("signInCallback catch", e);
+                    this.loginForm.setLoading(false);
+                })).finally((() => {
+                    this.$$reports && this.$$reports.reportSignInPageLeave && this.$$reports.reportSignInPageLeave(getRedirectOriginUrl());
+                    if (this.success) {
+                        this.success && this.success();
+                        this.loginForm.setLoading(false);
+                        return;
+                    }
+                    redirectPage(USER_CENTER);
+                }));
+            }
+        }
+        const sign_in = Login;
+        var intersectionBy = __webpack_require__("../shared/browser/node_modules/lodash/intersectionBy.js");
+        var intersectionBy_default = __webpack_require__.n(intersectionBy);
         const getModal = (content, title) => `\n    <div class="sign-up__modal-header">\n      <div class="sign-up__modal-title">${title}</div>\n    </div>\n    <div class="sign-up__modal-body">\n      <div class="sign-up__modal-content">\n        ${content}\n      </div>\n    </div>\n  `;
         const privacyPolicyPath = "/policies/privacy-policy";
         const termsOfService = "/policies/terms-of-service";
@@ -9655,90 +9804,6 @@
             }
         }
         const subscribe = Subscribe;
-        const captcha_config = {
-            SDK_URL_OSS: "r2cdn.myshopline.cn/static/rs/acuf/prod/latest/bundle.iife.js",
-            SDK_URL_S3: "https://r2cdn.myshopline.com/static/rs/acuf/prod/latest/bundle.iife.js",
-            IS_MAINLAND: false,
-            APP_ENV: getEnv().APP_ENV || "product",
-            APP_CODE: "m3tdgo"
-        };
-        const CAPTCHA_CONTROL_URL = captcha_config.IS_MAINLAND ? captcha_config.SDK_URL_OSS : captcha_config.SDK_URL_S3;
-        let captchaInstance = null;
-        const loadArmorCaptcha = ({wrapId = "content", lang, onSuccess, onFail, onClose}) => {
-            if (captchaInstance) return Promise.resolve(captchaInstance);
-            return loadScript(CAPTCHA_CONTROL_URL).then((() => {
-                const {ArmorCaptcha} = window;
-                captchaInstance = new ArmorCaptcha({
-                    wrapId,
-                    lang,
-                    onSuccess,
-                    onFail,
-                    onClose,
-                    origin: window.location.origin,
-                    appCode: captcha_config.APP_CODE,
-                    captchaScene: "user"
-                });
-                return captchaInstance;
-            }));
-        };
-        let cacheModal = null;
-        let cacheArmorCaptcha = null;
-        let lang = null;
-        const contentId = `captcha-content`;
-        const openCaptchaModal = async ({onSuccess}) => {
-            if (cacheModal) {
-                cacheModal.show();
-                cacheArmorCaptcha && cacheArmorCaptcha.reset();
-                if (lang !== getLanguage()) cacheArmorCaptcha.changeLanguage(getLanguage());
-                return;
-            }
-            cacheModal = new ModalWithHtml({
-                zIndex: 1e3,
-                containerClassName: "captcha-modal-container",
-                closable: false,
-                maskClosable: true,
-                bodyClassName: "captcha-modal-body",
-                content: `<div id="${contentId}" class="captcha-content"></div>`,
-                destroyedOnClosed: false
-            });
-            cacheModal.show();
-            __SL_$__(`#${cacheModal.modalId}`).find(".mp-modal__mask").addClass("captcha-transparent");
-            __SL_$__(`#${cacheModal.modalId}`).on("click", ".captcha-modal-container", (e => {
-                const $target = __SL_$__(e.target).parents(".captcha-content");
-                if ($target.length < 1) cacheModal.hide();
-            }));
-            lang = getLanguage();
-            cacheArmorCaptcha = await loadArmorCaptcha({
-                wrapId: contentId,
-                lang,
-                onSuccess: token => {
-                    cacheModal.hide();
-                    onSuccess && onSuccess(token);
-                }
-            });
-        };
-        let captchaToken = null;
-        const isFunction = fn => "function" === typeof fn;
-        const captcha_modal_CAPTCHA_CODE = [ "2019", "2020", "3018", "3021" ];
-        const wrapArmorCaptcha = async ({beforeSendCode, onSendCode, onCaptchaVerifySuccess}) => {
-            if (!captchaToken) isFunction(beforeSendCode) && await beforeSendCode();
-            try {
-                isFunction(onSendCode) && await onSendCode(captchaToken);
-                captchaToken = null;
-            } catch (e) {
-                captchaToken = null;
-                if (captcha_modal_CAPTCHA_CODE.includes(e.rescode)) {
-                    openCaptchaModal({
-                        onSuccess: async token => {
-                            captchaToken = token;
-                            isFunction(onCaptchaVerifySuccess) && await onCaptchaVerifySuccess(token);
-                        }
-                    });
-                    return Promise.reject(false);
-                }
-                return Promise.reject(e);
-            }
-        };
         var air_datepicker = __webpack_require__("../shared/browser/node_modules/air-datepicker/air-datepicker.js");
         var air_datepicker_default = __webpack_require__.n(air_datepicker);
         const index_es = air_datepicker_default();
@@ -9917,10 +9982,14 @@
                     isverify: verify ? "1" : "0",
                     eventid: this.eid
                 };
-                const extInfo = this.getExtInfo({
-                    gender: val => val && parseInt(val, 10) || 0,
-                    birthday: date => date && dayjs_min_default()(date).format("YYYYMMDD") || ""
-                });
+                const customExtInfo = storage.sessionStorage.get(REGISTER_EXTRA_INFO);
+                const extInfo = {
+                    ...this.getExtInfo({
+                        gender: val => val && parseInt(val, 10) || 0,
+                        birthday: date => date && dayjs_min_default()(date).format("YYYYMMDD") || ""
+                    }),
+                    ...customExtInfo
+                };
                 if (window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value) extInfo.memberReferralCode = window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value;
                 if (Object.keys(extInfo).length > 0) payload.extinfo = JSON.stringify(extInfo);
                 this.$$reports.reportSignUpSuccess && this.$$reports.reportSignUpSuccess();
@@ -9949,15 +10018,32 @@
                 }));
             }
             onSignUp({payload, params, data, mode}) {
-                return signUpMember(super.formatRequestBody({
-                    ...payload,
-                    ...params
-                })).then((({data: resData}) => {
-                    this.onSignUpSuccess(resData && resData.extUIMsg && resData.extUIMsg.ck || {}, data, mode);
-                    return resData;
-                })).finally((() => {
-                    this.subscribe && this.subscribe.onSubscribeEmail && this.subscribe.onSubscribeEmail(payload && payload.acct);
-                }));
+                const registerAccount = (captchaToken, updateParams = {}) => {
+                    const formData = this.registerForm.getFormValue();
+                    this.registerForm.setLoading(true);
+                    return signUpMember(super.formatRequestBody({
+                        ...payload,
+                        ...params,
+                        pwd: formData.password,
+                        captcha: captchaToken,
+                        stoken: updateParams.stoken || params.stoken
+                    })).then((({data: resData}) => {
+                        this.onSignUpSuccess(resData && resData.extUIMsg && resData.extUIMsg.ck || {}, data, mode);
+                        return resData;
+                    })).finally((() => {
+                        this.subscribe && this.subscribe.onSubscribeEmail && this.subscribe.onSubscribeEmail(payload && payload.acct);
+                    }));
+                };
+                return wrapArmorCaptcha({
+                    onCaptureCaptcha: registerAccount,
+                    onCaptchaVerifySuccess: (captchaToken, prevRequestResult) => registerAccount(captchaToken, {
+                        stoken: prevRequestResult && prevRequestResult.stoken
+                    }),
+                    onError: e => {
+                        this.setError(e);
+                        this.registerForm.setLoading(true);
+                    }
+                });
             }
             onSignUpSuccess({osudb_uid}, data, mode) {
                 window.SL_EventBus.emit("customer:register", {
@@ -9970,13 +10056,17 @@
                     language: getLanguage(),
                     udbFirstLogin: true
                 };
-                Promise.all([ signUpUpdate(requestBody), updateUserInfo() ]).finally((() => {
+                storage.sessionStorage.del(REGISTER_EXTRA_INFO);
+                Promise.all([ signUpUpdate(requestBody), updateUserInfo() ]).catch((() => {
+                    this.registerForm.setLoading(true);
+                })).finally((() => {
                     this.report({
                         event_name: "leave",
                         page_dest: getRedirectOriginUrl()
                     });
                     if (this.success) {
                         this.success();
+                        this.registerForm.setLoading(true);
                         return;
                     }
                     redirectPage(USER_CENTER);
@@ -9988,7 +10078,7 @@
                 if (!mode || !verify) return;
                 try {
                     await wrapArmorCaptcha({
-                        beforeSendCode: async () => {
+                        beforeCapture: async () => {
                             const formValue = this.registerForm && this.registerForm.getFormValue();
                             const acct = formValue[mode];
                             const {stoken} = await checkAccount(super.formatRequestBody({
@@ -9999,7 +10089,7 @@
                                 stoken
                             });
                         },
-                        onSendCode: async captchaToken => {
+                        onCaptureCaptcha: async captchaToken => {
                             const formValue = this.registerForm && this.registerForm.getFormValue();
                             const acct = formValue[mode];
                             const {stoken: lastStoken} = await sendSignUpVerificationCode(super.formatRequestBody({

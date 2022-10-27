@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Volgende",
+      "previous": "Vorig",
+      "read_more": "Bekijk meer",
+      "related_articles": "Gerelateerde blogs"
+    },
     "blog_list": {
       "empty_desc": "Er zijn geen blogberichten in deze blog",
       "read_btn_text": "Meer lezen",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Nog {{stock}} op voorraad"
     },
+    "subscription": {
+      "information": "Abonneren"
+    },
     "tips": {
       "agree_with_the_shop": "Ik ga akkoord met de winkels",
       "change_binding_after_verification": "U kunt {{value}} verbinden/wijzigen na verificatie",
@@ -348,6 +357,7 @@
       "error_message_1022": "Account is gebonden",
       "error_message_1023": "Service fout",
       "error_message_1024": "Service fout",
+      "error_message_1035": "Stuur a.u.b. verificatiecode",
       "error_message_2": "Service fout",
       "error_message_2001": "Geregistreerd telefoonnummer",
       "error_message_2002": "Geregistreerd e-mailadres",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Geen relevante valuta gevonden",
       "search_input_placeholder": "Vul hier in en druk op zoeken"
     },
+    "order_tracking": {
+      "code": "Verificatie code",
+      "email": "E-mail",
+      "form_error": "Zoekopdracht mislukt",
+      "orderId": "Order ID",
+      "orderId_error": "Bestel-ID mag niet leeg zijn",
+      "query_illegal": "bestelling bestaat niet",
+      "risk_black_user": "Dit account loopt risico",
+      "risk_interception": "bestelling bestaat niet",
+      "submit_btn": "Bestelling bekijken",
+      "username": "E-mail/Telefoonnummer"
+    },
     "policy": {
       "privacy": "Privacybeleid",
       "refund": "Teruggavebeleid",
@@ -598,6 +620,7 @@
       "filter": "Filter",
       "from_price_html": "van {{price}}",
       "less": "Minder labels",
+      "load_more_tip": "Meer items laden",
       "more": "Meer labels",
       "more__product_num": "{{num}} Producten",
       "new_arrivals": "Nieuwe releases",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} records",
       "results_found_for": "{{count}} records voor \"{{keyword}}\" gevonden",
       "search": "Zoek",
-      "search_no_results": "Er zijn geen records van uw zoekopdracht voor \"{{keyword}}\""
+      "search_no_results": "Er zijn geen records van uw zoekopdracht voor \"{{keyword}}\"",
+      "single_results": "{{count}} records",
+      "single_results_found": "{{count}} records voor \"{{keyword}}\" gevonden"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Recent bekeken producten"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Verzendkosten onder {value}",
       "specified_customer": "Beschikbaar voor bepaalde klanten",
       "threshold": "Koop {threshold}"
+    },
+    "flash": {
+      "day": "dag",
+      "days": "dagen"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} korting",
@@ -797,6 +826,13 @@
       "point_discount": "Punten korting",
       "shipping_fee": "Verzendkosten",
       "trade_coupon_discount": "Korting"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Fout verificatiecode",
+      "err2005": "Fout verificatiecode",
+      "err3005": "Fout verificatiecode"
     }
   }
 }

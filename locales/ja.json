@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "次",
+      "previous": "前",
+      "read_more": "続きを見る",
+      "related_articles": "関連ブログ"
+    },
     "blog_list": {
       "empty_desc": "このブログにはまだ投稿がありません",
       "read_btn_text": "続きを読む",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "在庫 {{stock}} 個"
     },
+    "subscription": {
+      "information": "サブスク"
+    },
     "tips": {
       "agree_with_the_shop": "次に同意します：",
       "change_binding_after_verification": "検証後に {{value}} をリンク/変更できます",
@@ -348,6 +357,7 @@
       "error_message_1022": "アカウントは設定されていました",
       "error_message_1023": "サーバーエラー",
       "error_message_1024": "サーバーエラー",
+      "error_message_1035": "確認コードを送信してください",
       "error_message_2": "サーバーエラー",
       "error_message_2001": "携帯電話が登録されました",
       "error_message_2002": "メールアドレスが登録されました",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "関連する通貨が見つかりませんでした",
       "search_input_placeholder": "ここに入力して［検索］をタップします"
     },
+    "order_tracking": {
+      "code": "検証コード",
+      "email": "Eメール",
+      "form_error": "クエリに失敗しました",
+      "orderId": "オーダーID",
+      "orderId_error": "オーダー ID を空にすることはできません",
+      "query_illegal": "注文が存在しません",
+      "risk_black_user": "このアカウントは危険にさらされています",
+      "risk_interception": "注文が存在しません",
+      "submit_btn": "表示の順序",
+      "username": "メール/電話番号"
+    },
     "policy": {
       "privacy": "プライバシーポリシー",
       "refund": "代金返却方針",
@@ -598,6 +620,7 @@
       "filter": "フィルター",
       "from_price_html": "{{price}} より",
       "less": "レス",
+      "load_more_tip": "もっとアイテムをロードする",
       "more": "もっと",
       "more__product_num": "{{num}} 製品",
       "new_arrivals": "新着順",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} 件の検索結果",
       "results_found_for": "検索結果 {{count}} 件の \"{{keyword}}\"",
       "search": "検索",
-      "search_no_results": "\"{{keyword}}\" の検索に一致する商品はありませんでした。"
+      "search_no_results": "\"{{keyword}}\" の検索に一致する商品はありませんでした。",
+      "single_results": "{{count}} 件の検索結果",
+      "single_results_found": "検索結果 {{count}} 件の \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "最近チェックした商品"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "送料が{value}未満となる",
       "specified_customer": "指定のお客様に利用可能",
       "threshold": "{threshold}買う"
+    },
+    "flash": {
+      "day": "日",
+      "days": "日"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}}割りOFF",
@@ -797,6 +826,13 @@
       "point_discount": "ポイント割引",
       "shipping_fee": "配送",
       "trade_coupon_discount": "クーポン"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "コードエラー",
+      "err2005": "コードエラー",
+      "err3005": "コードエラー"
     }
   }
 }

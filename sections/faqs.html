@@ -24,16 +24,16 @@
             {{#each block_order as | blockId |}}
                 {{#with (lookup ../blocks blockId)}}
                     {{#if type '===' 'textRow'}}
-                        {{ snippet 'faq-collapse' theme=../../../theme.settings title=settings.title content=settings.question_text color_scheme=section.settings.color_scheme }}
+                        {{ snippet 'faq-collapse' theme=../../../theme.settings title=settings.title content=settings.question_text color_scheme=section.settings.color_scheme shopline_attributes=shopline_attributes }}
                     {{/if}}
                     {{#if type '===' 'richText'}}
-                        {{ snippet 'faq-richtext' title=settings.title content=settings.richtext_text align=settings.richtext_align }}
+                        {{ snippet 'faq-richtext' title=settings.title content=settings.richtext_text align=settings.richtext_align shopline_attributes=shopline_attributes }}
                     {{/if}}
                 {{/with}}
             {{/each}}
         {{/with}}
       </div>
-    </div>    
+    </div>
   </div>
 </div>
 

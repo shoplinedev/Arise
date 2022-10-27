@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Kitas",
+      "previous": "Ankstesnis",
+      "read_more": "Žiūrėti daugiau",
+      "related_articles": "Susiję dienoraščiai"
+    },
     "blog_list": {
       "empty_desc": "Šiame tinklaraštyje nėra jokių tinklaraščio įrašų.",
       "read_btn_text": "Skaityti daugiau",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Liko tik {{stock}}"
     },
+    "subscription": {
+      "information": "Prenumerata"
+    },
     "tips": {
       "agree_with_the_shop": "Sutinku su",
       "change_binding_after_verification": "Galite prijungti / keisti {{value}} po patikrinimo",
@@ -348,6 +357,7 @@
       "error_message_1022": "Paskyros numeris buvo susietas",
       "error_message_1023": "Paslaugos išimtys",
       "error_message_1024": "Paslaugos išimtys",
+      "error_message_1035": "Prašome atsiųsti patvirtinimo kodą",
       "error_message_2": "Paslaugos išimtys",
       "error_message_2001": "Mobilusis buvo registruotas",
       "error_message_2002": "El. paštas buvo registruotas",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Nerasta reikiama valiuta",
       "search_input_placeholder": "Įveskite čia ir bakstelėkite paiešką"
     },
+    "order_tracking": {
+      "code": "Patvirtinimo kodas",
+      "email": "El. paštas",
+      "form_error": "Užklausa nepavyko",
+      "orderId": "Užsakymo ID",
+      "orderId_error": "Užsakymo ID laukas negali būti tuščias",
+      "query_illegal": "tvarka neegzistuoja",
+      "risk_black_user": "Šiai paskyrai gresia pavojus",
+      "risk_interception": "tvarka neegzistuoja",
+      "submit_btn": "Peržiūrėti užsakymą",
+      "username": "Pašto / telefono numeris"
+    },
     "policy": {
       "privacy": "Privatumo politika",
       "refund": "Grąžinimo politika",
@@ -598,6 +620,7 @@
       "filter": "Filtras",
       "from_price_html": "Nuo {{price}}",
       "less": "mažiau etikečių",
+      "load_more_tip": "Įkeliama daugiau prekių",
       "more": "daugiau žymų",
       "more__product_num": "{{num}} elementų skaičius yra daugiskaita",
       "new_arrivals": "Naujos prekės",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Rezultatai",
       "results_found_for": "{{count}} rezultatai rasti \"{{keyword}}\"",
       "search": "Paieška",
-      "search_no_results": "Jūsų \"{{keyword}}\" paieška neteikia jokių rezultatų"
+      "search_no_results": "Jūsų \"{{keyword}}\" paieška neteikia jokių rezultatų",
+      "single_results": "{{count}} Rezultatai",
+      "single_results_found": "{{count}} rezultatai rasti \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Naujausiai peržiūrėtos prekės"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Krovinys yra mažesnis negu {value}",
       "specified_customer": "Dėl tam tikrų klientų",
       "threshold": "Pirkite {threshold}"
+    },
+    "flash": {
+      "day": "diena",
+      "days": "dienos"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} nuolaida",
@@ -797,6 +826,13 @@
       "point_discount": "Nuolaida už taškus",
       "shipping_fee": "Pristatymas",
       "trade_coupon_discount": "Kuponas"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Kodo klaida",
+      "err2005": "Kodo klaida",
+      "err3005": "Kodo klaida"
     }
   }
 }

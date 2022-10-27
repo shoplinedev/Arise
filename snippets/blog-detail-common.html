@@ -4,7 +4,7 @@
     <script src="{{ assets_url 'blog/detail/index.min.modern.js' }}"></script>
   {{else}}
     <script src="{{ assets_url 'blog/detail/index.min.js' }}"></script>
-  {{/is_modern_browser}}  
+  {{/is_modern_browser}}
   
 <script>
   {{#is_modern_browser}}
@@ -18,7 +18,7 @@
 
 {{ assign 'seoTitle' storeInfo.name }}
 {{#if blog.seoTitle}}
-  {{ assign 'seoTitle' (append blog.seoTitle ' - ' seoTitle) }}
+  {{ assign 'seoTitle' blog.seoTitle }}
 {{/if}}
 
 {{#partial 'title'}}
@@ -84,7 +84,7 @@
 
 {{! 没有desc 不展示 }}
 {{#if seoDescription}}
-  <meta name="description" content="{{seoDescription}}" />
+  <meta name="description" content="{{sanitize seoDescription}}" />
 {{/if}}
 
 {{! 商详页之前的标签 先保留其他页面不需要传入  }}
@@ -111,7 +111,7 @@
 {{/if}}
 
 {{#if ogDescription}}
-  <meta property="og:description" content="{{ogDescription}}" />
+  <meta property="og:description" content="{{sanitize ogDescription}}" />
 {{/if}}
 
 {{! meta fb type }}
@@ -131,7 +131,7 @@
 
 {{! meta description }}
 {{#if ogDescription}}
-  <meta name="twitter:description" content="{{ogDescription}}" />
+  <meta name="twitter:description" content="{{sanitize ogDescription}}" />
 {{/if}}
 
 {{! meta twitter card }}

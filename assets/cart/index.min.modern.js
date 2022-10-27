@@ -923,427 +923,6 @@
             });
         }));
     },
-    "./node_modules/dayjs/dayjs.min.js": function(module) {
-        !function(t, e) {
-            true ? module.exports = e() : 0;
-        }(0, (function() {
-            "use strict";
-            var t = 1e3, e = 6e4, n = 36e5, r = "millisecond", i = "second", s = "minute", u = "hour", a = "day", o = "week", f = "month", h = "quarter", c = "year", d = "date", $ = "Invalid Date", l = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M = {
-                name: "en",
-                weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
-                months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_")
-            }, m = function(t, e, n) {
-                var r = String(t);
-                return !r || r.length >= e ? t : "" + Array(e + 1 - r.length).join(n) + t;
-            }, g = {
-                s: m,
-                z: function(t) {
-                    var e = -t.utcOffset(), n = Math.abs(e), r = Math.floor(n / 60), i = n % 60;
-                    return (e <= 0 ? "+" : "-") + m(r, 2, "0") + ":" + m(i, 2, "0");
-                },
-                m: function t(e, n) {
-                    if (e.date() < n.date()) return -t(n, e);
-                    var r = 12 * (n.year() - e.year()) + (n.month() - e.month()), i = e.clone().add(r, f), s = n - i < 0, u = e.clone().add(r + (s ? -1 : 1), f);
-                    return +(-(r + (n - i) / (s ? i - u : u - i)) || 0);
-                },
-                a: function(t) {
-                    return t < 0 ? Math.ceil(t) || 0 : Math.floor(t);
-                },
-                p: function(t) {
-                    return {
-                        M: f,
-                        y: c,
-                        w: o,
-                        d: a,
-                        D: d,
-                        h: u,
-                        m: s,
-                        s: i,
-                        ms: r,
-                        Q: h
-                    }[t] || String(t || "").toLowerCase().replace(/s$/, "");
-                },
-                u: function(t) {
-                    return void 0 === t;
-                }
-            }, v = "en", D = {};
-            D[v] = M;
-            var p = function(t) {
-                return t instanceof _;
-            }, S = function t(e, n, r) {
-                var i;
-                if (!e) return v;
-                if ("string" == typeof e) {
-                    var s = e.toLowerCase();
-                    D[s] && (i = s), n && (D[s] = n, i = s);
-                    var u = e.split("-");
-                    if (!i && u.length > 1) return t(u[0]);
-                } else {
-                    var a = e.name;
-                    D[a] = e, i = a;
-                }
-                return !r && i && (v = i), i || !r && v;
-            }, w = function(t, e) {
-                if (p(t)) return t.clone();
-                var n = "object" == typeof e ? e : {};
-                return n.date = t, n.args = arguments, new _(n);
-            }, O = g;
-            O.l = S, O.i = p, O.w = function(t, e) {
-                return w(t, {
-                    locale: e.$L,
-                    utc: e.$u,
-                    x: e.$x,
-                    $offset: e.$offset
-                });
-            };
-            var _ = function() {
-                function M(t) {
-                    this.$L = S(t.locale, null, !0), this.parse(t);
-                }
-                var m = M.prototype;
-                return m.parse = function(t) {
-                    this.$d = function(t) {
-                        var e = t.date, n = t.utc;
-                        if (null === e) return new Date(NaN);
-                        if (O.u(e)) return new Date;
-                        if (e instanceof Date) return new Date(e);
-                        if ("string" == typeof e && !/Z$/i.test(e)) {
-                            var r = e.match(l);
-                            if (r) {
-                                var i = r[2] - 1 || 0, s = (r[7] || "0").substring(0, 3);
-                                return n ? new Date(Date.UTC(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s)) : new Date(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s);
-                            }
-                        }
-                        return new Date(e);
-                    }(t), this.$x = t.x || {}, this.init();
-                }, m.init = function() {
-                    var t = this.$d;
-                    this.$y = t.getFullYear(), this.$M = t.getMonth(), this.$D = t.getDate(), this.$W = t.getDay(), 
-                    this.$H = t.getHours(), this.$m = t.getMinutes(), this.$s = t.getSeconds(), this.$ms = t.getMilliseconds();
-                }, m.$utils = function() {
-                    return O;
-                }, m.isValid = function() {
-                    return !(this.$d.toString() === $);
-                }, m.isSame = function(t, e) {
-                    var n = w(t);
-                    return this.startOf(e) <= n && n <= this.endOf(e);
-                }, m.isAfter = function(t, e) {
-                    return w(t) < this.startOf(e);
-                }, m.isBefore = function(t, e) {
-                    return this.endOf(e) < w(t);
-                }, m.$g = function(t, e, n) {
-                    return O.u(t) ? this[e] : this.set(n, t);
-                }, m.unix = function() {
-                    return Math.floor(this.valueOf() / 1e3);
-                }, m.valueOf = function() {
-                    return this.$d.getTime();
-                }, m.startOf = function(t, e) {
-                    var n = this, r = !!O.u(e) || e, h = O.p(t), $ = function(t, e) {
-                        var i = O.w(n.$u ? Date.UTC(n.$y, e, t) : new Date(n.$y, e, t), n);
-                        return r ? i : i.endOf(a);
-                    }, l = function(t, e) {
-                        return O.w(n.toDate()[t].apply(n.toDate("s"), (r ? [ 0, 0, 0, 0 ] : [ 23, 59, 59, 999 ]).slice(e)), n);
-                    }, y = this.$W, M = this.$M, m = this.$D, g = "set" + (this.$u ? "UTC" : "");
-                    switch (h) {
-                      case c:
-                        return r ? $(1, 0) : $(31, 11);
-
-                      case f:
-                        return r ? $(1, M) : $(0, M + 1);
-
-                      case o:
-                        var v = this.$locale().weekStart || 0, D = (y < v ? y + 7 : y) - v;
-                        return $(r ? m - D : m + (6 - D), M);
-
-                      case a:
-                      case d:
-                        return l(g + "Hours", 0);
-
-                      case u:
-                        return l(g + "Minutes", 1);
-
-                      case s:
-                        return l(g + "Seconds", 2);
-
-                      case i:
-                        return l(g + "Milliseconds", 3);
-
-                      default:
-                        return this.clone();
-                    }
-                }, m.endOf = function(t) {
-                    return this.startOf(t, !1);
-                }, m.$set = function(t, e) {
-                    var n, o = O.p(t), h = "set" + (this.$u ? "UTC" : ""), $ = (n = {}, n[a] = h + "Date", 
-                    n[d] = h + "Date", n[f] = h + "Month", n[c] = h + "FullYear", n[u] = h + "Hours", 
-                    n[s] = h + "Minutes", n[i] = h + "Seconds", n[r] = h + "Milliseconds", n)[o], l = o === a ? this.$D + (e - this.$W) : e;
-                    if (o === f || o === c) {
-                        var y = this.clone().set(d, 1);
-                        y.$d[$](l), y.init(), this.$d = y.set(d, Math.min(this.$D, y.daysInMonth())).$d;
-                    } else $ && this.$d[$](l);
-                    return this.init(), this;
-                }, m.set = function(t, e) {
-                    return this.clone().$set(t, e);
-                }, m.get = function(t) {
-                    return this[O.p(t)]();
-                }, m.add = function(r, h) {
-                    var d, $ = this;
-                    r = Number(r);
-                    var l = O.p(h), y = function(t) {
-                        var e = w($);
-                        return O.w(e.date(e.date() + Math.round(t * r)), $);
-                    };
-                    if (l === f) return this.set(f, this.$M + r);
-                    if (l === c) return this.set(c, this.$y + r);
-                    if (l === a) return y(1);
-                    if (l === o) return y(7);
-                    var M = (d = {}, d[s] = e, d[u] = n, d[i] = t, d)[l] || 1, m = this.$d.getTime() + r * M;
-                    return O.w(m, this);
-                }, m.subtract = function(t, e) {
-                    return this.add(-1 * t, e);
-                }, m.format = function(t) {
-                    var e = this, n = this.$locale();
-                    if (!this.isValid()) return n.invalidDate || $;
-                    var r = t || "YYYY-MM-DDTHH:mm:ssZ", i = O.z(this), s = this.$H, u = this.$m, a = this.$M, o = n.weekdays, f = n.months, h = function(t, n, i, s) {
-                        return t && (t[n] || t(e, r)) || i[n].slice(0, s);
-                    }, c = function(t) {
-                        return O.s(s % 12 || 12, t, "0");
-                    }, d = n.meridiem || function(t, e, n) {
-                        var r = t < 12 ? "AM" : "PM";
-                        return n ? r.toLowerCase() : r;
-                    }, l = {
-                        YY: String(this.$y).slice(-2),
-                        YYYY: this.$y,
-                        M: a + 1,
-                        MM: O.s(a + 1, 2, "0"),
-                        MMM: h(n.monthsShort, a, f, 3),
-                        MMMM: h(f, a),
-                        D: this.$D,
-                        DD: O.s(this.$D, 2, "0"),
-                        d: String(this.$W),
-                        dd: h(n.weekdaysMin, this.$W, o, 2),
-                        ddd: h(n.weekdaysShort, this.$W, o, 3),
-                        dddd: o[this.$W],
-                        H: String(s),
-                        HH: O.s(s, 2, "0"),
-                        h: c(1),
-                        hh: c(2),
-                        a: d(s, u, !0),
-                        A: d(s, u, !1),
-                        m: String(u),
-                        mm: O.s(u, 2, "0"),
-                        s: String(this.$s),
-                        ss: O.s(this.$s, 2, "0"),
-                        SSS: O.s(this.$ms, 3, "0"),
-                        Z: i
-                    };
-                    return r.replace(y, (function(t, e) {
-                        return e || l[t] || i.replace(":", "");
-                    }));
-                }, m.utcOffset = function() {
-                    return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
-                }, m.diff = function(r, d, $) {
-                    var l, y = O.p(d), M = w(r), m = (M.utcOffset() - this.utcOffset()) * e, g = this - M, v = O.m(this, M);
-                    return v = (l = {}, l[c] = v / 12, l[f] = v, l[h] = v / 3, l[o] = (g - m) / 6048e5, 
-                    l[a] = (g - m) / 864e5, l[u] = g / n, l[s] = g / e, l[i] = g / t, l)[y] || g, $ ? v : O.a(v);
-                }, m.daysInMonth = function() {
-                    return this.endOf(f).$D;
-                }, m.$locale = function() {
-                    return D[this.$L];
-                }, m.locale = function(t, e) {
-                    if (!t) return this.$L;
-                    var n = this.clone(), r = S(t, e, !0);
-                    return r && (n.$L = r), n;
-                }, m.clone = function() {
-                    return O.w(this.$d, this);
-                }, m.toDate = function() {
-                    return new Date(this.valueOf());
-                }, m.toJSON = function() {
-                    return this.isValid() ? this.toISOString() : null;
-                }, m.toISOString = function() {
-                    return this.$d.toISOString();
-                }, m.toString = function() {
-                    return this.$d.toUTCString();
-                }, M;
-            }(), T = _.prototype;
-            return w.prototype = T, [ [ "$ms", r ], [ "$s", i ], [ "$m", s ], [ "$H", u ], [ "$W", a ], [ "$M", f ], [ "$y", c ], [ "$D", d ] ].forEach((function(t) {
-                T[t[1]] = function(e) {
-                    return this.$g(e, t[0], t[1]);
-                };
-            })), w.extend = function(t, e) {
-                return t.$i || (t(e, _, w), t.$i = !0), w;
-            }, w.locale = S, w.isDayjs = p, w.unix = function(t) {
-                return w(1e3 * t);
-            }, w.en = D[v], w.Ls = D, w.p = {}, w;
-        }));
-    },
-    "./node_modules/dayjs/plugin/duration.js": function(module) {
-        !function(t, s) {
-            true ? module.exports = s() : 0;
-        }(0, (function() {
-            "use strict";
-            var t, s, n = 1e3, i = 6e4, e = 36e5, r = 864e5, o = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, u = 31536e6, h = 2592e6, a = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/, d = {
-                years: u,
-                months: h,
-                days: r,
-                hours: e,
-                minutes: i,
-                seconds: n,
-                milliseconds: 1,
-                weeks: 6048e5
-            }, c = function(t) {
-                return t instanceof p;
-            }, f = function(t, s, n) {
-                return new p(t, n, s.$l);
-            }, m = function(t) {
-                return s.p(t) + "s";
-            }, l = function(t) {
-                return t < 0;
-            }, $ = function(t) {
-                return l(t) ? Math.ceil(t) : Math.floor(t);
-            }, y = function(t) {
-                return Math.abs(t);
-            }, g = function(t, s) {
-                return t ? l(t) ? {
-                    negative: !0,
-                    format: "" + y(t) + s
-                } : {
-                    negative: !1,
-                    format: "" + t + s
-                } : {
-                    negative: !1,
-                    format: ""
-                };
-            }, p = function() {
-                function l(t, s, n) {
-                    var i = this;
-                    if (this.$d = {}, this.$l = n, void 0 === t && (this.$ms = 0, this.parseFromMilliseconds()), 
-                    s) return f(t * d[m(s)], this);
-                    if ("number" == typeof t) return this.$ms = t, this.parseFromMilliseconds(), this;
-                    if ("object" == typeof t) return Object.keys(t).forEach((function(s) {
-                        i.$d[m(s)] = t[s];
-                    })), this.calMilliseconds(), this;
-                    if ("string" == typeof t) {
-                        var e = t.match(a);
-                        if (e) {
-                            var r = e.slice(2).map((function(t) {
-                                return null != t ? Number(t) : 0;
-                            }));
-                            return this.$d.years = r[0], this.$d.months = r[1], this.$d.weeks = r[2], this.$d.days = r[3], 
-                            this.$d.hours = r[4], this.$d.minutes = r[5], this.$d.seconds = r[6], this.calMilliseconds(), 
-                            this;
-                        }
-                    }
-                    return this;
-                }
-                var y = l.prototype;
-                return y.calMilliseconds = function() {
-                    var t = this;
-                    this.$ms = Object.keys(this.$d).reduce((function(s, n) {
-                        return s + (t.$d[n] || 0) * d[n];
-                    }), 0);
-                }, y.parseFromMilliseconds = function() {
-                    var t = this.$ms;
-                    this.$d.years = $(t / u), t %= u, this.$d.months = $(t / h), t %= h, this.$d.days = $(t / r), 
-                    t %= r, this.$d.hours = $(t / e), t %= e, this.$d.minutes = $(t / i), t %= i, this.$d.seconds = $(t / n), 
-                    t %= n, this.$d.milliseconds = t;
-                }, y.toISOString = function() {
-                    var t = g(this.$d.years, "Y"), s = g(this.$d.months, "M"), n = +this.$d.days || 0;
-                    this.$d.weeks && (n += 7 * this.$d.weeks);
-                    var i = g(n, "D"), e = g(this.$d.hours, "H"), r = g(this.$d.minutes, "M"), o = this.$d.seconds || 0;
-                    this.$d.milliseconds && (o += this.$d.milliseconds / 1e3);
-                    var u = g(o, "S"), h = t.negative || s.negative || i.negative || e.negative || r.negative || u.negative, a = e.format || r.format || u.format ? "T" : "", d = (h ? "-" : "") + "P" + t.format + s.format + i.format + a + e.format + r.format + u.format;
-                    return "P" === d || "-P" === d ? "P0D" : d;
-                }, y.toJSON = function() {
-                    return this.toISOString();
-                }, y.format = function(t) {
-                    var n = t || "YYYY-MM-DDTHH:mm:ss", i = {
-                        Y: this.$d.years,
-                        YY: s.s(this.$d.years, 2, "0"),
-                        YYYY: s.s(this.$d.years, 4, "0"),
-                        M: this.$d.months,
-                        MM: s.s(this.$d.months, 2, "0"),
-                        D: this.$d.days,
-                        DD: s.s(this.$d.days, 2, "0"),
-                        H: this.$d.hours,
-                        HH: s.s(this.$d.hours, 2, "0"),
-                        m: this.$d.minutes,
-                        mm: s.s(this.$d.minutes, 2, "0"),
-                        s: this.$d.seconds,
-                        ss: s.s(this.$d.seconds, 2, "0"),
-                        SSS: s.s(this.$d.milliseconds, 3, "0")
-                    };
-                    return n.replace(o, (function(t, s) {
-                        return s || String(i[t]);
-                    }));
-                }, y.as = function(t) {
-                    return this.$ms / d[m(t)];
-                }, y.get = function(t) {
-                    var s = this.$ms, n = m(t);
-                    return "milliseconds" === n ? s %= 1e3 : s = "weeks" === n ? $(s / d[n]) : this.$d[n], 
-                    0 === s ? 0 : s;
-                }, y.add = function(t, s, n) {
-                    var i;
-                    return i = s ? t * d[m(s)] : c(t) ? t.$ms : f(t, this).$ms, f(this.$ms + i * (n ? -1 : 1), this);
-                }, y.subtract = function(t, s) {
-                    return this.add(t, s, !0);
-                }, y.locale = function(t) {
-                    var s = this.clone();
-                    return s.$l = t, s;
-                }, y.clone = function() {
-                    return f(this.$ms, this);
-                }, y.humanize = function(s) {
-                    return t().add(this.$ms, "ms").locale(this.$l).fromNow(!s);
-                }, y.milliseconds = function() {
-                    return this.get("milliseconds");
-                }, y.asMilliseconds = function() {
-                    return this.as("milliseconds");
-                }, y.seconds = function() {
-                    return this.get("seconds");
-                }, y.asSeconds = function() {
-                    return this.as("seconds");
-                }, y.minutes = function() {
-                    return this.get("minutes");
-                }, y.asMinutes = function() {
-                    return this.as("minutes");
-                }, y.hours = function() {
-                    return this.get("hours");
-                }, y.asHours = function() {
-                    return this.as("hours");
-                }, y.days = function() {
-                    return this.get("days");
-                }, y.asDays = function() {
-                    return this.as("days");
-                }, y.weeks = function() {
-                    return this.get("weeks");
-                }, y.asWeeks = function() {
-                    return this.as("weeks");
-                }, y.months = function() {
-                    return this.get("months");
-                }, y.asMonths = function() {
-                    return this.as("months");
-                }, y.years = function() {
-                    return this.get("years");
-                }, y.asYears = function() {
-                    return this.as("years");
-                }, l;
-            }();
-            return function(n, i, e) {
-                t = e, s = e().$utils(), e.duration = function(t, s) {
-                    var n = e.locale();
-                    return f(t, {
-                        $l: n
-                    }, s);
-                }, e.isDuration = c;
-                var r = i.prototype.add, o = i.prototype.subtract;
-                i.prototype.add = function(t, s) {
-                    return c(t) && (t = t.asMilliseconds()), r.bind(this)(t, s);
-                }, i.prototype.subtract = function(t, s) {
-                    return c(t) && (t = t.asMilliseconds()), o.bind(this)(t, s);
-                };
-            };
-        }));
-    },
     "./src/assets/cart/script/main.js": (__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
         "use strict";
         var js_cookie = __webpack_require__("./node_modules/js-cookie/src/js.cookie.js");
@@ -1384,6 +963,7 @@
         var i18n = __webpack_require__("../shared/browser/utils/i18n.js");
         var index_umd = __webpack_require__("./node_modules/@yy/sl-pod-preview-image/lib/index.umd.js");
         var index_umd_default = __webpack_require__.n(index_umd);
+        var template = __webpack_require__("../shared/browser/utils/template.js");
         var syntax_patch = __webpack_require__("../shared/browser/utils/syntax-patch.js");
         const nc = syntax_patch.nullishCoalescingOperator;
         function setWrapper(value, warper) {
@@ -1409,7 +989,8 @@
             return "";
         };
         const getGiftConfig = (promotion, configs = {}) => {
-            const {promotionBenefitList = []} = nc(promotion, {});
+            const {benefitType, promotionBenefitList = []} = nc(promotion, {});
+            const {hasSelectedGiftQuantity} = nc(configs, {});
             if (promotionBenefitList.length) {
                 let current;
                 let next;
@@ -1428,25 +1009,34 @@
                     current = (0, syntax_patch.get)(promotionBenefitList, [ 0 ]);
                     next = (0, syntax_patch.get)(promotionBenefitList, [ 1 ]);
                 }
+                const {type: thresholdType} = current || next;
                 const {warper} = configs;
+                const savedCount = setWrapper(hasSelectedGiftQuantity, {
+                    ...warper,
+                    class: `sales__promotionReminder-saved ${nc((0, syntax_patch.get)(warper, "class"))}`
+                });
+                const willSaveCount = setWrapper(hasSelectedGiftQuantity < 1 && current ? nc((0, 
+                syntax_patch.get)(current, "extMap.realBenefitValue"), (0, syntax_patch.get)(current, "benefitCount")) : nc((0, 
+                syntax_patch.get)(next, "extMap.realBenefitValue"), (0, syntax_patch.get)(next, "benefitCount")), {
+                    ...warper,
+                    class: `sales__promotionReminder-willSave custom-sale-color ${nc((0, syntax_patch.get)(warper, "class"))}`
+                });
                 return {
                     path: getI18nKey(step, configs, (0, syntax_patch.get)(current, "type") || (0, syntax_patch.get)(next, "type")),
                     params: {
-                        saved: setWrapper((0, syntax_patch.get)(configs, "hasSelectedGiftQuantity"), {
-                            ...warper,
-                            class: `sales__promotionReminder-saved ${nc((0, syntax_patch.get)(warper, "class"), "")}`
-                        }),
-                        willSave: setWrapper((0, syntax_patch.get)(configs, "hasSelectedGiftQuantity") < 1 && current ? (0, 
-                        syntax_patch.get)(current, "benefitCount") : (0, syntax_patch.get)(next, "benefitCount"), {
-                            ...warper,
-                            class: `sales__promotionReminder-willSave custom-sale-color ${nc((0, syntax_patch.get)(warper, "class"), "")}`
-                        }),
+                        saved: savedCount,
+                        savedCount,
+                        willSave: willSaveCount,
+                        willSaveCount,
                         threshold: setWrapper(formatBenefitNum(next || current), {
                             ...warper,
                             class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, syntax_patch.get)(warper, "class"), "")}`
                         })
                     },
-                    step
+                    step,
+                    benefitType,
+                    thresholdType,
+                    extra: hasSelectedGiftQuantity
                 };
             }
             return {
@@ -1458,13 +1048,11 @@
         const getGiftContent = (promotion, rootWrapper, options = {}) => {
             const isPCMainCart = rootWrapper.hasClass("main") && rootWrapper.hasClass("is-pc");
             const config = getGiftConfig(promotion, options);
-            const promotionTemplate = (0, i18n.t)(config.path, {
-                saved: config.params.saved,
-                willSave: config.params.willSave,
-                threshold: config.params.threshold,
-                br: config.params.br
-            });
-            return `\n  <div class="cart-sku-list-promotion-module salesPluginGift__promotion" data-widget-scope="gift" data-activityseq="${promotion.activitySeq}" data-promotionseq="${promotion.promotionSeq}">\n    <div>\n      ${promotionTemplate}\n    </div>\n    <span class="cart-sku-list-promotion-module-arrow">\n      ${isPCMainCart ? (0, 
+            const bannerText = (0, syntax_patch.get)(promotion, "promotionBenefitList[0].extMap.bannerText");
+            const promotionTemplate = bannerText ? (0, template["default"])(bannerText, config.params, {
+                prefix: "{"
+            }) : "";
+            return `\n  <div class="cart-sku-list-promotion-module salesPluginGift__promotion" data-widget-scope="gift" data-activityseq="${promotion.activitySeq}" data-promotionseq="${promotion.promotionSeq}">\n    <div class="notranslate">\n      ${promotionTemplate}\n    </div>\n    <span class="cart-sku-list-promotion-module-arrow">\n      ${isPCMainCart ? (0, 
             i18n.t)("sales.gift.select") : ""}\n      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n        <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />\n      </svg>\n    </span>\n  </div>\n  `;
         };
         const gift = getGiftContent;
@@ -1475,12 +1063,13 @@
                 lineBreak: !isPCMainCart
             });
             const needJump = 3 !== (0, syntax_patch.get)(config, "step");
-            const promotionTemplate = (0, i18n.t)(config.path, {
-                ...config.params || {}
-            });
+            const bannerText = (0, syntax_patch.get)(promotion, "promotionBenefitList[0].extMap.bannerText");
+            const promotionTemplate = bannerText ? (0, template["default"])(bannerText, config.params, {
+                prefix: "{"
+            }) : "";
             const {extMap = {}} = config.params;
-            if (needJump) return `\n      <div class="cart-sku-list-promotion-module-can-jump">\n        <a href="/activity/${promotion.activitySeq}?type=pool${"true" === extMap.meetThreshold ? "&query_product_type=2" : ""}" class="cart-sku-list-promotion-module-can-jump-wrapper">\n          <div>\n            ${promotionTemplate}\n          </div>\n          <div class="cart-sku-list-promotion-module-can-jump-arrow" style="font-size:0;">\n            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n              <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />\n            </svg>\n          </div>\n        </a>\n      </div>\n    `;
-            return `\n    <div class="cart-sku-list-promotion-module">\n      <span>\n        ${promotionTemplate}\n      </span>\n    </div>\n  `;
+            if (needJump) return `\n      <div class="cart-sku-list-promotion-module-can-jump notranslate">\n        <a href="/activity/${promotion.activitySeq}?type=pool${"true" === extMap.meetThreshold ? "&query_product_type=2" : ""}" class="cart-sku-list-promotion-module-can-jump-wrapper">\n          <div>\n            ${promotionTemplate}\n          </div>\n          <div class="cart-sku-list-promotion-module-can-jump-arrow" style="font-size:0;">\n            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">\n              <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />\n            </svg>\n          </div>\n        </a>\n      </div>\n    `;
+            return `\n    <div class="cart-sku-list-promotion-module notranslate">\n      <span>\n        ${promotionTemplate}\n      </span>\n    </div>\n  `;
         };
         const reminder = getPromotionBarContent;
         const PLUGIN_GIFT_TYPE = 7;
@@ -2742,101 +2331,6 @@
             checkoutHooksValuer: checkoutHooks,
             cartActionHooksValuer: cartActionHooks
         };
-        var dayjs_min = __webpack_require__("./node_modules/dayjs/dayjs.min.js");
-        var dayjs_min_default = __webpack_require__.n(dayjs_min);
-        var duration = __webpack_require__("./node_modules/dayjs/plugin/duration.js");
-        var duration_default = __webpack_require__.n(duration);
-        const genTpl = ({label, value, labelCls, valueCls}) => {
-            const containerClasses = [ "flash-sale__bg", "flash-sale__font", "flash-sale__container", "notranslate" ];
-            const labelClasses = [];
-            const valueClasses = [];
-            labelCls && labelClasses.push(labelCls);
-            valueCls && valueClasses.push(valueCls);
-            return `\n    <span class="${containerClasses.join(" ")}">\n      <span class="${labelClasses.join(" ")}">${label}</span>: <span class="${valueClasses.join(" ")}">${value}</span>\n    </span>\n  `;
-        };
-        const template = genTpl;
-        function _defineProperty(obj, key, value) {
-            if (key in obj) Object.defineProperty(obj, key, {
-                value,
-                enumerable: true,
-                configurable: true,
-                writable: true
-            }); else obj[key] = value;
-            return obj;
-        }
-        dayjs_min_default().extend(duration_default());
-        class FlashSale {
-            constructor(props) {
-                _defineProperty(this, "timer", null);
-                this.state = {
-                    ...props
-                };
-            }
-            countDown() {
-                clearInterval(this.timer);
-                this.timer = setInterval((() => {
-                    if (this.leftTime.time) this.update();
-                }), 1e3);
-            }
-            update() {
-                __SL_$__(`#${this.parentId}`).find(`.cart__count-down--${this.parentId}`).text(this.leftTime.format);
-            }
-            get now() {
-                return Date.now();
-            }
-            get endTime() {
-                const time = Number(this.state.endTime);
-                return time;
-            }
-            get leftTime() {
-                const duration = dayjs_min_default().duration(this.endTime - this.now);
-                const days = duration.days();
-                const hours = duration.hours();
-                const minutes = duration.minutes() % 60 < 10 ? `0${duration.minutes() % 60}` : duration.minutes() % 60;
-                const seconds = duration.seconds() % 60 < 10 ? `0${duration.seconds() % 60}` : duration.seconds() % 60;
-                const dayText = dayValue => dayValue > 1 ? (0, i18n.t)("cart.cart.days") : (0, i18n.t)("cart.cart.day");
-                const renderDays = () => days > 0 ? `${days}${dayText(days)} ` : "";
-                return duration ? {
-                    time: duration,
-                    format: `${renderDays()}${hours}:${minutes}:${seconds}`
-                } : null;
-            }
-            getComponent() {
-                this.countDown();
-                if (!this.leftTime.time) return __SL_$__("<span></span>");
-                return template({
-                    label: "Flash Sale",
-                    value: this.leftTime.format,
-                    valueCls: `cart__count-down--${this.parentId}`
-                });
-            }
-            render(parentId) {
-                this.parentId = parentId;
-                this.component = this.getComponent();
-                return this.component;
-            }
-        }
-        const flash_sale = FlashSale;
-        class FlashSaleModel {
-            renderFlashSale(id, data) {
-                const html = new flash_sale(data).render(id);
-                return html;
-            }
-            initFlashSale() {
-                const allFlashSaleEle = __SL_$__("[data-flash-sale-item-id]");
-                if (!allFlashSaleEle.length) return;
-                allFlashSaleEle.map(((_, ele) => {
-                    const curEle = __SL_$__(ele);
-                    const data = curEle.data("flash-sale-data");
-                    return curEle.html(this.renderFlashSale(curEle.attr("data-flash-sale-item-id"), data));
-                }));
-            }
-        }
-        const model = new FlashSaleModel;
-        const render = {
-            staticRender: (id, data) => model.renderFlashSale(id, data),
-            initialModel: () => model.initFlashSale()
-        };
         class PromotionLimited {
             constructor(props) {
                 this.state = {
@@ -2865,7 +2359,7 @@
             }
         }
         const promotion_limited = PromotionLimited;
-        class render_FlashSaleModel {
+        class FlashSaleModel {
             renderPromotionLimited(id, data) {
                 const html = new promotion_limited(data).render(id);
                 return html;
@@ -2880,10 +2374,10 @@
                 }));
             }
         }
-        const render_model = new render_FlashSaleModel;
-        const promotion_limited_render = {
-            staticRender: (id, data) => render_model.renderPromotionLimited(id, data),
-            initialModel: () => render_model.initPromotionLimited()
+        const model = new FlashSaleModel;
+        const render = {
+            staticRender: (id, data) => model.renderPromotionLimited(id, data),
+            initialModel: () => model.initPromotionLimited()
         };
         const sku_card_logger = logger["default"].pipeOwner(`${sentryReport.Owner.Cart} components/sku-card`);
         const sku_card_cartToken = js_cookie_default().get("t_cart");
@@ -2942,7 +2436,6 @@
                 this.listenCartSkuInfoPreview();
                 this.listenSelectContentReport();
                 render.initialModel();
-                promotion_limited_render.initialModel();
                 sku_card_logger.info(`normal 主站购物车 SkuCard init`, {
                     data: {
                         cartToken: sku_card_cartToken,
@@ -3121,6 +2614,13 @@
                     setTimeout((() => {
                         this.scrollContent.scrollTop = scrollTop;
                     }), 0);
+                    const setPaypalStatus = status => {
+                        const paypals = document.querySelectorAll(".shopline-element-cart-paypal");
+                        paypals.forEach((paypal => {
+                            paypal.style.display = status;
+                        }));
+                    };
+                    if (data.subscriptionInfo && data.subscriptionInfo.existSubscription) setPaypalStatus("none"); else setPaypalStatus("block");
                     sku_card_logger.info(`normal 主站购物车 SkuCard CartDataUpdate`, {
                         data: {
                             cartToken: sku_card_cartToken
@@ -3225,7 +2725,7 @@
             getCardItemAttrs(item) {
                 let str = "";
                 const properties = (item.properties || []).filter((i => i.show)) || [];
-                str = `<div class="trade-cart-sku-item-info-wrapper">\n    ${this.getItemSkuAttr(item.skuAttributes)}\n    ${properties.length ? this.getItemSkuProperties(item.properties) : ""}\n    ${this.getItemSkuCustomTips(item.customProductTips)}<div class="slot-cart slot-cart-item-info" data-slot-cart-item-info></div></div>`;
+                str = `<div class="trade-cart-sku-item-info-wrapper">\n    ${this.getItemSkuAttr(item.skuAttributes)}\n    ${properties.length ? this.getItemSkuProperties(item.properties) : ""}\n    ${this.getItemSubscriptionInfo(item.subscriptionInfo)}${this.getItemSkuCustomTips(item.customProductTips)}<div class="slot-cart slot-cart-item-info" data-slot-cart-item-info></div></div>`;
                 return str;
             }
             getItemSkuAttr(skuAttr) {
@@ -3254,6 +2754,12 @@
                     tipsContent.push(`\n        <div class="trade-cart-sku-item-info-customTip notranslate">${encodeHTML(data)}</div>`);
                 }));
                 return tipsContent.join("\n");
+            }
+            getItemSubscriptionInfo(subscriptionInfo) {
+                let subscriptionInfoName = "";
+                if (subscriptionInfo && subscriptionInfo.sellingPlanName) subscriptionInfoName = `\n        <div class="trade-cart-sku-item-info-spec body3">\n              <div class="trade-cart-sku-item-info-spec-key">${(0, 
+                i18n.t)("cart.subscription.information")}:</div>\n              <div class="trade-cart-sku-item-info-spec-value">${subscriptionInfo.sellingPlanName}</div>\n            </div>\n      `;
+                return subscriptionInfoName;
             }
             getStepper(count, indexStr) {
                 return `\n      <span class="cart-stepper">\n          <span class="cart-stepper-minus">\n              <span class="cart-stepper-button">\n                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">\n                  <path d="M9 5H1" stroke-linecap="round" />\n                </svg>\n              </span>\n          </span>\n          <input class="cart-stepper-input body4 ${indexStr}" type="text" value=${count}>\n          <span class="cart-stepper-plus">\n              <span class="cart-stepper-button">\n                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">\n                  <path d="M9 5H1" stroke-linecap="round" />\n                  <path d="M5 1L5 9" stroke-linecap="round" />\n                </svg>\n              </span>\n          </span>\n      </span>\n    `;
@@ -3312,11 +2818,11 @@
                 const wrapperClassName = [ "shopline-element-cart-sku-item", "trade-cart-sku-item" ];
                 if (0 === data.maxPurchaseTotalNum && stockType.cartLimitedEnum.NORMAL_STOCK_OVER.includes(data.maxPurchaseReasonCode)) wrapperClassName.push("sold-out");
                 if (isInactive) wrapperClassName.push("inactive");
-                const {groupId, spuId, skuId, uniqueSeq, priceType, productSource, name, skuAttr, price, salePrice, itemNo, bindProductImages, errorList, promotionAmount} = data || {};
+                const {groupId, spuId, skuId, uniqueSeq, productSource, name, skuAttr, price, salePrice, itemNo, bindProductImages, errorList, promotionAmount} = data || {};
                 const id = `${this.tradeCartType}-card-sku-item-${null !== groupId && void 0 !== groupId ? groupId : ""}-${spuId}-${skuId}-${uniqueSeq}`;
                 const hasDiscount = parseInt(promotionAmount, 10) > 0 && parseInt(salePrice, 10) > parseInt(price, 10);
                 const content = `\n    <div class="${wrapperClassName.join(" ")}" id="${id}">\n      <a class="trade-cart-sku-item-image"\n         href="${1 === productSource ? `/products/${spuId}` : `javascript:void(0)`}"\n         data-product-source="${productSource}"\n         data-group-id="${null !== groupId && void 0 !== groupId ? groupId : ""}"\n         data-name="${escape_default()(name)}"\n         data-sku-id="${skuId}"\n         data-spu-id="${spuId}"\n         data-sku-attrs="${escape_default()((skuAttr || []).join(","))}"\n         data-price="${price}"\n         data-sale-price="${salePrice}"\n         data-item-no="${itemNo}"\n       >\n          ${this.getImageFallbackIfNecessary(data)}\n          ${this.getImageAccessorial(bindProductImages)}\n          <div class="trade-cart-sku-item-image-sold-out body6">${(0, 
-                i18n.t)("products.product_list.product_sold_out")}</div>\n      </a>\n      <div class="trade-cart-sku-item-info">\n          <div class="trade-cart-sku-item-info-title body3">${encodeHTML(name)}</div>\n          ${this.getCardItemAttrs(data)}\n          ${2 === priceType ? `<span class="flash-sale">${render.staticRender(id, data)}</span>` : ""}\n          <div class="trade-cart-sku-item-info-number">\n              <div class="trade-cart-sku-item-info-left">\n                  ${this.getInfoLeft(data, isInactive, indexStr)}\n                  ${Array.isArray(errorList) && errorList.length ? `<span class="promotion-limited">${promotion_limited_render.staticRender(id, data)}</span>` : ""}\n              </div>\n              <div class="trade-cart-sku-item-info-amount-and-discount">\n                  <div class="trade-cart-sku-item-info-amount body3 ${hasDiscount ? "has-discount" : ""}">\n                    ${this.getPriceInfo(data)}\n                  </div>\n                  ${this.getPromotionAmountInfo(data)}\n              </div>\n          </div>\n          <div class="slot-cart slot-cart-num-editor-end" data-slot-cart-num-editor-end></div>\n          ${this.getRemoveButton(data)}\n      </div>\n      <div class="trade-cart-sku-item-mask"></div>\n    </div>\n    <div class="slot-cart slot-cart-item-end" data-slot-cart-item-end></div>\n    `;
+                i18n.t)("products.product_list.product_sold_out")}</div>\n      </a>\n      <div class="trade-cart-sku-item-info">\n          <div class="trade-cart-sku-item-info-title body3">${encodeHTML(name)}</div>\n          ${this.getCardItemAttrs(data)}\n          <div class="trade-cart-sku-item-info-number">\n              <div class="trade-cart-sku-item-info-left">\n                  ${this.getInfoLeft(data, isInactive, indexStr)}\n                  ${Array.isArray(errorList) && errorList.length ? `<span class="promotion-limited">${render.staticRender(id, data)}</span>` : ""}\n              </div>\n              <div class="trade-cart-sku-item-info-amount-and-discount">\n                  <div class="trade-cart-sku-item-info-amount body3 ${hasDiscount ? "has-discount" : ""}">\n                    ${this.getPriceInfo(data)}\n                  </div>\n                  ${this.getPromotionAmountInfo(data)}\n              </div>\n          </div>\n          <div class="slot-cart slot-cart-num-editor-end" data-slot-cart-num-editor-end></div>\n          ${this.getRemoveButton(data)}\n      </div>\n      <div class="trade-cart-sku-item-mask"></div>\n    </div>\n    <div class="slot-cart slot-cart-item-end" data-slot-cart-item-end></div>\n    `;
                 this.templateContent.push(content);
             }
             generateActiveItemTemplate(activeItemData, findex) {
@@ -3778,7 +3284,7 @@
             }));
         };
         const trade_checkbox = initTradeCheckbox;
-        function trade_summations_defineProperty(obj, key, value) {
+        function _defineProperty(obj, key, value) {
             if (key in obj) Object.defineProperty(obj, key, {
                 value,
                 enumerable: true,
@@ -3795,10 +3301,10 @@
         const MAX_AMOUNT = 999999999999999;
         class Summations {
             constructor() {
-                trade_summations_defineProperty(this, "_data", {});
-                trade_summations_defineProperty(this, "getTriggerType", (platform => "pc" === platform ? "hover" : "click"));
-                trade_summations_defineProperty(this, "getEles", (key => __SL_$__(`.trade_summations_fee[data-key="${key}"]`)));
-                trade_summations_defineProperty(this, "_renderTooltip", (isMutra => {
+                _defineProperty(this, "_data", {});
+                _defineProperty(this, "getTriggerType", (platform => "pc" === platform ? "hover" : "click"));
+                _defineProperty(this, "getEles", (key => __SL_$__(`.trade_summations_fee[data-key="${key}"]`)));
+                _defineProperty(this, "_renderTooltip", (isMutra => {
                     if (trade_summations_tooltip) trade_summations_tooltip.destroy();
                     const platform = utils["default"].helper.getPlatform();
                     let selector = '.trade_summations_fee__tips[data-show-tips="true"]';
@@ -3810,8 +3316,8 @@
                     });
                     __SL_$__(selector).html(info_tips_icon);
                 }));
-                trade_summations_defineProperty(this, "_keyList", []);
-                trade_summations_defineProperty(this, "getInitData", (() => {
+                _defineProperty(this, "_keyList", []);
+                _defineProperty(this, "getInitData", (() => {
                     var _store$get;
                     const summationsFeeEles = document.querySelectorAll(".trade_summations_fee");
                     const data = (null === (_store$get = store["default"].get()) || void 0 === _store$get ? void 0 : _store$get.cartInfo) || {};
@@ -3842,13 +3348,13 @@
                         ...dataFromEle
                     };
                 }));
-                trade_summations_defineProperty(this, "_toggleVisiable", ((key, hidden) => {
+                _defineProperty(this, "_toggleVisiable", ((key, hidden) => {
                     const matchedObj = this._data[key];
                     const $matchedEles = this.getEles(key);
                     $matchedEles[hidden ? "addClass" : "removeClass"]("hide");
                     matchedObj.isHidden = hidden;
                 }));
-                trade_summations_defineProperty(this, "updateMutraTip", (promotionCodeDTO => {
+                _defineProperty(this, "updateMutraTip", (promotionCodeDTO => {
                     const discountCodeTipsParantEle = this.getEles("codePromotionAmount").find(".trade_summations_fee__tips");
                     if (null !== promotionCodeDTO && void 0 !== promotionCodeDTO && promotionCodeDTO.discountCodePromotionExclusion) this._renderTooltip(true); else {
                         var _tooltip;
@@ -3856,7 +3362,7 @@
                         discountCodeTipsParantEle.html("");
                     }
                 }));
-                trade_summations_defineProperty(this, "updateMemberPoint", (memberPointInfo => {
+                _defineProperty(this, "updateMemberPoint", (memberPointInfo => {
                     const {use, enable, deductMemberPointNum, deductMemberPointAmount} = memberPointInfo || {};
                     const deductMemberPointAmountEles = this.getEles("deductMemberPointAmount");
                     deductMemberPointAmountEles.find(".trade_checkout_checkbox");
@@ -3882,7 +3388,7 @@
                         value: `${null !== deductMemberPointNum && void 0 !== deductMemberPointNum ? deductMemberPointNum : 0}`
                     }));
                 }));
-                trade_summations_defineProperty(this, "toggleMemberPoint", (checked => {
+                _defineProperty(this, "toggleMemberPoint", (checked => {
                     const pointsAmountDescEle = __SL_$__(".trade_summations_fee__desc");
                     const pointsAmountValueEle = __SL_$__(".pointAmount");
                     if (!checked) {
@@ -3896,11 +3402,11 @@
                         if (res.success) cart["default"].takeCartService().getCartDetail();
                     }));
                 }));
-                trade_summations_defineProperty(this, "toggleAmountErrorAlert", (totalAmount => {
+                _defineProperty(this, "toggleAmountErrorAlert", (totalAmount => {
                     const tradeAmountErrorAlertEle = __SL_$__(".cart-amount-error-alert");
                     if (totalAmount / 100 <= MAX_AMOUNT) tradeAmountErrorAlertEle.addClass("hide"); else tradeAmountErrorAlertEle.removeClass("hide");
                 }));
-                trade_summations_defineProperty(this, "_updatePrivateData", ((key, value, isSameAsOldValue) => {
+                _defineProperty(this, "_updatePrivateData", ((key, value, isSameAsOldValue) => {
                     const matchedObj = this._data[key];
                     const $matchedEles = this.getEles(key);
                     if (!isSameAsOldValue) {
@@ -3920,7 +3426,7 @@
                         if ("number" === typeof value) $matchedEles.find(`.trade_summations__amount-box`).attr("data-amount", value); else $matchedEles.find(`.trade_summations__amount-box`).removeAttr("data-amount");
                     }
                 }));
-                trade_summations_defineProperty(this, "updateAmount", (data => {
+                _defineProperty(this, "updateAmount", (data => {
                     const {promotionCodes, promotionCodeDTO: promotionCodeInfo, memberPointInfo, promotionAmount, discountBenefitType, discountCodeTotalAmount, totalAmount} = data;
                     this.updateMutraTip(promotionCodeInfo);
                     let promotionAvailable = false;
@@ -3977,7 +3483,7 @@
                     this.updateMemberPoint(memberPointInfo);
                     this.toggleAmountErrorAlert(totalAmount);
                 }));
-                trade_summations_defineProperty(this, "initEventListener", (() => {
+                _defineProperty(this, "initEventListener", (() => {
                     const {eventBus, eventBusEnum} = cart["default"];
                     eventBus.on(eventBusEnum.UPDATE, this.updateAmount);
                     eventBus.on("global:currency:format", (() => {
@@ -3986,10 +3492,10 @@
                     }));
                     this.initModalEventListener();
                 }));
-                trade_summations_defineProperty(this, "scrollHideTips", throttle_default()((() => {
+                _defineProperty(this, "scrollHideTips", throttle_default()((() => {
                     trade_summations_tooltip.hide();
                 }), 50));
-                trade_summations_defineProperty(this, "initModalEventListener", (() => {
+                _defineProperty(this, "initModalEventListener", (() => {
                     __SL_$__(".trade_summations .trade_summations__amount").off("mouseenter click").on("mouseenter click", (function() {
                         var _$this$offset;
                         const $this = __SL_$__(this);
@@ -4011,7 +3517,7 @@
                         }));
                     }), 30));
                 }));
-                trade_summations_defineProperty(this, "init", (() => {
+                _defineProperty(this, "init", (() => {
                     trade_summations_logger.info(`normal 主站购物车 SummationModule 初始化 init`, {
                         data: {
                             cartToken: trade_summations_cartToken
@@ -5016,9 +4522,6 @@
                         }
                         return;
                     }));
-                    this._list.forEach((function(info) {
-                        if ("discount-code" === info.type) if (!visitedDiscountIdSet.has(info.payload.discountCode)) list.push(info);
-                    }));
                     this._list = list;
                 }
             }, {
@@ -5355,6 +4858,9 @@
             newCheckoutErrorModule
         };
         var paypal = __webpack_require__("../shared/browser/components/paypal/index.js");
+        var smart_payment_utils = __webpack_require__("../shared/browser/components/smart-payment/utils.js");
+        var smart_payment = __webpack_require__("../shared/browser/components/smart-payment/index.js");
+        var dataAccessor = __webpack_require__("../shared/browser/utils/dataAccessor.js");
         var createLogger = __webpack_require__("../shared/browser/utils/createLogger.js");
         const module_paypal_logger = {
             paypal: (0, createLogger["default"])("paypal")
@@ -5367,25 +4873,90 @@
                 this.elementId = elementId;
                 this.$element = document.getElementById(elementId);
                 this.paypalComponent = null;
+                this.SmartPaymentComponent = null;
                 if (this.$element) this._init(); else module_paypal_logger.paypal.error(`Failed to init paypal module. Can't get element with #${elementId}`);
             }
-            _init() {
-                slibingNodeHeight = slibingNodeHeight || document.getElementById(`${this.elementId}-slibing`).offsetHeight;
+            getDataReportReq() {
+                const {products} = this.checkoutParams;
+                return (0, tradeReport.setPayPalReportReq)({
+                    products
+                });
+            }
+            async renderSmartPayment() {
+                var _this$SmartPaymentCom;
+                this.SmartPaymentComponent = new smart_payment.SmartPayment({
+                    props: {
+                        domId: this.elementId,
+                        styleOptions: {
+                            height: slibingNodeHeight
+                        }
+                    },
+                    emitData: {
+                        stage: this.pageType,
+                        product: this.checkoutParams.products
+                    },
+                    beforeCreateOrder: async () => {
+                        try {
+                            module_paypal_logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder]`);
+                            const {products, ...extra} = this.checkoutParams;
+                            const {url: returnUrl, needLogin, abandonedInfo} = await checkout["default"].save(products, {
+                                ...extra,
+                                query: {
+                                    ...extra.query,
+                                    spb: true
+                                }
+                            });
+                            if (needLogin) {
+                                window.location.href = returnUrl;
+                                return {
+                                    valid: false
+                                };
+                            }
+                            module_paypal_logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder]`);
+                            const {orderFrom} = state_selector.SL_State.get("checkout.otherInfo") || {};
+                            return {
+                                abandonedOrderInfo: abandonedInfo,
+                                orderFrom: (0, dataAccessor.getSyncData)("orderFrom") || orderFrom,
+                                returnUrl,
+                                dataReportReq: this.getDataReportReq()
+                            };
+                        } catch (error) {
+                            module_paypal_logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder] 失败`, error);
+                            return {
+                                valid: false
+                            };
+                        }
+                    },
+                    onApprove: ({returnUrl} = {}) => {
+                        module_paypal_logger.paypal.info(`[点击继续按钮][准备跳转][beforeContinue][${returnUrl}]`);
+                    }
+                });
+                await (null === (_this$SmartPaymentCom = this.SmartPaymentComponent) || void 0 === _this$SmartPaymentCom ? void 0 : _this$SmartPaymentCom.init());
+            }
+            get checkoutParams() {
+                const cartService = valuer_cartService.withCartService(this.ctx);
+                const cartItemList = cartService.getCardItemList();
+                return effect.getCheckoutParams(this.ctx, cartItemList);
+            }
+            async renderPaypal() {
+                var _this$paypalComponent;
                 this.paypalComponent = new paypal["default"]({
                     pageType: this.pageType,
                     domId: this.elementId,
                     height: slibingNodeHeight,
                     beforeCreateOrder: async () => {
-                        const cartService = valuer_cartService.withCartService(this.ctx);
-                        const cartItemList = cartService.getCardItemList();
                         module_paypal_logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder]`);
-                        return effect.getCheckoutParams(this.ctx, cartItemList);
+                        return this.checkoutParams;
                     },
                     beforeContinue: ({returnUrl} = {}) => {
                         module_paypal_logger.paypal.info(`[点击继续按钮][准备跳转][beforeContinue][${returnUrl}]`);
                     }
                 });
-                this.paypalComponent.render();
+                null === (_this$paypalComponent = this.paypalComponent) || void 0 === _this$paypalComponent ? void 0 : _this$paypalComponent.render();
+            }
+            async _init() {
+                slibingNodeHeight = slibingNodeHeight || document.getElementById(`${this.elementId}-slibing`).offsetHeight;
+                if ((0, smart_payment_utils.isPaypalGrey)()) await this.renderSmartPayment(); else this.renderPaypal();
             }
         }
         function newPaypalModule(ctx, elementId, pageType) {
@@ -5422,11 +4993,12 @@
                 this.listenSelectContentReport();
             }
             listenOpenBannerEvent() {
-                window.SL_EventBus.on(OPEN_CART_BANNER, (({spuId, skuId, num}) => {
+                window.SL_EventBus.on(OPEN_CART_BANNER, (({spuId, skuId, num, sellingPlanId}) => {
                     this.addedItemInfo = {
                         spuId,
                         skuId,
-                        num
+                        num,
+                        sellingPlanId
                     };
                 }));
             }
@@ -5467,9 +5039,14 @@
                 null === activeItems || void 0 === activeItems ? void 0 : activeItems.forEach((({itemList}) => {
                     cartItems.push(...itemList || []);
                 }));
-                const addedItem = cartItems.find((({skuId, spuId}) => {
+                const addedItem = cartItems.find((({skuId, spuId, subscriptionInfo}) => {
                     var _this$addedItemInfo, _this$addedItemInfo2;
-                    return skuId === (null === (_this$addedItemInfo = this.addedItemInfo) || void 0 === _this$addedItemInfo ? void 0 : _this$addedItemInfo.skuId) && spuId === (null === (_this$addedItemInfo2 = this.addedItemInfo) || void 0 === _this$addedItemInfo2 ? void 0 : _this$addedItemInfo2.spuId);
+                    let isCurrentItem = skuId === (null === (_this$addedItemInfo = this.addedItemInfo) || void 0 === _this$addedItemInfo ? void 0 : _this$addedItemInfo.skuId) && spuId === (null === (_this$addedItemInfo2 = this.addedItemInfo) || void 0 === _this$addedItemInfo2 ? void 0 : _this$addedItemInfo2.spuId);
+                    if (this.addedItemInfo.sellingPlanId) {
+                        var _this$addedItemInfo3;
+                        isCurrentItem = isCurrentItem && (null === subscriptionInfo || void 0 === subscriptionInfo ? void 0 : subscriptionInfo.sellingPlanId) === (null === (_this$addedItemInfo3 = this.addedItemInfo) || void 0 === _this$addedItemInfo3 ? void 0 : _this$addedItemInfo3.sellingPlanId);
+                    } else isCurrentItem = isCurrentItem && !(null !== subscriptionInfo && void 0 !== subscriptionInfo && subscriptionInfo.sellingPlanId);
+                    return isCurrentItem;
                 }));
                 this.bannerData = {
                     count,
@@ -5550,6 +5127,177 @@
             }
         }
         const banner = new CartBanner;
+        const getCartItemId = (item = {}, isMiniCart = false) => {
+            const {groupId, spuId, skuId, uniqueSeq} = item;
+            return `${isMiniCart ? "sidebar" : "main"}-card-sku-item-${groupId}-${spuId}-${skuId}-${uniqueSeq}`;
+        };
+        const helpers_getCartItemId = getCartItemId;
+        const countdown_t = {};
+        const fillZero = num => `${num}`.padStart(2, "0");
+        const countdown = (target, fn, params) => {
+            let p = {};
+            let prevTimes = null;
+            if ("string" === typeof params) p.id = params; else if ("object" === typeof params) p = params;
+            let {id} = p;
+            const {hasDay, hasMillisecond, autoFill = "part"} = p;
+            if (countdown_t[id]) clearInterval(countdown_t[id]);
+            const countFn = (Times, interval) => {
+                const times = Times || [ "0", "0", "0", "0", "0" ];
+                if ("part" === autoFill || "all" === autoFill) {
+                    if ("all" === autoFill) times[0] = fillZero(times[0]);
+                    times[1] = fillZero(times[1]);
+                    times[2] = fillZero(times[2]);
+                    times[3] = fillZero(times[3]);
+                }
+                return fn(times, interval, countdown_t[id]);
+            };
+            const intervalFn = () => {
+                const now = Date.now();
+                if (now < target) {
+                    const interval = target - now;
+                    let d = 0;
+                    let h = 0;
+                    let ms = 0;
+                    if (hasDay) {
+                        d = Math.floor(interval / 864e5);
+                        h = Math.floor(interval % 864e5 / 36e5);
+                    } else h = Math.floor(interval / 36e5);
+                    const m = Math.floor(interval % 36e5 / 6e4);
+                    const s = Math.floor(interval % 6e4 / 1e3);
+                    if (hasMillisecond) ms = Math.floor(interval % 1e3 / 100);
+                    const times = [ `${d}`, `${h}`, `${m}`, `${s}`, `${ms}` ];
+                    let changed = false;
+                    if (!prevTimes || times.some(((item, index) => item !== prevTimes[index]))) changed = true;
+                    prevTimes = times;
+                    if (changed) {
+                        const result = countFn(times, interval);
+                        if (false === result) clearInterval(countdown_t[id]);
+                    }
+                } else {
+                    countFn(void 0, 0);
+                    clearInterval(countdown_t[id]);
+                }
+            };
+            intervalFn();
+            const timer = setInterval(intervalFn, p.interval || 200);
+            if (!id) id = timer;
+            countdown_t[id] = timer;
+            return countdown_t[id];
+        };
+        const utils_countdown = countdown;
+        const flash_sale_render = (item, ele, isMiniCart, endTime) => {
+            const run = () => {
+                setTimeout((() => {
+                    const flashSaleCon = ele.querySelector(".flash-sale__container");
+                    const timerEle = ele.querySelector(".flash-sale__count-down");
+                    if (flashSaleCon && timerEle && Date.now() < endTime) utils_countdown(endTime, (([d, h, m, s], interval) => {
+                        const dayText = d > 0 ? `${d}${d > 1 ? (0, i18n.t)("sales.flash.days") : (0, i18n.t)("sales.flash.day")} ` : "";
+                        timerEle.innerHTML = `${dayText}${h}:${m}:${s}`;
+                        if (interval <= 0) flashSaleCon.hide();
+                    }), {
+                        id: `flashSale_${helpers_getCartItemId(item)}_${isMiniCart ? "mini" : "main"}`,
+                        hasDay: true,
+                        hasMillisecond: false,
+                        interval: 1e3
+                    }); else flashSaleCon.hide();
+                }));
+            };
+            return {
+                html: `\n      <span class="flash-sale flash-sale__bg flash-sale__font flash-sale__container notranslate">\n        <span>Flash Sale</span>: <span class="flash-sale__count-down"></span>\n      </span>`,
+                run
+            };
+        };
+        const flash_sale = flash_sale_render;
+        const free_shipping_render = () => {
+            const run = () => {};
+            return {
+                html: `<span class="discount-sale__free-shipping notranslate">\n      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">\n      <path d="M1.39267 5.35679C1.39267 5.1201 1.58455 4.92822 1.82125 4.92822H3.74982C3.98651 4.92822 4.17839 5.1201 4.17839 5.35679C4.17839 5.59349 3.98651 5.78537 3.74982 5.78537H1.82125C1.58455 5.78537 1.39267 5.59349 1.39267 5.35679Z" fill="currentColor"/>\n      <path d="M0.749817 7.07108C0.749817 6.83439 0.941695 6.64251 1.17839 6.64251H3.74982C3.98651 6.64251 4.17839 6.83439 4.17839 7.07108C4.17839 7.30777 3.98651 7.49965 3.74982 7.49965H1.17839C0.941695 7.49965 0.749817 7.30777 0.749817 7.07108Z" fill="currentColor"/>\n      <path d="M8.46379 2.78571C8.46379 2.54902 8.65567 2.35714 8.89236 2.35714H11.9281C12.1082 2.35714 12.269 2.46972 12.3307 2.63892L13.5807 6.06749C13.6618 6.28986 13.5472 6.53586 13.3249 6.61693C13.1025 6.69801 12.8565 6.58346 12.7754 6.36108L11.6282 3.21429H8.89236C8.65567 3.21429 8.46379 3.02241 8.46379 2.78571Z" fill="currentColor"/>\n      <path d="M2.03522 1.92857C2.03522 1.69188 2.2271 1.5 2.46379 1.5H8.58984C8.82653 1.5 9.01841 1.69188 9.01841 1.92857V6.02663H14.0352C14.2719 6.02663 14.4638 6.21851 14.4638 6.4552V10.9286C14.4638 11.1653 14.2719 11.3571 14.0352 11.3571H2.46379C2.2271 11.3571 2.03522 11.1653 2.03522 10.9286V9.27768C2.03522 9.04099 2.2271 8.84911 2.46379 8.84911C2.70048 8.84911 2.89236 9.04099 2.89236 9.27768V10.5H13.6066V6.88377H8.58984C8.35315 6.88377 8.16127 6.69189 8.16127 6.4552V2.35714H2.89236V3.15342C2.89236 3.39012 2.70048 3.582 2.46379 3.582C2.2271 3.582 2.03522 3.39012 2.03522 3.15342V1.92857Z" fill="currentColor"/>\n      <path d="M5.2495 11.3571C4.89446 11.3571 4.60665 11.645 4.60665 12C4.60665 12.355 4.89446 12.6429 5.2495 12.6429C5.60454 12.6429 5.89236 12.355 5.89236 12C5.89236 11.645 5.60454 11.3571 5.2495 11.3571ZM3.7495 12C3.7495 11.1716 4.42108 10.5 5.2495 10.5C6.07793 10.5 6.7495 11.1716 6.7495 12C6.7495 12.8284 6.07793 13.5 5.2495 13.5C4.42108 13.5 3.7495 12.8284 3.7495 12Z" fill="currentColor"/>\n      <path d="M11.2495 11.3571C10.8945 11.3571 10.6066 11.645 10.6066 12C10.6066 12.355 10.8945 12.6429 11.2495 12.6429C11.6045 12.6429 11.8924 12.355 11.8924 12C11.8924 11.645 11.6045 11.3571 11.2495 11.3571ZM9.7495 12C9.7495 11.1716 10.4211 10.5 11.2495 10.5C12.0779 10.5 12.7495 11.1716 12.7495 12C12.7495 12.8284 12.0779 13.5 11.2495 13.5C10.4211 13.5 9.7495 12.8284 9.7495 12Z" fill="currentColor"/>\n      </svg>\n      Free Shipping\n    </span>\n  `,
+                run
+            };
+        };
+        const free_shipping = free_shipping_render;
+        const SlotCartSaleClass = "slot-cart-sale";
+        const SlotAttr = `[data-slot-cart-item-info]`;
+        const MiniSlotAttr = `[data-slot-mini-cart-item-info]`;
+        const FLASH_SALE_TYPE = "FLASH_SALE";
+        const FREE_SHIPPING_TYPE = "FREE_SHIPPING";
+        const getCartItem = (item = {}, isMiniCart = void 0) => document.getElementById(helpers_getCartItemId(item, isMiniCart));
+        const getSaleSlot = (item = {}, isMiniCart = void 0) => {
+            const itemEle = getCartItem(item, isMiniCart);
+            if (!itemEle) return;
+            const slotEle = itemEle.querySelector(isMiniCart ? MiniSlotAttr : SlotAttr);
+            if (!slotEle) return;
+            let salesEle = slotEle.querySelector(`.${SlotCartSaleClass}`);
+            if (!salesEle) {
+                salesEle = document.createElement("span");
+                salesEle.className = SlotCartSaleClass;
+                slotEle.prepend(salesEle);
+            }
+            return salesEle;
+        };
+        const cart_slot_render = (cartInfo = {}, callback = void 0) => {
+            if (cartInfo.activeItems && cartInfo.activeItems.length) cartInfo.activeItems.forEach((({itemList}) => {
+                itemList.forEach((item => {
+                    const main = getSaleSlot(item, false);
+                    if (callback && main) {
+                        const html = callback(item, main, false);
+                        if ("string" === typeof html) main.innerHTML = html;
+                    }
+                    const mini = getSaleSlot(item, true);
+                    if (callback && mini) {
+                        const html = callback(item, mini, true);
+                        if ("string" === typeof html) mini.innerHTML = html;
+                    }
+                }));
+            }));
+        };
+        const cart_slot = cartInfo => {
+            cart_slot_render(cartInfo, ((item, ele, isMiniCart) => {
+                if (item.salesInfoToShow instanceof Array) {
+                    let completeHTML = "";
+                    item.salesInfoToShow.forEach((info => {
+                        let result = info;
+                        try {
+                            result = JSON.parse(info);
+                        } catch (err) {
+                            console.error(err);
+                        }
+                        if (result && (1 === result.salesProductType || result.tagType === FLASH_SALE_TYPE)) {
+                            const flashSale = flash_sale(item, ele, isMiniCart, result.activityEndTime);
+                            completeHTML += flashSale.html;
+                            flashSale.run();
+                        }
+                        if (result && result.tagType === FREE_SHIPPING_TYPE) {
+                            const freeShipping = free_shipping();
+                            completeHTML += freeShipping.html;
+                        }
+                    }));
+                    ele.innerHTML = completeHTML;
+                }
+            }));
+        };
+        const CartControlCartBasis = "Cart::ControlCartBasis";
+        const CartCartDetailUpdate = "Cart::CartDetailUpdate";
+        const init = function() {
+            try {
+                const handleCartUpdate = data => {
+                    if (data) setTimeout((() => {
+                        cart_slot(data);
+                    }));
+                };
+                window.Shopline.event.emit(CartControlCartBasis, {
+                    data: {
+                        cartDetail: true
+                    },
+                    onSuccess: handleCartUpdate
+                });
+                window.Shopline.event.on(CartCartDetailUpdate, handleCartUpdate);
+                return true;
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        window.__CART_SALE_JS_LOADED = window.__CART_SALE_JS_LOADED || init();
         const cart_tradeSettleConfig = state_selector.SL_State.get("tradeSettleConfig");
         const cart_useSuperScriptDecimals = state_selector.SL_State.get("theme.settings.superscript_decimals");
         const cart_logger = logger["default"].pipeOwner(`${sentryReport.Owner.cart} biz/cart/index.js`);
@@ -5786,17 +5534,12 @@
     "../shared/browser/components/hbs/cartSalesPromotion/js/content/reminder/getPromotionReminder.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
         "use strict";
         __webpack_require__.d(__webpack_exports__, {
-            getShoppingReminderTranslate: () => getShoppingReminderTranslate,
             default: () => __WEBPACK_DEFAULT_EXPORT__
         });
-        var _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/utils/i18n.js");
+        __webpack_require__("../shared/browser/utils/i18n.js");
         var _yy_sl_theme_shared_utils_newCurrency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../shared/browser/utils/newCurrency/CurrencyConvert.js");
         var _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../shared/browser/components/hbs/sales/shoppingPromotionReminder/index.js");
         const getPromotionReminder = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_newCurrency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat);
-        const getShoppingReminderTranslate = (promotion, configs, options) => {
-            const config = (0, _sales_shoppingPromotionReminder__WEBPACK_IMPORTED_MODULE_2__["default"])(_yy_sl_theme_shared_utils_newCurrency_CurrencyConvert__WEBPACK_IMPORTED_MODULE_1__.convertFormat)(promotion, configs, options);
-            return (0, _yy_sl_theme_shared_utils_i18n__WEBPACK_IMPORTED_MODULE_0__.t)(config.path, config.params);
-        };
         const __WEBPACK_DEFAULT_EXPORT__ = getPromotionReminder;
     },
     "../shared/browser/components/hbs/sales/shoppingPromotionReminder/index.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -5823,6 +5566,7 @@
             return str;
         }
         function getBenefitValue(benefitType, current, isNext = false) {
+            if (benefitType === BenefitTypeEnum.PRICE && !isNext) return (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "amount");
             if (benefitType === BenefitTypeEnum.FREELOWESTPRICE) return (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount");
             if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE) {
                 const extMap = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "extMap");
@@ -5835,17 +5579,28 @@
             function setWrapper(value, warper) {
                 return safeString(warper ? `<span class="notranslate ${warper.class}" style="font-size: 14px; font-weight: bold;${nc(warper.style, "")}"> ${value} </span>` : value);
             }
-            function formatBenefitNum(str, type, options) {
+            function formatThreshold(str, types, options = {}) {
+                if (void 0 === str) return "";
+                let num = Number(str) || 0;
+                const thresholdType = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(types, "thresholdType");
+                const benefitType = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(types, "benefitType");
+                if (benefitType === BenefitTypeEnum.BUY_X_GET_Y && num < 0) {
+                    const minThreshold = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(types, "minThreshold");
+                    const distance = Math.abs(num) % minThreshold;
+                    if (0 === distance) num = Number(minThreshold);
+                    num = distance;
+                }
+                if (thresholdType === ThresholdTypeEnum.NUMBER) return num;
+                if (thresholdType === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
+                return "";
+            }
+            function formatBenefitNum(str, types, options = {}) {
                 if (void 0 === str) return "";
                 const num = Number(str) || 0;
-                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "thresholdType") === ThresholdTypeEnum.NUMBER) return num;
-                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.DISCOUNT || (0, 
-                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.BUY_X_GET_Y || (0, 
-                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
-                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.NTH_FIXED_PRICE || (0, 
-                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.PRICE || (0, 
-                _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "thresholdType") === ThresholdTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
-                if ((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(type, "benefitType") === BenefitTypeEnum.FREELOWESTPRICE) return num;
+                const benefitType = (0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(types, "benefitType");
+                if (benefitType === BenefitTypeEnum.DISCOUNT || benefitType === BenefitTypeEnum.BUY_X_GET_Y || benefitType === BenefitTypeEnum.NTH_PRICE) return `${100 - num}%`;
+                if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE || benefitType === BenefitTypeEnum.PRICE) return `<span data-amount="${num}">${currency ? currency(num, options) : ""}</span>`;
+                if (benefitType === BenefitTypeEnum.FREELOWESTPRICE) return num;
                 return "";
             }
             function getShoppingReminderConfig(promotion, configs = {}, options = {}) {
@@ -5873,54 +5628,122 @@
                     const basePath = `sales.promotion.cart_reminder.b${benefitType}_t${thresholdType}_s${step}`;
                     let completePath = basePath;
                     const {meetThreshold} = extMap;
+                    let extra = "";
                     if (benefitType === BenefitTypeEnum.BUY_X_GET_Y) if (1 === step && "true" === meetThreshold) if (0 === Number((0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) completePath = `${basePath}_achieve_free`; else completePath = `${basePath}_achieve_normal`; else if (0 === Number((0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit")) || 0 === Number((0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) completePath = `${basePath}_free`; else completePath = `${basePath}_normal`;
-                    if (benefitType === BenefitTypeEnum.NTH_PRICE) if (0 === Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit"))) completePath = `${basePath}_free`; else if (0 === Number((0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) completePath = `${basePath}_next_free`; else completePath = `${basePath}_normal`;
+                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) {
+                        completePath = `${basePath}_achieve_free`;
+                        extra = "_achieve_free";
+                    } else {
+                        completePath = `${basePath}_achieve_normal`;
+                        extra = "_achieve_normal";
+                    } else if (0 === Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit")) || 0 === Number((0, 
+                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) {
+                        completePath = `${basePath}_free`;
+                        extra = "_free";
+                    } else {
+                        completePath = `${basePath}_normal`;
+                        extra = "_normal";
+                    }
+                    if (benefitType === BenefitTypeEnum.NTH_PRICE) if (0 === Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefit"))) {
+                        completePath = `${basePath}_free`;
+                        extra = "_free";
+                    } else if (0 === Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefit"))) {
+                        completePath = `${basePath}_next_free`;
+                        extra = "_next_free";
+                    } else {
+                        completePath = `${basePath}_normal`;
+                        extra = "_normal";
+                    }
                     const {prerequisiteShippingPriceRange} = extMap;
-                    if (benefitType === BenefitTypeEnum.FREESHOPPING) if (prerequisiteShippingPriceRange) completePath = `${basePath}_upper_limit`; else completePath = `${basePath}_unlimited`;
-                    const benefitCount = Number(nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount"), (0, 
-                    _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefitCount")));
+                    if (benefitType === BenefitTypeEnum.FREESHOPPING) if (prerequisiteShippingPriceRange) {
+                        completePath = `${basePath}_upper_limit`;
+                        extra = "_upper_limit";
+                    } else {
+                        completePath = `${basePath}_unlimited`;
+                        extra = "_unlimited";
+                    }
+                    const saved = formatBenefitNum(getBenefitValue(benefitType, current), {
+                        benefitType
+                    }, options);
+                    const willSave = formatBenefitNum(getBenefitValue(benefitType, next, true), {
+                        benefitType
+                    }, options);
+                    const threshold = formatThreshold((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "amount"), {
+                        thresholdType,
+                        benefitType,
+                        minThreshold: Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "minThreshold"))
+                    }, options);
+                    let savedCount = Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "benefitCount"));
+                    let willSaveCount = Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "benefitCount"));
+                    let fixedAmount;
+                    let nextFixedAmount;
+                    if (benefitType === BenefitTypeEnum.BUY_X_GET_Y) {
+                        if (current) savedCount = Number(nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "extMap.realBenefitValue"), savedCount));
+                        if (next) willSaveCount = Number(nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "extMap.realBenefitValue"), willSaveCount));
+                    }
+                    if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE) {
+                        savedCount = Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "minThreshold"));
+                        willSaveCount = Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "minThreshold"));
+                        const benefit = current || next;
+                        fixedAmount = formatBenefitNum(Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(benefit, "extMap.fixedPrice")), {
+                            benefitType
+                        }, options);
+                        nextFixedAmount = formatBenefitNum(Number((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(benefit, "extMap.nextFixedPrice")), {
+                            benefitType
+                        }, options);
+                    }
+                    const benefitCount = Number(nc(savedCount, willSaveCount));
                     return {
                         path: thresholdType > -1 ? completePath : " ",
                         params: {
-                            saved: setWrapper(formatBenefitNum(getBenefitValue(benefitType, current), {
-                                benefitType
-                            }, options), {
+                            saved: setWrapper(saved, {
                                 ...warper,
-                                class: `sales__promotionReminder-saved  custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                                class: `sales__promotionReminder-saved custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            willSave: setWrapper(formatBenefitNum(getBenefitValue(benefitType, next, true), {
-                                benefitType
-                            }, options), {
+                            willSave: setWrapper(willSave, {
                                 ...warper,
                                 class: `sales__promotionReminder-willSave custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            currentMinThreshold: setWrapper((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(current, "minThreshold"), {
+                            threshold: setWrapper(threshold, {
                                 ...warper,
                                 class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            nextMinThreshold: setWrapper((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "minThreshold"), {
+                            savedCount: setWrapper(savedCount, {
                                 ...warper,
-                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            threshold: setWrapper(formatBenefitNum((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(next, "amount"), {
-                                thresholdType
-                            }, options), {
+                            willSaveCount: setWrapper(willSaveCount, {
                                 ...warper,
-                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }),
-                            br: lineBreak ? setWrapper("<br/>") : setWrapper("<i></i>"),
+                            fixedAmount: setWrapper(fixedAmount, {
+                                ...warper,
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
+                            nextFixedAmount: setWrapper(nextFixedAmount, {
+                                ...warper,
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
                             upperLimit: benefitType === BenefitTypeEnum.FREESHOPPING && prerequisiteShippingPriceRange ? currency && currency(prerequisiteShippingPriceRange, options) : void 0,
+                            extMap,
+                            br: lineBreak ? setWrapper("<br/>") : setWrapper("<i></i>"),
                             benefitCount: benefitCount >= 0 ? setWrapper(benefitCount, {
                                 ...warper,
-                                class: `sales__promotionReminder--benefitCount ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                                class: `sales__promotionReminder--benefitCount custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
                             }) : "",
-                            extMap
+                            currentMinThreshold: setWrapper(savedCount, {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            }),
+                            nextMinThreshold: setWrapper(willSaveCount, {
+                                ...warper,
+                                class: `sales__promotionReminder-threshold custom-sale-color ${nc((0, _utils_syntax_patch__WEBPACK_IMPORTED_MODULE_0__.get)(warper, "class"), "")}`
+                            })
                         },
-                        step
+                        benefitType,
+                        thresholdType,
+                        step,
+                        extra
                     };
                 }
                 return {
@@ -5932,6 +5755,28 @@
             return getShoppingReminderConfig;
         }
         const __WEBPACK_DEFAULT_EXPORT__ = shoppingPromotionReminder;
+    },
+    "../shared/browser/utils/template.js": (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        "use strict";
+        __webpack_require__.d(__webpack_exports__, {
+            default: () => __WEBPACK_DEFAULT_EXPORT__
+        });
+        var lodash_get__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../shared/browser/node_modules/lodash/get.js");
+        var lodash_get__WEBPACK_IMPORTED_MODULE_0___default = __webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_0__);
+        const regStrFormat = regStr => regStr.replace(/([\^\$\{\}\[\]\.\?\+\*\(\)\\])/g, "\\$1");
+        const template = (text, data, options = {}) => {
+            const {prefix = "${", suffix = "}", replaceAll} = options || {};
+            const reg = new RegExp(`${regStrFormat(prefix)}\\s*(\\w+)\\s*${regStrFormat(suffix)}`, "g");
+            if ("string" === typeof text) {
+                if (data && Object.keys(data).length) return text.replace(reg, ((o, p) => {
+                    const val = lodash_get__WEBPACK_IMPORTED_MODULE_0___default()(data, p);
+                    return !replaceAll && ("string" === typeof val || "number" === typeof val) ? val : o;
+                }));
+                return text;
+            }
+            return "";
+        };
+        const __WEBPACK_DEFAULT_EXPORT__ = template;
     }
 }, __webpack_require__ => {
     var __webpack_exec__ = moduleId => __webpack_require__(__webpack_require__.s = moduleId);

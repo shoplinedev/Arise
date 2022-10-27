@@ -29,7 +29,7 @@
                   <div class="grid-wrap">
                     <div class="nav-grid">
                         {{#each this.childNodes}}
-                            <div class="nav-grid__item">
+                            <div class="nav-grid__item" {{{ this.shopline_attributes }}}>
                                 {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
                                 
                                 {{#if (depth_of_nav this) '>' 0}}
@@ -50,7 +50,7 @@
                                 </div>
                                 {{#each this.childNodes}}
                                 {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
-                                <div>
+                                <div {{{ this.shopline_attributes }}}>
                                     <a data-node-id="{{this.id}}"  class="__sl-custom-track-stage-navItem site-nav__dropdown-link site-nav__node body4" {{{navItem.hrefAttr}}}>{{navItem.name}}</a>
                                 </div>
                                 {{/each}}
@@ -68,7 +68,7 @@
                 <div class="site-nav__dropdown unmegamenu-container global-modal-border-shadow">
                     <ul class="text-left">
                         {{#each this.childNodes}}
-                        <li class="{{#if has_sub_dropdown}}site-nav__deep-dropdown-trigger{{/if}}">
+                        <li class="{{#if has_sub_dropdown}}site-nav__deep-dropdown-trigger{{/if}}" {{{ this.shopline_attributes }}} {{{ this.shopline_attributes }}}>
                             {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
                             <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body3 site-nav__dropdown-link site-nav__dropdown-link--second-level">
                                 {{navItem.name}}

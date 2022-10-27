@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Sljedeći",
+      "previous": "Prethodno",
+      "read_more": "vidi više",
+      "related_articles": "Povezani blogovi"
+    },
     "blog_list": {
       "empty_desc": "Na ovom blogu nema postova na blogu.",
       "read_btn_text": "Čitaj više",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Samo {{stock}} ostalo"
     },
+    "subscription": {
+      "information": "Pretplata"
+    },
     "tips": {
       "agree_with_the_shop": "pristajem na",
       "change_binding_after_verification": "Možete se povezati/promijeniti {{value}} nakon potvrde",
@@ -348,6 +357,7 @@
       "error_message_1022": "Broj računa je uvezan",
       "error_message_1023": "Iznimke usluga",
       "error_message_1024": "Iznimke usluga",
+      "error_message_1035": "Pošaljite kontrolni kod",
       "error_message_2": "Iznimke usluga",
       "error_message_2001": "Mobitel je registriran",
       "error_message_2002": "E-mail je registriran",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Nije pronađenja relevantna valuta",
       "search_input_placeholder": "Upišite ovdje i dodirnite traži"
     },
+    "order_tracking": {
+      "code": "Kontrolni kod",
+      "email": "E-mail",
+      "form_error": "Upit nije uspio",
+      "orderId": "ID narudžbe",
+      "orderId_error": "ID narudžbe ne može biti prazan",
+      "query_illegal": "red ne postoji",
+      "risk_black_user": "Acest cont este în pericol",
+      "risk_interception": "red ne postoji",
+      "submit_btn": "Pogledaj narudžbu",
+      "username": "Email/Broj telefona"
+    },
     "policy": {
       "privacy": "politika privatnosti",
       "refund": "Politika povrata novca",
@@ -598,6 +620,7 @@
       "filter": "Filter",
       "from_price_html": "Od {{price}}",
       "less": "manje",
+      "load_more_tip": "Učitavanje više stavki",
       "more": "više",
       "more__product_num": "{{num}} proizvodi",
       "new_arrivals": "Novi dolazak",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Rezultata",
       "results_found_for": "{{count}} pronađeni rezultati za \"{{keyword}}\"",
       "search": "Traži",
-      "search_no_results": "Vaša potraga za \"{{keyword}}\" nije dala nikakve rezultate"
+      "search_no_results": "Vaša potraga za \"{{keyword}}\" nije dala nikakve rezultate",
+      "single_results": "{{count}} Rezultata",
+      "single_results_found": "{{count}} pronađeni rezultati za \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Nedavno Gledani Proizvodi"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Teret je manji od {value}",
       "specified_customer": "Za određene klijente",
       "threshold": "Kupite {threshold}"
+    },
+    "flash": {
+      "day": "dan",
+      "days": "dani"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} isključeno",
@@ -797,6 +826,13 @@
       "point_discount": "Popust na bodove",
       "shipping_fee": "Dostava",
       "trade_coupon_discount": "Kupon"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Pogreška koda",
+      "err2005": "Pogreška koda",
+      "err3005": "Pogreška koda"
     }
   }
 }

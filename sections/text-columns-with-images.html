@@ -85,7 +85,7 @@
           <div class="{{#if show_touch}}d-none d-md-flex{{/if}} text-columns-with-images__wrapper row row-cols-{{ mdCols }} row-cols-md-{{ pcCols }}" style="{{#if (boolean pcCols '==' 1)}}justify-content:center;{{/if}}">                                  
             {{#each blocks}}
               <div class="text-columns-with-images__inner d-none d-md-flex">
-                {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align }}
+                {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align shopline_attributes=this.shopline_attributes }}
               </div>
               
               <div class="text-columns-with-images__inner d-md-none d-flex {{ ../container-wrapper-cls }}">                
@@ -101,7 +101,7 @@
                 
                   {{#each blocks}}
                   <div class="swiper-slide">
-                    {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link }}
+                    {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link shopline_attributes=this.shopline_attributes }}
                   </div>
                   {{/each}}
 

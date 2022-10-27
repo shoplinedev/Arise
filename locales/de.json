@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Nächste",
+      "previous": "Vorherige",
+      "read_more": "Mehr sehen",
+      "related_articles": "Verwandte Blogs"
+    },
     "blog_list": {
       "empty_desc": "Es gibt keine Blogbeiträge in diesem Blog",
       "read_btn_text": "Mehr sehen",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "{{stock}} verbleibend im Bestand"
     },
+    "subscription": {
+      "information": "Abonnieren"
+    },
     "tips": {
       "agree_with_the_shop": "Ich stimme den",
       "change_binding_after_verification": "Sie können {{value}} nach der Überprüfung verknüpfen/ändern",
@@ -348,6 +357,7 @@
       "error_message_1022": "Dieses Konto ist verbunden",
       "error_message_1023": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_1024": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
+      "error_message_1035": "Bitte Bestätigungscode senden",
       "error_message_2": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_2001": "Die Mobiltelefonnummer wurde registriert",
       "error_message_2002": "Die E-Mail-Adresse wurde registriert",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Keine verwandte Währung gefunden",
       "search_input_placeholder": "Hier eingeben und auf „Suchen“ tippen"
     },
+    "order_tracking": {
+      "code": "Verifizierungs-Schlüssel",
+      "email": "Email",
+      "form_error": "Anfrage fehlgeschlagen",
+      "orderId": "Auftragsnummer",
+      "orderId_error": "Bestell-ID darf nicht leer sein",
+      "query_illegal": "Ordnung existiert nicht",
+      "risk_black_user": "Dieses Konto ist gefährdet",
+      "risk_interception": "Ordnung existiert nicht",
+      "submit_btn": "Bestellung ansehen",
+      "username": "E-Mail/Telefonnummer"
+    },
     "policy": {
       "privacy": "Datenschutzrichtlinien der Website zu",
       "refund": "Rückgaberecht",
@@ -598,6 +620,7 @@
       "filter": "Filter",
       "from_price_html": "Ab {{price}}",
       "less": "Weniger Tags",
+      "load_more_tip": "Weitere Inhalte laden",
       "more": "Mehr Tags",
       "more__product_num": "{{num}} produkte",
       "new_arrivals": "Neu",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Datensätze",
       "results_found_for": "{{count}} Datensätze von \"{{keyword}}\" gefunden",
       "search": "Suche",
-      "search_no_results": "Keine Datensätze für Ihre Suche nach \"{{keyword}}\""
+      "search_no_results": "Keine Datensätze für Ihre Suche nach \"{{keyword}}\"",
+      "single_results": "{{count}} Datensätze",
+      "single_results_found": "{{count}} Datensätze von \"{{keyword}}\" gefunden"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Zuletzt angesehen"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Versandkosten weniger als {value}",
       "specified_customer": "Verfügbar für bestimmte Kunden",
       "threshold": "{threshold} Kaufen"
+    },
+    "flash": {
+      "day": "Tag",
+      "days": "Tage"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} Rabatt",
@@ -797,6 +826,13 @@
       "point_discount": "Punkterabatt",
       "shipping_fee": "Versand",
       "trade_coupon_discount": "Kupon"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Codefehler",
+      "err2005": "Codefehler",
+      "err3005": "Codefehler"
     }
   }
 }

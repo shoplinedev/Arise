@@ -5388,7 +5388,115 @@ input[type=radio]{
        -o-animation-duration:2s;
           animation-duration:2s;
 }
-
+.mp-loading__success-box{
+  display:inline-block;
+  height:30px;
+  max-height:100%;
+  max-width:100%;
+  position:relative;
+  vertical-align:middle;
+  width:100%;
+}
+.mp-loading__success-box .hookmark{
+  stroke-dasharray:100 100;
+  stroke-dashoffset:100;
+  -webkit-animation:1s linear hookmarkTransform forwards .6s;
+     -moz-animation:1s linear hookmarkTransform forwards .6s;
+       -o-animation:1s linear hookmarkTransform forwards .6s;
+          animation:1s linear hookmarkTransform forwards .6s;
+}
+.mp-loading__success-box .circle{
+  stroke-dasharray:120;
+  stroke-dashoffset:120;
+  -webkit-animation:1s linear circleTransform forwards;
+     -moz-animation:1s linear circleTransform forwards;
+       -o-animation:1s linear circleTransform forwards;
+          animation:1s linear circleTransform forwards;
+}
+.mp-loading__success-box svg{
+  height:100%;
+  width:100%;
+}
+@-webkit-keyframes circleTransform{
+  0%{
+    stroke-dasharray:120;
+    stroke-dashoffset:120;
+  }
+  to{
+    stroke-dasharray:120;
+    stroke-dashoffset:0;
+  }
+}
+@-moz-keyframes circleTransform{
+  0%{
+    stroke-dasharray:120;
+    stroke-dashoffset:120;
+  }
+  to{
+    stroke-dasharray:120;
+    stroke-dashoffset:0;
+  }
+}
+@-o-keyframes circleTransform{
+  0%{
+    stroke-dasharray:120;
+    stroke-dashoffset:120;
+  }
+  to{
+    stroke-dasharray:120;
+    stroke-dashoffset:0;
+  }
+}
+@keyframes circleTransform{
+  0%{
+    stroke-dasharray:120;
+    stroke-dashoffset:120;
+  }
+  to{
+    stroke-dasharray:120;
+    stroke-dashoffset:0;
+  }
+}
+@-webkit-keyframes hookmarkTransform{
+  0%{
+    stroke-dasharray:100 100;
+    stroke-dashoffset:100;
+  }
+  to{
+    stroke-dasharray:100 100;
+    stroke-dashoffset:0;
+  }
+}
+@-moz-keyframes hookmarkTransform{
+  0%{
+    stroke-dasharray:100 100;
+    stroke-dashoffset:100;
+  }
+  to{
+    stroke-dasharray:100 100;
+    stroke-dashoffset:0;
+  }
+}
+@-o-keyframes hookmarkTransform{
+  0%{
+    stroke-dasharray:100 100;
+    stroke-dashoffset:100;
+  }
+  to{
+    stroke-dasharray:100 100;
+    stroke-dashoffset:0;
+  }
+}
+@keyframes hookmarkTransform{
+  0%{
+    stroke-dasharray:100 100;
+    stroke-dashoffset:100;
+  }
+  to{
+    stroke-dasharray:100 100;
+    stroke-dashoffset:0;
+  }
+}
 @-webkit-keyframes mp-circular{
   0%{
     stroke-dasharray:1, 200;
@@ -5403,7 +5511,6 @@ input[type=radio]{
     stroke-dashoffset:-120;
   }
 }
-
 @-moz-keyframes mp-circular{
   0%{
     stroke-dasharray:1, 200;
@@ -5418,7 +5525,6 @@ input[type=radio]{
     stroke-dashoffset:-120;
   }
 }
-
 @-o-keyframes mp-circular{
   0%{
     stroke-dasharray:1, 200;
@@ -5433,7 +5539,6 @@ input[type=radio]{
     stroke-dashoffset:-120;
   }
 }
-
 @keyframes mp-circular{
   0%{
     stroke-dasharray:1, 200;
@@ -9268,19 +9373,33 @@ input[type=radio]{
 }
 .flash-sale{
   display:inline-block;
-  margin-top:10px;
 }
 .flash-sale__bg{
   background-color:{{ theme.settings.color_tag_background }};
   color:{{ theme.settings.color_tag_text }};
 }
 .flash-sale__font{
-  font-family:Helvetica;
   font-style:normal;
-  font-weight:700;
+  font-weight:400;
 }
-.flash-sale__container{
-  padding:4px;
+
+.discount-sale__free-shipping,.flash-sale__container{
+  line-height:15px;
+  padding:4px 6px;
+}
+
+.discount-sale__free-shipping{
+  background-color:{{ rgba  theme.settings.color_discount  0.05 }};
+  color:{{ theme.settings.color_discount }};
+  display:inline-block;
+}
+.discount-sale__free-shipping>svg{
+  vertical-align:bottom;
+}
+
+.slot-cart-sale>*{
+  margin-right:8px;
+  margin-top:10px;
 }
 
 .promotion-limited{
@@ -9831,7 +9950,7 @@ input[type=radio]{
   margin-top:24px;
 }
 
-.slot-cart-checkout-end>*{
+.slot-cart-checkout-end>:not(:last-child){
   margin-bottom:15px;
 }
 
@@ -9960,7 +10079,7 @@ input[type=radio]{
 @media (min-width:960px){
   .trade-cart-checkout-module{
     background:rgba(0,0,0,.03);
-    padding:30px 30px 0;
+    padding:30px 30px 20px;
   }
 }
 .trade-shopping-money-desc{
@@ -10781,6 +10900,27 @@ input{
      text-overflow:ellipsis;
 }
 .product-item-info .product-item-title.display-2-row{
+  -webkit-line-clamp:2;
+}
+.product-item-info .product-item-sub-title{
+  -webkit-line-clamp:5;
+  -webkit-box-orient:vertical;
+  color:{{ theme.settings.color_text }};
+  display:-webkit-box;
+  font-size:12px;
+  letter-spacing:.2em;
+  line-height:1.6;
+  margin:6px 0;
+  opacity:.5;
+  overflow:hidden;
+  -o-text-overflow:ellipsis;
+     text-overflow:ellipsis;
+  word-break:break-word;
+}
+.product-item-info .product-item-sub-title.onelineShow{
+  -webkit-line-clamp:1;
+}
+.product-item-info .product-item-sub-title.twolineShow{
   -webkit-line-clamp:2;
 }
 .product-item-info .product-item-description{

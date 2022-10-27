@@ -1,0 +1,16 @@
+{{assign 'tagArr' (JSONparse '[]')}}
+{{#if blogInfo.blogTagList}}
+  {{assign 'tagArr' blogInfo.blogTagList}}  
+{{/if}}
+
+{{#if tagArr.length '>' 0}}
+<div class="{{class}}">
+  {{#with this as |global|}}
+    {{#each tagArr as |tag|}}
+      {{#snippet "blogs/tag" class="page-tags" blogListHandle=global.blogListHandle tagName=tag.tagName}}
+        {{tag.tagName}}
+      {{/snippet}}
+    {{/each}}
+  {{/with}}
+</div>
+{{/if}}

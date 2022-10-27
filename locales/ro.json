@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Următorul",
+      "previous": "Anterior",
+      "read_more": "Vezi mai mult",
+      "related_articles": "Bloguri similare"
+    },
     "blog_list": {
       "empty_desc": "Nu există postări pe blog în acest blog.",
       "read_btn_text": "Citeste mai mult",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Au rămas doar {{stock}}"
     },
+    "subscription": {
+      "information": "Abonare"
+    },
     "tips": {
       "agree_with_the_shop": "Sunt de acord cu",
       "change_binding_after_verification": "Puteți conecta/schimba {{value}} după verificare",
@@ -348,6 +357,7 @@
       "error_message_1022": "Numărul de cont a fost legat",
       "error_message_1023": "Service pentru excepții",
       "error_message_1024": "Service pentru excepții",
+      "error_message_1035": "Vă rugăm să trimiteți codul de verificare",
       "error_message_2": "Service pentru excepții",
       "error_message_2001": "Mobilul a fost înregistrat",
       "error_message_2002": "E-mailul a fost înregistrat",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Nu a fost găsită nicio valută relevantă",
       "search_input_placeholder": "Introduceți aici și apăsați pe Caută"
     },
+    "order_tracking": {
+      "code": "Cod de verificare",
+      "email": "E-mail",
+      "form_error": "Interogarea a eșuat",
+      "orderId": "Comanda ID",
+      "orderId_error": "ID-ul comenzii nu poate fi gol",
+      "query_illegal": "ordinea nu există",
+      "risk_black_user": "Acest cont este în pericol",
+      "risk_interception": "ordinea nu există",
+      "submit_btn": "Vezi comanda",
+      "username": "E-mail/Număr de telefon"
+    },
     "policy": {
       "privacy": "Politica de confidențialitate",
       "refund": "Politică de rambursare",
@@ -598,6 +620,7 @@
       "filter": "Filtru",
       "from_price_html": "Începând de la {{price}}",
       "less": "Mai puține",
+      "load_more_tip": "Se încarcă mai multe articole",
       "more": "Mai multe",
       "more__product_num": "{{num}} Produse",
       "new_arrivals": "Noutăți",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} (de) rezultate",
       "results_found_for": "{{count}} (de) rezultate pentru „{{keyword}}”",
       "search": "Caută",
-      "search_no_results": "Căutarea dvs. pentru „{{keyword}}” nu a generat niciun rezultat"
+      "search_no_results": "Căutarea dvs. pentru „{{keyword}}” nu a generat niciun rezultat",
+      "single_results": "{{count}} (de) rezultate",
+      "single_results_found": "{{count}} (de) rezultate pentru „{{keyword}}”"
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Produse recent vizualizate"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Cheltuielile cu transportul sunt mai mici de {value}",
       "specified_customer": "Pentru anumiți clienți",
       "threshold": "Cumpărați{threshold}"
+    },
+    "flash": {
+      "day": "zi",
+      "days": "zile"
     },
     "general": {
       "activity_banner_benefit": "Reducere {{benefit}}",
@@ -797,6 +826,13 @@
       "point_discount": "Puncte de reducere",
       "shipping_fee": "Livrare",
       "trade_coupon_discount": "Cupon"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Eroare cod",
+      "err2005": "Eroare cod",
+      "err3005": "Eroare cod"
     }
   }
 }

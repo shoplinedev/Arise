@@ -60,7 +60,7 @@
         {{ assign 'types' (split shop.store_register_config.types ',')}}
         {{#each thirdParty}}
           {{#if (inArray ../types name)}}
-            <a class="sign-in__third-button" href="{{ callbackUrl }}" data-name={{name}}>
+            <a class="sign-in__third-button" href="{{ callbackUrl }}" data-name={{name}} {{{ this.shopline_attributes }}}>
               {{!-- 线上 {{ snippet (append 'icons/icon_' name) }} 写法不生效 --}}
               {{#if name '===' 'facebook'}}
                 {{ snippet 'icons/icon_facebook' }}

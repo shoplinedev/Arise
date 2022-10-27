@@ -1,5 +1,11 @@
 {
   "blog": {
+    "blog": {
+      "next": "Naslednji",
+      "previous": "Prejšnja",
+      "read_more": "Poglej več",
+      "related_articles": "Sorodni spletni dnevniki"
+    },
     "blog_list": {
       "empty_desc": "V tem blogu ni objav v blogu.",
       "read_btn_text": "Preberi več",
@@ -204,6 +210,9 @@
     "stock": {
       "limit": "Ostalo samo še {{stock}}"
     },
+    "subscription": {
+      "information": "Naročnina"
+    },
     "tips": {
       "agree_with_the_shop": "Strinjam se z",
       "change_binding_after_verification": "Po preverjanju se lahko povežete/spremenite {{value}}",
@@ -348,6 +357,7 @@
       "error_message_1022": "Številka računa je bila povezana",
       "error_message_1023": "Izjeme pri storitvah",
       "error_message_1024": "Izjeme pri storitvah",
+      "error_message_1035": "Pošljite potrditveno kodo",
       "error_message_2": "Izjeme pri storitvah",
       "error_message_2001": "Mobilni telefon je registriran",
       "error_message_2002": "Elektronski naslov je registriran",
@@ -536,6 +546,18 @@
       "no_currency_fallback": "Ustrezna valuta ni najdena",
       "search_input_placeholder": "Vnesite tukaj in tapnite iskanje"
     },
+    "order_tracking": {
+      "code": "Verifikacijska koda",
+      "email": "E-naslov",
+      "form_error": "Poizvedba ni uspela",
+      "orderId": "Številka naročila",
+      "orderId_error": "ID naročila ne sme biti prazen",
+      "query_illegal": "naročilo ne obstaja",
+      "risk_black_user": "Ta račun je ogrožen",
+      "risk_interception": "naročilo ne obstaja",
+      "submit_btn": "Ogled naročila",
+      "username": "E-pošta/telefonska številka"
+    },
     "policy": {
       "privacy": "Pravilnikom o zasebnosti",
       "refund": "Pravilnik o vračilu denarja",
@@ -598,6 +620,7 @@
       "filter": "Filtriraj",
       "from_price_html": "Od {{price}}",
       "less": "manj oznak",
+      "load_more_tip": "Nalaganje več elementov",
       "more": "več oznak",
       "more__product_num": "{{num}} izdelki",
       "new_arrivals": "Pravkar prispelo",
@@ -623,7 +646,9 @@
       "ount_results": "{{count}} Rezultatov",
       "results_found_for": "{{count}} najdenih rezultatov za \"{{keyword}}\"",
       "search": "Iskanje",
-      "search_no_results": "Vaše iskanje po\"{{keyword}}\" ni prineslo rezultatov"
+      "search_no_results": "Vaše iskanje po\"{{keyword}}\" ni prineslo rezultatov",
+      "single_results": "{{count}} Rezultatov",
+      "single_results_found": "{{count}} najdenih rezultatov za \"{{keyword}}\""
     },
     "recently_viewed_products": {
       "recently_viewed_products": "Nedavno pregledani izdelki"
@@ -650,6 +675,10 @@
       "shipping_rate_below": "Tovor je manjši od {value}",
       "specified_customer": "Za določene stranke",
       "threshold": "Kupi {threshold}"
+    },
+    "flash": {
+      "day": "dan",
+      "days": "dnevi"
     },
     "general": {
       "activity_banner_benefit": "{{benefit}} izklop",
@@ -797,6 +826,13 @@
       "point_discount": "Popust za točke",
       "shipping_fee": "Dostava",
       "trade_coupon_discount": "Kuponi"
+    }
+  },
+  "user": {
+    "udbResponse": {
+      "err1006": "Napaka v kodi",
+      "err2005": "Napaka v kodi",
+      "err3005": "Napaka v kodi"
     }
   }
 }

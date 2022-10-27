@@ -1036,20 +1036,174 @@
       }
     },
     "main-blog-detail": {
+      "blocks": {
+        "category": {
+          "name": "menu navigation",
+          "settings": {
+            "menu": {
+              "label": "Select menu navigation"
+            },
+            "title": {
+              "label": "Title"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "Recent Blog Posts",
+          "settings": {
+            "blog_num": {
+              "label": "Number of blog posts"
+            },
+            "blogs_data": {
+              "label": "Select Blog Collection"
+            },
+            "is_show_abstract": {
+              "label": "Show summary"
+            },
+            "is_show_author": {
+              "label": "Display author"
+            },
+            "is_show_date": {
+              "label": "Display date"
+            },
+            "is_show_tag": {
+              "label": "Show label"
+            },
+            "title": {
+              "label": "Title"
+            }
+          }
+        },
+        "tag": {
+          "name": "Tab",
+          "settings": {
+            "title": {
+              "label": "Tags"
+            }
+          }
+        }
+      },
       "name": "Blog",
       "settings": {
+        "group_header__0": {
+          "label": "Sidebar settings"
+        },
+        "group_header__1": {
+          "label": "Article Settings"
+        },
+        "group_header__2": {
+          "label": "Related Article Settings"
+        },
         "is_show_author": {
           "label": "Display author"
         },
         "is_show_breadcrumb": {
           "label": "Display breadcrumb"
         },
+        "is_show_comment": {
+          "label": "Show comments"
+        },
         "is_show_date": {
           "label": "Display date"
+        },
+        "is_show_prev_next": {
+          "label": "Show next article"
+        },
+        "is_show_related_abstract": {
+          "label": "Show summary"
+        },
+        "is_show_related_articles": {
+          "label": "Show related articles"
+        },
+        "is_show_related_author": {
+          "label": "Display author"
+        },
+        "is_show_related_date": {
+          "label": "Display date"
+        },
+        "is_show_related_read_more": {
+          "label": "Show \"Read More\" link"
+        },
+        "is_show_related_tag": {
+          "label": "Show label"
+        },
+        "is_show_sidebar": {
+          "label": "Show sidebar"
+        },
+        "is_show_tag": {
+          "label": "Show label"
+        },
+        "position": {
+          "label": "Location",
+          "options__0": {
+            "label": "right column"
+          },
+          "options__1": {
+            "label": "left column"
+          }
+        },
+        "related_align": {
+          "label": "Content alignment",
+          "options__0": {
+            "label": "Left"
+          },
+          "options__1": {
+            "label": "Center"
+          },
+          "options__2": {
+            "label": "Right"
+          }
         }
       }
     },
     "main-blog-list": {
+      "blocks": {
+        "category": {
+          "name": "menu navigation",
+          "settings": {
+            "menu": {
+              "label": "Select menu navigation"
+            },
+            "title": {
+              "label": "Title"
+            }
+          }
+        },
+        "recent-blog": {
+          "name": "Recent Blog Posts",
+          "settings": {
+            "blog_num": {
+              "label": "Number of blog posts"
+            },
+            "blogs_data": {
+              "label": "Select Blog Collection"
+            },
+            "is_show_abstract": {
+              "label": "Show summary"
+            },
+            "is_show_author": {
+              "label": "Display author"
+            },
+            "is_show_date": {
+              "label": "Display date"
+            },
+            "is_show_tag": {
+              "label": "Show label"
+            },
+            "title": {
+              "label": "Title"
+            }
+          }
+        },
+        "tag": {
+          "name": "Tab",
+          "settings": {
+            "title": {
+              "label": "Tags"
+            }
+          }
+        }
+      },
       "name": "Blogs",
       "settings": {
         "cover_img_ratio": {
@@ -1070,6 +1224,15 @@
             "label": "16:9"
           }
         },
+        "group_header__0": {
+          "label": "Sidebar settings"
+        },
+        "group_header__1": {
+          "label": "Style settings"
+        },
+        "group_header__2": {
+          "label": "Content settings"
+        },
         "is_show_author": {
           "label": "Display author"
         },
@@ -1085,6 +1248,15 @@
         "is_show_desc": {
           "label": "Show summary"
         },
+        "is_show_read_more": {
+          "label": "Show \"Read More\" link"
+        },
+        "is_show_sidebar": {
+          "label": "Show sidebar"
+        },
+        "is_show_tag": {
+          "label": "Show label"
+        },
         "layout": {
           "label": "Layout",
           "options__0": {
@@ -1092,6 +1264,15 @@
           },
           "options__1": {
             "label": "List"
+          }
+        },
+        "position": {
+          "label": "Location",
+          "options__0": {
+            "label": "right column"
+          },
+          "options__1": {
+            "label": "left column"
           }
         }
       }
@@ -1301,6 +1482,23 @@
     "notFoundPage": {
       "name": "Error 404 page"
     },
+    "order-tracking": {
+      "name": "Order Tracking",
+      "settings": {
+        "group_header__0": {
+          "label": "View Order"
+        },
+        "group_header__1": {
+          "label": "Query historical orders"
+        },
+        "history_order_title": {
+          "label": "Title"
+        },
+        "title": {
+          "label": "Title"
+        }
+      }
+    },
     "product_collections-all_collections-list-page": {
       "block_info": "Selected option will be effective only when you choose to display assigned product collections in Setting",
       "blocks": {
@@ -1476,7 +1674,7 @@
           }
         },
         "product_sub_title": {
-          "label": "",
+          "label": "Product summary",
           "options__0": {
             "label": "Don't display"
           },

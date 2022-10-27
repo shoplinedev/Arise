@@ -15,7 +15,7 @@
       </div>
       <div class="content-pay-value">
         {{#each pageData.paymentInfoList}}
-          <p key="{{orderSeq}}" class="content-pay-value-status">
+          <p key="{{orderSeq}}" class="content-pay-value-status" {{{ this.shopline_attributes }}}>
             <span>
               {{snippet 'customer/order/detail/payment-method' payChannelName=payChannelName payMethod=payMethod defaultDesensitizedPayerAccount=defaultDesensitizedPayerAccount}} -
             </span>

@@ -62,7 +62,7 @@ collection_products:
             {{ assign 'showTitle' settings.title }}
           {{/if}}
 
-          {{ snippet 'product/commons/collection-item' sortationData=sortationData title=showTitle imageRatio=../imageRatio bgDisplayPosition=settings.image_display_area titleColor='inherit' }}         
+          {{ snippet 'product/commons/collection-item' sortationData=sortationData title=showTitle imageRatio=../imageRatio bgDisplayPosition=settings.image_display_area titleColor='inherit' shopline_attributes=this.shopline_attributes }}         
         {{/each}}
       </div>
     </div>  
