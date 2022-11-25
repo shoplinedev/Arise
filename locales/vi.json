@@ -242,6 +242,7 @@
       "delete_account_email": "Email",
       "delete_account_notify": "Bạn có thể xin đóng tài khoản này. Sau khi đóng, mọi thông tin liên quan đến xác minh tài khoản này sẽ bị xóa, bao gồm:",
       "email": "E-mail",
+      "email_repeat_tip": "Email đã được đăng ký",
       "first_name": "Tên",
       "gender": "Giới tính",
       "gender_female": "Nữ",
@@ -267,6 +268,7 @@
       "select__date": "Chọn Ngày",
       "subscribe_confirm_tip": "Cảm ơn bạn đã đăng ký.",
       "timeout_tip": "Đã quá thời gian thao tác, vui lòng xác minh lại",
+      "unknow_error_tip": "Ngoại lệ dịch vụ, hãy thử lại sau",
       "username": "Tên",
       "verify_email_message": "Trước khi đóng tài khoản, chúng tôi cần xác minh danh tính của bạn\nBạn sẽ nhận được email xác minh vào email {{email}}",
       "verify_phone_message": "Trước khi đóng tài khoản, chúng tôi cần xác minh danh tính của bạn\nBạn sẽ nhận được tin nhắn xác minh vào số điện thoại di động {{phone}}"
@@ -440,7 +442,7 @@
       "september": "Tháng Chín",
       "set_password": "Vui lòng đặt mật khẩu có độ dài tối thiểu là 6 ký tự và độ dài tối đa là 18 ký tự",
       "sign__out": "Đăng xuất",
-      "sign_in": "ĐĂNG KÝ",
+      "sign_in": "ĐĂNG NHẬP",
       "sign_up": "ĐĂNG KÝ",
       "su": "CN",
       "subscription_desc": "Nhận tin tức mới nhất về cửa hàng",
@@ -578,6 +580,7 @@
       "collection": "Danh mục"
     },
     "general": {
+      "added_to_cart_successfully": "Đã thêm vào giỏ hàng thành công",
       "no_product_data_found": "Không tìm thấy thông tin sản phẩm. Vui lòng thử lại sau.",
       "sold_out": "Hết hàng"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Xin chúc mừng! Bạn đã nhận được {{saved}} QUÀ TẶNG MIỄN PHÍ! Mua thêm {{threshold}} sản phẩm để nhận lên tới {{willSave}} QUÀ TẶNG MIỄN PHÍ"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Mua thêm {{threshold}} sản phẩm để nhận một sản phẩm miễn phí",
-        "b11_t1_s1_normal": "Mua thêm {{threshold}} sản phẩm để được giảm giá {{willSave}} cho một trong các sản phẩm trên.",
-        "b11_t1_s2_free": "Xin chúc mừng! Bạn đã nhận được một sản phẩm miễn phí!",
-        "b11_t1_s2_next_free": "Xin chúc mừng! Bạn đã tiết kiệm được {{saved}}, {{br}} mua thêm {{threshold}} sản phẩm để nhận một sản phẩm miễn phí",
-        "b11_t1_s2_normal": "Xin chúc mừng! Bạn đã tiết kiệm được {{saved}}, {{br}} mua thêm {{threshold}} sản phẩm để được giảm {{willSave}} cho một trong các sản phẩm trên.",
-        "b11_t1_s3_free": "Xin chúc mừng! Bạn đã nhận được một sản phẩm miễn phí!",
-        "b11_t1_s3_normal": "Xin chúc mừng! Bạn đã được giảm {{saved}} cho một trong các sản phẩm trên!",
-        "b12_t0_s1_achieve_free": "Xin chúc mừng, bạn được MIỄN PHÍ {{benefitCount}} trong số mặt hàng",
-        "b12_t0_s1_achieve_normal": "Xin chúc mừng, bạn được giảm {{willSave}} cho {{benefitCount}} trong số mặt hàng",
-        "b12_t0_s1_free": "Mua {{threshold}}, được MIỄN PHÍ {{benefitCount}} trong số mặt hàng",
-        "b12_t0_s1_normal": "Mua {{threshold}}, được giảm {{willSave}} cho {{benefitCount}} trong số mặt hàng",
-        "b12_t0_s3_free": "Xin chúc mừng! Bạn đã được MIỄN PHÍ {{benefitCount}} mặt hàng!",
-        "b12_t0_s3_normal": "Xin chúc mừng! Bạn đã được giảm {{saved}} cho {{benefitCount}} mặt hàng!",
-        "b12_t1_s1_achieve_free": "Xin chúc mừng, bạn được MIỄN PHÍ {{benefitCount}} trong số mặt hàng",
-        "b12_t1_s1_achieve_normal": "Xin chúc mừng, bạn được giảm {{willSave}} cho {{benefitCount}} trong số mặt hàng",
-        "b12_t1_s1_free": "Mua {{threshold}}, được MIỄN PHÍ {{benefitCount}} trong số mặt hàng",
-        "b12_t1_s1_normal": "Mua {{threshold}}, được giảm {{willSave}} cho {{benefitCount}} trong số mặt hàng",
-        "b12_t1_s3_free": "Xin chúc mừng! Bạn đã được MIỄN PHÍ {{benefitCount}} mặt hàng!",
-        "b12_t1_s3_normal": "Xin chúc mừng! Bạn đã được giảm {{saved}} cho {{benefitCount}} mặt hàng!",
-        "b14_t1_s1": "Mua {{nextMinThreshold}} sản phẩm với giá {{willSave}}",
-        "b14_t1_s2": "Xin chúc mừng! Bạn vừa nhận được {{currentMinThreshold}} sản phẩm với giá {{saved}}. Mua thêm {{threshold}} để được ưu đãi mua {{nextMinThreshold}} sản phẩm với giá {{willSave}}!",
-        "b14_t1_s3": "Xin chúc mừng! Bạn vừa nhận được {{currentMinThreshold}} sản phẩm với giá {{saved}}!",
-        "b1_t0_s1": "Mua trên {{threshold}} để tiết kiệm {{willSave}}",
-        "b1_t0_s2": "Đã tiết kiệm {{saved}}! {{br}}Mua thêm {{threshold}} để tiết kiệm {{willSave}}",
-        "b1_t0_s3": "Xin chúc mừng! Bạn đã tiết kiệm {{saved}}!",
-        "b1_t1_s1": "Mua trên {{threshold}} sản phẩm để tiết kiệm {{willSave}}",
-        "b1_t1_s2": "Đã tiết kiệm {{saved}}! {{br}}Mua thêm {{threshold}} sản phẩm để tiết kiệm {{willSave}}",
-        "b1_t1_s3": "Xin chúc mừng! Bạn đã tiết kiệm {{saved}}!",
-        "b2_t0_s1": "Mua trên {{threshold}} để được giảm {{willSave}}",
-        "b2_t0_s2": "Đã tiết kiệm {{saved}}! {{br}}Mua thêm {{threshold}} để được giảm {{willSave}}",
-        "b2_t0_s3": "Xin chúc mừng! Bạn đã tiết kiệm {{saved}}!",
-        "b2_t1_s1": "Mua trên {{threshold}} sản phẩm để được giảm {{willSave}}",
-        "b2_t1_s2": "Đã tiết kiệm được {{saved}}! {{br}}Mua thêm {{threshold}} sản phẩm để được giảm {{willSave}}",
-        "b2_t1_s3": "Xin chúc mừng! Bạn đã tiết kiệm {{saved}}!",
-        "b3_t0_s1_unlimited": "Mua tiếp {{threshold}} và tận hưởng <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Miễn phí giao hàng</span>!",
-        "b3_t0_s1_upper_limit": "Mua tiếp {{threshold}} và tận hưởng <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Miễn phí giao hàng</span>! (Số tiền giao hàng miễn phí tối đa {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Xin chúc mừng! Bạn đã nhận được <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Miễn phí giao hàng</span>!",
-        "b3_t0_s3_upper_limit": "Xin chúc mừng! Bạn đã nhận được <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Miễn phí giao hàng</span>! (Số tiền giao hàng miễn phí tối đa {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Mua thêm {{threshold}} và tận hưởng <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Miễn phí giao hàng</span>!",
-        "b3_t1_s1_upper_limit": "Mua thêm {{threshold}} và tận hưởng <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Miễn phí giao hàng</span>! (Số tiền giao hàng miễn phí tối đa {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Xin chúc mừng! Bạn đã nhận được <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Miễn phí giao hàng</span>!",
-        "b3_t1_s3_upper_limit": "Xin chúc mừng! Bạn đã nhận được <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Miễn phí giao hàng</span>! (Số tiền giao hàng miễn phí tối đa {{upperLimit}})",
-        "b9_t1_s1": "Mua thêm {{threshold}} sản phẩm để nhận {{willSave}} sản phẩm miễn phí",
-        "b9_t1_s2": "Xin chúc mừng! Bạn đã nhận được {{saved}} sản phẩm miễn phí! Mua thêm {{threshold}} sản phẩm để nhận {{willSave}} sản phẩm miễn phí",
-        "b9_t1_s3": "Xin chúc mừng! Bạn đã nhận được {{saved}} sản phẩm miễn phí!"
-      },
       "discount_tag": {
         "b11_t1_free": "Mua trên {{threshold}} sản phẩm, nhận ngay một sản phẩm miễn phí!",
         "b11_t1_normal": "Mua {{threshold}} sản phẩm để được giảm giá {{save}} cho một trong các sản phẩm.",
@@ -779,15 +735,6 @@
         "b2_t0": "Mua {{threshold}} giảm giá {{save}}",
         "b2_t1": "Mua {{threshold}} sản phẩm giảm giá {{save}}",
         "label": "Giảm giá:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Mua {{nextMinThreshold}} sản phẩm với giá {{willSave}}",
-            "step2": "Xin chúc mừng! Bạn vừa nhận được {{currentMinThreshold}} sản phẩm với giá {{saved}}. Mua thêm {{threshold}} để được ưu đãi mua {{nextMinThreshold}} sản phẩm với giá {{willSave}}!",
-            "step3": "Xin chúc mừng! Bạn vừa nhận được {{currentMinThreshold}} sản phẩm với giá {{saved}}!"
-          }
-        }
       }
     }
   },

@@ -16,10 +16,10 @@
        data-item-no="{{data.itemNo}}"
     >
     {{#unless data.image}}
-      <div class="trade-cart-sku-item-image-fallback"></div>
+      <div class="trade-cart-sku-item-image-fallback global-media-border-shadow"></div>
     {{else}}
-      <div class="hide trade-cart-sku-item-image-fallback"></div>
-      <img class="trade-cart-sku-item-image-wrapper" src="{{img_url data.image width=image-width scale=2}}" origin-src="{{data.image}}">
+      <div class="hide trade-cart-sku-item-image-fallback global-media-border-shadow"></div>
+      <img class="trade-cart-sku-item-image-wrapper global-media-border-shadow" src="{{img_url data.image width=image-width scale=2}}" origin-src="{{data.image}}">
     {{/unless}}
     {{#if data.bindProductImages}}
         <ul class="trade-cart-sku-item-image-wrapper__accessorial__list">

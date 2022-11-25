@@ -242,6 +242,7 @@
       "delete_account_email": "Email",
       "delete_account_notify": "Anda dapat mengajukan untuk membatalkan akun ini. Setelah pembatalan akun, informasi apa pun yang digunakan untuk mengidentifikasi akun ini akan dihapus, termasuk:",
       "email": "Email",
+      "email_repeat_tip": "Email sudah didaftar",
       "first_name": "Nama",
       "gender": "Kelamin",
       "gender_female": "Perempuan",
@@ -267,6 +268,7 @@
       "select__date": "Silakan pilih tanggal",
       "subscribe_confirm_tip": "Terima kasih bawah Anda telah berlangganan.",
       "timeout_tip": "Operasi habis waktunya, silakan autentikasi lagi",
+      "unknow_error_tip": "Layanan abnormal, silakan coba lagi nanti",
       "username": "Nama",
       "verify_email_message": "Kami perlu memverifikasi identitas Anda sebelum kami melakukan operasi penghapusan\nAlamat email Anda {{email}} akan menerima email kode verifikasi",
       "verify_phone_message": "Kami perlu memverifikasi identitas Anda sebelum kami melakukan operasi penghapusan\nTelepon Anda {{phone}} akan menerima email kode verifikasi"
@@ -578,6 +580,7 @@
       "collection": "Koleksi"
     },
     "general": {
+      "added_to_cart_successfully": "Pembelian tambahan berhasil",
       "no_product_data_found": "Tidak ada data produk saat ini, silakan coba lagi nanti",
       "sold_out": "Terjual habis"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Selamat! Telah dapat {{saved}} hadiah gratis! Beli {{threshold}} produk lagi, maksimal nikmati {{willSave}} hadiah gratis"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Beli {{threshold}} buah lagi, salah satunya gratis",
-        "b11_t1_s1_normal": "Beli {{threshold}} buah lagi, salah satunya dapat dikurangi {{willSave}}",
-        "b11_t1_s2_free": "Selamat! Salah satunya telah kurangi",
-        "b11_t1_s2_next_free": "Selamat! Telah kurangi {{saved}}!{{br}} beli {{threshold}} buah lagi，salah satunya gratis",
-        "b11_t1_s2_normal": "Selamat! Telah kurangi {{saved}}!{{br}} beli {{threshold}} buah lagi，salah satunya dapat dikurangi {{willSave}}",
-        "b11_t1_s3_free": "Selamat! Salah satunya telah kurangi",
-        "b11_t1_s3_normal": "Salah satunya telah kurangi {{saved}}",
-        "b12_t0_s1_achieve_free": "Selamat, Anda bisa nikmati {{benefitCount}} produk yang gratis",
-        "b12_t0_s1_achieve_normal": "Selamat, Anda bisa {{benefitCount}} produk dapat diskon {{willSave}}",
-        "b12_t0_s1_free": "Beli {{threshold}}, nikmati {{benefitCount}} produk yang gratis",
-        "b12_t0_s1_normal": "Beli {{threshold}}, {{benefitCount}} produk dapat diskon {{willSave}}",
-        "b12_t0_s3_free": "Selamat, Anda telah mendapat {{benefitCount}} produk yang gratis antaranya!",
-        "b12_t0_s3_normal": "Selamat, Anda telah mendapat diskon {{saved}} dalam {{benefitCount}} produk!",
-        "b12_t1_s1_achieve_free": "Selamat, Anda bisa nikmati {{benefitCount}} produk yang gratis",
-        "b12_t1_s1_achieve_normal": "Selamat, Anda bisa {{benefitCount}} produk dapat diskon{{willSave}}",
-        "b12_t1_s1_free": "Beli {{threshold}} buah, nikmati {{benefitCount}} produk yang gratis",
-        "b12_t1_s1_normal": "Beli {{threshold}} buah, {{benefitCount}} produk dapat diskon {{willSave}}",
-        "b12_t1_s3_free": "Selamat, Anda telah mendapat {{benefitCount}} produk yang gratis antaranya!",
-        "b12_t1_s3_normal": "Selamat, Anda telah mendapat diskon {{saved}} dalam {{benefitCount}} produk!",
-        "b14_t1_s1": "Beli {{nextMinThreshold}} buah {{willSave}}",
-        "b14_t1_s2": "Selamat! Anda telah memperoleh {{currentMinThreshold}} buah {{saved}}. Beli {{threshold}} lagi dapat nikmati {{nextMinThreshold}} buah {{willSave}}!",
-        "b14_t1_s3": "Selamat! Anda telah memperoleh {{currentMinThreshold}} buah {{saved}}!",
-        "b1_t0_s1": "Beli {{threshold}} atau lebih dapat hemat {{willSave}}",
-        "b1_t0_s2": "Telah hemat {{saved}}!{{br}}beli lagi {{threshold}} dapat hemat {{willSave}}",
-        "b1_t0_s3": "Selamat Anda! Anda dapat hemat {{saved}}!",
-        "b1_t1_s1": "Beli lebih dari {{threshold}} buah, hemat {{willSave}}",
-        "b1_t1_s2": "Telah hemat {{saved}}!{{br}}beli {{threshold}} buah lagi,hemat {{willSave}}",
-        "b1_t1_s3": "Selamat Anda! Anda dapat hemat {{saved}}!",
-        "b2_t0_s1": "Beli {{threshold}} atau lebih dapat hemat {{willSave}}",
-        "b2_t0_s2": "Telah hemat {{saved}}!{{br}}beli lagi {{threshold}} dapat hemat {{willSave}}",
-        "b2_t0_s3": "Selamat Anda! Anda dapat hemat {{saved}}!",
-        "b2_t1_s1": "Beli lebih dari {{threshold}} buah, hemat {{willSave}}",
-        "b2_t1_s2": "Telah hemat {{saved}}!{{br}}beli {{threshold}} buah lagi,hemat {{willSave}}",
-        "b2_t1_s3": "Selamat Anda! Anda dapat hemat {{saved}}!",
-        "b3_t0_s1_unlimited": "Beli {{threshold}} lagi，nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>!",
-        "b3_t0_s1_upper_limit": "Beli {{threshold}} lagi，nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>! (Jumlah pengiriman gratis hingga batas{{upperLimit}})",
-        "b3_t0_s3_unlimited": "Selamat! Anda dapat <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>!",
-        "b3_t0_s3_upper_limit": "Selamat! Anda dapat <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>! (Jumlah pengiriman gratis hingga batas{{upperLimit}})",
-        "b3_t1_s1_unlimited": "Beli {{threshold}} buah lagi, nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>!",
-        "b3_t1_s1_upper_limit": "Beli {{threshold}} buah lagi, nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>! (Jumlah pengiriman gratis hingga batas{{upperLimit}})",
-        "b3_t1_s3_unlimited": "Selamat! Anda dapat <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>!",
-        "b3_t1_s3_upper_limit": "Selamat! Anda dapat <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis ongkos kirim</span>! (Jumlah pengiriman gratis hingga batas{{upperLimit}})",
-        "b9_t1_s1": "Beli {{threshold}} di antaranya {{willSave}} gratis",
-        "b9_t1_s2": "Selamat! Sudah dapatkan {{saved}}yang gratis! Beli {{threshold}} lebih banyak, kemudian {{willSave}} gratis",
-        "b9_t1_s3": "Selamat! Sudah ada {{saved}}item yang gratis"
-      },
       "discount_tag": {
         "b11_t1_free": "Beli {{threshold}} buah, salah satunya gratis",
         "b11_t1_normal": "Beli {{threshold}} buah, salah satunya dapat dikurangi {{save}}",
@@ -779,15 +735,6 @@
         "b2_t0": "Beli {{threshold}} dapat hemat {{save}}",
         "b2_t1": "Beli {{threshold}} buah dapat hemat {{save}}",
         "label": "Pengurangan:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Beli {{nextMinThreshold}} buah {{willSave}}",
-            "step2": "Selamat! Anda telah memperoleh {{currentMinThreshold}} buah {{saved}}. Beli {{threshold}} lagi dapat nikmati {{nextMinThreshold}} buah {{willSave}}!",
-            "step3": "Selamat! Anda telah memperoleh {{currentMinThreshold}} buah {{saved}}!"
-          }
-        }
       }
     }
   },

@@ -242,6 +242,7 @@
       "delete_account_email": "Sähköposti",
       "delete_account_notify": "Voit hakea tämän tilin sulkemista. Sulkemisen jälkeen kaikki tämän tilin tunnistamista koskevat tiedot poistetaan, mukaan lukien:",
       "email": "Sähköposti",
+      "email_repeat_tip": "Sähköpostiosoite on jo rekisteröity",
       "first_name": "Nimi",
       "gender": "Sukupuoli",
       "gender_female": "Nainen",
@@ -267,6 +268,7 @@
       "select__date": "Valitse päivämäärä",
       "subscribe_confirm_tip": "Kiitos tilaamisesta.",
       "timeout_tip": "Operaatio aikakatkaistiinn, vahvista uudelleen",
+      "unknow_error_tip": "Palvelupoikkeus, yritä myöhemmin uudelleen",
       "username": "Nimi",
       "verify_email_message": "Ennen tilin sulkemista meidän on vahvistettava henkilöllisyytesi\nSaat sähköpostiisi {{email}} vahvistussähköpostin",
       "verify_phone_message": "Ennen tilin sulkemista meidän on vahvistettava henkilöllisyytesi\nSaat puhelimeesi {{phone}} vahvistusviestin"
@@ -578,6 +580,7 @@
       "collection": "Kategoria"
     },
     "general": {
+      "added_to_cart_successfully": "Lisätty onnistuneesti ostoskoriin",
       "no_product_data_found": "Tuotetietoja ei löytynyt Yritä myöhemmin uudelleen",
       "sold_out": "Loppuunmyyty"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Onnea! Saatu {{saved}} ilmainen lahjaa jo! Osta {{threshold}} lisää, nauti jopa {{willSave}} ILMAINEN Lahja"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Osta {{threshold}} tuotetta, saat yhden tuotteen ilmaiseksi!",
-        "b11_t1_s1_normal": "Osta {{threshold}} tuotetta, saat {{willSave}} alennusta yhdestä tuotteesta!",
-        "b11_t1_s2_free": "Onnittelut! Saat yhden tuotteen ilmaiseksi!",
-        "b11_t1_s2_next_free": "Onnittelut! {{saved}} säästetty, {{br}} Osta {{threshold}} tuotetta, saat yhden tuotteen ilmaiseksi!",
-        "b11_t1_s2_normal": "Onnittelut! {{saved}} säästetty,{{br}} Osta {{threshold}} tuotetta, saat {{willSave}} alennusta yhdestä tuotteesta!",
-        "b11_t1_s3_free": "Onnittelut! Saat yhden tuotteen ilmaiseksi!",
-        "b11_t1_s3_normal": "Onnittelut! Saat {{saved}} alennusta yhdestä tuotteesta!",
-        "b12_t0_s1_achieve_free": "Onnittelut, voit nauttia {{benefitCount}} kohteesta ILMAISEKSI",
-        "b12_t0_s1_achieve_normal": "Onnittelut, voit nauttia {{benefitCount}} tuotteen {{willSave}} -alennuksesta",
-        "b12_t0_s1_free": "Osta {{threshold}}, nauti {{benefitCount}} kohteesta ILMAISEKSI",
-        "b12_t0_s1_normal": "Osta {{threshold}}, nauti {{benefitCount}} yhden kohteen{{willSave}}-alennuksesta",
-        "b12_t0_s3_free": "Onneksi olkoon! Olet saanut {{benefitCount}} kohdetta ILMAISEKSI!",
-        "b12_t0_s3_normal": "Onneksi olkoon! Olet saanut {{saved}} -alennuksen {{benefitCount}} tuotteesta!",
-        "b12_t1_s1_achieve_free": "Onnittelut, voit nauttia {{benefitCount}} kohteesta ILMAISEKSI",
-        "b12_t1_s1_achieve_normal": "Onnittelut, voit nauttia {{benefitCount}} tuotteen {{willSave}} -alennuksesta",
-        "b12_t1_s1_free": "Osta {{threshold}}, nauti {{benefitCount}} kohteesta ILMAISEKSI",
-        "b12_t1_s1_normal": "Osta {{threshold}}, nauti {{benefitCount}} tuotteen {{willSave}}-alennuksesta",
-        "b12_t1_s3_free": "Onneksi olkoon! Olet saanut {{benefitCount}} kohdetta ILMAISEKSI!",
-        "b12_t1_s3_normal": "Onneksi olkoon! Olet saanut {{saved}} -alennuksen {{benefitCount}} tuotteesta!",
-        "b14_t1_s1": "Osta {{nextMinThreshold}} kappaletta hintaan {{willSave}}",
-        "b14_t1_s2": "Onneksi olkoon! Olet saanut {{currentMinThreshold}} kappaletta hintaan {{saved}}. Osta {{threshold}} lisää ja saat {{nextMinThreshold}} kappaletta hintaan {{willSave}}!",
-        "b14_t1_s3": "Onneksi olkoon! Olet saanut {{currentMinThreshold}} kappaletta hintaan {{saved}}!",
-        "b1_t0_s1": "Ostaessasi {{threshold}} lisää säästääksesi {{willSave}}",
-        "b1_t0_s2": "Säästä jo {{saved}}! {{br}} Ostaessasi {{threshold}} lisää säästääksesi {{willSave}}",
-        "b1_t0_s3": "Onnittelut! Olet jo säästänyt {{saved}}!",
-        "b1_t1_s1": "Ostaessasi {{threshold}} lisää säästääksesi {{willSave}}",
-        "b1_t1_s2": "Säästä jo {{saved}}! {{br}} Ostaessasi {{threshold}} lisää säästääksesi {{willSave}}",
-        "b1_t1_s3": "Onnittelut! Olet jo säästänyt {{saved}}!",
-        "b2_t0_s1": "Osta {{threshold}} lisää saadaksesi {{willSave}} alennusta",
-        "b2_t0_s2": "Säästä jo {{saved}}! {{br}} Osta {{threshold}} lisää saadaksesi {{willSave}} alennusta",
-        "b2_t0_s3": "Onnittelut! Olet jo säästänyt {{saved}}!",
-        "b2_t1_s1": "Osta {{threshold}} lisää saadaksesi {{willSave}} alennusta",
-        "b2_t1_s2": "Säästä jo {{saved}}! {{br}} Osta {{threshold}} lisää saadaksesi {{willSave}} alennusta",
-        "b2_t1_s3": "Onnittelut! Olet jo säästänyt {{saved}}!",
-        "b3_t0_s1_unlimited": "Osta {{threshold}} uudelleen ja nauti kohteesta <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ilmainen toimitus</span>!",
-        "b3_t0_s1_upper_limit": "Osta {{threshold}} uudelleen ja nauti kohteesta <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ilmainen toimitus</span>! Vapaan rahdin enimmäismäärä {{upperLimit}}",
-        "b3_t0_s3_unlimited": "Onnittelen! Olet hankkinut kohteen <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ilmainen toimitus</span>!",
-        "b3_t0_s3_upper_limit": "Onnittelen! Olet hankkinut kohteen <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ilmainen toimitus</span>! Vapaan rahdin enimmäismäärä {{upperLimit}}",
-        "b3_t1_s1_unlimited": "Osta {{threshold}} lisää kappaleita ja nauti <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ilmainen toimitus</span>!",
-        "b3_t1_s1_upper_limit": "Osta {{threshold}} lisää kappaleita ja nauti <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ilmainen toimitus</span>! Vapaan rahdin enimmäismäärä {{upperLimit}}",
-        "b3_t1_s3_unlimited": "Onnittelen! Olet hankkinut kohteen <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ilmainen toimitus</span>!",
-        "b3_t1_s3_upper_limit": "Onnittelen! Olet hankkinut kohteen <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ilmainen toimitus</span>! Vapaan rahdin enimmäismäärä {{upperLimit}}",
-        "b9_t1_s1": "Osta {{threshold}} lisää palasia, joista {{willSave}} palasia on ilmaista",
-        "b9_t1_s2": "Onnittelut! {{saved}} ilmaiseksi saadut kappaleet! Osta {{threshold}} lisää palasia, joista {{willSave}} palasia on ilmaista",
-        "b9_t1_s3": "Onnittelut! {{saved}} niistä ovat ilmaista"
-      },
       "discount_tag": {
         "b11_t1_free": "Ostaessasi {{threshold}} tuotetta, saat yhden tuotteen ilmaiseksi!",
         "b11_t1_normal": "Ostaessasi {{threshold}} tuotetta, saat {{save}} alennuksen yhdestä tuotteesta!",
@@ -779,15 +735,6 @@
         "b2_t0": "Ostaessasi {{threshold}} säästät {{save}}",
         "b2_t1": "Ostaessasi {{threshold}} SAAT {{save}} ALENNUSTA",
         "label": "Alennus:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Osta {{nextMinThreshold}} kappaletta hintaan {{willSave}}",
-            "step2": "Onneksi olkoon! Olet saanut {{currentMinThreshold}} kappaletta hintaan {{saved}}. Osta {{threshold}} lisää ja saat {{nextMinThreshold}} kappaletta hintaan {{willSave}}!",
-            "step3": "Onneksi olkoon! Olet saanut {{currentMinThreshold}} kappaletta hintaan {{saved}}!"
-          }
-        }
       }
     }
   },

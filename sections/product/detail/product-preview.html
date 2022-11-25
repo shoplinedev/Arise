@@ -32,13 +32,8 @@ product_activity_config:
 {{!-- 是否无规格/单规格 --}}
 {{ assign 'isSigleSku' (boolean product.sku.skuList.length '<' 2) }}
 
-{{#partial 'page_view'}}
-  {{!-- <script type="application/ld+json"> --}}
-  {{!-- {{{JSONstringify microdata}}} --}}
-  {{!-- </script> --}}
-  {{!-- 替换原来的 ld+json --}}
-  {{ assign 'pluginComment' plugins.comment }}
-  {{assign 'spu' product.spu}}
+{{ assign 'pluginComment' plugins.comment }}
+{{assign 'spu' product.spu}}
 
 {{assign 'discount_text' null}}
 
@@ -110,9 +105,13 @@ product_activity_config:
   }
  
   </script>
+
+{{ assign 'isPDP' (boolean templateName '==' 'products/detail') }}
+{{ assign 'isNotProductsModal' (boolean template '!=' 'products/detail.modal') }}
+{{!-- hbs set埋点变量 csr去执行上报  --}}
+{{#and isPDP isNotProductsModal}}
 <script>
-  // 第三方埋点
-  window.SL_EventBus.emit('global:thirdPartReport', {
+  const thirdPartPvTrackData = {
     FBPixel: [
       [
         'track',
@@ -130,10 +129,9 @@ product_activity_config:
         }
       ],
     ],
-  });
-</script>
-<script>
-  window.HdSdk.shopTracker.report('60006253', {
+  }
+
+  const hdPvTrackData = {
     event_name: 'view',
     page: 'pdp',
     pdp_product_id: '{{ product.spu.spuSeq }}',
@@ -143,15 +141,46 @@ product_activity_config:
     pic_rank: 1,
     iframe_id: 1,
     sellected_variantion_id: "{{#if isBatchBuy}}null{{else}}{{#if isSigleSku}}{{ initSku.firstSku.skuSeq }}{{else}}{{#if initSku.selectSku.skuSeq}}{{ initSku.selectSku.skuSeq }}{{else}}null{{/if}}{{/if}}{{/if}}"
-  });
+  };
+
+  window.__PRELOAD_STATE__ = window.__PRELOAD_STATE__ || {};
+  window.__PRELOAD_STATE__.productTrackData = window.__PRELOAD_STATE__.productTrackData || {};
+  window.__PRELOAD_STATE__.productTrackData.pdp = {
+    "hd": hdPvTrackData,
+    "thirdPart": thirdPartPvTrackData
+  }
 </script>
-{{/partial}}
+{{/and}}
 
 <div class="section-gap product-preview-section"
-  data-section-type="product-preview"
-  data-section-id="{{ section.id }}"
   data-ssr-product-detail
 >
+  {{#style}}
+    @media only screen and (min-width: 750px) {
+      {{#if (isFalsey section.settings.pc_breadcrumbs)}}
+      .product-detail-breadcrumb, .product-crumbs {
+        display: none !important;
+      }
+      {{/if}}
+      {{#if (and section.settings.pc_breadcrumbs (boolean section.settings.pc_breadcrumbs_layout '!=' 'title_top'))}}
+      .product-crumbs {
+        display: none;
+      }
+      .product-crumbs-image-top .product-crumbs {
+        display: block;
+      }
+      {{/if}}
+    }
+
+    @media only screen and (max-width: 749px) {
+      {{#if (isFalsey section.settings.mb_breadcrumbs)}}
+      .product-detail-breadcrumb, .product-crumbs {
+        display: none !important;
+      }
+      {{/if}}
+    }
+  {{/style}}
+
   <div data-product-preview-section-id="{{ section.id }}"></div>
   {{ assign 'modalPrefix' (default modalPrefix 'productModal_') }}
 
@@ -268,6 +297,38 @@ product_activity_config:
       "default": false
     },
     {
+      "type": "switch",
+      "id": "pc_breadcrumbs",
+      "label": "t:sections.product_detail_product-preview.settings.pc_breadcrumbs.label",
+      "default": true
+    },
+    {
+      "type": "switch",
+      "id": "mb_breadcrumbs",
+      "label": "t:sections.product_detail_product-preview.settings.mb_breadcrumbs.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "pc_breadcrumbs_layout",
+      "label": "t:sections.product_detail_product-preview.settings.pc_breadcrumbs_layout.label",
+      "default": "title_top",
+      "options": [
+        {
+          "value": "image_top_center",
+          "label": "t:sections.product_detail_product-preview.settings.pc_breadcrumbs_layout.options__0.label"
+        },
+        {
+          "value": "image_top_left",
+          "label": "t:sections.product_detail_product-preview.settings.pc_breadcrumbs_layout.options__1.label"
+        },
+        {
+          "value": "title_top",
+          "label": "t:sections.product_detail_product-preview.settings.pc_breadcrumbs_layout.options__2.label"
+        }
+      ]
+    },
+    {
       "id": "default_selected_sku",
       "type": "switch",
       "label": "t:sections.product_detail_product-preview.settings.default_selected_sku.label",
@@ -290,7 +351,10 @@ product_activity_config:
       "product_info_sticky": true,
       "product_mobile_thumbnail_image_hide": "hide",
       "default_selected_sku": true,
-      "product_image_show_sku_image": true
+      "product_image_show_sku_image": true,
+      "pc_breadcrumbs": true,
+      "mb_breadcrumbs": false,
+      "pc_breadcrumbs_layout": "title_top"
     },
     "blocks": [
       {

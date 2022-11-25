@@ -21,11 +21,25 @@
   {{assign 'discountCodeTextStyle' (append 'color:' productDetailConfig.discountCodeTextColor ';')}}
 {{/if}}
 
+{{assign 'discountConditionStyleText' ''}}
+{{#if productDetailConfig.discountConditionStyleText}}
+  {{assign 'discountConditionStyleText' productDetailConfig.discountConditionStyleText}}
+{{/if}}
+
+{{assign 'discountBenefitStyleText' ''}}
+{{#if productDetailConfig.discountBenefitStyleText}}
+  {{assign 'discountBenefitStyleText' productDetailConfig.discountBenefitStyleText}}
+{{/if}}
+
+{{ assign "config" (sales_promotion_tag_translate benefitCondition benefitType)}}
+
+
+
 {{!-- 优惠券样式1 或者 自定义 --}}
 <div class="d-flex sales-discount-coupon-card1__container sales-discount-coupon-hook" data-discount-code="{{discountCode}}" style="{{containerStyle}}">
   {{ snippet 'sales/card-background' mobileBgImg=productDetailConfig.discountBgImg_mobile pcBgImg=productDetailConfig.discountBgImg}}
   <div class="sales-discount-coupon-card1__left d-felx">
-    {{#if __customThresholdText}}
+    {{!-- {{#if __customThresholdText}}
       <div class="sales-discount-coupon-card1__threshold" style="{{textColorStyle}}">
         {{noTranslationHTML __customThresholdText}}
       </div>
@@ -33,6 +47,16 @@
     {{#if __customDiscountText}}
       <div class="sales-discount-coupon-card1__discount {{#if benefitType '===' 3}}sales-discount-coupon-card1__discount--bold{{/if}}" style="{{textColorStyle}}">
         {{noTranslationHTML __customDiscountText}}
+      </div>
+    {{/if}} --}}
+    {{#if discountConditionStyleText}}
+      <div class="sales-discount-coupon-card1__threshold" style="{{textColorStyle}}">
+        {{javascript_template discountConditionStyleText (toRegex '\{\s*(\w+)\s*\}' flags="g") condition=thresholdValText.string benefitCount=benefitCondition.benefit.benefitCount}}
+      </div>
+    {{/if}}
+    {{#if discountBenefitStyleText}}
+      <div class="sales-discount-coupon-card1__discount {{#if benefitType '===' 3}}sales-discount-coupon-card1__discount--bold{{/if}}" style="{{textColorStyle}}">
+        {{javascript_template discountBenefitStyleText (toRegex '\{\s*(\w+)\s*\}' flags="g") discount=discountValText.string}}
       </div>
     {{/if}}
     {{#if prerequisiteShippingPriceRange '>' 0}}
@@ -53,13 +77,13 @@
     {{/if}}
     {{#if endTime}}
       <div class="sales-discount-coupon-card1__expire" style="{{textColorOpStyle}}">
-        {{t 'sales.discount_coupon.active_date_until' endTime=(dayjs method='format' init=endTime format='MMM D,YYYY') }}
+        {{{t 'sales.discount_coupon.active_date_until' endTime=(javascript_template '<span data-timestamp="${endTime}" data-format="MMM D,YYYY"></span>' endTime=endTime)}}}
       </div>
     {{/if}}
   </div>
   <div class="sales-discount-coupon-card1__right d-flex">
-    <div class="text-uppercase sales-discount-coupon-card1__code-name notranslate" style="{{discountCodeTextStyle}}">{{discountCode}}</div>
-    <div class="text-uppercase fw-bold sales-discount-coupon-card1__button sales-discount-coupon-card-btn-hook" 
+    <div class="sales-discount-coupon-card1__code-name notranslate" style="{{discountCodeTextStyle}}">{{discountCode}}</div>
+    <div class="text-uppercase fw-bold sales-discount-coupon-card1__button sales-discount-coupon-card-btn-hook"
       data-apply="{{t 'sales.discount_coupon.apply'}}"
       data-applied="{{t 'sales.discount_coupon.applied'}}"
       data-is-custom="{{#if couponTemplate '===' '2'}}true{{/if}}"

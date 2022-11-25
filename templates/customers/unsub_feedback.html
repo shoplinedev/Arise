@@ -1,11 +1,3 @@
-{{#partial 'head'}}
-  <link rel="stylesheet" href="{{ assets_url 'customer/unsub-feedback/index.min.css' }}" />
-{{/partial}}
-
-{{#partial 'script'}}
-  <script src="{{ assets_url 'customer/unsub-feedback/index.min.js' }}"></script>
-{{/partial}}
-
 {{ assign 'name' request.uri.query.name }}
 {{ assign 'logo' request.uri.query.logo }}
 
@@ -13,7 +5,7 @@
   <div class="unsubscribeFeedbackBody">
     {{#if logo}}
     <div class="logo">
-      <img src={{logo}} alt="" />
+      <img src="{{logo}}" alt="" />
     </div>
     {{/if}}
     <div class="title">

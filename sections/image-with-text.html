@@ -16,20 +16,7 @@
 {{!-- {{ assign 'is_auto_scale' (default image_height '') }} --}}
 {{ assign 'ratio' (append (default (get 'ratio' (img_size image.url)) 100) '%') }}
 
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'image-with-text/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'image-with-text/index.min.css' }}
-{{/is_modern_browser}}
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'image-with-text/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'image-with-text/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
+{{ combine_asset_tag 'stage/image-with-text/index.css' inline=true }}
 
 {{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='media' }}
 

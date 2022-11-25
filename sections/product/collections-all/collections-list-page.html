@@ -1,46 +1,37 @@
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'product/collections-all/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'product/collections-all/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'product/collections-all/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'product/collections-all/index.min.css' }}
-{{/is_modern_browser}}
-
-{{ assign 'collection_order_ids' (product_blocks_order_translate section 'blocks' 'block_order') }}
-{{ assign 'collections-filter-all' (JSONparse '[]') }}
-{{ array_map 'collections-all' sortations_page.data 'sortation' }}
+{{assign 'collection_order_ids' (product_blocks_order_translate section 'blocks' 'block_order')}}
+{{assign 'collections-filter-all'  (JSONparse '[]')}}
+{{array_map 'collections-all' sortations_page.data 'sortation' }}
 
 {{#each collections-all}}
-  {{ assign 'productList' (get 'productList' (itemAt ../sortations_page.data @index)) }}
+  {{assign 'productList' (get 'productList' (itemAt ../sortations_page.data @index))}}
 {{/each}}
 
 {{#if section.settings.display_type '===' 'designated'}}
   {{#each collection_order_ids}}
-    {{#if (isTruthy (get settings.category_id ../all_collections))}}
-      {{ array-push ../collections-filter-all (get settings.category_id ../all_collections) }}
+    {{#if (isTruthy (get settings.category_id ../all_collections )) }}
+      {{array-push ../collections-filter-all (get settings.category_id ../all_collections)}}
     {{/if}}
   {{/each}}
 {{/if}}
 <div class="section-gap container">
   <div class="collection-list-main">
     <div class="collection-list-crumbs">
-      <a href="/" class="collection-list-header-title-url custom-body4">{{ t 'general.general.home' }} /</a>
-      <a class="collection-list-header-title-url custom-body4" style="opacity: .6;">{{ t 'products.collection.collection' }}</a>
+      <a href="/" class="collection-list-header-title-url custom-body4">{{t 'general.general.home'}} /</a>
+      <a class="collection-list-header-title-url custom-body4" style="opacity: .6;">{{t 'products.collection.collection'}}</a>
     </div>
-    <h1 class="collection-list-header title2">{{ t 'products.collection.collection' }}</h1>
-    {{ snippet 'product/commons/collection-item-list' colNum=3 mbColNum=1 collectionData=(cond (is section.settings.display_type 'all') collections-all collections-filter-all) }}
+    <h1 class="collection-list-header title2">{{t 'products.collection.collection'}}</h1>
+    {{snippet 'product/commons/collection-item-list' colNum=section.settings.col mbColNum=section.settings.mb_col collectionData=(cond (is section.settings.display_type 'all') collections-all collections-filter-all)}}
   </div>
   
   {{#if (default ../request.uri.query.page_num sortations_page.pageNum)}} {{!-- 分类数量为零时，pageNum 为 null --}}
     {{#with sortations_page}}
-      {{ snippet 'product/commons/pagination-slim' current=(default ../request.uri.query.page_num pageNum) enableNext=hasNext pageSize=(default ../request.uri.query.page_size pageSize) hidden=(or (boolean ../section.settings.display_type '!=' 'all') (and (is pageNum 1) (isFalsey hasNext))) }}
+      {{snippet
+        'product/commons/pagination-slim'
+        current=(default ../request.uri.query.page_num pageNum)
+        enableNext=hasNext
+        pageSize=(default ../request.uri.query.page_size pageSize)
+        hidden=(or (boolean ../section.settings.display_type '!=' 'all') (and (is pageNum 1) (isFalsey hasNext)))
+      }}
     {{/with}}
   {{/if}}
 </div>
@@ -87,6 +78,24 @@
       "default": "cover"
     },
     {
+      "type": "range",
+      "id": "col",
+      "label": "t:sections.product_collections-all_collections-list-page.settings.col.label",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "mb_col",
+      "label": "t:sections.product_collections-all_collections-list-page.settings.mb_col.label",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
       "type": "select",
       "id": "display_type",
       "label": "t:sections.product_collections-all_collections-list-page.settings.display_type.label",
@@ -123,7 +132,9 @@
     "settings": {
       "display_type": "all",
       "collection_image_ratio": "100",
-      "collection_fill_type": "cover"
+      "collection_fill_type": "cover",
+      "col": 3,
+      "mb_col": 1
     }
   }
 }

@@ -6,9 +6,13 @@
     {{#if timeLimitActivity.salesEnvCustomInfo}}
       {{ assign 'salesCustom' timeLimitActivity.salesEnvCustomInfo.productDetailConfig }}
     {{/if}}
-    <div class="sales__flash-sale-container sales__flash-sale-container-hook {{#if salesCustom.linkType '!==' 'none'}}cursor-pointer{{/if}} {{#if salesPlugin.template "==" '1'}}sales__flash-sale-container--red{{else}}sales__flash-sale-container--orange{{/if}}"
+    {{#if (and salesCustom.bannerBgColor (compare salesCustom.bannerBgColor '!==' 'transparent'))}}
+      {{ assign 'flashSaleBg' salesCustom.bannerBgColor }}
+    {{/if}}
+    <div
+      class="sales__flash-sale-container sales__flash-sale-container-hook {{#not flashSaleBg}}sales__flash-sale-container-bg--transparent{{/not}} {{#if salesCustom.linkType '!==' 'none'}}cursor-pointer{{/if}} {{#if salesPlugin.template "==" '1'}}sales__flash-sale-container--red{{else}}sales__flash-sale-container--orange{{/if}}"
       data-seq="{{timeLimitActivity.activitySeq}}">
-      <div class="sales__flash-sale-count-down" style="background-color:{{salesCustom.bannerBgColor}};">
+      <div class="sales__flash-sale-count-down" {{#if flashSaleBg}}style="background:{{flashSaleBg}};" {{/if}}>
         {{!-- 样式里面设置了这层div都有一个样式，我不需要这个样式所以通过i包裹避开这个样式--}}
         <i>{{ snippet 'sales/card-background' mobileBgImg=salesCustom.bannerBgImg_mobile pcBgImg=salesCustom.bannerBgImg}}</i>
         <div class="sales__flash-sale-title-content">

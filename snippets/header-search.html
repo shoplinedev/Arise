@@ -19,7 +19,7 @@
         {{/each}}
       </ul>
     {{/if}}
-    <input autocomplete="off" data-id={{id}} id="{{append id '__input'}}" maxlength="255" type="search" value placeholder="{{t 'general.header.search_input_placeholder'}}"
+    <input autocomplete="off" data-id="{{id}}" id="{{append id '__input'}}" maxlength="255" type="search" value placeholder="{{t 'general.header.search_input_placeholder'}}"
       class="searchbar--input body3">
     <div class="header__search--predicate">
       <ul id="{{append id '__suggest-list'}}" class="searchbar__suggest--list"></ul>
@@ -28,7 +28,7 @@
 {{else}}
   <div class="header__search--container">
     <div class="header__search">
-      <div class="container">
+      <div class="container {{#if section.settings.header_full_width}}header__full_screen_width{{/if}}">
         {{!-- <div class="header__search--form-wrapper"> --}}
           <div class="header__search--form">
             {{#if suggestMenu}}

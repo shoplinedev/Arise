@@ -242,6 +242,7 @@
       "delete_account_email": "E-pasts",
       "delete_account_notify": "Varat pieteikties šī konta slēgšanai. Pēc konta slēgšanas tiks dzēsta visa informācija, kas ļauj identificēt šo kontu, tostarp:",
       "email": "E-pasta",
+      "email_repeat_tip": "E-pasts ir saglabāts",
       "first_name": "Nosaukums",
       "gender": "Dzimumu",
       "gender_female": "Mātīte",
@@ -267,6 +268,7 @@
       "select__date": "Izvēlieties datumu",
       "subscribe_confirm_tip": "Paldies par abonementu.",
       "timeout_tip": "Iestājies taimauts operācijai, lūdzu, pārbaudiet vēlreiz",
+      "unknow_error_tip": "Pakalpojuma izņēmums, mēģiniet vēlreiz vēlāk",
       "username": "Vārds",
       "verify_email_message": "Pirms konta slēgšanas mums ir jāpārbauda jūsu identitāte\nJūsu e-pasts {{email}} saņems verifikācijas e-pastu",
       "verify_phone_message": "Pirms konta slēgšanas mums ir jāpārbauda jūsu identitāte\nJūsu mobilais tālrunis {{phone}} saņems verifikācijas ziņojumu"
@@ -578,6 +580,7 @@
       "collection": "Kategorija"
     },
     "general": {
+      "added_to_cart_successfully": "Pievienots grozam veiksmīgi",
       "no_product_data_found": "Nav atrasti dati par produktu. Lūdzu, mēģiniet vēlreiz vēlāk",
       "sold_out": "Pārdevies"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Apsveicam! Jau saņēmāt {{saved}} bezmaksas dāvanu! Iegādājieties {{threshold}} vairāk, baudiet līdz pat {{willSave}} BEZMAKSAS DĀVANA"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Pērciet {{threshold}} vairāk preces, izbaudiet bez maksas vienā no preces!",
-        "b11_t1_s1_normal": "Pērciet {{threshold}} vairāk preces, izbaudiet {{willSave}} OFF vienā no preces!",
-        "b11_t1_s2_free": "Apsveicam!! baudiet vienu no rakstiem bez maksas!",
-        "b11_t1_s2_next_free": "Apsveicam! {{saved}} saglabāt, {{br}} Pērciet {{threshold}} papildu preces, baudiet vienu no vienumiem bez maksas !",
-        "b11_t1_s2_normal": "Apsveicam! {{saved}} saglabāt, {{br}}Pirkt {{threshold}} vairāk vienumu, baudīt {{willSave}} izslēgts par vienu no vienumiem!",
-        "b11_t1_s3_free": "Apsveicam!! baudiet vienu no rakstiem bez maksas!",
-        "b11_t1_s3_normal": "Apsveicam!! ieguvums no {{saved}} OFF vienā no rakstiem !",
-        "b12_t0_s1_achieve_free": "Apsveicam, jūs varat baudīt {{benefitCount}} vienumus BEZMAKSAS",
-        "b12_t0_s1_achieve_normal": "Apsveicam, varat baudīt {{willSave}} atlaidi {{benefitCount}} vienumiem",
-        "b12_t0_s1_free": "Pērciet {{threshold}} ieprieciniet {{benefitCount}} vienumiem BEZ MAKSAS",
-        "b12_t0_s1_normal": "Pērciet {{threshold}} baudīt {{willSave}} atlaidi {{benefitCount}} vienumiem",
-        "b12_t0_s3_free": "Apsveicu! Jums ir {{benefitCount}} BEZMAKSAS vienumi!",
-        "b12_t0_s3_normal": "Apsveicu! Jums ir {{saved}} atlaides {{benefitCount}}} vienumi!",
-        "b12_t1_s1_achieve_free": "Apsveicam, jūs varat baudīt {{benefitCount}} vienumus BEZMAKSAS",
-        "b12_t1_s1_achieve_normal": "Apsveicam, varat baudīt {{willSave}} atlaidi {{benefitCount}} vienumiem",
-        "b12_t1_s1_free": "Iegādājieties {{threshold}}, izbaudiet {{benefitCount}} BEZMAKSAS vienumiem",
-        "b12_t1_s1_normal": "Pērciet {{threshold}}, izbaudiet {{willSave}} atlaidi {{benefitCount}} vienumiem",
-        "b12_t1_s3_free": "Apsveicu! Jums ir {{benefitCount}} BEZMAKSAS vienumi!",
-        "b12_t1_s3_normal": "Apsveicu! Jums ir {{saved}} atlaides {{benefitCount}}} vienumi!",
-        "b14_t1_s1": "Nopirkt {{nextMinThreshold}} gabaliņus par {{willSave}}",
-        "b14_t1_s2": "Apsveicam! Jūs esat ieguvuši {{currentMinThreshold}} gabaliņus par {{saved}}. Iegādājieties vēl {{threshold}}, lai baudītu {{nextMinThreshold}} gabaliņus par {{willSave}}!",
-        "b14_t1_s3": "Apsveicam! Jūs esat ieguvuši {{currentMinThreshold}} gabaliņus par {{saved}}!",
-        "b1_t0_s1": "Pērciet {{threshold}} vairāk, lai saglabāt {{willSave}}",
-        "b1_t0_s2": "saglabāt jau {{saved}} ! {{br}} Pērciet {{threshold}} vairāk, lai saglabāt {{willSave}}",
-        "b1_t0_s3": "Apsveicam! Jūs esat saglabāt {{saved}} !",
-        "b1_t1_s1": "Pērciet {{threshold}} vairāk, lai saglabāt {{willSave}}",
-        "b1_t1_s2": "saglabāt jau {{saved}} ! {{br}} Pērciet {{threshold}} vairāk, lai saglabāt {{willSave}}",
-        "b1_t1_s3": "Apsveicam! Jūs esat saglabāt {{saved}}!",
-        "b2_t0_s1": "Pērciet {{threshold}} vairāk, lai izslēgts {{willSave}}",
-        "b2_t0_s2": "saglabāt jau {{saved}} ! {{br}}Pērciet {{threshold}} vairāk, lai izslēgts {{willSave}}",
-        "b2_t0_s3": "Apsveicam! Jūs esat saglabāt {{saved}} !",
-        "b2_t1_s1": "Pērciet {{threshold}} vairāk, lai izslēgts {{willSave}}",
-        "b2_t1_s2": "saglabāt jau {{saved}} ! {{br}}Pērciet {{threshold}} vairāk, lai izslēgts {{willSave}}",
-        "b2_t1_s3": "Apsveicam! Jūs esat saglabāt {{saved}} !",
-        "b3_t0_s1_unlimited": "Pirkt {{threshold}} vēlreiz un baudīt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>!",
-        "b3_t0_s1_upper_limit": "Pirkt {{threshold}} vēlreiz un baudīt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>! (Maksimālā bezmaksas kravas summa {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Apsveicu! Jūs esat ieguvis <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>!",
-        "b3_t0_s3_upper_limit": "Apsveicu! Jūs esat ieguvis <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>! (Maksimālā bezmaksas kravas summa {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Pērciet {{threshold}} vairāk gabalu un izbaudiet <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>!",
-        "b3_t1_s1_upper_limit": "Pērciet {{threshold}} vairāk gabalu un izbaudiet <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>! (Maksimālā bezmaksas kravas summa {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Apsveicu! Jūs esat ieguvis <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>!",
-        "b3_t1_s3_upper_limit": "Apsveicu! Jūs esat ieguvis <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Bezmaksas piegāde</span>! (Maksimālā bezmaksas kravas summa {{upperLimit}})",
-        "b9_t1_s1": "Iegādājieties vēl {{threshold}} gabalu, no kuriem {{willSave}} gabali ir bezmaksas",
-        "b9_t1_s2": "Apsveicam! {{saved}} gabali iegūti par brīvu! Iegādājieties vēl {{threshold}} gabalu, no kuriem {{willSave}} gabalu ir bez maksas",
-        "b9_t1_s3": "Apsveicam! {{saved}} no tiem ir bez maksas"
-      },
       "discount_tag": {
         "b11_t1_free": "Pērciet {{threshold}} preces, baudiet vienu no rakstiem bez preces!",
         "b11_t1_normal": "Pērciet {{threshold}} preces., baudiet {{save}} IZSLĒGTS vienā no preces!",
@@ -779,15 +735,6 @@
         "b2_t0": "Pērciet {{threshold}}, saglabāt {{save}}",
         "b2_t1": "Pērciet {{threshold}} IEGŪT {{save}} IZSLĒGTS",
         "label": "Atlaide:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Nopirkt {{nextMinThreshold}} gabaliņus par {{willSave}}",
-            "step2": "Apsveicam! Jūs esat ieguvuši {{currentMinThreshold}} gabaliņus par {{saved}}. Iegādājieties vēl {{threshold}}, lai baudītu {{nextMinThreshold}} gabaliņus par {{willSave}}!",
-            "step3": "Apsveicam! Jūs esat ieguvuši {{currentMinThreshold}} gabaliņus par {{saved}}!"
-          }
-        }
       }
     }
   },

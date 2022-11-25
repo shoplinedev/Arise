@@ -211,8 +211,14 @@
             "label": "配色3"
           }
         },
+        "pc_cols": {
+          "label": "电脑端列数"
+        },
         "slice_in_mobile": {
           "label": "移动端左右滑动查看"
+        },
+        "slice_in_pc": {
+          "label": "电脑端左右滑动查看"
         },
         "title": {
           "label": "标题"
@@ -474,6 +480,15 @@
         },
         "title": {
           "name": "标题"
+        },
+        "viewMoreBtn": {
+          "name": "查看更多按钮",
+          "settings": {
+            "btnText": {
+              "info": "若没有配置按钮文案，则不显示按钮",
+              "label": "按钮文案"
+            }
+          }
         }
       },
       "name": "单个商品",
@@ -591,6 +606,9 @@
         "show_copyright": {
           "label": "展示版权信息"
         },
+        "show_country_selector": {
+          "label": "展示国家选择器"
+        },
         "show_currency_flags": {
           "label": "展示货币符号"
         },
@@ -649,6 +667,9 @@
         "group_header__1": {
           "label": "菜单"
         },
+        "header_full_width": {
+          "label": "页头固定全屏宽度"
+        },
         "header_style": {
           "label": "页头固定在顶部"
         },
@@ -694,6 +715,9 @@
         },
         "show_cart_entry": {
           "label": "显示购物车入口"
+        },
+        "show_country_selector": {
+          "label": "展示国家选择器"
         },
         "show_currency_flags": {
           "label": "展示货币符号"
@@ -1098,13 +1122,16 @@
           "label": "显示作者"
         },
         "is_show_breadcrumb": {
-          "label": "显示面包屑"
+          "label": "电脑端显示面包屑"
         },
         "is_show_comment": {
           "label": "显示评论"
         },
         "is_show_date": {
           "label": "显示日期"
+        },
+        "is_show_mobile_breadcrumb": {
+          "label": "移动端显示面包屑"
         },
         "is_show_prev_next": {
           "label": "显示上下篇文章"
@@ -1513,6 +1540,9 @@
       },
       "name": "分类列表",
       "settings": {
+        "col": {
+          "label": "电脑端列数"
+        },
         "collection_fill_type": {
           "label": "图片填充方式",
           "options__0": {
@@ -1543,6 +1573,9 @@
           "options__1": {
             "label": "指定商品分类"
           }
+        },
+        "mb_col": {
+          "label": "移动端列数"
         }
       }
     },
@@ -1702,7 +1735,15 @@
           "name": "购买按钮"
         },
         "description": {
-          "name": "商品描述"
+          "name": "商品描述",
+          "settings": {
+            "location": {
+              "label": "商品描述显示位置",
+              "options__1": {
+                "label": "商品图下方"
+              }
+            }
+          }
         },
         "html": {
           "name": "自定义HTML",
@@ -2018,6 +2059,24 @@
       "settings": {
         "default_selected_sku": {
           "label": "默认选中SKU"
+        },
+        "mb_breadcrumbs": {
+          "label": "移动端显示面包屑"
+        },
+        "pc_breadcrumbs": {
+          "label": "电脑端显示面包屑"
+        },
+        "pc_breadcrumbs_layout": {
+          "label": "电脑端面包屑布局",
+          "options__0": {
+            "label": "图片上方居中"
+          },
+          "options__1": {
+            "label": "图片上方居左"
+          },
+          "options__2": {
+            "label": "商品标题上方"
+          }
         },
         "product_image_pc_show_style": {
           "label": "电脑端布局",
@@ -3437,6 +3496,15 @@
         },
         "share_to_whatsapp": {
           "label": "分享到Whatsapp"
+        },
+        "show_official_icon": {
+          "label": "显示社交媒体官方图标"
+        },
+        "show_official_share_icon": {
+          "label": "显示社交媒体官方图标"
+        },
+        "show_social_name": {
+          "label": "显示社交媒体名称"
         },
         "social_facebook_link": {
           "label": "Facebook"

@@ -10,15 +10,12 @@
   {{#if theme.settings.favicon_image}}
     <link rel="shortcut icon" href="{{theme.settings.favicon_image}}" type="image/png">
   {{/if}}
-  {{#slot 'head' }}{{/slot}}
 </head>
 
 <body class="template--le template__{{ replace template '/' '-' }}" data-button_style="radius"
   data-type_title_uppercase="{{ theme.settings.type_title_uppercase }}"
   data-type_navigation_uppercase="{{ theme.settings.type_navigation_uppercase }}">
   {{ content_for_layout }}
-  {{#slot 'script' }}{{/slot}}
-
   {{ content_for_footer }}
 </body>
 

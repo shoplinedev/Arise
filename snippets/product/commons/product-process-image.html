@@ -9,42 +9,43 @@ closeLazy: 关闭懒加载 默认false
 alt: 图片alt
 --}}
 
-{{assign '_imageRatio' '100'}}
-{{assign '_imageFit' 'contain'}}
+{{ assign '_imageRatio' '100' }}
+{{ assign '_imageFit' 'contain' }}
 
 {{!-- 自由比例时的占位高度 --}}
 {{#if placeholderHeight}}
-  {{assign '_placeholderHeight' placeholderHeight}}
+  {{ assign '_placeholderHeight' placeholderHeight }}
 {{else}}
-  {{assign '_placeholderHeight' 200}}
+  {{ assign '_placeholderHeight' 200 }}
 {{/if}}
 
-{{#if imageRatio }}
-  {{assign '_imageRatio' imageRatio}}
+{{#if imageRatio}}
+  {{ assign '_imageRatio' imageRatio }}
 {{/if}}
-{{#if imageFit }}
-  {{assign '_imageFit' imageFit}}
+{{#if imageFit}}
+  {{ assign '_imageFit' imageFit }}
 {{/if}}
+{{ combine_asset_tag 'product/commons/style/product-process-image.css' inline=true }}
 
-{{assign 'imageResponsive' (image_responsive src pcSize=pcSize mSize=mSize containerMaxWidth=containerMaxWidth) }}
+{{ assign 'imageResponsive' (image_responsive src pcSize=pcSize mSize=mSize containerMaxWidth=containerMaxWidth) }}
 
 <div
   class="product-process-image {{!-- 如果为自由比例👉 --}}{{#if _imageRatio '!==' '0'}} fix-product-image-con {{/if}}{{!-- 如果图片地址为空，直接走占位符逻辑👉 --}}{{#if (isFalsey src)}}placeholder-border{{/if}}"
-  style="{{#if _imageRatio '!==' '0'}} padding-bottom:{{ _imageRatio }}%; {{/if}} {{#if backgroundColor}} background-color: {{backgroundColor}}; {{/if}}" data-plugin-product-item-img-ele>
+  style="{{#if _imageRatio '!==' '0'}} padding-bottom:{{ _imageRatio }}%; {{/if}} {{#if backgroundColor}} background-color: {{ backgroundColor }}; {{/if}}" data-plugin-product-item-img-ele>
   <img {{!-- 如果图片地址为空，直接走占位符逻辑，图片透明度为零 --}}
     referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"
-    style="{{#if (isFalsey src)}}opacity: 0;{{/if}}{{#if imagePosition }}object-position: {{imagePosition}};{{/if}} object-fit: {{_imageFit}};{{#if _imageRatio '===' '0'}} height:{{_placeholderHeight}}px {{/if}}"
+    style="{{#if (isFalsey src)}}opacity: 0;{{/if}}{{#if imagePosition}}object-position: {{ imagePosition }};{{/if}} object-fit: {{ _imageFit }};{{#if _imageRatio '===' '0'}} height:{{ _placeholderHeight }}px {{/if}}"
     {{#if closeLazy}}
-      src="{{get 'srcAttr' imageResponsive}}"
-      srcset="{{get 'srcsetAttr' imageResponsive}}"
-      sizes="{{ get 'sizesAttr' imageResponsive}}"
+      src="{{ get 'srcAttr' imageResponsive }}"
+      srcset="{{ get 'srcsetAttr' imageResponsive }}"
+      sizes="{{ get 'sizesAttr' imageResponsive }}"
     {{else}}
       class="lozad"
       data-sizes="auto"
-      data-src="{{src}}"
+      data-src="{{ src }}"
     {{/if}}
-    alt="{{alt}}"
+    alt="{{ alt }}"
     onload="this.parentElement.style.opacity=1;this.className+=' sl-img-loaded';{{#if _imageRatio '===' '0'}}this.style.height='auto';{{/if}}" {{#if fallbacksSrc}}
-    onerror="this.onerror=null;this.srcset='{{fallbacksSrc}}'; {{#if fallbacksBgColor}} this.parentElement.style.background = '{{fallbacksBgColor}}';this.style['object-fit']='contain' {{/if}}"
+    onerror="this.onerror=null;this.srcset='{{ fallbacksSrc }}'; {{#if fallbacksBgColor}} this.parentElement.style.background = '{{ fallbacksBgColor }}';this.style['object-fit']='contain' {{/if}}"
     {{else}} onerror="this.onerror=null;this.style.opacity=0;this.parentElement.className+=' placeholder-border';" {{/if}} >
 </div>

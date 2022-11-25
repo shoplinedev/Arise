@@ -1,50 +1,51 @@
+{{ combine_asset_tag 'product/search/style/index.css' inline=true }}
 
 {{!-- define computed props --}}
-{{assign 'keyword' (get 'keyword' request.uri.query)}}
-{{assign 'total' (get 'total' products)}}
-{{assign 'count' (length products.list)}}
+{{ assign 'keyword' (get 'keyword' request.uri.query) }}
+{{ assign 'total' (get 'total' products) }}
+{{ assign 'count' (length products.list) }}
 
 <main class="product-search__container section-gap">
   <div class="product-search__body container">
     <nav class="product-search__breadcrumb">
-      <a href="/" title="{{t 'products.product_search.back_to_home'}}">{{t 'general.general.home'}}</a>
+      <a href="/" title="{{ t 'products.product_search.back_to_home' }}">{{ t 'general.general.home' }}</a>
       <span class="product-search__breadcrumbDivider">/</span>
       <span class="product-search__searchText">
-        {{t "products.product_search.search"}}
+        {{ t 'products.product_search.search' }}
         {{#if (trim keyword)}}
           ：
           {{#if total '===' 1}}
-          {{{t 'products.product_search.single_results_found' count=total keyword=keyword}}}
+          {{{ t 'products.product_search.single_results_found' count=total keyword=keyword }}}
           {{else}}
-          {{{t 'products.product_search.results_found_for' count=total keyword=keyword}}}
+          {{{ t 'products.product_search.results_found_for' count=total keyword=keyword }}}
           {{/if}}
         {{/if}}
       </span>
     </nav>
     <header class="product-search__header">
-      <h2 class="product-search__headerTitle title2">{{t "products.product_search.search"}}</h2>
+      <h2 class="product-search__headerTitle title2">{{ t 'products.product_search.search' }}</h2>
     </header>
     <section class="product-search__form">
-        {{snippet 'header-search-bar' id="product-search" }}
+        {{ snippet 'header-search-bar' id='product-search' }}
     </section>
     <hr class="product-search__hr">
     <div class="product-search__results">
       <div class="product-search__header">
         {{#if total '===' 1}}
-        <h2 class="product-search__headerTitle title2">{{t 'products.product_search.single_results' count=total}}</h2>
+        <h2 class="product-search__headerTitle title2">{{ t 'products.product_search.single_results' count=total }}</h2>
         {{else}}
-        <h2 class="product-search__headerTitle title2">{{t 'products.product_search.ount_results' count=total}}</h2>
+        <h2 class="product-search__headerTitle title2">{{ t 'products.product_search.ount_results' count=total }}</h2>
         {{/if}}
         {{#if total '===' 0}}
-          <p class="product-search__searchText">{{{t 'products.product_search.search_no_results' keyword=keyword}}}</p>
+          <p class="product-search__searchText">{{{ t 'products.product_search.search_no_results' keyword=keyword }}}</p>
         {{/if}}
       </div>
     </div>
-    {{snippet 'product/commons/product-item-list' colNum=section.settings.pc_cols mbColNum=section.settings.md_cols listData=products.list pageSize=48 pageNum=products.pageNum total=products.total className='__sl-custom-track-product-item-search' }}
+    {{ snippet 'product/commons/product-item-list' colNum=section.settings.pc_cols mbColNum=section.settings.md_cols listData=products.list pageSize=48 pageNum=products.pageNum total=products.total className='__sl-custom-track-product-item-search' }}
   </div>
 </main>
 {{!-- 推荐商品 --}}
-{{snippet 'product/product-recommend' }}
+{{ snippet 'product/product-recommend' }}
 
 {{#schema}}
 {

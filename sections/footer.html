@@ -1,43 +1,72 @@
+{{ combine_asset_tag 'stage/footer/style/index.css' inline=true }}
+<!-- stage/footer/index.js -->
+{{ combine_asset_tag 
+ 'vendors/axios.min.js'
+ 'vendors/query-string.min.js'
+ 'vendors/lodash.min.js'
+ 'vendors/eventemitter3.min.js'
+ 'theme-shared/utils/request.js'
+ 'theme-shared/utils/syntax-patch.js'
+ 'theme-shared/utils/i18n.js'
+ 'theme-shared/utils/event-bus.js'
+ 'commons/utils/main.js'
+ 'commons/utils/helper.js'
+ 'commons/utils/index.js'
+ 'commons/base/BaseClass.js'
+ 'theme-shared/utils/emailReg.js'
+ 'commons/utils/checkEmail.js'
+ 'commons/utils/debounce.js'
+ 'theme-shared/components/hbs/shared/components/toast/toast.js'
+ 'commons/components/toast/toast.js'
+ 'theme-shared/components/hbs/shared/components/toast/loading.js'
+ 'commons/components/toast/loading.js'
+ 'commons/components/toast/index.js'
+ 'commons/components/dropdownList/index.js'
+ 'stage/footer/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
+
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 {{ assign 'showLetter' section.settings.show_letter_subscribe }}
 {{ assign 'showSocialLogos' section.settings.show_social_media }}      
-{{assign 'color_scheme' section.settings.color_scheme_subscribe }}
-{{assign 'footerBlockLength' (length blocks)}}
+{{ assign 'color_scheme' section.settings.color_scheme_subscribe }}
+{{ assign 'footerBlockLength' (length blocks) }}
 
-{{assign 'col' 3}}
+{{ assign 'col' 3 }}
 {{#if (boolean footerBlockLength '>=' 4)}}
-  {{assign 'col' 4}}
+  {{ assign 'col' 4 }}
 {{else}} 
-  {{assign 'col' footerBlockLength}}
+  {{ assign 'col' footerBlockLength }}
 {{/if}}
 
 {{#if (boolean showLetter '&&' showSocialLogos)}}
-  {{assign 'footInlineClass' 'footer__block-social-container__space-between'}}  
+  {{ assign 'footInlineClass' 'footer__block-social-container__space-between' }}  
 {{else}}
-  {{assign 'footInlineClass' 'footer__block-social-container__center'}}
+  {{ assign 'footInlineClass' 'footer__block-social-container__center' }}
 {{/if}}
 
-<footer id="stage-footer" class="__sl-custom-track-stage-footer color-scheme-{{color_scheme}}">
+<footer id="stage-footer" class="__sl-custom-track-stage-footer color-scheme-{{ color_scheme }}">
   <div class="footer__wrapper entry-line">
     <div class="footer__body container g-4 g-md-5">
-      <div class="footer__block-container row row-cols-md-{{col}} {{#if col '===' 1}}footer__block-container--text-center{{/if}}">
-        {{#with section as |section|}}
+      <div class="footer__block-container row row-cols-md-{{ col }} {{#if col '===' 1}}footer__block-container--text-center{{/if}}">
+        {{#with section as | section |}}
           {{#each blocks}}           
             {{!-- 快速导航 --}}
             {{#if type '===' 'menu'}}
-              <div class="footer__block" {{{this.shopline_attributes}}}>
+              <div class="footer__block" {{{ this.shopline_attributes }}}>
                 {{ snippet 'footer-menu' sectionId=section.id }} 
               </div>
             {{/if}}
             {{!-- 自定义内容 --}}
             {{#if type '===' 'custom'}}
-              <div class="footer__block" {{{this.shopline_attributes}}}>
+              <div class="footer__block" {{{ this.shopline_attributes }}}>
                 {{ snippet 'footer-custom' }}
               </div>
             {{/if}}
             {{!-- 图片 --}}
             {{#if type '===' 'image'}} 
-              <div class="footer__block-image" {{{this.shopline_attributes}}}>
+              <div class="footer__block-image" {{{ this.shopline_attributes }}}>
                 {{ snippet 'footer-image' }}
               </div>
             {{/if}}
@@ -45,10 +74,10 @@
           {{/each}}
         {{/with}}
         </div>
-        {{assign 'has_social_logos' false}}
+        {{ assign 'has_social_logos' false }}
         {{#with theme.settings}}
           {{#or social_facebook_link social_twitter_link social_pinterest_link social_instagram_link social_snapchat_link social_tiktok_link social_youtube_link social_linkedin_link}}
-            {{object_set ../this 'has_social_logos' true}}
+            {{ object_set ../../this 'has_social_logos' true }}
           {{/or}}
         {{/with}}
         <div class="{{#or showLetter has_social_logos}}footer_social--divider {{/or}}{{#if showLetter}}footer_social-hasletter {{/if}}footer__block-social-container row g-4 {{ footInlineClass }}">                
@@ -64,7 +93,7 @@
               {{ snippet 'footer-social' }}
             </div>
           {{/if}}  
-          {{#or showLetter showSocialLogos }}
+          {{#or showLetter showSocialLogos}}
             <div class="footer__block-divider d-md-none entry-line"></div>
           {{/or}}     
         </div>
@@ -75,7 +104,7 @@
         <div class="footer__corner-top">
           {{#or section.settings.show_locale_selector section.settings.show_currency_selector}}
             <div class="footer__tool-container">
-              {{ snippet 'header/locale-currency' settings=section.settings position="footer" }}
+              {{ snippet 'header/locale-currency' settings=section.settings position='footer' }}
             </div>
           {{/or}}
 
@@ -85,8 +114,8 @@
         </div>
         <div class="footer__corner-bottom">                    
           {{#if section.settings.show_copyright}}
-          <div class="footer-copy-box">
-            <p class="footer__copyright">© {{year}} {{storeInfo.name}}&nbsp;</p>{{{section.settings.copyright_text}}}
+          <div class="footer-copy-box sl-a-tag">
+            <p class="footer__copyright">© {{ year }} {{ storeInfo.name }}&nbsp;</p>{{{ section.settings.copyright_text }}}
           </div>
           {{/if}}
         </div>

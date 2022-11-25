@@ -242,6 +242,7 @@
       "delete_account_email": "El. paštas",
       "delete_account_notify": "Galite teikti prašymą užverti šią paskyrą. Uždarę bet kokia informacija, identifikuojant šią paskyrą, bus pašalinta, įskaitant:",
       "email": "El. paštas",
+      "email_repeat_tip": "El. paštas buvo registruotas",
       "first_name": "Vardas",
       "gender": "Lytis",
       "gender_female": "Moteris",
@@ -267,6 +268,7 @@
       "select__date": "Pasirinkti datą",
       "subscribe_confirm_tip": "Dėkojame už jūsų prenumeratą.",
       "timeout_tip": "Baigėsi operacijos skirtasis laikas, patikrinkite dar kartą",
+      "unknow_error_tip": "Paslaugos išimtis, bandykite dar kartą vėliau",
       "username": "Pavadinimas",
       "verify_email_message": "Prieš uždarydami paskyrą, turime patikrinti jūsų tapatybę\nĮ jūsų el. paštą {{email}} bus išsiųstas patikros el. pašto laiškas",
       "verify_phone_message": "Prieš uždarydami paskyrą, turime patikrinti jūsų tapatybę\nĮ jūsų mobilųjį telefoną {{phone}} bus išsiųstas patikros pranešimas"
@@ -578,6 +580,7 @@
       "collection": "Kategorija"
     },
     "general": {
+      "added_to_cart_successfully": "Sėkmingai įdėta į krepšelį",
       "no_product_data_found": "Duomenų apie prekę nerasta Prašome bandyti dar kartą vėliau",
       "sold_out": "Išparduota"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Sveikiname! Jau gavau {{saved}} nemokamą dovaną! Įsigykite {{threshold}} daugiau, mėgaukitės iki {{willSave}} NEMOKAMA DOVANA"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Įsigykite {{threshold}} daugiau prekių, kad mėgautumėtės nemokamai viena iš prekių",
-        "b11_t1_s1_normal": "Įsigykite {{threshold}} daugiau prekių, kad gautumėte {{willSave}} NUOILAIDĄ vienai iš prekių",
-        "b11_t1_s2_free": "Sveikiname! mėgaukitės nemokamai viena iš prekių",
-        "b11_t1_s2_next_free": "Sveikiname! {{saved}} Sutaupėte, {{br}}Įsigykite {{threshold}} daugiau prekių, kad mėgautumėtės nemokamai viena iš prekių",
-        "b11_t1_s2_normal": "Sveikiname! {{saved}} Suataupėte, {{br}}Įsigykite {{threshold}} daugiau prekių, kad mėgautumėtės {{willSave}} NUOLAIDA vienai iš jų",
-        "b11_t1_s3_free": "Sveikiname! mėgaukitės nemokamai viena iš prekių",
-        "b11_t1_s3_normal": "Sveikiname! Mėgaukitės {{saved}} NUOLAIDA vienai iš prekių",
-        "b12_t0_s1_achieve_free": "Sveikiname, galite mėgautis {{benefitCount}} prekėmis nemokamai",
-        "b12_t0_s1_achieve_normal": "Sveikiname, galite mėgautis {{willSave}} nuolaida už {{benefitCount}} prekes",
-        "b12_t0_s1_free": "Pirkite {{threshold}}, mėgaukitės {{benefitCount}} prekėmis nemokamai",
-        "b12_t0_s1_normal": "Pirkite {{threshold}}, mėgaukitės {{willSave}} nuolaida už {{benefitCount}} prekes",
-        "b12_t0_s3_free": "Sveikiname! Gavote {{benefitCount}} prekes nemokamai!",
-        "b12_t0_s3_normal": "Sveikiname! Gavote {{saved}} nuolaidą už {{benefitCount}} prekes!",
-        "b12_t1_s1_achieve_free": "Sveikiname, galite mėgautis {{benefitCount}} prekėmis nemokamai",
-        "b12_t1_s1_achieve_normal": "Sveikiname, galite mėgautis {{willSave}} nuolaida už {{benefitCount}} prekes",
-        "b12_t1_s1_free": "Pirkite {{threshold}}, mėgaukitės {{benefitCount}} prekėmis nemokamai",
-        "b12_t1_s1_normal": "Pirkite {{threshold}}, mėgaukitės {{willSave}} nuolaida už {{benefitCount}} prekes",
-        "b12_t1_s3_free": "Sveikiname! Gavote {{benefitCount}} prekes nemokamai!",
-        "b12_t1_s3_normal": "Sveikiname! Gavote {{saved}} nuolaidą už {{benefitCount}} prekes!",
-        "b14_t1_s1": "Įsigykite {{nextMinThreshold}} vnt. už {{willSave}}",
-        "b14_t1_s2": "Sveikiname! Turite {{currentMinThreshold}} vnt. už {{saved}}, Įsigykite {{threshold}} daugiau, kad mėgautumėtės {{nextMinThreshold}} vnt. už {{willSave}}!",
-        "b14_t1_s3": "Sveikiname! Turite {{currentMinThreshold}} vnt. už {{saved}}!",
-        "b1_t0_s1": "Įsigykite {{threshold}} daugiau, kad sutaupytumėte {{willSave}}",
-        "b1_t0_s2": "Jau {{saved}} sutaupoyta! {{br}}Įsigykite {{threshold}} daugiau, kad sutaupytumėte {{willSave}}",
-        "b1_t0_s3": "Sveikiname! Sutaupėte {{saved}}!",
-        "b1_t1_s1": "Įsigykite {{threshold}} daugiau, kad sutaupytumėte {{willSave}}",
-        "b1_t1_s2": "Jau {{saved}} sutaupoyta! {{br}}Įsigykite {{threshold}} daugiau, kad sutaupytumėte {{willSave}}",
-        "b1_t1_s3": "Sveikiname! Sutaupėte {{saved}}!",
-        "b2_t0_s1": "Įsigytkite {{threshold}} daugiau, kad gautumėte {{willSave}} NUOLAIDĄ",
-        "b2_t0_s2": "Jau {{saved}} sutaupoyta! {{br}}Įsigykite {{threshold}} daugiau, kad gautumėte {{willSave}} NUOLAIDĄ",
-        "b2_t0_s3": "Sveikiname! Sutaupėte {{saved}}!",
-        "b2_t1_s1": "Įsigytkite {{threshold}} daugiau, kad gautumėte {{willSave}} NUOLAIDĄ",
-        "b2_t1_s2": "Jau {{saved}} sutaupoyta! {{br}}Įsigykite {{threshold}} daugiau, kad gautumėte {{willSave}} NUOLAIDĄ",
-        "b2_t1_s3": "Sveikiname! Sutaupėte {{saved}}!",
-        "b3_t0_s1_unlimited": "Pirkite {{threshold}} iš naujo, gaukite <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Nemokamas pristatymas</span>!",
-        "b3_t0_s1_upper_limit": "Pirkite {{threshold}} iš naujo, gaukite <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Nemokamas pristatymas</span>! (Maximali nemokamo siuntimo suma{{upperLimit}})",
-        "b3_t0_s3_unlimited": "Sveikiname! Jūs gavote <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Nemokamas pristatymas</span>!",
-        "b3_t0_s3_upper_limit": "Sveikiname! Jūs gavote <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Nemokamas pristatymas</span>! (Maximali nemokamo siuntimo suma{{upperLimit}})",
-        "b3_t1_s1_unlimited": "Pirkite {{threshold}} daugiau, gaukite <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Nemokamas pristatymas</span>!",
-        "b3_t1_s1_upper_limit": "Pirkite {{threshold}} daugiau, gaukite <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Nemokamas pristatymas</span>! (Maximali nemokamo siuntimo suma{{upperLimit}})",
-        "b3_t1_s3_unlimited": "Sveikiname! Jūs gavote <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Nemokamas pristatymas</span>!",
-        "b3_t1_s3_upper_limit": "Sveikiname! Jūs gavote <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Nemokamas pristatymas</span>! (Maximali nemokamo siuntimo suma{{upperLimit}})",
-        "b9_t1_s1": "Pirkite dar {{threshold}}, iš kurių {{willSave}} bus nemokamos",
-        "b9_t1_s2": "Sveikiname! Nemokamai gavote {{saved}} dalių (-is)! Pirkite dar {{threshold}}, iš kurių {{willSave}} bus nemokamos",
-        "b9_t1_s3": "Sveikiname! {{saved}} iš jų gausite nemokamai"
-      },
       "discount_tag": {
         "b11_t1_free": "Įsigykite {{threshold}} prekių, kad mėgautumėtės nemokamai viena iš prekių!",
         "b11_t1_normal": "Įsigykite {{threshold}} prekių, kad mėgautumėtės {{save}} nuolaida vienai iš prekių",
@@ -779,15 +735,6 @@
         "b2_t0": "Įsigykite {{threshold}}, kad sutaupytumėte {{save}}",
         "b2_t1": "Įsigykite {{threshold}}, Kad Gautumėte {{save}} nuolaidą",
         "label": "Nuolaida:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Įsigykite {{nextMinThreshold}} vnt. už {{willSave}}",
-            "step2": "Sveikiname! Turite {{currentMinThreshold}} vnt. už {{saved}}, Įsigykite {{threshold}} daugiau, kad mėgautumėtės {{nextMinThreshold}} vnt. už {{willSave}}!",
-            "step3": "Sveikiname! Turite {{currentMinThreshold}} vnt. už {{saved}}!"
-          }
-        }
       }
     }
   },

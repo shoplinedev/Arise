@@ -242,6 +242,7 @@
       "delete_account_email": "E-poštu",
       "delete_account_notify": "Možete podnijeti zahtjev za zatvaranje ovog računa. Nakon zatvaranja računa, sve informacije za identifikaciju ovog računa bit će izbrisane, uključujući:",
       "email": "E-mail",
+      "email_repeat_tip": "E-mail je registriran",
       "first_name": "Ime",
       "gender": "Spol",
       "gender_female": "Žensko",
@@ -267,6 +268,7 @@
       "select__date": "Odaberi Datum",
       "subscribe_confirm_tip": "Hvala na pretplati.",
       "timeout_tip": "Vrijeme operacije je isteklo, provjerite ponovo",
+      "unknow_error_tip": "Iznimka usluge, pokušajte ponovo kasnije",
       "username": "Ime",
       "verify_email_message": "Prije zatvaranja računa, trebamo potvrditi vaš identitet\nE-poruku za potvrdu ćete dobiti na vašu e-poštu {{email}}",
       "verify_phone_message": "Prije zatvaranja računa, trebamo potvrditi vaš identitet\nPoruku za potvrdu ćete dobiti na vaš mobitel {{phone}}"
@@ -578,6 +580,7 @@
       "collection": "Kategorija"
     },
     "general": {
+      "added_to_cart_successfully": "Dodano u košaricu uspješno",
       "no_product_data_found": "Nisu pronađeni podaci o proizvodu. Molimo pokušajte ponovo kasnije",
       "sold_out": "Prodano"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Čestitamo! Već ste dobili {{saved}} besplatan poklon! Kupite još {{threshold}}, uživajte do {{willSave}} BESPLATNOG-POKLONA"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Kupi još {{threshold}} stavki, uživaj gratis jednu od njih!",
-        "b11_t1_s1_normal": "Kupi još {{threshold}} stavki, uživaj {{willSave}} UMANJENJA na jednu od stavki!",
-        "b11_t1_s2_free": "Čestitamo! Uživajte gratis na jednu od stavki!",
-        "b11_t1_s2_next_free": "Čestitamo! {{saved}} Ušteđeno, {{br}} Kupi još {{threshold}} stavki, uživaj gratis jednu od njih!",
-        "b11_t1_s2_normal": "Čestitamo! {{saved}}Ušteđeno, {{br}} Kupi još {{threshold}} stavki, uživaj {{willSave}} UMANJENJA na jednu od njih!",
-        "b11_t1_s3_free": "Čestitamo! Uživajte gratis na jednu od stavki!",
-        "b11_t1_s3_normal": "Čestitamo! Uživaj {{saved}} UMANJENJA na jednu od stavki!",
-        "b12_t0_s1_achieve_free": "Čestitamo, možete uživati u {{benefitCount}} artiklima besplatno",
-        "b12_t0_s1_achieve_normal": "Čestitamo, možete uživati {{willSave}} u popustu za {{benefitCount}} artikle",
-        "b12_t0_s1_free": "Kupite {{threshold}}, uživajte {{benefitCount}} u artiklima besplatno",
-        "b12_t0_s1_normal": "Kupite {{threshold}}, uživajte u {{willSave}} popustu za {{benefitCount}} artikle",
-        "b12_t0_s3_free": "Čestitamo! Dobili ste {{benefitCount}} artikle besplatno!",
-        "b12_t0_s3_normal": "Čestitamo! Dobili ste {{saved}} popust na {{benefitCount}} artikle!",
-        "b12_t1_s1_achieve_free": "Čestitamo, možete uživati u {{benefitCount}} artiklima besplatno",
-        "b12_t1_s1_achieve_normal": "Čestitamo, možete uživati {{willSave}} u popustu za {{benefitCount}} artikle",
-        "b12_t1_s1_free": "Kupite {{threshold}}, uživajte {{benefitCount}} u artiklima besplatno",
-        "b12_t1_s1_normal": "Kupite {{threshold}}, uživajte u {{willSave}} popustu za {{benefitCount}} artikle",
-        "b12_t1_s3_free": "Čestitamo! Dobili ste {{benefitCount}} artikle besplatno!",
-        "b12_t1_s3_normal": "Čestitamo! Dobili ste {{saved}} popust na {{benefitCount}} artikle!",
-        "b14_t1_s1": "Kupite {{nextMinThreshold}} komada za {{willSave}}",
-        "b14_t1_s2": "Čestitamo! Dobili ste {{currentMinThreshold}} komada za {{saved}}! Kupite {{threshold}} više da dobijete {{nextMinThreshold}} komada za {{willSave}}!",
-        "b14_t1_s3": "Čestitamo! Dobili ste {{currentMinThreshold}} komada za {{saved}}!",
-        "b1_t0_s1": "Kupi {{threshold}} više za uštedu {{willSave}}",
-        "b1_t0_s2": "Uštedi čak {{saved}}! {{br}}Kupi {{threshold}} više za uštedu {{willSave}}",
-        "b1_t0_s3": "Čestitamo! Uštedjeli ste {{saved}}!",
-        "b1_t1_s1": "Kupi {{threshold}} više za uštedu {{willSave}}",
-        "b1_t1_s2": "Uštedi čak {{saved}}! {{br}}Kupi {{threshold}} više za uštedu {{willSave}}",
-        "b1_t1_s3": "Čestitamo! Uštedjeli ste {{saved}}!",
-        "b2_t0_s1": "Kupi {{threshold}} više za dobit {{willSave}} UMANJENJA",
-        "b2_t0_s2": "Uštedi čak {{saved}}! {{br}}Kupi {{threshold}} više za dobit {{willSave}} UMANJENJA",
-        "b2_t0_s3": "Čestitamo! Uštedjeli ste {{saved}}!",
-        "b2_t1_s1": "Kupi {{threshold}} više za dobit {{willSave}} UMANJENJA",
-        "b2_t1_s2": "Uštedi čak {{saved}}! {{br}}Kupi {{threshold}} više za dobit {{willSave}} UMANJENJA",
-        "b2_t1_s3": "Čestitamo! Uštedjeli ste {{saved}}!",
-        "b3_t0_s1_unlimited": "Kupite {{threshold}} ponovo i uživajte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>!",
-        "b3_t0_s1_upper_limit": "Kupite {{threshold}} ponovo i uživajte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>! (Maksimalna količina za besplatnu isporuku {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Čestitamo! Vi imate <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>!",
-        "b3_t0_s3_upper_limit": "Čestitamo! Vi imate <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>! (Maksimalna količina za besplatnu isporuku {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Kupite {{threshold}} više i uživajte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>!",
-        "b3_t1_s1_upper_limit": "Kupite {{threshold}} više i uživajte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>! (Maksimalna količina za besplatnu isporuku {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Čestitamo! Vi imate <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>!",
-        "b3_t1_s3_upper_limit": "Čestitamo! Vi imate <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Besplatna dostava</span>! (Maksimalna količina za besplatnu isporuku {{upperLimit}})",
-        "b9_t1_s1": "Kupite {{threshold}} više dijela/dijelova, od kojih su {{willSave}} dijela/dijelova besplatna/besplatni",
-        "b9_t1_s2": "Čestitamo! Dobili ste {{saved}} dijela/dijelova besplatno! Kupite {{threshold}} više dijela/ dijelova od kojih su {{willSave}} dijela/dijelova besplatni",
-        "b9_t1_s3": "Čestitamo! {{saved}} njih su besplatni"
-      },
       "discount_tag": {
         "b11_t1_free": "Kupi {{threshold}} stavki, uživaj gratis na jednu od njih!",
         "b11_t1_normal": "Kupi {{threshold}} stavki, uživaj {{save}} UMANJENJE na jednu od stavki!",
@@ -779,15 +735,6 @@
         "b2_t0": "Kupi {{threshold}} uštedi {{save}}",
         "b2_t1": "Kupi {{threshold}} UZMI {{save}} UMANJENO",
         "label": "Popust:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Kupite {{nextMinThreshold}} komada za {{willSave}}",
-            "step2": "Čestitamo! Dobili ste {{currentMinThreshold}} komada za {{saved}}! Kupite {{threshold}} više da dobijete {{nextMinThreshold}} komada za {{willSave}}!",
-            "step3": "Čestitamo! Dobili ste {{currentMinThreshold}} komada za {{saved}}!"
-          }
-        }
       }
     }
   },

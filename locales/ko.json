@@ -242,6 +242,7 @@
       "delete_account_email": "이메일",
       "delete_account_notify": "이 계정 해지를 신청하실 수 있습니다.계정이 로그아웃되면 이 계정을 식별하기 위한 모든 정보가 삭제됩니다.아래포함:",
       "email": "이메일",
+      "email_repeat_tip": "이메일 이미 등록됨",
       "first_name": "이름",
       "gender": "성별",
       "gender_female": "여",
@@ -267,6 +268,7 @@
       "select__date": "날짜 선택",
       "subscribe_confirm_tip": "구독해 주셔서 감사합니다.",
       "timeout_tip": "작업 시간이 초과되었습니다 재검증하십시오.",
+      "unknow_error_tip": "서비스가 이상합니다. 나중에 다시 시도합니다.",
       "username": "이름",
       "verify_email_message": "로그아웃 작업을 진행하기 전에, 우리는 당신의 신원을 확인해야 합니다.메일박스 {{email}} 에서 인증번호 메일을 받을 것입니다",
       "verify_phone_message": "로그아웃 작업을 진행하기 전에, 우리는 당신의 신원을 확인해야 합니다.고객님의 핸드폰{{phone}} 에 인증 문자가 올 것입니다"
@@ -578,6 +580,7 @@
       "collection": "컬렉션"
     },
     "general": {
+      "added_to_cart_successfully": "추가 구매에 성공하였습니다.",
       "no_product_data_found": "현재 상품 데이터가 없습니다. 잠시후 다시 시도하세요",
       "sold_out": "판매됨"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "축하합니다! {{saved}} 개의 사은품을 받았습니다!{{threshold}} 상품을 재구매하시면 최대 {{willSave}} 사은품을 받으실 수 있습니다"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "{{threshold}} 건을 더 사면 그중의 한 건은 무료입니다",
-        "b11_t1_s1_normal": "{{threshold}} 건을 더 사면 그중의 한 건은 {{willSave}} 을 감면할 수 있습니다",
-        "b11_t1_s2_free": "축하합니다！그중하나는 무료입니다",
-        "b11_t1_s2_next_free": "축하합니다! 이미 {{saved}} 감면했습니다!{{br}}{{threshold}} 더 사면 그중의 한건은 무료입니다",
-        "b11_t1_s2_normal": "축하합니다! 이미 {{saved}} 을 감면했습니다!{{br}}{{threshold}} 더 사면 그 중의 한건은 {{willSave}} 을 감면합니다",
-        "b11_t1_s3_free": "축하합니다！그중하나는 무료입니다",
-        "b11_t1_s3_normal": "축하합니다！그중 하나는 감면입니다 {{saved}}",
-        "b12_t0_s1_achieve_free": "축하합니다, {{benefitCount}}개의 상품을 무료로 이용하실 수 있습니다",
-        "b12_t0_s1_achieve_normal": "축하합니다, {{benefitCount}}개의 상품 공제를 받으실 수 있습니다 {{willSave}} 개 상품 감면 감면됩니다",
-        "b12_t0_s1_free": "{{threshold}}을(를) 구매하시면 {{benefitCount}}개의 상품을 무료로 이용하실 수 있습니다",
-        "b12_t0_s1_normal": "{{threshold}}, {{benefitCount}}개 구매하시면 {{willSave}} 감면됩니다",
-        "b12_t0_s3_free": "축하합니다, {{benefitCount}}개의 상품을 무료로 이용하실 수 있습니다",
-        "b12_t0_s3_normal": "축하합니다, {{benefitCount}}개의 상품 공제를 받으실 수 있습니다 {{saved}} 개 상품 감면 감면됩니다",
-        "b12_t1_s1_achieve_free": "축하합니다, {{benefitCount}}개의 상품을 무료로 이용하실 수 있습니다",
-        "b12_t1_s1_achieve_normal": "축하합니다, {{benefitCount}}개의 상품 공제를 받으실 수 있습니다 {{willSave}} 개 상품 감면 감면됩니다",
-        "b12_t1_s1_free": "{{threshold}}개 구매하시면 {{benefitCount}}개 상품 무료입니다",
-        "b12_t1_s1_normal": "{{threshold}}개, {{benefitCount}}개 구매하시면 {{willSave}}감면입니다",
-        "b12_t1_s3_free": "축하합니다, {{benefitCount}}개의 상품을 무료로 이용하실 수 있습니다",
-        "b12_t1_s3_normal": "축하합니다, {{benefitCount}}개의 상품 공제를 받으실 수 있습니다 {{saved}} 개 상품 감면 감면됩니다",
-        "b14_t1_s1": "{{willSave}}에 {{nextMinThreshold}} 개 구매",
-        "b14_t1_s2": "축하합니다! {{saved}}에 대한 {{currentMinThreshold}}이 있습니다. {{willSave}}에 {{nextMinThreshold}}을 즐기려면 {{threshold}}개 더 구입하세요!",
-        "b14_t1_s3": "축하합니다! {{saved}}에 대한 {{currentMinThreshold}}이 있습니다!",
-        "b1_t0_s1": "{{threshold}} 사거나 {{willSave}} 더욱 많이 절약",
-        "b1_t0_s2": "이미 {{saved}} 절약했습니다!{{br}}{{threshold}} 더 사면 {{willSave}} 을 절약",
-        "b1_t0_s3": "축하합니다! 당신은 {{saved}} 을 절약했습니다!",
-        "b1_t1_s1": "{{threshold}} 건 이상 구매했을 때 {{willSave}} 을 절약",
-        "b1_t1_s2": "이미 {{saved}} 절약했습니다!{{br}}{{threshold}} 더 사면 {{willSave}} 을 절약",
-        "b1_t1_s3": "축하합니다! 당신은 {{saved}} 을 절약했습니다!",
-        "b2_t0_s1": "{{threshold}} 사거나 {{willSave}} 더욱 많이 절약",
-        "b2_t0_s2": "이미 {{saved}} 절약했습니다!{{br}} {{threshold}} 더 사면 {{willSave}} 을 절약",
-        "b2_t0_s3": "축하합니다! 당신은 {{saved}} 을 절약했습니다!",
-        "b2_t1_s1": "{{threshold}} 건 이상 구매했을 때 {{willSave}} 을 절약",
-        "b2_t1_s2": "이미 {{saved}} 절약했습니다!{{br}}{{threshold}} 더 사면 {{willSave}} 을 절약",
-        "b2_t1_s3": "축하합니다! 당신은 {{saved}} 을 절약했습니다!",
-        "b3_t0_s1_unlimited": "{{threshold}}을 더 사면 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>를 누릴 수 있다!",
-        "b3_t0_s1_upper_limit": "{{threshold}}을 더 사면 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>를 누릴 수 있다! (운임면제금액한도{{upperLimit}})",
-        "b3_t0_s3_unlimited": "축하합니다! 얻으셨습니다 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>!",
-        "b3_t0_s3_upper_limit": "축하합니다! 얻으셨습니다 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>! (운임면제금액한도{{upperLimit}})",
-        "b3_t1_s1_unlimited": "{{threshold}}을 더 사서 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>를 즐기다!",
-        "b3_t1_s1_upper_limit": "{{threshold}}을 더 사서 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>를 즐기다! (운임면제금액한도{{upperLimit}})",
-        "b3_t1_s3_unlimited": "축하합니다! 얻으셨습니다 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>!",
-        "b3_t1_s3_upper_limit": "축하합니다! 얻으셨습니다 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 무료 배송</span>! (운임면제금액한도{{upperLimit}})",
-        "b9_t1_s1": "{{threshold}}건만 더 구매하면 이 중 {{willSave}}건은 무료입니다",
-        "b9_t1_s2": "축하합니다! 이미 {{saved}}건을 공짜로 받았습니다!{{threshold}}건을 더 구매하면 이 중 {{willSave}}건은 무료입니다",
-        "b9_t1_s3": "축하합니다! 이 중 {{saved}}건은 이미 무료입니다"
-      },
       "discount_tag": {
         "b11_t1_free": "{{threshold}} 건 사면그 중에 한건은 무료",
         "b11_t1_normal": "{{threshold}} 건 사면그 중에 한건은 {{save}} 절약",
@@ -779,15 +735,6 @@
         "b2_t0": "{{threshold}} 건 사면 {{save}} 절약",
         "b2_t1": "{{threshold}} 사면 {{save}} 절약",
         "label": "감소:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "{{willSave}}에 {{nextMinThreshold}} 개 구매",
-            "step2": "축하합니다! {{saved}}에 대한 {{currentMinThreshold}}이 있습니다. {{willSave}}에 {{nextMinThreshold}}을 즐기려면 {{threshold}}개 더 구입하세요!",
-            "step3": "축하합니다! {{saved}}에 대한 {{currentMinThreshold}}이 있습니다!"
-          }
-        }
       }
     }
   },

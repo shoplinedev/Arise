@@ -242,6 +242,7 @@
       "delete_account_email": "Correio electrónico",
       "delete_account_notify": "Pode pedir para cancelar esta conta. Quando a conta é cancelada, qualquer informação utilizada para identificar esta conta será apagada, incluindo:",
       "email": "Correio electrónico",
+      "email_repeat_tip": "Correio electrónico já registado",
       "first_name": "Nome",
       "gender": "Género",
       "gender_female": "Feminino",
@@ -267,6 +268,7 @@
       "select__date": "Por favor, seleccione uma data",
       "subscribe_confirm_tip": "Obrigado por sua inscrição.",
       "timeout_tip": "A operação expirou, por favor verifique de novo",
+      "unknow_error_tip": "Erro de serviço, tente novamente mais tarde",
       "username": "Nome",
       "verify_email_message": "Antes de podermos prosseguir com o processo de cancelamento, precisamos de verificar a sua identidade \nO seu endereço de correio electrónico {{{email}}} receberá um código de verificação",
       "verify_phone_message": "Antes de podermos prosseguir com o processo de cancelamento, precisamos de verificar a sua identidade \nO seu telemóvel {{phone}} receberá uma mensagem de texto de verificação"
@@ -578,6 +580,7 @@
       "collection": "Categoria"
     },
     "general": {
+      "added_to_cart_successfully": "",
       "no_product_data_found": "Sem dados actuais do item, por favor tente novamente mais tarde",
       "sold_out": "Vendido"
     },
@@ -666,7 +669,7 @@
       "buy_x_get_y_free_content": "Grátis",
       "buy_x_get_y_threshold": "Compre {{threshold}} e ganhe {{benefitCount}} pcs grátis",
       "coupon_content_level": "{{level}} disponível",
-      "coupon_discount_content": "Oferta {{discount}}",
+      "coupon_discount_content": "Oferta {discount}",
       "coupon_not_found": "O código de desconto não existe",
       "failed_to_apply_coupon_code": "Falha na aplicação",
       "free__shipping": "Envio gratuito",
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Parabéns! Já ganhou {{saved}} brindes! Compre mais {{threshold}} itens e ganhe até {{willSave}} brindes"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Compre mais {{threshold}} e ganhe um grátis",
-        "b11_t1_s1_normal": "Compre mais {{threshold}} e ganhe mais redução grátis {{willSave}}",
-        "b11_t1_s2_free": "Parabéns! Um dos itens será gratuito!",
-        "b11_t1_s2_next_free": "Parabéns! {{saved}} já com redução grátis! {{br}}Compre mais {{threshold}} pcs e ganhe uma grátis",
-        "b11_t1_s2_normal": "Parabéns! {{saved}} já com redução grátis! {{br}}Compre {{threshold}} pcs adicionais, uma das quais terá {{willSave}} de redução grátis",
-        "b11_t1_s3_free": "Parabéns! Um dos itens será gratuito!",
-        "b11_t1_s3_normal": "Parabéns! Um dos itens terá redução grátis {{saved}}",
-        "b12_t0_s1_achieve_free": "Parabéns, pode desfrutar de {{benefitCount}} itens gratuitamente",
-        "b12_t0_s1_achieve_normal": "Parabéns, pode desfrutar de {{benefitCount}} itens com redução grátis de {{willSave}}",
-        "b12_t0_s1_free": "Compre {{threshold}} e desfrute {{benefitCount}} itens gratuitamente",
-        "b12_t0_s1_normal": "Compre {{threshold}}, {{benefitCount}} itens para uma redução grátis {{willSave}}",
-        "b12_t0_s3_free": "Parabéns! Já ganhaste {{benefitCount}} desses itens de graça!",
-        "b12_t0_s3_normal": "Parabéns! Já ganhaste {{saved}} de redução grátis em {{benefitCount}} desses itens!",
-        "b12_t1_s1_achieve_free": "Parabéns, pode desfrutar de {{benefitCount}} itens gratuitamente",
-        "b12_t1_s1_achieve_normal": "Parabéns, pode desfrutar de {{benefitCount}} itens com redução grátis de {{willSave}}",
-        "b12_t1_s1_free": "Compre {{threshold}} e desfrute {{benefitCount}} grátis",
-        "b12_t1_s1_normal": "Compre {{threshold}} pcs, para que{{benefitCount}} itens possam ter redução grátis {{willSave}}",
-        "b12_t1_s3_free": "Parabéns! Já ganhaste {{benefitCount}} desses itens de graça!",
-        "b12_t1_s3_normal": "Parabéns! Já ganhaste {{saved}} de redução grátis em {{benefitCount}} desses itens!",
-        "b14_t1_s1": "Compre {{nextMinThreshold}} peças {{willSave}}",
-        "b14_t1_s2": "Parabéns! Você ganhou {{currentMinThreshold}} peças {{saved}}. Compre outro {{threshold}} para obter {{nextMinThreshold}}{{willSave}}!",
-        "b14_t1_s3": "Parabéns! Você ganhou {{currentMinThreshold}} peças{{saved}}!",
-        "b1_t0_s1": "Compre {{nextMinThreshold}} peças {{willSave}}",
-        "b1_t0_s2": "Parabéns! Você ganhou {{currentMinThreshold}} peças {{saved}}. Compre outro {{threshold}} para obter {{nextMinThreshold}}{{willSave}}!",
-        "b1_t0_s3": "Parabéns! Você ganhou {{currentMinThreshold}} peças{{saved}}!",
-        "b1_t1_s1": "Compre {{threshold}} ou mais e poupe {{willSave}}",
-        "b1_t1_s2": "Já poupou {{saved}}! {{br}}Compre mais {{threshold}} pcs e poupe {{willSave}}",
-        "b1_t1_s3": "Parabéns! Tu poupaste{{saved}}!",
-        "b2_t0_s1": "Compre {{threshold}} ou mais para poupar {{willSave}}",
-        "b2_t0_s2": "Já poupou {{saved}}! {{br}}Comprar novamente{{threshold}}Salvar{{willSave}}",
-        "b2_t0_s3": "Parabéns! Tu poupaste{{saved}}!",
-        "b2_t1_s1": "Compre {{threshold}} ou mais e poupe {{willSave}}",
-        "b2_t1_s2": "Já poupou {{saved}}! {{br}}Compre mais {{threshold}} pcs e poupe {{willSave}}",
-        "b2_t1_s3": "Parabéns! Tu poupaste{{saved}}!",
-        "b3_t0_s1_unlimited": "Compre mais {{threshold}} e desfrute <span class=\"custom-sale-color\" style=\"font-size:14px;\">envio grátis</span>!",
-        "b3_t0_s1_upper_limit": "Compre mais {{threshold}} e desfrute <span class=\"custom-sale-color\" style=\"font-size:14px;\">envio grátis</span>! (O envio grátis é limitado a {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Parabéns!  Já ganhaste <span class=\"custom-sale-color\" style=\"font-size:14px;\"> envio grátis</span>!",
-        "b3_t0_s3_upper_limit": "Parabéns! Já ganhaste <span class=\"custom-sale-color\" style=\"font-size:14px;\"> envio grátis</span>! (O envio grátis é limitado a {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Compre mais {{threshold}} e ganhe <span class=\"custom-sale-color\" style=\"font-size:14px;\"> envio grátis</span>!",
-        "b3_t1_s1_upper_limit": "Compre mais {{threshold}} e ganhe <span class=\"custom-sale-color\" style=\"font-size:14px;\"> envio grátis</span>! (O envio grátis é limitado a {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Parabéns!  Já ganhaste <span class=\"custom-sale-color\" style=\"font-size:14px;\"> envio grátis</span>!",
-        "b3_t1_s3_upper_limit": "Parabéns! Já ganhaste <span class=\"custom-sale-color\" style=\"font-size:14px;\"> envio grátis</span>! (O envio grátis é limitado a {{upperLimit}})",
-        "b9_t1_s1": "Compre mais {{threshold}} pcs, dos quais {{willSave}} pcs são gratuitos",
-        "b9_t1_s2": "Parabéns! Ganhou {{saved}} pcs gratuitamente! Compre mais {{threshold}} pcs, das quais {{willSave}} pcs são gratuitas",
-        "b9_t1_s3": "Parabéns! Dos quais {{saved}} pcs já são grátis"
-      },
       "discount_tag": {
         "b11_t1_free": "Compre {{threshold}} pcs e desfrute de uma grátis",
         "b11_t1_normal": "Compre {{threshold}} e ganhe mais redução grátis {{save}}",
@@ -779,15 +735,6 @@
         "b2_t0": "Compre {{threshold}} para poupar {{save}}",
         "b2_t1": "Compre {{threshold}} pcs para poupar {{save}}",
         "label": "Desconto:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Compre {{nextMinThreshold}} peças {{willSave}}",
-            "step2": "Parabéns! Você ganhou {{currentMinThreshold}} peças {{saved}}. Compre outro {{threshold}} para obter {{nextMinThreshold}}{{willSave}}!",
-            "step3": "Parabéns! Você ganhou {{currentMinThreshold}} peças{{saved}}!"
-          }
-        }
       }
     }
   },

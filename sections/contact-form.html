@@ -1,19 +1,29 @@
 {{ assign 'prefix' 'stage-custom-page--form' }}
 
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'contact-form/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'contact-form/index.min.css' }}
-{{/is_modern_browser}}
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'contact-form/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'contact-form/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
+{{ combine_asset_tag 'stage/contact-form/index.css' inline=true }}
+<!-- stage/contact-form/index.js -->
+{{ combine_asset_tag 
+ 'vendors/eventemitter3.min.js'
+ 'vendors/axios.min.js'
+ 'vendors/query-string.min.js'
+ 'vendors/lodash.min.js'
+ 'theme-shared/utils/event-bus.js'
+ 'theme-shared/utils/form/form.js'
+ 'theme-shared/utils/form/index.js'
+ 'theme-shared/utils/request.js'
+ 'theme-shared/utils/syntax-patch.js'
+ 'theme-shared/utils/i18n.js'
+ 'theme-shared/utils/emailReg.js'
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'theme-shared/components/hbs/shared/components/toast/toast.js'
+ 'commons/components/toast/toast.js'
+ 'theme-shared/components/hbs/shared/components/toast/loading.js'
+ 'commons/components/toast/loading.js'
+ 'commons/components/toast/index.js'
+ 'stage/contact-form/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
 
 {{ assign 'textColor' theme.settings.color_text }}
 {{#if section.settings.color_scheme '!==' 'none'}}

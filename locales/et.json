@@ -242,6 +242,7 @@
       "delete_account_email": "E-post",
       "delete_account_notify": "Selle konto sulgemist saate taotleda. Kui see konto tuvastatakse, kustutatakse kogu teave, eriti:",
       "email": "E-posti",
+      "email_repeat_tip": "E-posti aadress on registreeritud",
       "first_name": "Nimi",
       "gender": "Sugu",
       "gender_female": "Naine",
@@ -267,6 +268,7 @@
       "select__date": "Vali kuupäev",
       "subscribe_confirm_tip": "Täname teid tellimus eest.",
       "timeout_tip": "Toiming aegus, kinnitage uuesti",
+      "unknow_error_tip": "Teenuse erand, proovige hiljem uuesti",
       "username": "Nimi",
       "verify_email_message": "Enne konto sulgemist peame kontrollima teie identiteeti\nTeie e-posti aadress {{email}} saab kontrollimeili",
       "verify_phone_message": "Enne konto sulgemist peame kontrollima teie identiteeti\nTeie mobiiltelefon {{phone}} saab sõnumi"
@@ -578,6 +580,7 @@
       "collection": "Kategooria"
     },
     "general": {
+      "added_to_cart_successfully": "Lisatud ostukorvi edukalt",
       "no_product_data_found": "Tooteandmeid ei leitud. Proovi hiljem uuesti",
       "sold_out": "Välja müüdud"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Palju õnne! Saite {{saved}} tasuta kingius juba! Ostke {{threshold}} veel, saate kuni {{willSave}} TASUTA KINGITUSEST"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Osta veel {{threshold}} toodet ja saad ühe tasuta.",
-        "b11_t1_s1_normal": "Osta veel {{threshold}} toodet ja saad ühelt {{willSave}} ALLAHINDLUST.",
-        "b11_t1_s2_free": "Õnnitlused! Saad ühe toote tasuta.",
-        "b11_t1_s2_next_free": "Õnnitlused! {{saved}} Salvestatud, {{br}}osta veel {{threshold}} toodet ja saad ühe toote tasuta.",
-        "b11_t1_s2_normal": "Õnnitlused! {{saved}} Salvestatud, {{br}}osta veel {{threshold}} toodet ja saad ühelt tootelt {{willSave}} ALLAHINDLUST.",
-        "b11_t1_s3_free": "Õnnitlused! Saad ühe toote tasuta.",
-        "b11_t1_s3_normal": "Õnnitlused! Saad ühelt tootelt {{saved}} ALLAHINDLUST.",
-        "b12_t0_s1_achieve_free": "Palju õnne, saate nautida {{benefitCount}} üksusi TASUTA",
-        "b12_t0_s1_achieve_normal": "Palju õnne, saate nautida {{willSave}} allahindlust {{benefitCount}} üksustel",
-        "b12_t0_s1_free": "Osta {{threshold}}, nautida{{benefitCount}} üksused TASUTA",
-        "b12_t0_s1_normal": "Osta {{threshold}}, nautida {{willSave}} allahindlus {{benefitCount}} üksused",
-        "b12_t0_s3_free": "Palju õnne! Teil on {{benefitCount}} TASUTA üksused!",
-        "b12_t0_s3_normal": "Palju õnne! Teil on {{saved}} allahindlust {{benefitCount}} üksused!",
-        "b12_t1_s1_achieve_free": "Palju õnne, saate nautida {{benefitCount}} üksusi TASUTA",
-        "b12_t1_s1_achieve_normal": "Palju õnne, saate nautida {{willSave}} allahindlust {{benefitCount}} üksustel",
-        "b12_t1_s1_free": "Ostke {{threshold}}, nautida {{benefitCount}}TASUTA kaupade jaoks",
-        "b12_t1_s1_normal": "Ostke {{threshold}}, nautida {{willSave}} allahindlust {{benefitCount}} kaupadele",
-        "b12_t1_s3_free": "Palju õnne! Teil on {{benefitCount}} TASUTA üksused!",
-        "b12_t1_s3_normal": "Palju õnne! Teil on {{saved}} allahindlust {{benefitCount}} üksused!",
-        "b14_t1_s1": "Osta {{nextMinThreshold}} tükki jaoks {{willSave}}",
-        "b14_t1_s2": "Palju õnne! Teil on {{currentMinThreshold}} tükki {{saved}}. Ostke rohkem {{threshold}}, et nautida {{nextMinThreshold}} tükki {{willSave}}!",
-        "b14_t1_s3": "Palju õnne! Teil on {{currentMinThreshold}} tükki {{saved}}!",
-        "b1_t0_s1": "Osta veel {{threshold}}, et säästa {{willSave}}",
-        "b1_t0_s2": "Säästa juba {{saved}}! {{br}}Osta {{threshold}} rohkem, et säästa {{willSave}}",
-        "b1_t0_s3": "Õnnitlused! Oled säästnud {{saved}}.",
-        "b1_t1_s1": "Osta veel {{threshold}}, et säästa {{willSave}}",
-        "b1_t1_s2": "Säästa juba {{saved}}! {{br}}Osta {{threshold}} rohkem, et säästa {{willSave}}",
-        "b1_t1_s3": "Õnnitlused! Oled säästnud {{saved}}!",
-        "b2_t0_s1": "Osta veel {{threshold}}, et saada {{willSave}} ALLAHINDLUST",
-        "b2_t0_s2": "Säästa juba {{saved}}! {{br}}Osta {{threshold}} rohkem, et saada {{willSave}} ALLAHINDLUST",
-        "b2_t0_s3": "Õnnitlused! Oled säästnud {{saved}}.",
-        "b2_t1_s1": "Osta veel {{threshold}}, et saada {{willSave}} ALLAHINDLUST",
-        "b2_t1_s2": "Säästa juba {{saved}}! {{br}}Osta {{threshold}} rohkem, et saada {{willSave}} ALLAHINDLUST",
-        "b2_t1_s3": "Õnnitlused! Oled säästnud {{saved}}.",
-        "b3_t0_s1_unlimited": "Osta {{threshold}} uuesti ja naudi <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>!",
-        "b3_t0_s1_upper_limit": "Osta {{threshold}} uuesti ja naudi <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>! (Maksimaalne tasuta veosumma {{upperLimit}})",
-        "b3_t0_s3_unlimited": "õnnitlused! Sa oled saanud <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>!",
-        "b3_t0_s3_upper_limit": "õnnitlused! Sa oled saanud <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>! (Maksimaalne tasuta veosumma {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Osta {{threshold}} rohkem tükki ja naudi <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>!",
-        "b3_t1_s1_upper_limit": "Osta {{threshold}} rohkem tükki ja naudi <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>! (Maksimaalne tasuta veosumma {{upperLimit}})",
-        "b3_t1_s3_unlimited": "õnnitlused! Sa oled saanud <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>!",
-        "b3_t1_s3_upper_limit": "õnnitlused! Sa oled saanud <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Tasuta saatmine</span>! (Maksimaalne tasuta veosumma {{upperLimit}})",
-        "b9_t1_s1": "Ostke veel {{threshold}} tükki, ning saate {{willSave}} tükki tasuta",
-        "b9_t1_s2": "Palju õnne! {{saved}} tükki saadi tasuta! Ostke veel {{threshold}} tükki, ning saate {{willSave}} tükki tasuta",
-        "b9_t1_s3": "Palju õnne! {{saved}} tükki neist on tasuta"
-      },
       "discount_tag": {
         "b11_t1_free": "Osta {{threshold}} toodet ja saad ühe tasuta.",
         "b11_t1_normal": "Osta {{threshold}} toodet, saad ühelt tootelt {{save}} ALLAHINDLUST.",
@@ -779,15 +735,6 @@
         "b2_t0": "Osta {{threshold}}, et säästa {{save}}",
         "b2_t1": "Osta {{threshold}} SAA {{save}} ALLAHINDLUST",
         "label": "Soodustus:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Osta {{nextMinThreshold}} tükki jaoks {{willSave}}",
-            "step2": "Palju õnne! Teil on {{currentMinThreshold}} tükki {{saved}}. Ostke rohkem {{threshold}}, et nautida {{nextMinThreshold}} tükki {{willSave}}!",
-            "step3": "Palju õnne! Teil on {{currentMinThreshold}} tükki {{saved}}!"
-          }
-        }
       }
     }
   },

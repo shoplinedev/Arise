@@ -39,20 +39,21 @@
 {{ assign 'noSpacing' 'false' }}
 {{/if}}
 
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'text-columns-with-images/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'text-columns-with-images/index.min.css' }}
-{{/is_modern_browser}}
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'text-columns-with-images/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'text-columns-with-images/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
+{{ combine_asset_tag 'stage/text-columns-with-images/styles/index.css' inline=true }}
+<!-- stage/text-columns-with-images/index.js -->
+{{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{ combine_asset_tag 
+ 'vendors/eventemitter3.min.js'
+ 'vendors/lodash.min.js'
+ 'vendors/swiper.min.js'
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'theme-shared/utils/event-bus.js'
+ 'commons/utils/main.js'
+ 'commons/utils/helper.js'
+ 'stage/text-columns-with-images/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
 
 {{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='content' }}
 

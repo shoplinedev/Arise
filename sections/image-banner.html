@@ -11,6 +11,7 @@
 {{ assign 'mobile_flatten' section.settings.mobile_banner_flatten }}
 {{ assign 'show_mobile_textarea' section.settings.m_show_textarea }}
 {{ assign 'blocksLength' (default (length blocks) 0) }}
+{{ assign 'is_lcp_section' (not (has (after sections_order 2) section.id)) }}
 
 {{ assign 'banner-ratio' '0' }}
 {{#if (isTruthy override_banner_height)}}
@@ -24,20 +25,7 @@
   {{/if}}
 {{/if}}
 
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'image-banner/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'image-banner/index.min.css' }}
-{{/is_modern_browser}}
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'image-banner/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'image-banner/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
+{{ combine_asset_tag 'stage/image-banner/index.css' inline=true }}
 
 {{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='content' }}
 
@@ -48,7 +36,8 @@
         {{#if banner1.url}}
           <div class="banner-item-wrapper banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}">
             <div style="padding-bottom: {{ banner-ratio }};">
-              <img class="lozad banner-item banner-pc-item" id="banner1" data-sizes="auto" data-src="{{ banner1.url }}"
+              <img class="lozad banner-item banner-pc-item" id="banner1"
+                {{{ get 'responsiveAttr' (image_responsive banner1.url pcSize=(cond banner2.url '50vw' '100vw') useLazyLoad=(not is_lcp_section)) }}}
                 {{!-- 避免依赖 js 控制图片显示 --}}
                 onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
             </div>
@@ -57,7 +46,8 @@
         {{#if banner2.url}}
           <div class="banner-item-wrapper banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}">
             <div style="padding-bottom: {{ banner-ratio }};">
-              <img class="lozad banner-item banner-pc-item" id="banner2"  data-sizes="auto" data-src="{{ banner2.url }}"
+              <img class="lozad banner-item banner-pc-item" id="banner2"
+                {{{ get 'responsiveAttr' (image_responsive banner2.url pcSize=(cond banner1.url '50vw' '100vw') useLazyLoad=(not is_lcp_section)) }}}
                 {{!-- 避免依赖 js 控制图片显示 --}}
                 onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
             </div>
@@ -129,7 +119,8 @@
             banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}
           ">
             <div style="padding-bottom: {{ banner-ratio }};">
-              <img class="lozad banner-item banner-mobile-item" id="banner1" data-sizes="auto" data-src="{{ banner1.url }}"
+              <img class="lozad banner-item banner-mobile-item" id="banner1"
+                {{{ get 'responsiveAttr' (image_responsive banner1.url useLazyLoad=(not is_lcp_section)) }}}
                 {{!-- 避免依赖 js 控制图片显示 --}}
                 onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
             </div>
@@ -177,7 +168,8 @@
           banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}
           ">
             <div style="padding-bottom: {{ banner-ratio }};">
-              <img class="lozad banner-item banner-mobile-item" id="banner2"  data-sizes="auto" data-src="{{ banner2.url }}"
+              <img class="lozad banner-item banner-mobile-item" id="banner2"
+                {{{ get 'responsiveAttr' (image_responsive banner2.url useLazyLoad=(not is_lcp_section)) }}}
                 {{!-- 避免依赖 js 控制图片显示 --}}
                 onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
             </div>

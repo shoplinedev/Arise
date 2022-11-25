@@ -242,6 +242,7 @@
       "delete_account_email": "E-mail",
       "delete_account_notify": "U kunt een aanvraag indienen om deze rekening te verwijderen. Zodra de rekening is verwijderd, wordt alle informatie die is gebruikt om deze rekening te identificeren verwijderd, waaronder",
       "email": "E-mail",
+      "email_repeat_tip": "Geregistreerd e-mailadres",
       "first_name": "Voornaam",
       "gender": "Geslacht",
       "gender_female": "Vrouw",
@@ -267,6 +268,7 @@
       "select__date": "Kies de datum",
       "subscribe_confirm_tip": "Bedankt voor uw inschrijving.",
       "timeout_tip": "Het operatie is verlopen, controleer opnieuw a.u.b.",
+      "unknow_error_tip": "Service uitzondering, probeer later opnieuw",
       "username": "Naam",
       "verify_email_message": "Voordat u uw account kunt verwijderen, moeten wij uw identiteit verifiëren.Uw emailadres {{email}} zal een verificatiecode ontvangen",
       "verify_phone_message": "Wij moeten uw identiteit verifiëren voordat wij u kunnen verwijderen.Uw telefoon {{phone}} zal een verificatie-sms ontvangen"
@@ -578,6 +580,7 @@
       "collection": "Collecties"
     },
     "general": {
+      "added_to_cart_successfully": "Succesvol toegevoegd aan winkelwagen",
       "no_product_data_found": "Geen gegevens van dit artikel, probeer het later nog eens",
       "sold_out": "Niet op voorraad"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Gefeliciteerd! Je hebt {{saved}} cadeautjes gekregen! Koop {{threshold}} meer artikelen en krijg tot {{willSave}} gratis cadeautjes"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Koop {{threshold}} stukken meer en krijg één gratis ervan",
-        "b11_t1_s1_normal": "Koop {{threshold}} stukken meer en krijg {{willSave}} korting op één ervan",
-        "b11_t1_s2_free": "Gefeliciteerd! Een ervan is al vrij",
-        "b11_t1_s2_next_free": "Gefiliciteerd! Al {{saved}} bespaard! {{br}}Koop {{threshold}} stukken meer en krijg één gratis ervan",
-        "b11_t1_s2_normal": "Gefiliciteerd! Al {{saved}} bespaard! {{br}}Koop {{threshold}} stukken meer en krijg {{willSave}} korting op één ervan",
-        "b11_t1_s3_free": "Gefeliciteerd! Een ervan is al vrij",
-        "b11_t1_s3_normal": "Gefeliciteerd! Een ervan heeft een korting gekregen {{saved}}",
-        "b12_t0_s1_achieve_free": "Gefeliciteerd, u kunt genieten van {{benefitCount}} van de items voor GRATIS",
-        "b12_t0_s1_achieve_normal": "Gefeliciteerd, u kunt genieten van {{willSave}} korting voor {{benefitCount}} van de items",
-        "b12_t0_s1_free": "Koop {{threshold}}, geniet GRATIS {{benefitCount}} van de items",
-        "b12_t0_s1_normal": "Koop {{threshold}}, geniet {{willSave}} korting voor {{benefitCount}} van de items",
-        "b12_t0_s3_free": "Gefeliciteerd! U hebt {{benefitCount}} items GRATIS gekregen!",
-        "b12_t0_s3_normal": "Gefeliciteerd! U heeft {{saved}} korting gekregen voor {{benefitCount}} items!",
-        "b12_t1_s1_achieve_free": "Gefeliciteerd, u kunt genieten van {{benefitCount}} van de items voor GRATIS",
-        "b12_t1_s1_achieve_normal": "Gefeliciteerd, u kunt genieten van {{willSave}} korting voor {{benefitCount}} van de items",
-        "b12_t1_s1_free": "Koop {{threshold}}, geniet GRATIS {{benefitCount}} van de items",
-        "b12_t1_s1_normal": "Koop {{threshold}}, geniet {{willSave}} korting voor {{benefitCount}} van de items",
-        "b12_t1_s3_free": "Gefeliciteerd! U hebt {{benefitCount}} items GRATIS gekregen!",
-        "b12_t1_s3_normal": "Gefeliciteerd! U heeft {{saved}} korting gekregen voor {{benefitCount}} items!",
-        "b14_t1_s1": "Koop {{nextMinThreshold}} stukken voor {{willSave}}",
-        "b14_t1_s2": "Gefeliciteerd! U hebt {{currentMinThreshold}} stukken gekregen voor {{saved}}. Koop er {{threshold}} meer en krijg er {{nextMinThreshold}} voor {{willSave}}!",
-        "b14_t1_s3": "Gefeliciteerd! U hebt {{currentMinThreshold}} stukken gekregen voor {{saved}}!",
-        "b1_t0_s1": "Koop {{threshold}} of meer en bespaar {{willSave}}",
-        "b1_t0_s2": "Al {{saved}} bespaard! {{br}}Koop {{threshold}} meer en bespaar {{willSave}}",
-        "b1_t0_s3": "Gefiliciteerd! U heeft {{saved}} bespaard",
-        "b1_t1_s1": "Koop {{threshold}} stukken of meer en bespaar {{willSave}}",
-        "b1_t1_s2": "Al {{saved}} bespaard! {{br}}Koop {{threshold}} stukken meer en bespaar {{willSave}}",
-        "b1_t1_s3": "Gefiliciteerd! U heeft {{saved}} bespaard",
-        "b2_t0_s1": "Koop {{threshold}} of meer en bespaar {{willSave}}",
-        "b2_t0_s2": "Al {{saved}} bespaard! {{br}}Koop {{threshold}} meer en bespaar {{willSave}}",
-        "b2_t0_s3": "Gefiliciteerd! U heeft {{saved}} bespaard",
-        "b2_t1_s1": "Koop {{threshold}} stukken of meer en bespaar {{willSave}}",
-        "b2_t1_s2": "Al {{saved}} bespaard! {{br}}Koop {{threshold}} stukken meer en bespaar {{willSave}}",
-        "b2_t1_s3": "Gefiliciteerd! U heeft {{saved}} bespaard",
-        "b3_t0_s1_unlimited": "Koop {{threshold}} meer en krijg <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis bezorgen</span>!",
-        "b3_t0_s1_upper_limit": "Koop {{threshold}} meer en krijg <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis bezorgen</span>! (Maximumbedrag {{upperLimit}} voor gratis verzending)",
-        "b3_t0_s3_unlimited": "Gefeliciteerd! U hebt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis bezorgen</span> gekregen!",
-        "b3_t0_s3_upper_limit": "Gefeliciteerd! U hebt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis bezorgen</span> gekregen! (Maximumbedrag {{upperLimit}} voor gratis verzending)",
-        "b3_t1_s1_unlimited": "Koop {{threshold}} stukken meer en krijg <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis bezorgen</span>!",
-        "b3_t1_s1_upper_limit": "Koop {{threshold}} stukken meer en krijg <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis bezorgen</span>! (Maximumbedrag {{upperLimit}} voor gratis verzending)",
-        "b3_t1_s3_unlimited": "Gefeliciteerd! U hebt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis bezorgen</span> gekregen!",
-        "b3_t1_s3_upper_limit": "Gefeliciteerd! U hebt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis bezorgen</span> gekregen! (Maximumbedrag {{upperLimit}} voor gratis verzending)",
-        "b9_t1_s1": "Koop {{threshold}} stukken meer, daarvan {{willSave}} gratis zijn",
-        "b9_t1_s2": "Gefeliciteerd! U hebt al gratis {{saved}} stukken gekregen! Koop {{threshold}} stukken meer, daarvan {{willSave}} gratis zijn!",
-        "b9_t1_s3": "Gefeliciteerd! {{saved}} stukken daarvan gratis zijn"
-      },
       "discount_tag": {
         "b11_t1_free": "Koop {{threshold}} stukken en krijg één gratis ervan",
         "b11_t1_normal": "Koop {{threshold}} stukken en krijg {{save}} korting op één ervan",
@@ -779,15 +735,6 @@
         "b2_t0": "Koop {{threshold}} en bespaar {{save}}",
         "b2_t1": "Koop {{threshold}} stukken en bespaar {{save}}",
         "label": "Korting:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Koop {{nextMinThreshold}} stukken voor {{willSave}}",
-            "step2": "Gefeliciteerd! U hebt {{currentMinThreshold}} stukken gekregen voor {{saved}}. Koop er {{threshold}} meer en krijg er {{nextMinThreshold}} voor {{willSave}}!",
-            "step3": "Gefeliciteerd! U hebt {{currentMinThreshold}} stukken gekregen voor {{saved}}!"
-          }
-        }
       }
     }
   },

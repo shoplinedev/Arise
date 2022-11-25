@@ -7,19 +7,10 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="x-dns-prefetch-control" content="on">
 
-  {{#slot 'seo-meta' }}
-    {{snippet 'seo-meta' }}
-  {{/slot}}
-  {{#slot 'title' }}
-    {{assign "seoTitle" (useFallbackLang pageInfo.seoTitle request.locale)}}
-    {{#if seoTitle}}
-      <title>{{seoTitle}}</title>
-    {{else}}
-      <title>{{storeInfo.name}}</title>
-    {{/if}}
-  {{/slot}}
+  {{ snippet 'seo-meta/default' }}
+  {{ snippet 'title-tag/default' }}
   {{#if theme.settings.favicon_image}}
-    <link rel="shortcut icon" href="{{theme.settings.favicon_image}}" type="image/png">
+    <link rel="shortcut icon" href="{{ theme.settings.favicon_image }}" type="image/png">
   {{/if}}
 
   <link rel="dns-prefetch" href="https://cdn.myshopline.com">
@@ -31,12 +22,17 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   {{ content_for_header }}
-  {{#slot 'head' }}{{/slot}}
+  {{ combine_asset_tag 'product/giftCard/style/index.css' inline=true }}
 </head>
 
 <body class="template--le template__{{ replace template '/' '-' }}">
   {{ content_for_layout }}
-  {{#slot 'script' }}{{/slot}}
+  <!-- product/giftCard/main.js -->
+{{ combine_asset_tag 
+ 'product/giftCard/main.js' 
+  type="text/javascript" 
+  defer=true
+}}  
   {{!-- 自定义代码底部 --}}
   {{ content_for_footer }}
 </body>

@@ -1,18 +1,28 @@
 
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'product/recently-viewed/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'product/recently-viewed/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'product/recently-viewed/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'product/recently-viewed/index.min.css' }}
-{{/is_modern_browser}}
+<!-- product/recently-viewed/index.js -->
+{{ combine_asset_tag 
+ 'vendors/uuid.min.js'
+ 'vendors/eventemitter3.min.js'
+ 'vendors/@sl_currency-tools-core.min.js'
+ 'vendors/lodash.min.js'
+ 'vendors/axios.min.js'
+ 'vendors/query-string.min.js'
+ 'theme-shared/utils/report/page.js'
+ 'theme-shared/utils/report/tool.js'
+ 'theme-shared/report/common/baseReport.js'
+ 'theme-shared/utils/event-bus.js'
+ 'theme-shared/utils/parsePathToArray.js'
+ 'theme-shared/utils/state-selector.js'
+ 'theme-shared/utils/newCurrency/CurrencyConvert.js'
+ 'theme-shared/utils/newCurrency/index.js'
+ 'theme-shared/utils/syntax-patch.js'
+ 'theme-shared/components/hbs/productRecently/fetchTemplate.js'
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'product/recently-viewed/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
+{{ combine_asset_tag 'product/recently-viewed/product-recently-viewed.css' inline=true }}
 
 {{ assign 'show_product_number' section.settings.show_product_number }}
 <div class="{{#isFalsey (boolean hiddenMount)}}section-gap container{{/isFalsey}}" 

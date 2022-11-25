@@ -1,19 +1,13 @@
 {{ assign 'color_scheme' section.settings.color_scheme }}
 
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'faqs/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'faqs/index.min.css' }}
-{{/is_modern_browser}}
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'faqs/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'faqs/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
+{{ combine_asset_tag 'stage/faqs/style/index.css' inline=true }}
+<!-- stage/faqs/index.js -->
+{{ combine_asset_tag 
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'stage/faqs/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
 
 <div class="color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}" data-section-type="faqs" data-section-id="{{ section.id }}">
   <div class="faq__wrapper container __sl-custom-track-stage-faqs">

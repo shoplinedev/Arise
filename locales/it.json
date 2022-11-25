@@ -242,6 +242,7 @@
       "delete_account_email": "E-mail",
       "delete_account_notify": "Puoi richiedere l'eliminazione di questo account. Dopo aver eliminato l'account, tutte le informazioni utilizzate per identificare questo account verranno rimosse, tra cui:",
       "email": "E-mail",
+      "email_repeat_tip": "L'e-mail è stata registrata",
       "first_name": "Nome",
       "gender": "Genere",
       "gender_female": "Femmina",
@@ -267,6 +268,7 @@
       "select__date": "Seleziona una data",
       "subscribe_confirm_tip": "Grazie per il tuo abbonamento.",
       "timeout_tip": "L’operazione scaduta, verifica di nuovo per favore",
+      "unknow_error_tip": "Errore del servizio, riprova più tardi",
       "username": "Nome",
       "verify_email_message": "Dobbiamo verificare la tua identità prima di eliminare l'account.Riceverai un'email con il codice di verifica alla tua casella di posta {{email}}",
       "verify_phone_message": "Dobbiamo verificare la tua identità prima di eliminare l'account.Riceverai un messaggio di verifica sul tuo cellulare {{phone}}"
@@ -578,6 +580,7 @@
       "collection": "Collezioni"
     },
     "general": {
+      "added_to_cart_successfully": "Acquisto aggiuntivo riuscito",
       "no_product_data_found": "Nessun dato sul prodotto attuale, riprova più tardi",
       "sold_out": "Venduto"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Congratulazioni! Hai già ottenuto {{saved}} omaggi! Acquista {{threshold}} altri articoli e avrai fino a {{willSave}} omaggi"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Acquista {{threshold}} altri pezzi, uno di questi è gratuito",
-        "b11_t1_s1_normal": "Acquista {{threshold}} altri pezzi, puoi risparmiare {{willSave}} per uno di questi",
-        "b11_t1_s2_free": "Congratulazioni! Uno di questi è gratuito",
-        "b11_t1_s2_next_free": "Congratulazioni! Hai già risparmiato {{saved}}! {{br}}Acquista {{threshold}} altri pezzi, uno di questi è gratuito",
-        "b11_t1_s2_normal": "Congratulazioni! Hai già risparmiato {{saved}}! {{br}}Acquista {{threshold}} altri pezzi, puoi risparmiare {{willSave}} per uno di questi",
-        "b11_t1_s3_free": "Congratulazioni! Uno di questi è gratuito",
-        "b11_t1_s3_normal": "Congratulazioni! Uno di questi ha {{saved}} di sconto",
-        "b12_t0_s1_achieve_free": "Congratulazioni, puoi goderti {{benefitCount}} pezzi di articoli GRATUITI",
-        "b12_t0_s1_achieve_normal": "Congratulazioni, puoi goderti un risparmio di {{willSave}} per {{benefitCount}} pezzi di articoli",
-        "b12_t0_s1_free": "Acquista {{threshold}}, goditi {{benefitCount}} pezzi di articoli GRATUITI",
-        "b12_t0_s1_normal": "Acquista {{threshold}}, goditi un risparmio di {{willSave}} per {{benefitCount}} pezzi di articoli",
-        "b12_t0_s3_free": "Congratulazioni! Hai {{benefitCount}} pezzi GRATUITI di questi articoli!",
-        "b12_t0_s3_normal": "Congratulazioni! Hai un risparmio di {{saved}} per {{benefitCount}} pezzi di questi articoli!",
-        "b12_t1_s1_achieve_free": "Congratulazioni, puoi goderti {{benefitCount}} pezzi di articoli GRATUITI",
-        "b12_t1_s1_achieve_normal": "Congratulazioni, puoi goderti un risparmio di {{willSave}} per {{benefitCount}} pezzi di articoli",
-        "b12_t1_s1_free": "Acquista {{threshold}} pezzi, goditi {{benefitCount}} pezzi di articoli GRATUITI",
-        "b12_t1_s1_normal": "Acquista {{threshold}} pezzi, goditi un risparmio di {{willSave}} per {{benefitCount}} pezzi di articoli",
-        "b12_t1_s3_free": "Congratulazioni! Hai {{benefitCount}} pezzi GRATUITI di questi articoli!",
-        "b12_t1_s3_normal": "Congratulazioni! Hai un risparmio di {{saved}} per {{benefitCount}} pezzi di questi articoli!",
-        "b14_t1_s1": "Acquista {{nextMinThreshold}}pezzi per {{willSave}}",
-        "b14_t1_s2": "Congratulazioni! Hai avuto {{currentMinThreshold}} pezzi per {{saved}}. Acquista {{threshold}} in più ad avere {{nextMinThreshold}} per {{willSave}}!",
-        "b14_t1_s3": "Congratulazioni! Hai avuto {{currentMinThreshold}} pezzi per {{saved}}!",
-        "b1_t0_s1": "Acquista {{threshold}} o in più per risparmiare {{willSave}}",
-        "b1_t0_s2": "Hai risparmiato {{saved}}!{{br}}Acquista {{threshold}} per risparmiare {{willSave}}",
-        "b1_t0_s3": "Congratulazioni! Hai risparmiato {{saved}}!",
-        "b1_t1_s1": "Acquista più di {{threshold}} pezzi per risparmiare {{willSave}}",
-        "b1_t1_s2": "Hai risparmiato {{saved}}!{{br}}Acquista più di {{threshold}} altri pezzi per risparmiare {{willSave}}",
-        "b1_t1_s3": "Congratulazioni! Hai risparmiato {{saved}}!",
-        "b2_t0_s1": "Acquista {{threshold}} o più per risparmiare {{willSave}}",
-        "b2_t0_s2": "Hai risparmiato {{saved}}!{{br}}Acquista {{threshold}} per risparmiare {{willSave}}",
-        "b2_t0_s3": "Congratulazioni! Hai risparmiato {{saved}}!",
-        "b2_t1_s1": "Acquista più di {{threshold}} pezzi per risparmiare {{willSave}}",
-        "b2_t1_s2": "Hai risparmiato {{saved}}!{{br}}Acquista più di {{threshold}} altri pezzi per risparmiare {{willSave}}",
-        "b2_t1_s3": "Congratulazioni! Hai risparmiato {{saved}}!",
-        "b3_t0_s1_unlimited": "Acquista {{threshold}} di più per godere <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Spedizione gratuita</span>!",
-        "b3_t0_s1_upper_limit": "Acquista {{threshold}} di più per godere <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Spedizione gratuita</span>! (Il massimo importo della spedizione gratuita {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Congratulazioni! Hai già ottenuto <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Spedizione gratuita</span>!",
-        "b3_t0_s3_upper_limit": "Congratulazioni! Hai già ottenuto <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Spedizione gratuita</span>! (Il massimo importo della spedizione gratuita {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Acquista altri {{threshold}} pezzi per godere <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Spedizione gratuita</span>!",
-        "b3_t1_s1_upper_limit": "Acquista altri {{threshold}} pezzi per godere <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Spedizione gratuita</span>! (Il massimo importo della spedizione gratuita {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Congratulazioni! Hai già ottenuto <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Spedizione gratuita</span>!",
-        "b3_t1_s3_upper_limit": "Congratulazioni! Hai già ottenuto <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Spedizione gratuita</span>! (Il massimo importo della spedizione gratuita {{upperLimit}})",
-        "b9_t1_s1": "Acquista {{threshold}} pezzi in più, tra cui {{willSave}} pezzi sono gratuiti",
-        "b9_t1_s2": "Congratulazioni！{{saved}}pezzi sono già gratuiti！Acquista {{threshold}} pezzi in più, tra cui {{willSave}} pezzi sono gratuiti",
-        "b9_t1_s3": "Congratulazioni！{{saved}}pezzi sono già gratuiti"
-      },
       "discount_tag": {
         "b11_t1_free": "Acquista {{threshold}} pezzi, uno di questi è gratuito",
         "b11_t1_normal": "Acquista {{threshold}} pezzi, puoi risparmiare {{save}} per uno di questi",
@@ -779,15 +735,6 @@
         "b2_t0": "Acquista {{threshold}} per risparmiare {{save}}",
         "b2_t1": "Acquista {{threshold}} pezzi per risparmiare {{save}}",
         "label": "Sconto di:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Acquista {{nextMinThreshold}}pezzi per {{willSave}}",
-            "step2": "Congratulazioni! Hai avuto {{currentMinThreshold}} pezzi per {{saved}}. Acquista {{threshold}} in più ad avere {{nextMinThreshold}} per {{willSave}}!",
-            "step3": "Congratulazioni! Hai avuto {{currentMinThreshold}} pezzi per {{saved}}!"
-          }
-        }
       }
     }
   },

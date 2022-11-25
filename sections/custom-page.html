@@ -1,20 +1,15 @@
 {{ assign 'currentPageInfo' (get section.settings.page_id pages) }}
 {{ assign 'prefix' 'stage-main-page' }}
 
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'custom-page/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'custom-page/index.min.css' }}
-{{/is_modern_browser}}
+{{ combine_asset_tag 'stage/custom-page/index.css' inline=true }}
+<!-- stage/custom-page/index.js -->
+{{ combine_asset_tag 
+ 'commons/utils/createShadowDom.js'
+ 'stage/custom-page/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
 
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'custom-page/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'custom-page/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
 <div class="__sl-custom-track-stage-customPage color-scheme-{{ section.settings.color_scheme }} section-gap{{#if (isTruthy section.settings.color_scheme '!==' 'none')}}--padding{{/if}}">
   <div class='container {{ prefix }}__container '>
     <h2 class='title3 __sl-custom-track-page-title'>{{{ currentPageInfo.name.default }}}</h2>

@@ -1,0 +1,83 @@
+{{!--
+    此snippet 用于页面级别script逻辑注入
+    具体生成逻辑将由这里进行路由分发。
+
+    !!! 为了此snippet的单一职责，这里只写路由，具体逻辑请自行分发到自己的snippet中处理  !!!
+    snippet 应在此文件夹内创建，文件名建议以页面名称命名。
+ --}}
+
+{{#if templateAlias '===' 'Policy'}}
+  {{snippet 'page-head/policy' }}
+{{/if}}
+
+{{#if templateAlias '===' 'SignIn'}}
+  {{snippet 'page-head/login' }}
+{{/if}}
+
+{{#if templateAlias '===' 'SignUp'}}
+  {{snippet 'page-head/register' }}
+{{/if}}
+
+{{#if templateAlias '===' 'PasswordNew'}}
+  {{snippet 'page-head/password-new' }}
+{{/if}}
+
+{{#if templateAlias '===' 'ActivateAccount'}}
+  {{snippet 'page-head/activate-account' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Center'}}
+  {{snippet 'page-head/user-center' }}
+{{/if}}
+
+{{#if templateAlias '===' 'PasswordReset'}}
+  {{snippet 'page-head/reset-password' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Message'}}
+  {{snippet 'page-head/message' }}
+{{/if}}
+
+{{#if templateAlias '===' 'AddressNew'}}
+  {{snippet 'page-head/address' }}
+{{/if}}
+
+{{#if templateAlias '===' 'AddressEdit'}}
+  {{snippet 'page-head/address' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Bind'}}
+  {{snippet 'page-head/bind' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Unsub'}}
+  {{snippet 'page-head/unsub' }}
+{{/if}}
+
+{{#if templateAlias '===' 'UnsubFeedback'}}
+  {{snippet 'page-head/unsub-feedback' }}
+{{/if}}
+
+{{#if (boolean (boolean templateAlias '===' 'ProductsDetail') "||" (boolean templateAlias '===' 'PreviewProductsDetail'))}}
+    {{ snippet 'page-head/product'}}
+{{/if}}
+
+{{#if templateAlias '===' 'Products'}}
+    {{ snippet 'page-head/collections'}}
+{{/if}}
+
+{{#if templateAlias '===' 'AllCollections'}}
+    {{ snippet 'page-head/collections-all'}}
+{{/if}}
+
+{{#if templateAlias '===' 'ProductsSearch'}}
+    {{ snippet 'page-head/search'}}
+{{/if}}
+
+{{#if templateAlias '===' 'OrderList'}}
+  {{snippet 'page-head/order-list' }}
+{{/if}}
+
+{{#if templateAlias '===' 'OrderDetail'}}
+  {{snippet 'page-head/order-detail' }}
+{{/if}}

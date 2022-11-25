@@ -1,0 +1,25 @@
+import { setCurrencyConfig as sl_currency_tools_core_set_currency_config, setStoreCurrency as sl_currency_tools_core_set_store_currency, setDefaultToCurrency as sl_currency_tools_core_set_default_to_currency, getConvertPrice as sl_currency_tools_core_get_convert_price, convertFormat as sl_currency_tools_core_convert_format, covertCalc as sl_currency_tools_core_covert_calc, convertFormatWithoutCurrency as sl_currency_tools_core_convert_format_without_currency, format as sl_currency_tools_core_format, unformatNumber as sl_currency_tools_core_unformat_number, formatNumber as sl_currency_tools_core_format_number, unformatCurrency as sl_currency_tools_core_unformat_currency, unformatPercent as sl_currency_tools_core_unformat_percent, formatCurrency as sl_currency_tools_core_format_currency, formatPercent as sl_currency_tools_core_format_percent, getDigitsByCode as sl_currency_tools_core_get_digits_by_code, getSymbolByCode as sl_currency_tools_core_get_symbol_by_code, getSymbolOrderByCode as sl_currency_tools_core_get_symbol_order_by_code, getDecimalSymbolByCode as sl_currency_tools_core_get_decimal_symbol_by_code, getGroupSymbolByCode as sl_currency_tools_core_get_group_symbol_by_code, getFormatParts as sl_currency_tools_core_get_format_parts, formatWithoutCurrency as sl_currency_tools_core_format_without_currency, formatMoneyWithoutCurrency as sl_currency_tools_core_format_money_without_currency } from '@sl/currency-tools-core';
+window['@sl/currency-tools-core'] = {
+  'setCurrencyConfig': sl_currency_tools_core_set_currency_config,
+  'setStoreCurrency': sl_currency_tools_core_set_store_currency,
+  'setDefaultToCurrency': sl_currency_tools_core_set_default_to_currency,
+  'getConvertPrice': sl_currency_tools_core_get_convert_price,
+  'convertFormat': sl_currency_tools_core_convert_format,
+  'covertCalc': sl_currency_tools_core_covert_calc,
+  'convertFormatWithoutCurrency': sl_currency_tools_core_convert_format_without_currency,
+  'format': sl_currency_tools_core_format,
+  'unformatNumber': sl_currency_tools_core_unformat_number,
+  'formatNumber': sl_currency_tools_core_format_number,
+  'unformatCurrency': sl_currency_tools_core_unformat_currency,
+  'unformatPercent': sl_currency_tools_core_unformat_percent,
+  'formatCurrency': sl_currency_tools_core_format_currency,
+  'formatPercent': sl_currency_tools_core_format_percent,
+  'getDigitsByCode': sl_currency_tools_core_get_digits_by_code,
+  'getSymbolByCode': sl_currency_tools_core_get_symbol_by_code,
+  'getSymbolOrderByCode': sl_currency_tools_core_get_symbol_order_by_code,
+  'getDecimalSymbolByCode': sl_currency_tools_core_get_decimal_symbol_by_code,
+  'getGroupSymbolByCode': sl_currency_tools_core_get_group_symbol_by_code,
+  'getFormatParts': sl_currency_tools_core_get_format_parts,
+  'formatWithoutCurrency': sl_currency_tools_core_format_without_currency,
+  'formatMoneyWithoutCurrency': sl_currency_tools_core_format_money_without_currency
+};

@@ -1,20 +1,20 @@
 {{ assign 'natural_height' false }}
 {{ assign 'natural_mobile_height' false }}
 {{ assign 'transition_type' (get 'transition_type' section.settings 'simple') }}
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'slideshow/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'slideshow/index.min.css' }}
-{{/is_modern_browser}}
+{{ assign 'is_lcp_section' (not (has (after sections_order 2) section.id)) }}
 
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'slideshow/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'slideshow/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
+{{ combine_asset_tag 'stage/slideshow/index.css' inline=true }}
+<!-- stage/slideshow/index.js -->
+{{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{ combine_asset_tag 
+ 'vendors/swiper.min.js'
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'stage/slideshow/swiper/effect-flickity-fade.js'
+ 'stage/slideshow/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
+
 <script type="text/json" id="Slideshow-data-{{ section.id }}">{{{ stringify section.settings }}}</script>
 <script type="text/json" id="Slideshow-data-block-{{ section.id }}">{{{ stringify section.blocks }}}</script>
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
@@ -135,8 +135,8 @@
                 {{/if}}
               {{/style}}
 
-              {{!-- 非前3个组件的轮播图首图不做直出 --}}
-              {{ assign 'not_lcp_slide' (not (and (not (has (after global.sections_order 3) global.section.id)) (if @index '===' 0))) }}
+              {{!-- 非前2个组件的轮播图首图不做直出 --}}
+              {{ assign 'not_lcp_slide' (not (and global.is_lcp_section (if @index '===' 0))) }}
               {{ assign 'link_item' (useLink this.settings.link global.request.uri.query) }}
               {{ assign 'link_2_item' (useLink this.settings.link_2 global.request.uri.query) }}
               {{ assign 'ele_link_item' (JSONparse '{}') }}

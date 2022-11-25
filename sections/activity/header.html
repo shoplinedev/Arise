@@ -88,13 +88,11 @@
               {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
                 {{!-- 金额 --}}
                 {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))}}
-                {{ assign '__threshold' __threshold.string}}
               {{else}}
                 {{!-- 百分比折扣 --}}
                 {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
               {{/if}}
-              {{!-- TODO: 多语言helper 与 replace 同时存在，当替换语料后统一使用多语言helper --}}
-              {{ assign 'thresholdText' (noTranslationHTML (replace (t "sales.general.activity_banner_threshold" threshold=__threshold) '{threshold}' __threshold))}}
+              {{ assign 'thresholdText' (noTranslationHTML (t "sales.general.activity_banner_threshold" threshold=__threshold))}}
             {{/if}}
             {{!-- 门槛 --}}
             {{#if benefitCondition.benefitEvent.type '!==' -1}}

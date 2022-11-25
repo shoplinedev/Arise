@@ -1,4 +1,20 @@
-<div class="product-stepper {{#if disabled}}disabled{{/if}}" id={{id}}>
+<!-- product/commons/js/sku-stepper.js -->
+{{ combine_asset_tag 
+ 'vendors/lodash.min.js'
+ 'theme-shared/utils/syntax-patch.js'
+ 'theme-shared/utils/i18n.js'
+ 'theme-shared/components/hbs/shared/components/toast/toast.js'
+ 'commons/components/toast/toast.js'
+ 'theme-shared/components/hbs/shared/components/toast/loading.js'
+ 'commons/components/toast/loading.js'
+ 'commons/components/toast/index.js'
+ 'product/commons/js/sku-stepper.js' 
+  type="text/javascript" 
+  defer=true
+}}
+{{ combine_asset_tag 'product/commons/style/sku-stepper.css' inline=true }}
+
+<div class="product-stepper {{#if disabled}}disabled{{/if}}" id="{{ id }}">
   <span class="stepper-before disabled">{{ snippet 'product/commons/svg/minus' }}</span>
   <input type="text" class="stepper-input body3" value="{{ value }}" autocomplete="off" />
   <span class="stepper-after">{{ snippet 'product/commons/svg/add' }}</span>

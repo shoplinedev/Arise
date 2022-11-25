@@ -1,0 +1,116 @@
+input{
+  -webkit-appearance:none;
+}
+.faq__collapse-title{
+  -webkit-tap-highlight-color:transparent;
+  align-items:center;
+  cursor:pointer;
+  display:flex;
+  text-align:left;
+  user-select:none;
+}
+.faq__collapse-title.active .faq__collapse-icon{
+  transform:rotate(0);
+}
+
+.faq__collapse-icon{
+  flex-shrink:0;
+  font-size:0;
+  margin-right:10px;
+  transform:rotate(180deg);
+}
+.color-scheme-1 .faq__collapse-icon path{
+  stroke:rgba(var(--color-scheme-1-text));
+}
+
+.color-scheme-2 .faq__collapse-icon path{
+  stroke:rgba(var(--color-scheme-2-text));
+}
+
+.color-scheme-3 .faq__collapse-icon path{
+  stroke:rgba(var(--color-scheme-3-text));
+}
+
+.faq__collapse-wrap{
+  height:0;
+  opacity:0;
+  overflow:hidden;
+  transition:opacity .5s cubic-bezier(.25, .46, .45, .94), height .35s cubic-bezier(.25, .46, .45, .94);
+}
+.faq__collapse-wrap.active{
+  opacity:1;
+}
+.faq__collapse-wrap.active .faq__collapse-content{
+  transform:translateY(0);
+}
+.faq__collapse-wrap .faq__collapse-content{
+  margin-top:12px;
+  overflow:hidden;
+  transform:translateY(40px);
+  transition:transform .3s cubic-bezier(.25, .46, .45, .94);
+}
+
+.faq__collapse-wrap+.faq__collapse-title{
+  margin-top:20px;
+}
+
+.faq__richtext{
+  text-align:center;
+}
+.faq__richtext.right{
+  text-align:right;
+}
+.faq__richtext.center{
+  text-align:center;
+}
+.faq__richtext.left{
+  text-align:left;
+}
+
+.faq__richtext-title{
+  margin-top:40px;
+}
+.faq__richtext-title.title4{
+  text-align:unset;
+}
+
+.faq__richtext-content{
+  margin-bottom:40px;
+  margin-top:15px;
+}
+.faq__richtext-content.body3{
+  text-align:unset;
+}
+
+@media (max-width:749.98px){
+  .faq__richtext{
+    margin-top:50px;
+  }
+}
+@media (min-width:750px){
+  .faq__richtext{
+    margin-top:75px;
+  }
+}
+.faq__wrapper{
+  overflow:hidden;
+}
+.faq__wrapper .faq__title{
+  margin-bottom:40px;
+  overflow:hidden;
+  text-align:center;
+}
+
+.faq__content{
+  margin:0 auto;
+  max-width:840px;
+  overflow:hidden;
+  white-space:normal;
+}
+
+@media (max-width:749.98px){
+  .faq__wrapper .faq__title{
+    margin-bottom:30px;
+    overflow:hidden;
+  }
+}

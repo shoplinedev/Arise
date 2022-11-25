@@ -242,6 +242,7 @@
       "delete_account_email": "E-mail",
       "delete_account_notify": "Puteți aplica pentru închiderea acestui cont. O data închis, orice informație pentru identificarea acestui cont va fi ștearsă, incluzând:",
       "email": "E-mail",
+      "email_repeat_tip": "E-mailul a fost înregistrat",
       "first_name": "Prenume",
       "gender": "Sex",
       "gender_female": "Femeie",
@@ -267,6 +268,7 @@
       "select__date": "Selectați dată",
       "subscribe_confirm_tip": "Vă mulțumim pentru abonare.",
       "timeout_tip": "Operațiunea a expirat, vă rugăm să verificați din nou",
+      "unknow_error_tip": "Întreruperea serviciului. Vă rugăm să încercați din nou mai târziu.",
       "username": "Nume",
       "verify_email_message": "Înainte de a închide contul, trebuie să verificăm identitatea dvs. \nVeți primi pe e-mailul dvs. {{email}} un e-mail pentru verificare",
       "verify_phone_message": "Înainte de a închide contul, trebuie să verificăm identitatea dvs. \nTelefonul dvs. mobil {{phone}} va primi un mesaj de notificare"
@@ -578,6 +580,7 @@
       "collection": "Categorie"
     },
     "general": {
+      "added_to_cart_successfully": "Adăugat în coș cu succes",
       "no_product_data_found": "Nu a fost găsită nicio informație despre produs. Vă rugăm să încercați din nou mai târziu",
       "sold_out": "Vândut"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Felicitări! Ați primit {{saved}} cadouri gratuite în total! Cumpărați încă {{threshold}} articole, bucurați-vă de până la {{willSave}} CADOURI GRATUITE"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Cumpărați mai mult de {{threshold}} (de) articole și profitați de unul gratuit",
-        "b11_t1_s1_normal": "Cumpărați mai mult de {{threshold}} (de) produse și profitați de o REDUCERE de {{willSave}} la unul dintre articole",
-        "b11_t1_s2_free": "Felicitări! profitați de un articol gratuit",
-        "b11_t1_s2_next_free": "Felicitări! Ați economisit {{saved}}, {{br}}Cumpărați mai mult de {{threshold}} (de) articole și profitați de unul dintre ele gratuit",
-        "b11_t1_s2_normal": "Felicitări! Ați economisit {{saved}}, {{br}}Cumpărați mai mult de {{threshold}} (de) articole și profitați de o REDUCERE {{willSave}} la unul dintre ele",
-        "b11_t1_s3_free": "Felicitări! profitați de un articol gratuit",
-        "b11_t1_s3_normal": "Felicitări! profitați de o REDUCERE de {{saved}} la unul dintre articole",
-        "b12_t0_s1_achieve_free": "Felicitări, vă puteți bucura de {{benefitCount}} obiecte gratis",
-        "b12_t0_s1_achieve_normal": "Felicitări, ați obținut {{willSave}} reduceri pentru {{benefitCount}} obiecte",
-        "b12_t0_s1_free": "Cumpără {{threshold}}, obții {{benefitCount}} obiecte gratis",
-        "b12_t0_s1_normal": "Cumpără {{threshold}}, obții {{willSave}} reduceri pentru {{benefitCount}} obiecte",
-        "b12_t0_s3_free": "Felicitări! Ați primit {{benefitCount}} obiecte gratis!",
-        "b12_t0_s3_normal": "Felicitări! Ați primit {{saved}} reduceri pentru {{benefitCount}} obiecte!",
-        "b12_t1_s1_achieve_free": "Felicitări, vă puteți bucura de {{benefitCount}} obiecte gratis",
-        "b12_t1_s1_achieve_normal": "Felicitări, ați obținut {{willSave}} reduceri pentru {{benefitCount}} obiecte",
-        "b12_t1_s1_free": "Cumpără {{threshold}}, obții {{benefitCount}} obiecte gratis",
-        "b12_t1_s1_normal": "Cumpără {{benefitCount}} obiecte, obții {{willSave}} reduceri pentru {{benefitCount}} obiecte",
-        "b12_t1_s3_free": "Felicitări! Ați primit {{benefitCount}} obiecte gratis!",
-        "b12_t1_s3_normal": "Felicitări! Ați primit {{saved}} reduceri pentru {{benefitCount}} obiecte!",
-        "b14_t1_s1": "Cumpără {{nextMinThreshold}} bucăți pentru {{willSave}}",
-        "b14_t1_s2": "FELICITĂRI! Ai {{currentMinThreshold}} bucăți pentru {{saved}}. Cumpără încă {{threshold}} pentru a te bucura de {{nextMinThreshold}} bucăți pentru {{willSave}}!",
-        "b14_t1_s3": "Felicitări! Ai primit {{currentMinThreshold}} bucăți pentru {{saved}}!",
-        "b1_t0_s1": "Cumpărați mai mult de {{threshold}} pentru a economisi {{willSave}}",
-        "b1_t0_s2": "Economisiți {{saved}} deja ! {{br}}Cumpărați mai mult de {{threshold}} pentru a economisi {{willSave}}",
-        "b1_t0_s3": "Felicitări! Ați economisit {{saved}}!",
-        "b1_t1_s1": "Cumpărați mai mult de {{threshold}} pentru a economisi {{willSave}}",
-        "b1_t1_s2": "Economisiți {{saved}} deja ! {{br}}Cumpărați mai mult de {{threshold}} pentru a economisi {{willSave}}",
-        "b1_t1_s3": "Felicitări! Ați economisit {{saved}}！",
-        "b2_t0_s1": "Cumpărați mai mult de {{threshold}} pentru a obține o REDUCERE de {{willSave}}",
-        "b2_t0_s2": "Economisiți {{saved}} deja ! {{br}}Cumpărați mai mult de {{threshold}} pentru a obține o REDUCERE de {{willSave}}",
-        "b2_t0_s3": "Felicitări! Ați economisit {{saved}}!",
-        "b2_t1_s1": "Cumpărați mai mult de {{threshold}} pentru a obține o REDUCERE de {{willSave}}",
-        "b2_t1_s2": "Economisiți {{saved}} deja ! {{br}}Cumpărați mai mult de {{threshold}} pentru a obține o REDUCERE de {{willSave}}",
-        "b2_t1_s3": "Felicitări! Ați economisit {{saved}}!",
-        "b3_t0_s1_unlimited": "Cumpărați {{threshold}} din nou și obțineți <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Livrare gratuită</span>!",
-        "b3_t0_s1_upper_limit": "Cumpărați {{threshold}} din nou și obțineți <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Livrare gratuită</span>! (Cantitate maximă pentru livrare gratuită {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Felicitări! Ați obținut <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Livrare gratuită</span>!",
-        "b3_t0_s3_upper_limit": "Felicitări! Ați obținut <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Livrare gratuită</span>! (Cantitate maximă pentru livrare gratuită {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Cumpărați mai multe {{threshold}}, obțineți <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Livrare gratuită</span>!",
-        "b3_t1_s1_upper_limit": "Cumpărați mai multe {{threshold}}, obțineți <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Livrare gratuită</span>! (Cantitate maximă pentru livrare gratuită {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Felicitări! Ați obținut <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Livrare gratuită</span>!",
-        "b3_t1_s3_upper_limit": "Felicitări! Ați obținut <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Livrare gratuită</span>! (Cantitate maximă pentru livrare gratuită {{upperLimit}})",
-        "b9_t1_s1": "Cumpără mai mult de {{threshold}} (de) bucăți, dintre care {{willSave}} (de) bucăți sunt gratis",
-        "b9_t1_s2": "Felicitări! {{saved}} (de) bucăți obținut gratis! Cumpără mai mult de {{threshold}} (de) bucăți, dintre care {{willSave}} (de) bucăți sunt gratis",
-        "b9_t1_s3": "Felicitări! {{saved}} dintre ele sunt gratis"
-      },
       "discount_tag": {
         "b11_t1_free": "Cumpărați {{threshold}} (de) articole, profitați de un articol gratuit!",
         "b11_t1_normal": "Cumpărați {{threshold}} (de) articole, profitați de o REDUCERE DE {{save}} la unul dintre articole",
@@ -779,15 +735,6 @@
         "b2_t0": "Cumpărați {{threshold}} pentru a economisi {{save}}",
         "b2_t1": "Cumpărați {{threshold}} OBȚINEȚI O REDUCERE de {{save}}",
         "label": "Reducere:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Cumpără {{nextMinThreshold}} bucăți pentru {{willSave}}",
-            "step2": "FELICITĂRI! Ai {{currentMinThreshold}} bucăți pentru {{saved}}. Cumpără încă {{threshold}} pentru a te bucura de {{nextMinThreshold}} bucăți pentru {{willSave}}!",
-            "step3": "Felicitări! Ai primit {{currentMinThreshold}} bucăți pentru {{saved}}!"
-          }
-        }
       }
     }
   },

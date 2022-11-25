@@ -1,0 +1,102 @@
+{{!--
+    此snippet 用于页面级别script逻辑注入
+    具体生成逻辑将由这里进行路由分发。
+
+    !!! 为了此snippet的单一职责，这里只写路由，具体逻辑请自行分发到自己的snippet中处理  !!!
+    snippet 应在此文件夹内创建，文件名建议以页面名称命名。
+ --}}
+
+{{#if templateAlias '===' 'Home'}}
+  {{snippet 'page-scripts/home' }}
+{{/if}}
+
+{{#if templateAlias '===' 'BlogsDetail'}}
+  {{snippet 'page-scripts/blog-detail' }}
+{{/if}}
+
+{{#if templateAlias '===' 'BlogsList'}}
+  {{snippet 'page-scripts/blog-list' }}
+{{/if}}
+
+{{#if templateAlias '===' '404'}}
+  {{snippet 'page-scripts/404' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Page'}}
+  {{snippet 'page-scripts/page' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Cart'}}
+  {{snippet 'page-scripts/cart' }}
+{{/if}}
+
+{{#if templateAlias '===' 'SignIn'}}
+  {{snippet 'page-scripts/login' }}
+{{/if}}
+
+{{#if templateAlias '===' 'SignUp'}}
+  {{snippet 'page-scripts/register' }}
+{{/if}}
+
+{{#if templateAlias '===' 'PasswordNew'}}
+  {{snippet 'page-scripts/password-new' }}
+{{/if}}
+
+{{#if templateAlias '===' 'ActivateAccount'}}
+  {{snippet 'page-scripts/activate-account' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Center'}}
+  {{snippet 'page-scripts/user-center' }}
+{{/if}}
+
+{{#if templateAlias '===' 'PasswordReset'}}
+  {{snippet 'page-scripts/reset-password' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Message'}}
+  {{snippet 'page-scripts/message' }}
+{{/if}}
+
+{{#if templateAlias '===' 'AddressNew'}}
+  {{snippet 'page-scripts/address' }}
+{{/if}}
+
+{{#if templateAlias '===' 'AddressEdit'}}
+  {{snippet 'page-scripts/address' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Bind'}}
+  {{snippet 'page-scripts/bind' }}
+{{/if}}
+
+{{#if templateAlias '===' 'Unsub'}}
+  {{snippet 'page-scripts/unsub' }}
+{{/if}}
+
+{{#if templateAlias '===' 'UnsubFeedback'}}
+  {{snippet 'page-scripts/unsub-feedback' }}
+{{/if}}
+
+{{#if (boolean (boolean templateAlias '===' 'ProductsDetail') "||" (boolean templateAlias '===' 'PreviewProductsDetail'))}}
+    {{ snippet 'page-scripts/product'}}
+{{/if}}
+
+{{#if templateAlias '===' 'Products'}}
+    {{ snippet 'page-scripts/collections'}}
+{{/if}}
+
+{{#if templateAlias '===' 'AllCollections'}}
+    {{ snippet 'page-scripts/collections-all'}}
+{{/if}}
+{{#if templateAlias '===' 'ProductsSearch'}}
+    {{ snippet 'page-scripts/search'}}
+{{/if}}
+
+{{#if templateAlias '===' 'OrderList'}}
+  {{snippet 'page-scripts/order-list' }}
+{{/if}}
+
+{{#if templateAlias '===' 'OrderDetail'}}
+  {{snippet 'page-scripts/order-detail' }}
+{{/if}}

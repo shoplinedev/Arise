@@ -242,6 +242,7 @@
       "delete_account_email": "ईमेल",
       "delete_account_notify": "आप इस खाते को बंद करने के लिए आवेदन कर सकते हैं। एक बार बंद होने पर, इस खाते की पहचान की कोई भी जानकारी हटा दी जाएगी, जिसमें शामिल हैं:",
       "email": "ईमेल",
+      "email_repeat_tip": "ईमेल पंजीकृत किया गया है",
       "first_name": "नाम",
       "gender": "लिंग",
       "gender_female": "महिला",
@@ -267,6 +268,7 @@
       "select__date": "तारीख़ चुनें",
       "subscribe_confirm_tip": "आपकी सदस्यता के लिए धन्यवाद।",
       "timeout_tip": "ऑपरेशन का समय समाप्त हो गया, कृपया फिर से सत्यापित करें",
+      "unknow_error_tip": "सेवा आपत्ति, बाद में पुन:प्रयास करें",
       "username": "नाम",
       "verify_email_message": "खाता बंद करने से पहले, हमें आपकी पहचान सत्यापित करनी होगी\nआपके ईमेल {{email}} पर एक सत्यापन ईमेल मिलेगा",
       "verify_phone_message": "खाता बंद करने से पहले, हमें आपकी पहचान सत्यापित करनी होगी\nआपके मोबाइल फ़ोन {{phone}} को एक सत्यापन संदेश प्राप्त होगा"
@@ -578,6 +580,7 @@
       "collection": "श्रेणी"
     },
     "general": {
+      "added_to_cart_successfully": "कार्ट में सफलतापूर्वक जोड़ा गया",
       "no_product_data_found": "कोई उत्पाद डेटा नहीं मिला। बाद में पुन: प्रयास करें",
       "sold_out": "बिक गया"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "बधाई हो! पहले से ही {{saved}} मुफ़्त तौफा मिल चुका है! {{threshold}} और खरीदें, {{willSave}} तक मुफ़्त-तौफा का आनंद लें"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "{{threshold}} और चीज़ें खरीदें, किसी और किसी एक को मुफ्त में पाएं!",
-        "b11_t1_s1_normal": "{{willSave}} छुट पाने के लिए {{threshold}} और खरीदें",
-        "b11_t1_s2_free": "बधाई हो! किसी एक आइटम मुफ्त में पाने का आनंद लें!",
-        "b11_t1_s2_next_free": "बधाई हो! {{saved}} बचाया गया, {{br}}{{threshold}} और आइटम खरीदें, किसी एक आइटम को नि:शुल्क पाने का आनंद लें!",
-        "b11_t1_s2_normal": "बधाई हो! {{saved}} बचाया गया, {{br}}{{threshold}} और चीजें खरीदें, किसी एक आइटम पर {{willSave}} छुट पाएं!",
-        "b11_t1_s3_free": "बधाई हो! किसी एक आइटम मुफ्त में पाने का आनंद लें!",
-        "b11_t1_s3_normal": "बधाई हो! किसी एक आइटम पर {{saved}} की छूट का आनंद लें!",
-        "b12_t0_s1_achieve_free": "बधाई हो, आप {{benefitCount}} चीज़ों का मुफ़्त में लाभ उठा सकते हैं",
-        "b12_t0_s1_achieve_normal": "बधाई हो, आप {{benefitCount}} आइटम पर {{willSave}} छूट का लाभ उठा सकते हैं",
-        "b12_t0_s1_free": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों का मुफ़्त में आनंद लें",
-        "b12_t0_s1_normal": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों पर {{willSave}} की छूट का आनंद लें",
-        "b12_t0_s3_free": "बधाई हो! आपके पास {{benefitCount}} आइटम मुफ़्त हैं!",
-        "b12_t0_s3_normal": "बधाई हो! आपको {{benefitCount}} आइटम पर {{saved}} की छूट मिलती है!",
-        "b12_t1_s1_achieve_free": "बधाई हो, आप {{benefitCount}} चीज़ों का मुफ़्त में लाभ उठा सकते हैं",
-        "b12_t1_s1_achieve_normal": "बधाई हो, आप {{benefitCount}} आइटम पर {{willSave}} छूट का लाभ उठा सकते हैं",
-        "b12_t1_s1_free": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों का मुफ़्त में आनंद लें",
-        "b12_t1_s1_normal": "{{threshold}} ख़रीदें, {{benefitCount}} चीज़ों पर {{willSave}} की छूट का आनंद लें",
-        "b12_t1_s3_free": "बधाई हो! आपके पास {{benefitCount}} आइटम मुफ़्त हैं!",
-        "b12_t1_s3_normal": "बधाई हो! आपको {{benefitCount}} आइटम पर {{saved}} की छूट मिलती है!",
-        "b14_t1_s1": "{{willSave}} में {{nextMinThreshold}} टुकड़े खरीदें",
-        "b14_t1_s2": "बधाई हो! आपको {{saved}} में {{currentMinThreshold}} टुकड़े मिले हैं। {{willSave}} में {{nextMinThreshold}} टुकड़े का आनंद लेने के लिए {{threshold}} और खरीदें!",
-        "b14_t1_s3": "बधाई हो! आपके पास {{saved}} में {{currentMinThreshold}} टुकड़े हैं!",
-        "b1_t0_s1": "{{willSave}} बचाने के लिए {{threshold}} और खरीदें",
-        "b1_t0_s2": "पहले ही {{saved}} सेव कर लें! {{willSave}} बचाने के लिए {{br}}{{threshold}} और खरीदें",
-        "b1_t0_s3": "बधाई हो! आपने {{saved}} बचाया है!",
-        "b1_t1_s1": "{{willSave}} बचाने के लिए {{threshold}} और खरीदें",
-        "b1_t1_s2": "पहले ही {{saved}} सेव कर लें! {{willSave}} बचाने के लिए {{br}}{{threshold}} और खरीदें",
-        "b1_t1_s3": "बधाई हो! आपने {{saved}} बचाया है!",
-        "b2_t0_s1": "{{willSave}} छूट पाने के लिए {{threshold}} और खरीदें",
-        "b2_t0_s2": "पहले ही {{saved}} सेव कर लें! {{br}}{{willSave}} की छूट पाने के लिए {{threshold}} और खरीदें",
-        "b2_t0_s3": "बधाई हो! आपने {{saved}} बचाया है!",
-        "b2_t1_s1": "{{willSave}} छूट पाने के लिए {{threshold}} और खरीदें",
-        "b2_t1_s2": "पहले ही {{saved}} सेव कर लें! {{br}}{{willSave}} की छूट पाने के लिए {{threshold}} और खरीदें",
-        "b2_t1_s3": "बधाई हो! आपने {{saved}} बचाया है!",
-        "b3_t0_s1_unlimited": "{{threshold}} फिर से खरीदें और <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> का आनंद लें!",
-        "b3_t0_s1_upper_limit": "{{threshold}} फिर से खरीदें और <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> का आनंद लें! (ज्यादा से ज्यादा मुफ़्त शिपिंग राशि {{upperLimit}})",
-        "b3_t0_s3_unlimited": "बधाई हो! आपके पास <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> है!",
-        "b3_t0_s3_upper_limit": "बधाई हो! आपके पास <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> है! (ज्यादा से ज्यादा मुफ़्त शिपिंग राशि {{upperLimit}})",
-        "b3_t1_s1_unlimited": "{{threshold}} और खरीदें और <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> का आनंद लें!",
-        "b3_t1_s1_upper_limit": "{{threshold}} और खरीदें और <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> का आनंद लें! (ज्यादा से ज्यादा मुफ़्त शिपिंग राशि {{upperLimit}})",
-        "b3_t1_s3_unlimited": "बधाई हो! आपके पास <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> है!",
-        "b3_t1_s3_upper_limit": "बधाई हो! आपके पास <span class=\"custom-sale-color\" style=\"font-size:14px;\"> मुफ़्त शिपिंग</span> है! (ज्यादा से ज्यादा मुफ़्त शिपिंग राशि {{upperLimit}})",
-        "b9_t1_s1": "{{threshold}} और टुकड़े खरीदें, जिनमें से {{willSave}} टुकड़े मुफ्त हैं",
-        "b9_t1_s2": "बधाई हो! {{saved}} टुकड़े मुफ्त में पाएं! {{threshold}} और टुकड़े खरीदें, जिनमें से {{willSave}} टुकड़े मुफ्त हैं",
-        "b9_t1_s3": "बधाई हो! उनमें से {{saved}} मुफ़्त हैं"
-      },
       "discount_tag": {
         "b11_t1_free": "{{threshold}} आइटम खरीदें, किसी एक को मुफ्त में पाने का आनंद लें!",
         "b11_t1_normal": "{{threshold}} चीजे खरीदें, किसी एक पर {{save}} की छूट का आनंद लें!",
@@ -779,15 +735,6 @@
         "b2_t0": "{{threshold}} खरीदें {{save}} बचाएं",
         "b2_t1": "{{threshold}} खरीदें {{save}} की छूट पाएं",
         "label": "की छूट:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "{{willSave}} में {{nextMinThreshold}} टुकड़े खरीदें",
-            "step2": "बधाई हो! आपको {{saved}} में {{currentMinThreshold}} टुकड़े मिले हैं। {{willSave}} में {{nextMinThreshold}} टुकड़े का आनंद लेने के लिए {{threshold}} और खरीदें!",
-            "step3": "बधाई हो! आपके पास {{saved}} में {{currentMinThreshold}} टुकड़े हैं!"
-          }
-        }
       }
     }
   },

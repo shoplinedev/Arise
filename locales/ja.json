@@ -242,6 +242,7 @@
       "delete_account_email": "メールアドレス",
       "delete_account_notify": "アカウントのキャンセルを申し込むことができます。 アカウントをキャンセルされると、アカウント識別用の次のような情報がすべて削除されます：",
       "email": "メールアドレス",
+      "email_repeat_tip": "メールアドレスが登録されました",
       "first_name": "名",
       "gender": "性別",
       "gender_female": "女性",
@@ -267,6 +268,7 @@
       "select__date": "日付を選択してください",
       "subscribe_confirm_tip": "サブスクしていただきありがとうございます。",
       "timeout_tip": "操作がタイムアウトしました。もう一度検証してください",
+      "unknow_error_tip": "サーバーエラー、後でもう一度試してください",
       "username": "名前",
       "verify_email_message": "アカウントをキャンセルする前に、本人確認を行う必要があります。メールアドレス {{email}} に確認コードが届きます",
       "verify_phone_message": "アカウントをキャンセルする前に、本人確認を行う必要があります。お使いの携帯電話{{phone}}に確認用SMSが届きます"
@@ -578,6 +580,7 @@
       "collection": "コレクション"
     },
     "general": {
+      "added_to_cart_successfully": "カートに入れました",
       "no_product_data_found": "商品データが見つかりません。しばらくしてからもう一度お試しください",
       "sold_out": "完売"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "おめでとうございます！{{saved}}件のプレゼントが取得しました！これ以上{{threshold}}件買うと、最大{{willSave}}件プレゼントが取得可能"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "これ以上{{threshold}}件買うと商品の中の一件が無料となります",
-        "b11_t1_s1_normal": "これ以上{{threshold}}件買うと商品の中の一件が{{willSave}} OFF",
-        "b11_t1_s2_free": "おめでとう！商品の中の一件が無料となりました。",
-        "b11_t1_s2_next_free": "おめでとう！すでに{{saved}}OFFしました、{{br}}これ以上{{threshold}}件買うと、商品の中の一件は無料となります。",
-        "b11_t1_s2_normal": "おめでとう！すでに{{saved}}OFF、{{br}}これ以上{{threshold}}件買うと商品の中の一件が{{willSave}} OFF",
-        "b11_t1_s3_free": "おめでとう！商品の中の一件が無料となりました。",
-        "b11_t1_s3_normal": "おめでとう！商品の中の一件がすでに{{saved}} OFF",
-        "b12_t0_s1_achieve_free": "おめでとうございます、{{benefitCount}} 点の商品が無料になることをお楽しめます。",
-        "b12_t0_s1_achieve_normal": "おめでとうございます、{{benefitCount}} 点の商品が {{willSave}} OFFことをお楽しめます。",
-        "b12_t0_s1_free": "{{threshold}} を購入すると、{{benefitCount}} 点の商品が無料になります",
-        "b12_t0_s1_normal": "{{threshold}} を購入、あるいは {{benefitCount}} 点の商品を購入すると、{{willSave}} OFF可能",
-        "b12_t0_s3_free": "おめでとうございます！{{benefitCount}} 点の商品がすでに無料になりました。",
-        "b12_t0_s3_normal": "おめでとうございます！{{benefitCount}} 点の商品がすでに {{willSave}} OFFになりました。",
-        "b12_t1_s1_achieve_free": "おめでとうございます、{{benefitCount}} 点の商品が無料になることをお楽しめます。",
-        "b12_t1_s1_achieve_normal": "おめでとうございます、{{benefitCount}} 点の商品が {{willSave}} OFFことをお楽しめます。",
-        "b12_t1_s1_free": "{{threshold}} 点商品を購入すると、{{benefitCount}} 点の商品が無料になります",
-        "b12_t1_s1_normal": "{{threshold}} 点商品を購入すると、{{benefitCount}} 点の商品が {{willSave}} OFFになります",
-        "b12_t1_s3_free": "おめでとうございます！{{benefitCount}} 点の商品がすでに無料になりました。",
-        "b12_t1_s3_normal": "おめでとうございます！{{benefitCount}} 点の商品がすでに {{saved}} OFFになりました。",
-        "b14_t1_s1": "{{nextMinThreshold}}点購入して{{willSave}}となります",
-        "b14_t1_s2": "おめでとう！ {{currentMinThreshold}}点購入して{{saved}}となることが獲得しました。これ以上 {{threshold}} 点を購入すると{{nextMinThreshold}}点購入して{{willSave}}となることが獲得します！",
-        "b14_t1_s3": "おめでとう！ {{currentMinThreshold}}点購入すると{{saved}}となりました！",
-        "b1_t0_s1": "{{threshold}}以上買うと{{willSave}}節約",
-        "b1_t0_s2": "既に{{saved}}節約しました！{{br}}これ以上{{threshold}}買うと{{willSave}}節約",
-        "b1_t0_s3": "おめでとう！{{saved}}節約しました！",
-        "b1_t1_s1": "{{threshold}}以上買うと{{willSave}}節約",
-        "b1_t1_s2": "既に{{saved}}節約しました！{{br}}これ以上{{threshold}}点以上買うと{{willSave}}節約",
-        "b1_t1_s3": "おめでとう！{{saved}}節約しました！",
-        "b2_t0_s1": "{{threshold}}以上買うと{{willSave}}節約",
-        "b2_t0_s2": "既に{{saved}}節約しました！{{br}}これ以上{{threshold}}買うと{{willSave}}節約",
-        "b2_t0_s3": "おめでとう！{{saved}}節約しました！",
-        "b2_t1_s1": "{{threshold}}点以上買うと{{willSave}}節約",
-        "b2_t1_s2": "既に{{saved}}節約しました！{{br}}これ以上{{threshold}}点以上買うと{{willSave}}節約",
-        "b2_t1_s3": "おめでとう！{{saved}}節約しました！",
-        "b3_t0_s1_unlimited": "これ以上 {{threshold}}購入すると<span class=\"custom-sale-color\" style=\"font-size:14px;\"> 送料無料</span>が楽しめます!",
-        "b3_t0_s1_upper_limit": "これ以上 {{threshold}}購入すると<span class=\"custom-sale-color\" style=\"font-size:14px;\"> 送料無料</span>!が楽しめます(最大送料無料額{{upperLimit}})",
-        "b3_t0_s3_unlimited": "おめでとうございます！すでに<span class=\"custom-sale-color\" style=\"font-size:14px;\"> 送料無料</span>を取得します!",
-        "b3_t0_s3_upper_limit": "おめでとうございます！すでに<span class=\"custom-sale-color\" style=\"font-size:14px;\"> 送料無料</span>を取得します! (最大送料無料額{{upperLimit}})",
-        "b3_t1_s1_unlimited": "これ以上{t件}購入すると <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 送料無料</span>が楽しめます!",
-        "b3_t1_s1_upper_limit": "これ以上{t件}購入すると <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 送料無料</span>が楽しめます! (最大送料無料額{{upperLimit}})",
-        "b3_t1_s3_unlimited": "おめでとうございます！すでに<span class=\"custom-sale-color\" style=\"font-size:14px;\"> 送料無料</span>を取得します!",
-        "b3_t1_s3_upper_limit": "おめでとうございます！すでに<span class=\"custom-sale-color\" style=\"font-size:14px;\"> 送料無料</span>を取得します! (最大送料無料額{{upperLimit}})",
-        "b9_t1_s1": "これ以上{{threshold}}件買うとこの中の{{willSave}}件が無料となります。",
-        "b9_t1_s2": "おめでとうございます！{{saved}}件が既に無料となります。これ以上{{threshold}}件買うとこの中の{{willSave}}件が無料となります。",
-        "b9_t1_s3": "おめでとうございます！{{saved}}件が既に無料となります。"
-      },
       "discount_tag": {
         "b11_t1_free": "{{threshold}}件買うと商品の中の一件が無料となります",
         "b11_t1_normal": "{{threshold}}件買うと商品の中の一件が{{save}} OFF",
@@ -779,15 +735,6 @@
         "b2_t0": "{{threshold}}買うと{{save}}節約",
         "b2_t1": "{{threshold}}点買うと{{save}}節約",
         "label": "割引:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "{{nextMinThreshold}}点購入して{{willSave}}となります",
-            "step2": "おめでとう！ {{currentMinThreshold}}点購入して{{saved}}となることが獲得しました。これ以上 {{threshold}} 点を購入すると{{nextMinThreshold}}点購入して{{willSave}}となることが獲得します！",
-            "step3": "おめでとう！ {{currentMinThreshold}}点購入すると{{saved}}となりました！"
-          }
-        }
       }
     }
   },

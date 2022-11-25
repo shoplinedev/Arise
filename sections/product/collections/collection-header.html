@@ -1,12 +1,12 @@
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'product/collections/header.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'product/collections/header.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
+<!-- product/collections/header.js -->
+{{ combine_asset_tag 
+ 'vendors/lodash.min.js'
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'product/collections/js/banner.js'
+ 'product/collections/header.js' 
+  type="text/javascript" 
+  defer=true
+}}
 <!-- snippet -->
 <div class="product-list-banner" 
   data-section-type="collections-header"

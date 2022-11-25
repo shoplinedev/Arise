@@ -5,20 +5,29 @@
 {{!-- {{assign 'placeholder' section.settings.placeholder }} --}}
 {{ assign 'color_scheme' section.settings.color_scheme }}
 
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'sign-up-and-save/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'sign-up-and-save/index.min.css' }}
-{{/is_modern_browser}}
+{{ combine_asset_tag 'stage/sign-up-and-save/index.css' inline=true }}
+<!-- stage/sign-up-and-save/index.js -->
+{{ combine_asset_tag 
+ 'vendors/axios.min.js'
+ 'vendors/query-string.min.js'
+ 'vendors/lodash.min.js'
+ 'theme-shared/utils/request.js'
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'theme-shared/utils/syntax-patch.js'
+ 'theme-shared/utils/i18n.js'
+ 'theme-shared/utils/emailReg.js'
+ 'commons/utils/checkEmail.js'
+ 'commons/utils/debounce.js'
+ 'theme-shared/components/hbs/shared/components/toast/toast.js'
+ 'commons/components/toast/toast.js'
+ 'theme-shared/components/hbs/shared/components/toast/loading.js'
+ 'commons/components/toast/loading.js'
+ 'commons/components/toast/index.js'
+ 'stage/sign-up-and-save/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
 
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'sign-up-and-save/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'sign-up-and-save/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
 <div class="stage-newsletter __sl-custom-track-stage-newsletter" data-section-type="sign-up-and-save" data-section-id="{{ section.id }}">
     <div class="section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}} container{{#if show_newsletter_full}}-fluid{{/if}} color-scheme-{{ color_scheme }}">
       <div class="newsletter">

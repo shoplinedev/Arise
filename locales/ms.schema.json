@@ -211,8 +211,14 @@
             "label": "Warna 3"
           }
         },
+        "pc_cols": {
+          "label": "Bilangan lajur pada bahagian komputer"
+        },
         "slice_in_mobile": {
           "label": "Leret ke kiri dan kanan pada versi mudah alih untuk melihat"
+        },
+        "slice_in_pc": {
+          "label": "Untuk komputer, leret kiri kanan untuk melihat"
         },
         "title": {
           "label": "Tajuk"
@@ -474,6 +480,15 @@
         },
         "title": {
           "name": "Tajuk"
+        },
+        "viewMoreBtn": {
+          "name": "Lihat lebih banyak butang",
+          "settings": {
+            "btnText": {
+              "info": "Jika tiada teks butang dikonfigurasikan, butang tidak akan dipaparkan",
+              "label": "Salinan butang"
+            }
+          }
         }
       },
       "name": "Produk tunggal",
@@ -591,6 +606,9 @@
         "show_copyright": {
           "label": "Tunjuk maklumat hak cipta"
         },
+        "show_country_selector": {
+          "label": "Papar pemilih negara"
+        },
         "show_currency_flags": {
           "label": "Tunjuk simbol mata wang"
         },
@@ -649,6 +667,9 @@
         "group_header__1": {
           "label": "Menu"
         },
+        "header_full_width": {
+          "label": "lebar skrin penuh dalam pengepala"
+        },
         "header_style": {
           "label": "Pengepala ditetapkan di bahagian atas"
         },
@@ -694,6 +715,9 @@
         },
         "show_cart_entry": {
           "label": "Paparkan pintu masuk troli beli-belah"
+        },
+        "show_country_selector": {
+          "label": "Papar pemilih negara"
         },
         "show_currency_flags": {
           "label": "Tunjuk simbol mata wang"
@@ -1098,13 +1122,16 @@
           "label": "Tunjuk pengarang"
         },
         "is_show_breadcrumb": {
-          "label": "Tunjuk面包屑"
+          "label": "Paparkan serbuk roti pada komputer"
         },
         "is_show_comment": {
           "label": "Tunjukkan ulasan"
         },
         "is_show_date": {
           "label": "Tunjuk Tarikh"
+        },
+        "is_show_mobile_breadcrumb": {
+          "label": "Tunjukkan serbuk roti pada mudah alih"
         },
         "is_show_prev_next": {
           "label": "Tunjukkan artikel seterusnya"
@@ -1513,6 +1540,9 @@
       },
       "name": "Senarai kategori",
       "settings": {
+        "col": {
+          "label": "Bilangan lajur pada bahagian komputer"
+        },
         "collection_fill_type": {
           "label": "Kaedah pengisian gambar",
           "options__0": {
@@ -1543,6 +1573,9 @@
           "options__1": {
             "label": "Kategori produk yang ditentukan"
           }
+        },
+        "mb_col": {
+          "label": "Bilangan lajur di mudah alih"
         }
       }
     },
@@ -1702,7 +1735,15 @@
           "name": "Butang beli"
         },
         "description": {
-          "name": "Huraian produk"
+          "name": "Huraian produk",
+          "settings": {
+            "location": {
+              "label": "Penerangan produk menunjuk lokasi",
+              "options__1": {
+                "label": "Di bawah gambar produk"
+              }
+            }
+          }
         },
         "html": {
           "name": "Tetapan HTML tersuai",
@@ -2018,6 +2059,24 @@
       "settings": {
         "default_selected_sku": {
           "label": "SKU dipilih secara piawaian"
+        },
+        "mb_breadcrumbs": {
+          "label": "Tunjukkan serbuk roti pada mudah alih"
+        },
+        "pc_breadcrumbs": {
+          "label": "Paparkan serbuk roti pada komputer"
+        },
+        "pc_breadcrumbs_layout": {
+          "label": "Susun atur serbuk roti komputer",
+          "options__0": {
+            "label": "Tengah di atas gambar"
+          },
+          "options__1": {
+            "label": "Kiri di atas gambar"
+          },
+          "options__2": {
+            "label": "Di atas tajuk produk"
+          }
         },
         "product_image_pc_show_style": {
           "label": "Atur cara komputer",
@@ -3437,6 +3496,15 @@
         },
         "share_to_whatsapp": {
           "label": "Kongsi ke Whatsapp"
+        },
+        "show_official_icon": {
+          "label": "Tunjukkan ikon rasmi media sosial"
+        },
+        "show_official_share_icon": {
+          "label": "Tunjukkan ikon rasmi media sosial"
+        },
+        "show_social_name": {
+          "label": "Tunjukkan nama media sosial"
         },
         "social_facebook_link": {
           "label": "Facebook"

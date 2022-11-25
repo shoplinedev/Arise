@@ -211,8 +211,14 @@
             "label": "Pencocokan warna 3"
           }
         },
+        "pc_cols": {
+          "label": "Jumlah kolom komputer "
+        },
         "slice_in_mobile": {
           "label": "Geser ke kiri dan kanan di port seluler untuk melihat"
+        },
+        "slice_in_pc": {
+          "label": "Geser ke kiri dan kanan pada port PC untuk melihat"
         },
         "title": {
           "label": "Judul"
@@ -474,6 +480,15 @@
         },
         "title": {
           "name": "Judul"
+        },
+        "viewMoreBtn": {
+          "name": "Lihat lebih banyak tombol",
+          "settings": {
+            "btnText": {
+              "info": "Jika tidak ada teks tombol yang dikonfigurasi, tombol tidak akan ditampilkan",
+              "label": "Tulisan tombol"
+            }
+          }
         }
       },
       "name": "Produk tunggal",
@@ -591,6 +606,9 @@
         "show_copyright": {
           "label": "Tampilkan Informasi Hak Cipta"
         },
+        "show_country_selector": {
+          "label": "Menampilkan pemilih negara"
+        },
         "show_currency_flags": {
           "label": "Tampilkan simbol mata uang"
         },
@@ -649,6 +667,9 @@
         "group_header__1": {
           "label": "Menu"
         },
+        "header_full_width": {
+          "label": "lebar layar penuh di header"
+        },
         "header_style": {
           "label": "Tajuk tetap di atas"
         },
@@ -694,6 +715,9 @@
         },
         "show_cart_entry": {
           "label": "Tampilkan pintu masuk troli"
+        },
+        "show_country_selector": {
+          "label": "Menampilkan pemilih negara"
         },
         "show_currency_flags": {
           "label": "Tampilkan simbol mata uang"
@@ -1098,13 +1122,16 @@
           "label": "Tampilkan Penulis"
         },
         "is_show_breadcrumb": {
-          "label": "Tampilkan Breadcrumb"
+          "label": "Tampilkan remah roti di komputer"
         },
         "is_show_comment": {
           "label": "Tampilkan komentar"
         },
         "is_show_date": {
           "label": "Tampilkan Tanggal"
+        },
+        "is_show_mobile_breadcrumb": {
+          "label": "Tampilkan remah roti di ponsel"
         },
         "is_show_prev_next": {
           "label": "Tampilkan artikel berikutnya"
@@ -1513,6 +1540,9 @@
       },
       "name": "Daftar Kategori",
       "settings": {
+        "col": {
+          "label": "Jumlah kolom komputer "
+        },
         "collection_fill_type": {
           "label": "Metode pengisian gambar",
           "options__0": {
@@ -1543,6 +1573,9 @@
           "options__1": {
             "label": "Menentukan kategori produk"
           }
+        },
+        "mb_col": {
+          "label": "Jumlah kolom terminal PC"
         }
       }
     },
@@ -1702,7 +1735,15 @@
           "name": "Tombol beli"
         },
         "description": {
-          "name": "Deskripsi produk"
+          "name": "Deskripsi produk",
+          "settings": {
+            "location": {
+              "label": "Posisi tampilan deskripsi produk",
+              "options__1": {
+                "label": "bawah gambar produk"
+              }
+            }
+          }
         },
         "html": {
           "name": "HTML yang dapat diciptakan sendiri",
@@ -2018,6 +2059,24 @@
       "settings": {
         "default_selected_sku": {
           "label": "SKU dipilih secara default"
+        },
+        "mb_breadcrumbs": {
+          "label": "Tampilkan remah roti di ponsel"
+        },
+        "pc_breadcrumbs": {
+          "label": "Tampilkan remah roti di komputer"
+        },
+        "pc_breadcrumbs_layout": {
+          "label": "Tata letak breadcrumb port PC",
+          "options__0": {
+            "label": "Gambar di pusat di atas"
+          },
+          "options__1": {
+            "label": "Gambar di atas kiri"
+          },
+          "options__2": {
+            "label": "Di atas judul produk"
+          }
         },
         "product_image_pc_show_style": {
           "label": "Tata letak port PC",
@@ -3437,6 +3496,15 @@
         },
         "share_to_whatsapp": {
           "label": "Bagikan ke Whatsapp"
+        },
+        "show_official_icon": {
+          "label": "Menampilkan ikon media sosial resmi"
+        },
+        "show_official_share_icon": {
+          "label": "Menampilkan ikon media sosial resmi"
+        },
+        "show_social_name": {
+          "label": "Menampilkan nama media sosial"
         },
         "social_facebook_link": {
           "label": "Facebook"

@@ -1,16 +1,17 @@
-{{#with this as |global|}}
+{{ combine_asset_tag 'product/commons/style/sku-trade/sku-trade-select.css' inline=true }}
+{{#with this as | global |}}
 {{#if (length attr)}}
 <div class="product-sku-trade-select shopline-element-sku-trade-select" data-ssr-plugin-sku id="{{ id }}">
   {{#each attr}}
   {{#isFalsey hidden}}
-  <div class="spec-box" data-index="{{ @index }}" data-ssr-plugin-sku-item data-sku-item-name="{{specName}}" data-sku-tooltip-position="{{../product_image_position}}">
+  <div class="spec-box" data-index="{{ @index }}" data-ssr-plugin-sku-item data-sku-item-name="{{ specName }}" data-sku-tooltip-position="{{ ../product_image_position }}">
     <div class="spec-title"  data-ssr-plugin-sku-item-name>
       <div class="spec-name body3">{{ specName }}</div>
     </div>
     <div class="select-box" data-ssr-sku-value-list>
       <div class="select-entry" data-index="{{ @index }}">
-        <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  style="display: {{#isFalsey activeItem.imgUrl }}none{{/isFalsey}}" class="entry-img" src="{{img_url activeItem.imgUrl width=32 scale=2}}">
-        <span class="entry-text body3">{{#if activeItem }}{{activeItem.name}}{{else}}{{t 'products.product_details.default_placeholder' attrName=specName}}{{/if}}</span>
+        <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  style="display: {{#isFalsey activeItem.imgUrl}}none{{/isFalsey}}" class="entry-img" src="{{ img_url activeItem.imgUrl width=32 scale=4 }}">
+        <span class="entry-text body3">{{#if activeItem}}{{ activeItem.name }}{{else}}{{ t 'products.product_details.default_placeholder' attrName=specName }}{{/if}}</span>
         <span class="entry-arrow"></span>
       </div>
 
@@ -18,7 +19,7 @@
       {{#each specAttrList}}
         <div class="select-item" data-index="{{ @index }}">
           {{#isTruthy imgUrl}}
-            <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  class="select-img" src="{{img_url imgUrl width=32 scale=2 }}" >
+            <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  class="select-img" src="{{ img_url imgUrl width=32 scale=4 }}" >
           {{/isTruthy}}
           <span class="select-text" data-select-text="{{ name }}">{{ name }}</span>
           <span class="select-checked"></span>
@@ -30,7 +31,7 @@
   {{/isFalsey}}
   {{/each}}
 </div>
-{{/if }}
+{{/if}}
 {{/with}}
 {{!-- mobile popup样式节点 --}}
 {{!-- <div class="product-sku-trade-select-popup">

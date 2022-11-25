@@ -242,6 +242,7 @@
       "delete_account_email": "Имейл",
       "delete_account_notify": "Можете да заявите затварянето на този акаунт След затварянето, всякаква информация за идентифицирането на този акаунт ще бъде изтрита, включително:",
       "email": "Имейл",
+      "email_repeat_tip": "Имейлът е регистриран",
       "first_name": "Име",
       "gender": "Пол",
       "gender_female": "Жена",
@@ -267,6 +268,7 @@
       "select__date": "Изберете дата",
       "subscribe_confirm_tip": "Благодаря за абонамента.",
       "timeout_tip": "Операцията изтече, моля потвърдете отново",
+      "unknow_error_tip": "Изключете услугата, опитайте отново по-късно",
       "username": "Име",
       "verify_email_message": "Преди затварянето на акаунта, трябва да потвърдим вашата идентичност\nНа вашия имейл {{email}} ще получите имейл за потвърждение",
       "verify_phone_message": "Преди затварянето на акаунта, трябва да потвърдим вашата идентичност\nНа вашия мобилен телефон {{phone}} ще получите съобщение за потвърждение"
@@ -578,6 +580,7 @@
       "collection": "Категория"
     },
     "general": {
+      "added_to_cart_successfully": "Добавен в количката успешно",
       "no_product_data_found": "Не е намерена информация за продукта. Моля, опитайте по-късно",
       "sold_out": "Продадено"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Поздравления! Получихте {{saved}} безплатни подаръка вече! Купете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Купете още {{threshold}} артикула, насладете се на един безплатен от тях",
-        "b11_t1_s1_normal": "Купете още {{threshold}} артикула, насладете се на {{willSave}} ОТСТЪПКА за един от артикулите",
-        "b11_t1_s2_free": "Поздравления! насладете на един безплатен от артикулите",
-        "b11_t1_s2_next_free": "Поздравления! {{saved}} спестени, {{br}}Купете още {{threshold}} артикула, насладете на един безплатен от артикулите",
-        "b11_t1_s2_normal": "Поздравления! {{saved}} спестени, {{br}}Купете още {{threshold}} артикула, насладете се на {{willSave}} ОТСТЪПКА за един от артикулите",
-        "b11_t1_s3_free": "Поздравления! насладете на един безплатен от артикулите",
-        "b11_t1_s3_normal": "Поздравления! насладете се на {{saved}} ОТСТЪПКА за един от артикулите",
-        "b12_t0_s1_achieve_free": "Поздравления, можете да получете {{benefitCount}} артикула безплатно",
-        "b12_t0_s1_achieve_normal": "Поздравления, можете да получете {{willSave}} отстъпка за {{benefitCount}} артикула",
-        "b12_t0_s1_free": "Купете {{threshold}} и получете {{benefitCount}} артикула безплатно",
-        "b12_t0_s1_normal": "Купете {{threshold}} и получете {{willSave}} отстъпка за {{benefitCount}} артикула",
-        "b12_t0_s3_free": "Поздравления! Имате {{benefitCount}} артикула безплатно!",
-        "b12_t0_s3_normal": "Поздравления! Имате {{saved}} отстъпка за {{benefitCount}} артикула!",
-        "b12_t1_s1_achieve_free": "Поздравления, можете да получете {{benefitCount}} артикула безплатно",
-        "b12_t1_s1_achieve_normal": "Поздравления, можете да получете {{willSave}} отстъпка за {{benefitCount}} артикула",
-        "b12_t1_s1_free": "Купете {{threshold}} и получете {{benefitCount}} артикула безплатно",
-        "b12_t1_s1_normal": "Купете {{threshold}} и получете {{willSave}} отстъпка за {{benefitCount}} артикула",
-        "b12_t1_s3_free": "Поздравления! Имате {{benefitCount}} артикула безплатно!",
-        "b12_t1_s3_normal": "Поздравления! Имате {{saved}} отстъпка за {{benefitCount}} артикула!",
-        "b14_t1_s1": "Купете {{nextMinThreshold}} броя за {{willSave}}",
-        "b14_t1_s2": "Поздравления! Получавате {{currentMinThreshold}} броя за {{saved}}. Купете още {{threshold}} и се насладете на {{nextMinThreshold}} броя за {{willSave}}!",
-        "b14_t1_s3": "Поздравления! Получавате {{currentMinThreshold}} броя за {{saved}}!",
-        "b1_t0_s1": "Купете още {{threshold}} и спестете {{willSave}}",
-        "b1_t0_s2": "Вече спестихте {{saved}}! {{br}}Купете още {{threshold}} и спестете {{willSave}}",
-        "b1_t0_s3": "Поздравления! Спестихте {{saved}}!",
-        "b1_t1_s1": "Купете още {{threshold}} и спестете {{willSave}}",
-        "b1_t1_s2": "Вече спестихте {{saved}}! {{br}}Купете още {{threshold}} и спестете {{willSave}}",
-        "b1_t1_s3": "Поздравления! Спестихте {{saved}}!",
-        "b2_t0_s1": "Купете още {{threshold}} и получете {{willSave}} ОТСТЪПКА",
-        "b2_t0_s2": "Вече спестихте {{saved}}! {{br}}Купете още {{threshold}} и получете {{willSave}} ОТСТЪПКА",
-        "b2_t0_s3": "Поздравления! Спестихте {{saved}}!",
-        "b2_t1_s1": "Купете още {{threshold}} и получете {{willSave}} ОТСТЪПКА",
-        "b2_t1_s2": "Вече спестихте {{saved}}! {{br}}Купете още {{threshold}} и получете {{willSave}} ОТСТЪПКА",
-        "b2_t1_s3": "Поздравления! Спестихте {{saved}}!",
-        "b3_t0_s1_unlimited": "При повторна покупка на {{threshold}}, получавате<span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>!",
-        "b3_t0_s1_upper_limit": "При повторна покупка на {{threshold}}, получавате<span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>! (Максимална сума{{upperLimit}} за безплатна доставка)",
-        "b3_t0_s3_unlimited": "Честито! Получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>!",
-        "b3_t0_s3_upper_limit": "Честито! Получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>! (Максимална сума{{upperLimit}} за безплатна доставка)",
-        "b3_t1_s1_unlimited": "Купете още {{threshold}} и получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>!",
-        "b3_t1_s1_upper_limit": "Купете още {{threshold}} и получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>! (Максимална сума{{upperLimit}} за безплатна доставка)",
-        "b3_t1_s3_unlimited": "Честито! Получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>!",
-        "b3_t1_s3_upper_limit": "Честито! Получавате <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Безплатна доставка</span>! (Максимална сума{{upperLimit}} за безплатна доставка)",
-        "b9_t1_s1": "Купете още {{threshold}} броя, от които {{willSave}}броя са безплатни",
-        "b9_t1_s2": "Поздравления! {{saved}} броя са получени безплатно! Купете още {{threshold}} броя, от които {{willSave}}броя са безплатни",
-        "b9_t1_s3": "Поздравления! {{saved}} от тях са безплатно"
-      },
       "discount_tag": {
         "b11_t1_free": "Купете {{threshold}} артикула, насладете се на един безплатен от тях!",
         "b11_t1_normal": "Купете {{threshold}} артикула, насладете се на {{save}} ОТСТЪПКА за един от артикулите",
@@ -779,15 +735,6 @@
         "b2_t0": "Купете {{threshold}} спестете {{save}}",
         "b2_t1": "Купете {{threshold}} Вземете {{save}} ОТСТЪПКА",
         "label": "Намаление:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Купете {{nextMinThreshold}} броя за {{willSave}}",
-            "step2": "Поздравления! Получавате {{currentMinThreshold}} броя за {{saved}}. Купете още {{threshold}} и се насладете на {{nextMinThreshold}} броя за {{willSave}}!",
-            "step3": "Поздравления! Получавате {{currentMinThreshold}} броя за {{saved}}!"
-          }
-        }
       }
     }
   },

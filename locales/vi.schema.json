@@ -211,8 +211,14 @@
             "label": "Phối màu 3"
           }
         },
+        "pc_cols": {
+          "label": "Số cột đầu cuối máy tính"
+        },
         "slice_in_mobile": {
           "label": "Lướt trái phạm trên mạng di động để xem"
+        },
+        "slice_in_pc": {
+          "label": "Trượt sang trái phải để xem trên máy tính"
         },
         "title": {
           "label": "Tiêu đề"
@@ -474,6 +480,15 @@
         },
         "title": {
           "name": "Tiêu đề"
+        },
+        "viewMoreBtn": {
+          "name": "Xem các nút khác",
+          "settings": {
+            "btnText": {
+              "info": "Nếu không có văn bản nút nào được định cấu hình, nút sẽ không được hiển thị",
+              "label": "Nội dung nút"
+            }
+          }
         }
       },
       "name": "Một mặt hàng",
@@ -591,6 +606,9 @@
         "show_copyright": {
           "label": "Hiển thị thông tin bản quyền"
         },
+        "show_country_selector": {
+          "label": "Hiển thị trình chọn quốc gia"
+        },
         "show_currency_flags": {
           "label": "Hiển thị ký hiệu tiền tệ"
         },
@@ -649,6 +667,9 @@
         "group_header__1": {
           "label": "Menu"
         },
+        "header_full_width": {
+          "label": "chiều rộng toàn màn hình trong tiêu đề"
+        },
         "header_style": {
           "label": "Đầu trang cố định ở trên cùng"
         },
@@ -694,6 +715,9 @@
         },
         "show_cart_entry": {
           "label": "Hiển thị mục nhập giỏ hàng"
+        },
+        "show_country_selector": {
+          "label": "Hiển thị trình chọn quốc gia"
         },
         "show_currency_flags": {
           "label": "Hiển thị ký hiệu tiền tệ"
@@ -1098,13 +1122,16 @@
           "label": "Hiển thị tác giả"
         },
         "is_show_breadcrumb": {
-          "label": "HIển thị vị trí"
+          "label": "Hiển thị đường dẫn trên máy tính"
         },
         "is_show_comment": {
           "label": "Hiển thị các bình luận"
         },
         "is_show_date": {
           "label": "Hiển thị ngày tháng"
+        },
+        "is_show_mobile_breadcrumb": {
+          "label": "Hiển thị đường dẫn trên thiết bị di động"
         },
         "is_show_prev_next": {
           "label": "Hiển thị bài viết tiếp theo"
@@ -1513,6 +1540,9 @@
       },
       "name": "Danh sách chuyên mục",
       "settings": {
+        "col": {
+          "label": "Số cột đầu cuối máy tính"
+        },
         "collection_fill_type": {
           "label": "Phương pháp điền đầy hình ảnh",
           "options__0": {
@@ -1543,6 +1573,9 @@
           "options__1": {
             "label": "Phân loại hàng hóa chỉ định"
           }
+        },
+        "mb_col": {
+          "label": "Số cột trên điện thoại di động"
         }
       }
     },
@@ -1702,7 +1735,15 @@
           "name": "Nút mua"
         },
         "description": {
-          "name": "Mô tả Sản phẩm"
+          "name": "Mô tả Sản phẩm",
+          "settings": {
+            "location": {
+              "label": "Vị trí hiển thị mô tả sản phẩm",
+              "options__1": {
+                "label": "Bên dưới ảnh sản phẩm"
+              }
+            }
+          }
         },
         "html": {
           "name": "HTML tùy chỉnh",
@@ -2018,6 +2059,24 @@
       "settings": {
         "default_selected_sku": {
           "label": "SKU được chọn theo mặc định"
+        },
+        "mb_breadcrumbs": {
+          "label": "Hiển thị đường dẫn trên thiết bị di động"
+        },
+        "pc_breadcrumbs": {
+          "label": "Hiển thị đường dẫn trên máy tính"
+        },
+        "pc_breadcrumbs_layout": {
+          "label": "Bố cục đường dẫn Breadcrumb Máy tính",
+          "options__0": {
+            "label": "Căn giữa phía trên hình ảnh"
+          },
+          "options__1": {
+            "label": "Phía trên bên trái hình ảnh"
+          },
+          "options__2": {
+            "label": "Phía trên tiêu đề sản phẩm"
+          }
         },
         "product_image_pc_show_style": {
           "label": "Bố cục máy tính",
@@ -3437,6 +3496,15 @@
         },
         "share_to_whatsapp": {
           "label": "Chia sẻ đến Whatsapp"
+        },
+        "show_official_icon": {
+          "label": "Hiển thị biểu tượng chính thức của mạng truyền thông xã hội"
+        },
+        "show_official_share_icon": {
+          "label": "Hiển thị biểu tượng chính thức của mạng truyền thông xã hội"
+        },
+        "show_social_name": {
+          "label": "Hiển thị tên mạng truyền thông xã hội"
         },
         "social_facebook_link": {
           "label": "Facebook"

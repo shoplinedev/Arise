@@ -211,8 +211,14 @@
             "label": "จับคู่สี3"
           }
         },
+        "pc_cols": {
+          "label": "จำนวนคอลัมน์บนคอมพิวเตอร์"
+        },
         "slice_in_mobile": {
           "label": "ปัดไปทางซ้ายและขวาบนมือถือเพื่อดู"
+        },
+        "slice_in_pc": {
+          "label": "ปัดไปทางซ้ายและขวาบนคอมพิวเตอร์เพื่อดู"
         },
         "title": {
           "label": "หัวข้อ"
@@ -474,6 +480,15 @@
         },
         "title": {
           "name": "หัวข้อ"
+        },
+        "viewMoreBtn": {
+          "name": "ดูปุ่มเพิ่มเติม",
+          "settings": {
+            "btnText": {
+              "info": "หากไม่มีการกำหนดค่าข้อความปุ่ม ปุ่มจะไม่ปรากฏ",
+              "label": "ข้อความปุ่ม"
+            }
+          }
         }
       },
       "name": "สินค้าชิ้นเดียว",
@@ -591,6 +606,9 @@
         "show_copyright": {
           "label": "แสดงข้อมูลลิขสิทธิ์"
         },
+        "show_country_selector": {
+          "label": "แสดงตัวเลือกประเทศ"
+        },
         "show_currency_flags": {
           "label": "แสดงสัญลักษณ์สกุลเงิน"
         },
@@ -649,6 +667,9 @@
         "group_header__1": {
           "label": "เมนู"
         },
+        "header_full_width": {
+          "label": "ความกว้างเต็มหน้าจอในส่วนหัว"
+        },
         "header_style": {
           "label": "ส่วนหัวได้รับการปักหมุดที่ด้านบน"
         },
@@ -694,6 +715,9 @@
         },
         "show_cart_entry": {
           "label": "แสดงทางเข้าตะกร้าสินค้า"
+        },
+        "show_country_selector": {
+          "label": "แสดงตัวเลือกประเทศ"
         },
         "show_currency_flags": {
           "label": "แสดงสัญลักษณ์สกุลเงิน"
@@ -1098,13 +1122,16 @@
           "label": "แสดงผู้เขียน"
         },
         "is_show_breadcrumb": {
-          "label": "แสดงเมนูที่ใช้นำทางในเว็บไซ"
+          "label": "แสดงเบรดครัมบ์บนคอมพิวเตอร์"
         },
         "is_show_comment": {
           "label": "แสดงความคิดเห็น"
         },
         "is_show_date": {
           "label": "แสดงวันที่"
+        },
+        "is_show_mobile_breadcrumb": {
+          "label": "แสดงเบรดครัมบ์บนมือถือ"
         },
         "is_show_prev_next": {
           "label": "แสดงบทความถัดไป"
@@ -1513,6 +1540,9 @@
       },
       "name": "รายการหมวดหมู่",
       "settings": {
+        "col": {
+          "label": "จำนวนคอลัมน์บนคอมพิวเตอร์"
+        },
         "collection_fill_type": {
           "label": "วิธีการเติมภาพ",
           "options__0": {
@@ -1543,6 +1573,9 @@
           "options__1": {
             "label": "หมวดหมู่สินค้าที่กำหนด"
           }
+        },
+        "mb_col": {
+          "label": "จำนวนคอลัมน์บนมือถือ"
         }
       }
     },
@@ -1702,7 +1735,15 @@
           "name": "ปุ่มซื้อ"
         },
         "description": {
-          "name": "รายละเอียดสินค้า"
+          "name": "รายละเอียดสินค้า",
+          "settings": {
+            "location": {
+              "label": "ตำแหน่งแสดงรายละเอียดสินค้า",
+              "options__1": {
+                "label": "ใต้ภาพสินค้า"
+              }
+            }
+          }
         },
         "html": {
           "name": "HTML ที่กำหนดเอง",
@@ -2018,6 +2059,24 @@
       "settings": {
         "default_selected_sku": {
           "label": "SKU ถูกเลือกโดยค่าเริ่มต้น"
+        },
+        "mb_breadcrumbs": {
+          "label": "แสดงเบรดครัมบ์บนมือถือ"
+        },
+        "pc_breadcrumbs": {
+          "label": "แสดงเบรดครัมบ์บนคอมพิวเตอร์"
+        },
+        "pc_breadcrumbs_layout": {
+          "label": "เลย์เอาต์ Breadcrumb บนคอมพิวเตอร์",
+          "options__0": {
+            "label": "เหนือภาพตรงกลาง"
+          },
+          "options__1": {
+            "label": "เหนือภาพชิดซ้าย"
+          },
+          "options__2": {
+            "label": "เหนือหัวข้อสินค้า"
+          }
         },
         "product_image_pc_show_style": {
           "label": "เลย์เอาต์บนคอมพิวเตอร์",
@@ -3437,6 +3496,15 @@
         },
         "share_to_whatsapp": {
           "label": "แบ่งปันไปที่ Whatsapp"
+        },
+        "show_official_icon": {
+          "label": "แสดงไอคอนอย่างเป็นทางการของโซเชียลมีเดีย"
+        },
+        "show_official_share_icon": {
+          "label": "แสดงไอคอนอย่างเป็นทางการของโซเชียลมีเดีย"
+        },
+        "show_social_name": {
+          "label": "แสดงชื่อโซเชียลมีเดีย"
         },
         "social_facebook_link": {
           "label": "Facebook"

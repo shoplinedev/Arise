@@ -242,6 +242,7 @@
       "delete_account_email": "E-posta",
       "delete_account_notify": "Bu hesabı kapatmak için başvurabilirsiniz. Kapatıldığında, bu hesabı tanımlamak için kullanılacak tüm bilgiler silinecektir, bu bilgilere şunlar dahildir:",
       "email": "E-posta",
+      "email_repeat_tip": "E-posta kaydedildi",
       "first_name": "Ad",
       "gender": "Cinsiyet",
       "gender_female": "Kadın",
@@ -267,6 +268,7 @@
       "select__date": "Tarih seç",
       "subscribe_confirm_tip": "Abone olduğunuz için teşekkür ederiz.",
       "timeout_tip": "İşlem zaman aşımına uğradı, lütfen tekrar doğrulayın",
+      "unknow_error_tip": "Servis istisnası, sonra tekrar deneyin",
       "username": "Ad",
       "verify_email_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{email}} e-posta adresinize bir doğrulama e-postası alacaksınız",
       "verify_phone_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{phone}} numaralı cep telefonunuza bir doğrulama mesajı alacaksınız"
@@ -578,6 +580,7 @@
       "collection": "Kategori"
     },
     "general": {
+      "added_to_cart_successfully": "Başarıyla sepete eklendi",
       "no_product_data_found": "Ürün verisi bulunamadı. Lütfen daha sonra tekrar deneyin",
       "sold_out": "Tümü Satıldı"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Tebrikler! Toplamda {{saved}} Ücretsiz Hediye aldınız! {{threshold}} öğe daha satın alın, {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarın"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "{{threshold}} öğe daha satın alın, öğelerden birini ücretsiz almanın keyfini çıkarın",
-        "b11_t1_s1_normal": "{{threshold}} öğe daha satın alın, öğelerden birinde {{willSave}} indirimin keyfini çıkarın",
-        "b11_t1_s2_free": "Tebrikler! Öğelerden birini ücretsiz almanın keyfini çıkarın!",
-        "b11_t1_s2_next_free": "Tebrikler! {{saved}} tasarruf edildi, {{br}}{{threshold}} öğe daha satın alın, öğelerden birini ücretsiz almanın keyfini çıkarın!",
-        "b11_t1_s2_normal": "Tebrikler! {{saved}} tasarruf edildi, {{br}}{{threshold}} öğe daha satın alın, öğelerden birinde {{willSave}} indirimin keyfini çıkarın",
-        "b11_t1_s3_free": "Tebrikler! Öğelerden birini ücretsiz almanın keyfini çıkarın!",
-        "b11_t1_s3_normal": "Tebrikler! Öğelerden birinde {{saved}} indirimin keyfini çıkarın!",
-        "b12_t0_s1_achieve_free": "Tebrikler, {{benefitCount}} öğenin ücretsiz keyfini çıkarın",
-        "b12_t0_s1_achieve_normal": "Tebrikler, {{benefitCount}} öğe için {{willSave}} indirim keyfini çıkarın",
-        "b12_t0_s1_free": "{{threshold}} satın alın, {{benefitCount}} öğenin ücretsiz keyfini çıkarın",
-        "b12_t0_s1_normal": "{{threshold}} satın alın, {{benefitCount}} öğe için {{willSave}} indirim keyfini çıkarın",
-        "b12_t0_s3_free": "Tebrikler! ücretsiz {{benefitCount}} öğe aldınız!",
-        "b12_t0_s3_normal": "Tebrikler! {{benefitCount}} öğe için {{saved}} indirim aldınız!",
-        "b12_t1_s1_achieve_free": "Tebrikler, {{benefitCount}} öğenin ücretsiz keyfini çıkarın",
-        "b12_t1_s1_achieve_normal": "Tebrikler, {{benefitCount}} öğe için {{willSave}} indirim keyfini çıkarın",
-        "b12_t1_s1_free": "{{threshold}} satın alın, {{benefitCount}} öğenin ücretsiz keyfini çıkarın",
-        "b12_t1_s1_normal": "{{threshold}} satın alın, {{benefitCount}} öğe için {{willSave}} indirim keyfini çıkarın",
-        "b12_t1_s3_free": "Tebrikler! ücretsiz {{benefitCount}} öğe aldınız!",
-        "b12_t1_s3_normal": "Tebrikler! {{benefitCount}} öğe için {{saved}} indirim aldınız!",
-        "b14_t1_s1": "{{willSave}} karşılığında {{nextMinThreshold}} adet satın alın",
-        "b14_t1_s2": "Tebrikler! {{saved}} karşılığında {{currentMinThreshold}} adet satın aldınız. {{nextMinThreshold}} tanenin keyfini çıkarmak için {{willSave}} karşılığında {{threshold}} adet daha satın alın!",
-        "b14_t1_s3": "Tebrikler! {{saved}} karşılığında {{currentMinThreshold}} adet satın aldınız!",
-        "b1_t0_s1": "{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
-        "b1_t0_s2": "Şu ana kadar {{saved}} tararruf edildi! {{br}}{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
-        "b1_t0_s3": "Tebrikler! {{saved}} tasarruf ettiniz!",
-        "b1_t1_s1": "{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
-        "b1_t1_s2": "Şu ana kadar {{saved}} tararruf edildi! {{br}}{{willSave}} tasarruf etmek için {{threshold}} daha satın alın",
-        "b1_t1_s3": "Tebrikler! {{saved}} tasarruf ettiniz!",
-        "b2_t0_s1": "{{willSave}} indirim kazanmak için {{threshold}} daha satın alın",
-        "b2_t0_s2": "Şu ana kadar {{saved}} tararruf edildi! {{br}}{{willSave}} indirim kazanmak için {{threshold}} daha satın alın",
-        "b2_t0_s3": "Tebrikler! {{saved}} tasarruf ettiniz!",
-        "b2_t1_s1": "{{willSave}} indirim kazanmak için {{threshold}} daha satın alın",
-        "b2_t1_s2": "Şu ana kadar {{saved}} tararruf edildi! {{br}}{{willSave}} indirim kazanmak için {{threshold}} daha satın alın",
-        "b2_t1_s3": "Tebrikler! {{saved}} tasarruf ettiniz!",
-        "b3_t0_s1_unlimited": "Tekrar {{threshold}} satın alın ve <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo</span> keyfi çıkarın!",
-        "b3_t0_s1_upper_limit": "Tekrar {{threshold}} satın alın ve <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo</span> keyfi çıkarın! (Maksimum ücretsiz kargo tutarı {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Tebrikler! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo sahibisiniz</span>!",
-        "b3_t0_s3_upper_limit": "Tebrikler! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo sahibisiniz</span>! (Maksimum ücretsiz kargo tutarı {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Daha fazla {{threshold}} satın alın ve <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo</span> keyfi çıkarın!",
-        "b3_t1_s1_upper_limit": "Daha fazla {{threshold}} satın alın ve <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo</span> keyfi çıkarın! (Maksimum ücretsiz kargo tutarı {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Tebrikler! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo sahibisiniz</span>!",
-        "b3_t1_s3_upper_limit": "Tebrikler! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ücretsiz kargo sahibisiniz</span>! (Maksimum ücretsiz kargo tutarı {{upperLimit}})",
-        "b9_t1_s1": "{{threshold}} adet daha satın alın, {{willSave}} adeti ücretsiz olsun",
-        "b9_t1_s2": "Tebrikler! {{saved}} adet ücretsiz aldınız! {{threshold}} adet daha satın alın, {{willSave}} adeti ücretsiz olsun",
-        "b9_t1_s3": "Tebrikler! {{saved}} adeti ücretsiz"
-      },
       "discount_tag": {
         "b11_t1_free": "{{threshold}} öğe satın alın, öğelerden birini ücretsiz almanın keyfini çıkarın",
         "b11_t1_normal": "{{threshold}} öğe satın alın, öğelerden birinde {{save}} indirimin keyfini çıkarın",
@@ -779,15 +735,6 @@
         "b2_t0": "{{threshold}} satın alın, {{save}} tasarruf edin",
         "b2_t1": "{{threshold}} satın alın, {{save}} indirim kazanın",
         "label": "İndirim:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "{{willSave}} karşılığında {{nextMinThreshold}} adet satın alın",
-            "step2": "Tebrikler! {{saved}} karşılığında {{currentMinThreshold}} adet satın aldınız. {{nextMinThreshold}} tanenin keyfini çıkarmak için {{willSave}} karşılığında {{threshold}} adet daha satın alın!",
-            "step3": "Tebrikler! {{saved}} karşılığında {{currentMinThreshold}} adet satın aldınız!"
-          }
-        }
       }
     }
   },

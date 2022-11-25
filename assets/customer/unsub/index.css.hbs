@@ -1,0 +1,211 @@
+input{
+  -webkit-appearance:none;
+}
+.sl-radio{
+  box-sizing:border-box;
+  cursor:pointer;
+  line-height:1;
+  list-style:none;
+  margin:0;
+  outline:none;
+  padding:0;
+  position:relative;
+  top:.2em;
+  white-space:nowrap;
+}
+.sl-radio+span{
+  padding-left:8px;
+  padding-right:8px;
+}
+.sl-radio__wrapper{
+  font-feature-settings:"tnum";
+  align-items:baseline;
+  box-sizing:border-box;
+  display:inline-flex;
+  line-height:unset;
+  list-style:none;
+}
+.sl-radio__input,.sl-radio__wrapper{
+  cursor:pointer;
+  margin:0;
+  padding:0;
+}
+.sl-radio__input{
+  height:100%;
+  inset:0;
+  opacity:0;
+  position:absolute;
+  width:100%;
+  z-index:1;
+}
+.sl-radio__input:checked+.sl-radio__inner{
+  border-color:rgba(var(--color-btn-background));
+}
+.sl-radio__input:checked+.sl-radio__inner:after{
+  opacity:1;
+  transform:scale(.5);
+}
+.sl-radio__inner{
+  background-color:rgba(var(--color-page-background));
+  border:1px solid rgba(var(--color-entry-line));
+  border-collapse:separate;
+  border-radius:50%;
+  direction:ltr;
+  left:0;
+  position:relative;
+  top:0;
+  transition:all .3s;
+}
+.sl-radio__inner,.sl-radio__inner:after{
+  display:block;
+  height:16px;
+  width:16px;
+}
+.sl-radio__inner:after{
+  background-color:rgba(var(--color-btn-background));
+  border-left:0;
+  border-radius:16px;
+  border-top:0;
+  content:" ";
+  left:50%;
+  margin-left:-8px;
+  margin-top:-8px;
+  opacity:0;
+  position:absolute;
+  top:50%;
+  transform:scale(0);
+  transition:all .3s cubic-bezier(.78, .14, .15, .86);
+}
+
+.unsub-container{
+  display:flex;
+  justify-content:center;
+  margin:80px auto;
+  width:100%;
+}
+@media only screen and (min-width:960px){
+  .unsub-container{
+    max-width:1244px;
+    padding:0 32px;
+  }
+}
+@media only screen and (max-width:959px){
+  .unsub-container{
+    margin-top:40px;
+    padding:0 24px;
+    width:100%;
+  }
+}
+.unsub-toast-container{
+  left:0;
+  max-width:none;
+  pointer-events:none;
+  right:0;
+  text-align:center;
+  transform:translateY(-50%);
+}
+.unsub-toast-container .mp-toast__inner{
+  margin:0 24px;
+}
+.unsub-wrap{
+  word-break:break-all;
+}
+.unsub-wrap h1{
+  font-size:48px;
+  line-height:1.4;
+  margin:0;
+  text-align:center;
+}
+@media (max-width:767.98px){
+  .unsub-wrap h1{
+    font-size:30px;
+  }
+}
+.unsub-wrap h4{
+  font-size:20px;
+  font-weight:600;
+  line-height:1.4;
+  margin:40px 0 24px;
+}
+@media (max-width:767.98px){
+  .unsub-wrap h4{
+    font-size:16px;
+  }
+}
+.unsub-reason{
+  font-size:16px;
+}
+@media (max-width:767.98px){
+  .unsub-reason{
+    font-size:14px;
+  }
+}
+.unsub-reason__item{
+  color:rgba(var(--color-text));
+  margin-bottom:20px;
+  word-break:break-all;
+}
+.unsub-reason__item:last-child{
+  margin-bottom:0;
+}
+.unsub-reason__item .unsubscribe-textarea{
+  display:none;
+  margin-top:8px;
+}
+.unsub-reason__item .unsubscribe-textarea textarea{
+  background-color:rgba(var(--color-page-background));
+  border-color:rgba(var(--color-entry-line));
+  border-style:solid;
+  border-width:1px;
+  color:rgba(var(--color-text));
+  display:block;
+  font-size:14px;
+  height:36px;
+  line-height:26px;
+  max-height:170px;
+  padding:4px 12px;
+  resize:none;
+  transition:border-color .3s;
+  width:100%;
+}
+[data-button_style=square] .unsub-reason__item .unsubscribe-textarea textarea{
+  border-radius:0;
+}
+
+[data-button_style=radius] .unsub-reason__item .unsubscribe-textarea textarea{
+  border-radius:4px;
+}
+
+[data-button_style=rounded] .unsub-reason__item .unsubscribe-textarea textarea{
+  border-radius:46px;
+}
+
+@media (max-width:767.98px){
+  .unsub-reason__item .unsubscribe-textarea textarea{
+    min-height:100px;
+  }
+}
+.unsub-reason__item .unsubscribe-textarea textarea:focus{
+  border-color:rgba(var(--color-text));
+}
+.unsub-reason__item .unsubscribe-textarea__error{
+  color:#f04949;
+  display:none;
+  font-size:12px;
+  line-height:1.4;
+  margin-top:6px;
+}
+.unsub-reason__item .unsubscribe-textarea.has-error .unsubscribe-textarea__error{
+  display:block;
+}
+.unsub-reason__item .unsubscribe-textarea.has-error textarea{
+  border-color:#f04949;
+}
+.unsub-submit{
+  margin-top:40px;
+  text-align:center;
+}
+.unsub-submit .submit-button{
+  font-size:16px;
+  min-width:265px;
+}

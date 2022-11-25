@@ -147,12 +147,12 @@
                 {{/if}}
               </div>
             {{else if type '===' 'IMAGE'}}
-              <div class="swiper-slide firstInit imageItem {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" data-bottom="height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}" style="height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}">
-                {{#if ../needSkuCover }}
-                  {{#if @index '==' ../initialSlide }}
-                    {{ snippet 'product/detail/product-swiper-img' type='pcImage' class='lozad product_photoSwipe_image' }}
+              <div class="swiper-slide firstInit imageItem {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" data-bottom="height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}" style="transform: translate3d(calc(-100% * {{@index}}), 0px, 0px);height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}">
+                {{#if @index '==' ../initialSlide }}
+                  {{#if ../templateAlias '===' 'ProductsDetail'}}
+                    {{ snippet 'product/detail/product-swiper-img' type='pcImage' class='lozad product_photoSwipe_image' useLazyLoad=false }}
                   {{else}}
-                    {{ snippet 'product/detail/product-swiper-img' type='pcImage' class='swiper-lazy product_photoSwipe_image' }}
+                    {{ snippet 'product/detail/product-swiper-img' type='pcImage' class='lozad product_photoSwipe_image' }}
                   {{/if}}
                 {{else}}
                   {{ snippet 'product/detail/product-swiper-img' type='pcImage' class='swiper-lazy product_photoSwipe_image' }}
@@ -194,7 +194,7 @@
       {{/if}}
       {{#if needSkuCover }}
         <div class="product_pc_skuImage" style="display: block">
-          {{ snippet 'product/detail/product-swiper-img' type='pcSkuImage' class='lozad product_photoSwipe_image' }}
+          {{ snippet 'product/detail/product-swiper-img' type='pcSkuImage' class='lozad product_photoSwipe_image' isPreload=true useLazyLoad=false }}
         </div>
       {{else}}
         <div class="product_pc_skuImage" ></div>
@@ -436,7 +436,7 @@
                   style="padding-bottom: {{#and ../needSkuCover (boolean @index '==' 0 )}}{{ append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}"
                 >
                 {{#if (boolean ../templateAlias '===' 'ProductsDetail')}}
-                  {{ snippet 'product/detail/product-swiper-img' isPreload=true useLazyLoad=(cond (boolean @index '==' 0 ) false true) type='mImage' class=(cond (boolean @index "!==" 0) 'product_photoSwipe_image' 'lozad product_photoSwipe_image') }}
+                  {{ snippet 'product/detail/product-swiper-img' isPreload=true useLazyLoad=(cond (boolean @index '==' ../initialSlide ) false true) type='mImage' class=(cond (boolean @index "!==" ../initialSlide) 'product_photoSwipe_image' 'lozad product_photoSwipe_image') }}
                 {{else}}
                   {{ snippet 'product/detail/product-swiper-img' type='mImage' class='lozad product_photoSwipe_image' }}
                 {{/if}}

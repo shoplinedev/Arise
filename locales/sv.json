@@ -242,6 +242,7 @@
       "delete_account_email": "Epost",
       "delete_account_notify": "Du kan ansöka om att avsluta detta konto. När kontot en gång har avslutas kommer all information för identifiering av detta konto raderas, inkluderar:",
       "email": "E-post",
+      "email_repeat_tip": "E-postmeddelandet har sparats",
       "first_name": "Namn",
       "gender": "Snäll",
       "gender_female": "Kvinna",
@@ -267,6 +268,7 @@
       "select__date": "Välj ett Datum",
       "subscribe_confirm_tip": "Tack för prenumerationen.",
       "timeout_tip": "Driften avbröts, Kontrollera att din igen",
+      "unknow_error_tip": "Undantag i tjänsten, försök igen senare",
       "username": "Namn",
       "verify_email_message": "Före avslutning av konto måste vi verifiera er identitet\nEtt verifieringsmail kommer skickas till er epost {{email}}",
       "verify_phone_message": "Före avslutning av kontot måste vi verifiera din identitet\nVi kommer skicka ett verifieringsmedelande till er mobilnummer {{phone}}"
@@ -578,6 +580,7 @@
       "collection": "Kategori"
     },
     "general": {
+      "added_to_cart_successfully": "Har lagts till i kundvagnen",
       "no_product_data_found": "Inga produktdata hittades. Försök igen senare",
       "sold_out": "Slutsålt"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Grattis! Jag har redan {{saved}} fri present gåva! Köp {{threshold}} mer, njut av upp till {{willSave}} FRI-PRESENT"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Köp {{threshold}} ytterligare artiklar, njut av en av punkterna gratis",
-        "b11_t1_s1_normal": "Köp {{threshold}} ytterligare artiklar, njut av {{willSave}} AV på en av punkterna",
-        "b11_t1_s2_free": "Grattis! njut av en av punkterna gratis",
-        "b11_t1_s2_next_free": "Grattis! {{saved}} Inspelad, {{br}} Köp {{threshold}} ytterligare punkterna, njut av en av punkterna gratis!",
-        "b11_t1_s2_normal": "Grattis! {{saved}} Inspelad, {{br}} Köp {{threshold}} ytterligare artiklar, njut av {{willSave}} AV på en av punkterna",
-        "b11_t1_s3_free": "Grattis! njut av en av punkterna gratis",
-        "b11_t1_s3_normal": "Grattis! dra nytta av {{saved}} AV på en av artiklarna",
-        "b12_t0_s1_achieve_free": "Grattis, du kan njuta av {{benefitCount}} saker GRATIS",
-        "b12_t0_s1_achieve_normal": "Grattis, du kan få {{willSave}} rabatt för {{benefitCount}} saker",
-        "b12_t0_s1_free": "Köp {{threshold}} njut av {{benefitCount}} saker GRATIS",
-        "b12_t0_s1_normal": "Köp {{threshold}} dra nytta av rabatt {{willSave}} för {{benefitCount}} saker",
-        "b12_t0_s3_free": "Grattis! Du har {{benefitCount}} GRATIS saker!",
-        "b12_t0_s3_normal": "Grattis! Du har {{saved}} rabatt {{benefitCount}} saker!",
-        "b12_t1_s1_achieve_free": "Grattis, du kan njuta av {{benefitCount}} saker GRATIS",
-        "b12_t1_s1_achieve_normal": "Grattis, du kan få {{willSave}} rabatt för {{benefitCount}} saker",
-        "b12_t1_s1_free": "Köp {{threshold}}, njut av {{benefitCount}} GRATIS saker",
-        "b12_t1_s1_normal": "Köp {{threshold}}, dra nytta av rabatt {{willSave}} för {{benefitCount}} saker",
-        "b12_t1_s3_free": "Grattis! Du har {{benefitCount}} GRATIS saker!",
-        "b12_t1_s3_normal": "Grattis! Du har {{saved}} rabatt {{benefitCount}} saker!",
-        "b14_t1_s1": "Köp {{nextMinThreshold}} priser för {{willSave}}",
-        "b14_t1_s2": "Grattis! Du har {{currentMinThreshold}} priser för {{saved}}. Köp {{threshold}} fler för att njuta av {{nextMinThreshold}} stycken för {{willSave}}!",
-        "b14_t1_s3": "Grattis! Du har {{currentMinThreshold}} priser för {{saved}}!",
-        "b1_t0_s1": "Köp {{threshold}} mer för att spara {{willSave}}",
-        "b1_t0_s2": "Spara {{saved}} nu! {{br}} Köp {{threshold}} mer för att spara {{willSave}}",
-        "b1_t0_s3": "Grattis! Du har sparat {{saved}}!",
-        "b1_t1_s1": "Köp {{threshold}} mer för att spara {{willSave}}",
-        "b1_t1_s2": "Spara {{saved}} nu! {{br}} Köp {{threshold}} mer för att spara {{willSave}}",
-        "b1_t1_s3": "Grattis! Du har sparat {{saved}}！",
-        "b2_t0_s1": "Köp {{threshold}} mer för att få {{willSave}} AV",
-        "b2_t0_s2": "Spara {{saved}} nu! {{br}} Köp {{threshold}} mer för att få {{willSave}} AV",
-        "b2_t0_s3": "Grattis! Du har sparat {{saved}}!",
-        "b2_t1_s1": "Köp {{threshold}} mer för att få {{willSave}} AV",
-        "b2_t1_s2": "Spara {{saved}} nu! {{br}} Köp {{threshold}} mer för att få {{willSave}} AV",
-        "b2_t1_s3": "Grattis! Du har sparat {{saved}}!",
-        "b3_t0_s1_unlimited": "Kjøp {{threshold}} igjen og nyt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>!",
-        "b3_t0_s1_upper_limit": "Kjøp {{threshold}} igjen og nyt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>! (Maksimal gratis fraktverdi {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Gratulerer ! Du har kjøpt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>!",
-        "b3_t0_s3_upper_limit": "Gratulerer ! Du har kjøpt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>! (Maksimal gratis fraktverdi {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Kjøp {{threshold}} mer og nyt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>!",
-        "b3_t1_s1_upper_limit": "Kjøp {{threshold}} mer og nyt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>! (Maksimal gratis fraktverdi {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Gratulerer ! Du har kjøpt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>!",
-        "b3_t1_s3_upper_limit": "Gratulerer ! Du har kjøpt <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Gratis leverans</span>! (Maksimal gratis fraktverdi {{upperLimit}})",
-        "b9_t1_s1": "Köp {{threshold}} fler bitar, varav {{willSave}} bitar är gratis",
-        "b9_t1_s2": "Grattis! {{saved}} bitar erhållna gratis! Köp {{threshold}} fler bitar, varav {{willSave}} bitar är gratis",
-        "b9_t1_s3": "Grattis! {{saved}} av dem är gratis"
-      },
       "discount_tag": {
         "b11_t1_free": "Köp {{threshold}} artiklar och njut av en av artiklarna gratis",
         "b11_t1_normal": "Köp {{threshold}} artiklar och njut av {{save}} AV på en av punkterna",
@@ -779,15 +735,6 @@
         "b2_t0": "Köp {{threshold}} spara {{save}}",
         "b2_t1": "Köp {{threshold}} Få {{save}} AV",
         "label": "Rabatt:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Köp {{nextMinThreshold}} priser för {{willSave}}",
-            "step2": "Grattis! Du har {{currentMinThreshold}} priser för {{saved}}. Köp {{threshold}} fler för att njuta av {{nextMinThreshold}} stycken för {{willSave}}!",
-            "step3": "Grattis! Du har {{currentMinThreshold}} priser för {{saved}}!"
-          }
-        }
       }
     }
   },

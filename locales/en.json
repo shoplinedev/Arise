@@ -242,6 +242,7 @@
       "delete_account_email": "Email",
       "delete_account_notify": "You can apply for closing this account. Once closed, any information for identifying this account will be deleted, including:",
       "email": "E-mail",
+      "email_repeat_tip": "The email has been registered",
       "first_name": "First Name",
       "gender": "Gender",
       "gender_female": "Female",
@@ -267,6 +268,7 @@
       "select__date": "Select Date",
       "subscribe_confirm_tip": "Thanks for your subscription",
       "timeout_tip": "Operation timed out, please verify again",
+      "unknow_error_tip": "Server error, please try again",
       "username": "Name",
       "verify_email_message": "Before closing account, we need to verify your identity\nYour email {{email}} will receive a verification email",
       "verify_phone_message": "Before closing account, we need to verify your identity\nYour mobile phone {{phone}} will receive a verification message"
@@ -578,6 +580,7 @@
       "collection": "Collections"
     },
     "general": {
+      "added_to_cart_successfully": "Added to cart successfully",
       "no_product_data_found": "No product data found. Please try again later",
       "sold_out": "Sold Out"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Congratulations! Got {{saved}} Free Gift already! Buy {{threshold}} more item(s) to enjoy up to {{willSave}} Free Gifts"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Buy {{threshold}} more item(s) get the lowest-priced free",
-        "b11_t1_s1_normal": "Buy {{threshold}} more item(s) to enjoy {{willSave}} OFF on the lowest-priced item!",
-        "b11_t1_s2_free": "Congratulations! You've got one item free!",
-        "b11_t1_s2_next_free": "Congratulations! You've saved {{saved}}, {{br}} buy {{threshold}} more get the lowest-priced free",
-        "b11_t1_s2_normal": "Congratulations! You've saved {{saved}}, {{br}} buy {{threshold}} more, enjoy {{willSave}} OFF on the lowest-priced item!",
-        "b11_t1_s3_free": "Congratulations! You've got one item free!",
-        "b11_t1_s3_normal": "Congratulations! You've got {{saved}} OFF on the lowest-priced item!",
-        "b12_t0_s1_achieve_free": "Congratulations, you can enjoy {{benefitCount}} of the items for FREE",
-        "b12_t0_s1_achieve_normal": "Congratulations, you can enjoy {{willSave}} off for {{benefitCount}} of the items",
-        "b12_t0_s1_free": "Buy {{threshold}}, enjoy {{benefitCount}} of the items for FREE",
-        "b12_t0_s1_normal": "Buy {{threshold}}, enjoy {{willSave}} off for {{benefitCount}} of the items",
-        "b12_t0_s3_free": "Congratulations! You’ve got {{benefitCount}} items for FREE!",
-        "b12_t0_s3_normal": "Congratulations! You’ve got {{saved}} off for {{benefitCount}} items!",
-        "b12_t1_s1_achieve_free": "Congratulations, you can enjoy {{benefitCount}} of the items for FREE",
-        "b12_t1_s1_achieve_normal": "Congratulations, you can enjoy {{willSave}} off for {{benefitCount}} of the items",
-        "b12_t1_s1_free": "Buy {{threshold}}, enjoy {{benefitCount}} of the items for FREE",
-        "b12_t1_s1_normal": "Buy {{threshold}}, enjoy {{willSave}} off for {{benefitCount}} of the items",
-        "b12_t1_s3_free": "Congratulations! You’ve got {{benefitCount}} items for FREE!",
-        "b12_t1_s3_normal": "Congratulations! You’ve got {{saved}} off for {{benefitCount}} items!",
-        "b14_t1_s1": "Buy {{nextMinThreshold}} items for {{willSave}}",
-        "b14_t1_s2": "Congratulations! You've got {{currentMinThreshold}} for {{saved}}! Buy {{threshold}} more to enjoy {{nextMinThreshold}} for {{willSave}}!",
-        "b14_t1_s3": "Congratulations! You've got {{currentMinThreshold}} for {{saved}}!",
-        "b1_t0_s1": "Buy {{threshold}} or more to save {{willSave}}",
-        "b1_t0_s2": "Saved {{saved}} already! {{br}}Buy {{threshold}} more to save {{willSave}}",
-        "b1_t0_s3": "Congratulations! You've saved {{saved}}!",
-        "b1_t1_s1": "Buy {{threshold}} more item(s) to save {{willSave}}",
-        "b1_t1_s2": "Saved {{saved}} already! {{br}}Buy {{threshold}} more item(s) to save {{willSave}}",
-        "b1_t1_s3": "Congratulations! You've saved {{saved}}！",
-        "b2_t0_s1": "Buy {{threshold}} more to get {{willSave}} OFF",
-        "b2_t0_s2": "Saved {{saved}} already! {{br}}Buy {{threshold}} more to get {{willSave}} OFF",
-        "b2_t0_s3": "Congratulations! You've saved {{saved}}!",
-        "b2_t1_s1": "Buy {{threshold}} more item(s) to get {{willSave}} OFF",
-        "b2_t1_s2": "Saved {{saved}} already! {{br}}Buy {{threshold}} more item(s) to get {{willSave}} OFF",
-        "b2_t1_s3": "Congratulations! You've saved {{saved}}!",
-        "b3_t0_s1_unlimited": "Buy {{threshold}} more, enjoy <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Free Shipping</span>!",
-        "b3_t0_s1_upper_limit": "Buy {{threshold}} more, enjoy <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Free Shipping</span>!（For shipping rate under {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Congratulations! You've got <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Free Shipping</span>!",
-        "b3_t0_s3_upper_limit": "Congratulations! You've got <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Free Shipping</span>!（For shipping rate under {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Buy {{threshold}} more item(s), enjoy <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Free Shipping</span>!",
-        "b3_t1_s1_upper_limit": "Buy {{threshold}} more item(s), enjoy <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Free Shipping</span>!（For shipping rate under {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Congratulations! You've got <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Free Shipping</span>!",
-        "b3_t1_s3_upper_limit": "Congratulations! You've got <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Free Shipping</span>!（For shipping rate under {{upperLimit}})",
-        "b9_t1_s1": "Buy {{threshold}} more items get {{willSave}} lowest-priced item(s) for free",
-        "b9_t1_s2": "Congratulations! You've got {{saved}} item(s) for free! Buy {{threshold}} more item(s) get {{willSave}} lowest-priced item(s) for free",
-        "b9_t1_s3": "Congratulations! You've got {{saved}} item(s) for free"
-      },
       "discount_tag": {
         "b11_t1_free": "Buy {{threshold}} more item(s) to get one free",
         "b11_t1_normal": "Buy {{threshold}} items to get {{save}} OFF on one of the items!",
@@ -779,15 +735,6 @@
         "b2_t0": "Buy {{threshold}} save {{save}}",
         "b2_t1": "Buy {{threshold}} GET {{save}} OFF",
         "label": "Discount:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Buy {{nextMinThreshold}} items for {{willSave}}",
-            "step2": "Congratulations! You've got {{currentMinThreshold}} for {{saved}}! Buy {{threshold}} more to enjoy {{nextMinThreshold}} for {{willSave}}!",
-            "step3": "Congratulations! You've got {{currentMinThreshold}} for {{saved}}!"
-          }
-        }
       }
     }
   },

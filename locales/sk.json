@@ -242,6 +242,7 @@
       "delete_account_email": "E-mail",
       "delete_account_notify": "Môžete požiadať o zrušenie tohto účtu. Po zatvorení budú všetky informácie na identifikáciu tohto účtu odstránené, vrátane:",
       "email": "E-mail",
+      "email_repeat_tip": "E-mail bol zaregistrovaný",
       "first_name": "Meno",
       "gender": "Pohlavie",
       "gender_female": "Žena",
@@ -267,6 +268,7 @@
       "select__date": "Vybrať dátum",
       "subscribe_confirm_tip": "Ďakujeme za predplatné.",
       "timeout_tip": "Časový limit operácie vypršal, overte to znova",
+      "unknow_error_tip": "Výnimka služby, skúste to znova neskôr",
       "username": "Názov",
       "verify_email_message": "Pred zrušením účtu musíme overiť vašu totožnosť \nVáš e-mail {{email}} dostane overovací e-mail",
       "verify_phone_message": "Pred zrušením účtu musíme overiť vašu totožnosť \nVáš mobilný telefón {{phone}} dostane overovaciu správu"
@@ -578,6 +580,7 @@
       "collection": "Kategória"
     },
     "general": {
+      "added_to_cart_successfully": "Pridané do košíka úspešne",
       "no_product_data_found": "Nenašli sa žiadne údaje o produkte. Skúste to neskôr prosím",
       "sold_out": "Vypredané"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Blahoželáme! Už máte {{saved}} Darček zadarmo! Kúpte {{threshold}} viac, užívajte si až do {{willSave}} DARČEKOV ZADARMO"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Kúpte si {{threshold}} ďalších položiek a užite si jednu z nich zadarmo!",
-        "b11_t1_s1_normal": "Kúpte si {{threshold}} ďalších položiek a užite si ZĽAVU {{willSave}} na jednu z položiek!",
-        "b11_t1_s2_free": "Gratulujeme! Užite si jednu z položiek zadarmo!",
-        "b11_t1_s2_next_free": "Gratulujem! {{saved}} Uložené, {{br}}Kúpte si o {{threshold}} viac položiek a užite si jednu z položiek zadarmo!",
-        "b11_t1_s2_normal": "Gratulujem! {{saved}} Uložené, {{br}}Kúpte si {{threshold}} ďalších položiek a užite si ZĽAVU {{willSave}} na jednu z položiek!",
-        "b11_t1_s3_free": "Gratulujeme! Užite si jednu z položiek zadarmo!",
-        "b11_t1_s3_normal": "Gratulujeme! Užite si {{saved}} ZĽAVU na jednu z položiek!",
-        "b12_t0_s1_achieve_free": "Blahoželáme, môžete si vychutnať {{benefitCount}} položky bezplatná",
-        "b12_t0_s1_achieve_normal": "Blahoželáme, môžete si vychutnať {{willSave}} zľavu pre {{benefitCount}} položky",
-        "b12_t0_s1_free": "Kúpte si {{threshold}}, užite si {{benefitCount}} bezplatná položky",
-        "b12_t0_s1_normal": "Kúpte si {{threshold}}, využite zľavu {{willSave}} pre {{benefitCount}} článkov",
-        "b12_t0_s3_free": "Blahoželáme! Máte {{benefitCount}} položky bezplatná!",
-        "b12_t0_s3_normal": "Blahoželáme! Máte {{saved}} zľavu {{benefitCount}} položky!",
-        "b12_t1_s1_achieve_free": "Blahoželáme, môžete si vychutnať {{benefitCount}} položky bezplatná",
-        "b12_t1_s1_achieve_normal": "Blahoželáme, môžete si vychutnať {{willSave}} zľavu pre {{benefitCount}} položky",
-        "b12_t1_s1_free": "Kúpte si {{threshold}}, užite si {{benefitCount}} bezplatná položky",
-        "b12_t1_s1_normal": "Kúpte si {{threshold}}, využite zľavu {{willSave}} pre {{benefitCount}} článkov",
-        "b12_t1_s3_free": "Blahoželáme! Máte {{benefitCount}} položky bezplatná!",
-        "b12_t1_s3_normal": "Blahoželáme! Máte {{saved}} zľavu {{benefitCount}} položky!",
-        "b14_t1_s1": "Kúpiť {{nextMinThreshold}} kusy pre {{willSave}}",
-        "b14_t1_s2": "Gratulujem! Máte {{currentMinThreshold}} kusy pre {{saved}}. Kúpte si {{threshold}} viac a užívajte si {{nextMinThreshold}} kusy za {{willSave}}!",
-        "b14_t1_s3": "Gratulujem! Máte {{currentMinThreshold}} kusy pre {{saved}}!",
-        "b1_t0_s1": "Kúpte si ešte {{threshold}} a ušetrite {{willSave}}",
-        "b1_t0_s2": "Už šetríte {{saved}}! {{br}}Kúpte si ešte {{threshold}} a ušetrite {{willSave}}",
-        "b1_t0_s3": "Gratulujem! Ušetrili ste {{saved}}!",
-        "b1_t1_s1": "Kúpte si ešte {{threshold}} a ušetrite {{willSave}}",
-        "b1_t1_s2": "Už šetríte {{saved}}! {{br}}Kúpte si ešte {{threshold}} a ušetrite {{willSave}}",
-        "b1_t1_s3": "Gratulujem! Ušetrili ste {{saved}}!",
-        "b2_t0_s1": "Kúpte si ešte {{threshold}} a získajte ZĽAVU {{willSave}}",
-        "b2_t0_s2": "Už šetríte {{saved}}! {{br}}Nakúpte ešte {{threshold}} a získajte ZĽAVU {{willSave}}",
-        "b2_t0_s3": "Gratulujem! Ušetrili ste {{saved}}!",
-        "b2_t1_s1": "Kúpte si ešte {{threshold}} a získajte ZĽAVU {{willSave}}",
-        "b2_t1_s2": "Už šetríte {{saved}}! {{br}}Nakúpte ešte {{threshold}} a získajte ZĽAVU {{willSave}}",
-        "b2_t1_s3": "Gratulujem! Ušetrili ste {{saved}}!",
-        "b3_t0_s1_unlimited": "Kúpte si {{threshold}} znova a užívajte si <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>!",
-        "b3_t0_s1_upper_limit": "Kúpte si {{threshold}} znova a užívajte si <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>! (Maximálna poštovné zdarma {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Gratulujem! máte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>!",
-        "b3_t0_s3_upper_limit": "Gratulujem! máte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>! (Maximálna poštovné zdarma {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Kúpte si {{threshold}} viac a užívajte si <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>!",
-        "b3_t1_s1_upper_limit": "Kúpte si {{threshold}} viac a užívajte si <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>! (Maximálna poštovné zdarma {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Gratulujem! máte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>!",
-        "b3_t1_s3_upper_limit": "Gratulujem! máte <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Doprava zdarma</span>! (Maximálna poštovné zdarma {{upperLimit}})",
-        "b9_t1_s1": "Kúpiť {{threshold}} viac kusov, z ktorých {{willSave}} kusov sú zadarmo",
-        "b9_t1_s2": "Blahoželáme! {{saved}} kusov získaných zadarmo! Kúpiť {{threshold}} viac kusov, z ktorých {{willSave}} kusov je zadarmo",
-        "b9_t1_s3": "Blahoželáme! {{saved}} z nich je zadarmo"
-      },
       "discount_tag": {
         "b11_t1_free": "Kúpte si {{threshold}} položiek a užite si jednu z položiek zadarmo!",
         "b11_t1_normal": "Kúpte si položky v hodnote {{threshold}} a vychutnajte si ZĽAVU {{save}} na jednu z položiek!",
@@ -779,15 +735,6 @@
         "b2_t0": "Kúpte {{threshold}} a ušetrite {{save}}",
         "b2_t1": "Kúpte {{threshold}} a získajte ZĽAVU {{save}}",
         "label": "Zľava:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Kúpiť {{nextMinThreshold}} kusy pre {{willSave}}",
-            "step2": "Gratulujem! Máte {{currentMinThreshold}} kusy pre {{saved}}. Kúpte si {{threshold}} viac a užívajte si {{nextMinThreshold}} kusy za {{willSave}}!",
-            "step3": "Gratulujem! Máte {{currentMinThreshold}} kusy pre {{saved}}!"
-          }
-        }
       }
     }
   },

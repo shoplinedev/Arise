@@ -76,7 +76,7 @@
       {{!-- 过期时间 --}}
       {{#if endTime}}
         <span class="sales__discountCouponOnlyOne-otherInfoItem"
-          style="{{textColorOpStyle}}">{{t 'sales.discount_coupon.active_date_until' endTime=(dayjs method='format' init=endTime format='MMM D,YYYY') }}</span>
+          style="{{textColorOpStyle}}">{{{t 'sales.discount_coupon.active_date_until' endTime=(endTime '<span data-timestamp="${endTime}" data-format="MMM D,YYYY"></span>' endTime=endTime)}}}</span>
       {{/if}}
       {{!-- 特定客户 --}}
       {{#if targetUserType}}

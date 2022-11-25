@@ -40,7 +40,7 @@
     {{/if}}
     {{#if endTime}}
       <div class="sales-discount-coupon-card2__expire">
-        {{t 'sales.discount_coupon.active_date_until' endTime=(dayjs method='format' init=endTime format='MMM D,YYYY') }}
+        {{{t 'sales.discount_coupon.active_date_until' endTime=(javascript_template '<span data-timestamp="${endTime}" data-format="MMM D,YYYY"></span>' endTime=endTime)}}}
       </div>
     {{/if}}
   </div>

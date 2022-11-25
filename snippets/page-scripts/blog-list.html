@@ -1,0 +1,8 @@
+{{!-- js在这个snippet引入是为了 js不会因为section设置隐藏了而没有，进而导致上报也丢失 --}}
+<!-- stage/blog/list/index.js -->
+{{ combine_asset_tag 
+ 'stage/blog/list/script/report.js'
+ 'stage/blog/list/index.js' 
+  type="text/javascript" 
+  defer=true
+}}

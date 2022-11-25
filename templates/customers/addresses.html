@@ -1,11 +1,3 @@
-{{#partial 'head'}}
-  <link rel="stylesheet" href="{{ assets_url 'customer/address/index.min.css' }}" />
-{{/partial}}
-
-{{#partial 'script'}}
-  <script src="{{ assets_url 'customer/address/index.min.js' }}"></script>
-{{/partial}}
-
 {{ trade_checkout_receiverInfo pageType="customerAddressInfo" action="loadStringTemplate" target="customer_address_template" }}
 {{ preload_state 'customer_address_template' }}
 

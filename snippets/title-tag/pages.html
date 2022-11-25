@@ -1,0 +1,5 @@
+{{ assign 'seoTitle' storeInfo.name}}
+{{#if pageInfo.seoTitle.default }}
+  {{ assign 'seoTitle' (useFallbackLang pageInfo.seoTitle request.locale)}}
+{{/if}}
+<title>{{seoTitle}}</title>

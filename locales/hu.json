@@ -242,6 +242,7 @@
       "delete_account_email": "E-mail",
       "delete_account_notify": "Kérheti a fiók lezárását. A lezárás után, a fiókot azonosító összes információt törölni fogjuk beleértve a következőket:",
       "email": "E-mail",
+      "email_repeat_tip": "Az email regisztrálva lett",
       "first_name": "Név",
       "gender": "Nem",
       "gender_female": "Nő",
@@ -267,6 +268,7 @@
       "select__date": "Dátum választás",
       "subscribe_confirm_tip": "Köszönjük, hogy feliratkozott.",
       "timeout_tip": "A művelet időtúllépése, újraértékelése",
+      "unknow_error_tip": "Szolgáltatás kimaradás. Kérjük, később próbálja újra.",
       "username": "Név",
       "verify_email_message": "A fiók lezárása előtt ellenőriznünk kell személyazonosságát\nAz Ön e-mail-címére {{email}} küldünk egy ellenőrző e-mailt",
       "verify_phone_message": "A fiók lezárása előtt ellenőriznünk kell személyazonosságát\nAz Ön mobiltelefonjára {{phone}} küldünk egy ellenőrző üzenetet"
@@ -578,6 +580,7 @@
       "collection": "Kategória"
     },
     "general": {
+      "added_to_cart_successfully": "Sikeresen a kosárba",
       "no_product_data_found": "Nem található termékadat. Kérjük, később próbálja újra",
       "sold_out": "Elfogyott"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Gratulálunk! Már {{saved}} ingyenes ajándékot kapott! Vegyen {{threshold}}-vel többet és kapjon akár {{willSave}} INGYENES AJÁNDÉKOT"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Vásároljon további {{threshold}} terméket, és az egyik terméket ingyen kapja",
-        "b11_t1_s1_normal": "Vásároljon további {{threshold}} terméket, és {{willSave}} KEDVEZMÉNYT kap valamelyik termékre",
-        "b11_t1_s2_free": "Gratulálunk! Az egyik terméket ingyen kapja",
-        "b11_t1_s2_next_free": "Gratulálunk! {{saved}} megtakarítás, {{br}} Vásároljon további {{threshold}} terméket, és az egyik terméket ingyen kapja",
-        "b11_t1_s2_normal": "Gratulálunk! {{saved}} megtakarítás, {{br}}Vásároljon további {{threshold}} terméket, és {{willSave}} KEDVEZMÉNYT kap valamelyik termékre",
-        "b11_t1_s3_free": "Gratulálunk! Az egyik terméket ingyen kapja",
-        "b11_t1_s3_normal": "Gratulálunk! {{saved}} kedvezményt kap valamelyik termékre",
-        "b12_t0_s1_achieve_free": "Gratulálunk, {{benefitCount}} tételt ingyen kap",
-        "b12_t0_s1_achieve_normal": "Gratulálunk, {{benefitCount}} tételre {{willSave}} kedvezményt kap",
-        "b12_t0_s1_free": "Vásároljon {{threshold}} értékben, és {{benefitCount}} tételt ingyen kap",
-        "b12_t0_s1_normal": "Vásároljon {{threshold}} értékben, és {{benefitCount}} tételre {{willSave}} kedvezményt kap",
-        "b12_t0_s3_free": "Gratulálunk! {{benefitCount}} tételt kapott ingyen!",
-        "b12_t0_s3_normal": "Gratulálunk! {{benefitCount}} tételre {{saved}} kedvezményt kapott!",
-        "b12_t1_s1_achieve_free": "Gratulálunk, {{benefitCount}} tételt ingyen kap",
-        "b12_t1_s1_achieve_normal": "Gratulálunk, {{benefitCount}} tételre {{willSave}} kedvezményt kap",
-        "b12_t1_s1_free": "Vásároljon {{threshold}} tételt, és {{benefitCount}} tételt ingyen kap",
-        "b12_t1_s1_normal": "Vásároljon {{threshold}} tételt, és {{benefitCount}} tételre {{willSave}} kedvezményt kap",
-        "b12_t1_s3_free": "Gratulálunk! {{benefitCount}} tételt kapott ingyen!",
-        "b12_t1_s3_normal": "Gratulálunk! {{benefitCount}} tételre {{saved}} kedvezményt kapott!",
-        "b14_t1_s1": "Vegyen {{nextMinThreshold}} darabot {{willSave}}-ért",
-        "b14_t1_s2": "Gratulálunk! {{currentMinThreshold}} darabot {{saved}}-ért kapott. Vegyen még {{threshold}} darabot és további {{nextMinThreshold}} darabot kap {{willSave}}-ért!",
-        "b14_t1_s3": "Gratulálunk! {{currentMinThreshold}} darabot {{saved}}-ért kapott!",
-        "b1_t0_s1": "Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
-        "b1_t0_s2": "Már{{saved}} összeget takarított meg! {{br}}Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
-        "b1_t0_s3": "Gratulálunk! {saved}} összeget takarított meg!",
-        "b1_t1_s1": "Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
-        "b1_t1_s2": "Már{{saved}} összeget takarított meg! {{br}}Vásároljon további {{threshold}} összegben, hogy {{willSave}} összeget takarítson meg",
-        "b1_t1_s3": "Gratulálunk! {{saved}} összeget takarított meg!",
-        "b2_t0_s1": "Vásároljon további {{threshold}} összegben és {{willSave}} KEDVEZMÉNYT kap",
-        "b2_t0_s2": "Már{{saved}} összeget takarított meg! {{br}}Vásároljon további {{threshold}} összegben és {{willSave}} KEDVEZMÉNYT kap",
-        "b2_t0_s3": "Gratulálunk! {{saved}} összeget takarított meg!",
-        "b2_t1_s1": "Vásároljon további {{threshold}} összegben és {{willSave}} KEDVEZMÉNYT kap",
-        "b2_t1_s2": "Már{{saved}} összeget takarított meg! {{br}}Vásároljon további {{threshold}} összegben és {{willSave}} KEDVEZMÉNYT kap",
-        "b2_t1_s3": "Gratulálunk! {{saved}} összeget takarított meg!",
-        "b3_t0_s1_unlimited": "Vásároljon újra {{threshold}}-t, és kapjon <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span>!",
-        "b3_t0_s1_upper_limit": "Vásároljon újra {{threshold}}-t, és kapjon <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span>! (Maximális ingyenes szállítási összeg {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Gratulálunk! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span> kapott!",
-        "b3_t0_s3_upper_limit": "Gratulálunk! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span> kapott! (Maximális ingyenes szállítási összeg {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Vásároljon {{threshold}}-t, kapjon <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span>!",
-        "b3_t1_s1_upper_limit": "Vásároljon {{threshold}}-t, kapjon <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span>! (Maximális ingyenes szállítási összeg {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Gratulálunk! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span> kapott!",
-        "b3_t1_s3_upper_limit": "Gratulálunk! <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Ingyenes szállítás</span> kapott! (Maximális ingyenes szállítási összeg {{upperLimit}})",
-        "b9_t1_s1": "Vegyen további {{threshold}} darabot, amelyből {{willSave}} darab ingyenes",
-        "b9_t1_s2": "Gratulálunk! {{saved}} darabot ingyen kapott! Vegyen további {{threshold}} darabot, amelyből {{willSave}} darab ingyenes",
-        "b9_t1_s3": "Gratulálunk! Ebből {{saved}} ingyenes"
-      },
       "discount_tag": {
         "b11_t1_free": "Vásároljon {{threshold}} terméket, és az egyik terméket ingyen kapja!",
         "b11_t1_normal": "Vásároljon {{threshold}} terméket, és {{save}} KEDVEZMÉNYT kap valamelyik termékre",
@@ -779,15 +735,6 @@
         "b2_t0": "Vásároljon {{threshold}} összegben és spóroljon {{save}}",
         "b2_t1": "Vásároljon {{threshold}} ÖSSZEGBEN ÉS {{save}} KEDVEZMÉNYT kap",
         "label": "Kedvezmény:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Vegyen {{nextMinThreshold}} darabot {{willSave}}-ért",
-            "step2": "Gratulálunk! {{currentMinThreshold}} darabot {{saved}}-ért kapott. Vegyen még {{threshold}} darabot és további {{nextMinThreshold}} darabot kap {{willSave}}-ért!",
-            "step3": "Gratulálunk! {{currentMinThreshold}} darabot {{saved}}-ért kapott!"
-          }
-        }
       }
     }
   },

@@ -1,58 +1,58 @@
 <div class="header__layout-container header__layout--{{settings.navigation_layout}} color-scheme-{{settings.color_scheme}}" data-no-effect>
   <div class="header__layout-background">
-    <div class="container g-2 g-md-5 header__layout header__layout--left-down">
+    <div class="container g-2 g-md-5 header__layout header__layout--left-down {{#if settings.header_full_width}}header__full_screen_width{{/if}}">
       <div class="header__item header__item--left d-md-flex">
         <div class="header__nav-toggle j-header-nav-btn {{#if settings.navigation_layout '===' 'left-left'}}d-none{{/if}}">
           <a class="header__toggle-btn header__toggle-on">
-            {{ snippet 'icons/icon_menu' }}
+            {{snippet "icons/icon_menu"}}
           </a>
           <a class="header__toggle-btn header__toggle-off">
-            {{ snippet 'icons/icon_header_close' }}
+            {{snippet "icons/icon_header_close"}}
           </a>
         </div>
-        <a class="header__drawer-btn j-header-drawer-btn  sl-icon-hover">
-          {{ snippet 'icons/icon_menu' }}
+        <a class="header__drawer-btn j-header-drawer-btn sl-icon-hover">
+          {{snippet "icons/icon_menu"}}
         </a>
         {{#if settings.show_search_entry}}
-          {{snippet 'header-btns' btns='search' classnames=(append 'color-scheme-' settings.color_scheme ' header__layout--search-btn')}}
+          {{snippet "header-btns" btns="search" classnames=(append "color-scheme-" settings.color_scheme " header__layout--search-btn")}}
         {{/if}}
-        {{!-- 因为原来样式上在middle-line的时候使用display none 隐藏， 既然这样直接不渲染就可以，不会造成两个h1 --}}
-        {{#if settings.navigation_layout '!==' "middle-line"}}
+        {{! 因为原来样式上在middle-line的时候使用display none 隐藏， 既然这样直接不渲染就可以，不会造成两个h1 }}
+        {{#if settings.navigation_layout "!==" "middle-line"}}
           <div class="header__layout--logo">
-            {{snippet 'header/header-logo' settings=settings}}
+            {{snippet "header/header-logo" settings=settings}}
           </div>
         {{/if}}
         <div class="header__layout--nav">
-          {{snippet 'desktop-site-nav' settings=settings main_menu=main_menu}}
+          {{snippet "desktop-site-nav" settings=settings main_menu=main_menu}}
         </div>
       </div>
 
       {{!-- <div class="header__item header__item--searchBar d-lg-flex d-none">
         {{snippet 'header-search-bar' id="pc-header" suggestMenu=settings.suggested_menu classnames="d-lg-flex d-none full" }}
       </div> --}}
-      {{!-- 上在middle-line的时候使用渲染，不会造成两个h1 --}}
-      {{#if settings.navigation_layout '===' "middle-line"}}
+      {{! 上在middle-line的时候使用渲染，不会造成两个h1 }}
+      {{#if settings.navigation_layout "===" "middle-line"}}
         <div class="header__layout--logo">
-          {{snippet 'header/header-logo' settings=settings}}
+          {{snippet "header/header-logo" settings=settings}}
         </div>
       {{/if}}
 
       <div data-ssr-plugin-wishlist="header" class="header__item header__item--buttons">
         {{#if settings.show_search_entry}}
-          {{snippet 'header-btns' btns='search' classnames=(append 'color-scheme-' settings.color_scheme ' header__layout--search-btn') }}
+          {{snippet "header-btns" btns="search" classnames=(append "color-scheme-" settings.color_scheme " header__layout--search-btn")}}
         {{/if}}
         {{#inArray (cond storeInfo.storeTags storeInfo.storeTags (arrayify "")) "DEVELOPER"}}
-          {{!-- 开发店铺不展示 --}}
+          {{! 开发店铺不展示 }}
         {{else}}
           {{#if settings.show_user_entry}}
-            {{snippet 'header-btns' maskID="mask-1" btns='user' classnames=(append 'color-scheme-' settings.color_scheme ' header__user-btn') }}
+            {{snippet "header-btns" maskID="mask-1" btns="user" classnames=(append "color-scheme-" settings.color_scheme " header__user-btn")}}
           {{/if}}
         {{/inArray}}
         {{#if settings.show_cart_entry}}
-          {{snippet 'header-btns' btns='cart'}}
+          {{snippet "header-btns" btns="cart"}}
         {{/if}}
         <div class="j-header-drawer-btn header__nav--drawer d-lg-none">
-          {{ snippet 'header-btns' btns='menu' classnames=(append 'color-scheme-' settings.color_scheme) }}
+          {{snippet "header-btns" btns="menu" classnames=(append "color-scheme-" settings.color_scheme)}}
         </div>
       </div>
 
@@ -61,9 +61,9 @@
 
   <div class="header__nav-container header__layout--nav {{#if settings.show_line_separator}}header__nav-container--border{{/if}} color-scheme-{{settings.color_scheme}}">
     <div class="container g-4 g-md-6">
-      {{snippet 'desktop-site-nav' settings=settings main_menu=main_menu}}
+      {{snippet "desktop-site-nav" settings=settings main_menu=main_menu}}
     </div>
   </div>
 
-  {{ snippet 'header-mini-cart' }}
+  {{snippet "header-mini-cart"}}
 </div>

@@ -242,6 +242,7 @@
       "delete_account_email": "E-mel",
       "delete_account_notify": "Anda boleh memohon untuk menutup akaun ini. Sebaik sahaja ditutup, sebarang maklumat untuk mengenal pasti akaun ini akan dihapuskan, termasuk:",
       "email": "E-mel",
+      "email_repeat_tip": "E-mel telah didaftarkan",
       "first_name": "Nama",
       "gender": "Jantina",
       "gender_female": "Perempuan",
@@ -267,6 +268,7 @@
       "select__date": "Pilih Tarikh",
       "subscribe_confirm_tip": "Terima kasih atas langganan anda.",
       "timeout_tip": "Operasi habis waktunya, silakan autentikasi lagi",
+      "unknow_error_tip": "Pengecualian perkhidmatan, sila cuba lagi kemudian",
       "username": "Nama",
       "verify_email_message": "Sebelum menutup akaun, kami perlu mengesahkan identiti anda\nE-mel anda {{email}} akan menerima satu e-mel pengesahan",
       "verify_phone_message": "Sebelum menutup akaun, kami perlu mengesahkan identiti anda\nTelefon mudah alih anda {{phone}} akan menerima satu mesej pengesahan"
@@ -578,6 +580,7 @@
       "collection": "kategori"
     },
     "general": {
+      "added_to_cart_successfully": "Berjaya ditambahkan pada troli",
       "no_product_data_found": "Tiada data produk ditemui. Sila cuba lagi kemudian",
       "sold_out": "Habis Dijual"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Tahniah! Sudah terima {{saved}} Hadiah percuma! Beli {{threshold}} lagi, nikmati sehingga {{willSave}} HADIAH PERCUMA"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Beli {{threshold}} item lagi, nikmati item percuma pada salah satu item",
-        "b11_t1_s1_normal": "Beli {{threshold}} item lagi, nikmati {{willSave}} DISKAUN pada salah satu item",
-        "b11_t1_s2_free": "Tahniah! nikmati item percuma pada salah satu item",
-        "b11_t1_s2_next_free": "Tahniah! {{saved}} Dijimatkan, {{br}} Beli {{threshold}} item lagi, nikmati item percuma pada salah satu item",
-        "b11_t1_s2_normal": "Tahniah! {{saved}} Dijimatkan, {{br}} Beli {{threshold}} lagi item, nikmati {{willSave}} DISKAUN pada salah satu item",
-        "b11_t1_s3_free": "Tahniah! nikmati item percuma pada salah satu item",
-        "b11_t1_s3_normal": "Tahniah! nikmati {{saved}} DISKAUN pada salah satu item",
-        "b12_t0_s1_achieve_free": "Tahniah, anda boleh menikmati {{benefitCount}} item secara PERCUMA",
-        "b12_t0_s1_achieve_normal": "Tahniah, anda boleh menikmati potongan sebanyak {{willSave}} bagi {{benefitCount}} item",
-        "b12_t0_s1_free": "Beli {{threshold}}, nikmati {{benefitCount}} item secara PERCUMA",
-        "b12_t0_s1_normal": "Beli {{threshold}}, nikmati potongan sebanyak {{willSave}} bagi {{benefitCount}} item",
-        "b12_t0_s3_free": "Tahniah! Anda telah mendapat {{benefitCount}} item secara PERCUMA!",
-        "b12_t0_s3_normal": "Tahniah! Anda telah mendapat potongan sebanyak {{saved}} bagi {{benefitCount}} item!",
-        "b12_t1_s1_achieve_free": "Tahniah, anda boleh menikmati {{benefitCount}} item secara PERCUMA",
-        "b12_t1_s1_achieve_normal": "Tahniah, anda boleh menikmati potongan sebanyak {{willSave}} bagi {{benefitCount}} item",
-        "b12_t1_s1_free": "Beli {{threshold}}, nikmati {{benefitCount}} item secara PERCUMA",
-        "b12_t1_s1_normal": "Beli {{threshold}}, nikmati potongan sebanyak {{willSave}} bagi {{benefitCount}} item",
-        "b12_t1_s3_free": "Tahniah! Anda telah mendapat {{benefitCount}} item secara PERCUMA!",
-        "b12_t1_s3_normal": "Tahniah! Anda telah mendapat potongan sebanyak {{saved}} bagi {{benefitCount}} item!",
-        "b14_t1_s1": "Beli {{nextMinThreshold}} unit dengan harga {{willSave}}",
-        "b14_t1_s2": "Tahniah! Anda telah memperoleh {{currentMinThreshold}} unit dengan harga {{saved}}. Beli {{threshold}} unit lagi untuk membeli {{nextMinThreshold}} unit dengan harga {{willSave}}!",
-        "b14_t1_s3": "Tahniah! Anda telah memperoleh {{currentMinThreshold}} unit dengan harga {{saved}}!",
-        "b1_t0_s1": "Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
-        "b1_t0_s2": "Sudah jimat {{saved}}! {{br}}Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
-        "b1_t0_s3": "Tahniah! Anda telah menjimatkan {{saved}}!",
-        "b1_t1_s1": "Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
-        "b1_t1_s2": "Sudah jimat {{saved}}! {{br}}Beli {{threshold}} lagi untuk menjimatkan {{willSave}}",
-        "b1_t1_s3": "Tahniah! Anda telah menjimatkan {{saved}}!",
-        "b2_t0_s1": "Beli {{threshold}} lagi untuk mendapatkan {{willSave}} DISKAUN",
-        "b2_t0_s2": "Sudah jimat {{saved}}! {{br}}Beli {{threshold}} lagi untuk mendapatkan {{willSave}} DISKAUN",
-        "b2_t0_s3": "Tahniah! Anda telah menjimatkan {{saved}}!",
-        "b2_t1_s1": "Beli {{threshold}} lagi untuk mendapatkan {{willSave}} DISKAUN",
-        "b2_t1_s2": "Sudah jimat {{saved}}! {{br}}Beli {{threshold}} lagi untuk mendapatkan {{willSave}} DISKAUN",
-        "b2_t1_s3": "Tahniah! Anda telah menjimatkan {{saved}}!",
-        "b3_t0_s1_unlimited": "Beli {{threshold}} lagi dan nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>!",
-        "b3_t0_s1_upper_limit": "Beli {{threshold}} lagi dan nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>! (Amaun penghantaran percuma maksimum {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Tahniah! Anda Memerlukan <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>!",
-        "b3_t0_s3_upper_limit": "Tahniah! Anda Memerlukan <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>! (Amaun penghantaran percuma maksimum {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Beli {{threshold}} lagi dan nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>!",
-        "b3_t1_s1_upper_limit": "Beli {{threshold}} lagi dan nikmati <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>! (Amaun penghantaran percuma maksimum {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Tahniah! Anda Memerlukan <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>!",
-        "b3_t1_s3_upper_limit": "Tahniah! Anda Memerlukan <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Penghantaran percuma</span>! (Amaun penghantaran percuma maksimum {{upperLimit}})",
-        "b9_t1_s1": "Beli tambahan {{threshold}} unit, di mana sebanyak {{willSave}} unit adalah percuma",
-        "b9_t1_s2": "Tahniah! {{saved}} unit telah diperoleh secara percuma! Beli tambahan {{threshold}} unit, di mana sebanyak {{willSave}} unit adalah percuma",
-        "b9_t1_s3": "Tahniah! {{saved}} daripadanya adalah percuma"
-      },
       "discount_tag": {
         "b11_t1_free": "Beli {{threshold}} item, nikmati item percuma pada salah satu item",
         "b11_t1_normal": "Beli {{threshold}} item, nikmati {{save}} DISKAUN pada salah satu item",
@@ -779,15 +735,6 @@
         "b2_t0": "Beli {{threshold}} jimat {{save}}",
         "b2_t1": "Beli {{threshold}} Dapat {{save}} DISKAUN",
         "label": "Diskaun:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Beli {{nextMinThreshold}} unit dengan harga {{willSave}}",
-            "step2": "Tahniah! Anda telah memperoleh {{currentMinThreshold}} unit dengan harga {{saved}}. Beli {{threshold}} unit lagi untuk membeli {{nextMinThreshold}} unit dengan harga {{willSave}}!",
-            "step3": "Tahniah! Anda telah memperoleh {{currentMinThreshold}} unit dengan harga {{saved}}!"
-          }
-        }
       }
     }
   },

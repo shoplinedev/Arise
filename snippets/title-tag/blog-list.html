@@ -1,0 +1,12 @@
+{{ assign 'seoTitle' storeInfo.name}}
+{{#if blogs.seoTitle }}
+  {{ assign 'seoTitle' blogs.seoTitle}}
+{{/if}}
+
+{{!-- tag 页面需要把 tag 透出 --}}
+{{assign 'tagHandle' request.uri.params.tagHandle }}
+{{#if (isTruthy tagHandle)}}
+  {{ assign 'seoTitle' (append 'Blog - tagged' (decodeURI tagHandle) ' - ' storeInfo.name) }}
+{{/if}}
+
+<title>{{seoTitle}}</title>

@@ -3,11 +3,7 @@ blogs:
   limit: 6
 ---
 
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'blog/detail/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'blog/detail/index.min.css' }}
-{{/is_modern_browser}}
+{{ combine_asset_tag 'stage/blog/detail/style/index.css' inline=true }}
 
 <main class="blog-container container" data-section-type="blog-detail" data-section-id="{{ section.id }}">
   {{ assign 'settings' section.settings }}
@@ -46,15 +42,24 @@ blogs:
     {{/each}}
   {{/with}}
   {{ assign 'show_sidebar' (boolean settings.is_show_sidebar '&&' show_blocks) }}
-
+  {{ assign 'show_breakcrumb' 'blog__breadcrumb d-none' }}
+  {{#and section.settings.is_show_breadcrumb (boolean section.settings.is_show_mobile_breadcrumb '===' false)}}
+  {{ assign 'show_breakcrumb' 'blog__breadcrumb d-none d-md-flex' }}
+  {{/and}}
+  {{#and section.settings.is_show_mobile_breadcrumb (boolean section.settings.is_show_breadcrumb '===' false)}}
+  {{ assign 'show_breakcrumb' 'blog__breadcrumb d-flex d-md-none' }}
+  {{/and}}
+  {{#and section.settings.is_show_breadcrumb section.settings.is_show_mobile_breadcrumb}}
+  {{ assign 'show_breakcrumb' 'blog__breadcrumb d-flex' }}
+  {{/and}}
   <div class="blog__info">
-    {{#if section.settings.is_show_breadcrumb}}
+    {{#or section.settings.is_show_breadcrumb section.settings.is_show_mobile_breadcrumb}}
       {{ assign 'routes' (JSONparse (append '[{"name":"' homeText '","link":"/"}]')) }}
       {{ array-push routes (object_create name=collectionTitle link=collectionPath) }}
       {{ array-push routes (object_create name=title) }}
 
-      {{ snippet 'blogs/breadcrumb' classes='blog__breadcrumb d-none d-md-flex' routes=routes }}
-    {{/if}}
+      {{ snippet 'blogs/breadcrumb' classes=show_breakcrumb routes=routes }}
+    {{/or}}
     <h1 class="blog__title title3">
       {{ title }}
     </h1>
@@ -501,6 +506,12 @@ blogs:
     },
     {
       "type": "switch",
+      "id": "is_show_mobile_breadcrumb",
+      "default": false,
+      "label": "t:sections.main-blog-detail.settings.is_show_mobile_breadcrumb.label"
+    },
+    {
+      "type": "switch",
       "id": "is_show_tag",
       "default": true,
       "label": "t:sections.main-blog-detail.settings.is_show_tag.label"
@@ -671,6 +682,7 @@ blogs:
       "is_show_author": true,
       "is_show_date": true,
       "is_show_breadcrumb": true,
+      "is_show_mobile_breadcrumb": false,
       "is_show_sidebar": false,
       "position": "right",
       "is_show_tag": true,

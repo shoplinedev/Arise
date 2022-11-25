@@ -1,8 +1,0 @@
-{{!-- 404的js不在section 中引，是为了保证上报，不然可能404section隐藏后就没上报了 --}}
-{{#partial 'script'}}
-  {{#is_modern_browser}}
-    <script src="{{ assets_url '404/index.min.modern.js' }}"></script>
-  {{else}}
-    <script src="{{ assets_url '404/index.min.js' }}"></script>
-  {{/is_modern_browser}}
-{{/partial}}

@@ -211,8 +211,14 @@
             "label": "Color 3"
           }
         },
+        "pc_cols": {
+          "label": "No. of rows on PC"
+        },
         "slice_in_mobile": {
           "label": "Enable horizontal scroll to view all"
+        },
+        "slice_in_pc": {
+          "label": "Slide horizontally to view on PC"
         },
         "title": {
           "label": "Title"
@@ -474,6 +480,15 @@
         },
         "title": {
           "name": "Title"
+        },
+        "viewMoreBtn": {
+          "name": "View more buttons",
+          "settings": {
+            "btnText": {
+              "info": "If no button text is configured, the button will not be displayed",
+              "label": "Button text"
+            }
+          }
         }
       },
       "name": "Featured product",
@@ -591,6 +606,9 @@
         "show_copyright": {
           "label": "Display the copyright information"
         },
+        "show_country_selector": {
+          "label": "Display country selector"
+        },
         "show_currency_flags": {
           "label": "Display the currency symbol"
         },
@@ -649,6 +667,9 @@
         "group_header__1": {
           "label": "Menu bar"
         },
+        "header_full_width": {
+          "label": "fullscreen width in header"
+        },
         "header_style": {
           "label": "Fixed header on scroll"
         },
@@ -694,6 +715,9 @@
         },
         "show_cart_entry": {
           "label": "Display shopping cart entrance"
+        },
+        "show_country_selector": {
+          "label": "Display country selector"
         },
         "show_currency_flags": {
           "label": "Display the currency symbol"
@@ -1098,13 +1122,16 @@
           "label": "Display author"
         },
         "is_show_breadcrumb": {
-          "label": "Display breadcrumb"
+          "label": "Show Breadcrumbs on PC"
         },
         "is_show_comment": {
           "label": "Show comments"
         },
         "is_show_date": {
           "label": "Display date"
+        },
+        "is_show_mobile_breadcrumb": {
+          "label": "Show breadcrumbs on mobile"
         },
         "is_show_prev_next": {
           "label": "Show next article"
@@ -1513,6 +1540,9 @@
       },
       "name": "Collections list",
       "settings": {
+        "col": {
+          "label": "No. of rows on PC"
+        },
         "collection_fill_type": {
           "label": "Image fill mode",
           "options__0": {
@@ -1543,6 +1573,9 @@
           "options__1": {
             "label": "Assign a product collection"
           }
+        },
+        "mb_col": {
+          "label": "Number of columns on mobile"
         }
       }
     },
@@ -1702,7 +1735,15 @@
           "name": "Purchase button"
         },
         "description": {
-          "name": "Product description"
+          "name": "Product description",
+          "settings": {
+            "location": {
+              "label": "Display position of product description",
+              "options__1": {
+                "label": "Below the product image"
+              }
+            }
+          }
         },
         "html": {
           "name": "Custom HTML",
@@ -2018,6 +2059,24 @@
       "settings": {
         "default_selected_sku": {
           "label": "SKU selected by default"
+        },
+        "mb_breadcrumbs": {
+          "label": "Show breadcrumbs on mobile"
+        },
+        "pc_breadcrumbs": {
+          "label": "Show Breadcrumbs on PC"
+        },
+        "pc_breadcrumbs_layout": {
+          "label": "Breadcrumbs layout on PC",
+          "options__0": {
+            "label": "Top middle of image"
+          },
+          "options__1": {
+            "label": "Top left of image"
+          },
+          "options__2": {
+            "label": "Above product title"
+          }
         },
         "product_image_pc_show_style": {
           "label": "PC layout",
@@ -3437,6 +3496,15 @@
         },
         "share_to_whatsapp": {
           "label": "Share to Whatsapp"
+        },
+        "show_official_icon": {
+          "label": "Display official icon of social media"
+        },
+        "show_official_share_icon": {
+          "label": "Display official icon of social media"
+        },
+        "show_social_name": {
+          "label": "Display social media name"
         },
         "social_facebook_link": {
           "label": "Facebook"

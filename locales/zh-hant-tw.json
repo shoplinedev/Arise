@@ -242,6 +242,7 @@
       "delete_account_email": "電子郵件",
       "delete_account_notify": "您可申請註銷此賬戶。賬戶註銷後，任何用於識別此賬戶的信息將被刪除，包括：",
       "email": "電子郵件",
+      "email_repeat_tip": "該電子郵件已經註冊",
       "first_name": "名字",
       "gender": "性別",
       "gender_female": "女性",
@@ -267,6 +268,7 @@
       "select__date": "選取日期",
       "subscribe_confirm_tip": "感謝您的訂閱。",
       "timeout_tip": "操作超時，請重新驗證",
+      "unknow_error_tip": "服務異常，稍後重試",
       "username": "姓名",
       "verify_email_message": "在進行註銷操作前，我們需要驗證您的身份\n您的郵箱{{email}}將收到驗證碼郵件",
       "verify_phone_message": "在進行註銷操作前，我們需要驗證您的身份\n您的手機{{phone}}將收到驗證短信"
@@ -578,6 +580,7 @@
       "collection": "分類"
     },
     "general": {
+      "added_to_cart_successfully": "加購成功",
       "no_product_data_found": "找不到產品資料。請稍後再試",
       "sold_out": "已售罄"
     },
@@ -681,7 +684,7 @@
       "days": "天"
     },
     "general": {
-      "activity_banner_benefit": "{{benefit}}折",
+      "activity_banner_benefit": "減 {{benefit}}",
       "activity_banner_copy_success_text": "折扣碼複製成功",
       "activity_banner_copy_text": "複製",
       "activity_banner_free_shipping": "免運費",
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "恭喜！已獲得{{saved}}件贈品！再購買{{threshold}}件商品，最多可享{{willSave}}件贈品"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "再買{{threshold}}件，其中一件享受免費",
-        "b11_t1_s1_normal": "再買{{threshold}}件，其中一件可減免{{willSave}}",
-        "b11_t1_s2_free": "恭喜！ 其中一件已免費",
-        "b11_t1_s2_next_free": "恭喜！ 已減免{{saved}}！{{br}}再買{{threshold}}件，其中一件享受免費",
-        "b11_t1_s2_normal": "恭喜！已減免{{saved}}！{{br}}再買{{threshold}}件，其中一件可減免{{willSave}}",
-        "b11_t1_s3_free": "恭喜！ 其中一件已免費",
-        "b11_t1_s3_normal": "恭喜！其中一件已減免{{saved}}",
-        "b12_t0_s1_achieve_free": "恭喜，您可以享受{{benefitCount}}件商品免費",
-        "b12_t0_s1_achieve_normal": "恭喜，您可以享受{{benefitCount}}件商品減免{{willSave}}",
-        "b12_t0_s1_free": "買{{threshold}}，享受{{benefitCount}}件商品免費",
-        "b12_t0_s1_normal": "買{{threshold}}，{{benefitCount}}件商品可減免{{willSave}}",
-        "b12_t0_s3_free": "恭喜！您已獲得其中{{benefitCount}}件商品免費!",
-        "b12_t0_s3_normal": "恭喜！您已獲得其中{{benefitCount}}件商品減免{{saved}}!",
-        "b12_t1_s1_achieve_free": "恭喜，您可以享受{{benefitCount}}件商品免費",
-        "b12_t1_s1_achieve_normal": "恭喜，您可以享受{{benefitCount}}件商品減免{{willSave}}",
-        "b12_t1_s1_free": "買{{threshold}}件，享受{{benefitCount}}件商品免費",
-        "b12_t1_s1_normal": "買{{threshold}}件，{{benefitCount}}件商品可減免{{willSave}}",
-        "b12_t1_s3_free": "恭喜！您已獲得其中{{benefitCount}}件商品免費!",
-        "b12_t1_s3_normal": "恭喜！您已獲得其中{{benefitCount}}件商品減免{{saved}}!",
-        "b14_t1_s1": "買{{nextMinThreshold}}件{{willSave}}",
-        "b14_t1_s2": "恭喜！您已獲得{{currentMinThreshold}}件{{saved}}！再買{{threshold}}件可享{{nextMinThreshold}}件{{willSave}}!",
-        "b14_t1_s3": "恭喜！您已獲得{{currentMinThreshold}}件{{saved}}!",
-        "b1_t0_s1": "買{{threshold}}更多省{{willSave}}",
-        "b1_t0_s2": "已省{{saved}}！{{br}}買{{threshold}}以上省{{willSave}}",
-        "b1_t0_s3": "恭喜你！您節省了{{saved}}！",
-        "b1_t1_s1": "買{{threshold}} 件以上省{{willSave}}",
-        "b1_t1_s2": "已省{{saved}}！{{br}}買{{threshold}}件以上省{{willSave}}",
-        "b1_t1_s3": "恭喜你！您節省了{{saved}}！",
-        "b2_t0_s1": "買{{threshold}} 或更多节省{{willSave}}",
-        "b2_t0_s2": "已省{{saved}}！{{br}}買{{threshold}}以上省{{willSave}}",
-        "b2_t0_s3": "恭喜你！您節省了{{saved}}！",
-        "b2_t1_s1": "買{{threshold}}件以上，省{{willSave}}",
-        "b2_t1_s2": "已省{{saved}}！{{br}}買{{threshold}}件以上省 {{willSave}}",
-        "b2_t1_s3": "恭喜你！您節省了{{saved}}！",
-        "b3_t0_s1_unlimited": "再買 {{threshold}}，可享 <span class=\"custom-sale-color\" style=\"font-size:14px;\">免運費</span>!",
-        "b3_t0_s1_upper_limit": "再買 {{threshold}}，可享 <span class=\"custom-sale-color\" style=\"font-size:14px;\">免運費</span>! （免運費金額上限{{upperLimit}}）",
-        "b3_t0_s3_unlimited": "恭喜！ 您已獲得 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>!",
-        "b3_t0_s3_upper_limit": "恭喜！ 您已獲得 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>! (免運費金額上限{{upperLimit}})",
-        "b3_t1_s1_unlimited": "再買 {{threshold}}件，享 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>!",
-        "b3_t1_s1_upper_limit": "再買 {{threshold}}件，享 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>! (免運費金額上限{{upperLimit}})",
-        "b3_t1_s3_unlimited": "恭喜！ 您已獲得 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>!",
-        "b3_t1_s3_upper_limit": "恭喜！ 您已獲得 <span class=\"custom-sale-color\" style=\"font-size:14px;\"> 免運費</span>! (免運費金額上限{{upperLimit}})",
-        "b9_t1_s1": "再買{{threshold}}件，其中{{willSave}}件免費",
-        "b9_t1_s2": "恭喜！已得{{saved}}件免費！再購買{{threshold}}件，其中{{willSave}}件免費",
-        "b9_t1_s3": "恭喜！其中{{saved}}件已免費"
-      },
       "discount_tag": {
         "b11_t1_free": "買{{threshold}}件，其中一件享受免費",
         "b11_t1_normal": "買{{threshold}}件，其中一件可減免{{save}}",
@@ -779,15 +735,6 @@
         "b2_t0": "買{{threshold}}節省{{save}}",
         "b2_t1": "買{{threshold}}件節省{{save}}",
         "label": "折扣："
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "買{{nextMinThreshold}}件{{willSave}}",
-            "step2": "恭喜！您已獲得{{currentMinThreshold}}件{{saved}}！再買{{threshold}}件可享{{nextMinThreshold}}件{{willSave}}!",
-            "step3": "恭喜！您已獲得{{currentMinThreshold}}件{{saved}}!"
-          }
-        }
       }
     }
   },

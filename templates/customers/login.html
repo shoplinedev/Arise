@@ -1,11 +1,3 @@
-{{#partial 'head'}}
-	<link rel="stylesheet" href="{{ assets_url 'customer/sign-in/index.min.css' }}" />
-{{/partial}}
-
-{{#partial 'script'}}
-  <script src="{{ assets_url 'customer/sign-in/index.min.js' }}"></script>
-{{/partial}}
-
 {{ assign 'isThirdPartyCallback' request.uri.query.code }}
 
 <div class="customer-sign-in-container {{ cond isThirdPartyCallback 'show-loading' '' }}">

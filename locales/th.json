@@ -242,6 +242,7 @@
       "delete_account_email": "อีเมล",
       "delete_account_notify": "คุณสามารถขอลบบัญชีผู้ใช้นี้ได้ หลังจากลบบัญชีผู้ใช้แล้ว ข้อมูลใดๆ ที่ใช้ในการระบุบัญชีนี้จะถูกลบออก ซึ่งรวมถึง:",
       "email": "อีเมล",
+      "email_repeat_tip": "อีเมลนี้ลงทะเบียนแล้ว",
       "first_name": "ชื่อ",
       "gender": "เพศ",
       "gender_female": "หญิง",
@@ -267,6 +268,7 @@
       "select__date": "เลือกวันที่",
       "subscribe_confirm_tip": "ขอบคุณสำหรับการสมัครสมาชิก",
       "timeout_tip": "หมดเวลาดำเนินการ โปรดยืนยันอีกครั้ง",
+      "unknow_error_tip": "ระบบเกิดข้อผิดพลาด โปรดลองอีกครั้งในภายหลัง",
       "username": "ชื่อ-นามสกุล",
       "verify_email_message": "ก่อนที่จะลบบัญชีผู้ใช้ เราจำเป็นต้องยืนยันตัวตนของคุณ\nอีเมลของคุณ{{email}}จะได้รับอีเมลรหัสยืนยัน",
       "verify_phone_message": "ก่อนที่จะลบบัญชีผู้ใช้ เราจำเป็นต้องยืนยันตัวตนของคุณ\nโทรศัพท์ของคุณ{{phone}}จะได้รับ SMS ยืนยัน"
@@ -578,6 +580,7 @@
       "collection": "หมวดหมู่"
     },
     "general": {
+      "added_to_cart_successfully": "ซื้อสินค้าเพิ่มเติมสำเร็จ",
       "no_product_data_found": "ไม่พบข้อมูลสินค้า โปรดลองอีกครั้งในภายหลัง",
       "sold_out": "ขายหมดแล้ว"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "ยินดีด้วย! คุณได้รับของขวัญฟรี {{saved}} ชิ้น! ซื้อสินค้าเพิ่มอีก {{threshold}} ชิ้น เพื่อรับของขวัญสูงสุด {{willSave}} ชิ้น"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "ซื้ออีก {{threshold}} ชิ้น รับฟรี 1 ชิ้น",
-        "b11_t1_s1_normal": "ซื้ออีก {{threshold}} ชิ้น หนึ่งในนั้นสามารถรับส่วนลด {{willSave}}",
-        "b11_t1_s2_free": "ยินดีด้วย! คุณได้รับสินค้าฟรี 1 ชิ้น!",
-        "b11_t1_s2_next_free": "ยินดีด้วย! คุณประหยัดไป {{saved}}{{br}} แล้ว ซื้ออีก {{threshold}} ชิ้น เพื่อรับสินค้าฟรีอีก 1 ชิ้น",
-        "b11_t1_s2_normal": "ยินดีด้วย! คุณประหยัดไป {{saved}}{{br}} แล้ว ซื้ออีก {{threshold}} ชิ้น เพื่อรับส่วนลดสำหรับสินค้าได้อีก {{willSave}}",
-        "b11_t1_s3_free": "ยินดีด้วย! คุณได้รับสินค้าฟรี 1 ชิ้น",
-        "b11_t1_s3_normal": "ยินดีด้วย! คุณได้รับส่วนลด {{saved}} ในหนึ่งรายการสินค้า",
-        "b12_t0_s1_achieve_free": "ขอแสดงความยินดี คุณสามารถรับสินค้าฟรี {{benefitCount}} รายการ",
-        "b12_t0_s1_achieve_normal": "ขอแสดงความยินดี คุณจะมีสินค้า {{benefitCount}} รายการรับส่วนลด {{willSave}}",
-        "b12_t0_s1_free": "ซื้อ {{threshold}} รับสินค้าฟรี {{benefitCount}} รายการ",
-        "b12_t0_s1_normal": "ซื้อ {{threshold}} จะมีสินค้า {{benefitCount}} รายการรับส่วนลด {{willSave}}",
-        "b12_t0_s3_free": "ขอแสดงความยินดี คุณได้รับสินค้าฟรี {{benefitCount}} รายการ",
-        "b12_t0_s3_normal": "ขอแสดงความยินดี คุณมีสินค้า {{benefitCount}} รายการรับส่วนลด {{saved}}",
-        "b12_t1_s1_achieve_free": "ขอแสดงความยินดี คุณสามารถรับสินค้าฟรี {{benefitCount}} รายการ",
-        "b12_t1_s1_achieve_normal": "ขอแสดงความยินดี คุณจะมีสินค้า {{benefitCount}} รายการรับส่วนลด {{willSave}}",
-        "b12_t1_s1_free": "ซื้อสินค้า {{threshold}} รายการ รับสินค้าฟรี {{benefitCount}} รายการ",
-        "b12_t1_s1_normal": "ซื้อสินค้า {{threshold}} รายการ จะมีสินค้า {{benefitCount}} รายการรับส่วนลด {{willSave}}",
-        "b12_t1_s3_free": "ขอแสดงความยินดี คุณได้รับสินค้าฟรี {{benefitCount}} รายการ",
-        "b12_t1_s3_normal": "ขอแสดงความยินดี คุณมีสินค้า {{benefitCount}} รายการรับส่วนลด {{saved}}",
-        "b14_t1_s1": "ซื้อ{{nextMinThreshold}}ชิ้น{{willSave}}",
-        "b14_t1_s2": "ขอแสดงความยินดี! คุณได้รับ{{currentMinThreshold}}ชิ้น{{saved}} ซื้อเพิ่มอีก{{threshold}}จะได้รับ{{nextMinThreshold}}ชิ้น{{willSave}}!",
-        "b14_t1_s3": "ขอแสดงความยินดี! คุณได้รับ{{currentMinThreshold}}ชิ้น{{saved}}!",
-        "b1_t0_s1": "ซื้อ {{threshold}} หรือมากกว่าเพื่อประหยัด {{willSave}}",
-        "b1_t0_s2": "ประหยัดไป {{saved}} แล้ว! {{br}} ซื้ออีก {{threshold}} เพื่อประหยัดอีก {{willSave}}",
-        "b1_t0_s3": "ยินดีด้วย! คุณประหยัดไป {{saved}}!",
-        "b1_t1_s1": "ซื้อ {{threshold}} ชิ้นขึ้นไป ประหยัด {{willSave}}",
-        "b1_t1_s2": "ประหยัดไป {{saved}} แล้ว! {{br}} ซื้ออีก {{threshold}} ชิ้นขึ้นไป เพื่อประหยัดอีก {{willSave}}",
-        "b1_t1_s3": "ยินดีด้วย! คุณประหยัดไป {{saved}}!",
-        "b2_t0_s1": "ซื้อ {{threshold}} หรือมากกว่าเพื่อประหยัด {{willSave}}",
-        "b2_t0_s2": "ประหยัดไป {{saved}} แล้ว! {{br}} ซื้ออีก {{threshold}} หรือมากกว่าเพื่อประหยัดอีก {{willSave}}",
-        "b2_t0_s3": "ยินดีด้วย! คุณประหยัดไป {{saved}}!",
-        "b2_t1_s1": "ซื้อ {{threshold}} ชิ้นขึ้นไป เพื่อลด {{willSave}}",
-        "b2_t1_s2": "ประหยัดไป {{saved}} แล้ว! {{br}} ซื้ออีก {{threshold}} ชิ้นขึ้นไป เพื่อลดอีก {{willSave}}",
-        "b2_t1_s3": "ยินดีด้วย! คุณประหยัดไป {{saved}}！",
-        "b3_t0_s1_unlimited": "ซื้ออีก {{threshold}} จะได้รับสิทธิ์ <span class=\"custom-sale-color\" style=\"font-size:14px;\"> ฟรีค่าระวาง</span>!",
-        "b3_t0_s1_upper_limit": "ซื้ออีก {{threshold}} จะได้รับสิทธิ์ <span class=\"custom-sale-color\" style=\"font-size:14px;\"> ฟรีค่าระวาง</span>! (จำนวนเงินการจัดส่งฟรีสูงสุด {{upperLimit}})",
-        "b3_t0_s3_unlimited": "ยินดีด้วย! คุณได้รับ <span class=\"custom-sale-color\" style=\"font-size:14px;\"> ฟรีค่าระวาง</span>!",
-        "b3_t0_s3_upper_limit": "ยินดีด้วย! คุณได้รับ <span class=\"custom-sale-color\" style=\"font-size:14px;\"> ฟรีค่าระวาง</span>! (จำนวนเงินการจัดส่งฟรีสูงสุด {{upperLimit}})",
-        "b3_t1_s1_unlimited": "ซื้อเพิ่มอีก {{threshold}} ชิ้น จะได้รับสิทธิ์ <span class=\"custom-sale-color\" style=\"font-size:14px;\"> ฟรีค่าระวาง</span>!",
-        "b3_t1_s1_upper_limit": "ซื้อเพิ่มอีก {{threshold}} ชิ้น จะได้รับสิทธิ์ <span class=\"custom-sale-color\" style=\"font-size:14px;\"> ฟรีค่าระวาง</span>! (จำนวนเงินการจัดส่งฟรีสูงสุด {{upperLimit}})",
-        "b3_t1_s3_unlimited": "ยินดีด้วย! คุณได้รับ <span class=\"custom-sale-color\" style=\"font-size:14px;\"> ฟรีค่าระวาง</span>!",
-        "b3_t1_s3_upper_limit": "ยินดีด้วย! คุณได้รับ <span class=\"custom-sale-color\" style=\"font-size:14px;\"> ฟรีค่าระวาง</span>! (จำนวนเงินการจัดส่งฟรีสูงสุด {{upperLimit}})",
-        "b9_t1_s1": "ซื้ออีก {{threshold}} ชิ้นขึ้นไป รับฟรี {{willSave}} ชิ้น",
-        "b9_t1_s2": "ยินดีด้วย! คุณได้รับฟรี {{saved}} ชิ้น ซื้ออีก {{threshold}} ชิ้น รับฟรี {{willSave}} ชิ้น",
-        "b9_t1_s3": "ยินดีด้วย! ได้รับฟรี {{saved}} ชิ้น"
-      },
       "discount_tag": {
         "b11_t1_free": "ซื้อเพิ่ม {{threshold}} ชิ้น เพื่อรับฟรี 1 ชิ้น",
         "b11_t1_normal": "ซื้อ {{threshold}} ชิ้นเพื่อรับส่วนลด {{save}} รายการใดรายการหนึ่ง!",
@@ -779,15 +735,6 @@
         "b2_t0": "ซื้อ {{threshold}} ประหยัด {{save}}",
         "b2_t1": "ซื้อ {{threshold}} รับส่วนลด {{save}}",
         "label": "ส่วนลด:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "ซื้อ{{nextMinThreshold}}ชิ้น{{willSave}}",
-            "step2": "ขอแสดงความยินดี! คุณได้รับ{{currentMinThreshold}}ชิ้น{{saved}} ซื้อเพิ่มอีก{{threshold}}จะได้รับ{{nextMinThreshold}}ชิ้น{{willSave}}!",
-            "step3": "ขอแสดงความยินดี! คุณได้รับ{{currentMinThreshold}}ชิ้น{{saved}}!"
-          }
-        }
       }
     }
   },

@@ -1,0 +1,5 @@
+{{ assign 'seoTitle' storeInfo.name}}
+{{#if blog.seoTitle }}
+  {{ assign 'seoTitle' blog.seoTitle}}
+{{/if}}
+<title>{{seoTitle}}</title>

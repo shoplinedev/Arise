@@ -4,163 +4,330 @@ placeholderHeight number 传入占位高度 默认为 200
 imgRealWidth 图片真实占位宽度
  --}}
 
+{{#unless notAllowLoadAssets}}
+  <!-- product/commons/js/product-item.js -->
+{{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+{{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
+{{ combine_asset_tag 
+ 'vendors/eventemitter3.min.js'
+ 'vendors/@sl_currency-tools-core.min.js'
+ 'vendors/uuid.min.js'
+ 'vendors/lodash.min.js'
+ 'vendors/debug.min.js'
+ 'vendors/url.min.js'
+ 'vendors/query-string.min.js'
+ 'vendors/swiper.min.js'
+ 'vendors/photoswipe.min.js'
+ 'vendors/yt-player.min.js'
+ 'vendors/scroll-lock.min.js'
+ 'vendors/axios.min.js'
+ 'vendors/js-cookie.min.js'
+ 'vendors/@yy_sl-theme-shared.min.js'
+ 'vendors/@sl_smart-payment.min.js'
+ 'vendors/@sl_cart.min.js'
+ 'vendors/@funnyecho_hamon.min.js'
+ 'vendors/@sl_logger.min.js'
+ 'vendors/@yy_sl-mc.min.js'
+ 'vendors/querystring.min.js'
+ 'vendors/dayjs.min.js'
+ 'theme-shared/utils/event-bus.js'
+ 'theme-shared/utils/parsePathToArray.js'
+ 'theme-shared/utils/state-selector.js'
+ 'theme-shared/utils/newCurrency/CurrencyConvert.js'
+ 'theme-shared/utils/newCurrency/index.js'
+ 'theme-shared/utils/report/page.js'
+ 'theme-shared/utils/report/tool.js'
+ 'theme-shared/report/common/baseReport.js'
+ 'theme-shared/report/product/utils/index.js'
+ 'theme-shared/report/stage/const.js'
+ 'theme-shared/utils/syntax-patch.js'
+ 'theme-shared/report/product/product-item.js'
+ 'theme-shared/utils/i18n.js'
+ 'theme-shared/utils/report/pageMapping.js'
+ 'theme-shared/utils/get-env.js'
+ 'theme-shared/utils/createLogger.js'
+ 'theme-shared/events/utils/api-logger.js'
+ 'theme-shared/events/product/quickView-click/index.js'
+ 'theme-shared/utils/img-size.js'
+ 'theme-shared/components/hbs/productImages/js/product-photoSwipeHtml.js'
+ 'theme-shared/components/hbs/shared/utils/imgUrl.js'
+ 'theme-shared/components/hbs/shared/utils/getYouTubeCover.js'
+ 'theme-shared/utils/lozad/util.js'
+ 'theme-shared/utils/lozad/plugins/normal.js'
+ 'theme-shared/utils/lozad/plugins/image-gif-poster.js'
+ 'theme-shared/components/hbs/productImages/js/index.js'
+ 'theme-shared/components/hbs/shared/utils/bem.js'
+ 'theme-shared/components/hbs/shared/components/modal/common.js'
+ 'theme-shared/components/hbs/shared/components/modal/lite.js'
+ 'commons/components/modal/lite.js'
+ 'theme-shared/components/hbs/shared/base/BaseClass.js'
+ 'theme-shared/components/hbs/shared/components/modal/full.js'
+ 'commons/components/modal/full.js'
+ 'commons/components/modal/index.js'
+ 'theme-shared/components/hbs/shared/components/toast/toast.js'
+ 'commons/components/toast/toast.js'
+ 'theme-shared/components/hbs/shared/components/toast/loading.js'
+ 'commons/components/toast/loading.js'
+ 'commons/components/toast/index.js'
+ 'theme-shared/utils/sku/DataWatcher.js'
+ 'theme-shared/events/product/sku-change/index.js'
+ 'theme-shared/events/product/sku-changed/index.js'
+ 'theme-shared/events/product/preview-init/index.js'
+ 'theme-shared/components/hbs/shared/components/toast/index.js'
+ 'theme-shared/components/hbs/flashSale/index.js'
+ 'product/commons/js/sku-stepper.js'
+ 'product/detail/js/product-quantity.js'
+ 'theme-shared/utils/request.js'
+ 'theme-shared/utils/url-adaptor.js'
+ 'theme-shared/utils/report/const.js'
+ 'theme-shared/utils/dataReport/ga.js'
+ 'theme-shared/utils/dataReport/ads.js'
+ 'theme-shared/utils/dataReport/fb.js'
+ 'theme-shared/utils/tradeReport/const.js'
+ 'theme-shared/utils/tradeReport/index.js'
+ 'theme-shared/utils/dataAccessor.js'
+ 'theme-shared/utils/checkout.js'
+ 'theme-shared/components/hbs/products/checkedEvent/index.js'
+ 'theme-shared/components/smart-payment/utils.js'
+ 'theme-shared/components/smart-payment/index.js'
+ 'theme-shared/events/product/paypal-fallback/index.js'
+ 'theme-shared/events/trade/interior-event/index.js'
+ 'theme-shared/utils/report/hd-const.js'
+ 'theme-shared/utils/tradeReport/hdReport.js'
+ 'theme-shared/utils/tradeReport/hdReportV2.js'
+ 'theme-shared/utils/tradeReport/eventListen.js'
+ 'theme-shared/components/hbs/shared/components/topDrawer/const.js'
+ 'cart/script/domain/adapter/svc/internal/config.js'
+ 'cart/script/domain/adapter/svc/internal/transport.js'
+ 'cart/script/domain/adapter/svc/index.js'
+ 'cart/script/domain/adapter/storage/constant.js'
+ 'cart/script/domain/adapter/storage/index.js'
+ 'cart/script/utils/event-bus/index.js'
+ 'cart/script/domain/adapter/svc/internal/constant.js'
+ 'cart/script/domain/adapter/svc/cart.js'
+ 'cart/script/domain/adapter/svc/voucher.js'
+ 'cart/script/domain/adapter/svc/coupon.js'
+ 'cart/script/domain/model/helpers.js'
+ 'cart/script/domain/adapter/svc/order.js'
+ 'cart/script/constant/responseCode.js'
+ 'cart/script/constant/cartQuantity.js'
+ 'cart/script/domain/model/cart.js'
+ 'cart/script/constant/stockType.js'
+ 'cart/script/domain/vo/productStock.js'
+ 'cart/script/constant/priceType.js'
+ 'cart/script/domain/vo/productPriceType.js'
+ 'cart/script/utils/object.js'
+ 'cart/script/domain/model/cartItem.js'
+ 'cart/script/domain/vo/responseCode.js'
+ 'cart/script/domain/model/response.js'
+ 'cart/script/domain/model/promotionCode.js'
+ 'theme-shared/biz-com/trade/optimize-modal/constant.js'
+ 'theme-shared/biz-com/trade/optimize-modal/cartChangeItem.js'
+ 'cart/script/domain/vo/productVerifyType.js'
+ 'cart/script/domain/model/cartVerifyItem.js'
+ 'cart/script/service/cart/hooks.js'
+ 'cart/script/service/cart/service.js'
+ 'cart/script/service/cart/index.js'
+ 'commons/logger/index.js'
+ 'cart/script/service/index.js'
+ 'commons/utils/dynamicImportMiniCart.js'
+ 'commons/cart/globalEvent.js'
+ 'commons/utils/debounce.js'
+ 'theme-shared/report/product/add-to-cart.js'
+ 'product/detail/js/product-button-report.js'
+ 'product/detail/js/product-button.js'
+ 'commons/utils/convertPrice.js'
+ 'product/commons/js/product-info.js'
+ 'product/detail/js/product-swiper.js'
+ 'commons/utils/isMobile.js'
+ 'product/detail/js/layout.js'
+ 'product/utils/sku/skuUtil.js'
+ 'product/utils/sku/skuFilter.js'
+ 'product/commons/js/sku-trade/base-sku-trade.js'
+ 'product/commons/js/sku-trade/sku-trade-flatten.js'
+ 'theme-shared/components/hbs/productImages/js/modal.js'
+ 'commons/components/modal/common.js'
+ 'product/commons/js/sku-trade/sku-trade-select.js'
+ 'product/detail/js/sku-trade.js'
+ 'theme-shared/utils/form/form.js'
+ 'theme-shared/utils/form/index.js'
+ 'theme-shared/utils/sku/firstAvailableSku.js'
+ 'theme-shared/report/customArgs/index.js'
+ 'theme-shared/report/product/detail/inquiry-modal-report.js'
+ 'commons/base/BaseClass.js'
+ 'product/detail/inquiry-price-modal.js'
+ 'product/commons/js/createShadowDom.js'
+ 'product/detail/js/tabs.js'
+ 'product/detail/js/product-collapse.js'
+ 'commons/utils/effectFc.js'
+ 'sales/js/drawer/Drawer.js'
+ 'product/detail/js/auto-coupon/auto-coupon-banner.js'
+ 'commons/utils/countdown.js'
+ 'product/detail/js/flash-sale/index.js'
+ 'product/detail/js/auto-coupon/get-sku-attribute-names.js'
+ 'product/detail/js/auto-coupon/add-to-cart-report.js'
+ 'product/detail/js/auto-coupon/add-to-cart-list.js'
+ 'theme-shared/components/hbs/thirdPartyShare/js/index.js'
+ 'commons/thirdPartyShare/index.js'
+ 'commons/utils/url.js'
+ 'theme-shared/report/hiido/index.js'
+ 'product/detail/js/discount-coupon/index.js'
+ 'theme-shared/report/product/product-preview.js'
+ 'product/utils/nullishCoalescingOperator.js'
+ 'product/detail/js/product-preview.js'
+ 'product/commons/js/preview-modal/preview-modal.js'
+ 'product/commons/js/preview-modal/index.js'
+ 'theme-shared/report/product/product-quickAddCart.js'
+ 'product/commons/js/quick-add-modal.js'
+ 'product/commons/js/product-item.js' 
+  type="text/javascript" 
+  defer=true
+}}
+  {{ combine_asset_tag 'product/commons/style/product-item.css' inline=true }}
+{{/unless}}
+
 {{#if spu.spuSeq}}
- {{assign 'spuSeq' spu.spuSeq}}
+ {{ assign 'spuSeq' spu.spuSeq }}
 {{else}}
- {{assign 'spuSeq' spu.productId}}
+ {{ assign 'spuSeq' spu.productId }}
 {{/if}}
-{{assign 'soldOut' spu.soldOut}}
-{{assign 'title' spu.title}}
-{{assign 'subTitle' spu.subTitle}}
-{{assign 'subTitleShowType' (default subTitleShowType 'hide')}}
-{{assign 'productMinPrice' spu.productMinPrice}}
-{{assign 'showMemberMark' spu.showMemberMark}}
-{{assign 'showFromMark' spu.showFromMark}}
+{{ assign 'soldOut' spu.soldOut }}
+{{ assign 'title' spu.title }}
+{{ assign 'subTitle' spu.subTitle }}
+{{ assign 'subTitleShowType' (default subTitleShowType 'hide') }}
+{{ assign 'productMinPrice' spu.productMinPrice }}
+{{ assign 'showMemberMark' spu.showMemberMark }}
+{{ assign 'showFromMark' spu.showFromMark }}
 {{!-- 判断价格的from文案是否后置，只有中日韩语后置 --}}
-{{assign 'showSuffixFrom'  (inArray  (JSONparse '["ko", "ja", "zh-hans-cn", "zh-hant-tw"]') request.locale)}}
-{{assign 'uniqueKey' spu.uniqueKey}}
-{{assign 'inquiry' spu.inquiry}}
-{{assign 'originPrice' spu.originPrice}}
-{{assign 'spuCommentSummary' spu.spuCommentSummary}}
-{{assign 'hoverZIndex' (default hoverZIndex 1)}}
-{{assign 'noHoverAniEffect' (default noHoverAniEffect false)}}
+{{ assign 'showSuffixFrom' (inArray (JSONparse '["ko", "ja", "zh-hans-cn", "zh-hant-tw"]') request.locale) }}
+{{ assign 'uniqueKey' spu.uniqueKey }}
+{{ assign 'inquiry' spu.inquiry }}
+{{ assign 'originPrice' spu.originPrice }}
+{{ assign 'spuCommentSummary' spu.spuCommentSummary }}
+{{ assign 'hoverZIndex' (default hoverZIndex 1) }}
+{{ assign 'noHoverAniEffect' (default noHoverAniEffect false) }}
 
-{{assign 'finalRatio' (default imageRatio section.settings.product_image_ratio)}}
-{{assign 'imageFit' (default imageFit section.settings.product_fill_type) }}
+{{ assign 'finalRatio' (default imageRatio section.settings.product_image_ratio) }}
+{{ assign 'imageFit' (default imageFit section.settings.product_fill_type) }}
 
-{{assign 'description' (cond subTitle subTitle (cond description description ''))}}
-{{assign 'description' (cond (lt description.length 150) description (append (array-slice description 0 150) '...'))}}
+{{ assign 'description' (cond subTitle subTitle (cond description description '')) }}
+{{ assign 'description' (cond (lt description.length 150) description (append (array-slice description 0 150) '...')) }}
 
 {{!-- 如果有图片 --}}
 {{#if imageList.[0]}}
   {{!-- 如果是自由比例，则用图片链接去获取该图片的具体比例 如果无数据取0，让图片自己撑开--}}
-  {{#if finalRatio '===' '0' }}
-    {{ assign 'finalRatio' (append (default (get 'ratio' (img_size imageList.[0])) 0) '')}}
+  {{#if finalRatio '===' '0'}}
+    {{ assign 'finalRatio' (append (default (get 'ratio' (img_size imageList.[0])) 0) '') }}
   {{/if}}
 
-  {{assign 'product_item_image_src' imageList.[0] }}
-  {{assign 'product_item_image_alt' (default altList.[0] '')}}
+  {{ assign 'product_item_image_src' imageList.[0] }}
+  {{ assign 'product_item_image_alt' (default altList.[0] '') }}
 
 {{else}}
   {{!-- 如果图片为空 --}}
-  {{assign 'product_item_image_src' false }}
+  {{ assign 'product_item_image_src' false }}
 {{/if}}
 {{!-- 下一张图片链接,如果没有下一张图片,不去处理 --}}
 {{#if imageList.[1]}}
-  {{assign 'product_item_next_image_src' imageList.[1] }}
-  {{assign 'product_item_next_image_alt' (default altList.[1] '')}}
+  {{ assign 'product_item_next_image_src' imageList.[1] }}
+  {{ assign 'product_item_next_image_alt' (default altList.[1] '') }}
 {{else}}
-  {{assign 'product_item_next_image_src' false }}
+  {{ assign 'product_item_next_image_src' false }}
 {{/if}}
 
-{{assign 'discount_text' null}}
-{{assign 'isImageRounded' (isTruthy (isTruthy theme.settings.edges '===' 'rounded') '&&' (isTruthy theme.settings.product_grid_image_margin '===' '0')) }}
+{{ assign 'discount_text' null }}
+{{ assign 'isImageRounded' (isTruthy (isTruthy theme.settings.edges '===' 'rounded') '&&' (isTruthy theme.settings.product_grid_image_margin '===' '0')) }}
 {{!-- 当存在原价，则计算折扣 --}}
 {{#if originPrice}}
   {{#if theme.settings.product_discount_style '===' 'number'}}
-    {{assign 'discount_text' (subtract originPrice   productMinPrice)}}
+    {{ assign 'discount_text' (subtract originPrice productMinPrice) }}
   {{else}}
-    {{assign 'discount_text' (round (multiply (subtract 1 (divide productMinPrice originPrice)) 100))}}
+    {{ assign 'discount_text' (round (multiply (subtract 1 (divide productMinPrice originPrice)) 100)) }}
   {{/if}}
 {{/if}}
-{{assign 'recommendConfig' plugins.recommend.recommendConfig}}
+{{ assign 'recommendConfig' plugins.recommend.recommendConfig }}
 
-{{assign 'showPrice' true}}
+{{ assign 'showPrice' true }}
 {{#if itemType '===' 'recommend'}}
-  {{assign 'soldOut' false}}
-  {{assign 'showPrice' recommendConfig.showPrice}}
-  {{assign 'product_mobile_title_show' recommendConfig.showProductTitleOnMobile}}
+  {{ assign 'soldOut' false }}
+  {{ assign 'showPrice' recommendConfig.showPrice }}
+  {{ assign 'product_mobile_title_show' recommendConfig.showProductTitleOnMobile }}
   {{#if (boolean (boolean recommendType '===' 'miniCart') '||' (boolean recommendType '===' 'cart'))}}
-    {{assign 'product_quick_view' false}}
-    {{assign 'product_add_to_cart' false}}
+    {{ assign 'product_quick_view' false }}
+    {{ assign 'product_add_to_cart' false }}
   {{else}}
-    {{assign 'product_quick_view' recommendConfig.showAddToCard}}
-    {{assign 'product_add_to_cart' recommendConfig.showAddToCard}}
+    {{ assign 'product_quick_view' recommendConfig.showAddToCard }}
+    {{ assign 'product_add_to_cart' recommendConfig.showAddToCard }}
   {{/if}}
   {{#if recommendConfig.pcProductTitleLine '===' 1}}
-    {{assign 'product_title_show_type' 'display_up_to_1_rows'}}
-  {{else if recommendConfig.pcProductTitleLine '===' 2}}
-    {{assign 'product_title_show_type' 'display_up_to_2_rows'}}
-  {{/if}}
+    {{ assign 'product_title_show_type' 'display_up_to_1_rows' }}
+  {{else}}{{#if recommendConfig.pcProductTitleLine '===' 2}}
+    {{ assign 'product_title_show_type' 'display_up_to_2_rows' }}
+  {{/if}}{{/if}}
 {{else}}
-  {{assign 'product_mobile_title_show' theme.settings.product_mobile_title_show}}
-  {{assign 'product_add_to_cart' theme.settings.product_add_to_cart}}
-  {{assign 'product_title_show_type' theme.settings.product_title_show_type}}
+  {{ assign 'product_mobile_title_show' theme.settings.product_mobile_title_show }}
+  {{ assign 'product_add_to_cart' theme.settings.product_add_to_cart }}
+  {{ assign 'product_title_show_type' theme.settings.product_title_show_type }}
 {{/if}}
 
-<div class="product-item__wrapper shopline-element-product-item" {{{shopline_attributes}}}>
-  <div class="product-item__inner-wrap js-product-inner-wrap" data-hover-z-index="{{hoverZIndex}}" data-no-hover-ani-effect="{{noHoverAniEffect}}">
+<div class="product-item__wrapper shopline-element-product-item" {{{ shopline_attributes }}}>
+  <div class="product-item__inner-wrap js-product-inner-wrap" data-hover-z-index="{{ hoverZIndex }}" data-no-hover-ani-effect="{{ noHoverAniEffect }}">
     <a
-      data-id="{{spuSeq}}"
-      data-sku-id="{{reportSkuId}}"
+      data-id="{{ spuSeq }}"
+      data-sku-id="{{ reportSkuId }}"
       data-index="{{ index }}"
       data-status="{{ soldOut }}"
       data-name="{{ title }}"
       data-price="{{ productMinPrice }}"
       data-module-type="{{ moduleType }}"
-      class="product-item js-product-item {{className}} __sl-custom-track-product-item-{{ spuSeq }}"
-      href="{{#if (isFalsey uniqueKey) }}javascript:;{{else}}/products/{{ uniqueKey }}{{/if}}"
+      class="product-item js-product-item {{ className }} __sl-custom-track-product-item-{{ spuSeq }}"
+      href="{{#if (isFalsey uniqueKey)}}javascript:;{{else}}/products/{{ uniqueKey }}{{/if}}"
       class="col"
       data-plugin-product-item-a
     >
       <div class="product-item-image-wrapper {{#if isImageRounded}}rounded{{/if}}">
         <div class="product-item__image-content">
           {{!-- 如果没有下一张图片，不展示hover效果 --}}
-          {{#if (boolean product_item_next_image_src '&&' section.settings.product_hover_show_next) }}
+          {{#if (boolean product_item_next_image_src '&&' section.settings.product_hover_show_next)}}
             <div class="product-item-next-image"  data-plugin-product-item-next-img-box>
-              {{ snippet 'product/commons/product-process-image'
-                backgroundColor=backgroundColor
-                fallbacksBgColor="#f3f3f3"
-                imageRatio=finalRatio
-                imageFit=imageFit
-                src=product_item_next_image_src
-                alt=product_item_next_image_alt
-                placeholderHeight=placeholderHeight
-              }}
+              {{ snippet 'product/commons/product-process-image' backgroundColor=backgroundColor fallbacksBgColor='#f3f3f3' imageRatio=finalRatio imageFit=imageFit src=product_item_next_image_src alt=product_item_next_image_alt placeholderHeight=placeholderHeight }}
             </div>
           {{/if}}
           <div class="product-item-image"  data-plugin-product-item-img-box>
-            {{ snippet 'product/commons/product-process-image'
-              backgroundColor=backgroundColor
-              fallbacksBgColor="#f3f3f3"
-              imageRatio=finalRatio
-              imageFit=imageFit
-              src=product_item_image_src
-              alt=product_item_image_alt
-              placeholderHeight=placeholderHeight
-            }}
+            {{ snippet 'product/commons/product-process-image' backgroundColor=backgroundColor fallbacksBgColor='#f3f3f3' imageRatio=finalRatio imageFit=imageFit src=product_item_image_src alt=product_item_image_alt placeholderHeight=placeholderHeight }}
           </div>
           {{!-- 没有soldout字段时不展示tag --}}
           {{#if soldOut '!==' undefined}}
             {{!-- 询盘（inquiry）不展示tag --}}
-            {{#if (isFalsey inquiry) }}
-            <div class="product-item-card-wrapper cart-position-{{theme.settings.product_discount_position}}">
+            {{#if (isFalsey inquiry)}}
+            <div class="product-item-card-wrapper cart-position-{{ theme.settings.product_discount_position }}">
               <div class="product-item-card-content">
                 {{#if soldOut}}
-                  <span class="product-item-soldout-tag body4 product-item-hidden-in-grid">{{t 'products.product_list.sold_out'}}</span>
+                  <span class="product-item-soldout-tag body4 product-item-hidden-in-grid">{{ t 'products.product_list.sold_out' }}</span>
                 {{else}}
-                  {{#if (boolean theme.settings.product_discount '&&' showPrice) }}
+                  {{#if (boolean theme.settings.product_discount '&&' showPrice)}}
                     {{!-- 没有优惠不展示sale tag --}}
                     {{#if (boolean originPrice '&&' (boolean discount_text '>' 0))}}
                       <span class="product-item-sale-tag body4 product-item-hidden-in-grid">
                         {{#if theme.settings.product_discount_tag_style '===' 'sale'}}
-                          {{{t 'products.product_list.sale'}}}
+                          {{{ t 'products.product_list.sale' }}}
                         {{else}}
                           {{#if theme.settings.product_discount_style '===' 'number'}}
                             {{#money_exchange_convert_price discount_text}}
                               {{#if fraction '===' '00'}}
                                 {{#if symbolOrder '==' 'prefix'}}
-                                  {{assign 'priceVal' (append currencySymbol integer) }}
+                                  {{ assign 'priceVal' (append currencySymbol integer) }}
                                 {{else}}
-                                  {{assign 'priceVal' (append integer currencySymbol) }}
+                                  {{ assign 'priceVal' (append integer currencySymbol) }}
                                 {{/if}}
                               {{else}}
-                                {{assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
+                                {{ assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
                               {{/if}}
-                              {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
+                              {{{ t 'products.product_list.save' priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
                             {{/money_exchange_convert_price}}
                           {{else}}
-                            {{t 'products.product_list.save_ratio' price=discount_text }}
+                            {{ t 'products.product_list.save_ratio' price=discount_text }}
                           {{/if}}
                         {{/if}}
                       </span>
@@ -173,19 +340,19 @@ imgRealWidth 图片真实占位宽度
           {{/if}}
         </div>
         <div class="product-item__actions js-product-item__actions">
-          {{#if (boolean (isFalsey forbiddenBtn) '&&' (isFalsey inquiry)) }}
+          {{#if (boolean (isFalsey forbiddenBtn) '&&' (isFalsey inquiry))}}
             {{!-- 询盘（inquiry）不展示加车按钮 && 手机设备不显示，包括横屏 --}}
             {{!-- 支持快速加入购物车 && 商品未售罄 --}}
-            {{#if (boolean product_add_to_cart '&&' (isFalsey soldOut) "&&" (isFalsey request.is_mobile) ) }}
+            {{#if (boolean product_add_to_cart '&&' (isFalsey soldOut) '&&' (isFalsey request.is_mobile))}}
               <button
                 type="button"
                 data-query="{{ previewQuery }}"
-                data-spu-seq='{{spuSeq}}'
-                data-unique-key='{{uniqueKey}}'
+                data-spu-seq='{{ spuSeq }}'
+                data-unique-key='{{ uniqueKey }}'
                 data-index="{{ index }}"
                 class="btn btn-primary product-item__btn product-item__quick-add js-product-item-quick-add">
                 <span>
-                  {{t 'products.product_list.add_to_cart'}}
+                  {{ t 'products.product_list.add_to_cart' }}
                 </span>
                 <i>&nbsp;</i>
               </button>
@@ -194,11 +361,11 @@ imgRealWidth 图片真实占位宽度
             {{#if (and (isFalsey inquiry) (isTruthy soldOut))}}
               <button
                 type="button"
-                data-spu-seq='{{spuSeq}}'
-                data-unique-key='{{uniqueKey}}'
+                data-spu-seq='{{ spuSeq }}'
+                data-unique-key='{{ uniqueKey }}'
                 data-index="{{ index }}"
                 class="btn product-item__btn product-item__quick-add product-item__sold-out js-product-item-sold-out">
-                {{t 'products.product_list.sold_out'}}
+                {{ t 'products.product_list.sold_out' }}
               </button>
             {{/if}}
           {{/if}}
@@ -216,18 +383,18 @@ imgRealWidth 图片真实占位宽度
           {{/if}}
           {{#if description}}
             <div class="product-item-description product-grid-font body3">
-              {{description}}
+              {{ description }}
             </div>
           {{/if}}
         </div>
         <div data-ssr-product-item-price-top></div>
         {{!-- 询盘（inquiry）不展示价格 --}}
-        {{#if (boolean (isFalsey inquiry) '&&' showPrice) }}
+        {{#if (boolean (isFalsey inquiry) '&&' showPrice)}}
           <div class="product-item-price">
             {{!-- 当原价大于售价时，显示原价 --}}
-            {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice)) }}
-              {{#if (boolean theme.settings.superscript_decimals) }}
-                <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-list">
+            {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice))}}
+              {{#if (boolean theme.settings.superscript_decimals)}}
+                <span data-product-item-price="{{ originPrice }}" class="product-item-origin-price body4 notranslate product-item-hidden-in-list">
                   {{#money_exchange_convert_price originPrice}}
                     {{#if symbolOrder '==' 'prefix'}}
                       <span>{{ currencySymbol }}</span><span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup></span>
@@ -237,16 +404,16 @@ imgRealWidth 图片真实占位宽度
                   {{/money_exchange_convert_price}}
                 </span>
               {{else}}
-                <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-list">{{money_exchange_convert_with_currency originPrice }}</span>
+                <span data-product-item-price="{{ originPrice }}" class="product-item-origin-price body4 notranslate product-item-hidden-in-list">{{ money_exchange_convert_with_currency originPrice }}</span>
               {{/if}}
             {{/if}}
 
             <span class="product-item-sale-price body2 {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice))}}product-item-sale-price--discount{{/if}}">
-              {{#if (boolean showFromMark '&&'  (not showSuffixFrom))}}
-                {{t 'products.product_list.from_price_html'  price=''}}
+              {{#if (boolean showFromMark '&&' (not showSuffixFrom))}}
+                {{ t 'products.product_list.from_price_html' price='' }}
               {{/if}}
-              {{#if (boolean theme.settings.superscript_decimals) }}
-                <span data-product-item-price="{{productMinPrice}}" class="notranslate">
+              {{#if (boolean theme.settings.superscript_decimals)}}
+                <span data-product-item-price="{{ productMinPrice }}" class="notranslate">
                   {{#money_exchange_convert_price productMinPrice}}
                     {{#if symbolOrder '==' 'prefix'}}
                       <span>{{ currencySymbol }}</span><span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup></span>
@@ -255,20 +422,20 @@ imgRealWidth 图片真实占位宽度
                     {{/if}}
                   {{/money_exchange_convert_price}}
                 </span>
-              {{~else}}
-                <span data-product-item-price="{{productMinPrice}}" class="notranslate">{{money_exchange_convert_with_currency productMinPrice }}</span>
+              {{else}}
+                <span data-product-item-price="{{ productMinPrice }}" class="notranslate">{{ money_exchange_convert_with_currency productMinPrice }}</span>
               {{/if}}
-              {{~#if (boolean showFromMark '&&'  showSuffixFrom)}}
-                {{~t 'products.product_list.from_price_html'  price=''}}
+              {{#if (boolean showFromMark '&&' showSuffixFrom)}}
+                {{ t 'products.product_list.from_price_html' price='' }}
               {{/if}}
             </span>
-            {{#if showMemberMark }}
+            {{#if showMemberMark}}
             <span class="product-item-vip-price" data-vip-tag="small"></span>
             {{/if}}
             {{!-- 当原价大于售价时，显示原价 --}}
-            {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice)) }}
-              {{#if (boolean theme.settings.superscript_decimals) }}
-                <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-grid">
+            {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice))}}
+              {{#if (boolean theme.settings.superscript_decimals)}}
+                <span data-product-item-price="{{ originPrice }}" class="product-item-origin-price body4 notranslate product-item-hidden-in-grid">
                   {{#money_exchange_convert_price originPrice}}
                     {{#if symbolOrder '==' 'prefix'}}
                       <span>{{ currencySymbol }}</span><span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup></span>
@@ -278,16 +445,16 @@ imgRealWidth 图片真实占位宽度
                   {{/money_exchange_convert_price}}
                 </span>
               {{else}}
-                <span data-product-item-price="{{originPrice}}" class="product-item-origin-price body4 notranslate product-item-hidden-in-grid">{{money_exchange_convert_with_currency originPrice }}</span>
+                <span data-product-item-price="{{ originPrice }}" class="product-item-origin-price body4 notranslate product-item-hidden-in-grid">{{ money_exchange_convert_with_currency originPrice }}</span>
               {{/if}}
             {{/if}}
-            {{#if theme.settings.product_discount }}
+            {{#if theme.settings.product_discount}}
               {{#if soldOut '!==' undefined}}
                 {{!-- 询盘（inquiry）不展示tag --}}
-                {{#if (isFalsey inquiry) }}
+                {{#if (isFalsey inquiry)}}
                   {{#if soldOut}}
                     <span class="product-item-hidden-in-list product-item-tag-panel">
-                      <span class="product-item-soldout-tag body4" style="position: static;">{{t 'products.product_list.sold_out'}}</span>
+                      <span class="product-item-soldout-tag body4" style="position: static;">{{ t 'products.product_list.sold_out' }}</span>
                     </span>
                   {{else}}
                     {{!-- 没有优惠不展示sale tag --}}
@@ -298,17 +465,17 @@ imgRealWidth 图片真实占位宽度
                             {{#money_exchange_convert_price discount_text}}
                               {{#if fraction '===' '00'}}
                                 {{#if symbolOrder '==' 'prefix'}}
-                                  {{assign 'priceVal' (append currencySymbol integer) }}
+                                  {{ assign 'priceVal' (append currencySymbol integer) }}
                                 {{else}}
-                                  {{assign 'priceVal' (append integer currencySymbol) }}
+                                  {{ assign 'priceVal' (append integer currencySymbol) }}
                                 {{/if}}
                               {{else}}
-                                {{assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
+                                {{ assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
                               {{/if}}
-                              {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
+                              {{{ t 'products.product_list.save' priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
                             {{/money_exchange_convert_price}}
                           {{else}}
-                            {{t 'products.product_list.save_ratio' price=discount_text }}
+                            {{ t 'products.product_list.save_ratio' price=discount_text }}
                           {{/if}}
                         </span>
                       {{else}}
@@ -318,17 +485,17 @@ imgRealWidth 图片真实占位宽度
                               {{#money_exchange_convert_price discount_text}}
                                 {{#if fraction '===' '00'}}
                                   {{#if symbolOrder '==' 'prefix'}}
-                                    {{assign 'priceVal' (append currencySymbol integer) }}
+                                    {{ assign 'priceVal' (append currencySymbol integer) }}
                                   {{else}}
-                                    {{assign 'priceVal' (append integer currencySymbol) }}
+                                    {{ assign 'priceVal' (append integer currencySymbol) }}
                                   {{/if}}
                                 {{else}}
-                                  {{assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
+                                  {{ assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
                                 {{/if}}
-                                {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
+                                {{{ t 'products.product_list.save' priceDom=(append '<span class="notranslate"  data-product-item-price="' discount_text '" data-product-item-save-price="true">' priceVal '</span>') }}}
                               {{/money_exchange_convert_price}}
                             {{else}}
-                              {{t 'products.product_list.save_ratio' price=discount_text }}
+                              {{ t 'products.product_list.save_ratio' price=discount_text }}
                             {{/if}}
                           </span>
                         </span>

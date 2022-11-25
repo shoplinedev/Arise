@@ -1,0 +1,32 @@
+input{
+  -webkit-appearance:none;
+}
+.product-process-image{
+  align-items:end;
+  background:rgba(var(--color-image-background));
+  display:flex;
+  opacity:.01;
+  transition:opacity .4s ease;
+}
+.product-process-image img{
+  transition:height .4s ease;
+  width:100%;
+}
+.product-process-image.placeholder-border{
+  background-color:rgba(var(--color-text), .05);
+  background-image:var(--sl-asset-product-commons-svg-default-img--svg);
+  background-position:50%;
+  background-repeat:no-repeat;
+  height:0;
+  opacity:1;
+  padding-bottom:100%;
+}
+.product-process-image.fix-product-image-con{
+  position:relative;
+  width:100%;
+}
+.product-process-image.fix-product-image-con>img{
+  height:100%;
+  position:absolute !important;
+  top:0;
+}

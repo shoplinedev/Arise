@@ -1,17 +1,11 @@
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'announcement-bar/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'announcement-bar/index.min.css' }}
-{{/is_modern_browser}}
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'announcement-bar/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'announcement-bar/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
+{{ combine_asset_tag 'stage/announcement-bar/index.css' inline=true }}
+<!-- stage/announcement-bar/index.js -->
+{{ combine_asset_tag 
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'stage/announcement-bar/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
 
 {{ assign 'showAnnouncement' false }}
 

@@ -3,18 +3,14 @@ blogs:
   limit: 6
 ---
 
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'blog/list/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'blog/list/index.min.css' }}
-{{/is_modern_browser}}
+{{ combine_asset_tag 'stage/blog/list/style/index.css' inline=true }}
 
 <main class="blogs-container container">
   {{ assign 'listHandle' (default blogs.handle (url_decode request.uri.params.listHandle)) }}
   {{ assign 'tagHandle' (url_decode request.uri.params.tagHandle) }}
   {{ assign 'listPath' (append '/blogs/' listHandle) }}
 
-  {{assign "settings" section.settings}}
+  {{ assign 'settings' section.settings }}
   {{ assign 'homeText' (t 'general.general.home') }}
   {{ assign 'title' (get 'title' blogs) }}
   {{ assign 'blogTagList' (default (get 'blogTagList' blogs) (JSONparse '[]')) }}
@@ -23,19 +19,19 @@ blogs:
   {{ assign 'pageSize' (default (get 'blogs.pageSize' blogs) 12) }}
   {{ assign 'blogs' (default (get 'blogs.list' blogs) (JSONparse '[]')) }}
 
-  {{assign 'show_blocks' false}}
-  {{#with this as |global|}}
-    {{#each global.section.block_order as |blockId|}}
-      {{#with (lookup global.section.blocks blockId) as |itemData|}}
+  {{ assign 'show_blocks' false }}
+  {{#with this as | global |}}
+    {{#each global.section.block_order as | blockId |}}
+      {{#with (lookup global.section.blocks blockId) as | itemData |}}
         {{#if (isFalsey itemData.disabled)}}
           {{#with global}}
-            {{assign 'show_blocks' true}}
+            {{ assign 'show_blocks' true }}
           {{/with}}
         {{/if}}
       {{/with}}
     {{/each}}
   {{/with}}
-  {{assign 'show_sidebar' (boolean section.settings.is_show_sidebar '&&' show_blocks)}}
+  {{ assign 'show_sidebar' (boolean section.settings.is_show_sidebar '&&' show_blocks) }}
 
   {{#if section.settings.is_show_breadcrumb}}
     {{ assign 'routes' (JSONparse (append '[{"name":"' homeText '","link":"/"}]')) }}
@@ -55,34 +51,19 @@ blogs:
   <div class="bloglist__main {{#if section.settings.position '===' 'left'}}bloglist__main--right{{/if}}">
     <div class="blogs__page-list {{#if show_sidebar}}blogs__page-list--sidebar{{/if}}">
       {{#if (length blogs) '>' 0}}
-        {{#with this as |global|}}
+        {{#with this as | global |}}
           <div class="blogs__list-wrapper">
-            <ul class="row row-cols-1 {{#if global.section.settings.layout '==' 'grid' }}row-cols-md-3{{/if}} blogs__list blogs__list--{{ global.section.settings.layout }}">
+            <ul class="row row-cols-1 {{#if global.section.settings.layout '==' 'grid'}}row-cols-md-3{{/if}} blogs__list blogs__list--{{ global.section.settings.layout }}">
               {{#each blogs}}
                 <li class="blogs__item">
-                  {{
-                    snippet 'blogs/simple-blog'
-                    pathPrefix=global.listPath
-                    info=this
-                    collectionId=global.listHandle
-                    showAuthor=global.section.settings.is_show_author
-                    showDate=global.section.settings.is_show_date
-                    showCover=global.section.settings.is_show_cover
-                    coverRatio=global.section.settings.cover_img_ratio
-                    showDesc=global.section.settings.is_show_desc
-                    btn_text=(t 'blog.blog_list.read_btn_text')
-                    pcSize="1/3"
-                    showTag=global.section.settings.is_show_tag
-                    showMore=global.section.settings.is_show_read_more
-                    shopline_attributes=this.shopline_attributes
-                  }}
+                  {{ snippet 'blogs/simple-blog' pathPrefix=global.listPath info=this collectionId=global.listHandle showAuthor=global.section.settings.is_show_author showDate=global.section.settings.is_show_date showCover=global.section.settings.is_show_cover coverRatio=global.section.settings.cover_img_ratio showDesc=global.section.settings.is_show_desc btn_text=(t 'blog.blog_list.read_btn_text') pcSize='1/3' showTag=global.section.settings.is_show_tag showMore=global.section.settings.is_show_read_more shopline_attributes=this.shopline_attributes }}
                 </li>
               {{/each}}
             </ul>
           </div>
         {{/with}}
 
-        {{ snippet 'product/commons/pagination' mode='href' id="blogs-pagination" wrapperClass='blogs__pagination' total=total pageSize=pageSize current=pageNum request=request }}
+        {{ snippet 'product/commons/pagination' mode='href' id='blogs-pagination' wrapperClass='blogs__pagination' total=total pageSize=pageSize current=pageNum request=request }}
       {{else}}
         <div class="blogs__empty">
           <h2 class="blogs__empty-title title3">{{ t 'blog.blog_list.title' }}</h2>
@@ -91,7 +72,7 @@ blogs:
       {{/if}}
     </div>
     {{#if show_sidebar}}
-      {{snippet "blogs/sidebar-bar/index" sectionData=section tagList=blogTagList listHandle=listHandle}}
+      {{ snippet 'blogs/sidebar-bar/index' sectionData=section tagList=blogTagList listHandle=listHandle }}
     {{/if}}
   </div>
 </main>

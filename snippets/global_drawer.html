@@ -1,10 +1,21 @@
-{{assign 'is_nested' false}}
+{{ combine_asset_tag 'commons/components/global-drawer/index.css' inline=true }}
+<!-- commons/components/global-drawer/index.js -->
+{{ combine_asset_tag 
+ 'theme-shared/components/hbs/shared/base/BaseClass.js'
+ 'theme-shared/components/hbs/shared/components/drawer/const.js'
+ 'theme-shared/components/hbs/shared/components/drawer/index.js'
+ 'commons/components/global-drawer/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
+
+{{ assign 'is_nested' false }}
 {{#if level '>' 1}}
-  {{assign 'is_nested' true}}
+  {{ assign 'is_nested' true }}
 {{/if}}
 
-<div id="{{id}}" class="stage-drawer global-drawer-border-shadow {{classes}} {{#if debug '===' 1}}stage-drawer--is-open{{/if}} {{#if is_nested}}stage-drawer-nested{{/if}}"
-  data-position="{{position}}" {{#if type '===' 'cart'}}data-cart{{/if}} data-level={{level}}>
+<div id="{{ id }}" class="stage-drawer global-drawer-border-shadow {{ classes }} {{#if debug '===' 1}}stage-drawer--is-open{{/if}} {{#if is_nested}}stage-drawer-nested{{/if}}"
+  data-position="{{ position }}" {{#if type '===' 'cart'}}data-cart{{/if}} data-level={{ level }}>
   <div class="drawer--content">
     <div class="drawer__header--fixed">
       <div
@@ -20,7 +31,7 @@
           </div>
         {{/if}}
         {{#unless is_nested}}
-          <div class="title4 drawer__title text-left">{{ slot_content 'head' }} {{title}}</div>
+          <div class="title4 drawer__title text-left">{{ slot_content 'head' }} {{ title }}</div>
         {{/unless}}
         <div class="drawer__close">
           <button type="button" class="drawer__button j-drawer-close  sl-icon-hover">
@@ -33,7 +44,7 @@
       </div>
     </div>
     <div class="drawer__main">
-      {{slot_content}}
+      {{ slot_content }}
     </div>
   </div>
 </div>

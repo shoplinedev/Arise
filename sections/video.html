@@ -1,17 +1,23 @@
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'video/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'video/index.min.css' }}
-{{/is_modern_browser}}
+{{ combine_asset_tag 'stage/video/index.css' inline=true }}
+<!-- stage/video/index.js -->
+{{ combine_asset_tag 
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'stage/video/utils/Player.js'
+ 'commons/video/LibraryLoader.js'
+ 'commons/video/state.js'
+ 'commons/video/YoutubeReadyWatcher.js'
+ 'stage/video/utils/YouTube.js'
+ 'stage/video/utils/LibraryLoader.js'
+ 'stage/video/utils/VimeoPlayer.js'
+ 'commons/video/AutoplayChecker.js'
+ 'commons/video/VideoJs.js'
+ 'commons/utils/init-when-visible.js'
+ 'stage/video/utils/video.js'
+ 'stage/video/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
 
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'video/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'video/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
 {{ assign 'full_width' section.settings.full_width }}
 
 {{ snippet 'global-border-shadow-style' color_scheme=section.settings.color_scheme sectionId=section.id type='media' }}

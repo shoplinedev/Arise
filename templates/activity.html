@@ -1,131 +1,202 @@
-{{#partial 'title'}}
-  <title>{{ activity.defaultActivityName }}</title>
-{{/partial}}
-
 {{#if activity.defaultSeo}}
   {{ assign 'activitySeo' (JSONparse activity.defaultSeo) }}
 {{/if}}
-{{#partial 'seo-meta'}}
-  {{!-- 下面的变量命名需要保持一致 具体参数参考下方参数 --}}
-  {{ assign 'ogTitle' activitySeo.title }}
-  {{ assign 'ogDescription' (cond activitySeo.desc activitySeo.desc storeInfo.name) }}
-  {{ assign 'url' (append request.uri.domain request.uri.path) }}
-  {{#if activity.bannerPicUrl}}
-    {{ assign 'image' activity.bannerPicUrl }}
-  {{else}}{{#if page_image}}
-    {{ assign 'image' page_image }}
-  {{else}}
-    {{ assign 'image' theme.settings.co_checkout_image.url }}
-  {{/if}}{{/if}}
-  {{ assign 'seoTitle' activitySeo.title }}
-  {{ assign 'seoDescription' (default activitySeo.desc '') }}
-  {{ assign 'keywords' activity.defaultKeywords }}
-  {{ assign 'card' 'summary_large_image' }}
-  {{ assign 'type' 'activity' }}
-  
-  
 
-{{assign '_image' 'https://img.myshopline.com/image/shopline/3439ce4a1e15489193fd9ac622e1143e.png'}}
-{{assign 'twitterCard' (default card 'summary_large_image') }}
-
-{{! 如果存在传入的图片使用传入的 没有使用店铺log 在没有使用兜底图片 }}
-{{#if image}}
-  {{assign '_image' image}}
-{{/if}}
-{{assign 'title' (default seoTitle '')}}
-
-{{#if canonicalUrl }}
-  {{assign '_canonicalUrl' canonicalUrl}}
-{{else}}
-  {{assign '_canonicalUrl' url}}
-{{/if}}
-
-{{#if title}}
-<meta name="title" content="{{title}}" />
-{{/if}}
-{{!-- keyword 插入到title 和 description 中间 --}}
-{{#if keywords }}
-<meta name="keywords" content="{{keywords}}" /> 
-{{/if}}
-
-{{! 没有desc 不展示 }}
-{{#if seoDescription}}
-  <meta name="description" content="{{sanitize seoDescription}}" />
-{{/if}}
-
-{{! 商详页之前的标签 先保留其他页面不需要传入  }}
-{{! 重复网址 seo 定向到主站 }}
-
-
-{{#if _canonicalUrl}}
-  <link rel="canonical" href="{{_canonicalUrl}}" />
-  <link rel="alternate" href="{{_canonicalUrl}}" />
-{{/if}}
-
-{{! meta link }}
-{{#if url}}
-  <meta property="og:url" content="{{url}}" />
-{{/if}}
-
-{{#if storeInfo.name}}
-  <meta property="og:site_name" content="{{storeInfo.name}}" />
-{{/if}}
-
-{{! meta title }}
-{{#if ogTitle}}
-  <meta property="og:title" content="{{ogTitle}}" />
-{{/if}}
-
-{{#if ogDescription}}
-  <meta property="og:description" content="{{sanitize ogDescription}}" />
-{{/if}}
-
-{{! meta fb type }}
-{{#if type}}
-  <meta property="og:type" content="{{type}}" />
-{{/if}}
-
-{{#if _image}}
-  <meta property="og:image" content="{{_image}}" />
-  <meta property="og:image:secure_url" content="{{_image}}" />
-  <meta name="twitter:image" content="{{_image}}" />
-{{/if}}
-
-{{#if ogTitle}}
-  <meta name="twitter:title" content="{{ogTitle}}" />
-{{/if}}
-
-{{! meta description }}
-{{#if ogDescription}}
-  <meta name="twitter:description" content="{{sanitize ogDescription}}" />
-{{/if}}
-
-{{! meta twitter card }}
-{{#if card}}
-  <meta name="twitter:card" content="{{twitterCard}}" />
-{{/if}}
-
-{{!-- meta hide product --}}
-{{#and  (boolean templateAlias '===' 'ProductsDetail')  (isFalsey product.spu.visible)}}
-  <meta name='robots' content='noindex' />
-{{/and}}
-
-
-
-
-{{/partial}}
-
-{{#partial 'head'}}
-  <link rel="stylesheet" href="{{ assets_url 'activity/index.min.css' }}" />
-{{/partial}}
-
-{{#partial 'script'}}
-  {{#is_modern_browser}}
-    <script src="{{ assets_url 'activity/index.min.modern.js' }}"></script>
-  {{else}}
-    <script src="{{ assets_url 'activity/index.min.js' }}"></script>
-  {{/is_modern_browser}}
-{{/partial}}
+{{ combine_asset_tag 'activity/style/activity.css' inline=true }}
+<!-- activity/main.js -->
+{{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+{{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
+{{ combine_asset_tag 
+ 'vendors/eventemitter3.min.js'
+ 'vendors/@sl_currency-tools-core.min.js'
+ 'vendors/lodash.min.js'
+ 'vendors/axios.min.js'
+ 'vendors/query-string.min.js'
+ 'vendors/uuid.min.js'
+ 'vendors/debug.min.js'
+ 'vendors/url.min.js'
+ 'vendors/swiper.min.js'
+ 'vendors/photoswipe.min.js'
+ 'vendors/yt-player.min.js'
+ 'vendors/scroll-lock.min.js'
+ 'vendors/js-cookie.min.js'
+ 'vendors/@yy_sl-theme-shared.min.js'
+ 'vendors/@sl_smart-payment.min.js'
+ 'vendors/@sl_cart.min.js'
+ 'vendors/@funnyecho_hamon.min.js'
+ 'vendors/@sl_logger.min.js'
+ 'vendors/@yy_sl-mc.min.js'
+ 'vendors/querystring.min.js'
+ 'vendors/dayjs.min.js'
+ 'vendors/copy-to-clipboard.min.js'
+ 'theme-shared/utils/event-bus.js'
+ 'theme-shared/utils/parsePathToArray.js'
+ 'theme-shared/utils/state-selector.js'
+ 'theme-shared/utils/newCurrency/CurrencyConvert.js'
+ 'theme-shared/utils/syntax-patch.js'
+ 'theme-shared/utils/i18n.js'
+ 'theme-shared/components/hbs/shared/components/toast/toast.js'
+ 'theme-shared/components/hbs/shared/components/toast/loading.js'
+ 'theme-shared/components/hbs/shared/components/toast/index.js'
+ 'theme-shared/utils/request.js'
+ 'theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js'
+ 'theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/getPromotionReminder.js'
+ 'theme-shared/utils/template.js'
+ 'commons/sales/simpleRender.js'
+ 'activity/script/cart.js'
+ 'commons/utils/countdown.js'
+ 'theme-shared/utils/newCurrency/index.js'
+ 'theme-shared/utils/report/page.js'
+ 'theme-shared/utils/report/tool.js'
+ 'theme-shared/report/common/baseReport.js'
+ 'theme-shared/report/product/utils/index.js'
+ 'theme-shared/report/stage/const.js'
+ 'theme-shared/report/product/product-item.js'
+ 'theme-shared/utils/report/pageMapping.js'
+ 'theme-shared/utils/get-env.js'
+ 'theme-shared/utils/createLogger.js'
+ 'theme-shared/events/utils/api-logger.js'
+ 'theme-shared/events/product/quickView-click/index.js'
+ 'theme-shared/utils/img-size.js'
+ 'theme-shared/components/hbs/productImages/js/product-photoSwipeHtml.js'
+ 'theme-shared/components/hbs/shared/utils/imgUrl.js'
+ 'theme-shared/components/hbs/shared/utils/getYouTubeCover.js'
+ 'theme-shared/utils/lozad/util.js'
+ 'theme-shared/utils/lozad/plugins/normal.js'
+ 'theme-shared/utils/lozad/plugins/image-gif-poster.js'
+ 'theme-shared/components/hbs/productImages/js/index.js'
+ 'theme-shared/components/hbs/shared/utils/bem.js'
+ 'theme-shared/components/hbs/shared/components/modal/common.js'
+ 'theme-shared/components/hbs/shared/components/modal/lite.js'
+ 'commons/components/modal/lite.js'
+ 'theme-shared/components/hbs/shared/base/BaseClass.js'
+ 'theme-shared/components/hbs/shared/components/modal/full.js'
+ 'commons/components/modal/full.js'
+ 'commons/components/modal/index.js'
+ 'commons/components/toast/toast.js'
+ 'commons/components/toast/loading.js'
+ 'commons/components/toast/index.js'
+ 'theme-shared/utils/sku/DataWatcher.js'
+ 'theme-shared/events/product/sku-change/index.js'
+ 'theme-shared/events/product/sku-changed/index.js'
+ 'theme-shared/events/product/preview-init/index.js'
+ 'theme-shared/components/hbs/flashSale/index.js'
+ 'product/commons/js/sku-stepper.js'
+ 'product/detail/js/product-quantity.js'
+ 'theme-shared/utils/url-adaptor.js'
+ 'theme-shared/utils/report/const.js'
+ 'theme-shared/utils/dataReport/ga.js'
+ 'theme-shared/utils/dataReport/ads.js'
+ 'theme-shared/utils/dataReport/fb.js'
+ 'theme-shared/utils/tradeReport/const.js'
+ 'theme-shared/utils/tradeReport/index.js'
+ 'theme-shared/utils/dataAccessor.js'
+ 'theme-shared/utils/checkout.js'
+ 'theme-shared/components/hbs/products/checkedEvent/index.js'
+ 'theme-shared/components/smart-payment/utils.js'
+ 'theme-shared/components/smart-payment/index.js'
+ 'theme-shared/events/product/paypal-fallback/index.js'
+ 'theme-shared/events/trade/interior-event/index.js'
+ 'theme-shared/utils/report/hd-const.js'
+ 'theme-shared/utils/tradeReport/hdReport.js'
+ 'theme-shared/utils/tradeReport/hdReportV2.js'
+ 'theme-shared/utils/tradeReport/eventListen.js'
+ 'theme-shared/components/hbs/shared/components/topDrawer/const.js'
+ 'cart/script/domain/adapter/svc/internal/config.js'
+ 'cart/script/domain/adapter/svc/internal/transport.js'
+ 'cart/script/domain/adapter/svc/index.js'
+ 'cart/script/domain/adapter/storage/constant.js'
+ 'cart/script/domain/adapter/storage/index.js'
+ 'cart/script/utils/event-bus/index.js'
+ 'cart/script/domain/adapter/svc/internal/constant.js'
+ 'cart/script/domain/adapter/svc/cart.js'
+ 'cart/script/domain/adapter/svc/voucher.js'
+ 'cart/script/domain/adapter/svc/coupon.js'
+ 'cart/script/domain/model/helpers.js'
+ 'cart/script/domain/adapter/svc/order.js'
+ 'cart/script/constant/responseCode.js'
+ 'cart/script/constant/cartQuantity.js'
+ 'cart/script/domain/model/cart.js'
+ 'cart/script/constant/stockType.js'
+ 'cart/script/domain/vo/productStock.js'
+ 'cart/script/constant/priceType.js'
+ 'cart/script/domain/vo/productPriceType.js'
+ 'cart/script/utils/object.js'
+ 'cart/script/domain/model/cartItem.js'
+ 'cart/script/domain/vo/responseCode.js'
+ 'cart/script/domain/model/response.js'
+ 'cart/script/domain/model/promotionCode.js'
+ 'theme-shared/biz-com/trade/optimize-modal/constant.js'
+ 'theme-shared/biz-com/trade/optimize-modal/cartChangeItem.js'
+ 'cart/script/domain/vo/productVerifyType.js'
+ 'cart/script/domain/model/cartVerifyItem.js'
+ 'cart/script/service/cart/hooks.js'
+ 'cart/script/service/cart/service.js'
+ 'cart/script/service/cart/index.js'
+ 'commons/logger/index.js'
+ 'cart/script/service/index.js'
+ 'commons/utils/dynamicImportMiniCart.js'
+ 'commons/cart/globalEvent.js'
+ 'commons/utils/debounce.js'
+ 'theme-shared/report/product/add-to-cart.js'
+ 'product/detail/js/product-button-report.js'
+ 'product/detail/js/product-button.js'
+ 'commons/utils/convertPrice.js'
+ 'product/commons/js/product-info.js'
+ 'product/detail/js/product-swiper.js'
+ 'commons/utils/isMobile.js'
+ 'product/detail/js/layout.js'
+ 'product/utils/sku/skuUtil.js'
+ 'product/utils/sku/skuFilter.js'
+ 'product/commons/js/sku-trade/base-sku-trade.js'
+ 'product/commons/js/sku-trade/sku-trade-flatten.js'
+ 'theme-shared/components/hbs/productImages/js/modal.js'
+ 'commons/components/modal/common.js'
+ 'product/commons/js/sku-trade/sku-trade-select.js'
+ 'product/detail/js/sku-trade.js'
+ 'theme-shared/utils/form/form.js'
+ 'theme-shared/utils/form/index.js'
+ 'theme-shared/utils/sku/firstAvailableSku.js'
+ 'theme-shared/report/customArgs/index.js'
+ 'theme-shared/report/product/detail/inquiry-modal-report.js'
+ 'commons/base/BaseClass.js'
+ 'product/detail/inquiry-price-modal.js'
+ 'product/commons/js/createShadowDom.js'
+ 'product/detail/js/tabs.js'
+ 'product/detail/js/product-collapse.js'
+ 'commons/utils/effectFc.js'
+ 'sales/js/drawer/Drawer.js'
+ 'product/detail/js/auto-coupon/auto-coupon-banner.js'
+ 'product/detail/js/flash-sale/index.js'
+ 'product/detail/js/auto-coupon/get-sku-attribute-names.js'
+ 'product/detail/js/auto-coupon/add-to-cart-report.js'
+ 'product/detail/js/auto-coupon/add-to-cart-list.js'
+ 'theme-shared/components/hbs/thirdPartyShare/js/index.js'
+ 'commons/thirdPartyShare/index.js'
+ 'commons/utils/url.js'
+ 'theme-shared/report/hiido/index.js'
+ 'product/detail/js/discount-coupon/index.js'
+ 'theme-shared/report/product/product-preview.js'
+ 'product/utils/nullishCoalescingOperator.js'
+ 'product/detail/js/product-preview.js'
+ 'product/commons/js/preview-modal/preview-modal.js'
+ 'product/commons/js/preview-modal/index.js'
+ 'theme-shared/report/product/product-quickAddCart.js'
+ 'product/commons/js/quick-add-modal.js'
+ 'product/commons/js/product-item.js'
+ 'commons/utils/main.js'
+ 'commons/utils/helper.js'
+ 'activity/script/promotion-tags.js'
+ 'theme-shared/components/hbs/shared/components/tooltip/index.js'
+ 'activity/script/productTabs.js'
+ 'activity/script/sort-selector.js'
+ 'activity/script/index.js'
+ 'theme-shared/components/hbs/active/js/index.js'
+ 'activity/main.js' 
+  type="text/javascript" 
+  defer=true
+}}
 
 {{ preload_state 'activity' }}
 {{ preload_state 'cartInfo' }}

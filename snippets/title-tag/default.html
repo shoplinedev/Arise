@@ -1,0 +1,6 @@
+ {{assign "seoTitle" (useFallbackLang pageInfo.seoTitle request.locale)}}
+  {{#if seoTitle}}
+    <title>{{seoTitle}}</title>
+  {{else}}
+    <title>{{storeInfo.name}}</title>
+  {{/if}}

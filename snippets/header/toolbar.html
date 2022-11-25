@@ -1,7 +1,7 @@
 {{assign 'toolbar_menu_data' (get settings.toolbar_menu navigations) }}
 
 <div class="header__top"  data-color-scheme="{{color_scheme}}">
-    <div class="container{{#if settings.show_tool_full}}-fluid{{/if}} g-2 g-md-5 toolbar d-none d-lg-flex">
+    <div class="container{{#if settings.show_tool_full}}-fluid{{/if}} g-2 g-md-5 toolbar d-none d-lg-flex {{#if section.settings.header_full_width}}header__full_screen_width{{/if}}">
         {{#if (isTruthy toolbar_menu_data)}}
             <ul class="toolbar_menu">
                 {{#each toolbar_menu_data.nodeTree}}

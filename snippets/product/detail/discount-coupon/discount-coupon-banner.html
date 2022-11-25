@@ -43,6 +43,7 @@
         {{ assign 'discountText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_discount_content' discount=discountValText))}}
         {{ assign 'buyXGetYDiscountText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_all_discount_content' discount=discountValText benefitCount=__discountCountText))}}
       {{else}}
+        {{ assign 'discountValText' (javascript_template wrapper1 val='FREE')}}
         {{ assign 'discountText' (t 'sales.discount_coupon.buy_x_get_y_free_content')}}
         {{ assign 'buyXGetYDiscountText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_all_free_content' benefitCount=__discountCountText))}}
       {{/if}}

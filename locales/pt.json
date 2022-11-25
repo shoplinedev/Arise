@@ -242,6 +242,7 @@
       "delete_account_email": "E-mail",
       "delete_account_notify": "Você pode solicitar a exclusão desta conta. Assim que a conta for excluída, qualquer informação usada para identificar a conta será apagada, incluindo:",
       "email": "Email",
+      "email_repeat_tip": "O email foi registrado",
       "first_name": "Primeiro nome",
       "gender": "Gênero",
       "gender_female": "Feminino",
@@ -267,6 +268,7 @@
       "select__date": "Selecione a data",
       "subscribe_confirm_tip": "Obrigado pela sua subscrição.",
       "timeout_tip": "A operação expirou, verifique novamente",
+      "unknow_error_tip": "Erro de serviço, tente novamente mais tarde",
       "username": "Nome",
       "verify_email_message": "Antes que você possa excluir sua conta, precisamos verificar sua identidade.Seu e-mail {{email}} receberá um e-mail de código de verificação",
       "verify_phone_message": "Antes que você possa excluir sua conta, precisamos verificar sua identidade.Seu telefone {{phone}} receberá uma mensagem de verificação"
@@ -578,6 +580,7 @@
       "collection": "Kolekcje"
     },
     "general": {
+      "added_to_cart_successfully": "Compra adicional com sucesso",
       "no_product_data_found": "Sem dados de produto atual, tente novamente mais tarde",
       "sold_out": "Esgotado"
     },
@@ -724,53 +727,6 @@
       "spend_more_quantity_get_more_tip": "Parabéns! Você ganhou {{saved}} presentes! Compre mais {{threshold}} itens e aproveite até {{willSave}} presentes"
     },
     "promotion": {
-      "cart_reminder": {
-        "b11_t1_s1_next_free": "Compre mais de {{threshold}} unidades, um dos itens será gratuito",
-        "b11_t1_s1_normal": "Compre mais de {{threshold}} unidades, aproveite {{willSave}} de desconto em um dos itens",
-        "b11_t1_s2_free": "Parabéns! um dos itens será gratuito",
-        "b11_t1_s2_next_free": "Parabéns! Descontou {{saved}} já! {{br}} compre mais de {{threshold}} unidades, um dos itens será gratuito",
-        "b11_t1_s2_normal": "Parabéns! Descontou {{saved}} já! {{br}} compre mais de {{threshold}} unidades, aproveite {{willSave}} de desconto em um dos itens",
-        "b11_t1_s3_free": "Parabéns! um dos itens será gratuito",
-        "b11_t1_s3_normal": "Parabéns! Aproveite {{saved}} de desconto em um dos itens",
-        "b12_t0_s1_achieve_free": "Parabéns, você pode aproveitar {{benefitCount}} itens GRATUITOS",
-        "b12_t0_s1_achieve_normal": "Parabéns, você pode aproveitar {{willSave}} de desconto para {{benefitCount}} itens",
-        "b12_t0_s1_free": "Compre {{threshold}}, aproveite {{benefitCount}} itens GRATUITOS",
-        "b12_t0_s1_normal": "Compre {{threshold}}, aproveite {{willSave}} de desconto para {{benefitCount}} itens",
-        "b12_t0_s3_free": "Parabéns! Você ganhou {{benefitCount}} itens GRATUITOS",
-        "b12_t0_s3_normal": "Parabéns! Você ganhou {{saved}} de desconto em {{benefitCount}} desses itens!",
-        "b12_t1_s1_achieve_free": "Parabéns, você pode aproveitar {{benefitCount}} itens GRATUITOS",
-        "b12_t1_s1_achieve_normal": "Parabéns, você pode aproveitar {{willSave}} de desconto para {{benefitCount}} itens",
-        "b12_t1_s1_free": "Compre {{threshold}} itens, aproveite {{benefitCount}} itens GRATUITOS",
-        "b12_t1_s1_normal": "Compre {{threshold}} itens, aproveite {{willSave}} de desconto para {{benefitCount}} itens",
-        "b12_t1_s3_free": "Parabéns! Você ganhou {{benefitCount}} itens GRATUITOS",
-        "b12_t1_s3_normal": "Parabéns! Você ganhou {{saved}} de desconto em {{benefitCount}} desses itens!",
-        "b14_t1_s1": "Compre {{nextMinThreshold}} itens por {{willSave}}",
-        "b14_t1_s2": "Parabéns! Você ganhou {{currentMinThreshold}} por {{saved}}. Compre mais {{threshold}} para aproveitar {{nextMinThreshold}} por {{willSave}}!",
-        "b14_t1_s3": "Parabéns! Você ganhou {{currentMinThreshold}} por {{saved}}.!",
-        "b1_t0_s1": "Compre {{threshold}} ou mais para economizar {{willSave}}",
-        "b1_t0_s2": "Economizou {{saved}} já! {{br}} compre mais {{threshold}} e economize {{willSave}}",
-        "b1_t0_s3": "Parabéns! Você economizou {{saved}}!",
-        "b1_t1_s1": "Compre mais de {{threshold}} unidades e economize {{willSave}}",
-        "b1_t1_s2": "Economizou {{saved}} já! {{br}} compre mais de {{threshold}} unidades e economize {{willSave}}",
-        "b1_t1_s3": "Parabéns! Você economizou {{saved}}!",
-        "b2_t0_s1": "Compre {{threshold}} ou mais para economizar {{willSave}}",
-        "b2_t0_s2": "Economizou {{saved}} já! {{br}} compre mais {{threshold}} e economize {{willSave}}",
-        "b2_t0_s3": "Parabéns! Você economizou {{saved}}!",
-        "b2_t1_s1": "Compre mais de {{threshold}} unidades e economize {{willSave}}",
-        "b2_t1_s2": "Economizou {{saved}} já! {{br}} compre mais de {{threshold}} unidades e economize {{willSave}}",
-        "b2_t1_s3": "Parabéns! Você economizou {{saved}}!",
-        "b3_t0_s1_unlimited": "Compre mais {{threshold}} e aproveite <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Frete grátis</span>!",
-        "b3_t0_s1_upper_limit": "Compre mais {{threshold}} e aproveite <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Frete grátis</span>! (Valor máximo de frete grátis {{upperLimit}})",
-        "b3_t0_s3_unlimited": "Parabéns! Você ganhou <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Frete grátis</span>!",
-        "b3_t0_s3_upper_limit": "Parabéns! Você ganhou <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Frete grátis</span>! (Valor máximo de frete grátis {{upperLimit}})",
-        "b3_t1_s1_unlimited": "Compre mais {{threshold}} itens e aproveite <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Frete grátis</span>!",
-        "b3_t1_s1_upper_limit": "Compre mais {{threshold}} itens e aproveite <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Frete grátis</span>! (Valor máximo de frete grátis {{upperLimit}})",
-        "b3_t1_s3_unlimited": "Parabéns! Você ganhou <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Frete grátis</span>!",
-        "b3_t1_s3_upper_limit": "Parabéns! Você ganhou <span class=\"custom-sale-color\" style=\"font-size:14px;\"> Frete grátis</span>! (Valor máximo de frete grátis {{upperLimit}})",
-        "b9_t1_s1": "Compre mais {{threshold}} peças, das quais {{willSave}} peças são grátis",
-        "b9_t1_s2": "Parabéns! Já ganhou {{saved}} peças grátis! Compre mais {{threshold}} peças, das quais {{willSave}} peças são grátis",
-        "b9_t1_s3": "Parabéns! Das quais {{saved}} peças são grátis"
-      },
       "discount_tag": {
         "b11_t1_free": "Compre {{threshold}} unidades, um dos itens será gratuito",
         "b11_t1_normal": "Compre {{threshold}} unidades, aproveite {{save}} de desconto em um dos itens",
@@ -779,15 +735,6 @@
         "b2_t0": "Compre {{threshold}} para economizar {{save}}",
         "b2_t1": "Compre {{threshold}} unidades para economizar {{save}}",
         "label": "Redução de:"
-      },
-      "reminder": {
-        "benefit14": {
-          "threshold1": {
-            "step1": "Compre {{nextMinThreshold}} itens por {{willSave}}",
-            "step2": "Parabéns! Você ganhou {{currentMinThreshold}} por {{saved}}. Compre mais {{threshold}} para aproveitar {{nextMinThreshold}} por {{willSave}}!",
-            "step3": "Parabéns! Você ganhou {{currentMinThreshold}} por {{saved}}.!"
-          }
-        }
       }
     }
   },

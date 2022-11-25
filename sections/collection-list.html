@@ -3,30 +3,25 @@ collection_products:
   limit: 0
 ---
 {{!-- 不需要商品数据只需要分类数据 所以设置为0 提高响应速度 --}}
-{{#is_modern_browser}}
-  {{ inline_stylesheet 'collection-list/index.min.modern.css' }}
-{{else}}
-  {{ inline_stylesheet 'collection-list/index.min.css' }}
-{{/is_modern_browser}}
-{{!-- <link rel="stylesheet" href="{{ assets_url 'collection-list/index.min.css' }}"/> --}}
-
-<script>
-  {{#is_modern_browser}}
-    window.__loaded_js__.set('{{ assets_url 'collection-list/index.min.modern.js' }}')
-  {{else}}
-    window.__loaded_js__.set('{{ assets_url 'collection-list/index.min.js' }}')
-  {{/is_modern_browser}}
-</script>
-  
+{{ combine_asset_tag 'stage/collection-list/index.css' inline=true }}
+<!-- stage/collection-list/index.js -->
+{{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{ combine_asset_tag 
+ 'vendors/swiper.min.js'
+ 'theme-shared/utils/sectionsLoad/index.js'
+ 'stage/collection-list/index.js' 
+  type="text/javascript" 
+  defer=true
+}}
 
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 {{ assign 'title' section.settings.title }}
 {{!-- {{assign 'real_product_img_width' (divide 1420 col)}} --}}
-{{ assign 'goodsBlockLength' (length blocks) }}
 {{!-- 分类图片比例 --}}
 {{ assign 'imageRatio' section.settings.collection_image_ratio }}
 {{ assign 'color_scheme' section.settings.color_scheme }}
 {{ assign 'slice_in_mobile' section.settings.slice_in_mobile }}
+{{ assign 'slice_in_pc' section.settings.slice_in_pc }}
 
 {{ assign 'limitWidthClass' '' }}
 {{ assign 'col' 3 }}
@@ -35,21 +30,59 @@ collection_products:
 {{#if (boolean goodsBlockLength '===' 1)}}
   {{ assign 'col' 1 }}
   {{ assign 'limitWidthStyle' 'limit-col-1-max-width' }}
-{{/if}}  
+{{/if}}
 
 {{#or (boolean goodsBlockLength '===' 2) (boolean goodsBlockLength '===' 4)}}
-  {{ assign 'col' 2 }}  
-{{/or}}  
+  {{ assign 'col' 2 }}
+{{/or}}
 
 {{#or (boolean goodsBlockLength '===' 3) (boolean goodsBlockLength '===' 5) (boolean goodsBlockLength '>=' 6)}}
   {{ assign 'col' 3 }}
-{{/or}}  
+{{/or}}
 
-<div class="color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}">
+{{ assign 'pc_col' section.settings.pc_cols }}
+
+<script type="text/json" id="collectionList-data-{{ section.id }}">{{{ stringify section.settings }}}</script>
+
+<div class="color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}"
+     data-section-type="collection-list"
+     data-section-id="{{ section.id }}">
   <div class="__sl-custom-track-stage-colletionlist colletionlist container {{ limitWidthStyle }} {{#if (isTruthy slice_in_mobile)}}slice_in_mobile{{/if}}">
     <h2 class="section-title colletionlist__title title4 text-center">{{ title }}</h2>
-    <div class="colletionlist__slide-container {{#if (isTruthy slice_in_mobile)}}slice_in_mobile container{{/if}}">
-      <div class="colletionlist__cagetegory row row-cols-{{ col }} ">
+
+    {{#if slice_in_pc}}
+      <div class="colletionlist__swiper d-none d-md-block">
+        {{!-- swiper 挂载点 --}}
+        <div class="colletionlist-swiper-{{ section.id }} colletionlist__swiper-box" >
+          <div class="swiper-wrapper row row-cols-{{ pc_col }}">
+          {{#each blocks}}
+            {{ assign 'sortationData' (get settings.category_id ../all_collections) }}
+            {{#if (boolean (boolean settings.title '===' undefined) '||' (boolean settings.title '===' ''))}}
+              {{#if (isFalsey settings.category_id)}}
+                {{ assign 'showTitle' 'Example Collection' }}
+              {{else}}
+                {{ assign 'showTitle' (get 'title' sortationData) }}
+              {{/if}}
+            {{else}}
+              {{ assign 'showTitle' settings.title }}
+            {{/if}}
+            <div class="collection-item-slide swiper-slide" {{{ this.shopline_attributes }}}>
+              {{ snippet 'product/commons/collection-item' sortationData=sortationData title=showTitle imageRatio=../imageRatio bgDisplayPosition=settings.image_display_area titleColor='inherit' shopline_attributes=this.shopline_attributes }}
+            </div>
+          {{/each}}
+          </div>
+        </div>
+        <div id="swiper-button-prev-{{ section.id }}" class="colletionlist__arrow colletionlist__arrow--left">
+          {{ snippet 'icons/icon_strong_arrow_r' class='mobile-nav__icon' }}
+        </div>
+        <div id="swiper-button-next-{{ section.id }}" class="colletionlist__arrow colletionlist__arrow--right">
+          {{ snippet 'icons/icon_strong_arrow_r' class='mobile-nav__icon' }}
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="colletionlist__slide-container {{#if (isTruthy slice_in_mobile)}}slice_in_mobile{{/if}} {{#if (isTruthy slice_in_pc)}}d-block d-md-none{{/if}}">
+      <div class="colletionlist__cagetegory row row-cols-{{ col }} row-cols-md-{{ pc_col }}">
         {{#each blocks}}
           {{ assign 'sortationData' (get settings.category_id ../all_collections) }}
           {{#if (boolean (boolean settings.title '===' undefined) '||' (boolean settings.title '===' ''))}}
@@ -62,10 +95,11 @@ collection_products:
             {{ assign 'showTitle' settings.title }}
           {{/if}}
 
-          {{ snippet 'product/commons/collection-item' sortationData=sortationData title=showTitle imageRatio=../imageRatio bgDisplayPosition=settings.image_display_area titleColor='inherit' shopline_attributes=this.shopline_attributes }}         
+          {{ snippet 'product/commons/collection-item' sortationData=sortationData title=showTitle imageRatio=../imageRatio bgDisplayPosition=settings.image_display_area titleColor='inherit' shopline_attributes=this.shopline_attributes }}
         {{/each}}
       </div>
-    </div>  
+    </div>
+
     {{#if (isTruthy section.settings.button_text)}}
       <div class="collection-list-more-btn">
         <a class="btn btn-primary"
@@ -90,7 +124,9 @@ collection_products:
         "collection_image_ratio": "100",
         "color_scheme": "none",
         "slice_in_mobile": false,
-        "button_text": "View all"
+        "slice_in_pc": false,
+        "button_text": "View all",
+        "pc_cols": "3"
       },
       "blocks": [
         {
@@ -168,6 +204,21 @@ collection_products:
           "label": "t:sections.collection-list.settings.color_scheme.options__3.label"
         }
       ]
+    },
+    {
+      "id": "pc_cols",
+      "type": "range",
+      "label": "t:sections.collection-list.settings.pc_cols.label",
+      "default": "3",
+      "min": 1,
+      "max": 6,
+      "step": 1
+    },
+    {
+      "type": "switch",
+      "id": "slice_in_pc",
+      "label": "t:sections.collection-list.settings.slice_in_pc.label",
+      "default": false
     },
     {
       "type": "switch",
