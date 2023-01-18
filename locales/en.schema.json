@@ -1641,6 +1641,9 @@
     "product_collections_collection-header": {
       "name": "Collection header",
       "settings": {
+        "banner_image_mobile": {
+          "label": "Mobile banner"
+        },
         "parallax_scroll": {
           "info": "When enabling the parallax effect, part of the image will be cropped to ensure the correct display.",
           "label": "Parallax scroll"
@@ -1678,6 +1681,19 @@
         },
         "per_page_num": {
           "label": "Product quantity on each page"
+        },
+        "price_show_type": {
+          "info": "If the product has only one variant, then display with the style of single price",
+          "label": "Display style of price",
+          "options__0": {
+            "label": "Minimum price"
+          },
+          "options__1": {
+            "label": "Price range"
+          },
+          "options__2": {
+            "label": "From minimum price"
+          }
         },
         "product_fill_type": {
           "label": "Product image filling style",
@@ -1721,6 +1737,9 @@
             "label": "Display at most 2 rows"
           }
         },
+        "show_orgin_price": {
+          "label": "Whether display original price"
+        },
         "sorter_enable": {
           "label": "Enable product sort"
         }
@@ -1739,6 +1758,9 @@
           "settings": {
             "location": {
               "label": "Display position of product description",
+              "options__0": {
+                "label": "Right of product image"
+              },
               "options__1": {
                 "label": "Below the product image"
               }
@@ -2078,6 +2100,15 @@
             "label": "Above product title"
           }
         },
+        "pc_magnifier_type": {
+          "label": "Magnifying glass on PC",
+          "options__0": {
+            "label": "Click to zoom"
+          },
+          "options__1": {
+            "label": "Hover zoom"
+          }
+        },
         "product_image_pc_show_style": {
           "label": "PC layout",
           "options__0": {
@@ -2186,7 +2217,7 @@
       "name": "Search results",
       "settings": {
         "group_header__0": {
-          "label": "Product image"
+          "label": "Product Image"
         },
         "md_cols": {
           "label": "Number of columns on mobile",

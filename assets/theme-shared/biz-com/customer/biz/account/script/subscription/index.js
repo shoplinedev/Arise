@@ -5,13 +5,13 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const Card = window['SLM']['theme-shared/biz-com/customer/commons/card/index.js'].default;
   const Messenger = window['SLM']['theme-shared/biz-com/customer/biz/account/script/subscription/messenger.js'].default;
-  const Line = window['SLM']['theme-shared/biz-com/customer/biz/account/script/subscription/line.js'].default;
   const SubModal = window['SLM']['theme-shared/biz-com/customer/biz/account/script/subscription/sub-modal.js'].default;
   const UnSubModal = window['SLM']['theme-shared/biz-com/customer/biz/account/script/subscription/unsub-modal.js'].default;
   const ConfirmSubModal = window['SLM']['theme-shared/biz-com/customer/biz/account/script/subscription/confirm-sub-modal.js'].default;
   const { SUBSCRIBE_STATUS_MAP } = window['SLM']['theme-shared/biz-com/customer/constant/const.js'];
   const { UNSUB } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const { reportClickSubscribeEmailButton, reportInputSubscribeNewEmail, reportSaveSubscribeEmail, reportUnsubscribeEmail, reportClickSubscribePhoneButton, reportClickSubscribePhoneEditIcon, reportInputSubscribeNewPhone, reportSaveSubscribePhone, reportUnsubscribePhone, reportUnsubscribeLine, reportUnsubscribeMessage, reportUnsubscribeConfirm, reportUnsubscribeCancel } = window['SLM']['theme-shared/biz-com/customer/reports/account.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
   const customer_subscription = SL_State.get('customer_subscription');
 
   class Subscription extends Card {
@@ -45,21 +45,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
     init() {
       this.initModal();
       this.initMessenger();
-      this.initLine();
-    }
-
-    initLine() {
-      if (!customer_subscription.line) {
-        return false;
-      }
-
-      this.line = new Line({
-        btn: this.$subLineBtn,
-        onSuccess: () => {
-          this.handleSubSuccess('line');
-          this.$subLinetem.attr('data-subscribed', true);
-        }
-      });
     }
 
     initMessenger() {
@@ -127,9 +112,10 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
           this.$subEmailItem.attr('data-subscribed', true);
           this.$subEmailItem.attr('data-sub-state', SUBSCRIBE_STATUS_MAP.SUBSCRIBE);
           this.subEmailModal.hide();
+          window.location.reload();
         },
         onUnsub: () => {
-          window.location.href = UNSUB;
+          window.location.href = redirectTo(UNSUB);
         }
       });
       this.subPhoneModal = new SubModal({
@@ -140,6 +126,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
           this.handleSubSuccess('phone');
           this.$subPhoneItem.attr('data-subscribed', true);
           this.subPhoneModal.hide();
+          window.location.reload();
         },
         onUnsub: type => {
           this.subPhoneModal.hide();
@@ -159,7 +146,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
         this.type = 'email';
       });
       this.$unsubEmailBtn.on('click', () => {
-        window.location.href = UNSUB;
+        window.location.href = redirectTo(UNSUB);
       });
       this.$subPhoneBtn.on('click', e => {
         const {

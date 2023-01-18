@@ -1,103 +1,121 @@
 {{#if (isFalsey (and product product.shelves))}}
-  {{ assign 'product' (JSONparse '{"title":"Product title","subTitle":null,"productMinPrice":57500,"productMaxPrice":57500,"originPrice":0,"discount":0,"brand":null,"video":[],"shelves":true,"upTime":1631155897,"downTime":null,"saleMin":0,"saleMax":0,"weight":null,"weightUnit":null,"shippingFilter":[],"payFilter":[],"soldOut":false,"stock":0,"infiniteStock":true,"imageList":[],"inquiry":false}') }}
-  {{ assign 'productSku' '' }}
+  {{assign
+    "product"
+    (JSONparse
+      '{"title":"Product title","subTitle":null,"productMinPrice":57500,"productMaxPrice":57500,"originPrice":0,"discount":0,"brand":null,"video":[],"shelves":true,"upTime":1631155897,"downTime":null,"saleMin":0,"saleMax":0,"weight":null,"weightUnit":null,"shippingFilter":[],"payFilter":[],"soldOut":false,"stock":0,"infiniteStock":true,"imageList":[],"inquiry":false}'
+    )
+  }}
+  {{assign "productSku" ""}}
 {{/if}}
 
 {{#if productSku}}
-  {{ assign '_productSku' productSku }}
-  {{assign 'firstSku' (itemAt (get 'skuList' _productSku) 0)}}
-  {{ assign 'productPrice' (product_sku_price firstSku product) }}
+  {{assign "_productSku" productSku}}
+  {{assign "firstSku" (itemAt (get "skuList" _productSku) 0)}}
+  {{assign "productPrice" (product_sku_price firstSku product)}}
 {{else}}
-  {{ assign '_productSku' product }}
-  {{ assign 'productPrice' (product_sku_price '' _productSku) }}
+  {{assign "_productSku" product}}
+  {{assign "productPrice" (product_sku_price "" _productSku)}}
 {{/if}}
 
-{{ assign 'inquiry' product.inquiry}}
+{{assign "inquiry" product.inquiry}}
 
-{{ assign 'title' product.title }}
-{{ assign 'first_image' (first (get 'imageList' product)) }}
+{{assign "title" product.title}}
+{{assign "first_image" (first (get "imageList" product))}}
 
-{{!-- 由于all_products这份商详数据拿不到unique id 所以直接用商品id跳转 --}}
-{{ assign 'unique_id' product.spuSeq }}
-{{ assign 'jump_link' (append '/products/' unique_id) }}
-{{ assign 'link_attr' '' }}
-{{#if unique_id }}
-  {{ assign 'link_attr' (append 'href="' jump_link '"') }}
+{{! 由于all_products这份商详数据拿不到unique id 所以直接用商品id跳转 }}
+{{assign "unique_id" product.spuSeq}}
+{{assign "jump_link" (redirect_to (append "/products/" unique_id))}}
+{{assign "link_attr" ""}}
+{{#if unique_id}}
+  {{assign "link_attr" (append 'href="' jump_link '"')}}
 {{/if}}
 
-{{assign 'discount_text' null}}
-{{!-- 当存在原价，则计算折扣 --}}
+{{assign "discount_text" null}}
+{{! 当存在原价，则计算折扣 }}
 {{#if productPrice.originPrice}}
-  {{#if theme.settings.product_discount_style '===' 'number'}}
-    {{assign 'discount_text' (subtract productPrice.originPrice productPrice.salesPrice)}}
+  {{#if theme.settings.product_discount_style "===" "number"}}
+    {{assign "discount_text" (subtract productPrice.originPrice productPrice.salesPrice)}}
   {{else}}
-    {{assign 'discount_text' (round (multiply (subtract 1 (divide productPrice.salesPrice productPrice.originPrice)) 100))}}
+    {{assign "discount_text" (round (multiply (subtract 1 (divide productPrice.salesPrice productPrice.originPrice)) 100))}}
   {{/if}}
 {{/if}}
-
 <a {{{ link_attr }}} class="product-tooltip {{#if (isFalsey product)}}product-tooltip--empty{{/if}}">
   <div class="product-tooltip__image-wrapper">
     {{#if first_image.url}}
-      {{ snippet 'global-image' image=first_image scale=1 breakpoints='80,160,240' pcSize='80px' mSize='80px' }}
+      {{snippet "global-image" image=first_image scale=1 breakpoints="80,160,240" pcSize="80px" mSize="80px"}}
     {{else}}
-      {{ snippet 'icons/icon_product_empty' }}
+      {{snippet "icons/icon_product_empty"}}
     {{/if}}
   </div>
   <div class="product-tooltip__content">
-    <h4 class="product-tooltip__title body2">{{ title }}</h4>
+    <h4 class="product-tooltip__title body2">
+      {{title}}
+    </h4>
 
-    {{!-- 询盘（inquiry）不展示价格 --}}
-    {{#if (isFalsey inquiry) }}
+    {{! 询盘（inquiry）不展示价格 }}
+    {{#if (isFalsey inquiry)}}
       {{#if theme.settings.product_discount}}
-        {{!-- 当折扣大于零时，显示折扣 --}}
-        {{#if (boolean productPrice.originPrice '&&' (boolean discount_text '>' 0)) }}
+        {{! 当折扣大于零时，显示折扣 }}
+        {{#if (boolean productPrice.originPrice "&&" (boolean discount_text ">" 0))}}
           <span class="product-tooltip__badge body4">
-            {{#if theme.settings.product_discount_style '===' 'number'}}
+            {{#if theme.settings.product_discount_style "===" "number"}}
               {{#money_exchange_convert_price discount_text}}
-                {{#if fraction '===' '00'}}
-                  {{#if symbolOrder '==' 'prefix'}}
-                    {{assign 'priceVal' (append currencySymbol integer) }}
+                {{#if fraction "===" "00"}}
+                  {{#if symbolOrder "==" "prefix"}}
+                    {{assign "priceVal" (append currencySymbol integer)}}
                   {{else}}
-                    {{assign 'priceVal' (append integer currencySymbol) }}
+                    {{assign "priceVal" (append integer currencySymbol)}}
                   {{/if}}
                 {{else}}
-                  {{assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
+                  {{assign "priceVal" (money_exchange_convert_with_currency discount_text)}}
                 {{/if}}
-                  {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate"  data-product-price="' discount_text '" data-product-save-price="true">' priceVal '</span>') }}}
+                {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate"  data-product-price="' discount_text '" data-product-save-price="true">' priceVal '</span>') }}}
               {{/money_exchange_convert_price}}
             {{else}}
-               {{t 'products.product_list.save_ratio' price=discount_text }}
+              {{t "products.product_list.save_ratio" price=discount_text}}
             {{/if}}
           </span>
         {{/if}}
       {{/if}}
       <div class="product-tooltip__price">
-        <div class="price body2 notranslate {{#if (isFalsey productPrice.originPrice)}}is-normal{{/if}}" data-product-price="{{ productPrice.salesPrice }}">
-          {{#if (boolean theme.settings.superscript_decimals) }}
+        <div class="price body2 notranslate {{#if (isFalsey productPrice.originPrice)}}is-normal{{/if}}" data-product-price="{{productPrice.salesPrice}}">
+          {{#if (boolean theme.settings.superscript_decimals)}}
             {{#money_exchange_convert_price productPrice.salesPrice}}
-              <span class="price__compare-at" style="order: {{#if symbolOrder '==' 'prefix'}}0{{else}}1{{/if}};">{{ currencySymbol }}</span>
-              <span class="price__integer">{{ integer }}</span>
-              <span class="price__decimal">{{ fraction }}</span>
+              <span class="price__compare-at" style="order: {{#if symbolOrder '==' 'prefix'}}0{{else}}1{{/if}};">
+                {{currencySymbol}}
+              </span>
+              <span class="price__integer">
+                {{integer}}
+              </span>
+              <span class="price__decimal">
+                {{fraction}}
+              </span>
             {{/money_exchange_convert_price}}
           {{else}}
-            {{ money_exchange_convert_with_currency productPrice.salesPrice }}
+            {{money_exchange_convert_with_currency productPrice.salesPrice}}
           {{/if}}
         </div>
         {{#if firstSku.showMemberMark}}
-            <span style="margin-left:8px; line-height: 18px;">
-                <span class="product-item-vip-price" data-vip-tag></span>
-            </span>
+          <span style="margin-left:8px; line-height: 18px;">
+            <span class="product-item-vip-price" data-vip-tag></span>
+          </span>
         {{/if}}
         {{#if productPrice.originPrice}}
-          <div class="price body5 is-original notranslate" data-product-price="{{ productPrice.originPrice }}">
-            {{#if (boolean theme.settings.superscript_decimals) }}
+          <div class="price body5 is-original notranslate" data-product-price="{{productPrice.originPrice}}">
+            {{#if (boolean theme.settings.superscript_decimals)}}
               {{#money_exchange_convert_price productPrice.originPrice}}
-                <span class="price__compare-at" style="order: {{#if symbolOrder '==' 'prefix'}}0{{else}}1{{/if}};">{{ currencySymbol }}</span>
-                <span class="price__integer">{{ integer }}</span>
-                <span class="price__decimal">{{ fraction }}</span>
+                <span class="price__compare-at" style="order: {{#if symbolOrder '==' 'prefix'}}0{{else}}1{{/if}};">
+                  {{currencySymbol}}
+                </span>
+                <span class="price__integer">
+                  {{integer}}
+                </span>
+                <span class="price__decimal">
+                  {{fraction}}
+                </span>
               {{/money_exchange_convert_price}}
             {{else}}
-              {{ money_exchange_convert_with_currency productPrice.originPrice }}
+              {{money_exchange_convert_with_currency productPrice.originPrice}}
             {{/if}}
           </div>
         {{/if}}
@@ -106,8 +124,8 @@
 
     {{#if buttonText}}
       <div class="product-tooltip__link body4">
-        {{ buttonText }}
-        {{ snippet 'icons/icon_arrow_right_line' classes="product-tooltip__link-icon" }}
+        {{buttonText}}
+        {{snippet "icons/icon_arrow_right_line" classes="product-tooltip__link-icon"}}
       </div>
     {{/if}}
   </div>

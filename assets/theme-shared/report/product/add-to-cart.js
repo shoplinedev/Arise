@@ -2,12 +2,10 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/report/product/add-to-cart.js'] = window.SLM['theme-shared/report/product/add-to-cart.js'] || function () {
   const _exports = {};
-  const currencyUtils = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
-  const {
-    formatCurrency
-  } = currencyUtils;
   const componentMap = {
     addtocart: 101,
     buynow: 102,
@@ -91,8 +89,8 @@ window.SLM['theme-shared/report/product/add-to-cart.js'] = window.SLM['theme-sha
       addtocart_type: addtocartType === 'morePay' ? 'buynow' : addtocartType,
       action_type: -999,
       event_id: `addToCart${eventID}`,
-      currency: SL_State.get('storeInfo.currency'),
-      value: formatCurrency(price * num),
+      currency: getCurrencyCode(),
+      value: convertPrice(price) * num,
       cart_id: cartId,
       ...moreInfo,
       items: [{
@@ -102,7 +100,8 @@ window.SLM['theme-shared/report/product/add-to-cart.js'] = window.SLM['theme-sha
         collection_id: nullishCoalescingOperator(collectionId, ''),
         collection_name: nullishCoalescingOperator(collectionName, ''),
         variant: nullishCoalescingOperator(variant, ''),
-        price: formatCurrency(price),
+        currency: getCurrencyCode(),
+        price: convertPrice(price),
         quantity: num,
         ...singleItem
       }]

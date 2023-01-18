@@ -20,6 +20,10 @@ window.SLM['theme-shared/utils/lazysizes/index.js'] = window.SLM['theme-shared/u
     document.addEventListener(BeforeUnveilEvent, imageGifPoster);
     window.lazySizes = lazySizes(window, document, Date);
 
+    if (typeof window.lazySizes.extraElements === 'undefined') {
+      window.lazySizes.extraElements = [];
+    }
+
     HTMLElement.prototype.__updateLazyExtraElements__ = function updateLazy() {
       const imgs = [];
 
@@ -28,7 +32,11 @@ window.SLM['theme-shared/utils/lazysizes/index.js'] = window.SLM['theme-shared/u
       }
 
       imgs.push(...this.querySelectorAll(`.${EnumAttributes.LazyClass}`));
-      window.lazySizes.extraElements.push(...imgs);
+
+      if (typeof window.lazySizes.extraElements !== 'undefined') {
+        window.lazySizes.extraElements.push(...imgs);
+      }
+
       window.lazySizes.loader.checkElems();
       return imgs;
     };

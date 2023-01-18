@@ -39,7 +39,7 @@
     {{! 遍历 pod 商品的属性 }}
     {{#each propertyInfoList}}
       {{#if type '==' 'text'}}
-        <div class="goods-item-good-common" {{{ this.shopline_attributes }}}>
+        <div class="goods-item-good-common" translate="no" {{{ this.shopline_attributes }}}>
           {{name}}: {{value}}
         </div>
       {{else if type '==' 'link'}}
@@ -49,17 +49,17 @@
           </span>
           <a target="_blank" href={{first urls 1}} class="goods-item-good-watch">
             {{! 点击查看 }}
-            {{t 'cart.refund.click_to_view'}}
+            {{t 'cart.item.click_to_view'}}
           </a>
         </div>
       {{else if type '==' 'picture'}}
-        <div {{{ this.shopline_attributes }}}>
+        <div {{{ this.shopline_attributes }}} translate="no">
           <span class="goods-item-good-common">
             {{name}}:
           </span>
           <a class="goods-item-good-preview" data-urls="{{urls}}">
             {{! 定制预览 }}
-            {{t 'cart.refund.custom_preview'}}
+            {{t 'cart.item.custom_preview'}}
           </a>
         </div>
       {{/if}}
@@ -71,7 +71,7 @@
       </div>
     {{/each}}
     <div class="goods-item-good-price notranslate">
-      <span data-amount="{{finalPrice}}">{{money_exchange_convert_with_currency finalPrice}}</span><span> X {{productNum}}</span>
+      <span class="no-change" data-amount="{{finalPrice}}">{{money_with_currency finalPrice code=@root.basicInfo.settleCurrencyCode}}</span><span> X {{productNum}}</span>
     </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
   const Form = window['SLM']['theme-shared/biz-com/customer/commons/form/index.js'].default;
   const Customer = window['SLM']['theme-shared/biz-com/customer/commons/customer/index.js'].default;
   const PasswordSet = window['SLM']['theme-shared/biz-com/customer/biz/password-new/password-set.js'].default;
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   class PasswordNew extends Customer {
     constructor({
@@ -137,7 +138,7 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
       return resetPassword(super.formatRequestBody({ ...this.UDBParams,
         pwd: data.password
       })).then(() => {
-        window.location.href = `${SIGN_IN}${window.location.search}`;
+        window.location.href = redirectTo(`${SIGN_IN}${window.location.search}`);
         return Promise.resolve();
       }).catch(error => {
         return Promise.reject(error);

@@ -2,15 +2,12 @@ window.SLM = window.SLM || {};
 
 window.SLM['cart/script/report/cartHdReport.js'] = window.SLM['cart/script/report/cartHdReport.js'] || function () {
   const _exports = {};
-  const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { TradeHdReport } = window['SLM']['theme-shared/utils/tradeReport/hdReport.js'];
-  const {
-    formatNumber
-  } = currencyUtil;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
 
   class CartHdReport extends TradeHdReport {
     getCartPageId() {
-      if (window.location.pathname === '/cart') {
+      if (window.location.pathname === window.Shopline.redirectTo('/cart')) {
         return 60006254;
       }
 
@@ -31,7 +28,7 @@ window.SLM['cart/script/report/cartHdReport.js'] = window.SLM['cart/script/repor
                 product_id: item.spuId,
                 variantion_id: item.skuId,
                 quantity: item.num,
-                price: formatNumber(item.price),
+                price: convertPrice(item.price),
                 product_name: item.name,
                 product_type: 'product'
               };
@@ -46,7 +43,7 @@ window.SLM['cart/script/report/cartHdReport.js'] = window.SLM['cart/script/repor
             product_id: params.spuId.toString(),
             variantion_id: params.skuId,
             quantity: params.num,
-            price: formatNumber(params.price).toString(),
+            price: convertPrice(params.price).toString(),
             product_name: params.name
           }, cid);
         }
@@ -78,7 +75,7 @@ window.SLM['cart/script/report/cartHdReport.js'] = window.SLM['cart/script/repor
         product_id: spuId,
         variantion_id: skuId,
         quantity,
-        price: formatNumber(price).toString(),
+        price: convertPrice(price).toString(),
         update_quantity: update_quantity && update_quantity.toString ? update_quantity.toString() : undefined
       });
     }

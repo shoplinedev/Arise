@@ -116,6 +116,7 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
         activeSku
       } = this;
       const spuInfo = this.spu;
+      const url = `/products/${spuInfo.spuSeq}${activeSku ? `?sku=${activeSku.skuSeq}` : ''}`;
       const finalInquiryInfo = {
         Email: inquiryInfo.email,
         Message: inquiryInfo.message,
@@ -123,7 +124,7 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
         Mobile: inquiryInfo.mobile,
         'Country/Region': inquiryInfo.region,
         Product: spuInfo && spuInfo.title,
-        ProductUrl: `${window.location.origin}/products/${spuInfo.spuSeq}${activeSku ? `?sku=${activeSku.skuSeq}` : ''}`
+        ProductUrl: window.location.origin + (window.Shopline.redirectTo(url) || url)
       };
       const sendContentStr = Object.keys(finalInquiryInfo).reduce((str, key) => {
         str += `${key}：${finalInquiryInfo[key]}\n`;
@@ -224,8 +225,7 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
     }
 
     isPreview() {
-      const currentUrl = window.location.pathname;
-      return /^[/（]preview[/）].*/.test(currentUrl);
+      return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
     }
 
   }

@@ -7,8 +7,8 @@
       "related_articles": "İlgili Bloglar"
     },
     "blog_list": {
-      "empty_desc": "Bu blogda blog yazısı yok.",
-      "read_btn_text": "Devamını oku",
+      "empty_description": "Bu blogda blog yazısı yok.",
+      "readmore": "Devamını oku",
       "title": "Blog"
     },
     "comment": {
@@ -33,31 +33,26 @@
   },
   "cart": {
     "cart": {
-      "added_to_cart": "Sepetinize eklendi",
       "buy_now": "ŞİMDİ SATIN ALIN",
       "cancel": "İptal",
-      "cart_subtotal": "Sepet ara toplamı",
-      "cart_view": "Sepeti görüntüle",
-      "checkout": "ÖDEME",
-      "click_to_view": "Görüntülemek için tıklayın",
       "confirm": "Tamam",
-      "continue": "Devam et",
-      "continue_shopping": "ALIŞVERİŞE DEVAM",
-      "custom_preview": "Özel önizleme",
-      "day": "gün",
-      "days": "günler",
-      "empty_cart": "Sepetiniz şu anda boş.",
       "got_it": "Anladım",
-      "remove": "Kaldır",
-      "return_to_cart": "Sepete dön",
-      "subtotal": "Ara toplam",
-      "tax_included": "Vergi dahil"
+      "added_to_cart": "Sepetinize eklendi",
+      "cart_subtotal": "Sepet ara toplamı"
     },
     "checkout": {
       "max_amount_limit": "Ödeme için maksimum tutarı aştınız"
     },
     "checkout_proceeding": {
-      "checkout_proceed": "Aşağıdaki ürünler satın alma limitini aşıyor, yine de ödemeye devam edilsin mi?"
+      "checkout": "ÖDEME",
+      "checkout_proceed": "Aşağıdaki ürünler satın alma limitini aşıyor, yine de ödemeye devam edilsin mi?",
+      "continue": "Devam et",
+      "continue_shopping": "ALIŞVERİŞE DEVAM",
+      "day": "günler",
+      "remove": "Kaldır",
+      "return_to_cart": "Sepete dön",
+      "subtotal": "Ara toplam",
+      "tax_included": "Vergi dahil"
     },
     "couponCode": {
       "exceedLimit": "İndirim kodları miktar sınırını aşıyor",
@@ -71,14 +66,9 @@
       "unavailable": "İndirim kodunun süresi doldu"
     },
     "discount": {
-      "code_error": "İndirim kodu yanlış girildi",
-      "code_item_unmatched": "{{discountCode}} doğru girildi ama ürün fiyatı ya da miktarı gereklilikleri karşılamıyor",
-      "coupon_code": "Kupon Kodu",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Kupon kodu {{range}} karakteri aşamaz.",
-      "discounts_cannot_stack": "Bu siparişe indirim uygulandı. Başka indirim ekleyemezsiniz",
-      "expected_discount": "İndirim",
-      "use_coupon_alone": "Bu kupon kodu, diğer promosyon veya indirim teklifleriyle birlikte kullanılamaz"
+      "expected_discount": "İndirim"
     },
     "discount_item": {
       "buy_limit5": "İndirimli fiyatlardan aynı anda en fazla {{stock}} ürün satın alabilirsiniz."
@@ -89,16 +79,18 @@
       "buy_limit3": "İndirimli fiyatları kullanarak bu üründen yalnızca {{stock}} adet satın alabilirsiniz"
     },
     "general": {
-      "continue_as_a_guest": "misafir olarak devam et"
+      "continue_as_a_guest": "misafir olarak devam et",
+      "support_oneTime_purchase_only": "Ürün yalnızca tek seferlik satın almayı desteklemektedir",
+      "support_subscription_only": "Ürün yalnızca abonelik sonrası satın almayı desteklemektedir"
     },
     "item": {
       "add_limit2": "Tek bir ürün için eklenebilecek maksimum miktar 99999 adettir",
-      "invalid_product": "Geçersiz ürünler",
+      "click_to_view": "Görüntülemek için tıklayın",
+      "custom_preview": "Özel önizleme",
+      "empty_cart": "Sepetiniz şu anda boş.",
       "item_left": "{{stock}} adet stokta",
       "none_existent": "Ürünler mevcut değil",
-      "remove_invalid_product": "Geçersiz ürünleri sil",
-      "removed": "GEÇERSİZ",
-      "sold_out": "TÜMÜ SATILDI"
+      "view_cart": "Sepeti görüntüle"
     },
     "next_step": {
       "calculated_taxes_fees": "Ödeme anında hesaplanan vergiler ve kargo ücreti"
@@ -106,29 +98,12 @@
     "notices": {
       "change_password_after_verification": "Doğrulamadan sonra parolayı değiştirebilirsiniz",
       "excess_product": "Aşağıdaki ürünler satın alma limitini aşıyor, lütfen miktarı değiştirin",
-      "insufficient_product_inventory": "Ürün envanteri yetersiz",
-      "network": "Ağ Hatası",
       "product_amount_limit": "Üzgünüz! Sepetteki ürün sayısı limiti aşıyor.",
-      "product_expired": "Ürünün süresi doldu",
-      "product_limit": "Ürün limiti aşıldı",
       "product_selected_invalid": "Üzgünüz, seçtiğiniz ürün satın alınamayacak geçersiz bir ürün. Lütfen yeniden seçin",
       "store_nonexistent": "Mağaza mevcut değil"
     },
     "order": {
-      "authorized": "Yetkili",
-      "canceled": "İptal edildi",
-      "canceled_order": "İptal edildi",
-      "click_to_track": "Lütfen aşağıdaki bağlantıya tıklayarak paketinizi izleyin:",
-      "contact_us": "Bize ulaşın",
-      "deleted": "GEÇERSİZ",
-      "help_tips": "Yardım mı lazım? Lütfen bizimle iletişime geçin: {{email}}",
       "invalid_order_number": "geçersiz sipariş numarası",
-      "no_more_info": "Daha fazla bilgi yok",
-      "no_record": "Şu anda sipariş kaydı yok, alışveriş yapın",
-      "order": "Sipariş",
-      "order_details": "Sipariş detayları",
-      "package_amount": "Paket {{num}}（{{item}} öğe）",
-      "pay_amount": "Ödeme miktarı",
       "paymentVoucher": {
         "downloadDoc": "Dosya indir",
         "format": "Format",
@@ -137,50 +112,26 @@
         "uploadLimit": "Lütfen 20MB’den daha düşük dosya boyutuna sahip .jpg, .png, .pdf dosyası yükleyin"
       },
       "payment_voucher_confirmation": "Anladım",
-      "payment_voucher_transfer_success": "Ödeme başarıyla aktarıldı",
-      "payment_voucher_waiting_for_payment": "Ödeme için bekleniyor",
-      "receiver_account": "alıcı hesabı",
-      "reference_number": "referans numarası",
-      "remark": "Sipariş açıklaması",
-      "sequence": "No.{{id}}",
       "shipping_address": "Kargo adresi",
       "sign_in": "Veya aşağıdaki yöntemlerle oturum açın",
       "tax_included": "Vergilere {{price}} dahil",
-      "time": "Sipariş verme:",
-      "total_amount": "Toplamda {{transPackages}} öğe",
-      "total_item_amount": "Toplamda {{transPackages}} öğe",
-      "tracking": "İzle",
       "try_again": "Yükleme başarısız. Lütfen tekrar deneyin.",
       "try_later": "sistem meşgul, lütfen daha sonra tekrar deneyin.",
       "upload_bank_transfer_vouhcer_for_confirmation": "Lütfen banka havalesi fişini yükleyin, onaylayalım.",
-      "upload_image_within_10_m_b": "Lütfen JPG, PNG, GIF resimlerini 10MB içinde yükleyin",
-      "upload_time": "yükleme zamanı",
-      "upload_voucher": "Kupon Yükle",
-      "voucher_amount_limit": "En fazla 5 kupon yükleyebilirsiniz."
+      "upload_image_within_10_m_b": "Lütfen JPG, PNG, GIF resimlerini 10MB içinde yükleyin"
     },
     "payment": {
-      "billing_address": "Fatura adresi",
       "channel": "Ödeme kanalı",
-      "continue_shopping": "Alışverişe Devam Et",
       "create_time": "Oluşturuldu",
-      "detail": "Detay",
       "free": "Ücretsiz",
       "log_in": "Oturum açmaya git",
-      "method": "Ödeme şekli",
-      "paid": "Ödendi",
-      "partially_paid": "Kısmen ödendi",
-      "paying": "Ödeme",
-      "payment": "Ödeme",
       "payment_details": "Ödeme Detayı",
-      "payment_status": "Ödeme durumu",
       "pending_review": "Ödeme",
       "reference_number": "İşlem referans numarası",
       "status": "Durum",
       "subtotal_price": "Ara toplam",
       "sum": "Miktar",
-      "total": "Toplam",
       "total_sum": "Toplam",
-      "unpaid": "Ödenmedi",
       "update_time": "Güncellendi"
     },
     "policy": {
@@ -188,21 +139,6 @@
     },
     "promotion": {
       "no_promotion": "Değiştirilemeyen indirim"
-    },
-    "refund": {
-      "click_to_view": "Görüntülemek için tıklayın",
-      "cost_points": "Maliyet {{value}} Puanları",
-      "custom_preview": "Özel önizleme",
-      "deduct_point": "{{deductMemberPointAmount}} tasarruf etmek için {{deductMemberPointNum}} puan kullanabilirsiniz"
-    },
-    "shipping": {
-      "info": "Bilgiler",
-      "no_info": "Henüz teslimat bilgisi yok, lütfen daha sonra kontrol edin.",
-      "package_tracking": "Paket Takibi",
-      "partially_shipped": "Kısmi gönderim",
-      "preparing_order": "Ürünler hazırlanıyor",
-      "processing_amount": "İşleniyor ({{num}} öğe)",
-      "shipped_order": "Teslim edildi"
     },
     "shpping": {
       "service_terms": "Hizmet Kullanım Şartları"
@@ -228,7 +164,6 @@
     "account": {
       "account_binding": "Hesap Bağlama",
       "account_information": "Hesap",
-      "address": "Adres",
       "bind": "Bağlama",
       "birthday": "Doğum Tarihi",
       "change_password": "Parolayı değiştir",
@@ -253,6 +188,7 @@
       "modify_email": "E-postayı Değiştir",
       "modify_email_modal_title": "E-postayı Değiştir",
       "modify_phone": "Telefonu Değiştir",
+      "modify_phone_modal_title": "Telefonu Değiştir",
       "name": "Ad",
       "next": "Sonraki",
       "nickname_empty_error": "Ad ile Soyad bilgilerinin ikisi de boş bırakılamaz",
@@ -271,7 +207,9 @@
       "unknow_error_tip": "Servis istisnası, sonra tekrar deneyin",
       "username": "Ad",
       "verify_email_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{email}} e-posta adresinize bir doğrulama e-postası alacaksınız",
-      "verify_phone_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{phone}} numaralı cep telefonunuza bir doğrulama mesajı alacaksınız"
+      "verify_phone_message": "Hesabı kapatmadan önce, kimliğinizi doğrulamamız gerekiyor\n{{phone}} numaralı cep telefonunuza bir doğrulama mesajı alacaksınız",
+      "address": "Adres",
+      "invalidEmail": "Geçersiz E-posta Adresi"
     },
     "activate": {
       "account_activated": "Hesap aktifleştirildi",
@@ -288,7 +226,7 @@
     "address": {
       "add_address": "Yeni Adres Ekle",
       "address": "Adres",
-      "adress_full_tip": "5 adres kaydedilmiştir, şu anda eklenemiyor",
+      "adress_full_tip": "50 adres kaydedilmiştir, şu anda eklenemiyor",
       "common_max": "",
       "common_min": "{{min}} karakterden büyük",
       "default": "Varsayılan",
@@ -296,6 +234,7 @@
       "edit_last_name_hint": "Lütfen soyadınızı giriN!",
       "edit_phone_hint": "Lütfen cep telefonunuzu girin",
       "edit_shipping_address": "KARGO ADRESİNİ DÜZENLE",
+      "max_address_tip": "50 adrese kadar adres oluşturabilirsiniz",
       "no_adress_data": "Şu anda teslimat adresi yok",
       "set_default_address": "Varsayılan adres olarak ayarla"
     },
@@ -326,7 +265,6 @@
       "clear_button": "Temizle",
       "confirm": "Tamam",
       "confirm_button": "Tamam",
-      "continue_as_a_guest": "misafir olarak devam et",
       "date_format": "dd.MM.yyyy",
       "dec": "Arl",
       "december": "Aralık",
@@ -335,6 +273,482 @@
       "email_empty_hint": "Lütfen e-posta adresini girin",
       "email_error_hint": "Lütfen geçerli biçimde ve 50 karakterden kısa bir e-posta adresi girin",
       "enter_verification_code": "Lütfen doğrulama kodunu giriniz",
+      "feb": "Şbt",
+      "february": "Şubat",
+      "first_day": "1",
+      "fr": "Cu",
+      "fri": "Cum",
+      "friday": "Cuma",
+      "image_size_less_than_tips": "Resimler {{max}} MB'tan küçük olmalıdır",
+      "jan": "Oca",
+      "january": "Ocak",
+      "jul": "Tmz",
+      "july": "Temmuz",
+      "jun": "Hzr",
+      "june": "Haziran",
+      "mar": "Mrt",
+      "march": "Mart",
+      "max_image_upload_tips": "En fazla {{max}} resim yükleyebilirsiniz",
+      "may": "Mayıs",
+      "may_short": "Mys",
+      "mo": "Pt",
+      "mon": "Pts",
+      "monday": "Pazartesi",
+      "network_error_message": "İnternet yok",
+      "nov": "Ksm",
+      "november": "Kasım",
+      "oct": "Ekm",
+      "october": "Ekim",
+      "ok": "Tamam",
+      "okay_common": "TAMAM",
+      "orders": "Siparişler",
+      "password": "Parola",
+      "password_empty_hint": "Lütfen parola girin",
+      "phone": "Cep telefonu numarası",
+      "phone_empty_message": "Lütfen cep telefonu numarasını girin",
+      "phone_error_message": "Lütfen geçerli formatta bir cep telefonu numarası girin",
+      "phone_number_error_message": "Geçerli bir telefon numarası girin",
+      "register": "Üye ol",
+      "repeat_passport_error": "Girdiğiniz parolalar eşleşmedi",
+      "repeat_password": "Parolanızı tekrar girin",
+      "resend": "Yeniden gönder",
+      "sa": "Ct",
+      "sat": "Cts",
+      "saturday": "Cumartesi",
+      "save": "KAYDET",
+      "select__date": "Tarih seç",
+      "select_date": "Tarih seç",
+      "send": "Gönder",
+      "send_error": "Lütfen önce doğrulama kodunu gönderin",
+      "send_verification_code_hint": "Lütfen parolayı tekrar girin",
+      "sep": "Eyl",
+      "september": "Eylül",
+      "set_password": "Lütfen minimum 6 karakter, maksimum ise 18 karakter uzunluğunda bir parola belirleyin.",
+      "sign__out": "Oturumu Kapat",
+      "sign_in": "OTURUM AÇ",
+      "sign_up": "ÜYE OL",
+      "su": "Pa",
+      "subscription_desc": "Mağazadan en güncel haberleri alın",
+      "sun": "Pzr",
+      "sunday": "Pazar",
+      "th": "Pe",
+      "thu": "Per",
+      "thursday": "Perşembe",
+      "time_format": "hh:mm aa",
+      "today": "Bugün",
+      "tu": "Sl",
+      "tue": "Sl",
+      "tuesday": "Salı",
+      "update_passport": "Parola değiştir",
+      "user_agreement_tip": "Lütfen önce kullanıcı sözleşmesini okuyun ve kabul edin",
+      "username": "E-posta adresi/cep telefonu numarası",
+      "username_empty_hint": "Lütfen e-posta adresini veya cep telefonu numarası girin",
+      "verification_code": "Doğrulama kodu",
+      "verification_code_sent_tip": "Doğrulama kodu hesabınıza gönderildi",
+      "verift_account_tip": "Lütfen hesabınızı doğrulayın ve parolanızı sıfırlayın",
+      "we": "Ça",
+      "wed": "Çar",
+      "wednesday": "Çarşamba",
+      "continue_as_a_guest": "misafir olarak devam et",
+      "login_method": "Veya aşağıdaki yöntemlerle oturum açın",
+      "proceed_to_checkout": "Çıkışa doğru devam et"
+    },
+    "login": {
+      "member_login_common": "Üye girişi",
+      "subscribe_confirm_tip": "Abone olduğunuz için teşekkür ederiz. Daha iyi bir deneyim için giriş yapabilirsiniz."
+    },
+    "message": {
+      "input_placeholder": "Mesaj bırakmak istediğiniz bir şey var mı?",
+      "message": "Mesaj",
+      "send": "Gönder"
+    },
+    "phone": {
+      "mobile_common": "Telefon numarası"
+    },
+    "register": {
+      "privacy_policy": "Gizlilik Politikası",
+      "terms_of_service": "Hizmet Kullanım Şartları",
+      "go_to_login": "Oturum açmaya git",
+      "tips_agree_with_the_shop": "Katılıyorum"
+    },
+    "subscription": {
+      "email": "E-posta",
+      "email_subscription_text": "Abonelikteki promosyon bilgilerini e-posta ile alın",
+      "line": "LINE",
+      "messenger": "Messenger",
+      "phone": "Cep telefonu",
+      "phone_subscription_text": "Telefon promosyonuna abone ol",
+      "reason_other_length": "300 kelimeye kadar girin",
+      "reason_other_placeholder": "Giriş",
+      "save_button": "KAYDET",
+      "subscribe_button": "ABONE OL",
+      "subscription_cancel_text": "ABONELİKTEN ÇIK",
+      "subscription_hint": "Abone olundu",
+      "subscription_title": "Abonelik",
+      "unsubscribe": "Abonelikten çık",
+      "unsubscribe_btn": "Abonelikten çık",
+      "unsubscribe_confirm_text": "Abonelikten çık",
+      "unsubscribe_feedback_text": "Bizden daha fazla pazarlama güncellemesi almayacaksınız. İstediğiniz zaman tekrar abone olabilirsiniz",
+      "unsubscribe_feedback_title": "<italic>{{name}}</italic> posta listesinden çıktınız",
+      "unsubscribe_reason1": "Bu emailleri artık almak istemiyorum",
+      "unsubscribe_reason2": "Çok fazla email alıyorum",
+      "unsubscribe_reason3": "Bu listeye abone olmadım",
+      "unsubscribe_reason4": "Emailler ilgimi çekmiyor",
+      "unsubscribe_reason5": "Email içeriği çok uzun değil",
+      "unsubscribe_reason6": "Diğer",
+      "unsubscribe_subtitle": "Gittiğimiz için üzgünüz! Abonelikten neden çıktığınızı belirtmenizi rica ederiz:",
+      "unsubscribe_success": "Abonelik iptal edildi, ana sayfaya yönlendirilecek",
+      "unsubscribe_tip": "Abonelikten çıkıldığında, artık en güncel promosyonların bilgilerini alamayacaksınız.",
+      "unsubscribe_title": "Abonelikten çık"
+    }
+  },
+  "general": {
+    "404": {
+      "subtext": "Aradığınız sayfa mevcut değil.",
+      "title": "404 sayfa bulunamadı",
+      "button": "Alışverişe devam et"
+    },
+    "address": {
+      "address": "Adres"
+    },
+    "contact_us": {
+      "contact_us": "BIZE ULAŞIN",
+      "send_success": "Bizimle iletişime geçtiğiniz için teşekkür ederiz, mümkün olan en kısa sürede size dönüş yapacağız."
+    },
+    "footer": {
+      "subscribe_format_error": "E-posta adresi formatı hatalı",
+      "subscribe_success": "Abonelik başarılı",
+      "copyright": "© {{year}} {{storeName}}"
+    },
+    "general": {
+      "accept": "Kabul et",
+      "decline": "Reddet",
+      "home": "ön Sayfa",
+      "link": "Gizlilik Politikası",
+      "no_data": "Mevuct veri yok",
+      "privacy_policy": "Gizlilik Politikası",
+      "tel_phone": "Telefon numarası",
+      "tips": "Kullanıcı deneyimini daha iyi bir hale getirebilmek amacıyla giriş bilgilerinin hatırlanabilmesi, istatistiklerin toplanabilmesi ve ilgi alanlarınıza uygun olarak belirlenmiş içeriklerin sunulabilmesi için çerezleri kullanıyoruz. Çerezleri kabul etmek için \"Kabul et\" tuşuna tıklayın ya da \"Gizlilik Politikası\" ilkelerimize bakın.",
+      "title": "Gizliliğine önem veriyoruz",
+      "username": "Ad"
+    },
+    "header": {
+      "cart": "Sepetiniz",
+      "center": "Merkez",
+      "close": "Kapat",
+      "login": "Giriş",
+      "no_currency_fallback": "İlgili para birimi bulunamadı",
+      "search_input_placeholder": "Buraya girin ve aramaya dokunun"
+    },
+    "order_tracking": {
+      "code": "Doğrulama kodu",
+      "email": "E-posta",
+      "form_error": "Sorgu başarısız",
+      "orderId": "Sipariş Kimliği",
+      "orderId_error": "Sipariş kimliği boş olamaz",
+      "query_illegal": "sipariş mevcut değil",
+      "risk_black_user": "Bu hesap risk altında",
+      "risk_interception": "sipariş mevcut değil",
+      "submit_btn": "Siparişi görüntüle",
+      "username": "E-posta/Telefon Numarası"
+    },
+    "policy": {
+      "service": "Hizmet Kullanım Şartları",
+      "shipping": "Kargo politikası",
+      "privacy": "Gizlilik Politikası",
+      "refund": "Geri ödeme politikası"
+    }
+  },
+  "order": {
+    "checkout_order": {
+      "pay_amount": "Ödeme miktarı",
+      "receiver_account": "alıcı hesabı",
+      "reference_number": "referans numarası",
+      "upload_time": "yükleme zamanı",
+      "upload_voucher": "Kupon Yükle",
+      "voucher_amount_limit": "En fazla 5 kupon yükleyebilirsiniz."
+    },
+    "detail": {
+      "orderstatus": {
+        "detail": "Detay"
+      }
+    },
+    "order_details": {
+      "details": "Sipariş detayları",
+      "order": "Sipariş",
+      "remark": "Sipariş açıklaması",
+      "time": "Sipariş verme:"
+    },
+    "order_list": {
+      "no_more_info": "Daha fazla bilgi yok",
+      "no_record": "Şu anda sipariş kaydı yok, alışveriş yapın",
+      "package_amount": "Paket {{num}}（{{item}} öğe）",
+      "total_amount": "Toplamda {{transPackages}} öğe"
+    },
+    "order_status": {
+      "canceled": "İptal edildi",
+      "click_to_track": "Lütfen aşağıdaki bağlantıya tıklayarak paketinizi izleyin:",
+      "contact_us": "Bize ulaşın",
+      "help_tips": "Yardım mı lazım? Lütfen bizimle iletişime geçin: {{email}}",
+      "payment_voucher_transfer_success": "Ödeme başarıyla aktarıldı",
+      "payment_voucher_waiting_for_payment": "Ödeme için bekleniyor",
+      "sequence": "No.{{id}}",
+      "tracking": "İzle"
+    },
+    "payment": {
+      "authorized": "Yetkili",
+      "billing_address": "Fatura adresi",
+      "detail": "Detay",
+      "method": "Ödeme şekli",
+      "paid": "Ödendi",
+      "partially_paid": "Kısmen ödendi",
+      "paying": "Ödeme",
+      "payment": "Ödeme",
+      "payment_status": "Ödeme durumu",
+      "unpaid": "Ödenmedi"
+    },
+    "shipping": {
+      "info": "Bilgiler",
+      "no_info": "Henüz teslimat bilgisi yok, lütfen daha sonra kontrol edin.",
+      "package_tracking": "Paket Takibi",
+      "partially_shipped": "Kısmi gönderim",
+      "preparing_order": "Ürünler hazırlanıyor",
+      "processing_amount": "İşleniyor ({{num}} öğe)",
+      "shipped_order": "Teslim edildi"
+    }
+  },
+  "products": {
+    "collection": {
+      "collection": "Kategori"
+    },
+    "general": {
+      "no_product_data_found": "Ürün verisi bulunamadı. Lütfen daha sonra tekrar deneyin",
+      "sold_out": "Tümü Satıldı",
+      "added_to_cart_successfully": "Başarıyla sepete eklendi"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Bu sınırlı ürün için izin verilen maksimum miktar {{num}}",
+      "activity_toast_product__limit": "Satın alma, {{stock}} promosyon ürünüyle sınırlıdır",
+      "activity_toast_title__limit": "Aşağıdaki ürünler satın alma limitini aşıyor",
+      "amount": "Miktar",
+      "buy_more_save_more": "Daha Fazla Satın Alın Daha Fazla Tasarruf Edin!",
+      "cancel": "İptal",
+      "country_region": "Ülke/Bölge",
+      "default_placeholder": "Lütfen {{attrName}} öğesini seçin",
+      "description": "Açıklama",
+      "email": "E-posta",
+      "enter_email_address": "Lütfen e-posta adresinizi girin",
+      "enter_valid_email_address": "Geçerli bir e-posta adresi girin",
+      "give_us_more_of_your_information": "Size daha uygun hizmetler sunabilmemiz için bize sizinle ilgili daha fazla bilgi verebilirsiniz",
+      "go_to_amazon_by_link": "Amazon'da satın alın",
+      "go_to_rakuten_by_link": "LOTTE'de satın alın",
+      "go_to_yahoo_by_link": "Yahoo'da satın alın",
+      "in_stock": "Stokta var",
+      "inventory_quantity": "Envanter miktarı",
+      "leave_us_message": "Lütfen mesajınızı girin",
+      "leave_us_message_get_back": "Lütfen bize bir mesaj bırakın ve en kısa sürede size geri dönüş yapacağız",
+      "link_preview_does_not_support": "Bağlantı önizleme işlemi desteklenmiyor",
+      "maximum_length_of_message": "Mesajınızın uzunluğu maksimum 1500 kelimeden fazla olmamalıdır",
+      "message": "Mesajınız",
+      "more_payment_options": "daha fazla ödeme seçeneği",
+      "name": "Ad",
+      "optional": "İsteğe bağlı",
+      "phone_number": "Telefon numarası",
+      "product_enquiry": "Ürün sorgulama",
+      "submission_failed": "Gönderim başarısız oldu, lütfen tekrar deneyin",
+      "submission_successfully": "Başarıyla gönderildi",
+      "submit": "Gönder",
+      "tax_included": "vergi dahil",
+      "view_product_detail": "Ürün detaylarını görüntüle"
+    },
+    "product_list": {
+      "add_to_cart": "SEPETE EKLE",
+      "filter": "Filtre",
+      "from_price_html": "{{price}} başlayan fiyatlarla",
+      "less": "az",
+      "load_more_tip": "Daha fazla öğe yükleniyor",
+      "more": "daha fazla",
+      "new_arrivals": "Yeni gelenler",
+      "no_product": "üzgünüm, bu koleksiyonda ürün yok",
+      "price_high_to_low": "Fiyat yüksekten düşüğe",
+      "price_low_to_high": "Fiyat düşükten yükseğe",
+      "product_has_been_removed": "Ürün raflardan kaldırıldı",
+      "product_sold_out": "TÜMÜ SATILDI",
+      "products": "ürünleri",
+      "quick_shop": "Hızlı alışveriş",
+      "recommend": "Önerilen",
+      "sale": "satış",
+      "save": "{{{priceDom}}} tasarruf edin",
+      "save_byjs": "{{priceDom}} tasarruf edin",
+      "save_ratio": "{{price}}% İNDİRİM",
+      "select_product_all_options": "Lütfen önce ürün boyutunu seçin!",
+      "top_sellers": "En çok satanlar",
+      "more__product_num": "{{num}} ürün",
+      "one_product_num": "{{num}} ürün",
+      "show": "Göster",
+      "sold_out": "hepsi satıldı"
+    },
+    "product_search": {
+      "back_to_home": "Ana sayfaya dön",
+      "ount_results": "{{count}} Sonuç",
+      "results_found_for": "\"{{keyword}}\" için {{count}} sonuç bulundu",
+      "search": "Ara",
+      "search_no_results": "\"{{keyword}}\" aramanız için herhangi bir sonuç bulunamadı",
+      "single_results": "{{count}} Sonuç",
+      "single_results_found": "\"{{keyword}}\" için {{count}} sonuç bulundu"
+    },
+    "recently_viewed_products": {
+      "recently_viewed_products": "Son Görüntülenen Ürünler"
+    }
+  },
+  "sales": {
+    "discount_coupon": {
+      "active_date_until": "Son geçerlilik tarihi: {{endTime}}",
+      "applied": "Uygulandı",
+      "applied_successfully": "İndirim kodu başarıyla uygulandı",
+      "apply": "Uygula",
+      "buy_x_get_y_all_discount_content": "{{discount}} indirimle {{benefitCount}} parça alın",
+      "buy_x_get_y_all_free_content": "{{benefitCount}} parça ücretsiz alın",
+      "buy_x_get_y_discount_content": "{{discount}} kapali",
+      "buy_x_get_y_free_content": "ÜCRETSİZ",
+      "buy_x_get_y_threshold": "{{threshold}} adet satın alın, {{benefitCount}} adet ücretsiz alın",
+      "coupon_content_level": "Seviye {{level}} için",
+      "coupon_discount_content": "{discount} indirim",
+      "coupon_not_found": "İndirim kodu mevcut değil",
+      "failed_to_apply_coupon_code": "Uygulanamadı",
+      "free__shipping": "Ücretsiz kargo",
+      "get_code": "Indirim kuponları alın",
+      "popup_label": "Mağaza kuponları:",
+      "shipping_rate_below": "Navlun {value} değerinden daha az",
+      "specified_customer": "Belirlenmiş müşteriler için",
+      "threshold": "{threshold} satın al"
+    },
+    "flash": {
+      "day": "gün",
+      "days": "günler"
+    },
+    "general": {
+      "activity_banner_benefit": "{{benefit}} kapali",
+      "activity_banner_copy_success_text": "Kupon kodu başarıyla kopyalandı",
+      "activity_banner_free_shipping": "Ücretsiz Kargo",
+      "activity_selector_new_arrivals": "Yeni gelenler",
+      "activity_selector_price_high_to_low": "Fiyat yüksekten düşüğe",
+      "activity_selector_price_low_to_high": "Fiyat düşükten yükseğe",
+      "activity_selector_recommended": "Öner",
+      "apply_common": "Uygula",
+      "coupon_code_copied": "Kupon kodu başarıyla kopyalandı",
+      "coupon_code_copy": "Kopya",
+      "flash_sale_text": "SINIRLI SÜRELİ İNDİRİM",
+      "flash_sale_tip": "Satın alma limiti: {{count}} adet",
+      "hot_sale": "Canlı satış!",
+      "product_tabs_benefit_discount_locked": "%{{offPercent}} indirim alın",
+      "product_tabs_benefit_discount_unlocked": "%{0} indirim kilidi açıldı!",
+      "product_tabs_benefit_free_locked": "Ücretsiz teklif",
+      "product_tabs_benefit_free_unlocked": "Ücretsiz teklif kilidi açıldı!",
+      "product_tabs_benefit_unlocked_tip": "Şu anda ürün indiriminin keyfini çıkarabilirsiniz",
+      "product_tabs_code_benefit_discount_unlocked": "%{{offPercent}} indirimle {{benefitCount}} parça alın",
+      "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} parça ücretsiz alın",
+      "product_tabs_threshold": "{{threshold}} satın alın",
+      "purchase_limit": "Kişi başına satın alma limiti {{count}}",
+      "purchase_limit_each_item": "Kişi başı ürün başına satın alma limiti {{count}}",
+      "select_promotional_product": "{{selectCount}} etkinlik ürünü seçildi",
+      "sold": "{{count}} satıldı",
+      "activity_banner_copy_text": "Kopya",
+      "activity_banner_threshold": "{{threshold}} üzerindeki siparişler",
+      "discount_common": "İndirim",
+      "shop_more": "Daha"
+    },
+    "gift": {
+      "got_all_gifts_tip": "Tebrikler! {{saved}} ÜCRETSİZ-HEDİYE aldınız!",
+      "not_meet_amount_tip": "{{threshold}} daha satın alın, {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarın",
+      "not_meet_quantity_tip": "{{threshold}} öğe daha satın alın, {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarın",
+      "select": "Seç",
+      "select_gift_tip": "Tebrikler! {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarabilirsiniz",
+      "spend_more_money_get_more_tip": "Tebrikler! Toplamda {{saved}} Ücretsiz Hediye aldınız! {{threshold}} daha harcayın, {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarın",
+      "spend_more_quantity_get_more_tip": "Tebrikler! Toplamda {{saved}} Ücretsiz Hediye aldınız! {{threshold}} öğe daha satın alın, {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarın"
+    },
+    "promotion": {
+      "discount_tag": {
+        "label": "İndirim:"
+      }
+    }
+  },
+  "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Yuvarlama"
+      }
+    },
+    "payments-name": {
+      "COD": "Kapıda ödeme",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "Kredi Kartı"
+    },
+    "reduction_code": {
+      "giftcard": "Hediye Kartları"
+    }
+  },
+  "transaction": {
+    "contact": {
+      "discounts_stack_not": "Bu siparişe indirim uygulandı. Başka indirim ekleyemezsiniz"
+    },
+    "discount": {
+      "code_error": "İndirim kodu yanlış girildi",
+      "code_item_unmatched": "{{discountCode}} doğru girildi ama ürün fiyatı ya da miktarı gereklilikleri karşılamıyor",
+      "coupon_code": "Kupon Kodu",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}} kuponu, kargo yöntemi için geçerlidir",
+      "discount_codes_cannot_stack": "Ürün için hali hazırda diğer ayrıcalıklı etkinliklerle birlikte kullanılamayan bir ayrıcalıklı etkinlik var",
+      "use_coupon_alone": "Bu kupon kodu, diğer promosyon veya indirim teklifleriyle birlikte kullanılamaz"
+    },
+    "general": {
+      "discount_off": "İndirim",
+      "free_charge": "Ücretsiz kargo",
+      "free_shipping": "ücretsiz kargo",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
+      "order_seller_discount": "Satıcı ekstra indirimi",
+      "order_tax": "Vergi",
+      "order_tip": "Bahşiş",
+      "payment_subtotal_cost": "Ara toplam",
+      "point_discount": "Puan indirimi",
+      "shipping_fee": "Kargo",
+      "trade_coupon_discount": "İndirim"
+    },
+    "item": {
+      "invalid_product": "Geçersiz ürünler",
+      "remove_invalid_product": "Geçersiz ürünleri sil",
+      "removed": "GEÇERSİZ",
+      "sold_out": "hepsi satıldı"
+    },
+    "notices": {
+      "insufficient_product_inventory": "Ürün envanteri yetersiz",
+      "network": "Ağ Hatası",
+      "product_expired": "Ürünün süresi doldu",
+      "product_limit": "Ürün limiti aşıldı"
+    },
+    "order": {
+      "deleted": "GEÇERSİZ"
+    },
+    "payment": {
+      "continue_shopping": "Alışverişe devam et",
+      "more": "Daha",
+      "total": "Toplam",
+      "total_sum": "Toplam"
+    },
+    "policy": {
+      "refund_policy": "Geri ödeme politikası"
+    },
+    "refund": {
+      "cost_points": "Maliyet {{value}} Puanları",
+      "deduct_point": "{{deductMemberPointAmount}} tasarruf etmek için {{deductMemberPointNum}} puan kullanabilirsiniz"
+    }
+  },
+  "unvisiable": {
+    "customer": {
       "error_message_1": "Güncellemeleri almak, özel fırsatlara erişmek ve daha fazlası için e-posta almak için beni kaydedin.",
       "error_message_1001": "Parola hatası",
       "error_message_1002": "Kullanıcı mevcut değil",
@@ -387,399 +801,8 @@
       "error_message_3024": "Link yanlış",
       "error_message_4": "Servis istisnaları",
       "error_message_5": "Servis istisnaları",
-      "error_message_6": "Servis istisnaları",
-      "feb": "Şbt",
-      "february": "Şubat",
-      "first_day": "1",
-      "fr": "Cu",
-      "fri": "Cum",
-      "friday": "Cuma",
-      "image_size_less_than_tips": "Resimler {{max}} MB'tan küçük olmalıdır",
-      "jan": "Oca",
-      "january": "Ocak",
-      "jul": "Tmz",
-      "july": "Temmuz",
-      "jun": "Hzr",
-      "june": "Haziran",
-      "login_method": "Veya aşağıdaki yöntemlerle oturum açın",
-      "mar": "Mrt",
-      "march": "Mart",
-      "max_image_upload_tips": "En fazla {{max}} resim yükleyebilirsiniz",
-      "may": "Mayıs",
-      "may_short": "Mys",
-      "mo": "Pt",
-      "mon": "Pts",
-      "monday": "Pazartesi",
-      "network_error_message": "İnternet yok",
-      "nov": "Ksm",
-      "november": "Kasım",
-      "oct": "Ekm",
-      "october": "Ekim",
-      "ok": "Tamam",
-      "okay_common": "TAMAM",
-      "orders": "Siparişler",
-      "password": "Parola",
-      "password_empty_hint": "Lütfen parola girin",
-      "phone": "Cep telefonu numarası",
-      "phone_empty_message": "Lütfen cep telefonu numarasını girin",
-      "phone_error_message": "Lütfen geçerli formatta bir cep telefonu numarası girin",
-      "phone_number_error_message": "Geçerli bir telefon numarası girin",
-      "proceed_to_checkout": "Çıkışa doğru devam et",
-      "register": "Üye ol",
-      "repeat_passport_error": "Girdiğiniz parolalar eşleşmedi",
-      "repeat_password": "Parolanızı tekrar girin",
-      "resend": "Yeniden gönder",
-      "sa": "Ct",
-      "sat": "Cts",
-      "saturday": "Cumartesi",
-      "save": "KAYDET",
-      "select__date": "Tarih seç",
-      "select_date": "Tarih seç",
-      "send": "Gönder",
-      "send_error": "Lütfen önce doğrulama kodunu gönderin",
-      "send_verification_code_hint": "Lütfen parolayı tekrar girin",
-      "sep": "Eyl",
-      "september": "Eylül",
-      "set_password": "Lütfen minimum 6 karakter, maksimum ise 18 karakter uzunluğunda bir parola belirleyin.",
-      "sign__out": "Oturumu Kapat",
-      "sign_in": "OTURUM AÇ",
-      "sign_up": "ÜYE OL",
-      "su": "Pa",
-      "subscription_desc": "Mağazadan en güncel haberleri alın",
-      "sun": "Pzr",
-      "sunday": "Pazar",
-      "th": "Pe",
-      "thu": "Per",
-      "thursday": "Perşembe",
-      "time_format": "hh:mm aa",
-      "today": "Bugün",
-      "tu": "Sl",
-      "tue": "Sl",
-      "tuesday": "Salı",
-      "update_passport": "Parola değiştir",
-      "user_agreement_tip": "Lütfen önce kullanıcı sözleşmesini okuyun ve kabul edin",
-      "username": "E-posta adresi/cep telefonu numarası",
-      "username_empty_hint": "Lütfen e-posta adresini veya cep telefonu numarası girin",
-      "verification_code": "Doğrulama kodu",
-      "verification_code_sent_tip": "Doğrulama kodu hesabınıza gönderildi",
-      "verift_account_tip": "Lütfen hesabınızı doğrulayın ve parolanızı sıfırlayın",
-      "we": "Ça",
-      "wed": "Çar",
-      "wednesday": "Çarşamba"
+      "error_message_6": "Servis istisnaları"
     },
-    "login": {
-      "member_login_common": "Üye girişi",
-      "subscribe_confirm_tip": "Abone olduğunuz için teşekkür ederiz. Daha iyi bir deneyim için giriş yapabilirsiniz."
-    },
-    "message": {
-      "input_placeholder": "Mesaj bırakmak istediğiniz bir şey var mı?",
-      "message": "Mesaj",
-      "send": "Gönder"
-    },
-    "phone": {
-      "mobile_common": "Telefon numarası"
-    },
-    "register": {
-      "go_to_login": "Oturum açmaya git",
-      "privacy_policy": "Gizlilik Politikası",
-      "terms_of_service": "Hizmet Kullanım Şartları",
-      "tips_agree_with_the_shop": "Katılıyorum"
-    },
-    "subscription": {
-      "email": "E-posta",
-      "email_subscription_text": "Abonelikteki promosyon bilgilerini e-posta ile alın",
-      "line": "LINE",
-      "messenger": "Messenger",
-      "phone": "Cep telefonu",
-      "phone_subscription_text": "Telefon promosyonuna abone ol",
-      "reason_other_length": "300 kelimeye kadar girin",
-      "reason_other_placeholder": "Giriş",
-      "save_button": "KAYDET",
-      "subscribe_button": "ABONE OL",
-      "subscription_cancel_text": "ABONELİKTEN ÇIK",
-      "subscription_hint": "Abone olundu",
-      "subscription_title": "Abonelik",
-      "unsubscribe": "Abonelikten çık",
-      "unsubscribe_btn": "Abonelikten çık",
-      "unsubscribe_confirm_text": "Abonelikten çık",
-      "unsubscribe_feedback_text": "Bizden daha fazla pazarlama güncellemesi almayacaksınız. İstediğiniz zaman tekrar abone olabilirsiniz",
-      "unsubscribe_feedback_title": "<italic>{{name}}</italic> posta listesinden çıktınız",
-      "unsubscribe_reason1": "Bu emailleri artık almak istemiyorum",
-      "unsubscribe_reason2": "Çok fazla email alıyorum",
-      "unsubscribe_reason3": "Bu listeye abone olmadım",
-      "unsubscribe_reason4": "Emailler ilgimi çekmiyor",
-      "unsubscribe_reason5": "Email içeriği çok uzun değil",
-      "unsubscribe_reason6": "Diğer",
-      "unsubscribe_subtitle": "Gittiğimiz için üzgünüz! Abonelikten neden çıktığınızı belirtmenizi rica ederiz:",
-      "unsubscribe_success": "Abonelik iptal edildi, ana sayfaya yönlendirilecek",
-      "unsubscribe_tip": "Abonelikten çıkıldığında, artık en güncel promosyonların bilgilerini alamayacaksınız.",
-      "unsubscribe_title": "Abonelikten çık"
-    }
-  },
-  "general": {
-    "404": {
-      "button": "Alışverişe devam et",
-      "subtext": "Aradığınız sayfa mevcut değil.",
-      "title": "404 sayfa bulunamadı"
-    },
-    "contact_us": {
-      "contact_us": "BIZE ULAŞIN",
-      "send_success": "Bizimle iletişime geçtiğiniz için teşekkür ederiz, mümkün olan en kısa sürede size dönüş yapacağız."
-    },
-    "footer": {
-      "copyright": "© {{year}} {{storeName}}",
-      "subscribe_reg_exp_error": "E-posta adresi formatı hatalı",
-      "subscribe_success": "Abonelik başarılı"
-    },
-    "general": {
-      "accept": "Kabul et",
-      "decline": "Reddet",
-      "home": "ön Sayfa",
-      "link": "Gizlilik Politikası",
-      "tel_phone": "Telefon numarası",
-      "tips": "Kullanıcı deneyimini daha iyi bir hale getirebilmek amacıyla giriş bilgilerinin hatırlanabilmesi, istatistiklerin toplanabilmesi ve ilgi alanlarınıza uygun olarak belirlenmiş içeriklerin sunulabilmesi için çerezleri kullanıyoruz. Çerezleri kabul etmek için \"Kabul et\" tuşuna tıklayın ya da \"Gizlilik Politikası\" ilkelerimize bakın.",
-      "title": "Gizliliğine önem veriyoruz",
-      "username": "Ad"
-    },
-    "header": {
-      "cart": "Sepetiniz",
-      "center": "Merkez",
-      "login": "Giriş",
-      "no_currency_fallback": "İlgili para birimi bulunamadı",
-      "search_input_placeholder": "Buraya girin ve aramaya dokunun"
-    },
-    "order_tracking": {
-      "code": "Doğrulama kodu",
-      "email": "E-posta",
-      "form_error": "Sorgu başarısız",
-      "orderId": "Sipariş Kimliği",
-      "orderId_error": "Sipariş kimliği boş olamaz",
-      "query_illegal": "sipariş mevcut değil",
-      "risk_black_user": "Bu hesap risk altında",
-      "risk_interception": "sipariş mevcut değil",
-      "submit_btn": "Siparişi görüntüle",
-      "username": "E-posta/Telefon Numarası"
-    },
-    "policy": {
-      "privacy": "Gizlilik Politikası",
-      "refund": "Geri ödeme politikası",
-      "service": "Hizmet Kullanım Şartları",
-      "shipping": "Kargo politikası"
-    }
-  },
-  "order": {
-    "detail": {
-      "orderstatus": {
-        "UploadTime": "yükleme zamanı",
-        "detail": "Detay"
-      }
-    }
-  },
-  "products": {
-    "collection": {
-      "collection": "Kategori"
-    },
-    "general": {
-      "added_to_cart_successfully": "Başarıyla sepete eklendi",
-      "no_product_data_found": "Ürün verisi bulunamadı. Lütfen daha sonra tekrar deneyin",
-      "sold_out": "Tümü Satıldı"
-    },
-    "product_details": {
-      "activity_toast_price_limit": "Bu sınırlı ürün için izin verilen maksimum miktar {{num}}",
-      "activity_toast_product__limit": "Satın alma, {{stock}} promosyon ürünüyle sınırlıdır",
-      "activity_toast_title__limit": "Aşağıdaki ürünler satın alma limitini aşıyor",
-      "amount": "Miktar",
-      "buy_more_save_more": "Daha Fazla Satın Alın Daha Fazla Tasarruf Edin!",
-      "cancel": "İptal",
-      "country_region": "Ülke/Bölge",
-      "default_placeholder": "Lütfen {{attrName}} öğesini seçin",
-      "description": "Açıklama",
-      "email": "E-posta",
-      "enter_email_address": "Lütfen e-posta adresinizi girin",
-      "enter_valid_email_address": "Geçerli bir e-posta adresi girin",
-      "give_us_more_of_your_information": "Size daha uygun hizmetler sunabilmemiz için bize sizinle ilgili daha fazla bilgi verebilirsiniz",
-      "go_to_amazon_by_link": "Amazon'da satın alın",
-      "go_to_rakuten_by_link": "LOTTE'de satın alın",
-      "go_to_yahoo_by_link": "Yahoo'da satın alın",
-      "in_stock": "Stokta var",
-      "inventory_quantity": "Envanter miktarı",
-      "leave_us_message": "Lütfen mesajınızı girin",
-      "leave_us_message_get_back": "Lütfen bize bir mesaj bırakın ve en kısa sürede size geri dönüş yapacağız",
-      "link_preview_does_not_support": "Bağlantı önizleme işlemi desteklenmiyor",
-      "maximum_length_of_message": "Mesajınızın uzunluğu maksimum 1500 kelimeden fazla olmamalıdır",
-      "message": "Mesajınız",
-      "more_payment_options": "daha fazla ödeme seçeneği",
-      "name": "Ad",
-      "optional": "İsteğe bağlı",
-      "phone_number": "Telefon numarası",
-      "product_enquiry": "Ürün sorgulama",
-      "submission_failed": "Gönderim başarısız oldu, lütfen tekrar deneyin",
-      "submission_successfully": "Başarıyla gönderildi",
-      "submit": "Gönder",
-      "tax_included": "vergi dahil"
-    },
-    "product_list": {
-      "add_to_cart": "SEPETE EKLE",
-      "filter": "Filtre",
-      "from_price_html": "{{price}} başlayan fiyatlarla",
-      "less": "az",
-      "load_more_tip": "Daha fazla öğe yükleniyor",
-      "more": "daha fazla",
-      "more__product_num": "{{num}} ürün",
-      "new_arrivals": "Yeni gelenler",
-      "no_product": "üzgünüm, bu koleksiyonda ürün yok",
-      "one_product_num": "{{num}} ürün",
-      "price_high_to_low": "Fiyat yüksekten düşüğe",
-      "price_low_to_high": "Fiyat düşükten yükseğe",
-      "product_has_been_removed": "Ürün raflardan kaldırıldı",
-      "product_sold_out": "TÜMÜ SATILDI",
-      "products": "ürünleri",
-      "recommend": "Önerilen",
-      "sale": "satış",
-      "save": "{{{priceDom}}} tasarruf edin",
-      "save_byjs": "{{priceDom}} tasarruf edin",
-      "save_ratio": "{{price}}% İNDİRİM",
-      "select_product_all_options": "Lütfen önce ürün boyutunu seçin!",
-      "show": "Göster",
-      "sold_out": "hepsi satıldı",
-      "top_sellers": "En çok satanlar"
-    },
-    "product_search": {
-      "back_to_home": "Ana sayfaya dön",
-      "ount_results": "{{count}} Sonuç",
-      "results_found_for": "\"{{keyword}}\" için {{count}} sonuç bulundu",
-      "search": "Ara",
-      "search_no_results": "\"{{keyword}}\" aramanız için herhangi bir sonuç bulunamadı",
-      "single_results": "{{count}} Sonuç",
-      "single_results_found": "\"{{keyword}}\" için {{count}} sonuç bulundu"
-    },
-    "recently_viewed_products": {
-      "recently_viewed_products": "Son Görüntülenen Ürünler"
-    }
-  },
-  "sales": {
-    "discount_coupon": {
-      "active_date_until": "Son geçerlilik tarihi: {{endTime}}",
-      "applied": "Uygulandı",
-      "applied_successfully": "İndirim kodu başarıyla uygulandı",
-      "apply": "Uygula",
-      "buy_x_get_y_all_discount_content": "{{discount}} indirimle {{benefitCount}} parça alın",
-      "buy_x_get_y_all_free_content": "{{benefitCount}} parça ücretsiz alın",
-      "buy_x_get_y_discount_content": "{{discount}} kapali",
-      "buy_x_get_y_free_content": "ÜCRETSİZ",
-      "buy_x_get_y_threshold": "{{threshold}} adet satın alın, {{benefitCount}} adet ücretsiz alın",
-      "coupon_content_level": "Seviye {{level}} için",
-      "coupon_discount_content": "{discount} indirim",
-      "coupon_not_found": "İndirim kodu mevcut değil",
-      "failed_to_apply_coupon_code": "Uygulanamadı",
-      "free__shipping": "Ücretsiz kargo",
-      "get_code": "Indirim kuponları alın",
-      "popup_label": "Mağaza kuponları:",
-      "shipping_rate_below": "Navlun {value} değerinden daha az",
-      "specified_customer": "Belirlenmiş müşteriler için",
-      "threshold": "{threshold} satın al"
-    },
-    "flash": {
-      "day": "gün",
-      "days": "günler"
-    },
-    "general": {
-      "activity_banner_benefit": "{{benefit}} kapali",
-      "activity_banner_copy_success_text": "Kupon kodu başarıyla kopyalandı",
-      "activity_banner_copy_text": "Kopya",
-      "activity_banner_free_shipping": "Ücretsiz Kargo",
-      "activity_banner_threshold": "{{threshold}} üzerindeki siparişler",
-      "activity_selector_new_arrivals": "Yeni gelenler",
-      "activity_selector_price_high_to_low": "Fiyat yüksekten düşüğe",
-      "activity_selector_price_low_to_high": "Fiyat düşükten yükseğe",
-      "activity_selector_recommended": "Öner",
-      "apply_common": "Uygula",
-      "bundle_save_tip": "Birlikte satın alarak {{amount}} tasarruf edin",
-      "bundle_title": "Sıklıkla birlikte satın alınan",
-      "common_buy_now": "Şimdi satın alın",
-      "coupon_code_copied": "Kupon kodu başarıyla kopyalandı",
-      "coupon_code_copy": "Kopya",
-      "discount_common": "İndirim",
-      "flash_sale_text": "SINIRLI SÜRELİ İNDİRİM",
-      "flash_sale_tip": "Satın alma limiti: {{count}} adet",
-      "hot_sale": "Canlı satış!",
-      "product_tabs_benefit_discount_locked": "%{{offPercent}} indirim alın",
-      "product_tabs_benefit_discount_unlocked": "%{0} indirim kilidi açıldı!",
-      "product_tabs_benefit_free_locked": "Ücretsiz teklif",
-      "product_tabs_benefit_free_unlocked": "Ücretsiz teklif kilidi açıldı!",
-      "product_tabs_benefit_unlocked_tip": "Şu anda ürün indiriminin keyfini çıkarabilirsiniz",
-      "product_tabs_code_benefit_discount_unlocked": "%{{offPercent}} indirimle {{benefitCount}} parça alın",
-      "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} parça ücretsiz alın",
-      "product_tabs_threshold": "{{threshold}} satın alın",
-      "purchase_limit": "Kişi başına satın alma limiti {{count}}",
-      "purchase_limit_each_item": "Kişi başı ürün başına satın alma limiti {{count}}",
-      "select_promotional_product": "{{selectCount}} etkinlik ürünü seçildi",
-      "shop_more": "Daha",
-      "sold": "{{count}} satıldı"
-    },
-    "gift": {
-      "got_all_gifts_tip": "Tebrikler! {{saved}} ÜCRETSİZ-HEDİYE aldınız!",
-      "not_meet_amount_tip": "{{threshold}} daha satın alın, {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarın",
-      "not_meet_quantity_tip": "{{threshold}} öğe daha satın alın, {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarın",
-      "select": "Seç",
-      "select_gift_tip": "Tebrikler! {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarabilirsiniz",
-      "spend_more_money_get_more_tip": "Tebrikler! Toplamda {{saved}} Ücretsiz Hediye aldınız! {{threshold}} daha harcayın, {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarın",
-      "spend_more_quantity_get_more_tip": "Tebrikler! Toplamda {{saved}} Ücretsiz Hediye aldınız! {{threshold}} öğe daha satın alın, {{willSave}} adete kadar ÜCRETSİZ-HEDİYE keyfini çıkarın"
-    },
-    "promotion": {
-      "discount_tag": {
-        "b11_t1_free": "{{threshold}} öğe satın alın, öğelerden birini ücretsiz almanın keyfini çıkarın",
-        "b11_t1_normal": "{{threshold}} öğe satın alın, öğelerden birinde {{save}} indirimin keyfini çıkarın",
-        "b1_t0": "{{threshold}} satın alın, {{save}} tasarruf edin",
-        "b1_t1": "{{threshold}} satın alın, {{save}} indirim kazanın",
-        "b2_t0": "{{threshold}} satın alın, {{save}} tasarruf edin",
-        "b2_t1": "{{threshold}} satın alın, {{save}} indirim kazanın",
-        "label": "İndirim:"
-      }
-    }
-  },
-  "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Yuvarlama"
-      }
-    },
-    "payments-name": {
-      "COD": "Kapıda ödeme",
-      "Paypal": "Paypal",
-      "adjustPay": "manual",
-      "third-part": "Kredi Kartı"
-    },
-    "reduction_code": {
-      "giftcard": "Hediye Kartları"
-    }
-  },
-  "transaction": {
-    "general": {
-      "coupon_invalid_for_the_shipping_method": "{{discountCode}} kuponu, kargo yöntemi için geçerlidir",
-      "discount_codes_cannot_stack": "Ürün için hali hazırda diğer ayrıcalıklı etkinliklerle birlikte kullanılamayan bir ayrıcalıklı etkinlik var",
-      "discount_off": "İndirim",
-      "free_charge": "Ücretsiz kargo",
-      "free_shipping": "ücretsiz kargo",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
-      "order_seller_discount": "Satıcı ekstra indirimi",
-      "order_tax": "Vergi",
-      "order_tip": "Bahşiş",
-      "payment_subtotal_cost": "Ara toplam",
-      "point_discount": "Puan indirimi",
-      "shipping_fee": "Kargo",
-      "trade_coupon_discount": "Kupon"
-    }
-  },
-  "user": {
-    "udbResponse": {
-      "err1006": "Kod hatası",
-      "err2005": "Kod hatası",
-      "err3005": "Kod hatası"
-    }
+    "editorSwitchCountryTip": "Ülke değiştirme özelliği editörde desteklenmemektedir"
   }
 }

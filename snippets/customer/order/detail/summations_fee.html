@@ -2,12 +2,16 @@
   {{add_dataset 'value' value }} {{add_dataset 'showWithZeroValue' showWithZeroValue }} {{add_dataset 'freeShipTxt' freeShipTxt }}
   {{add_dataset 'nextStepCalcTxt' nextStepCalcTxt }}>
   <div class="textLeft {{prefixCls}}">
-         {{#if key '==' "giftCardInfos" }}
-            <span  class="trade_summations_fee__tips">
-                {{t 'trade.reduction_code.giftcard'}} <span class="trade_gift_card_code">(••••{{{lastCharacters}}})</span> 
-            </span>
+    {{#if key '==' "giftCardInfos" }}
+      <span  class="trade_summations_fee__tips">
+        {{t 'trade.reduction_code.giftcard'}} <span class="trade_gift_card_code">(••••{{{lastCharacters}}})</span> 
+      </span>
+    {{else}}
+      {{#if key '==' "discountAmountExt" }}
+        {{label}}{{cond (boolean pageData.priceInfo.discountAmountExtName) (prepend pageData.priceInfo.discountAmountExtName ' - ') ''}}
       {{else}}
-    {{label}}
+        {{label}}
+      {{/if}}
     {{/if}}
   </div>
 
@@ -17,7 +21,7 @@
       <span class="customer_order_summations__amount-box">
         <span class="customer_order_summations__amount-price">
           {{#if (typeOf value) '==' 'number' }}
-            <span class="notranslate" data-amount="{{value}}">{{money_exchange_convert_with_currency value}}</span>
+            <span class="notranslate no-change" data-amount="{{value}}">{{money_with_currency value code=@root.basicInfo.settleCurrencyCode}}</span>
           {{else }}
             {{!-- 如果是字符，则传入来的是多语言的key --}}
             {{t value}}
@@ -27,12 +31,12 @@
     </span>
     {{#if key '==' 'deductMemberPointAmount' }}
       <div class="customer_order_summations_remark">
-        {{t 'cart.refund.cost_points' value=pageData.priceInfo.deductMemberPointNum}}
+        {{t 'transaction.refund.cost_points' value=pageData.priceInfo.deductMemberPointNum}}
       </div>
     {{else if (boolean  key '==' 'settleSumAmount' '&&' pageData.basicInfo.taxesIncluded)}}
       {{!-- 含税订单，要在总额下面展示对应的含税价 --}}
       <div class="customer_order_summations_remark">
-        {{ noTranslationHTML (t 'cart.order.tax_included' price=(javascript_template '<span class="notranslate" data-amount="${amount}">${num}</span>' num=(money_exchange_convert_with_currency pageData.priceInfo.taxesIncludedSumAmount) amount=pageData.priceInfo.taxesIncludedSumAmount) ) }}
+        {{ noTranslationHTML (t 'cart.order.tax_included' price=(javascript_template '<span class="notranslate no-change" data-amount="${amount}">${num}</span>' num=(money_with_currency pageData.priceInfo.taxesIncludedSumAmount code=@root.basicInfo.settleCurrencyCode) amount=pageData.priceInfo.taxesIncludedSumAmount) ) }}
       </div>
     {{/if}}
   </div>

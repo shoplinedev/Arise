@@ -4,12 +4,10 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
   const _exports = {};
   const debounce = window['lodash']['debounce'];
   const get = window['lodash']['get'];
-  const currencyUtils = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const pageMapping = window['SLM']['theme-shared/utils/report/pageMapping.js'].default;
   const pageMap = window['SLM']['theme-shared/utils/report/page.js'].default;
-  const {
-    formatCurrency
-  } = currencyUtils;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const alias = window.SL_State.get('templateAlias');
   const eventIdMap = {
     ProductsDetail: '60006253',
@@ -77,8 +75,8 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       price,
       skuSeq: skuId
     } = sku || {};
-    const currency = window.SL_State.get('storeInfo.currency');
-    const value = formatCurrency(price);
+    const currency = getCurrencyCode();
+    const value = convertPrice(price);
     window.SL_EventBus.emit('global:thirdPartReport', {
       FBPixel: [['track', 'Lead', {
         content_name: title,
@@ -95,10 +93,12 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
         ecomm_prodid: window.SL_GetReportArg('GAR', 'sku_id', skuId),
         ecomm_pagetype: 'product',
         ecomm_totalvalue: value,
+        currency,
         ecomm_category: get(sortationList, '[0].sortationId'),
         ecomm_pcat: get(sortationList, '[0].sortationName')
       }]],
       GAR: [['event', 'generate_lead', {
+        currency,
         value,
         items: [{
           id: window.SL_GetReportArg('GAR', 'sku_id', skuId),
@@ -136,6 +136,7 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       event_name: '145',
       product_id: spuId,
       product_name: title,
+      currency,
       product_price: value,
       variantion_id: skuId,
       phone,
@@ -163,8 +164,8 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       price,
       skuSeq: skuId
     } = sku || {};
-    const value = formatCurrency(price);
-    const currency = window.SL_State.get('storeInfo.currency');
+    const value = convertPrice(price);
+    const currency = getCurrencyCode();
     const inputBoxVal = concatVal({
       Message: message,
       Name: name,
@@ -187,6 +188,7 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       event_name: '146',
       product_id: spuId,
       product_name: title,
+      currency,
       product_price: value,
       variantion_id: skuId,
       phone,

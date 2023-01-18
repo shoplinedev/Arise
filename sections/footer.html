@@ -1,3 +1,8 @@
+---
+all_collections:
+  need_first_product: false
+---
+
 {{ combine_asset_tag 'stage/footer/style/index.css' inline=true }}
 <!-- stage/footer/index.js -->
 {{ combine_asset_tag 
@@ -29,19 +34,19 @@
 
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 {{ assign 'showLetter' section.settings.show_letter_subscribe }}
-{{ assign 'showSocialLogos' section.settings.show_social_media }}      
+{{ assign 'showSocialLogos' section.settings.show_social_media }}
 {{ assign 'color_scheme' section.settings.color_scheme_subscribe }}
 {{ assign 'footerBlockLength' (length blocks) }}
 
 {{ assign 'col' 3 }}
 {{#if (boolean footerBlockLength '>=' 4)}}
   {{ assign 'col' 4 }}
-{{else}} 
+{{else}}
   {{ assign 'col' footerBlockLength }}
 {{/if}}
 
 {{#if (boolean showLetter '&&' showSocialLogos)}}
-  {{ assign 'footInlineClass' 'footer__block-social-container__space-between' }}  
+  {{ assign 'footInlineClass' 'footer__block-social-container__space-between' }}
 {{else}}
   {{ assign 'footInlineClass' 'footer__block-social-container__center' }}
 {{/if}}
@@ -51,11 +56,11 @@
     <div class="footer__body container g-4 g-md-5">
       <div class="footer__block-container row row-cols-md-{{ col }} {{#if col '===' 1}}footer__block-container--text-center{{/if}}">
         {{#with section as | section |}}
-          {{#each blocks}}           
+          {{#each blocks}}
             {{!-- 快速导航 --}}
             {{#if type '===' 'menu'}}
               <div class="footer__block" {{{ this.shopline_attributes }}}>
-                {{ snippet 'footer-menu' sectionId=section.id }} 
+                {{ snippet 'footer-menu' sectionId=section.id }}
               </div>
             {{/if}}
             {{!-- 自定义内容 --}}
@@ -65,7 +70,7 @@
               </div>
             {{/if}}
             {{!-- 图片 --}}
-            {{#if type '===' 'image'}} 
+            {{#if type '===' 'image'}}
               <div class="footer__block-image" {{{ this.shopline_attributes }}}>
                 {{ snippet 'footer-image' }}
               </div>
@@ -80,7 +85,7 @@
             {{ object_set ../../this 'has_social_logos' true }}
           {{/or}}
         {{/with}}
-        <div class="{{#or showLetter has_social_logos}}footer_social--divider {{/or}}{{#if showLetter}}footer_social-hasletter {{/if}}footer__block-social-container row g-4 {{ footInlineClass }}">                
+        <div class="{{#or showLetter has_social_logos}}footer_social--divider {{/or}}{{#if showLetter}}footer_social-hasletter {{/if}}footer__block-social-container row g-4 {{ footInlineClass }}">
           {{#if showLetter}}
             {{!-- 邮件订阅 --}}
             <div class="footer__block-subscribe">
@@ -92,17 +97,17 @@
             <div class="footer__block-social">
               {{ snippet 'footer-social' }}
             </div>
-          {{/if}}  
+          {{/if}}
           {{#or showLetter showSocialLogos}}
             <div class="footer__block-divider d-md-none entry-line"></div>
-          {{/or}}     
+          {{/or}}
         </div>
-      </div>      
+      </div>
     </div>
     <div class="footer__corner entry-line">
       <div class="footer__corner-wrapper container">
         <div class="footer__corner-top">
-          {{#or section.settings.show_locale_selector section.settings.show_currency_selector}}
+          {{#or section.settings.show_locale_selector section.settings.show_currency_selector section.settings.show_country_selector}}
             <div class="footer__tool-container">
               {{ snippet 'header/locale-currency' settings=section.settings position='footer' }}
             </div>
@@ -112,16 +117,17 @@
             {{ snippet 'footer-pay-channel' }}
           {{/if}}
         </div>
-        <div class="footer__corner-bottom">                    
-          {{#if section.settings.show_copyright}}
+        <div class="footer__corner-bottom">
+          {{ assign 'copyright_prefix' (t 'general.footer.copyright' year=(year) storeName=storeInfo.name) }}                    
+          {{#or section.settings.show_copyright copyright_prefix}}
           <div class="footer-copy-box sl-a-tag">
-            <p class="footer__copyright">© {{ year }} {{ storeInfo.name }}&nbsp;</p>{{{ section.settings.copyright_text }}}
+            <p class="footer__copyright">{{ copyright_prefix }}&nbsp;</p>{{{ section.settings.copyright_text }}}
           </div>
-          {{/if}}
+          {{/or}}
         </div>
       </div>
     </div>
-    
+
   </div>
 </footer>
 
@@ -199,6 +205,12 @@
       "id": "show_locale_selector",
       "label": "t:sections.footer.settings.show_locale_selector.label",
       "info": "t:sections.footer.settings.show_locale_selector.info",
+      "default": false
+    },
+    {
+      "type": "switch",
+      "id": "show_country_selector",
+      "label": "t:sections.footer.settings.show_country_selector.label",
       "default": false
     },
     {

@@ -179,6 +179,9 @@ window.SLM['theme-shared/components/hbs/shared/components/drawer/index.js'] = wi
 
   let instance = new GlobalDrawer();
   $(document).on('shopline:section:load', () => {
+    instance = new GlobalDrawer();
+  });
+  $(document).on('shopline:section:unload', () => {
     Object.keys(instance.hub).filter(id => {
       return !!instance.hub[id];
     }).forEach(id => {
@@ -188,7 +191,6 @@ window.SLM['theme-shared/components/hbs/shared/components/drawer/index.js'] = wi
       });
     });
     instance.off();
-    instance = new GlobalDrawer();
   });
   return _exports;
 }();

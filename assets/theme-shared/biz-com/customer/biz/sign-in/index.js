@@ -18,6 +18,8 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/toast.js'].default;
   const { getUrlQuery } = window['SLM']['theme-shared/biz-com/customer/utils/url.js'];
   const { wrapArmorCaptcha } = window['SLM']['theme-shared/biz-com/customer/commons/captcha-modal/index.js'];
+  const { getUdbResponseLanguageErrorKey } = window['SLM']['theme-shared/biz-com/customer/helpers/getUdbResponseLanguageErrorKey.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   class Login extends Customer {
     constructor({
@@ -37,7 +39,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
 
     beforeCreate() {
       if (window.location.pathname.includes('/user/signIn') && window.SL_State && window.SL_State.get('request.cookie.osudb_uid')) {
-        window.location.href = USER_CENTER;
+        window.location.href = redirectTo(USER_CENTER);
         return false;
       }
 
@@ -78,6 +80,14 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
     }
 
     initForm() {
+      const {
+        udbErrorCode
+      } = this.query;
+
+      if (udbErrorCode) {
+        $(`#${this.formId} .customer__error`).text(t(getUdbResponseLanguageErrorKey(udbErrorCode))).show();
+      }
+
       if (storage.sessionStorage.get(ACCOUNT_ACTIVATED)) {
         this.toast.open(t('customer.activate.account_activated'));
         storage.sessionStorage.del(ACCOUNT_ACTIVATED);
@@ -102,7 +112,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
 
       if (formValue) {
         const isPhone = /^\d+$/.test(formValue[accountFieldType]);
-        const tips = t(`customer.general.error_message_${isPhone ? MOBILE_REGISTERED : EMAIL_REGISTERED}`);
+        const tips = t(`unvisiable.customer.error_message_${isPhone ? MOBILE_REGISTERED : EMAIL_REGISTERED}`);
         $(`#${this.formId} .sign-in__has-registered`).show().text(tips);
         fields = fields.map(field => {
           return { ...field,
@@ -144,13 +154,14 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
 
     reportNavigation() {
       const pathToReport = {
-        '/user/passwordNew': this.$$reports && this.$$reports.reportToForgetPassword,
-        '/user/signUp': this.$$reports && this.$$reports.reportToSignUp
+        passwordNew: this.$$reports && this.$$reports.reportToForgetPassword,
+        signUp: this.$$reports && this.$$reports.reportToSignUp
       };
       $(`#${this.formId} .sign-in__buttons`).on('click', 'a', e => {
         e.preventDefault();
         const path = $(e.currentTarget).attr('href');
-        pathToReport[path] && pathToReport[path]();
+        const type = $(e.currentTarget).data('type');
+        pathToReport[type] && pathToReport[type]();
         window.location.href = path;
       });
     }
@@ -253,7 +264,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
           return;
         }
 
-        redirectPage(USER_CENTER);
+        redirectPage(redirectTo(USER_CENTER));
       });
     }
 

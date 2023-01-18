@@ -1,18 +1,21 @@
 {{assign "previewBlog" blogInfo.previewBlog}}
 {{assign "nextBlog" blogInfo.lastBlog}}
-{{assign 'collectionHanlde' (default blogInfo.collectionCustomizePath blogInfo.collectionId)}}
-
+{{assign "collectionHanlde" (default blogInfo.collectionCustomizePath blogInfo.collectionId)}}
 <div class="page-jump">
   <div class="page-jump-item--left page-jump-item">
     {{#if (isTruthy previewBlog)}}
       <div class="jump-icon">
         <svg width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 1L3 6L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M8 1L3 6L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
         </svg>
       </div>
       <div class="jump-text">
-        <div class="jump-text__label">{{t 'blog.blog.previous'}}</div>
-        <a href="{{ append '/blogs/' collectionHanlde '/' previewBlog.handle }}" class="jump-text__title">{{previewBlog.title}}</a>
+        <div class="jump-text__label">
+          {{t "blog.blog.previous"}}
+        </div>
+        <a href="{{redirect_to (append '/blogs/' collectionHanlde '/' previewBlog.handle)}}" class="jump-text__title">
+          {{previewBlog.title}}
+        </a>
       </div>
     {{/if}}
   </div>
@@ -20,12 +23,16 @@
   <div class="page-jump-item--right page-jump-item">
     {{#if (isTruthy nextBlog)}}
       <div class="jump-text">
-        <div class="jump-text__label">{{t 'blog.blog.next'}}</div>
-        <a href="{{ append '/blogs/' collectionHanlde '/' nextBlog.handle }}" class="jump-text__title">{{nextBlog.title}}</a>
+        <div class="jump-text__label">
+          {{t "blog.blog.next"}}
+        </div>
+        <a href="{{redirect_to (append '/blogs/' collectionHanlde '/' nextBlog.handle)}}" class="jump-text__title">
+          {{nextBlog.title}}
+        </a>
       </div>
       <div class="jump-icon">
         <svg width="12" height="19" viewBox="0 0 12 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 13L9 8L4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M4 13L9 8L4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
         </svg>
       </div>
     {{/if}}

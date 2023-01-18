@@ -1,8 +1,9 @@
 ---
 collection_products:
   limit: {{ multiply section.settings.products_num 1 }}
+all_collections:
+  need_first_product: false
 ---
-
 {{ combine_asset_tag 'stage/featured-collection/index.css' inline=true }}
 <!-- stage/featured-collection/index.js -->
 {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
@@ -10,9 +11,9 @@ collection_products:
 {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
 {{ combine_asset_tag 
  'vendors/eventemitter3.min.js'
- 'vendors/@sl_currency-tools-core.min.js'
  'vendors/uuid.min.js'
  'vendors/lodash.min.js'
+ 'vendors/@sl_currency-tools-core.min.js'
  'vendors/debug.min.js'
  'vendors/url.min.js'
  'vendors/query-string.min.js'
@@ -29,16 +30,18 @@ collection_products:
  'vendors/@sl_logger.min.js'
  'vendors/@yy_sl-mc.min.js'
  'vendors/querystring.min.js'
+ 'vendors/tinycolor2.min.js'
  'vendors/dayjs.min.js'
  'theme-shared/utils/event-bus.js'
  'theme-shared/utils/parsePathToArray.js'
  'theme-shared/utils/state-selector.js'
- 'theme-shared/utils/newCurrency/CurrencyConvert.js'
- 'theme-shared/utils/newCurrency/index.js'
  'theme-shared/utils/report/page.js'
  'theme-shared/utils/report/tool.js'
  'theme-shared/report/common/baseReport.js'
  'theme-shared/report/product/utils/index.js'
+ 'theme-shared/utils/newCurrency/CurrencyConvert.js'
+ 'theme-shared/utils/newCurrency/index.js'
+ 'theme-shared/utils/currency/getCurrencyCode.js'
  'theme-shared/report/stage/const.js'
  'theme-shared/utils/syntax-patch.js'
  'theme-shared/report/product/product-item.js'
@@ -80,16 +83,19 @@ collection_products:
  'theme-shared/utils/request.js'
  'theme-shared/utils/url-adaptor.js'
  'theme-shared/utils/report/const.js'
+ 'theme-shared/utils/dataReport/tool.js'
  'theme-shared/utils/dataReport/ga.js'
  'theme-shared/utils/dataReport/ads.js'
  'theme-shared/utils/dataReport/fb.js'
  'theme-shared/utils/tradeReport/const.js'
  'theme-shared/utils/tradeReport/index.js'
  'theme-shared/utils/dataAccessor.js'
+ 'theme-shared/utils/url.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/components/hbs/products/checkedEvent/index.js'
  'theme-shared/components/smart-payment/utils.js'
  'theme-shared/components/smart-payment/index.js'
+ 'theme-shared/components/smart-payment/payments.js'
  'theme-shared/events/product/paypal-fallback/index.js'
  'theme-shared/events/trade/interior-event/index.js'
  'theme-shared/utils/report/hd-const.js'
@@ -159,21 +165,32 @@ collection_products:
  'product/commons/js/createShadowDom.js'
  'product/detail/js/tabs.js'
  'product/detail/js/product-collapse.js'
- 'commons/utils/effectFc.js'
- 'sales/js/drawer/Drawer.js'
- 'product/detail/js/auto-coupon/auto-coupon-banner.js'
- 'commons/utils/countdown.js'
- 'product/detail/js/flash-sale/index.js'
- 'product/detail/js/auto-coupon/get-sku-attribute-names.js'
- 'product/detail/js/auto-coupon/add-to-cart-report.js'
- 'product/detail/js/auto-coupon/add-to-cart-list.js'
  'theme-shared/components/hbs/thirdPartyShare/js/index.js'
  'commons/thirdPartyShare/index.js'
  'commons/utils/url.js'
- 'theme-shared/report/hiido/index.js'
- 'product/detail/js/discount-coupon/index.js'
  'theme-shared/report/product/product-preview.js'
  'product/utils/nullishCoalescingOperator.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/countdown.js'
+ 'theme-shared/components/hbs/shared/utils/main.js'
+ 'theme-shared/components/hbs/shared/utils/helper.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-info.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-html.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/index.js'
+ 'theme-shared/report/hiido/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/drawer.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/effectFc.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-info.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-html.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/get-info.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/promotionTag.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/get-html.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-banner/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/get-sku-attribute-names.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/add-to-cart-report.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/index.js'
  'product/detail/js/product-preview.js'
  'product/commons/js/preview-modal/preview-modal.js'
  'product/commons/js/preview-modal/index.js'
@@ -221,19 +238,19 @@ collection_products:
   {{ assign 'cover_img' sortationCoverImg }}
 {{/if}}
 {{ assign 'showButton' (and (isTruthy button_text) (boolean listLength '>=' products_num)) }}
-
 <div class="__sl-custom-track-stage-featuredCollection {{ prefix }} {{ prefix }}-{{ section.id }}" data-slice_in_mobile="{{ section.settings.slice_in_mobile }}">
-  <div class='container {{ prefix }}--container'>
+  <div class="container {{ prefix }}--container">
     {{#if title}}
-      <h2 class="section-title title4 {{ prefix }}__title text-center">{{ title }}</h2>
+      <h2 class="section-title title4 {{ prefix }}__title text-center">
+        {{ title }}
+      </h2>
     {{/if}}
     <div class="{{ prefix }}__list">
-      <div 
-       class="row row-cols-{{ section.settings.md_cols }} row-cols-md-{{ section.settings.pc_cols }} {{ prefix }}__list-container {{#if slice_in_mobile}} slice_in_mobile{{/if}}">
+      <div class="row row-cols-{{ section.settings.md_cols }} row-cols-md-{{ section.settings.pc_cols }} {{ prefix }}__list-container {{#if slice_in_mobile}} slice_in_mobile{{/if}}">
         {{#each list}}
-          <div class='{{ ../prefix }}__item-wrap' {{{ this.shopline_attributes }}}>
+          <div class="{{ ../prefix }}__item-wrap" {{{ this.shopline_attributes }}}>
             {{#if ../forbiddenBtn}}
-              {{ snippet 'product/commons/product-item' moduleType='featured-collection' section=../section hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width backgroundColor='#f3f3f3' }} 
+              {{ snippet 'product/commons/product-item' moduleType='featured-collection' section=../section hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width backgroundColor='#f3f3f3' }}
             {{else}}
               {{ snippet 'product/commons/product-item' moduleType='featured-collection' section=../section hoverZIndex=9 forbiddenBtn=../forbiddenBtn imgRealWidth=../real_product_img_width }}
             {{/if}}
@@ -243,15 +260,17 @@ collection_products:
     </div>
   </div>
   {{#if showButton}}
+    {{ assign 'url_cellections' (append '/collections/' categoryDetail.sortationId) }}
+    {{#if (isTruthy categoryDetail.uniqueKey)}}
+      {{ assign 'url_cellections' (append '/collections/' categoryDetail.uniqueKey) }}
+    {{/if}}
     <div class="{{ prefix }}__action-wrap">
-      <a class="btn btn-primary"
-        href="/collections/{{#if (isTruthy categoryDetail.uniqueKey)}}{{ categoryDetail.uniqueKey }}{{else}}{{ categoryDetail.sortationId }}{{/if}}">
+      <a class="btn btn-primary" href="{{ redirect_to url_cellections }}">
         {{ button_text }}
       </a>
     </div>
   {{/if}}
 </div>
-
 {{#schema}}
 {
   "name": "t:sections.featured-collection.name",
@@ -279,7 +298,7 @@ collection_products:
       "type": "range",
       "label": "t:sections.featured-collection.settings.products_num.label",
       "min": 2,
-      "max": 12,
+      "max": 24,
       "step": 1,
       "default": 4
     },

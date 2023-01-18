@@ -73,7 +73,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
             ${t('order.detail.orderstatus.detail')}</p>`,
           value: ''
         }, {
-          label: t('order.detail.orderstatus.UploadTime'),
+          label: t('order.checkout_order.upload_time'),
           value: time
         }, {
           label: t('cart.order.paymentVoucher.format'),
@@ -82,14 +82,14 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
 
         if (receiver) {
           data.push({
-            label: t('cart.order.receiver_account'),
+            label: t('order.checkout_order.receiver_account'),
             value: receiver
           });
         }
 
         if (amount) {
           data.push({
-            label: t('cart.order.pay_amount'),
+            label: t('order.checkout_order.pay_amount'),
             value: `<div class="trade-file-upload_value">
               ${currency ? CurrencyUtil.format(Number(amount) * 100, {
               code: currency

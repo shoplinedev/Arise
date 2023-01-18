@@ -3,7 +3,7 @@ window.SLM = window.SLM || {};
 window.SLM['theme-shared/biz-com/customer/reports/login-modal.js'] = window.SLM['theme-shared/biz-com/customer/reports/login-modal.js'] || function () {
   const _exports = {};
   const { reportV2 } = window['SLM']['theme-shared/biz-com/customer/reports/index.js'];
-  const { pageMap, ActionType, Module, loginModalPageIdMap } = window['SLM']['theme-shared/biz-com/customer/constant/report.js'];
+  const { pageMap, ActionType, Module, loginModalPageIdMap, EventName } = window['SLM']['theme-shared/biz-com/customer/constant/report.js'];
 
   const reportLoginModal = config => reportV2({
     page: pageMap.LoginModal,
@@ -30,7 +30,8 @@ window.SLM['theme-shared/biz-com/customer/reports/login-modal.js'] = window.SLM[
     reportLoginModal({
       module: Module.loginModal.register,
       component: -999,
-      action_type: ActionType.register,
+      action_type: ActionType.default,
+      event_name: EventName.register,
       event_id: 1416
     });
   };
@@ -85,7 +86,8 @@ window.SLM['theme-shared/biz-com/customer/reports/login-modal.js'] = window.SLM[
     reportLoginModal({
       module: Module.loginModal.login,
       component: -999,
-      action_type: ActionType.login,
+      action_type: ActionType.default,
+      event_name: EventName.login,
       event_id: 1421
     });
   };

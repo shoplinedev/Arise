@@ -94,5 +94,11 @@ window.SLM['theme-shared/utils/url.js'] = window.SLM['theme-shared/utils/url.js'
   }
 
   _exports.removeQueryByUrl = removeQueryByUrl;
+
+  const redirectTo = url => {
+    return window.Shopline && window.Shopline.redirectTo && window.Shopline.redirectTo(url) || url;
+  };
+
+  _exports.redirectTo = redirectTo;
   return _exports;
 }();

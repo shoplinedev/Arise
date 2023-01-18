@@ -13,17 +13,13 @@ showCategoryIds 所有的子分类的id
   {{snippet 'product/collections/collections-sidebar-filters-trigger' title='Category'}}
   <div class="product-list-sidebar-box collapsible-content {{is_open}}">
     <div class="collapsible-content-inner">
-      <div class="product-list-child-category">
+      <div class="product-list-child-category" data-show-product-num="{{ settings.show_product_num }}">
         {{#each childCategoryData}}
-          <a data-sortation-id="{{sortationId}}" class="__sl-custom-track-product-menu-item root-level body3 {{#if selected}}selected-category{{/if}}" href="/collections/{{uniqueKey}}">{{title}}
-            {{#if ../settings.show_product_num}}—
-              {{get 'count' (get sortationId ../sortationProductsCount)}}{{/if}}</a>
+          <a data-sortation-id="{{sortationId}}" class="__sl-custom-track-product-menu-item root-level body3 {{#if selected}}selected-category{{/if}}" href="{{ redirect_to (append '/collections/' uniqueKey) }}">{{title}}</a>
           {{#if (boolean child.length '>' 0)}}
             {{#if ../settings.show_level3_title}}
               {{#each child}}
-                <a data-sortation-id="{{sortationId}}" class="__sl-custom-track-product-menu-item child-level body3 {{#if selected}}selected-category{{/if}}" href="/collections/{{uniqueKey}}">{{title}} {{#if ../../settings.show_product_num}}—
-                    {{get 'count' (get sortationId ../../sortationProductsCount)}}{{/if}}
-                </a>
+                <a data-sortation-id="{{sortationId}}" class="__sl-custom-track-product-menu-item child-level body3 {{#if selected}}selected-category{{/if}}" href="{{ redirect_to (append '/collections/' uniqueKey) }}">{{title}}</a>
               {{/each}}
             {{/if}}
           {{/if}}

@@ -14,6 +14,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
   const { cidMap, reportPageView, reportPageLeave } = window['SLM']['theme-shared/biz-com/customer/reports/orders.js'];
   const { bizOrderStatusEnum, DeliveryStatusI18n, PayStatusI18n } = window['SLM']['theme-shared/biz-com/customer/biz/order/constants.js'];
   const { initCurrencyChangeListener } = window['SLM']['theme-shared/biz-com/customer/biz/order/utils.js'];
+  const { redirectTo } = window['SLM']['theme-shared/utils/url.js'];
   const sentryLogger = LoggerService.pipeOwner(Owner.OrderList);
   const isMobile = SL_State.get('request.is_mobile');
   const listContainerCls = '.customer-order-list';
@@ -22,15 +23,15 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
     pageType,
     id
   }) => {
-    let href = '';
+    let href = redirectTo('');
 
     switch (pageType) {
       case 'plp':
-        href = `${window.location.origin}/collections`;
+        href = `${window.location.origin}${redirectTo('/collections')}`;
         break;
 
       case 'detail':
-        href = `${window.location.origin}/user/orders/${id}`;
+        href = `${window.location.origin}${redirectTo(`/user/orders/${id}`)}`;
         break;
 
       default:
@@ -132,19 +133,19 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
       const header = `
       <div class="customer-order-sku-item-header">
       <div>
-        <span class="seq">${t('cart.order.sequence', {
+        <span class="seq">${t('order.order_status.sequence', {
         id: appOrderSeq
       })}</span>
         <div class="create-time">
-          <span>${t('cart.order.time')}</span>
+          <span>${t('order.order_details.time')}</span>
           <span>${dayjs(createTime).format('YYYY-MM-DD HH:mm A')}</span>
         </div>
       </div>
       ${+bizOrderStatus === bizOrderStatusEnum.CANCELED ? `<span class="status cancelled">
-              ${t('cart.order.canceled')}
+              ${t('order.order_status.canceled')}
             </span>` : ''}
     </div>`;
-      const prodNumsTotalTxt = t('cart.order.total_amount', {
+      const prodNumsTotalTxt = t('order.order_list.total_amount', {
         transPackages: productNum
       });
       const html = `
@@ -165,7 +166,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
             ${statusContent}
             <div class="total-info">
               <p>
-                <span>${t('cart.payment.total')}</span>
+                <span>${t('transaction.payment.total')}</span>
                 <span class="total notranslate" data-amount="${orderAmount}">${convertFormat(orderAmount || 0)}</span>
               </p>
             </div>
@@ -178,7 +179,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
 
     getLastPageDom() {
       return `
-    <p class='no-more'>- ${t('cart.order.no_more_info')} -</p>
+    <p class='no-more'>- ${t('order.order_list.no_more_info')} -</p>
     `;
     }
 

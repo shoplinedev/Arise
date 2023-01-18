@@ -22,7 +22,7 @@ blogs:
         <ul class="row row-cols-1 {{#if global.section.settings.layout '==' 'grid'}}row-cols-md-3{{/if}} blogs__list blogs__list--{{ global.section.settings.layout }}">
           {{#each blogData.blogs}}
             <li class="blogs__item " {{{ this.shopline_attributes }}}>
-              {{ snippet 'blogs/simple-blog' pathPrefix=(append '/blogs/' global.blogData.collection.id) collectionId=global.collectionId info=this showAuthor=global.section.settings.is_show_author showDate=global.section.settings.is_show_date showCover=global.section.settings.is_show_cover coverRatio=global.section.settings.image_ratio showDesc=global.section.settings.is_show_desc pcSize='1/3' btn_text=(t 'blog.blog_list.read_btn_text') }}
+              {{ snippet 'blogs/simple-blog' pathPrefix=(append '/blogs/' (default global.blogData.collection.handle global.blogData.collection.id)) collectionId=global.collectionId collectionHandle=global.blogData.collection.handle info=this showAuthor=global.section.settings.is_show_author showDate=global.section.settings.is_show_date showCover=global.section.settings.is_show_cover coverRatio=global.section.settings.image_ratio showDesc=global.section.settings.is_show_desc pcSize='1/3' btn_text=(t 'blog.blog_list.readmore') }}
             </li>
           {{/each}}
         </ul>
@@ -31,8 +31,13 @@ blogs:
   </div>
   {{#if (isTruthy section.settings.btn_text)}}
   <div class="stage-blogs-btn">
+    {{#if (isTruthy blogData.collection.id)}}
+    {{ assign 'blogs_url' (redirect_to (append '/blogs/' (default blogData.collection.handle blogData.collection.id))) }}
+    {{else}}
+    {{ assign 'blogs_url' 'javascript:void(0)' }}
+    {{/if}}
     <a class="btn btn-primary"
-      href="{{#if (isTruthy blogData.collection.id)}}{{ append '/blogs/' blogData.collection.id }}{{else}}javascript:void(0);{{/if}}">
+      href="{{ blogs_url }}">
       {{ section.settings.btn_text }}
     </a>
   </div>

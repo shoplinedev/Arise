@@ -16,7 +16,7 @@
   {{!-- 面包屑/标题 --}}
   {{#if id 'productDetail' }}
     <div class="product-crumbs">
-      <a class="body4" href="/">{{t 'general.general.home'}}</a> /
+      <a class="body4" href="{{ redirect_to '/' }}">{{t 'general.general.home'}}</a> /
     </div>
     <h1 class="title title-font title4 text-left">{{ spuInfo.title }}</h1>
   {{else}}

@@ -3,6 +3,7 @@ window.SLM = window.SLM || {};
 window.SLM['theme-shared/biz-com/customer/templates/getAddressEmpty.js'] = window.SLM['theme-shared/biz-com/customer/templates/getAddressEmpty.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   _exports.default = () => {
     return `
@@ -15,7 +16,7 @@ window.SLM['theme-shared/biz-com/customer/templates/getAddressEmpty.js'] = windo
       </svg>
     
       <p>${t('customer.address.no_adress_data')}</p>
-      <a href="/user/address/new" class="address__link">
+      <a href="${redirectTo('/user/address/new')}" class="address__link">
         <button class="sl-btn btn btn-primary">
         
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

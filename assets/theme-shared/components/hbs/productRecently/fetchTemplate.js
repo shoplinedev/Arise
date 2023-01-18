@@ -4,13 +4,11 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
   const _exports = {};
   const axios = window['axios']['default'];
   const qs = window['query-string']['default'];
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const { BaseReport } = window['SLM']['theme-shared/report/common/baseReport.js'];
-  const currencyUtils = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
-  const {
-    formatCurrency
-  } = currencyUtils;
   const http = axios.create({
     baseURL: '/leproxy',
     timeout: 30e3,
@@ -119,7 +117,7 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
         const content_ids = $(this).attr('data-id');
         const sku_id = $(this).attr('data-sku-id');
         const content_name = $(this).attr('data-name');
-        const currency = SL_State.get('storeInfo.currency');
+        const currency = getCurrencyCode();
         const value = $(this).attr('data-price');
         const position = Number($(`${recentlyItemCls}`).index($(this))) + 1;
         const customParams = {
@@ -127,7 +125,7 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
           sku_id,
           content_name,
           currency,
-          value: formatCurrency(value),
+          value: convertPrice(value),
           position
         };
         report.selectContent({

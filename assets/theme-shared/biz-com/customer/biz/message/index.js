@@ -7,6 +7,7 @@ window.SLM['theme-shared/biz-com/customer/biz/message/index.js'] = window.SLM['t
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const { SIGN_IN } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const { reportMessageHeartBeat } = window['SLM']['theme-shared/biz-com/customer/reports/message.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   class Message {
     constructor() {
@@ -18,7 +19,7 @@ window.SLM['theme-shared/biz-com/customer/biz/message/index.js'] = window.SLM['t
       const isLogin = SL_State.get('request.is_login');
 
       if (!isLogin) {
-        window.location.href = SIGN_IN;
+        window.location.href = redirectTo(SIGN_IN);
       }
 
       reportMessageHeartBeat(10000);

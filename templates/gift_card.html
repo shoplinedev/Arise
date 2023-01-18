@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="giftCardUseBox">
-    <a href="/" target="_blank" rel="noopener" class="useBtn">{{#if invalid}}Buy a giftcard{{else}}Use the giftcard{{/if}}</a>
+    <a href="{{ redirect_to '/' }}" target="_blank" rel="noopener" class="useBtn">{{#if invalid}}Buy a giftcard{{else}}Use the giftcard{{/if}}</a>
     {{#if (isFalsey invalid)}}
       <div class="useExplain">You can enter the giftcard number at checkout for deduction</div>
     {{/if}}

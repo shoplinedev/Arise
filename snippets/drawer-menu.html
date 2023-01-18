@@ -5,7 +5,7 @@
 	{{assign 'currency_selector' true}}
 {{/if}}
 {{assign 'locale_selector' false}}
-{{#if (boolean section.settings.show_locale_selector '&&' storeInfo.languageSetting.enableSelector)}}
+{{#if (boolean section.settings.show_locale_selector '&&' (gt (length localization.available_languages) 1))}}
 	{{assign 'locale_selector' true}}
 {{/if}}
 {{#if section.settings.show_currency_flags}}
@@ -14,6 +14,10 @@
 
 {{#if (isTruthy currencyConfig.referenceCurrencies)}}
 	{{assign 'initialCurrency' (find-in-array currencyConfig.referenceCurrencies currencyCode 'currencyCode')}}
+{{/if}}
+
+{{#if (boolean section.settings.show_country_selector '&&' (boolean (length localization.available_contries) '>' 1))}}
+	{{assign 'country_selector' true}}
 {{/if}}
 
 <div data-ssr-plugin-wishlist="menu-drawer" class="drawer-menu__container">
@@ -29,13 +33,26 @@
               <div class="split-bottom stage-drawer__animation--appear appear-delay-{{ animation_row }}"></div>
               <div class="grid__item stage-drawer__animation--appear appear-delay-{{ global.animation_row }}">
                   <span class="click body5 locale-currency mobile-nav__link notranslate j-stage-locale __sl-custom-track-stage-locale" data-drawer="menu-drawer-locale">
-                      <span>{{nameOfLocale global.request.locale}}</span>
+                      <span>{{global.localization.language.endonym_name}}</span>
                       {{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
                   </span>
               </div>
           {{/if}}
 
-          {{#if global.currency_selector}}
+
+          {{#if global.country_selector}}
+						{{#with global}}
+							{{assign 'animation_row' (plus global.animation_row 1)}}
+						{{/with}}
+						<div class="grid__item stage-drawer__animation--appear appear-delay-{{ global.animation_row }}">
+							<span class="click body5 locale-currency mobile-nav__link notranslate j-stage-country __sl-custom-track-stage-country" data-drawer="menu-drawer-country">
+								<span>{{global.localization.country.name}}（{{global.localization.country.currency.iso_code}} {{global.localization.country.currency.symbol}}）</span>
+								{{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
+							</span>
+						</div>
+					{{/if}}
+
+					{{#if global.currency_selector}}
 						{{#with global}}
 							{{assign 'animation_row' (plus global.animation_row 1)}}
 						{{/with}}
@@ -56,13 +73,33 @@
 	{{#snippet 'global_drawer' id="menu-drawer-locale" position=drawer_position level=2}}
 		{{#with this as |global|}}
 			<ul class="drawer-menu-locale-currency locale-currency" data-locale>
-				{{#each (traditionalFilter storeInfo.languageSetting.supportLanguages)}}
-					<li class="text-left stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row }} " data-alias="{{this}}" data-name="{{nameOfLocale this}}" {{{ this.shopline_attributes }}}>
+				{{#each global.localization.available_languages}}
+					<li class="text-left stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row }} " data-alias="{{iso_code}}" data-name="{{endonym_name}}" {{{ this.shopline_attributes }}}>
 						{{#with global}}
 							{{assign 'sub_animation_row' (plus global.sub_animation_row 1)}}
 						{{/with}}
 						<span class="click">
-							<span class="notranslate body5 align-middle">{{nameOfLocale this}}</span>
+							<span class="notranslate body5 align-middle">{{endonym_name}}</span>
+						</span>
+					</li>
+				{{/each}}
+			</ul>
+		{{/with}}
+	{{/snippet}}
+{{/if}}
+
+{{#if country_selector}}
+	{{assign 'sub_animation_row' 1 }}
+	{{#snippet 'global_drawer' id="menu-drawer-country" position=drawer_position level=2}}
+		{{#with this as |global|}}
+			<ul class="drawer-menu-locale-currency locale-currency" data-country>
+				{{#each global.localization.available_contries}}
+					<li {{{this.shopline_attributes}}} class="text-left stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row }}" data-alias="{{iso_code}}" data-name="{{name}}（{{currency.iso_code}} {{currency.symbol}}）">
+						{{#with global}}
+							{{assign 'sub_animation_row' (plus global.sub_animation_row 1)}}
+						{{/with}}
+						<span class="click">
+							<span class="notranslate body5 align-middle">{{name}}（{{currency.iso_code}} {{currency.symbol}}）</span>
 						</span>
 					</li>
 				{{/each}}
@@ -93,7 +130,7 @@
 				<div class="scroll-container">
 					<ul class="currency-list" data-show-symbol="{{global.show_currency_symbol}}">
 						{{#each global.currencyConfig.referenceCurrencies}}
-							<li class="stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row_currency }}" data-currency-code="{{currencyCode}}"
+							<li {{{this.shopline_attributes}}} class="stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row_currency }}" data-currency-code="{{currencyCode}}"
 								data-currency-symbol="{{currencySymbol}}">
 								{{#with global}}
 									{{assign 'sub_animation_row_currency' (plus global.sub_animation_row_currency 1)}}
@@ -106,7 +143,7 @@
 					</ul>
 
 					<p class="currency-list--empty body6 text-center stage-no-currency">
-						{{t 'header.noCurrencyFallback'}}
+						{{t 'general.header.no_currency_fallback'}}
 					</p>
 				</div>
 			</div>

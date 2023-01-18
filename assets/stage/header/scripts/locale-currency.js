@@ -3,6 +3,9 @@ window.SLM = window.SLM || {};
 window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header/scripts/locale-currency.js'] || function () {
   const _exports = {};
   const Cookie = window['js-cookie']['default'];
+  const LocalizationForm = window['SLM']['theme-shared/components/localization/form.js'].default;
+  const { t } = window['SLM']['theme-shared/utils/i18n.js'];
+  const Toast = window['SLM']['commons/components/toast/index.js'].default;
   const Base = window['SLM']['commons/base/BaseClass.js'].default;
   const virtualReport = window['SLM']['commons/report/virtualReport.js'].default;
 
@@ -21,21 +24,11 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
     }) => createCurrencyItemTemplate(currencyCode, currencySymbol, showSymbol)).join('');
   };
 
-  const googleLangKeyTransform = alias => {
-    const hardLandKey = {
-      'zh-hans-cn': 'zh-CN',
-      'zh-hant-tw': 'zh-TW',
-      'zh-hant-hk': 'zh-TW',
-      nb: 'no',
-      'pt-pt': 'pt'
-    };
-
-    if (hardLandKey[alias] === null || hardLandKey[alias] === undefined) {
-      return alias;
-    }
-
-    return hardLandKey[alias];
-  };
+  const toast = new Toast({
+    content: 'content',
+    className: 'header-toast',
+    duration: 5000
+  });
 
   class LocaleCurrency extends Base {
     constructor() {
@@ -51,7 +44,10 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
         localeButton: '.j-stage-locale',
         currencyButton: '.j-stage-currency',
         localeDrawerButton: '.j-locale-drawer-btn',
+        countryDrawerButton: '.j-country-drawer-btn',
         currencyDrawerButton: '.j-currency-drawer-btn',
+        countryButton: '.j-stage-country',
+        countryContainer: '.locale-currency[data-country]',
         container: '.locale-currency',
         dropdownList: `.${this.classes.dropdownClass}`,
         localeContainer: '.locale-currency[data-locale]',
@@ -59,11 +55,11 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
         currencyContainer: '.locale-currency[data-currency]',
         currencySearchInput: '.j-stage-currency-search',
         currencyList: '.currency-list',
-        noCurrencyFallback: '.stage-no-currency',
-        gteTag: '.goog-te-spinner-pos'
+        noCurrencyFallback: '.stage-no-currency'
       };
       this.gteObserver = null;
       this.$setNamespace(this.config.namespace);
+      this.localizationForm = new LocalizationForm();
 
       if ($(this.selectors.localeButton).length > 0) {
         this.initLocaleDropdown();
@@ -73,25 +69,14 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
         this.initCurrencyDropdown();
       }
 
+      if ($(this.selectors.countryButton).length > 0) {
+        this.bindDropdownClick(this.selectors.countryButton);
+      }
+
       this.bindLanguageChange();
       this.bindCurrencySearch();
       this.bindCurrencyChange();
-      this.createGTEObserver();
-    }
-
-    createGTEObserver() {
-      window.Shopline.event.on('googleInitComplete', () => {
-        const node = $(this.selectors.gteTag)[0];
-
-        if (node) {
-          this.gteObserver = new MutationObserver(() => {
-            window.SL_EventBus.emit('stage:locale:change');
-          });
-          this.gteObserver.observe(node, {
-            attributes: true
-          });
-        }
-      });
+      this.bindCountryChange();
     }
 
     bindDropdownClick(selector) {
@@ -123,52 +108,35 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
 
     initLocaleDropdown() {
       this.bindDropdownClick(this.selectors.localeButton);
-      window.Shopline.event.on('googleInitComplete', () => {
-        this.showLocaleBtn();
-      });
-    }
-
-    showLocaleBtn() {
-      $(this.selectors.localeContainer).show();
-      $(this.selectors.mobileLocaleBtn).removeClass('d-none');
     }
 
     bindLanguageChange() {
       this.$on('click', `${this.selectors.localeContainer} li`, e => {
-        const storeLanguage = window.SL_State.get('storeInfo.languageSetting.storeLanguage');
         const $target = $(e.currentTarget);
         const alias = $target.data('alias');
         const text = $target.data('name');
         virtualReport.reportSelectLang(e, alias);
-
-        if (alias === storeLanguage) {
-          const restoreEvent = 'clk_restore';
-
-          window.__GOOGLE_TRANSLATE_INSTANCE.h.dispatchEvent(restoreEvent);
-        } else {
-          const el = document.querySelector('.goog-te-combo');
-          const changeLang = googleLangKeyTransform(alias);
-          el.value = changeLang;
-          const event = document.createEvent('HTMLEvents');
-          event.initEvent('change', true, false);
-          el.dispatchEvent(event);
-        }
-
-        Cookie.set('lang', storeLanguage);
-        Cookie.set('addressLang', alias);
-        Cookie.set('userSelectLocale', alias);
         $(e.target).parents(this.selectors.dropdownList).removeClass(this.classes.dropdownVisibleClass);
         $(this.selectors.localeButton).find('span').text(text);
         $(this.selectors.localeDrawerButton).find('span').text(text);
-        window.SL_State.set('request.locale', alias);
-        window.SL_EventBus.emit('global:currency:format', {
-          lang: alias,
-          currencyCode: window.SL_State.get('currencyCode')
-        });
-        window.Shopline.event.emit('Currency::Format', {
-          lang: alias,
-          currencyCode: window.SL_State.get('currencyCode')
-        });
+        this.localizationForm.triggerLocaleChange(alias);
+      });
+    }
+
+    bindCountryChange() {
+      this.$on('click', `${this.selectors.countryContainer} li`, e => {
+        const $target = $(e.currentTarget);
+        const alias = $target.data('alias');
+        const text = $target.data('name');
+
+        if (window.location.search.includes('preview=2')) {
+          toast.open(t('unvisiable.editorSwitchCountryTip'));
+        }
+
+        $(e.target).parents(this.selectors.dropdownList).removeClass(this.classes.dropdownVisibleClass);
+        $(this.selectors.countryButton).find('span').text(text);
+        $(this.selectors.countryDrawerButton).find('span').text(text);
+        this.localizationForm.triggerCurrencyChange(alias);
       });
     }
 
@@ -251,7 +219,6 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
   $(document).on('shopline:section:load', () => {
     instance.off();
     instance = new LocaleCurrency();
-    instance.showLocaleBtn();
   });
   return _exports;
 }();

@@ -78,8 +78,7 @@ window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] = window.SLM['pr
     }
 
     isPreview() {
-      const currentUrl = window.location.pathname;
-      return /^[/（]preview[/）].*/.test(currentUrl);
+      return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
     }
 
     render() {

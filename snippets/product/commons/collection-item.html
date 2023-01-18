@@ -36,7 +36,7 @@
 
 
 <a {{{ shopline_attributes }}} data-sortation-id="{{_sortation.sortationId}}" class="__sl-custom-track-collection-item collection-item col shopline-element-collection-item"
-  href="{{#if (isFalsey _sortation.uniqueKey) }}javascript:;{{else}}/collections/{{ _sortation.uniqueKey }}{{/if}}">
+  href="{{#if (isFalsey _sortation.uniqueKey) }}javascript:;{{else}}{{ redirect_to (append '/collections/' _sortation.uniqueKey) }}{{/if}}">
   <div class="collection-item-image-wrapper {{#if (is gridShape 'circle')}}collection-item-image-wrapper-circle{{/if}}" >
     <div class="collection-item-image">
       {{snippet

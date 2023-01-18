@@ -24,7 +24,8 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
   }
 
   function fetchDetail(uniqueKey, params) {
-    return axios.get(`/products/${uniqueKey}`, {
+    const queryUrl = window.Shopline.redirectTo(`/products/${uniqueKey}`);
+    return axios.get(queryUrl, {
       params: { ...params,
         view: 'modal',
         preview: getUrlQuery('preview'),

@@ -2,15 +2,15 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/utils/dataReport/ads.js'] = window.SLM['theme-shared/utils/dataReport/ads.js'] || function () {
   const _exports = {};
-  const Cookies = window['js-cookie']['default'];
   const { PageType, ClickType } = window['SLM']['theme-shared/utils/report/const.js'];
+  const { getCurrencyCode } = window['SLM']['theme-shared/utils/dataReport/tool.js'];
 
   const sendConversion = data => {
     const params = { ...data
     };
 
     if (params && !params.currency) {
-      params.currency = Cookies.get('currency_code');
+      params.currency = getCurrencyCode();
     }
 
     return ['event', 'conversion', params];

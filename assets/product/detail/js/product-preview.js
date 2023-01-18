@@ -22,21 +22,35 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
   const ProductCollapse = window['SLM']['product/detail/js/product-collapse.js'].default;
   const get = window['lodash']['get'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const promotionTagsInit = window['SLM']['product/detail/js/auto-coupon/auto-coupon-banner.js'].default;
-  const FlashSale = window['SLM']['product/detail/js/flash-sale/index.js'].default;
-  const AddToCartList = window['SLM']['product/detail/js/auto-coupon/add-to-cart-list.js'].default;
   const { changeURLArg, delParam } = window['SLM']['commons/utils/url.js'];
-  const initDiscountCoupon = window['SLM']['product/detail/js/discount-coupon/index.js'].default;
   const hdProductViewContent = window['SLM']['theme-shared/report/product/product-preview.js'].default;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const nullishCoalescingOperator = window['SLM']['product/utils/nullishCoalescingOperator.js'].default;
-  const {
-    formatCurrency
-  } = currency;
+  const newCurrency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
+  const { handleDiscountCodeUpdate, handleFlashSaleUpdate, handleAutoCouponBannerUpdate, handleAutoCouponAddToCartUpdate, setAddToCartSpu, setAddToCartActiveSku } = window['SLM']['theme-shared/biz-com/sales/discount-specified-sku/index.js'];
+  const request = window['SLM']['theme-shared/utils/request.js'].default;
+
+  const trackProductDetailPageView = ({
+    sku_id,
+    spu_id
+  }) => {
+    try {
+      window.HdSdk && window.HdSdk.shopTracker.collect({
+        page: 105,
+        module: -999,
+        component: -999,
+        action_type: 101,
+        sku_id,
+        spu_id
+      });
+    } catch (e) {}
+  };
 
   const emitProductSkuChange = data => {
     try {
       productSkuChange({ ...data,
-        currency: SL_State.get('storeInfo.currency')
+        currency: window.Shopline.currency
       });
     } catch (e) {
       console.error(e);
@@ -46,7 +60,7 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
   const emitProductSkuChanged = data => {
     try {
       productSkuChanged({ ...data,
-        currency: SL_State.get('storeInfo.currency')
+        currency: window.Shopline.currency
       });
     } catch (e) {
       console.error(e);
@@ -81,25 +95,31 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
     const newActiveSku = activeSku || get(sku, 'skuList[0]');
     window.SL_EventBus.emit('global:thirdPartReport', {
       GA: [['event', 'view_item', {
+        currency: getCurrencyCode(),
         items: [{
           id: newActiveSku && newActiveSku.skuSeq,
           name: spu && spu.title,
-          price: formatCurrency(newActiveSku && newActiveSku.price),
-          variant: getVariant(newActiveSku && newActiveSku.skuAttributeIds, sku && sku.skuAttributeMap)
+          currency: getCurrencyCode(),
+          price: convertPrice(newActiveSku && newActiveSku.price),
+          variant: getVariant(newActiveSku && newActiveSku.skuAttributeIds, sku && sku.skuAttributeMap),
+          category: spu && spu.customCategoryName || ''
         }]
       }]],
       GA4: [['event', 'view_item', {
-        currency: SL_State.get('storeInfo.currency'),
-        value: formatCurrency(newActiveSku && newActiveSku.price),
+        currency: getCurrencyCode(),
+        value: convertPrice(newActiveSku && newActiveSku.price),
         items: [{
           item_id: newActiveSku && newActiveSku.skuSeq,
           item_name: spu && spu.title,
-          item_price: formatCurrency(newActiveSku && newActiveSku.price),
-          item_variant: getVariant(newActiveSku && newActiveSku.skuAttributeIds, sku && sku.skuAttributeMap)
+          currency: getCurrencyCode(),
+          item_price: convertPrice(newActiveSku && newActiveSku.price),
+          item_variant: getVariant(newActiveSku && newActiveSku.skuAttributeIds, sku && sku.skuAttributeMap),
+          item_category: spu && spu.customCategoryName || ''
         }]
       }]],
       GAR: [['event', 'view_item', {
-        value: formatCurrency(newActiveSku && newActiveSku.price),
+        currency: getCurrencyCode(),
+        value: convertPrice(newActiveSku && newActiveSku.price),
         items: [{
           id: newActiveSku && newActiveSku.skuSeq,
           google_business_vertical: 'retail'
@@ -110,7 +130,8 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         ecomm_pagetype: 'product',
         ecomm_category: get(spu, 'sortationList[0].sortationId'),
         ecomm_pcat: get(spu, 'sortationList[0].sortationName'),
-        ecomm_totalvalue: formatCurrency(newActiveSku && newActiveSku.price)
+        currency: getCurrencyCode(),
+        ecomm_totalvalue: convertPrice(newActiveSku && newActiveSku.price)
       }]]
     });
   }
@@ -178,8 +199,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       spu,
       sku
     });
-    const addToCartList = new AddToCartList(spu, sku);
-    addToCartList.init();
     const ButtonGroup = new ButtonEvent({
       id,
       cartRoot: `.pdp_add_to_cart_${id}`,
@@ -245,8 +264,8 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         spuSeq,
         discount,
         skuSeq,
-        price: formatCurrency(price || 0),
-        originPrice: formatCurrency(originPrice || 0),
+        price: newCurrency.formatCurrency(price || 0),
+        originPrice: newCurrency.formatCurrency(originPrice || 0),
         stock,
         weight,
         weightUnit,
@@ -270,28 +289,55 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       const isSoldOut = get(spu, 'soldOut') || get(activeSku, 'soldOut');
       const isSigleSku = get(sku, 'skuList.length') < 2;
 
-      if (isBatchBuy || isSoldOut) {
+      if (isBatchBuy) {
         sku_id = 'null';
         price = 'null';
       } else if (isSigleSku) {
         sku_id = get(sku, 'skuList[0].skuSeq');
-        price = formatCurrency(get(sku, 'skuList[0].skuPrice') || 0);
+        price = convertPrice(get(sku, 'skuList[0].skuPrice') || 0);
       } else if (activeSku && activeSku.skuSeq) {
         sku_id = activeSku.skuSeq;
-        price = formatCurrency(activeSku.price || 0);
-      } else {
-        sku_id = sku ? sku.skuList.filter(({
-          soldOut
-        }) => !soldOut)[0].skuSeq : 'null';
-        price = formatCurrency(sku ? sku.skuList.filter(({
-          soldOut
-        }) => !soldOut)[0].skuPrice : 0);
+        price = convertPrice(activeSku.price || 0);
       }
 
       return {
         curSkuId: sku_id,
         curSkuPrice: price
       };
+    };
+
+    let unmountedDiscountCoupon = null;
+    let unmountPromotionTags = null;
+    setAddToCartSpu(spu, sku);
+
+    const handleSaleDiscountInfo = activeSku => {
+      if (typeof unmountedDiscountCoupon === 'function') {
+        unmountedDiscountCoupon();
+      }
+
+      if (typeof unmountPromotionTags === 'function') {
+        unmountPromotionTags();
+      }
+
+      request({
+        url: 'sale/activity/list/byProduct',
+        method: 'POST',
+        data: {
+          productId: spu.spuSeq,
+          selectedSkuId: activeSku && activeSku.skuSeq || null
+        }
+      }).then(res => {
+        const {
+          autoDiscountActivityList,
+          discountCodeActivityList,
+          timeLimitActivityList,
+          buyerId
+        } = res && res.data || {};
+        unmountedDiscountCoupon = handleDiscountCodeUpdate(id, spu, discountCodeActivityList, buyerId);
+        unmountPromotionTags = handleAutoCouponBannerUpdate(id, spu, autoDiscountActivityList, `#product-info_${id}`);
+        handleAutoCouponAddToCartUpdate(spu, autoDiscountActivityList);
+        handleFlashSaleUpdate(spu, timeLimitActivityList, id);
+      });
     };
 
     const skuDataPool = new DataWatcher();
@@ -313,18 +359,23 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         let price = null;
         console.log('sku Init', activeSku);
         inquiryPriceModal.setActiveSku(activeSku);
+        const hdReportViewCurSku = getHdReportViewCurSku(activeSkuCache);
 
         if (id === 'productDetail') {
           window.productDetailDataBus.set('activeSku', activeSku);
           window.productDetailDataBus.emit('init:sku', activeSku);
+          trackProductDetailPageView({
+            sku_id: hdReportViewCurSku.curSkuId,
+            spu_id: spu.spuSeq
+          });
         }
 
         if (activeSku) {
           quantityStepper.setActiveSku(activeSku);
           ButtonGroup.setActiveSku(activeSku);
-          addToCartList.setActiveSku(activeSku);
+          setAddToCartActiveSku(activeSku);
           content_sku_id = activeSku.skuSeq;
-          price = formatCurrency(activeSku.price || 0);
+          price = convertPrice(activeSku.price || 0);
           emitProductSkuChange({
             type: 'init',
             quantity: get(quantityStepper, 'skuStepper.data.value') || 1,
@@ -336,14 +387,14 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
           content_spu_id: spu.spuSeq,
           content_sku_id,
           content_category: getSortationIds(spu),
-          currency: SL_State.get('storeInfo.currency'),
+          currency: getCurrencyCode(),
           value: price,
           quantity: 1,
           price,
           title: spu.title,
           module,
           selector: viewContentSelector,
-          ...getHdReportViewCurSku(activeSkuCache)
+          ...hdReportViewCurSku
         });
         emitProductSkuChanged({
           type: 'init',
@@ -380,9 +431,10 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
             setProductPrice(id, statePath, activeSku);
             quantityStepper.setActiveSku(activeSku);
             ButtonGroup.setActiveSku(activeSku);
-            addToCartList.setActiveSku(activeSku);
+            setAddToCartActiveSku(activeSku);
           }
         });
+        handleSaleDiscountInfo(activeSku);
       },
       onChange: activeSku => {
         if (activeSku) {
@@ -410,6 +462,7 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
           quantity: get(quantityStepper, 'skuStepper.data.value') || 1,
           ...getSkuChangeData(activeSku)
         });
+        handleSaleDiscountInfo(activeSku);
       }
     });
 
@@ -434,20 +487,9 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       console.error(e);
     }
 
-    const unmountPromotionTags = promotionTagsInit(`#product-info_${id}`);
-    const unmountedDiscountCoupon = initDiscountCoupon();
     window.SL_EventBus.on('global:currency:format', () => {
       setProductPrice(id, statePath, quantityStepper.activeSku);
     });
-
-    try {
-      const flashSale = new FlashSale();
-      flashSale.init();
-    } catch (e) {
-      console.log('初始化限时促销工具出错');
-      console.error(e);
-    }
-
     return {
       skuTrade,
       quantityStepper,
@@ -457,7 +499,7 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
 
         if (activeSkuCache) {
           content_sku_id = activeSkuCache.skuSeq;
-          price = formatCurrency(activeSkuCache.price || 0);
+          price = convertPrice(activeSkuCache.price || 0);
           emitProductSkuChange({
             type: 'init',
             quantity: get(quantityStepper, 'skuStepper.data.value') || 1,
@@ -474,7 +516,7 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
           content_spu_id: spu.spuSeq,
           content_sku_id,
           content_category: getSortationIds(spu),
-          currency: SL_State.get('storeInfo.currency'),
+          currency: getCurrencyCode(),
           value: price,
           quantity: 1,
           price,
@@ -486,8 +528,15 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       },
       destroy: () => {
         inquiryPriceModal.unbindEvents();
-        unmountPromotionTags && unmountPromotionTags();
-        unmountedDiscountCoupon && unmountedDiscountCoupon();
+
+        if (typeof unmountedDiscountCoupon === 'function') {
+          unmountedDiscountCoupon();
+        }
+
+        if (typeof unmountPromotionTags === 'function') {
+          unmountPromotionTags();
+        }
+
         removePositionListener();
         skuTrade.destory();
       }

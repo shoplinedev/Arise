@@ -28,10 +28,10 @@ alt: 图片alt
 {{ combine_asset_tag 'product/commons/style/product-process-image.css' inline=true }}
 
 {{ assign 'imageResponsive' (image_responsive src pcSize=pcSize mSize=mSize containerMaxWidth=containerMaxWidth) }}
-
+<div class="product-box-content-image" {{#if _imageRatio '!==' '0'}} style="padding-bottom:{{ _imageRatio }}%" {{/if}}>
 <div
   class="product-process-image {{!-- 如果为自由比例👉 --}}{{#if _imageRatio '!==' '0'}} fix-product-image-con {{/if}}{{!-- 如果图片地址为空，直接走占位符逻辑👉 --}}{{#if (isFalsey src)}}placeholder-border{{/if}}"
-  style="{{#if _imageRatio '!==' '0'}} padding-bottom:{{ _imageRatio }}%; {{/if}} {{#if backgroundColor}} background-color: {{ backgroundColor }}; {{/if}}" data-plugin-product-item-img-ele>
+  style="{{#if backgroundColor}} background-color: {{ backgroundColor }}; {{/if}}" data-plugin-product-item-img-ele>
   <img {{!-- 如果图片地址为空，直接走占位符逻辑，图片透明度为零 --}}
     referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"
     style="{{#if (isFalsey src)}}opacity: 0;{{/if}}{{#if imagePosition}}object-position: {{ imagePosition }};{{/if}} object-fit: {{ _imageFit }};{{#if _imageRatio '===' '0'}} height:{{ _placeholderHeight }}px {{/if}}"
@@ -48,4 +48,5 @@ alt: 图片alt
     onload="this.parentElement.style.opacity=1;this.className+=' sl-img-loaded';{{#if _imageRatio '===' '0'}}this.style.height='auto';{{/if}}" {{#if fallbacksSrc}}
     onerror="this.onerror=null;this.srcset='{{ fallbacksSrc }}'; {{#if fallbacksBgColor}} this.parentElement.style.background = '{{ fallbacksBgColor }}';this.style['object-fit']='contain' {{/if}}"
     {{else}} onerror="this.onerror=null;this.style.opacity=0;this.parentElement.className+=' placeholder-border';" {{/if}} >
+</div>
 </div>

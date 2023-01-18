@@ -12,6 +12,8 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
   const { reportClickEditButton, reportClickPhoneChange, reportClickPasswordChange, reportClickEmailChange, reportDropModifyInfomation, reportSaveInfomation, reportEditNickname } = window['SLM']['theme-shared/biz-com/customer/reports/account.js'];
   const DeleteAccount = window['SLM']['theme-shared/biz-com/customer/biz/account/script/account/delete-account.js'].default;
   const ModifyEmail = window['SLM']['theme-shared/biz-com/customer/biz/account/script/account/modify-email.js'].default;
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
+  const ModifyPhone = window['SLM']['theme-shared/biz-com/customer/biz/account/script/account/modify-phone.js'].default;
 
   class Account extends Card {
     constructor({
@@ -37,40 +39,39 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
     }
 
     bindEvents() {
-      const typeToReportEvent = {
-        phone: reportClickPhoneChange,
-        email: reportClickEmailChange
+      const actionMap = {
+        email: path => {
+          reportClickEmailChange();
+
+          if (this.userInfo.checkTag) {
+            window.location.href = path;
+            return;
+          }
+
+          this.openModifyEmailModal();
+        },
+        phone: path => {
+          reportClickPhoneChange();
+
+          if (this.userInfo.checkTag) {
+            window.location.href = path;
+            return;
+          }
+
+          this.openModifyPhoneModal();
+        },
+        delete: () => {
+          this.openDeleteModal();
+        },
+        password: path => {
+          this.toResetPassword(path);
+        }
       };
       $(`#${this.id} .account-item`).on('click', 'a', e => {
         e.preventDefault();
         const path = $(e.currentTarget).data('path');
         const type = $(e.currentTarget).data('type');
-
-        const execJumpLink = token => {
-          if (type === 'password') {
-            this.toResetPassword(path, token);
-            return;
-          }
-
-          typeToReportEvent && typeToReportEvent[type] && typeToReportEvent[type]();
-
-          if (type === 'email') {
-            if (this.userInfo.checkTag) {
-              window.location.href = token ? `${path}?captcha=${token}` : path;
-            } else {
-              this.openModifyEmailModal();
-            }
-          } else {
-            window.location.href = token ? `${path}?captcha=${token}` : path;
-          }
-        };
-
-        if (type === 'delete') {
-          this.openDeleteModal();
-          return;
-        }
-
-        execJumpLink();
+        actionMap && actionMap[type] && actionMap[type](path);
       });
       $(`#${this.id} .account-item input`).on('input', () => {
         this.validateFields();
@@ -91,7 +92,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
       }
 
       reportClickPasswordChange();
-      window.location.href = token ? `${path}?captcha=${token}` : path;
+      window.location.href = redirectTo(token ? `${path}?captcha=${token}` : path);
     }
 
     async openDeleteModal() {
@@ -151,11 +152,29 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
             $(`#${this.id} .account-item__email`).text(newEmail);
             $(`#${this.id} [data-show="detail"]`).show();
             $(`#${this.id} [data-show="edit"]`).hide();
+            window.location.reload();
           }
         });
       }
 
       this.modifyEmailModal.show();
+    }
+
+    openModifyPhoneModal() {
+      if (!this.modifyPhoneModal) {
+        this.modifyPhoneModal = new ModifyPhone({
+          id: 'customer-center-modify-phone-modal',
+          onSuccess: newPhone => {
+            $(`#${this.id} [data-type="phone-content"]`).removeAttr('data-no-phone').attr('data-has-phone', true);
+            $(`#${this.id} .account-item__phone`).text(newPhone.replace('00', '+'));
+            $(`#${this.id} [data-show="detail"]`).show();
+            $(`#${this.id} [data-show="edit"]`).hide();
+            window.location.reload();
+          }
+        });
+      }
+
+      this.modifyPhoneModal.show();
     }
 
     getFormValue() {

@@ -108,7 +108,7 @@ window.SLM['activity/script/promotion-tags.js'] = window.SLM['activity/script/pr
     window.SL_EventBus.on('global:currency:format', () => {
       const amountNode = promotionTags.find('[data-amount]');
       amountNode.each(function () {
-        $(this).text(convertFormat($(this).data('amount')));
+        $(this).html(convertFormat($(this).data('amount')));
       });
     });
   });

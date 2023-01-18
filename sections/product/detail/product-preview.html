@@ -2,7 +2,7 @@
 product_comment:
   is_plugin: true
 product_activity_config:
-  enable: true
+  enable: false
 ---
 
 
@@ -121,8 +121,8 @@ product_activity_config:
           content_name: {{{ JSONstringify (default product.spu.title '') }}},
           content_category: '',
           content_type: 'product_group',
-          currency: {{{ JSONstringify (default storeInfo.currency '') }}},
-          value: {{{ JSONstringify (money_format (default initSku.selectSku.price initSku.firstSku.price '')) }}},
+          currency: window.SL_State && window.SL_State.get('currencyCode'),
+          value: '{{#money_exchange_convert_price (default initSku.selectSku.price initSku.firstSku.price '')}}{{ replace_by_regex integer group 'g' '' }}{{ cond fraction '.' '' }}{{ fraction }}{{/money_exchange_convert_price}}',
         },
         {
           eventID: 'viewContent{{ serverEventId }}'
@@ -260,6 +260,22 @@ product_activity_config:
         }
       ],
       "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "pc_magnifier_type",
+      "label": "t:sections.product_detail_product-preview.settings.pc_magnifier_type.label",
+      "options": [
+        {
+          "value": "pointer",
+          "label": "t:sections.product_detail_product-preview.settings.pc_magnifier_type.options__0.label"
+        },
+        {
+          "value": "hover",
+          "label": "t:sections.product_detail_product-preview.settings.pc_magnifier_type.options__1.label"
+        }
+      ],
+      "default": "pointer"
     },
     {
       "type": "select",
@@ -630,7 +646,24 @@ product_activity_config:
       "icon": "paragraph",
       "name": "t:sections.product_detail_product-preview.blocks.description.name",
       "limit": 1,
-      "settings": []
+      "settings": [
+        {
+          "id": "location",
+          "label": "t:sections.product_detail_product-preview.blocks.description.settings.location.label",
+          "type": "select",
+          "options": [
+            {
+              "value": "image_right",
+              "label": "t:sections.product_detail_product-preview.blocks.description.settings.location.options__0.label"
+            },
+            {
+              "value": "image_bottom",
+              "label": "t:sections.product_detail_product-preview.blocks.description.settings.location.options__1.label"
+            }
+          ],
+          "default": "image_right"
+        }
+      ]
     },
     {
       "type": "share",

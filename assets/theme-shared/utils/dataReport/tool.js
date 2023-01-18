@@ -27,9 +27,15 @@ window.SLM['theme-shared/utils/dataReport/tool.js'] = window.SLM['theme-shared/u
     return skuFeed[skuId] || skuId;
   }
 
+  function getCurrencyCode() {
+    return SL_State.get('currencyCode');
+  }
+
+  _exports.getCurrencyCode = getCurrencyCode;
   _exports.default = {
     getGmcArg,
-    realSku
+    realSku,
+    getCurrencyCode
   };
   return _exports;
 }();

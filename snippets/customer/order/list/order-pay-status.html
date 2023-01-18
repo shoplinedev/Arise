@@ -1,16 +1,16 @@
 {{#if (boolean status '==' 100)}}
   {{!-- 付款中 --}}
-  {{t 'cart.payment.paying'}}
+  {{t 'order.payment.paying'}}
 {{else if (boolean status '==' 110)}}
   {{!-- 已授权 --}}
-  {{ t 'cart.order.authorized'}}
+  {{ t 'order.payment.authorized'}}
 {{else if (boolean status '==' 150)}}
   {{!-- 部分支付 --}}
-  {{ t 'cart.payment.partially_paid'}}
+  {{ t 'order.payment.partially_paid'}}
 {{else if (boolean status '==' 200)}}
   {{!-- 支付成功 --}}
-  {{ t 'cart.payment.paid'}}
+  {{ t 'order.payment.paid'}}
 {{else}}
   {{!-- 未付款 --}}
-  {{t 'cart.payment.unpaid'}}
+  {{t 'order.payment.unpaid'}}
 {{/if}}

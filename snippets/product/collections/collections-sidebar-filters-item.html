@@ -15,6 +15,6 @@
     {{ assign 'itemUrl' (product_collections_tag_link title 'single' currentUrl) }}
   {{/if}}
 {{/if}}
-<li data-href="{{itemUrl}}" data-sup="{{supportMultiple}}">
+<li data-href="{{ redirect_to itemUrl}}" data-sup="{{supportMultiple}}">
   {{snippet 'product/commons/base-checkbox' title=title isActive=isActive textClass='body3' }}
 </li>

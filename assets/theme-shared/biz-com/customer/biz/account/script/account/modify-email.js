@@ -4,11 +4,10 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-emai
   const _exports = {};
   const Modal = window['SLM']['theme-shared/components/hbs/shared/components/modal/index.js'].default;
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const { t } = window['SLM']['theme-shared/utils/i18n.js'];
-  const { updateSensitiveAccountInfo } = window['SLM']['theme-shared/biz-com/customer/service/account.js'];
   const getFormFields = window['SLM']['theme-shared/biz-com/customer/helpers/getFormFields.js'].default;
   const Form = window['SLM']['theme-shared/biz-com/customer/commons/form/index.js'].default;
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
+  const { createAccountBindFlow } = window['SLM']['theme-shared/biz-com/customer/biz/account/script/account/account-bind.js'];
 
   class ModifyEmail {
     constructor({
@@ -20,6 +19,12 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-emai
       this.id = id;
       this.onSuccess = onSuccess;
       this.toast = new Toast();
+      const {
+        init,
+        onModify
+      } = createAccountBindFlow('email');
+      this.onInitModifyPhone = init;
+      this.onModifyPhoneRequest = onModify;
       this.init();
     }
 
@@ -41,9 +46,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-emai
         fields,
         onSubmit: data => {
           const newEmail = data.email;
-          updateSensitiveAccountInfo({
-            email: newEmail
-          }).then(() => {
+          return this.onModifyPhoneRequest(newEmail).then(() => {
             const userInfoDTO = SL_State.get('customer.userInfoDTO');
             SL_State.set('customer.userInfoDTO', { ...userInfoDTO,
               email: newEmail
@@ -51,12 +54,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-emai
             this.email = newEmail;
             this.modifyEmailModal.hide();
             this.onSuccess(newEmail);
-          }).catch(e => {
-            if (e.code === 'EMAIL_REPEAT' || e.code === 'EU0202') {
-              this.toast.open(t('customer.account.email_repeat_tip'));
-            } else {
-              this.toast.open(t('customer.account.unknow_error_tip'));
-            }
           });
         }
       });

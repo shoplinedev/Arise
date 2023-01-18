@@ -40,7 +40,7 @@
     {{!-- 费用合计 --}}
     {{include
       'snippets/customer/order/detail/summations_fee'
-      label=(t 'cart.payment.total_sum')
+      label=(t 'transaction.payment.total_sum')
       key='settleSumAmount'
       value=@root.pageData.priceInfo.totalAmount
       showWithZeroValue=true

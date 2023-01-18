@@ -1,6 +1,8 @@
 ---
 collection_products:
   limit: 0
+all_collections:
+  need_first_product: {{ boolean theme.settings.collection_grid_image '==' 'product' }}
 ---
 {{!-- 不需要商品数据只需要分类数据 所以设置为0 提高响应速度 --}}
 {{ combine_asset_tag 'stage/collection-list/index.css' inline=true }}
@@ -26,7 +28,7 @@ collection_products:
 {{ assign 'limitWidthClass' '' }}
 {{ assign 'col' 3 }}
 {{!-- override col‘s value --}}
-
+{{ assign 'goodsBlockLength' (length blocks) }}
 {{#if (boolean goodsBlockLength '===' 1)}}
   {{ assign 'col' 1 }}
   {{ assign 'limitWidthStyle' 'limit-col-1-max-width' }}
@@ -103,7 +105,7 @@ collection_products:
     {{#if (isTruthy section.settings.button_text)}}
       <div class="collection-list-more-btn">
         <a class="btn btn-primary"
-          href="/collections-all">
+          href="{{ redirect_to '/collections-all' }}">
           {{ section.settings.button_text }}
         </a>
       </div>

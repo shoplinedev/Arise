@@ -39,10 +39,14 @@ window.SLM['theme-shared/biz-com/customer/constant/report.js'] = window.SLM['the
     input: 103,
     heartbeat: 106,
     check: 107,
+    default: -999
+  };
+  _exports.ActionType = ActionType;
+  const EventName = {
     login: 'Login',
     register: 'CompleteRegistration'
   };
-  _exports.ActionType = ActionType;
+  _exports.EventName = EventName;
   const Module = {
     normal: -999,
     loginModal: {

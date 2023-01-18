@@ -405,9 +405,6 @@ input{
   max-width:100%;
   width:100%;
 }
-.multi-media-splicing__card:only-child.collage-image__cover .product-item .product-item__image-content{
-  position:static;
-}
 .multi-media-splicing__card--left:nth-last-child(2),.multi-media-splicing__card--left:nth-last-child(3){
   grid-column:1/span 2;
 }
@@ -524,6 +521,7 @@ input{
   }
   .multi-media-splicing__card:not(.multi-media-splicing__card--left):not(.multi-media-splicing__card--right) .multi-media-splicing__content .product-item-image-wrapper{
     flex:1;
+    height:100%;
   }
   .multi-media-splicing__card:not(.multi-media-splicing__card--left):not(.multi-media-splicing__card--right) .multi-media-splicing__content .product-item-image-wrapper .product-item__image-content{
     height:100%;
@@ -532,16 +530,9 @@ input{
     top:0;
     width:100%;
   }
-  .multi-media-splicing__card:not(.multi-media-splicing__card--left):not(.multi-media-splicing__card--right) .multi-media-splicing__content .product-item-image-wrapper .product-item__image-content .product-process-image{
+  .multi-media-splicing__card:not(.multi-media-splicing__card--left):not(.multi-media-splicing__card--right) .multi-media-splicing__content .product-item-image-wrapper .product-box-content-image{
     height:100%;
-    left:0;
     padding-bottom:0 !important;
-    position:absolute;
-    top:0;
-    width:100%;
-  }
-  .multi-media-splicing__card:not(.multi-media-splicing__card--left):not(.multi-media-splicing__card--right) .multi-media-splicing__content .product-item-image-wrapper .product-item__image-content .product-process-image>img{
-    object-position:center center;
   }
 }
 .multi-media-splicing__content{
@@ -624,6 +615,14 @@ input{
 .multi-media-splicing__content .collection-item .collection-item-image-wrapper{
   flex:1;
   overflow:visible;
+}
+.multi-media-splicing__content .collection-item .collection-item-image-wrapper .product-box-content-image{
+  height:100%;
+}
+@media (min-width:750px){
+  .multi-media-splicing__content .collection-item .collection-item-image-wrapper .product-box-content-image{
+    padding-bottom:0 !important;
+  }
 }
 .multi-media-splicing__content .collection-item:hover .collection-item-image-wrapper{
   box-shadow:none;

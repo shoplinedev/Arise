@@ -3,15 +3,14 @@ window.SLM = window.SLM || {};
 window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/components/banner.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const { get, nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
+  const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
   const { convertFormat: format } = window['SLM']['theme-shared/utils/newCurrency/CurrencyConvert.js'];
   const { escape } = window['lodash'];
   const imgUrl = window['SLM']['commons/utils/imgUrl.js'].default;
   const convertPrice = window['SLM']['cart/script/utils/price-convert.js'].default;
   const CartService = window['SLM']['cart/script/service/cart/service.js'].default;
   const cartReport = window['SLM']['cart/script/report/cartReport.js'].default;
-  const OPEN_CART_BANNER = 'NEED_OPEN_TOP_CART';
-  _exports.OPEN_CART_BANNER = OPEN_CART_BANNER;
+  const { OPEN_CART_BANNER } = window['SLM']['commons/cart/globalEvent.js'];
   const useSuperScriptDecimals = SL_State.get('theme.settings.superscript_decimals');
 
   const encodeHTML = function (str) {
@@ -32,36 +31,36 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
     constructor() {
       this.loadFailedImgSet = new Set();
       this.needUnbindEleList = [];
+      this.bannerCartSummationInfo = {};
     }
 
     init() {
-      this.listenOpenBannerEvent();
+      this.listenNeedOpenBannerEvent();
       this.listenCartDataUpdate();
       this.listenSelectContentReport();
     }
 
-    listenOpenBannerEvent() {
+    listenNeedOpenBannerEvent() {
       window.SL_EventBus.on(OPEN_CART_BANNER, ({
-        spuId,
-        skuId,
-        num,
-        sellingPlanId
+        data,
+        onSuccess = () => {}
       }) => {
-        this.addedItemInfo = {
-          spuId,
-          skuId,
-          num,
-          sellingPlanId
+        this.addedItemInfo = { ...data
         };
+        if (!this.addedItemInfo) return;
+        this.bannerData = {
+          addedItem: this.addedItemInfo,
+          ...this.bannerCartSummationInfo
+        };
+        this.reRender();
+        this.listenImageLoadEvent();
+        onSuccess();
       });
     }
 
     listenCartDataUpdate() {
       CartService.cartEventBus.on(CartService.CartEventBusEnum.UPDATE, data => {
-        if (!this.addedItemInfo) return;
         this.processCartInfoData(data);
-        this.reRender();
-        this.listenImageLoadEvent();
       });
     }
 
@@ -88,7 +87,8 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
           skuAttrs,
           price,
           salePrice,
-          itemNo
+          itemNo,
+          customCategoryName
         } = $(this).data();
 
         if (productSource === 1) {
@@ -97,7 +97,8 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
             name,
             price: parseInt(salePrice, 10) > parseInt(price, 10) ? salePrice : price,
             skuAttrs,
-            itemNo
+            itemNo,
+            customCategoryName
           });
         }
       });
@@ -107,33 +108,16 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
       const {
         count,
         totalAmount,
-        activeItems
+        realAmount,
+        discountCodeTotalAmount,
+        promotionAmount
       } = cartInfo;
-      const cartItems = [];
-      (activeItems || []).forEach(({
-        itemList
-      }) => {
-        cartItems.push(...(itemList || []));
-      });
-      const addedItem = cartItems.find(({
-        skuId,
-        spuId,
-        subscriptionInfo
-      }) => {
-        let isCurrentItem = skuId === get(this.addedItemInfo, 'skuId') && spuId === get(this.addedItemInfo, 'spuId');
-
-        if (this.addedItemInfo.sellingPlanId) {
-          isCurrentItem = isCurrentItem && get(subscriptionInfo, 'sellingPlanId') === get(this.addedItemInfo, 'sellingPlanId');
-        } else {
-          isCurrentItem = isCurrentItem && !get(subscriptionInfo, 'sellingPlanId');
-        }
-
-        return isCurrentItem;
-      });
-      this.bannerData = {
+      this.bannerCartSummationInfo = {
         count,
         totalAmount,
-        addedItem
+        realAmount,
+        discountCodeTotalAmount,
+        promotionAmount
       };
     }
 
@@ -199,24 +183,18 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
       return tipsContent.join('\n');
     }
 
-    getCardInfoContent(data) {
+    getItemAmount(data) {
       return `
-    <div class="trade-cart-sku-item-info">
-    <div class="trade-cart-sku-item-info-title body2">${encodeHTML(data.name)}</div>
-    ${this.getItemSkuAttr(data.skuAttributes)}
-    ${this.getItemSkuCustomTips(data.customProductTips)}
-    <div class="trade-cart-sku-item-info-amount body3">
-      <span class="notranslate body2 text_bold" data-amount=${data.price}>${this.getPriceInfo(data.price)}</span><span
-        class="notranslate body2 text_bold trade-cart-sku-item-info-amount-sign">x&nbsp;<span
-          class="notranslate body2 text_bold trade-cart-sku-item-info-amount-count">${this.addedItemInfo.num}</span>
-    </div>
-  </div>
-    `;
+      <span class="notranslate body2 text_bold" data-amount=${data.price}>${this.getPriceInfo(data.price)}</span>
+      <span
+      class="notranslate body2 text_bold trade-cart-sku-item-info-amount-sign">x&nbsp;<span
+        class="notranslate body2 text_bold trade-cart-sku-item-info-amount-count">${this.addedItemInfo.num}</span>
+      `;
     }
 
     getImageContent(data) {
       return `
-    <a class="trade-cart-sku-item-image" href="/products/${data.spuId}"
+    <a class="trade-cart-sku-item-image" href="${window.Shopline.redirectTo(`/products/${data.spuId}`)}"
          data-product-source="${data.productSource}"
          data-group-id="${nullishCoalescingOperator(data.groupId, '')}"
          data-name="${escape(data.name)}"
@@ -226,6 +204,7 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
          data-price="${data.price}"
          data-sale-price="${data.salePrice}"
          data-item-no="${data.itemNo}"
+         data-custom-category-name="${data.customCategoryName}"
     >
       ${this.getImageFallbackIfNecessary(data)}
     </a>`;
@@ -242,11 +221,28 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
     }
 
     updateSkuCard(itemInfo) {
-      const cardContent = [];
-      cardContent.push(this.getImageContent(itemInfo));
-      cardContent.push(this.getCardInfoContent(itemInfo));
+      const imageBox = this._skuCard.find('.trade-cart-sku-item-image-wrapper');
 
-      this._skuCard.html(cardContent.join('\n'));
+      imageBox.html(this.getImageContent(itemInfo));
+      this.updateProductDetail(itemInfo);
+    }
+
+    updateProductDetail(itemInfo) {
+      const productNameEle = this._skuCard.find('.trade-cart-sku-item-info-title');
+
+      productNameEle.html(encodeHTML(itemInfo.name));
+
+      const productAttrsEle = this._skuCard.find('.trade-cart-sku-item-info-attrs');
+
+      productAttrsEle.html(this.getItemSkuAttr(itemInfo.skuAttributes));
+
+      const productCustomTipsEle = this._skuCard.find('.trade-cart-sku-item-info-custom');
+
+      productCustomTipsEle.html(this.getItemSkuCustomTips(itemInfo.customProductTips));
+
+      const productAmountEle = this._skuCard.find('.trade-cart-sku-item-info-amount');
+
+      productAmountEle.html(this.getItemAmount(itemInfo));
     }
 
     reRender() {

@@ -1,6 +1,6 @@
 {{ assign 'isMobile' request.is_mobile }}
 
-{{#snippet 'customer/base/sl-card' title=(t 'customer.address.address') id='customer-center-address'}}
+{{#snippet 'customer/base/sl-card' title=(t 'customer.account.address') id='customer-center-address'}}
   <div class="address">
     {{#if (isEmpty addressList)}}
       <div class="address--empty">
@@ -13,7 +13,7 @@
 
 
         <p>{{ t 'customer.address.no_adress_data' }}</p>
-        <a href="/user/address/new" class="address__link">
+        <a href="{{ redirect_to '/user/address/new' }}" class="address__link">
           {{#snippet 'customer/base/sl-button'}}
             {{ snippet 'icons/icon_add' }}
             <span>{{ t 'customer.address.add_address' }}</span>
@@ -22,11 +22,11 @@
       </div>
     {{else}}
       {{!-- 大于等于5条 --}}
-      {{#if (gte (length addressList) 5)}}
+      {{#if (gte (length addressList) 50)}}
         <p class="address--max">{{ t 'customer.address.adress_full_tip' }}</p>
       {{else}}
         <div class="address__add-box">
-          <a class="address__btn address__btn--add" href="/user/address/new">
+          <a class="address__btn address__btn--add" href="{{ redirect_to '/user/address/new' }}">
             {{#if isMobile}}
               {{#snippet 'customer/base/sl-button' block=true}}
                 {{ snippet 'icons/icon_add' }}
@@ -52,7 +52,7 @@
 
               {{#if (isFalsey ../isMobile)}}
                 <div class="address__btns">
-                  <a href="/user/address/{{ addressSeq }}/edit" class="address__btn address__btn--edit">{{ snippet 'icons/icon_edit' }}</a>
+                  <a href="{{ redirect_to (append '/user/address/' addressSeq '/edit') }}" class="address__btn address__btn--edit">{{ snippet 'icons/icon_edit' }}</a>
                   <a href="javascript:void(0);" class="address__btn address__btn--remove" data-seq="{{ addressSeq }}">{{ snippet 'icons/icon_remove' }}</a>
                 </div>
               {{/if}}
@@ -148,7 +148,7 @@
 
             {{#if ../isMobile}}
               <div class="address__btns">
-                <a href="/user/address/{{ addressSeq }}/edit" class="address__btn address__btn--edit">{{ snippet 'icons/icon_edit' }}</a>
+                <a href="{{ redirect_to (append '/user/address/' addressSeq '/edit') }}" class="address__btn address__btn--edit">{{ snippet 'icons/icon_edit' }}</a>
                 <a href="javascript:void(0);" class="address__btn address__btn--remove" data-seq="{{ addressSeq }}">{{ snippet 'icons/icon_remove' }}</a>
               </div>
             {{/if}}

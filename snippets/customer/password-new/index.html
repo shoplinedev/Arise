@@ -17,7 +17,8 @@
 
     {{#if (isFalsey token)}}
     <div class="password__buttons">
-      <a href="/user/signIn{{{get 'search' (urlParse request.uri.url 'json')}}}">{{t 'customer.login.member_login_common'}}</a>
+      {{assign 'search' (default (get 'search' (urlParse request.uri.url 'json')) '')}}
+      <a href="{{redirect_to (append '/user/signIn' search)}}">{{t 'customer.login.member_login_common'}}</a>
     </div>
     {{/if}}
 </div>

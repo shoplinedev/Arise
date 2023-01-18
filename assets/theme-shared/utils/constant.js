@@ -9,6 +9,7 @@ window.SLM['theme-shared/utils/constant.js'] = window.SLM['theme-shared/utils/co
     CHANGE_REMARK: 'change_remark',
     CHANGE_TAX_NUM: 'change_tax_num',
     CHANGE_PAYMENT_METHOD: 'change_payment_method',
+    POLL_SHIPPING_METHOD: 'load_express',
     EDIT_PRODUCT: 'edit_product',
     USE_INTEGRAL: 'use_integral',
     ADD_TIPS: 'add_tips',

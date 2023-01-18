@@ -18,7 +18,7 @@
 {{#if (isFalsey (isEmpty tags))}}
 <ul class="product_sidebar-activeTagList">
   {{#each tags as |tag| }}
-    <li class="product_sidebar-activeTagList-item tag-remove body4" data-tag="{{tag}}" data-href="{{product_collections_tag_link tag 'remove' ../currentUrl}}">
+    <li class="product_sidebar-activeTagList-item tag-remove body4" data-tag="{{tag}}" data-href="{{ redirect_to (product_collections_tag_link tag 'remove' ../currentUrl) }}">
       <div class="product_sidebar-activeTagList-item-content">
         <span>{{tag}}</span>
         <svg class="product_sidebar-activeTagList-item-iconClose" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">

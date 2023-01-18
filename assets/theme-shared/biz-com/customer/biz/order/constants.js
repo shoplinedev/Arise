@@ -27,19 +27,19 @@ window.SLM['theme-shared/biz-com/customer/biz/order/constants.js'] = window.SLM[
   };
   _exports.EnumDeliveryStatus = EnumDeliveryStatus;
   const PayStatusI18n = {
-    [EnumPayStatus.WAIT_PAY]: t('cart.payment.unpaid'),
-    [EnumPayStatus.WAIT_PAY_CALLBACK]: t('cart.payment.unpaid'),
-    [EnumPayStatus.PENDING]: t('cart.payment.paying'),
-    [EnumPayStatus.AUTHORIZED]: t('cart.order.authorized'),
+    [EnumPayStatus.WAIT_PAY]: t('order.payment.unpaid'),
+    [EnumPayStatus.WAIT_PAY_CALLBACK]: t('order.payment.unpaid'),
+    [EnumPayStatus.PENDING]: t('order.payment.paying'),
+    [EnumPayStatus.AUTHORIZED]: t('order.payment.authorized'),
     [EnumPayStatus.PENDING_REVIEW]: t('cart.payment.pending_review'),
-    [EnumPayStatus.PARTIAL_PAYMENT]: t('cart.payment.partially_paid'),
-    [EnumPayStatus.PAYED]: t('cart.payment.paid')
+    [EnumPayStatus.PARTIAL_PAYMENT]: t('order.payment.partially_paid'),
+    [EnumPayStatus.PAYED]: t('order.payment.paid')
   };
   _exports.PayStatusI18n = PayStatusI18n;
   const DeliveryStatusI18n = {
-    [EnumDeliveryStatus.IN_STOCK]: t('cart.shipping.preparing_order'),
-    [EnumDeliveryStatus.DELIVERY_PARTIAL]: t('cart.shipping.partially_shipped'),
-    [EnumDeliveryStatus.SHIPPED]: t('cart.shipping.shipped_order')
+    [EnumDeliveryStatus.IN_STOCK]: t('order.shipping.preparing_order'),
+    [EnumDeliveryStatus.DELIVERY_PARTIAL]: t('order.shipping.partially_shipped'),
+    [EnumDeliveryStatus.SHIPPED]: t('order.shipping.shipped_order')
   };
   _exports.DeliveryStatusI18n = DeliveryStatusI18n;
   const deliveredStatus = [150, 400];

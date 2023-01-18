@@ -7,8 +7,8 @@
       "related_articles": "Связанные блоги"
     },
     "blog_list": {
-      "empty_desc": "В этом блоге нет статей",
-      "read_btn_text": "Узнайте больше",
+      "empty_description": "В этом блоге нет статей",
+      "readmore": "Узнайте больше",
       "title": "Блог"
     },
     "comment": {
@@ -33,31 +33,26 @@
   },
   "cart": {
     "cart": {
-      "added_to_cart": "Уже добавлено в корзину для покупки",
       "buy_now": "Немедленная покупка",
       "cancel": "Отмена",
-      "cart_subtotal": "Общая сумма корзины для покупки",
-      "cart_view": "Просмотрите корзину для покупки",
-      "checkout": "Свести счет",
-      "click_to_view": "Нажмите, чтобы посмотреть",
       "confirm": "Определение",
-      "continue": "Продолжение",
-      "continue_shopping": "Перейти к покупке",
-      "custom_preview": "Пользовательский предварительный просмотр",
-      "day": "День",
-      "days": "День",
-      "empty_cart": "Ваша корзина на данный момент пуста.",
       "got_it": "Я знаю",
-      "remove": "Удаление",
-      "return_to_cart": "Вернуться в корзину для покупки",
-      "subtotal": "Частичный итог",
-      "tax_included": "Включая налоги"
+      "added_to_cart": "Уже добавлено в корзину для покупки",
+      "cart_subtotal": "Общая сумма корзины для покупки"
     },
     "checkout": {
       "max_amount_limit": "Вы превысили максимальную сумму для оформления заказа"
     },
     "checkout_proceeding": {
-      "checkout_proceed": "Следующие товары превышают лимит покупки, вы продолжаете оформлять заказ?"
+      "checkout": "Свести счет",
+      "checkout_proceed": "Следующие товары превышают лимит покупки, вы продолжаете оформлять заказ?",
+      "continue": "Продолжение",
+      "continue_shopping": "Перейти к покупке",
+      "day": "День",
+      "remove": "Удаление",
+      "return_to_cart": "Вернуться в корзину для покупки",
+      "subtotal": "Частичный итог",
+      "tax_included": "Включая налоги"
     },
     "couponCode": {
       "exceedLimit": "Коды скидок превышают лимит количества",
@@ -71,14 +66,9 @@
       "unavailable": "Срок действия кода скидки истек"
     },
     "discount": {
-      "code_error": "Пожалуйста, введите действительный льготный код",
-      "code_item_unmatched": "Товары в вашей корзине для покупки не подходят для льготных кодов {{discountCode}}",
-      "coupon_code": "Льготный код",
       "coupon_code_amount": "Льготный код",
       "coupon_code_length_limit": "Льготный код не может превышать {{range}}",
-      "discounts_cannot_stack": "Скидка в течение заданного промежутка времени и действия по кодам купонов исключительны.",
-      "expected_discount": "Ожидаемая скидка",
-      "use_coupon_alone": "Этот льготный код нельзя использовать вместе с другими стимулированиями сбыта или льготами."
+      "expected_discount": "Ожидаемая скидка"
     },
     "discount_item": {
       "buy_limit5": "Вы можете купить максимально {{stock}} товаров со скидкой одновременно."
@@ -89,16 +79,18 @@
       "buy_limit3": "Льготная цена этого продукта только поддерживает покупку {{stock}} штук."
     },
     "general": {
-      "continue_as_a_guest": "Продолжать посетить в качестве гостя"
+      "continue_as_a_guest": "Продолжать посетить в качестве гостя",
+      "support_oneTime_purchase_only": "Товары поддерживают только одноразовые покупки",
+      "support_subscription_only": "Товары поддерживают только покупки по подписке"
     },
     "item": {
       "add_limit2": "Максимально можно добавить в корзину покупки 99999 ш. товаров.",
-      "invalid_product": "Бездействующий товар",
+      "click_to_view": "Нажмите, чтобы посмотреть",
+      "custom_preview": "Пользовательский предварительный просмотр",
+      "empty_cart": "Ваша корзина на данный момент пуста.",
       "item_left": "Осталось {{stock}} шт.",
       "none_existent": "Продукт не существует",
-      "remove_invalid_product": "Удалить бездействующие товары",
-      "removed": "Снять с полок",
-      "sold_out": "Распродано"
+      "view_cart": "Просмотрите корзину для покупки"
     },
     "next_step": {
       "calculated_taxes_fees": "Следующим шагом будет расчет налогов и фрахтов."
@@ -106,29 +98,12 @@
     "notices": {
       "change_password_after_verification": "После проверки можно изменить пароль",
       "excess_product": "Следующие товары превышают лимит покупки, пожалуйста, измените количество",
-      "insufficient_product_inventory": "Недостаточная наличность товара",
-      "network": "Аномальная сеть",
       "product_amount_limit": "Извините! Количество товаров, добавленных в корзину покупки, превышает лимит.",
-      "product_expired": "Срок действия товара истек",
-      "product_limit": "Превышать лимит товара",
       "product_selected_invalid": "Извините, не можно купить тот продукт, который ты выбрал, потому что его срок действия истек, пожалуйста, выберите еще раз",
       "store_nonexistent": "Магазин не существует"
     },
     "order": {
-      "authorized": "Авторизованный",
-      "canceled": "Отменено",
-      "canceled_order": "Отменено",
-      "click_to_track": "Пожалуйста, нажмите ссылку ниже для отслеживания вашей посылки:",
-      "contact_us": "Свяжитесь с нами",
-      "deleted": "Удалено",
-      "help_tips": "Нужна помощь? Пожалуйста свяжитесь с нами:{{email}}",
       "invalid_order_number": "неверный номер заказа",
-      "no_more_info": "Нет больше информаций",
-      "no_record": "Пока нет записи о заказе, отправляйтесь за покупками",
-      "order": "Заказ",
-      "order_details": "Подробности о заказе",
-      "package_amount": "Package {{num}}（{{item}} items）",
-      "pay_amount": "сумма платежа",
       "paymentVoucher": {
         "downloadDoc": "Скачать файл",
         "format": "Формат",
@@ -137,50 +112,26 @@
         "uploadLimit": "Пожалуйста, загрузите файлы JPG, PNG, GIF, PDF в пределах 20 МБ"
       },
       "payment_voucher_confirmation": "Понятно",
-      "payment_voucher_transfer_success": "Платеж успешно переведен",
-      "payment_voucher_waiting_for_payment": "ожидается платеж",
-      "receiver_account": "учетная запись получателя",
-      "reference_number": "ссылочный номер",
-      "remark": "Примечание заказа",
-      "sequence": "Номер {{id}}",
       "shipping_address": "Адрес доставки",
       "sign_in": "Или используйте следующий способ для логина",
       "tax_included": "Включая {{price}} в налогах",
-      "time": "Время заказа:",
-      "total_amount": "Всего {{transPackages}} товаров",
-      "total_item_amount": "Всего {{transPackages}} товаров",
-      "tracking": "Отслеживание",
       "try_again": "Загрузка не удалась. Пожалуйста, попробуйте еще раз.",
       "try_later": "система занята, повторите попытку позже.",
       "upload_bank_transfer_vouhcer_for_confirmation": "Пожалуйста, загрузите ваучер банковского перевода, и мы подтвердим.",
-      "upload_image_within_10_m_b": "Пожалуйста, загрузите изображения в формате JPG, PNG, GIF в пределах 10 МБ.",
-      "upload_time": "время загрузки",
-      "upload_voucher": "Загрузить ваучер",
-      "voucher_amount_limit": "Вы можете загрузить не более 5 ваучеров."
+      "upload_image_within_10_m_b": "Пожалуйста, загрузите изображения в формате JPG, PNG, GIF в пределах 10 МБ."
     },
     "payment": {
-      "billing_address": "Адрес для получения счета",
       "channel": "Канал платежа",
-      "continue_shopping": "Продолжить покупку",
       "create_time": "Создано",
-      "detail": "Подробности",
       "free": "Бесплатно",
       "log_in": "Перейти к логину",
-      "method": "Способ платежа",
-      "paid": "Оплачено",
-      "partially_paid": "Возврат частичных денег",
-      "paying": "Во время оплаты",
-      "payment": "Оплата",
       "payment_details": "Подробности платежа",
-      "payment_status": "Состояние платежа",
       "pending_review": "Во время оплаты",
       "reference_number": "Серийный номер платежа",
       "status": "Состояние",
       "subtotal_price": "Общая сумма продукта",
       "sum": "Сумма",
-      "total": "Итог",
       "total_sum": "Итог",
-      "unpaid": "Неоплачено",
       "update_time": "Обновлено"
     },
     "policy": {
@@ -188,21 +139,6 @@
     },
     "promotion": {
       "no_promotion": "Не участвуя в оферте"
-    },
-    "refund": {
-      "click_to_view": "Нажмите, чтобы посмотреть",
-      "cost_points": "Потратили {{value}} интегралов",
-      "custom_preview": "Пользовательский предварительный просмотр",
-      "deduct_point": "Вы можете использовать {{deductMemberPointNum}} интегралов для вычета {{deductMemberPointAmount}}"
-    },
-    "shipping": {
-      "info": "Информация",
-      "no_info": "Пока нет информации о доставке, пожалуйста, проверьте позже.",
-      "package_tracking": "Отслеживание пакета",
-      "partially_shipped": "Отправка частичных товаров",
-      "preparing_order": "Во время приготовки товаров",
-      "processing_amount": "Во время обработки({{num}} пунктов)",
-      "shipped_order": "Товары отправлены"
     },
     "shpping": {
       "service_terms": "с условиями услуг сайта"
@@ -228,7 +164,6 @@
     "account": {
       "account_binding": "Аккаунт привязан",
       "account_information": "Аккаунт",
-      "address": "Адрес",
       "bind": "Привязка",
       "birthday": "Дата рождения",
       "change_password": "Измените пароль",
@@ -253,6 +188,7 @@
       "modify_email": "Измените электронную почту",
       "modify_email_modal_title": "Измените электронную почту",
       "modify_phone": "Мобильный телефон",
+      "modify_phone_modal_title": "Мобильный телефон",
       "name": "Имя и фамилия",
       "next": "Следующий шаг",
       "nickname_empty_error": "Имя и фамилия не могут быть пустыми одновременно",
@@ -271,7 +207,9 @@
       "unknow_error_tip": "Сервис аномален, повторите попытку позже",
       "username": "Имя и фамилия",
       "verify_email_message": "Перед аннулированием нам необходимо подтвердить вашу личность.На ваш адрес электронной почты {{email}} вы будете получать письмо с кодом подтверждения.",
-      "verify_phone_message": "Перед аннулированием нам необходимо подтвердить вашу личность.На ваш телефон {{phone}} вы будете получать сообщение подтверждения"
+      "verify_phone_message": "Перед аннулированием нам необходимо подтвердить вашу личность.На ваш телефон {{phone}} вы будете получать сообщение подтверждения",
+      "address": "Адрес",
+      "invalidEmail": "Недействительный адрес электронной почты"
     },
     "activate": {
       "account_activated": "Аккаунт активирован",
@@ -288,7 +226,7 @@
     "address": {
       "add_address": "Добавить новый адрес",
       "address": "Адрес",
-      "adress_full_tip": "5 адресов сохранены, и больше не могут быть добавлены",
+      "adress_full_tip": "50 адресов сохранены, и больше не могут быть добавлены",
       "common_max": "Менее {{max}} символов!",
       "common_min": "больше {{min}} символов!",
       "default": "По умолчанию",
@@ -296,6 +234,7 @@
       "edit_last_name_hint": "Пожалуйста, введите свою фамилию!",
       "edit_phone_hint": "Пожалуйста, введите ваш номер мобильного телефона!",
       "edit_shipping_address": "Редактируйте адрес доставки",
+      "max_address_tip": "Максимально можно создать 50 адресов",
       "no_adress_data": "Пока нет адреса доставки",
       "set_default_address": "Установите как адрес по умолчанию"
     },
@@ -326,7 +265,6 @@
       "clear_button": "Очистить",
       "confirm": "Определение",
       "confirm_button": "Определение",
-      "continue_as_a_guest": "Продолжать посетить в качестве гостя",
       "date_format": "dd.MM.yyyy",
       "dec": "Дек",
       "december": "Декабрь",
@@ -335,6 +273,482 @@
       "email_empty_hint": "Пожалуйста, введите почту",
       "email_error_hint": "Пожалуйста, введите почту в правильном формате, не более 50 символов.",
       "enter_verification_code": "Пожалуйста, введите код для подтверждения",
+      "feb": "Фев",
+      "february": "Февраль",
+      "first_day": "1",
+      "fr": "Пт",
+      "fri": "Пят",
+      "friday": "Пятница",
+      "image_size_less_than_tips": "Размер изображения не должен превышать {{max}} МБ.",
+      "jan": "Янв",
+      "january": "Январь",
+      "jul": "Июл",
+      "july": "Июль",
+      "jun": "Июн",
+      "june": "Июнь",
+      "mar": "Мар",
+      "march": "Март",
+      "max_image_upload_tips": "Максимально загрузите {{max}} листов",
+      "may": "Май",
+      "may_short": "Май",
+      "mo": "Пн",
+      "mon": "Пон",
+      "monday": "Понедельник",
+      "network_error_message": "Нет интернета",
+      "nov": "Ноя",
+      "november": "Ноябрь",
+      "oct": "Окт",
+      "october": "Октябрь",
+      "ok": "Определение",
+      "okay_common": "Определение",
+      "orders": "Заказ",
+      "password": "Пароль",
+      "password_empty_hint": "Пожалуйста, введите пароль",
+      "phone": "Номер мобильного телефона",
+      "phone_empty_message": "Пожалуйста, введите номер мобильного телефона",
+      "phone_error_message": "Пожалуйста, введите номер мобильного телефона в правильном формате",
+      "phone_number_error_message": "Пожалуйста, введите действительный номер телефона",
+      "register": "Регистрация",
+      "repeat_passport_error": "Два введенных пароля несовместимы",
+      "repeat_password": "Повторите пароль",
+      "resend": "Повторная отправка",
+      "sa": "Сб",
+      "sat": "Суб",
+      "saturday": "Суббота",
+      "save": "Сохранение",
+      "select__date": "Пожалуйста, выберите дату",
+      "select_date": "Пожалуйста, выберите дату",
+      "send": "Отправка",
+      "send_error": "Пожалуйста, сначала отправьте проверочный код",
+      "send_verification_code_hint": "Пожалуйста, введите пароль еще раз",
+      "sep": "Сен",
+      "september": "Сентябрь",
+      "set_password": "Пожалуйста, установите пароль 6-18 битов",
+      "sign__out": "Выход из логина",
+      "sign_in": "Логин",
+      "sign_up": "Регистрация",
+      "su": "Вс",
+      "subscription_desc": "Можно получать последние новости о магазине",
+      "sun": "Вос",
+      "sunday": "Воскресенье",
+      "th": "Чт",
+      "thu": "Чет",
+      "thursday": "Четверг",
+      "time_format": "HH:mm",
+      "today": "Сегодня",
+      "tu": "Вт",
+      "tue": "Вто",
+      "tuesday": "Вторник",
+      "update_passport": "Изменить пароль",
+      "user_agreement_tip": "Пожалуйста, сначала прочитайте и согласитесь с пользовательским соглашением",
+      "username": "Почта/номер мобильного телефона",
+      "username_empty_hint": "Пожалуйста, введите почту или номер мобильного телефона",
+      "verification_code": "Код для подтверждения",
+      "verification_code_sent_tip": "Код подтверждения отправлен на ваш счет",
+      "verift_account_tip": "Пожалуйста, проверьте свой счёт, чтобы заменить пароль",
+      "we": "Ср",
+      "wed": "Сре",
+      "wednesday": "Среда",
+      "continue_as_a_guest": "Продолжать посетить в качестве гостя",
+      "login_method": "Или используйте следующий способ для логина",
+      "proceed_to_checkout": "Произвести расчет"
+    },
+    "login": {
+      "member_login_common": "Логин членов",
+      "subscribe_confirm_tip": "Спасибо за подписку. Вы можете войти в систему для получения лучшего опыта."
+    },
+    "message": {
+      "input_placeholder": "У вас есть что для оставления сообщения?",
+      "message": "Сообщение",
+      "send": "Отправление"
+    },
+    "phone": {
+      "mobile_common": "Мобильный телефон"
+    },
+    "register": {
+      "privacy_policy": "Политика конфиденциальности",
+      "terms_of_service": "с условиями услуг сайта",
+      "go_to_login": "Перейти к логину",
+      "tips_agree_with_the_shop": "Я согласен с магазином"
+    },
+    "subscription": {
+      "email": "Электронная почта",
+      "email_subscription_text": "Получайте информацию о стимулировании продажи подписки по электронной почте",
+      "line": "LINE",
+      "messenger": "Messenger",
+      "phone": "Мобильный телефон",
+      "phone_subscription_text": "Получайте информацию о стимулировании продажи подписки по мобильному телефону",
+      "reason_other_length": "Введите максимально 300 символов",
+      "reason_other_placeholder": "Введите содержание",
+      "save_button": "Сохранение",
+      "subscribe_button": "Подписка",
+      "subscription_cancel_text": "Отменить подписку",
+      "subscription_hint": "Успешная подписка",
+      "subscription_title": "Подписка",
+      "unsubscribe": "Подписка отменена",
+      "unsubscribe_btn": "Подписка отменена",
+      "unsubscribe_confirm_text": "Отменить подписку",
+      "unsubscribe_feedback_text": "Вы больше не будете получать маркетинговые новости от нас. Вы можете снова подписаться в любое время",
+      "unsubscribe_feedback_title": "Вы отменили подписку на список рассылки почты <italic>{{name}}</italic>",
+      "unsubscribe_reason1": "Я не хочу получать такие письма",
+      "unsubscribe_reason2": "Я получил слишком много писем",
+      "unsubscribe_reason3": "Я не подписался на такие письма",
+      "unsubscribe_reason4": "Содержание писем не по моей части",
+      "unsubscribe_reason5": "Содержание писем слишком длинное",
+      "unsubscribe_reason6": "Прочие",
+      "unsubscribe_subtitle": "Мы очень сожалеем о вашем отходе! Пожалуйста, сообщите нам, почему вы отменили подписку:",
+      "unsubscribe_success": "Подписка отменена, будет перенаправлять на главную страницу",
+      "unsubscribe_tip": "После отмены подписки вы больше не будете получать последнюю информацию о стимулировании продажи.",
+      "unsubscribe_title": "Подписка отменена"
+    }
+  },
+  "general": {
+    "404": {
+      "subtext": "Страница, которую вы ищете, не существует",
+      "title": "Страница 404 не существует",
+      "button": "Продолжайте покупку"
+    },
+    "address": {
+      "address": "Адрес"
+    },
+    "contact_us": {
+      "contact_us": "Свяжитесь с нами",
+      "send_success": "Спасибо, что связались с нами, мы будем ответить вам как можно быстрее"
+    },
+    "footer": {
+      "subscribe_format_error": "Неправильный формат адреса электронной почты",
+      "subscribe_success": "Успешная подписка",
+      "copyright": "© {{year}} {{storeName}}"
+    },
+    "general": {
+      "accept": "Принятие",
+      "decline": "Отказ",
+      "home": "Первая страница",
+      "link": "Политика конфиденциальности",
+      "no_data": "Пока нет данных",
+      "privacy_policy": "политики конфиденциальности",
+      "tel_phone": "Номер телефона",
+      "tips": "Чтобы предоставить вам наилучший опыт, мы используем cookie для записи вашего состояния входа в систему, собираем статистические данные и предоставляем вам интересные содержания. Нажмите «Принятие», чтобы разрешить использование cookie. Или ознакомьтесь с нашей «Политикой конфиденциальности».",
+      "title": "Мы ценим вашу конфиденциальность",
+      "username": "Имя и фамилия"
+    },
+    "header": {
+      "cart": "Корзина для покупки",
+      "center": "Центр членства",
+      "close": "Закрытие",
+      "login": "Логин",
+      "no_currency_fallback": "Связанная валюта не найдена",
+      "search_input_placeholder": "Введите здесь и нажмите поиск"
+    },
+    "order_tracking": {
+      "code": "Код подтверждения",
+      "email": "Эл. адрес",
+      "form_error": "Ошибка запроса",
+      "orderId": "номер заказа",
+      "orderId_error": "Идентификатор заказа не может быть пустым",
+      "query_illegal": "порядок не существует",
+      "risk_black_user": "Этот аккаунт находится под угрозой",
+      "risk_interception": "порядок не существует",
+      "submit_btn": "Посмотреть заказ",
+      "username": "Электронная почта/номер телефона"
+    },
+    "policy": {
+      "service": "с условиями услуг сайта",
+      "shipping": "Политика доставки",
+      "privacy": "политики конфиденциальности",
+      "refund": "Политика возврата"
+    }
+  },
+  "order": {
+    "checkout_order": {
+      "pay_amount": "сумма платежа",
+      "receiver_account": "учетная запись получателя",
+      "reference_number": "ссылочный номер",
+      "upload_time": "время загрузки",
+      "upload_voucher": "Загрузить ваучер",
+      "voucher_amount_limit": "Вы можете загрузить не более 5 ваучеров."
+    },
+    "detail": {
+      "orderstatus": {
+        "detail": "Детали"
+      }
+    },
+    "order_details": {
+      "details": "Подробности о заказе",
+      "order": "Заказ",
+      "remark": "Примечание заказа",
+      "time": "Время заказа:"
+    },
+    "order_list": {
+      "no_more_info": "Нет больше информаций",
+      "no_record": "Пока нет записи о заказе, отправляйтесь за покупками",
+      "package_amount": "Package {{num}}（{{item}} items）",
+      "total_amount": "Всего {{transPackages}} товаров"
+    },
+    "order_status": {
+      "canceled": "Отменено",
+      "click_to_track": "Пожалуйста, нажмите ссылку ниже для отслеживания вашей посылки:",
+      "contact_us": "Свяжитесь с нами",
+      "help_tips": "Нужна помощь? Пожалуйста свяжитесь с нами:{{email}}",
+      "payment_voucher_transfer_success": "Платеж успешно переведен",
+      "payment_voucher_waiting_for_payment": "ожидается платеж",
+      "sequence": "Номер {{id}}",
+      "tracking": "Отслеживание"
+    },
+    "payment": {
+      "authorized": "Авторизованный",
+      "billing_address": "Адрес для получения счета",
+      "detail": "Подробности",
+      "method": "Способ платежа",
+      "paid": "Оплачено",
+      "partially_paid": "Возврат частичных денег",
+      "paying": "Во время оплаты",
+      "payment": "Оплата",
+      "payment_status": "Состояние платежа",
+      "unpaid": "Неоплачено"
+    },
+    "shipping": {
+      "info": "Информация",
+      "no_info": "Пока нет информации о доставке, пожалуйста, проверьте позже.",
+      "package_tracking": "Отслеживание пакета",
+      "partially_shipped": "Отправка частичных товаров",
+      "preparing_order": "Во время приготовки товаров",
+      "processing_amount": "Во время обработки({{num}} пунктов)",
+      "shipped_order": "Товары отправлены"
+    }
+  },
+  "products": {
+    "collection": {
+      "collection": "Коллекции"
+    },
+    "general": {
+      "no_product_data_found": "Пока нет данных о текущим продукте. Повторите попытку позже.",
+      "sold_out": "Распродано",
+      "added_to_cart_successfully": "Успешная покупка"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Льготная цена этого продукта только поддерживает покупку {{num}} штук.",
+      "activity_toast_product__limit": "Вы можете купить максимально {{stock}} товаров со скидкой одновременно.",
+      "activity_toast_title__limit": "Следующие товары превышают лимит покупки",
+      "amount": "Количество",
+      "buy_more_save_more": "Купите больше сэкономите больше!",
+      "cancel": "Отмена",
+      "country_region": "Страна / регион",
+      "default_placeholder": "Пожалуйста, выберите {{attrName}}",
+      "description": "Описание",
+      "email": "Электронная почта",
+      "enter_email_address": "Пожалуйста, введите электронную почту",
+      "enter_valid_email_address": "Пожалуйста, заполните правильную электронную почту",
+      "give_us_more_of_your_information": "Вы также можете оставить больше информации, чтобы мы могли предоставить вам более подходящие вам услуги",
+      "go_to_amazon_by_link": "Покупка на Amazon",
+      "go_to_rakuten_by_link": "Покупка на Lotte",
+      "go_to_yahoo_by_link": "Покупка на Yahoo",
+      "in_stock": "Наличие товара",
+      "inventory_quantity": "Складское наличие",
+      "leave_us_message": "Пожалуйста, заполните сообщение",
+      "leave_us_message_get_back": "Оставьте сообщение по вашему запросу, и мы будем как можно быстрее связаться с вами.",
+      "link_preview_does_not_support": "Ссылка на предварительный просмотр не поддерживает эту операцию",
+      "maximum_length_of_message": "Длина сообщения не превышает 1500 слов.",
+      "message": "Оставление записки",
+      "more_payment_options": "Другие варианты оплаты",
+      "name": "Имя и фамилия",
+      "optional": "Можно выбрать",
+      "phone_number": "Номер телефона",
+      "product_enquiry": "Консультативные товары",
+      "submission_failed": "Не удалось предоставить, попробуйте еще раз",
+      "submission_successfully": "Успешное представление",
+      "submit": "Представление",
+      "tax_included": "включая налоги",
+      "view_product_detail": "Просмотрите подробности о товаре"
+    },
+    "product_list": {
+      "add_to_cart": "Добавить в корзину покупки",
+      "filter": "Отбор",
+      "from_price_html": "От {{price}}",
+      "less": "Меньше этикеток",
+      "load_more_tip": "Загрузите больше пунктов",
+      "more": "Больше этикеток",
+      "new_arrivals": "Новейшие продукты на полках",
+      "no_product": "В категории нет товаров",
+      "price_high_to_low": "Цена от высокой к низкой",
+      "price_low_to_high": "Цена от низкой к высокой",
+      "product_has_been_removed": "Текущие продукты сняты с полок",
+      "product_sold_out": "Продукты распроданы",
+      "products": "Товар",
+      "quick_shop": "Быстрая покупка",
+      "recommend": "Рекомендация",
+      "sale": "распродажа",
+      "save": "Скидка {{{priceDom}}}",
+      "save_byjs": "Скидка {{priceDom}}",
+      "save_ratio": "Скидка {{price}}%",
+      "select_product_all_options": "Пожалуйста, выберите все атрибуты этого товара Информация о грузополучателе",
+      "top_sellers": "С широким сбытом",
+      "more__product_num": "{{num}} Продукты",
+      "one_product_num": "{{num}} Продукт",
+      "show": "Показать",
+      "sold_out": "Распродано"
+    },
+    "product_search": {
+      "back_to_home": "Вернуться на главную страницу",
+      "ount_results": "{{count}} записей",
+      "results_found_for": "Найдено {{count}} записей \"{{keyword}}\"",
+      "search": "Поиск",
+      "search_no_results": "{{keyword}}, который вы искали, нет никакой записи",
+      "single_results": "{{count}} записей",
+      "single_results_found": "Найдено {{count}} записей \"{{keyword}}\""
+    },
+    "recently_viewed_products": {
+      "recently_viewed_products": "Недавно просмотренные продукты"
+    }
+  },
+  "sales": {
+    "discount_coupon": {
+      "active_date_until": "Срок действия до: {{endTime}}",
+      "applied": "Применяемо",
+      "applied_successfully": "Код скидки успешно применяется",
+      "apply": "Приложение",
+      "buy_x_get_y_all_discount_content": "Скидка {{discount}}, и получите {{benefitCount}} шт.",
+      "buy_x_get_y_all_free_content": "Получите {{benefitCount}} штук бесплатно",
+      "buy_x_get_y_discount_content": "{{discount}}скидка",
+      "buy_x_get_y_free_content": "Бесплатно",
+      "buy_x_get_y_threshold": "Купите {{threshold}} штук и получите {{benefitCount}} бесплатно",
+      "coupon_content_level": "Для {{level}}",
+      "coupon_discount_content": "Скидка {discount}",
+      "coupon_not_found": "Промокода не существует",
+      "failed_to_apply_coupon_code": "Не удалось применяться",
+      "free__shipping": "Бесплатная доставка",
+      "get_code": "Получите купон скидки",
+      "popup_label": "Купон магазина:",
+      "shipping_rate_below": "Фрахт меньше {value}",
+      "specified_customer": "Для назначенных клиентов",
+      "threshold": "Купить {threshold}"
+    },
+    "flash": {
+      "day": "День",
+      "days": "День"
+    },
+    "general": {
+      "activity_banner_benefit": "{{benefit}} скидка",
+      "activity_banner_copy_success_text": "Код скидки успешно скопирован",
+      "activity_banner_free_shipping": "Бесплатная доставка",
+      "activity_selector_new_arrivals": "Новейшие товары",
+      "activity_selector_price_high_to_low": "Цена от высокой к низкой",
+      "activity_selector_price_low_to_high": "Цена от низкой к высокой",
+      "activity_selector_recommended": "Рекомендация",
+      "apply_common": "Приложение",
+      "coupon_code_copied": "Код скидки успешно скопирован",
+      "coupon_code_copy": "Копирование",
+      "flash_sale_text": "Флэш-распродажа",
+      "flash_sale_tip": "Лимит покупки: {{count}} ш.",
+      "hot_sale": "В горячей продаже",
+      "product_tabs_benefit_discount_locked": "Облегчение {{offPercent}}%",
+      "product_tabs_benefit_discount_unlocked": "Облегчение {{offPercent}}% разблокировано!",
+      "product_tabs_benefit_free_locked": "Бесплатный товар",
+      "product_tabs_benefit_free_unlocked": "Бесплатный товар разблокирован!",
+      "product_tabs_benefit_unlocked_tip": "Теперь вы можете пользоваться скидками на товары",
+      "product_tabs_code_benefit_discount_unlocked": "Купите {{benefitCount}} штук со скидкой {{offPercent}}%",
+      "product_tabs_code_benefit_free_unlocked": "Получите {{benefitCount}} штук бесплатно",
+      "product_tabs_threshold": "Купите {т}",
+      "purchase_limit": "Лимит покупки {{count}} на каждого человека",
+      "purchase_limit_each_item": "Ограничение на покупку {{count}} штук на одного человека и каждый стиль.",
+      "select_promotional_product": "Выбрано {{selectCount}} предметов, которые участвуют в деятельности",
+      "sold": "Продано {{count}}",
+      "activity_banner_copy_text": "Копирование",
+      "activity_banner_threshold": "Полно {{threshold}}",
+      "discount_common": "Скидка",
+      "shop_more": "Купите больше"
+    },
+    "gift": {
+      "got_all_gifts_tip": "Поздравляем! Вы уже получили {{saved}} подарков!",
+      "not_meet_amount_tip": "Купите еще {{threshold}} и получите максимально до {{willSave}} подарков",
+      "not_meet_quantity_tip": "Купите еще {{threshold}} товаров и получите максимально до {{willSave}} подарков",
+      "select": "Выберите",
+      "select_gift_tip": "Поздравляем! Вы можете выбрать {{willSave}} подарков",
+      "spend_more_money_get_more_tip": "Поздравляем! Получено {{saved}} подарков! Купите еще {{threshold}} и получите максимально до {{willSave}} подарков",
+      "spend_more_quantity_get_more_tip": "Поздравляем! Получено {{saved}} подарков! Купите еще {{threshold}} товаров и получите максимально до {{willSave}} подарков"
+    },
+    "promotion": {
+      "discount_tag": {
+        "label": "Скидка:"
+      }
+    }
+  },
+  "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Округление"
+      }
+    },
+    "payments-name": {
+      "COD": "Оплата при доставке товара",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "Кредитная карта"
+    },
+    "reduction_code": {
+      "giftcard": "Подарочная карта"
+    }
+  },
+  "transaction": {
+    "contact": {
+      "discounts_stack_not": "Скидка в течение заданного промежутка времени и действия по кодам купонов исключительны."
+    },
+    "discount": {
+      "code_error": "Пожалуйста, введите действительный льготный код",
+      "code_item_unmatched": "Товары в вашей корзине для покупки не подходят для льготных кодов {{discountCode}}",
+      "coupon_code": "Льготный код",
+      "coupon_invalid_for_the_shipping_method": "Льготный код {{discountCode}} не подходит для текущего метода логистики",
+      "discount_codes_cannot_stack": "Товары имеют одну льготную деятельность, не могут быть наложены другими скидками",
+      "use_coupon_alone": "Этот льготный код нельзя использовать вместе с другими стимулированиями сбыта или льготами."
+    },
+    "general": {
+      "discount_off": "Скидка",
+      "free_charge": "Бесплатная доставка",
+      "free_shipping": "Бесплатная доставка",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
+      "order_seller_discount": "Индивидуальная скидка продавца",
+      "order_tax": "налог",
+      "order_tip": "Чаевые",
+      "payment_subtotal_cost": "Расход товара",
+      "point_discount": "Скидка по интегралам",
+      "shipping_fee": "Фрахт",
+      "trade_coupon_discount": "Скидка"
+    },
+    "item": {
+      "invalid_product": "Бездействующий товар",
+      "remove_invalid_product": "Удалить бездействующие товары",
+      "removed": "Снять с полок",
+      "sold_out": "Распродано"
+    },
+    "notices": {
+      "insufficient_product_inventory": "Недостаточная наличность товара",
+      "network": "Аномальная сеть",
+      "product_expired": "Срок действия товара истек",
+      "product_limit": "Превышать лимит товара"
+    },
+    "order": {
+      "deleted": "Удалено"
+    },
+    "payment": {
+      "continue_shopping": "Продолжайте покупку",
+      "more": "Купите больше",
+      "total": "Итог",
+      "total_sum": "Итог"
+    },
+    "policy": {
+      "refund_policy": "Политика возврата"
+    },
+    "refund": {
+      "cost_points": "Потратили {{value}} интегралов",
+      "deduct_point": "Вы можете использовать {{deductMemberPointNum}} интегралов для вычета {{deductMemberPointAmount}}"
+    }
+  },
+  "unvisiable": {
+    "customer": {
       "error_message_1": "Создайте электронную почту, чтобы получать новейшие и эксклюзивные льготные информации.",
       "error_message_1001": "Неправильный пароль",
       "error_message_1002": "Пользователь не существует",
@@ -387,399 +801,8 @@
       "error_message_3024": "Ошибочные параметры ссылки",
       "error_message_4": "Аномальный сервис",
       "error_message_5": "Аномальный сервис",
-      "error_message_6": "Аномальный сервис",
-      "feb": "Фев",
-      "february": "Февраль",
-      "first_day": "1",
-      "fr": "Пт",
-      "fri": "Пят",
-      "friday": "Пятница",
-      "image_size_less_than_tips": "Размер изображения не должен превышать {{max}} МБ.",
-      "jan": "Янв",
-      "january": "Январь",
-      "jul": "Июл",
-      "july": "Июль",
-      "jun": "Июн",
-      "june": "Июнь",
-      "login_method": "Или используйте следующий способ для логина",
-      "mar": "Мар",
-      "march": "Март",
-      "max_image_upload_tips": "Максимально загрузите {{max}} листов",
-      "may": "Май",
-      "may_short": "Май",
-      "mo": "Пн",
-      "mon": "Пон",
-      "monday": "Понедельник",
-      "network_error_message": "Нет интернета",
-      "nov": "Ноя",
-      "november": "Ноябрь",
-      "oct": "Окт",
-      "october": "Октябрь",
-      "ok": "Определение",
-      "okay_common": "Определение",
-      "orders": "Заказ",
-      "password": "Пароль",
-      "password_empty_hint": "Пожалуйста, введите пароль",
-      "phone": "Номер мобильного телефона",
-      "phone_empty_message": "Пожалуйста, введите номер мобильного телефона",
-      "phone_error_message": "Пожалуйста, введите номер мобильного телефона в правильном формате",
-      "phone_number_error_message": "Пожалуйста, введите действительный номер телефона",
-      "proceed_to_checkout": "Произвести расчет",
-      "register": "Регистрация",
-      "repeat_passport_error": "Два введенных пароля несовместимы",
-      "repeat_password": "Повторите пароль",
-      "resend": "Повторная отправка",
-      "sa": "Сб",
-      "sat": "Суб",
-      "saturday": "Суббота",
-      "save": "Сохранение",
-      "select__date": "Пожалуйста, выберите дату",
-      "select_date": "Пожалуйста, выберите дату",
-      "send": "Отправка",
-      "send_error": "Пожалуйста, сначала отправьте проверочный код",
-      "send_verification_code_hint": "Пожалуйста, введите пароль еще раз",
-      "sep": "Сен",
-      "september": "Сентябрь",
-      "set_password": "Пожалуйста, установите пароль 6-18 битов",
-      "sign__out": "Выход из логина",
-      "sign_in": "Логин",
-      "sign_up": "Регистрация",
-      "su": "Вс",
-      "subscription_desc": "Можно получать последние новости о магазине",
-      "sun": "Вос",
-      "sunday": "Воскресенье",
-      "th": "Чт",
-      "thu": "Чет",
-      "thursday": "Четверг",
-      "time_format": "HH:mm",
-      "today": "Сегодня",
-      "tu": "Вт",
-      "tue": "Вто",
-      "tuesday": "Вторник",
-      "update_passport": "Изменить пароль",
-      "user_agreement_tip": "Пожалуйста, сначала прочитайте и согласитесь с пользовательским соглашением",
-      "username": "Почта/номер мобильного телефона",
-      "username_empty_hint": "Пожалуйста, введите почту или номер мобильного телефона",
-      "verification_code": "Код для подтверждения",
-      "verification_code_sent_tip": "Код подтверждения отправлен на ваш счет",
-      "verift_account_tip": "Пожалуйста, проверьте свой счёт, чтобы заменить пароль",
-      "we": "Ср",
-      "wed": "Сре",
-      "wednesday": "Среда"
+      "error_message_6": "Аномальный сервис"
     },
-    "login": {
-      "member_login_common": "Логин членов",
-      "subscribe_confirm_tip": "Спасибо за подписку. Вы можете войти в систему для получения лучшего опыта."
-    },
-    "message": {
-      "input_placeholder": "У вас есть что для оставления сообщения?",
-      "message": "Сообщение",
-      "send": "Отправление"
-    },
-    "phone": {
-      "mobile_common": "Мобильный телефон"
-    },
-    "register": {
-      "go_to_login": "Перейти к логину",
-      "privacy_policy": "Политика конфиденциальности",
-      "terms_of_service": "с условиями услуг сайта",
-      "tips_agree_with_the_shop": "Я согласен с магазином"
-    },
-    "subscription": {
-      "email": "Электронная почта",
-      "email_subscription_text": "Получайте информацию о стимулировании продажи подписки по электронной почте",
-      "line": "LINE",
-      "messenger": "Messenger",
-      "phone": "Мобильный телефон",
-      "phone_subscription_text": "Получайте информацию о стимулировании продажи подписки по мобильному телефону",
-      "reason_other_length": "Введите максимально 300 символов",
-      "reason_other_placeholder": "Введите содержание",
-      "save_button": "Сохранение",
-      "subscribe_button": "Подписка",
-      "subscription_cancel_text": "Отменить подписку",
-      "subscription_hint": "Успешная подписка",
-      "subscription_title": "Подписка",
-      "unsubscribe": "Подписка отменена",
-      "unsubscribe_btn": "Подписка отменена",
-      "unsubscribe_confirm_text": "Отменить подписку",
-      "unsubscribe_feedback_text": "Вы больше не будете получать маркетинговые новости от нас. Вы можете снова подписаться в любое время",
-      "unsubscribe_feedback_title": "Вы отменили подписку на список рассылки почты <italic>{{name}}</italic>",
-      "unsubscribe_reason1": "Я не хочу получать такие письма",
-      "unsubscribe_reason2": "Я получил слишком много писем",
-      "unsubscribe_reason3": "Я не подписался на такие письма",
-      "unsubscribe_reason4": "Содержание писем не по моей части",
-      "unsubscribe_reason5": "Содержание писем слишком длинное",
-      "unsubscribe_reason6": "Прочие",
-      "unsubscribe_subtitle": "Мы очень сожалеем о вашем отходе! Пожалуйста, сообщите нам, почему вы отменили подписку:",
-      "unsubscribe_success": "Подписка отменена, будет перенаправлять на главную страницу",
-      "unsubscribe_tip": "После отмены подписки вы больше не будете получать последнюю информацию о стимулировании продажи.",
-      "unsubscribe_title": "Подписка отменена"
-    }
-  },
-  "general": {
-    "404": {
-      "button": "Продолжайте покупку",
-      "subtext": "Страница, которую вы ищете, не существует",
-      "title": "Страница 404 не существует"
-    },
-    "contact_us": {
-      "contact_us": "Свяжитесь с нами",
-      "send_success": "Спасибо, что связались с нами, мы будем ответить вам как можно быстрее"
-    },
-    "footer": {
-      "copyright": "© {{year}} {{storeName}}",
-      "subscribe_reg_exp_error": "Неправильный формат адреса электронной почты",
-      "subscribe_success": "Успешная подписка"
-    },
-    "general": {
-      "accept": "Принятие",
-      "decline": "Отказ",
-      "home": "Первая страница",
-      "link": "Политика конфиденциальности",
-      "tel_phone": "Номер телефона",
-      "tips": "Чтобы предоставить вам наилучший опыт, мы используем cookie для записи вашего состояния входа в систему, собираем статистические данные и предоставляем вам интересные содержания. Нажмите «Принятие», чтобы разрешить использование cookie. Или ознакомьтесь с нашей «Политикой конфиденциальности».",
-      "title": "Мы ценим вашу конфиденциальность",
-      "username": "Имя и фамилия"
-    },
-    "header": {
-      "cart": "Корзина для покупки",
-      "center": "Центр членства",
-      "login": "Логин",
-      "no_currency_fallback": "Связанная валюта не найдена",
-      "search_input_placeholder": "Введите здесь и нажмите поиск"
-    },
-    "order_tracking": {
-      "code": "Код подтверждения",
-      "email": "Эл. адрес",
-      "form_error": "Ошибка запроса",
-      "orderId": "номер заказа",
-      "orderId_error": "Идентификатор заказа не может быть пустым",
-      "query_illegal": "порядок не существует",
-      "risk_black_user": "Этот аккаунт находится под угрозой",
-      "risk_interception": "порядок не существует",
-      "submit_btn": "Посмотреть заказ",
-      "username": "Электронная почта/номер телефона"
-    },
-    "policy": {
-      "privacy": "политики конфиденциальности",
-      "refund": "Политика возврата",
-      "service": "с условиями услуг сайта",
-      "shipping": "Политика доставки"
-    }
-  },
-  "order": {
-    "detail": {
-      "orderstatus": {
-        "UploadTime": "время загрузки",
-        "detail": "Детали"
-      }
-    }
-  },
-  "products": {
-    "collection": {
-      "collection": "Коллекции"
-    },
-    "general": {
-      "added_to_cart_successfully": "Успешная покупка",
-      "no_product_data_found": "Пока нет данных о текущим продукте. Повторите попытку позже.",
-      "sold_out": "Распродано"
-    },
-    "product_details": {
-      "activity_toast_price_limit": "Льготная цена этого продукта только поддерживает покупку {{num}} штук.",
-      "activity_toast_product__limit": "Вы можете купить максимально {{stock}} товаров со скидкой одновременно.",
-      "activity_toast_title__limit": "Следующие товары превышают лимит покупки",
-      "amount": "Количество",
-      "buy_more_save_more": "Купите больше сэкономите больше!",
-      "cancel": "Отмена",
-      "country_region": "Страна / регион",
-      "default_placeholder": "Пожалуйста, выберите {{attrName}}",
-      "description": "Описание",
-      "email": "Электронная почта",
-      "enter_email_address": "Пожалуйста, введите электронную почту",
-      "enter_valid_email_address": "Пожалуйста, заполните правильную электронную почту",
-      "give_us_more_of_your_information": "Вы также можете оставить больше информации, чтобы мы могли предоставить вам более подходящие вам услуги",
-      "go_to_amazon_by_link": "Покупка на Amazon",
-      "go_to_rakuten_by_link": "Покупка на Lotte",
-      "go_to_yahoo_by_link": "Покупка на Yahoo",
-      "in_stock": "Наличие товара",
-      "inventory_quantity": "Складское наличие",
-      "leave_us_message": "Пожалуйста, заполните сообщение",
-      "leave_us_message_get_back": "Оставьте сообщение по вашему запросу, и мы будем как можно быстрее связаться с вами.",
-      "link_preview_does_not_support": "Ссылка на предварительный просмотр не поддерживает эту операцию",
-      "maximum_length_of_message": "Длина сообщения не превышает 1500 слов.",
-      "message": "Оставление записки",
-      "more_payment_options": "Другие варианты оплаты",
-      "name": "Имя и фамилия",
-      "optional": "Можно выбрать",
-      "phone_number": "Номер телефона",
-      "product_enquiry": "Консультативные товары",
-      "submission_failed": "Не удалось предоставить, попробуйте еще раз",
-      "submission_successfully": "Успешное представление",
-      "submit": "Представление",
-      "tax_included": "включая налоги"
-    },
-    "product_list": {
-      "add_to_cart": "Добавить в корзину покупки",
-      "filter": "Отбор",
-      "from_price_html": "От {{price}}",
-      "less": "Меньше этикеток",
-      "load_more_tip": "Загрузите больше пунктов",
-      "more": "Больше этикеток",
-      "more__product_num": "{{num}} Продукты",
-      "new_arrivals": "Новейшие продукты на полках",
-      "no_product": "В категории нет товаров",
-      "one_product_num": "{{num}} Продукт",
-      "price_high_to_low": "Цена от высокой к низкой",
-      "price_low_to_high": "Цена от низкой к высокой",
-      "product_has_been_removed": "Текущие продукты сняты с полок",
-      "product_sold_out": "Продукты распроданы",
-      "products": "Товар",
-      "recommend": "Рекомендация",
-      "sale": "распродажа",
-      "save": "Скидка {{{priceDom}}}",
-      "save_byjs": "Скидка {{priceDom}}",
-      "save_ratio": "Скидка {{price}}%",
-      "select_product_all_options": "Пожалуйста, выберите все атрибуты этого товара Информация о грузополучателе",
-      "show": "Показать",
-      "sold_out": "Распродано",
-      "top_sellers": "С широким сбытом"
-    },
-    "product_search": {
-      "back_to_home": "Вернуться на главную страницу",
-      "ount_results": "{{count}} записей",
-      "results_found_for": "Найдено {{count}} записей \"{{keyword}}\"",
-      "search": "Поиск",
-      "search_no_results": "{{keyword}}, который вы искали, нет никакой записи",
-      "single_results": "{{count}} записей",
-      "single_results_found": "Найдено {{count}} записей \"{{keyword}}\""
-    },
-    "recently_viewed_products": {
-      "recently_viewed_products": "Недавно просмотренные продукты"
-    }
-  },
-  "sales": {
-    "discount_coupon": {
-      "active_date_until": "Срок действия до: {{endTime}}",
-      "applied": "Применяемо",
-      "applied_successfully": "Код скидки успешно применяется",
-      "apply": "Приложение",
-      "buy_x_get_y_all_discount_content": "Скидка {{discount}}, и получите {{benefitCount}} шт.",
-      "buy_x_get_y_all_free_content": "Получите {{benefitCount}} штук бесплатно",
-      "buy_x_get_y_discount_content": "{{discount}}скидка",
-      "buy_x_get_y_free_content": "Бесплатно",
-      "buy_x_get_y_threshold": "Купите {{threshold}} штук и получите {{benefitCount}} бесплатно",
-      "coupon_content_level": "Для {{level}}",
-      "coupon_discount_content": "Скидка {discount}",
-      "coupon_not_found": "Промокода не существует",
-      "failed_to_apply_coupon_code": "Не удалось применяться",
-      "free__shipping": "Бесплатная доставка",
-      "get_code": "Получите купон скидки",
-      "popup_label": "Купон магазина:",
-      "shipping_rate_below": "Фрахт меньше {value}",
-      "specified_customer": "Для назначенных клиентов",
-      "threshold": "Купить {threshold}"
-    },
-    "flash": {
-      "day": "День",
-      "days": "День"
-    },
-    "general": {
-      "activity_banner_benefit": "{{benefit}} скидка",
-      "activity_banner_copy_success_text": "Код скидки успешно скопирован",
-      "activity_banner_copy_text": "Копирование",
-      "activity_banner_free_shipping": "Бесплатная доставка",
-      "activity_banner_threshold": "Полно {{threshold}}",
-      "activity_selector_new_arrivals": "Новейшие товары",
-      "activity_selector_price_high_to_low": "Цена от высокой к низкой",
-      "activity_selector_price_low_to_high": "Цена от низкой к высокой",
-      "activity_selector_recommended": "Рекомендация",
-      "apply_common": "Приложение",
-      "bundle_save_tip": "Совместная покупка может сэкономить {{amount}}",
-      "bundle_title": "Часто вместе покупают",
-      "common_buy_now": "Немедленная покупка",
-      "coupon_code_copied": "Код скидки успешно скопирован",
-      "coupon_code_copy": "Копирование",
-      "discount_common": "Скидка",
-      "flash_sale_text": "Флэш-распродажа",
-      "flash_sale_tip": "Лимит покупки: {{count}} ш.",
-      "hot_sale": "В горячей продаже",
-      "product_tabs_benefit_discount_locked": "Облегчение {{offPercent}}%",
-      "product_tabs_benefit_discount_unlocked": "Облегчение {{offPercent}}% разблокировано!",
-      "product_tabs_benefit_free_locked": "Бесплатный товар",
-      "product_tabs_benefit_free_unlocked": "Бесплатный товар разблокирован!",
-      "product_tabs_benefit_unlocked_tip": "Теперь вы можете пользоваться скидками на товары",
-      "product_tabs_code_benefit_discount_unlocked": "Купите {{benefitCount}} штук со скидкой {{offPercent}}%",
-      "product_tabs_code_benefit_free_unlocked": "Получите {{benefitCount}} штук бесплатно",
-      "product_tabs_threshold": "Купите {т}",
-      "purchase_limit": "Лимит покупки {{count}} на каждого человека",
-      "purchase_limit_each_item": "Ограничение на покупку {{count}} штук на одного человека и каждый стиль.",
-      "select_promotional_product": "Выбрано {{selectCount}} предметов, которые участвуют в деятельности",
-      "shop_more": "Купите больше",
-      "sold": "Продано {{count}}"
-    },
-    "gift": {
-      "got_all_gifts_tip": "Поздравляем! Вы уже получили {{saved}} подарков!",
-      "not_meet_amount_tip": "Купите еще {{threshold}} и получите максимально до {{willSave}} подарков",
-      "not_meet_quantity_tip": "Купите еще {{threshold}} товаров и получите максимально до {{willSave}} подарков",
-      "select": "Выберите",
-      "select_gift_tip": "Поздравляем! Вы можете выбрать {{willSave}} подарков",
-      "spend_more_money_get_more_tip": "Поздравляем! Получено {{saved}} подарков! Купите еще {{threshold}} и получите максимально до {{willSave}} подарков",
-      "spend_more_quantity_get_more_tip": "Поздравляем! Получено {{saved}} подарков! Купите еще {{threshold}} товаров и получите максимально до {{willSave}} подарков"
-    },
-    "promotion": {
-      "discount_tag": {
-        "b11_t1_free": "Купите {{threshold}} штук, один из них бесплатен",
-        "b11_t1_normal": "Купите {{threshold}} штук, у одного из них можно облегчить {{save}}",
-        "b1_t0": "Купите {{threshold}}, можно сэкономить {{save}}",
-        "b1_t1": "Купите {{threshold}} штук , можно сэкономить {{save}}",
-        "b2_t0": "Купите {{threshold}}, можно сэкономить {{save}}",
-        "b2_t1": "Купите {{threshold}} штук , можно сэкономить {{save}}",
-        "label": "Скидка:"
-      }
-    }
-  },
-  "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Округление"
-      }
-    },
-    "payments-name": {
-      "COD": "Оплата при доставке товара",
-      "Paypal": "Paypal",
-      "adjustPay": "manual",
-      "third-part": "Кредитная карта"
-    },
-    "reduction_code": {
-      "giftcard": "Подарочная карта"
-    }
-  },
-  "transaction": {
-    "general": {
-      "coupon_invalid_for_the_shipping_method": "Льготный код {{discountCode}} не подходит для текущего метода логистики",
-      "discount_codes_cannot_stack": "Товары имеют одну льготную деятельность, не могут быть наложены другими скидками",
-      "discount_off": "Скидка",
-      "free_charge": "Бесплатная доставка",
-      "free_shipping": "Бесплатная доставка",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
-      "order_seller_discount": "Индивидуальная скидка продавца",
-      "order_tax": "налог",
-      "order_tip": "Чаевые",
-      "payment_subtotal_cost": "Расход товара",
-      "point_discount": "Скидка по интегралам",
-      "shipping_fee": "Фрахт",
-      "trade_coupon_discount": "Льгота"
-    }
-  },
-  "user": {
-    "udbResponse": {
-      "err1006": "Код подтверждения неправилен",
-      "err2005": "Неправильный код подтверждения",
-      "err3005": "Неправильный код подтверждения"
-    }
+    "editorSwitchCountryTip": "В редакторе не поддерживается переключение стран"
   }
 }

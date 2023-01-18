@@ -4,12 +4,16 @@
 {{ object_set data 'trade.delivery-fee' 'transaction.general.shipping_fee' }}
 {{ object_set data 'trade.point-discount' 'transaction.general.point_discount' }}
 {{ object_set data 'trade.product-fee' 'transaction.general.payment_subtotal_cost' }}
-{{ object_set data 'trade.coupon' 'transaction.general.trade_coupon_discount' }}
+{{ object_set data 'trade.coupon' 'sales.general.discount_common' }}
 {{ object_set data 'order.detail.taxFee' 'transaction.general.order_tax' }}
 {{ object_set data 'order.detail.packages.amount.tip' 'transaction.general.order_tip' }}
 {{ object_set data 'order.detail.packages.amount.discount-amount-name' 'transaction.general.order_seller_discount' }}
 {{ object_set data 'common.free-shipping' 'transaction.general.free_charge' }}
 
 {{ object_set data 'trade.free-shipping' 'transaction.general.free_shipping' }}
-{{ object_set data 'trade.total' 'cart.payment.total' }}
+{{ object_set data 'trade.total' 'transaction.payment.total_sum' }}
 {{ object_set data 'common.discountOff' 'transaction.general.discount_off' }}
+
+{{ object_set data 'validate.mutual-excluded-by-time-limited' 'transaction.contact.discounts_stack_not' }}
+{{ object_set data 'cart.discount.code_error' 'transaction.discount.code_error' }}
+{{ object_set data 'cart.discount.code_item_unmatched' 'transaction.discount.code_item_unmatched' }}

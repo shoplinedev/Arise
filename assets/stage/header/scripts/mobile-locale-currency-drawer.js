@@ -16,11 +16,13 @@ window.SLM['stage/header/scripts/mobile-locale-currency-drawer.js'] = window.SLM
         drawer: '.stage-top-drawer.top-drawer--open',
         localeCurrencyContainer: '.drawer-menu-locale-currency',
         currencyBtn: '.j-currency-drawer-btn',
-        localeBtn: '.j-locale-drawer-btn'
+        localeBtn: '.j-locale-drawer-btn',
+        countryBtn: '.j-country-drawer-btn'
       };
       this.drawers = {
         localeDrawer: null,
-        currencyDrawer: null
+        currencyDrawer: null,
+        countryDrawer: null
       };
       this.$setNamespace(this.config.namespace);
       this.init();
@@ -35,6 +37,9 @@ window.SLM['stage/header/scripts/mobile-locale-currency-drawer.js'] = window.SLM
       this.drawers.localeDrawer = new TopDrawer('global-locale-drawer', {
         fullScreen: true
       });
+      this.drawers.countryDrawer = new TopDrawer('global-country-drawer', {
+        fullScreen: true
+      });
     }
 
     bindEvent() {
@@ -45,6 +50,9 @@ window.SLM['stage/header/scripts/mobile-locale-currency-drawer.js'] = window.SLM
         const $btn = $(e.currentTarget);
         this.setupCurrencyList($btn);
         this.drawers.currencyDrawer.open();
+      });
+      this.$on('click', this.selector.countryBtn, () => {
+        this.drawers.countryDrawer.open();
       });
     }
 
@@ -74,6 +82,9 @@ window.SLM['stage/header/scripts/mobile-locale-currency-drawer.js'] = window.SLM
     }
 
     off() {
+      this.drawers.currencyDrawer.$offAll();
+      this.drawers.localeDrawer.$offAll();
+      this.drawers.countryDrawer.$offAll();
       this.$offAll();
     }
 

@@ -1,6 +1,8 @@
 ---
 blogs:
   limit: 6
+all_collections:
+  need_first_product: false
 ---
 
 {{ combine_asset_tag 'stage/blog/list/style/index.css' inline=true }}
@@ -34,16 +36,16 @@ blogs:
   {{ assign 'show_sidebar' (boolean section.settings.is_show_sidebar '&&' show_blocks) }}
 
   {{#if section.settings.is_show_breadcrumb}}
-    {{ assign 'routes' (JSONparse (append '[{"name":"' homeText '","link":"/"}]')) }}
+    {{ assign 'routesList' (JSONparse (append '[{"name":"' homeText '","link":"/"}]')) }}
 
     {{#if tagHandle}}
-      {{ array-push routes (object_create name=title link=listPath) }}
-      {{ array-push routes (object_create name=tagHandle) }}
+      {{ array-push routesList (object_create name=title link=listPath) }}
+      {{ array-push routesList (object_create name=tagHandle) }}
     {{else}}
-      {{ array-push routes (object_create name=title) }}
+      {{ array-push routesList (object_create name=title) }}
     {{/if}}
 
-    {{ snippet 'blogs/breadcrumb' classes='blogs__breadcrumb d-none d-md-flex' routes=routes }}
+    {{ snippet 'blogs/breadcrumb' classes='blogs__breadcrumb d-none d-md-flex' routesList=routesList }}
   {{/if}}
 
   <h1 class="blogs__title title3 word-break">{{ title }}</h1>
@@ -56,7 +58,7 @@ blogs:
             <ul class="row row-cols-1 {{#if global.section.settings.layout '==' 'grid'}}row-cols-md-3{{/if}} blogs__list blogs__list--{{ global.section.settings.layout }}">
               {{#each blogs}}
                 <li class="blogs__item">
-                  {{ snippet 'blogs/simple-blog' pathPrefix=global.listPath info=this collectionId=global.listHandle showAuthor=global.section.settings.is_show_author showDate=global.section.settings.is_show_date showCover=global.section.settings.is_show_cover coverRatio=global.section.settings.cover_img_ratio showDesc=global.section.settings.is_show_desc btn_text=(t 'blog.blog_list.read_btn_text') pcSize='1/3' showTag=global.section.settings.is_show_tag showMore=global.section.settings.is_show_read_more shopline_attributes=this.shopline_attributes }}
+                  {{ snippet 'blogs/simple-blog' pathPrefix=global.listPath info=this collectionId=global.listHandle showAuthor=global.section.settings.is_show_author showDate=global.section.settings.is_show_date showCover=global.section.settings.is_show_cover coverRatio=global.section.settings.cover_img_ratio showDesc=global.section.settings.is_show_desc btn_text=(t 'blog.blog_list.readmore') pcSize='1/3' showTag=global.section.settings.is_show_tag showMore=global.section.settings.is_show_read_more shopline_attributes=this.shopline_attributes }}
                 </li>
               {{/each}}
             </ul>
@@ -67,7 +69,7 @@ blogs:
       {{else}}
         <div class="blogs__empty">
           <h2 class="blogs__empty-title title3">{{ t 'blog.blog_list.title' }}</h2>
-          <p class="blogs__empty-desc body3">{{ t 'blog.blog_list.empty_desc' }}</p>
+          <p class="blogs__empty-desc body3">{{ t 'blog.blog_list.empty_description' }}</p>
         </div>
       {{/if}}
     </div>

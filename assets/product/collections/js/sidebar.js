@@ -5,6 +5,7 @@ window.SLM['product/collections/js/sidebar.js'] = window.SLM['product/collection
   const axios = window['axios']['default'];
   const querystring = window['querystring']['default'];
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
+  const chunk = window['lodash']['chunk'];
   const filterUpdateSection = window['SLM']['theme-shared/events/product/updateSection/index.js'].default;
   const { disablePageScroll, enablePageScroll } = window['SLM']['commons/components/modal/common.js'];
   const { updateUrlQueryParam, getUrlAllQuery } = window['SLM']['commons/utils/url.js'];
@@ -74,6 +75,7 @@ window.SLM['product/collections/js/sidebar.js'] = window.SLM['product/collection
       this.initTags();
       this.initEventBus();
       this.setStyle();
+      this.fetchChildCategoryProductNum();
       this.initListNum();
       this.listenHeaderSticky();
     }
@@ -225,6 +227,7 @@ window.SLM['product/collections/js/sidebar.js'] = window.SLM['product/collection
         filterUpdateSection && filterUpdateSection({
           content: this.$collectionsAjaxInner
         });
+        this.renderChildCategoryProductNum();
         const headerHeightNow = $('#stage-header').outerHeight();
         const $top = $('#collectionsAjaxInner').offset().top - headerHeightNow;
 
@@ -328,6 +331,48 @@ window.SLM['product/collections/js/sidebar.js'] = window.SLM['product/collection
       }
     }
 
+    renderChildCategoryProductNum() {
+      const childCategoryDom = $('.product-list-child-category');
+      const isOpenProductNum = childCategoryDom.data('show-product-num');
+
+      if (this.sortationCountVoList && isOpenProductNum) {
+        this.sortationCountVoList.forEach(item => {
+          const targetSortation = childCategoryDom.find(`[data-sortation-id="${item.sortationId}"]`);
+          const innerText = targetSortation.eq(0).text();
+          targetSortation.text(`${innerText} — ${item.count}`);
+        });
+      }
+    }
+
+    fetchChildCategoryProductNum() {
+      const allChildSortation = $('[data-all-show-sortation-ids]').eq(0);
+      const isOpenProductNum = $('.product-list-child-category').data('show-product-num');
+      if (allChildSortation.length === 0 || !isOpenProductNum) return;
+      const sortationIds = allChildSortation.data('all-show-sortation-ids').split(', ');
+      const chunks = chunk(sortationIds, 20);
+      const promise = [];
+      chunks.forEach((item, index) => {
+        const chunkSortationIds = item.join(',');
+        const apiPrefix = window.location.hostname === 'localhost' ? '/leproxy/api' : '/api';
+        promise[index] = axios.get(`${apiPrefix}/product/list/sortation/count/query?sortationIdStr=${chunkSortationIds}`);
+      });
+      this.sortationCountVoList = [];
+      Promise.all(promise).then(res => {
+        res.forEach(item => {
+          const {
+            data
+          } = item.data || {};
+
+          if (data && data.sortationCountVoList) {
+            data.sortationCountVoList.forEach(_ => {
+              this.sortationCountVoList.push(_);
+            });
+          }
+        });
+        this.renderChildCategoryProductNum();
+      });
+    }
+
     initEventBus() {
       const $this = this;
       $(document).on('shopline:section:load', e => {
@@ -335,6 +380,12 @@ window.SLM['product/collections/js/sidebar.js'] = window.SLM['product/collection
           $this.$menu = $('.product-list-menu');
           $this.$collectionsAjaxInner = $('#collectionsAjaxInner');
           $this.config.combineTags = $this.$menu.attr('data-combine-tags') === 'true';
+
+          if (!this.sortationCountVoList) {
+            $this.fetchChildCategoryProductNum();
+          } else {
+            $this.renderChildCategoryProductNum();
+          }
         }
       });
       window.SL_EventBus.on(DRAWER_CALLBACK_EVENT_NAME, ({

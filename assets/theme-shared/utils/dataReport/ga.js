@@ -2,9 +2,9 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/utils/dataReport/ga.js'] || function () {
   const _exports = {};
-  const Cookies = window['js-cookie']['default'];
   const { PageType, ClickType, eventType } = window['SLM']['theme-shared/utils/report/const.js'];
   const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
+  const { getCurrencyCode } = window['SLM']['theme-shared/utils/dataReport/tool.js'];
 
   class GoogleAnalysis {
     constructor(config) {
@@ -16,7 +16,7 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
       };
 
       if (params && !params.currency) {
-        params.currency = Cookies.get('currency_code');
+        params.currency = getCurrencyCode();
       }
 
       return ['event', eventType, params];
@@ -59,7 +59,8 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
               id: params.skuId,
               name: params.name,
               price: params.price,
-              variant: params.variant
+              variant: params.variant,
+              category: params.customCategoryName
             }]
           };
           break;
@@ -87,14 +88,16 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
               name,
               price,
               quantity,
-              variant
+              variant,
+              customCategoryName
             }) => {
               value.items.push({
                 id: skuId,
                 name,
                 price,
                 quantity,
-                variant: variant || ''
+                variant: variant || '',
+                category: customCategoryName
               });
             });
           }
@@ -127,7 +130,8 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
           event = eventType.SelectContent;
           value = {
             content_type: 'product',
-            item_id: params.skuId
+            item_id: params.skuId,
+            item_category: params.customCategoryName
           };
           break;
 
@@ -158,14 +162,16 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
               name,
               price,
               quantity,
-              variant
+              variant,
+              customCategoryName
             }) => {
               value.items.push({
                 item_id: skuId,
                 item_name: name,
                 price,
                 quantity,
-                item_variant: variant || ''
+                item_variant: variant || '',
+                item_category: customCategoryName
               });
             });
           }
@@ -182,7 +188,8 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
                 item_name: item.name,
                 price: currencyUtil.formatCurrency(item.price),
                 quantity: item.num,
-                item_variant: (item.skuAttr || []).join(',')
+                item_variant: (item.skuAttr || []).join(','),
+                item_category: item.customCategoryName
               };
             })
           };

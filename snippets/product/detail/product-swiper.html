@@ -30,6 +30,7 @@
 <input type="hidden" value="{{ productImageSize }}" class="product_productImageSize_{{selectorId}}">
 <input type="hidden" value="{{ showSkuImg }}" class="product_productImageShowSkuImg_{{selectorId}}">
 <input type="hidden" value="{{ showSwiperArrow }}" class="product_productImageShowSwiperArrow_{{selectorId}}">
+<input type="hidden" value="{{ pc_magnifier_type }}" class="product_productImageMagnifierType_{{selectorId}}">
 
     <input type="hidden" value="{{ productImageShowStyle }}" class="product_productImageShowStyle_{{ selectorId }}">
     <input type="hidden" value="{{ productMobileThumbnailImageHide }}" class="product_productMobileThumbnailImageHide_{{ selectorId }}">
@@ -147,7 +148,7 @@
                 {{/if}}
               </div>
             {{else if type '===' 'IMAGE'}}
-              <div class="swiper-slide firstInit imageItem {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" data-bottom="height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}" style="transform: translate3d(calc(-100% * {{@index}}), 0px, 0px);height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}">
+              <div class="swiper-slide firstInit imageItem imageItem--{{default ../pc_magnifier_type 'pointer'}} {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" data-bottom="height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}" style="transform: translate3d(calc(-100% * {{@index}}), 0px, 0px);height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}">
                 {{#if @index '==' ../initialSlide }}
                   {{#if ../templateAlias '===' 'ProductsDetail'}}
                     {{ snippet 'product/detail/product-swiper-img' type='pcImage' class='lozad product_photoSwipe_image' useLazyLoad=false }}
@@ -156,6 +157,11 @@
                   {{/if}}
                 {{else}}
                   {{ snippet 'product/detail/product-swiper-img' type='pcImage' class='swiper-lazy product_photoSwipe_image' }}
+                {{/if}}
+                {{#if ../pc_magnifier_type '==' 'hover'}}
+                  {{ assign 'image_width' (get 'width' (img_size resource)) }}
+                  {{ assign 'image_height' (get 'height' (img_size resource)) }}
+                  <img data-width="{{image_width}}" data-height="{{image_height}}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ resource }}" class="lozad imageItem--hover" alt="{{ alt }}">
                 {{/if}}
               </div>
             {{/if}}
@@ -193,8 +199,13 @@
         {{/if}}
       {{/if}}
       {{#if needSkuCover }}
-        <div class="product_pc_skuImage" style="display: block">
+        <div class="product_pc_skuImage product_pc_skuImage--{{pc_magnifier_type}}" style="display: block">
           {{ snippet 'product/detail/product-swiper-img' type='pcSkuImage' class='lozad product_photoSwipe_image' isPreload=true useLazyLoad=false }}
+          {{#if pc_magnifier_type '==' 'hover'}}
+            {{ assign 'image_width' (get 'width' (img_size coverImgObj.url)) }}
+            {{ assign 'image_height' (get 'height' (img_size coverImgObj.url)) }}
+            <img data-width="{{image_width}}" data-height="{{image_height}}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" class="lozad imageItem--hover" alt="{{ coverImgObj.alt }}">
+          {{/if}}
         </div>
       {{else}}
         <div class="product_pc_skuImage" ></div>
@@ -276,14 +287,24 @@
                   {{/if}}
                 </div>
               {{else}}
-                <div class="imageItem" style="padding-bottom: {{ append (default (get 'ratio' (img_size firstItem.resource)) 100) '%' }}" data-index="0">
+                <div class="imageItem imageItem--{{ pc_magnifier_type }}" style="padding-bottom: {{ append (default (get 'ratio' (img_size firstItem.resource)) 100) '%' }}" data-index="0">
                   <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"   onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.resource width=1800 }}" alt="{{ firstItem.alt }}">
+                  {{#if pc_magnifier_type '==' 'hover'}}
+                    {{ assign 'image_width' (get 'width' (img_size firstItem.resource)) }}
+                    {{ assign 'image_height' (get 'height' (img_size firstItem.resource)) }}
+                    <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" class="lozad imageItem--hover" alt="{{ firstItem.alt }}">
+                  {{/if}}
                 </div>
               {{/if}}
             </div>
-            <div class="product_pc_skuImage_flatten" style="display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
+            <div class="product_pc_skuImage_flatten product_pc_skuImage_flatten--{{ pc_magnifier_type }}" style="display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
               {{#if coverImgObj.url}}
-                <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}" >
+                <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="">
+                {{#if pc_magnifier_type '==' 'hover'}}
+                  {{ assign 'image_width' (get 'width' (img_size coverImgObj.url)) }}
+                  {{ assign 'image_height' (get 'height' (img_size coverImgObj.url)) }}
+                  <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" class="lozad imageItem--hover" alt="{{ alt }}">
+                {{/if}}
               {{/if}}
             </div>
           </div>
@@ -308,7 +329,14 @@
                     {{/if}}
                   </div>
                 {{else}}
-                  {{ snippet 'product/detail/product-swiper-img' type='pcTwoColImage' index=(add @index 1) }}
+                  {{ assign 'class' (append 'imageItem--' ../pc_magnifier_type) }}
+                  {{#snippet 'product/detail/product-swiper-img' class=class type='pcTwoColImage' index=(add @index 1)}}
+                    {{#if pc_magnifier_type '==' 'hover'}}
+                      {{ assign 'image_width' (get 'width' (img_size resource)) }}
+                      {{ assign 'image_height' (get 'height' (img_size resource)) }}
+                      <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ resource }}" class="lozad imageItem--hover" alt="{{ alt }}">
+                    {{/if}}
+                  {{/snippet}}
                 {{/if}}
               {{/ifEven}}
             {{/each}}
@@ -332,7 +360,14 @@
                     {{/if}}
                   </div>
                 {{else}}
-                  {{ snippet 'product/detail/product-swiper-img' type='pcTwoColImage' index=(add @index 1) }}
+                  {{ assign 'class' (append 'imageItem--' ../pc_magnifier_type) }}
+                  {{#snippet 'product/detail/product-swiper-img' class=class type='pcTwoColImage' index=(add @index 1)}}
+                    {{#if pc_magnifier_type '==' 'hover'}}
+                      {{ assign 'image_width' (get 'width' (img_size resource)) }}
+                      {{ assign 'image_height' (get 'height' (img_size resource)) }}
+                      <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ resource }}" class="lozad imageItem--hover" alt="{{ alt }}">
+                    {{/if}}
+                  {{/snippet}}
                 {{/if}}
               {{/ifOdd}}
             {{/each}}
@@ -344,6 +379,11 @@
         <div class="product_pc_skuImage_flatten" style="width: 100%; position:absolute; display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
           {{#if coverImgObj.url}}
             <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}">
+            {{#if pc_magnifier_type '==' 'hover'}}
+              {{ assign 'image_width' (get 'width' (img_size coverImgObj.url)) }}
+              {{ assign 'image_height' (get 'height' (img_size coverImgObj.url)) }}
+              <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" class="lozad imageItem--hover" alt="{{ alt }}">
+            {{/if}}
           {{/if}}
         </div>
       </div>

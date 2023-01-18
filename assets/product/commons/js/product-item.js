@@ -2,15 +2,13 @@ window.SLM = window.SLM || {};
 
 window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/js/product-item.js'] || function () {
   const _exports = {};
-  const currency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const ProductItemReport = window['SLM']['theme-shared/report/product/product-item.js'].default;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const previewModal = window['SLM']['product/commons/js/preview-modal/index.js'].default;
   const quickAddModal = window['SLM']['product/commons/js/quick-add-modal.js'].default;
   const { processPrice } = window['SLM']['commons/utils/convertPrice.js'];
-  const {
-    formatCurrency
-  } = currency;
   const hdReport = new ProductItemReport();
   const isPad = SL_State.get('request.is_mobile') || document.ontouchmove !== undefined;
   $('body').delegate('.js-product-item-quick-view', 'click', function (e) {
@@ -126,8 +124,10 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
     const title = window.SL_State.get('sortation.sortation.title');
 
     if (pageType === 'Products') {
+      let {
+        pathname
+      } = window.location;
       const {
-        pathname,
         search
       } = window.location;
       let collectionName = '';
@@ -136,6 +136,11 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
         collectionName = title;
       } else {
         collectionName = 'All Products';
+      }
+
+      if (window.Shopline.routes && window.Shopline.routes.root && window.Shopline.routes.root !== '/') {
+        const root = `/${window.Shopline.routes.root.replace(/\//g, '')}`;
+        pathname = pathname.replace(root, '');
       }
 
       if (pathname === '/collections/types' || pathname === '/collections/brands') {
@@ -164,31 +169,37 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
     id,
     name,
     price,
-    index
+    index,
+    customCategoryName
   }) {
     const listName = judgePageType();
     window.SL_EventBus.emit('global:thirdPartReport', {
       GA: [['event', 'select_content', {
         content_type: 'product',
+        currency: getCurrencyCode(),
         items: [{
           id,
           name,
-          price: formatCurrency(price),
+          currency: getCurrencyCode(),
+          price: convertPrice(price),
           list_name: listName,
-          list_position: index
+          list_position: index,
+          category: customCategoryName
         }]
       }]],
       GA4: [['event', 'select_content', {
         content_type: 'product',
         item_id: id
       }], ['event', 'select_item', {
+        currency: getCurrencyCode(),
         items: [{
           item_id: id,
           item_name: name,
-          price: formatCurrency(price),
-          currency: window.SL_State.get('storeInfo.currency'),
+          price: convertPrice(price),
+          currency: getCurrencyCode(),
           item_list_name: listName,
-          index
+          index,
+          item_category: customCategoryName
         }]
       }]]
     });
@@ -221,7 +232,8 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
       id: $(this).data('skuId'),
       name: $(this).data('name'),
       price: $(this).data('price'),
-      index: $(this).data('index') + 1
+      index: $(this).data('index') + 1,
+      customCategoryName: $(this).data('custom-category-name')
     });
     reportClickProduct(item.data('id'));
   });

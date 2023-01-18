@@ -125,21 +125,21 @@ window.SLM['theme-shared/biz-com/coupon/index.js'] = window.SLM['theme-shared/bi
 
       switch (discountCodeUnavailable) {
         case 'DISCOUNT_CODE_INVALID':
-          errInfo = t('cart.discount.code_error');
+          errInfo = t('transaction.discount.code_error');
           break;
 
         case 'DISCOUNT_CODE_CAN_NOT_ACCUMULATE':
-          errInfo = t('transaction.general.discount_codes_cannot_stack');
+          errInfo = t('transaction.discount.discount_codes_cannot_stack');
           break;
 
         case 'DISCOUNT_CODE_NO_REACH':
-          errInfo = t(`cart.discount.code_item_unmatched`, {
+          errInfo = t(`transaction.discount.code_item_unmatched`, {
             discountCode
           });
           break;
 
         case 'MUTUAL_EXCLUDED_BY_TIME_LIMITED':
-          errInfo = t('cart.discount.discounts_cannot_stack');
+          errInfo = t('transaction.contact.discounts_stack_not');
           break;
 
         case 'DISCOUNT_CODE_TOO_LONG':
@@ -149,7 +149,7 @@ window.SLM['theme-shared/biz-com/coupon/index.js'] = window.SLM['theme-shared/bi
             errInfo = t('transaction.general.coupon_code_exceed_not_25_characters');
 
             if (errInfo === 'transaction.general.coupon_code_exceed_not_25_characters') {
-              errInfo = t('cart.discount.coupon_code_length_limit', {
+              errInfo = t('checkout&system.discount_code.length_limit', {
                 range: '2~25'
               });
             } else {
@@ -162,13 +162,13 @@ window.SLM['theme-shared/biz-com/coupon/index.js'] = window.SLM['theme-shared/bi
           break;
 
         case 'MUTUAL_EXCLUDED_BY_LEVEL_PRICE':
-          errInfo = t('cart.discount.code_item_unmatched', {
+          errInfo = t('transaction.discount.code_item_unmatched', {
             discountCode
           });
           break;
 
         case 'SHIPPING_PLAN_UNAVAILABLE':
-          errInfo = t(`transaction.general.coupon_invalid_for_the_shipping_method`, {
+          errInfo = t(`transaction.discount.coupon_invalid_for_the_shipping_method`, {
             discountCode
           });
           break;

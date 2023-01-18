@@ -2711,6 +2711,10 @@ button.swiper-pagination-bullet{
     text-align:right !important;
   }
 }
+.color-scheme-{
+  background-color:rgba(var(--color-page-background));
+}
+
 .color-scheme-1:not([data-no-effect]){
   background-color:rgba(var(--color-scheme-1-bg));
 }
@@ -3475,28 +3479,33 @@ button.swiper-pagination-bullet{
   border-color:rgba(var(--color-btn-background)) !important;
   color:rgba(var(--color-btn-background)) !important;
 }
+.sl-btn.btn--loading:after{
+  animation:btn-loading linear 1.5s infinite;
+  background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADoSURBVHgBpZULEYMwDEDDFExCHWwONgk42ByAA+YACUjBAg7KFCAhS0Z6VzIYNH13PWivfaS/AHAARDxDDiygUlHpqUw4401iGlRGEs01VfZSAha3Eu0tR8aiEqzQYBfJPNchBxJ0kdBBDiq6DnKRXbXt4gonKpdQKYpiAAMUSC1n1sXr58GIbOR3yTjCUdod2HHyHFn4jr50h0TUug/h3gZaSGT1yMmCJu/05pFjSepNEZn/iS7qUCvp449MZ6Rmq2ODS1gcsk0l7zq1NXtTeaqpbJGWkUTc4zKiSdo4WvtvAeejdUjwAWbg41OUjSIvAAAAAElFTkSuQmCC);
+  content:"";
+  height:20px;
+  left:50%;
+  margin-left:-10px;
+  margin-top:-10px;
+  opacity:1;
+  position:absolute;
+  top:50%;
+  width:20px;
+}
 .sl-btn.btn-primary{
   overflow:hidden;
   transition:color .5s ease;
 }
-.sl-btn.btn-primary:after{
-  bottom:0;
-  content:"";
-  height:100%;
-  left:0;
-  position:absolute;
-  top:0;
-  width:100%;
-}
-[data-button-hover-animation="1"] .sl-btn.btn-primary:after{
-  height:100%;
-  width:200%;
-}
 [data-button-hover-animation="1"] .sl-btn.btn-primary:hover:after{
   animation:btn-sweep .75s cubic-bezier(.01, .56, 1, 1);
   background-image:linear-gradient(90deg, transparent, hsla(0,0%,100%,.25), transparent);
+  height:100%;
   left:150%;
+  margin-left:0;
+  margin-top:0;
+  top:0;
   transform:skew(-20deg);
+  width:100%;
 }
 
 [data-button-hover-animation="2"] .sl-btn.btn-primary{
@@ -3600,7 +3609,7 @@ button.swiper-pagination-bullet{
   border-color:rgba(var(--color-btn-background));
   color:rgba(var(--color-btn-text));
 }
-.sl-btn.col-24{
+.sl-btn.btn--block,.sl-btn.col-24{
   flex:0 0 auto;
   width:100%;
 }
@@ -5183,16 +5192,6 @@ img.lozad{
 }
 img.lozad[src],img.lozad[srcset]{
   visibility:visible;
-}
-
-#google_translate_element,.goog-te-spinner-pos,.goog-tooltip,.skiptranslate{
-  display:none !important;
-}
-
-.goog-text-highlight{
-  background-color:transparent !important;
-  border:none !important;
-  box-shadow:none !important;
 }
 
 .visually-hidden{

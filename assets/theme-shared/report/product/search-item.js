@@ -2,12 +2,10 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/report/product/search-item.js'] = window.SLM['theme-shared/report/product/search-item.js'] || function () {
   const _exports = {};
-  const currencyUtils = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { validParams } = window['SLM']['theme-shared/report/product/utils/index.js'];
   const { BaseReport } = window['SLM']['theme-shared/report/common/baseReport.js'];
-  const {
-    formatCurrency
-  } = currencyUtils;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
 
   class SearchItemReport extends BaseReport {
     searchResults(reportData) {
@@ -30,7 +28,8 @@ window.SLM['theme-shared/report/product/search-item.js'] = window.SLM['theme-sha
           sku_id: reportSkuId,
           spu_id: spuSeq,
           position: index + 1,
-          price: formatCurrency(productMinPrice),
+          currency: getCurrencyCode(),
+          price: convertPrice(productMinPrice),
           quantity: 1
         }))
       };
@@ -57,7 +56,8 @@ window.SLM['theme-shared/report/product/search-item.js'] = window.SLM['theme-sha
       const productInfoParams = {
         spu_id: id,
         sku_id: skuId,
-        price: formatCurrency(price),
+        currency: getCurrencyCode(),
+        price: convertPrice(price),
         position: index + 1,
         status: status ? 102 : 101
       };

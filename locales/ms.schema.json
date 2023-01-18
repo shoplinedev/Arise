@@ -1641,6 +1641,9 @@
     "product_collections_collection-header": {
       "name": "Halaman depan kategori",
       "settings": {
+        "banner_image_mobile": {
+          "label": "Mudah alih banner"
+        },
         "parallax_scroll": {
           "info": "Hidupkan kesan paralaks akan memangkas beberapa gambar untuk mencapai kesan",
           "label": "Paralaks bergolek"
@@ -1678,6 +1681,19 @@
         },
         "per_page_num": {
           "label": "Bilangan produk pada setiap halaman"
+        },
+        "price_show_type": {
+          "info": "Sekiranya produk adalah produk spesifikasi tunggal, ia dipaparkan dalam gaya harga tunggal",
+          "label": "Cara paparan harga",
+          "options__0": {
+            "label": "Harga terendah"
+          },
+          "options__1": {
+            "label": "Julat harga"
+          },
+          "options__2": {
+            "label": "Dari harga terendah"
+          }
         },
         "product_fill_type": {
           "label": "Kaedah pengisian peta komoditi",
@@ -1721,6 +1737,9 @@
             "label": "Tunjukkan paling banyak 2 baris"
           }
         },
+        "show_orgin_price": {
+          "label": "Sama ada menunjukkan harga asal"
+        },
         "sorter_enable": {
           "label": "Dayakan pengisihan produk"
         }
@@ -1739,6 +1758,9 @@
           "settings": {
             "location": {
               "label": "Penerangan produk menunjuk lokasi",
+              "options__0": {
+                "label": "Sisi kanan gambar produk"
+              },
               "options__1": {
                 "label": "Di bawah gambar produk"
               }
@@ -2078,6 +2100,15 @@
             "label": "Di atas tajuk produk"
           }
         },
+        "pc_magnifier_type": {
+          "label": "Pembesar komputer",
+          "options__0": {
+            "label": "Klik tetikus untuk memperbesar"
+          },
+          "options__1": {
+            "label": "Memperbesar penggantungan tetikus"
+          }
+        },
         "product_image_pc_show_style": {
           "label": "Atur cara komputer",
           "options__0": {
@@ -2186,7 +2217,7 @@
       "name": "Hasil carian",
       "settings": {
         "group_header__0": {
-          "label": "Gambar produk"
+          "label": "Peta produk"
         },
         "md_cols": {
           "label": "Bilangan lajur di mudah alih",

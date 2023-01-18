@@ -1,26 +1,43 @@
-{{#if (boolean settings.show_category_cover '&&' sortation.sortationImg)}}
-  {{assign 'boxClass' 'hasCover' }}
-  {{assign 'marginClass' ''}}
-{{else if (boolean (isFalsey settings.show_category_cover) '&&' (isFalsey settings.show_category_name))}}
-  {{assign 'boxClass' 'noCoverAndTitle' }}
-  {{assign 'marginClass' 'section-gap'}}
-{{else if (boolean (isFalsey sortation.sortationImg) '&&' (isFalsey settings.show_category_name))}}
-  {{assign 'boxClass' 'noCoverAndTitle' }}
-  {{assign 'marginClass' 'section-gap'}}
-{{else}}
+{{assign 'bannerImageMobile' settings.banner_image_mobile.url}}
+{{!-- 由于存在id js逻辑不能使用dom节点区分pc和移动端，只能使用css类名区分 --}}
+{{assign 'marginClass' 'marginClass'}}
+{{assign 'marginClassMobile' 'marginClassMobile'}}
+{{#if (boolean settings.show_category_name)}}
   {{assign 'boxClass' 'noCover' }}
-  {{assign 'marginClass' 'section-gap'}}
+  {{assign 'boxClassMobile' 'noCoverMoblie' }}
+{{else}}
+  {{assign 'boxClass' 'noCoverAndTitle' }}
+  {{assign 'boxClassMobile' 'noCoverAndTitleMobile' }}
 {{/if}}
 
-<div class="product-list-banner-box {{boxClass}} {{marginClass}}">
+{{#if (boolean settings.show_category_cover)}}
+  {{#if (boolean sortation.sortationImg)}}
+    {{assign 'boxClass' 'hasCover' }}
+    {{assign 'boxClassMobile' 'hasCoverMobile' }}
+    {{assign 'marginClass' ''}}
+    {{assign 'marginClassMobile' ''}}
+  {{else if (boolean bannerImageMobile)}}
+    {{assign 'marginClassMobile' ''}}
+    {{assign 'boxClassMobile' 'hasCoverMobile' }}
+  {{/if}}
+{{/if}}
+<div class="product-list-banner-box {{boxClass}} {{boxClassMobile}} {{marginClass}} {{marginClassMobile}}">
   <!-- 分类banner -->
   {{#if settings.show_category_cover}}
     {{ assign 'coverImage' (image_responsive sortation.sortationImg useLazyLoad=false ) }}
     <div class="product-list-banner-box-bg" id="productListBanner-container">
       <div class="{{#if settings.parallax_scroll }}product-list-banner-box-bg-img{{else}}product-list-banner-box-bg-img--default{{/if}}" id="productListBanner-parallax" data-parallax-scroll="{{settings.parallax_scroll}}">
         {{#if sortation.sortationImg}}
-          <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  {{{get 'responsiveAttr' coverImage }}} alt="">
+          <img class="d-none d-md-block" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  {{{get 'responsiveAttr' coverImage }}} alt="">
         {{/if}}
+        {{#if ( boolean bannerImageMobile)}}
+        {{ assign 'banner_mobile_bg' (get 'responsiveAttr' (image_responsive bannerImageMobile useLazyLoad=false))}}
+        {{else}}
+        {{ assign 'banner_mobile_bg' (get 'responsiveAttr' coverImage)}}
+        {{/if}}
+        {{#or (boolean bannerImageMobile) (boolean sortation.sortationImg)}}
+         <img class="d-md-none" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  {{{banner_mobile_bg}}} alt="">
+        {{/or}}
       </div>    
     </div>
   {{else}}
@@ -31,10 +48,10 @@
   {{/if}}
   <!-- 分类标题 -->
   {{#if settings.show_category_name}}
-    <div class="product-list-banner-box-title {{boxClass}}">
+    <div class="product-list-banner-box-title {{boxClass}} {{boxClassMobile}}">
       <div class="container">
         <div class="product-list-crumbs">
-          <a href="/" class="product-list-banner-box-title-url custom-body4">{{t 'general.general.home'}} /</a>
+          <a href="{{ redirect_to '/' }}" class="product-list-banner-box-title-url custom-body4">{{t 'general.general.home'}} /</a>
           <a class="product-list-banner-box-title-url custom-body4" style="opacity: .6;">{{sortation.title}}</a>
         </div>
         <h1 class="product-list-banner-box-title-sortationTitle custom-title2 title2">{{sortation.title}}</h1>

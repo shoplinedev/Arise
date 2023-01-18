@@ -53,7 +53,8 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
             params: {
               countryCode,
               addressCode: code,
-              depth: depth || 1
+              depth: depth || 1,
+              language: getLanguage()
             }
           });
         }
@@ -71,7 +72,8 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
 
           return request.get(LOGISTICS_ADDRESS_TEMPLATE, {
             params: {
-              country: countryCode
+              country: countryCode,
+              lang: getLanguage()
             }
           });
         }

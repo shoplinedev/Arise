@@ -55,7 +55,7 @@ window.SLM['cart/script/biz/cart/index.js'] = window.SLM['cart/script/biz/cart/i
             } = convertPrice($(this).attr('data-amount'));
             $(this).html(formattedPriceStr);
           } else {
-            $(this).text(convertFormat($(this).attr('data-amount')));
+            $(this).html(convertFormat($(this).attr('data-amount')));
           }
         });
       });
@@ -163,7 +163,7 @@ window.SLM['cart/script/biz/cart/index.js'] = window.SLM['cart/script/biz/cart/i
 
       this._initCurrencyChangeListener();
 
-      if (window.location.pathname === '/cart' && this._cartType === 'main') {
+      if (window.location.pathname === window.Shopline.redirectTo('/cart') && this._cartType === 'main') {
         const cartInfo = SL_State.get('cartInfo');
         cartReport.viewCart(cartInfo);
       }

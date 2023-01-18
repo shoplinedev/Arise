@@ -4,7 +4,7 @@ window.SLM['theme-shared/utils/newCurrency/CurrencyConvert.js'] = window.SLM['th
   const _exports = {};
   const { setCurrencyConfig, setStoreCurrency, setDefaultToCurrency, getConvertPrice: originGetConvertPrice, convertFormat: originConvertFormat, covertCalc, convertFormatWithoutCurrency: originConvertFormatWithoutCurrency } = window['@sl/currency-tools-core'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const storeCurrency = SL_State.get('storeInfo.currency');
+  const storeCurrency = window.Shopline.currency;
   const toDefault = SL_State.get('currencyCode') || storeCurrency;
   const {
     currencyDetailList

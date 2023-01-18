@@ -12,7 +12,7 @@
   </div>
 {{else}}
   <div class="cart-sku-list-promotion-module-can-jump notranslate">
-    <a href="{{append '/activity/' promotion.activitySeq '?type=pool'}}{{#if _promotion_config_.params.extMap.meetThreshold '===' 'true'}}&query_product_type=2{{/if}}"
+    <a href="{{redirect_to (append '/activity/' promotion.activitySeq '?type=pool')}}{{#if _promotion_config_.params.extMap.meetThreshold '===' 'true'}}&query_product_type=2{{/if}}"
       class="cart-sku-list-promotion-module-can-jump-wrapper">
       <div>
         {{noTranslationHTML (javascript_template promotionBenefit.extMap.bannerText _promotion_config_.params (toRegex '\{\s*(\w+)\s*\}' flags="g"))}}

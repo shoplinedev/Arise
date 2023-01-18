@@ -10,6 +10,7 @@ window.SLM['theme-shared/utils/tradeReport/index.js'] = window.SLM['theme-shared
   const { clickFbData } = window['SLM']['theme-shared/utils/dataReport/fb.js'];
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
   const { pageMap } = window['SLM']['theme-shared/utils/tradeReport/const.js'];
+  const { SL_State: store } = window['SLM']['theme-shared/utils/state-selector.js'];
   const REPORT_ADD_CART = Symbol('REPORT_ADD_CART');
   const PAYPAL_CLICK = Symbol('PAYPAL_CLICK');
   const paypalPage = {
@@ -33,7 +34,7 @@ window.SLM['theme-shared/utils/tradeReport/index.js'] = window.SLM['theme-shared
   class TradeReport {
     constructor() {
       this.eventBus = SL_EventBus;
-      this.storeCurrency = Cookies.get('currency_code');
+      this.currency = store.get('currencyCode');
       this.hdPage = {
         Cart: 'cart',
         MiniCart: 'cart'
@@ -48,7 +49,7 @@ window.SLM['theme-shared/utils/tradeReport/index.js'] = window.SLM['theme-shared
       } = data;
       const val = { ...value,
         ...{
-          currency: this.storeCurrency
+          currency: this.currency
         }
       };
       const gaParam = ga.click(pageType, actionType, val);
@@ -126,6 +127,7 @@ window.SLM['theme-shared/utils/tradeReport/index.js'] = window.SLM['theme-shared
   const setPayPalReportReq = ({
     needReport,
     products,
+    currency,
     extra
   }) => {
     const resData = getNeedReportData(needReport);
@@ -137,13 +139,13 @@ window.SLM['theme-shared/utils/tradeReport/index.js'] = window.SLM['theme-shared
     products.forEach(item => {
       price += Number(item.productPrice);
     });
-    const dataReportReq = setAddtoCart(price, window && window.SL_State.get('storeInfo.currency'), `addToCart${eventID}`, { ...extra,
+    const dataReportReq = setAddtoCart(price, currency, `addToCart${eventID}`, { ...extra,
       ...extData
     });
     return dataReportReq;
   };
 
-  const setIniiateCheckout = (seq, needReport) => {
+  const setIniiateCheckout = (seq, currency, totalPrice, needReport) => {
     const resData = getNeedReportData(needReport);
     const {
       eventID
@@ -154,11 +156,18 @@ window.SLM['theme-shared/utils/tradeReport/index.js'] = window.SLM['theme-shared
         Cookies.remove(key);
       }
     });
-    Cookies.set(`${seq}_fb_data`, {
+    const data = {
       tp: eventID ? 2 : 1,
       et: Date.now(),
       ed: eventID || getEventID()
-    });
+    };
+
+    if (totalPrice) {
+      data.currency = currency;
+      data.payAmount = totalPrice;
+    }
+
+    Cookies.set(`${seq}_fb_data`, data);
   };
 
   const reportCheckout = data => {

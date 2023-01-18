@@ -13,6 +13,7 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
   const { SL_EventBus } = window['SLM']['theme-shared/utils/event-bus.js'];
   const { getSyncData } = window['SLM']['theme-shared/utils/dataAccessor.js'];
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
+  const { redirectTo } = window['SLM']['theme-shared/utils/url.js'];
   const {
     GO_TO_CHECKOUT
   } = HD_EVENT_NAME;
@@ -66,7 +67,7 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
     }
   };
   const RouterPath = {
-    SignIn: '/user/signIn',
+    SignIn: redirectTo('/user/signIn'),
     Checkout: '/trade/checkout',
     Checkouts: '/checkouts'
   };
@@ -104,7 +105,9 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
       query = {},
       associateCart = false,
       abandonedOrderSeq,
-      abandonedOrderMark
+      abandonedOrderMark,
+      currency,
+      totalPrice
     } = extra;
 
     try {
@@ -182,7 +185,7 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
           spb: query && query.spb
         }
       });
-      setIniiateCheckout(response.data.seq, needReport);
+      setIniiateCheckout(response.data.seq, currency, totalPrice, needReport);
       const urlPrefix = `${window.location.protocol}//${window.location.host}`;
 
       if (redirectToSignIn) {
@@ -229,7 +232,7 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
           needReport
         });
 
-        if (associateCart && window.location.pathname === '/cart') {
+        if (associateCart && window.location.pathname === redirectTo('/cart')) {
           window.SL_EventBus && window.SL_EventBus.emit('global:hdReport:exit', ['60006254', {
             event_name: '999',
             page_dest: `${window.location.href}`

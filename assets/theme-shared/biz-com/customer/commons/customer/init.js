@@ -5,6 +5,7 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/init.js'] = window.SL
   const Cookie = window['js-cookie']['default'];
   const { HOME } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const { UDB_PARAMS, THIRD_DEFAULT_REGION } = window['SLM']['theme-shared/biz-com/customer/constant/const.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   _exports.default = function () {
     const {
@@ -19,7 +20,7 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/init.js'] = window.SL
     Cookie.set('country_code', code);
 
     if (!types) {
-      window.location.href = HOME;
+      window.location.href = redirectTo(HOME);
       return;
     }
 

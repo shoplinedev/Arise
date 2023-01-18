@@ -7,8 +7,8 @@
       "related_articles": "Relaterte blogger"
     },
     "blog_list": {
-      "empty_desc": "Det er ingen blogginnlegg i denne bloggen.",
-      "read_btn_text": "Les mer",
+      "empty_description": "Det er ingen blogginnlegg i denne bloggen.",
+      "readmore": "Les mer",
       "title": "Blogg"
     },
     "comment": {
@@ -33,31 +33,26 @@
   },
   "cart": {
     "cart": {
-      "added_to_cart": "Lagt i handlekurven",
       "buy_now": "KJØP NÅ",
       "cancel": "Annullere",
-      "cart_subtotal": "Delsum for handlekurv",
-      "cart_view": "Vis handlekurv",
-      "checkout": "KASSE",
-      "click_to_view": "Klikk for å vise",
       "confirm": "OK",
-      "continue": "Fortsette",
-      "continue_shopping": "FORTSETT Å HANDLE",
-      "custom_preview": "Egendefinert forhåndsvisning",
-      "day": "dag",
-      "days": "dager",
-      "empty_cart": "Handlekurven er tom.",
       "got_it": "Jeg har det",
-      "remove": "Fjerne",
-      "return_to_cart": "Gå tilbake til handlekurven",
-      "subtotal": "Delsum",
-      "tax_included": "Avgift inkludert"
+      "added_to_cart": "Lagt i handlekurven",
+      "cart_subtotal": "Delsum for handlekurv"
     },
     "checkout": {
       "max_amount_limit": "Du har overskredet maksimumsbeløpet for utsjekking"
     },
     "checkout_proceeding": {
-      "checkout_proceed": "Nedenfor produkter overskrider kjøpsgrensen, fortsetter du fortsatt til kassen?"
+      "checkout": "KASSE",
+      "checkout_proceed": "Nedenfor produkter overskrider kjøpsgrensen, fortsetter du fortsatt til kassen?",
+      "continue": "Fortsette",
+      "continue_shopping": "FORTSETT Å HANDLE",
+      "day": "dager",
+      "remove": "Fjerne",
+      "return_to_cart": "Gå tilbake til handlekurven",
+      "subtotal": "Delsum",
+      "tax_included": "Avgift inkludert"
     },
     "couponCode": {
       "exceedLimit": "Rabattkoder overskrider mengdegrensen",
@@ -71,14 +66,9 @@
       "unavailable": "Rabattkoden er utløpt"
     },
     "discount": {
-      "code_error": "Rabattkoden er feil oppgitt",
-      "code_item_unmatched": "{{discountCode}} er angitt riktig, men prisen eller kvantiteten på varene oppfyller ikke kravene",
-      "coupon_code": "Kupongkode",
       "coupon_code_amount": "Kupong",
       "coupon_code_length_limit": "Kupongkoden kan ikke overskride {{range}} tegn",
-      "discounts_cannot_stack": "En rabatt er brukt på denne ordren. Du kan ikke legge til en ny rabatt.",
-      "expected_discount": "Rabatt",
-      "use_coupon_alone": "Denne kupongkoden kan ikke brukes sammen med andre kampanje- eller rabattilbud"
+      "expected_discount": "Rabatt"
     },
     "discount_item": {
       "buy_limit5": "Du kan kjøpe maksimalt {{stock}} produkt(er) med rabattene samtidig"
@@ -89,16 +79,18 @@
       "buy_limit3": "Du kan bare kjøpe {{stock}} deler av dette produktet med rabattene"
     },
     "general": {
-      "continue_as_a_guest": "Fortsett som gjest"
+      "continue_as_a_guest": "Fortsett som gjest",
+      "support_oneTime_purchase_only": "Produktet støtter bare individuelle kjøpe",
+      "support_subscription_only": "Produktet støtter bare kjøpe etter abonnement"
     },
     "item": {
       "add_limit2": "Maksimumsantallet for ett enkelt produkt er 99999 deler",
-      "invalid_product": "Ugyldige produkter",
+      "click_to_view": "Klikk for å vise",
+      "custom_preview": "Egendefinert forhåndsvisning",
+      "empty_cart": "Handlekurven er tom.",
       "item_left": "{{stock}}-stykker på lager",
       "none_existent": "Produktet eksisterer ikke",
-      "remove_invalid_product": "Slett ugyldige produkter",
-      "removed": "UGYLDIG",
-      "sold_out": "UTSOLGT"
+      "view_cart": "Vis handlekurv"
     },
     "next_step": {
       "calculated_taxes_fees": "Avgifter og frakt beregnet i kassen"
@@ -106,29 +98,12 @@
     "notices": {
       "change_password_after_verification": "Du kan endre passord etter bekreftelse",
       "excess_product": "Nedenfor produkter overskrider innkjøpsgrensen, vennligst endre antallet",
-      "insufficient_product_inventory": "Utilstrekkelig varelager",
-      "network": "Nettverksfeil",
       "product_amount_limit": "Unnskyld! Antall produkter i handlekurven overskrider grensen.",
-      "product_expired": "Produktet er utløpt",
-      "product_limit": "Produktgrensen er overskredet",
       "product_selected_invalid": "Beklager, produktet du valgte, er ugyldig å kjøpe. Velg på nytt",
       "store_nonexistent": "Butikken finnes ikke"
     },
     "order": {
-      "authorized": "Autorisert",
-      "canceled": "Annullere",
-      "canceled_order": "Annullere",
-      "click_to_track": "Vennligst spor pakken din ved å klikke på lenken nedenfor:",
-      "contact_us": "Kontakt oss",
-      "deleted": "UGYLDIG",
-      "help_tips": "Trenger du hjelp? Kontakt oss:{{email}}",
       "invalid_order_number": "ugyldig ordrenummer",
-      "no_more_info": "Ingen mer informasjon",
-      "no_record": "Det er for øyeblikket ingen ordrerekord, gå på shopping",
-      "order": "Ordrer",
-      "order_details": "Bestillingsdetaljer",
-      "package_amount": "Pakke {{num}}({{item}} varer)",
-      "pay_amount": "betale beløp",
       "paymentVoucher": {
         "downloadDoc": "Last ned filen",
         "format": "Format",
@@ -137,50 +112,26 @@
         "uploadLimit": "Last inn .jpg-filer .png .pdf mindre enn 20 MB"
       },
       "payment_voucher_confirmation": "Har det",
-      "payment_voucher_transfer_success": "Betalingen ble overført",
-      "payment_voucher_waiting_for_payment": "venter på betaling",
-      "receiver_account": "mottakerkonto",
-      "reference_number": "referanse nummer",
-      "remark": "Bestillingsmerknader",
-      "sequence": "Nr.{{id}}",
       "shipping_address": "Leveringsadresse",
       "sign_in": "Eller logg på med følgende metoder",
       "tax_included": "Inkludert {{price}} i avgifter",
-      "time": "Bestilt den:",
-      "total_amount": "{{transPackages}}-element totalt",
-      "total_item_amount": "{{transPackages}} elementer totalt",
-      "tracking": "Spor",
       "try_again": "Opplasting mislyktes. Vær så snill, prøv på nytt.",
       "try_later": "systemet er opptatt, prøv igjen senere.",
       "upload_bank_transfer_vouhcer_for_confirmation": "Last opp bankoverføringskupongen, så bekrefter vi.",
-      "upload_image_within_10_m_b": "Last opp JPG, PNG, GIF-bilder innen 10 MB",
-      "upload_time": "opplastingstid",
-      "upload_voucher": "Last opp kupong",
-      "voucher_amount_limit": "Du kan bare laste opp opptil 5 kuponger."
+      "upload_image_within_10_m_b": "Last opp JPG, PNG, GIF-bilder innen 10 MB"
     },
     "payment": {
-      "billing_address": "Faktureringsadresse",
       "channel": "Betalingskanal",
-      "continue_shopping": "Fortsett å Handle",
       "create_time": "Opprettet",
-      "detail": "Detalj",
       "free": "Gratis",
       "log_in": "Gå til logg på",
-      "method": "Betalingsmåte",
-      "paid": "Betalt",
-      "partially_paid": "Delvis betalt",
-      "paying": "Betalende",
-      "payment": "Betaling",
       "payment_details": "Betalingsdetalj",
-      "payment_status": "Betalingsstatus",
       "pending_review": "Betalende",
       "reference_number": "Referansenummer for transaksjon",
       "status": "Status",
       "subtotal_price": "Delsum",
       "sum": "Beløp",
-      "total": "Totalt",
       "total_sum": "Totalt",
-      "unpaid": "Ubetalt",
       "update_time": "Oppdatert"
     },
     "policy": {
@@ -188,21 +139,6 @@
     },
     "promotion": {
       "no_promotion": "Rabatt som ikke deltar"
-    },
-    "refund": {
-      "click_to_view": "Klikk for å vise",
-      "cost_points": "Kostnad {{value}} poeng",
-      "custom_preview": "Egendefinert forhåndsvisning",
-      "deduct_point": "Du kan bruke {{deductMemberPointNum}} til å lagre {{deductMemberPointAmount}}"
-    },
-    "shipping": {
-      "info": "Informasjon",
-      "no_info": "Ingen leveringsinformasjon ennå, vennligst sjekk senere.",
-      "package_tracking": "Sporing av Pakker",
-      "partially_shipped": "Delvis levering",
-      "preparing_order": "Klargjøre produktene",
-      "processing_amount": "Behandler ({{num}} elementer)",
-      "shipped_order": "Levert"
     },
     "shpping": {
       "service_terms": "Vilkår for Bruk"
@@ -228,7 +164,6 @@
     "account": {
       "account_binding": "Kontobinding",
       "account_information": "Regnskap",
-      "address": "Adresse",
       "bind": "Binding",
       "birthday": "Bursdagsdato",
       "change_password": "Endre passordet",
@@ -253,6 +188,7 @@
       "modify_email": "Endre e-post",
       "modify_email_modal_title": "Endre e-post",
       "modify_phone": "Endre Telefon",
+      "modify_phone_modal_title": "Endre Telefon",
       "name": "Navn",
       "next": "Neste",
       "nickname_empty_error": "For- og etternavn kan ikke stå tomt",
@@ -271,7 +207,9 @@
       "unknow_error_tip": "Unntak i tjenesten. Prøv på nytt senere",
       "username": "Navn",
       "verify_email_message": "Før du avslutter kontoen din, må vi bekrefte identiteten din\nE-post {{email}} mottar bekreftelses-e-post",
-      "verify_phone_message": "Før du avslutter kontoen din, må vi bekrefte identiteten din\nMobiltelefonen {{phone}} mottar bekreftelses melding"
+      "verify_phone_message": "Før du avslutter kontoen din, må vi bekrefte identiteten din\nMobiltelefonen {{phone}} mottar bekreftelses melding",
+      "address": "Adresse",
+      "invalidEmail": "Ugyldig e-postadresse"
     },
     "activate": {
       "account_activated": "Kontoen er aktivert",
@@ -288,7 +226,7 @@
     "address": {
       "add_address": "Legg Til ny Adresse",
       "address": "Adresse",
-      "adress_full_tip": "5 adresser er lagret og kan ikke legges til for øyeblikket",
+      "adress_full_tip": "50 adresser er lagret og kan ikke legges til for øyeblikket",
       "common_max": "",
       "common_min": "større enn {{min}} tegn",
       "default": "Standard",
@@ -296,6 +234,7 @@
       "edit_last_name_hint": "Skriv inn etternavnet ditt!",
       "edit_phone_hint": "Vennligst skriv inn mobiltelefonen din!",
       "edit_shipping_address": "REDIGER LEVERINGSADRESSE",
+      "max_address_tip": "Opptil 50 adresser kan opprettes",
       "no_adress_data": "For øyeblikket er det ingen leveringsadresse",
       "set_default_address": "Angi som standardadresse"
     },
@@ -326,7 +265,6 @@
       "clear_button": "Annuller",
       "confirm": "OK",
       "confirm_button": "Ok",
-      "continue_as_a_guest": "Fortsett som gjest",
       "date_format": "dd.MM.yyyy",
       "dec": "des.",
       "december": "desember",
@@ -335,6 +273,482 @@
       "email_empty_hint": "Skriv inn e-postadressen din",
       "email_error_hint": "Skriv inn en e-postadresse med gyldig format og mindre enn 50 tegn",
       "enter_verification_code": "Angi bekreftelseskoden",
+      "feb": "feb.",
+      "february": "februar",
+      "first_day": "0",
+      "fr": "fr",
+      "fri": "fre",
+      "friday": "fredag",
+      "image_size_less_than_tips": "Bilder må være mindre enn {{max}} MB",
+      "jan": "jan.",
+      "january": "januar",
+      "jul": "juli",
+      "july": "juli",
+      "jun": "juni",
+      "june": "juni",
+      "mar": "mars",
+      "march": "mars",
+      "max_image_upload_tips": "Du kan laste opp maksimalt {{max}} bilder",
+      "may": "mai",
+      "may_short": "mai",
+      "mo": "ma",
+      "mon": "man",
+      "monday": "mandag",
+      "network_error_message": "Ingen internett",
+      "nov": "nov.",
+      "november": "november",
+      "oct": "okt.",
+      "october": "oktober",
+      "ok": "OK",
+      "okay_common": "OK",
+      "orders": "Ordrer",
+      "password": "Passord",
+      "password_empty_hint": "Skriv inn brukernavn",
+      "phone": "Mobiltelefonnummer",
+      "phone_empty_message": "Angi mobiltelefonnummer",
+      "phone_error_message": "Angi et mobiltelefonnummer med gyldig format",
+      "phone_number_error_message": "Vennligst oppgi et gyldig telefonnummer",
+      "register": "Melde seg på",
+      "repeat_passport_error": "Passordene du skrev inn, stemmer ikke overens",
+      "repeat_password": "Skriv inn passordet på nytt",
+      "resend": "Send på nytt",
+      "sa": "lø",
+      "sat": "lør",
+      "saturday": "lørdag",
+      "save": "LAGRE",
+      "select__date": "Velg Dato",
+      "select_date": "Velg Dato",
+      "send": "Sende",
+      "send_error": "Send bekreftelseskoden først",
+      "send_verification_code_hint": "Vennligst skriv inn passordet på nytt",
+      "sep": "sep.",
+      "september": "september",
+      "set_password": "Angi et passord med en minimumslengde på 6 tegn og en maksimal lengde på 18 tegn",
+      "sign__out": "Logg Av",
+      "sign_in": "LOGG INN",
+      "sign_up": "MELDE SEG PÅ",
+      "su": "sø",
+      "subscription_desc": "Få siste nytt om butikken",
+      "sun": "søn",
+      "sunday": "søndag",
+      "th": "to",
+      "thu": "tor",
+      "thursday": "torsdag",
+      "time_format": "hh:mm aa",
+      "today": "I dag",
+      "tu": "ti",
+      "tue": "tir",
+      "tuesday": "tirsdag",
+      "update_passport": "Endre passord",
+      "user_agreement_tip": "Les og godta brukeravtalen først",
+      "username": "E-postadresse/mobiltelefonnummer",
+      "username_empty_hint": "Skriv inn e-postadresse eller mobiltelefonnummer",
+      "verification_code": "Bekreftelseskode",
+      "verification_code_sent_tip": "Bekreftelseskoden er sendt til kontoen din",
+      "verift_account_tip": "Kontroller kontoen og tilbakestill passordet",
+      "we": "on",
+      "wed": "ons",
+      "wednesday": "onsdag",
+      "continue_as_a_guest": "Fortsett som gjest",
+      "login_method": "Eller logg på med følgende metoder",
+      "proceed_to_checkout": "Fortsett til utsjekking"
+    },
+    "login": {
+      "member_login_common": "Pålogging for medlem",
+      "subscribe_confirm_tip": "Takk for abonnement. Du kan registrere deg for en bedre opplevelse."
+    },
+    "message": {
+      "input_placeholder": "Er det noe du vil legge igjen en beskjed til?",
+      "message": "Budskap",
+      "send": "Sende"
+    },
+    "phone": {
+      "mobile_common": "Telefonnummer"
+    },
+    "register": {
+      "privacy_policy": "Personvernpolicy",
+      "terms_of_service": "Vilkår for Bruk",
+      "go_to_login": "Gå til logg på",
+      "tips_agree_with_the_shop": "Jeg godtar"
+    },
+    "subscription": {
+      "email": "E-post",
+      "email_subscription_text": "Motta kampanjeinformasjonen for abonnementet på E-post",
+      "line": "LINJE",
+      "messenger": "Budbringer",
+      "phone": "Mobiltelefon",
+      "phone_subscription_text": "Abonnere på telefonkampanje",
+      "reason_other_length": "Skriv inn opptil 300 tegn",
+      "reason_other_placeholder": "Input innhold",
+      "save_button": "LAGRE",
+      "subscribe_button": "ABONNERER",
+      "subscription_cancel_text": "AVMELDT",
+      "subscription_hint": "Abonnerer",
+      "subscription_title": "Abonnementer",
+      "unsubscribe": "Avmeldt",
+      "unsubscribe_btn": "Avmeldt",
+      "unsubscribe_confirm_text": "Avmeldt",
+      "unsubscribe_feedback_text": "Du vil ikke motta flere markedsføringsoppdateringer fra oss. Du kan abonnere på nytt når som helst",
+      "unsubscribe_feedback_title": "Du har avsluttet abonnementet på e-postlisten <italic>{{name}}</italic>",
+      "unsubscribe_reason1": "Jeg vil ikke motta disse e-poster lenger",
+      "unsubscribe_reason2": "Jeg får mange e-poster",
+      "unsubscribe_reason3": "Jeg abonnerte ikke på denne listen",
+      "unsubscribe_reason4": "E-poster er ikke relevante for meg",
+      "unsubscribe_reason5": "Innholdet i e-posten er veldig omfattende",
+      "unsubscribe_reason6": "Annet",
+      "unsubscribe_subtitle": "Vi beklager at du går! Gi oss beskjed om hvorfor du kansellerte registreringen:",
+      "unsubscribe_success": "Abonnement kansellert, du blir omdirigert til hjemmesiden",
+      "unsubscribe_tip": "Når du har avsluttet abonnementet, vil du ikke motta siste kampanje lenger.",
+      "unsubscribe_title": "Avmeldt"
+    }
+  },
+  "general": {
+    "404": {
+      "subtext": "Siden du lette etter eksisterer ikke.",
+      "title": "404 Side Ikke Funnet",
+      "button": "Fortsette å handle"
+    },
+    "address": {
+      "address": "Adresse"
+    },
+    "contact_us": {
+      "contact_us": "KONTAKT OSS",
+      "send_success": "Takk for at du kontakter oss, vi vil komme tilbake til deg så snart som mulig."
+    },
+    "footer": {
+      "subscribe_format_error": "E-postadressen har formatfeil",
+      "subscribe_success": "Abonner vellykket",
+      "copyright": "© {{year}} {{storeName}}"
+    },
+    "general": {
+      "accept": "Godta",
+      "decline": "Avslå",
+      "home": "Hjemmeside",
+      "link": "Personvernpolicy",
+      "no_data": "Ingen data tilgjengelig",
+      "privacy_policy": "Personvernpolicy",
+      "tel_phone": "Telefonnummer",
+      "tips": "For å forbedre opplevelsen din bruker vi informasjonskapsler for å huske tilkoblingsinformasjon, samle inn statistikk og tilby innhold som passer dine interesser. Klikk på \"Godta\" for å godta informasjonskapsler eller lese vår \"Personvernpolicy\".",
+      "title": "Personvern ditt er viktig for oss",
+      "username": "Navn"
+    },
+    "header": {
+      "cart": "Handlekurven Din",
+      "center": "Sentrum",
+      "close": "Lukke",
+      "login": "Pålogging",
+      "no_currency_fallback": "Finner ingen relevant valuta",
+      "search_input_placeholder": "Skriv inn her, og trykk søk"
+    },
+    "order_tracking": {
+      "code": "Bekreftelseskode",
+      "email": "E-post",
+      "form_error": "Søket mislyktes",
+      "orderId": "Bestillings ID",
+      "orderId_error": "Bestillings-ID kan ikke være tom",
+      "query_illegal": "rekkefølgen eksisterer ikke",
+      "risk_black_user": "Denne kontoen er i faresonen",
+      "risk_interception": "rekkefølgen eksisterer ikke",
+      "submit_btn": "Se bestilling",
+      "username": "E-post/telefonnummer"
+    },
+    "policy": {
+      "service": "Vilkår for Bruk",
+      "shipping": "Retningslinjer for frakt",
+      "privacy": "Personvernpolicy",
+      "refund": "Retningslinjer for refusjon"
+    }
+  },
+  "order": {
+    "checkout_order": {
+      "pay_amount": "betale beløp",
+      "receiver_account": "mottakerkonto",
+      "reference_number": "referanse nummer",
+      "upload_time": "opplastingstid",
+      "upload_voucher": "Last opp kupong",
+      "voucher_amount_limit": "Du kan bare laste opp opptil 5 kuponger."
+    },
+    "detail": {
+      "orderstatus": {
+        "detail": "Detalj"
+      }
+    },
+    "order_details": {
+      "details": "Bestillingsdetaljer",
+      "order": "Ordrer",
+      "remark": "Bestillingsmerknader",
+      "time": "Bestilt den:"
+    },
+    "order_list": {
+      "no_more_info": "Ingen mer informasjon",
+      "no_record": "Det er for øyeblikket ingen ordrerekord, gå på shopping",
+      "package_amount": "Pakke {{num}}({{item}} varer)",
+      "total_amount": "{{transPackages}} elementer totalt"
+    },
+    "order_status": {
+      "canceled": "Annullere",
+      "click_to_track": "Vennligst spor pakken din ved å klikke på lenken nedenfor:",
+      "contact_us": "Kontakt oss",
+      "help_tips": "Trenger du hjelp? Kontakt oss:{{email}}",
+      "payment_voucher_transfer_success": "Betalingen ble overført",
+      "payment_voucher_waiting_for_payment": "venter på betaling",
+      "sequence": "Nr.{{id}}",
+      "tracking": "Spor"
+    },
+    "payment": {
+      "authorized": "Autorisert",
+      "billing_address": "Faktureringsadresse",
+      "detail": "Detalj",
+      "method": "Betalingsmåte",
+      "paid": "Betalt",
+      "partially_paid": "Delvis betalt",
+      "paying": "Betalende",
+      "payment": "Betaling",
+      "payment_status": "Betalingsstatus",
+      "unpaid": "Ubetalt"
+    },
+    "shipping": {
+      "info": "Informasjon",
+      "no_info": "Ingen leveringsinformasjon ennå, vennligst sjekk senere.",
+      "package_tracking": "Sporing av Pakker",
+      "partially_shipped": "Delvis levering",
+      "preparing_order": "Klargjøre produktene",
+      "processing_amount": "Behandler ({{num}} elementer)",
+      "shipped_order": "Levert"
+    }
+  },
+  "products": {
+    "collection": {
+      "collection": "Kategori"
+    },
+    "general": {
+      "no_product_data_found": "Finner ingen produktdata. Prøv på nytt senere",
+      "sold_out": "Utsolgt",
+      "added_to_cart_successfully": "Lagt til i handlekurven vellykket"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Maksimalt antall tillatt for dette begrensede produktet er {{num}}",
+      "activity_toast_product__limit": "Kjøp begrenset til {{stock}}-kampanjeprodukt",
+      "activity_toast_title__limit": "Nedenfor overskrider produktene kjøpsgrensen",
+      "amount": "Mängden",
+      "buy_more_save_more": "Kjøp mer Spar mer!",
+      "cancel": "Annullere",
+      "country_region": "Land/område",
+      "default_placeholder": "Velg {{attrName}}",
+      "description": "Beskrivelse",
+      "email": "E-post",
+      "enter_email_address": "Skriv inn e-postadressen din",
+      "enter_valid_email_address": "Skriv inn en gyldig e-postadresse",
+      "give_us_more_of_your_information": "Du kan gi oss mer av informasjonen din, slik at vi kan gi deg mer passende tjenester",
+      "go_to_amazon_by_link": "Kjøp i Amazon",
+      "go_to_rakuten_by_link": "Kjøp i LOTTE",
+      "go_to_yahoo_by_link": "Kjøp i Yahoo",
+      "in_stock": "På lager",
+      "inventory_quantity": "Lagerstørrelsen",
+      "leave_us_message": "Skriv inn meldingen",
+      "leave_us_message_get_back": "Legg igjen en beskjed, så ringer vi tilbake så snart som mulig",
+      "link_preview_does_not_support": "Operasjonen for forhåndsvisning av kobling støttes ikke",
+      "maximum_length_of_message": "Den maksimale lengden på meldingen bør ikke inneholde mer enn 1500 ord",
+      "message": "Meldingen din",
+      "more_payment_options": "flere betalingsalternativer",
+      "name": "Navn",
+      "optional": "Valgfri",
+      "phone_number": "Telefonnummer",
+      "product_enquiry": "Forespørsel om produkt",
+      "submission_failed": "Innsending mislyktes",
+      "submission_successfully": "Sendt inn",
+      "submit": "Forelegge",
+      "tax_included": "avgift inkludert",
+      "view_product_detail": "Vis produktdetaljer"
+    },
+    "product_list": {
+      "add_to_cart": "LEGG TIL I HANDLEKURV",
+      "filter": "Filter",
+      "from_price_html": "Fra {{price}}",
+      "less": "mindre",
+      "load_more_tip": "Laster inn flere varer",
+      "more": "mer",
+      "new_arrivals": "Nyankomne",
+      "no_product": "dessverre er det ikke noe produkt i denne samlingen",
+      "price_high_to_low": "Pris høy til lav",
+      "price_low_to_high": "Pris lav til høy",
+      "product_has_been_removed": "Produktet fjernes fra hyller",
+      "product_sold_out": "UTSOLGT",
+      "products": "produkter",
+      "quick_shop": "Rask butikk",
+      "recommend": "Anbefalt",
+      "sale": "Salg",
+      "save": "Rabatt {{{priceDom}}}",
+      "save_byjs": "Rabatt {{priceDom}}",
+      "save_ratio": "{{price}}% avslag",
+      "select_product_all_options": "Velg produktstørrelse først!",
+      "top_sellers": "Bestselgere",
+      "more__product_num": "{{num}} Produkter",
+      "one_product_num": "{{num}} produkt",
+      "show": "Vise",
+      "sold_out": "Utsolgt"
+    },
+    "product_search": {
+      "back_to_home": "Tilbake til hjemmesiden",
+      "ount_results": "{{count}} Resultater",
+      "results_found_for": "{{count}}-resultater funnet for \"{{keyword}}\"",
+      "search": "Søke",
+      "search_no_results": "Søket etter \"{{keyword}}\" ga ingen resultater",
+      "single_results": "{{count}} Resultater",
+      "single_results_found": "{{count}}-resultater funnet for \"{{keyword}}\""
+    },
+    "recently_viewed_products": {
+      "recently_viewed_products": "Nylig Viste Produkter"
+    }
+  },
+  "sales": {
+    "discount_coupon": {
+      "active_date_until": "Den er gyldig til: {{endTime}}",
+      "applied": "Anvendt",
+      "applied_successfully": "Rabattkoden ble brukt.",
+      "apply": "Bruke",
+      "buy_x_get_y_all_discount_content": "Hent {{benefitCount}} stykker med rabatt {{discount}}",
+      "buy_x_get_y_all_free_content": "Få {{benefitCount}} gratis stykker",
+      "buy_x_get_y_discount_content": "{{discount}} av",
+      "buy_x_get_y_free_content": "GRATIS",
+      "buy_x_get_y_threshold": "Kjøp {{threshold}} og vinn {{benefitCount}} gratis",
+      "coupon_content_level": "For {{level}}",
+      "coupon_discount_content": "{discount} av",
+      "coupon_not_found": "Rabattkode finnes ikke.",
+      "failed_to_apply_coupon_code": "Søknaden mislyktes.",
+      "free__shipping": "Gratis frakt",
+      "get_code": "Få rabattkuponger",
+      "popup_label": "Butikkkuponger:",
+      "shipping_rate_below": "Frakt er mindre enn {value}",
+      "specified_customer": "For enkelte kunder",
+      "threshold": "Kjøp {threshold}"
+    },
+    "flash": {
+      "day": "dag",
+      "days": "dager"
+    },
+    "general": {
+      "activity_banner_benefit": "{{benefit}} av",
+      "activity_banner_copy_success_text": "Kupongkoden er kopiert",
+      "activity_banner_free_shipping": "Gratis frakt",
+      "activity_selector_new_arrivals": "Nye arkiver",
+      "activity_selector_price_high_to_low": "Pris høy til lav",
+      "activity_selector_price_low_to_high": "Pris lav til høy",
+      "activity_selector_recommended": "Foreslå",
+      "apply_common": "Bruke",
+      "coupon_code_copied": "Kupongkoden er kopiert",
+      "coupon_code_copy": "Kopiere",
+      "flash_sale_text": "FLASH-SALG",
+      "flash_sale_tip": "Kjøpsgrense: {{count}}-antall",
+      "hot_sale": "Hot salg!",
+      "product_tabs_benefit_discount_locked": "Get {{offPercent}}% rabatt",
+      "product_tabs_benefit_discount_unlocked": "{{offPercent}}% rabatt låst opp!",
+      "product_tabs_benefit_free_locked": "Gratis tilbud",
+      "product_tabs_benefit_free_unlocked": "Gratis tilbudet er ulåst!",
+      "product_tabs_benefit_unlocked_tip": "Du kan glede deg over rabatt på produktet",
+      "product_tabs_code_benefit_discount_unlocked": "Kjøp {{benefitCount}} stykker med rabatt {{offPercent}}%",
+      "product_tabs_code_benefit_free_unlocked": "Få {{benefitCount}} gratis stykker",
+      "product_tabs_threshold": "Kjøp {{threshold}}",
+      "purchase_limit": "Innkjøpsgrense {{count}} per person",
+      "purchase_limit_each_item": "Kjøpsgrense på {{count}} per produkt per person",
+      "select_promotional_product": "{{selectCount}}-hendelsesprodukter er valgt",
+      "sold": "{{count}} solgt",
+      "activity_banner_copy_text": "Kopiere",
+      "activity_banner_threshold": "Forespørsler over {{threshold}}",
+      "discount_common": "Rabatt",
+      "shop_more": "Mer"
+    },
+    "gift": {
+      "got_all_gifts_tip": "Gratulerer! Du har jeg {{saved}} GRATIS GAVE!",
+      "not_meet_amount_tip": "Kjøp {{threshold}} Flere, glede deg over {{willSave}} GRATIS GAVE",
+      "not_meet_quantity_tip": "Kjøp {{threshold}} Flere artikler, glede deg over {{willSave}} GRATIS GAVE",
+      "select": "Velg",
+      "select_gift_tip": "Gratulerer! Du kan glede deg over {{willSave}} GRATIS GAVE",
+      "spend_more_money_get_more_tip": "Gratulerer! Har jeg {{saved}} Gratis gave allerede! Tilbringe {{threshold}} flere ,glede deg over {{willSave}} GRATIS GAVE",
+      "spend_more_quantity_get_more_tip": "Gratulerer! Har jeg {{saved}} Gratis gave allerede! Kjøp {{threshold}} Flere, glede deg over {{willSave}} GRATIS GAVE"
+    },
+    "promotion": {
+      "discount_tag": {
+        "label": "Rabatt:"
+      }
+    }
+  },
+  "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Avrunding"
+      }
+    },
+    "payments-name": {
+      "COD": "Kontant ved levering",
+      "Paypal": "PayPal",
+      "adjustPay": "manual",
+      "third-part": "Kredittkort"
+    },
+    "reduction_code": {
+      "giftcard": "Gavekort"
+    }
+  },
+  "transaction": {
+    "contact": {
+      "discounts_stack_not": "En rabatt er brukt på denne ordren. Du kan ikke legge til en ny rabatt."
+    },
+    "discount": {
+      "code_error": "Rabattkoden er feil oppgitt",
+      "code_item_unmatched": "{{discountCode}} er angitt riktig, men prisen eller kvantiteten på varene oppfyller ikke kravene",
+      "coupon_code": "Kupongkode",
+      "coupon_invalid_for_the_shipping_method": "{{discountCode}}kupong er gyldig for fraktmetoden",
+      "discount_codes_cannot_stack": "Det er allerede en favorittbegivenhet for produktet, som ikke kan brukes i forbindelse med andre favorittarrangementer",
+      "use_coupon_alone": "Denne kupongkoden kan ikke brukes sammen med andre kampanje- eller rabattilbud"
+    },
+    "general": {
+      "discount_off": "Rabatt",
+      "free_charge": "Gratis frakt",
+      "free_shipping": "gratis frakt",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
+      "order_seller_discount": "Selger ekstra rabatt",
+      "order_tax": "Avgift",
+      "order_tip": "Tips",
+      "payment_subtotal_cost": "Delsum",
+      "point_discount": "Poengrabatt",
+      "shipping_fee": "Skipsfart",
+      "trade_coupon_discount": "Rabatt"
+    },
+    "item": {
+      "invalid_product": "Ugyldige produkter",
+      "remove_invalid_product": "Slett ugyldige produkter",
+      "removed": "UGYLDIG",
+      "sold_out": "Utsolgt"
+    },
+    "notices": {
+      "insufficient_product_inventory": "Utilstrekkelig varelager",
+      "network": "Nettverksfeil",
+      "product_expired": "Produktet er utløpt",
+      "product_limit": "Produktgrensen er overskredet"
+    },
+    "order": {
+      "deleted": "UGYLDIG"
+    },
+    "payment": {
+      "continue_shopping": "Fortsette å handle",
+      "more": "Mer",
+      "total": "Totalt",
+      "total_sum": "Totalt"
+    },
+    "policy": {
+      "refund_policy": "Retningslinjer for refusjon"
+    },
+    "refund": {
+      "cost_points": "Kostnad {{value}} poeng",
+      "deduct_point": "Du kan bruke {{deductMemberPointNum}} til å lagre {{deductMemberPointAmount}}"
+    }
+  },
+  "unvisiable": {
+    "customer": {
       "error_message_1": "Registrer meg for e-poster for å motta oppdateringer, tilgang til eksklusive tilbud og mer.",
       "error_message_1001": "Feil ved passord",
       "error_message_1002": "Brukeren finnes ikke",
@@ -387,399 +801,8 @@
       "error_message_3024": "Linken er feil",
       "error_message_4": "Service unntak",
       "error_message_5": "Service unntak",
-      "error_message_6": "Service unntak",
-      "feb": "feb.",
-      "february": "februar",
-      "first_day": "0",
-      "fr": "fr",
-      "fri": "fre",
-      "friday": "fredag",
-      "image_size_less_than_tips": "Bilder må være mindre enn {{max}} MB",
-      "jan": "jan.",
-      "january": "januar",
-      "jul": "juli",
-      "july": "juli",
-      "jun": "juni",
-      "june": "juni",
-      "login_method": "Eller logg på med følgende metoder",
-      "mar": "mars",
-      "march": "mars",
-      "max_image_upload_tips": "Du kan laste opp maksimalt {{max}} bilder",
-      "may": "mai",
-      "may_short": "mai",
-      "mo": "ma",
-      "mon": "man",
-      "monday": "mandag",
-      "network_error_message": "Ingen internett",
-      "nov": "nov.",
-      "november": "november",
-      "oct": "okt.",
-      "october": "oktober",
-      "ok": "OK",
-      "okay_common": "OK",
-      "orders": "Ordrer",
-      "password": "Passord",
-      "password_empty_hint": "Skriv inn brukernavn",
-      "phone": "Mobiltelefonnummer",
-      "phone_empty_message": "Angi mobiltelefonnummer",
-      "phone_error_message": "Angi et mobiltelefonnummer med gyldig format",
-      "phone_number_error_message": "Vennligst oppgi et gyldig telefonnummer",
-      "proceed_to_checkout": "Fortsett til utsjekking",
-      "register": "Melde seg på",
-      "repeat_passport_error": "Passordene du skrev inn, stemmer ikke overens",
-      "repeat_password": "Skriv inn passordet på nytt",
-      "resend": "Send på nytt",
-      "sa": "lø",
-      "sat": "lør",
-      "saturday": "lørdag",
-      "save": "LAGRE",
-      "select__date": "Velg Dato",
-      "select_date": "Velg Dato",
-      "send": "Sende",
-      "send_error": "Send bekreftelseskoden først",
-      "send_verification_code_hint": "Vennligst skriv inn passordet på nytt",
-      "sep": "sep.",
-      "september": "september",
-      "set_password": "Angi et passord med en minimumslengde på 6 tegn og en maksimal lengde på 18 tegn",
-      "sign__out": "Logg Av",
-      "sign_in": "LOGG INN",
-      "sign_up": "MELDE SEG PÅ",
-      "su": "sø",
-      "subscription_desc": "Få siste nytt om butikken",
-      "sun": "søn",
-      "sunday": "søndag",
-      "th": "to",
-      "thu": "tor",
-      "thursday": "torsdag",
-      "time_format": "hh:mm aa",
-      "today": "I dag",
-      "tu": "ti",
-      "tue": "tir",
-      "tuesday": "tirsdag",
-      "update_passport": "Endre passord",
-      "user_agreement_tip": "Les og godta brukeravtalen først",
-      "username": "E-postadresse/mobiltelefonnummer",
-      "username_empty_hint": "Skriv inn e-postadresse eller mobiltelefonnummer",
-      "verification_code": "Bekreftelseskode",
-      "verification_code_sent_tip": "Bekreftelseskoden er sendt til kontoen din",
-      "verift_account_tip": "Kontroller kontoen og tilbakestill passordet",
-      "we": "on",
-      "wed": "ons",
-      "wednesday": "onsdag"
+      "error_message_6": "Service unntak"
     },
-    "login": {
-      "member_login_common": "Pålogging for medlem",
-      "subscribe_confirm_tip": "Takk for abonnement. Du kan registrere deg for en bedre opplevelse."
-    },
-    "message": {
-      "input_placeholder": "Er det noe du vil legge igjen en beskjed til?",
-      "message": "Budskap",
-      "send": "Sende"
-    },
-    "phone": {
-      "mobile_common": "Telefonnummer"
-    },
-    "register": {
-      "go_to_login": "Gå til logg på",
-      "privacy_policy": "Personvernpolicy",
-      "terms_of_service": "Vilkår for Bruk",
-      "tips_agree_with_the_shop": "Jeg godtar"
-    },
-    "subscription": {
-      "email": "E-post",
-      "email_subscription_text": "Motta kampanjeinformasjonen for abonnementet på E-post",
-      "line": "LINJE",
-      "messenger": "Budbringer",
-      "phone": "Mobiltelefon",
-      "phone_subscription_text": "Abonnere på telefonkampanje",
-      "reason_other_length": "Skriv inn opptil 300 tegn",
-      "reason_other_placeholder": "Input innhold",
-      "save_button": "LAGRE",
-      "subscribe_button": "ABONNERER",
-      "subscription_cancel_text": "AVMELDT",
-      "subscription_hint": "Abonnerer",
-      "subscription_title": "Abonnementer",
-      "unsubscribe": "Avmeldt",
-      "unsubscribe_btn": "Avmeldt",
-      "unsubscribe_confirm_text": "Avmeldt",
-      "unsubscribe_feedback_text": "Du vil ikke motta flere markedsføringsoppdateringer fra oss. Du kan abonnere på nytt når som helst",
-      "unsubscribe_feedback_title": "Du har avsluttet abonnementet på e-postlisten <italic>{{name}}</italic>",
-      "unsubscribe_reason1": "Jeg vil ikke motta disse e-poster lenger",
-      "unsubscribe_reason2": "Jeg får mange e-poster",
-      "unsubscribe_reason3": "Jeg abonnerte ikke på denne listen",
-      "unsubscribe_reason4": "E-poster er ikke relevante for meg",
-      "unsubscribe_reason5": "Innholdet i e-posten er veldig omfattende",
-      "unsubscribe_reason6": "Annet",
-      "unsubscribe_subtitle": "Vi beklager at du går! Gi oss beskjed om hvorfor du kansellerte registreringen:",
-      "unsubscribe_success": "Abonnement kansellert, du blir omdirigert til hjemmesiden",
-      "unsubscribe_tip": "Når du har avsluttet abonnementet, vil du ikke motta siste kampanje lenger.",
-      "unsubscribe_title": "Avmeldt"
-    }
-  },
-  "general": {
-    "404": {
-      "button": "Fortsette å handle",
-      "subtext": "Siden du lette etter eksisterer ikke.",
-      "title": "404 Side Ikke Funnet"
-    },
-    "contact_us": {
-      "contact_us": "KONTAKT OSS",
-      "send_success": "Takk for at du kontakter oss, vi vil komme tilbake til deg så snart som mulig."
-    },
-    "footer": {
-      "copyright": "© {{year}} {{storeName}}",
-      "subscribe_reg_exp_error": "E-postadressen har formatfeil",
-      "subscribe_success": "Abonner vellykket"
-    },
-    "general": {
-      "accept": "Godta",
-      "decline": "Avslå",
-      "home": "Hjemmeside",
-      "link": "Personvernpolicy",
-      "tel_phone": "Telefonnummer",
-      "tips": "For å forbedre opplevelsen din bruker vi informasjonskapsler for å huske tilkoblingsinformasjon, samle inn statistikk og tilby innhold som passer dine interesser. Klikk på \"Godta\" for å godta informasjonskapsler eller lese vår \"Personvernpolicy\".",
-      "title": "Personvern ditt er viktig for oss",
-      "username": "Navn"
-    },
-    "header": {
-      "cart": "Handlekurven Din",
-      "center": "Sentrum",
-      "login": "Pålogging",
-      "no_currency_fallback": "Finner ingen relevant valuta",
-      "search_input_placeholder": "Skriv inn her, og trykk søk"
-    },
-    "order_tracking": {
-      "code": "Bekreftelseskode",
-      "email": "E-post",
-      "form_error": "Søket mislyktes",
-      "orderId": "Bestillings ID",
-      "orderId_error": "Bestillings-ID kan ikke være tom",
-      "query_illegal": "rekkefølgen eksisterer ikke",
-      "risk_black_user": "Denne kontoen er i faresonen",
-      "risk_interception": "rekkefølgen eksisterer ikke",
-      "submit_btn": "Se bestilling",
-      "username": "E-post/telefonnummer"
-    },
-    "policy": {
-      "privacy": "Personvernpolicy",
-      "refund": "Retningslinjer for refusjon",
-      "service": "Vilkår for Bruk",
-      "shipping": "Retningslinjer for frakt"
-    }
-  },
-  "order": {
-    "detail": {
-      "orderstatus": {
-        "UploadTime": "opplastingstid",
-        "detail": "Detalj"
-      }
-    }
-  },
-  "products": {
-    "collection": {
-      "collection": "Kategori"
-    },
-    "general": {
-      "added_to_cart_successfully": "Lagt til i handlekurven vellykket",
-      "no_product_data_found": "Finner ingen produktdata. Prøv på nytt senere",
-      "sold_out": "Utsolgt"
-    },
-    "product_details": {
-      "activity_toast_price_limit": "Maksimalt antall tillatt for dette begrensede produktet er {{num}}",
-      "activity_toast_product__limit": "Kjøp begrenset til {{stock}}-kampanjeprodukt",
-      "activity_toast_title__limit": "Nedenfor overskrider produktene kjøpsgrensen",
-      "amount": "Mängden",
-      "buy_more_save_more": "Kjøp mer Spar mer!",
-      "cancel": "Annullere",
-      "country_region": "Land/område",
-      "default_placeholder": "Velg {{attrName}}",
-      "description": "Beskrivelse",
-      "email": "E-post",
-      "enter_email_address": "Skriv inn e-postadressen din",
-      "enter_valid_email_address": "Skriv inn en gyldig e-postadresse",
-      "give_us_more_of_your_information": "Du kan gi oss mer av informasjonen din, slik at vi kan gi deg mer passende tjenester",
-      "go_to_amazon_by_link": "Kjøp i Amazon",
-      "go_to_rakuten_by_link": "Kjøp i LOTTE",
-      "go_to_yahoo_by_link": "Kjøp i Yahoo",
-      "in_stock": "På lager",
-      "inventory_quantity": "Lagerstørrelsen",
-      "leave_us_message": "Skriv inn meldingen",
-      "leave_us_message_get_back": "Legg igjen en beskjed, så ringer vi tilbake så snart som mulig",
-      "link_preview_does_not_support": "Operasjonen for forhåndsvisning av kobling støttes ikke",
-      "maximum_length_of_message": "Den maksimale lengden på meldingen bør ikke inneholde mer enn 1500 ord",
-      "message": "Meldingen din",
-      "more_payment_options": "flere betalingsalternativer",
-      "name": "Navn",
-      "optional": "Valgfri",
-      "phone_number": "Telefonnummer",
-      "product_enquiry": "Forespørsel om produkt",
-      "submission_failed": "Innsending mislyktes",
-      "submission_successfully": "Sendt inn",
-      "submit": "Forelegge",
-      "tax_included": "avgift inkludert"
-    },
-    "product_list": {
-      "add_to_cart": "LEGG TIL I HANDLEKURV",
-      "filter": "Filter",
-      "from_price_html": "Fra {{price}}",
-      "less": "mindre",
-      "load_more_tip": "Laster inn flere varer",
-      "more": "mer",
-      "more__product_num": "{{num}} Produkter",
-      "new_arrivals": "Nyankomne",
-      "no_product": "dessverre er det ikke noe produkt i denne samlingen",
-      "one_product_num": "{{num}} produkt",
-      "price_high_to_low": "Pris høy til lav",
-      "price_low_to_high": "Pris lav til høy",
-      "product_has_been_removed": "Produktet fjernes fra hyller",
-      "product_sold_out": "UTSOLGT",
-      "products": "produkter",
-      "recommend": "Anbefalt",
-      "sale": "Salg",
-      "save": "Rabatt {{{priceDom}}}",
-      "save_byjs": "Rabatt {{priceDom}}",
-      "save_ratio": "{{price}}% avslag",
-      "select_product_all_options": "Velg produktstørrelse først!",
-      "show": "Vise",
-      "sold_out": "Utsolgt",
-      "top_sellers": "Bestselgere"
-    },
-    "product_search": {
-      "back_to_home": "Tilbake til hjemmesiden",
-      "ount_results": "{{count}} Resultater",
-      "results_found_for": "{{count}}-resultater funnet for \"{{keyword}}\"",
-      "search": "Søke",
-      "search_no_results": "Søket etter \"{{keyword}}\" ga ingen resultater",
-      "single_results": "{{count}} Resultater",
-      "single_results_found": "{{count}}-resultater funnet for \"{{keyword}}\""
-    },
-    "recently_viewed_products": {
-      "recently_viewed_products": "Nylig Viste Produkter"
-    }
-  },
-  "sales": {
-    "discount_coupon": {
-      "active_date_until": "Den er gyldig til: {{endTime}}",
-      "applied": "Anvendt",
-      "applied_successfully": "Rabattkoden ble brukt.",
-      "apply": "Bruke",
-      "buy_x_get_y_all_discount_content": "Hent {{benefitCount}} stykker med rabatt {{discount}}",
-      "buy_x_get_y_all_free_content": "Få {{benefitCount}} gratis stykker",
-      "buy_x_get_y_discount_content": "{{discount}} av",
-      "buy_x_get_y_free_content": "GRATIS",
-      "buy_x_get_y_threshold": "Kjøp {{threshold}} og vinn {{benefitCount}} gratis",
-      "coupon_content_level": "For {{level}}",
-      "coupon_discount_content": "{discount} av",
-      "coupon_not_found": "Rabattkode finnes ikke.",
-      "failed_to_apply_coupon_code": "Søknaden mislyktes.",
-      "free__shipping": "Gratis frakt",
-      "get_code": "Få rabattkuponger",
-      "popup_label": "Butikkkuponger:",
-      "shipping_rate_below": "Frakt er mindre enn {value}",
-      "specified_customer": "For enkelte kunder",
-      "threshold": "Kjøp {threshold}"
-    },
-    "flash": {
-      "day": "dag",
-      "days": "dager"
-    },
-    "general": {
-      "activity_banner_benefit": "{{benefit}} av",
-      "activity_banner_copy_success_text": "Kupongkoden er kopiert",
-      "activity_banner_copy_text": "Kopiere",
-      "activity_banner_free_shipping": "Gratis frakt",
-      "activity_banner_threshold": "Forespørsler over {{threshold}}",
-      "activity_selector_new_arrivals": "Nye arkiver",
-      "activity_selector_price_high_to_low": "Pris høy til lav",
-      "activity_selector_price_low_to_high": "Pris lav til høy",
-      "activity_selector_recommended": "Foreslå",
-      "apply_common": "Bruke",
-      "bundle_save_tip": "Sparet {{amount}} for å kjøpe sammen",
-      "bundle_title": "Ofte kjøpt sammen",
-      "common_buy_now": "Kjøp nå",
-      "coupon_code_copied": "Kupongkoden er kopiert",
-      "coupon_code_copy": "Kopiere",
-      "discount_common": "Rabatt",
-      "flash_sale_text": "FLASH-SALG",
-      "flash_sale_tip": "Kjøpsgrense: {{count}}-antall",
-      "hot_sale": "Hot salg!",
-      "product_tabs_benefit_discount_locked": "Get {{offPercent}}% rabatt",
-      "product_tabs_benefit_discount_unlocked": "{{offPercent}}% rabatt låst opp!",
-      "product_tabs_benefit_free_locked": "Gratis tilbud",
-      "product_tabs_benefit_free_unlocked": "Gratis tilbudet er ulåst!",
-      "product_tabs_benefit_unlocked_tip": "Du kan glede deg over rabatt på produktet",
-      "product_tabs_code_benefit_discount_unlocked": "Kjøp {{benefitCount}} stykker med rabatt {{offPercent}}%",
-      "product_tabs_code_benefit_free_unlocked": "Få {{benefitCount}} gratis stykker",
-      "product_tabs_threshold": "Kjøp {{threshold}}",
-      "purchase_limit": "Innkjøpsgrense {{count}} per person",
-      "purchase_limit_each_item": "Kjøpsgrense på {{count}} per produkt per person",
-      "select_promotional_product": "{{selectCount}}-hendelsesprodukter er valgt",
-      "shop_more": "Mer",
-      "sold": "{{count}} solgt"
-    },
-    "gift": {
-      "got_all_gifts_tip": "Gratulerer! Du har jeg {{saved}} GRATIS GAVE!",
-      "not_meet_amount_tip": "Kjøp {{threshold}} Flere, glede deg over {{willSave}} GRATIS GAVE",
-      "not_meet_quantity_tip": "Kjøp {{threshold}} Flere artikler, glede deg over {{willSave}} GRATIS GAVE",
-      "select": "Velg",
-      "select_gift_tip": "Gratulerer! Du kan glede deg over {{willSave}} GRATIS GAVE",
-      "spend_more_money_get_more_tip": "Gratulerer! Har jeg {{saved}} Gratis gave allerede! Tilbringe {{threshold}} flere ,glede deg over {{willSave}} GRATIS GAVE",
-      "spend_more_quantity_get_more_tip": "Gratulerer! Har jeg {{saved}} Gratis gave allerede! Kjøp {{threshold}} Flere, glede deg over {{willSave}} GRATIS GAVE"
-    },
-    "promotion": {
-      "discount_tag": {
-        "b11_t1_free": "Kjøp {{threshold}}-varer, kos deg gratis på en av varene",
-        "b11_t1_normal": "Kjøp {{threshold}}-elementer, nyt {{save}} AV på ett av elementene",
-        "b1_t0": "Kjøp {{threshold}} lagre {{save}}",
-        "b1_t1": "Kjøp {{threshold}} Få {{save}} AV",
-        "b2_t0": "Kjøp {{threshold}} lagre {{save}}",
-        "b2_t1": "Kjøp {{threshold}} Få {{save}} AV",
-        "label": "Rabatt:"
-      }
-    }
-  },
-  "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Avrunding"
-      }
-    },
-    "payments-name": {
-      "COD": "Kontant ved levering",
-      "Paypal": "PayPal",
-      "adjustPay": "manual",
-      "third-part": "Kredittkort"
-    },
-    "reduction_code": {
-      "giftcard": "Gavekort"
-    }
-  },
-  "transaction": {
-    "general": {
-      "coupon_invalid_for_the_shipping_method": "{{discountCode}}kupong er gyldig for fraktmetoden",
-      "discount_codes_cannot_stack": "Det er allerede en favorittbegivenhet for produktet, som ikke kan brukes i forbindelse med andre favorittarrangementer",
-      "discount_off": "Rabatt",
-      "free_charge": "Gratis frakt",
-      "free_shipping": "gratis frakt",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
-      "order_seller_discount": "Selger ekstra rabatt",
-      "order_tax": "Avgift",
-      "order_tip": "Tips",
-      "payment_subtotal_cost": "Delsum",
-      "point_discount": "Poengrabatt",
-      "shipping_fee": "Skipsfart",
-      "trade_coupon_discount": "Kupong"
-    }
-  },
-  "user": {
-    "udbResponse": {
-      "err1006": "Kodefeil",
-      "err2005": "Kodefeil",
-      "err3005": "Kodefeil"
-    }
+    "editorSwitchCountryTip": "Landsendring er ikke kompatibel med editoren"
   }
 }

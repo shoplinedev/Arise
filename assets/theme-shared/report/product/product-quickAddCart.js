@@ -4,11 +4,9 @@ window.SLM['theme-shared/report/product/product-quickAddCart.js'] = window.SLM['
   const _exports = {};
   const { BaseReport } = window['SLM']['theme-shared/report/common/baseReport.js'];
   const { getCartId, validParams } = window['SLM']['theme-shared/report/product/utils/index.js'];
-  const currencyUtils = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
-  const {
-    formatCurrency
-  } = currencyUtils;
   const pdpTypeMap = {
     101: 102,
     102: 103,
@@ -34,8 +32,8 @@ window.SLM['theme-shared/report/product/product-quickAddCart.js'] = window.SLM['
         content_ids: spuSeq,
         sku_id: skuSeq,
         content_name: productName,
-        currency: window.SL_State.get('storeInfo.currency'),
-        value: formatCurrency(price)
+        currency: getCurrencyCode(),
+        value: convertPrice(price)
       };
       const params = {
         page: 108,
@@ -66,7 +64,7 @@ window.SLM['theme-shared/report/product/product-quickAddCart.js'] = window.SLM['
       } = reportData;
       const productInfoParams = {
         cart_id: await getCartId(),
-        currency: window.SL_State.get('storeInfo.currency')
+        currency: getCurrencyCode()
       };
       const params = {
         page: 108,

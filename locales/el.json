@@ -7,8 +7,8 @@
       "related_articles": "Σχετικά ιστολόγια"
     },
     "blog_list": {
-      "empty_desc": "Δεν υπάρχουν αναρτήσεις ιστολογίου σε αυτό το ιστολόγιο.",
-      "read_btn_text": "Διαβάστε περισσότερα",
+      "empty_description": "Δεν υπάρχουν αναρτήσεις ιστολογίου σε αυτό το ιστολόγιο.",
+      "readmore": "Διαβάστε περισσότερα",
       "title": "Ιστολόγιο"
     },
     "comment": {
@@ -33,31 +33,26 @@
   },
   "cart": {
     "cart": {
-      "added_to_cart": "Προστέθηκε στο καλάθι των αγορών",
       "buy_now": "ΑΓΟΡΆΣΤΕ ΤΏΡΑ",
       "cancel": "Ακύρωση",
-      "cart_subtotal": "Μερικό σύνολο καλαθιού αγορών",
-      "cart_view": "Προβολή καλαθιού",
-      "checkout": "ΟΛΟΚΛΗΡΩΣΗ ΑΓΟΡΑΣ ΚΑΙ ΤΑΜΕΙΟ",
-      "click_to_view": "Κάντε κλικ για προβολή",
       "confirm": "Εντάξει",
-      "continue": "Συνέχεια",
-      "continue_shopping": "ΣΥΝΕΧΙΣΤΕ ΤΙΣ ΑΓΟΡΕΣ",
-      "custom_preview": "Προσαρμοσμένη προεπισκόπηση",
-      "day": "ημέρα",
-      "days": "ημέρεσ",
-      "empty_cart": "Το καλάθι σας είναι άδειο.",
       "got_it": "Το κατάλαβα",
-      "remove": "Αφαίρεση",
-      "return_to_cart": "Επιστροφή στο καλάθι",
-      "subtotal": "Μερικό σύνολο",
-      "tax_included": "Συμπεριλαμβανομένου του φόρου"
+      "added_to_cart": "Προστέθηκε στο καλάθι των αγορών",
+      "cart_subtotal": "Μερικό σύνολο καλαθιού αγορών"
     },
     "checkout": {
       "max_amount_limit": "Έχετε υπερβεί το μέγιστο ποσό για ταμείο"
     },
     "checkout_proceeding": {
-      "checkout_proceed": "Λιγότερο από τα προϊόντα που υπερβαίνουν το όριο αγορών, εξακολουθείτε να θέλετε την ολοκλήρωση πληρωμής;"
+      "checkout": "ΟΛΟΚΛΗΡΩΣΗ ΑΓΟΡΑΣ ΚΑΙ ΤΑΜΕΙΟ",
+      "checkout_proceed": "Λιγότερο από τα προϊόντα που υπερβαίνουν το όριο αγορών, εξακολουθείτε να θέλετε την ολοκλήρωση πληρωμής;",
+      "continue": "Συνέχεια",
+      "continue_shopping": "ΣΥΝΕΧΙΣΤΕ ΤΙΣ ΑΓΟΡΕΣ",
+      "day": "ημέρεσ",
+      "remove": "Αφαίρεση",
+      "return_to_cart": "Επιστροφή στο καλάθι",
+      "subtotal": "Μερικό σύνολο",
+      "tax_included": "Συμπεριλαμβανομένου του φόρου"
     },
     "couponCode": {
       "exceedLimit": "Οι εκπτωτικοί κωδικοί υπερβαίνουν το όριο ποσότητας",
@@ -71,14 +66,9 @@
       "unavailable": "Ο εκπτωτικός κωδικός έχει λήξει"
     },
     "discount": {
-      "code_error": "Το εκπτωτικό κουπόνι τοποθετείται λανθασμένα",
-      "code_item_unmatched": "{{discountCode}} τοποθετείται σωστά, αλλά η τιμή ή η ποσότητα των προϊόντων δεν συμφωνούν με τις προϋποθέσεις",
-      "coupon_code": "Κωδικός κουπονιού",
       "coupon_code_amount": "Κουπόνι",
       "coupon_code_length_limit": "Ο κωδικός κουπονιού δεν μπορεί να υπερβαίνει τους {{range}} χαρακτήρες",
-      "discounts_cannot_stack": "Έχει δοθεί έκπτωση σε αυτήν την παραγγελία. Δεν μπορείτε να προσθέσετε άλλη έκπτωση",
-      "expected_discount": "Έκπτωση",
-      "use_coupon_alone": "Αυτός ο κωδικός κουπονιού δεν μπορεί να χρησιμοποιηθεί σε συνδυασμό με άλλες προωθητικές προσφορές ή προσφορές έκπτωσης"
+      "expected_discount": "Έκπτωση"
     },
     "discount_item": {
       "buy_limit5": "Μπορείτε να αγοράσετε το πολύ {{stock}} προϊόντα με τις εκπτώσεις ταυτόχρονα"
@@ -89,16 +79,18 @@
       "buy_limit3": "Μπορείτε να αγοράσετε μόνο {{stock}} τεμάχια αυτού του προϊόντος με τις εκπτώσεις"
     },
     "general": {
-      "continue_as_a_guest": "Συνεχίστε ως επισκέπτης"
+      "continue_as_a_guest": "Συνεχίστε ως επισκέπτης",
+      "support_oneTime_purchase_only": "Το προϊόν υποστηρίζει μόνο μία εφάπαξ αγορά",
+      "support_subscription_only": "Το προϊόν υποστηρίζει μόνο αγορές μετά από εγγραφή"
     },
     "item": {
       "add_limit2": "Η μέγιστη ποσότητα ενός προϊόντος είναι 99999 τεμάχια",
-      "invalid_product": "Μη έγκυρα προϊόντα",
+      "click_to_view": "Κάντε κλικ για προβολή",
+      "custom_preview": "Προσαρμοσμένη προεπισκόπηση",
+      "empty_cart": "Το καλάθι σας είναι άδειο.",
       "item_left": "{{stock}} τεμάχια σε απόθεμα",
       "none_existent": "Το προϊόν αυτό δεν υπάρχει",
-      "remove_invalid_product": "Διαγραφή μη έγκυρων προϊόντων",
-      "removed": "ΜΗ ΕΓΚΥΡΟ",
-      "sold_out": "Εξαντλημένα"
+      "view_cart": "Προβολή καλαθιού"
     },
     "next_step": {
       "calculated_taxes_fees": "Οι φόροι και τα έξοδα αποστολής υπολογίζονται στο ταμείο"
@@ -106,29 +98,12 @@
     "notices": {
       "change_password_after_verification": "Μπορείτε να αλλάξετε τον κωδικό πρόσβασης μετά την επαλήθευση",
       "excess_product": "Τα παρακάτω προϊόντα υπερβαίνουν το όριο αγορών, παρακαλούμε αλλάξτε την ποσότητα",
-      "insufficient_product_inventory": "Ανεπαρκές απόθεμα προϊόντων",
-      "network": "Σφάλμα δικτύου",
       "product_amount_limit": "Συγνώμη! Ο αριθμός των προϊόντων στο καλάθι υπερβαίνει το όριο.",
-      "product_expired": "Το προϊόν έχει λήξει",
-      "product_limit": "Έχει γίνει υπέρβαση του ορίου προϊόντος",
       "product_selected_invalid": "Λυπούμαστε, το προϊόν που επιλέξατε δεν είναι έγκυρο για αγορά. Επιλέξτε ξανά",
       "store_nonexistent": "Το κατάστημα δεν υπάρχει"
     },
     "order": {
-      "authorized": "Εξουσιοδοτημένο",
-      "canceled": "Ακυρώθηκε",
-      "canceled_order": "Ακυρώθηκε",
-      "click_to_track": "Παρακαλούμε παρακολουθήστε το πακέτο σας κάνοντας κλικ στον παρακάτω σύνδεσμο:",
-      "contact_us": "Επικοινωνήστε μαζί μας",
-      "deleted": "ΜΗ ΕΓΚΥΡΟ",
-      "help_tips": "Χρειάζεστε βοήθεια; Επικοινωνήστε μαζί μας:{{email}}",
       "invalid_order_number": "μη έγκυρος αριθμός παραγγελίας",
-      "no_more_info": "Όχι περισσότερες πληροφορίες",
-      "no_record": "Αυτήν τη στιγμή δεν υπάρχει αρχείο παραγγελίας, πηγαίνετε για ψώνια",
-      "order": "Παραγγελία",
-      "order_details": "Λεπτομέρειες παραγγελίας",
-      "package_amount": "Πακέτο{{num}}({{item}} items)",
-      "pay_amount": "ποσό πληρωμής",
       "paymentVoucher": {
         "downloadDoc": "Μεταφόρτωση αρχείου",
         "format": "Μορφοποίηση",
@@ -137,50 +112,26 @@
         "uploadLimit": "Παρακαλούμε να αναφορτώνετε αρχεία .jpg, .png, .pdf με μέγεθος μικρότερο από 20ΜΒ"
       },
       "payment_voucher_confirmation": "Το έπιασα",
-      "payment_voucher_transfer_success": "Η πληρωμή μεταφέρθηκε με επιτυχία",
-      "payment_voucher_waiting_for_payment": "Αναμονή για πληρωμή",
-      "receiver_account": "λογαριασμός παραλήπτη",
-      "reference_number": "αριθμός αναφοράς",
-      "remark": "Παρατήρηση επί παραγγελίας",
-      "sequence": "Αριθμός {{id}}",
       "shipping_address": "Διεύθυνση αποστολής",
       "sign_in": "Ή συνδεθείτε με μια από τις ακόλουθες μεθόδους",
       "tax_included": "Συμπεριλαμβανομένου του {{price}} στους φόρους",
-      "time": "Παραγγελία στο:",
-      "total_amount": "{{transPackages}} στοιχείο συνολικά",
-      "total_item_amount": "{{transPackages}} στοιχεία συνολικά",
-      "tracking": "Πίστα",
       "try_again": "Η μεταφόρτωση απέτυχε. ΠΑΡΑΚΑΛΩ προσπαθησε ξανα.",
       "try_later": "Το σύστημα είναι απασχολημένο, δοκιμάστε ξανά αργότερα.",
       "upload_bank_transfer_vouhcer_for_confirmation": "Ανεβάστε το κουπόνι τραπεζικής μεταφοράς και θα επιβεβαιώσουμε.",
-      "upload_image_within_10_m_b": "Ανεβάστε εικόνες JPG, PNG, GIF εντός 10 MB",
-      "upload_time": "χρόνος μεταφόρτωσης",
-      "upload_voucher": "Ανεβάστε το κουπόνι",
-      "voucher_amount_limit": "Μπορείτε να ανεβάσετε μόνο έως 5 κουπόνια."
+      "upload_image_within_10_m_b": "Ανεβάστε εικόνες JPG, PNG, GIF εντός 10 MB"
     },
     "payment": {
-      "billing_address": "Διεύθυνση χρέωσης",
       "channel": "Μέσο πληρωμής",
-      "continue_shopping": "Συνεχίστε στις Αγορές",
       "create_time": "Δημιουργήθηκε",
-      "detail": "Λεπτομέρεια",
       "free": "Δωρεάν",
       "log_in": "Μετάβαση για σύνδεση",
-      "method": "Μέθοδος πληρωμής",
-      "paid": "Πληρωμένο",
-      "partially_paid": "Μερικώς πληρωμένο",
-      "paying": "Πληρωμή",
-      "payment": "Πληρωμή",
       "payment_details": "Στοιχεία πληρωμής",
-      "payment_status": "Κατάσταση πληρωμής",
       "pending_review": "Πληρωμή",
       "reference_number": "Αριθμός Αναφοράς Συναλλαγής",
       "status": "Κατάσταση",
       "subtotal_price": "Μερικό σύνολο",
       "sum": "Ποσό",
-      "total": "Σύνολο",
       "total_sum": "Σύνολο",
-      "unpaid": "Απλήρωτο",
       "update_time": "Ενημερώθηκε"
     },
     "policy": {
@@ -188,21 +139,6 @@
     },
     "promotion": {
       "no_promotion": "Έκπτωση μη συμμετοχής"
-    },
-    "refund": {
-      "click_to_view": "Κάντε κλικ για προβολή",
-      "cost_points": "Κόστος {{value}} πόντων",
-      "custom_preview": "Προσαρμοσμένη προεπισκόπηση",
-      "deduct_point": "Μπορείτε να χρησιμοποιήσετε {{deductMemberPointNum}} πόντους για να εξοικονομήσετε {{deductMemberPointAmount}}"
-    },
-    "shipping": {
-      "info": "Πληροφορίες",
-      "no_info": "Δεν υπάρχουν ακόμη πληροφορίες παράδοσης, παρακαλούμε ελέγξτε αργότερα.",
-      "package_tracking": "Παρακολούθηση πακέτων",
-      "partially_shipped": "Μερική αποστολή",
-      "preparing_order": "Προετοιμασία των προϊόντων",
-      "processing_amount": "Επεξεργασία ({{num}} στοιχεία)",
-      "shipped_order": "Παραδόθηκε"
     },
     "shpping": {
       "service_terms": "Όρους χρήσης του ιστοτόπου"
@@ -228,7 +164,6 @@
     "account": {
       "account_binding": "Δέσμευση λογαριασμού",
       "account_information": "Λογαριασμός",
-      "address": "Διεύθυνση κατοικίας",
       "bind": "Δεσμευτικός",
       "birthday": "Ημερομηνία γενεθλίων",
       "change_password": "Αλλάξτε τον κωδικό πρόσβασης",
@@ -253,6 +188,7 @@
       "modify_email": "Τροποποίηση email",
       "modify_email_modal_title": "Τροποποίηση email",
       "modify_phone": "Τροποποίηση τηλεφώνου",
+      "modify_phone_modal_title": "Τροποποίηση τηλεφώνου",
       "name": "Όνομα",
       "next": "Επόμενο",
       "nickname_empty_error": "Τόσο το πεδίο \"Όνομα\" όσο και το πεδίο \"Επώνυμο\" δεν μπορούν να μείνουν κενά",
@@ -271,7 +207,9 @@
       "unknow_error_tip": "Εξαίρεση υπηρεσίας, δοκιμάστε ξανά αργότερα",
       "username": "Όνομα",
       "verify_email_message": "Πριν κλείσουμε τον λογαριασμό, θα πρέπει να επαληθεύσουμε την ταυτότητά σας\nΘα λάβετε στο email σας {{email}} ένα email επαλήθευσης",
-      "verify_phone_message": "Πριν κλείσουμε τον λογαριασμό, θα πρέπει να επαληθεύσουμε την ταυτότητά σας\nΘα λάβετε στο κινητό σας τηλέφωνο {{phone}} ένα μήνυμα επαλήθευσης"
+      "verify_phone_message": "Πριν κλείσουμε τον λογαριασμό, θα πρέπει να επαληθεύσουμε την ταυτότητά σας\nΘα λάβετε στο κινητό σας τηλέφωνο {{phone}} ένα μήνυμα επαλήθευσης",
+      "address": "Διεύθυνση κατοικίας",
+      "invalidEmail": "Μη έγκυρη διεύθυνση email"
     },
     "activate": {
       "account_activated": "Έχει ενεργοποιηθεί ο λογαριασμός",
@@ -288,7 +226,7 @@
     "address": {
       "add_address": "Προσθήκη νέας διεύθυνσης",
       "address": "Διεύθυνση",
-      "adress_full_tip": "5 διευθύνσεις έχουν αποθηκευτεί και δεν μπορεί να προστεθεί αυτήν τη στιγμή",
+      "adress_full_tip": "50 διευθύνσεις έχουν αποθηκευτεί και δεν μπορεί να προστεθεί αυτήν τη στιγμή",
       "common_max": "",
       "common_min": "μεγαλύτερο από {{min}} χαρακτήρες",
       "default": "Προκαθορισμένο",
@@ -296,6 +234,7 @@
       "edit_last_name_hint": "Παρακαλούμε εισάγετε το επώνυμό σας!",
       "edit_phone_hint": "Παρακαλούμε εισάγετε το κινητό σας τηλέφωνο!",
       "edit_shipping_address": "ΕΠΕΞΕΡΓΑΣΙΑ ΔΙΕΥΘΥΝΣΗΣΑΠΟΣΤΟΛΗΣ",
+      "max_address_tip": "Δημιουργία έως 50 διευθύνσεων",
       "no_adress_data": "Προς το παρόν, δεν υπάρχει διεύθυνση παράδοσης",
       "set_default_address": "Ορίστε ως προεπιλεγμένη διεύθυνση"
     },
@@ -326,7 +265,6 @@
       "clear_button": "Καθαρισμός",
       "confirm": "Εντάξει",
       "confirm_button": "Εντάξει",
-      "continue_as_a_guest": "Συνεχίστε ως επισκέπτης",
       "date_format": "dd/MM/yyyy",
       "dec": "Δεκ",
       "december": "Δεκέμβριος",
@@ -335,6 +273,482 @@
       "email_empty_hint": "Παρακαλούμε εισαγάγετε τη διεύθυνση email",
       "email_error_hint": "Παρακαλούμε εισαγάγετε μια διεύθυνση email με έγκυρη μορφή και λιγότερους από 50 χαρακτήρες",
       "enter_verification_code": "Παρακαλούμε εισαγάγετε τον κωδικό επιβεβαίωσης",
+      "feb": "Φεβ",
+      "february": "Φεβρουάριος",
+      "first_day": "0",
+      "fr": "Πα",
+      "fri": "Παρ",
+      "friday": "Παρασκευή",
+      "image_size_less_than_tips": "Οι εικόνες πρέπει να είναι μικρότερες από {{max}} MB",
+      "jan": "Ιαν",
+      "january": "Ιανουάριος",
+      "jul": "Ιούλ",
+      "july": "Ιούλιος",
+      "jun": "Ιούν",
+      "june": "Ιούνιος",
+      "mar": "Μάρ",
+      "march": "Μάρτιος",
+      "max_image_upload_tips": "Μπορείτε να ανεβάσετε έως {{max}} εικόνες",
+      "may": "Μάιος",
+      "may_short": "Μάι",
+      "mo": "Δε",
+      "mon": "Δευ",
+      "monday": "Δευτέρα",
+      "network_error_message": "Δεν υπάρχει δίκτυο",
+      "nov": "Νοέ",
+      "november": "Νοέμβριος",
+      "oct": "Οκτ",
+      "october": "Οκτώβριος",
+      "ok": "Εντάξει",
+      "okay_common": "ΕΝΤΆΞΕΙ",
+      "orders": "Παραγγελίες",
+      "password": "Κωδικός πρόσβασης",
+      "password_empty_hint": "Παρακαλούμε εισάγετε κωδικό πρόσβασης",
+      "phone": "Αριθμός κινητού τηλεφώνου",
+      "phone_empty_message": "Παρακαλούμεεισαγάγετε τον αριθμό κινητού τηλεφώνου",
+      "phone_error_message": "Παρακαλούμε εισαγάγετε έναν σωστό αριθμό κινητού τηλεφώνου",
+      "phone_number_error_message": "Παρακαλούμε εισάγετε έναν έγκυρο αριθμό τηλεφώνου",
+      "register": "Εγγραφή",
+      "repeat_passport_error": "Οι κωδικοί πρόσβασης που εισαγάγατε δεν ταιριάζουν",
+      "repeat_password": "Εισαγάγετε ξανά τον κωδικό πρόσβασης",
+      "resend": "Εκ νέου αποστολή",
+      "sa": "Σά",
+      "sat": "Σάβ",
+      "saturday": "Σάββατο",
+      "save": "ΑΠΟΘΗΚΕΥΣΗ",
+      "select__date": "Επιλογή ημερομηνίας",
+      "select_date": "Επιλογή ημερομηνίας",
+      "send": "Αποστολή",
+      "send_error": "Στείλτε πρώτα τον κωδικό επαλήθευσης",
+      "send_verification_code_hint": "Παρακαλούμε εισαγάγετε ξανά τον κωδικό πρόσβασης",
+      "sep": "Σεπ",
+      "september": "Σεπτέμβριος",
+      "set_password": "Παρακαλούμε ορίστε έναν κωδικό πρόσβασης με ελάχιστο μήκος 6 χαρακτήρων και μέγιστο μήκος 18 χαρακτήρων",
+      "sign__out": "Αποσύνδεση",
+      "sign_in": "ΣΥΝΔΕΣΗ",
+      "sign_up": "Εγγραφή",
+      "su": "Κυ",
+      "subscription_desc": "Λάβετε τα πιο πρόσφατα νέα για τις δραστηριότητες του καταστήματος",
+      "sun": "Κυρ",
+      "sunday": "Κυριακή",
+      "th": "Πέ",
+      "thu": "Πέμ",
+      "thursday": "Πέμπτη",
+      "time_format": "hh:mm aa",
+      "today": "Σήμερα",
+      "tu": "Τρ",
+      "tue": "Τρί",
+      "tuesday": "Τρίτη",
+      "update_passport": "Αλλάξτε κωδικό",
+      "user_agreement_tip": "Διαβάστε πρώτα και αποδεχτείτε τη συμφωνία χρήστη",
+      "username": "Διεύθυνση email/αριθμός κινητού τηλεφώνου",
+      "username_empty_hint": "Παρακαλούμε εισαγάγετε τη διεύθυνση email ή τον αριθμό κινητού τηλεφώνου",
+      "verification_code": "Κωδικός επαλήθευσης",
+      "verification_code_sent_tip": "Ο κωδικός επαλήθευσης έχει σταλεί στον λογαριασμό σας",
+      "verift_account_tip": "Παρακαλούμε επαληθεύστε τον λογαριασμό σας και επαναφέρετε τον κωδικό πρόσβασης",
+      "we": "Τε",
+      "wed": "Τετ",
+      "wednesday": "Τετάρτη",
+      "continue_as_a_guest": "Συνεχίστε ως επισκέπτης",
+      "login_method": "Ή συνδεθείτε με μια από τις ακόλουθες μεθόδους",
+      "proceed_to_checkout": "Προχωρήστε στο ταμείο"
+    },
+    "login": {
+      "member_login_common": "Είσοδος μέλους",
+      "subscribe_confirm_tip": "Ευχαριστούμε για τη συνδρομή σας. Μπορείτε πλέον να συνδεθείτε για μια καλύτερη εμπειρία."
+    },
+    "message": {
+      "input_placeholder": "Υπάρχει κάτι για το οποίο θέλετε να αφήσετε ένα μήνυμα;",
+      "message": "Μήνυμα",
+      "send": "Αποστολή"
+    },
+    "phone": {
+      "mobile_common": "Αριθμός τηλεφώνου"
+    },
+    "register": {
+      "privacy_policy": "Πολιτική Απορρήτου",
+      "terms_of_service": "Όρους χρήσης του ιστοτόπου",
+      "go_to_login": "Μετάβαση για σύνδεση",
+      "tips_agree_with_the_shop": "Συμφωνώ ως προς το"
+    },
+    "subscription": {
+      "email": "E-mail",
+      "email_subscription_text": "Παραλάβετε την προωθητική πληροφορία της εγγραφής μέσω ηλεκτρονικού μηνύματος",
+      "line": "LINE",
+      "messenger": "Messenger",
+      "phone": "Κινητό τηλέφωνο",
+      "phone_subscription_text": "Εγγραφή στην τηλεφωνική προώθηση",
+      "reason_other_length": "Εισαγάγετε μέχρι και 300 χαρακτήρες",
+      "reason_other_placeholder": "Εισαγωγή περιεχομένου",
+      "save_button": "ΑΠΟΘΗΚΕΥΣΗ",
+      "subscribe_button": "ΕΓΓΡΑΦΗ",
+      "subscription_cancel_text": "Διαγραμένος",
+      "subscription_hint": "Εγγεγραμμένος",
+      "subscription_title": "Συνδρομή",
+      "unsubscribe": "Διαγραμένος",
+      "unsubscribe_btn": "Διαγραμένος",
+      "unsubscribe_confirm_text": "Διαγραμένος",
+      "unsubscribe_feedback_text": "Δεν θα λαμβάνετε άλλες ενημερώσεις μάρκετινγκ από εμάς. Μπορείτε να εγγραφείτε ξανά ανά πάσα στιγμή",
+      "unsubscribe_feedback_title": "Έχετε καταργήσει την εγγραφή σας από τη λίστα αλληλογραφίας <italic>{{name}}</italic>",
+      "unsubscribe_reason1": "Δεν θέλω να λαμβάνω email όπως αυτό",
+      "unsubscribe_reason2": "Έχω λάβει πάρα πολλά email",
+      "unsubscribe_reason3": "Δεν έχω εγγραφεί για αυτά τα email",
+      "unsubscribe_reason4": "Τα email αυτά δεν με αφορούν",
+      "unsubscribe_reason5": "Το περιεχόμενο του email είναι πολύ μεγάλο",
+      "unsubscribe_reason6": "Άλλο",
+      "unsubscribe_subtitle": "Λυπούμαστε για την αποχώρησή σας! Εάν θέλετε ενημερώστε μας γιατί καταργήσατε την εγγραφή σας:",
+      "unsubscribe_success": "Ακυρώθηκε η συνδρομή και σύντομα θα ανακατευθυνθείτε στην αρχική σελίδα",
+      "unsubscribe_tip": "Αφού ακυρώσετε την εγγραφή σας, δεν θα λαμβάνετε πλέον την τελευταία προσφορά.",
+      "unsubscribe_title": "Διαγραμένος"
+    }
+  },
+  "general": {
+    "404": {
+      "subtext": "Η σελίδα που ψάχνετε δεν υπάρχει.",
+      "title": "404 σελίδες δεν βρέθηκαν",
+      "button": "Συνεχίστε τις αγορές"
+    },
+    "address": {
+      "address": "Διεύθυνση κατοικίας"
+    },
+    "contact_us": {
+      "contact_us": "ΕΠΙΚΟΙΝΩΝΉΣΤΕ ΜΑΖΊ ΜΑΣ",
+      "send_success": "Σας ευχαριστούμε που επικοινωνήσατε μαζί μας, θα σας απαντήσουμε το συντομότερο δυνατό. "
+    },
+    "footer": {
+      "subscribe_format_error": "Μη έγκυρο ηλεκτρονικό ταχυδρομείο",
+      "subscribe_success": "Επιτυχία εγγραφής",
+      "copyright": "© {{year}} {{storeName}}"
+    },
+    "general": {
+      "accept": "Αποδοχή",
+      "decline": "Απόρριψη",
+      "home": "εξώφυλλο",
+      "link": "Πολιτική Απορρήτου",
+      "no_data": "Δεν υπάρχουν διαθέσιμα δεδομένα",
+      "privacy_policy": "Πολιτική Απορρήτου",
+      "tel_phone": "Αριθμός τηλεφώνου",
+      "tips": "Για να βελτιώσουμε πιο πολύ την εμπειρία σας, χρησιμοποιούμε cookies ώστε να θυμόμαστε τα στοιχεία σύνδεσης, να συλλέγουμε στατιστικά στοιχεία και να παρέχουμε ένα περιεχόμενο προσαρμοσμένο στα δικά σας ενδιαφέροντα. Κάντε κλικ στο \"Αποδοχή\" για να αποδεχτείτε τα cookies ή διαβάστε τη δήλωσή μας \"Πολιτική Απορρήτου\".",
+      "title": "Φροντίζουμε για το απόρρητο των δεδομένων σας",
+      "username": "Όνομα"
+    },
+    "header": {
+      "cart": "Το καλάθι σας",
+      "center": "Κέντρο",
+      "close": "Κλειστό",
+      "login": "Σύνδεση",
+      "no_currency_fallback": "Δεν βρέθηκε σχετικό νόμισμα",
+      "search_input_placeholder": "Πληκτρολογήστε εδώ και πατήστε αναζήτηση"
+    },
+    "order_tracking": {
+      "code": "Κωδικός επαλήθευσης",
+      "email": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
+      "form_error": "Το ερώτημα απέτυχε",
+      "orderId": "Αριθμός Παραγγελίας",
+      "orderId_error": "Το αναγνωριστικό παραγγελίας δεν μπορεί να είναι κενό",
+      "query_illegal": "τάξη δεν υπάρχει",
+      "risk_black_user": "Αυτός ο λογαριασμός βρίσκεται σε κίνδυνο",
+      "risk_interception": "τάξη δεν υπάρχει",
+      "submit_btn": "Προβολή παραγγελίας",
+      "username": "Email/Αριθμός τηλεφώνου"
+    },
+    "policy": {
+      "service": "Όρους χρήσης του ιστοτόπου",
+      "shipping": "Πολιτική αποστολής",
+      "privacy": "Πολιτική Απορρήτου",
+      "refund": "Πολιτική επιστροφής"
+    }
+  },
+  "order": {
+    "checkout_order": {
+      "pay_amount": "ποσό πληρωμής",
+      "receiver_account": "λογαριασμός παραλήπτη",
+      "reference_number": "αριθμός αναφοράς",
+      "upload_time": "χρόνος μεταφόρτωσης",
+      "upload_voucher": "Ανεβάστε το κουπόνι",
+      "voucher_amount_limit": "Μπορείτε να ανεβάσετε μόνο έως 5 κουπόνια."
+    },
+    "detail": {
+      "orderstatus": {
+        "detail": "Λεπτομέρεια"
+      }
+    },
+    "order_details": {
+      "details": "Λεπτομέρειες παραγγελίας",
+      "order": "Παραγγελία",
+      "remark": "Παρατήρηση επί παραγγελίας",
+      "time": "Παραγγελία στο:"
+    },
+    "order_list": {
+      "no_more_info": "Όχι περισσότερες πληροφορίες",
+      "no_record": "Αυτήν τη στιγμή δεν υπάρχει αρχείο παραγγελίας, πηγαίνετε για ψώνια",
+      "package_amount": "Πακέτο{{num}}({{item}} items)",
+      "total_amount": "{{transPackages}} στοιχεία συνολικά"
+    },
+    "order_status": {
+      "canceled": "Ακυρώθηκε",
+      "click_to_track": "Παρακαλούμε παρακολουθήστε το πακέτο σας κάνοντας κλικ στον παρακάτω σύνδεσμο:",
+      "contact_us": "Επικοινωνήστε μαζί μας",
+      "help_tips": "Χρειάζεστε βοήθεια; Επικοινωνήστε μαζί μας:{{email}}",
+      "payment_voucher_transfer_success": "Η πληρωμή μεταφέρθηκε με επιτυχία",
+      "payment_voucher_waiting_for_payment": "Αναμονή για πληρωμή",
+      "sequence": "Αριθμός {{id}}",
+      "tracking": "Πίστα"
+    },
+    "payment": {
+      "authorized": "Εξουσιοδοτημένο",
+      "billing_address": "Διεύθυνση χρέωσης",
+      "detail": "Λεπτομέρεια",
+      "method": "Μέθοδος πληρωμής",
+      "paid": "Πληρωμένο",
+      "partially_paid": "Μερικώς πληρωμένο",
+      "paying": "Πληρωμή",
+      "payment": "Πληρωμή",
+      "payment_status": "Κατάσταση πληρωμής",
+      "unpaid": "Απλήρωτο"
+    },
+    "shipping": {
+      "info": "Πληροφορίες",
+      "no_info": "Δεν υπάρχουν ακόμη πληροφορίες παράδοσης, παρακαλούμε ελέγξτε αργότερα.",
+      "package_tracking": "Παρακολούθηση πακέτων",
+      "partially_shipped": "Μερική αποστολή",
+      "preparing_order": "Προετοιμασία των προϊόντων",
+      "processing_amount": "Επεξεργασία ({{num}} στοιχεία)",
+      "shipped_order": "Παραδόθηκε"
+    }
+  },
+  "products": {
+    "collection": {
+      "collection": "Κατηγορία"
+    },
+    "general": {
+      "no_product_data_found": "Δεν βρέθηκαν στοιχεία προϊόντος. Παρακαλούμε προσπαθήστε ξανά αργότερα",
+      "sold_out": "Εξαντλημένα",
+      "added_to_cart_successfully": "Προστέθηκε με επιτυχία στο καλάθι"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Το μέγιστο επιτρεπόμενο ποσό για αυτό το περιορισμένο προϊόν είναι {{num}}",
+      "activity_toast_product__limit": "Η αγορά περιορίζεται σε {{stock}} προωθητικό προϊόν",
+      "activity_toast_title__limit": "Τα παρακάτω προϊόντα υπερβαίνουν το όριο αγορών",
+      "amount": "Ποσότητα",
+      "buy_more_save_more": "Αγοράστε περισσότερα Εξοικονομήστε περισσότερα!",
+      "cancel": "Ακύρωση",
+      "country_region": "Χώρα/Περιφέρεια",
+      "default_placeholder": "Επιλογή {{attrName}}",
+      "description": "Περιγραφή",
+      "email": "E-mail",
+      "enter_email_address": "Παρακαλούμε εισαγάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας",
+      "enter_valid_email_address": "Παρακαλούμε εισάγετε μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου",
+      "give_us_more_of_your_information": "Μπορείτε να μας δώσετε περισσότερες πληροφορίες σας ώστε να σας παρέχουμε πιο κατάλληλες υπηρεσίες",
+      "go_to_amazon_by_link": "Αγορά στην Amazon",
+      "go_to_rakuten_by_link": "Αγοράστε στο LOTTE",
+      "go_to_yahoo_by_link": "Αγορά στο Yahoo",
+      "in_stock": "Σε απόθεμα",
+      "inventory_quantity": "Στοιχεία αποθέματος",
+      "leave_us_message": "Παρακαλούμε εισάγετε το μήνυμά σας",
+      "leave_us_message_get_back": "Παρακαλούμε αφήστε μας ένα μήνυμα και θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν",
+      "link_preview_does_not_support": "Η λειτουργία για την προεπισκόπηση συνδέσμου δεν υποστηρίζεται",
+      "maximum_length_of_message": "Το μέγιστο μήκος του μηνύματός σας δεν πρέπει να υπερβαίνει τις 1500 λέξεις",
+      "message": "Το μήνυμά σας",
+      "more_payment_options": "περισσότερες επιλογές πληρωμής",
+      "name": "Όνομα",
+      "optional": "Προαιρετικό",
+      "phone_number": "Αριθμός τηλεφώνου",
+      "product_enquiry": "Έρευνα προϊόντος",
+      "submission_failed": "Η υποβολή /αποστολή απέτυχε, δοκιμάστε πάλι",
+      "submission_successfully": "Επιτυχής αποστολή",
+      "submit": "Υποβολή",
+      "tax_included": "συμπεριλαμβανομένου του φόρου",
+      "view_product_detail": "Προβολή στοιχείων προϊόντος"
+    },
+    "product_list": {
+      "add_to_cart": "ΠΡΟΣΘΗΚΗ ΣΤΟ ΚΑΛΑΘΙ",
+      "filter": "Φίλτρο",
+      "from_price_html": "Από {{price}}",
+      "less": "Λιγότερο",
+      "load_more_tip": "Φόρτωση περισσότερων στοιχείων",
+      "more": "Περισσότερο",
+      "new_arrivals": "Νέα άφιξη",
+      "no_product": "Σε αυτή τη συλλογή δεν υπάρχουν προϊόντα",
+      "price_high_to_low": "Τιμή από υψηλή προς χαμηλή",
+      "price_low_to_high": "Τιμή από χαμηλή προς υψηλή",
+      "product_has_been_removed": "Το προϊόν έχει αφαιρεθεί από τα ράφια",
+      "product_sold_out": "ΕΞΑΝΤΛΗΜΈΝΑ",
+      "products": "προϊόντα",
+      "quick_shop": "Γρήγορο κατάστημα",
+      "recommend": "Συνιστάται",
+      "sale": "πώληση",
+      "save": "Έκπτωση {{{priceDom}}}",
+      "save_byjs": "Έκπτωση {{priceDom}}",
+      "save_ratio": "Έκπτωση {{price}}%",
+      "select_product_all_options": "Επιλέξτε πρώτα το μέγεθος του προϊόντος!",
+      "top_sellers": "Κορυφαίοι πωλητές",
+      "more__product_num": "{{num}} Προϊόντα",
+      "one_product_num": "{{num}} Προϊόν",
+      "show": "Προβολή",
+      "sold_out": "Εξαντλημένα"
+    },
+    "product_search": {
+      "back_to_home": "Επιστροφή στην αρχική σελίδα",
+      "ount_results": "{{count}} Αποτελέσματα",
+      "results_found_for": "Βρέθηκαν {{count}} αποτελέσματα για \"{{keyword}}\"",
+      "search": "Αναζήτηση",
+      "search_no_results": "Η αναζήτησή σας για το \"{{keyword}}\" δεν έφερε αποτελέσματα",
+      "single_results": "{{count}} Αποτελέσματα",
+      "single_results_found": "Βρέθηκαν {{count}} αποτελέσματα για \"{{keyword}}\""
+    },
+    "recently_viewed_products": {
+      "recently_viewed_products": "Προϊόντα που προβλήθηκαν πρόσφατα"
+    }
+  },
+  "sales": {
+    "discount_coupon": {
+      "active_date_until": "Ισχύει έως: {{endTime}}",
+      "applied": "Εφαρμοσμένος",
+      "applied_successfully": "Ο κωδικός για την έκπτωση εφαρμόστηκε με επιτυχία",
+      "apply": "Εφαρμογή",
+      "buy_x_get_y_all_discount_content": "Αποκτήστε {{benefitCount}} τεμάχια με έκπτωση {{discount}}",
+      "buy_x_get_y_all_free_content": "Αποκτήστε {{benefitCount}} τεμάχια δωρεάν",
+      "buy_x_get_y_discount_content": "{{discount}} εκτός",
+      "buy_x_get_y_free_content": "ΕΛΕΥΘΕΡΟ",
+      "buy_x_get_y_threshold": "Αγοράστε {{threshold}} και κερδίστε {{benefitCount}} τεμάχια δωρεάν",
+      "coupon_content_level": "Για {{level}}",
+      "coupon_discount_content": "Έκπτωση {discount}",
+      "coupon_not_found": "Ο κωδικός για την έκπτωση δεν υπάρχει",
+      "failed_to_apply_coupon_code": "Η εφαρμογή απέτυχε",
+      "free__shipping": "Δωρεάν αποστολή",
+      "get_code": "Λάβετε εκπτωτικά κουπόνια",
+      "popup_label": "Κουπόνια καταστήματος:",
+      "shipping_rate_below": "Το κόστος αποστολής (ναύλος) είναι μικρότερο από {value}",
+      "specified_customer": "Για συγκεκριμένους πελάτες",
+      "threshold": "Αγορά {threshold}"
+    },
+    "flash": {
+      "day": "ημέρα",
+      "days": "ημέρεσ"
+    },
+    "general": {
+      "activity_banner_benefit": "{{benefit}} εκτός",
+      "activity_banner_copy_success_text": "Ο κωδικός του κουπονιού αντιγράφηκε επιτυχώς",
+      "activity_banner_free_shipping": "Δωρεάν μεταφορά",
+      "activity_selector_new_arrivals": "Νέες αφίξεις",
+      "activity_selector_price_high_to_low": "Τιμή υψηλή προς χαμηλή",
+      "activity_selector_price_low_to_high": "Τιμή χαμηλή προς υψηλή",
+      "activity_selector_recommended": "Συνιστάται",
+      "apply_common": "Εφαρμογή",
+      "coupon_code_copied": "Ο κωδικός του κουπονιού αντιγράφηκε επιτυχώς",
+      "coupon_code_copy": "Αντίγραφο",
+      "flash_sale_text": "ΑΜΕΣΗ ΠΏΛΗΣΗ",
+      "flash_sale_tip": "Όριο αγοράς: {{count}} ποσότητα",
+      "hot_sale": "Πολύ καλή προσφορά!",
+      "product_tabs_benefit_discount_locked": "Λάβετε {{offPercent}}% έκπτωση",
+      "product_tabs_benefit_discount_unlocked": "Η {{offPercent}}% έκπτωση ξεκλειδώθηκε!",
+      "product_tabs_benefit_free_locked": "Δωρεάν είδος",
+      "product_tabs_benefit_free_unlocked": "Το δωρεάν είδος είναι ξεκλείδωτο!",
+      "product_tabs_benefit_unlocked_tip": "Τώρα μπορείτε να απολαύσετε έκπτωση στο προϊόν",
+      "product_tabs_code_benefit_discount_unlocked": "Αγοράστε {{benefitCount}} τεμάχια με έκπτωση {{offPercent}}%",
+      "product_tabs_code_benefit_free_unlocked": "Αποκτήστε {{benefitCount}} τεμάχια δωρεάν",
+      "product_tabs_threshold": "Αγοράστε {{threshold}}",
+      "purchase_limit": "Όριο αγοράς {{count}} ανά άτομο",
+      "purchase_limit_each_item": "Όριο αγοράς {{count}} ανά προϊόν και ανά άτομο",
+      "select_promotional_product": "Επιλέχθηκαν {{selectCount}} προϊόντα εκδήλωσης",
+      "sold": "{{count}} πωλήθηκαν",
+      "activity_banner_copy_text": "Αντίγραφο",
+      "activity_banner_threshold": "Παραγγελίες άνω του {{threshold}}",
+      "discount_common": "Έκπτωση",
+      "shop_more": "Περισσότερο"
+    },
+    "gift": {
+      "got_all_gifts_tip": "Συγχαρητήρια! Αποκτήσατε {{saved}} ΔΩΡΕΑΝ ΔΩΡΑ!",
+      "not_meet_amount_tip": "Αγοράστε {{threshold}} περισσότερα, απολαύστε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ",
+      "not_meet_quantity_tip": "Αγοράστε {{threshold}} ακόμη αντικείμενα, κερδίστε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ",
+      "select": "Επιλογή",
+      "select_gift_tip": "Συγχαρητήρια! Μπορείτε να κερδίσετε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ",
+      "spend_more_money_get_more_tip": "Συγχαρητήρια! Έχετε ήδη {{saved}} δωρεάν δώρο! Ξοδέψτε {{threshold}} περισσότερα, κερδίστε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ",
+      "spend_more_quantity_get_more_tip": "Συγχαρητήρια! Έχετε ήδη {{saved}} ένα δωρεάν δώρο! Αγοράστε {{threshold}} περισσότερα, κερδίστε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ"
+    },
+    "promotion": {
+      "discount_tag": {
+        "label": "Έκπτωση:"
+      }
+    }
+  },
+  "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Στρογγυλοποίηση"
+      }
+    },
+    "payments-name": {
+      "COD": "Με αντικαταβολή",
+      "Paypal": "Paypal",
+      "adjustPay": "manual",
+      "third-part": "Πιστωτική κάρτα"
+    },
+    "reduction_code": {
+      "giftcard": "Δωροκάρτες"
+    }
+  },
+  "transaction": {
+    "contact": {
+      "discounts_stack_not": "Έχει δοθεί έκπτωση σε αυτήν την παραγγελία. Δεν μπορείτε να προσθέσετε άλλη έκπτωση"
+    },
+    "discount": {
+      "code_error": "Το εκπτωτικό κουπόνι τοποθετείται λανθασμένα",
+      "code_item_unmatched": "{{discountCode}} τοποθετείται σωστά, αλλά η τιμή ή η ποσότητα των προϊόντων δεν συμφωνούν με τις προϋποθέσεις",
+      "coupon_code": "Κωδικός κουπονιού",
+      "coupon_invalid_for_the_shipping_method": "Το κουπόνι {{discountCode}} ισχύει για τον τρόπο αποστολής",
+      "discount_codes_cannot_stack": "Υπάρχει ήδη μια προνομιακή εκδήλωση για αυτό το προϊόν, η οποία όμως δεν μπορεί να χρησιμοποιηθεί μαζί με άλλες προνομιακές εκδηλώσεις.",
+      "use_coupon_alone": "Αυτός ο κωδικός κουπονιού δεν μπορεί να χρησιμοποιηθεί σε συνδυασμό με άλλες προωθητικές προσφορές ή προσφορές έκπτωσης"
+    },
+    "general": {
+      "discount_off": "Έκπτωση",
+      "free_charge": "Δωρεάν αποστολή",
+      "free_shipping": "δωρεάν αποστολή",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
+      "order_seller_discount": "Επιπλέον έκπτωση πωλητή",
+      "order_tax": "Φόρος",
+      "order_tip": "Υπόδειξη",
+      "payment_subtotal_cost": "Μερικό σύνολο",
+      "point_discount": "Έκπτωση πόντων",
+      "shipping_fee": "Αποστολή",
+      "trade_coupon_discount": "Έκπτωση"
+    },
+    "item": {
+      "invalid_product": "Μη έγκυρα προϊόντα",
+      "remove_invalid_product": "Διαγραφή μη έγκυρων προϊόντων",
+      "removed": "ΜΗ ΕΓΚΥΡΟ",
+      "sold_out": "Εξαντλημένα"
+    },
+    "notices": {
+      "insufficient_product_inventory": "Ανεπαρκές απόθεμα προϊόντων",
+      "network": "Σφάλμα δικτύου",
+      "product_expired": "Το προϊόν έχει λήξει",
+      "product_limit": "Έχει γίνει υπέρβαση του ορίου προϊόντος"
+    },
+    "order": {
+      "deleted": "ΜΗ ΕΓΚΥΡΟ"
+    },
+    "payment": {
+      "continue_shopping": "Συνεχίστε τις αγορές",
+      "more": "Περισσότερο",
+      "total": "Σύνολο",
+      "total_sum": "Σύνολο"
+    },
+    "policy": {
+      "refund_policy": "Πολιτική επιστροφής"
+    },
+    "refund": {
+      "cost_points": "Κόστος {{value}} πόντων",
+      "deduct_point": "Μπορείτε να χρησιμοποιήσετε {{deductMemberPointNum}} πόντους για να εξοικονομήσετε {{deductMemberPointAmount}}"
+    }
+  },
+  "unvisiable": {
+    "customer": {
       "error_message_1": "Εγγραφώ για μηνύματα ηλεκτρονικού ταχυδρομείου για να λαμβάνω ενημερώσεις, πρόσβαση σε αποκλειστικές προσφορές και πολλά άλλα.",
       "error_message_1001": "Σφάλμα κωδικού πρόσβασης",
       "error_message_1002": "Ο χρήστης δεν υπάρχει",
@@ -387,399 +801,8 @@
       "error_message_3024": "Σφάλμα παραμέτρου σύνδεσης",
       "error_message_4": "Εξαιρέσεις παροχής υπηρεσιών",
       "error_message_5": "Εξαιρέσεις παροχής υπηρεσιών",
-      "error_message_6": "Εξαιρέσεις παροχής υπηρεσιών",
-      "feb": "Φεβ",
-      "february": "Φεβρουάριος",
-      "first_day": "0",
-      "fr": "Πα",
-      "fri": "Παρ",
-      "friday": "Παρασκευή",
-      "image_size_less_than_tips": "Οι εικόνες πρέπει να είναι μικρότερες από {{max}} MB",
-      "jan": "Ιαν",
-      "january": "Ιανουάριος",
-      "jul": "Ιούλ",
-      "july": "Ιούλιος",
-      "jun": "Ιούν",
-      "june": "Ιούνιος",
-      "login_method": "Ή συνδεθείτε με μια από τις ακόλουθες μεθόδους",
-      "mar": "Μάρ",
-      "march": "Μάρτιος",
-      "max_image_upload_tips": "Μπορείτε να ανεβάσετε έως {{max}} εικόνες",
-      "may": "Μάιος",
-      "may_short": "Μάι",
-      "mo": "Δε",
-      "mon": "Δευ",
-      "monday": "Δευτέρα",
-      "network_error_message": "Δεν υπάρχει δίκτυο",
-      "nov": "Νοέ",
-      "november": "Νοέμβριος",
-      "oct": "Οκτ",
-      "october": "Οκτώβριος",
-      "ok": "Εντάξει",
-      "okay_common": "ΕΝΤΆΞΕΙ",
-      "orders": "Παραγγελίες",
-      "password": "Κωδικός πρόσβασης",
-      "password_empty_hint": "Παρακαλούμε εισάγετε κωδικό πρόσβασης",
-      "phone": "Αριθμός κινητού τηλεφώνου",
-      "phone_empty_message": "Παρακαλούμεεισαγάγετε τον αριθμό κινητού τηλεφώνου",
-      "phone_error_message": "Παρακαλούμε εισαγάγετε έναν σωστό αριθμό κινητού τηλεφώνου",
-      "phone_number_error_message": "Παρακαλούμε εισάγετε έναν έγκυρο αριθμό τηλεφώνου",
-      "proceed_to_checkout": "Προχωρήστε στο ταμείο",
-      "register": "Εγγραφή",
-      "repeat_passport_error": "Οι κωδικοί πρόσβασης που εισαγάγατε δεν ταιριάζουν",
-      "repeat_password": "Εισαγάγετε ξανά τον κωδικό πρόσβασης",
-      "resend": "Εκ νέου αποστολή",
-      "sa": "Σά",
-      "sat": "Σάβ",
-      "saturday": "Σάββατο",
-      "save": "ΑΠΟΘΗΚΕΥΣΗ",
-      "select__date": "Επιλογή ημερομηνίας",
-      "select_date": "Επιλογή ημερομηνίας",
-      "send": "Αποστολή",
-      "send_error": "Στείλτε πρώτα τον κωδικό επαλήθευσης",
-      "send_verification_code_hint": "Παρακαλούμε εισαγάγετε ξανά τον κωδικό πρόσβασης",
-      "sep": "Σεπ",
-      "september": "Σεπτέμβριος",
-      "set_password": "Παρακαλούμε ορίστε έναν κωδικό πρόσβασης με ελάχιστο μήκος 6 χαρακτήρων και μέγιστο μήκος 18 χαρακτήρων",
-      "sign__out": "Αποσύνδεση",
-      "sign_in": "ΣΥΝΔΕΣΗ",
-      "sign_up": "Εγγραφή",
-      "su": "Κυ",
-      "subscription_desc": "Λάβετε τα πιο πρόσφατα νέα για τις δραστηριότητες του καταστήματος",
-      "sun": "Κυρ",
-      "sunday": "Κυριακή",
-      "th": "Πέ",
-      "thu": "Πέμ",
-      "thursday": "Πέμπτη",
-      "time_format": "hh:mm aa",
-      "today": "Σήμερα",
-      "tu": "Τρ",
-      "tue": "Τρί",
-      "tuesday": "Τρίτη",
-      "update_passport": "Αλλάξτε κωδικό",
-      "user_agreement_tip": "Διαβάστε πρώτα και αποδεχτείτε τη συμφωνία χρήστη",
-      "username": "Διεύθυνση email/αριθμός κινητού τηλεφώνου",
-      "username_empty_hint": "Παρακαλούμε εισαγάγετε τη διεύθυνση email ή τον αριθμό κινητού τηλεφώνου",
-      "verification_code": "Κωδικός επαλήθευσης",
-      "verification_code_sent_tip": "Ο κωδικός επαλήθευσης έχει σταλεί στον λογαριασμό σας",
-      "verift_account_tip": "Παρακαλούμε επαληθεύστε τον λογαριασμό σας και επαναφέρετε τον κωδικό πρόσβασης",
-      "we": "Τε",
-      "wed": "Τετ",
-      "wednesday": "Τετάρτη"
+      "error_message_6": "Εξαιρέσεις παροχής υπηρεσιών"
     },
-    "login": {
-      "member_login_common": "Είσοδος μέλους",
-      "subscribe_confirm_tip": "Ευχαριστούμε για τη συνδρομή σας. Μπορείτε πλέον να συνδεθείτε για μια καλύτερη εμπειρία."
-    },
-    "message": {
-      "input_placeholder": "Υπάρχει κάτι για το οποίο θέλετε να αφήσετε ένα μήνυμα;",
-      "message": "Μήνυμα",
-      "send": "Αποστολή"
-    },
-    "phone": {
-      "mobile_common": "Αριθμός τηλεφώνου"
-    },
-    "register": {
-      "go_to_login": "Μετάβαση για σύνδεση",
-      "privacy_policy": "Πολιτική Απορρήτου",
-      "terms_of_service": "Όρους χρήσης του ιστοτόπου",
-      "tips_agree_with_the_shop": "Συμφωνώ ως προς το"
-    },
-    "subscription": {
-      "email": "E-mail",
-      "email_subscription_text": "Παραλάβετε την προωθητική πληροφορία της εγγραφής μέσω ηλεκτρονικού μηνύματος",
-      "line": "LINE",
-      "messenger": "Messenger",
-      "phone": "Κινητό τηλέφωνο",
-      "phone_subscription_text": "Εγγραφή στην τηλεφωνική προώθηση",
-      "reason_other_length": "Εισαγάγετε μέχρι και 300 χαρακτήρες",
-      "reason_other_placeholder": "Εισαγωγή περιεχομένου",
-      "save_button": "ΑΠΟΘΗΚΕΥΣΗ",
-      "subscribe_button": "ΕΓΓΡΑΦΗ",
-      "subscription_cancel_text": "Διαγραμένος",
-      "subscription_hint": "Εγγεγραμμένος",
-      "subscription_title": "Συνδρομή",
-      "unsubscribe": "Διαγραμένος",
-      "unsubscribe_btn": "Διαγραμένος",
-      "unsubscribe_confirm_text": "Διαγραμένος",
-      "unsubscribe_feedback_text": "Δεν θα λαμβάνετε άλλες ενημερώσεις μάρκετινγκ από εμάς. Μπορείτε να εγγραφείτε ξανά ανά πάσα στιγμή",
-      "unsubscribe_feedback_title": "Έχετε καταργήσει την εγγραφή σας από τη λίστα αλληλογραφίας <italic>{{name}}</italic>",
-      "unsubscribe_reason1": "Δεν θέλω να λαμβάνω email όπως αυτό",
-      "unsubscribe_reason2": "Έχω λάβει πάρα πολλά email",
-      "unsubscribe_reason3": "Δεν έχω εγγραφεί για αυτά τα email",
-      "unsubscribe_reason4": "Τα email αυτά δεν με αφορούν",
-      "unsubscribe_reason5": "Το περιεχόμενο του email είναι πολύ μεγάλο",
-      "unsubscribe_reason6": "Άλλο",
-      "unsubscribe_subtitle": "Λυπούμαστε για την αποχώρησή σας! Εάν θέλετε ενημερώστε μας γιατί καταργήσατε την εγγραφή σας:",
-      "unsubscribe_success": "Ακυρώθηκε η συνδρομή και σύντομα θα ανακατευθυνθείτε στην αρχική σελίδα",
-      "unsubscribe_tip": "Αφού ακυρώσετε την εγγραφή σας, δεν θα λαμβάνετε πλέον την τελευταία προσφορά.",
-      "unsubscribe_title": "Διαγραμένος"
-    }
-  },
-  "general": {
-    "404": {
-      "button": "Συνεχίστε τις αγορές",
-      "subtext": "Η σελίδα που ψάχνετε δεν υπάρχει.",
-      "title": "404 σελίδες δεν βρέθηκαν"
-    },
-    "contact_us": {
-      "contact_us": "ΕΠΙΚΟΙΝΩΝΉΣΤΕ ΜΑΖΊ ΜΑΣ",
-      "send_success": "Σας ευχαριστούμε που επικοινωνήσατε μαζί μας, θα σας απαντήσουμε το συντομότερο δυνατό. "
-    },
-    "footer": {
-      "copyright": "© {{year}} {{storeName}}",
-      "subscribe_reg_exp_error": "Μη έγκυρο ηλεκτρονικό ταχυδρομείο",
-      "subscribe_success": "Επιτυχία εγγραφής"
-    },
-    "general": {
-      "accept": "Αποδοχή",
-      "decline": "Απόρριψη",
-      "home": "εξώφυλλο",
-      "link": "Πολιτική Απορρήτου",
-      "tel_phone": "Αριθμός τηλεφώνου",
-      "tips": "Για να βελτιώσουμε πιο πολύ την εμπειρία σας, χρησιμοποιούμε cookies ώστε να θυμόμαστε τα στοιχεία σύνδεσης, να συλλέγουμε στατιστικά στοιχεία και να παρέχουμε ένα περιεχόμενο προσαρμοσμένο στα δικά σας ενδιαφέροντα. Κάντε κλικ στο \"Αποδοχή\" για να αποδεχτείτε τα cookies ή διαβάστε τη δήλωσή μας \"Πολιτική Απορρήτου\".",
-      "title": "Φροντίζουμε για το απόρρητο των δεδομένων σας",
-      "username": "Όνομα"
-    },
-    "header": {
-      "cart": "Το καλάθι σας",
-      "center": "Κέντρο",
-      "login": "Σύνδεση",
-      "no_currency_fallback": "Δεν βρέθηκε σχετικό νόμισμα",
-      "search_input_placeholder": "Πληκτρολογήστε εδώ και πατήστε αναζήτηση"
-    },
-    "order_tracking": {
-      "code": "Κωδικός επαλήθευσης",
-      "email": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
-      "form_error": "Το ερώτημα απέτυχε",
-      "orderId": "Αριθμός Παραγγελίας",
-      "orderId_error": "Το αναγνωριστικό παραγγελίας δεν μπορεί να είναι κενό",
-      "query_illegal": "τάξη δεν υπάρχει",
-      "risk_black_user": "Αυτός ο λογαριασμός βρίσκεται σε κίνδυνο",
-      "risk_interception": "τάξη δεν υπάρχει",
-      "submit_btn": "Προβολή παραγγελίας",
-      "username": "Email/Αριθμός τηλεφώνου"
-    },
-    "policy": {
-      "privacy": "Πολιτική Απορρήτου",
-      "refund": "Πολιτική επιστροφής",
-      "service": "Όρους χρήσης του ιστοτόπου",
-      "shipping": "Πολιτική αποστολής"
-    }
-  },
-  "order": {
-    "detail": {
-      "orderstatus": {
-        "UploadTime": "χρόνος μεταφόρτωσης",
-        "detail": "Λεπτομέρεια"
-      }
-    }
-  },
-  "products": {
-    "collection": {
-      "collection": "Κατηγορία"
-    },
-    "general": {
-      "added_to_cart_successfully": "Προστέθηκε με επιτυχία στο καλάθι",
-      "no_product_data_found": "Δεν βρέθηκαν στοιχεία προϊόντος. Παρακαλούμε προσπαθήστε ξανά αργότερα",
-      "sold_out": "Εξαντλημένα"
-    },
-    "product_details": {
-      "activity_toast_price_limit": "Το μέγιστο επιτρεπόμενο ποσό για αυτό το περιορισμένο προϊόν είναι {{num}}",
-      "activity_toast_product__limit": "Η αγορά περιορίζεται σε {{stock}} προωθητικό προϊόν",
-      "activity_toast_title__limit": "Τα παρακάτω προϊόντα υπερβαίνουν το όριο αγορών",
-      "amount": "Ποσότητα",
-      "buy_more_save_more": "Αγοράστε περισσότερα Εξοικονομήστε περισσότερα!",
-      "cancel": "Ακύρωση",
-      "country_region": "Χώρα/Περιφέρεια",
-      "default_placeholder": "Επιλογή {{attrName}}",
-      "description": "Περιγραφή",
-      "email": "E-mail",
-      "enter_email_address": "Παρακαλούμε εισαγάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας",
-      "enter_valid_email_address": "Παρακαλούμε εισάγετε μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου",
-      "give_us_more_of_your_information": "Μπορείτε να μας δώσετε περισσότερες πληροφορίες σας ώστε να σας παρέχουμε πιο κατάλληλες υπηρεσίες",
-      "go_to_amazon_by_link": "Αγορά στην Amazon",
-      "go_to_rakuten_by_link": "Αγοράστε στο LOTTE",
-      "go_to_yahoo_by_link": "Αγορά στο Yahoo",
-      "in_stock": "Σε απόθεμα",
-      "inventory_quantity": "Στοιχεία αποθέματος",
-      "leave_us_message": "Παρακαλούμε εισάγετε το μήνυμά σας",
-      "leave_us_message_get_back": "Παρακαλούμε αφήστε μας ένα μήνυμα και θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν",
-      "link_preview_does_not_support": "Η λειτουργία για την προεπισκόπηση συνδέσμου δεν υποστηρίζεται",
-      "maximum_length_of_message": "Το μέγιστο μήκος του μηνύματός σας δεν πρέπει να υπερβαίνει τις 1500 λέξεις",
-      "message": "Το μήνυμά σας",
-      "more_payment_options": "περισσότερες επιλογές πληρωμής",
-      "name": "Όνομα",
-      "optional": "Προαιρετικό",
-      "phone_number": "Αριθμός τηλεφώνου",
-      "product_enquiry": "Έρευνα προϊόντος",
-      "submission_failed": "Η υποβολή /αποστολή απέτυχε, δοκιμάστε πάλι",
-      "submission_successfully": "Επιτυχής αποστολή",
-      "submit": "Υποβολή",
-      "tax_included": "συμπεριλαμβανομένου του φόρου"
-    },
-    "product_list": {
-      "add_to_cart": "ΠΡΟΣΘΗΚΗ ΣΤΟ ΚΑΛΑΘΙ",
-      "filter": "Φίλτρο",
-      "from_price_html": "Από {{price}}",
-      "less": "Λιγότερο",
-      "load_more_tip": "Φόρτωση περισσότερων στοιχείων",
-      "more": "Περισσότερο",
-      "more__product_num": "{{num}} Προϊόντα",
-      "new_arrivals": "Νέα άφιξη",
-      "no_product": "Σε αυτή τη συλλογή δεν υπάρχουν προϊόντα",
-      "one_product_num": "{{num}} Προϊόν",
-      "price_high_to_low": "Τιμή από υψηλή προς χαμηλή",
-      "price_low_to_high": "Τιμή από χαμηλή προς υψηλή",
-      "product_has_been_removed": "Το προϊόν έχει αφαιρεθεί από τα ράφια",
-      "product_sold_out": "ΕΞΑΝΤΛΗΜΈΝΑ",
-      "products": "προϊόντα",
-      "recommend": "Συνιστάται",
-      "sale": "πώληση",
-      "save": "Έκπτωση {{{priceDom}}}",
-      "save_byjs": "Έκπτωση {{priceDom}}",
-      "save_ratio": "Έκπτωση {{price}}%",
-      "select_product_all_options": "Επιλέξτε πρώτα το μέγεθος του προϊόντος!",
-      "show": "Προβολή",
-      "sold_out": "Εξαντλημένα",
-      "top_sellers": "Κορυφαίοι πωλητές"
-    },
-    "product_search": {
-      "back_to_home": "Επιστροφή στην αρχική σελίδα",
-      "ount_results": "{{count}} Αποτελέσματα",
-      "results_found_for": "Βρέθηκαν {{count}} αποτελέσματα για \"{{keyword}}\"",
-      "search": "Αναζήτηση",
-      "search_no_results": "Η αναζήτησή σας για το \"{{keyword}}\" δεν έφερε αποτελέσματα",
-      "single_results": "{{count}} Αποτελέσματα",
-      "single_results_found": "Βρέθηκαν {{count}} αποτελέσματα για \"{{keyword}}\""
-    },
-    "recently_viewed_products": {
-      "recently_viewed_products": "Προϊόντα που προβλήθηκαν πρόσφατα"
-    }
-  },
-  "sales": {
-    "discount_coupon": {
-      "active_date_until": "Ισχύει έως: {{endTime}}",
-      "applied": "Εφαρμοσμένος",
-      "applied_successfully": "Ο κωδικός για την έκπτωση εφαρμόστηκε με επιτυχία",
-      "apply": "Εφαρμογή",
-      "buy_x_get_y_all_discount_content": "Αποκτήστε {{benefitCount}} τεμάχια με έκπτωση {{discount}}",
-      "buy_x_get_y_all_free_content": "Αποκτήστε {{benefitCount}} τεμάχια δωρεάν",
-      "buy_x_get_y_discount_content": "{{discount}} εκτός",
-      "buy_x_get_y_free_content": "ΕΛΕΥΘΕΡΟ",
-      "buy_x_get_y_threshold": "Αγοράστε {{threshold}} και κερδίστε {{benefitCount}} τεμάχια δωρεάν",
-      "coupon_content_level": "Για {{level}}",
-      "coupon_discount_content": "Έκπτωση {discount}",
-      "coupon_not_found": "Ο κωδικός για την έκπτωση δεν υπάρχει",
-      "failed_to_apply_coupon_code": "Η εφαρμογή απέτυχε",
-      "free__shipping": "Δωρεάν αποστολή",
-      "get_code": "Λάβετε εκπτωτικά κουπόνια",
-      "popup_label": "Κουπόνια καταστήματος:",
-      "shipping_rate_below": "Το κόστος αποστολής (ναύλος) είναι μικρότερο από {value}",
-      "specified_customer": "Για συγκεκριμένους πελάτες",
-      "threshold": "Αγορά {threshold}"
-    },
-    "flash": {
-      "day": "ημέρα",
-      "days": "ημέρεσ"
-    },
-    "general": {
-      "activity_banner_benefit": "{{benefit}} εκτός",
-      "activity_banner_copy_success_text": "Ο κωδικός του κουπονιού αντιγράφηκε επιτυχώς",
-      "activity_banner_copy_text": "Αντίγραφο",
-      "activity_banner_free_shipping": "Δωρεάν μεταφορά",
-      "activity_banner_threshold": "Παραγγελίες άνω του {{threshold}}",
-      "activity_selector_new_arrivals": "Νέες αφίξεις",
-      "activity_selector_price_high_to_low": "Τιμή υψηλή προς χαμηλή",
-      "activity_selector_price_low_to_high": "Τιμή χαμηλή προς υψηλή",
-      "activity_selector_recommended": "Συνιστάται",
-      "apply_common": "Εφαρμογή",
-      "bundle_save_tip": "Εξοικονομήστε {{amount}} για αγορά μαζί",
-      "bundle_title": "Συνήθως αγοράζονται μαζί",
-      "common_buy_now": "Αγοράστε τώρα",
-      "coupon_code_copied": "Ο κωδικός του κουπονιού αντιγράφηκε επιτυχώς",
-      "coupon_code_copy": "Αντίγραφο",
-      "discount_common": "Έκπτωση",
-      "flash_sale_text": "ΑΜΕΣΗ ΠΏΛΗΣΗ",
-      "flash_sale_tip": "Όριο αγοράς: {{count}} ποσότητα",
-      "hot_sale": "Πολύ καλή προσφορά!",
-      "product_tabs_benefit_discount_locked": "Λάβετε {{offPercent}}% έκπτωση",
-      "product_tabs_benefit_discount_unlocked": "Η {{offPercent}}% έκπτωση ξεκλειδώθηκε!",
-      "product_tabs_benefit_free_locked": "Δωρεάν είδος",
-      "product_tabs_benefit_free_unlocked": "Το δωρεάν είδος είναι ξεκλείδωτο!",
-      "product_tabs_benefit_unlocked_tip": "Τώρα μπορείτε να απολαύσετε έκπτωση στο προϊόν",
-      "product_tabs_code_benefit_discount_unlocked": "Αγοράστε {{benefitCount}} τεμάχια με έκπτωση {{offPercent}}%",
-      "product_tabs_code_benefit_free_unlocked": "Αποκτήστε {{benefitCount}} τεμάχια δωρεάν",
-      "product_tabs_threshold": "Αγοράστε {{threshold}}",
-      "purchase_limit": "Όριο αγοράς {{count}} ανά άτομο",
-      "purchase_limit_each_item": "Όριο αγοράς {{count}} ανά προϊόν και ανά άτομο",
-      "select_promotional_product": "Επιλέχθηκαν {{selectCount}} προϊόντα εκδήλωσης",
-      "shop_more": "Περισσότερο",
-      "sold": "{{count}} πωλήθηκαν"
-    },
-    "gift": {
-      "got_all_gifts_tip": "Συγχαρητήρια! Αποκτήσατε {{saved}} ΔΩΡΕΑΝ ΔΩΡΑ!",
-      "not_meet_amount_tip": "Αγοράστε {{threshold}} περισσότερα, απολαύστε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ",
-      "not_meet_quantity_tip": "Αγοράστε {{threshold}} ακόμη αντικείμενα, κερδίστε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ",
-      "select": "Επιλογή",
-      "select_gift_tip": "Συγχαρητήρια! Μπορείτε να κερδίσετε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ",
-      "spend_more_money_get_more_tip": "Συγχαρητήρια! Έχετε ήδη {{saved}} δωρεάν δώρο! Ξοδέψτε {{threshold}} περισσότερα, κερδίστε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ",
-      "spend_more_quantity_get_more_tip": "Συγχαρητήρια! Έχετε ήδη {{saved}} ένα δωρεάν δώρο! Αγοράστε {{threshold}} περισσότερα, κερδίστε έως και {{willSave}} ΔΩΡΕΑΝ ΔΩΡΑ"
-    },
-    "promotion": {
-      "discount_tag": {
-        "b11_t1_free": "Αγοράστε {{threshold}} αντικείμενα, απολαύστε δωρεάν ένα από τα είδη!",
-        "b11_t1_normal": "Αγοράστε {{threshold}} αντικείμενα, απολαύστε {{save}} ΕΚΠΤΩΣΗ σε ένα από τα είδη",
-        "b1_t0": "Αγορά {{threshold}} αποθήκευση {{save}}",
-        "b1_t1": "Αγορά {{threshold}} Αποκτήστε ΕΚΠΤΩΣΗ {{save}}",
-        "b2_t0": "Αγορά {{threshold}} αποθήκευση {{save}}",
-        "b2_t1": "Αγορά {{threshold}} ΑΠΟΚΤΉΣΤΕ ΕΚΠΤΩΣΗ {{save}}",
-        "label": "Έκπτωση:"
-      }
-    }
-  },
-  "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Στρογγυλοποίηση"
-      }
-    },
-    "payments-name": {
-      "COD": "Με αντικαταβολή",
-      "Paypal": "Paypal",
-      "adjustPay": "manual",
-      "third-part": "Πιστωτική κάρτα"
-    },
-    "reduction_code": {
-      "giftcard": "Δωροκάρτες"
-    }
-  },
-  "transaction": {
-    "general": {
-      "coupon_invalid_for_the_shipping_method": "Το κουπόνι {{discountCode}} ισχύει για τον τρόπο αποστολής",
-      "discount_codes_cannot_stack": "Υπάρχει ήδη μια προνομιακή εκδήλωση για αυτό το προϊόν, η οποία όμως δεν μπορεί να χρησιμοποιηθεί μαζί με άλλες προνομιακές εκδηλώσεις.",
-      "discount_off": "Έκπτωση",
-      "free_charge": "Δωρεάν αποστολή",
-      "free_shipping": "δωρεάν αποστολή",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
-      "order_seller_discount": "Επιπλέον έκπτωση πωλητή",
-      "order_tax": "Φόρος",
-      "order_tip": "Υπόδειξη",
-      "payment_subtotal_cost": "Μερικό σύνολο",
-      "point_discount": "Έκπτωση πόντων",
-      "shipping_fee": "Αποστολή",
-      "trade_coupon_discount": "Κουπόνι"
-    }
-  },
-  "user": {
-    "udbResponse": {
-      "err1006": "Σφάλμα κωδικού",
-      "err2005": "Σφάλμα κωδικού",
-      "err3005": "Σφάλμα κωδικού"
-    }
+    "editorSwitchCountryTip": "Η εναλλαγή των χωρών δεν υποστηρίζεται από το πρόγραμμα επεξεργασίας"
   }
 }

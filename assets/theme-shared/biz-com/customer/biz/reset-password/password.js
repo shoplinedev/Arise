@@ -7,6 +7,7 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/password.js'] = win
   const BaseCustomer = window['SLM']['theme-shared/biz-com/customer/commons/customer/base.js'].default;
   const { USER_CENTER } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const { changeAccountPassword } = window['SLM']['theme-shared/biz-com/customer/service/reset.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   class PasswordSet extends BaseCustomer {
     constructor({
@@ -38,7 +39,7 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/password.js'] = win
         changeAccountPassword(super.formatRequestBody({ ...params,
           pwd: data.password
         }));
-        window.location.href = `${USER_CENTER}${window.location.search}`;
+        window.location.href = redirectTo(`${USER_CENTER}${window.location.search}`);
       } catch (e) {
         super.setError(e);
       }

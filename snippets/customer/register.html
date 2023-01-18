@@ -120,7 +120,7 @@
         {{/snippet}}
       {{/formItem}}
     {{/if}}
-    
+
     {{#if registerConfig.genderCheck}}
       {{#formItem "gender" "class='customer__form-item'"}}
         {{#snippet
@@ -158,7 +158,7 @@
     {{#if (or (inArray types 'email') (inArray types 'username'))}}
       {{#formItem "subscription" "class='customer__form-item sign-up__subscription'"}}
         {{#snippet 'customer/base/sl-checkbox' checked=true }}
-          {{ t 'customer.general.error_message_1' }}
+          {{ t 'unvisiable.customer.error_message_1' }}
         {{/snippet}}
       {{/formItem}}
     {{/if}}
@@ -167,7 +167,8 @@
   {{#if showType 'page'}}
     {{!-- 弹窗不显示这个跳转链接 --}}
     <div class="sign-up__footer-link text-center">
-      <a href="/user/signIn{{{get 'search' (urlParse request.uri.url 'json')}}}" class="sign-up__link">{{ t 'customer.register.go_to_login' }}</a>
+      {{assign 'search' (default (get 'search' (urlParse request.uri.url 'json')) '')}}
+      <a href="{{redirect_to (append '/user/signIn' search)}}" class="sign-up__link">{{ t 'customer.register.go_to_login' }}</a>
     </div>
   {{/if}}
 </div>

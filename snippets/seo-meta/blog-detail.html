@@ -62,11 +62,11 @@
 {{! 商详页之前的标签 先保留其他页面不需要传入  }}
 {{! 重复网址 seo 定向到主站 }}
 
-
-{{#if _canonicalUrl}}
+{{!-- canonical 和 alternate 迁移至 layout scripts 项目 --}}
+{{!-- {{#if _canonicalUrl}}
   <link rel="canonical" href="{{_canonicalUrl}}" />
   <link rel="alternate" href="{{_canonicalUrl}}" />
-{{/if}}
+{{/if}} --}}
 
 {{! meta link }}
 {{#if url}}

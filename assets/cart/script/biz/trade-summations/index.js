@@ -54,7 +54,7 @@ window.SLM['cart/script/biz/trade-summations/index.js'] = window.SLM['cart/scrip
         tooltip = new Tooltip({
           selector,
           trigger: this.getTriggerType(platform),
-          title: t('cart.discount.use_coupon_alone')
+          title: t('transaction.discount.use_coupon_alone')
         });
         $(selector).html(info_tips_icon);
       };
@@ -148,11 +148,11 @@ window.SLM['cart/script/biz/trade-summations/index.js'] = window.SLM['cart/scrip
           formattedValue = convertFormat(deductMemberPointAmount);
         }
 
-        descEl.html(t('cart.refund.deduct_point', {
+        descEl.html(t('transaction.refund.deduct_point', {
           deductMemberPointNum: `${nullishCoalescingOperator(deductMemberPointNum, 0)}`,
           deductMemberPointAmount: `<span class="deductMemberPointAmount">${formattedValue}</span>`
         }));
-        pointAmountEl.find('.trade_summations_remark').html(t('cart.refund.cost_points', {
+        pointAmountEl.find('.trade_summations_remark').html(t('transaction.refund.cost_points', {
           value: `${nullishCoalescingOperator(deductMemberPointNum, 0)}`
         }));
       };
@@ -218,7 +218,7 @@ window.SLM['cart/script/biz/trade-summations/index.js'] = window.SLM['cart/scrip
             } = convertPrice(value);
             $matchedEles.find(`.trade_summations__amount-box`).html(formattedPriceStr);
           } else {
-            $matchedEles.find(`.trade_summations__amount-box`).text(formattedValue);
+            $matchedEles.find(`.trade_summations__amount-box`).html(formattedValue);
           }
 
           if (typeof value === 'number') {
@@ -272,7 +272,12 @@ window.SLM['cart/script/biz/trade-summations/index.js'] = window.SLM['cart/scrip
               newAmount = t('transaction.general.free_shipping');
               discountCodeSumAmountEles.find('.trade_summations__amount_reduce').addClass('hide');
             } else {
-              newAmount = promotionCodeDTO ? +(promotionCodeDTO.codePromotionAmount || 0) : Number(discountCodeTotalAmount);
+              if (promotionCodeDTO) {
+                newAmount = promotionCodeDTO.targetSelection === 'entitled' ? 0 : +(promotionCodeDTO.codePromotionAmount || 0);
+              } else {
+                newAmount = Number(discountCodeTotalAmount);
+              }
+
               discountCodeSumAmountEles.find('.trade_summations__amount_reduce').removeClass('hide');
             }
 

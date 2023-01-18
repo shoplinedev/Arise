@@ -2,9 +2,9 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/utils/dataReport/fb.js'] = window.SLM['theme-shared/utils/dataReport/fb.js'] || function () {
   const _exports = {};
-  const Cookies = window['js-cookie']['*'];
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
   const { PageType, ClickType } = window['SLM']['theme-shared/utils/report/const.js'];
+  const { getCurrencyCode } = window['SLM']['theme-shared/utils/dataReport/tool.js'];
 
   const clickFbData = (type, params) => {
     let value = null;
@@ -20,7 +20,7 @@ window.SLM['theme-shared/utils/dataReport/fb.js'] = window.SLM['theme-shared/uti
           content_ids: params && params.skuId,
           content_name: params && params.name,
           value: params && params.price,
-          currency: nullishCoalescingOperator(params && params.currency, Cookies.get('currency_code'))
+          currency: nullishCoalescingOperator(params && params.currency, getCurrencyCode())
         };
         event = 'AddToCart';
         evid = {
@@ -46,7 +46,7 @@ window.SLM['theme-shared/utils/dataReport/fb.js'] = window.SLM['theme-shared/uti
           content_ids: params && params.skuIds,
           value: params && params.amount,
           quantity: params && params.quantity,
-          currency: nullishCoalescingOperator(params && params.currency, Cookies.get('currency_code'))
+          currency: nullishCoalescingOperator(params && params.currency, getCurrencyCode())
         }, {
           eventID: params && params.eventId
         }]);

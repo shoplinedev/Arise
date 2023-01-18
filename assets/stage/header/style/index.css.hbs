@@ -2331,6 +2331,10 @@ input[type=radio]{
   .trade-cart-sku-list.sidebar .trade-cart-sku-item .trade-cart-sku-item-info-discount-number{
     display:flex;
   }
+  .trade-cart-sku-list.sidebar .trade-cart-sku-item .trade-cart-sku-item-info-discount-icon{
+    align-items:center;
+    display:flex;
+  }
   .trade-cart-sku-list.sidebar .trade-cart-sku-item .trade-cart-sku-item-info-amount{
     display:flex;
     flex-direction:column;
@@ -2467,6 +2471,10 @@ input[type=radio]{
     fill:rgba(var(--color-discount));
   }
   .trade-cart-sku-list.sidebar .trade-cart-sku-item .trade-cart-sku-item-info-discount-number{
+    display:flex;
+  }
+  .trade-cart-sku-list.sidebar .trade-cart-sku-item .trade-cart-sku-item-info-discount-icon{
+    align-items:center;
     display:flex;
   }
   .trade-cart-sku-list.sidebar .trade-cart-sku-item .trade-cart-sku-item-info-amount{
@@ -2627,6 +2635,10 @@ input[type=radio]{
   .trade-cart-sku-list.main .trade-cart-sku-item .trade-cart-sku-item-info-discount-number{
     display:flex;
   }
+  .trade-cart-sku-list.main .trade-cart-sku-item .trade-cart-sku-item-info-discount-icon{
+    align-items:center;
+    display:flex;
+  }
   .trade-cart-sku-list.main .trade-cart-sku-item .trade-cart-sku-item-info-amount{
     text-align:right;
   }
@@ -2775,6 +2787,10 @@ input[type=radio]{
     fill:rgba(var(--color-discount));
   }
   .trade-cart-sku-list.main .trade-cart-sku-item .trade-cart-sku-item-info-discount-number{
+    display:flex;
+  }
+  .trade-cart-sku-list.main .trade-cart-sku-item .trade-cart-sku-item-info-discount-icon{
+    align-items:center;
     display:flex;
   }
   .trade-cart-sku-list.main .trade-cart-sku-item .trade-cart-sku-item-info-amount{
@@ -4200,8 +4216,7 @@ input{
 }
 
 .trade_mini_cart{
-  margin:0 40px;
-  padding-top:20px;
+  margin:40px;
 }
 .trade_mini_cart .trade-cart-banner--close{
   background:transparent;
@@ -4217,23 +4232,24 @@ input{
 .trade_mini_cart .trade-cart-banner{
   display:flex;
   flex-direction:column;
-  padding-top:20px;
 }
-.trade_mini_cart .trade-cart-banner-title{
-  margin-top:20px;
+.trade_mini_cart .trade-cart-banner--product{
+  margin-bottom:40px;
+  margin-top:35px;
 }
 .trade_mini_cart .trade-cart-banner .trade-cart-sku-item{
   display:flex;
-  margin-bottom:40px;
-  padding-top:35px;
+  margin-bottom:0;
+}
+.trade_mini_cart .trade-cart-banner .trade-cart-sku-item .trade-cart-sku-item-image-wrapper{
+  margin-right:30px;
+  width:100px;
 }
 .trade_mini_cart .trade-cart-banner .trade-cart-sku-item .trade-cart-sku-item-image{
   cursor:pointer;
   flex-shrink:0;
   height:fit-content;
-  margin-right:30px;
   position:relative;
-  width:100px;
 }
 .trade_mini_cart .trade-cart-banner .trade-cart-sku-item .trade-cart-sku-item-image .trade-cart-sku-item-image-fallback{
   background-color:rgba(var(--color-text), .05);
@@ -4241,7 +4257,7 @@ input{
   background-position:50%;
   background-repeat:no-repeat;
   height:100px;
-  padding-bottom:100%;
+  width:100px;
 }
 .trade_mini_cart .trade-cart-banner .trade-cart-sku-item .trade-cart-sku-item-image .trade-cart-sku-item-image-wrapper{
   vertical-align:middle;
@@ -4292,7 +4308,9 @@ input{
   display:flex;
   flex-direction:column;
   justify-content:center;
-  margin-bottom:40px;
+}
+.trade_mini_cart .trade-cart-banner-summations-subtotal{
+  margin-bottom:20px;
 }
 .trade_mini_cart .trade-cart-banner-summations-subtotal--label{
   color:rgba(var(--color-light-text));
@@ -4301,7 +4319,6 @@ input{
 .trade_mini_cart .trade-cart-banner-summations-footer{
   display:flex;
   flex-direction:column;
-  margin-top:20px;
 }
 .trade_mini_cart .trade-cart-banner-summations-footer-view-cart{
   margin-bottom:10px;
@@ -4312,8 +4329,7 @@ input{
 }
 @media (max-width:749.98px){
   .trade_mini_cart{
-    margin:0 20px;
-    padding-top:0;
+    margin:40px 20px;
   }
 }
 
@@ -4673,6 +4689,10 @@ input{
 .color-scheme-3 .header__layout-background,[data-color-scheme="3"] .header__layout-background{
   background-color:rgba(var(--color-scheme-3-bg));
   color:rgba(var(--color-scheme-3-text), 1);
+}
+
+.color-scheme-{
+  background-color:rgba(var(--color-page-background));
 }
 
 .header__nav-toggle .header__toggle-btn,.header__nav-toggle .header__toggle-btn:hover{
@@ -5039,7 +5059,6 @@ input{
   }
 }
 .is-sticky .header__layout-container .header__nav-container{
-  background-color:rgba(var(--color-page-background));
   opacity:0;
   position:absolute;
   transform:translateY(-100%);

@@ -36,12 +36,18 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
       const $root = $('#stage-footer');
       const $localeBtn = $root.find('.j-locale-drawer-btn');
       const $currencyBtn = $root.find('.j-currency-drawer-btn');
+      const $countryBtn = $root.find('.j-country-drawer-btn');
       const currency_selector = $item.data('currency');
       const locale_selector = $item.data('locale');
+      const country_selector = $item.data('country');
       const show_currency_symbol = $item.data('currency-symbol');
 
       if (locale_selector) {
         $localeBtn.addClass('show');
+      }
+
+      if (country_selector) {
+        $countryBtn.addClass('show');
       }
 
       if (currency_selector) {
@@ -87,13 +93,13 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
             });
           } else {
             Toast.init({
-              content: t('general.footer.subscribe_reg_exp_error')
+              content: t('general.footer.subscribe_format_error')
             });
           }
         }).catch(err => {
           console.log('subscribe error', err);
           Toast.init({
-            content: t('general.footer.subscribe_reg_exp_error')
+            content: t('general.footer.subscribe_format_error')
           });
         });
       });
@@ -103,7 +109,7 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
 
         if (checkEmail(value) !== true) {
           Toast.init({
-            content: t('general.footer.subscribe_reg_exp_error')
+            content: t('general.footer.subscribe_format_error')
           });
           return;
         }

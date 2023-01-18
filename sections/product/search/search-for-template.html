@@ -8,7 +8,7 @@
 <main class="product-search__container section-gap">
   <div class="product-search__body container">
     <nav class="product-search__breadcrumb">
-      <a href="/" title="{{ t 'products.product_search.back_to_home' }}">{{ t 'general.general.home' }}</a>
+      <a href="{{ redirect_to '/' }}" title="{{ t 'products.product_search.back_to_home' }}">{{ t 'general.general.home' }}</a>
       <span class="product-search__breadcrumbDivider">/</span>
       <span class="product-search__searchText">
         {{ t 'products.product_search.search' }}

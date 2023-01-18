@@ -3,6 +3,8 @@
      <path fill-rule="evenodd" d="M5.306 6.5L0 1.194 1.194 0 6.5 5.306 11.806 0 13 1.194 7.694 6.5 13 11.806 11.806 13 6.5 7.694 1.194 13 0 11.806 5.306 6.5z">
      </path>
    </svg></button>
+   {{!-- 商品列表头部插槽 --}}
+<div class="slot-cart slot-cart-list-header" data-slot-banner-cart-list-header></div>
  <div class="trade-cart-banner">
    <div class="trade-cart-banner-title title6">
      <span class="trade-cart-banner--product-title--icon"><svg aria-hidden="true" focusable="false" role="presentation" width="18" height="13" viewBox="0 0 18 13"
@@ -13,7 +15,17 @@
    </div>
    <div class="trade-cart-banner--product">
      <div class="shopline-element-cart-sku-item trade-cart-sku-item">
+       <div class="trade-cart-sku-item-image-wrapper"></div>
+        <div class="trade-cart-sku-item-info">
+          <div class="trade-cart-sku-item-info-title body2"></div>
+          <div class="trade-cart-sku-item-info-attrs"></div>
+          <div class="trade-cart-sku-item-info-custom"></div>
+          <div class="slot-cart slot-cart-item-info" data-slot-banner-cart-item-info></div>
+          <div class="trade-cart-sku-item-info-amount body3"></div>
+        </div>
      </div>
+     {{!-- 单个商品底部插槽 --}}
+      <div class="slot-cart slot-cart-item-end" data-slot-banner-cart-item-end></div>
    </div>
  </div>
  <div class="trade-cart-banner-summations">
@@ -23,16 +35,19 @@
      </span>
      <span class="notranslate body1 text_bold trade-cart-banner-summations-subtotal--price"></span>
    </div>
-
+  {{!-- 结算信息底部插槽 --}} 
+  <div class="slot-cart slot-cart-calculation-end" data-slot-banner-cart-calculation-end></div>
    <footer class="trade-cart-banner-summations-footer">
-     <button class="btn trade-cart-banner-summations-footer-view-cart body3 text_bold" onclick="window.location.href='/cart'"> {{t 'cart.cart.cart_view'}} (<span
+     <button class="btn trade-cart-banner-summations-footer-view-cart body3 text_bold" onclick="window.location.href='{{redirect_to "/cart"}}'"> {{t 'cart.item.view_cart'}} (<span
          class="trade-cart-banner-summations-footer-cart-total"></span>)</button>
      <div class="sidebar__trade-cart-checkout">
        <button type="button" data-sl-module="button__trade-cart-checkout" class="shopline-element-cart-checkout btn trade-cart-banner-summations-footer-checkout text_bold body3" id="mini-cart-spb-slibing"
          style="width: 100%;">
-         {{ t 'cart.cart.checkout' }}
+         {{ t 'cart.checkout_proceeding.checkout' }}
          {{snippet 'btn-loading-spinner'}}
        </button>
      </div>
    </footer>
+   {{!-- 结算模块底部插槽 --}}
+    <div class="slot-cart slot-cart-checkout-end slot-cart-checkout-end_top" data-slot-banner-cart-checkout-end></div>
  </div>

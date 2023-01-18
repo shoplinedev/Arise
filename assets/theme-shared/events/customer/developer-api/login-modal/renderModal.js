@@ -75,9 +75,11 @@ window.SLM['theme-shared/events/customer/developer-api/login-modal/renderModal.j
     modal.setContent(loadingTemplate);
     modal.show();
     lifeCycle && lifeCycle.onShow && lifeCycle.onShow(modal);
+    const path = `/user/signIn?view=ajax&fromTemplateAlias=${SL_State.get('templateAlias')}`;
+    const requestUrl = window.Shopline && window.Shopline.redirectTo && window.Shopline.redirectTo(path) || path;
     const {
       data
-    } = await request.get(`/user/signIn?view=ajax&fromTemplateAlias=${SL_State.get('templateAlias')}`);
+    } = await request.get(requestUrl);
     modal.setContent(data || '');
     const sl_$ = window.__SL_$__;
 

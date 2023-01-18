@@ -14,6 +14,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
   const { pageMap } = window['SLM']['theme-shared/utils/tradeReport/const.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
+  const { redirectTo } = window['SLM']['theme-shared/utils/url.js'];
 
   const setHID = () => {
     const templateAlias = window.Shopline.uri.alias;
@@ -255,7 +256,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
               callback && callback($target);
             },
             'btn-back': () => {
-              window.location.href = '/cart';
+              window.location.href = redirectTo('/cart');
               return false;
             }
           });
@@ -303,7 +304,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
                 console.log(e);
               }
 
-              window.location.href = '/cart';
+              window.location.href = redirectTo('/cart');
               return false;
             },
             'btn-limit': () => {
@@ -324,7 +325,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
                 console.log(e);
               }
 
-              window.location.href = '/cart';
+              window.location.href = redirectTo('/cart');
               return false;
             }
           });

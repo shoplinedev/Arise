@@ -4,11 +4,9 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
   const _exports = {};
   const { collectObserver } = window['SLM']['theme-shared/utils/report/index.js'];
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
-  const currency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const {
-    formatCurrency
-  } = currency;
   const currentSpu = SL_State.get('product.spu');
   const EVENT_ID = '60006253';
   const parent = '#page-product-detail';
@@ -181,14 +179,25 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
           event_name: 'sku_click',
           sku_id: sku.skuSeq
         });
+
+        if (window.HdSdk) {
+          window.HdSdk.shopTracker.collect({
+            page: 105,
+            module: 105,
+            action_type: 102,
+            sku_id: sku.skuSeq,
+            spu_id: sku.spuSeq
+          });
+        }
+
         window.SL_EventBus.emit('global:thirdPartReport', {
           FBPixel: [['track', 'ViewContent', {
             content_ids: [sku && sku.spuSeq],
             content_name: currentSpu.title || '',
             content_category: '',
             content_type: 'product_group',
-            currency: SL_State.get('storeInfo.currency'),
-            value: formatCurrency(sku.price || 0)
+            currency: getCurrencyCode(),
+            value: convertPrice(sku.price || 0)
           }, {
             eventID: `viewContent${getEventID()}`
           }]]

@@ -5,10 +5,8 @@ window.SLM['product/collections/js/report.js'] = window.SLM['product/collections
   const { collectObserver } = window['SLM']['theme-shared/utils/report/index.js'];
   const ProductItemReport = window['SLM']['theme-shared/report/product/product-item.js'].default;
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const currency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
-  const {
-    formatCurrency
-  } = currency;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const hdReport = new ProductItemReport();
   const eventid = '60006260';
   const productItemClassName = '__sl-custom-track-product-list-item';
@@ -59,13 +57,14 @@ window.SLM['product/collections/js/report.js'] = window.SLM['product/collections
     if ($target.hasClass(productItemClassName)) {
       const product_id = $target.data('id');
       const product_name = $target.data('name');
-      const product_price = formatCurrency($target.data('price'));
+      const product_price = convertPrice($target.data('price'));
       const position = $target.data('index') + 1;
       const status = $target.data('status') ? 'soldout' : 'selling';
       report(eventid, {
         event_name: 'product_view',
         product_id,
         product_name,
+        currency: getCurrencyCode(),
         product_price,
         position,
         status

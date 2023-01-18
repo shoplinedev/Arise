@@ -21,7 +21,7 @@
       <!-- 全部商品列表页标题 -->
       <div class="product-list-header-title container">
         <div class="product-list-crumbs">
-          <a href="/" class="product-list-header-title-url custom-body4">{{ t 'general.general.home' }} /</a>
+          <a href="{{ redirect_to '/' }}" class="product-list-header-title-url custom-body4">{{ t 'general.general.home' }} /</a>
           <a class="product-list-header-title-url custom-body4" style="opacity: .6;">{{ t 'products.product_list.products' }}</a>
         </div>
         <h1 class="product-list-header-title-productsTitle custom-title2 title2">{{ t 'products.product_list.products' }}</h1>
@@ -48,6 +48,11 @@
       "label": "t:sections.product_collections_collection-header.settings.show_category_cover.label",
       "info": "t:sections.product_collections_collection-header.settings.show_category_cover.info",
       "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_mobile",
+      "label": "t:sections.product_collections_collection-header.settings.banner_image_mobile.label"
     },
     {
       "type": "switch",

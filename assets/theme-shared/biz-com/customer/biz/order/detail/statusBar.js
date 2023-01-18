@@ -20,17 +20,17 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/statusBar.js'] = wind
 
     const numberEl = document.createElement('div');
     numberEl.className = 'status-bar-number';
-    numberEl.textContent = t('cart.order.sequence', {
+    numberEl.textContent = t('order.order_status.sequence', {
       id: basicInfo && basicInfo.appOrderSeq || basicInfo && basicInfo.appMainOrderSeq
     });
     const dateEl = document.createElement('div');
     dateEl.className = 'status-bar-date';
-    dateEl.textContent = `${t('cart.order.time')} ${dayjs(basicInfo && basicInfo.createTime).format('YYYY-MM-DD HH:mm A')}`;
+    dateEl.textContent = `${t('order.order_details.time')} ${dayjs(basicInfo && basicInfo.createTime).format('YYYY-MM-DD HH:mm A')}`;
     containerEl.appendChild(numberEl);
     containerEl.appendChild(dateEl);
 
     if (basicInfo.bizOrderStatus === CANCELLED2) {
-      const statusText = t('cart.order.canceled_order') || '';
+      const statusText = t('order.order_status.canceled') || '';
       const statusEl = document.createElement('div');
       statusEl.className = 'status-bar-status';
       statusEl.textContent = statusText;

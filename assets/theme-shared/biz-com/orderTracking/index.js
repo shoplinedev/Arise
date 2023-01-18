@@ -134,7 +134,7 @@ window.SLM['theme-shared/biz-com/orderTracking/index.js'] = window.SLM['theme-sh
         });
 
         if (res.rescode === '0') {
-          window.location.href = '/user/orders';
+          window.location.href = window.Shopline.redirectTo('/user/orders');
         }
       } catch (error) {
         this.onError(error);

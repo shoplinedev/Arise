@@ -1,46 +1,42 @@
-{{assign 'url' '/user/signIn'}}
+{{assign "url" "/user/signIn"}}
 {{#if global.request.is_login}}
-  {{assign 'url' '/user/center'}}
+  {{assign "url" "/user/center"}}
 {{/if}}
 
 {{#with this as |global|}}
-<div class="header-menu__container">
-  <div class="container">
-    <nav class="header-menu__mobile-nav">
-      <ul class="mobile-nav__list">
-        {{#each main_menu.nodeTree as |node|}}
-          {{# snippet 'header-mobile-nav-item' node=node request=global.request all_collections=global.all_collections level=1 }}
-            {{#each @scope.node.childNodes as |c_node2|}}
-              {{# snippet 'header-mobile-nav-item' node=c_node2 request=global.request all_collections=global.all_collections level=2 }}
-                {{#each @scope.node.childNodes as |c_node3|}}
-                  {{ snippet 'header-mobile-nav-item' node=c_node3 request=global.request all_collections=global.all_collections level=3 }}
-                {{/each}}
-              {{/ snippet}}
-            {{/each}}
-          {{/ snippet}}
-        {{/each}}
-      </ul>
-    </nav>
+  <div class="header-menu__container">
+    <div class="container">
+      <nav class="header-menu__mobile-nav">
+        <ul class="mobile-nav__list">
+          {{#each main_menu.nodeTree as |node|}}
+            {{#snippet "header-mobile-nav-item" node=node request=global.request all_collections=global.all_collections level=1}}
+              {{#each @scope.node.childNodes as |c_node2|}}
+                {{#snippet "header-mobile-nav-item" node=c_node2 request=global.request all_collections=global.all_collections level=2}}
+                  {{#each @scope.node.childNodes as |c_node3|}}
+                    {{snippet "header-mobile-nav-item" node=c_node3 request=global.request all_collections=global.all_collections level=3}}
+                  {{/each}}
+                {{/snippet}}
+              {{/each}}
+            {{/snippet}}
+          {{/each}}
+        </ul>
+      </nav>
+    </div>
+    {{#inArray (cond global.storeInfo.storeTags global.storeInfo.storeTags (arrayify "")) "DEVELOPER"}}
+      {{! 开发店铺不展示 }}
+    {{else}}
+      <div class="header-menu__account">
+        <a href="{{redirect_to url}}" class="body5 account__link">
+          {{#if global.request.is_login}}
+            {{t "general.header.center"}}
+          {{/if}}
+
+          {{#unless global.request.is_login}}
+            {{t "general.header.login"}}
+          {{/unless}}
+        </a>
+      </div>
+    {{/inArray}}
+    <div class="header-menu__footer"></div>
   </div>
-
-  {{#inArray (cond global.storeInfo.storeTags global.storeInfo.storeTags (arrayify "")) "DEVELOPER"}}
-  {{!-- 开发店铺不展示 --}}
-  {{else}}
-  <div class="header-menu__account">
-    <a href="{{ url }}" class="body5 account__link">
-      {{#if global.request.is_login}}
-        {{t 'general.header.center'}}
-      {{/if}}
-
-      {{#unless global.request.is_login}}
-        {{t 'general.header.login'}}
-      {{/unless}}
-    </a>
-  </div>
-  {{/inArray}}
-
-  <div class="header-menu__footer"></div>
-</div>
 {{/with}}
-
-

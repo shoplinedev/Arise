@@ -33,6 +33,8 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
   _exports.CLOSE_MINI_CART = CLOSE_MINI_CART;
   const OPEN_TOP_CART = Symbol('OPEN_TOP_CART');
   _exports.OPEN_TOP_CART = OPEN_TOP_CART;
+  const OPEN_CART_BANNER = 'NEED_OPEN_TOP_CART';
+  _exports.OPEN_CART_BANNER = OPEN_CART_BANNER;
   const cartOpenType = SL_State.get('theme.settings.cart_open_type');
   Service.init();
 
@@ -52,7 +54,7 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
     onSuccess = noop
   } = {}) => {
     onSuccess(data);
-    window.location.href = '/cart';
+    window.location.href = window.Shopline.redirectTo('/cart');
   });
   window.SL_EventBus.on(OPEN_TOP_CART, async () => {
     await dynamicImportMiniCart();
@@ -78,6 +80,7 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
     skuId,
     num,
     price,
+    currency,
     success,
     error,
     complete,
@@ -85,7 +88,7 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
     reportParamsExt,
     sellingPlanId
   }) => {
-    const dataReportReq = setAddtoCart(price, window.SL_State ? window.SL_State.get('storeInfo.currency') : undefined, eventID, reportParamsExt);
+    const dataReportReq = setAddtoCart(price, currency, eventID, reportParamsExt);
     const skuParams = {
       spuId,
       skuId,
@@ -99,12 +102,6 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
       if (cartOpenType !== 'newpage' && cartOpenType !== 'cartremain') {
         closeMiniCart();
         await dynamicImportMiniCart();
-        window.SL_EventBus.emit('NEED_OPEN_TOP_CART', {
-          spuId,
-          skuId,
-          num,
-          sellingPlanId
-        });
       }
 
       const isDismissParams = ['orderFrom'].some(key => !skuParams[key] && skuParams[key] !== 0);
@@ -149,6 +146,14 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
           errMsg = t('products.product_list.product_has_been_removed');
         }
 
+        if (responseCodeVO.is(res, 'TCAT0119')) {
+          errMsg = t('cart.general.support_oneTime_purchase_only');
+        }
+
+        if (responseCodeVO.is(res, 'TCAT0120')) {
+          errMsg = t('cart.general.support_subscription_only');
+        }
+
         new Toast().open(errMsg, 1500);
 
         if (typeof error === 'function') {
@@ -166,7 +171,13 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
         if (cartOpenType === 'cartremain') return;
 
         if (cartOpenType !== 'newpage') {
-          window.SL_EventBus.emit(OPEN_TOP_CART);
+          window.SL_EventBus.emit(OPEN_CART_BANNER, {
+            data: { ...res.data.itemDetail
+            },
+            onSuccess: () => {
+              window.SL_EventBus.emit(OPEN_TOP_CART);
+            }
+          });
         } else {
           interior.emit(OPEN_MINI_CART);
         }

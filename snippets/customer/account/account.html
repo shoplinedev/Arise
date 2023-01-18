@@ -6,6 +6,8 @@
 {{!-- 有邮箱或者手机，且正常展示状态 --}}
 {{ assign 'hasDeleteAccount' (boolean (boolean (isTruthy userInfo.email) '||' (isTruthy userInfo.phone)) '&&' (boolean deleteAcccountStatus '===' 2)) }}
 
+{{ assign 'emailIsInvalid' (and (isFalsey userInfo.emailIsValid) (isTruthy userInfo.email)) }}
+
 {{#snippet 'customer/base/sl-card' title=(t 'customer.account.account_information') id='customer-center-account' editable='true'}}
   <div class="account">
     {{!-- 昵称 --}}
@@ -38,7 +40,7 @@
       <div class="account-item__title">{{ t 'customer.account.email' }}</div>
       <div class="account-item__content" data-has-email-content>
           <span class="account-item__value notranslate account-item__email">{{ userInfo.email }}</span>
-          <div class="account-item__modify"  data-show="edit">
+          <div class="account-item__modify" data-show="{{ cond (boolean emailIsInvalid) '' 'edit' }}">
             <a href="javascript:void(0)" data-type="email" data-path="/user/bind?mode=email">
               {{ snippet 'icons/icon_edit' }}
               <span class="account-item__modify-text">{{ t 'customer.account.modify_email' }}</span>
@@ -52,6 +54,10 @@
             <span class="account-item__modify-text">{{ t 'customer.account.bind' }}</span>
           </a>
       </div>
+
+      {{#if emailIsInvalid}}
+        <div class="account-item__email-invalid">{{ t 'customer.account.invalidEmail' }}</div>
+      {{/if}}
     </div>
 
     {{!-- 手机号 --}}
@@ -176,3 +182,4 @@
 {{/if}}
 
 {{ snippet 'customer/account/modify-email' id='customer-center-modify-email-modal' }}
+{{ snippet 'customer/modal/modify-phone' id='customer-center-modify-phone-modal' }}

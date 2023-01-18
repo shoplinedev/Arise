@@ -4,12 +4,10 @@ window.SLM['cart/script/biz/checkout/module_paypal.js'] = window.SLM['cart/scrip
   const _exports = {};
   const PayPal = window['@yy/sl-theme-shared']['/components/paypal'].default;
   const { isPaypalGrey } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
-  const { SmartPayment } = window['SLM']['theme-shared/components/smart-payment/index.js'];
-  const { setPayPalReportReq } = window['SLM']['theme-shared/utils/tradeReport/index.js'];
-  const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const { getSyncData } = window['SLM']['theme-shared/utils/dataAccessor.js'];
-  const checkout = window['SLM']['theme-shared/utils/checkout.js'].default;
+  const { Payments, PageType } = window['SLM']['theme-shared/components/smart-payment/payments.js'];
   const createLogger = window['SLM']['theme-shared/utils/createLogger.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
+  const currencyUtils = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const CartServiceValuer = window['SLM']['cart/script/valuer/cartService.js'].default;
   const checkoutEffect = window['SLM']['cart/script/biz/checkout/effect.js'].default;
   const logger = {
@@ -33,17 +31,9 @@ window.SLM['cart/script/biz/checkout/module_paypal.js'] = window.SLM['cart/scrip
       }
     }
 
-    getDataReportReq() {
-      const {
-        products
-      } = this.checkoutParams;
-      return setPayPalReportReq({
-        products
-      });
-    }
-
     async renderSmartPayment() {
-      this.SmartPaymentComponent = new SmartPayment({
+      this.SmartPaymentComponent = new Payments({
+        pageType: PageType.Cart,
         props: {
           domId: this.elementId,
           styleOptions: {
@@ -54,46 +44,19 @@ window.SLM['cart/script/biz/checkout/module_paypal.js'] = window.SLM['cart/scrip
           stage: this.pageType,
           product: this.checkoutParams.products
         },
-        beforeCreateOrder: async () => {
-          try {
-            logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder]`);
-            const {
-              products,
-              ...extra
-            } = this.checkoutParams;
-            const {
-              url: returnUrl,
-              needLogin,
-              abandonedInfo
-            } = await checkout.save(products, { ...extra,
+        setCheckoutParams: async () => {
+          const {
+            products,
+            ...extra
+          } = this.checkoutParams;
+          return {
+            products,
+            extra: { ...extra,
               query: { ...extra.query,
                 spb: true
               }
-            });
-
-            if (needLogin) {
-              window.location.href = returnUrl;
-              return {
-                valid: false
-              };
             }
-
-            logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder]`);
-            const {
-              orderFrom
-            } = SL_State.get('checkout.otherInfo') || {};
-            return {
-              abandonedOrderInfo: abandonedInfo,
-              orderFrom: getSyncData('orderFrom') || orderFrom,
-              returnUrl,
-              dataReportReq: this.getDataReportReq()
-            };
-          } catch (error) {
-            logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder] 失败`, error);
-            return {
-              valid: false
-            };
-          }
+          };
         },
         onApprove: ({
           returnUrl
@@ -107,7 +70,15 @@ window.SLM['cart/script/biz/checkout/module_paypal.js'] = window.SLM['cart/scrip
     get checkoutParams() {
       const cartService = CartServiceValuer.withCartService(this.ctx);
       const cartItemList = cartService.getCardItemList();
-      return checkoutEffect.getCheckoutParams(this.ctx, cartItemList);
+      const params = checkoutEffect.getCheckoutParams(this.ctx, cartItemList);
+
+      if (params.products) {
+        params.products.forEach(product => {
+          product.productPrice = currencyUtils.unformatCurrency(convertPrice(product.productPrice));
+        });
+      }
+
+      return params;
     }
 
     async renderPaypal() {

@@ -1,8 +1,17 @@
 {{ combine_asset_tag 'stage/header/style/mod/locale-currency.css' inline=true }}
 <!-- stage/header/scripts/locale-currency.js -->
 {{ combine_asset_tag 
+ 'vendors/lodash.min.js'
  'vendors/uuid.min.js'
  'vendors/js-cookie.min.js'
+ 'theme-shared/components/localization/form.js'
+ 'theme-shared/utils/syntax-patch.js'
+ 'theme-shared/utils/i18n.js'
+ 'theme-shared/components/hbs/shared/components/toast/toast.js'
+ 'commons/components/toast/toast.js'
+ 'theme-shared/components/hbs/shared/components/toast/loading.js'
+ 'commons/components/toast/loading.js'
+ 'commons/components/toast/index.js'
  'commons/base/BaseClass.js'
  'theme-shared/utils/report/page.js'
  'theme-shared/utils/report/tool.js'
@@ -26,8 +35,11 @@
 {{#if (boolean settings.show_currency_selector '&&' currencyConfig.enable)}}
 	{{ assign 'currency_selector' true }}
 {{/if}}
-{{#if (boolean settings.show_locale_selector '&&' storeInfo.languageSetting.enableSelector)}}
+{{#if (boolean section.settings.show_locale_selector '&&' (gt (length localization.available_languages) 1))}}
 	{{ assign 'locale_selector' true }}
+{{/if}}
+{{#if (boolean section.settings.show_country_selector '&&' (boolean (length localization.available_contries) '>' 1))}}
+	{{ assign 'country_selector' true }}
 {{/if}}
 
 {{#if (boolean (boolean position '==' 'header') '||' (boolean position '==' 'footer'))}}
@@ -45,7 +57,7 @@
 
 {{#with this as | global |}}
     {{!-- hack j-locale-currency-flag 用于移动端控制是否 展示语言选择器和货币选择器，如果页头和页脚都不需要展示，则移动端也不需要展示  --}}
-    <div class="j-locale-currency-flag" data-currency="{{ global.currency_selector }}" data-locale="{{ global.locale_selector }}" data-currency-symbol="{{ global.show_currency_symbol }}"></div>
+      <div class="j-locale-currency-flag" data-country="{{ global.country_selector }}" data-currency="{{ global.currency_selector }}" data-locale="{{ global.locale_selector }}" data-currency-symbol="{{ global.show_currency_symbol }}"></div>
 	{{#if global.currency_selector}}
 		<div class="locale-currency {{#if is_dropdown}}is_dropdown{{/if}}" data-position={{ position }} data-currency>
 			<div class="dropdown__disclosure">
@@ -85,17 +97,37 @@
 	{{/if}}
 
 	{{#if global.locale_selector}}
-		<div class="locale-currency notranslate {{#if is_dropdown}}is_dropdown{{/if}}" data-locale data-position={{ position }}>
+		<div class="locale-currency notranslate {{#if is_dropdown}}is_dropdown{{/if}}" data-locale data-position="{{ position }}">
 			<div class="dropdown__disclosure">
 				<button class="j-stage-locale __sl-custom-track-stage-locale" type="button">
-					<span class="body5">{{ nameOfLocale global.request.locale }}</span>
+					<span class="body5">{{ global.localization.language.endonym_name }}</span>
 					{{ snippet 'icons/icon_arrow_down' classes='dropdown__icon--arrow' }}
 				</button>
 				<ul class="dropdown__list">
-					{{#each (traditionalFilter storeInfo.languageSetting.supportLanguages)}}
-						<li class="text-left" data-alias="{{ this }}" data-name="{{ nameOfLocale this }}" {{{ this.shopline_attributes }}}>
+					{{#each global.localization.available_languages}}
+						<li class="text-left" data-alias="{{ iso_code }}" data-name="{{ endonym_name }}" {{{ this.shopline_attributes }}}>
 							<span class="click">
-								<span class="body5 align-middle">{{ nameOfLocale this }}</span>
+								<span class="body5 align-middle">{{ endonym_name }}</span>
+							</span>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	{{/if}}
+
+	{{#if global.country_selector}}
+    <div class="locale-currency notranslate {{#if is_dropdown}}is_dropdown{{/if}}" data-country data-position="{{ position }}">
+			<div class="dropdown__disclosure">
+				<button class="j-stage-country __sl-custom-track-stage-country" type="button">
+					<span class="body5">{{ global.localization.country.name }}（{{ global.localization.country.currency.iso_code }} {{ global.localization.country.currency.symbol }}）</span>
+					{{ snippet 'icons/icon_arrow_down' classes='dropdown__icon--arrow' }}
+				</button>
+				<ul class="dropdown__list">
+					{{#each localization.available_contries}}
+            <li {{{ this.shopline_attributes }}} class="text-left" data-alias="{{ iso_code }}" data-name="{{ name }}（{{ currency.iso_code }} {{ currency.symbol }}）">
+							<span class="click">
+								<span class="body5 align-middle">{{ name }}（{{ currency.iso_code }} {{ currency.symbol }}）</span>
 							</span>
 						</li>
 					{{/each}}

@@ -11,7 +11,9 @@ window.SLM['theme-shared/biz-com/customer/biz/order/utils.js'] = window.SLM['the
     SL_State.on('currencyCode', () => {
       const amountNode = cartRootNode.find('[data-amount]');
       amountNode.each(function () {
-        $(this).text(convertFormat($(this).attr('data-amount')));
+        if ($(this).hasClass('no-change') === false) {
+          $(this).text(convertFormat($(this).attr('data-amount')));
+        }
       });
     });
   }

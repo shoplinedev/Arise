@@ -4,8 +4,9 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
   const _exports = {};
   const { BaseReport, findSectionId } = window['SLM']['theme-shared/report/common/baseReport.js'];
   const { validParams } = window['SLM']['theme-shared/report/product/utils/index.js'];
-  const currencyUtils = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const get = window['lodash']['get'];
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const { sectionTypeEnum } = window['SLM']['theme-shared/report/stage/const.js'];
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
 
@@ -18,11 +19,18 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
   }
 
   const getTagBrandTypeReportCollectionName = title => {
+    let {
+      pathname
+    } = window.location;
     const {
-      pathname,
       search
     } = window.location;
     let collectionName = title;
+
+    if (window.Shopline.routes && window.Shopline.routes.root && window.Shopline.routes.root !== '/') {
+      const root = `/${window.Shopline.routes.root.replace(/\//g, '')}`;
+      pathname = pathname.replace(root, '');
+    }
 
     if (pathname === '/collections/types' || pathname === '/collections/brands') {
       collectionName = tryDecodeURIComponent(pathname.replace('/collections/', '') + search);
@@ -41,9 +49,6 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
     return collectionName;
   };
 
-  const {
-    formatCurrency
-  } = currencyUtils;
   const pageItemMap = {
     101: {
       module: 900,
@@ -88,7 +93,8 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
           position: index + 1,
           collection_id: nullishCoalescingOperator(get(productSortation, 'sortation.sortation.sortationId'), ''),
           collection_name: getTagBrandTypeReportCollectionName(nullishCoalescingOperator(get(productSortation, 'sortation.sortation.title'), '')),
-          price: formatCurrency(productMinPrice),
+          currency: getCurrencyCode(),
+          price: convertPrice(productMinPrice),
           quantity: 1
         }))
       };
@@ -118,7 +124,8 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
       const productInfoParams = {
         sku_id: reportSkuId,
         spu_id: spuSeq,
-        price: formatCurrency(productMinPrice),
+        currency: getCurrencyCode(),
+        price: convertPrice(productMinPrice),
         position: index + 1,
         status: soldOut ? 102 : 101
       };
@@ -152,8 +159,8 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
         content_ids: id,
         sku_id: skuId,
         content_name: name,
-        currency: window.SL_State.get('storeInfo.currency'),
-        value: formatCurrency(price),
+        currency: getCurrencyCode(),
+        value: convertPrice(price),
         position: index + 1
       };
       const params = { ...baseParams,

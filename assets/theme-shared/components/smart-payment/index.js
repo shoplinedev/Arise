@@ -2,7 +2,7 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme-shared/components/smart-payment/index.js'] || function () {
   const _exports = {};
-  const { Payment, PayMode, PaymentProps, Paypal } = window['@sl/smart-payment'];
+  const { Payment, PayMode, PaymentProps, Paypal, mergeParams } = window['@sl/smart-payment'];
   const loggerService = window['@yy/sl-theme-shared']['/utils/logger/sentry'].default;
   const { SL_EventBus } = window['SLM']['theme-shared/utils/event-bus.js'];
   const { getPayments, isFn } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
@@ -30,7 +30,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
         return;
       }
 
-      this.currentController = new Payment({ ...this.config,
+      const config = mergeParams(this.config, {
         payments,
         afterCreateOrder: status => {
           SL_EventBus.emit(PAYPAL_CHECKOUT, {
@@ -46,7 +46,9 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
         },
         logger
       });
+      this.currentController = new Payment(config);
       await this.currentController.render();
+      return this.currentController;
     }
 
     async init() {
@@ -54,7 +56,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
     }
 
     setDisabled(disabled) {
-      this.currentController.setDisabled(disabled);
+      this.currentController && this.currentController.setDisabled(disabled);
     }
 
   }
@@ -64,5 +66,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
   _exports.Paypal = Paypal;
   _exports.PayMode = PayMode;
   _exports.PaymentProps = PaymentProps;
+  _exports.mergeParams = mergeParams;
   return _exports;
 }();

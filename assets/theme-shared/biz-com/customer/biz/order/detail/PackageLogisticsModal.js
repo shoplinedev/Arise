@@ -91,7 +91,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/PackageLogisticsModal
     logisticBoxInnerEl.className = bem('logistic-box-inner');
     const subTitleEL = document.createElement('div');
     subTitleEL.className = bem('sub-title');
-    const subTitleTextEl = document.createTextNode(t('cart.shipping.package_tracking'));
+    const subTitleTextEl = document.createTextNode(t('order.shipping.package_tracking'));
     subTitleEL.appendChild(subTitleTextEl);
     const logisticsDataEl = document.createElement('div');
     logisticsDataEl.setAttribute('scroll-lock-scrollable', '');
@@ -159,7 +159,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/PackageLogisticsModal
     if (traceData.length === 0 && expressUrl) {
       const packageShipDataLinkTipEl = document.createElement('div');
       packageShipDataLinkTipEl.className = bem('link-tip');
-      packageShipDataLinkTipEl.innerText = t('cart.order.click_to_track');
+      packageShipDataLinkTipEl.innerText = t('order.order_status.click_to_track');
       const packageShipDataLinkEl = document.createElement('a');
       packageShipDataLinkEl.href = expressUrl;
       packageShipDataLinkEl.target = '_blank';
@@ -193,7 +193,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/PackageLogisticsModal
       traceNoDataIconEl.className = bem('icon');
       traceNoDataEl.appendChild(traceNoDataIconEl);
       const traceNoDataPEl = document.createElement('div');
-      traceNoDataPEl.textContent = t('cart.shipping.no_info');
+      traceNoDataPEl.textContent = t('order.shipping.no_info');
       traceNoDataEl.appendChild(traceNoDataPEl);
       traceDataListFragmentEl.appendChild(traceNoDataEl);
     }

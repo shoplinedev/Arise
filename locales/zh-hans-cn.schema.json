@@ -1641,6 +1641,9 @@
     "product_collections_collection-header": {
       "name": "分类封面",
       "settings": {
+        "banner_image_mobile": {
+          "label": "移动端Banner图"
+        },
         "parallax_scroll": {
           "info": "开启视差效果会裁减部分图片以达到效果",
           "label": "滚动视差"
@@ -1678,6 +1681,19 @@
         },
         "per_page_num": {
           "label": "每页商品数量"
+        },
+        "price_show_type": {
+          "info": "如果商品为单规格商品，则按照单一价格样式展示",
+          "label": "价格展示方式",
+          "options__0": {
+            "label": "最低价"
+          },
+          "options__1": {
+            "label": "价格区间"
+          },
+          "options__2": {
+            "label": "最低价起"
+          }
         },
         "product_fill_type": {
           "label": "商品图填充方式",
@@ -1721,6 +1737,9 @@
             "label": "最多展示2行"
           }
         },
+        "show_orgin_price": {
+          "label": "是否展示原价"
+        },
         "sorter_enable": {
           "label": "启用商品排序"
         }
@@ -1739,6 +1758,9 @@
           "settings": {
             "location": {
               "label": "商品描述显示位置",
+              "options__0": {
+                "label": "商品图右侧"
+              },
               "options__1": {
                 "label": "商品图下方"
               }
@@ -2076,6 +2098,15 @@
           },
           "options__2": {
             "label": "商品标题上方"
+          }
+        },
+        "pc_magnifier_type": {
+          "label": "电脑端放大镜",
+          "options__0": {
+            "label": "鼠标点击放大"
+          },
+          "options__1": {
+            "label": "鼠标悬浮放大"
           }
         },
         "product_image_pc_show_style": {

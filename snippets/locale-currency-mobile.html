@@ -2,14 +2,19 @@
 {{assign 'currency_selector' false}}
 {{assign 'locale_selector' false}}
 {{assign 'show_currency_symbol' false}}
+{{assign 'country_selector' false}}
+
 {{#if (boolean section.settings.show_currency_selector '&&' currencyConfig.enable)}}
   {{assign 'currency_selector' true}}
 {{/if}}
-{{#if (boolean section.settings.show_locale_selector '&&' storeInfo.languageSetting.enableSelector)}}
+{{#if (boolean section.settings.show_locale_selector '&&' (gt (length localization.available_languages) 1))}}
   {{assign 'locale_selector' true}}
 {{/if}}
 {{#if section.settings.show_currency_flags}}
   {{assign 'show_currency_symbol' true}}
+{{/if}}
+{{#if (boolean section.settings.show_country_selector '&&' (boolean (length localization.available_contries) '>' 1))}}
+	{{assign 'country_selector' true}}
 {{/if}}
 
 {{#if (isTruthy currencyConfig.referenceCurrencies)}}
@@ -18,15 +23,20 @@
 
 
 {{#with this as |global| }}
-<div class="toolkit-mobile__container">
-  <span class="click body5 toolkit-item locale-currency notranslate j-currency-drawer-btn">
+<div class="toolkit-mobile__container {{#if (or locale_selector currency_selector country_selector)}}toolkit-mobile__container--show{{/if}}">
+  <span class="click body5 toolkit-item locale-currency notranslate j-currency-drawer-btn __sl-custom-track-stage-currency">
     <span class="currency-symbol">{{global.initialCurrency.currencySymbol}}</span>
     <span class="currency-code">{{global.initialCurrency.currencyCode}}</span>
     {{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
   </span>
 
-  <span class="click body5 toolkit-item locale-currency notranslate j-locale-drawer-btn d-none">
-    <span>{{nameOfLocale global.request.locale}}</span>
+  <span class="click body5 toolkit-item locale-currency notranslate j-locale-drawer-btn __sl-custom-track-stage-locale">
+    <span>{{global.localization.language.endonym_name}}</span>
+    {{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
+  </span>
+
+  <span class="click body5 toolkit-item locale-currency notranslate j-country-drawer-btn __sl-custom-track-stage-country">
+    <span>{{global.localization.country.name}}（{{global.localization.country.currency.iso_code}} {{global.localization.country.currency.symbol}}）</span>
     {{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
   </span>
 </div>

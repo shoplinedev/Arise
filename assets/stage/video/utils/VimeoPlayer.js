@@ -10,12 +10,12 @@ window.SLM['stage/video/utils/VimeoPlayer.js'] = window.SLM['stage/video/utils/V
     controls: true,
     loop: false,
     muted: true,
-    playsinline: true,
     portrait: false,
     responsive: true,
     transparent: false,
     title: 'vedio',
-    autoplay: false
+    autoplay: false,
+    playsinline: true
   };
 
   class VimeoPlayer extends Player {

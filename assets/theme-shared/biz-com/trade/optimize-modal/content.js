@@ -26,7 +26,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
     const isUser = errorType === ErrorTypeEnum.LIMITED_ACTIVE_OVER;
     const isLimit = isUser || isProduct || isUnderProduct;
     return `   ${isLimit ? `<p class=${prefixer('tips')}>
-          ${t(isUser ? 'cart.discount_item.buy_limit5' : 'cart.discount_price.buy_limit3', {
+          ${t(isUser ? 'cart.discount_price.buy_limit2' : 'cart.discount_price.buy_limit3', {
       stock: `${targetNum || 0}`
     })}
    </p>` : ``}`;
@@ -47,9 +47,9 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
     let propertiesContent = '';
     properties.forEach(prop => {
       if (prop.type === PropertyTypeEnum.picture) {
-        propertiesContent += `<div>${prop.name}：<span class="pod_btn preview_btn" data-list=${JSON.stringify(prop.urls)}>${t('cart.refund.custom_preview')}</span></div>`;
+        propertiesContent += `<div>${prop.name}：<span class="pod_btn preview_btn" data-list=${JSON.stringify(prop.urls)}>${t('cart.item.custom_preview')}</span></div>`;
       } else if (prop.type === PropertyTypeEnum.link) {
-        propertiesContent += `<div>${prop.name}：<a class="pod_btn" href=${prop.urls && prop.urls[0]} target="_blank" className="pod_btn">${t('cart.refund.click_to_view')}</a></div>`;
+        propertiesContent += `<div>${prop.name}：<a class="pod_btn" href=${prop.urls && prop.urls[0]} target="_blank" className="pod_btn">${t('cart.item.click_to_view')}</a></div>`;
       } else {
         propertiesContent += `<div>${prop.name}：<span>${prop.value}</span></div>`;
       }
@@ -89,14 +89,14 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
   };
 
   const getMaskText = errorType => {
-    let text = t('cart.item.sold_out');
+    let text = t('products.product_list.sold_out');
 
     if ([ErrorTypeEnum.SHELF_OFF, ErrorTypeEnum.GIFT_INVALID].includes(errorType)) {
-      text = t('cart.item.removed');
+      text = t('transaction.item.removed');
     }
 
     if (errorType === ErrorTypeEnum.DELETE) {
-      text = t('cart.order.deleted');
+      text = t('transaction.order.deleted');
     }
 
     return text;
@@ -171,21 +171,21 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
 
     switch (status) {
       case btnEnum.paypal:
-        btn = `<button  class="${prefixer('btn-back')}">${t('cart.cart.return_to_cart')}</button>
+        btn = `<button  class="${prefixer('btn-back')}">${t('cart.checkout_proceeding.return_to_cart')}</button>
       <div id=${prefixer('btn-paypal')}></div>`;
         break;
 
       case btnEnum.empty:
-        btn = `<button  class="${prefixer('btn-confirm')}">${t('cart.cart.confirm')}</button>`;
+        btn = `<button  class="${prefixer('btn-confirm')}">${t('cart.checkout_proceeding.confirm')}</button>`;
         break;
 
       case btnEnum.limit:
-        btn = `<button  class="${prefixer('btn-limit')}">${t('cart.cart.return_to_cart')}</button>`;
+        btn = `<button  class="${prefixer('btn-limit')}">${t('cart.checkout_proceeding.return_to_cart')}</button>`;
         break;
 
       default:
-        btn = `<button  class="${prefixer('btn-back')}">${t('cart.cart.return_to_cart')}</button>
-      ${!continueBtnHide ? `<button class="${prefixer('btn-continue')}">${t('cart.cart.continue')}</button>` : ''}`;
+        btn = `<button  class="${prefixer('btn-back')}">${t('cart.checkout_proceeding.return_to_cart')}</button>
+      ${!continueBtnHide ? `<button class="${prefixer('btn-continue')}">${t('cart.checkout_proceeding.continue')}</button>` : ''}`;
     }
 
     const res = `<div class=${prefixer('btn-box')}>${btn}</div>`;

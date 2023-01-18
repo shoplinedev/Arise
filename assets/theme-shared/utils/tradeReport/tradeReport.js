@@ -34,7 +34,7 @@ window.SLM['theme-shared/utils/tradeReport/tradeReport.js'] = window.SLM['theme-
   class TradeReport {
     constructor() {
       this.eventBus = SL_EventBus;
-      this.storeCurrency = Cookies.get('currency_code');
+      this.currency = store.get('currencyCode');
       this.hdPage = {
         Cart: 'cart',
         MiniCart: 'cart'
@@ -49,7 +49,7 @@ window.SLM['theme-shared/utils/tradeReport/tradeReport.js'] = window.SLM['theme-
       } = data;
       const val = { ...value,
         ...{
-          currency: this.storeCurrency
+          currency: this.currency
         }
       };
       const gaParam = ga.click(pageType, actionType, val);

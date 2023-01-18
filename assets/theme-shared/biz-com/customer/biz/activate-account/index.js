@@ -19,6 +19,7 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
   const { getUdbErrorMessage } = window['SLM']['theme-shared/biz-com/customer/helpers/getUdbResponseLanguageErrorKey.js'];
   const { SIGN_IN, USER_CENTER } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/toast.js'].default;
+  const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
 
   class ActivateAccount extends Customer {
     constructor({
@@ -110,11 +111,22 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
           this.$discountCode.removeClass('hidden');
           getDiscountValue({
             priceRuleId,
-            language: getLanguage()
+            language: getLanguage(),
+            currencySymbol: '1'
           }).then(({
             data
           }) => {
-            this.$activateCode.text(data);
+            let activateCode = data;
+            const matches = activateCode.match(/\{([-+]?\d+(?:\.\d+)?)\}/g);
+            const matchPrices = matches && matches.length > 0 && matches.join(',').match(/[-+]?\d+(?:\.\d+)?/g);
+
+            if (matchPrices && matchPrices.length > 0) {
+              activateCode = matchPrices.reduce((str, next) => {
+                return str.replace(`{${next}}`, currencyUtil.format(Number(next) * 100));
+              }, activateCode);
+            }
+
+            this.$activateCode.text(activateCode);
           });
         } else {
           this.$title.text(t('customer.activate.normal_title'));

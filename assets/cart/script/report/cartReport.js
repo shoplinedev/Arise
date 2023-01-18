@@ -7,6 +7,7 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
   const { ClickType } = window['SLM']['theme-shared/utils/report/const.js'];
   const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { Owner, Action } = window['@yy/sl-theme-shared']['/utils/logger/sentryReport'];
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const LoggerService = window['SLM']['commons/logger/index.js'].default;
   const { Status: LoggerStatus } = window['SLM']['commons/logger/index.js'];
   const logger = LoggerService.pipeOwner(`${Owner.Cart} report/cartReport.js`);
@@ -35,26 +36,29 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
           price,
           name,
           skuAttr,
-          itemNo
+          itemNo,
+          customCategoryName
         }) => {
-          res.value += price * num;
+          res.value += currencyUtil.unformatCurrency(convertPrice(price)) * num;
           res.productItems.push({
             skuId: itemNo || skuId,
             quantity: num,
-            price: currencyUtil.formatCurrency(price || 0).toString(),
+            price: convertPrice(price || 0).toString(),
             name,
-            variant: (skuAttr || []).join(',')
+            variant: (skuAttr || []).join(','),
+            customCategoryName
           });
         });
       } else {
         const product = {
           skuId: (params && params.itemNo ? params.itemNo : undefined) || (params && params.skuId ? params.skuId : undefined),
           quantity: params && params.num ? params.num : undefined,
-          price: currencyUtil.formatCurrency(params.price || 0).toString(),
+          price: convertPrice(params.price || 0).toString(),
           name: params && params.name ? params.name : undefined,
-          variant: (params && params.skuAttr ? params.skuAttr : []).join(',')
+          variant: (params && params.skuAttr ? params.skuAttr : []).join(','),
+          customCategoryName: params && params.customCategoryName ? params.customCategoryName : ''
         };
-        res.value += params.price * (params && params.num ? params.num : 0);
+        res.value += currencyUtil.unformatCurrency(convertPrice(params.price)) * (params && params.num ? params.num : 0);
         res.productItems.push(product);
       }
 
@@ -65,15 +69,17 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
           price,
           name,
           skuAttr,
-          itemNo
+          itemNo,
+          customCategoryName
         }) => {
-          res.value += price * num;
+          res.value += currencyUtil.unformatCurrency(convertPrice(price)) * num;
           res.productItems.push({
             skuId: itemNo || skuId,
             quantity: num,
-            price: currencyUtil.formatCurrency(price || 0).toString(),
+            price: convertPrice(price || 0).toString(),
             name,
-            variant: (skuAttr || []).join(',')
+            variant: (skuAttr || []).join(','),
+            customCategoryName
           });
         });
       }
@@ -103,7 +109,7 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
       const value = { ...rest,
         skuId: itemNo || skuId,
         name,
-        price: currencyUtil.formatCurrency(price || 0).toString(),
+        price: convertPrice(price || 0).toString(),
         variant: skuAttrs,
         itemNo
       };
@@ -169,14 +175,18 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
       }
 
       const params = {
-        amount: currencyUtil.formatCurrency(cartInfo.realAmount || 0),
+        amount: convertPrice(cartInfo.realAmount || 0),
         items: []
       };
       const {
         activeItems
       } = cartInfo;
       activeItems.map(activeItem => {
-        params.items = [...params.items, ...activeItem.itemList];
+        params.items = [...params.items, ...activeItem.itemList.map(item => {
+          return { ...item,
+            price: currencyUtil.unformatCurrency(convertPrice(item.price)).toString()
+          };
+        })];
         return activeItem;
       });
       logger.info(`mini 主站购物车 数据上报 viewCart`, {

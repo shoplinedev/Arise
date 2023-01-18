@@ -29,7 +29,7 @@
         checked=memberPointInfo.use
         parentClass="cart-member-point-checkbox"
       }}
-      <div class="trade_summations_fee__desc {{#if memberPointInfo.use }} hide {{else}} {{/if}}">{{t 'cart.refund.deduct_point' deductMemberPointNum=memberPointInfo.deductMemberPointNum}} <span class="deductMemberPointAmount">{{money_exchange_convert_with_currency memberPointInfo.deductMemberPointAmount}}</span></div>
+      <div class="trade_summations_fee__desc {{#if memberPointInfo.use }} hide {{else}} {{/if}}">{{t 'transaction.refund.deduct_point' deductMemberPointNum=memberPointInfo.deductMemberPointNum}} <span class="deductMemberPointAmount">{{money_exchange_convert_with_currency memberPointInfo.deductMemberPointAmount}}</span></div>
     </div>
   {{/if}}
   <div class="trade_summations__amount col textRight {{#if showDetail}}showDetail{{/if}} {{#if suffixCls }} {{suffixCls}} {{else}}black{{/if}}">
@@ -53,7 +53,7 @@
     {{/if}}
     {{#if key '==' 'deductMemberPointAmount' }}
       <div class="trade_summations_remark">
-      {{t 'cart.refund.cost_points' value=memberPointInfo.deductMemberPointNum}}
+      {{t 'transaction.refund.cost_points' value=memberPointInfo.deductMemberPointNum}}
       </div>
     {{/if}}
   </div>

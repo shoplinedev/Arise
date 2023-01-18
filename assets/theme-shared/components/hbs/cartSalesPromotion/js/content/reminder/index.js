@@ -5,6 +5,7 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/i
   const template = window['SLM']['theme-shared/utils/template.js'].default;
   const getShoppingReminderConfig = window['SLM']['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/getPromotionReminder.js'].default;
   const { get } = window['SLM']['theme-shared/utils/syntax-patch.js'];
+  const { redirectTo } = window['SLM']['theme-shared/components/hbs/cartSalesPromotion/js/content/helpers/format.js'];
 
   const getPromotionBarContent = (promotion, rootWrapper) => {
     const isPCMainCart = rootWrapper.hasClass('main') && rootWrapper.hasClass('is-pc');
@@ -23,7 +24,7 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/i
     if (needJump) {
       return `
       <div class="cart-sku-list-promotion-module-can-jump notranslate">
-        <a href="/activity/${promotion.activitySeq}?type=pool${extMap.meetThreshold === 'true' ? '&query_product_type=2' : ''}" class="cart-sku-list-promotion-module-can-jump-wrapper">
+        <a href="${redirectTo(`/activity/${promotion.activitySeq}?type=pool${extMap.meetThreshold === 'true' ? '&query_product_type=2' : ''}`)}" class="cart-sku-list-promotion-module-can-jump-wrapper">
           <div>
             ${promotionTemplate}
           </div>

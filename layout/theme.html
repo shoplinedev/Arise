@@ -76,6 +76,7 @@
  'vendors/swiper.min.js'
  'vendors/yt-player.min.js'
  'vendors/@yy_sl-mc.min.js'
+ 'vendors/tinycolor2.min.js'
  'vendors/normalize.css.min.js'
  'theme-shared/utils/get-env.js'
  'theme-shared/utils/event-bus.js'
@@ -93,6 +94,7 @@
  'theme-shared/utils/url-adaptor.js'
  'theme-shared/utils/newCurrency/CurrencyConvert.js'
  'theme-shared/utils/newCurrency/index.js'
+ 'theme-shared/utils/dataReport/tool.js'
  'theme-shared/utils/dataReport/ga.js'
  'theme-shared/utils/dataReport/ads.js'
  'theme-shared/utils/dataReport/fb.js'
@@ -103,6 +105,7 @@
  'theme-shared/components/hbs/shared/components/toast/toast.js'
  'theme-shared/components/hbs/shared/components/toast/loading.js'
  'theme-shared/components/hbs/shared/components/toast/index.js'
+ 'theme-shared/utils/url.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/events/utils/api-logger.js'
  'theme-shared/events/trade/developer-api/navigate-checkout/index.js'
@@ -136,6 +139,7 @@
  'theme-shared/utils/report/page.js'
  'theme-shared/report/common/baseReport.js'
  'theme-shared/report/product/utils/index.js'
+ 'theme-shared/utils/currency/getCurrencyCode.js'
  'theme-shared/report/product/product-quickAddCart.js'
  'theme-shared/events/product/sku-change/index.js'
  'theme-shared/events/product/quickView-click/index.js'
@@ -152,6 +156,7 @@
  'theme-shared/components/hbs/products/checkedEvent/index.js'
  'theme-shared/components/smart-payment/utils.js'
  'theme-shared/components/smart-payment/index.js'
+ 'theme-shared/components/smart-payment/payments.js'
  'theme-shared/events/product/paypal-fallback/index.js'
  'theme-shared/utils/report/hd-const.js'
  'theme-shared/utils/tradeReport/hdReport.js'
@@ -238,19 +243,30 @@
  'product/commons/js/createShadowDom.js'
  'product/detail/js/tabs.js'
  'product/detail/js/product-collapse.js'
- 'commons/utils/effectFc.js'
- 'sales/js/drawer/Drawer.js'
- 'product/detail/js/auto-coupon/auto-coupon-banner.js'
- 'commons/utils/countdown.js'
- 'product/detail/js/flash-sale/index.js'
- 'product/detail/js/auto-coupon/get-sku-attribute-names.js'
- 'product/detail/js/auto-coupon/add-to-cart-report.js'
- 'product/detail/js/auto-coupon/add-to-cart-list.js'
  'theme-shared/components/hbs/thirdPartyShare/js/index.js'
  'commons/thirdPartyShare/index.js'
- 'theme-shared/report/hiido/index.js'
- 'product/detail/js/discount-coupon/index.js'
  'theme-shared/report/product/product-preview.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/countdown.js'
+ 'theme-shared/components/hbs/shared/utils/main.js'
+ 'theme-shared/components/hbs/shared/utils/helper.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-info.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-html.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/index.js'
+ 'theme-shared/report/hiido/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/drawer.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/effectFc.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-info.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-html.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/get-info.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/promotionTag.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/get-html.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-banner/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/get-sku-attribute-names.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/add-to-cart-report.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/index.js'
  'product/detail/js/product-preview.js'
  'product/commons/js/preview-modal/preview-modal.js'
  'product/commons/js/preview-modal/index.js'
@@ -319,11 +335,15 @@
     window.__I18N__['general'] = {{{ JSONstringify (t 'general') }}};
     window.__I18N__['blog'] = {{{ JSONstringify (t 'blog') }}};
     window.__I18N__['unvisiable'] = {{{ JSONstringify (t 'unvisiable') }}};
-
+    window.__I18N__['validate'] = {{{ JSONstringify (t 'validate') }}}
+    
   </script>
-  {{#if storeInfo.languageSetting.enableSelector}}
-    {{ snippet 'gte' }}
-  {{/if}}
+  {{!-- localization-form --}}
+  {{#form "localization" id="sl-localization-form" enctype="multipart/form-data" accept-charset="UTF-8"}}
+  <input type="hidden" name="country_code" value="{{localization.country.iso_code}}" />
+  <input type="hidden" name="locale_code" value="{{localization.language.iso_code}}" />
+{{/form}}
+
 
 
   {{ preload_state 'currencyConfig.referenceCurrencies' 'currencyConfig.currencyDetailList' }}

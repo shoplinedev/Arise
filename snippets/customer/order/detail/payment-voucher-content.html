@@ -1,10 +1,10 @@
 <div class="sl_section--small trade-checkout-payment-voucher block-bg-color">
   <span data-dataList="{{JSONstringify dataList}}" data-url="{{url}}" data-paySuccess="{{paySuccess}}" data-no_need_to_upload="{{noNeedToUpload}}" data-description="{{description}}"></span>
     {{#if paySuccess}}
-        <div class="trade-checkout-payment-voucher_title">{{t 'cart.order.payment_voucher_transfer_success'}}</div>
+        <div class="trade-checkout-payment-voucher_title">{{t 'order.order_status.payment_voucher_transfer_success'}}</div>
         <div class="trade-transfer-voucher-wrapper">{{snippet 'customer/order/detail/transfer-voucher' noNeedToUpload=noNeedToUpload dataList=dataList}}</div>
     {{else}}
-        <div class="trade-checkout-payment-voucher_title">{{t 'cart.order.payment_voucher_waiting_for_payment'}}</div>
+        <div class="trade-checkout-payment-voucher_title">{{t 'order.order_status.payment_voucher_waiting_for_payment'}}</div>
         {{#if description }}
             <div class="trade-checkout-payment-voucher_desc">{{ description}}</div>
         {{/if}}
@@ -31,7 +31,7 @@
         {{/if}}
    
         {{#if (boolean dataList.length '>' 4)}}
-            <div class="trade-transfer-voucher_limit-tip">{{t 'cart.order.voucher_amount_limit'}}</div>
+            <div class="trade-transfer-voucher_limit-tip">{{t 'order.checkout_order.voucher_amount_limit'}}</div>
         {{/if}}
         {{#unless noNeedToUpload}}
             {{snippet 'customer/order/detail/voucher-upload' type="button" hide=(boolean dataList.length '>' 0)}}

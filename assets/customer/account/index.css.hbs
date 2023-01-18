@@ -1482,6 +1482,17 @@ body .rolldate-container .rolldate-dim{
 .account-item[data-type=email-content][data-has-email] .account-item__content[data-has-email-content],.account-item[data-type=email-content][data-no-email] .account-item__content[data-no-email-content]{
   display:flex;
 }
+.account-item[data-type=phone-content] .account-item__content{
+  display:none;
+}
+.account-item[data-type=phone-content][data-has-phone] .account-item__content[data-has-phone-content],.account-item[data-type=phone-content][data-no-phone] .account-item__content[data-no-phone-content]{
+  display:flex;
+}
+.account-item__email-invalid{
+  color:#f86140;
+  font-size:12px;
+  margin-top:4px;
+}
 .account .hide{
   display:none;
 }

@@ -5,6 +5,7 @@ window.SLM['theme-shared/biz-com/customer/helpers/signOut.js'] = window.SLM['the
   const { getCookie } = window['SLM']['theme-shared/biz-com/customer/helpers/cookie.js'];
   const { signOut } = window['SLM']['theme-shared/biz-com/customer/service/sign-out.js'];
   const { SIGN_IN } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   function toSignOut() {
     const appid = getCookie('osudb_appid');
@@ -30,7 +31,7 @@ window.SLM['theme-shared/biz-com/customer/helpers/signOut.js'] = window.SLM['the
       beforeJump();
     }
 
-    window.location.href = SIGN_IN;
+    window.location.href = redirectTo(SIGN_IN);
   }
 
   _exports.signOutAndJump = signOutAndJump;

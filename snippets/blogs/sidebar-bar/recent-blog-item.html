@@ -4,32 +4,25 @@
   {{assign "coverImageObj" (object_create url=coverImageData.mediaUrl alt=coverImageData.alt width=coverImageInfo.width height=coverImageInfo.height)}}
 {{/if}}
 
-{{ assign 'coverRatio' (default coverRatio 0.75) }}
-{{ assign 'isDemo' (isFalsey info.id) }}
+{{assign "coverRatio" (default coverRatio 0.75)}}
+{{assign "isDemo" (isFalsey info.id)}}
 
 {{#with this as |global|}}
   {{#with info}}
     {{#if global.isDemo}}
-      {{ assign 'linkUrl' 'javascript:;' }}
+      {{assign "linkUrl" "javascript:;"}}
     {{else}}
-      {{ assign 'linkUrl' (append '/blogs/' global.collectionHandle '/' handle) }}
+      {{assign "linkUrl" (redirect_to (append "/blogs/" global.collectionHandle "/" handle))}}
     {{/if}}
     <div class="recent-blog sidebar-bar-item-main">
       <a class="recent-blog__image-wrapper" href="{{linkUrl}}" title="{{title}}">
-        {{#snippet
-          'global-image'
-          image=global.coverImageObj
-          image-class="recent-blog__image"
-          empty-scale=0.75
-          scale=1
-          pcSize="100px"
-          mSize="100px"
-        }}
-        {{/snippet}}
+        {{#snippet "global-image" image=global.coverImageObj image-class="recent-blog__image" empty-scale=0.75 scale=1 pcSize="100px" mSize="100px"}}{{/snippet}}
       </a>
       <div class="recent-blog__main">
         <a class="recent-blog__title-wrap" href="{{linkUrl}}" title="{{title}}">
-          <div class="recent-blog__title title6">{{title}}</div>
+          <div class="recent-blog__title title6">
+            {{title}}
+          </div>
         </a>
         {{#if (and (or publishTime author) (or global.showDate global.showAuthor))}}
           <div class="recent-blog__extra-info body6">
@@ -55,8 +48,10 @@
           </div>
         {{/if}}
         {{#and global.showDesc digest}}
-          <a href="{{ linkUrl }}" title="{{ title }}">
-            <p class="recent-blog__description body4">{{ digest }}</p>
+          <a href="{{linkUrl}}" title="{{title}}">
+            <p class="recent-blog__description body4">
+              {{digest}}
+            </p>
           </a>
         {{/and}}
         {{#if global.showTag}}

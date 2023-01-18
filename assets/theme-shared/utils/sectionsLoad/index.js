@@ -38,7 +38,9 @@ window.SLM['theme-shared/utils/sectionsLoad/index.js'] = window.SLM['theme-share
 
       const $container = $(`[data-section-id='${sectionId}']`);
 
-      this._createInstace($container);
+      if ($container.length) {
+        this._createInstace($container);
+      }
     }
 
     _onSectionUnload(e) {

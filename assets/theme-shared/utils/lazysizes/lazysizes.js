@@ -319,7 +319,7 @@ window.SLM['theme-shared/utils/lazysizes/lazysizes.js'] = window.SLM['theme-shar
 
       var checkElements = function () {
         var eLlen, i, rect, autoLoadElem, loadedSomething, elemExpand, elemNegativeExpand, elemExpandVal, beforeExpandVal, defaultExpand, preloadExpand, hFac;
-        var originElement = lazysizes.elements;
+        var originElement = lazysizes.elements || [];
         var extraElements = lazysizes.extraElements || [];
         var lazyloadElems = [...originElement, ...extraElements];
 

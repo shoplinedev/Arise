@@ -8,6 +8,7 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/toast.js'].default;
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   class Unsub {
     constructor({
@@ -28,7 +29,7 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
       const isLogin = SL_State.get('request.is_login');
 
       if (!isLogin) {
-        window.location.href = SIGN_IN;
+        window.location.href = redirectTo(SIGN_IN);
       }
 
       getSubscriptions({
@@ -38,7 +39,7 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
         data
       }) => {
         if (!(data && data.email && data.email.state)) {
-          window.location.href = HOME;
+          window.location.href = redirectTo(HOME);
         }
       });
       this.initTextarea();
@@ -97,7 +98,7 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
           });
           $(this.submitSelector).removeClass('btn--loading');
           setTimeout(() => {
-            window.location.href = HOME;
+            window.location.href = redirectTo(HOME);
           }, 3000);
         }).catch(() => {
           $(this.submitSelector).removeAttr('disabled').removeClass('btn--loading');

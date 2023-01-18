@@ -13,6 +13,7 @@ window.SLM['theme-shared/utils/dataReport/index.js'] = window.SLM['theme-shared/
   const apiLogger = window['SLM']['theme-shared/events/utils/api-logger.js'].default;
   const externalDtaReportEvents = window['@yy/sl-theme-shared']['/events/data-report/enum']['*'];
   const dataReportAdapters = window['@yy/sl-theme-shared']['/events/data-report/adapters'].default;
+  const { getCurrencyCode } = window['SLM']['theme-shared/utils/dataReport/tool.js'];
   const excludedDataReportEvents = new Set(Object.keys(externalDtaReportEvents).map(key => externalDtaReportEvents[key]));
   const logger = apiLogger('DataReport:Instance - ON');
 
@@ -20,6 +21,7 @@ window.SLM['theme-shared/utils/dataReport/index.js'] = window.SLM['theme-shared/
     constructor() {
       this.eventBus = SL_EventBus;
       this.rpEvent = window.Shopline && window.Shopline.event;
+      this.currency = getCurrencyCode();
     }
 
     load(data) {
@@ -29,7 +31,7 @@ window.SLM['theme-shared/utils/dataReport/index.js'] = window.SLM['theme-shared/
       } = data;
       const val = { ...value,
         ...{
-          currency: this.storeCurrency
+          currency: this.currency
         }
       };
       const gaParam = ga.load(pageType, val);

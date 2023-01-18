@@ -1,21 +1,22 @@
 <!-- product/search/main.js -->
 {{ combine_asset_tag 
  'vendors/eventemitter3.min.js'
- 'vendors/@sl_currency-tools-core.min.js'
  'vendors/lodash.min.js'
  'vendors/uuid.min.js'
+ 'vendors/@sl_currency-tools-core.min.js'
  'vendors/js-cookie.min.js'
  'vendors/dayjs.min.js'
  'vendors/debug.min.js'
  'theme-shared/utils/event-bus.js'
  'theme-shared/utils/parsePathToArray.js'
  'theme-shared/utils/state-selector.js'
- 'theme-shared/utils/newCurrency/CurrencyConvert.js'
- 'theme-shared/utils/newCurrency/index.js'
  'theme-shared/utils/report/page.js'
  'theme-shared/report/product/utils/index.js'
  'theme-shared/utils/report/tool.js'
  'theme-shared/report/common/baseReport.js'
+ 'theme-shared/utils/newCurrency/CurrencyConvert.js'
+ 'theme-shared/utils/newCurrency/index.js'
+ 'theme-shared/utils/currency/getCurrencyCode.js'
  'theme-shared/report/product/search-item.js'
  'theme-shared/report/stage/const.js'
  'theme-shared/utils/syntax-patch.js'
@@ -53,6 +54,7 @@
     const params = paramsURL && paramsURL.searchParams;
     const keyword = params && params.get('keyword');
     let thirdPartPvTrackData = null;
+    let currency = window.SL_State && window.SL_State.get('currencyCode');
     if(keyword){
       thirdPartPvTrackData = {
         GA: [
@@ -61,15 +63,16 @@
             'view_search_results',
             {
               search_term: '{{ request.uri.query.keyword }}',
-              items: [{{#forEach products.list}}{id: '{{ reportSkuId }}', name: '{{ title }}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
+              items: [{{#forEach products.list}}{id: '{{ reportSkuId }}', name: '{{ title }}', category: '{{ customCategoryName }}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
             }
           ],
           [
             'event',
             'view_item_list',
             {
-              items: [{{#forEach products.list}}{id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}Search Result{{/if}}',name: '{{ title }}', price: '{{ money_format productMinPrice }}', list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}] 
-            } 
+              currency:currency,
+              items: [{{#each products.list}}{id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}Search Result{{/if}}',name: '{{ title }}', category: '{{ customCategoryName }}',  price: '{{#money_exchange_convert_price productMinPrice}}{{ replace_by_regex integer group 'g' '' }}{{ cond fraction '.' '' }}{{ fraction }}{{/money_exchange_convert_price}}', currency: currency, list_position: {{ @index }} + 1 }{{#unless @last}},{{/unless}}{{/each}}]
+            }
           ],
         ],
         GA4: [
@@ -77,9 +80,10 @@
             'event',
           'view_item_list',
             {
-              items: [{{#forEach products.list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}Search Result{{/if}}',item_name: '{{ title }}', price: '{{ money_format productMinPrice }}', index: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}] 
-            } 
-          ] 
+              currency:currency,
+              items: [{{#each products.list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_list_name: '{{#if ../sortationId}}{{ ../sortation.sortation.title }}{{else}}Search Result{{/if}}',item_name: '{{ title }}',item_category: '{{ customCategoryName }}', price: '{{#money_exchange_convert_price productMinPrice}}{{ replace_by_regex integer group 'g' '' }}{{ cond fraction '.' '' }}{{ fraction }}{{/money_exchange_convert_price}}', currency: currency, index: {{ @index }} + 1 }{{#unless @last}},{{/unless}}{{/each}}]
+            }
+          ]
         ],
         FBPixel: [
           [
@@ -89,7 +93,7 @@
               search_string: '{{ request.uri.query.keyword }}',
               content_ids: [{{#forEach products.list}}'{{ spuSeq }}'{{#unless isLast}},{{/unless}}{{/forEach}}],
               content_type: 'product_group',
-              currency: window.SL_State && window.SL_State.get('storeInfo.currency'),
+              currency: currency,
             },
             {
               eventID: 'search{{ serverEventId }}'

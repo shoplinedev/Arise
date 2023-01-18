@@ -1,46 +1,38 @@
 {{#if info.coverImagePath}}
-  {{ assign 'coverImageData' (JSONparse info.coverImagePath) }}
-  {{ assign 'coverImageInfo' (img_size coverImageData.mediaUrl) }}
-  {{ assign 'coverImage' (object_create url=coverImageData.mediaUrl alt=coverImageData.alt width=coverImageInfo.width height=coverImageInfo.height) }}
+  {{assign "coverImageData" (JSONparse info.coverImagePath)}}
+  {{assign "coverImageInfo" (img_size coverImageData.mediaUrl)}}
+  {{assign "coverImage" (object_create url=coverImageData.mediaUrl alt=coverImageData.alt width=coverImageInfo.width height=coverImageInfo.height)}}
 {{/if}}
 
-{{ assign 'showDesc' (default showDesc true) }}
-{{ assign 'coverRatio' (default coverRatio 0.75) }}
-{{ assign 'showMore' (default showMore true) }}
+{{assign "showDesc" (default showDesc true)}}
+{{assign "coverRatio" (default coverRatio 0.75)}}
+{{assign "showMore" (default showMore true)}}
 
-{{#if coverRatio '!==' 'auto'}}
-  {{ assign 'coverRatio' (toFloat coverRatio) }}
+{{#if coverRatio "!==" "auto"}}
+  {{assign "coverRatio" (toFloat coverRatio)}}
 {{/if}}
 
-{{assign 'pathPrefixParam' request.uri.path}}
-{{!-- 有传值就用传进来的 --}}
+{{assign "pathPrefixParam" request.uri.path}}
+{{! 有传值就用传进来的 }}
 {{#if pathPrefix}}
-  {{assign 'pathPrefixParam' pathPrefix}}
+  {{assign "pathPrefixParam" pathPrefix}}
 {{/if}}
 
 {{#with this as |global|}}
   {{#with info}}
-    {{ assign 'linkUrl' 'javascript:void(0);' }}
+    {{assign "linkUrl" "javascript:void(0);"}}
 
     {{#if (isTruthy id)}}
-      {{ assign 'linkUrl' (append global.pathPrefixParam '/' (default handle id)) }}
+      {{assign "linkUrl" (redirect_to (append global.pathPrefixParam "/" (default handle id)))}}
     {{/if}}
 
     <div {{{ global.shopline_attributes }}} class="simple-blog __sl-custom-track-stage-blog-item">
       {{#if global.showCover}}
-        <a class="simple-blog__image-wrapper" href="{{ linkUrl }}" title="{{ title }}">
-          {{#snippet
-            'global-image'
-            image=global.coverImage
-            image-class="simple-blog__image"
-            empty-scale=0.75
-            scale=global.coverRatio
-            pcSize=global.pcSize
-            custom-empty=true
-          }}
-            {{#child 'empty'}}
+        <a class="simple-blog__image-wrapper" href="{{linkUrl}}" title="{{title}}">
+          {{#snippet "global-image" image=global.coverImage image-class="simple-blog__image" empty-scale=0.75 scale=global.coverRatio pcSize=global.pcSize custom-empty=true}}
+            {{#child "empty"}}
               <div class="simple-blog__empty-img">
-                {{ snippet 'icons/icon_image' }}
+                {{snippet "icons/icon_image"}}
               </div>
             {{/child}}
           {{/snippet}}
@@ -48,40 +40,60 @@
       {{/if}}
       <div class="simple-blog__main">
         <div class="simple-blog__info">
-          <a class="simple-blog__title-wrap" href="{{ linkUrl }}" title="{{ title }}">
-            <h4 class="simple-blog__title title5"><span>{{ title }}</span></h4>
+          <a class="simple-blog__title-wrap" href="{{linkUrl}}" title="{{title}}">
+            <h4 class="simple-blog__title title5"><span>
+                {{title}}
+              </span></h4>
           </a>
           {{#if (and (or publishTime author) (or global.showDate global.showAuthor))}}
             <p class="simple-blog__extra-info body4">
-              {{ assign 'showDate' (and publishTime global.showDate) }}
-              {{ assign 'showAuthor' (and author global.showAuthor) }}
-              {{#if showDate}}<span class="text"><a href="{{ linkUrl }}" title="{{ title }}">{{dayjs method='format' init=publishTime format='MMM DD,YYYY' }}</a></span>{{/if}}
-              {{#if (and showDate showAuthor)}}<span class="separator">|</span>{{/if}}
-              {{#if showAuthor}}<span class="text"><a href="{{ linkUrl }}" title="{{ title }}">{{ author }}</a></span>{{/if}}
+              {{assign "showDate" (and publishTime global.showDate)}}
+              {{assign "showAuthor" (and author global.showAuthor)}}
+              {{#if showDate}}
+                <span class="text"><a href="{{linkUrl}}" title="{{title}}">
+                    {{dayjs method="format" init=publishTime format="MMM DD,YYYY"}}
+                  </a></span>
+              {{/if}}
+              {{#if (and showDate showAuthor)}}
+                <span class="separator">|</span>
+              {{/if}}
+              {{#if showAuthor}}
+                <span class="text"><a href="{{linkUrl}}" title="{{title}}">
+                    {{author}}
+                  </a></span>
+              {{/if}}
             </p>
           {{/if}}
         </div>
         {{#and global.showDesc digest}}
-          <a href="{{ linkUrl }}" title="{{ title }}">
-            <p class="simple-blog__description body3">{{ digest }}</p>
+          <a href="{{linkUrl}}" title="{{title}}">
+            <p class="simple-blog__description body3">
+              {{digest}}
+            </p>
           </a>
         {{/and}}
         {{#if global.showTag}}
           <div class="simple-blog__tags">
             {{#each blogTagList as |blogTag|}}
               {{#snippet "blogs/tag" blogListHandle=global.collectionId tagName=blogTag.tagName}}
-                <span class="recent-blog__tag text">{{blogTag.tagName}}</span>
+                <span class="recent-blog__tag text">
+                  {{blogTag.tagName}}
+                </span>
               {{/snippet}}
             {{/each}}
           </div>
         {{/if}}
         {{#if global.showMore}}
-          <a class="simple-blog__btn" href="{{ linkUrl }}" title="{{ title }}">
-            <span>{{ global.btn_text }}</span>
-            <span class="btn-arrow"> {{ snippet 'icons/icon_arrow_down' }}</span>
+          <a class="simple-blog__btn" href="{{linkUrl}}" title="{{title}}">
+            <span>
+              {{global.btn_text}}
+            </span>
+            <span class="btn-arrow">
+              {{snippet "icons/icon_arrow_down"}}
+            </span>
           </a>
         {{/if}}
       </div>
-    </div> 
+    </div>
   {{/with}}
 {{/with}}

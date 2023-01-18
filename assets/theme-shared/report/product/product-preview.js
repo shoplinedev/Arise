@@ -2,9 +2,9 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/report/product/product-preview.js'] = window.SLM['theme-shared/report/product/product-preview.js'] || function () {
   const _exports = {};
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
   const { BaseReport, findSectionId } = window['SLM']['theme-shared/report/common/baseReport.js'];
   const { sectionTypeEnum } = window['SLM']['theme-shared/report/stage/const.js'];
-  const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
 
   class ProductPreviewReport extends BaseReport {
     constructor() {
@@ -44,7 +44,7 @@ window.SLM['theme-shared/report/product/product-preview.js'] = window.SLM['theme
         content_ids: content_spu_id,
         sku_id: content_sku_id,
         content_name: title,
-        currency: SL_State.get('storeInfo.currency') || currency,
+        currency: getCurrencyCode() || currency,
         value: price,
         pdp_type: this.map[params.module] && this.map[params.module].pdpType,
         module: this.map[params.module] && this.map[params.module].module,

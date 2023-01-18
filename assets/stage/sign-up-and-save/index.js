@@ -37,11 +37,11 @@ window.SLM['stage/sign-up-and-save/index.js'] = window.SLM['stage/sign-up-and-sa
           if (res.success) {
             this.toast.open(t('general.footer.subscribe_success'), 2000);
           } else {
-            this.toast.open(t('general.footer.subscribe_reg_exp_error'), 2000);
+            this.toast.open(t('general.footer.subscribe_format_error'), 2000);
           }
         }).catch(err => {
           console.log('subscribe error', err);
-          this.toast.open(t('general.footer.subscribe_reg_exp_error'), 2000);
+          this.toast.open(t('general.footer.subscribe_format_error'), 2000);
         });
       });
       container.on('click', '.newsletter__btn', () => {
@@ -49,7 +49,7 @@ window.SLM['stage/sign-up-and-save/index.js'] = window.SLM['stage/sign-up-and-sa
         const value = $input.val();
 
         if (checkEmail(value) !== true) {
-          this.toast.open(t('general.footer.subscribe_reg_exp_error'), 2000);
+          this.toast.open(t('general.footer.subscribe_format_error'), 2000);
           return;
         }
 

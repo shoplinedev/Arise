@@ -1,20 +1,21 @@
 {{ combine_asset_tag 'stage/404/style/index.css' inline=true }}
 
 {{ assign 'prefix' 'stage__notFound' }}
-
-<div class='container {{ prefix }}'>
-	<div class="{{ prefix }}--content">
-		<div class='title3'>{{ t 'general.404.title' }}</div>
-		<p class='body3 {{ prefix }}--description'>{{ t 'general.404.subtext' }}</p>
-		<a class="body3 btn btn-link" href='/'>
-			{{ t 'general.404.button' }}
-		</a>
-	</div>
+<div class="container {{ prefix }}">
+  <div class="{{ prefix }}--content">
+    <div class="title3">
+      {{ t 'general.404.title' }}
+    </div>
+    <p class="body3 {{ prefix }}--description">
+      {{ t 'general.404.subtext' }}
+    </p>
+    <a class="body3 btn btn-link" href="{{ redirect_to '/' }}">
+      {{ t 'transaction.payment.continue_shopping' }}
+    </a>
+  </div>
 </div>
-
 {{!-- 推荐商品 --}}
 {{ snippet 'product/product-recommend' }}
-
 {{#schema}}
 {
   "name": "t:sections.notFoundPage.name"

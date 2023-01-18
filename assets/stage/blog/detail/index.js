@@ -41,7 +41,6 @@ window.SLM['stage/blog/detail/index.js'] = window.SLM['stage/blog/detail/index.j
 
   class BlogDetail {
     constructor(container) {
-      this.initLoadMore();
       this.submitBtn = container.find('.blog__form-submit');
       this.initSubmitBtn();
       this.commentForm = Form.takeForm(`blog-comment-form`);
@@ -87,26 +86,6 @@ window.SLM['stage/blog/detail/index.js'] = window.SLM['stage/blog/detail/index.j
           toast.open('Network Error');
         }
       });
-    }
-
-    initLoadMore() {
-      const loadMore = Array.from(document.getElementsByClassName('blog__comments-loadmore')).pop();
-      if (!loadMore) return;
-      const loadMoreBtn = Array.from(loadMore.getElementsByClassName('blog__comments-loadmore-btn')).pop();
-      if (!loadMoreBtn) return;
-      const commentList = Array.from(document.getElementsByClassName('blog__comments-list')).pop();
-      if (!commentList) return;
-      const limit = +commentList.dataset.blockLimit;
-      Array.from(commentList.children).slice(limit).forEach(item => {
-        item.style.display = 'none';
-      });
-
-      loadMoreBtn.onclick = () => {
-        loadMore.style.display = 'none';
-        Array.from(commentList.children).slice(limit).forEach(item => {
-          item.style.display = '';
-        });
-      };
     }
 
     onUnload() {

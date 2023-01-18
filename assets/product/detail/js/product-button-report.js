@@ -4,14 +4,10 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
   const _exports = {};
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
   const { newHdReportData } = window['SLM']['theme-shared/report/product/add-to-cart.js'];
-  const currency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const dataReportAddToCart = window['@yy/sl-theme-shared']['/events/data-report/add-to-cart'].default;
-  const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const {
-    formatCurrency,
-    unformatCurrency
-  } = currency;
 
   function reportAddToCartEvent(data) {
     try {
@@ -30,45 +26,56 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
     skuId,
     num,
     eventID = getEventID(),
-    variant
+    variant,
+    spu
   }) {
+    const totalPrice = convertPrice(price) * (num || 1);
+    const {
+      customCategoryName
+    } = spu || {};
     window.SL_EventBus.emit('global:thirdPartReport', {
       GA: [['event', 'add_to_cart', {
+        currency: getCurrencyCode(),
         items: [{
           id: skuId,
           name,
-          price: formatCurrency(price),
+          currency: getCurrencyCode(),
+          price: convertPrice(price),
           quantity: num,
-          variant
+          variant,
+          category: customCategoryName
         }]
       }]],
       GA4: [['event', 'add_to_cart', {
-        currency: SL_State.get('storeInfo.currency'),
-        value: formatCurrency(price * (num || 1)),
+        currency: getCurrencyCode(),
+        value: totalPrice,
         items: [{
           item_id: skuId,
           item_name: name,
-          price: formatCurrency(price),
+          currency: getCurrencyCode(),
+          price: convertPrice(price),
           quantity: num,
-          item_variant: variant
+          item_variant: variant,
+          item_category: customCategoryName
         }]
       }]],
       GAAds: [['event', 'conversion', {
-        value: formatCurrency(price * (num || 1)),
-        currency: SL_State.get('storeInfo.currency')
+        value: totalPrice,
+        currency: getCurrencyCode()
       }, 'ADD-TO-CART']],
       FBPixel: [['track', 'AddToCart', {
         content_ids: spuId,
         content_name: name || '',
         content_category: '',
         content_type: 'product_group',
-        currency: SL_State.get('storeInfo.currency'),
-        value: formatCurrency(price)
+        currency: getCurrencyCode(),
+        value: convertPrice(price)
       }, {
         eventID: `addToCart${eventID}`
       }]],
       GAR: [['event', 'add_to_cart', {
-        value: formatCurrency(price * (num || 1)),
+        currency: getCurrencyCode(),
+        value: totalPrice,
         items: [{
           id: skuId,
           google_business_vertical: 'retail'
@@ -77,7 +84,8 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
       GARemarketing: [['event', 'add_to_cart', {
         ecomm_prodid: skuId,
         ecomm_pagetype: 'cart',
-        ecomm_totalvalue: formatCurrency(price * (num || 1))
+        currency: getCurrencyCode(),
+        ecomm_totalvalue: totalPrice
       }]]
     });
     reportAddToCartEvent({
@@ -85,9 +93,9 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
       content_sku_id: skuId,
       content_category: '',
       content_name: name,
-      currency: SL_State.get('storeInfo.currency'),
-      price: formatCurrency(price || 0),
-      value: formatCurrency(price || 0),
+      currency: getCurrencyCode(),
+      price: convertPrice(price || 0),
+      value: convertPrice(price || 0),
       quantity: num
     });
     return eventID;
@@ -126,13 +134,15 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
       product_id: spuId,
       variantion_id: skuId,
       quantity: num,
-      price: formatCurrency(price),
+      currency: getCurrencyCode(),
+      price: convertPrice(price),
       product_name: name,
       event_status,
       cart_id: cartId
     });
     newHdReportData({
       addtocartType: 'addtocart',
+      currency: getCurrencyCode(),
       price,
       page,
       skuId,
@@ -178,13 +188,15 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
       product_id: spuId,
       variantion_id: skuId,
       quantity: num,
-      price: formatCurrency(price),
+      currency: getCurrencyCode(),
+      price: convertPrice(price),
       product_name: name,
       event_category: 'cart',
       event_status
     });
     newHdReportData({
       addtocartType: isMorePay ? 'morePay' : 'buynow',
+      currency: getCurrencyCode(),
       price,
       page,
       skuId,
@@ -213,11 +225,14 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
     } = data;
     const position = nullishCoalescingOperator(data.position, '') === '' ? '' : Number(data.position) + 1;
     report('60006263', { ...rest,
+      price: convertPrice(data.price),
+      currency: getCurrencyCode(),
       position
     });
     newHdReportData({
       addtocartType: 'paypal',
-      price: unformatCurrency(data.price),
+      currency: getCurrencyCode(),
+      price: data.price,
       page: data.page,
       skuId: data.variantion_id,
       spuId: data.product_id,

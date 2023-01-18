@@ -5,25 +5,24 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const PayPal = window['@yy/sl-theme-shared']['/components/paypal'].default;
   const pageMapping = window['SLM']['theme-shared/utils/report/pageMapping.js'].default;
-  const currency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const checkout = window['SLM']['theme-shared/utils/checkout.js'].default;
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
-  const { setSyncData, getSyncData } = window['SLM']['theme-shared/utils/dataAccessor.js'];
+  const { setSyncData } = window['SLM']['theme-shared/utils/dataAccessor.js'];
   const { checkoutEnd } = window['SLM']['theme-shared/components/hbs/products/checkedEvent/index.js'];
   const { isPaypalGrey } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
-  const { SmartPayment } = window['SLM']['theme-shared/components/smart-payment/index.js'];
+  const { Payments, PageType } = window['SLM']['theme-shared/components/smart-payment/payments.js'];
   const { setPayPalReportReq } = window['SLM']['theme-shared/utils/tradeReport/index.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const get = window['lodash']['get'];
   const { getCartId } = window['SLM']['theme-shared/report/product/utils/index.js'];
   const eventPaypalFallback = window['SLM']['theme-shared/events/product/paypal-fallback/index.js'].default;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
+  const newCurrency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { ADD_TO_CART } = window['SLM']['commons/cart/globalEvent.js'];
   const Toast = window['SLM']['commons/components/toast/index.js'].default;
   const debounce = window['SLM']['commons/utils/debounce.js'].default;
   const { addToCartThirdReport, addToCartHdReport, buyNowHdReport, paypalHdReport } = window['SLM']['product/detail/js/product-button-report.js'];
-  const {
-    formatCurrency
-  } = currency;
 
   function getHdSdkDateId() {
     return window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.getDataId && window.HdSdk.shopTracker.getDataId();
@@ -140,7 +139,8 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           price,
           num: this.num,
           skuId,
-          variant: getVariant(get(this, 'activeSku.skuAttributeIds'), get(this, 'sku.skuAttributeMap'))
+          variant: getVariant(get(this, 'activeSku.skuAttributeIds'), get(this, 'sku.skuAttributeMap')),
+          spu: this.spu
         }),
         dataId,
         eventName: 'AddToCart'
@@ -160,7 +160,7 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           product_id: spuId,
           variantion_id: skuId,
           quantity: this.num,
-          price: formatCurrency(price),
+          price,
           product_name: name,
           page: this.page,
           event_status: status,
@@ -179,6 +179,7 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
     renderPaypal() {
       this.PayPalButton = new PayPal({
         stage: this.getStage(),
+        getDataReportReq: () => this.getReportReg(),
         needReport: () => this.needReport(),
         beforeCreateOrder: () => {},
         domId: this.payPayId,
@@ -207,16 +208,29 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       this.PayPalButton && this.PayPalButton.render();
     }
 
+    getReportReg() {
+      return {
+        products: this.transProducts(this.products).map(product => ({ ...product,
+          productPrice: newCurrency.unformatCurrency(convertPrice(product.productPrice))
+        })),
+        currency: getCurrencyCode()
+      };
+    }
+
     getDataReportReq() {
       return setPayPalReportReq({
-        products: this.transProducts(this.products),
+        products: this.transProducts(this.products).map(product => ({ ...product,
+          productPrice: newCurrency.unformatCurrency(convertPrice(product.productPrice))
+        })),
+        currency: getCurrencyCode(),
         needReport: () => this.needReport()
       });
     }
 
     async renderSmartPayment() {
       const stage = this.getStage();
-      this.SmartPaymentComponent = new SmartPayment({
+      this.SmartPaymentComponent = new Payments({
+        pageType: PageType.ProductDetail,
         props: {
           domId: this.payPayId,
           dynamic: get(this, 'buttonConfig.originConfig.system'),
@@ -228,40 +242,18 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           stage,
           product: this.transProducts(this.products)
         },
-        beforeCreateOrder: async () => {
-          try {
-            const {
-              url: returnUrl,
-              needLogin,
-              abandonedInfo
-            } = await checkout.save(this.transProducts(this.products), {
+        setCheckoutParams: async () => {
+          return {
+            productButtonId: this.id,
+            products: this.transProducts(this.products),
+            extra: {
               stage,
               query: {
                 spb: true
               }
-            });
-
-            if (needLogin) {
-              window.location.href = returnUrl;
-              return {
-                valid: false
-              };
-            }
-
-            const {
-              orderFrom
-            } = SL_State.get('checkout.otherInfo') || {};
-            return {
-              abandonedOrderInfo: abandonedInfo,
-              orderFrom: getSyncData('orderFrom') || orderFrom,
-              returnUrl,
-              dataReportReq: this.getDataReportReq()
-            };
-          } catch (error) {
-            return {
-              valid: false
-            };
-          }
+            },
+            dataReportReq: this.getDataReportReq()
+          };
         },
         onToast: ({
           message
@@ -394,7 +386,8 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           price
         } = this.activeSku;
         const {
-          num
+          num,
+          spu
         } = this;
         const dataId = getHdSdkDateId();
         const eventID = getEventID();
@@ -418,7 +411,8 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           spuId,
           skuId,
           num,
-          price,
+          currency: getCurrencyCode(),
+          price: newCurrency.unformatCurrency(convertPrice(price)),
           name,
           eventID: `addToCart${eventID}`,
           reportParamsExt: {
@@ -443,7 +437,8 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
               skuId,
               num,
               eventID,
-              variant: getVariant(get(this, 'activeSku.skuAttributeIds'), get(this, 'sku.skuAttributeMap'))
+              variant: getVariant(get(this, 'activeSku.skuAttributeIds'), get(this, 'sku.skuAttributeMap')),
+              spu
             });
             this.handleATCSuccess();
           },
@@ -516,7 +511,8 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           skuSeq: skuId
         } = this.activeSku;
         const {
-          num
+          num,
+          spu
         } = this;
         setChannel();
         dataId = getHdSdkDateId();
@@ -528,6 +524,8 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
             eventId: `addToCart${eventID}`,
             eventName: 'AddToCart'
           },
+          totalPrice: newCurrency.unformatCurrency(convertPrice(price)),
+          currency: getCurrencyCode(),
           needReport: () => {
             return addToCartThirdReport({
               eventID,
@@ -536,6 +534,7 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
               price,
               skuId,
               num,
+              spu,
               variant: getVariant(get(this, 'activeSku.skuAttributeIds'), get(this, 'sku.skuAttributeMap'))
             });
           }
@@ -566,12 +565,12 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
     setPaypalDisabled() {
       if (!this.activeSku) {
         this.PayPalButton && this.PayPalButton.setDisabled(true);
-        this.SmartPaymentComponent && this.SmartPaymentComponent.setDisabled(true);
+        this.SmartPaymentComponent && this.SmartPaymentComponent.setDisabled(this.activeSku);
         return;
       }
 
       this.PayPalButton && this.PayPalButton.setDisabled(false);
-      this.SmartPaymentComponent && this.SmartPaymentComponent.setDisabled(false);
+      this.SmartPaymentComponent && this.SmartPaymentComponent.setDisabled(this.activeSku);
     }
 
     get products() {
@@ -586,7 +585,9 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
 
     setPayPalProduct() {
       if ($(`#${this.payPayId}`).length === 0 || !this.activeSku) return;
-      this.PayPalButton && this.PayPalButton.setProducts(this.products);
+      this.PayPalButton && this.PayPalButton.setProducts(this.products.map(product => ({ ...product,
+        price: newCurrency.unformatCurrency(convertPrice(product.price))
+      })));
     }
 
     setTradeButtonHide(show) {
@@ -607,8 +608,7 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
     }
 
     isPreview() {
-      const currentUrl = window.location.pathname;
-      return /^[/（]preview[/）].*/.test(currentUrl);
+      return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
     }
 
   }

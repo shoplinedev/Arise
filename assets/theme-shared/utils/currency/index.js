@@ -6,7 +6,7 @@ window.SLM['theme-shared/utils/currency/index.js'] = window.SLM['theme-shared/ut
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
   const { HARD_CODE_CONFIG, SYMBOL_HARD_CODE_CONFIG, CURRENCY_DISPLAY_HARDCODE } = window['SLM']['theme-shared/utils/currency/constants.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const storeCurrency = SL_State.get('storeInfo.currency');
+  const storeCurrency = window.Shopline.currency;
   const storeLang = SL_State.get('request.locale');
   const currencyRates = SL_State.get('currencyRates');
   const defaultCurrency = 'CNY';
@@ -108,7 +108,7 @@ window.SLM['theme-shared/utils/currency/index.js'] = window.SLM['theme-shared/ut
   _exports.covertCalc = covertCalc;
 
   const convertFormat = (value, options = {}) => {
-    const fromDefault = SL_State.get('storeInfo.currency');
+    const fromDefault = window.Shopline.currency;
     const toDefault = SL_State.get('currencyCode');
     const locale = SL_State.get('request.locale');
     const {

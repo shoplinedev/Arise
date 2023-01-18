@@ -95,7 +95,7 @@ window.SLM['activity/script/index.js'] = window.SLM['activity/script/index.js'] 
         const amount = $(this).data('amount');
 
         if (amount) {
-          $(this).text(convertFormat(amount));
+          $(this).html(convertFormat(amount));
         }
       });
     });

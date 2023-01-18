@@ -1,6 +1,8 @@
 ---
 blogs:
   limit: 6
+all_collections:
+  need_first_product: false
 ---
 
 {{ combine_asset_tag 'stage/blog/detail/style/index.css' inline=true }}
@@ -22,8 +24,7 @@ blogs:
     {{ assign 'coverImage' (object_create url=coverImageData.mediaUrl alt=coverImageData.alt) }}
   {{/if}}
   {{ assign 'comment_list' (get 'list' blog.commentList) }}
-  {{ assign 'comment_length' (length comment_list) }}
-  {{ assign 'comment_limit' 10 }}
+  {{ assign 'comment_length' (get 'total' blog.commentList) }}
 
   {{ assign 'listHandle' (default blog.collectionCustomizePath (url_decode request.uri.params.listHandle)) }}
   {{ assign 'detailHandle' (default blog.handle (url_decode request.uri.params.detailHandle)) }}
@@ -54,11 +55,11 @@ blogs:
   {{/and}}
   <div class="blog__info">
     {{#or section.settings.is_show_breadcrumb section.settings.is_show_mobile_breadcrumb}}
-      {{ assign 'routes' (JSONparse (append '[{"name":"' homeText '","link":"/"}]')) }}
-      {{ array-push routes (object_create name=collectionTitle link=collectionPath) }}
-      {{ array-push routes (object_create name=title) }}
+      {{ assign 'routesList' (JSONparse (append '[{"name":"' homeText '","link":"/"}]')) }}
+      {{ array-push routesList (object_create name=collectionTitle link=collectionPath) }}
+      {{ array-push routesList (object_create name=title) }}
 
-      {{ snippet 'blogs/breadcrumb' classes=show_breakcrumb routes=routes }}
+      {{ snippet 'blogs/breadcrumb' classes=show_breakcrumb routesList=routesList }}
     {{/or}}
     <h1 class="blog__title title3">
       {{ title }}
@@ -413,20 +414,13 @@ blogs:
           <h2 class="blog__comments-title title3">
             {{ t 'blog.comment.title' comment_length=comment_length }}
           </h2>
-          <div class="blog__comments-list" data-block-limit="{{ comment_limit }}">
+          <div class="blog__comments-list">
             {{#each comment_list}}
               {{ snippet 'blogs/comment-item' comment=this }}
             {{/each}}
           </div>
-          {{#if comment_length '>' comment_limit}}
-            <div class="blog__comments-loadmore body3">
-              <a class="blog__comments-loadmore-btn">
-                {{ t 'blog.comment.loadmore' }}
-                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L6 6L11 1" stroke="black" stroke-width="1.5" stroke-linecap="round"></path>
-                </svg>
-              </a>
-            </div>
+          {{#if comment_length '>' 20}}
+            {{ snippet 'product/commons/pagination' mode='href' id='pagination' total=blog.commentList.total pageSize=blog.commentList.pageSize current=blog.commentList.pageNum request=request }}
           {{/if}}
         </div>
       {{/if}}

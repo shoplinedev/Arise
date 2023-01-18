@@ -16,14 +16,15 @@
  'vendors/photoswipe.min.js'
  'vendors/yt-player.min.js'
  'vendors/@sl_currency-tools-core.min.js'
- 'vendors/js-cookie.min.js'
  'vendors/uuid.min.js'
+ 'vendors/js-cookie.min.js'
  'vendors/@yy_sl-theme-shared.min.js'
  'vendors/@sl_smart-payment.min.js'
  'vendors/@sl_cart.min.js'
  'vendors/@funnyecho_hamon.min.js'
  'vendors/@sl_logger.min.js'
  'vendors/@yy_sl-mc.min.js'
+ 'vendors/tinycolor2.min.js'
  'vendors/dayjs.min.js'
  'theme-shared/utils/sectionsLoad/index.js'
  'theme-shared/utils/event-bus.js'
@@ -81,6 +82,7 @@
  'theme-shared/utils/request.js'
  'theme-shared/utils/url-adaptor.js'
  'theme-shared/utils/report/const.js'
+ 'theme-shared/utils/dataReport/tool.js'
  'theme-shared/utils/dataReport/ga.js'
  'theme-shared/utils/dataReport/ads.js'
  'theme-shared/utils/dataReport/fb.js'
@@ -88,13 +90,16 @@
  'theme-shared/utils/tradeReport/const.js'
  'theme-shared/utils/tradeReport/index.js'
  'theme-shared/utils/dataAccessor.js'
+ 'theme-shared/utils/url.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/components/hbs/products/checkedEvent/index.js'
  'theme-shared/components/smart-payment/utils.js'
  'theme-shared/components/smart-payment/index.js'
+ 'theme-shared/components/smart-payment/payments.js'
  'theme-shared/utils/report/page.js'
  'theme-shared/report/product/utils/index.js'
  'theme-shared/events/product/paypal-fallback/index.js'
+ 'theme-shared/utils/currency/getCurrencyCode.js'
  'theme-shared/events/trade/interior-event/index.js'
  'theme-shared/utils/report/hd-const.js'
  'theme-shared/utils/tradeReport/hdReport.js'
@@ -159,22 +164,33 @@
  'product/detail/inquiry-price-modal.js'
  'product/detail/js/tabs.js'
  'product/detail/js/product-collapse.js'
- 'commons/utils/effectFc.js'
- 'sales/js/drawer/Drawer.js'
- 'product/detail/js/auto-coupon/auto-coupon-banner.js'
- 'commons/utils/countdown.js'
- 'product/detail/js/flash-sale/index.js'
- 'product/detail/js/auto-coupon/get-sku-attribute-names.js'
- 'product/detail/js/auto-coupon/add-to-cart-report.js'
- 'product/detail/js/auto-coupon/add-to-cart-list.js'
  'theme-shared/components/hbs/thirdPartyShare/js/index.js'
  'commons/thirdPartyShare/index.js'
- 'theme-shared/report/hiido/index.js'
- 'product/detail/js/discount-coupon/index.js'
  'theme-shared/report/common/baseReport.js'
  'theme-shared/report/stage/const.js'
  'theme-shared/report/product/product-preview.js'
  'product/utils/nullishCoalescingOperator.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/countdown.js'
+ 'theme-shared/components/hbs/shared/utils/main.js'
+ 'theme-shared/components/hbs/shared/utils/helper.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-info.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-html.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/index.js'
+ 'theme-shared/report/hiido/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/drawer.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/effectFc.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-info.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-html.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/get-info.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/promotionTag.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/get-html.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-banner/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/get-sku-attribute-names.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/add-to-cart-report.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/index.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/index.js'
  'product/detail/js/product-preview.js'
  'product/commons/js/preview-modal/preview-modal.js'
  'product/commons/js/preview-modal/index.js'
@@ -191,7 +207,6 @@
 }}
 
 {{ assign 'top_ten_products_list' (array-slice products.list 0 10) }}
-{{ assign 'products_list' products.list }}
 
 {{!-- hbs set埋点变量 csr去执行上报  --}}
 <script>
@@ -221,6 +236,10 @@
       } else {
         collectionName = "All Products";
       };
+      if (window.Shopline.routes && window.Shopline.routes.root && window.Shopline.routes.root !== '/') {
+        const root = `/${window.Shopline.routes.root.replace(/\//g, '')}`;
+        pathname = pathname.replace(root, '');
+      }
       if (pathname === "/collections/types" || pathname === '/collections/brands') {
         collectionName = tryDecodeURIComponent(pathname.replace('/collections/','') + search);
       } else {
@@ -244,6 +263,7 @@
     pro_list_type: "{{ cond request.uri.params.uniqueKey 'category' 'all_product' }}",
     iframe_id: '1'
   }
+  let currency = window.SL_State && window.SL_State.get('currencyCode');
 
   const thirdPartPvTrackData = {
     GA: [
@@ -251,7 +271,8 @@
         'event',
         'view_item_list',
         {
-          items: [{{#forEach products_list}}{id: '{{ reportSkuId }}', name: '{{ title }}', price: '{{ money_format productMinPrice }}', list_name: collectionName, list_position: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
+          currency: currency,
+          items: [{{#each products.list}}{id: '{{ reportSkuId }}', name: '{{ title }}', price: '{{#money_exchange_convert_price productMinPrice}}{{ replace_by_regex integer group 'g' '' }}{{ cond fraction '.' '' }}{{ fraction }}{{/money_exchange_convert_price}}', currency: currency, category: '{{ customCategoryName }}', list_name: collectionName, list_position: {{ @index }} + 1 }{{#unless @last}},{{/unless}}{{/each}}]
         },
       ],
     ],
@@ -260,7 +281,8 @@
         'event',
         'view_item_list',
         {
-          items: [{{#forEach products_list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_name: '{{ title }}', price: '{{ money_format productMinPrice }}', item_list_name: collectionName, index: {{ index }} }{{#unless isLast}},{{/unless}}{{/forEach}}]
+          currency: currency,
+          items: [{{#each products.list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_name: '{{ title }}', price: '{{#money_exchange_convert_price productMinPrice}}{{ replace_by_regex integer group 'g' '' }}{{ cond fraction '.' '' }}{{ fraction }}{{/money_exchange_convert_price}}', currency: currency, item_list_name: collectionName, item_category: '{{ customCategoryName }}',  index: {{ @index }} + 1 }{{#unless @last}},{{/unless}}{{/each}}]
         },
       ],
     ],
@@ -278,7 +300,7 @@
         'event',
         'view_item_list',
         {
-          ecomm_prodid: [{{#forEach top_ten_products_list}}'{{ reportSkuId }}'{{#unless isLast}},{{/unless}}{{/forEach}}], 
+          ecomm_prodid: [{{#forEach top_ten_products_list}}'{{ reportSkuId }}'{{#unless isLast}},{{/unless}}{{/forEach}}],
           ecomm_pagetype: {{#if sortationId}}'category'{{else}}'other'{{/if}},
           ecomm_pcat: collectionName,
           ecomm_category : {{#if sortationId}}'{{ sortationId }}'{{else}}''{{/if}},

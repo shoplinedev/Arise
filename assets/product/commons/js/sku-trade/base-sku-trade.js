@@ -175,8 +175,7 @@ window.SLM['product/commons/js/sku-trade/base-sku-trade.js'] = window.SLM['produ
     }
 
     isPreview() {
-      const currentUrl = window.location.pathname;
-      return /^[/（]preview[/）].*/.test(currentUrl);
+      return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
     }
 
     initFirstChecked(allowNotAvailable) {

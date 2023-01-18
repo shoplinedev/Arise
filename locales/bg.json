@@ -7,8 +7,8 @@
       "related_articles": "Свързани блогове"
     },
     "blog_list": {
-      "empty_desc": "В този блог няма публикации в блога.",
-      "read_btn_text": "Прочетете още",
+      "empty_description": "В този блог няма публикации в блога.",
+      "readmore": "Прочетете още",
       "title": "Блог"
     },
     "comment": {
@@ -33,31 +33,26 @@
   },
   "cart": {
     "cart": {
-      "added_to_cart": "Добавено в количката ви",
       "buy_now": "КУПЕТЕ СЕГА",
       "cancel": "Отказ",
-      "cart_subtotal": "Междинна сума за количката",
-      "cart_view": "Вижте количката",
-      "checkout": "ПЛАЩАНЕ",
-      "click_to_view": "Кликнете, за да видите",
       "confirm": "OK",
-      "continue": "Напред",
-      "continue_shopping": "ПРОДЪЛЖЕТЕ ПАЗАРУВАНЕТО",
-      "custom_preview": "Персонализиран преглед",
-      "day": "ден",
-      "days": "дни",
-      "empty_cart": "Количката ви в момента е празна.",
       "got_it": "Разбрах",
-      "remove": "Извадете",
-      "return_to_cart": "Връщане към количката",
-      "subtotal": "Междинна сума",
-      "tax_included": "Включен данък"
+      "added_to_cart": "Добавено в количката ви",
+      "cart_subtotal": "Междинна сума за количката"
     },
     "checkout": {
       "max_amount_limit": "Превишихте максималната сума за плащане"
     },
     "checkout_proceeding": {
-      "checkout_proceed": "Долните продукти надвишават лимита за пазаруване, продължавате ли към плащането?"
+      "checkout": "ПЛАЩАНЕ",
+      "checkout_proceed": "Долните продукти надвишават лимита за пазаруване, продължавате ли към плащането?",
+      "continue": "Напред",
+      "continue_shopping": "ПРОДЪЛЖЕТЕ ПАЗАРУВАНЕТО",
+      "day": "дни",
+      "remove": "Извадете",
+      "return_to_cart": "Връщане към количката",
+      "subtotal": "Междинна сума",
+      "tax_included": "Включен данък"
     },
     "couponCode": {
       "exceedLimit": "Кодовете за отстъпка надвишават ограничението за количество",
@@ -71,14 +66,9 @@
       "unavailable": "Кодът за отстъпка е изтекъл"
     },
     "discount": {
-      "code_error": "Този код за отстъпка е въведен неправилно",
-      "code_item_unmatched": "Този {{discountCode}} е въведен правилно, но цената или количеството на стоките не отговаря на изискванията",
-      "coupon_code": "Код на купона",
       "coupon_code_amount": "Купон",
       "coupon_code_length_limit": "Кодът на купона не може да е над {{range}} знака",
-      "discounts_cannot_stack": "Направена е отстъпка за тази поръчка. Не можете да добавите друга отстъпка",
-      "expected_discount": "Отстъпка",
-      "use_coupon_alone": "Този код на купона не може да се използва с други оферти на промоция или с отстъпка"
+      "expected_discount": "Отстъпка"
     },
     "discount_item": {
       "buy_limit5": "Можете да купите най-много {{stock}} продукт/а с отстъпките едновременно."
@@ -89,16 +79,18 @@
       "buy_limit3": "Можете да купите само {{stock}} брой/я от този продукт с отстъпките"
     },
     "general": {
-      "continue_as_a_guest": "Продължете като гост"
+      "continue_as_a_guest": "Продължете като гост",
+      "support_oneTime_purchase_only": "Продуктът поддържа само еднократна покупка",
+      "support_subscription_only": "Продуктът поддържа само покупка след абонамент"
     },
     "item": {
       "add_limit2": "Максималното количество от един продукт е 99999 броя",
-      "invalid_product": "Невалидни продукти",
+      "click_to_view": "Кликнете, за да видите",
+      "custom_preview": "Персонализиран преглед",
+      "empty_cart": "Количката ви в момента е празна.",
       "item_left": "{{stock}} броя налични",
       "none_existent": "Продуктът не съществува",
-      "remove_invalid_product": "Изтриване на невалидните продукти",
-      "removed": "НЕВАЛИДНО",
-      "sold_out": "ПРОДАДЕНО"
+      "view_cart": "Вижте количката"
     },
     "next_step": {
       "calculated_taxes_fees": "Таксите и доставката се калкулират при плащането"
@@ -106,29 +98,12 @@
     "notices": {
       "change_password_after_verification": "Можете да промените паролата след потвърждение",
       "excess_product": "Долните продукти надвишават лимита за пазаруване, моля, променете количеството",
-      "insufficient_product_inventory": "Недостатъчно от продукт в наличност",
-      "network": "Грешка в мрежата",
       "product_amount_limit": "Съжаляваме! Броят на продуктите в количката надвишава лимита.",
-      "product_expired": "Продуктът е с изтекъл срок на годност",
-      "product_limit": "Лимитът на продукта е надхвърлен",
       "product_selected_invalid": "Съжаляваме, избраният от вас продукт не може да бъде закупен. Моля, изберете отново",
       "store_nonexistent": "Магазинът не съществува"
     },
     "order": {
-      "authorized": "Упълномощен",
-      "canceled": "Анулирано",
-      "canceled_order": "Анулирано",
-      "click_to_track": "Моля, проследете пакета си, като кликнете долния линк:",
-      "contact_us": "Свържете се с нас",
-      "deleted": "НЕВАЛИДНО",
-      "help_tips": "Нужда от помощ? Моля, свържете се с нас: {{email}}",
       "invalid_order_number": "невалиден номер на поръчката",
-      "no_more_info": "Няма повече информация",
-      "no_record": "В момента няма записани поръчки, отидете да пазарувате",
-      "order": "Ред",
-      "order_details": "Подробности за поръчката",
-      "package_amount": "Пакет {{num}}（{{item}} артикула）",
-      "pay_amount": "заплати сума",
       "paymentVoucher": {
         "downloadDoc": "Изтегляне на файл",
         "format": "Формат",
@@ -137,50 +112,26 @@
         "uploadLimit": "Моля, качвайте .jpg, .png, .pdf файлове с размер, по-малък от 20 MB"
       },
       "payment_voucher_confirmation": "Схванах го",
-      "payment_voucher_transfer_success": "Плащането е преведено успешно",
-      "payment_voucher_waiting_for_payment": "В очакване на плащане",
-      "receiver_account": "получател акаунт",
-      "reference_number": "номер за справка",
-      "remark": "Забележка за поръчката",
-      "sequence": "№ {{id}}",
       "shipping_address": "Адрес за доставка",
       "sign_in": "или вписване по следните начини",
       "tax_included": "Включително {{price}} в данъци",
-      "time": "Поръчано в",
-      "total_amount": "{{transPackages}} артикул общо",
-      "total_item_amount": "{{transPackages}} артикула общо",
-      "tracking": "Проследяване",
       "try_again": "Качването не бе успешно. Моля, опитайте отново.",
       "try_later": "системата е заета, моля, опитайте отново по-късно.",
       "upload_bank_transfer_vouhcer_for_confirmation": "Моля, качете ваучера за банков превод и ние ще потвърдим.",
-      "upload_image_within_10_m_b": "Моля, качете JPG, PNG, GIF изображения в рамките на 10MB",
-      "upload_time": "време за качване",
-      "upload_voucher": "Качете ваучер",
-      "voucher_amount_limit": "Можете да качите само до 5 ваучера."
+      "upload_image_within_10_m_b": "Моля, качете JPG, PNG, GIF изображения в рамките на 10MB"
     },
     "payment": {
-      "billing_address": "Адрес за плащане",
       "channel": "Канал за плащане",
-      "continue_shopping": "Продължете към пазаруването",
       "create_time": "Създаден",
-      "detail": "Детайл",
       "free": "Безплатно",
       "log_in": "Впишете се",
-      "method": "Начин на плащане",
-      "paid": "Платено",
-      "partially_paid": "Частично платено",
-      "paying": "Плащане",
-      "payment": "Плащане",
       "payment_details": "Детайли за плащането",
-      "payment_status": "Статус на плащането",
       "pending_review": "Плащане",
       "reference_number": "Референтен номер на транзакция",
       "status": "Състояние",
       "subtotal_price": "Междинна сума",
       "sum": "Сума",
-      "total": "Общо",
       "total_sum": "Общо",
-      "unpaid": "Неплатено",
       "update_time": "Актуализиран"
     },
     "policy": {
@@ -188,21 +139,6 @@
     },
     "promotion": {
       "no_promotion": "Неучастваща отстъпка"
-    },
-    "refund": {
-      "click_to_view": "Кликнете, за да видите",
-      "cost_points": "Струва {{value}} точки",
-      "custom_preview": "Персонализиран преглед",
-      "deduct_point": "Можете да използвате {{deductMemberPointNum}} точки, за да спестите {{deductMemberPointAmount}}"
-    },
-    "shipping": {
-      "info": "Информация",
-      "no_info": "Все още няма информация за доставката, проверете по-късно.",
-      "package_tracking": "Проследяване на пакет",
-      "partially_shipped": "Частична доставка",
-      "preparing_order": "Подготвяне на продуктите",
-      "processing_amount": "Обработват се ({{num}} артикула)",
-      "shipped_order": "Доставено"
     },
     "shpping": {
       "service_terms": "Условията за ползване"
@@ -228,7 +164,6 @@
     "account": {
       "account_binding": "Свързване на акаунт",
       "account_information": "Сметка",
-      "address": "Адрес",
       "bind": "Свързване",
       "birthday": "Дата на раждане",
       "change_password": "Промяна на паролата",
@@ -253,6 +188,7 @@
       "modify_email": "Промяна на имейл",
       "modify_email_modal_title": "Промяна на имейл",
       "modify_phone": "Промяна на телефон",
+      "modify_phone_modal_title": "Промяна на телефон",
       "name": "Име",
       "next": "Напред",
       "nickname_empty_error": "Името и фамилията не могат да се оставят празни",
@@ -271,7 +207,9 @@
       "unknow_error_tip": "Изключете услугата, опитайте отново по-късно",
       "username": "Име",
       "verify_email_message": "Преди затварянето на акаунта, трябва да потвърдим вашата идентичност\nНа вашия имейл {{email}} ще получите имейл за потвърждение",
-      "verify_phone_message": "Преди затварянето на акаунта, трябва да потвърдим вашата идентичност\nНа вашия мобилен телефон {{phone}} ще получите съобщение за потвърждение"
+      "verify_phone_message": "Преди затварянето на акаунта, трябва да потвърдим вашата идентичност\nНа вашия мобилен телефон {{phone}} ще получите съобщение за потвърждение",
+      "address": "Адрес",
+      "invalidEmail": "Невалиден имейл адрес"
     },
     "activate": {
       "account_activated": "Акаунтът е активиран",
@@ -288,7 +226,7 @@
     "address": {
       "add_address": "Добавяне на нов адрес",
       "address": "Адрес",
-      "adress_full_tip": "5 адреса за запазени и не може да се добави в момента",
+      "adress_full_tip": "50 адреса за запазени и не може да се добави в момента",
       "common_max": "",
       "common_min": "повече от {{min}} знака",
       "default": "По подразбиране",
@@ -296,6 +234,7 @@
       "edit_last_name_hint": "Моля, въведете своята фамилия!",
       "edit_phone_hint": "Моля, въведете своя мобилен телефон!",
       "edit_shipping_address": "ПРОМЯНА НА АДРЕСА ЗА ДОСТАВКА",
+      "max_address_tip": "Създаване на до 50 адреса",
       "no_adress_data": "В момента няма адрес за доставка",
       "set_default_address": "Задайте като адрес по подразбиране"
     },
@@ -326,7 +265,6 @@
       "clear_button": "Изчистване",
       "confirm": "OK",
       "confirm_button": "OK",
-      "continue_as_a_guest": "Продължете като гост",
       "date_format": "dd MM yyyy",
       "dec": "дек",
       "december": "декември",
@@ -335,6 +273,482 @@
       "email_empty_hint": "Моля, въведете имейл адрес",
       "email_error_hint": "Моля, въведете имейл адрес с валиден формат и по-малко от 50 символа",
       "enter_verification_code": "Моля, въведете кода за потвърждение",
+      "feb": "фев",
+      "february": "февруари",
+      "first_day": "0",
+      "fr": "пт",
+      "fri": "пет",
+      "friday": "петък",
+      "image_size_less_than_tips": "Изображенията трябва да са по-малки от {{max}} MB",
+      "jan": "яну",
+      "january": "януари",
+      "jul": "юли",
+      "july": "юли",
+      "jun": "юни",
+      "june": "юни",
+      "mar": "мар",
+      "march": "март",
+      "max_image_upload_tips": "Може да качите максимум {{max}} изображения",
+      "may": "май",
+      "may_short": "май",
+      "mo": "пн",
+      "mon": "пон",
+      "monday": "понеделник",
+      "network_error_message": "Няма мрежа",
+      "nov": "ное",
+      "november": "ноември",
+      "oct": "окт",
+      "october": "октомври",
+      "ok": "OK",
+      "okay_common": "OK",
+      "orders": "Поръчки",
+      "password": "Парола",
+      "password_empty_hint": "Моля, въведете парола",
+      "phone": "Номер за мобилен телефон",
+      "phone_empty_message": "Моля, въведете своя номер на мобилен телефон",
+      "phone_error_message": "Моля, въведете номер на мобилен телефон с валиден формат.",
+      "phone_number_error_message": "Моля, въведете валиден телефонен номер",
+      "register": "Регистриране",
+      "repeat_passport_error": "Въведените от вас пароли не съвпадат",
+      "repeat_password": "Въведете паролата отново",
+      "resend": "Повторно изпращане",
+      "sa": "сб",
+      "sat": "съб",
+      "saturday": "събота",
+      "save": "ЗАПАЗВАНЕ",
+      "select__date": "Изберете дата",
+      "select_date": "Изберете дата",
+      "send": "Изпрати",
+      "send_error": "Моля, изпратете първо кода за потвърждение",
+      "send_verification_code_hint": "Моля, въведете паролата отново",
+      "sep": "сеп",
+      "september": "септември",
+      "set_password": "Моля, задайте парола с дължина от минимум 6 знака и максимална дължина от 18 знака",
+      "sign__out": "Излизане",
+      "sign_in": "ВПИСВАНЕ",
+      "sign_up": "Регистриране",
+      "su": "нд",
+      "subscription_desc": "Получавайте последните новини за дейността на магазина",
+      "sun": "нед",
+      "sunday": "неделя",
+      "th": "чт",
+      "thu": "чет",
+      "thursday": "четвъртък",
+      "time_format": "hh:mm aa",
+      "today": "Днес",
+      "tu": "вт",
+      "tue": "вто",
+      "tuesday": "вторник",
+      "update_passport": "Промяна на паролата",
+      "user_agreement_tip": "Моля, прочетете и се съгласете първо със споразумението с потребителя",
+      "username": "Имейл адрес/ номер на мобилен телефон",
+      "username_empty_hint": "Моля, въведете имейл адрес или мобилен телефон",
+      "verification_code": "Код за потвърждение",
+      "verification_code_sent_tip": "На вашия акаунт е изпратен код за потвърждение",
+      "verift_account_tip": "Моля, потвърдете своя акаунт и възстановете паролата",
+      "we": "ср",
+      "wed": "сря",
+      "wednesday": "сряда",
+      "continue_as_a_guest": "Продължете като гост",
+      "login_method": "или вписване по следните начини",
+      "proceed_to_checkout": "Продължете към плащането"
+    },
+    "login": {
+      "member_login_common": "Вписване на член",
+      "subscribe_confirm_tip": "Благодаря за абонамента. Можете да влезете за по-добро преживяване."
+    },
+    "message": {
+      "input_placeholder": "Има ли нещо, за което да оставите съобщение?",
+      "message": "Съобщение",
+      "send": "Изпрати"
+    },
+    "phone": {
+      "mobile_common": "Телефонен номер"
+    },
+    "register": {
+      "privacy_policy": "Декларацията за поверителност на уебсайта",
+      "terms_of_service": "Условията за ползване",
+      "go_to_login": "Впишете се",
+      "tips_agree_with_the_shop": "Съгласен съм с"
+    },
+    "subscription": {
+      "email": "Имейл",
+      "email_subscription_text": "Получавайте промоционална информация за абонамента по имейл",
+      "line": "LINE",
+      "messenger": "Messenger",
+      "phone": "Мобилен телефон",
+      "phone_subscription_text": "Абониране за телефонна промоция",
+      "reason_other_length": "Въведете до 300 знака",
+      "reason_other_placeholder": "Въвеждане на съдържание",
+      "save_button": "ЗАПАЗВАНЕ",
+      "subscribe_button": "АБОНИРАНЕ",
+      "subscription_cancel_text": "Отписване",
+      "subscription_hint": "Абониран",
+      "subscription_title": "Абонамент",
+      "unsubscribe": "Отписване",
+      "unsubscribe_btn": "Отписване",
+      "unsubscribe_confirm_text": "Отписване",
+      "unsubscribe_feedback_text": "Няма да получавате повече маркетингови актуализации от нас. Можете да се абонирате отново по всяко време",
+      "unsubscribe_feedback_title": "Отписахте се от пощенския списък <italic>{{name}}</italic>",
+      "unsubscribe_reason1": "Не желая да получавам имейли като този",
+      "unsubscribe_reason2": "Получих твърде много имейли",
+      "unsubscribe_reason3": "Нямам абонамент за тези имейли",
+      "unsubscribe_reason4": "Имейлите не са от значение за мен",
+      "unsubscribe_reason5": "Съдържанието на имейлите е твърде дълго",
+      "unsubscribe_reason6": "Друго",
+      "unsubscribe_subtitle": "Съжаляваме, че си тръгвате! Моля, кажете ни защо се отписахте:",
+      "unsubscribe_success": "Абонаментът е анулиран и скоро ще бъдете пренасочени към началната страница",
+      "unsubscribe_tip": "След отписването няма повече да получавате най-новите промоции-",
+      "unsubscribe_title": "Отписване"
+    }
+  },
+  "general": {
+    "404": {
+      "subtext": "Страницата, която търсите, не съществува.",
+      "title": "404 страници не са намерени",
+      "button": "Продължавай да пазаруваш"
+    },
+    "address": {
+      "address": "Адрес"
+    },
+    "contact_us": {
+      "contact_us": "СВЪРЖЕТЕ СЕ С НАС",
+      "send_success": "Благодарим ви, че се свързахте с нас, ще ви върнем обаждането възможно най-скоро."
+    },
+    "footer": {
+      "subscribe_format_error": "Грешка във формата на имейл адреса",
+      "subscribe_success": "Успешно абониране",
+      "copyright": "© {{year}} {{storeName}}"
+    },
+    "general": {
+      "accept": "Приеми",
+      "decline": "Отклони",
+      "home": "първа страница",
+      "link": "Политика за поверителност",
+      "no_data": "Няма налични данни",
+      "privacy_policy": "Декларацията за поверителност на уебсайта",
+      "tel_phone": "Телефонен номер",
+      "tips": "За да подобрим вашата работа, ние използваме бисквитки, за запомняне данните за влизане, събиране на статистически данни и да предлагаме съдържание, съобразено с вашите интереси. Щракнете върху „Приемам“, за да приемете бисквитките или вижте нашата „Политика за поверителност“.",
+      "title": "Ние се грижим за вашата поверителност",
+      "username": "Име"
+    },
+    "header": {
+      "cart": "Вашата количка",
+      "center": "Център",
+      "close": "Затворете",
+      "login": "Влизане",
+      "no_currency_fallback": "Не е намерена съответната валута",
+      "search_input_placeholder": "Пишете тук и чукнете за търсене"
+    },
+    "order_tracking": {
+      "code": "Код за потвърждение",
+      "email": "електронна поща",
+      "form_error": "Неуспешна заявка",
+      "orderId": "ID на поръчката",
+      "orderId_error": "ID на поръчката не може да бъде празен",
+      "query_illegal": "ред не съществува",
+      "risk_black_user": "Този акаунт е изложен на риск",
+      "risk_interception": "ред не съществува",
+      "submit_btn": "Преглед на поръчката",
+      "username": "Имейл/телефонен номер"
+    },
+    "policy": {
+      "service": "Условията за ползване",
+      "shipping": "Политика за доставки",
+      "privacy": "Декларацията за поверителност на уебсайта",
+      "refund": "Политика за възстановяване на суми"
+    }
+  },
+  "order": {
+    "checkout_order": {
+      "pay_amount": "заплати сума",
+      "receiver_account": "получател акаунт",
+      "reference_number": "номер за справка",
+      "upload_time": "време за качване",
+      "upload_voucher": "Качете ваучер",
+      "voucher_amount_limit": "Можете да качите само до 5 ваучера."
+    },
+    "detail": {
+      "orderstatus": {
+        "detail": "Детайл"
+      }
+    },
+    "order_details": {
+      "details": "Подробности за поръчката",
+      "order": "Ред",
+      "remark": "Забележка за поръчката",
+      "time": "Поръчано в"
+    },
+    "order_list": {
+      "no_more_info": "Няма повече информация",
+      "no_record": "В момента няма записани поръчки, отидете да пазарувате",
+      "package_amount": "Пакет {{num}}（{{item}} артикула）",
+      "total_amount": "{{transPackages}} артикула общо"
+    },
+    "order_status": {
+      "canceled": "Анулирано",
+      "click_to_track": "Моля, проследете пакета си, като кликнете долния линк:",
+      "contact_us": "Свържете се с нас",
+      "help_tips": "Нужда от помощ? Моля, свържете се с нас: {{email}}",
+      "payment_voucher_transfer_success": "Плащането е преведено успешно",
+      "payment_voucher_waiting_for_payment": "В очакване на плащане",
+      "sequence": "№ {{id}}",
+      "tracking": "Проследяване"
+    },
+    "payment": {
+      "authorized": "Упълномощен",
+      "billing_address": "Адрес за плащане",
+      "detail": "Детайл",
+      "method": "Начин на плащане",
+      "paid": "Платено",
+      "partially_paid": "Частично платено",
+      "paying": "Плащане",
+      "payment": "Плащане",
+      "payment_status": "Статус на плащането",
+      "unpaid": "Неплатено"
+    },
+    "shipping": {
+      "info": "Информация",
+      "no_info": "Все още няма информация за доставката, проверете по-късно.",
+      "package_tracking": "Проследяване на пакет",
+      "partially_shipped": "Частична доставка",
+      "preparing_order": "Подготвяне на продуктите",
+      "processing_amount": "Обработват се ({{num}} артикула)",
+      "shipped_order": "Доставено"
+    }
+  },
+  "products": {
+    "collection": {
+      "collection": "Категория"
+    },
+    "general": {
+      "no_product_data_found": "Не е намерена информация за продукта. Моля, опитайте по-късно",
+      "sold_out": "Продадено",
+      "added_to_cart_successfully": "Добавен в количката успешно"
+    },
+    "product_details": {
+      "activity_toast_price_limit": "Максималното количество за този ограничен продукт е {{num}}",
+      "activity_toast_product__limit": "Покупката е ограничена до промоционален продукт {{stock}}",
+      "activity_toast_title__limit": "Продуктите по-долу надвишават лимита за покупка",
+      "amount": "Количество",
+      "buy_more_save_more": "Купете повече Спестете повече!",
+      "cancel": "Отказ",
+      "country_region": "Страна/Регион",
+      "default_placeholder": "Моля, изберете {{attrName}}",
+      "description": "Описание",
+      "email": "Имейл",
+      "enter_email_address": "Моля, въведете своя имейл адрес",
+      "enter_valid_email_address": "Моля, въведете валиден имейл адрес",
+      "give_us_more_of_your_information": "Можете да ни дадете повече от вашата информация, за да можем да ви предоставим по-подходящи услуги",
+      "go_to_amazon_by_link": "Купете в Amazon",
+      "go_to_rakuten_by_link": "Купете в LOTTE",
+      "go_to_yahoo_by_link": "Купете в Yahoo",
+      "in_stock": "В наличност",
+      "inventory_quantity": "Данни за наличностите",
+      "leave_us_message": "Моля, въведете вашето съобщение",
+      "leave_us_message_get_back": "Моля, оставете ни съобщение и ще ви отговорим възможно най-скоро",
+      "link_preview_does_not_support": "Операцията за визуализация на връзката не се поддържа",
+      "maximum_length_of_message": "Максималната дължина на вашето съобщение не бива да надвишава 1500 думи",
+      "message": "Вашето съобщение",
+      "more_payment_options": "още опции за плащане",
+      "name": "Име",
+      "optional": "По желание",
+      "phone_number": "Телефонен номер",
+      "product_enquiry": "Запитване за продукта",
+      "submission_failed": "Изпращането неуспешно, моля, опитайте отново",
+      "submission_successfully": "Изпратено успешно",
+      "submit": "Изпращане",
+      "tax_included": "включен данък",
+      "view_product_detail": "Вижте подробности за продукта"
+    },
+    "product_list": {
+      "add_to_cart": "ДОБАВИ В КОЛИЧКАТА",
+      "filter": "Филтър",
+      "from_price_html": "От {{price}}",
+      "less": "По-малко",
+      "load_more_tip": "Зареждат се още елементи",
+      "more": "Повече",
+      "new_arrivals": "Нови продукти",
+      "no_product": "Няма продукти в тази серия",
+      "price_high_to_low": "Цена висока към ниска",
+      "price_low_to_high": "Цена ниска към висока",
+      "product_has_been_removed": "Продуктът е премахнат от рафтовете",
+      "product_sold_out": "ПРОДАДЕНО",
+      "products": "продукта",
+      "quick_shop": "Бързо пазаруване",
+      "recommend": "Препоръчано",
+      "sale": "Продажба",
+      "save": "Отстъпка {{{priceDom}}}",
+      "save_byjs": "Отстъпка {{priceDom}}",
+      "save_ratio": "{{price}}% намаление",
+      "select_product_all_options": "Моля, изберете първо размер на продукта!",
+      "top_sellers": "Най-продавани",
+      "more__product_num": "{{num}} Продукти",
+      "one_product_num": "{{num}} Продукт",
+      "show": "Покажи",
+      "sold_out": "Продадено"
+    },
+    "product_search": {
+      "back_to_home": "Върни се на началната страница",
+      "ount_results": "{{count}} резултата",
+      "results_found_for": "Намерени {{count}} резултата за \"{{keyword}}\"",
+      "search": "Търсене",
+      "search_no_results": "Вашето търсене за \"{{keyword}}\" не даде никакви резултати",
+      "single_results": "{{count}} резултата",
+      "single_results_found": "Намерени {{count}} резултата за \"{{keyword}}\""
+    },
+    "recently_viewed_products": {
+      "recently_viewed_products": "Наскоро разгледане продукти"
+    }
+  },
+  "sales": {
+    "discount_coupon": {
+      "active_date_until": "Валидно до {{endTime}}",
+      "applied": "Приложено",
+      "applied_successfully": "Кодът за отстъпка е приложен успешно",
+      "apply": "Прилагане",
+      "buy_x_get_y_all_discount_content": "Вземете {{benefitCount}} бройки с отстъпка от {{discount}}",
+      "buy_x_get_y_all_free_content": "Вземете {{benefitCount}} бройки безплатно",
+      "buy_x_get_y_discount_content": "{{discount}} отстъпка",
+      "buy_x_get_y_free_content": "БЕЗПЛАТНО",
+      "buy_x_get_y_threshold": "Купете {{threshold}} и вземете {{benefitCount}} бройки безплатно",
+      "coupon_content_level": "За {{level}}",
+      "coupon_discount_content": "{discount} намаление",
+      "coupon_not_found": "Кодът за отстъпка не съществува",
+      "failed_to_apply_coupon_code": "Приложението пропадна",
+      "free__shipping": "Безплатна доставка",
+      "get_code": "Получаване на купони за отстъпка",
+      "popup_label": "Купони за магазин:",
+      "shipping_rate_below": "Транспортните разходи са по-малко от {value}",
+      "specified_customer": "За определени клиенти",
+      "threshold": "Купи {threshold}"
+    },
+    "flash": {
+      "day": "ден",
+      "days": "дни"
+    },
+    "general": {
+      "activity_banner_benefit": "{{benefit}} отстъпка",
+      "activity_banner_copy_success_text": "Кодът на купона е копиран успешно",
+      "activity_banner_free_shipping": "Безплатна доставка",
+      "activity_selector_new_arrivals": "Новопристигналите",
+      "activity_selector_price_high_to_low": "Цена от висока към ниска",
+      "activity_selector_price_low_to_high": "Цена от ниска до висока",
+      "activity_selector_recommended": "Препоръчайте",
+      "apply_common": "Прилагане",
+      "coupon_code_copied": "Кодът на купона е копиран успешно",
+      "coupon_code_copy": "Копиране",
+      "flash_sale_text": "Светкавична продажба",
+      "flash_sale_tip": "Лимит за покупка: {{count}} броя",
+      "hot_sale": "Гореща разпродажба!",
+      "product_tabs_benefit_discount_locked": "Вземете {{offPercent}}% отстъпка",
+      "product_tabs_benefit_discount_unlocked": "{{offPercent}}% отстъпка са отключени!",
+      "product_tabs_benefit_free_locked": "Безплатен артикул",
+      "product_tabs_benefit_free_unlocked": "Безплатния артикул е отключен!",
+      "product_tabs_benefit_unlocked_tip": "Вече можете да се възползвате от намалението на продукта",
+      "product_tabs_code_benefit_discount_unlocked": "Купете {{benefitCount}} бройки с {{offPercent}}% отстъпка",
+      "product_tabs_code_benefit_free_unlocked": "Вземете {{benefitCount}} бройки безплатно",
+      "product_tabs_threshold": "Купете {{threshold}}",
+      "purchase_limit": "Лимит за покупка от {{count}} на човек",
+      "purchase_limit_each_item": "Лимит за покупка от {{count}} на продукт на човек",
+      "select_promotional_product": "{{selectCount}} избрани продукта от събитие",
+      "sold": "{{count}} продадени",
+      "activity_banner_copy_text": "Копиране",
+      "activity_banner_threshold": "Поръчки над {{threshold}}",
+      "discount_common": "Отстъпка",
+      "shop_more": "Още"
+    },
+    "gift": {
+      "got_all_gifts_tip": "Поздравления! Имате {{saved}} БЕЗПЛАТНИ ПОДАРЪКА!",
+      "not_meet_amount_tip": "Купете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
+      "not_meet_quantity_tip": "Купете още {{threshold}} артикула, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
+      "select": "Изберете",
+      "select_gift_tip": "Поздравления! Можете да се насладите на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
+      "spend_more_money_get_more_tip": "Поздравления! Получихте {{saved}} безплатни подаръка вече! Похарчете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
+      "spend_more_quantity_get_more_tip": "Поздравления! Получихте {{saved}} безплатни подаръка вече! Купете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА"
+    },
+    "promotion": {
+      "discount_tag": {
+        "label": "Намаление:"
+      }
+    }
+  },
+  "trade": {
+    "orderSummary": {
+      "totalLine": {
+        "adjust": "Закръгляне"
+      }
+    },
+    "payments-name": {
+      "COD": "В брой при доставка",
+      "Paypal": "PayPal",
+      "adjustPay": "manual",
+      "third-part": "Кредитна карта"
+    },
+    "reduction_code": {
+      "giftcard": "Подаръчни карти"
+    }
+  },
+  "transaction": {
+    "contact": {
+      "discounts_stack_not": "Направена е отстъпка за тази поръчка. Не можете да добавите друга отстъпка"
+    },
+    "discount": {
+      "code_error": "Този код за отстъпка е въведен неправилно",
+      "code_item_unmatched": "Този {{discountCode}} е въведен правилно, но цената или количеството на стоките не отговаря на изискванията",
+      "coupon_code": "Код на купона",
+      "coupon_invalid_for_the_shipping_method": "Купонът {{discountCode}} е валиден за начина на доставка",
+      "discount_codes_cannot_stack": "Вече има преференциално събитие за продукта, което не може да се използва заедно с други преференциални събития.",
+      "use_coupon_alone": "Този код на купона не може да се използва с други оферти на промоция или с отстъпка"
+    },
+    "general": {
+      "discount_off": "Отстъпка",
+      "free_charge": "Безплатна доставка",
+      "free_shipping": "безплатна доставка",
+      "orderSummary": {
+        "totalLine": {
+          "adjust": ""
+        }
+      },
+      "order_seller_discount": "Допълнителна отстъпка от продавача",
+      "order_tax": "данък",
+      "order_tip": "Бакшиш",
+      "payment_subtotal_cost": "Междинна сума",
+      "point_discount": "Отстъпка за точки",
+      "shipping_fee": "Доставка",
+      "trade_coupon_discount": "Отстъпка"
+    },
+    "item": {
+      "invalid_product": "Невалидни продукти",
+      "remove_invalid_product": "Изтриване на невалидните продукти",
+      "removed": "НЕВАЛИДНО",
+      "sold_out": "Продадено"
+    },
+    "notices": {
+      "insufficient_product_inventory": "Недостатъчно от продукт в наличност",
+      "network": "Грешка в мрежата",
+      "product_expired": "Продуктът е с изтекъл срок на годност",
+      "product_limit": "Лимитът на продукта е надхвърлен"
+    },
+    "order": {
+      "deleted": "НЕВАЛИДНО"
+    },
+    "payment": {
+      "continue_shopping": "Продължавай да пазаруваш",
+      "more": "Още",
+      "total": "Общо",
+      "total_sum": "Общо"
+    },
+    "policy": {
+      "refund_policy": "Политика за възстановяване на суми"
+    },
+    "refund": {
+      "cost_points": "Струва {{value}} точки",
+      "deduct_point": "Можете да използвате {{deductMemberPointNum}} точки, за да спестите {{deductMemberPointAmount}}"
+    }
+  },
+  "unvisiable": {
+    "customer": {
       "error_message_1": "Регистрирайте ме за имейли, за да получавам актуализации, достъп до ексклузивни сделки и други.",
       "error_message_1001": "Грешка в паролата",
       "error_message_1002": "Потребителят не съществува",
@@ -387,399 +801,8 @@
       "error_message_3024": "Грешка в параметъра на линка",
       "error_message_4": "Изключения при обслужване",
       "error_message_5": "Изключения при обслужване",
-      "error_message_6": "Изключения при обслужване",
-      "feb": "фев",
-      "february": "февруари",
-      "first_day": "0",
-      "fr": "пт",
-      "fri": "пет",
-      "friday": "петък",
-      "image_size_less_than_tips": "Изображенията трябва да са по-малки от {{max}} MB",
-      "jan": "яну",
-      "january": "януари",
-      "jul": "юли",
-      "july": "юли",
-      "jun": "юни",
-      "june": "юни",
-      "login_method": "или вписване по следните начини",
-      "mar": "мар",
-      "march": "март",
-      "max_image_upload_tips": "Може да качите максимум {{max}} изображения",
-      "may": "май",
-      "may_short": "май",
-      "mo": "пн",
-      "mon": "пон",
-      "monday": "понеделник",
-      "network_error_message": "Няма мрежа",
-      "nov": "ное",
-      "november": "ноември",
-      "oct": "окт",
-      "october": "октомври",
-      "ok": "OK",
-      "okay_common": "OK",
-      "orders": "Поръчки",
-      "password": "Парола",
-      "password_empty_hint": "Моля, въведете парола",
-      "phone": "Номер за мобилен телефон",
-      "phone_empty_message": "Моля, въведете своя номер на мобилен телефон",
-      "phone_error_message": "Моля, въведете номер на мобилен телефон с валиден формат.",
-      "phone_number_error_message": "Моля, въведете валиден телефонен номер",
-      "proceed_to_checkout": "Продължете към плащането",
-      "register": "Регистриране",
-      "repeat_passport_error": "Въведените от вас пароли не съвпадат",
-      "repeat_password": "Въведете паролата отново",
-      "resend": "Повторно изпращане",
-      "sa": "сб",
-      "sat": "съб",
-      "saturday": "събота",
-      "save": "ЗАПАЗВАНЕ",
-      "select__date": "Изберете дата",
-      "select_date": "Изберете дата",
-      "send": "Изпрати",
-      "send_error": "Моля, изпратете първо кода за потвърждение",
-      "send_verification_code_hint": "Моля, въведете паролата отново",
-      "sep": "сеп",
-      "september": "септември",
-      "set_password": "Моля, задайте парола с дължина от минимум 6 знака и максимална дължина от 18 знака",
-      "sign__out": "Излизане",
-      "sign_in": "ВПИСВАНЕ",
-      "sign_up": "Регистриране",
-      "su": "нд",
-      "subscription_desc": "Получавайте последните новини за дейността на магазина",
-      "sun": "нед",
-      "sunday": "неделя",
-      "th": "чт",
-      "thu": "чет",
-      "thursday": "четвъртък",
-      "time_format": "hh:mm aa",
-      "today": "Днес",
-      "tu": "вт",
-      "tue": "вто",
-      "tuesday": "вторник",
-      "update_passport": "Промяна на паролата",
-      "user_agreement_tip": "Моля, прочетете и се съгласете първо със споразумението с потребителя",
-      "username": "Имейл адрес/ номер на мобилен телефон",
-      "username_empty_hint": "Моля, въведете имейл адрес или мобилен телефон",
-      "verification_code": "Код за потвърждение",
-      "verification_code_sent_tip": "На вашия акаунт е изпратен код за потвърждение",
-      "verift_account_tip": "Моля, потвърдете своя акаунт и възстановете паролата",
-      "we": "ср",
-      "wed": "сря",
-      "wednesday": "сряда"
+      "error_message_6": "Изключения при обслужване"
     },
-    "login": {
-      "member_login_common": "Вписване на член",
-      "subscribe_confirm_tip": "Благодаря за абонамента. Можете да влезете за по-добро преживяване."
-    },
-    "message": {
-      "input_placeholder": "Има ли нещо, за което да оставите съобщение?",
-      "message": "Съобщение",
-      "send": "Изпрати"
-    },
-    "phone": {
-      "mobile_common": "Телефонен номер"
-    },
-    "register": {
-      "go_to_login": "Впишете се",
-      "privacy_policy": "Декларацията за поверителност на уебсайта",
-      "terms_of_service": "Условията за ползване",
-      "tips_agree_with_the_shop": "Съгласен съм с"
-    },
-    "subscription": {
-      "email": "Имейл",
-      "email_subscription_text": "Получавайте промоционална информация за абонамента по имейл",
-      "line": "LINE",
-      "messenger": "Messenger",
-      "phone": "Мобилен телефон",
-      "phone_subscription_text": "Абониране за телефонна промоция",
-      "reason_other_length": "Въведете до 300 знака",
-      "reason_other_placeholder": "Въвеждане на съдържание",
-      "save_button": "ЗАПАЗВАНЕ",
-      "subscribe_button": "АБОНИРАНЕ",
-      "subscription_cancel_text": "Отписване",
-      "subscription_hint": "Абониран",
-      "subscription_title": "Абонамент",
-      "unsubscribe": "Отписване",
-      "unsubscribe_btn": "Отписване",
-      "unsubscribe_confirm_text": "Отписване",
-      "unsubscribe_feedback_text": "Няма да получавате повече маркетингови актуализации от нас. Можете да се абонирате отново по всяко време",
-      "unsubscribe_feedback_title": "Отписахте се от пощенския списък <italic>{{name}}</italic>",
-      "unsubscribe_reason1": "Не желая да получавам имейли като този",
-      "unsubscribe_reason2": "Получих твърде много имейли",
-      "unsubscribe_reason3": "Нямам абонамент за тези имейли",
-      "unsubscribe_reason4": "Имейлите не са от значение за мен",
-      "unsubscribe_reason5": "Съдържанието на имейлите е твърде дълго",
-      "unsubscribe_reason6": "Друго",
-      "unsubscribe_subtitle": "Съжаляваме, че си тръгвате! Моля, кажете ни защо се отписахте:",
-      "unsubscribe_success": "Абонаментът е анулиран и скоро ще бъдете пренасочени към началната страница",
-      "unsubscribe_tip": "След отписването няма повече да получавате най-новите промоции-",
-      "unsubscribe_title": "Отписване"
-    }
-  },
-  "general": {
-    "404": {
-      "button": "Продължавай да пазаруваш",
-      "subtext": "Страницата, която търсите, не съществува.",
-      "title": "404 страници не са намерени"
-    },
-    "contact_us": {
-      "contact_us": "СВЪРЖЕТЕ СЕ С НАС",
-      "send_success": "Благодарим ви, че се свързахте с нас, ще ви върнем обаждането възможно най-скоро."
-    },
-    "footer": {
-      "copyright": "© {{year}} {{storeName}}",
-      "subscribe_reg_exp_error": "Грешка във формата на имейл адреса",
-      "subscribe_success": "Успешно абониране"
-    },
-    "general": {
-      "accept": "Приеми",
-      "decline": "Отклони",
-      "home": "първа страница",
-      "link": "Политика за поверителност",
-      "tel_phone": "Телефонен номер",
-      "tips": "За да подобрим вашата работа, ние използваме бисквитки, за запомняне данните за влизане, събиране на статистически данни и да предлагаме съдържание, съобразено с вашите интереси. Щракнете върху „Приемам“, за да приемете бисквитките или вижте нашата „Политика за поверителност“.",
-      "title": "Ние се грижим за вашата поверителност",
-      "username": "Име"
-    },
-    "header": {
-      "cart": "Вашата количка",
-      "center": "Център",
-      "login": "Влизане",
-      "no_currency_fallback": "Не е намерена съответната валута",
-      "search_input_placeholder": "Пишете тук и чукнете за търсене"
-    },
-    "order_tracking": {
-      "code": "Код за потвърждение",
-      "email": "електронна поща",
-      "form_error": "Неуспешна заявка",
-      "orderId": "ID на поръчката",
-      "orderId_error": "ID на поръчката не може да бъде празен",
-      "query_illegal": "ред не съществува",
-      "risk_black_user": "Този акаунт е изложен на риск",
-      "risk_interception": "ред не съществува",
-      "submit_btn": "Преглед на поръчката",
-      "username": "Имейл/телефонен номер"
-    },
-    "policy": {
-      "privacy": "Декларацията за поверителност на уебсайта",
-      "refund": "Политика за възстановяване на суми",
-      "service": "Условията за ползване",
-      "shipping": "Политика за доставки"
-    }
-  },
-  "order": {
-    "detail": {
-      "orderstatus": {
-        "UploadTime": "време за качване",
-        "detail": "Детайл"
-      }
-    }
-  },
-  "products": {
-    "collection": {
-      "collection": "Категория"
-    },
-    "general": {
-      "added_to_cart_successfully": "Добавен в количката успешно",
-      "no_product_data_found": "Не е намерена информация за продукта. Моля, опитайте по-късно",
-      "sold_out": "Продадено"
-    },
-    "product_details": {
-      "activity_toast_price_limit": "Максималното количество за този ограничен продукт е {{num}}",
-      "activity_toast_product__limit": "Покупката е ограничена до промоционален продукт {{stock}}",
-      "activity_toast_title__limit": "Продуктите по-долу надвишават лимита за покупка",
-      "amount": "Количество",
-      "buy_more_save_more": "Купете повече Спестете повече!",
-      "cancel": "Отказ",
-      "country_region": "Страна/Регион",
-      "default_placeholder": "Моля, изберете {{attrName}}",
-      "description": "Описание",
-      "email": "Имейл",
-      "enter_email_address": "Моля, въведете своя имейл адрес",
-      "enter_valid_email_address": "Моля, въведете валиден имейл адрес",
-      "give_us_more_of_your_information": "Можете да ни дадете повече от вашата информация, за да можем да ви предоставим по-подходящи услуги",
-      "go_to_amazon_by_link": "Купете в Amazon",
-      "go_to_rakuten_by_link": "Купете в LOTTE",
-      "go_to_yahoo_by_link": "Купете в Yahoo",
-      "in_stock": "В наличност",
-      "inventory_quantity": "Данни за наличностите",
-      "leave_us_message": "Моля, въведете вашето съобщение",
-      "leave_us_message_get_back": "Моля, оставете ни съобщение и ще ви отговорим възможно най-скоро",
-      "link_preview_does_not_support": "Операцията за визуализация на връзката не се поддържа",
-      "maximum_length_of_message": "Максималната дължина на вашето съобщение не бива да надвишава 1500 думи",
-      "message": "Вашето съобщение",
-      "more_payment_options": "още опции за плащане",
-      "name": "Име",
-      "optional": "По желание",
-      "phone_number": "Телефонен номер",
-      "product_enquiry": "Запитване за продукта",
-      "submission_failed": "Изпращането неуспешно, моля, опитайте отново",
-      "submission_successfully": "Изпратено успешно",
-      "submit": "Изпращане",
-      "tax_included": "включен данък"
-    },
-    "product_list": {
-      "add_to_cart": "ДОБАВИ В КОЛИЧКАТА",
-      "filter": "Филтър",
-      "from_price_html": "От {{price}}",
-      "less": "По-малко",
-      "load_more_tip": "Зареждат се още елементи",
-      "more": "Повече",
-      "more__product_num": "{{num}} Продукти",
-      "new_arrivals": "Нови продукти",
-      "no_product": "Няма продукти в тази серия",
-      "one_product_num": "{{num}} Продукт",
-      "price_high_to_low": "Цена висока към ниска",
-      "price_low_to_high": "Цена ниска към висока",
-      "product_has_been_removed": "Продуктът е премахнат от рафтовете",
-      "product_sold_out": "ПРОДАДЕНО",
-      "products": "продукта",
-      "recommend": "Препоръчано",
-      "sale": "Продажба",
-      "save": "Отстъпка {{{priceDom}}}",
-      "save_byjs": "Отстъпка {{priceDom}}",
-      "save_ratio": "{{price}}% намаление",
-      "select_product_all_options": "Моля, изберете първо размер на продукта!",
-      "show": "Покажи",
-      "sold_out": "Продадено",
-      "top_sellers": "Най-продавани"
-    },
-    "product_search": {
-      "back_to_home": "Върни се на началната страница",
-      "ount_results": "{{count}} резултата",
-      "results_found_for": "Намерени {{count}} резултата за \"{{keyword}}\"",
-      "search": "Търсене",
-      "search_no_results": "Вашето търсене за \"{{keyword}}\" не даде никакви резултати",
-      "single_results": "{{count}} резултата",
-      "single_results_found": "Намерени {{count}} резултата за \"{{keyword}}\""
-    },
-    "recently_viewed_products": {
-      "recently_viewed_products": "Наскоро разгледане продукти"
-    }
-  },
-  "sales": {
-    "discount_coupon": {
-      "active_date_until": "Валидно до {{endTime}}",
-      "applied": "Приложено",
-      "applied_successfully": "Кодът за отстъпка е приложен успешно",
-      "apply": "Прилагане",
-      "buy_x_get_y_all_discount_content": "Вземете {{benefitCount}} бройки с отстъпка от {{discount}}",
-      "buy_x_get_y_all_free_content": "Вземете {{benefitCount}} бройки безплатно",
-      "buy_x_get_y_discount_content": "{{discount}} отстъпка",
-      "buy_x_get_y_free_content": "БЕЗПЛАТНО",
-      "buy_x_get_y_threshold": "Купете {{threshold}} и вземете {{benefitCount}} бройки безплатно",
-      "coupon_content_level": "За {{level}}",
-      "coupon_discount_content": "{discount} намаление",
-      "coupon_not_found": "Кодът за отстъпка не съществува",
-      "failed_to_apply_coupon_code": "Приложението пропадна",
-      "free__shipping": "Безплатна доставка",
-      "get_code": "Получаване на купони за отстъпка",
-      "popup_label": "Купони за магазин:",
-      "shipping_rate_below": "Транспортните разходи са по-малко от {value}",
-      "specified_customer": "За определени клиенти",
-      "threshold": "Купи {threshold}"
-    },
-    "flash": {
-      "day": "ден",
-      "days": "дни"
-    },
-    "general": {
-      "activity_banner_benefit": "{{benefit}} отстъпка",
-      "activity_banner_copy_success_text": "Кодът на купона е копиран успешно",
-      "activity_banner_copy_text": "Копиране",
-      "activity_banner_free_shipping": "Безплатна доставка",
-      "activity_banner_threshold": "Поръчки над {{threshold}}",
-      "activity_selector_new_arrivals": "Новопристигналите",
-      "activity_selector_price_high_to_low": "Цена от висока към ниска",
-      "activity_selector_price_low_to_high": "Цена от ниска до висока",
-      "activity_selector_recommended": "Препоръчайте",
-      "apply_common": "Прилагане",
-      "bundle_save_tip": "Спестете {{amount}} като купите заедно",
-      "bundle_title": "Често купувани заедно",
-      "common_buy_now": "Купете сега",
-      "coupon_code_copied": "Кодът на купона е копиран успешно",
-      "coupon_code_copy": "Копиране",
-      "discount_common": "Отстъпка",
-      "flash_sale_text": "Светкавична продажба",
-      "flash_sale_tip": "Лимит за покупка: {{count}} броя",
-      "hot_sale": "Гореща разпродажба!",
-      "product_tabs_benefit_discount_locked": "Вземете {{offPercent}}% отстъпка",
-      "product_tabs_benefit_discount_unlocked": "{{offPercent}}% отстъпка са отключени!",
-      "product_tabs_benefit_free_locked": "Безплатен артикул",
-      "product_tabs_benefit_free_unlocked": "Безплатния артикул е отключен!",
-      "product_tabs_benefit_unlocked_tip": "Вече можете да се възползвате от намалението на продукта",
-      "product_tabs_code_benefit_discount_unlocked": "Купете {{benefitCount}} бройки с {{offPercent}}% отстъпка",
-      "product_tabs_code_benefit_free_unlocked": "Вземете {{benefitCount}} бройки безплатно",
-      "product_tabs_threshold": "Купете {{threshold}}",
-      "purchase_limit": "Лимит за покупка от {{count}} на човек",
-      "purchase_limit_each_item": "Лимит за покупка от {{count}} на продукт на човек",
-      "select_promotional_product": "{{selectCount}} избрани продукта от събитие",
-      "shop_more": "Още",
-      "sold": "{{count}} продадени"
-    },
-    "gift": {
-      "got_all_gifts_tip": "Поздравления! Имате {{saved}} БЕЗПЛАТНИ ПОДАРЪКА!",
-      "not_meet_amount_tip": "Купете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
-      "not_meet_quantity_tip": "Купете още {{threshold}} артикула, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
-      "select": "Изберете",
-      "select_gift_tip": "Поздравления! Можете да се насладите на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
-      "spend_more_money_get_more_tip": "Поздравления! Получихте {{saved}} безплатни подаръка вече! Похарчете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА",
-      "spend_more_quantity_get_more_tip": "Поздравления! Получихте {{saved}} безплатни подаръка вече! Купете още {{threshold}}, насладете се на до {{willSave}} БЕЗПЛАТНИ ПОДАРЪКА"
-    },
-    "promotion": {
-      "discount_tag": {
-        "b11_t1_free": "Купете {{threshold}} артикула, насладете се на един безплатен от тях!",
-        "b11_t1_normal": "Купете {{threshold}} артикула, насладете се на {{save}} ОТСТЪПКА за един от артикулите",
-        "b1_t0": "Купете {{threshold}} спестете {{save}}",
-        "b1_t1": "Купете {{threshold}} Вземете {{save}} ОТСТЪПКА",
-        "b2_t0": "Купете {{threshold}} спестете {{save}}",
-        "b2_t1": "Купете {{threshold}} Вземете {{save}} ОТСТЪПКА",
-        "label": "Намаление:"
-      }
-    }
-  },
-  "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Закръгляне"
-      }
-    },
-    "payments-name": {
-      "COD": "В брой при доставка",
-      "Paypal": "PayPal",
-      "adjustPay": "manual",
-      "third-part": "Кредитна карта"
-    },
-    "reduction_code": {
-      "giftcard": "Подаръчни карти"
-    }
-  },
-  "transaction": {
-    "general": {
-      "coupon_invalid_for_the_shipping_method": "Купонът {{discountCode}} е валиден за начина на доставка",
-      "discount_codes_cannot_stack": "Вече има преференциално събитие за продукта, което не може да се използва заедно с други преференциални събития.",
-      "discount_off": "Отстъпка",
-      "free_charge": "Безплатна доставка",
-      "free_shipping": "безплатна доставка",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
-      "order_seller_discount": "Допълнителна отстъпка от продавача",
-      "order_tax": "данък",
-      "order_tip": "Бакшиш",
-      "payment_subtotal_cost": "Междинна сума",
-      "point_discount": "Отстъпка за точки",
-      "shipping_fee": "Доставка",
-      "trade_coupon_discount": "Купон"
-    }
-  },
-  "user": {
-    "udbResponse": {
-      "err1006": "Грешка в кода",
-      "err2005": "Грешка в кода",
-      "err3005": "Грешка в кода"
-    }
+    "editorSwitchCountryTip": "В редактора не се поддържа превключване на държави"
   }
 }

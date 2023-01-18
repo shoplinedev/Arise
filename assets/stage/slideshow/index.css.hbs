@@ -1,7 +1,7 @@
 input{
   -webkit-appearance:none;
 }
-@keyframes slideshowBars{
+@keyframes stage-slideshowBars{
   0%{
     transform:translateX(-100%);
   }
@@ -266,7 +266,7 @@ input{
   }
 }
 .hero.swiper-container-horizontal .swiper-pagination--bars .swiper-pagination-bullet-active:after{
-  animation:slideshowBars 0s linear forwards;
+  animation:stage-slideshowBars 0s linear forwards;
 }
 .hero .placeholder-svg{
   background-color:#f3f3f3;
@@ -402,7 +402,7 @@ input{
   text-align:center;
 }
 
-@keyframes rise-up{
+@keyframes stage-rise-up{
   0%{
     opacity:1;
     transform:translateY(120%);
@@ -412,7 +412,7 @@ input{
     transform:translateY(0);
   }
 }
-@keyframes fade-in{
+@keyframes stage-fade-in{
   0%{
     opacity:0;
   }
@@ -459,21 +459,21 @@ input{
 }
 .slideshow__transition--simple .hero:not(.hero--static) .slideshow__slide.is-selected .hero__top-subtitle .animation-contents{
   animation:1s cubic-bezier(.26, .54, .32, 1) .7s forwards;
-  animation-name:rise-up;
+  animation-name:stage-rise-up;
 }
 .slideshow__transition--simple .hero:not(.hero--static) .slideshow__slide.is-selected .hero__title .animation-contents{
   animation:.8s cubic-bezier(.26, .54, .32, 1) .3s forwards;
-  animation-name:rise-up;
+  animation-name:stage-rise-up;
 }
 .slideshow__transition--simple .hero:not(.hero--static) .slideshow__slide.is-selected .hero__subtitle .animation-contents{
   animation:1s cubic-bezier(.26, .54, .32, 1) .7s forwards;
-  animation-name:rise-up;
+  animation-name:stage-rise-up;
 }
 .slideshow__transition--simple .hero:not(.hero--static) .slideshow__slide.is-selected .hero__link .btn-lg{
-  animation:fade-in 2s ease 1.3s forwards;
+  animation:stage-fade-in 2s ease 1.3s forwards;
 }
 .slideshow__transition--simple .hero:not(.hero--static) .slideshow__slide.is-selected .hero__link .btn-lg:nth-child(2){
-  animation:fade-in 2s ease 1.6s forwards;
+  animation:stage-fade-in 2s ease 1.6s forwards;
 }
 .slideshow__transition--simple .hero:not(.hero--static) .slideshow__slide.is-animate-out .animation-cropper{
   opacity:0;
@@ -501,21 +501,21 @@ input{
 }
 .slideshow__transition--simple .hero--static .slideshow__slide--index0 .hero__top-subtitle .animation-contents{
   animation:1s cubic-bezier(.26, .54, .32, 1) .7s forwards;
-  animation-name:rise-up;
+  animation-name:stage-rise-up;
 }
 .slideshow__transition--simple .hero--static .slideshow__slide--index0 .hero__title .animation-contents{
   animation:.8s cubic-bezier(.26, .54, .32, 1) .3s forwards;
-  animation-name:rise-up;
+  animation-name:stage-rise-up;
 }
 .slideshow__transition--simple .hero--static .slideshow__slide--index0 .hero__subtitle .animation-contents{
   animation:1s cubic-bezier(.26, .54, .32, 1) .7s forwards;
-  animation-name:rise-up;
+  animation-name:stage-rise-up;
 }
 .slideshow__transition--simple .hero--static .slideshow__slide--index0 .hero__link .btn-lg{
-  animation:fade-in 2s ease 1.3s forwards;
+  animation:stage-fade-in 2s ease 1.3s forwards;
 }
 .slideshow__transition--simple .hero--static .slideshow__slide--index0 .hero__link .btn-lg:nth-child(2){
-  animation:fade-in 2s ease 1.6s forwards;
+  animation:stage-fade-in 2s ease 1.6s forwards;
 }
 .slideshow__transition--simple .hero--static .slideshow__slide.is-selected .animation-contents{
   animation-delay:0s;
@@ -547,7 +547,7 @@ input{
 .slideshow__transition--slide .slideshow-wrapper{
   overflow:hidden;
 }
-@keyframes slide-in{
+@keyframes stage-slide-in{
   0%{
     opacity:0;
     transform:translate(0);
@@ -557,7 +557,7 @@ input{
     transform:translate(0);
   }
 }
-@keyframes slide-title-right{
+@keyframes stage-slide-title-right{
   0%{
     transform:translate(-70%);
   }
@@ -565,7 +565,7 @@ input{
     transform:translate(0);
   }
 }
-@keyframes slide-to-right{
+@keyframes stage-slide-to-right{
   0%{
     opacity:0;
     transform:translate(-10%);
@@ -581,15 +581,15 @@ input{
 }
 .slideshow__transition--slide .hero--static .slideshow__slide--index0 .hero__title .animation-contents{
   animation:1s cubic-bezier(.26, .54, .32, 1) .1s forwards;
-  animation-name:slide-title-right;
+  animation-name:stage-slide-title-right;
 }
 .slideshow__transition--slide .hero--static .slideshow__slide--index0 .hero__subtitle .animation-contents{
   animation:1s cubic-bezier(.26, .54, .32, 1) .1s forwards;
-  animation-name:slide-in;
+  animation-name:stage-slide-in;
 }
 .slideshow__transition--slide .hero--static .slideshow__slide--index0 .hero__link{
   animation:1s cubic-bezier(.26, .54, .32, 1) .3s forwards;
-  animation-name:slide-to-right;
+  animation-name:stage-slide-to-right;
 }
 .slideshow__transition--slide .hero--static .slideshow__slide--index0 .hero__link .btn-lg,.slideshow__transition--slide .hero--static .slideshow__slide--index0 .hero__link .btn-lg:nth-child(2){
   animation:unset;
@@ -612,15 +612,15 @@ input{
 }
 .slideshow__transition--slide .slideshow__slide.is-selected .hero__title .animation-contents{
   animation:1s cubic-bezier(.26, .54, .32, 1) .1s forwards;
-  animation-name:slide-title-right;
+  animation-name:stage-slide-title-right;
 }
 .slideshow__transition--slide .slideshow__slide.is-selected .hero__subtitle .animation-contents{
   animation:1s cubic-bezier(.26, .54, .32, 1) .1s forwards;
-  animation-name:slide-in;
+  animation-name:stage-slide-in;
 }
 .slideshow__transition--slide .slideshow__slide.is-selected .hero__link{
   animation:1s cubic-bezier(.26, .54, .32, 1) .3s forwards;
-  animation-name:slide-to-right;
+  animation-name:stage-slide-to-right;
 }
 .slideshow__transition--slide .slideshow__slide.is-selected .hero__link .btn-lg,.slideshow__transition--slide .slideshow__slide.is-selected .hero__link .btn-lg:nth-child(2){
   animation:unset;
@@ -644,7 +644,7 @@ input{
 .slideshow__transition--scale{
   position:relative;
 }
-@keyframes scale-in{
+@keyframes stage-scale-in{
   0%{
     opacity:0;
     transform:scale(1.18);
@@ -669,7 +669,7 @@ input{
 }
 .slideshow__transition--scale .hero--static .slideshow__slide--index0 .hero__image{
   animation:1.5s cubic-bezier(.26, .54, .32, 1) 0s forwards;
-  animation-name:scale-in;
+  animation-name:stage-scale-in;
 }
 .slideshow__transition--scale .hero__link .btn-lg{
   opacity:0;
@@ -696,7 +696,7 @@ input{
 }
 .slideshow__transition--scale .slideshow__slide.is-selected .hero__image{
   animation:1.5s cubic-bezier(.26, .54, .32, 1) 0s forwards;
-  animation-name:scale-in;
+  animation-name:stage-scale-in;
 }
 .slideshow__transition--scale .slideshow__slide.is-selected .animation-contents{
   opacity:1;

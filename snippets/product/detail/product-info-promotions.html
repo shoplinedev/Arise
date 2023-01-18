@@ -1,41 +1,17 @@
 {{!-- 询盘商品不显示倒计时和限时促销挂件 --}}
 {{#not product.spu.inquiry}}
-  {{#if productActivity.timeLimitActivityList.length}}
-    {{assign 'timeLimitActivity' (itemAt productActivity.timeLimitActivityList 0)}}
-    {{#if (or timeLimitActivity.salesPlugin.countDownTimerPlugin.showCountDownTime timeLimitActivity.salesPlugin.progressPlugin.showProgressBar)}}
-      <div class="d-none d-md-block sales__flash-sale notranslate">
-        {{ snippet 'product/detail/flash-sale/flash-sale' }}
-      </div>
-    {{else}}
-      <div class="d-none d-md-block countdown-component">
-        {{ snippet 'product/detail/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
-      </div>
-    {{/if}}
-  {{else}}
-    <div class="d-none d-md-block countdown-component">
-      {{ snippet 'product/detail/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
-    </div>
-  {{/if}}
+  {{!-- 限时促销 --}}
+  <div class="d-none d-md-block sales__flash-sale notranslate flash-sale-slot"></div>
+  <div class="d-none d-md-block countdown-component">
+    {{ snippet 'product/detail/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}
+  </div>
 {{/not}}
 
 {{!-- 折扣券 --}}
-{{assign 'discountCodeActivityList' productActivity.discountCodeActivityList}}
-{{#if (and discountCodeActivityList.length (compare id '===' 'productDetail') (isFalsey spuInfo.inquiry))}}
-  {{snippet 'product/detail/discount-coupon/discount-coupon-banner' discountCodeActivityList=discountCodeActivityList }}
-{{/if}}
+<div id="discount-code-slot"></div>
 
 {{!-- 自动折扣 --}}
-{{#each productActivity.autoDiscountActivityList}}
-  {{#if (and this.benefitConditions (compare ../id '===' 'productDetail') (isFalsey ../spuInfo.inquiry) (compare this.discountStyleType '===' 1))}}
-    <div data-track-eventid="60006253" data-track-page="pdp">
-      {{ snippet 'product/detail/auto-coupon/auto-coupon-banner'   
-            autoDiscountActivityItem=this 
-            template = this.discountStyleText
-      }}
-    </div>
-  {{/if}}
-{{/each}}
-
+<div id="auto-coupon-banner-slot"></div>
 
 
 {{!-- 询盘商品不显示倒计时和限时促销挂件 --}}

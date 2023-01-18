@@ -18,6 +18,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
   const { getUdbErrorMessage } = window['SLM']['theme-shared/biz-com/customer/helpers/getUdbResponseLanguageErrorKey.js'];
   const { wrapArmorCaptcha } = window['SLM']['theme-shared/biz-com/customer/commons/captcha-modal/index.js'];
   const DatePicker = window['SLM']['theme-shared/biz-com/customer/commons/date-picker/index.js'].default;
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   class Register extends Customer {
     constructor({
@@ -179,6 +180,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         payload.extinfo = JSON.stringify(extInfo);
       }
 
+      this.registerForm.setLoading(true);
       this.$$reports.reportSignUpSuccess && this.$$reports.reportSignUpSuccess();
 
       if (verify) {
@@ -206,6 +208,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         });
       }).catch(res => {
         this.subscribe && this.subscribe.onSubscribeEmail && this.subscribe.onSubscribeEmail(payload && payload.acct);
+        this.registerForm.setLoading(false);
         return Promise.reject(res);
       });
     }
@@ -218,7 +221,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
     }) {
       const registerAccount = (captchaToken, updateParams = {}) => {
         const formData = this.registerForm.getFormValue();
-        this.registerForm.setLoading(true);
         return signUpMember(super.formatRequestBody({ ...payload,
           ...params,
           pwd: formData.password,
@@ -241,8 +243,11 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         }),
         onError: e => {
           this.setError(e);
-          this.registerForm.setLoading(true);
+          this.registerForm.setLoading(false);
         }
+      }).catch(e => {
+        this.setError(e);
+        this.registerForm.setLoading(false);
       });
     }
 
@@ -261,7 +266,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
       };
       storage.sessionStorage.del(REGISTER_EXTRA_INFO);
       Promise.all([signUpUpdate(requestBody), updateUserInfo()]).catch(() => {
-        this.registerForm.setLoading(true);
+        this.registerForm.setLoading(false);
       }).finally(() => {
         this.report({
           event_name: 'leave',
@@ -274,7 +279,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
           return;
         }
 
-        redirectPage(USER_CENTER);
+        redirectPage(redirectTo(USER_CENTER));
       });
     }
 
@@ -347,7 +352,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
           password: formValue.password,
           iso2: formValue.iso2
         });
-        jumpWithSearchParams(SIGN_IN);
+        jumpWithSearchParams(redirectTo(SIGN_IN));
         return;
       }
 

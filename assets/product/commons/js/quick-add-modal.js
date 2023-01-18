@@ -6,7 +6,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const http = window['SLM']['theme-shared/utils/request.js'].default;
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
-  const currency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const dataReportViewContent = window['@yy/sl-theme-shared']['/events/data-report/view-content'].default;
   const ProductQuickAddCart = window['SLM']['theme-shared/report/product/product-quickAddCart.js'].default;
   const productSkuChange = window['SLM']['theme-shared/events/product/sku-change/index.js'].default;
@@ -14,8 +13,11 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
   const productPreviewInit = window['SLM']['theme-shared/events/product/preview-init/index.js'].default;
   const pageMapping = window['SLM']['theme-shared/utils/report/pageMapping.js'].default;
   const { getCartId } = window['SLM']['theme-shared/report/product/utils/index.js'];
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const get = window['lodash']['get'];
+  const newCurrency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { addLockableTarget } = window['SLM']['commons/components/modal/common.js'];
   const { ModalWithHtml } = window['SLM']['commons/components/modal/index.js'];
   const Toast = window['SLM']['commons/components/toast/index.js'].default;
@@ -30,14 +32,11 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
   const { ADD_TO_CART } = window['SLM']['commons/cart/globalEvent.js'];
   const isMobile = window['SLM']['commons/utils/isMobile.js'].default;
   const nullishCoalescingOperator = window['SLM']['product/utils/nullishCoalescingOperator.js'].default;
-  const {
-    formatCurrency
-  } = currency;
 
   const emitProductSkuChange = data => {
     try {
       productSkuChange({
-        currency: SL_State.get('storeInfo.currency'),
+        currency: window.Shopline.currency,
         ...data
       });
     } catch (e) {
@@ -54,6 +53,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
         productInfo: {
           spuSeq: data.content_spu_id,
           skuSeq: data.content_sku_id,
+          currency: getCurrencyCode(),
           price: data.originPrice,
           productName: data.productName
         }
@@ -106,8 +106,8 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       spuSeq,
       discount,
       skuSeq,
-      price: formatCurrency(price || 0),
-      originPrice: formatCurrency(originPrice || 0),
+      price: newCurrency.formatCurrency(price || 0),
+      originPrice: newCurrency.formatCurrency(originPrice || 0),
       stock,
       weight,
       weightUnit,
@@ -196,10 +196,10 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
             content_spu_id: get(productInfo, 'spu.spuSeq'),
             content_sku_id: get(skuInfo, 'skuSeq'),
             content_category: getSortationIds(get(productInfo, 'spu')),
-            currency: SL_State.get('storeInfo.currency'),
-            value: formatCurrency(get(skuInfo, 'price') || 0),
+            currency: getCurrencyCode(),
+            value: convertPrice(get(skuInfo, 'price') || 0),
             quantity: 1,
-            price: formatCurrency(get(skuInfo, 'price') || 0),
+            price: convertPrice(get(skuInfo, 'price') || 0),
             productName: get(res, 'data.spu.title'),
             originPrice: get(skuInfo, 'price') || 0
           });
@@ -351,7 +351,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
         if (activeSku) {
           changeActiveSku(activeSku);
           content_sku_id = activeSku.skuSeq;
-          price = formatCurrency(activeSkuCache.price || 0);
+          price = convertPrice(activeSkuCache.price || 0);
           emitProductSkuChange({
             type: 'init',
             quantity: get(quantityStepper, 'skuStepper.data.value') || 1,
@@ -363,7 +363,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
           content_spu_id: spu.spuSeq,
           content_sku_id,
           content_category: getSortationIds(spu),
-          currency: SL_State.get('storeInfo.currency'),
+          currency: getCurrencyCode(),
           value: price,
           quantity: 1,
           price,
@@ -417,7 +417,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
 
         if (activeSkuCache) {
           content_sku_id = activeSkuCache.skuSeq;
-          price = formatCurrency(activeSkuCache.price || 0);
+          price = convertPrice(activeSkuCache.price || 0);
           emitProductSkuChange({
             type: 'init',
             quantity: get(quantityStepper, 'skuStepper.data.value') || 1,
@@ -429,7 +429,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
           content_spu_id: spu.spuSeq,
           content_sku_id,
           content_category: getSortationIds(spu),
-          currency: SL_State.get('storeInfo.currency'),
+          currency: getCurrencyCode(),
           value: price,
           quantity: 1,
           price,
@@ -510,7 +510,8 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       spuId,
       skuId,
       num,
-      price,
+      currency: getCurrencyCode(),
+      price: newCurrency.unformatCurrency(convertPrice(price)),
       name,
       eventID: `addToCart${eventID}`,
       reportParamsExt: {
@@ -528,6 +529,8 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
           event_status: 1
         });
         addToCartThirdReport({
+          spu,
+          variant: getVariant(sku && sku.skuAttributeIds, skuAttributeMap),
           spuId,
           name,
           price,
@@ -554,8 +557,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
   }
 
   function isPreview() {
-    const currentUrl = window.location.pathname;
-    return /^[/（]preview[/）].*/.test(currentUrl);
+    return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
   }
 
   function fetchModalContent(uniqueKey, modalPrefix) {
@@ -567,7 +569,8 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       };
     }
 
-    return axios.get(`/products/${uniqueKey}`, {
+    const queryUrl = window.Shopline.redirectTo(`/products/${uniqueKey}`);
+    return axios.get(queryUrl, {
       params: {
         view: 'quick-add-modal',
         preview: getUrlQuery('preview'),

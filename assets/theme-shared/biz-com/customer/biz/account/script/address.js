@@ -8,6 +8,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
   const getAddressEmpty = window['SLM']['theme-shared/biz-com/customer/templates/getAddressEmpty.js'].default;
   const { reportClickRemoveAddressIcon, reportClickNewAddress, reportEditAddress, reportConfirmRemoveAddress, reportCancelRemoveAddress } = window['SLM']['theme-shared/biz-com/customer/reports/account.js'];
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
   const MODAL_ID = 'delete-address-confirm-modal';
 
   class Address extends Card {
@@ -81,7 +82,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
       if ($items.length < 1) {
         const $address = $(`#${this.id} .address`);
         $address.html(getAddressEmpty());
-      } else if ($items.length >= 4) {
+      } else if ($items.length >= 49) {
         const btnStr = this.getAddButton();
         $(btnStr).insertBefore($list);
         $(`#${this.id} .address--max`).remove();
@@ -110,7 +111,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
 
       return `
       <div class="address__add-box">
-        <a class="address__btn address__btn--add" href="/user/address/new">
+        <a class="address__btn address__btn--add" href="${redirectTo('/user/address/new')}">
           ${boxButtonStr}
         </a>
       </div>

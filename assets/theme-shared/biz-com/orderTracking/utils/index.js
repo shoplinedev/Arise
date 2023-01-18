@@ -83,7 +83,7 @@ window.SLM['theme-shared/biz-com/orderTracking/utils/index.js'] = window.SLM['th
 
   const getUdbResponseLanguageErrorKey = rescode => {
     if (UDB_RESPONSE_LANGUAGE_ERROR_CODES.indexOf(Number(rescode)) > -1) {
-      return `customer.general.error_message_${keyMaps[rescode] || rescode}`;
+      return `unvisiable.customer.error_message_${keyMaps[rescode] || rescode}`;
     }
 
     return undefined;

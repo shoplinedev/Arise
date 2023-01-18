@@ -19,7 +19,9 @@ window.SLM['commons/video/VideoJs.js'] = window.SLM['commons/video/VideoJs.js'] 
     autoplay: false,
     preload: 'auto',
     loop: false,
-    autoplayAsPossible: false
+    autoplayAsPossible: false,
+    'webkit-playsinline': true,
+    playsinline: true
   };
   const defaultEvents = {
     onReady() {},

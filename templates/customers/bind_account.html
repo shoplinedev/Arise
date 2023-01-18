@@ -14,7 +14,7 @@
   {{ snippet 'customer/bind/account-form' id=(append id '-account') }}
 
   <div class="customer__footer-link  text-center">
-    <a href="/user/center" class="customer--link">
+    <a href="{{redirect_to '/user/center'}}" class="customer--link">
       {{t 'customer.general.back_to__user__center'}}
     </a>
   </div>

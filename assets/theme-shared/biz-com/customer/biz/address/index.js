@@ -2,6 +2,7 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] || function () {
   const _exports = {};
+  const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { createAddressComponent } = window['SLM']['theme-shared/biz-com/customer/biz/address/address-component/index.js'];
   const Form = window['SLM']['theme-shared/biz-com/customer/commons/form/index.js'].default;
   const { modifyAddress } = window['SLM']['theme-shared/biz-com/customer/service/address.js'];
@@ -10,6 +11,8 @@ window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['t
   const { formatterCodePhone } = window['SLM']['theme-shared/biz-com/customer/helpers/formatPhone.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const { reportCheckDefaultBox, reportCancelAddress, reportSaveAddress } = window['SLM']['theme-shared/biz-com/customer/reports/address.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
+  const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
 
   class CustomerAddress {
     constructor({
@@ -18,13 +21,14 @@ window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['t
       this.form = null;
       this.id = id;
       this.init();
+      this.toast = new Toast();
     }
 
     init() {
       const isLogin = SL_State.get('request.is_login');
 
       if (!isLogin) {
-        window.location.href = SIGN_IN;
+        window.location.href = redirectTo(SIGN_IN);
       }
 
       this.initForm();
@@ -87,9 +91,16 @@ window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['t
         mobilePhone: formatterCodePhone(addressData.mobilePhone),
         def
       };
-      await modifyAddress(formValue);
-      reportSaveAddress();
-      redirectPage(USER_CENTER);
+
+      try {
+        await modifyAddress(formValue);
+        reportSaveAddress();
+        redirectPage(USER_CENTER);
+      } catch (e) {
+        if (e.code === 'CCU0401') {
+          this.toast.open(t('customer.address.max_address_tip'));
+        }
+      }
     }
 
   }

@@ -20,7 +20,7 @@ window.SLM['commons/utils/dynamicImportMiniCart.js'] = window.SLM['commons/utils
   };
 
   async function renderMiniCart() {
-    const res = await request.get('/cart?view=ajax');
+    const res = await request.get(window.Shopline.redirectTo('/cart?view=ajax'));
     const {
       data
     } = res;

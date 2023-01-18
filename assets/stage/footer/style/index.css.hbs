@@ -261,12 +261,14 @@ input{
 .toolkit-mobile__container{
   align-items:center;
   display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  justify-content:center;
 }
 .toolkit-mobile__container .toolkit-item{
   background-color:rgba(var(--color-page-background));
   border:1px solid rgba(var(--color-entry-line));
   display:none;
-  margin:0 8px;
   padding:6px 12px;
 }
 .toolkit-mobile__container .toolkit-item.show{
@@ -572,10 +574,16 @@ input{
 .footer__tool-container{
   align-items:center;
   display:flex;
+  gap:16px;
   justify-content:flex-end;
   margin-bottom:10px;
 }
 
+@media (max-width:749.98px){
+  .footer__tool-container{
+    flex-wrap:wrap;
+  }
+}
 .footer-copy-box{
   display:block;
   opacity:.8;

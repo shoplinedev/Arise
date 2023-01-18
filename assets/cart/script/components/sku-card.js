@@ -332,20 +332,6 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
         setTimeout(() => {
           this.scrollContent.scrollTop = scrollTop;
         }, 0);
-
-        const setPaypalStatus = status => {
-          const paypals = document.querySelectorAll('.shopline-element-cart-paypal');
-          paypals.forEach(paypal => {
-            paypal.style.display = status;
-          });
-        };
-
-        if (data.subscriptionInfo && data.subscriptionInfo.existSubscription) {
-          setPaypalStatus('none');
-        } else {
-          setPaypalStatus('block');
-        }
-
         logger.info(`normal 主站购物车 SkuCard CartDataUpdate`, {
           data: {
             cartToken
@@ -389,7 +375,8 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
           price,
           salePrice,
           itemNo,
-          quantity
+          quantity,
+          customCategoryName
         } = $(this).data();
 
         if (productSource === 1) {
@@ -399,7 +386,8 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
             quantity,
             price: parseInt(salePrice, 10) > parseInt(price, 10) ? salePrice : price,
             skuAttrs,
-            itemNo
+            itemNo,
+            customCategoryName
           });
         }
       });
@@ -518,7 +506,7 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
 
       if (skuProperties.length) {
         skuProperties.forEach(data => {
-          const addonBefore = `<div class="trade-cart-sku-item-info-spec body3">
+          const addonBefore = `<div class="trade-cart-sku-item-info-spec body3" translate="no">
         <div class="trade-cart-sku-item-info-spec-key">${encodeHTML(data.name)}:</div>
         `;
           let content = ``;
@@ -526,10 +514,10 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
           if (data.type === 'text') {
             content = `<div class="trade-cart-sku-item-info-spec-value">${data.value}</div>`;
           } else if (data.type === 'picture') {
-            content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-preview-btn" data-preview-list=${JSON.stringify(data.urls)}>${I18n('cart.cart.custom_preview')}</div>`;
+            content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-preview-btn" data-preview-list=${JSON.stringify(data.urls)}>${I18n('cart.item.custom_preview')}</div>`;
           } else if (data.type === 'link') {
             content = `<div class="trade-cart-sku-item-info-spec-value trade-cart-sku-item-customization trade-cart-sku-item-customization-look-btn">
-                        <a class="body3" href='${data.urls ? data.urls[0] : ''}' target="_blank">${I18n('cart.cart.click_to_view')}</a></div>`;
+                        <a class="body3" href='${data.urls ? data.urls[0] : ''}' target="_blank">${I18n('cart.item.click_to_view')}</a></div>`;
           }
 
           const addonAfter = `
@@ -601,32 +589,32 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
     }
 
     getRemoveButton(data) {
-      return !data.businessFlag || data.businessFlag && data.businessFlag.singleDelete ? `<div class="trade-cart-sku-item-remove"><button class="trade-cart-sku-item-remove-button body3 btn-link">${I18n('cart.cart.remove')}</button></div>` : '';
+      return !data.businessFlag || data.businessFlag && data.businessFlag.singleDelete ? `<div class="trade-cart-sku-item-remove"><button class="trade-cart-sku-item-remove-button body3 btn-link">${I18n('cart.checkout_proceeding.remove')}</button></div>` : '';
     }
 
     getPriceInfo(data) {
-      const isShowScribingPrice = parseInt(data.promotionAmount, 10) > 0 && parseInt(data.productPrice, 10) > parseInt(data.price, 10);
+      const isShowScribingPrice = parseInt(data.lineLevelTotalDiscount, 10) > 0 && parseInt(data.originalLinePrice, 10) > parseInt(data.finalLinePrice, 10);
 
       if (useSuperScriptDecimals) {
         const {
           formattedPriceStr: productPriceFormattedPriceStr
-        } = convertPrice(data.productPrice);
+        } = convertPrice(data.originalLinePrice);
         const {
           formattedPriceStr: priceFormattedPriceStr
-        } = convertPrice(data.price);
+        } = convertPrice(data.finalLinePrice);
 
         if (isShowScribingPrice) {
-          return `<span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount=${data.productPrice}>${productPriceFormattedPriceStr}</span><span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}><span>${priceFormattedPriceStr}</span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+          return `<span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount=${data.originalLinePrice}>${productPriceFormattedPriceStr}</span><span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.finalLinePrice}><span>${priceFormattedPriceStr}</span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
         }
 
-        return `<span class="trade-cart-sku-item-real-price notranslate body2 text_bold" data-amount=${data.price}><span>${priceFormattedPriceStr}</span>${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+        return `<span class="trade-cart-sku-item-real-price notranslate body2 text_bold" data-amount=${data.finalLinePrice}><span>${priceFormattedPriceStr}</span>${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
       }
 
       if (isShowScribingPrice) {
-        return `<span class="trade-cart-sku-item-info-amount-through notranslate" data-amount=${data.productPrice}>${format(data.productPrice)}</span><span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price" data-amount=${data.price}>${format(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+        return `<span class="trade-cart-sku-item-info-amount-through notranslate" data-amount=${data.originalLinePrice}>${format(data.originalLinePrice)}</span><span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price" data-amount=${data.finalLinePrice}>${format(data.finalLinePrice)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
       }
 
-      return `<span class="trade-cart-sku-item-real-price notranslate" data-amount=${data.price}>${format(data.price)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+      return `<span class="trade-cart-sku-item-real-price notranslate" data-amount=${data.finalLinePrice}>${format(data.finalLinePrice)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
     }
 
     getVipTag(data) {
@@ -634,18 +622,23 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
     }
 
     getPromotionAmountInfo(data) {
-      if (parseInt(data.promotionAmount, 10) > 0) {
-        return `
-      <div class="trade-cart-sku-item-info-discount body4">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M1.02892 5.44639C1.01074 5.59863 1.06342 5.7508 1.17184 5.85922L6.10552 10.7929C6.49605 11.1834 7.12921 11.1834 7.51974 10.7929L10.793 7.51962C11.1835 7.12909 11.1835 6.49593 10.793 6.1054L5.85934 1.17172C5.75092 1.0633 5.59875 1.01062 5.44651 1.0288L1.89069 1.45337C1.66152 1.48074 1.48086 1.6614 1.4535 1.89057L1.02892 5.44639ZM4.00013 3.00001C4.55241 3.00001 5.00013 3.44772 5.00013 4.00001C5.00013 4.55229 4.55241 5.00001 4.00013 5.00001C3.44785 5.00001 3.00013 4.55229 3.00013 4.00001C3.00013 3.44772 3.44785 3.00001 4.00013 3.00001Z"
-              />
-          </svg><span>&nbsp;${I18n('sales.general.discount_common')}</span>
-        </div>
-        <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion" data-amount=${data.promotionAmount}>${format(data.promotionAmount)}</span><span>)</span></div>
-      </div>`;
+      const hasPromotionInfo = parseInt(data.lineLevelTotalDiscount, 10) > 0 && data.lineLevelDiscountAllocations;
+
+      if (hasPromotionInfo) {
+        const html = data.lineLevelDiscountAllocations.reduce((str, item) => {
+          str += `
+        <div class="trade-cart-sku-item-info-discount body4">
+          <div class="trade-cart-sku-item-info-discount-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.0288 5.44651C1.01062 5.59875 1.0633 5.75092 1.17172 5.85934L6.1054 10.793C6.49593 11.1835 7.12909 11.1835 7.51962 10.793L10.7929 7.51974C11.1834 7.12921 11.1834 6.49605 10.7929 6.10552L5.85922 1.17184C5.7508 1.06342 5.59863 1.01074 5.44639 1.02892L1.89057 1.4535C1.6614 1.48086 1.48074 1.66152 1.45337 1.89069L1.0288 5.44651ZM4.00001 3.00013C4.55229 3.00013 5.00001 3.44785 5.00001 4.00013C5.00001 4.55241 4.55229 5.00013 4.00001 5.00013C3.44772 5.00013 3.00001 4.55241 3.00001 4.00013C3.00001 3.44785 3.44772 3.00013 4.00001 3.00013Z" fill="#C20000"/>
+            </svg>
+            ${item.discountApplication.title ? `<span>&nbsp;${item.discountApplication.title}</span>` : ''}
+          </div>
+          <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion" data-amount=${item.amount}>${format(item.amount)}</span><span>)</span></div>
+        </div>`;
+          return str;
+        }, '');
+        return html;
       }
 
       if (data && data.businessFlag && !data.businessFlag.discountable) {
@@ -703,14 +696,15 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
         itemNo,
         bindProductImages,
         errorList,
-        promotionAmount
+        promotionAmount,
+        customCategoryName
       } = data || {};
       const id = `${this.tradeCartType}-card-sku-item-${nullishCoalescingOperator(groupId, '')}-${spuId}-${skuId}-${uniqueSeq}`;
       const hasDiscount = parseInt(promotionAmount, 10) > 0 && parseInt(salePrice, 10) > parseInt(price, 10);
       const content = `
     <div class="${wrapperClassName.join(' ')}" id="${id}">
       <a class="trade-cart-sku-item-image"
-         href="${productSource === 1 ? `/products/${spuId}` : `javascript:void(0)`}"
+         href="${productSource === 1 ? window.Shopline.redirectTo(`/products/${spuId}`) : `javascript:void(0)`}"
          data-product-source="${productSource}"
          data-group-id="${nullishCoalescingOperator(groupId, '')}"
          data-name="${escape(name)}"
@@ -720,6 +714,7 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
          data-price="${price}"
          data-sale-price="${salePrice}"
          data-item-no="${itemNo}"
+         data-custom-category-name="${customCategoryName}"
        >
           ${this.getImageFallbackIfNecessary(data)}
           ${this.getImageAccessorial(bindProductImages)}
@@ -762,8 +757,8 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
 
     generateInactiveItemTemplate(inactiveItems) {
       this.templateContent.push(`<div class="trade-cart-sku-list-inactive-wrapper">
-      <div class="trade-cart-sku-list-inactive-wrapper-title body3">${I18n('cart.item.invalid_product')}</div>
-      <button class="trade-cart-sku-list-inactive-wrapper-remove-all body3 btn-link" id="${this.tradeCartType}-trade-cart-sku-list-inactive-wrapper-remove-all">${I18n('cart.item.remove_invalid_product')}</button>
+      <div class="trade-cart-sku-list-inactive-wrapper-title body3">${I18n('transaction.item.invalid_product')}</div>
+      <button class="trade-cart-sku-list-inactive-wrapper-remove-all body3 btn-link" id="${this.tradeCartType}-trade-cart-sku-list-inactive-wrapper-remove-all">${I18n('transaction.item.remove_invalid_product')}</button>
     </div>`);
       inactiveItems.forEach(data => {
         this.getCardItemContent(data, true);

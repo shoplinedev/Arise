@@ -1,68 +1,73 @@
-{{ assign 'GIFT_PLUGIN_TYPE' 7}}
+{{assign "GIFT_PLUGIN_TYPE" 7}}
 
-{{#if (and (compare request.uri.query.type '===' 'pool') (compare activity.promotionSubType '===' 0))}}
-  {{!-- 无cartInfo默认隐藏活动页购物车 --}}
+{{#if (and (compare request.uri.query.type "===" "pool") (compare activity.promotionSubType "===" 0))}}
+  {{! 无cartInfo默认隐藏活动页购物车 }}
   {{#if (not cartInfo)}}
-    {{ assign 'hasHide' 'd-none'}}
+    {{assign "hasHide" "d-none"}}
   {{/if}}
-  {{!-- 获取购物车中活动信息 --}}
+  {{! 获取购物车中活动信息 }}
   {{#if cartInfo.activeItems}}
-    {{ assign 'activeItem' (find-in-array cartInfo.activeItems activity.activitySeq 'promotion.activitySeq') }}
+    {{assign "activeItem" (find-in-array cartInfo.activeItems activity.activitySeq "promotion.activitySeq")}}
     {{#if activeItem}}
-      {{ assign 'promotionBenefit' (itemAt activeItem.promotion.promotionBenefitList 0)}}
-      {{ assign 'promotion' activeItem.promotion}}
+      {{assign "promotionBenefit" (itemAt activeItem.promotion.promotionBenefitList 0)}}
+      {{assign "promotion" activeItem.promotion}}
     {{/if}}
 
-    {{ assign 'hasGiftPlugin' (find-in-array cartInfo.activeItems GIFT_PLUGIN_TYPE 'promotion.benefitType')}}
+    {{assign "hasGiftPlugin" (find-in-array cartInfo.activeItems GIFT_PLUGIN_TYPE "promotion.benefitType")}}
   {{/if}}
 
-  {{!-- 购物车营销数据则生成一个当前活动的step===1的营销数据 --}}
+  {{! 购物车营销数据则生成一个当前活动的step===1的营销数据 }}
   {{#if (and (not promotion) (not hasGiftPlugin) activity)}}
-    {{ assign 'benefitType' activity.benefitType}}
-    {{ assign 'benefitCondition' activity.benefitConditions.[0]}}
-    {{ assign 'type' benefitCondition.benefitEvent.type}}
-    {{ assign 'benefit' (default benefitCondition.benefit.discount benefitCondition.benefit.benefitAmount)}}
-    {{ assign 'amount' benefitCondition.benefitEvent.minThreshold}}
-    {{ assign 'benefitCount' benefitCondition.benefit.benefitCount}}
-    {{ assign 'extMap' (object_create bannerText=cartBannerText.hitNone)}}
-    {{ assign 'promotionBenefit' (object_create type=type benefit=benefit amount=amount benefitCount=benefitCount extMap=extMap)}}
-    {{ assign 'promotion' (object_create benefitType=benefitType promotionBenefitList=(arrayify promotionBenefit))}}
+    {{assign "benefitType" activity.benefitType}}
+    {{assign "benefitCondition" activity.benefitConditions.[0]}}
+    {{assign "type" benefitCondition.benefitEvent.type}}
+    {{assign "benefit" (default benefitCondition.benefit.discount benefitCondition.benefit.benefitAmount)}}
+    {{assign "amount" benefitCondition.benefitEvent.minThreshold}}
+    {{assign "benefitCount" benefitCondition.benefit.benefitCount}}
+    {{assign "extMap" (object_create bannerText=cartBannerText.hitNone)}}
+    {{assign "promotionBenefit" (object_create type=type benefit=benefit amount=amount benefitCount=benefitCount extMap=extMap)}}
+    {{assign "promotion" (object_create benefitType=benefitType promotionBenefitList=(arrayify promotionBenefit))}}
   {{/if}}
-
   <div class="activity__cart custom-body-color {{hasHide}}" id="activity-cart">
-    {{!-- 营销提示信息 --}}
+    {{! 营销提示信息 }}
     <div class="activity__salesTipBg">
-      {{!-- 是否展示主动展示购物提示信息 --}}
+      {{! 是否展示主动展示购物提示信息 }}
       {{#if (or (not promotion) hasGiftPlugin)}}
-        {{ assign 'hasHide' 'd-none'}}
+        {{assign "hasHide" "d-none"}}
       {{/if}}
       <div class="activity__salesTip container body4 {{hasHide}}">
         <span id="activity-salesTip" class="notranslate">
-          {{!-- 购物提示文案 --}}
+          {{! 购物提示文案 }}
           {{#if (and promotion (not hasGiftPlugin))}}
-            {{ assign "config" (sales_promotion_reminder_translate promotion)}}
-            {{ noTranslationHTML (javascript_template promotionBenefit.extMap.bannerText config.params (toRegex '\{\s*(\w+)\s*\}' flags="g"))}}
+            {{assign "config" (sales_promotion_reminder_translate promotion)}}
+            {{noTranslationHTML (javascript_template promotionBenefit.extMap.bannerText config.params (toRegex "\{\s*(\w+)\s*\}" flags="g"))}}
           {{/if}}
         </span>
       </div>
     </div>
-    {{!-- 购物车状态信息 --}}
+    {{! 购物车状态信息 }}
     <div class="activity__cartInfo container">
       {{#if (not hasGiftPlugin)}}
         <span id="activity-cartTotalInfo">
           {{!-- 购物车金额 --}}
-          <span class="activity__cartTotal body3">{{ t "cart.cart.subtotal"  }} :
+          <span class="activity__cartTotal body3">{{ t "cart.checkout_proceeding.subtotal"  }} :
             <span id="activity-cartTotal" class="notranslate" data-amount="{{default activeItem.totalAmount 0}}">{{ money_exchange_convert_with_currency (default activeItem.totalAmount 0)}}</span>
           </span>
           <br />
-          {{!-- 当前活动商品数量 --}}
+          {{! 当前活动商品数量 }}
           <span class="activity__cartNum body6">
-            {{ noTranslationHTML (t "sales.general.select_promotional_product" selectCount=(javascript_template '<span id="activity-cartNum" class="notranslate">${num}</span>' num=(sum (pluck activeItem.itemList 'num')))) }}
+            {{noTranslationHTML
+              (t
+                "sales.general.select_promotional_product"
+                selectCount=(javascript_template '<span id="activity-cartNum" class="notranslate">${num}
+</span>' num=(sum (pluck activeItem.itemList "num")))
+              )
+            }}
           </span>
         </span>
       {{/if}}
       {{!-- 去购物车页 --}}
-      <a href="/cart"><button type="button" class="activity__gotoCart btn btn-primary body5">{{ t "cart.cart.return_to_cart" }}</button></a>
+      <a href="{{redirect_to '/cart'}}"><button type="button" class="activity__gotoCart btn btn-primary body5">{{ t "cart.checkout_proceeding.return_to_cart" }}</button></a>
     </div>
   </div>
 {{/if}}

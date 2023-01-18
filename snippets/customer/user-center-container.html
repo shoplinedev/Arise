@@ -12,7 +12,7 @@
     <div class="navbar">
       {{#each navbar}}
         {{#with this as |global|}}
-          <a href="{{ path }}" data-type="{{ type }}" class="navbar__item {{cond (eq @root.request.uri.path path) 'active' ''}}">{{ text }}</a>
+          <a href="{{ redirect_to path }}" data-type="{{ type }}" class="navbar__item {{cond (eq @root.request.uri.path (redirect_to path)) 'active' ''}}">{{ text }}</a>
         {{/with}}
       {{/each}}
     </div>

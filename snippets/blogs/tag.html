@@ -1,4 +1,3 @@
-
-<a class="{{class}}" href="/blogs/{{blogListHandle}}/tagged/{{tagName}}">
-  {{ slot_content }}
+<a class="{{class}}" href="{{redirect_to (append '/blogs/' blogListHandle '/tagged/' tagName)}}">
+  {{slot_content}}
 </a>

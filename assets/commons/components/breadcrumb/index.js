@@ -2,8 +2,8 @@ window.SLM = window.SLM || {};
 
 window.SLM['commons/components/breadcrumb/index.js'] = window.SLM['commons/components/breadcrumb/index.js'] || function () {
   const _exports = {};
-  const PLPReg = /^\/collections\/[^/]+$/;
-  const PDPReg = /^(\/collections\/[^/]+)?\/products\/[^/]/;
+  const PLPReg = /\/collections\/[^/]+$/;
+  const PDPReg = /(\/collections\/[^/]+)?\/products\/[^/]/;
 
   if (PLPReg.test(window.location.pathname)) {
     const name = window.SL_State.get('sortation.sortation.title');
@@ -14,7 +14,7 @@ window.SLM['commons/components/breadcrumb/index.js'] = window.SLM['commons/compo
         link: window.location.pathname + window.location.search
       }));
     }
-  } else if (PDPReg.test(window.location.pathname) && window.location.pathname !== '/products/search') {
+  } else if (PDPReg.test(window.location.pathname) && window.SL_State.get('templateAlias') !== 'ProductsSearch') {
     makeProductBreadCrumb();
   } else {
     sessionStorage.removeItem('breadcrumb');

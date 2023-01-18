@@ -1641,6 +1641,9 @@
     "product_collections_collection-header": {
       "name": "Bìa danh mục",
       "settings": {
+        "banner_image_mobile": {
+          "label": "Đầu thiết bị di động banner"
+        },
         "parallax_scroll": {
           "info": "Để sử dụng hiệu ứng cuộn song song, sẽ cắt bớt một phần hình ảnh để đạt được hiệu quả",
           "label": "Cuộn song song"
@@ -1678,6 +1681,19 @@
         },
         "per_page_num": {
           "label": "Số lượng sản phẩmtrên mỗi trang"
+        },
+        "price_show_type": {
+          "info": "Nếu sản phẩm là một sản phẩm có quy cách riêng lẻ, thì sản phẩm đó sẽ được hiển thị theo một kiểu giá duy nhất",
+          "label": "Phương thức hiển thị giá",
+          "options__0": {
+            "label": "Giá thấp nhất"
+          },
+          "options__1": {
+            "label": "Khoảng giá"
+          },
+          "options__2": {
+            "label": "Từ giá thấp nhất"
+          }
         },
         "product_fill_type": {
           "label": "Cách lấp đầy hình ảnh hàng hóa",
@@ -1721,6 +1737,9 @@
             "label": "Bày ra tối đa 2 hàng"
           }
         },
+        "show_orgin_price": {
+          "label": "Có hiển thị giá gốc hay không"
+        },
         "sorter_enable": {
           "label": "Sử dụng sắp xếp sản phẩm"
         }
@@ -1739,6 +1758,9 @@
           "settings": {
             "location": {
               "label": "Vị trí hiển thị mô tả sản phẩm",
+              "options__0": {
+                "label": "Bên phải của hình ảnh sản phẩm"
+              },
               "options__1": {
                 "label": "Bên dưới ảnh sản phẩm"
               }
@@ -2078,6 +2100,15 @@
             "label": "Phía trên tiêu đề sản phẩm"
           }
         },
+        "pc_magnifier_type": {
+          "label": "Kính lúp trên máy tính",
+          "options__0": {
+            "label": "Nhấn chuột để phóng to"
+          },
+          "options__1": {
+            "label": "Di chuột để phóng to"
+          }
+        },
         "product_image_pc_show_style": {
           "label": "Bố cục máy tính",
           "options__0": {
@@ -2186,7 +2217,7 @@
       "name": "Kết quả tìm kiếm",
       "settings": {
         "group_header__0": {
-          "label": "Hình sản phẩm"
+          "label": "Bản đồ sản phẩm"
         },
         "md_cols": {
           "label": "Số cột trên điện thoại di động",

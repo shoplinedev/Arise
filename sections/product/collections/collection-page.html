@@ -5,6 +5,11 @@ products:
   description: true
   limit: {{ section.settings.per_page_num }}
   cursor: {{ cond (isFalsey request.uri.query.loadMore) (cond section.settings.infinite_scroll 1 request.uri.query.page_num) request.uri.query.page_num }}
+
+collection_products_count:
+  enable: false
+all_collections:
+  need_first_product: {{boolean theme.settings.collection_grid_image "==" "product"}}
 ---
 
 {{assign 'isPreview' request.design_mode }}
@@ -253,6 +258,33 @@ products:
       "type": "group_header",
       "label": "t:sections.product_collections_collection-page.settings.group_header__1.label",
       "id": "group_header__1"
+    },
+    {
+      "type": "select",
+      "id": "price_show_type",
+      "label": "t:sections.product_collections_collection-page.settings.price_show_type.label",
+      "info": "t:sections.product_collections_collection-page.settings.price_show_type.info",
+      "options": [
+        {
+          "value": "lowest_price",
+          "label": "t:sections.product_collections_collection-page.settings.price_show_type.options__0.label"
+        },
+        {
+          "value": "price_interval",
+          "label": "t:sections.product_collections_collection-page.settings.price_show_type.options__1.label"
+        },
+        {
+          "value": "from_lowest_price",
+          "label": "t:sections.product_collections_collection-page.settings.price_show_type.options__2.label"
+        }
+      ],
+      "default": "from_lowest_price"
+    },
+    {
+      "id": "show_orgin_price",
+      "label": "t:sections.product_collections_collection-page.settings.show_orgin_price.label",
+      "type": "switch",
+      "default": true
     },
     {
       "type": "switch",

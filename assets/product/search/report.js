@@ -5,6 +5,8 @@ window.SLM['product/search/report.js'] = window.SLM['product/search/report.js'] 
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const SearchItemReport = window['SLM']['theme-shared/report/product/search-item.js'].default;
   const ProductItemReport = window['SLM']['theme-shared/report/product/product-item.js'].default;
+  const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
+  const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const getReportMethods = window['SLM']['commons/report/index.js'].default;
   const Base = window['SLM']['commons/base/BaseClass.js'].default;
   const base = new Base('product:search:report');
@@ -31,7 +33,8 @@ window.SLM['product/search/report.js'] = window.SLM['product/search/report.js'] 
         event_name: 'product_view',
         product_id: id,
         product_name: productName,
-        product_price: productPrice,
+        currency: getCurrencyCode(),
+        product_price: convertPrice(productPrice),
         position: index + 1,
         status
       });

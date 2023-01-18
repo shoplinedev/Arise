@@ -1,3 +1,8 @@
+---
+all_collections:
+  need_first_product: false
+---
+
 {{ combine_asset_tag 'stage/header/style/index.css' inline=true }}
 <!-- stage/header/index.js -->
 {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
@@ -50,6 +55,7 @@
  'theme-shared/utils/newCurrency/CurrencyConvert.js'
  'theme-shared/utils/newCurrency/index.js'
  'theme-shared/utils/report/const.js'
+ 'theme-shared/utils/dataReport/tool.js'
  'theme-shared/utils/dataReport/ga.js'
  'theme-shared/utils/dataReport/ads.js'
  'theme-shared/utils/dataReport/fb.js'
@@ -114,6 +120,9 @@
 {{ preload_state 'tradeSettleConfig' }}
 
 {{#if (boolean section.settings.show_locale_selector '||' section.settings.show_currency_selector)}}
+	{{ assign 'show_toolbar' true }}
+{{/if}}
+{{#if (boolean section.settings.show_country_selector '&&' (boolean (length localization.available_contries) '>' 1))}}
 	{{ assign 'show_toolbar' true }}
 {{/if}}
 
@@ -350,6 +359,12 @@
       "id": "show_locale_selector",
       "label": "t:sections.header.settings.show_locale_selector.label",
       "info": "t:sections.header.settings.show_locale_selector.info",
+      "default": false
+    },
+    {
+      "type": "switch",
+      "id": "show_country_selector",
+      "label": "t:sections.header.settings.show_country_selector.label",
       "default": false
     },
     {

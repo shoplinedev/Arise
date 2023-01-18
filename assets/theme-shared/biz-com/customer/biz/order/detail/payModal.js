@@ -5,7 +5,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/payModal.js'] = windo
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const dayjs = window['dayjs']['*'];
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
-  const { convertFormat } = window['SLM']['theme-shared/utils/newCurrency/CurrencyConvert.js'];
+  const { format } = window['@sl/currency-tools-core'];
   const TradeModalWithHtml = window['SLM']['theme-shared/biz-com/trade/optimize-modal/base.js'].default;
   const { PayStatusI18n, PAY_MODAL_Id } = window['SLM']['theme-shared/biz-com/customer/biz/order/constants.js'];
 
@@ -55,6 +55,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/payModal.js'] = windo
     mainTitleEL.appendChild(subTitleTextEl);
     boxContentEl.appendChild(mainTitleEL);
     const paymentInfoList = SL_State.get('customer.order.paymentInfoList') || [];
+    const settleCurrencyCode = SL_State.get('customer.order.basicInfo.settleCurrencyCode');
     const payInfo = paymentInfoList && paymentInfoList.find(pay => pay.paySeq === props.paySeq);
     const {
       payChannelName,
@@ -72,8 +73,11 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/payModal.js'] = windo
     }, {
       title: t('cart.payment.sum'),
       isNotranslate: true,
+      isNoChange: true,
       payAmount,
-      text: convertFormat(payAmount) || '-'
+      text: format(payAmount, {
+        code: settleCurrencyCode
+      }) || '-'
     }, {
       title: t('cart.payment.reference_number'),
       text: payChannelDealId || '-'
@@ -91,7 +95,8 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/payModal.js'] = windo
       title,
       text,
       isNotranslate,
-      payAmount
+      payAmount,
+      isNoChange
     }) => {
       const subTitleEL = document.createElement('p');
       subTitleEL.className = bem('box-content-sub-title');
@@ -99,15 +104,26 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/payModal.js'] = windo
       subTitleEL.appendChild(subTitleTextEl);
       boxContentEl.appendChild(subTitleEL);
       const subTextEL = document.createElement('p');
-      subTextEL.className = bem('box-content-sub-text');
+      const subTexClassList = ['box-content-sub-text'];
+
+      if (isNoChange) {
+        subTexClassList.push('no-change');
+      }
 
       if (isNotranslate) {
-        subTextEL.className = bem('box-content-sub-text notranslate');
+        subTexClassList.push('notranslate');
         subTextEL.setAttribute('data-amount', payAmount);
       }
 
+      subTextEL.className = bem(subTexClassList.join(' '));
       const subTextValueEl = document.createTextNode(text);
-      subTextEL.appendChild(subTextValueEl);
+
+      if (typeof payAmount === 'number') {
+        subTextEL.innerHTML = text;
+      } else {
+        subTextEL.appendChild(subTextValueEl);
+      }
+
       boxContentEl.appendChild(subTextEL);
       return {
         title,

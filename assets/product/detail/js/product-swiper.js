@@ -129,6 +129,11 @@ window.SLM['product/detail/js/product-swiper.js'] = window.SLM['product/detail/j
     initFlattenPcPhotoSwipe() {
       const self = this;
       this.updateFlattenPhotoSwipeItems();
+
+      if (this.showMagnifier) {
+        return;
+      }
+
       $(`${this.id}`).on('click', '.imageItem', function () {
         const realIndex = $(this).data('index');
         self.handlePhotoSwiper(self.slideItems, realIndex);
@@ -137,6 +142,11 @@ window.SLM['product/detail/js/product-swiper.js'] = window.SLM['product/detail/j
 
     initFlattenPcSkuPhotoSwiper() {
       const self = this;
+
+      if (this.showMagnifier) {
+        return;
+      }
+
       $(`${this.id}`).on('click', '.product_pc_skuImage_flatten', function () {
         const items = [{
           src: $(this).find('.product_photoSwipe_image').attr('data-photoswipe-src'),
@@ -159,6 +169,8 @@ window.SLM['product/detail/js/product-swiper.js'] = window.SLM['product/detail/j
       if (isShow && skuImageUrl) {
         this.handleVideoPause(skuImageUrl);
         const ratio = get(imgSize(skuImageUrl), 'ratio') || '100%';
+        const width = get(imgSize(skuImageUrl), 'width');
+        const height = get(imgSize(skuImageUrl), 'height');
         const imgDom = skuImageDom.find('img');
 
         if (imgDom.length > 0) {
@@ -167,7 +179,9 @@ window.SLM['product/detail/js/product-swiper.js'] = window.SLM['product/detail/j
 
         skuImageDom.css('paddingBottom', `${ratio}`).html(`<img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ''}  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_photoSwipe_image" data-photoswipe-src=${imgUrl(skuImageUrl, {
           width: 1800
-        })} src=${skuImageUrl} />`);
+        })} src=${skuImageUrl} />${this.showMagnifier ? `<img data-width="${width}" data-height="${height}" class="imageItem--hover" ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ''}  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="product_photoSwipe_image" data-photoswipe-src=${imgUrl(skuImageUrl, {
+          width: 1800
+        })} src=${skuImageUrl} />` : ''}`);
 
         if (parentShowEmptyImageEle.length) {
           parentShowEmptyImageEle.css({
@@ -375,9 +389,11 @@ window.SLM['product/detail/js/product-swiper.js'] = window.SLM['product/detail/j
           </div>`;
           } else {
             const {
-              ratio
+              ratio,
+              width,
+              height
             } = imgSize(item.resource);
-            dom = `<div class="imageItem" style="padding-bottom: ${ratio}" data-index="${index}"><img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ''}  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" class="product_photoSwipe_image" src="${item.resource}" alt=""></div>`;
+            dom = `<div class="imageItem imageItem--${this.showMagnifier ? 'hover' : 'pointer'}" style="padding-bottom: ${ratio}" data-index="${index}"><img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ''}  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" class="product_photoSwipe_image" src="${item.resource}" alt="">${this.showMagnifier ? `<img data-width="${width}" data-height="${height}" ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ''}  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" class="imageItem--hover" src="${item.resource}" alt="">` : ''}</div>`;
           }
 
           if (index === 0) {

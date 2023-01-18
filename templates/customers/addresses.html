@@ -34,7 +34,7 @@
       {{/formItem}}
 
       <div class="address-form__btns">
-        <a href="/user/center" class="address-form__btn address-form__btn--cancel">
+        <a href="{{redirect_to '/user/center'}}" class="address-form__btn address-form__btn--cancel">
           {{#snippet 'customer/base/sl-button' attrs="type='button'" ghost=true block=true }}
             {{t 'customer.general.cancel'}}
           {{/snippet}}

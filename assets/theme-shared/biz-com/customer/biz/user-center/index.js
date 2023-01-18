@@ -11,6 +11,7 @@ window.SLM['theme-shared/biz-com/customer/biz/user-center/index.js'] = window.SL
   const { getUrlQuery } = window['SLM']['theme-shared/biz-com/customer/utils/url.js'];
   const { CONFIRM_SUBSCRIBE_EMAIL } = window['SLM']['theme-shared/biz-com/customer/constant/const.js'];
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/toast.js'].default;
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
   const tabTypeToReport = {
     center: reportClickCenterTab,
     message: reportClickMessageTab,
@@ -21,7 +22,7 @@ window.SLM['theme-shared/biz-com/customer/biz/user-center/index.js'] = window.SL
 
     if (!isLogin) {
       toSignOut().then(() => {
-        window.location.href = SIGN_IN;
+        window.location.href = redirectTo(SIGN_IN);
       });
     }
 
@@ -42,7 +43,7 @@ window.SLM['theme-shared/biz-com/customer/biz/user-center/index.js'] = window.SL
     $center.find('.signout-link').click(() => {
       toSignOut().then(() => {
         reportSignOut();
-        window.location.href = SIGN_IN;
+        window.location.href = redirectTo(SIGN_IN);
       });
     });
     $center.find('.navbar').on('click', '.navbar__item', e => {

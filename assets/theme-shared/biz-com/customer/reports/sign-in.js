@@ -4,7 +4,7 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
   const _exports = {};
   const dayjs = window['dayjs']['default'];
   const { report, reportV2, thirdPartReport } = window['SLM']['theme-shared/biz-com/customer/reports/index.js'];
-  const { pageMap, ActionType, Module, LOGIN_CID } = window['SLM']['theme-shared/biz-com/customer/constant/report.js'];
+  const { pageMap, ActionType, Module, LOGIN_CID, EventName } = window['SLM']['theme-shared/biz-com/customer/constant/report.js'];
 
   const reportV1SignIn = config => report(LOGIN_CID, config);
 
@@ -50,7 +50,8 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
     reportSignIn({
       module: Module.normal,
       component: -999,
-      action_type: ActionType.login,
+      action_type: ActionType.default,
+      event_name: EventName.login,
       event_id: 1402
     });
   };

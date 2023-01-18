@@ -237,7 +237,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
           switch (error.code) {
             case ErrorCodeEnum.VOUCHER_LIMIT_CODE:
               Toast.init({
-                content: t('cart.order.voucher_amount_limit')
+                content: t('order.checkout_order.voucher_amount_limit')
               });
               setTimeout(() => {
                 window.location.reload();
@@ -299,23 +299,23 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
         currency
       } = this.voucherInfo || {};
       const result = [`<div class="trade-transfer-voucher_info-item">
-        <span class="trade-transfer-voucher_info-item-key">${t('cart.order.upload_time')}:</span>
+        <span class="trade-transfer-voucher_info-item-key">${t('order.checkout_order.upload_time')}:</span>
         <span class="trade-transfer-voucher_info-item-value">${formatTime(uploadTime)}</span>
       </div>`, `<div class="trade-transfer-voucher_info-item">
-        <span class="trade-transfer-voucher_info-item-key">${t('cart.order.reference_number')}:</span>
+        <span class="trade-transfer-voucher_info-item-key">${t('order.checkout_order.reference_number')}:</span>
         <span class="trade-transfer-voucher_info-item-value">${transRef || '-'}</span>
       </div>`];
 
       if (receiverAccount) {
         result.push(` <div class="trade-transfer-voucher_info-item">
-      <span class="trade-transfer-voucher_info-item-key">${t('cart.order.receiver_account')}:</span>
+      <span class="trade-transfer-voucher_info-item-key">${t('order.checkout_order.receiver_account')}:</span>
       <span class="trade-transfer-voucher_info-item-value">${receiverAccount}</span>
     </div>`);
       }
 
       if (amount) {
         result.push(`<div class="trade-transfer-voucher_info-item">
-      <span class="trade-transfer-voucher_info-item-key">${t('cart.order.pay_amount')}:</span>
+      <span class="trade-transfer-voucher_info-item-key">${t('order.checkout_order.pay_amount')}:</span>
       <span class="trade-transfer-voucher_info-item-value trade-transfer-voucher_info-item-value-amount">${currency ? CurrencyUtil.format(amount * 100, {
           code: currency
         }) : amount}</span>
@@ -352,7 +352,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
           label: `<p class="__preview-voucher-data-box-item-title">${t('order.detail.orderstatus.detail')}</p>`,
           value: ''
         }, {
-          label: t('order.detail.orderstatus.UploadTime'),
+          label: t('order.checkout_order.upload_time'),
           value: formatTime(uploadTime)
         }, {
           label: t('cart.order.paymentVoucher.format'),
@@ -361,14 +361,14 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
 
         if (receiverAccount) {
           data.push({
-            label: t('cart.order.receiver_account'),
+            label: t('order.checkout_order.receiver_account'),
             value: receiverAccount
           });
         }
 
         if (amount) {
           data.push({
-            label: t('cart.order.pay_amount'),
+            label: t('order.checkout_order.pay_amount'),
             value: `
             <div class="trade-file-upload_value">
               ${currency ? CurrencyUtil.format(amount * 100, {

@@ -3,7 +3,7 @@ window.SLM = window.SLM || {};
 window.SLM['theme-shared/biz-com/customer/reports/sign-up.js'] = window.SLM['theme-shared/biz-com/customer/reports/sign-up.js'] || function () {
   const _exports = {};
   const { report, reportV2, thirdPartReport } = window['SLM']['theme-shared/biz-com/customer/reports/index.js'];
-  const { pageMap, ActionType, Module, LOGIN_CID } = window['SLM']['theme-shared/biz-com/customer/constant/report.js'];
+  const { pageMap, ActionType, Module, LOGIN_CID, EventName } = window['SLM']['theme-shared/biz-com/customer/constant/report.js'];
 
   const reportV1SignUp = config => report(LOGIN_CID, config);
 
@@ -27,7 +27,8 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-up.js'] = window.SLM['the
     reportSignUp({
       module: Module.normal,
       component: -999,
-      action_type: ActionType.register,
+      action_type: ActionType.default,
+      event_name: EventName.register,
       event_id: 1394
     });
   };
