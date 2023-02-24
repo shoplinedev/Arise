@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "İndirim kodları miktar sınırını aşıyor",
       "existCode": "İndirim kodu zaten var",
+      "freeShipping": {
+        " existCode": "Navlunsuz için indirim kodu yinelendi"
+      },
       "list": {
         "unavailable": "Tüm indirim kodlarının süresi doldu"
       },
@@ -66,6 +69,13 @@
       "unavailable": "İndirim kodunun süresi doldu"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Ücretsiz kargo kupon kodu — ülke ile eşleşmiyor",
+        "logistics-fee-over-limit": "Ücretsiz kargo kupon kodu — navlun bedeli belirlenen sınırı aşıyor"
+      },
+      "code_overdue": "Kupon kodunun kullanım süresi doldu",
+      "code_user_exceedLimit": "Kullanıcının bu kampanyadan yararlanma sayısı belirlenen sınırı aşıyor",
+      "code_user_notSupport": "Kullanıcı bu kampanyadan yararlanamaz",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Kupon kodu {{range}} karakteri aşamaz.",
       "expected_discount": "İndirim"
@@ -92,6 +102,7 @@
       "none_existent": "Ürünler mevcut değil",
       "view_cart": "Sepeti görüntüle"
     },
+    "lack_multilingualism": "*Bu ifade yüklenemedi, durumu bildirmek için müşteri hizmetleriyle iletişime geçebilirsiniz*",
     "next_step": {
       "calculated_taxes_fees": "Ödeme anında hesaplanan vergiler ve kargo ücreti"
     },
@@ -167,7 +178,7 @@
       "bind": "Bağlama",
       "birthday": "Doğum Tarihi",
       "change_password": "Parolayı değiştir",
-      "confirm_btn": "Xác nhận",
+      "confirm_btn": "Onayla",
       "confirm_subscription_modal_btn": "Aboneliği Onayla",
       "confirm_subscription_modal_content": "Daha önceden abonelik gönderdiniz. Onay e-postası bu e-posta adresine gönderildi. E-postanızdan ya da bu tuşu tıklayarak onaylayabilirsiniz.",
       "confirm_subscription_modal_title": "E-posta aboneliğinizi onaylayın.",
@@ -227,7 +238,7 @@
       "add_address": "Yeni Adres Ekle",
       "address": "Adres",
       "adress_full_tip": "50 adres kaydedilmiştir, şu anda eklenemiyor",
-      "common_max": "",
+      "common_max": "{{max}} karakterden az!",
       "common_min": "{{min}} karakterden büyük",
       "default": "Varsayılan",
       "delete__address": "Adresi Sil",
@@ -408,6 +419,11 @@
       "title": "404 sayfa bulunamadı",
       "button": "Alışverişe devam et"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Çok Fazla İstek"
+      }
+    },
     "address": {
       "address": "Adres"
     },
@@ -425,7 +441,9 @@
       "decline": "Reddet",
       "home": "ön Sayfa",
       "link": "Gizlilik Politikası",
+      "more": "Daha fazla",
       "no_data": "Mevuct veri yok",
+      "pack_up": "Ayır",
       "privacy_policy": "Gizlilik Politikası",
       "tel_phone": "Telefon numarası",
       "tips": "Kullanıcı deneyimini daha iyi bir hale getirebilmek amacıyla giriş bilgilerinin hatırlanabilmesi, istatistiklerin toplanabilmesi ve ilgi alanlarınıza uygun olarak belirlenmiş içeriklerin sunulabilmesi için çerezleri kullanıyoruz. Çerezleri kabul etmek için \"Kabul et\" tuşuna tıklayın ya da \"Gizlilik Politikası\" ilkelerimize bakın.",
@@ -451,6 +469,15 @@
       "risk_interception": "sipariş mevcut değil",
       "submit_btn": "Siparişi görüntüle",
       "username": "E-posta/Telefon Numarası"
+    },
+    "password": {
+      "back": "Geri dön",
+      "entry_store": "Mağazaya girin",
+      "forget_password": "Parola erişimi",
+      "goto_admin": "Şimdi oturum aç",
+      "i_am_admin": "Ben sahibiyim",
+      "input_password": "Parolayı girin",
+      "password_is_error": "Yanlış parola, lütfen tekrar deneyin"
     },
     "policy": {
       "service": "Hizmet Kullanım Şartları",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kupon kodu başarıyla kopyalandı",
       "coupon_code_copy": "Kopya",
       "flash_sale_text": "SINIRLI SÜRELİ İNDİRİM",
-      "flash_sale_tip": "Satın alma limiti: {{count}} adet",
+      "flash_sale_tip": "Satın alma sınırı: {{count}} adet",
       "hot_sale": "Canlı satış!",
       "product_tabs_benefit_discount_locked": "%{{offPercent}} indirim alın",
       "product_tabs_benefit_discount_unlocked": "%{0} indirim kilidi açıldı!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "%{{offPercent}} indirimle {{benefitCount}} parça alın",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} parça ücretsiz alın",
       "product_tabs_threshold": "{{threshold}} satın alın",
-      "purchase_limit": "Kişi başına satın alma limiti {{count}}",
-      "purchase_limit_each_item": "Kişi başı ürün başına satın alma limiti {{count}}",
+      "purchase_limit": "Satın alma toplamda {{count}} promosyon ürünüyle sınırlıdır",
+      "purchase_limit_each_item": "Her bir varyant için satın alma {{count}} adet ile sınırlıdır",
+      "purchase_limit_each_product": "Her bir promosyon ürünü için satın alma {{count}} adet ile sınırlıdır",
       "select_promotional_product": "{{selectCount}} etkinlik ürünü seçildi",
       "sold": "{{count}} satıldı",
       "activity_banner_copy_text": "Kopya",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Yuvarlama"
-      }
-    },
     "payments-name": {
       "COD": "Kapıda ödeme",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "İndirim",
       "free_charge": "Ücretsiz kargo",
       "free_shipping": "ücretsiz kargo",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Satıcı ekstra indirimi",
       "order_tax": "Vergi",
       "order_tip": "Bahşiş",
@@ -799,9 +817,11 @@
       "error_message_3022": "Link geçerliliği sona erdi",
       "error_message_3023": "Link yanlış formata sahip",
       "error_message_3024": "Link yanlış",
+      "error_message_3026": "Hesap formatı hatası",
       "error_message_4": "Servis istisnaları",
       "error_message_5": "Servis istisnaları",
-      "error_message_6": "Servis istisnaları"
+      "error_message_6": "Servis istisnaları",
+      "error_message_7": "Lütfen minimum 6 karakter, maksimum ise 18 karakter uzunluğunda bir parola belirleyin."
     },
     "editorSwitchCountryTip": "Ülke değiştirme özelliği editörde desteklenmemektedir"
   }

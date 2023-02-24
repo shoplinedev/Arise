@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Los códigos de descuento superan el límite de cantidad",
       "existCode": "El código de descuento ya existe",
+      "freeShipping": {
+        " existCode": "El código de cupón para el envío gratuito se repite"
+      },
       "list": {
         "unavailable": "Todos los códigos de descuento han caducado"
       },
@@ -66,6 +69,13 @@
       "unavailable": "El código de descuento ha caducado"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Pago con código de descuento para envío gratuito - ningún país coincidente",
+        "logistics-fee-over-limit": "El código de descuento para el envío gratuito - gastos de envío supera el límite"
+      },
+      "code_overdue": "El código de cupón ha caducado",
+      "code_user_exceedLimit": "El número de veces que el usuario ha utilizado esta oferta supera el límite",
+      "code_user_notSupport": "El usuario no puede utilizar esta oferta",
       "coupon_code_amount": "Descuento de código de cupón",
       "coupon_code_length_limit": "El código de cupón no puede exceder los {{range}} caracteres",
       "expected_discount": "Descuento estimado"
@@ -92,6 +102,7 @@
       "none_existent": "El artículo no existe",
       "view_cart": "Ver el carrito"
     },
+    "lack_multilingualism": "*No se ha podido cargar esta frase, póngase en contacto con el servicio de atención al cliente para informar de la situación*",
     "next_step": {
       "calculated_taxes_fees": "Los impuestos y los costos de envío se calcularán en el siguiente paso"
     },
@@ -408,6 +419,11 @@
       "title": "404 página no encontrada",
       "button": "Continúa comprando"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Demasiada solicitud"
+      }
+    },
     "address": {
       "address": "Dirección"
     },
@@ -425,7 +441,9 @@
       "decline": "Rechazar",
       "home": "Página de inicio",
       "link": "Política de Privacidad",
+      "more": "Más",
       "no_data": "Actualmente no hay datos",
+      "pack_up": "Menos",
       "privacy_policy": "Política de Privacidad del sitio web",
       "tel_phone": "Número de teléfono",
       "tips": "Para brindarle mejor experiencia, utilizamos cookies para recordar su estado de inicio de sesión, recopilar datos estadísticos y ofrecerle los contenidos interesados. Haga clic en “Aceptar” para permitir el uso de cookies. O consulte nuestra “Política de Privacidad”. ",
@@ -451,6 +469,15 @@
       "risk_interception": "orden no existe",
       "submit_btn": "Ver pedido",
       "username": "Correo electrónico/Número de teléfono"
+    },
+    "password": {
+      "back": "Volver",
+      "entry_store": "Ingresa a la tienda",
+      "forget_password": "Acceso con contraseña",
+      "goto_admin": "Ir a iniciar sesión",
+      "i_am_admin": "Soy tendero/ra",
+      "input_password": "Introduce contraseña",
+      "password_is_error": "Contraseña incorrecta, introduce de nuevo"
     },
     "policy": {
       "service": "Términos de Servicios",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Se ha copiado con éxito el código de cupón",
       "coupon_code_copy": "Copiar",
       "flash_sale_text": "Promoción de límite de tiempo",
-      "flash_sale_tip": "Límite de compra: {{count}}",
+      "flash_sale_tip": "Límite: {{count}} artículos",
       "hot_sale": "A la venta",
       "product_tabs_benefit_discount_locked": "Un ahorro de {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "¡Un ahorro de {{offPercent}}% desbloqueado!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Comprar {{benefitCount}} piezas con un descuento de {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Obtener {{benefitCount}} piezas gratis",
       "product_tabs_threshold": "Comprar {{threshold}}",
-      "purchase_limit": "Límite de compra {{count}} por persona",
-      "purchase_limit_each_item": "Limitación de compra de {{count}} piezas por persona y modelo",
+      "purchase_limit": "Límite de {{count}} artículos(s) promocional(es) en total",
+      "purchase_limit_each_item": "Límite de {{count}} artículos(s) por variación",
+      "purchase_limit_each_product": "Límite de {{count}} artículos(s) por cada promocional",
       "select_promotional_product": "Se han elegido {{selectCount}} artículo(s) para participar en el evento",
       "sold": "Vendido {{count}}",
       "activity_banner_copy_text": "Copiar",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Redondeo"
-      }
-    },
     "payments-name": {
       "COD": "Pago contra entrega",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Descuento",
       "free_charge": "Envío gratuito",
       "free_shipping": "Envío gratis",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Descuento personalizado por el vendedor",
       "order_tax": "Impuesto",
       "order_tip": "Propina",
@@ -799,9 +817,11 @@
       "error_message_3022": "El enlace ha caducado",
       "error_message_3023": "El enlace tiene un formato incorrecto",
       "error_message_3024": "El parámetro de enlace es incorrecto",
+      "error_message_3026": "Error de formato de cuenta",
       "error_message_4": "Error de servicio",
       "error_message_5": "Error de servicio",
-      "error_message_6": "Error de servicio"
+      "error_message_6": "Error de servicio",
+      "error_message_7": "Por favor configura la contraseña de 6 a 18 caracteres"
     },
     "editorSwitchCountryTip": "Ahora no admite cambiar de país en el editor."
   }

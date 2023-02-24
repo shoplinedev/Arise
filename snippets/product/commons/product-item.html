@@ -91,6 +91,7 @@ imgRealWidth 图片真实占位宽度
  'theme-shared/utils/tradeReport/index.js'
  'theme-shared/utils/dataAccessor.js'
  'theme-shared/utils/url.js'
+ 'theme-shared/utils/constant.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/components/hbs/products/checkedEvent/index.js'
  'theme-shared/components/smart-payment/utils.js'
@@ -397,9 +398,9 @@ imgRealWidth 图片真实占位宽度
       <div class="product-item-info">
         <div class="product-item-title-wrapper">
           <div data-ssr-product-item-bottom></div>
-          <div class="product-item-title product-grid-font body3  {{#if product_title_show_type '===' 'display_up_to_1_rows'}}display-1-row{{/if}}{{#if product_title_show_type '===' 'display_up_to_2_rows'}}display-2-row{{/if}} {{#if (isFalsey product_mobile_title_show)}}mobile-hide{{/if}}">
+          <h3 class="product-item-title product-grid-font body3  {{#if product_title_show_type '===' 'display_up_to_1_rows'}}display-1-row{{/if}}{{#if product_title_show_type '===' 'display_up_to_2_rows'}}display-2-row{{/if}} {{#if (isFalsey product_mobile_title_show)}}mobile-hide{{/if}}">
             {{ title }}
-          </div>
+          </h3>
           {{#if subTitleShowType '!==' 'hide'}}
             <div class="product-item-sub-title {{ subTitleShowType }}">{{ subTitle }}</div>
           {{/if}}

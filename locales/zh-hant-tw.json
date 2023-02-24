@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "折扣碼超過數量限制",
       "existCode": "折扣碼已存在",
+      "freeShipping": {
+        " existCode": "免運費折扣碼重複"
+      },
       "list": {
         "unavailable": "所有折扣碼均已失效"
       },
@@ -66,6 +69,13 @@
       "unavailable": "折扣碼失效"
     },
     "discount": {
+      "code": {
+        "country_not_support": "支付 免郵優惠碼-國家不匹配",
+        "logistics-fee-over-limit": "免郵優惠碼-運費超過限制"
+      },
+      "code_overdue": "優惠碼已過期",
+      "code_user_exceedLimit": "用戶使用該活動次數超過限制",
+      "code_user_notSupport": "用戶不能使用該活動",
       "coupon_code_amount": "優惠代碼折扣",
       "coupon_code_length_limit": "優惠代碼不可超過 {{range}} 個字元",
       "expected_discount": "預估折扣"
@@ -92,6 +102,7 @@
       "none_existent": "商品不存在",
       "view_cart": "查看購物車"
     },
+    "lack_multilingualism": "*此語句加載失敗，可聯系客服反映情况*",
     "next_step": {
       "calculated_taxes_fees": "將在下一個步驟計算稅金和運費"
     },
@@ -408,6 +419,11 @@
       "title": "404頁面不存在",
       "button": "繼續購物"
     },
+    "abandon": {
+      "Order": {
+        "risk": "請求過於頻繁"
+      }
+    },
     "address": {
       "address": "地址"
     },
@@ -425,7 +441,9 @@
       "decline": "拒絕",
       "home": "首頁",
       "link": "隱私政策",
+      "more": "展開",
       "no_data": "沒有可用的資料",
+      "pack_up": "折疊",
       "privacy_policy": "隱私權政策",
       "tel_phone": "電話號碼",
       "tips": "為了給您提供更好的體驗，我們使用cookie去記錄您的登陸狀態，收集統計數據，為您提供感興趣的內容。點擊“接受”允許cookie的使用。或是查看我們的“隱私政策”。",
@@ -451,6 +469,15 @@
       "risk_interception": "訂單不存在",
       "submit_btn": "查看訂單",
       "username": "Email/Phone Number"
+    },
+    "password": {
+      "back": "返回",
+      "entry_store": "進入商店",
+      "forget_password": "使用密碼訪問",
+      "goto_admin": "去登錄",
+      "i_am_admin": "我是店主",
+      "input_password": "輸入密碼",
+      "password_is_error": "密碼錯誤，請重新輸入"
     },
     "policy": {
       "service": "服務條款",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "折扣碼複製成功",
       "coupon_code_copy": "複製",
       "flash_sale_text": "限時促銷",
-      "flash_sale_tip": "購買限制：{{count}} 件",
+      "flash_sale_tip": "限購數量：{{count}}件",
       "hot_sale": "熱賣中",
       "product_tabs_benefit_discount_locked": "減免{{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "已解鎖減免{{offPercent}}%！",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "以 {{offPercent}}% 的折扣購買 {{benefitCount}}件",
       "product_tabs_code_benefit_free_unlocked": "免費獲得{{benefitCount}}件",
       "product_tabs_threshold": "購買{{threshold}}",
-      "purchase_limit": "每人限購{{count}}件",
-      "purchase_limit_each_item": "每人每款商品限購{{count}}件",
+      "purchase_limit": "活動商品限購 {{count}}件",
+      "purchase_limit_each_item": "每個款式限購 {{count}}件",
+      "purchase_limit_each_product": "每個活動商品限購 {{count}}件",
       "select_promotional_product": "已選取 {{selectCount}} 件活動產品",
       "sold": "已售{{count}}",
       "activity_banner_copy_text": "複製",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "舍入"
-      }
-    },
     "payments-name": {
       "COD": "貨到付款",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "折扣",
       "free_charge": "免運費",
       "free_shipping": "包郵",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "商家自定義折扣",
       "order_tax": "稅費",
       "order_tip": "小費",
@@ -799,9 +817,11 @@
       "error_message_3022": "鏈接已失效",
       "error_message_3023": "鏈接格式錯誤",
       "error_message_3024": "鏈接參數錯誤",
+      "error_message_3026": "帳號格式錯誤",
       "error_message_4": "服務異常",
       "error_message_5": "服務異常",
-      "error_message_6": "服務異常"
+      "error_message_6": "服務異常",
+      "error_message_7": "請設定最小長度 6 個字元且最大長度 18 個字元的密碼。"
     },
     "editorSwitchCountryTip": "編輯器內暫不支持切換國家"
   }

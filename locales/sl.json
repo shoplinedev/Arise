@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Kode za popust presegajo količinsko omejitev",
       "existCode": "Koda za popust že obstaja",
+      "freeShipping": {
+        " existCode": "Koda za popust za brezplačni prevoz se ponovi"
+      },
       "list": {
         "unavailable": "Vse kode za popust so potekle"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Koda za popust je potekla"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Koda kupona za plačilo za brezplačno dostavo - država se ne ujema",
+        "logistics-fee-over-limit": "Koda kupona za brezplačno poštnino - stroški prevoza presegajo omejitev"
+      },
+      "code_overdue": "Koda kupona je potekla",
+      "code_user_exceedLimit": "Število primerov, ko uporabnik uporabi to aktivnost, presega omejitev",
+      "code_user_notSupport": "Uporabnik ne more uporabljati te aktivnosti",
       "coupon_code_amount": "Kuponi",
       "coupon_code_length_limit": "Koda kupona ne sme presegati {{range}} znakov.",
       "expected_discount": "Popust"
@@ -92,6 +102,7 @@
       "none_existent": "Blago ne obstaja",
       "view_cart": "Oglejte si košarico"
     },
+    "lack_multilingualism": "*Ta izjava se ni naložila, lahko se obrnete na službo za pomoč uporabnikom in poročate o situaciji*",
     "next_step": {
       "calculated_taxes_fees": "Davki in dostava se izračunajo ob nakupu"
     },
@@ -167,7 +178,7 @@
       "bind": "Povezava",
       "birthday": "Datum rojstva",
       "change_password": "Sprememba gesla",
-      "confirm_btn": "Bekräfta",
+      "confirm_btn": "Potrdite",
       "confirm_subscription_modal_btn": "Potrdite naročnino",
       "confirm_subscription_modal_content": "Že prej ste oddali naročnino. Na ta e-poštni naslov je bilo poslano potrditveno e-poštno sporočilo. Potrdite lahko v e-poštnem sporočilu ali s klikom na ta gumb.",
       "confirm_subscription_modal_title": "Potrdite svojo naročnino na e-pošto.",
@@ -227,7 +238,7 @@
       "add_address": "Dodajanje novega naslova",
       "address": "Naslov",
       "adress_full_tip": "Shranjenih je bilo 50 naslovov, ki jih trenutno ni mogoče dodati",
-      "common_max": "",
+      "common_max": "Manj kot {{max}} znakov!",
       "common_min": "več kot {{min}} znakov",
       "default": "Privzeto",
       "delete__address": "Brisanje naslova",
@@ -408,6 +419,11 @@
       "title": "404 Stran ni bila najdena",
       "button": "Nadaljuj z nakupovanjem"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Preveč zahtev"
+      }
+    },
     "address": {
       "address": "Naslov"
     },
@@ -425,7 +441,9 @@
       "decline": "Zavrni",
       "home": "Domača stran",
       "link": "Politika zasebnosti",
+      "more": "Več",
       "no_data": "Podatki niso na voljo",
+      "pack_up": "Odloži",
       "privacy_policy": "Pravilnikom o zasebnosti",
       "tel_phone": "Telefonska številka",
       "tips": "Da bi izboljšali vašo izkušnjo, uporabljamo piškotke za pomnenje prijavnih podatkov, zbiranje statističnih podatkov in zagotavljanje vsebine, prilagojene vašim interesom. Če želite sprejeti piškotke, kliknite \"Sprejmi\" ali si oglejte našo \"Politiko zasebnosti\".",
@@ -451,6 +469,15 @@
       "risk_interception": "naročilo ne obstaja",
       "submit_btn": "Ogled naročila",
       "username": "E-pošta/telefonska številka"
+    },
+    "password": {
+      "back": "Nazaj",
+      "entry_store": "Vstopite v trgovino",
+      "forget_password": "Dostop z geslom",
+      "goto_admin": "Prijavite se zdaj",
+      "i_am_admin": "Sem lastnik",
+      "input_password": "Vnesite geslo",
+      "password_is_error": "Napačno geslo, poskusite znova"
     },
     "policy": {
       "service": "Pogoji uporabe spletne strani",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Koda kupona je uspešno kopirana",
       "coupon_code_copy": "Kopiraj",
       "flash_sale_text": "HITRA PRODAJA",
-      "flash_sale_tip": "Omejitev nakupa: {{count}} količina",
+      "flash_sale_tip": "Omejitev nakupa: {{count}} predmetov",
       "hot_sale": "Vroča prodaja!",
       "product_tabs_benefit_discount_locked": "Dobi {{offPercent}} % popust",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% popust odklenjena!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Kupite {{benefitCount}} kosov z {{offPercent}}% popustom",
       "product_tabs_code_benefit_free_unlocked": "Pridobite {{benefitCount}} kosov brezplačno",
       "product_tabs_threshold": "Nakup {{threshold}}",
-      "purchase_limit": "Omejitev nakupa {{count}} na osebo",
-      "purchase_limit_each_item": "Omejitev nakupa na {{count}} izdelke/ov na osebo",
+      "purchase_limit": "Nakup je omejen na {{count}} promocijski(h) izdelek(ov) skupaj",
+      "purchase_limit_each_item": "Nakup je omejen na {{count}} predmet(ov) za vsako različico",
+      "purchase_limit_each_product": "Nakup je omejen na {{count}} predmet(ov) za vsak promocijski izdelek",
       "select_promotional_product": "{{selectCount}} izbrani izdelki dogodka",
       "sold": "{{count}} prodano",
       "activity_banner_copy_text": "Kopiraj",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Zaokroževanje"
-      }
-    },
     "payments-name": {
       "COD": "Dobava po povzetju",
       "Paypal": "PayPal",
@@ -705,11 +728,6 @@
       "discount_off": "Popust",
       "free_charge": "Brezplačna dostava",
       "free_shipping": "Brezplačna dostava",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Dodatni popust prodajalca",
       "order_tax": "davek",
       "order_tip": "Napitnina",
@@ -799,9 +817,11 @@
       "error_message_3022": "Povezava je potekla",
       "error_message_3023": "Povezava ima napačno obliko",
       "error_message_3024": "Povezava je napačna",
+      "error_message_3026": "Napaka v formatu računa",
       "error_message_4": "Izjeme pri storitvah",
       "error_message_5": "Izjeme pri storitvah",
-      "error_message_6": "Izjeme pri storitvah"
+      "error_message_6": "Izjeme pri storitvah",
+      "error_message_7": "Nastavite geslo z najmanjšo dolžino 6 znakov in največjo dolžino 18 znakov."
     },
     "editorSwitchCountryTip": "Preklapljanje med državami v urejevalniku ni podprto"
   }

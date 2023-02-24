@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Sooduskoodid ületavad kogusepiirangut",
       "existCode": "Sooduskood on juba olemas",
+      "freeShipping": {
+        " existCode": "Korratakse tasuta veose sooduskood"
+      },
       "list": {
         "unavailable": "Kõik sooduskoodid on aegunud"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Sooduskood on aegunud"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Makse kupongikood tasuta kohaletoimetamiseks - riik ei sobi",
+        "logistics-fee-over-limit": "Kupongikood tasuta kohaletoimetamiseks - saatmiskulud ületavad piiri"
+      },
+      "code_overdue": "Kupongikood on aegunud",
+      "code_user_exceedLimit": "Mitu korda kasutaja seda tegevust kasutab, ületab piiri",
+      "code_user_notSupport": "Kasutaja ei saa seda tegevust kasutada",
       "coupon_code_amount": "Kupong",
       "coupon_code_length_limit": "Kupongikood ei tohi ületada {{range}} tähemärki.",
       "expected_discount": "Soodushind"
@@ -92,6 +102,7 @@
       "none_existent": "Kaupu pole olemas",
       "view_cart": "Vaata ostukorvi"
     },
+    "lack_multilingualism": "*Selle avalduse laadimine ebaõnnestus. Palun võtke ühendust klienditeenindusega, et kajastada olukorda*",
     "next_step": {
       "calculated_taxes_fees": "Maksud ja saatmiskulud arvutatakse kassas"
     },
@@ -227,7 +238,7 @@
       "add_address": "Lisa uus aadress",
       "address": "Aadress",
       "adress_full_tip": "50 aadressi on salvestatud ja praegu ei saa juurde lisada",
-      "common_max": "",
+      "common_max": "Vähem kui {{max}} tähemärki!",
       "common_min": "rohkem kui {{min}} tähemärki",
       "default": "Vaikimisi",
       "delete__address": "Kustuta aadress",
@@ -408,6 +419,11 @@
       "title": "404 lehekülge ei leitud",
       "button": "Jätka ostlemist"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Liiga palju taotlusi"
+      }
+    },
     "address": {
       "address": "Aadress"
     },
@@ -425,7 +441,9 @@
       "decline": "Langus",
       "home": "Esilehekülg",
       "link": "Privaatsuspoliitika",
+      "more": "Rohkem",
       "no_data": "Andmed puuduvad",
+      "pack_up": "Vähem",
       "privacy_policy": "Privaatsuspoliitika",
       "tel_phone": "Telefoninumber",
       "tips": "Teie kasutuskogemuse parandamiseks kasutame küpsiseid sisselogimisandmete meeldejätmiseks, statistika kogumiseks ja teie huvidele kohandatud sisu edastamiseks. Küpsiste aktsepteerimiseks või meie privaatsuspoliitika vaatamiseks klõpsake nuppu Aktsepteeri.",
@@ -451,6 +469,15 @@
       "risk_interception": "tellimust pole olemas",
       "submit_btn": "Vaata tellimust",
       "username": "E-post/telefoninumber"
+    },
+    "password": {
+      "back": "Eelmine",
+      "entry_store": "Sisene poodi",
+      "forget_password": "Juurdepääs parooli",
+      "goto_admin": "Logi kohe sisse",
+      "i_am_admin": "Olen valdaja",
+      "input_password": "Sisesta parool",
+      "password_is_error": "Vale parool, proovi uuesti"
     },
     "policy": {
       "service": "Kasutustingimused",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kupongi kood kopeeritakse edukalt",
       "coupon_code_copy": "Koopia",
       "flash_sale_text": "VÄLKMÜÜK",
-      "flash_sale_tip": "Ostulimiit: Kogus {{count}}",
+      "flash_sale_tip": "Ost piirangud: {{count}} kaupade(te)",
       "hot_sale": "Kuum allahindlus!",
       "product_tabs_benefit_discount_locked": "Hankige {{offPercent}}% allahindlust",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% allahindlust lukustamata!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Osta {{benefitCount}} tükid allahindlusega {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Hankige {{benefitCount}} tasuta tükid",
       "product_tabs_threshold": "Osta {{threshold}}",
-      "purchase_limit": "Ostulimiit {{count}} inimese kohta",
-      "purchase_limit_each_item": "Ostulimiit {{count}} toote kohta inimese kohta",
+      "purchase_limit": "Ost on piiratud {{count}} kaupade(te) reklaamtoote toode",
+      "purchase_limit_each_item": "Ost on piiratud {{count}} kaupade(te) iga variandi jaoks",
+      "purchase_limit_each_product": "Ost on piiratud {{count}} kaupade(te) iga reklaamtoote toode",
       "select_promotional_product": "{{selectCount}} ürituse toodet valitud",
       "sold": "{{count}} müüdud",
       "activity_banner_copy_text": "Koopia",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Ümardamine"
-      }
-    },
     "payments-name": {
       "COD": "Tasumine kättesaamisel",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Soodushind",
       "free_charge": "Tasuta saatmine",
       "free_shipping": "tasuta saatmine",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Müüja täiendav soodustus",
       "order_tax": "Maksud",
       "order_tip": "Nõuanne",
@@ -799,9 +817,11 @@
       "error_message_3022": "Link on aegunud",
       "error_message_3023": "Link on vales vormingus",
       "error_message_3024": "Link vales",
+      "error_message_3026": "Konto vormingu tõrked",
       "error_message_4": "Teenuse erandid",
       "error_message_5": "Teenuse erandid",
-      "error_message_6": "Teenuse erandid"
+      "error_message_6": "Teenuse erandid",
+      "error_message_7": "Määra parool, mille pikkus on vähemalt 6 tähemärki ja kõige rohkem 18 tähemärki."
     },
     "editorSwitchCountryTip": "Riigivahetust ei toetata hetkel redaktoris"
   }

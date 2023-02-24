@@ -91,6 +91,7 @@ all_collections:
  'theme-shared/utils/tradeReport/index.js'
  'theme-shared/utils/dataAccessor.js'
  'theme-shared/utils/url.js'
+ 'theme-shared/utils/constant.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/components/hbs/products/checkedEvent/index.js'
  'theme-shared/components/smart-payment/utils.js'
@@ -274,6 +275,7 @@ all_collections:
 {{#schema}}
 {
   "name": "t:sections.featured-collection.name",
+  "limit": 10,
   "class": "section-gap",
   "settings": [
     {
@@ -399,6 +401,7 @@ all_collections:
   "presets": [
     {
       "name": "t:sections.featured-collection.presets.presets__0.name",
+      "category_index": 1,
       "category": "t:sections.featured-collection.presets.presets__0.category",
       "settings": {
         "title": "Featured collection",

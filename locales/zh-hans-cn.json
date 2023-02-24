@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "折扣码超过数量限制",
       "existCode": "折扣码已存在",
+      "freeShipping": {
+        " existCode": "免运费折扣码重复"
+      },
       "list": {
         "unavailable": "所有折扣码均已失效"
       },
@@ -66,6 +69,13 @@
       "unavailable": "折扣码失效"
     },
     "discount": {
+      "code": {
+        "country_not_support": "支付 免邮优惠码-国家不匹配",
+        "logistics-fee-over-limit": "免邮优惠码-运费超过限制"
+      },
+      "code_overdue": "优惠码已过期",
+      "code_user_exceedLimit": "用户使用该活动次数超过限制",
+      "code_user_notSupport": "用户不能使用该活动",
       "coupon_code_amount": "优惠码优惠",
       "coupon_code_length_limit": "优惠码不能超过{{range}}长度",
       "expected_discount": "预计优惠"
@@ -92,6 +102,7 @@
       "none_existent": "商品不存在",
       "view_cart": "查看购物车"
     },
+    "lack_multilingualism": "*此语句加载失败，可联系客服反映情况*",
     "next_step": {
       "calculated_taxes_fees": "下一步将计算税费和运费"
     },
@@ -408,6 +419,11 @@
       "title": "404页面不存在",
       "button": "继续购物"
     },
+    "abandon": {
+      "Order": {
+        "risk": "请求过于频繁"
+      }
+    },
     "address": {
       "address": "地址"
     },
@@ -425,7 +441,9 @@
       "decline": "拒绝",
       "home": "首页",
       "link": "隐私政策",
+      "more": "展开",
       "no_data": "暂无可用数据",
+      "pack_up": "折叠",
       "privacy_policy": "隐私政策",
       "tel_phone": "电话号码",
       "tips": "为了给您提供更好的体验，我们使用cookie去记录您的登陆状态，收集统计数据，为您提供感兴趣的内容。点击“接受”允许cookie的使用。或是查看我们的“隐私政策”。",
@@ -451,6 +469,15 @@
       "risk_interception": "该订单不存在",
       "submit_btn": "查看订单",
       "username": "Email/Phone Number"
+    },
+    "password": {
+      "back": "返回",
+      "entry_store": "进入商店",
+      "forget_password": "使用密码访问",
+      "goto_admin": "去登录",
+      "i_am_admin": "我是店主",
+      "input_password": "输入密码",
+      "password_is_error": "密码错误，请重新输入"
     },
     "policy": {
       "service": "服务条款",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "折扣码复制成功",
       "coupon_code_copy": "复制",
       "flash_sale_text": "FLASH SALE",
-      "flash_sale_tip": "购买限制：{{count}} 件",
+      "flash_sale_tip": "限购数量：{{count}}件",
       "hot_sale": "Hot sale!",
       "product_tabs_benefit_discount_locked": "减免{{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "已解锁减免{{offPercent}}%！",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "以 {{offPercent}}% 的折扣购买 {{benefitCount}}件",
       "product_tabs_code_benefit_free_unlocked": "免费获得{{benefitCount}}件",
       "product_tabs_threshold": "购买{{threshold}}",
-      "purchase_limit": "每人限购{{count}}件",
-      "purchase_limit_each_item": "每人每款商品限购{{count}}件",
+      "purchase_limit": "活动商品限购 {{count}}件",
+      "purchase_limit_each_item": "每个款式限购 {{count}}件",
+      "purchase_limit_each_product": "每个活动商品限购 {{count}}件",
       "select_promotional_product": "已选择{{selectCount}}件参加该活动的商品",
       "sold": "{{count}} sold",
       "activity_banner_copy_text": "复制",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "舍入"
-      }
-    },
     "payments-name": {
       "COD": "货到付款",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "折扣",
       "free_charge": "免邮费",
       "free_shipping": "包邮",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": "舍入"
-        }
-      },
       "order_seller_discount": "商家自定义折扣",
       "order_tax": "税费",
       "order_tip": "小费",
@@ -799,9 +817,11 @@
       "error_message_3022": "链接已失效",
       "error_message_3023": "链接格式错误",
       "error_message_3024": "链接参数错误",
+      "error_message_3026": "账号格式错误",
       "error_message_4": "服务异常",
       "error_message_5": "服务异常",
-      "error_message_6": "服务异常"
+      "error_message_6": "服务异常",
+      "error_message_7": "请设置6-18位密码"
     },
     "editorSwitchCountryTip": "编辑器内暂不支持切换国家"
   }

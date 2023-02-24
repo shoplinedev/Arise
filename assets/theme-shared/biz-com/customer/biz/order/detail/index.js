@@ -10,7 +10,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const LoggerService = window['@yy/sl-theme-shared']['/utils/logger/sentry'].default;
   const { Owner, Action } = window['SLM']['theme-shared/biz-com/customer/biz/order/detail/loggerReport.js'];
-  const { reportPageView, cidMap, customComponentMap, reportThirdPartPageView } = window['SLM']['theme-shared/biz-com/customer/reports/orders.js'];
+  const { reportPageView, cidMap, customComponentMap } = window['SLM']['theme-shared/biz-com/customer/reports/orders.js'];
   const { bindTrackBtn } = window['SLM']['theme-shared/biz-com/customer/biz/order/detail/bindTrack.js'];
   const renderInformation = window['SLM']['theme-shared/biz-com/customer/biz/order/detail/information.js'].default;
   const handlePayModal = window['SLM']['theme-shared/biz-com/customer/biz/order/detail/payModal.js'].default;
@@ -31,7 +31,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
         custom_component: customComponentMap.orderDetail
       });
       initCurrencyChangeListener('.customer-order-detail');
-      reportThirdPartPageView();
       bindTrackBtn();
       renderInformation();
       renderStatusBar();

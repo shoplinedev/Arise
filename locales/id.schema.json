@@ -31,6 +31,21 @@
       },
       "name": "Papan buletin",
       "settings": {
+        "display_mode": {
+          "label": "Mode tampilan papan multi-buletin",
+          "options__0": {
+            "label": "Layar berubin"
+          },
+          "options__1": {
+            "label": "Tata letak yang ringkas"
+          },
+          "options__2": {
+            "label": "Beralih ke kiri dan kanan"
+          },
+          "options__3": {
+            "label": "Beralih ke atas dan bawah"
+          }
+        },
         "group_header__0": {
           "label": "Tidak ada konfigurasi yang dapat diedit"
         }
@@ -48,7 +63,7 @@
       "name": "Blog",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Blog",
           "name": "Blog"
         }
       },
@@ -173,7 +188,7 @@
       "name": "Klasifikasi produk",
       "presets": {
         "presets__0": {
-          "category": "Produk",
+          "category": "Tampilan produk",
           "name": "Klasifikasi produk"
         }
       },
@@ -229,7 +244,7 @@
       "name": "Hubungi daftar kami",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Operasi pelanggan",
           "name": "Hubungi daftar kami"
         }
       },
@@ -258,7 +273,7 @@
       "name": "HTML yang dapat diciptakan sendiri",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Kustomisasi",
           "name": "HTML yang dapat diciptakan sendiri"
         }
       },
@@ -275,7 +290,7 @@
       "name": "Halaman Kustom",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Kustomisasi",
           "name": "Halaman Kustom"
         }
       },
@@ -331,7 +346,7 @@
       "name": "Masalah umum",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Komponen kepercayaan",
           "name": "Masalah umum"
         }
       },
@@ -360,7 +375,7 @@
       "name": "Barang halus",
       "presets": {
         "presets__0": {
-          "category": "Produk",
+          "category": "Tampilan produk",
           "name": "Barang halus"
         }
       },
@@ -494,7 +509,7 @@
       "name": "Produk tunggal",
       "presets": {
         "presets__0": {
-          "category": "Produk",
+          "category": "Tampilan produk",
           "name": "Produk tunggal"
         }
       },
@@ -626,6 +641,9 @@
         "show_pay_channel": {
           "label": "Tampilkan ikon cara pembayaran"
         },
+        "show_powered": {
+          "label": "Menampilkan deklarasi hak cipta"
+        },
         "show_social_media": {
           "label": "Tampilkan ikon media sosial"
         },
@@ -665,6 +683,7 @@
           "label": "Logo"
         },
         "group_header__1": {
+          "info": "[Plug-in navigasi menu lainnya](https://apps.shopline.com/detail/?appId=64637)",
           "label": "Menu"
         },
         "header_full_width": {
@@ -806,7 +825,7 @@
       "name": "Spanduk gambar",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Tampilan grafis",
           "name": "Spanduk gambar"
         }
       },
@@ -961,7 +980,7 @@
       "name": "modul grafis",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Tampilan grafis",
           "name": "modul grafis"
         }
       },
@@ -982,6 +1001,7 @@
           }
         },
         "image": {
+          "info": "Disarankan mengunggah gambar dengan rasio 1:1 dan lebar dan tinggi 700*700",
           "label": "Tambah gambar"
         },
         "image_height": {
@@ -1307,11 +1327,67 @@
     "main-page": {
       "name": "Halaman Kustom"
     },
+    "main-password": {
+      "name": "Kata sandi",
+      "settings": {
+        "bg_color": {
+          "label": "Warna latar belakang"
+        },
+        "bg_img": {
+          "label": "Gambar latar belakang"
+        },
+        "btn_bg_color": {
+          "label": "Warna latar belakang tombol"
+        },
+        "btn_text_color": {
+          "label": "Warna teks tombol"
+        },
+        "describe": {
+          "label": "Deskripsi"
+        },
+        "email_tip": {
+          "label": "Teks kotak bidang input email"
+        },
+        "group_header__0": {
+          "label": "Logo"
+        },
+        "group_header__1": {
+          "label": "Teks"
+        },
+        "group_header__2": {
+          "label": "Media sosial"
+        },
+        "input_color": {
+          "label": "Warna bidang input"
+        },
+        "logo_img": {
+          "label": "Gambar logo"
+        },
+        "logo_width": {
+          "label": "Lebar logo"
+        },
+        "media_title": {
+          "label": "Judul media sosial"
+        },
+        "show_email": {
+          "label": "Tampilkan langganan email"
+        },
+        "show_media": {
+          "label": "Media sosial"
+        },
+        "text_color": {
+          "label": "Warna teks"
+        },
+        "title": {
+          "label": "Judul"
+        }
+      }
+    },
     "map": {
       "name": "Peta",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Komponen kepercayaan",
           "name": "Peta"
         }
       },
@@ -1463,7 +1539,7 @@
       "name": "Penyambungan media",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Komponen karakteristik",
           "name": "Penyambungan media"
         }
       },
@@ -1751,7 +1827,13 @@
           "name": "Abstrak"
         },
         "buy-button": {
-          "name": "Tombol beli"
+          "name": "Tombol beli",
+          "settings": {
+            "group_header__0": {
+              "info": "[untuk informasi lebih lanjut](https://apps.shopline.com/detail/?appId=23033)",
+              "label": "Untuk menggunakan fitur troli yang menarik bagian bawah, silakan tambahkan plugin Tambahkan ke keranjang"
+            }
+          }
         },
         "description": {
           "name": "Deskripsi produk",
@@ -2217,7 +2299,7 @@
       "name": "Hasil pencarian",
       "settings": {
         "group_header__0": {
-          "label": "Peta produk"
+          "label": "Isian partisi"
         },
         "md_cols": {
           "label": "Jumlah kolom terminal PC",
@@ -2299,6 +2381,9 @@
         "text": {
           "name": "Deskripsi",
           "settings": {
+            "expansion": {
+              "label": "Ekspansi teks dan fungsi lipat"
+            },
             "text": {
               "label": "Teks"
             }
@@ -2308,7 +2393,7 @@
       "name": "Teks kaya",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Tampilan grafis",
           "name": "Teks kaya"
         }
       },
@@ -2366,7 +2451,7 @@
       "name": "Langganan email",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Operasi pelanggan",
           "name": "Langganan email"
         }
       },
@@ -2438,9 +2523,11 @@
               "label": "Tombol atau lompat gambar"
             },
             "image": {
+              "info": "Disarankan mengunggah gambar dengan rasio 3:1 dan lebar dan tinggi 1920*650",
               "label": "Gambar terminal komputer"
             },
             "image_mobile": {
+              "info": "Disarankan mengunggah gambar dengan rasio 1:2 dan lebar dan tinggi 375*500",
               "label": "Gambar port seluler"
             },
             "link": {
@@ -2500,7 +2587,7 @@
       "name": "Gambar yang diputar secara bergilir",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Tampilan grafis",
           "name": "Gambar yang diputar secara bergilir"
         }
       },
@@ -2622,7 +2709,7 @@
       "name": "Modul komentar",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Komponen kepercayaan",
           "name": "Modul komentar"
         }
       },
@@ -2686,6 +2773,7 @@
               "label": "Deskripsi"
             },
             "image": {
+              "info": "Disarankan mengunggah gambar dengan rasio 1:1 dan lebar dan tinggi 418*530",
               "label": "Gambar"
             },
             "jump_link": {
@@ -2700,7 +2788,7 @@
       "name": "Daftar gambar dan teks",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Tampilan grafis",
           "name": "Daftar gambar dan teks"
         }
       },
@@ -2782,11 +2870,18 @@
         }
       }
     },
+    "timeline": {
+      "presets": {
+        "presets__0": {
+          "category": "Komponen karakteristik"
+        }
+      }
+    },
     "video": {
       "name": "Video",
       "presets": {
         "presets__0": {
-          "category": "Tampilan Isi",
+          "category": "Video",
           "name": "Video"
         }
       },
@@ -3137,17 +3232,26 @@
         "color_scheme_1_bg": {
           "label": "Warna latar belakang"
         },
+        "color_scheme_1_gradient": {
+          "label": "Warna latar belakang (gradien)"
+        },
         "color_scheme_1_text": {
           "label": "Warna kata"
         },
         "color_scheme_2_bg": {
           "label": "Warna latar belakang"
         },
+        "color_scheme_2_gradient": {
+          "label": "Warna latar belakang (gradien)"
+        },
         "color_scheme_2_text": {
           "label": "Warna kata"
         },
         "color_scheme_3_bg": {
           "label": "Warna latar belakang"
+        },
+        "color_scheme_3_gradient": {
+          "label": "Warna latar belakang (gradien)"
         },
         "color_scheme_3_text": {
           "label": "Warna kata"
@@ -3281,6 +3385,12 @@
         },
         "group_header__1": {
           "label": "Klasifikasi produk"
+        },
+        "group_header__2": {
+          "label": "Tepung roti"
+        },
+        "show_breadcrumb": {
+          "label": "Tampilkan Breadcrumb"
         },
         "superscript_decimals": {
           "label": "Tampilan desimal dari harga jual"

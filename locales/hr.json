@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Kodovi za popust premašuju ograničenje količine",
       "existCode": "Kod za popust već postoji",
+      "freeShipping": {
+        " existCode": "Kod za popust za besplatnu isporuku se ponavlja"
+      },
       "list": {
         "unavailable": "Svi kodovi za popust su istekli"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Kod za popust je istekao"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Kod kupona za plaćanje za besplatnu dostavu- zemlja nije dostupna",
+        "logistics-fee-over-limit": "Kod kupona za besplatnu dostavu- troškovi dostave prekoračuju ograničenje"
+      },
+      "code_overdue": "Kod kupona je istekao",
+      "code_user_exceedLimit": "Broj pokušaja korisnika za ovu opciju je premašio ograničenje",
+      "code_user_notSupport": "Korisnik ne može koristiti ovu opciju",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Kod kupona ne smije biti duži od {{range}} znaka.",
       "expected_discount": "Popust"
@@ -92,6 +102,7 @@
       "none_existent": "Roba ne postoji",
       "view_cart": "Pogledaj košaricu"
     },
+    "lack_multilingualism": "*Ova se izjava nije uspjela učitati, možete se obratiti korisničkoj službi da biste prijavili situaciju*",
     "next_step": {
       "calculated_taxes_fees": "Porezi i dostava se računaju na blagajni"
     },
@@ -227,7 +238,7 @@
       "add_address": "Dodaj Novu Adresu",
       "address": "Adresa",
       "adress_full_tip": "50 adresa je spremljeno I trenutno se ne mogu dodati",
-      "common_max": "",
+      "common_max": "Manje od {{max}} znakova!",
       "common_min": "veći od {{min}} znakova",
       "default": "Zadano",
       "delete__address": "Izbriši Adresu",
@@ -408,6 +419,11 @@
       "title": "404 stranica nije pronađena",
       "button": "Nastaviti s kupovinom"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Previše zahtjeva"
+      }
+    },
     "address": {
       "address": "Adresu"
     },
@@ -425,7 +441,9 @@
       "decline": "Odbiti",
       "home": "Naslovna strana",
       "link": "Politika privatnosti",
+      "more": "Više",
       "no_data": "Nema dostupnih podataka",
+      "pack_up": "Odloži",
       "privacy_policy": "politika privatnosti",
       "tel_phone": "Broj telefona",
       "tips": "U cilju poboljšanja vašeg iskustva, koristimo kolačiće za pamćenje podataka o prijavi, prikupljanje statistike i isporuku sadržaja prilagođenog vašim interesima. Kliknite Prihvatiti za „prihvaćanje“ kolačića ili pogledajte našu „Politiku privatnosti“.",
@@ -451,6 +469,15 @@
       "risk_interception": "red ne postoji",
       "submit_btn": "Pogledaj narudžbu",
       "username": "Email/Broj telefona"
+    },
+    "password": {
+      "back": "Nazad",
+      "entry_store": "Uđite u trgovinu",
+      "forget_password": "Pristup putem lozinke",
+      "goto_admin": "Prijavi se sada",
+      "i_am_admin": "Ja sam vlasnik",
+      "input_password": "Unesite lozinku",
+      "password_is_error": "Netočna lozinka, molimo pokušajte ponovo"
     },
     "policy": {
       "service": "Uvjeti pružanja usluge",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kod kupona je uspješno kopiran",
       "coupon_code_copy": "Kopirati",
       "flash_sale_text": "FLASH RASPRODAJA",
-      "flash_sale_tip": "Ograničenje kupnje: {{count}} količina",
+      "flash_sale_tip": "Ograničenje kupnje na: {{count}} stavke",
       "hot_sale": "Rasprodaja!",
       "product_tabs_benefit_discount_locked": "Ostvarite {{offPercent}}% popusta",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% popusta je otključano!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Kupite {{benefitCount}} komada uz {{offPercent}}% popusta",
       "product_tabs_code_benefit_free_unlocked": "Dobijte {{benefitCount}} komada besplatno",
       "product_tabs_threshold": "Kupite {{threshold}}",
-      "purchase_limit": "Ograničenje kupnje {{count}} po osobi",
-      "purchase_limit_each_item": "Ograničenje kupnje od {{count}} po proizvodu po osobi",
+      "purchase_limit": "Kupnja je ograničena na {{count}} promotivnih proizvod(a) ukupno",
+      "purchase_limit_each_item": "Kupnja je ograničena na {{count}} stavku(e) za svaku varijantu",
+      "purchase_limit_each_product": "Kupnja je ograničena na {{count}} stavku(e) za svaki promotivni proizvod",
       "select_promotional_product": "{{selectCount}} Odabranih proizvoda za događaje",
       "sold": "{{count}} po osobi",
       "activity_banner_copy_text": "Kopirati",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Zaokruživanje"
-      }
-    },
     "payments-name": {
       "COD": "Pouzećem",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Popust",
       "free_charge": "Besplatna dostava",
       "free_shipping": "Besplatna dostava",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Dodatni popust prodavatelju",
       "order_tax": "Porez",
       "order_tip": "Napojnica",
@@ -799,9 +817,11 @@
       "error_message_3022": "Veza je istekla",
       "error_message_3023": "Poveznica ima pogrešan format",
       "error_message_3024": "Poveznica je pogrešna",
+      "error_message_3026": "Pogreška formata računa",
       "error_message_4": "Iznimke usluga",
       "error_message_5": "Iznimke usluga",
-      "error_message_6": "Iznimke usluga"
+      "error_message_6": "Iznimke usluga",
+      "error_message_7": "Molimo postavite lozinku sa minimalnom dužinom od 6 znakova i sa maksimalnom dužinom od 18 znakova."
     },
     "editorSwitchCountryTip": "Prebacivanje zemalja nije podržano u uređivaču"
   }

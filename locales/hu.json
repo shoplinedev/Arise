@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "A kedvezménykódok túllépik a mennyiségi limitet",
       "existCode": "A kedvezmény kód már létezik",
+      "freeShipping": {
+        " existCode": "Ismételt ingyenes szállításra szóló kedvezménykód"
+      },
       "list": {
         "unavailable": "Minden kedvezménykód lejárt"
       },
@@ -66,6 +69,13 @@
       "unavailable": "A kedvezmény kód lejárt"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Fizetés Ingyenes szállítás kuponkód - ország eltérés",
+        "logistics-fee-over-limit": "Ingyenes szállítás kuponkód - a szállítási díj meghaladja a korlátot"
+      },
+      "code_overdue": "A kuponkód lejárt",
+      "code_user_exceedLimit": "A felhasználó többször használta a tevékenységet, mint a korlát",
+      "code_user_notSupport": "A felhasználó nem tudja használni a tevékenységet",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Az kupon kód nem haladhatja meg a {{range}} karaktert",
       "expected_discount": "Kedvezmény"
@@ -92,6 +102,7 @@
       "none_existent": "A termék nem létezik",
       "view_cart": "Kosár megtekintése"
     },
+    "lack_multilingualism": "*Ez az utasítás nem sikerült betölteni. Kérjük, vegye fel a kapcsolatot az ügyfélszolgálattal, hogy tükrözze a helyzetet*",
     "next_step": {
       "calculated_taxes_fees": "Az adókat és a szállítási költséget fizetésnél számítják ki"
     },
@@ -227,7 +238,7 @@
       "add_address": "Új cím hozzáadása",
       "address": "Cím",
       "adress_full_tip": "50 cím lett mentve és most nem lehet hozzáadni",
-      "common_max": "",
+      "common_max": "Kevesebb mint {{max}} karakter!",
       "common_min": "nagyobb, mint {{min}} karakter",
       "default": "Alapértelmezett",
       "delete__address": "Cím törlése",
@@ -408,6 +419,11 @@
       "title": "404 oldal nem található",
       "button": "Folytasd a vásárlást"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Túl sok kérelem"
+      }
+    },
     "address": {
       "address": "Cím"
     },
@@ -425,7 +441,9 @@
       "decline": "Elutasítás",
       "home": "Címlap",
       "link": "Adatvédelmi szabályzatát",
+      "more": "Több",
       "no_data": "Nincs elérhető adat",
+      "pack_up": "Kevesebb",
       "privacy_policy": "az Adatvédelmi szabályzatát",
       "tel_phone": "Telefonszám",
       "tips": "A felhasználói élmény javítása érdekében sütiket használunk a bejelentkezési adatok megjegyzéséhez, statisztikák gyűjtéséhez és az Ön érdeklődésére szabott tartalmak biztosításához. A sütik elfogadásához kattintson az „Elfogadás” gombra vagy tekintse meg az „Adatvédelmi szabályzatunkat”.",
@@ -451,6 +469,15 @@
       "risk_interception": "sorrend nem létezik",
       "submit_btn": "Megtekintési sorrend",
       "username": "E-mail/Telefonszám"
+    },
+    "password": {
+      "back": "Vissza",
+      "entry_store": "Írja be az üzletet",
+      "forget_password": "Jelszavas hozzáférés",
+      "goto_admin": "Bejelentkezés most",
+      "i_am_admin": "Én vagyok a tulajdonos",
+      "input_password": "Írja be a jelszót",
+      "password_is_error": "Helytelen jelszó, kérjük, próbálja újra."
     },
     "policy": {
       "service": "Szolgáltatási feltételeit",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "A kuponkód másolása sikeres",
       "coupon_code_copy": "Másolás",
       "flash_sale_text": "VILLÁMAKCIÓ",
-      "flash_sale_tip": "Vásárlási mennyiség: {{count}} mennyiség",
+      "flash_sale_tip": "Vásárlási korlát: {{count}} termék",
       "hot_sale": "Óriási leárazás!",
       "product_tabs_benefit_discount_locked": "Szerezzen {{offPercent}}% kedvezményt",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% kedvezmény érhető el!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Vásároljon {{benefitCount}} darabot {{offPercent}}% kedvezménnyel",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} darabot ingyen kap",
       "product_tabs_threshold": "Vásároljon {{threshold}} értékben",
-      "purchase_limit": "Vásárlási korlát {{count}} személyenként",
-      "purchase_limit_each_item": "{{count}} vásárlási korlátja termékenként és személyenként",
+      "purchase_limit": "A vásárlás összesen {{count}} promóciós termékre korlátozódik",
+      "purchase_limit_each_item": "A vásárlás {{count}} termékre korlátozódik minden változatnál",
+      "purchase_limit_each_product": "A vásárlás {{count}} termékre korlátozódik minden promóciós terméknél",
       "select_promotional_product": "{{selectCount}} esemény termék kiválasztva",
       "sold": "{{count}} eladva",
       "activity_banner_copy_text": "Másolás",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Kerekítés"
-      }
-    },
     "payments-name": {
       "COD": "Készpénzben átvételkor",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Kedvezmény",
       "free_charge": "Ingyenes szállítás",
       "free_shipping": "ingyenes szállítás",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Eladói extra kedvezmény",
       "order_tax": "Adó",
       "order_tip": "Borravaló",
@@ -799,9 +817,11 @@
       "error_message_3022": "A hivatkozás lejárt",
       "error_message_3023": "A hivatkozás hibás",
       "error_message_3024": "Hivatkozásparaméter-hiba",
+      "error_message_3026": "Fiók formátum hiba",
       "error_message_4": "Szolgáltatás kivételek",
       "error_message_5": "Szolgáltatás kivételek",
-      "error_message_6": "Szolgáltatás kivételek"
+      "error_message_6": "Szolgáltatás kivételek",
+      "error_message_7": "Kérjük, állítson be egy minimum 6 karakter hosszúságú és legfeljebb 18 karakter hosszúságú jelszót"
     },
     "editorSwitchCountryTip": "A szerkesztő nem támogatja az országok közötti váltást"
   }

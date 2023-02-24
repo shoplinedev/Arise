@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Rabattkoder överstiger kvantitetsgränsen",
       "existCode": "Rabattkoden finns redan",
+      "freeShipping": {
+        " existCode": "Duplicera gratis fraktkupongkod"
+      },
       "list": {
         "unavailable": "Alla rabattkoder har gått ut"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Rabattkoden har gått ut"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Gratis fraktkupongkod betalad - inkompatibelt land",
+        "logistics-fee-over-limit": "Gratis fraktkupongkod - Leverans över gränsen"
+      },
+      "code_overdue": "Kupongkod har gått ut",
+      "code_user_exceedLimit": "Antalet gånger användaren använde denna aktivitet överskrider gränsen",
+      "code_user_notSupport": "Användaren kan inte använda den här aktiviteten",
       "coupon_code_amount": "Kupong",
       "coupon_code_length_limit": "Kampanjkoden får inte överstiga {{range}} tecken",
       "expected_discount": "Rabatt"
@@ -92,6 +102,7 @@
       "none_existent": "Produkten finns inte",
       "view_cart": "Visa varukorg"
     },
+    "lack_multilingualism": "*Denna meningen kunde inte laddas, du kan kontakta kundservice för att rapportera situationen*",
     "next_step": {
       "calculated_taxes_fees": "Skatter och fraktkostnader beräknade i kassan"
     },
@@ -167,7 +178,7 @@
       "bind": "Obligatorisk",
       "birthday": "Födelsedag",
       "change_password": "Ändra lösenordet",
-      "confirm_btn": "ยืนยัน",
+      "confirm_btn": "Bekräfta",
       "confirm_subscription_modal_btn": "Bekräfta ditt prenumeration",
       "confirm_subscription_modal_content": "Du har tidigare skickat ett prenumeration. Ett bekräftelsemail har skickats till den här e-postadressen. Du kan bekräfta i din e-post eller klicka på den här knappen.",
       "confirm_subscription_modal_title": "Bekräfta din prenumerationen via e-post.",
@@ -227,7 +238,7 @@
       "add_address": "Lägg Till en ny Adress",
       "address": "Adress",
       "adress_full_tip": "50 adresser har sparats och kan inte läggas till just nu",
-      "common_max": "",
+      "common_max": "Mindre än {{max}} tecken!",
       "common_min": "fler än {{min}} tecken",
       "default": "Fel",
       "delete__address": "Radera Adressen",
@@ -408,6 +419,11 @@
       "title": "404 Sidan hittades inte",
       "button": "Fortsätt handla"
     },
+    "abandon": {
+      "Order": {
+        "risk": "För många förfrågningar"
+      }
+    },
     "address": {
       "address": "Adress"
     },
@@ -425,7 +441,9 @@
       "decline": "Vägra",
       "home": "Hemsida",
       "link": "Integritetpolicy",
+      "more": "Mest",
       "no_data": "Inga tillgängliga data",
+      "pack_up": "Mindre",
       "privacy_policy": "Sekretesspolicy",
       "tel_phone": "Telefonnummer",
       "tips": "För att förbättra din upplevelse använder vi cookies för att memorera anslutningsinformation, samla in statistik och erbjuda innehåll som passar dina intressen. Klicka på \"Acceptera\" för att acceptera cookies eller se vår \"Integritetpolicy\".",
@@ -451,6 +469,15 @@
       "risk_interception": "ordning finns inte",
       "submit_btn": "Se beställning",
       "username": "E-post/telefonnummer"
+    },
+    "password": {
+      "back": "Föregående",
+      "entry_store": "Gå in i butiken",
+      "forget_password": "Tillgång till lösenord",
+      "goto_admin": "Loggar du in nu",
+      "i_am_admin": "Jag är ägaren",
+      "input_password": "Ange lösenordet",
+      "password_is_error": "Ord med fel lösenord, försök igen"
     },
     "policy": {
       "service": "Servicevillkor",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kupongkoden kopieras",
       "coupon_code_copy": "Kopiera",
       "flash_sale_text": "FLASH-FÖRSÄLJNING",
-      "flash_sale_tip": "Köpgräns: {{count}} kvantitet",
+      "flash_sale_tip": "Köpgräns: {{count}} sak(er)",
       "hot_sale": "Stor försäljning!",
       "product_tabs_benefit_discount_locked": "Få {{offPercent}}% rabatt",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% rabatt olåst!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Köp {{benefitCount}} bitar med rabatt {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Få {{benefitCount}} gratis bitar",
       "product_tabs_threshold": "Köp {{threshold}}",
-      "purchase_limit": "Köpgräns på {{count}} per person",
-      "purchase_limit_each_item": "Köpgräns för {{count}} per produkt per person",
+      "purchase_limit": "Köp begränsat till {{count}} sak(er) för marknadsföringsprodukt(er)",
+      "purchase_limit_each_item": "Köp begränsat till {{count}} sak(er)för varje variant",
+      "purchase_limit_each_product": "Köp begränsat till {{count}} sak(er) för varje marknadsföringsprodukt",
       "select_promotional_product": "{{selectCount}} utvalda händelsesprodukter",
       "sold": "{{count}} såldes",
       "activity_banner_copy_text": "Kopiera",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Avrundning"
-      }
-    },
     "payments-name": {
       "COD": "Leverans mot återbetalning",
       "Paypal": "PayPal",
@@ -705,11 +728,6 @@
       "discount_off": "Rabatt",
       "free_charge": "Gratis leverans",
       "free_shipping": "gratis leverans",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Ytterligare rabatt från säljaren",
       "order_tax": "Beskatta",
       "order_tip": "Dricks",
@@ -799,9 +817,11 @@
       "error_message_3022": "Länken har upphört att gälla",
       "error_message_3023": "Länken är i fel format",
       "error_message_3024": "Länken är fel",
+      "error_message_3026": "Fel i konto format",
       "error_message_4": "Service Undantag",
       "error_message_5": "Service Undantag",
-      "error_message_6": "Service Undantag"
+      "error_message_6": "Service Undantag",
+      "error_message_7": "Ta bort ett lösenord med en längd på minst 6 tecken och en maximal längd på 18 tecken"
     },
     "editorSwitchCountryTip": "Landsbyte är inte kompatibelt med redaktören"
   }

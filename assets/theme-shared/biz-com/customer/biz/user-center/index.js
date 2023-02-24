@@ -6,7 +6,6 @@ window.SLM['theme-shared/biz-com/customer/biz/user-center/index.js'] = window.SL
   const toSignOut = window['SLM']['theme-shared/biz-com/customer/helpers/signOut.js'].default;
   const { SIGN_IN } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const { reportSignOut, reportClickCenterTab, reportClickMessageTab, reportClickOrderTab } = window['SLM']['theme-shared/biz-com/customer/reports/user-center.js'];
-  const { reportThirdPartPageView } = window['SLM']['theme-shared/biz-com/customer/reports/user-report.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const { getUrlQuery } = window['SLM']['theme-shared/biz-com/customer/utils/url.js'];
   const { CONFIRM_SUBSCRIBE_EMAIL } = window['SLM']['theme-shared/biz-com/customer/constant/const.js'];
@@ -39,7 +38,6 @@ window.SLM['theme-shared/biz-com/customer/biz/user-center/index.js'] = window.SL
     }
 
     const $center = $('#user-center');
-    reportThirdPartPageView();
     $center.find('.signout-link').click(() => {
       toSignOut().then(() => {
         reportSignOut();

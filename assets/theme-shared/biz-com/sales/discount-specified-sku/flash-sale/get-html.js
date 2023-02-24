@@ -77,7 +77,7 @@ window.SLM['theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-htm
       let str = '';
 
       if (salesPlugin.template === '2') {
-        str += `<i>
+        str += `<i style="margin-right: 4px">
         <svg width="14" height="15" viewBox="0 0 14 15" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_365_13698)">
             <path d="M13.4641 0.997925H0.255371V14.2066H13.4641V0.997925Z" fill="white" fill-opacity="0.01" />
@@ -139,12 +139,52 @@ window.SLM['theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-htm
       }
     };
 
+    const getCustomStyle = bannerBgColor => {
+      return {
+        color: '#111111',
+        backgroundColor: `linear-gradient(0deg, ${rgba(bannerBgColor, 0.1)}, ${rgba(bannerBgColor, 0.1)}), #FFFFFF;`
+      };
+    };
+
+    const getBannerLimitStyle = () => {
+      const templateOneStyle = {
+        color: '#FF4139',
+        backgroundColor: 'linear-gradient(270deg, rgba(255, 41, 72, 0.2) 0%, rgba(255, 121, 0, 0.2) 100%), #FFFFFF;'
+      };
+      const templateTwoStyle = {
+        color: '#242833',
+        backgroundColor: 'linear-gradient(0deg, rgba(255, 234, 209, 0.3), rgba(255, 234, 209, 0.3)), #FFFFFF;'
+      };
+
+      if (salesPlugin.template === '1') {
+        if (salesCustom.bannerBgColor) {
+          return getCustomStyle(salesCustom.bannerBgColor);
+        }
+
+        return templateOneStyle;
+      }
+
+      if (salesPlugin.template === '2') {
+        if (salesCustom.bannerBgColor && salesCustom.bannerBgColor !== '#FFEAD1') {
+          return getCustomStyle(salesCustom.bannerBgColor);
+        }
+
+        return templateTwoStyle;
+      }
+
+      return templateOneStyle;
+    };
+
     const getSaleLimitHtml = () => {
-      return `<div class="sales__flash-sale-limit">
-      ${timeLimitActivity.userLimitedType !== 0 && timeLimitActivity.acquirePerUserLimit ? t('sales.general.flash_sale_tip', {
+      const {
+        color,
+        backgroundColor
+      } = getBannerLimitStyle();
+      return timeLimitActivity.userLimitedType !== 0 && timeLimitActivity.acquirePerUserLimit ? `<div class="sales__flash-sale-limit" style="color:${color};background: ${backgroundColor}">
+          ${t('sales.general.flash_sale_tip', {
         count: timeLimitActivity.acquirePerUserLimit
-      }) : ''}
-    </div>`;
+      })}
+        </div>` : '';
     };
 
     return timeLimitActivity.salesPlugin && timeLimitActivity.promotionSubType === 1 && timeLimitActivity.promotionType === 1 ? `<div

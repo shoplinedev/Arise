@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Rabatkoder overstiger mængdegrænsen",
       "existCode": "Rabatkoden findes allerede",
+      "freeShipping": {
+        " existCode": "Rabatkode til gentagen gratis forsendelse"
+      },
       "list": {
         "unavailable": "Alle rabatkoder er udløbet"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Rabatkoden er udløbet"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Betalings kuponkode til gratis forsendelse - land stemmer ikke overens",
+        "logistics-fee-over-limit": "Kuponkode til gratis forsendelse - fragtomkostninger overskrider grænsen"
+      },
+      "code_overdue": "Kuponkode er udløbet",
+      "code_user_exceedLimit": "Antallet af gange, brugeren bruger denne aktivitet, overskrider grænsen",
+      "code_user_notSupport": "Brugeren kan ikke bruge denne aktivitet",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Kuponkoden må ikke være på mere end {{range}} tegn.",
       "expected_discount": "Rabat"
@@ -92,6 +102,7 @@
       "none_existent": "Varer findes ikke",
       "view_cart": "Vis indkøbsvogn"
     },
+    "lack_multilingualism": "*Denne erklæring kunne ikke indlæses. Kontakt venligst kundeservice for at få situationen beskrevet*",
     "next_step": {
       "calculated_taxes_fees": "Skatter og forsendelse beregnet ved udlevering"
     },
@@ -227,7 +238,7 @@
       "add_address": "Tilføj ny adresse",
       "address": "Adresse",
       "adress_full_tip": "50 adresser er blevet gemt og kan ikke tilføjes i øjeblikket",
-      "common_max": "",
+      "common_max": "Mindre end {{max}} tegn!",
       "common_min": "større end {{min}} tegn",
       "default": "Standard",
       "delete__address": "Slet adresse",
@@ -408,6 +419,11 @@
       "title": "404 sider blev ikke fundet",
       "button": "Fortsæt med at shoppe"
     },
+    "abandon": {
+      "Order": {
+        "risk": "For mange anmodninger"
+      }
+    },
     "address": {
       "address": "Adresse"
     },
@@ -425,7 +441,9 @@
       "decline": "Forfald",
       "home": "Hjemmeside",
       "link": "Politik om beskyttelse af personlige oplysninger",
+      "more": "Mere",
       "no_data": "Ingen tilgængelige data",
+      "pack_up": "Derunder",
       "privacy_policy": "Privatliv Politik",
       "tel_phone": "Telefonnummer",
       "tips": "For at forbedre din oplevelse bruger vi cookies til at huske loginoplysninger, indsamle statistikker og levere indhold, der er skræddersyet til dine interesser. Klik på Accepter for at acceptere cookies eller se vores privatlivspolitik.",
@@ -451,6 +469,15 @@
       "risk_interception": "orden eksisterer ikke",
       "submit_btn": "Se ordre",
       "username": "E-mail/telefonnummer"
+    },
+    "password": {
+      "back": "Forrige",
+      "entry_store": "Angiv butikken",
+      "forget_password": "Adgang til adgangskode",
+      "goto_admin": "Log på nu",
+      "i_am_admin": "Jeg er ejeren",
+      "input_password": "Indtast adgangskoden",
+      "password_is_error": "Forkert adgangskode. Prøv igen"
     },
     "policy": {
       "service": "Servicebetingelser",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kuponkode kopiere",
       "coupon_code_copy": "Kopie",
       "flash_sale_text": "FLASH-SALG",
-      "flash_sale_tip": "Købsgrænse: Antal {{count}}",
+      "flash_sale_tip": "Købet grænse: {{count}} vare(r)",
       "hot_sale": "Varmt salg!",
       "product_tabs_benefit_discount_locked": "Få {{offPercent}}% rabat",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% rabat låst op!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Få {{benefitCount}} stykker til en {{offPercent}}% rabat",
       "product_tabs_code_benefit_free_unlocked": "Få {{benefitCount}}gratis",
       "product_tabs_threshold": "Køb {{threshold}}",
-      "purchase_limit": "Købsgrænse {{count}} pr. person",
-      "purchase_limit_each_item": "Købsgrænse på {{count}} pr. produkt pr. Person",
+      "purchase_limit": "Købet er begrænset til {{count}} vare(r) promoverende produkt(er)",
+      "purchase_limit_each_item": "Købet er begrænset til {{count}} vare(r) for hver variant",
+      "purchase_limit_each_product": "Købet er begrænset til {{count}} vare(r) for hver promoverende produkt(er)",
       "select_promotional_product": "{{selectCount}} valgte hændelsesprodukter",
       "sold": "{{count}} blev solgt",
       "activity_banner_copy_text": "Kopie",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Afrunding"
-      }
-    },
     "payments-name": {
       "COD": "Kontanter ved levering",
       "Paypal": "Betaling",
@@ -705,11 +728,6 @@
       "discount_off": "Rabat",
       "free_charge": "Fri fragt",
       "free_shipping": "frysning",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Sælger ekstra rabat",
       "order_tax": "Skat",
       "order_tip": "Tip",
@@ -799,9 +817,11 @@
       "error_message_3022": "Linket er udløbet",
       "error_message_3023": "Linket er i det forkerte format",
       "error_message_3024": "Linket er ikke god.",
+      "error_message_3026": "Fejl i kontoformat",
       "error_message_4": "Service undtagelser",
       "error_message_5": "Service undtagelser",
-      "error_message_6": "Service undtagelser"
+      "error_message_6": "Service undtagelser",
+      "error_message_7": "Angiv en adgangskode med en længde på mindst 6 tegn og højst 18 tegn."
     },
     "editorSwitchCountryTip": "Landeskift er ikke understøttet i editoren i øjeblikket"
   }

@@ -7,7 +7,7 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/base.js'] = window.SL
   const { getLanguage } = window['SLM']['theme-shared/biz-com/customer/utils/helper.js'];
   const { getUrlAllQuery } = window['SLM']['theme-shared/biz-com/customer/utils/url.js'];
   const { getUdbResponseLanguageErrorKey } = window['SLM']['theme-shared/biz-com/customer/helpers/getUdbResponseLanguageErrorKey.js'];
-  const { userHdReport, reportThirdPartPageView } = window['SLM']['theme-shared/biz-com/customer/reports/user-report.js'];
+  const { userHdReport } = window['SLM']['theme-shared/biz-com/customer/reports/user-report.js'];
 
   class BaseCustomer {
     constructor({
@@ -20,7 +20,6 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/base.js'] = window.SL
       this.eid = getEventID();
       this.pvEventId = window.SL_State.get('serverEventId') || getEventID();
       userHdReport();
-      reportThirdPartPageView();
     }
 
     report(eventid, params) {

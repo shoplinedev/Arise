@@ -281,7 +281,23 @@
         }
       },
       "block_order": ["block1", "block2", "block3"]
+    },
+    "app-block-instagram": {
+      "type": "apps",
+      "settings": {
+        "include_margins": {
+          "value": true
+        }
+      },
+      "blocks": {
+        "block1": {
+          "type": "shopline://apps/Instagram照片墙/blocks/app-block/7c8cf6f0-6f59-46db-97f0-a2ee9686ab4b",
+          "settings": {},
+          "is_recommendation": true
+        }
+      },
+      "block_order": ["block1"]
     }
   },
-  "order": ["image-banner", "rich-text", "featured-collection", "multi-media-splicing", "video", "text-columns-with-images"]
+  "order": ["image-banner", "rich-text", "featured-collection", "multi-media-splicing", "video", "text-columns-with-images", "app-block-instagram"]
 }

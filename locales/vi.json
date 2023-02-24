@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Mã giảm giá vượt quá giới hạn số lượng",
       "existCode": "Mã giảm giá đã tồn tại",
+      "freeShipping": {
+        " existCode": "Trùng mã miễn phí vận chuyển"
+      },
       "list": {
         "unavailable": "Tất cả các mã giảm giá đã hết hạn"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Mã giảm giá đã hết hạn"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Thanh toán mã miễn phí vận chuyển - Quốc gia không khớp",
+        "logistics-fee-over-limit": "Mã miễn phí vận chuyển - Vận chuyển quá giới hạn"
+      },
+      "code_overdue": "Mã giảm giá đã hết hạn",
+      "code_user_exceedLimit": "Số lần người dùng đã sử dụng hoạt động này vượt quá giới hạn cho phép",
+      "code_user_notSupport": "Người dùng không thể sử dụng hoạt động này",
       "coupon_code_amount": "Giảm giá mã coupon",
       "coupon_code_length_limit": "Mã giảm giá không được vượt quá {{range}} ký tự",
       "expected_discount": "Giảm giá ước tính"
@@ -92,6 +102,7 @@
       "none_existent": "Hàng hóa không tồn tại",
       "view_cart": "Xem giỏ hàng"
     },
+    "lack_multilingualism": "*Không thể tải hướng dẫn này. Vui lòng liên hệ bộ phận chăm sóc khách hàng để phản ánh tình hình*",
     "next_step": {
       "calculated_taxes_fees": "Thuế và phí vận chuyển sẽ được tính khi thanh toán"
     },
@@ -167,7 +178,7 @@
       "bind": "Liên kết",
       "birthday": "Ngày Sinh Nhật",
       "change_password": "Thay đổi mật khẩu",
-      "confirm_btn": "",
+      "confirm_btn": "Xác nhận",
       "confirm_subscription_modal_btn": "Xác nhận đăng ký",
       "confirm_subscription_modal_content": "Bạn đã gửi đăng ký trước đó. Email xác nhận đã được gửi đến địa chỉ email này. Bạn có thể vào email hoặc nhấn vào nút này để xác nhận.",
       "confirm_subscription_modal_title": "Xác nhận đăng ký qua E-mail của bạn.",
@@ -227,7 +238,7 @@
       "add_address": "Thêm Địa Chỉ Mới",
       "address": "Địa chỉ",
       "adress_full_tip": "Đã thêm mới 50 địa chỉ và tạm thời không thể thêm mới một địa chỉ khác",
-      "common_max": "",
+      "common_max": "Ít hơn {{max}} ký tự!",
       "common_min": "lớn hơn {{min}} ký tự",
       "default": "Mặc Định",
       "delete__address": "Xóa Địa Chỉ",
@@ -408,6 +419,11 @@
       "title": "404 không tìm thấy trang",
       "button": "Tiếp tục mua sắm"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Quá nhiều yêu cầu"
+      }
+    },
     "address": {
       "address": "Địa chỉ"
     },
@@ -425,7 +441,9 @@
       "decline": "Từ chối",
       "home": "Trang chủ",
       "link": "Chính sách quyền riêng tư",
+      "more": "Thêm",
       "no_data": "Không có dữ liệu",
+      "pack_up": "Bớt",
       "privacy_policy": "Chính sách quyền riêng tư",
       "tel_phone": "Số điện thoại",
       "tips": "Trang web này sử dụng cookie để đảm bảo bạn có được trải nghiệm tốt nhất khi truy cập vào trang web của chúng tôi.\r\n",
@@ -451,6 +469,15 @@
       "risk_interception": "đơn đặt hàng không tồn tại",
       "submit_btn": "Xem đơn đặt hàng",
       "username": "Email / Số điện thoại"
+    },
+    "password": {
+      "back": "Quay lại",
+      "entry_store": "Nhập cửa hàng",
+      "forget_password": "Truy cập mật khẩu",
+      "goto_admin": "Đăng ký ngay",
+      "i_am_admin": "Tôi là chủ",
+      "input_password": "Nhập mật khẩu",
+      "password_is_error": "Sai mật khẩu, vui lòng thử lại"
     },
     "policy": {
       "service": "Điều khoản dịch vụ",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Đã sao chép mã phiếu giảm giá thành công",
       "coupon_code_copy": "Sao chép",
       "flash_sale_text": "FLASH SALE",
-      "flash_sale_tip": "Giới hạn: {{count}} sản phẩm",
+      "flash_sale_tip": "Giới hạn mua: {{count}} mặt hàng",
       "hot_sale": "Sản phẩm bán chạy",
       "product_tabs_benefit_discount_locked": "Được giảm {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "Đã mở khóa ưu đãi {{offPercent}}%!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Mua {{benefitCount}} phần với chiết khấu {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Nhận {{benefitCount}} phần miễn phí",
       "product_tabs_threshold": "Mua {{threshold}}",
-      "purchase_limit": "Tối đa {{count}} sản phẩm mỗi khách hàng",
-      "purchase_limit_each_item": "Mỗi sản phẩm giới hạn mua tối đa {{count}} sản phẩm mỗi khách hàng",
+      "purchase_limit": "Mua hạn chế {{count}} mặt hàng đối với các sản phẩm khuyến mại",
+      "purchase_limit_each_item": "Mua hạn chế {{count}} mặt hàng đối với mỗi loại",
+      "purchase_limit_each_product": "Mua hạn chế {{count}} mặt hàng đối với mỗi sản phẩm khuyến mại",
       "select_promotional_product": "Đã chọn {{selectCount}} sản phẩm khuyến mãi",
       "sold": "Đã bán {{count}}",
       "activity_banner_copy_text": "Sao chép",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Làm tròn"
-      }
-    },
     "payments-name": {
       "COD": "Thanh toán khi giao hàng",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Giảm giá",
       "free_charge": "Miễn phí vận chuyển",
       "free_shipping": "Miễn phí vận chuyển",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Khuyến mãi của cửa hàng",
       "order_tax": "Thuế",
       "order_tip": "Tiền típ",
@@ -799,9 +817,11 @@
       "error_message_3022": "Liên kết đã hết hạn",
       "error_message_3023": "Liên kết sai định dạng",
       "error_message_3024": "Liên kết sai",
+      "error_message_3026": "Lỗi định dạng tài khoản",
       "error_message_4": "Ngoại lệ dịch vụ",
       "error_message_5": "Ngoại lệ dịch vụ",
-      "error_message_6": "Ngoại lệ dịch vụ"
+      "error_message_6": "Ngoại lệ dịch vụ",
+      "error_message_7": "Vui lòng đặt mật khẩu có độ dài tối thiểu là 6 ký tự và độ dài tối đa là 18 ký tự"
     },
     "editorSwitchCountryTip": "Trình chỉnh sửa này không hỗ trợ chuyển đổi quốc gia"
   }

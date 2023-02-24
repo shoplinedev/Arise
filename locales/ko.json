@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "할인 코드가 수량 제한을 초과합니다",
       "existCode": "할인 코드가 이미 있습니다.",
+      "freeShipping": {
+        " existCode": "무료배송 할인코드 중복"
+      },
       "list": {
         "unavailable": "모든 할인 코드가 만료되었습니다"
       },
@@ -66,6 +69,13 @@
       "unavailable": "할인 코드가 만료되었습니다"
     },
     "discount": {
+      "code": {
+        "country_not_support": "배송비 무료코드 결제 - 국가불합치입니다",
+        "logistics-fee-over-limit": "배송비 무료 할인 코드 - 배송비 초과 한도"
+      },
+      "code_overdue": "할인코드가 만료되었습니다",
+      "code_user_exceedLimit": "사용자가 이 활동을 사용하는 횟수가 제한을 초과합니다",
+      "code_user_notSupport": "사용자는 이 활동을 사용할 수 없습니다",
       "coupon_code_amount": "혜택코드 혜택",
       "coupon_code_length_limit": "혜택코드는 {{range}}길이를 초과할수 없습니다",
       "expected_discount": "예상 혜택"
@@ -92,6 +102,7 @@
       "none_existent": "상품이 존재하지 않습니다",
       "view_cart": "바구니 보기"
     },
+    "lack_multilingualism": "*이 문구는 로딩에 실패하였으며, 고객센터에 연락하여 상황을 반영할 수 있습니다*",
     "next_step": {
       "calculated_taxes_fees": "다음으로 세금과 운비를 계산합니다"
     },
@@ -167,7 +178,7 @@
       "bind": "귀속",
       "birthday": "생일",
       "change_password": "비밀번호 변경",
-      "confirm_btn": "Patvirtinti",
+      "confirm_btn": "확인",
       "confirm_subscription_modal_btn": "구독을 확인합니다.",
       "confirm_subscription_modal_content": "이전에 구독을 제출하셨습니다. 이메일이 이 이메일함으로 발송되었음을 확인합니다. 이메일에서 확인하거나 이 버튼을 클릭할 수 있습니다.",
       "confirm_subscription_modal_title": "이메일 구독을 확인하세요.",
@@ -227,7 +238,7 @@
       "add_address": "새로운 주소 추가하기",
       "address": "주소",
       "adress_full_tip": "50개 주소를 저장했고 추가할수 없습니다",
-      "common_max": "{{max}}글자보다 적습니다`",
+      "common_max": "{{max}}자 미만!",
       "common_min": "{{min}}자 이상",
       "default": "묵인",
       "delete__address": "주소 삭제",
@@ -408,6 +419,11 @@
       "title": "404 페이지가 존재하지 않습니다",
       "button": "쇼핑을 계속할 거예요"
     },
+    "abandon": {
+      "Order": {
+        "risk": "요청이 너무 잦습니다"
+      }
+    },
     "address": {
       "address": "주소"
     },
@@ -425,7 +441,9 @@
       "decline": "거절합니다.",
       "home": "초기 화면",
       "link": "프라이버시 정책",
+      "more": "펼칩니다",
       "no_data": "아직 데이터가 없습니다",
+      "pack_up": "집어치워요",
       "privacy_policy": "개인정보 정책",
       "tel_phone": "전화번호",
       "tips": "더 좋은 경험을 드릴 수 있도록로그인 상태를 기록하기 위해 쿠키를 사용합니다. 통계 데이터를 수집하고 관심있는 내용을 제공합니다.쿠키의 사용을 허락하기 위해 '접수'를 누르십시오.아니면 우리의 '프라이버시 정책'을 살펴보세요.",
@@ -451,6 +469,15 @@
       "risk_interception": "주문이 존재하지 않습니다",
       "submit_btn": "주문보기",
       "username": "이메일/전화번호"
+    },
+    "password": {
+      "back": "되돌아가다",
+      "entry_store": "상접 진입",
+      "forget_password": "비밀번호로 접근하기",
+      "goto_admin": "로그인하기",
+      "i_am_admin": "저는 점주입니다",
+      "input_password": "비밀번호 입력",
+      "password_is_error": "비밀번호 오류, 다시 입력하세요"
     },
     "policy": {
       "service": "서비스 조항",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "할인코드 복제가 완료되었습니다",
       "coupon_code_copy": "복사",
       "flash_sale_text": "시간제한 판촉",
-      "flash_sale_tip": "구매 제한:{{count}}건",
+      "flash_sale_tip": "구매 제한 수량: {{count}}건",
       "hot_sale": "절찬 판매중",
       "product_tabs_benefit_discount_locked": "{{offPercent}}% 감면해 드립니다",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% 감면 해제되었습니다!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "{{offPercent}}% 할인된 가격으로 {{benefitCount}}개 구매합니다",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}}개를 무료로 받으실 수 있습니다",
       "product_tabs_threshold": "구매 {{threshold}}",
-      "purchase_limit": "매 사람 제한 {{count}}건",
-      "purchase_limit_each_item": "1인당 상품당 {{count}}건 구매가 제한됩니다.",
+      "purchase_limit": "이벤트 상품 {{count}}개 한정 구매 가능",
+      "purchase_limit_each_item": "스타일당 {{count}}개 한정 구매 가능",
+      "purchase_limit_each_product": "이벤트 상품 당 {{count}}개 구매 제한",
       "select_promotional_product": "{{selectCount}}건의 이 활동에 참여하는 상품을 선택했습니다",
       "sold": "이미 {{count}} 판매",
       "activity_banner_copy_text": "복사",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "반올림"
-      }
-    },
     "payments-name": {
       "COD": "물건을 받고 지불합니다",
       "Paypal": "PayPal",
@@ -705,11 +728,6 @@
       "discount_off": "할인",
       "free_charge": "무료배송",
       "free_shipping": "무료 배송",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "상춤 자체정의 할인",
       "order_tax": "세",
       "order_tip": "팁",
@@ -799,9 +817,11 @@
       "error_message_3022": "링크가 비활성화됨",
       "error_message_3023": "잘못된 링크 형식",
       "error_message_3024": "링크 인자 오류",
+      "error_message_3026": "계정 형식 오류",
       "error_message_4": "서비스가 이상합니다",
       "error_message_5": "서비스가 이상합니다",
-      "error_message_6": "서비스가 이상합니다"
+      "error_message_6": "서비스가 이상합니다",
+      "error_message_7": "6-18자리 비밀번호를 설정하세요"
     },
     "editorSwitchCountryTip": "편집기에서 국가 전환을 지원하지 않습니다"
   }

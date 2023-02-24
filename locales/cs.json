@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Slevové kódy překračují limit množství",
       "existCode": "Slevový kód již existuje",
+      "freeShipping": {
+        " existCode": "Doprava Zdarma Kupon Kód Duplikace"
+      },
       "list": {
         "unavailable": "Platnost všech slevových kódů vypršela"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Platnost slevového kódu vypršela"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Platit Doprava Zdarma Kupon Kód - Země Nesoulad",
+        "logistics-fee-over-limit": "Doprava Zdarma Kód Kupónu-Doprava Přes Limit"
+      },
+      "code_overdue": "Platnost kódu kupónu vypršela",
+      "code_user_exceedLimit": "Počet případů, kdy uživatel tuto aktivitu použil, překročí limit",
+      "code_user_notSupport": "Uživatel nemůže tuto aktivitu používat",
       "coupon_code_amount": "Kupón",
       "coupon_code_length_limit": "Kód kupónu nesmí přesáhnout {{range}} znaků",
       "expected_discount": "Sleva"
@@ -92,6 +102,7 @@
       "none_existent": "Produkt neexistuje",
       "view_cart": "Prohlédnout košík"
     },
+    "lack_multilingualism": "*Tuto větu se nepodařilo načíst, můžete kontaktovat zákaznický servis a nahlásit situaci*",
     "next_step": {
       "calculated_taxes_fees": "Daně a doprava vypočítané při pokladně"
     },
@@ -227,7 +238,7 @@
       "add_address": "Přidat Novou Adresu",
       "address": "Adresa",
       "adress_full_tip": "50 adres bylo uloženo a nelze je v tuto chvíli přidat",
-      "common_max": "",
+      "common_max": "Méně než {{max}} znaků!",
       "common_min": "větší než {{min}} znaků",
       "default": "Výchozí",
       "delete__address": "Smazat Adresu",
@@ -408,6 +419,11 @@
       "title": "404 Stránka nebyla nalezena",
       "button": "Pokračovat v nákupu"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Příliš mnoho požadavků"
+      }
+    },
     "address": {
       "address": "Adresa"
     },
@@ -425,7 +441,9 @@
       "decline": "Odmítnout",
       "home": "Přední strana",
       "link": "Zásady ochrany osobních údajů",
+      "more": "Více",
       "no_data": "Nejsou k dispozici žádné údaje",
+      "pack_up": "Méně",
       "privacy_policy": "Zásady Ochrany Osobních Údajů",
       "tel_phone": "Telefonní číslo",
       "tips": "Abychom vylepšili vaše prostředí, používáme cookies k zapamatování informací o připojení, shromažďování statistik a nabízení obsahu, který vyhovuje vašim zájmům. Kliknutím na „Přijmout“ přijměte cookies nebo si přečtěte naše „zásady ochrany osobních údajů“.",
@@ -451,6 +469,15 @@
       "risk_interception": "řád neexistuje",
       "submit_btn": "Zobrazit objednávku",
       "username": "Email/telefonní číslo"
+    },
+    "password": {
+      "back": "Zpět",
+      "entry_store": "Přihlaste se nyní",
+      "forget_password": "Přístupové heslo",
+      "goto_admin": "Přihlaste se nyní",
+      "i_am_admin": "Jsem vlastník",
+      "input_password": "Vložte heslo",
+      "password_is_error": "Nesprávné heslo, zkuste to prosím znovu"
     },
     "policy": {
       "service": "Podmínka",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kód kupónu je úspěšně zkopírován",
       "coupon_code_copy": "Kopie",
       "flash_sale_text": "BLESKOVÝ VÝPRODEJ",
-      "flash_sale_tip": "Limit nákupu: {{count}} množství",
+      "flash_sale_tip": "Nákupní limit: {{count}} položka(y)",
       "hot_sale": "Žhavá sleva!",
       "product_tabs_benefit_discount_locked": "Získejte {{offPercent}}% slevy",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% slevy je odemčeno！",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Koupit {{benefitCount}} kusů se slevou {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Získejte {{benefitCount}} kusů zdarma",
       "product_tabs_threshold": "Kupte si {{threshold}}",
-      "purchase_limit": "Limit nákupu {{count}} za osobu",
-      "purchase_limit_each_item": "Nákupní limit {{count}} na produkt na osobu",
+      "purchase_limit": "Nákup omezen na {{count}} položka(y) pro propagační produkt(y)",
+      "purchase_limit_each_item": "Nákup omezen na {{count}} položka(y) pro každou variantu",
+      "purchase_limit_each_product": "Nákup omezen na {{count}} položka(y) pro každý propagační produkt",
       "select_promotional_product": "Vybrány produkty pro události: {{selectCount}}",
       "sold": "{{count}} prodáno",
       "activity_banner_copy_text": "Kopie",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Zaokrouhlování"
-      }
-    },
     "payments-name": {
       "COD": "Dobírka",
       "Paypal": "PayPal",
@@ -705,11 +728,6 @@
       "discount_off": "Sleva",
       "free_charge": "Doprava zdarma",
       "free_shipping": "doprava zdarma",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Prodejce extra sleva",
       "order_tax": "Daň",
       "order_tip": "Spropitné",
@@ -799,9 +817,11 @@
       "error_message_3022": "Platnost odkazu vypršela",
       "error_message_3023": "Odkaz je ve špatném formátu",
       "error_message_3024": "Odkaz je špatný",
+      "error_message_3026": "Chyba formátu účtu",
       "error_message_4": "Výjimka služby",
       "error_message_5": "Výjimka služby",
-      "error_message_6": "Výjimka služby"
+      "error_message_6": "Výjimka služby",
+      "error_message_7": "Nastavte si heslo s minimální délkou 6 znaků a maximální délkou 18 znaků"
     },
     "editorSwitchCountryTip": "Editor nepodporuje přepínání zemí"
   }

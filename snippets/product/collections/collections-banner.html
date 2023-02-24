@@ -4,7 +4,7 @@
 {{assign 'marginClassMobile' 'marginClassMobile'}}
 {{#if (boolean settings.show_category_name)}}
   {{assign 'boxClass' 'noCover' }}
-  {{assign 'boxClassMobile' 'noCoverMoblie' }}
+  {{assign 'boxClassMobile' 'noCoverMobile' }}
 {{else}}
   {{assign 'boxClass' 'noCoverAndTitle' }}
   {{assign 'boxClassMobile' 'noCoverAndTitleMobile' }}
@@ -50,10 +50,12 @@
   {{#if settings.show_category_name}}
     <div class="product-list-banner-box-title {{boxClass}} {{boxClassMobile}}">
       <div class="container">
+        {{#if theme.settings.show_breadcrumb}}
         <div class="product-list-crumbs">
           <a href="{{ redirect_to '/' }}" class="product-list-banner-box-title-url custom-body4">{{t 'general.general.home'}} /</a>
           <a class="product-list-banner-box-title-url custom-body4" style="opacity: .6;">{{sortation.title}}</a>
         </div>
+        {{/if}}
         <h1 class="product-list-banner-box-title-sortationTitle custom-title2 title2">{{sortation.title}}</h1>
       </div>
     </div>

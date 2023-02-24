@@ -33,27 +33,6 @@ window.SLM['theme-shared/biz-com/customer/reports/orders.js'] = window.SLM['them
 
   _exports.reportPageView = reportPageView;
 
-  function reportThirdPartPageView() {
-    window.SL_EventBus.emit('global:thirdPartReport', {
-      FBPixel: [['track', 'PageView', {}, {
-        eventID: window.__PRELOAD_STATE__ && window.__PRELOAD_STATE__.serverEventId
-      }]],
-      GAAds: [['event', 'conversion', null]],
-      GA: [['event', 'page_view', {
-        page_title: document.title,
-        page_location: window.location.href,
-        page_path: window.location.pathname + window.location.search
-      }]],
-      GA4: [['event', 'page_view', {
-        page_title: document.title,
-        page_location: window.location.href,
-        page_path: window.location.pathname + window.location.search
-      }]]
-    });
-  }
-
-  _exports.reportThirdPartPageView = reportThirdPartPageView;
-
   function reportPageLeave(eventId, params = {}) {
     reportEvent(eventId, {
       event_name: eventName.pageLeave,

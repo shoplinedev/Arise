@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Nuolaidų kodai viršija kiekio limitą",
       "existCode": "Nuolaidos kodas jau yra",
+      "freeShipping": {
+        " existCode": "Dublikuoti nemokamo siuntimo nuolaidos kodus"
+      },
       "list": {
         "unavailable": "Baigėsi visų nuolaidų kodų galiojimo laikas"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Baigėsi nuolaidos kodas"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Mokėjimas Nemokamo siuntimo kupono kodas - šalies skiriasi",
+        "logistics-fee-over-limit": "Nemokamo siuntimo kupono kodas - siuntimo išlaidos viršija ribą"
+      },
+      "code_overdue": "Kupono kodas nebegalioja",
+      "code_user_exceedLimit": "Vartotojas naudoja veiklą daugiau kartų nei riba",
+      "code_user_notSupport": "Vartotojas negali naudoti veiklos",
       "coupon_code_amount": "Kuponas",
       "coupon_code_length_limit": "Kupono kodas negali viršyti {{range}} simbolių",
       "expected_discount": "Nuolaida"
@@ -92,6 +102,7 @@
       "none_existent": "Prekė neegzistuoja",
       "view_cart": "Peržiūrėti vežimėlį"
     },
+    "lack_multilingualism": "* Šio pareiškimo įkelti nepavyko. Susisiekite su klientų aptarnavimo tarnyba, kad paaiškintumėte situaciją*",
     "next_step": {
       "calculated_taxes_fees": "Mokesčiai ir siuntimas apskaičiuotas galutiniam pirkimui"
     },
@@ -167,7 +178,7 @@
       "bind": "Susiejama",
       "birthday": "Gimimo data",
       "change_password": "Pakeisti slaptažodį",
-      "confirm_btn": "Apstiprināt",
+      "confirm_btn": "Patvirtinti",
       "confirm_subscription_modal_btn": "Patvirtinti prenumeratą",
       "confirm_subscription_modal_content": "Pateikėte prenumeratą anksčiau. Patvirtinimo el. pašto laiškas buvo išsiųstas šiuo el. pašto adresu. Galite patvirtinti savo el. pašto laišku arba spausdami šį mygtuką.",
       "confirm_subscription_modal_title": "Patvirtinkite savo el. pašto prenumeratą.",
@@ -227,7 +238,7 @@
       "add_address": "Pridėti naują adresą",
       "address": "Adresas",
       "adress_full_tip": "50 adresai buvo išsaugoti ir negali būti pridėti šiuo metu",
-      "common_max": "",
+      "common_max": "Mažiau nei {{max}} simbolių!",
       "common_min": "daugiau nei {{min}} simboliai",
       "default": "Numatytas",
       "delete__address": "Šalinti adresą",
@@ -408,6 +419,11 @@
       "title": "404 puslapis nerastas",
       "button": "Tęsti apsipirkimą"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Per daug užklausų"
+      }
+    },
     "address": {
       "address": "Adresas"
     },
@@ -425,7 +441,9 @@
       "decline": "Atsisakyti",
       "home": "Titulinis lapas",
       "link": "Privatumo politika",
+      "more": "Daugiau",
       "no_data": "Nėra prieinamų duomenų",
+      "pack_up": "Mažiau",
       "privacy_policy": "Privatumo politika",
       "tel_phone": "Telefono Nr.",
       "tips": "Kad pagerintumėm jūsų patirtį,mes naudojame slapukus, kad prisimintumėm jūsų prisijungimo duomenis,rinkti statistiką ir pateikti turinį pritaikytą jūsų pomėgiams. Paspasukite “Priimti” kad priimtumėte slapukus arba peržiūrėkite mūsų “Privatumo Politika”.",
@@ -451,6 +469,15 @@
       "risk_interception": "tvarka neegzistuoja",
       "submit_btn": "Peržiūrėti užsakymą",
       "username": "Pašto / telefono numeris"
+    },
+    "password": {
+      "back": "Atgal",
+      "entry_store": "Įveskite parduotuvę",
+      "forget_password": "Slaptažodžio prieiga",
+      "goto_admin": "Prisijungti dabar",
+      "i_am_admin": "Esu savininkas (-ė)",
+      "input_password": "Įveskite slaptažodį",
+      "password_is_error": "Neteisingas slaptažodis, prašome bandyti dar kartą"
     },
     "policy": {
       "service": "paslaugos teikimo sąlygos",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kupono kodas sėkmingai nukopijuotas",
       "coupon_code_copy": "Kopija",
       "flash_sale_text": "MOMENTINIS PARDAVIMAS",
-      "flash_sale_tip": "Įsigijimo apribojimas: {{count}} kiekis",
+      "flash_sale_tip": "Pirkinio riba: {{count}} prekių",
       "hot_sale": "Išpardavimas!",
       "product_tabs_benefit_discount_locked": "Gaukite {{offPercent}}% nuolaidą",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% nuolaida atrakinta!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Įsigykite {{benefitCount}} vnt. su {{offPercent}}% nuolaida",
       "product_tabs_code_benefit_free_unlocked": "Gaukite {{benefitCount}} vnt. nemokamai",
       "product_tabs_threshold": "Pirkite {{threshold}}",
-      "purchase_limit": "Įsigijimo apribojimas {{count}} asmeniui",
-      "purchase_limit_each_item": "Vienas asmuo gali įsigyti iki {{count}} produkto vnt",
+      "purchase_limit": "Pirkinys iš viso apribotas {{count}} reklameninės (-ių) prekės (-ių)",
+      "purchase_limit_each_item": "Pirkinys apribotas {{count}} kiekvieno varianto preke (-ėmis)",
+      "purchase_limit_each_product": "Pirkinys apribotas {{count}} kiekvieno reklaminio produkto preke (-ėmis)",
       "select_promotional_product": "{{selectCount}} pasirinktos akcinės prekės",
       "sold": "{{count}} parduota",
       "activity_banner_copy_text": "Kopija",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Apvalinimas"
-      }
-    },
     "payments-name": {
       "COD": "Apmokėti grynais pristačius",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Nuolaida",
       "free_charge": "Nemokamas pristatymas",
       "free_shipping": "Nemokamas pristatymas",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Pardavėjo(s) papildoma nuolaida",
       "order_tax": "Mokesčiai",
       "order_tip": "Patarimas",
@@ -799,9 +817,11 @@
       "error_message_3022": "Nuoroda nebegalioja",
       "error_message_3023": "Nuoroda netinkamai suformuota",
       "error_message_3024": "Nuorodos parametro klaida",
+      "error_message_3026": "Paskyros formato klaida",
       "error_message_4": "Paslaugos išimtys",
       "error_message_5": "Paslaugos išimtys",
-      "error_message_6": "Paslaugos išimtys"
+      "error_message_6": "Paslaugos išimtys",
+      "error_message_7": "Prašome nustatyti slaptažodį minimaliai 6 simbolių ilgio ir maksimaliai 18 simbolių ilgio"
     },
     "editorSwitchCountryTip": "Redagavimo priemonėje nepalaikomas šalių keitimas"
   }

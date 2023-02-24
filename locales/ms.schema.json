@@ -31,6 +31,21 @@
       },
       "name": "Papan pengumumann",
       "settings": {
+        "display_mode": {
+          "label": "Berbilang paparan papan buletin",
+          "options__0": {
+            "label": "Paparan jubin"
+          },
+          "options__1": {
+            "label": "Tata letak kompak"
+          },
+          "options__2": {
+            "label": "Tukar kiri dan kanan"
+          },
+          "options__3": {
+            "label": "Tukar ke atas dan ke bawah"
+          }
+        },
         "group_header__0": {
           "label": "Tidak ada tetapan boleh diedit"
         }
@@ -48,7 +63,7 @@
       "name": "Blog",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Blog",
           "name": "Blog"
         }
       },
@@ -173,7 +188,7 @@
       "name": "Produk kategori",
       "presets": {
         "presets__0": {
-          "category": "Produk",
+          "category": "Paparan produk",
           "name": "Produk kategori"
         }
       },
@@ -229,7 +244,7 @@
       "name": "Hubungi senarai kami",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Operasi pelanggan",
           "name": "Hubungi senarai kami"
         }
       },
@@ -258,7 +273,7 @@
       "name": "Tetapan HTML tersuai",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Tersuai",
           "name": "Tetapan HTML tersuai"
         }
       },
@@ -275,7 +290,7 @@
       "name": "Halaman tersuai",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Tersuai",
           "name": "Halaman tersuai"
         }
       },
@@ -331,7 +346,7 @@
       "name": "Masalah biasa",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Komponen amanah",
           "name": "Masalah biasa"
         }
       },
@@ -360,7 +375,7 @@
       "name": "Produk pilihan khas",
       "presets": {
         "presets__0": {
-          "category": "Produk",
+          "category": "Paparan produk",
           "name": "Produk pilihan khas"
         }
       },
@@ -494,7 +509,7 @@
       "name": "Produk tunggal",
       "presets": {
         "presets__0": {
-          "category": "Produk",
+          "category": "Paparan produk",
           "name": "Produk tunggal"
         }
       },
@@ -626,6 +641,9 @@
         "show_pay_channel": {
           "label": "Papar ikon saluran pembayaran"
         },
+        "show_powered": {
+          "label": "Papar pengisytiharan hak cipta"
+        },
         "show_social_media": {
           "label": "Tunjuk ikon media sosial"
         },
@@ -665,6 +683,7 @@
           "label": "Logo"
         },
         "group_header__1": {
+          "info": "[Lebib banyak plugin navigasi menu](https://apps.shopline.com/detail/?appId=64637)",
           "label": "Menu"
         },
         "header_full_width": {
@@ -806,7 +825,7 @@
       "name": "Sepanduk gambar",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Paparan grafik",
           "name": "Sepanduk gambar"
         }
       },
@@ -961,7 +980,7 @@
       "name": "Modul grafik",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Paparan grafik",
           "name": "Modul grafik"
         }
       },
@@ -982,6 +1001,7 @@
           }
         },
         "image": {
+          "info": "Disyorkan muat naik gambar dengan nisbah 1: 1 dan lebar dan ketinggian 700*700",
           "label": "Penambahan gambar"
         },
         "image_height": {
@@ -1307,11 +1327,67 @@
     "main-page": {
       "name": "Halaman tersuai"
     },
+    "main-password": {
+      "name": "Kata laluan",
+      "settings": {
+        "bg_color": {
+          "label": "Warna latar belakang"
+        },
+        "bg_img": {
+          "label": "Latar belakang gambar"
+        },
+        "btn_bg_color": {
+          "label": "Warna latar belakang butang"
+        },
+        "btn_text_color": {
+          "label": "Warna teks butang"
+        },
+        "describe": {
+          "label": "Penerangan"
+        },
+        "email_tip": {
+          "label": "Teks petua kotak input e-mel"
+        },
+        "group_header__0": {
+          "label": "Logo"
+        },
+        "group_header__1": {
+          "label": "Kandungan"
+        },
+        "group_header__2": {
+          "label": "Media sosial"
+        },
+        "input_color": {
+          "label": "Warna kotak input"
+        },
+        "logo_img": {
+          "label": "Imej logo"
+        },
+        "logo_width": {
+          "label": "Lebar logo"
+        },
+        "media_title": {
+          "label": "Tajuk media sosial"
+        },
+        "show_email": {
+          "label": "Tunjuk langganan emel"
+        },
+        "show_media": {
+          "label": "Media sosial"
+        },
+        "text_color": {
+          "label": "Warna teks"
+        },
+        "title": {
+          "label": "Tajuk"
+        }
+      }
+    },
     "map": {
       "name": "Peta",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Komponen amanah",
           "name": "Peta"
         }
       },
@@ -1463,7 +1539,7 @@
       "name": "Sambungan media",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Komponen ciri",
           "name": "Sambungan media"
         }
       },
@@ -1751,7 +1827,13 @@
           "name": "Ringkasan"
         },
         "buy-button": {
-          "name": "Butang beli"
+          "name": "Butang beli",
+          "settings": {
+            "group_header__0": {
+              "info": "[untuk maklumat lanjut](https://apps.shopline.com/detail/?appId=23033)",
+              "label": "Untuk menggunakan ciri keranjang belanja levitation sedutan, tambah plugin Add to cart"
+            }
+          }
         },
         "description": {
           "name": "Huraian produk",
@@ -2217,7 +2299,7 @@
       "name": "Hasil carian",
       "settings": {
         "group_header__0": {
-          "label": "Peta produk"
+          "label": "Pengisian bahagian berasingan"
         },
         "md_cols": {
           "label": "Bilangan lajur di mudah alih",
@@ -2299,6 +2381,9 @@
         "text": {
           "name": "Penerangan",
           "settings": {
+            "expansion": {
+              "label": "Fungsi pengembangan dan lipatan di teks utama"
+            },
             "text": {
               "label": "Teks"
             }
@@ -2308,7 +2393,7 @@
       "name": "Teks kaya",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Paparan grafik",
           "name": "Teks kaya"
         }
       },
@@ -2366,7 +2451,7 @@
       "name": "Langganan emel",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Operasi pelanggan",
           "name": "Langganan emel"
         }
       },
@@ -2438,9 +2523,11 @@
               "label": "Butang atau lompat gambar"
             },
             "image": {
+              "info": "Disyorkan muat naik gambar dengan nisbah 3:1 dan lebar dan ketinggian 1920*650",
               "label": "Gambar computer"
             },
             "image_mobile": {
+              "info": "Disyorkan muat naik gambar dengan nisbah 1: 2 dan lebar dan ketinggian 375*500",
               "label": "Gambar mudah alih"
             },
             "link": {
@@ -2500,7 +2587,7 @@
       "name": "Gambar karusel",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Paparan grafik",
           "name": "Gambar karusel"
         }
       },
@@ -2622,7 +2709,7 @@
       "name": "Modul ulasan",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Komponen amanah",
           "name": "Modul ulasan"
         }
       },
@@ -2686,6 +2773,7 @@
               "label": "Penerangan"
             },
             "image": {
+              "info": "Disyorkan muat naik gambar dengan nisbah 1: 1 dan lebar dan ketinggian 418*530",
               "label": "Gambar"
             },
             "jump_link": {
@@ -2700,7 +2788,7 @@
       "name": "Senarai gambar dan teks",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Paparan grafik",
           "name": "Senarai gambar dan teks"
         }
       },
@@ -2782,11 +2870,18 @@
         }
       }
     },
+    "timeline": {
+      "presets": {
+        "presets__0": {
+          "category": "Komponen ciri"
+        }
+      }
+    },
     "video": {
       "name": "Video",
       "presets": {
         "presets__0": {
-          "category": "Paparan kandungan",
+          "category": "Video",
           "name": "Video"
         }
       },
@@ -3137,17 +3232,26 @@
         "color_scheme_1_bg": {
           "label": "Warna latar belakang"
         },
+        "color_scheme_1_gradient": {
+          "label": "Warna latar belakang (kecerunan)"
+        },
         "color_scheme_1_text": {
           "label": "Warna teks"
         },
         "color_scheme_2_bg": {
           "label": "Warna latar belakang"
         },
+        "color_scheme_2_gradient": {
+          "label": "Warna latar belakang (kecerunan)"
+        },
         "color_scheme_2_text": {
           "label": "Warna teks"
         },
         "color_scheme_3_bg": {
           "label": "Warna latar belakang"
+        },
+        "color_scheme_3_gradient": {
+          "label": "Warna latar belakang (kecerunan)"
         },
         "color_scheme_3_text": {
           "label": "Warna teks"
@@ -3281,6 +3385,12 @@
         },
         "group_header__1": {
           "label": "Produk kategori"
+        },
+        "group_header__2": {
+          "label": "Serbuk roti"
+        },
+        "show_breadcrumb": {
+          "label": "Tunjuk面包屑"
         },
         "superscript_decimals": {
           "label": "Paparan perpuluhan harga jualan"

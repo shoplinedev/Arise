@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Kode diskon melebihi batas kuantitas",
       "existCode": "Kode diskon sudah ada",
+      "freeShipping": {
+        " existCode": "Gandakan kode diskon pengiriman gratis"
+      },
       "list": {
         "unavailable": "Semua kode diskon telah kedaluwarsa"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Kode diskon telah kedaluwarsa"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Pembayaran Kode diskon pengiriman gratis - Negara tidak cocok",
+        "logistics-fee-over-limit": "Kode diskon pengiriman gratis - ongkos pengiriman melebihi batas"
+      },
+      "code_overdue": "Kode diskon telah kedaluwarsa",
+      "code_user_exceedLimit": "Frekuensi pengguna menggunakan aktivitas ini melebihi batas",
+      "code_user_notSupport": "Pengguna tidak dapat menggunakan aktivitas ini",
       "coupon_code_amount": "Diskon kode kupon",
       "coupon_code_length_limit": "Panjang kode kupon tidak boleh melebihi {{range}}",
       "expected_discount": "Diskon yang diharapkan"
@@ -92,6 +102,7 @@
       "none_existent": "Produk tidak ada",
       "view_cart": "Lihat troli"
     },
+    "lack_multilingualism": "*Kalimat ini gagal memuat, Anda dapat menghubungi layanan pelanggan untuk melaporkan situasi*",
     "next_step": {
       "calculated_taxes_fees": "Selanjutnya menghitung pajak dan biaya pengiriman"
     },
@@ -167,7 +178,7 @@
       "bind": "Mengikat",
       "birthday": "Hari lahir",
       "change_password": "Mengubah kata sandi",
-      "confirm_btn": "Konfirmasi",
+      "confirm_btn": "",
       "confirm_subscription_modal_btn": "Konfirmasikan langganan",
       "confirm_subscription_modal_content": "Sebelumnya Anda telah mengirimkan langganan. Email konfirmasi telah dikirim ke alamat email ini. Anda dapat mengonfirmasi hal ini di email Anda atau klik tombol ini.",
       "confirm_subscription_modal_title": "Silakan konfirmasikan langganan email Anda.",
@@ -227,7 +238,7 @@
       "add_address": "Tambah alamat baru",
       "address": "Alamat",
       "adress_full_tip": "Telah simpan 50 alamat, saat ini tidak bisa tambah",
-      "common_max": "Kurang dari {{max}} karakter",
+      "common_max": "",
       "common_min": "Lebih dari {{min}} karakter",
       "default": "Default",
       "delete__address": "Hapus alamat",
@@ -408,6 +419,11 @@
       "title": "Halaman 404 tidak ada",
       "button": "Lanjutkan belanja"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Permohonan terlalu sering"
+      }
+    },
     "address": {
       "address": "Alamat"
     },
@@ -425,7 +441,9 @@
       "decline": "Tolak",
       "home": "Halaman Pertama",
       "link": "Kebijakan privasi",
+      "more": "Perluas",
       "no_data": "Belum ada data",
+      "pack_up": "Simpan",
       "privacy_policy": "kebijakan pribadi",
       "tel_phone": "Nomor telepon",
       "tips": "Untuk memberi Anda pengalaman yang lebih baik, kami menggunakan cookie untuk merekam status login Anda, mengumpulkan data statistik, demi konten menarik. Klik \"terima\" untuk mengizinkan pakai cookie. Atau lihat \"kebijakan privasi\" kami.",
@@ -451,6 +469,15 @@
       "risk_interception": "pesanan tidak ada",
       "submit_btn": "Tampilan Pemesanan",
       "username": "Email/Nomor Telepon"
+    },
+    "password": {
+      "back": "Kembali",
+      "entry_store": "Masuk toko",
+      "forget_password": "Akses dengan kata sandi",
+      "goto_admin": "Untuk login",
+      "i_am_admin": "Saya adalah penjual",
+      "input_password": "Masukkan kata sandi",
+      "password_is_error": "Kata sandi salah, silakan masukkan lagi"
     },
     "policy": {
       "service": "persyaratan layanan situs web",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kode diskon berhasil disalin",
       "coupon_code_copy": "Salin",
       "flash_sale_text": "Penjualan waktu terbatas",
-      "flash_sale_tip": "Batas pembelian: {{count}} buah",
+      "flash_sale_tip": "Jumlah terbatas: {{count}}",
       "hot_sale": "Panas dijual",
       "product_tabs_benefit_discount_locked": "diskon {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% diskon dibuka!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Dapatkan {{{benefitCount}}} dengan diskon{{{offPercent}}}%",
       "product_tabs_code_benefit_free_unlocked": "Dapatkan {{{benefitCount}}} yang gartis",
       "product_tabs_threshold": "Beli {{threshold}}",
-      "purchase_limit": "Batas pembelian {{count}} per orang",
-      "purchase_limit_each_item": "Batasan pembelian {{count}} buah per orang.",
+      "purchase_limit": "Batas pembelian produk promo {{count}}",
+      "purchase_limit_each_item": "Batas pembelian {{count}} per gaya",
+      "purchase_limit_each_product": "Batas pembelian {{count}} per produk promo",
       "select_promotional_product": "Telah pilih {{selectCount}} produk berpartisipasi promo ini",
       "sold": "Terjual {{count}}",
       "activity_banner_copy_text": "Salin",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "pembulatan"
-      }
-    },
     "payments-name": {
       "COD": "Bayar di tempat (COD)",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Diskon",
       "free_charge": "Gratis ongkos kirim",
       "free_shipping": "Ongkos kirim gratis",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Diskon penjual",
       "order_tax": "Pajak",
       "order_tip": "Tip",
@@ -799,9 +817,11 @@
       "error_message_3022": "Link ini teleh tidak berlaku lagi",
       "error_message_3023": "Format link salah",
       "error_message_3024": "Parameter link salah",
+      "error_message_3026": "Format akun salah",
       "error_message_4": "Layanan abnormal",
       "error_message_5": "Layanan abnormal",
-      "error_message_6": "Layanan abnormal"
+      "error_message_6": "Layanan abnormal",
+      "error_message_7": "Silakan setel kata sandi dengan 6-18 digit"
     },
     "editorSwitchCountryTip": "Tidak mendukung beralih negara di dalam editor"
   }

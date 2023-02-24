@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Rabattcodes überschreiten das Mengenlimit",
       "existCode": "Rabattcode existiert bereits",
+      "freeShipping": {
+        " existCode": "Der Rabattcode für kostenlosen Versand wird wiederholt"
+      },
       "list": {
         "unavailable": "Alle Rabattcodes sind abgelaufen"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Rabattcode ist abgelaufen"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Zahlung Rabattcode für kostenlosen Versand - Land stimmt nicht überein",
+        "logistics-fee-over-limit": "Rabattcode für kostenlosen Versand - Die Versandkosten überschreiten das Limit"
+      },
+      "code_overdue": "Der Rabattcode ist abgelaufen",
+      "code_user_exceedLimit": "Der Benutzer hat die Aktivität mehr als das Limit verwendet",
+      "code_user_notSupport": "Der Nutzer darf diese Aktivität nicht verwenden",
       "coupon_code_amount": "Rabatt für den Angebotscode",
       "coupon_code_length_limit": "Der Angebotscode darf nicht länger als {{range}} Zeichen sein",
       "expected_discount": "Geschätzter Rabatt"
@@ -92,6 +102,7 @@
       "none_existent": "Der Artikel existiert nicht",
       "view_cart": "Warenkorb ansehen"
     },
+    "lack_multilingualism": "*Laden dieser Anweisung fehlgeschlagen, wenden Sie sich bitte an unseren Kundendienst, um die Situation zu melden*",
     "next_step": {
       "calculated_taxes_fees": "Steuern und Frachtkosten werden im nächsten Schritt berechnet"
     },
@@ -227,7 +238,7 @@
       "add_address": "Neue Adresse hinzufügen",
       "address": "Adresse",
       "adress_full_tip": "50 Adressen wurden gespeichert und können derzeit nicht hinzugefügt werden",
-      "common_max": "Weniger als {{max}} Zeichen",
+      "common_max": "Weniger als {{max}} Zeichen!",
       "common_min": "Mehr als {{min}} Zeichen",
       "default": "Standard",
       "delete__address": "Adresse löschen",
@@ -408,6 +419,11 @@
       "title": "Fehler 404 - Seite nicht gefunden",
       "button": "Einkauf fortsetzen"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Zu häufige Anfragen"
+      }
+    },
     "address": {
       "address": "Anschrift"
     },
@@ -425,7 +441,9 @@
       "decline": "Ablehnen",
       "home": "Startseite",
       "link": "Datenschutzbestimmungen",
+      "more": "Mehr anzeigen",
       "no_data": "Keine Daten verfügbar",
+      "pack_up": "Weniger anzeigen",
       "privacy_policy": "Datenschutzrichtlinien der Website zu",
       "tel_phone": "Telefonnummer",
       "tips": "Um Ihr Benutzererlebnis zu verbessern, verwenden wir Cookies, um Ihren Anmeldestatus zu erfassen, Statistiken zu sammeln und Ihnen interessante Inhalte bereitzustellen. Klicken Sie auf \"Akzeptieren\", um die Verwendung von Cookies zuzulassen. Oder sehen Sie sich unsere \"Datenschutzrichtlinie\" an. ",
@@ -451,6 +469,15 @@
       "risk_interception": "Ordnung existiert nicht",
       "submit_btn": "Bestellung ansehen",
       "username": "E-Mail/Telefonnummer"
+    },
+    "password": {
+      "back": "Zurück",
+      "entry_store": "Shop betreten",
+      "forget_password": "Zugang mit Passwort",
+      "goto_admin": "Zum Einloggen",
+      "i_am_admin": "Ich bin der Shopbesitzer",
+      "input_password": "Geben Sie Ihr Passwort ein",
+      "password_is_error": "Falsches Passwort, bitte erneut eingeben"
     },
     "policy": {
       "service": "Nutzungsbedingungen",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Rabattcode erfolgreich kopiert",
       "coupon_code_copy": "Kopieren",
       "flash_sale_text": "Blitzangebot",
-      "flash_sale_tip": "Kauflimit: {{count}} Stück",
+      "flash_sale_tip": "Kauflimit: {{count}} Artikel",
       "hot_sale": "Im heißen Verkauf",
       "product_tabs_benefit_discount_locked": "{{offPercent}}% redudzieren",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% Reduzierung freigeschaltet!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Mit {{offPercent}}% Rabatt kaufen Sie {{benefitCount}} Stück",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} Stück gratis erhalten",
       "product_tabs_threshold": "{{threshold}} kaufen",
-      "purchase_limit": "Kauflimit {{count}} pro Person",
-      "purchase_limit_each_item": "Kauflimit von {{count}} Stk pro Artikel pro Person",
+      "purchase_limit": "Der Kauf ist auf {{count}} Werbeartikel beschränkt",
+      "purchase_limit_each_item": "Der Kauf ist auf {{count}} Artikel für jede Variante beschränkt",
+      "purchase_limit_each_product": "Der Kauf beschränkt auf {{count}} Artikel für jedes Aktionsprodukt",
       "select_promotional_product": "{{selectCount}} Veranstaltungsprodukte ausgewählt",
       "sold": "Verkauft{{count}}",
       "activity_banner_copy_text": "Kopieren",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Rundung"
-      }
-    },
     "payments-name": {
       "COD": "Bargeld bei Lieferung",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Rabatt",
       "free_charge": "Kostenloser Versand",
       "free_shipping": "Gratis Versand",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "händlerdefinierter Rabatt",
       "order_tax": "Steuer",
       "order_tip": "Trinkgeld",
@@ -799,9 +817,11 @@
       "error_message_3022": "Der Link ist abgelaufen",
       "error_message_3023": "Der Link hat ein falsches Format",
       "error_message_3024": "Falsche Link-Parameter",
+      "error_message_3026": "Falsches Kontoformat",
       "error_message_4": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_5": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
-      "error_message_6": "Das System ist ausgelastet, bitte versuchen Sie es später erneut"
+      "error_message_6": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
+      "error_message_7": "Bitte legen Sie ein Kennwort mit einer Mindestlänge von 6 Zeichen und einer maximalen Länge von 18 Zeichen fest."
     },
     "editorSwitchCountryTip": "Der Länderwechsel wird derzeit im Editor nicht unterstützt."
   }

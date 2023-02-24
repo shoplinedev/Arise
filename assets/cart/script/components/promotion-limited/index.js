@@ -5,6 +5,11 @@ window.SLM['cart/script/components/promotion-limited/index.js'] = window.SLM['ca
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { toastTypeEnum } = window['SLM']['cart/script/domain/model/skuPromotionVerify.js'];
   const { cartLimitedEnum } = window['SLM']['cart/script/constant/stockType.js'];
+  const errorTextKeyMap = {
+    '0111': 1,
+    '0112': 2,
+    '0107': 3
+  };
 
   class PromotionLimited {
     constructor(props) {
@@ -16,7 +21,7 @@ window.SLM['cart/script/components/promotion-limited/index.js'] = window.SLM['ca
       const {
         errorList
       } = this.state;
-      return errorList.length && ['0111', '0112'].includes(errorList[0]);
+      return errorList.length && Object.keys(errorTextKeyMap).includes(errorList[0]);
     }
 
     getComponent() {
@@ -32,11 +37,7 @@ window.SLM['cart/script/components/promotion-limited/index.js'] = window.SLM['ca
         return '';
       }
 
-      const errorText = {
-        '0111': 1,
-        '0112': 2
-      };
-      return `<div>${t(`cart.${toastTypeEnum.activeStockLimit}${errorText[errorList[0]]}`, {
+      return `<div>${t(`cart.${toastTypeEnum.activeStockLimit}${errorTextKeyMap[errorList[0]]}`, {
         stock: this.state.maxPurchaseTotalNum > 0 ? this.state.maxPurchaseTotalNum : '0'
       })}</div>`;
     }

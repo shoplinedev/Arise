@@ -1,7 +1,10 @@
 {{ combine_asset_tag 'stage/announcement-bar/index.css' inline=true }}
 <!-- stage/announcement-bar/index.js -->
+{{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
 {{ combine_asset_tag 
+ 'vendors/swiper.min.js'
  'theme-shared/utils/sectionsLoad/index.js'
+ 'commons/utils/isMobile.js'
  'stage/announcement-bar/index.js' 
   type="text/javascript" 
   defer=true
@@ -22,15 +25,20 @@
 {{/with}}
 
 {{#if showAnnouncement}}
-<div class="announcement-bar__container" data-section-type="announcement-bar" data-section-id="{{ section.id }}">
-  <div class="announcement-bar__swiper">
+<div class="announcement-bar__container" data-section-type="announcement-bar" data-section-id="{{ section.id }}" data-display-mode="{{ section.settings.display_mode }}">
+    <div class="announcement-bar__swiper
+    {{#if section.settings.display_mode '===' '3'}}swiper-wrapper{{/if}}
+    {{#if section.settings.display_mode '===' '4'}}swiper-wrapper{{/if}}
+    ">
     {{#each section.block_order as | blockId |}}
       {{#with (lookup ../section.blocks blockId)}}
         {{#if (isTruthy settings.notice_link_text)}}
           <div class="announcement-swiper-slide color-scheme-{{ settings.notice_style }}" {{{ shopline_attributes }}}>
             {{ assign 'linkItem' (useLink settings.notice_link request.uri.query) }}
             <div class="__sl-custom-track-stage-header-announcementItem container body4 {{#if linkItem.finalSrc}}announcement-haslink{{/if}}">
-              <a {{{ linkItem.hrefAttr }}} class="announcement__text">{{ settings.notice_link_text }}</a>
+              <a {{{ linkItem.hrefAttr }}} class="announcement__text">
+                {{{ replace settings.notice_link_text ' ' '&nbsp;' }}}
+              </a>
             </div>
           </div>
         {{/if}}
@@ -44,7 +52,32 @@
 {
   "name": "t:sections.announcement-bar.name",
   "max_blocks": 12,
-  "settings": [],
+  "settings": [
+    {
+      "id": "display_mode",
+      "type": "select",
+      "label": "t:sections.announcement-bar.settings.display_mode.label",
+      "default": "4",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.announcement-bar.settings.display_mode.options__0.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.announcement-bar.settings.display_mode.options__1.label"
+        },
+        {
+          "value": "3",
+          "label": "t:sections.announcement-bar.settings.display_mode.options__2.label"
+        },
+        {
+          "value": "4",
+          "label": "t:sections.announcement-bar.settings.display_mode.options__3.label"
+        }
+      ]
+    }
+  ],
   "blocks": [
     {
       "type": "item",

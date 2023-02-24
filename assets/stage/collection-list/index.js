@@ -42,6 +42,7 @@ window.SLM['stage/collection-list/index.js'] = window.SLM['stage/collection-list
         watchOverflow: true,
         resizeObserver: true,
         slidesPerGroup: 1,
+        slideClass: 'collection-item-slide',
         breakpoints: {
           751: {
             slidesPerView: pc_cols

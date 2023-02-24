@@ -27,7 +27,6 @@
     {{!-- 内容容器没有边框大小为0时，不管全局的圆角配了多少都是0，不然图片会被挤成圆角. --}}
     <div class="text-columns-with-images-item__wrapper global-content-border-shadow {{mobileWrapperCls}} {{#if theme.settings.content_border_thickness '===' 0}}no-border{{/if}}
       {{#if noSpacing '===' 'true'}}no-spacing{{/if}}"
-         style="background: {{themeBg}}"
     >
       {{#if (isTruthy showMask)}}
         {{#style}}

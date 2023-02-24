@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Atlaižu kodi pārsniedz daudzuma limitu",
       "existCode": "Atlaides kods jau pastāv",
+      "freeShipping": {
+        " existCode": "Tiek atkārtots bezmaksas kravas atlaide kods"
+      },
       "list": {
         "unavailable": "Visi atlaižu kodi ir beigušies"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Atlaides kods ir beidzies"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Apmaksas kupona kods bezmaksas piegādei - valsts nav piemērota",
+        "logistics-fee-over-limit": "Kupona kods bezmaksas piegādei – piegādes izmaksas pārsniedz robežu"
+      },
+      "code_overdue": "Kupona kods derīguma termiņš ir beidzies",
+      "code_user_exceedLimit": "Cik reizes lietotājs izmanto šo darbību, pārsniedz ierobežojumu",
+      "code_user_notSupport": "Lietotājs nevar izmantot šo darbību",
       "coupon_code_amount": "Kupons",
       "coupon_code_length_limit": "Kupona kods nedrīkst pārsniegt {{range}} rakstzīmes.",
       "expected_discount": "Atlaide"
@@ -92,6 +102,7 @@
       "none_existent": "Preču neeksistē",
       "view_cart": "Parādiet groza"
     },
+    "lack_multilingualism": "*Šis paziņojums nav ielādēts. Lūdzu, sazinieties ar klientu apkalpošanas dienestu, lai atspoguļotu situāciju*",
     "next_step": {
       "calculated_taxes_fees": "Nodokļi un piegāde aprēķināta kasē"
     },
@@ -167,7 +178,7 @@
       "bind": "Saistoši",
       "birthday": "Dzimšanas datums",
       "change_password": "Mainiet paroli",
-      "confirm_btn": "Sahkan",
+      "confirm_btn": "Apstiprināt",
       "confirm_subscription_modal_btn": "Abonementa verificēšana",
       "confirm_subscription_modal_content": "Jūs iepriekš iesniedzāt abonementu. Uz šo e-pasta adresi ir nosūtīts apstiprinājuma e-pasts. Varat to apstiprināt savā e-pastā vai noklikšķināt uz šīs pogas.",
       "confirm_subscription_modal_title": "Apstipriniet savu abonementu pa e-pastu.",
@@ -227,7 +238,7 @@
       "add_address": "Pievienojiet jaunu adresi",
       "address": "Adrese",
       "adress_full_tip": "50 adreses ir saglabāt, un šobrīd tās nevar pievienot",
-      "common_max": "",
+      "common_max": "Mazāk nekā {{max}} rakstzīmes!",
       "common_min": "vairāk nekā {{min}} rakstzīmes",
       "default": "Kļūda",
       "delete__address": "Dzēsiet adresi",
@@ -408,6 +419,11 @@
       "title": "404 lapa nav atrasta",
       "button": "Turpināt iepirkties"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Pārāk daudz pieprasījumu"
+      }
+    },
     "address": {
       "address": "Adrese"
     },
@@ -425,7 +441,9 @@
       "decline": "Noraidīt",
       "home": "Mājas lapa",
       "link": "Privātuma politika",
+      "more": "Vairāk",
       "no_data": "Informācija nav pieejama",
+      "pack_up": "Mazāk",
       "privacy_policy": "Konfidencialitātes politika",
       "tel_phone": "tālruņa numurs",
       "tips": "Lai uzlabotu jūsu pieredzi, mēs izmantojam sīkdatnes, lai atcerētos pieteikšanās informāciju, apkopotu statistiku un piegādātu saturu, kas pielāgots jūsu interesēm. Noklikšķiniet uz Akceptēt, lai akceptētu sīkfailus, vai skatiet mūsu konfidencialitātes politiku.",
@@ -451,6 +469,15 @@
       "risk_interception": "pasūtījums neeksistē",
       "submit_btn": "Skatīt pasūtījumu",
       "username": "E-pasta/tālruņa numurs"
+    },
+    "password": {
+      "back": "Iepriekšējo",
+      "entry_store": "Ievadiet veikalu",
+      "forget_password": "Piekļuve parolei",
+      "goto_admin": "Pierakstīties tūlīt",
+      "i_am_admin": "Esmu īpašnieks",
+      "input_password": "Ievadiet paroli",
+      "password_is_error": "Nepareizas paroles vārds, lūdzu, mēģiniet vēlreiz"
     },
     "policy": {
       "service": "Lietošanas nosacījumi",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kupona kods tiek veiksmīgi kopēts",
       "coupon_code_copy": "Kopija",
       "flash_sale_text": "FLASH PĀRDOŠANA",
-      "flash_sale_tip": "Pirkuma ierobežojums: {{count}} daudzums",
+      "flash_sale_tip": "Pirkums ierobežot: {{count}} posteņi(em)",
       "hot_sale": "Lieli pārdošanas apjomi!",
       "product_tabs_benefit_discount_locked": "Saņemt {{offPercent}}% atlaidi",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% atlaidi atbloķēta!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Pērciet {{benefitCount}} gabalus ar atlaidi {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Iegūstiet {{benefitCount}} bezmaksas gabalus",
       "product_tabs_threshold": "Pirkums {{threshold}}",
-      "purchase_limit": "Pirkuma limits {{count}} vienai personai",
-      "purchase_limit_each_item": "Pirkšanas ierobežojums {{count}} katram produktam vienai personai",
+      "purchase_limit": "Pirkums ierobežots līdz {{count}} posteņi(em) par reklāmas produktam",
+      "purchase_limit_each_item": "Pirkums ierobežots līdz {{count}} posteņi(em) par katru variantu",
+      "purchase_limit_each_product": "Pirkums ierobežots līdz {{count}} posteņi(em) par katru reklāmas produktam",
       "select_promotional_product": "{{selectCount}} atlasītie notikumu produkti",
       "sold": "{{count}} pārdots",
       "activity_banner_copy_text": "Kopija",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Noapaļošana"
-      }
-    },
     "payments-name": {
       "COD": "Maksājums pēc piegādes",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Atlaide",
       "free_charge": "Bezmaksas piegāde",
       "free_shipping": "bezmaksas piegāde",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Papildu atlaide no pārdevēja",
       "order_tax": "Nodoklis",
       "order_tip": "Padoms",
@@ -799,9 +817,11 @@
       "error_message_3022": "Saitē ir beidzies",
       "error_message_3023": "Saitē ir nepareizā formātā",
       "error_message_3024": "Saitē nav labs",
+      "error_message_3026": "Konta formāta kļūda",
       "error_message_4": "Pakalpojumu izņēmumi",
       "error_message_5": "Pakalpojumu izņēmumi",
-      "error_message_6": "Pakalpojumu izņēmumi"
+      "error_message_6": "Pakalpojumu izņēmumi",
+      "error_message_7": "Lūdzu, definējiet paroli ar vismaz 6 rakstzīmju garumu un maksimālo 18 rakstzīmju garumu."
     },
     "editorSwitchCountryTip": "Valstu pārslēgšana šobrīd redaktorā nav atbalstīta"
   }

@@ -20,10 +20,13 @@
       "color_section_background": "#EAEAEA",
       "color_mask": "#171717",
       "color_scheme_1_bg": "#74716c",
+      "color_scheme_1_gradient": "",
       "color_scheme_1_text": "#ffffff",
       "color_scheme_2_bg": "#f8f8f8",
+      "color_scheme_2_gradient": "",
       "color_scheme_2_text": "#000000",
       "color_scheme_3_bg": "#000000",
+      "color_scheme_3_gradient": "",
       "color_scheme_3_text": "#ffffff",
       "type_title_font": "Arimo:700",
       "type_title_letter_spacing": "0",
@@ -137,17 +140,19 @@
       "co_background_color": "#FFFFFF",
       "co_form_bg_color": "white",
       "co_order_bg_image": {},
-      "co_order_background_color": "#F8FAFB",
+      "co_order_background_color": "#FAFAFA",
       "co_color_btn_bg": "#276EAF",
       "co_color_err_color": "#F04949",
-      "co_color_msg_color": "#276EAF"
+      "co_color_msg_color": "#276EAF",
+      "show_breadcrumb": true
     },
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
         "settings": {
           "show_notice": true,
-          "notice_link_text": "30-day postage paid returns"
+          "notice_link_text": "30-day postage paid returns",
+          "display_mode": "4"
         },
         "disabled": false,
         "blocks": {}
@@ -230,6 +235,7 @@
             ]
           },
           "show_copyright": true,
+          "show_powered": true,
           "copyright_text": "",
           "color_scheme_subscribe": "2",
           "show_letter_subscribe": true,
@@ -288,10 +294,13 @@
         "color_section_background": "#EAEAEA",
         "color_mask": "#171717",
         "color_scheme_1_bg": "#74716c",
+        "color_scheme_1_gradient": "",
         "color_scheme_1_text": "#ffffff",
         "color_scheme_2_bg": "#f8f8f8",
+        "color_scheme_2_gradient": "",
         "color_scheme_2_text": "#000000",
         "color_scheme_3_bg": "#000000",
+        "color_scheme_3_gradient": "",
         "color_scheme_3_text": "#ffffff",
         "type_title_font": "Arimo:700",
         "type_title_letter_spacing": "0",
@@ -404,10 +413,11 @@
         "co_background_color": "#FFFFFF",
         "co_form_bg_color": "white",
         "co_order_bg_image": {},
-        "co_order_background_color": "#F8FAFB",
+        "co_order_background_color": "#FAFAFA",
         "co_color_btn_bg": "#276EAF",
         "co_color_err_color": "#F04949",
-        "co_color_msg_color": "#276EAF"
+        "co_color_msg_color": "#276EAF",
+        "show_breadcrumb": true
       },
       "sections": {
         "announcement-bar": {
@@ -496,6 +506,7 @@
               ]
             },
             "show_copyright": true,
+            "show_powered": true,
             "copyright_text": "",
             "color_scheme_subscribe": "2",
             "show_letter_subscribe": true,

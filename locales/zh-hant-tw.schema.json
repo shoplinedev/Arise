@@ -31,6 +31,21 @@
       },
       "name": "公告欄",
       "settings": {
+        "display_mode": {
+          "label": "多公告欄展示方式",
+          "options__0": {
+            "label": "平鋪展示"
+          },
+          "options__1": {
+            "label": "緊湊佈局"
+          },
+          "options__2": {
+            "label": "左右切換"
+          },
+          "options__3": {
+            "label": "上下切換"
+          }
+        },
         "group_header__0": {
           "label": "沒有可編輯的配置項"
         }
@@ -48,7 +63,7 @@
       "name": "博客",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "博客",
           "name": "博客"
         }
       },
@@ -173,7 +188,7 @@
       "name": "商品分類",
       "presets": {
         "presets__0": {
-          "category": "商品",
+          "category": "商品展示",
           "name": "商品分類"
         }
       },
@@ -229,7 +244,7 @@
       "name": "聯繫我們表單",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "客戶運營",
           "name": "聯繫我們表單"
         }
       },
@@ -258,7 +273,7 @@
       "name": "自定義HTML",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "自定義",
           "name": "自定義HTML"
         }
       },
@@ -275,7 +290,7 @@
       "name": "自定義頁面",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "自定義",
           "name": "自定義頁面"
         }
       },
@@ -331,7 +346,7 @@
       "name": "常見問題",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "信任組件",
           "name": "常見問題"
         }
       },
@@ -360,7 +375,7 @@
       "name": "精選商品",
       "presets": {
         "presets__0": {
-          "category": "商品",
+          "category": "商品展示",
           "name": "精選商品"
         }
       },
@@ -494,7 +509,7 @@
       "name": "單個商品",
       "presets": {
         "presets__0": {
-          "category": "商品",
+          "category": "商品展示",
           "name": "單個商品"
         }
       },
@@ -626,6 +641,9 @@
         "show_pay_channel": {
           "label": "展示支付渠道圖標"
         },
+        "show_powered": {
+          "label": "展示版權申明"
+        },
         "show_social_media": {
           "label": "展示社交媒體圖標"
         },
@@ -665,6 +683,7 @@
           "label": "LOGO"
         },
         "group_header__1": {
+          "info": "[更多菜單導航插件](https://apps.shopline.com/detail/?appId=64637)",
           "label": "菜單"
         },
         "header_full_width": {
@@ -806,7 +825,7 @@
       "name": "圖片橫幅",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "圖文展示",
           "name": "圖片橫幅"
         }
       },
@@ -961,7 +980,7 @@
       "name": "圖文模塊",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "圖文展示",
           "name": "圖文模塊"
         }
       },
@@ -982,6 +1001,7 @@
           }
         },
         "image": {
+          "info": "建議上傳比例為1:1,寬高為700*700的圖片",
           "label": "添加圖片"
         },
         "image_height": {
@@ -1307,11 +1327,67 @@
     "main-page": {
       "name": "自定義頁面"
     },
+    "main-password": {
+      "name": "密碼",
+      "settings": {
+        "bg_color": {
+          "label": "背景顏色"
+        },
+        "bg_img": {
+          "label": "背景圖片"
+        },
+        "btn_bg_color": {
+          "label": "按鈕背景顏色"
+        },
+        "btn_text_color": {
+          "label": "按鈕文本顏色"
+        },
+        "describe": {
+          "label": "描述"
+        },
+        "email_tip": {
+          "label": "郵箱輸入框提示文案"
+        },
+        "group_header__0": {
+          "label": "Logo"
+        },
+        "group_header__1": {
+          "label": "內容"
+        },
+        "group_header__2": {
+          "label": "社交媒體"
+        },
+        "input_color": {
+          "label": "輸入框顏色"
+        },
+        "logo_img": {
+          "label": "Logo圖片"
+        },
+        "logo_width": {
+          "label": "logo寬度"
+        },
+        "media_title": {
+          "label": "社交媒體標題"
+        },
+        "show_email": {
+          "label": "顯示郵箱訂閱"
+        },
+        "show_media": {
+          "label": "社交媒體"
+        },
+        "text_color": {
+          "label": "文本顏色"
+        },
+        "title": {
+          "label": "標題"
+        }
+      }
+    },
     "map": {
       "name": "地圖",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "信任組件",
           "name": "地圖"
         }
       },
@@ -1463,7 +1539,7 @@
       "name": "媒體拼接",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "特色組件",
           "name": "媒體拼接"
         }
       },
@@ -1751,7 +1827,13 @@
           "name": "摘要"
         },
         "buy-button": {
-          "name": "購買按鈕"
+          "name": "購買按鈕",
+          "settings": {
+            "group_header__0": {
+              "info": "[了解詳細信息](https://apps.shopline.com/detail/?appId=23033)",
+              "label": "若要使用吸底懸浮購物車功能，請添加Add to cart插件"
+            }
+          }
         },
         "description": {
           "name": "商品描述",
@@ -2217,7 +2299,7 @@
       "name": "搜索結果",
       "settings": {
         "group_header__0": {
-          "label": "商品圖"
+          "label": "分區填充"
         },
         "md_cols": {
           "label": "移動端列數",
@@ -2299,6 +2381,9 @@
         "text": {
           "name": "描述",
           "settings": {
+            "expansion": {
+              "label": "正文展開"
+            },
             "text": {
               "label": "正文"
             }
@@ -2308,7 +2393,7 @@
       "name": "富文本",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "圖文展示",
           "name": "富文本"
         }
       },
@@ -2366,7 +2451,7 @@
       "name": "郵箱訂閱",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "客戶運營",
           "name": "郵箱訂閱"
         }
       },
@@ -2438,9 +2523,11 @@
               "label": "按鈕或圖片跳轉"
             },
             "image": {
+              "info": "建議上傳比例為3:1,寬高為1920*650的圖片",
               "label": "電腦端圖片"
             },
             "image_mobile": {
+              "info": "建議上傳比例為1:2,寬高為375*500的圖片",
               "label": "移動端圖片"
             },
             "link": {
@@ -2500,7 +2587,7 @@
       "name": "輪播圖",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "圖文展示",
           "name": "輪播圖"
         }
       },
@@ -2622,7 +2709,7 @@
       "name": "評論模塊",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "信任組件",
           "name": "評論模塊"
         }
       },
@@ -2686,6 +2773,7 @@
               "label": "描述"
             },
             "image": {
+              "info": "建議上傳比例為1:1,寬高為418*530的圖片",
               "label": "圖片"
             },
             "jump_link": {
@@ -2700,7 +2788,7 @@
       "name": "圖文列表",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "圖文展示",
           "name": "圖文列表"
         }
       },
@@ -2782,11 +2870,18 @@
         }
       }
     },
+    "timeline": {
+      "presets": {
+        "presets__0": {
+          "category": "特色組件"
+        }
+      }
+    },
     "video": {
       "name": "視頻",
       "presets": {
         "presets__0": {
-          "category": "內容展示",
+          "category": "視頻",
           "name": "視頻"
         }
       },
@@ -3137,17 +3232,26 @@
         "color_scheme_1_bg": {
           "label": "背景顏色"
         },
+        "color_scheme_1_gradient": {
+          "label": "背景顏色（漸變）"
+        },
         "color_scheme_1_text": {
           "label": "文字顏色"
         },
         "color_scheme_2_bg": {
           "label": "背景顏色"
         },
+        "color_scheme_2_gradient": {
+          "label": "背景顏色（漸變）"
+        },
         "color_scheme_2_text": {
           "label": "文字顏色"
         },
         "color_scheme_3_bg": {
           "label": "背景顏色"
+        },
+        "color_scheme_3_gradient": {
+          "label": "背景顏色（漸變）"
         },
         "color_scheme_3_text": {
           "label": "文字顏色"
@@ -3281,6 +3385,12 @@
         },
         "group_header__1": {
           "label": "商品分類"
+        },
+        "group_header__2": {
+          "label": "麵包屑"
+        },
+        "show_breadcrumb": {
+          "label": "顯示麵包屑"
         },
         "superscript_decimals": {
           "label": "售價小數位縮小展示"

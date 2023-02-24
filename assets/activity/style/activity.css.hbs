@@ -131,11 +131,12 @@
 
 .activity__rules{
   color:rgba(var(--color-text));
+  margin-top:12px;
   white-space:pre-line;
 }
 
-.activity__limit,.activity__rules{
-  margin-top:12px;
+.activity__limit{
+  margin-top:4px;
 }
 [data-type_title_text_align=left] .activity__limit{
   text-align:left;
@@ -150,18 +151,38 @@
 }
 
 .activity__limit-tips{
-  margin-right:60px;
+  margin-right:8px;
+  position:relative;
+}
+.activity__limit-tipIcon{
+  left:7px;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+}
+.activity__limit-tipText{
+  display:inline-block;
+  padding-left:25px;
+  text-align:left;
 }
 .activity__limit-time,.activity__limit-tips{
   display:inline-block;
 }
 .activity__limit-time i,.activity__limit-tips i{
   align-items:center;
+  color:rgba(var(--color-discount));
   display:inline-flex;
   margin-bottom:4px;
-  margin-right:12px;
+  margin-right:8px;
   vertical-align:middle;
   width:18px;
+}
+.activity__limit-common{
+  background:rgba(var(--color-discount), .1);
+  border-radius:2px;
+  color:rgba(var(--color-discount));
+  margin-top:8px;
+  padding:4px 8px;
 }
 
 .activity__tags{

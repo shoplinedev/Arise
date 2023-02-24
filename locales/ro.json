@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Codurile de reducere depășesc limita de cantitate",
       "existCode": "Codul de reducere există deja",
+      "freeShipping": {
+        " existCode": "Coduri reducere duplicate pentru livrare gratuită"
+      },
       "list": {
         "unavailable": "Toate codurile de reducere au expirat"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Codul de reducere a expirat"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Plată Cod cupon livrare gratuită- nu se potrivește țara",
+        "logistics-fee-over-limit": "Cod cupon livrare gratuită-costul de livrare depășește limita"
+      },
+      "code_overdue": "Codul cupon a expirat",
+      "code_user_exceedLimit": "Utilizatorul a folosit activitatea peste numărul limită",
+      "code_user_notSupport": "Utilizatorul nu poate folosi activitatea",
       "coupon_code_amount": "Cupon",
       "coupon_code_length_limit": "Codul cuponului nu poate depăși {{range}} de caractere",
       "expected_discount": "Reducere"
@@ -92,6 +102,7 @@
       "none_existent": "Produsul nu exista",
       "view_cart": "Vizualizare coș"
     },
+    "lack_multilingualism": "*Această instrucțiune nu s-a încărcat. Vă rugăm să contactați serviciul clienți pentru a reflecta situația*",
     "next_step": {
       "calculated_taxes_fees": "Taxele și livrarea vor fi calculate la finalizarea comenzii"
     },
@@ -167,7 +178,7 @@
       "bind": "Se asociază",
       "birthday": "Zi de naştere",
       "change_password": "Schimbă parolă",
-      "confirm_btn": "Подтверждение",
+      "confirm_btn": "Confirmați",
       "confirm_subscription_modal_btn": "Confirmați abonarea",
       "confirm_subscription_modal_content": "Ați solicitat o cerere de abonare anterior. Un e-mail de confirmare a fost trimis la această adresă de e-mail. Puteți fie să confirmați în e-mailul dumneavoastră, fie să faceți clic pe acest buton.",
       "confirm_subscription_modal_title": "Confirmați abonarea prin e-mail.",
@@ -227,7 +238,7 @@
       "add_address": "Adaugă adresă nouă",
       "address": "Adresă",
       "adress_full_tip": "50 adrese au fost salvate deja și nu mai pot fi adăugate altele momentan",
-      "common_max": "",
+      "common_max": "Mai puțin de {{max}} caractere!",
       "common_min": "mai mare de {{min}} caractere",
       "default": "Principal",
       "delete__address": "Șterge adresă",
@@ -408,6 +419,11 @@
       "title": "404 pagini nu au fost găsite",
       "button": "Continuă cumpărăturile"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Prea Multe Cereri"
+      }
+    },
     "address": {
       "address": "Adresa"
     },
@@ -425,7 +441,9 @@
       "decline": "Respinge",
       "home": "Pagina principala",
       "link": "Politică de Confidențialitate",
+      "more": "Mai mult",
       "no_data": "Nu există date disponibile",
+      "pack_up": "Mai puțin",
       "privacy_policy": "Politica de confidențialitate",
       "tel_phone": "Număr de telefon",
       "tips": "Pentru îmbunătățirea experienței dvs., utilizăm cookie-uri pentru a reține detaliile de conectare, a colecta statistici și a furniza conținut personalizat conform intereselor dvs. Dați clic pe „Acceptă” pentru a accepta cookie-urile și a consulta „Politica de Confidențialitate”.",
@@ -451,6 +469,15 @@
       "risk_interception": "ordinea nu există",
       "submit_btn": "Vezi comanda",
       "username": "E-mail/Număr de telefon"
+    },
+    "password": {
+      "back": "Înapoi",
+      "entry_store": "Accesați magazinul",
+      "forget_password": "Acces prin parolă",
+      "goto_admin": "Autentificare acum",
+      "i_am_admin": "Sunt titularul",
+      "input_password": "Introduceţi parola",
+      "password_is_error": "Parolă incorectă, încercați din nou"
     },
     "policy": {
       "service": "Condițiile de utilizare a site-ului",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Codul cuponului a fost copiat",
       "coupon_code_copy": "Copiază",
       "flash_sale_text": "VÂNZARE RAPIDĂ",
-      "flash_sale_tip": "Limită de achiziție: Cantitate {{count}}",
+      "flash_sale_tip": "Limită de achiziție: {{count}} articole",
       "hot_sale": "Trend vânzare!",
       "product_tabs_benefit_discount_locked": "Primește {{offPercent}}% reducere",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% reducere disponibilă!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Cumpărați {{benefitCount}} bucăți la {{offPercent}}% reducere",
       "product_tabs_code_benefit_free_unlocked": "Luați {{benefitCount}} bucăți gratis",
       "product_tabs_threshold": "Cumpără {{threshold}}",
-      "purchase_limit": "Limită de achiziție {{count}} per persoană",
-      "purchase_limit_each_item": "Limită de achiziție de {{count}} per produs și per persoană",
+      "purchase_limit": "Achiziție limitată la {{count}} produs(e) promoționale în total",
+      "purchase_limit_each_item": "Achiziție limitată la {{count}} articol(e) pentru fiecare variantă",
+      "purchase_limit_each_product": "Achiziție limitată la {{count}} articol(e) pentru fiecare produs promoțional",
       "select_promotional_product": "Produse {{selectCount}} pentru evenimentul selectat",
       "sold": "{{count}} vândute",
       "activity_banner_copy_text": "Copiază",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Rotunjire"
-      }
-    },
     "payments-name": {
       "COD": "Numerar la livrare",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Reducere",
       "free_charge": "Livrare gratuită",
       "free_shipping": "livrare gratuită",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Reducere suplimentară vânzător",
       "order_tax": "Impozit",
       "order_tip": "Sfat",
@@ -799,9 +817,11 @@
       "error_message_3022": "Link expirat",
       "error_message_3023": "Link-ul este incorect",
       "error_message_3024": "Eroare link parametru",
+      "error_message_3026": "Eroare de format de cont",
       "error_message_4": "Service pentru excepții",
       "error_message_5": "Service pentru excepții",
-      "error_message_6": "Service pentru excepții"
+      "error_message_6": "Service pentru excepții",
+      "error_message_7": "Setați o parolă cu o lungime minimă de 6 caractere și o lungime maximă de 18 de caractere"
     },
     "editorSwitchCountryTip": "Schimbarea țărilor nu are suport în editor"
   }

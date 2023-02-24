@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Discount codes exceed quantity limit",
       "existCode": "Discount code already exists",
+      "freeShipping": {
+        " existCode": "Duplicate free shipping discount code"
+      },
       "list": {
         "unavailable": "All discount codes have expired"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Discount code has expired"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Pay free shipping discount code - country does not match",
+        "logistics-fee-over-limit": "Free shipping discount code - shipping rates exceed maximum limit"
+      },
+      "code_overdue": "Expired discount code",
+      "code_user_exceedLimit": "User has exceeded maximum limit on using this activity",
+      "code_user_notSupport": "User cannot use this activity",
       "coupon_code_amount": "Coupon code discount",
       "coupon_code_length_limit": "Coupon code cannot exceed {{range}} characters.",
       "expected_discount": "Expected discount"
@@ -92,6 +102,7 @@
       "none_existent": "Product does not exist",
       "view_cart": "View cart"
     },
+    "lack_multilingualism": "*Failed to load the statement, you can contact customer service and report this case",
     "next_step": {
       "calculated_taxes_fees": "Taxes and shipping fee will be calculated at checkout"
     },
@@ -227,7 +238,7 @@
       "add_address": "ADD ADDRESS",
       "address": "Address",
       "adress_full_tip": "50 addresses have been saved and cannot be added at the moment",
-      "common_max": "Less than {{max}} characters",
+      "common_max": "Less than {{max}} characters!",
       "common_min": "More than {{min}} characters",
       "default": "Default",
       "delete__address": "Delete Address",
@@ -326,7 +337,7 @@
       "set_password": "Please set a password with a minimum length of 6 characters and a maximum length of 18 characters.",
       "sign__out": "Sign Out",
       "sign_in": "Sign In",
-      "sign_up": "REGISTER",
+      "sign_up": "Register",
       "su": "Su",
       "subscription_desc": "You can get store's latest activity information",
       "sun": "Sun",
@@ -408,6 +419,11 @@
       "title": "404 page not found",
       "button": "Continue shopping"
     },
+    "abandon": {
+      "Order": {
+        "risk": "You have sent too many requests"
+      }
+    },
     "address": {
       "address": "Address"
     },
@@ -425,7 +441,9 @@
       "decline": "Decline",
       "home": "Home",
       "link": "Privacy Policy",
+      "more": "more",
       "no_data": "No data available",
+      "pack_up": "Pack up",
       "privacy_policy": "Privacy Policy",
       "tel_phone": "Phone number",
       "tips": "This website uses cookies to ensure you can get the best experience on our website.",
@@ -451,6 +469,15 @@
       "risk_interception": "The order does not exist",
       "submit_btn": "View order",
       "username": "Email/Phone Number"
+    },
+    "password": {
+      "back": "Back",
+      "entry_store": "Enter the store",
+      "forget_password": "Password access",
+      "goto_admin": "Sign in now",
+      "i_am_admin": "I’m the owner",
+      "input_password": "Enter the password",
+      "password_is_error": "Incorrect password, please try again"
     },
     "policy": {
       "service": "Terms of Service",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Coupon code is successfully copied",
       "coupon_code_copy": "copy",
       "flash_sale_text": "FLASH SALE",
-      "flash_sale_tip": "Limit: {{count}} item(s)",
+      "flash_sale_tip": "Purchase limit: {{count}} items",
       "hot_sale": "Best selling",
       "product_tabs_benefit_discount_locked": "get {{offPercent}}% off",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% off is unlocked！",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Get {{benefitCount}} at {{offPercent}}% OFF",
       "product_tabs_code_benefit_free_unlocked": "Get {{benefitCount}} FREE",
       "product_tabs_threshold": "buy {{threshold}}",
-      "purchase_limit": "Limit {{count}} item(s) per customer",
-      "purchase_limit_each_item": "Each product limit {{count}} item(s) per customer",
+      "purchase_limit": "Purchase limited to {{count}} promotional product(s) in total",
+      "purchase_limit_each_item": "Purchase limited to {{count}} item(s) for each variant",
+      "purchase_limit_each_product": "Purchase limited to {{count}} item(s) for each promotional product",
       "select_promotional_product": "{{selectCount}} promotional products selected",
       "sold": "{{count}} sold",
       "activity_banner_copy_text": "copy",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Rounding"
-      }
-    },
     "payments-name": {
       "COD": "Cash on delivery",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Discount",
       "free_charge": "Free shipping",
       "free_shipping": "Free Shipping",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": "Rounding"
-        }
-      },
       "order_seller_discount": "Seller discount",
       "order_tax": "Tax",
       "order_tip": "Tip",
@@ -799,9 +817,11 @@
       "error_message_3022": "The link has expired",
       "error_message_3023": "The link has a wrong format",
       "error_message_3024": "The link is wrong",
+      "error_message_3026": "Invalid account",
       "error_message_4": "The system is busy, please try again later",
       "error_message_5": "The system is busy, please try again later",
-      "error_message_6": "The system is busy, please try again later"
+      "error_message_6": "The system is busy, please try again later",
+      "error_message_7": "Please set a password with a minimum length of 6 characters and a maximum length of 18 characters."
     },
     "editorSwitchCountryTip": "Unable to change the country in editor"
   }

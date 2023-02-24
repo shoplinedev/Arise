@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Kortingscodes overschrijden de hoeveelheidslimiet",
       "existCode": "Kortingscode bestaat al",
+      "freeShipping": {
+        " existCode": "Gedupliceerde kortingscodes voor gratis verzending"
+      },
       "list": {
         "unavailable": "Alle kortingscodes zijn verlopen"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Kortingscode is verlopen"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Betaling Gratis verzending kortingscode - land mismatch",
+        "logistics-fee-over-limit": "Gratis verzending kortingscode - verzendkosten overschrijden limiet"
+      },
+      "code_overdue": "Kortingscode is verlopen",
+      "code_user_exceedLimit": "Gebruiker heeft de campagne vaker gebruikt dan de limiet",
+      "code_user_notSupport": "Gebruiker kan de campagne niet gebruiken",
       "coupon_code_amount": "Kortingscode aanbieding",
       "coupon_code_length_limit": "Kortingscodes mogen niet langer zijn dan {{range}} tekens",
       "expected_discount": "Verwachte korting"
@@ -92,6 +102,7 @@
       "none_existent": "Item bestaat niet",
       "view_cart": "Winkelwagen bekijken"
     },
+    "lack_multilingualism": "*Deze verklaring word niet geladen, neem contact op met de klantenservice om de situatie te melden*",
     "next_step": {
       "calculated_taxes_fees": "De volgende stap is het berekenen van belasting en bezorgkosten"
     },
@@ -167,7 +178,7 @@
       "bind": "Verbinden",
       "birthday": "Geboortedatum",
       "change_password": "Wachtwoord wijzigen",
-      "confirm_btn": "Potwierdź",
+      "confirm_btn": "Bevestigen",
       "confirm_subscription_modal_btn": "Abonnement bevestigen",
       "confirm_subscription_modal_content": "U heeft eerder een inschrijving ingediend. Er is een bevestigingsmail naar dit e-mailadres gestuurd. U kunt dit bevestigen in uw e-mail of door op deze knop te klikken.",
       "confirm_subscription_modal_title": "Gelieve uw e-mail inschrijving te bevestigen.",
@@ -227,7 +238,7 @@
       "add_address": "Nieuw adres toevoegen",
       "address": "Adres",
       "adress_full_tip": "Al vijftig adressen opgeslagen en kunnen op dit moment niet worden toegevoegd",
-      "common_max": "Minder dan {{max}} tekens",
+      "common_max": "Minder dan {{max}} tekens!",
       "common_min": "Meer dan {{min}} tekens",
       "default": "Standaard",
       "delete__address": "Adres verwijderen",
@@ -408,6 +419,11 @@
       "title": "404-pagina niet gevonden ",
       "button": "Ga verder met winkelen"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Verzoeken zijn te vaak"
+      }
+    },
     "address": {
       "address": "adres"
     },
@@ -425,7 +441,9 @@
       "decline": "Afwijzen",
       "home": "Homepage",
       "link": "Privacybeleid",
+      "more": "Meer",
       "no_data": "Geen gegevens beschikbaar",
+      "pack_up": "Minder",
       "privacy_policy": "Privacybeleid",
       "tel_phone": "Telefoonnummer",
       "tips": "Om u een betere ervaring te bieden, gebruiken wij cookies om uw aanmeldingsstatus te registreren, statistieken te verzamelen en u interessante inhoud aan te bieden. Klik op 'Accepteren' om het gebruik van cookies toe te staan. Of zie onze ’Privacybeleid‘.",
@@ -451,6 +469,15 @@
       "risk_interception": "bestelling bestaat niet",
       "submit_btn": "Bestelling bekijken",
       "username": "E-mail/Telefoonnummer"
+    },
+    "password": {
+      "back": "Terug",
+      "entry_store": "De winkel binnengaan",
+      "forget_password": "Toegang met wachtwoord",
+      "goto_admin": "Ga naar inloggen",
+      "i_am_admin": "Ik ben de winkelier",
+      "input_password": "Wachtwoord invullen",
+      "password_is_error": "Onjuist wachtwoord, vul het opnieuw in"
     },
     "policy": {
       "service": "Dienst voorwaarden",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "De kortingscode is succesvol gekopieerd",
       "coupon_code_copy": "Kopiëren",
       "flash_sale_text": "Beperkte tijd promotie",
-      "flash_sale_tip": "Aankooplimiet: {{count}} stuk",
+      "flash_sale_tip": "Aankooplimiet: {{count}} artikelen",
       "hot_sale": "Hete verkoop",
       "product_tabs_benefit_discount_locked": "krijg {{offPercent}}% korting",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% korting is vrijgespeeld",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Krijg {{benefitCount}} bij {{offPercent}}% KORTING",
       "product_tabs_code_benefit_free_unlocked": "Krijg {{benefitCount}} GRATIS",
       "product_tabs_threshold": "koop {{threshold}}",
-      "purchase_limit": "Aankooplimiet {{count}} stukken per persoon",
-      "purchase_limit_each_item": "Beperkt tot {{count}} stuk per item per persoon",
+      "purchase_limit": "Aankoop beperkt tot {{count}} promotioneel producten in totaal",
+      "purchase_limit_each_item": "Aankoop beperkt tot {{count}} items voor elke variant",
+      "purchase_limit_each_product": "Aankoop beperkt tot {{count}} artikelen voor elk promotioneel product",
       "select_promotional_product": "{{selectCount}} artikelen in deze campagne gekozen",
       "sold": "{{count}} verkocht",
       "activity_banner_copy_text": "Kopiëren",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Afronding"
-      }
-    },
     "payments-name": {
       "COD": "Rembours",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Korting",
       "free_charge": "Gratis bezorging",
       "free_shipping": "Bezorging inbegrepen",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Handelaar extra korting",
       "order_tax": "Belasting",
       "order_tip": "Tips",
@@ -799,9 +817,11 @@
       "error_message_3022": "De link is verlopen",
       "error_message_3023": "Link formaat fout",
       "error_message_3024": "Link parameter fout",
+      "error_message_3026": "Verkeerd formaat van het account",
       "error_message_4": "Service fout",
       "error_message_5": "Service fout",
-      "error_message_6": "Service fout"
+      "error_message_6": "Service fout",
+      "error_message_7": "Stel een wachtwoord in van 6-18 cijfers"
     },
     "editorSwitchCountryTip": "Het wisselen van land wordt momenteel niet ondersteund in de editor."
   }

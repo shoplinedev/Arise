@@ -4,6 +4,7 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
   const _exports = {};
   const loggerService = window['@yy/sl-theme-shared']['/utils/logger'].default;
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
+  const Cookies = window['js-cookie']['*'];
   const createLogger = window['SLM']['theme-shared/utils/createLogger.js'].default;
   const request = window['SLM']['theme-shared/utils/request.js'].default;
   const { SL_State: store } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -14,6 +15,7 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
   const { getSyncData } = window['SLM']['theme-shared/utils/dataAccessor.js'];
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
   const { redirectTo } = window['SLM']['theme-shared/utils/url.js'];
+  const { SERVER_ERROR_CODE } = window['SLM']['theme-shared/utils/constant.js'];
   const {
     GO_TO_CHECKOUT
   } = HD_EVENT_NAME;
@@ -55,6 +57,8 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
       orderFrom = null,
       dataReportReq
     } = {}) => {
+      const marketLanguage = window.Shopline.locale;
+      const displayLanguage = Cookies.get('userSelectLocale') || store.get('request.cookie.userSelectLocale');
       return request.post('/trade/center/order/abandoned/save', {
         products,
         associateCart,
@@ -62,7 +66,11 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
         bundledActivitySeq,
         useMemberPoint,
         orderFrom,
-        dataReportReq
+        dataReportReq,
+        languageInfo: {
+          marketLanguage,
+          displayLanguage
+        }
       });
     }
   };
@@ -267,9 +275,15 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
         abandonedOrderMark
       });
 
-      if (code === 'TCTDEXCEEDED_MAX_AMOUNT_LIMIT') {
+      if (code === SERVER_ERROR_CODE.AMOUNT_EXCEEDS_LIMIT) {
         Toast.init({
           content: t('cart.checkout.max_amount_limit')
+        });
+      }
+
+      if (code === SERVER_ERROR_CODE.ABANDONED_RISK_CONTROL) {
+        Toast.init({
+          content: t('general.abandon.Order.risk')
         });
       }
 

@@ -104,6 +104,7 @@ all_collections:
  'theme-shared/utils/tradeReport/index.js'
  'theme-shared/utils/dataAccessor.js'
  'theme-shared/utils/url.js'
+ 'theme-shared/utils/constant.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/components/hbs/products/checkedEvent/index.js'
  'theme-shared/components/smart-payment/utils.js'
@@ -296,7 +297,7 @@ all_collections:
                       </div>
                     {{/if}}
                     <div class="video__controll {{#if (boolean settings.video_url '&&' settings.cover_image '&&' settings.cover_image.url)}}d-none{{/if}}">
-                      {{#contains settings.video_url 'fromFileSelect'}}                        
+                      {{#contains settings.video_url 'fromFileSelect'}}
                         {{ assign 'video_id' (split settings.video_url '.mp4') }}
                         {{ assign 'video_id' (last (split (itemAt video_id 0) '/')) }}
                         <div
@@ -304,8 +305,8 @@ all_collections:
                           id="Video-{{ id }}"
                           data-video-id="{{ video_id }}"
                           data-type="slvideo"
-                          data-url="{{ settings.video_url }}"   
-                          style="height: 100%"                                                 
+                          data-url="{{ settings.video_url }}"
+                          style="height: 100%"
                         >
                         </div>
                       {{else}}
@@ -613,6 +614,7 @@ all_collections:
   "presets": [
     {
       "name": "t:sections.multi-media-splicing.presets.presets__0.name",
+      "category_index": 4,
       "category": "t:sections.multi-media-splicing.presets.presets__0.category",
       "blocks": [
         {

@@ -44,5 +44,10 @@ window.SLM['theme-shared/utils/constant.js'] = window.SLM['theme-shared/utils/co
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': FILE_TYPE.XLSX
   };
   _exports.FILE_TYPE_MAP = FILE_TYPE_MAP;
+  const SERVER_ERROR_CODE = {
+    AMOUNT_EXCEEDS_LIMIT: 'TCTDEXCEEDED_MAX_AMOUNT_LIMIT',
+    ABANDONED_RISK_CONTROL: 'TRD_123768_B1409'
+  };
+  _exports.SERVER_ERROR_CODE = SERVER_ERROR_CODE;
   return _exports;
 }();

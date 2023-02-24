@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "डिस्काउंट कोड मात्रा सीमा से अधिक है",
       "existCode": "डिस्काउंट कोड पहले से मौजूद है",
+      "freeShipping": {
+        " existCode": "फ्री फ्रेट के लिए डिस्काउंट कोड दो बार दर्ज किया गया है"
+      },
       "list": {
         "unavailable": "सभी छूट कोड समाप्त हो गए हैं"
       },
@@ -66,6 +69,13 @@
       "unavailable": "डिस्काउंट कोड समाप्त हो गया है"
     },
     "discount": {
+      "code": {
+        "country_not_support": "निःशुल्क शिपिंग के लिए भुगतान कूपन कोड—देश का मिलान नहीं हुआ",
+        "logistics-fee-over-limit": "मुफ़्त शिपिंग के लिए कूपन कोड — भाड़ा शुल्क से अधिक"
+      },
+      "code_overdue": "कूपन कोड समाप्त हो गया है",
+      "code_user_exceedLimit": "उपयोगकर्ता ने इस गतिविधि का उपयोग किए जाने की संख्या को पार कर लिया है",
+      "code_user_notSupport": "उपयोगकर्ता इस गतिविधि का उपयोग नहीं कर सकता",
       "coupon_code_amount": "कूपन",
       "coupon_code_length_limit": "कूपन कोड {{range}} वर्णों से ज्यादा नहीं हो सकता।",
       "expected_discount": "छूट"
@@ -92,6 +102,7 @@
       "none_existent": "सामग्री उपलब्ध नहीं है",
       "view_cart": "कार्ट देंखे"
     },
+    "lack_multilingualism": "*यह कथन लोड करने में विफल रहा, आप स्थिति की रिपोर्ट करने के लिए ग्राहक सेवा से संपर्क कर सकते हैं*",
     "next_step": {
       "calculated_taxes_fees": "चेकआउट के समय कर और शिपिंग की गिनती"
     },
@@ -227,7 +238,7 @@
       "add_address": "नया पता जोड़ें",
       "address": "पता",
       "adress_full_tip": "50 पते सहेजे गए हैं और इस समय जोड़े नहीं जा सकते है",
-      "common_max": "",
+      "common_max": "{{max}} वर्णों से कम!",
       "common_min": "{{मिनट}} वर्णों से अधिक",
       "default": "डिफॉल्ट",
       "delete__address": "पता हटाएं",
@@ -408,6 +419,11 @@
       "title": "404 पेज नहीं मिला",
       "button": "शॉपिंग जारी रखें"
     },
+    "abandon": {
+      "Order": {
+        "risk": "बहुत अधिक अनुरोध"
+      }
+    },
     "address": {
       "address": "पता"
     },
@@ -425,7 +441,9 @@
       "decline": "अस्वीकार",
       "home": "मुखपृष्ठ",
       "link": "गोपनीयता नीति",
+      "more": "और",
       "no_data": "कोई डेटा उपलब्ध नहीं है",
+      "pack_up": "हटाएं रखे",
       "privacy_policy": "से सहमत हूं",
       "tel_phone": "फ़ोन नंबर",
       "tips": "आपके अनुभव को बेहतर बनाने के लिए, हम लॉग-इन विवरण याद रखने, आंकड़े जोड़ने और आपकी रुचियों के अनुरूप सामग्री देने के लिए कुकीज़ का उपयोग करते हैं। कुकीज़ को \"स्वीकार\" करने के लिए स्वीकार करें पर दबाएं या हमारी \"गोपनीयता नीति\" देखें।",
@@ -451,6 +469,15 @@
       "risk_interception": "आदेश मौजूद नहीं है",
       "submit_btn": "आर्डर देखें",
       "username": "ईमेल/फोन नंबर"
+    },
+    "password": {
+      "back": "वापस जाएं",
+      "entry_store": "स्टोर में जाएं",
+      "forget_password": "पासवर्ड एक्सेस",
+      "goto_admin": "अभी साइन इन करें",
+      "i_am_admin": "मैं मालिक हूँ",
+      "input_password": "पासवर्ड दर्ज करें",
+      "password_is_error": "गलत पासवर्ड। कृपया पुन: प्रयास करें"
     },
     "policy": {
       "service": "शर्तें और",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "कूपन कोड सफलतापूर्वक कॉपी किया गया",
       "coupon_code_copy": "कॉपी करें",
       "flash_sale_text": "तेज़ बिक्री",
-      "flash_sale_tip": "खरीद सीमा: {{count}} राशि",
+      "flash_sale_tip": "खरीदारी की सीमा: {{count}} आइटम",
       "hot_sale": "धमाकेदार सेल!",
       "product_tabs_benefit_discount_locked": "{{offPercent}}% छूट पाएं",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% छूट अनलॉक हो गई है!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "{{benefitCount}} टुकड़े {{offPercent}}% छूट में खरीदे",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} टुकड़े मुफ्त में पाए",
       "product_tabs_threshold": "ख़रीदें {{threshold}}",
-      "purchase_limit": "खरीदारी की सीमा {{count}} प्रति व्यक्ति",
-      "purchase_limit_each_item": "खरीदारी सीमा {{count}} प्रति व्यक्ति",
+      "purchase_limit": "खरीदारी कुल {{count}} प्रचारक उत्पाद(नों) तक सीमित है",
+      "purchase_limit_each_item": "प्रत्येक संस्करण के लिए {{count}} आइटम की खरीदारी सीमित है",
+      "purchase_limit_each_product": "प्रत्येक प्रचारक उत्पाद के लिए खरीदारी {{count}} आइटम तक सीमित है",
       "select_promotional_product": "{{selectCount}} ईवेंट उत्पाद चयनित",
       "sold": "{{count}} बिकी",
       "activity_banner_copy_text": "कॉपी करें",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "गोलाई"
-      }
-    },
     "payments-name": {
       "COD": "डिलवरी पर नकद देना",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "छूट",
       "free_charge": "मुफ़्त शिपिंग",
       "free_shipping": "मुफ़्त शिपिंग",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "विक्रेता अतिरिक्त छूट",
       "order_tax": "कर",
       "order_tip": "टिप",
@@ -799,9 +817,11 @@
       "error_message_3022": "लिंक की वैधता समाप्त हुआ",
       "error_message_3023": "लिंक का तरीका गलत है",
       "error_message_3024": "लिंक गलत है",
+      "error_message_3026": "अकाउंट फॉर्मेट एरर",
       "error_message_4": "सेवा के अपवाद",
       "error_message_5": "सेवा के अपवाद",
-      "error_message_6": "सेवा के अपवाद"
+      "error_message_6": "सेवा के अपवाद",
+      "error_message_7": "कृपया एक पासवर्ड सेट करें जिसकी लंबाई कम से कम 6 वर्ण और अधिकतम लंबाई 18 वर्ण हो।"
     },
     "editorSwitchCountryTip": "संपादक में देश बदलना समर्थित नहीं है"
   }

@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Kod diskaun melebihi had kuantiti",
       "existCode": "Kod diskaun sudah wujud",
+      "freeShipping": {
+        " existCode": "Penduaan Kod Kupon Penghantaran Percuma"
+      },
       "list": {
         "unavailable": "Semua kod diskaun telah tamat tempoh"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Kod diskaun telah tamat tempoh"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Bayar Kod Kupon Penghantaran Percuma - Negara Tidak Sepadan",
+        "logistics-fee-over-limit": "Kod Kupon Penghantaran Percuma - Penghantaran Melebihi Had"
+      },
+      "code_overdue": "Kod kupon telah tamat tempoh",
+      "code_user_exceedLimit": "Bilangan kali pengguna telah menggunakan aktiviti ini melebihi had",
+      "code_user_notSupport": "Pengguna tidak boleh menggunakan aktiviti ini",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Kod kupon tidak boleh melebihi {{range}} aksara",
       "expected_discount": "Diskaun"
@@ -92,6 +102,7 @@
       "none_existent": "Barang tak ada",
       "view_cart": "Lihat kart"
     },
+    "lack_multilingualism": "*Ayat ini gagal dimuat, anda boleh menghubungi bahagian khidmat pelanggan untuk membuat aduan tentang keadaan ini*",
     "next_step": {
       "calculated_taxes_fees": "Cukai dan penghantaran dikira semasa semakan keluar"
     },
@@ -167,7 +178,7 @@
       "bind": "Mengikat",
       "birthday": "Tarikh Lahir",
       "change_password": "Ubah kata laluan",
-      "confirm_btn": "Bekrefte",
+      "confirm_btn": "Sahkan",
       "confirm_subscription_modal_btn": "Sahkan Langganan",
       "confirm_subscription_modal_content": "Anda telah menyerahkan langganan sebelum ini. E-mel pengesahan telah dihantar ke alamat e-mel ini. Anda boleh sama ada mengesahkan dalam e-mel anda atau klik butang ini.",
       "confirm_subscription_modal_title": "Sahkan langganan E-mel anda.",
@@ -227,7 +238,7 @@
       "add_address": "Tambah Alamat Baharu",
       "address": "Alamat",
       "adress_full_tip": "50 alamat telah disimpan dan tidak boleh ditambahkan pada ketika ini",
-      "common_max": "",
+      "common_max": "Kurang daripada {{max}} aksara!",
       "common_min": "lebih besar daripada {{min}} aksara",
       "default": "Lalai",
       "delete__address": "Padam Alamat",
@@ -408,6 +419,11 @@
       "title": "404 halaman tidak dijumpai",
       "button": "Teruskan membeli-belah"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Terlalu banyak permintaan"
+      }
+    },
     "address": {
       "address": "Alamat"
     },
@@ -425,7 +441,9 @@
       "decline": "Tolak",
       "home": "Laman utama",
       "link": "Dasar Privasi",
+      "more": "Lebih",
       "no_data": "Tiada data tersedia",
+      "pack_up": "Kurang",
       "privacy_policy": "Dasar Privasi Tapak Web",
       "tel_phone": "Nombor telefon",
       "tips": "Untuk memberi anda pengalaman yang lebih baik, kami menggunakan kuki untuk merakam status log masuk anda, mengumpul statistik, dan memberi kandungan yang menarik untuk anda. Klik \"Terima\" untuk membenarkan penggunaan kuki. Atau semak \"Dasar Privasi\" kami.",
@@ -451,6 +469,15 @@
       "risk_interception": "perintah tidak wujud",
       "submit_btn": "Lihat Pesanan",
       "username": "E-mel/Nombor Telefon"
+    },
+    "password": {
+      "back": "Kembali",
+      "entry_store": "Masuk kedai",
+      "forget_password": "Akses kata laluan",
+      "goto_admin": "Daftar masuk sekarang",
+      "i_am_admin": "Saya ialah pemilik",
+      "input_password": "Masukkan kata laluan",
+      "password_is_error": "Kata laluan yang salah, sila cuba lagi"
     },
     "policy": {
       "service": "Terma Perkhidmatan",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kod kupon telah berjaya disalin",
       "coupon_code_copy": "Salinan",
       "flash_sale_text": "JUALAN KILAT",
-      "flash_sale_tip": "Had pembelian: {{count}} kuantiti",
+      "flash_sale_tip": "Had pembelian: {{count}} item",
       "hot_sale": "Jualan hangat!",
       "product_tabs_benefit_discount_locked": "Dapatkan potongan {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "Potongan {{offPercent}}% telah dibuka!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Beli {{benefitCount}} unit dengan {{offPercent}}% diskaun",
       "product_tabs_code_benefit_free_unlocked": "Dapatkan {{benefitCount}} unit secara percuma",
       "product_tabs_threshold": "Beli {{threshold}}",
-      "purchase_limit": "Had pembelian {{count}} bagi setiap orang",
-      "purchase_limit_each_item": "Had pembelian {{count}} setiap produk setiap orang",
+      "purchase_limit": "Pembelian terhad kepada {{count}} item bagi produk promosi",
+      "purchase_limit_each_item": "Pembelian terhad kepada {{count}} item bagi setiap varian",
+      "purchase_limit_each_product": "Pembelian terhad kepada {{count}} item bagi setiap produk promosi",
       "select_promotional_product": "{{selectCount}} produk peristiwa dipilih",
       "sold": "{{count}} dijual",
       "activity_banner_copy_text": "Salinan",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Membundarkan"
-      }
-    },
     "payments-name": {
       "COD": "Bayar tunai waktu terima",
       "Paypal": "PayPal",
@@ -705,11 +728,6 @@
       "discount_off": "Diskaun",
       "free_charge": "Penghantaran percuma",
       "free_shipping": "penghantaranpercuma",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Diskaun tambahan penjual",
       "order_tax": "Cukai",
       "order_tip": "Tip",
@@ -799,9 +817,11 @@
       "error_message_3022": "Pautan telah tamat tempoh",
       "error_message_3023": "Pautan mempunyai format yang salah",
       "error_message_3024": "Pautan adalah salah",
+      "error_message_3026": "Ralat format akaun",
       "error_message_4": "Pengecualian perkhidmatan",
       "error_message_5": "Pengecualian perkhidmatan",
-      "error_message_6": "Pengecualian perkhidmatan"
+      "error_message_6": "Pengecualian perkhidmatan",
+      "error_message_7": "Sila tetapkan kata laluan. dengan panjang minimum 6 aksara dan panjang maksimum 18 aksara"
     },
     "editorSwitchCountryTip": "Pertukaran negara tidak disokong dalam editor"
   }

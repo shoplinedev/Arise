@@ -140,6 +140,12 @@
         "default": "#ffffff"
       },
       {
+        "id": "color_scheme_1_gradient",
+        "type": "color_background_picker",
+        "label": "t:settings_schema.color.settings.color_scheme_1_gradient.label",
+        "default": ""
+      },
+      {
         "id": "color_scheme_1_text",
         "type": "color_picker",
         "label": "t:settings_schema.color.settings.color_scheme_1_text.label",
@@ -157,6 +163,12 @@
         "default": "#acc6c3"
       },
       {
+        "id": "color_scheme_2_gradient",
+        "type": "color_background_picker",
+        "label": "t:settings_schema.color.settings.color_scheme_2_gradient.label",
+        "default": ""
+      },
+      {
         "id": "color_scheme_2_text",
         "type": "color_picker",
         "label": "t:settings_schema.color.settings.color_scheme_2_text.label",
@@ -172,6 +184,12 @@
         "type": "color_picker",
         "label": "t:settings_schema.color.settings.color_scheme_3_bg.label",
         "default": "#f2f2ef"
+      },
+      {
+        "id": "color_scheme_3_gradient",
+        "type": "color_background_picker",
+        "label": "t:settings_schema.color.settings.color_scheme_3_gradient.label",
+        "default": ""
       },
       {
         "id": "color_scheme_3_text",
@@ -365,6 +383,16 @@
           }
         ],
         "default": "collection"
+      },
+      {
+        "type": "group_header",
+        "label": "t:settings_schema.design.settings.group_header__2.label"
+      },
+      {
+        "id": "show_breadcrumb",
+        "type": "switch",
+        "label": "t:settings_schema.design.settings.show_breadcrumb.label",
+        "default": true
       }
     ]
   },
@@ -1414,7 +1442,7 @@
         "id": "co_order_background_color",
         "type": "color_picker",
         "label": "t:settings_schema.checkout.settings.co_order_background_color.label",
-        "default": "#F8FAFB"
+        "default": "#FAFAFA"
       },
       {
         "type": "group_header",

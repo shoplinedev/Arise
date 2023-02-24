@@ -1,21 +1,7 @@
 {{!-- preload_state的数据需要statePrefix前缀已实现可多个section展示，statePrefix由外部传入 --}}
 {{ assign statePrefix product }}
 
-{{!-- TODO: 一个方案兼顾ssr和csr场景 --}}
-{{#if request.design_mode}}
-  {{ preload_state statePrefix }}
-  <script>
-  window.SL_State && window.SL_State.set("{{ statePrefix }}", {{{ JSONstringify product }}})
-</script>
-{{else}}
-  {{#if isAjax}}
-    <script>
-      window.SL_State && window.SL_State.set("{{ statePrefix }}", {{{ JSONstringify product }}})
-    </script>
-  {{else}}
-    {{ preload_state statePrefix }}
-  {{/if}}
-{{/if}}
+{{ preload_state statePrefix }}
 
 {{ preload_state 'productActivity' }}
 
@@ -152,6 +138,7 @@
  'theme-shared/utils/tradeReport/index.js'
  'theme-shared/utils/dataAccessor.js'
  'theme-shared/utils/url.js'
+ 'theme-shared/utils/constant.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/components/hbs/products/checkedEvent/index.js'
  'theme-shared/components/smart-payment/utils.js'
@@ -735,6 +722,11 @@
                         {{ snippet 'product/detail/product-stock' selectSku=../initSku.selectSku id=../id settings=settings }}
                       </div>
                     {{/if}}
+                  </div>
+                  {{/if}}
+                  {{#if type '===' 'sku-num'}}
+                  <div class="product-block-item">
+                    <div data-ssr-plugin-product-skuItemNo class="product-info-skuItemNo_{{ ../id }} shopline-element-skuItemNo body-font body3 text-left">{{ ../initSku.selectSku.itemNo }}</div>
                   </div>
                   {{/if}}
                 {{/each}}

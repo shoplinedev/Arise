@@ -27,20 +27,6 @@
   {{!-- title 标签逻辑 --}}
   {{ snippet 'title-tag/creator' }}
 
-  {{!-- 这段snippet 必须在所有插槽之前 --}}
-  {{!-- {{ snippet 'page-snippet'}}
-  {{#slot 'seo-meta' }}
-    {{snippet 'seo-meta' }}
-  {{/slot}}
-  {{#slot 'title' }}
-    {{assign "seoTitle" (useFallbackLang pageInfo.seoTitle request.locale)}}
-    {{#if seoTitle}}
-      <title>{{seoTitle}}</title>
-    {{else}}
-      <title>{{storeInfo.name}}</title>
-    {{/if}}
-  {{/slot}} --}}
-
   {{ combine_asset_tag 'commons/layout/theme/index.css' inline=true }}
 
   {{ preload_state 'imgNoReferrerSwitch' }}
@@ -106,6 +92,7 @@
  'theme-shared/components/hbs/shared/components/toast/loading.js'
  'theme-shared/components/hbs/shared/components/toast/index.js'
  'theme-shared/utils/url.js'
+ 'theme-shared/utils/constant.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/events/utils/api-logger.js'
  'theme-shared/events/trade/developer-api/navigate-checkout/index.js'
@@ -287,17 +274,6 @@
   <script>window.__REPORT_DATA__ = window.__REPORT_DATA__ || {};</script>
   {{ snippet 'page-head/creator' }}
 
-  {{!-- {{#is_modern_browser}}
-    {{ cli_javascript 'commons/base/script-load.min.modern.js' }}
-    {{ cli_javascript 'commons/pre-script.min.modern.js' }}
-  {{else}}
-    {{ cli_javascript 'commons/base/script-load.min.js' }}
-    {{ cli_javascript 'commons/pre-script.min.js' }}
-  {{/is_modern_browser}}
-  {{cli_loaded_js 'vendor/global.min.js'}} --}}
-
-  {{!-- {{#slot 'head' }}{{/slot}} --}}
-
   {{ preload_state 'storeInfo' 'tradeSettleConfig' 'tradeCollectionConfig' }}
   {{ preload_state 'currencyCode' }}
   {{ preload_state 'currencyRates' }}
@@ -314,7 +290,6 @@
   data-type_navigation_uppercase="{{ theme.settings.type_navigation_uppercase }}"
   >
   <div id="google_translate_element"></div>
-  {{!-- {{#slot 'user_head'}}{{/slot}} --}}
   {{ section 'announcement-bar' }}
   {{ section 'header' }}
   {{ content_for_layout }}
@@ -323,7 +298,6 @@
   {{ preload_state 'templateAlias' }}
   {{!-- mini购物车上报专用 --}}
   {{ preload_state 'variants' }}
-
   <script>
     window.__I18N__ = window.__I18N__ || {};
     window.__I18N__['cart'] = {{{ JSONstringify (t 'cart') }}};
@@ -336,7 +310,7 @@
     window.__I18N__['blog'] = {{{ JSONstringify (t 'blog') }}};
     window.__I18N__['unvisiable'] = {{{ JSONstringify (t 'unvisiable') }}};
     window.__I18N__['validate'] = {{{ JSONstringify (t 'validate') }}}
-    
+
   </script>
   {{!-- localization-form --}}
   {{#form "localization" id="sl-localization-form" enctype="multipart/form-data" accept-charset="UTF-8"}}
@@ -351,13 +325,6 @@
   <script src="{{ assets_url 'jquery.min.js' }}"></script>
   {{ snippet 'page-scripts/creator' }}
 
-  {{!-- {{#is_modern_browser}}
-    <script src="{{ assets_url 'vendor/prepare.min.modern.js' }}"></script>
-  {{else}}
-    <script src="{{ assets_url 'vendor/prepare.min.js' }}"></script>
-  {{/is_modern_browser}}
-  {{#slot 'script' }}{{/slot}}
-  {{#slot 'page_view'}}{{/slot}} --}}
   {{!-- 自定义代码底部 --}}
   {{ content_for_footer }}
   <div data-ssr-plugin-body-bottom></div>

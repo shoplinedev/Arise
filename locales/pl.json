@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Kody rabatowe przekraczają limit ilościowy",
       "existCode": "Kod rabatowy już istnieje",
+      "freeShipping": {
+        " existCode": "Kod rabatowy na dostawę się powtarza"
+      },
       "list": {
         "unavailable": "Wszystkie kody rabatowe wygasły"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Kod rabatowy wygasł"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Płacić kod rabatowy na dostawę nie pasuje krajowi",
+        "logistics-fee-over-limit": "Kod rabatowy na dostawę - koszt za dostawę przekracza limit"
+      },
+      "code_overdue": "Kod rabatowy przeterminowany",
+      "code_user_exceedLimit": "Razy wykorzystania z tej działalności klienta przekracza limit",
+      "code_user_notSupport": "Klient nie może wykorzystać z tej działalności",
       "coupon_code_amount": "Zniżka za pomocą kodu zniżkowego",
       "coupon_code_length_limit": "Długość kodu promocyjnego nie może przekraczać {{range}}",
       "expected_discount": "Przewidywana zniżka"
@@ -92,6 +102,7 @@
       "none_existent": "Towar nie jest dostępny",
       "view_cart": "sprawdź koszyk"
     },
+    "lack_multilingualism": "*Nie udało się załadować tego zestawienia, skontaktuj się z obsługą klienta, aby zgłosić sytuację*",
     "next_step": {
       "calculated_taxes_fees": "Kolejnie przeliczyć podatki i koszty za dostawę"
     },
@@ -167,7 +178,7 @@
       "bind": "Powiązać",
       "birthday": "Data urodzenia",
       "change_password": "Zmienić hasło",
-      "confirm_btn": "Confirmar",
+      "confirm_btn": "Potwierdź",
       "confirm_subscription_modal_btn": "Potwierdź subskrypcję.",
       "confirm_subscription_modal_content": "Już subskrybowałeś wcześniej. E-mail weryfikacyjny już jest wysłany do twojej skrzynki e-mailu, możesz kliknąć ten przycisk albo w tamtym e-mailu.",
       "confirm_subscription_modal_title": "Potwierdź twoją subskrypcją e-mail.",
@@ -227,7 +238,7 @@
       "add_address": "Dodaj nowy adres",
       "address": "Adres",
       "adress_full_tip": "Już zachowałeś/aś 50 adresów, na razie nie wolno dadać więcej adresów.",
-      "common_max": "Mniej niż {{max}} słów",
+      "common_max": "Mniej niż {{max}} słów!",
       "common_min": "więcej niż {{min}} słów",
       "default": "domyślny",
       "delete__address": "Usuwać adres",
@@ -408,6 +419,11 @@
       "title": "404 strona nie istnieje.                       ",
       "button": "Kontynuuj zakupy."
     },
+    "abandon": {
+      "Order": {
+        "risk": "Zbyt często wysyłano prośbę"
+      }
+    },
     "address": {
       "address": "Adres"
     },
@@ -425,7 +441,9 @@
       "decline": "Odmówię",
       "home": "główna strona",
       "link": "Polityka prywatności",
+      "more": "Rozwiń",
       "no_data": "Brak danych",
+      "pack_up": "Odłóż",
       "privacy_policy": "Polityka prywatności",
       "tel_phone": "Numer telefonu",
       "tips": "W celu oferowania lepszej usługi, zapisujemy twój stan rejestracyjny za pomocą cookie, zbieramy dane statystyczne, i potem oferujemy państwo interesujące treści. Kliknij „akceptuję”, żeby pozwolić wykorzystaniu z cookie. Lub sprawdź naszą „politykę prywatności”.",
@@ -451,6 +469,15 @@
       "risk_interception": "zamówienie nie istnieje",
       "submit_btn": "Zobacz zamówienie",
       "username": "E-mail/numer telefonu"
+    },
+    "password": {
+      "back": "Powróć",
+      "entry_store": "Wchodź do sklepu",
+      "forget_password": "Odwiedź za pomocą swojego kodu",
+      "goto_admin": "Zaloguj się",
+      "i_am_admin": "Jestem właścicielem",
+      "input_password": "Wpisz hasło",
+      "password_is_error": "Nieprawidłowe hasło, proszę wpisać ponownie"
     },
     "policy": {
       "service": "Warunki usługi",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Skupiono kod rabatowy",
       "coupon_code_copy": "Skopiuj",
       "flash_sale_text": "Promocja tymczasowa",
-      "flash_sale_tip": "limit zakupów: {{count}} sztuk",
+      "flash_sale_tip": "Limit zakupów: {{count}} sztuki",
       "hot_sale": "W sprzedaniu",
       "product_tabs_benefit_discount_locked": "Zmniejsz {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "Już odblokowano zmniejszenie o {{offPercent}}%！",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Kup {{benefitCount}} sztuk z {{offPercent}}% rabatem",
       "product_tabs_code_benefit_free_unlocked": "Zdobądź {{benefitCount}} sztuk za darmo",
       "product_tabs_threshold": "Kup {{threshold}}",
-      "purchase_limit": "Każdy kupi najwięcej {{count}} sztuk",
-      "purchase_limit_each_item": "Każdy może kupić każdy towar pod limitem {{count}} sztuk",
+      "purchase_limit": "Zakup ograniczony łącznie do {{count}} produktów promocyjnych",
+      "purchase_limit_each_item": "Zakup ograniczony do {{count}} przedmiotów dla każdego wariantu",
+      "purchase_limit_each_product": "Zakup ograniczony do {{count}} przedmiotów dla każdego produktu objętego promocją",
       "select_promotional_product": "Już wybrano {{selectCount}} sztuk produktów, które biorą udział w tej działalności",
       "sold": "Juz sprzedano {{count}}",
       "activity_banner_copy_text": "Skopiuj",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Zaokrąglenie"
-      }
-    },
     "payments-name": {
       "COD": "Płatność za pobraniem",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Rabat",
       "free_charge": "Darmowa dostawa",
       "free_shipping": "darmowa dostawa",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Niestandardowa zniżka ze strony sprzedawcy",
       "order_tax": "Podatek",
       "order_tip": "Napiwki",
@@ -799,9 +817,11 @@
       "error_message_3022": "Link juz nie jest ważny",
       "error_message_3023": "Zła forma linku",
       "error_message_3024": "Zła forma parametru",
+      "error_message_3026": "Zła forma konta",
       "error_message_4": "Usługa działa nienormalnie",
       "error_message_5": "Usługa działa nienormalnie",
-      "error_message_6": "Usługa działa nienormalnie"
+      "error_message_6": "Usługa działa nienormalnie",
+      "error_message_7": "Proszę ustawić hasło składające się z 6-18 cyfr"
     },
     "editorSwitchCountryTip": "Nie można zmienić kraju lub regionu w edytorze"
   }

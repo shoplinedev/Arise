@@ -31,6 +31,21 @@
       },
       "name": "公告栏",
       "settings": {
+        "display_mode": {
+          "label": "多公告栏展示方式",
+          "options__0": {
+            "label": "平铺展示"
+          },
+          "options__1": {
+            "label": "紧凑布局"
+          },
+          "options__2": {
+            "label": "左右切换"
+          },
+          "options__3": {
+            "label": "上下切换"
+          }
+        },
         "group_header__0": {
           "label": "没有可编辑的配置项"
         }
@@ -48,7 +63,7 @@
       "name": "博客",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "博客",
           "name": "博客"
         }
       },
@@ -173,7 +188,7 @@
       "name": "商品分类",
       "presets": {
         "presets__0": {
-          "category": "商品",
+          "category": "商品展示",
           "name": "商品分类"
         }
       },
@@ -229,7 +244,7 @@
       "name": "联系我们表单",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "客户运营",
           "name": "联系我们表单"
         }
       },
@@ -258,7 +273,7 @@
       "name": "自定义HTML",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "自定义",
           "name": "自定义HTML"
         }
       },
@@ -275,7 +290,7 @@
       "name": "自定义页面",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "自定义",
           "name": "自定义页面"
         }
       },
@@ -331,7 +346,7 @@
       "name": "常见问题",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "信任组件",
           "name": "常见问题"
         }
       },
@@ -360,7 +375,7 @@
       "name": "精选商品",
       "presets": {
         "presets__0": {
-          "category": "商品",
+          "category": "商品展示",
           "name": "精选商品"
         }
       },
@@ -494,7 +509,7 @@
       "name": "单个商品",
       "presets": {
         "presets__0": {
-          "category": "商品",
+          "category": "商品展示",
           "name": "单个商品"
         }
       },
@@ -626,6 +641,9 @@
         "show_pay_channel": {
           "label": "展示支付渠道图标"
         },
+        "show_powered": {
+          "label": "展示版权申明"
+        },
         "show_social_media": {
           "label": "展示社交媒体图标"
         },
@@ -665,6 +683,7 @@
           "label": "LOGO"
         },
         "group_header__1": {
+          "info": "[更多菜单导航插件](https://apps.shopline.com/detail/?appId=64637)",
           "label": "菜单"
         },
         "header_full_width": {
@@ -806,7 +825,7 @@
       "name": "图片横幅",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "图文展示",
           "name": "图片横幅"
         }
       },
@@ -961,7 +980,7 @@
       "name": "图文模块",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "图文展示",
           "name": "图文模块"
         }
       },
@@ -982,6 +1001,7 @@
           }
         },
         "image": {
+          "info": "建议上传比例为1:1,宽高为700*700的图片",
           "label": "添加图片"
         },
         "image_height": {
@@ -1307,11 +1327,67 @@
     "main-page": {
       "name": "自定义页面"
     },
+    "main-password": {
+      "name": "密码",
+      "settings": {
+        "bg_color": {
+          "label": "背景颜色"
+        },
+        "bg_img": {
+          "label": "背景图片"
+        },
+        "btn_bg_color": {
+          "label": "按钮背景颜色"
+        },
+        "btn_text_color": {
+          "label": "按钮文本颜色"
+        },
+        "describe": {
+          "label": "描述"
+        },
+        "email_tip": {
+          "label": "邮箱输入框提示文案"
+        },
+        "group_header__0": {
+          "label": "Logo"
+        },
+        "group_header__1": {
+          "label": "内容"
+        },
+        "group_header__2": {
+          "label": "社交媒体"
+        },
+        "input_color": {
+          "label": "输入框颜色"
+        },
+        "logo_img": {
+          "label": "Logo图片"
+        },
+        "logo_width": {
+          "label": "logo宽度"
+        },
+        "media_title": {
+          "label": "社交媒体标题"
+        },
+        "show_email": {
+          "label": "显示邮箱订阅"
+        },
+        "show_media": {
+          "label": "社交媒体"
+        },
+        "text_color": {
+          "label": "文本颜色"
+        },
+        "title": {
+          "label": "标题"
+        }
+      }
+    },
     "map": {
       "name": "地图",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "信任组件",
           "name": "地图"
         }
       },
@@ -1463,7 +1539,7 @@
       "name": "媒体拼接",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "特色组件",
           "name": "媒体拼接"
         }
       },
@@ -1751,7 +1827,13 @@
           "name": "摘要"
         },
         "buy-button": {
-          "name": "购买按钮"
+          "name": "购买按钮",
+          "settings": {
+            "group_header__0": {
+              "info": "[了解详细信息](https://apps.shopline.com/detail/?appId=23033)",
+              "label": "若要使用吸底悬浮购物车功能，请添加Add to cart插件"
+            }
+          }
         },
         "description": {
           "name": "商品描述",
@@ -2217,7 +2299,7 @@
       "name": "搜索结果",
       "settings": {
         "group_header__0": {
-          "label": "商品图"
+          "label": "分区填充"
         },
         "md_cols": {
           "label": "移动端列数",
@@ -2299,6 +2381,9 @@
         "text": {
           "name": "描述",
           "settings": {
+            "expansion": {
+              "label": "正文展开折叠功能"
+            },
             "text": {
               "label": "正文"
             }
@@ -2308,7 +2393,7 @@
       "name": "富文本",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "图文展示",
           "name": "富文本"
         }
       },
@@ -2366,7 +2451,7 @@
       "name": "邮箱订阅",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "客户运营",
           "name": "邮箱订阅"
         }
       },
@@ -2438,9 +2523,11 @@
               "label": "按钮或图片跳转"
             },
             "image": {
+              "info": "建议上传比例为3:1,宽高为1920*650的图片",
               "label": "电脑端图片"
             },
             "image_mobile": {
+              "info": "建议上传比例为1:2,宽高为375*500的图片",
               "label": "移动端图片"
             },
             "link": {
@@ -2500,7 +2587,7 @@
       "name": "轮播图",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "图文展示",
           "name": "轮播图"
         }
       },
@@ -2622,7 +2709,7 @@
       "name": "评论模块",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "信任组件",
           "name": "评论模块"
         }
       },
@@ -2686,6 +2773,7 @@
               "label": "描述"
             },
             "image": {
+              "info": "建议上传比例为1:1,宽高为418*530的图片",
               "label": "图片"
             },
             "jump_link": {
@@ -2700,7 +2788,7 @@
       "name": "图文列表",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "图文展示",
           "name": "图文列表"
         }
       },
@@ -2782,11 +2870,18 @@
         }
       }
     },
+    "timeline": {
+      "presets": {
+        "presets__0": {
+          "category": "特色组件"
+        }
+      }
+    },
     "video": {
       "name": "视频",
       "presets": {
         "presets__0": {
-          "category": "内容展示",
+          "category": "视频",
           "name": "视频"
         }
       },
@@ -3137,17 +3232,26 @@
         "color_scheme_1_bg": {
           "label": "背景颜色"
         },
+        "color_scheme_1_gradient": {
+          "label": "背景颜色（渐变）"
+        },
         "color_scheme_1_text": {
           "label": "文字颜色"
         },
         "color_scheme_2_bg": {
           "label": "背景颜色"
         },
+        "color_scheme_2_gradient": {
+          "label": "背景颜色（渐变）"
+        },
         "color_scheme_2_text": {
           "label": "文字颜色"
         },
         "color_scheme_3_bg": {
           "label": "背景颜色"
+        },
+        "color_scheme_3_gradient": {
+          "label": "背景颜色（渐变）"
         },
         "color_scheme_3_text": {
           "label": "文字颜色"
@@ -3281,6 +3385,12 @@
         },
         "group_header__1": {
           "label": "商品分类"
+        },
+        "group_header__2": {
+          "label": "面包屑"
+        },
+        "show_breadcrumb": {
+          "label": "显示面包屑"
         },
         "superscript_decimals": {
           "label": "售价小数位缩小展示"

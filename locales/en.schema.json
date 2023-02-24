@@ -31,6 +31,21 @@
       },
       "name": "Notice board",
       "settings": {
+        "display_mode": {
+          "label": "Display style of multiple notice boards",
+          "options__0": {
+            "label": "Tiled display"
+          },
+          "options__1": {
+            "label": "Compact layout"
+          },
+          "options__2": {
+            "label": "Switch horizontally"
+          },
+          "options__3": {
+            "label": "Switch vertically"
+          }
+        },
         "group_header__0": {
           "label": "There aren't any items for edit"
         }
@@ -48,7 +63,7 @@
       "name": "Blog",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Blogs",
           "name": "Blog"
         }
       },
@@ -173,7 +188,7 @@
       "name": "Collection list",
       "presets": {
         "presets__0": {
-          "category": "Product",
+          "category": "Product display",
           "name": "Collection list"
         }
       },
@@ -229,7 +244,7 @@
       "name": "Contact Us form",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Customer operation",
           "name": "Contact Us form"
         }
       },
@@ -258,7 +273,7 @@
       "name": "Custom HTML",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Custom",
           "name": "Custom HTML"
         }
       },
@@ -275,7 +290,7 @@
       "name": "Custom page",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Custom",
           "name": "Custom page"
         }
       },
@@ -331,7 +346,7 @@
       "name": "FAQS",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Trust component",
           "name": "FAQS"
         }
       },
@@ -360,7 +375,7 @@
       "name": "Featured collection",
       "presets": {
         "presets__0": {
-          "category": "Product",
+          "category": "Product display",
           "name": "Featured collection"
         }
       },
@@ -494,7 +509,7 @@
       "name": "Featured product",
       "presets": {
         "presets__0": {
-          "category": "Product",
+          "category": "Product display",
           "name": "Featured product"
         }
       },
@@ -626,6 +641,9 @@
         "show_pay_channel": {
           "label": "Display the payment channel icon"
         },
+        "show_powered": {
+          "label": "Display copyright notice"
+        },
         "show_social_media": {
           "label": "Display the social media icon"
         },
@@ -665,6 +683,7 @@
           "label": "LOGO"
         },
         "group_header__1": {
+          "info": "[More menu navigation plugins](https://apps.shopline.com/detail/?appId=64637)",
           "label": "Menu bar"
         },
         "header_full_width": {
@@ -806,7 +825,7 @@
       "name": "Image banner",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Graphic display",
           "name": "Image banner"
         }
       },
@@ -961,7 +980,7 @@
       "name": "Image with text",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Graphic display",
           "name": "Image with text"
         }
       },
@@ -982,6 +1001,7 @@
           }
         },
         "image": {
+          "info": "Suggest uploading the image with aspect ratio in 1:1 and width and height as 700*700px",
           "label": "Image"
         },
         "image_height": {
@@ -1307,11 +1327,67 @@
     "main-page": {
       "name": "Custom page"
     },
+    "main-password": {
+      "name": "Password",
+      "settings": {
+        "bg_color": {
+          "label": "Background color"
+        },
+        "bg_img": {
+          "label": "Background image"
+        },
+        "btn_bg_color": {
+          "label": "Button background color"
+        },
+        "btn_text_color": {
+          "label": "Button text color"
+        },
+        "describe": {
+          "label": "Description"
+        },
+        "email_tip": {
+          "label": "Email address input box prompt"
+        },
+        "group_header__0": {
+          "label": "Logo"
+        },
+        "group_header__1": {
+          "label": "Content"
+        },
+        "group_header__2": {
+          "label": "Social Media"
+        },
+        "input_color": {
+          "label": "Input box color"
+        },
+        "logo_img": {
+          "label": "Logo image"
+        },
+        "logo_width": {
+          "label": "Logo width"
+        },
+        "media_title": {
+          "label": "Social media title"
+        },
+        "show_email": {
+          "label": "Display Email Subscription"
+        },
+        "show_media": {
+          "label": "Social Media"
+        },
+        "text_color": {
+          "label": "Font color"
+        },
+        "title": {
+          "label": "Title"
+        }
+      }
+    },
     "map": {
       "name": "Map",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Trust component",
           "name": "Map"
         }
       },
@@ -1463,7 +1539,7 @@
       "name": "Media splicing",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Special components",
           "name": "Media splicing"
         }
       },
@@ -1751,7 +1827,13 @@
           "name": "Summary"
         },
         "buy-button": {
-          "name": "Purchase button"
+          "name": "Purchase button",
+          "settings": {
+            "group_header__0": {
+              "info": "[Know more](https://apps.shopline.com/detail/?appId=23033)",
+              "label": "If you want to use the sticky floating footer cart, please add Add to cart plugin"
+            }
+          }
         },
         "description": {
           "name": "Product description",
@@ -2217,7 +2299,7 @@
       "name": "Search results",
       "settings": {
         "group_header__0": {
-          "label": "Product Image"
+          "label": "Padding by section"
         },
         "md_cols": {
           "label": "Number of columns on mobile",
@@ -2299,6 +2381,9 @@
         "text": {
           "name": "Description",
           "settings": {
+            "expansion": {
+              "label": "Main body unfold"
+            },
             "text": {
               "label": "Main text"
             }
@@ -2308,7 +2393,7 @@
       "name": "Rich text",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Graphic display",
           "name": "Rich text"
         }
       },
@@ -2366,7 +2451,7 @@
       "name": "Email subscription",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Customer operation",
           "name": "Email subscription"
         }
       },
@@ -2438,9 +2523,11 @@
               "label": "Button or image redirect"
             },
             "image": {
+              "info": "Suggest uploading the image with aspect ratio in 3:1 and width and height as 1920*650px",
               "label": "Image on PC"
             },
             "image_mobile": {
+              "info": "Suggest uploading the image with aspect ratio in 1:2 and width and height as 375*500px",
               "label": "Image on mobile device"
             },
             "link": {
@@ -2500,7 +2587,7 @@
       "name": "Slideshow",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Graphic display",
           "name": "Slideshow"
         }
       },
@@ -2622,7 +2709,7 @@
       "name": "Testimonials",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Trust component",
           "name": "Testimonials"
         }
       },
@@ -2686,6 +2773,7 @@
               "label": "Description"
             },
             "image": {
+              "info": "Suggest uploading the image with aspect ratio in 1:1 and width and height as 418*530px",
               "label": "Image"
             },
             "jump_link": {
@@ -2700,7 +2788,7 @@
       "name": "Text columns with images",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Graphic display",
           "name": "Text columns with images"
         }
       },
@@ -2782,11 +2870,18 @@
         }
       }
     },
+    "timeline": {
+      "presets": {
+        "presets__0": {
+          "category": "Special components"
+        }
+      }
+    },
     "video": {
       "name": "Video",
       "presets": {
         "presets__0": {
-          "category": "Content display",
+          "category": "Video",
           "name": "Video"
         }
       },
@@ -3137,17 +3232,26 @@
         "color_scheme_1_bg": {
           "label": "Background color"
         },
+        "color_scheme_1_gradient": {
+          "label": "Background color(gradient)"
+        },
         "color_scheme_1_text": {
           "label": "Font color"
         },
         "color_scheme_2_bg": {
           "label": "Background color"
         },
+        "color_scheme_2_gradient": {
+          "label": "Background color(gradient)"
+        },
         "color_scheme_2_text": {
           "label": "Font color"
         },
         "color_scheme_3_bg": {
           "label": "Background color"
+        },
+        "color_scheme_3_gradient": {
+          "label": "Background color(gradient)"
         },
         "color_scheme_3_text": {
           "label": "Font color"
@@ -3281,6 +3385,12 @@
         },
         "group_header__1": {
           "label": "Collection list"
+        },
+        "group_header__2": {
+          "label": "Breadcrumbs"
+        },
+        "show_breadcrumb": {
+          "label": "Display breadcrumb"
         },
         "superscript_decimals": {
           "label": "Zoom out display for decimals of the selling price"

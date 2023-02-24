@@ -306,6 +306,18 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       };
     };
 
+    function handleChangeSkuItemNo(activeSku, id) {
+      const {
+        itemNo
+      } = activeSku || {};
+
+      if (activeSku) {
+        $(`.product-info-skuItemNo_${id}`).text(itemNo);
+      } else {
+        $(`.product-info-skuItemNo_${id}`).text('');
+      }
+    }
+
     let unmountedDiscountCoupon = null;
     let unmountPromotionTags = null;
     setAddToCartSpu(spu, sku);
@@ -423,6 +435,7 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
             }
           }
 
+          handleChangeSkuItemNo(activeSku, id);
           activeSkuCache = activeSku;
           inquiryPriceModal.setActiveSku(activeSku);
           productImagesInstance && productImagesInstance.skuImageChange && productImagesInstance.skuImageChange(get(activeSku, 'imageBeanList[0]'));

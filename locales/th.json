@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "รหัสส่วนลดเกินจำนวนจำกัด",
       "existCode": "รหัสส่วนลดมีอยู่แล้ว",
+      "freeShipping": {
+        " existCode": "รหัสคูปองจัดส่งฟรีซ้ำ"
+      },
       "list": {
         "unavailable": "โค้ดส่วนลดทั้งหมดหมดอายุแล้ว"
       },
@@ -66,6 +69,13 @@
       "unavailable": "โค้ดส่วนลดหมดอายุ"
     },
     "discount": {
+      "code": {
+        "country_not_support": "จ่าย รหัสคูปองจัดส่งฟรี - ประเทศไม่ตรงกัน",
+        "logistics-fee-over-limit": "รหัสคูปองจัดส่งฟรี - ค่าจัดส่งเกินขีดจำกัด"
+      },
+      "code_overdue": "รหัสคูปองหมดอายุ",
+      "code_user_exceedLimit": "จำนวนครั้งที่ผู้ใช้ใช้กิจกรรมนี้เกินขีดจำกัด",
+      "code_user_notSupport": "ผู้ใช้ไม่สามารถใช้กิจกรรมนี้ได้",
       "coupon_code_amount": "รหัสคูปองส่วนลด",
       "coupon_code_length_limit": "รหัสคูปองต้องไม่เกิน {{range}} ตัวอักษร",
       "expected_discount": "ส่วนลดโดยประมาณ"
@@ -92,6 +102,7 @@
       "none_existent": "ไม่มีสินค้า",
       "view_cart": "ตรวจสอบตะกร้าสินค้า"
     },
+    "lack_multilingualism": "*ประโยคนี้ไม่สามารถโหลดได้ โปรดติดต่อฝ่ายบริการลูกค้าเพื่อรายงานปัญหา*",
     "next_step": {
       "calculated_taxes_fees": "ภาษีและค่าธรรมเนียมการจัดส่งจะถูกคำนวณในขั้นตอนการชำระเงิน"
     },
@@ -167,7 +178,7 @@
       "bind": "การผูก",
       "birthday": "วันเกิด",
       "change_password": "เปลี่ยนรหัสผ่าน",
-      "confirm_btn": "Onayla",
+      "confirm_btn": "ยืนยัน",
       "confirm_subscription_modal_btn": "ยืนยันการสมัครสมาชิก",
       "confirm_subscription_modal_content": "คุณได้ส่งการสมัครสมาชิกก่อนหน้านี้ อีเมลยืนยันถูกส่งไปยังกล่องจดหมายนี้แล้ว คุณสามารถยืนยันในอีเมลของคุณหรือคลิกปุ่มนี้",
       "confirm_subscription_modal_title": "โปรดยืนยันการสมัครอีเมลของคุณ",
@@ -408,6 +419,11 @@
       "title": "ไม่มีหน้า 404 ",
       "button": "ชอปปิ้งต่อไป "
     },
+    "abandon": {
+      "Order": {
+        "risk": "คำขอบ่อยครั้งเกินไป"
+      }
+    },
     "address": {
       "address": "ที่อยู่"
     },
@@ -425,7 +441,9 @@
       "decline": "ไม่ยินยอม",
       "home": "หน้าโฮมเพจ",
       "link": "นโยบายความเป็นส่วนตัว",
+      "more": "ขยาย",
       "no_data": "ไม่มีข้อมูล",
+      "pack_up": "เก็บ",
       "privacy_policy": "นโยบายความเป็นส่วนตัว",
       "tel_phone": "หมายเลขโทรศัพท์",
       "tips": "เว็บไซต์นี้ใช้คุกกี้เพื่อมอบประสบการณ์เยี่ยมชมเว็บไซต์ที่ดีที่สุดให้แก่คุณ",
@@ -451,6 +469,15 @@
       "risk_interception": "ไม่มีคำสั่งซื้อ",
       "submit_btn": "ดูคำสั่งซื้อ",
       "username": "อีเมล/หมายเลขโทรศัพท์"
+    },
+    "password": {
+      "back": "กลับ",
+      "entry_store": "เข้าสู่ร้าน",
+      "forget_password": "เข้าถึงด้วยรหัสผ่าน",
+      "goto_admin": "เข้าสู่ระบบ",
+      "i_am_admin": "ฉันเป็นเจ้าของร้าน",
+      "input_password": "ใส่รหัสผ่าน",
+      "password_is_error": "รหัสผ่านผิด กรุณากรอกใหม่"
     },
     "policy": {
       "service": "เงื่อนไขการให้บริการ",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "คัดลอกรหัสส่วนลดเรียบร้อยแล้ว",
       "coupon_code_copy": "คัดลอก",
       "flash_sale_text": "FLASH SALE",
-      "flash_sale_tip": "จำกัดการซื้อ: {{count}} ชิ้น",
+      "flash_sale_tip": "จำนวนจำกัดซื้อไม่เกิน: {{count}} ชิ้น",
       "hot_sale": "สินค้าขายดี",
       "product_tabs_benefit_discount_locked": "ส่วนลด {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "ปลดล็อกส่วนลด {{offPercent}}% แล้ว!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "ซื้อ{{benefitCount}}ชิ้นในราคาส่วนลด{{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "รับ{{benefitCount}}ชิ้นฟรี",
       "product_tabs_threshold": "ซื้อ {{threshold}}",
-      "purchase_limit": "จำกัดการซื้อ {{count}} ชิ้นต่อลูกค้า",
-      "purchase_limit_each_item": "แต่ละสินค้าจำกัดการซื้อ {{count}} ชิ้นต่อลูกค้า",
+      "purchase_limit": "สินค้าโปรโมชั่นจำกัดซื้อไม่เกิน {{count}} ชิ้น",
+      "purchase_limit_each_item": "แต่ละรุ่นจำกัดซื้อไม่เกิน {{count}} ชิ้น",
+      "purchase_limit_each_product": "สินค้าโปรโมชั่นแต่ละรายการจำกัดซื้อไม่เกิน {{count}} ชิ้น",
       "select_promotional_product": "เลือกโปรโมชันสินค้าแล้ว {{selectCount}}",
       "sold": "ขายแล้ว {{count}}",
       "activity_banner_copy_text": "คัดลอก",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "ปัดเศษ"
-      }
-    },
     "payments-name": {
       "COD": "เก็บเงินปลายทาง",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "ส่วนลด",
       "free_charge": "จัดส่งฟรี",
       "free_shipping": "จัดส่งฟรี",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "ส่วนลดที่กำหนดโดยร้านค้า",
       "order_tax": "ภาษี",
       "order_tip": "ทิป",
@@ -799,9 +817,11 @@
       "error_message_3022": "ลิงก์หมดอายุ",
       "error_message_3023": "ลิงก์ผิดรูปแบบ",
       "error_message_3024": "พารามิเตอร์ลิงก์เกิดข้อผิดพลาด",
+      "error_message_3026": "รูปแบบบัญชีไม่ถูกต้อง",
       "error_message_4": "การบริการผิดปกติ",
       "error_message_5": "การบริการผิดปกติ",
-      "error_message_6": "การบริการผิดปกติ"
+      "error_message_6": "การบริการผิดปกติ",
+      "error_message_7": "โปรดตั้งค่ารหัสผ่านให้มีความยาวอย่างน้อย 6 ตัวอักษรและสูงสุด 18 ตัวอักษร"
     },
     "editorSwitchCountryTip": "ตัวแก้ไขไม่รองรับการสลับเปลี่ยนประเทศ"
   }

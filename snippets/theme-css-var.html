@@ -1,10 +1,10 @@
 
 <style>
 :root, ::after, ::before {
-    --type-title-font: {{ get 'family' (google_font_spec theme.settings.type_title_font) }};
+    --type-title-font: "{{ get 'family' (google_font_spec theme.settings.type_title_font) }}";
     --type-title-font-weight: {{ get 'weight' (google_font_spec theme.settings.type_title_font) }};
     --type-title-font-style: {{ get 'style' (google_font_spec theme.settings.type_title_font) }};
-    --type-body-font: {{ get 'family' (google_font_spec theme.settings.type_body_font) }};
+    --type-body-font: "{{ get 'family' (google_font_spec theme.settings.type_body_font) }}";
     --type-body-font-weight: {{ get 'weight' (google_font_spec theme.settings.type_body_font) }};
     --type-body-font-style: {{ get 'style' (google_font_spec theme.settings.type_body_font) }};
 
@@ -32,6 +32,9 @@
     --color-scheme-2-text: {{ hex_2_rgb theme.settings.color_scheme_2_text }};
     --color-scheme-3-bg: {{ hex_2_rgb theme.settings.color_scheme_3_bg }};
     --color-scheme-3-text: {{ hex_2_rgb theme.settings.color_scheme_3_text }};
+    --color-scheme-1-gradient: {{#if theme.settings.color_scheme_1_gradient}}{{ theme.settings.color_scheme_1_gradient }}{{else}}rgb(var(--color-scheme-1-bg)){{/if}};
+    --color-scheme-2-gradient: {{#if theme.settings.color_scheme_2_gradient}}{{ theme.settings.color_scheme_2_gradient }}{{else}}rgb(var(--color-scheme-2-bg)){{/if}};
+    --color-scheme-3-gradient: {{#if theme.settings.color_scheme_3_gradient}}{{ theme.settings.color_scheme_3_gradient }}{{else}}rgb(var(--color-scheme-3-bg)){{/if}};
     --type-title-letter-spacing: {{ divide theme.settings.type_title_letter_spacing 1000 }}em;
     --type-title-size: {{ theme.settings.type_title_size }}px;
     --type-title-line-height: {{ theme.settings.type_title_line_height }};

@@ -7,18 +7,18 @@
   <div class="footer__block-main">
     {{#with this as |global|}}
       {{#if navigation }}
-        <dl class="footer__menu-list body5">
+        <ul class="footer__menu-list body5">
           {{#each navigation.nodeTree as | navItem |}}
             {{ assign 'query' global.request.uri.query}}
             {{ assign 'locale' global.request.locale}}
             {{ assign 'allCollections' global.all_collections}}
             {{ assign 'allProducts' global.all_products}}
             {{ assign 'navDetail' (navLink navItem query locale allCollections allProducts ) }}
-            <dd {{{ navItem.shopline_attributes }}}>
+            <li {{{ navItem.shopline_attributes }}}>
               <a class="footer__menu-hover footer__block-item __sl-custom-track-stage-navItem" {{{navDetail.hrefAttr}}} rel="noreferrer">{{navDetail.name}}</a>
-            </dd>
+            </li>
           {{/each}}
-        </dl>
+        </ul>
       {{/if}}
     {{/with}}
   </div>
@@ -38,18 +38,18 @@
       <div class="footer__block-main">
         {{#with this as |global|}}
           {{#if navigation }}
-            <dl class="footer__menu-list body5">
+            <ul class="footer__menu-list body5">
               {{#each navigation.nodeTree as | navItem |}}
                 {{ assign 'query' global.request.uri.query}}
                 {{ assign 'locale' global.request.locale}}
                 {{ assign 'allCollections' global.all_collections}}
                 {{ assign 'allProducts' global.all_products}}
                 {{ assign 'navDetail' (navLink navItem query locale allCollections allProducts ) }}
-                <dd {{{ navItem.shopline_attributes }}}>
+                <li {{{ navItem.shopline_attributes }}}>
                   <a class="__sl-custom-track-stage-navItem" {{{navDetail.hrefAttr}}} rel="noreferrer">{{navDetail.name}}</a>
-                </dd>
+                </li>
               {{/each}}
-            </dl>
+            </ul>
           {{/if}}
         {{/with}}
       </div>

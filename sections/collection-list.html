@@ -68,7 +68,7 @@ all_collections:
             {{else}}
               {{ assign 'showTitle' settings.title }}
             {{/if}}
-            <div class="collection-item-slide swiper-slide" {{{ this.shopline_attributes }}}>
+            <div class="collection-item-slide" {{{ this.shopline_attributes }}}>
               {{ snippet 'product/commons/collection-item' sortationData=sortationData title=showTitle imageRatio=../imageRatio bgDisplayPosition=settings.image_display_area titleColor='inherit' shopline_attributes=this.shopline_attributes }}
             </div>
           {{/each}}
@@ -119,6 +119,7 @@ all_collections:
   "name": "t:sections.collection-list.name",
   "presets": [
     {
+      "category_index": 1,
       "category": "t:sections.collection-list.presets.presets__0.category",
       "name": "t:sections.collection-list.presets.presets__0.name",
       "settings": {

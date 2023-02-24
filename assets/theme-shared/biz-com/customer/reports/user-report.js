@@ -68,21 +68,5 @@ window.SLM['theme-shared/biz-com/customer/reports/user-report.js'] = window.SLM[
   };
 
   _exports.userHdReport = userHdReport;
-
-  const reportThirdPartPageView = () => {
-    window.SL_EventBus.emit('global:thirdPartReport', {
-      FBPixel: [['track', 'PageView', {}, {
-        eventID: window.SL_State.get('serverEventId')
-      }]],
-      GAAds: [['event', 'conversion', null]],
-      GA: [['event', 'page_view', {
-        page_title: document.title,
-        page_location: window.location.href,
-        page_path: window.location.pathname + window.location.search
-      }]]
-    });
-  };
-
-  _exports.reportThirdPartPageView = reportThirdPartPageView;
   return _exports;
 }();

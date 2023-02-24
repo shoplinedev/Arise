@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Zľavové kódy prekračujú limit množstva",
       "existCode": "Zľavový kód už existuje",
+      "freeShipping": {
+        " existCode": "Zľavový kód na dopravu zadarmo sa opakuje"
+      },
       "list": {
         "unavailable": "Platnosť všetkých zľavových kódov vypršala"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Platnosť zľavového kódu vypršala"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Platba kód kupónu pre dopravu zadarmo - krajina sa nezhoduje",
+        "logistics-fee-over-limit": "Zľavový kód kupónu na dopravu zadarmo - poštovné prekračuje limit"
+      },
+      "code_overdue": "Platnosť kód kupónu vypršala",
+      "code_user_exceedLimit": "Počet prípadov, kedy používateľ túto aktivitu použije, prekročí limit",
+      "code_user_notSupport": "Používateľ nemôže používať túto aktivitu",
       "coupon_code_amount": "Kupón",
       "coupon_code_length_limit": "Kód kupónu nemôže presiahnuť {{range}} znakov.",
       "expected_discount": "Zľava"
@@ -92,6 +102,7 @@
       "none_existent": "Tovar neexistuje",
       "view_cart": "Zobraziť košík"
     },
+    "lack_multilingualism": "*Tento výpis sa nenačítal, môžete kontaktovať zákaznícky servis a nahlásiť situáciu*",
     "next_step": {
       "calculated_taxes_fees": "Dane a poštovné vypočítané pri pokladni"
     },
@@ -167,7 +178,7 @@
       "bind": "Väzba",
       "birthday": "Dátum narodenia",
       "change_password": "Zmeniť heslo",
-      "confirm_btn": "Potrdite",
+      "confirm_btn": "Konfirmovať",
       "confirm_subscription_modal_btn": "Potvrďte svoje predplatné",
       "confirm_subscription_modal_content": "Predtým ste odoslali predplatné. Na túto e-mailovú adresu bol odoslaný potvrdzovací e-mail. Môžete to potvrdiť vo svojom e-maile alebo kliknúť na toto tlačidlo.",
       "confirm_subscription_modal_title": "Potvrďte svoje predplatné e-mailom.",
@@ -227,7 +238,7 @@
       "add_address": "Pridať novú adresu",
       "address": "Adresa",
       "adress_full_tip": "50 adries bolo uložených a momentálne ich nemožno pridať",
-      "common_max": "",
+      "common_max": "Menej ako {{max}} znakov!",
       "common_min": "viac ako {{min}} znakov",
       "default": "Predvolené",
       "delete__address": "Odstrániť adresu",
@@ -408,6 +419,11 @@
       "title": "Stránka 404 sa nenašla ",
       "button": "Pokračovať v nákupe"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Príliš veľa žiadostí"
+      }
+    },
     "address": {
       "address": "Adresa"
     },
@@ -425,7 +441,9 @@
       "decline": "Odmietnuť",
       "home": "Domovská stránka",
       "link": "Zásady ochrany osobných údajov",
+      "more": "Viac",
       "no_data": "Nie sú k dispozícii žiadne údaje",
+      "pack_up": "Dať preč",
       "privacy_policy": "Zásadami ochrany osobných údajov",
       "tel_phone": "Číslo telefónne",
       "tips": "Na zlepšenie vašich skúseností používame súbory cookie na zapamätanie si informácií o prihlásenie , zhromažďovanie štatistík a ponúkanie obsahu, ktorý vyhovuje vašim záujmom. Ak chcete prijať súbory cookie, kliknite na tlačidlo \"Prijať\" alebo si prečítajte naše \"Zásady ochrany osobných údajov\".",
@@ -451,6 +469,15 @@
       "risk_interception": "poriadok neexistuje",
       "submit_btn": "Prehľad objednávky",
       "username": "Email/telefónne číslo"
+    },
+    "password": {
+      "back": "Predchádzajúci",
+      "entry_store": "Vstúpiť do obchodu",
+      "forget_password": "Prístup k heslu",
+      "goto_admin": "Prihlásiť sa teraz",
+      "i_am_admin": "Som vlastník",
+      "input_password": "Zadať heslo",
+      "password_is_error": "Nesprávne heslo, skúste to prosím znova"
     },
     "policy": {
       "service": "Podmienkami použitia",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kód kupónu sa úspešne skopíruje",
       "coupon_code_copy": "Kopírovať",
       "flash_sale_text": "BLESKOVÝ VÝPREDAJ",
-      "flash_sale_tip": "Limit nákupu: {{count}} množstvo",
+      "flash_sale_tip": "Limit nákupu: {{count}} položky",
       "hot_sale": "Veľký výpredaj!",
       "product_tabs_benefit_discount_locked": "Získajte {{offPercent}}% zľavu",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% zľavu bola odomknutá!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Kúpiť kusoch {{benefitCount}} so zľavou {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Získajte {{benefitCount}} voľné kusoch",
       "product_tabs_threshold": "Kúpiť {{threshold}}",
-      "purchase_limit": "Limit nákupu {{count}} na osobu",
-      "purchase_limit_each_item": "Nákupný limit {{count}} na produkt na osobu",
+      "purchase_limit": "Nákup obmedzený na {{count}} propagačné produkt(y) celkom",
+      "purchase_limit_each_item": "Nákup obmedzený na {{count}} položka(y) pre každý variant",
+      "purchase_limit_each_product": "Nákup obmedzený na {{count}} položka(y) pre každý propagačný produkt",
       "select_promotional_product": "Vybraté produkty udalosti: {{selectCount}}",
       "sold": "{{count}} predaných",
       "activity_banner_copy_text": "Kopírovať",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Zaokrúhľovanie"
-      }
-    },
     "payments-name": {
       "COD": "Platba na dobierku",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Zľava",
       "free_charge": "Doprava zdarma",
       "free_shipping": "doprava zadarmo",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Extra zľava predajcu",
       "order_tax": "daň",
       "order_tip": "Sprepitné",
@@ -799,9 +817,11 @@
       "error_message_3022": "Platnosť odkazu vypršala",
       "error_message_3023": "Odkaz je v nesprávnom formáte",
       "error_message_3024": "Odkaz je nesprávny",
+      "error_message_3026": "Chyby vo formáte účtu",
       "error_message_4": "Abnormálna služba",
       "error_message_5": "Abnormálna služba",
-      "error_message_6": "Abnormálna služba"
+      "error_message_6": "Abnormálna služba",
+      "error_message_7": "Nastavte si heslo s minimálnou dĺžkou 6 znakov a maximálnou dĺžkou 18 znakov."
     },
     "editorSwitchCountryTip": "Prepínanie krajín nie je v editore podporované"
   }

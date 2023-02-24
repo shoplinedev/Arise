@@ -4,6 +4,7 @@ window.SLM['theme-shared/utils/lazysizes/index.js'] = window.SLM['theme-shared/u
   const _exports = {};
   const lazySizes = window['SLM']['theme-shared/utils/lazysizes/lazysizes.js'].default;
   const imageGifPoster = window['SLM']['theme-shared/utils/lazysizes/image-gif-poster.js'].default;
+  const asyncDecodeImage = window['SLM']['theme-shared/utils/lazysizes/async-decode-image.js'].default;
   const { EnumAttributes } = window['SLM']['theme-shared/utils/lazysizes/constants.js'];
   const autoBreakpoint = window['SLM']['theme-shared/utils/lazysizes/auto-breakpoint.js'].default;
   const BeforeUnveilEvent = 'lazybeforeunveil';
@@ -12,11 +13,13 @@ window.SLM['theme-shared/utils/lazysizes/index.js'] = window.SLM['theme-shared/u
   };
   window.lazySizesConfig = {
     lazyClass: EnumAttributes.LazyClass,
-    expFactor: 4
+    expFactor: 4,
+    iframeLoadMode: 1
   };
 
   function initLazysizes() {
     document.addEventListener('lazybeforesizes', autoBreakpoint);
+    document.addEventListener(BeforeUnveilEvent, asyncDecodeImage);
     document.addEventListener(BeforeUnveilEvent, imageGifPoster);
     window.lazySizes = lazySizes(window, document, Date);
 

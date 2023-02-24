@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "割引コードが数量制限を超えています",
       "existCode": "割引コードは既に存在します",
+      "freeShipping": {
+        " existCode": "送料無料クーポンコードが重複しています"
+      },
       "list": {
         "unavailable": "すべての割引コードの有効期限が切れています"
       },
@@ -66,6 +69,13 @@
       "unavailable": "割引コードの有効期限が切れています"
     },
     "discount": {
+      "code": {
+        "country_not_support": "送料無料クーポンコードで支払う - 適用する国ではありません",
+        "logistics-fee-over-limit": "送料無料クーポンコード - 配送料が制限を超えています"
+      },
+      "code_overdue": "クーポンコードの有効期限が切れています",
+      "code_user_exceedLimit": "ユーザーがこのイベントを使用する回数の制限を超えています",
+      "code_user_notSupport": "ユーザーはこのイベントを使用できません",
       "coupon_code_amount": "クーポンコードの提供",
       "coupon_code_length_limit": "クーポンコードは {{range}} 文字以内で入力してください",
       "expected_discount": "見積割引"
@@ -92,6 +102,7 @@
       "none_existent": "製品が存在しません",
       "view_cart": "カートを見る"
     },
+    "lack_multilingualism": "*このステートメントが読み込めに失敗しました。カスタマー サービスに連絡して状況を報告することができます*",
     "next_step": {
       "calculated_taxes_fees": "税金と運賃は次のステップで計算されます"
     },
@@ -167,7 +178,7 @@
       "bind": "関連付け",
       "birthday": "誕生日",
       "change_password": "パスワードの変更",
-      "confirm_btn": "확인",
+      "confirm_btn": "確認",
       "confirm_subscription_modal_btn": "サブスクを確認します",
       "confirm_subscription_modal_content": "この前にサブスクがすでに送信しました。 確認メールがこのメールアドレスに送信されました。 メールで確認するか、このボタンをクリックして確認します。",
       "confirm_subscription_modal_title": "メールサブスクを確認してください。",
@@ -227,7 +238,7 @@
       "add_address": "新しい住所の追加",
       "address": "住所",
       "adress_full_tip": "50 つの住所が保存されているため、追加はできません",
-      "common_max": "{{max}} 文字未満です",
+      "common_max": "{{max}} 文字未満です!",
       "common_min": "{{min}} 文字以上",
       "default": "デフォルト",
       "delete__address": "住所の削除",
@@ -408,6 +419,11 @@
       "title": "404（ページが見つかりません）",
       "button": "ショッピングを続ける"
     },
+    "abandon": {
+      "Order": {
+        "risk": "リクエスト回数が多すぎます"
+      }
+    },
     "address": {
       "address": "住所"
     },
@@ -425,7 +441,9 @@
       "decline": "拒否する",
       "home": "ホームページ",
       "link": "プライバシーポリシー",
+      "more": "もっと",
       "no_data": "データがありません",
+      "pack_up": "表示を縮小",
       "privacy_policy": "プライバシーポリシー",
       "tel_phone": "電話番号",
       "tips": "より良い体験を提供するために、Cookieを使用してログインステータスを記録、統計データを収集、興味深いコンテンツを提供します。 「同意する」をクリックして、Cookieの使用を許可します。または、「プライバシーポリシー」をご覧ください。",
@@ -451,6 +469,15 @@
       "risk_interception": "注文が存在しません",
       "submit_btn": "表示の順序",
       "username": "メール/電話番号"
+    },
+    "password": {
+      "back": "戻る",
+      "entry_store": "店に進む",
+      "forget_password": "パスワードでアクセス",
+      "goto_admin": "ログインする",
+      "i_am_admin": "私は担当者です",
+      "input_password": "パスワードを入力する",
+      "password_is_error": "パスワードが間違っています、もう一度入力してください"
     },
     "policy": {
       "service": "利用規約",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "クーポンコードが正常にコピーされました",
       "coupon_code_copy": "コピー",
       "flash_sale_text": "タイムセール",
-      "flash_sale_tip": "最大注文個数：{{count}}点",
+      "flash_sale_tip": "購入制限: {{count}} 点の商品",
       "hot_sale": "好評発売中",
       "product_tabs_benefit_discount_locked": "{{offPercent}}％ OFF",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}％ OFFのロックが解除されました！",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "{{offPercent}}％割引で{{benefitCount}}点商品を購入します",
       "product_tabs_code_benefit_free_unlocked": "無料で{{benefitCount}}点商品を取得します",
       "product_tabs_threshold": "{{threshold}} を購入する",
-      "purchase_limit": "1人あたりの購入制限{{count}}",
-      "purchase_limit_each_item": "各商品はお一人様最大{{count}}件購入ができます",
+      "purchase_limit": "プロモーション商品の購入は {{count}} 点に制限されています",
+      "purchase_limit_each_item": "各パタンの購入は {{count}} 点に制限されています",
+      "purchase_limit_each_product": "各プロモーション商品の購入は {{count}} 点に制限されています",
       "select_promotional_product": "{{selectCount}} 件のイベント商品が選択されました",
       "sold": "{{count}} 予約済み",
       "activity_banner_copy_text": "コピー",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "丸め"
-      }
-    },
     "payments-name": {
       "COD": "代金引換",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "割引",
       "free_charge": "送料無料",
       "free_shipping": "送料無料",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "セラーカスタム割引",
       "order_tax": "税金",
       "order_tip": "ヒント",
@@ -799,9 +817,11 @@
       "error_message_3022": "リンクがすでに無効になりました",
       "error_message_3023": "リンクのフォーマットが不正です",
       "error_message_3024": "リンクパラメータエラー",
+      "error_message_3026": "アカウントフォーマットエラー",
       "error_message_4": "サーバーエラー",
       "error_message_5": "サーバーエラー",
-      "error_message_6": "サーバーエラー"
+      "error_message_6": "サーバーエラー",
+      "error_message_7": "6 文字以上 18 文字以下のパスワードを設定してください。"
     },
     "editorSwitchCountryTip": "エディタで国の切り替えがサポートされていません"
   }

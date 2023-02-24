@@ -12,9 +12,13 @@
           {{#each specAttrList}}
             {{#isTruthy imgUrl}}
               <div class="attr-value with-img {{#isTruthy active}}active{{/isTruthy}}" data-index="{{ @index }}" data-attr-value="{{ name }}">
+              
                 <img referrerpolicy="{{#if ../../imgNoReferrerSwitch}}same-origin{{/if}}"  class="value-img" src="{{ img_url imgUrl width=32 scale=4 }}">
                 {{#isFalsey ../onlyShowAttrImg}}
                   <span class="value-text">{{ name }}</span>
+                {{else}}
+                  {{!-- 售罄划线占位 --}}
+                  <span class="lineation"></span>
                 {{/isFalsey}}
               </div>
             {{else}}

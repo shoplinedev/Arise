@@ -31,7 +31,7 @@
           "type": "price",
           "settings": {}
         },
-        "block-4":{
+        "block-4": {
           "type": "sku-selector",
           "settings": {
             "sku_style": "flatten"
@@ -95,9 +95,9 @@
           }
         }
       },
-      "block_order":["block-1","block-2","block-3","block-4","block-5","block-11","block-6","block-7","block-8","block-9","block-10"]
+      "block_order": ["block-1", "block-2", "block-3", "block-4", "block-5", "block-11", "block-6", "block-7", "block-8", "block-9", "block-10"]
     },
-    "recently-viewed":{
+    "recently-viewed": {
       "type": "product/recently-viewed",
       "disabled": false,
       "settings": {
@@ -108,7 +108,23 @@
         "product_fill_type": "contain",
         "product_hover_show_next": false
       }
+    },
+    "app-block-comment-list": {
+      "type": "apps",
+      "settings": {
+        "include_margins": {
+          "value": true
+        }
+      },
+      "blocks": {
+        "block1": {
+          "type": "shopline://apps/评价管理/blocks/comment-list/bd4a09d9-7542-4e11-931c-19fe441576aa",
+          "settings": {},
+          "is_recommendation": true
+        }
+      },
+      "block_order": ["block1"]
     }
   },
-  "order": ["product-preview","recently-viewed"]
+  "order": ["product-preview", "app-block-comment-list", "recently-viewed"]
 }

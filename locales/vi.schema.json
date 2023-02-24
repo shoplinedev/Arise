@@ -31,6 +31,21 @@
       },
       "name": "Cột thông báo",
       "settings": {
+        "display_mode": {
+          "label": "Phương thức hiển thị nhiều bảng thông báo",
+          "options__0": {
+            "label": "Hiển thị ô xếp"
+          },
+          "options__1": {
+            "label": "Bố cục gọn gàng"
+          },
+          "options__2": {
+            "label": "Chuyển đổi sang trái và phải"
+          },
+          "options__3": {
+            "label": "Chuyển đổi lên và xuống"
+          }
+        },
         "group_header__0": {
           "label": "Không có mục cấu hình có thể chỉnh sửa"
         }
@@ -48,7 +63,7 @@
       "name": "Blog",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Blog",
           "name": "Blog"
         }
       },
@@ -173,7 +188,7 @@
       "name": "Phân loại sản phẩm",
       "presets": {
         "presets__0": {
-          "category": "Sản phẩm",
+          "category": "Hiển thị sản phẩm",
           "name": "Phân loại sản phẩm"
         }
       },
@@ -229,7 +244,7 @@
       "name": "liên hệ với biểu mẫu của chúng tôi",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Hoạt động khách hàng",
           "name": "liên hệ với biểu mẫu của chúng tôi"
         }
       },
@@ -258,7 +273,7 @@
       "name": "HTML tùy chỉnh",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Tùy chỉnh",
           "name": "HTML tùy chỉnh"
         }
       },
@@ -275,7 +290,7 @@
       "name": "Trang tùy chỉnh",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Tùy chỉnh",
           "name": "Trang tùy chỉnh"
         }
       },
@@ -331,7 +346,7 @@
       "name": "Những vấn đề thường gặp",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Thành phần tin tưởng",
           "name": "Những vấn đề thường gặp"
         }
       },
@@ -360,7 +375,7 @@
       "name": "Hàng hóa nổi bật",
       "presets": {
         "presets__0": {
-          "category": "Sản phẩm",
+          "category": "Hiển thị sản phẩm",
           "name": "Hàng hóa nổi bật"
         }
       },
@@ -494,7 +509,7 @@
       "name": "Một mặt hàng",
       "presets": {
         "presets__0": {
-          "category": "Sản phẩm",
+          "category": "Hiển thị sản phẩm",
           "name": "Một mặt hàng"
         }
       },
@@ -626,6 +641,9 @@
         "show_pay_channel": {
           "label": "Bày ra icon kênh thanh toán"
         },
+        "show_powered": {
+          "label": "Hiển thị thông báo bản quyền"
+        },
         "show_social_media": {
           "label": "Hiển thị các biểu tượng mạng xã hội"
         },
@@ -665,6 +683,7 @@
           "label": "Logo"
         },
         "group_header__1": {
+          "info": "[Nhiều trình cắm điều hướng menu hơn](https://apps.shopline.com/detail/?appId=64637)",
           "label": "Menu"
         },
         "header_full_width": {
@@ -806,7 +825,7 @@
       "name": "Biểu ngữ hình ảnh",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Hiển thị đồ họa",
           "name": "Biểu ngữ hình ảnh"
         }
       },
@@ -961,7 +980,7 @@
       "name": "Mô đun đồ hoạ",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Hiển thị đồ họa",
           "name": "Mô đun đồ hoạ"
         }
       },
@@ -982,6 +1001,7 @@
           }
         },
         "image": {
+          "info": "Kiến nghị tải lên ảnh có tỷ lệ 1:1, chiều rộng và chiều cao là 700*700",
           "label": "Thêm hình ảnh"
         },
         "image_height": {
@@ -1307,11 +1327,67 @@
     "main-page": {
       "name": "Trang tùy chỉnh"
     },
+    "main-password": {
+      "name": "Mật khẩu",
+      "settings": {
+        "bg_color": {
+          "label": "Màu sắc nền"
+        },
+        "bg_img": {
+          "label": "Hình nền"
+        },
+        "btn_bg_color": {
+          "label": "Màu sắc nền nút bấm"
+        },
+        "btn_text_color": {
+          "label": "Màu văn bản nút nhấn"
+        },
+        "describe": {
+          "label": "Mô tả"
+        },
+        "email_tip": {
+          "label": "Sao chép lời nhắc khung nhập email"
+        },
+        "group_header__0": {
+          "label": "Logo"
+        },
+        "group_header__1": {
+          "label": "Nội dung"
+        },
+        "group_header__2": {
+          "label": "Truyền thông xã hội"
+        },
+        "input_color": {
+          "label": "Màu khung nhập vào"
+        },
+        "logo_img": {
+          "label": "Hình ảnh logo"
+        },
+        "logo_width": {
+          "label": "Chiều rộng logo"
+        },
+        "media_title": {
+          "label": "Tiêu đề phương tiện truyền thông xã hội"
+        },
+        "show_email": {
+          "label": "Hiển thị email đăng ký"
+        },
+        "show_media": {
+          "label": "Truyền thông xã hội"
+        },
+        "text_color": {
+          "label": "Màu sắc văn bản"
+        },
+        "title": {
+          "label": "Tiêu đề"
+        }
+      }
+    },
     "map": {
       "name": "Bản đồ",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Thành phần tin tưởng",
           "name": "Bản đồ"
         }
       },
@@ -1463,7 +1539,7 @@
       "name": "Kết nối phương tiện truyền thông",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Thành phần nổi bật",
           "name": "Kết nối phương tiện truyền thông"
         }
       },
@@ -1751,7 +1827,13 @@
           "name": "Tóm lược"
         },
         "buy-button": {
-          "name": "Nút mua"
+          "name": "Nút mua",
+          "settings": {
+            "group_header__0": {
+              "info": "[Tìm hiểu thông tin chi tiết](https://apps.shopline.com/detail/?appId=23033)",
+              "label": "Nếu cần sử dụng chức năng giỏ mua hàng nổi dưới đáy hút lên, vui lòng thêm trình cắm Add to cart"
+            }
+          }
         },
         "description": {
           "name": "Mô tả Sản phẩm",
@@ -2217,7 +2299,7 @@
       "name": "Kết quả tìm kiếm",
       "settings": {
         "group_header__0": {
-          "label": "Bản đồ sản phẩm"
+          "label": "Điền bổ sung phân vùng"
         },
         "md_cols": {
           "label": "Số cột trên điện thoại di động",
@@ -2299,6 +2381,9 @@
         "text": {
           "name": "Mô tả",
           "settings": {
+            "expansion": {
+              "label": "Chức năng mở rộng và gập của văn bản"
+            },
             "text": {
               "label": "Nội dung chính"
             }
@@ -2308,7 +2393,7 @@
       "name": "Văn bản phụ",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Hiển thị đồ họa",
           "name": "Văn bản phụ"
         }
       },
@@ -2366,7 +2451,7 @@
       "name": "Đăng ký email",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Hoạt động khách hàng",
           "name": "Đăng ký email"
         }
       },
@@ -2438,9 +2523,11 @@
               "label": "Chuyển nhanh hình ảnh hoặc nút ấn"
             },
             "image": {
+              "info": "Kiến nghị tải lên ảnh có tỷ lệ 3:1, chiều rộng và chiều cao là 1920*650",
               "label": "hình ảnh trên máy tính"
             },
             "image_mobile": {
+              "info": "Kiến nghị tải lên ảnh có tỷ lệ 1:2, chiều rộng và chiều cao là 375*500",
               "label": "Hình ảnh trên điện thoại"
             },
             "link": {
@@ -2500,7 +2587,7 @@
       "name": "Trang quay phim",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Hiển thị đồ họa",
           "name": "Trang quay phim"
         }
       },
@@ -2622,7 +2709,7 @@
       "name": "Mảng bình luận",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Thành phần tin tưởng",
           "name": "Mảng bình luận"
         }
       },
@@ -2686,6 +2773,7 @@
               "label": "Mô tả"
             },
             "image": {
+              "info": "Kiến nghị tải lên ảnh có tỷ lệ 1:1, chiều rộng và chiều cao là 418*530",
               "label": "Hình ảnh"
             },
             "jump_link": {
@@ -2700,7 +2788,7 @@
       "name": "Danh sách hình ảnh và văn bản",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Hiển thị đồ họa",
           "name": "Danh sách hình ảnh và văn bản"
         }
       },
@@ -2782,11 +2870,18 @@
         }
       }
     },
+    "timeline": {
+      "presets": {
+        "presets__0": {
+          "category": "Thành phần nổi bật"
+        }
+      }
+    },
     "video": {
       "name": "video",
       "presets": {
         "presets__0": {
-          "category": "Hiển thị nội dung",
+          "category": "Video",
           "name": "video"
         }
       },
@@ -3137,17 +3232,26 @@
         "color_scheme_1_bg": {
           "label": "Màu sắc nền"
         },
+        "color_scheme_1_gradient": {
+          "label": "Màu nền (thay đổi dần dần)"
+        },
         "color_scheme_1_text": {
           "label": "Màu sắc chữ viết"
         },
         "color_scheme_2_bg": {
           "label": "Màu sắc nền"
         },
+        "color_scheme_2_gradient": {
+          "label": "Màu nền (thay đổi dần dần)"
+        },
         "color_scheme_2_text": {
           "label": "Màu sắc chữ viết"
         },
         "color_scheme_3_bg": {
           "label": "Màu sắc nền"
+        },
+        "color_scheme_3_gradient": {
+          "label": "Màu nền (thay đổi dần dần)"
         },
         "color_scheme_3_text": {
           "label": "Màu sắc chữ viết"
@@ -3281,6 +3385,12 @@
         },
         "group_header__1": {
           "label": "Phân loại sản phẩm"
+        },
+        "group_header__2": {
+          "label": "vụn bánh mì"
+        },
+        "show_breadcrumb": {
+          "label": "HIển thị vị trí"
         },
         "superscript_decimals": {
           "label": "Hiển thị thu nhỏ số thập phân giá bán lẻ"

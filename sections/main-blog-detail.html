@@ -88,7 +88,7 @@ all_collections:
   <div class="blog__main-box">
     <div class="blog__main {{#if settings.position '===' 'left'}}blog__main--right{{/if}}">
       <div class="blog__content body3">
-        {{{ rich_editor_format content }}}
+        {{{ rich_editor_format content lazyLoadIframe=true }}}
       </div>
 
       <div class="blog__shards">

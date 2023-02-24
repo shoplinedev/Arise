@@ -1,13 +1,5 @@
 {{ preload_state 'customer.order' }}
 
-{{#partial 'head'}}
-  <link rel="stylesheet" href="{{assets_url 'customer/order/detail/index.min.css'}}" />
-{{/partial}}
-
-{{#partial 'script'}}
-  <script src="{{assets_url 'customer/order/detail/index.min.js'}}"></script>
-{{/partial}}
-
 <div class="customer-order-detail">
   {{snippet 'customer/order/detail/breadcrumb'}}
   <main class="main-wrapper" role="main">

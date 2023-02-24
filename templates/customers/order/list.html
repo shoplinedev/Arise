@@ -1,13 +1,5 @@
 {{ preload_state 'customer.orders' }}
 
-{{#partial 'head'}}
-  <link rel="stylesheet" href="{{assets_url 'customer/order/list/index.min.css'}}" />
-{{/partial}}
-
-{{#partial 'script'}}
-  <script src="{{assets_url 'customer/order/list/index.min.js'}}"></script>
-{{/partial}}
-
 {{!-- 个人中心公共布局 --}}
 {{#snippet 'customer/user-center-container' }}
   {{!-- 订单列表主体 --}}

@@ -12,7 +12,24 @@
         <h2 {{{ this.shopline_attributes }}} class="title4{{#if settings.heading_size}} rich-text__title rich-text__title-size-{{ settings.heading_size }}{{/if}}">{{ settings.heading }}</h2>
       {{/if}}
       {{#if (trim type) '===' 'text'}}
-        <div {{{ this.shopline_attributes }}} class="sl-richtext body2">{{{ settings.text }}}</div>
+        <div {{{ this.shopline_attributes }}} class="sl-richtext body2">
+          {{#if settings.expansion}}
+            {{#snippet 'global-dropdown-list' relatedId=section.id status=false reverse=true}}
+                {{#child 'trigger'}}
+                  <div class="open">{{ t 'general.general.more' }} {{ snippet 'icons/icon_arrow_down' classes='open-icon' }}</div>
+                  <div class="close">{{ t 'general.general.pack_up' }} {{ snippet 'icons/icon_arrow_down' classes='open-icon rotate180' }}</div>
+                {{/child}}
+
+                {{#child 'dropdownList'}}
+                  <div class="image-with-text__dropdown-content">
+                    {{{ settings.text }}}
+                  </div>
+                {{/child}}
+              {{/snippet}}
+          {{else}}
+            {{{ settings.text }}}
+          {{/if}}
+        </div>
       {{/if}}
       {{#if (trim type) '===' 'button'}}
         {{#if settings.button_text}}
@@ -76,6 +93,12 @@
           "type": "richtext",
           "default": "<p>A sentence or two introducing your brand, what you sell, and what makes your brand compelling to customers.</p>",
           "label": "t:sections.rich-text.blocks.text.settings.text.label"
+        },
+        {
+          "id": "expansion",
+          "type": "switch",
+          "label": "t:sections.rich-text.blocks.text.settings.expansion.label",
+          "default": true
         }
       ]
     },
@@ -140,6 +163,7 @@
   "presets": [
     {
       "name": "t:sections.rich-text.presets.presets__0.name",
+      "category_index": 2,
       "category": "t:sections.rich-text.presets.presets__0.category",
       "blocks": [
         {

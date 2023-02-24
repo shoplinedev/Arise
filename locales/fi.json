@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Alennuskoodit ylittävät määrärajan",
       "existCode": "Alennuskoodi on jo olemassa",
+      "freeShipping": {
+        " existCode": "Alennuskoodi toistuvaa ilmaista toimitusta varten"
+      },
       "list": {
         "unavailable": "Kaikki alennuskoodit ovat vanhentuneet"
       },
@@ -66,6 +69,13 @@
       "unavailable": "Alennuskoodi on vanhentunut"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Maksu kuponkikoodi ilmaista toimitusta varten - maa ei täsmää",
+        "logistics-fee-over-limit": "Kuponkikoodi ilmaista toimitusta varten - toimituskulut ylittävät rajan"
+      },
+      "code_overdue": "Kuponkikoodi on vanhentunut",
+      "code_user_exceedLimit": "Se, kuinka monta kertaa käyttäjä käyttää tätä toimintaa, ylittää rajan",
+      "code_user_notSupport": "Käyttäjä ei voi käyttää tätä aktiviteettia",
       "coupon_code_amount": "Kuponki",
       "coupon_code_length_limit": "Kuponkikoodi saa olla enintään {{range}} merkkiä.",
       "expected_discount": "Alennus"
@@ -92,6 +102,7 @@
       "none_existent": "Tavaransa ovat olemattomat",
       "view_cart": "Näytä ostoskori"
     },
+    "lack_multilingualism": "*Tämä lausunto ei latautunut. Ota yhteyttä asiakaspalveluun tilanteen selvittämiseksi*",
     "next_step": {
       "calculated_taxes_fees": "Verot ja toimituskulut lasketaan kassalla"
     },
@@ -227,7 +238,7 @@
       "add_address": "Lisää uusi osoite",
       "address": "Osoite",
       "adress_full_tip": "50 osoitetta on tallennettu ja tällä hetkellä ei voida lisätä muita osoitteita",
-      "common_max": "",
+      "common_max": "Alle {{max}} merkkiä!",
       "common_min": "suurempi kuin {{min}} merkkiä",
       "default": "Oletus",
       "delete__address": "Poista osoite",
@@ -408,6 +419,11 @@
       "title": "404 sivua ei löydy",
       "button": "Jatka ostoksia"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Liian monta pyyntöä"
+      }
+    },
     "address": {
       "address": "Osoite"
     },
@@ -425,7 +441,9 @@
       "decline": "Lasku",
       "home": "Kotisivu",
       "link": "Tietosuojakäytäntö",
+      "more": "Enemmän",
       "no_data": "Tietoja ei ole saatavilla",
+      "pack_up": "Vähemmän",
       "privacy_policy": "Tietosuojakäytäntö",
       "tel_phone": "Puhelinnumero",
       "tips": "Käyttökokemuksesi parantamiseksi käytämme evästeitä muistaaksemme kirjautumistiedot, kerätäksemme tilastoja ja toimittaaksemme kiinnostuksen kohteidesi mukaan räätälöityä sisältöä. Hyväksy evästeet klikkaamalla Hyväksy tai tutustu tietosuojakäytäntöömme.",
@@ -451,6 +469,15 @@
       "risk_interception": "järjestystä ei ole olemassa",
       "submit_btn": "Katso tilaus",
       "username": "Sähköposti/Puhelinnumero"
+    },
+    "password": {
+      "back": "Takaisin",
+      "entry_store": "Siirry kauppaan",
+      "forget_password": "Pääsy salasanalla",
+      "goto_admin": "Kirjaudu sisään nyt",
+      "i_am_admin": "Olen omistaja",
+      "input_password": "Syötä salasana",
+      "password_is_error": "Väärä salasana, yritä uudelleen"
     },
     "policy": {
       "service": "Käyttöehdot",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Kuponkikoodin kopio",
       "coupon_code_copy": "Kopioida",
       "flash_sale_text": "FLASH-MYYNTI",
-      "flash_sale_tip": "Ostoraja: {{count}} määrä",
+      "flash_sale_tip": "Osto rajoitus: {{count}} asia(t)",
       "hot_sale": "Nyt myynnissä!",
       "product_tabs_benefit_discount_locked": "Saat {{offPercent}}%-alennuksen",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}%-alennus on avattu!",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Hanki {{benefitCount}} {{offPercent}}% POIS PÄÄLTÄ",
       "product_tabs_code_benefit_free_unlocked": "Hanki {{benefitCount}} ILMAISEKSI",
       "product_tabs_threshold": "Osta {{threshold}}",
-      "purchase_limit": "Ostoraja {{count}} henkilöä kohti",
-      "purchase_limit_each_item": "Ostoraja {{count}} tuotetta kohti henkilöä kohti",
+      "purchase_limit": "Osto on rajoitettu {{count}} asia(t) edistämiseen tuote",
+      "purchase_limit_each_item": "Osto on rajoitettu {{count}} asia(t) jokaiselle muunnelmalle",
+      "purchase_limit_each_product": "Osto on rajoitettu {{count}} asia(t) jokaiselle edistämiseen tuote",
       "select_promotional_product": "{{selectCount}} tapahtumatuotetta valittu",
       "sold": "{{count}} myyty",
       "activity_banner_copy_text": "Kopioida",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Pyöristys"
-      }
-    },
     "payments-name": {
       "COD": "Postiennakko",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Alennus",
       "free_charge": "Ilmainen toimitus",
       "free_shipping": "Ilmainen toimitus",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Myyjän antama lisäalennus",
       "order_tax": "Verottaa",
       "order_tip": "Tippi",
@@ -799,9 +817,11 @@
       "error_message_3022": "Linkki on vanhentunut",
       "error_message_3023": "Linkki on väärässä muodossa",
       "error_message_3024": "Linkki ei ole hyvä.",
+      "error_message_3026": "Tilin muodon virhe",
       "error_message_4": "Palvelu Poikkeus",
       "error_message_5": "Palvelu Poikkeus",
-      "error_message_6": "Palvelu Poikkeus"
+      "error_message_6": "Palvelu Poikkeus",
+      "error_message_7": "Syötä salasana, jonka vähimmäispituus on 6 merkkiä ja maksimipituus 18 merkkiä."
     },
     "editorSwitchCountryTip": "Toimittaja ei tue maiden vaihtoa"
   }

@@ -35,6 +35,10 @@ window.SLM['theme-shared/utils/lozad/plugins/normal.js'] = window.SLM['theme-sha
           append = true;
         }
 
+        if (img.nodeName.toLowerCase() === 'img' && !img.hasAttribute('decoding')) {
+          img.decoding = 'async';
+        }
+
         if (isIE && element.getAttribute(EnumAttributes.Iesrc)) {
           img.src = element.getAttribute(EnumAttributes.Iesrc);
         }
@@ -63,6 +67,10 @@ window.SLM['theme-shared/utils/lozad/plugins/normal.js'] = window.SLM['theme-sha
 
           element.load();
         }
+      }
+
+      if (element.nodeName.toLowerCase() === 'img' && !element.hasAttribute('decoding')) {
+        element.decoding = 'async';
       }
 
       if (element.getAttribute(EnumAttributes.Poster)) {

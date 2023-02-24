@@ -57,6 +57,9 @@
     "couponCode": {
       "exceedLimit": "Os códigos de desconto excedem o limite de quantidade",
       "existCode": "O código de desconto já existe",
+      "freeShipping": {
+        " existCode": "O código de desconto para frete grátis é repetido"
+      },
       "list": {
         "unavailable": "Todos os códigos de desconto expiraram"
       },
@@ -66,6 +69,13 @@
       "unavailable": "O código de desconto expirou"
     },
     "discount": {
+      "code": {
+        "country_not_support": "Pagamento com código de desconto para frete grátis - sem país correspondente",
+        "logistics-fee-over-limit": "Código de desconto para frete grátis - o frete excede o limite"
+      },
+      "code_overdue": "O código de desconto expirou",
+      "code_user_exceedLimit": "O número de vezes que o usuário utilizou esta oferta excede o limite",
+      "code_user_notSupport": "O usuário não pode utilizar esta oferta",
       "coupon_code_amount": "Oferta de código promocional",
       "coupon_code_length_limit": "O código promocional não pode exceder {{range}} caracteres.",
       "expected_discount": "Oferta esperada"
@@ -92,6 +102,7 @@
       "none_existent": "Produto não existe",
       "view_cart": "Ver carrinho"
     },
+    "lack_multilingualism": "*Esta frase não pôde ser carregada, por favor contate o serviço ao cliente para relatar a situação*.",
     "next_step": {
       "calculated_taxes_fees": "A próxima etapa será calcular os impostos e frete"
     },
@@ -227,7 +238,7 @@
       "add_address": "Adicionar novo endereço",
       "address": "Endereço",
       "adress_full_tip": "50 endereços foram salvos e não podem ser adicionados no momento",
-      "common_max": "Menos de {{max}} caracteres",
+      "common_max": "Menos de {{max}} caracteres!",
       "common_min": "Ser maior que {{min}} caracteres",
       "default": "Padrão",
       "delete__address": "Excluir endereço",
@@ -408,6 +419,11 @@
       "title": "404 página não encontrada",
       "button": "Continuar comprando"
     },
+    "abandon": {
+      "Order": {
+        "risk": "Os pedidos são muito frequentes"
+      }
+    },
     "address": {
       "address": "Endereço"
     },
@@ -425,7 +441,9 @@
       "decline": "Rejeitar",
       "home": "Página inicial",
       "link": "Política de privacidade",
+      "more": "Ver mais",
       "no_data": "Sem dados",
+      "pack_up": "Ver menos",
       "privacy_policy": "política de privacidade do site",
       "tel_phone": "Número de telefone",
       "tips": "A fim de oferecer uma melhor experiência, usamos cookies para registrar seu status de login, coletar estatísticas e fornecer-lhe conteúdo interessante. Clique em 'Aceitar' para permitir o uso de cookies ou veja nossa \"Política de Privacidade\".",
@@ -451,6 +469,15 @@
       "risk_interception": "ordem não existe",
       "submit_btn": "Ver pedido",
       "username": "E-mail/Número de telefone"
+    },
+    "password": {
+      "back": "Voltar",
+      "entry_store": "Acesso à loja",
+      "forget_password": "Acesso com senha",
+      "goto_admin": "Para entrar",
+      "i_am_admin": "Sou dono da loja",
+      "input_password": "Insira sua senha",
+      "password_is_error": "Senha errada, insira novamente"
     },
     "policy": {
       "service": "os termos de serviço",
@@ -639,7 +666,7 @@
       "coupon_code_copied": "Código de desconto copiado com sucesso",
       "coupon_code_copy": "Copiar",
       "flash_sale_text": "Promoção por tempo limitado",
-      "flash_sale_tip": "Limite de compra: {{count}} unidade",
+      "flash_sale_tip": "Limite de compra: {{count}} itens",
       "hot_sale": "Venda quente",
       "product_tabs_benefit_discount_locked": "{{offPercent}}% de desconto",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% de desconto desbloqueado！",
@@ -649,8 +676,9 @@
       "product_tabs_code_benefit_discount_unlocked": "Compre {{benefitCount}} com {{offPercent}}% de desconto",
       "product_tabs_code_benefit_free_unlocked": "Ganhe {{benefitCount}} grátis",
       "product_tabs_threshold": "Comprar {{threshold}}",
-      "purchase_limit": "Limite de {{count}} unidades por pessoa",
-      "purchase_limit_each_item": "Cada pessoa pode comprar apenas {{count}} peças de cada produto.",
+      "purchase_limit": "Compra limitada a {{count}} produto(s) promocional(ais) no total",
+      "purchase_limit_each_item": "Compra limitada a {{count}} item(ns) para cada variante",
+      "purchase_limit_each_product": "Compra limitada a {{count}} item(ns) para cada produto promocional",
       "select_promotional_product": "Selecionou {{selectCount}} protudos deste atividade",
       "sold": "Vendido{{count}}",
       "activity_banner_copy_text": "Copiar",
@@ -674,11 +702,6 @@
     }
   },
   "trade": {
-    "orderSummary": {
-      "totalLine": {
-        "adjust": "Arredondamento"
-      }
-    },
     "payments-name": {
       "COD": "Pagamento na entrega",
       "Paypal": "Paypal",
@@ -705,11 +728,6 @@
       "discount_off": "Desconto",
       "free_charge": "Frete grátis",
       "free_shipping": "Frete grátis",
-      "orderSummary": {
-        "totalLine": {
-          "adjust": ""
-        }
-      },
       "order_seller_discount": "Desconto personalizado do vendedor",
       "order_tax": "Imposto",
       "order_tip": "Gorjeta",
@@ -799,9 +817,11 @@
       "error_message_3022": "O link expirou",
       "error_message_3023": "O link tem um formato errado",
       "error_message_3024": "O parâmetro de link está errado",
+      "error_message_3026": "Formato errado da conta",
       "error_message_4": "Erro de serviço",
       "error_message_5": "Erro de serviço",
-      "error_message_6": "Erro de serviço"
+      "error_message_6": "Erro de serviço",
+      "error_message_7": "Defina uma senha de 6-18 caracteres"
     },
     "editorSwitchCountryTip": "A mudança de país não é atualmente suportada pelo editor"
   }

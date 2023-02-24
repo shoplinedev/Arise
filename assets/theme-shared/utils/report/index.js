@@ -220,26 +220,22 @@ window.SLM['theme-shared/utils/report/index.js'] = window.SLM['theme-shared/util
       }
     });
     const excludeAds = EXCLUDE_ADS_PAGE_VIEW_ALIAS.includes(window.Shopline && window.Shopline.uri && window.Shopline.uri.alias);
-
-    if (!location.pathname.startsWith('/user/')) {
-      window.SL_EventBus.emit('global:thirdPartReport', {
-        FBPixel: [['track', 'PageView', {}, {
-          eventID: window.__PRELOAD_STATE__ ? window.__PRELOAD_STATE__.serverEventId : undefined
-        }]],
-        GAAds: excludeAds ? [] : [['event', 'conversion', null]],
-        GA: [['event', 'page_view', {
-          page_title: document.title,
-          page_location: window.location.href,
-          page_path: window.location.pathname + window.location.search
-        }]],
-        GA4: [['event', 'page_view', {
-          page_title: document.title,
-          page_location: window.location.href,
-          page_path: window.location.pathname + window.location.search
-        }]]
-      });
-    }
-
+    window.SL_EventBus.emit('global:thirdPartReport', {
+      FBPixel: [['track', 'PageView', {}, {
+        eventID: window.__PRELOAD_STATE__ ? window.__PRELOAD_STATE__.serverEventId : undefined
+      }]],
+      GAAds: excludeAds ? [] : [['event', 'conversion', null]],
+      GA: [['event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname + window.location.search
+      }]],
+      GA4: [['event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname + window.location.search
+      }]]
+    });
     startObserver();
     clickCollect();
   }

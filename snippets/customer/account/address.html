@@ -47,7 +47,7 @@
                 {{#if def}}
                   <span class="address__item--default">{{ t 'customer.address.default' }}</span>
                 {{/if}}
-                <span class="address__name">{{ lastName }}{{ cond firstName (append ', ' firstName) '' }}</span>
+                <span class="address__name">{{ lastName }}{{ cond firstName (append (cond lastName ', ' '') firstName) '' }}</span>
               </p>
 
               {{#if (isFalsey ../isMobile)}}
@@ -135,7 +135,9 @@
                 {{ array-push segments_1 zipCode }}
                 {{/if}}
 
-                {{ array-push segments (join segments_1 ' ') }}
+                {{#if (isFalsey (isEmpty segments_1))}}
+                  {{ array-push segments (join segments_1 ' ') }}
+                {{/if}}
 
                 {{#if (isTruthy country)}}
                 {{ array-push segments country }}

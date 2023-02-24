@@ -65,7 +65,7 @@
     data-section-id="{{ section.id }}"
     >
     {{ snippet 'texture' color_scheme=section.settings.color_scheme width='200' }}
-    <div class="container color-scheme-{{ color_scheme }} g-md-5
+    <div class="container g-md-5
         {{#if show_touch}} g-0
         {{else}}{{#if show_block_bg}} g-2
         {{else}} g-4
@@ -76,20 +76,20 @@
             <h2 class="text-columns-with-images__title section-title title4 text-center">{{ section.settings.title }}</h2>
         {{/if}}
         {{ assign 'isMobileRowsMode' false }}
-        {{#and (isFalsey show_touch) (boolean mdCols '==' 2)}} 
+        {{#and (isFalsey show_touch) (boolean mdCols '==' 2)}}
           {{ assign 'isMobileRowsMode' true }}
         {{/and}}
         {{ assign 'container-wrapper-cls' '' }}
-        {{#if (isFalsey show_block_bg)}} 
+        {{#if (isFalsey show_block_bg)}}
           {{ assign 'container-wrapper-cls' 'mobile-rows-no-mask' }}
         {{/if}}
-          <div class="{{#if show_touch}}d-none d-md-flex{{/if}} text-columns-with-images__wrapper row row-cols-{{ mdCols }} row-cols-md-{{ pcCols }}" style="{{#if (boolean pcCols '==' 1)}}justify-content:center;{{/if}}">                                  
+          <div class="{{#if show_touch}}d-none d-md-flex{{/if}} text-columns-with-images__wrapper row row-cols-{{ mdCols }} row-cols-md-{{ pcCols }}" style="{{#if (boolean pcCols '==' 1)}}justify-content:center;{{/if}}">
             {{#each blocks}}
               <div class="text-columns-with-images__inner d-none d-md-flex">
                 {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align shopline_attributes=this.shopline_attributes }}
               </div>
-              
-              <div class="text-columns-with-images__inner d-md-none d-flex {{ ../container-wrapper-cls }}">                
+
+              <div class="text-columns-with-images__inner d-md-none d-flex {{ ../container-wrapper-cls }}">
                 {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align isMobileRowsMode=../isMobileRowsMode }}
               </div>
             {{/each}}
@@ -99,7 +99,7 @@
           <div class="d-md-none">
             <div class="swiper-container text-columns-images-swiper-container" data-no-spacing="{{ noSpacing }}" style="width: 100%;">
               <div class="swiper-wrapper">
-                
+
                   {{#each blocks}}
                   <div class="swiper-slide">
                     {{ snippet 'text-columns-with-images-item' image_style=../image_style image_width=../image_width image_ratio=../image_ratio noSpacing=../noSpacing showMask=../show_block_bg color_scheme=../color_scheme text_align=../text_align jump_link=../jump_link shopline_attributes=this.shopline_attributes }}
@@ -115,7 +115,7 @@
 
         {{ assign 'linkObj' (useLink jump_link) }}
         {{#if (trim button_text)}}
-          <div class="text-columns-with-images__control {{#and (isTruthy isMobileRowsMode) (isFalsey show_block_bg)}}no-margin-top{{/and}}">            
+          <div class="text-columns-with-images__control {{#and (isTruthy isMobileRowsMode) (isFalsey show_block_bg)}}no-margin-top{{/and}}">
             <a {{{ linkObj.hrefAttr }}}  class="btn btn-primary fw-bold ">{{ button_text }}</a>
           </div>
         {{/if}}
@@ -281,8 +281,9 @@
       "name": "t:sections.text-columns-with-images.blocks.item.name",
       "settings": [
         {
-          "id": "image",
           "type": "image_picker",
+          "id": "image",
+          "info": "t:sections.text-columns-with-images.blocks.item.settings.image.info",
           "label": "t:sections.text-columns-with-images.blocks.item.settings.image.label",
           "default": ""
         },
@@ -315,6 +316,7 @@
   "presets": [
     {
       "name": "t:sections.text-columns-with-images.presets.presets__0.name",
+      "category_index": 2,
       "category": "t:sections.text-columns-with-images.presets.presets__0.category",
       "blocks": [
         {

@@ -24,10 +24,12 @@ collections_all:
 {{/if}}
 <div class="section-gap container">
   <div class="collection-list-main">
+    {{#if theme.settings.show_breadcrumb}}
     <div class="collection-list-crumbs">
       <a href="{{ redirect_to '/' }}" class="collection-list-header-title-url custom-body4">{{t 'general.general.home'}} /</a>
       <a class="collection-list-header-title-url custom-body4" style="opacity: .6;">{{t 'products.collection.collection'}}</a>
     </div>
+    {{/if}}
     <h1 class="collection-list-header title2">{{t 'products.collection.collection'}}</h1>
     {{snippet 'product/commons/collection-item-list' colNum=section.settings.col mbColNum=section.settings.mb_col collectionData=(cond (is section.settings.display_type 'all') collections-all collections-filter-all)}}
   </div>
