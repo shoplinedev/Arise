@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Kode za popust presegajo količinsko omejitev",
       "existCode": "Koda za popust že obstaja",
-      "freeShipping": {
-        " existCode": "Koda za popust za brezplačni prevoz se ponovi"
-      },
       "list": {
         "unavailable": "Vse kode za popust so potekle"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Koda za popust je potekla"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Koda kupona za plačilo za brezplačno dostavo - država se ne ujema",
-        "logistics-fee-over-limit": "Koda kupona za brezplačno poštnino - stroški prevoza presegajo omejitev"
-      },
-      "code_overdue": "Koda kupona je potekla",
-      "code_user_exceedLimit": "Število primerov, ko uporabnik uporabi to aktivnost, presega omejitev",
-      "code_user_notSupport": "Uporabnik ne more uporabljati te aktivnosti",
       "coupon_code_amount": "Kuponi",
       "coupon_code_length_limit": "Koda kupona ne sme presegati {{range}} znakov.",
       "expected_discount": "Popust"
@@ -87,6 +77,12 @@
       "buy_limit1": "Le še {{stock}} kosov je ostalo s tem popustom",
       "buy_limit2": "Hkrati lahko kupite največ {{stock}} izdelek/izdelkov s popusti",
       "buy_limit3": "S popusti lahko kupite le {{stock}} kos(-e) tega izdelka"
+    },
+    "error": {
+      "default": "Napaka pri nalaganju virov",
+      "noshipping": "Brez izbirnega tovornega načrta",
+      "order": "Zaporedja ni bilo mogoče zahtevati",
+      "renew": "Posodobitve podatkov ni bilo mogoče"
     },
     "general": {
       "continue_as_a_guest": "Nadaljujte kot gost",
@@ -102,7 +98,6 @@
       "none_existent": "Blago ne obstaja",
       "view_cart": "Oglejte si košarico"
     },
-    "lack_multilingualism": "*Ta izjava se ni naložila, lahko se obrnete na službo za pomoč uporabnikom in poročate o situaciji*",
     "next_step": {
       "calculated_taxes_fees": "Davki in dostava se izračunajo ob nakupu"
     },
@@ -432,9 +427,9 @@
       "send_success": "Zahvaljujemo se vam, da ste vzpostavili stik z nami, odgovorili vam bomo v najkrajšem možnem času."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Napaka v obliki e-poštnega naslova",
-      "subscribe_success": "Uspešna naročnina",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Uspešna naročnina"
     },
     "general": {
       "accept": "Sprejmi",
@@ -575,6 +570,7 @@
       "leave_us_message": "Vnesite sporočilo",
       "leave_us_message_get_back": "Pustite nam sporočilo in odgovorili vam bomo v najkrajšem možnem času",
       "link_preview_does_not_support": "Operacija za predogled povezave ni podprta",
+      "load_more": "Pokaži več",
       "maximum_length_of_message": "Dolžina vašega sporočila ne sme preseči več kot 1.500 besed",
       "message": "Vaše sporočilo",
       "more_payment_options": "več možnosti plačila",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Zaokroževanje"
+    },
     "payments-name": {
       "COD": "Dobava po povzetju",
       "Paypal": "PayPal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Za to naročilo je bil uporabljen popust. Ne morete dodati še enega popusta"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Koda za popust za brezplačni prevoz se ponovi"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Koda kupona za plačilo za brezplačno dostavo - država se ne ujema",
+        "logistics-fee-over-limit": "Koda kupona za brezplačno poštnino - stroški prevoza presegajo omejitev"
+      },
       "code_error": "Koda za popust je napačno vnesena",
       "code_item_unmatched": "{{discountCode}} je pravilno vnesena, vendar cena ali količina ne ustreza zahtevam",
+      "code_overdue": "Koda kupona je potekla",
+      "code_user_exceedLimit": "Število primerov, ko uporabnik uporabi to aktivnost, presega omejitev",
+      "code_user_notSupport": "Uporabnik ne more uporabljati te aktivnosti",
       "coupon_code": "Koda kupona",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} kupon velja za način dostave",
       "discount_codes_cannot_stack": "Za izdelek že obstaja prednostni dogodek, ki ga ni mogoče uporabiti skupaj z drugimi prednostnimi dogodki",
@@ -742,6 +753,7 @@
       "removed": "NEVELJAVNO",
       "sold_out": "razprodano"
     },
+    "lack_multilingualism": "*Ta izjava se ni naložila, lahko se obrnete na službo za pomoč uporabnikom in poročate o situaciji*",
     "notices": {
       "insufficient_product_inventory": "Nezadostna zaloga izdelka",
       "network": "Napaka v omrežju",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Prekliči",
+      "enquire": "Nadaljuj z oddajo naročila z Apple Pay?",
+      "paywith": "Plačilo s/z"
+    },
     "customer": {
       "error_message_1": "Prijavite se na e-pošto za prejemanje posodobitev, dostop do ekskluzivnih ponudb in še več.",
       "error_message_1001": "Napaka v geslu",

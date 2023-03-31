@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Kodovi za popust premašuju ograničenje količine",
       "existCode": "Kod za popust već postoji",
-      "freeShipping": {
-        " existCode": "Kod za popust za besplatnu isporuku se ponavlja"
-      },
       "list": {
         "unavailable": "Svi kodovi za popust su istekli"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Kod za popust je istekao"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Kod kupona za plaćanje za besplatnu dostavu- zemlja nije dostupna",
-        "logistics-fee-over-limit": "Kod kupona za besplatnu dostavu- troškovi dostave prekoračuju ograničenje"
-      },
-      "code_overdue": "Kod kupona je istekao",
-      "code_user_exceedLimit": "Broj pokušaja korisnika za ovu opciju je premašio ograničenje",
-      "code_user_notSupport": "Korisnik ne može koristiti ovu opciju",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Kod kupona ne smije biti duži od {{range}} znaka.",
       "expected_discount": "Popust"
@@ -87,6 +77,12 @@
       "buy_limit1": "Samo {{stock}} ostaju komadi s ovom cijenom s popustom",
       "buy_limit2": "Uz popuste istovremeno možete kupiti najviše {{stock}} proizvod(a)",
       "buy_limit3": "Sa popustom možete kupiti {{stock}} komad(a) ovog proizvoda"
+    },
+    "error": {
+      "default": "Pogreška pri učitavanju resursa",
+      "noshipping": "Nema neobaveznog plana prijevoza tereta",
+      "order": "Zahtjev za narudžbom nije uspio",
+      "renew": "Ažuriranje podataka nije uspjelo"
     },
     "general": {
       "continue_as_a_guest": "Nastavite kao gost",
@@ -102,7 +98,6 @@
       "none_existent": "Roba ne postoji",
       "view_cart": "Pogledaj košaricu"
     },
-    "lack_multilingualism": "*Ova se izjava nije uspjela učitati, možete se obratiti korisničkoj službi da biste prijavili situaciju*",
     "next_step": {
       "calculated_taxes_fees": "Porezi i dostava se računaju na blagajni"
     },
@@ -432,9 +427,9 @@
       "send_success": "Hvala Vam što ste nas kontaktirali. Javit ćemo Vam se u  najkraćem mogućem roku."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Pogreška formata adrese e-pošte",
-      "subscribe_success": "Uspješna pretplata",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Uspješna pretplata"
     },
     "general": {
       "accept": "Prihvatiti",
@@ -575,6 +570,7 @@
       "leave_us_message": "Unesite svoju poruku",
       "leave_us_message_get_back": "Molimo ostavite nam poruku i mi ćemo vam se javiti u najkraćem mogućem roku",
       "link_preview_does_not_support": "Operacija za pregled veze nije podržana",
+      "load_more": "Prikaži više",
       "maximum_length_of_message": "Maksimalna duljina vaše poruke ne smije biti veća od 1500 riječi",
       "message": "Vaša poruka",
       "more_payment_options": "Još mogućnosti plaćanja",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Zaokruživanje"
+    },
     "payments-name": {
       "COD": "Pouzećem",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Na ovu narudžbu primijenjen je popust. Ne možete dodati još jedan popust"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Kod za popust za besplatnu isporuku se ponavlja"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Kod kupona za plaćanje za besplatnu dostavu- zemlja nije dostupna",
+        "logistics-fee-over-limit": "Kod kupona za besplatnu dostavu- troškovi dostave prekoračuju ograničenje"
+      },
       "code_error": "Kod za popust je pogrešno upisan",
       "code_item_unmatched": "{{discountCode}} je ispravno upisan, ali cijena ili količina robe ne zadovoljava uvjete",
+      "code_overdue": "Kod kupona je istekao",
+      "code_user_exceedLimit": "Broj pokušaja korisnika za ovu opciju je premašio ograničenje",
+      "code_user_notSupport": "Korisnik ne može koristiti ovu opciju",
       "coupon_code": "Kod kupona",
       "coupon_invalid_for_the_shipping_method": "Kupon {{discountCode}} vrijedi za način dostave",
       "discount_codes_cannot_stack": "Ovo je već preferencijalni događaj za proizvod koji se ne može koristiti zajedno s drugim preferencijalnim događajima",
@@ -742,6 +753,7 @@
       "removed": "NEVAŽEĆI",
       "sold_out": "Prodano"
     },
+    "lack_multilingualism": "*Ova se izjava nije uspjela učitati, možete se obratiti korisničkoj službi da biste prijavili situaciju*",
     "notices": {
       "insufficient_product_inventory": "Nedovoljna zaliha proizvoda",
       "network": "Pogreška mreže",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Otkažite",
+      "enquire": "Nastavite sa narudžbom putem Apple Pay-a?",
+      "paywith": "Platite sa"
+    },
     "customer": {
       "error_message_1": "Prijavite me na e-poštu da primam ažuriranja, pristup ekskluzivnim ponudama i još mnogo toga.",
       "error_message_1001": "Pogreška lozinke",

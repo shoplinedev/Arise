@@ -167,6 +167,13 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
 
     handleCancel() {
       this.handleReset();
+      this.getCustomerConfig().then(({
+        stoken: lastStoken
+      }) => {
+        super.updateToken(this.UDBParams, {
+          stoken: lastStoken
+        });
+      });
       this.onClose && this.onClose();
     }
 

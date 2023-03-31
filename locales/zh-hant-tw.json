@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "折扣碼超過數量限制",
       "existCode": "折扣碼已存在",
-      "freeShipping": {
-        " existCode": "免運費折扣碼重複"
-      },
       "list": {
         "unavailable": "所有折扣碼均已失效"
       },
@@ -69,13 +66,6 @@
       "unavailable": "折扣碼失效"
     },
     "discount": {
-      "code": {
-        "country_not_support": "支付 免郵優惠碼-國家不匹配",
-        "logistics-fee-over-limit": "免郵優惠碼-運費超過限制"
-      },
-      "code_overdue": "優惠碼已過期",
-      "code_user_exceedLimit": "用戶使用該活動次數超過限制",
-      "code_user_notSupport": "用戶不能使用該活動",
       "coupon_code_amount": "優惠代碼折扣",
       "coupon_code_length_limit": "優惠代碼不可超過 {{range}} 個字元",
       "expected_discount": "預估折扣"
@@ -87,6 +77,12 @@
       "buy_limit1": "此商品優惠價僅剩{{stock}}件",
       "buy_limit2": "最多可同時購買{{stock}} 件優惠價商品",
       "buy_limit3": "此商品優惠價僅支持購買{{stock}}件"
+    },
+    "error": {
+      "default": "加載資源失敗",
+      "noshipping": "無可選的運費方案",
+      "order": "下單請求失敗",
+      "renew": "更新數據失敗"
     },
     "general": {
       "continue_as_a_guest": "繼續以訪客身份訪問",
@@ -102,7 +98,6 @@
       "none_existent": "商品不存在",
       "view_cart": "查看購物車"
     },
-    "lack_multilingualism": "*此語句加載失敗，可聯系客服反映情况*",
     "next_step": {
       "calculated_taxes_fees": "將在下一個步驟計算稅金和運費"
     },
@@ -432,9 +427,9 @@
       "send_success": "謝謝您聯繫我們，我們將盡快回复您。"
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "電子郵件地址格式無效",
-      "subscribe_success": "已訂閱",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "已訂閱"
     },
     "general": {
       "accept": "接受",
@@ -575,6 +570,7 @@
       "leave_us_message": "請填寫留言",
       "leave_us_message_get_back": "請留言你的諮詢內容，我們將會盡快與你聯繫",
       "link_preview_does_not_support": "預覽連結不支援此操作",
+      "load_more": "展示更多",
       "maximum_length_of_message": "留言長度不超過1500個字",
       "message": "留言",
       "more_payment_options": "更多支付選項",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "舍入"
+    },
     "payments-name": {
       "COD": "貨到付款",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "限時折扣和優惠碼活動互斥"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "免運費折扣碼重複"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "支付 免郵優惠碼-國家不匹配",
+        "logistics-fee-over-limit": "免郵優惠碼-運費超過限制"
+      },
       "code_error": "請輸入有效的優惠碼",
       "code_item_unmatched": "你購物車內的商品不適用於{{discountCode}}優惠碼",
+      "code_overdue": "優惠碼已過期",
+      "code_user_exceedLimit": "用戶使用該活動次數超過限制",
+      "code_user_notSupport": "用戶不能使用該活動",
       "coupon_code": "優惠券代碼",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} 優惠碼不適用當前物流方式",
       "discount_codes_cannot_stack": "商品已經存在一個優惠活動，不可與其他優惠疊加",
@@ -742,6 +753,7 @@
       "removed": "已下架",
       "sold_out": "售罄"
     },
+    "lack_multilingualism": "*此語句加載失敗，可聯系客服反映情况*",
     "notices": {
       "insufficient_product_inventory": "產品庫存不足",
       "network": "網路錯誤",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "取消",
+      "enquire": "繼續使用Apple Pay完成支付嗎？",
+      "paywith": "通過"
+    },
     "customer": {
       "error_message_1": "註冊電子郵件以獲取更新和獨家優惠等信息",
       "error_message_1001": "密碼錯誤",

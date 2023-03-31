@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Discount codes exceed quantity limit",
       "existCode": "Discount code already exists",
-      "freeShipping": {
-        " existCode": "Duplicate free shipping discount code"
-      },
       "list": {
         "unavailable": "All discount codes have expired"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Discount code has expired"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Pay free shipping discount code - country does not match",
-        "logistics-fee-over-limit": "Free shipping discount code - shipping rates exceed maximum limit"
-      },
-      "code_overdue": "Expired discount code",
-      "code_user_exceedLimit": "User has exceeded maximum limit on using this activity",
-      "code_user_notSupport": "User cannot use this activity",
       "coupon_code_amount": "Coupon code discount",
       "coupon_code_length_limit": "Coupon code cannot exceed {{range}} characters.",
       "expected_discount": "Expected discount"
@@ -87,6 +77,12 @@
       "buy_limit1": "Only {{stock}}pieces left with this discount price",
       "buy_limit2": "You can buy up to {{stock}} item(s) with discount price at the same time",
       "buy_limit3": "You can only buy {{stock}} item(s) of this product with discount price"
+    },
+    "error": {
+      "default": "Failed to load resource",
+      "noshipping": "No available shipping rate plans",
+      "order": "Unable to place order",
+      "renew": "Failed to update data"
     },
     "general": {
       "continue_as_a_guest": "Continue as a guest",
@@ -102,7 +98,6 @@
       "none_existent": "Product does not exist",
       "view_cart": "View cart"
     },
-    "lack_multilingualism": "*Failed to load the statement, you can contact customer service and report this case",
     "next_step": {
       "calculated_taxes_fees": "Taxes and shipping fee will be calculated at checkout"
     },
@@ -432,9 +427,9 @@
       "send_success": "Thank you for contacting us, we will get back to you as soon as possible."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Invalid email address",
-      "subscribe_success": "Subscribed successfully",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Subscribed successfully"
     },
     "general": {
       "accept": "Accept",
@@ -575,6 +570,7 @@
       "leave_us_message": "Please enter your message",
       "leave_us_message_get_back": "Please leave us a message and we will get back to you as soon as possible",
       "link_preview_does_not_support": "The link preview does not support this action",
+      "load_more": "Load more",
       "maximum_length_of_message": "The maximum length of your message should be no more than 1500 characters",
       "message": "Your message",
       "more_payment_options": "More payment options",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Rounding"
+    },
     "payments-name": {
       "COD": "Cash on delivery",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "A discount has been applied to this order. You can’t add another discount."
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Duplicate free shipping discount code"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Pay free shipping discount code - country does not match",
+        "logistics-fee-over-limit": "Free shipping discount code - shipping rates exceed maximum limit"
+      },
       "code_error": "Enter a valid discount code",
       "code_item_unmatched": "{{discountCode}} discount code isn’t valid for the items in your cart",
+      "code_overdue": "Expired discount code",
+      "code_user_exceedLimit": "User has exceeded maximum limit on using this activity",
+      "code_user_notSupport": "User cannot use this activity",
       "coupon_code": "Coupon Code",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} coupon is unvalid for the shipping method",
       "discount_codes_cannot_stack": "Discount codes don't stack. Only one discount at a time can apply to a single order.",
@@ -742,6 +753,7 @@
       "removed": "REMOVED",
       "sold_out": "Sold out"
     },
+    "lack_multilingualism": "*Failed to load the statement, you can contact customer service and report this case",
     "notices": {
       "insufficient_product_inventory": "Insufficient product inventory",
       "network": "Network Error",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Cancel",
+      "enquire": "Continue to place the order with Apple Pay?",
+      "paywith": "Pay with"
+    },
     "customer": {
       "error_message_1": "Sign me up for emails to receive updates, access to exclusive deals, and more.",
       "error_message_1001": "Password error",

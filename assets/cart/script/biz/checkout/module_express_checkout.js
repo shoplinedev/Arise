@@ -1,9 +1,9 @@
 window.SLM = window.SLM || {};
 
-window.SLM['cart/script/biz/checkout/module_paypal.js'] = window.SLM['cart/script/biz/checkout/module_paypal.js'] || function () {
+window.SLM['cart/script/biz/checkout/module_express_checkout.js'] = window.SLM['cart/script/biz/checkout/module_express_checkout.js'] || function () {
   const _exports = {};
-  const PayPal = window['@yy/sl-theme-shared']['/components/paypal'].default;
-  const { isPaypalGrey } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
+  const isFunction = window['lodash']['isFunction'];
+  const { isNewExpressCheckout } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const { Payments, PageType } = window['SLM']['theme-shared/components/smart-payment/payments.js'];
   const createLogger = window['SLM']['theme-shared/utils/createLogger.js'].default;
   const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
@@ -11,13 +11,21 @@ window.SLM['cart/script/biz/checkout/module_paypal.js'] = window.SLM['cart/scrip
   const CartServiceValuer = window['SLM']['cart/script/valuer/cartService.js'].default;
   const checkoutEffect = window['SLM']['cart/script/biz/checkout/effect.js'].default;
   const logger = {
-    paypal: createLogger('paypal')
+    paypal: createLogger('ExpressCheckoutModule')
   };
   let slibingNodeHeight = 0;
 
-  class PaypalModule {
-    constructor(ctx, elementId, pageType) {
+  class ExpressCheckoutModule {
+    constructor({
+      ctx,
+      elementId,
+      pageType,
+      buynowId,
+      cbFn
+    }) {
       this.pageType = pageType;
+      this.buynowId = buynowId;
+      this.cbFn = cbFn;
       this.ctx = ctx;
       this.elementId = elementId;
       this.$element = document.getElementById(elementId);
@@ -81,43 +89,35 @@ window.SLM['cart/script/biz/checkout/module_paypal.js'] = window.SLM['cart/scrip
       return params;
     }
 
-    async renderPaypal() {
-      this.paypalComponent = new PayPal({
-        pageType: this.pageType,
-        domId: this.elementId,
-        height: slibingNodeHeight,
-        beforeCreateOrder: async () => {
-          logger.paypal.info(`[点击PayPal按钮][准备唤起弹窗][beforeCreateOrder]`);
-          return this.checkoutParams;
-        },
-        beforeContinue: ({
-          returnUrl
-        } = {}) => {
-          logger.paypal.info(`[点击继续按钮][准备跳转][beforeContinue][${returnUrl}]`);
-        }
-      });
-      this.paypalComponent && this.paypalComponent.render();
-    }
-
     async _init() {
-      slibingNodeHeight = slibingNodeHeight || document.getElementById(`${this.elementId}-slibing`).offsetHeight;
+      const buynowId = isNewExpressCheckout(this.pageType) ? this.buynowId : `${this.elementId}-slibing`;
+      slibingNodeHeight = slibingNodeHeight || document.getElementById(buynowId).offsetHeight;
+      await this.renderSmartPayment();
 
-      if (isPaypalGrey()) {
-        await this.renderSmartPayment();
-      } else {
-        this.renderPaypal();
+      if (isFunction(this.cbFn)) {
+        this.cbFn();
       }
     }
 
   }
 
-  function newPaypalModule(ctx, elementId, pageType) {
-    return new PaypalModule(ctx, elementId, pageType);
+  function newExpressCheckoutModule({
+    ctx,
+    elementId,
+    pageType,
+    buynowId,
+    cbFn
+  }) {
+    return new ExpressCheckoutModule({
+      ctx,
+      elementId,
+      pageType,
+      buynowId,
+      cbFn
+    });
   }
 
-  _exports.default = {
-    PaypalModule,
-    newPaypalModule
-  };
+  _exports.ExpressCheckoutModule = ExpressCheckoutModule;
+  _exports.newExpressCheckoutModule = newExpressCheckoutModule;
   return _exports;
 }();

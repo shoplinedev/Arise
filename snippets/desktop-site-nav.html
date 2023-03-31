@@ -1,6 +1,6 @@
 {{assign 'limit' (length main_menu.nodeTree)}}
 {{assign 'startAt' 0}}
-<ul class="desktop-site-nav {{#if settings.navigation_layout '===' 'middle-line'}}desktop-site-nav__center{{/if}}">
+<ul class="desktop-site-nav {{#if settings.navigation_layout '===' 'middle-line'}}desktop-site-nav__center{{/if}}" data-navigation-effect="{{settings.main_menu_link_list_effect}}">
     {{#with this as |global|}}
       {{#each main_menu.nodeTree}}
         {{assign 'has_dropdown' false}}
@@ -31,7 +31,7 @@
                         {{#each this.childNodes}}
                             <div class="nav-grid__item" {{{ this.shopline_attributes }}}>
                                 {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
-                                
+
                                 {{#if (depth_of_nav this) '>' 0}}
                                   {{#if this.nodeType '===' 3}}
                                     {{assign 'subcollection_drop' (get this.pageLink global.all_collections)}}
@@ -44,7 +44,7 @@
                                     {{/if}}
                                   {{/if}}
                                 {{/if}}
-                                
+
                                 <div class="body3 fw-blod">
                                     <a data-node-id="{{this.id}}" {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem site-nav__dropdown-link site-nav__node site-nav__dropdown-link--top-level">{{ navItem.name }}</a>
                                 </div>

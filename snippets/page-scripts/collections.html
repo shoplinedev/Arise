@@ -20,6 +20,7 @@
  'vendors/js-cookie.min.js'
  'vendors/@yy_sl-theme-shared.min.js'
  'vendors/@sl_smart-payment.min.js'
+ 'vendors/@yy_sl-ec-tracker.min.js'
  'vendors/@sl_cart.min.js'
  'vendors/@funnyecho_hamon.min.js'
  'vendors/@sl_logger.min.js'
@@ -84,7 +85,7 @@
  'theme-shared/utils/report/const.js'
  'theme-shared/utils/dataReport/tool.js'
  'theme-shared/utils/dataReport/ga.js'
- 'theme-shared/utils/dataReport/ads.js'
+ 'theme-shared/utils/dataReport/gad.js'
  'theme-shared/utils/dataReport/fb.js'
  'theme-shared/utils/report/tool.js'
  'theme-shared/utils/tradeReport/const.js'
@@ -94,8 +95,12 @@
  'theme-shared/utils/constant.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/components/hbs/products/checkedEvent/index.js'
+ 'theme-shared/components/smart-payment/constants.js'
  'theme-shared/components/smart-payment/utils.js'
+ 'theme-shared/components/smart-payment/services.js'
  'theme-shared/components/smart-payment/index.js'
+ 'theme-shared/components/payment-button/utils.js'
+ 'theme-shared/components/payment-button/express_checkout.js'
  'theme-shared/components/smart-payment/payments.js'
  'theme-shared/utils/report/page.js'
  'theme-shared/report/product/utils/index.js'
@@ -142,6 +147,8 @@
  'commons/utils/dynamicImportMiniCart.js'
  'commons/cart/globalEvent.js'
  'commons/utils/debounce.js'
+ 'theme-shared/components/payment-button/index.js'
+ 'product/detail/js/payment_button.js'
  'theme-shared/report/product/add-to-cart.js'
  'product/detail/js/product-button-report.js'
  'product/detail/js/product-button.js'
@@ -171,16 +178,12 @@
  'theme-shared/report/stage/const.js'
  'theme-shared/report/product/product-preview.js'
  'product/utils/nullishCoalescingOperator.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/countdown.js'
- 'theme-shared/components/hbs/shared/utils/main.js'
- 'theme-shared/components/hbs/shared/utils/helper.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/helpers/index.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-info.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-html.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/index.js'
  'theme-shared/report/hiido/index.js'
  'theme-shared/biz-com/sales/discount-specified-sku/helpers/drawer.js'
  'theme-shared/biz-com/sales/discount-specified-sku/helpers/effectFc.js'
+ 'theme-shared/components/hbs/shared/utils/main.js'
+ 'theme-shared/components/hbs/shared/utils/helper.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/index.js'
  'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-info.js'
  'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-html.js'
  'theme-shared/biz-com/sales/discount-specified-sku/discount-code/index.js'
@@ -208,6 +211,20 @@
 }}
 
 {{ assign 'top_ten_products_list' (array-slice products.list 0 10) }}
+<script>
+  if (!window.SL_ReportArgsMap) {
+    window.SL_ReportArgsMap = {}
+  }
+
+  if (!window.SL_ReportArgsMap.GAR) {
+    window.SL_ReportArgsMap.GAR = {
+      sku_id: {}
+    }
+  }
+
+  window.SL_ReportArgsMap.GAR.sku_id = Object.assign(window.SL_ReportArgsMap.GAR.sku_id, {{{JSONstringify (default variants.gmc_sku_feed_id '{}')}}} );
+
+</script>
 
 {{!-- hbs set埋点变量 csr去执行上报  --}}
 <script>
@@ -266,55 +283,59 @@
   }
   let currency = window.SL_State && window.SL_State.get('currencyCode');
 
-  const thirdPartPvTrackData = {
-    GA: [
-      [
-        'event',
-        'view_item_list',
-        {
-          currency: currency,
-          items: [{{#each products.list}}{id: '{{ reportSkuId }}', name: '{{ title }}', price: '{{#money_exchange_convert_price productMinPrice}}{{ replace_by_regex integer group 'g' '' }}{{ cond fraction '.' '' }}{{ fraction }}{{/money_exchange_convert_price}}', currency: currency, category: '{{ customCategoryName }}', list_name: collectionName, list_position: {{ @index }} + 1 }{{#unless @last}},{{/unless}}{{/each}}]
-        },
+  const getThirdPartPvTrackData = function(){
+    var GARSkuIds = window.SL_GetReportArg && window.SL_GetReportArg('GAR', 'sku_id') || function(sku){return sku}
+
+    return {
+      GA: [
+        [
+          'event',
+          'view_item_list',
+          {
+            currency: currency,
+            items: [{{#each products.list}}{id: '{{ reportSkuId }}', name: '{{ title }}', price: '{{#money_exchange_convert_price productMinPrice}}{{ replace_by_regex integer group 'g' '' }}{{ cond fraction '.' '' }}{{ fraction }}{{/money_exchange_convert_price}}', currency: currency, category: '{{ customCategoryName }}', list_name: collectionName, list_position: {{ @index }} + 1 }{{#unless @last}},{{/unless}}{{/each}}]
+          },
+        ],
       ],
-    ],
-    GA4: [
-      [
-        'event',
-        'view_item_list',
-        {
-          currency: currency,
-          items: [{{#each products.list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_name: '{{ title }}', price: '{{#money_exchange_convert_price productMinPrice}}{{ replace_by_regex integer group 'g' '' }}{{ cond fraction '.' '' }}{{ fraction }}{{/money_exchange_convert_price}}', currency: currency, item_list_name: collectionName, item_category: '{{ customCategoryName }}',  index: {{ @index }} + 1 }{{#unless @last}},{{/unless}}{{/each}}]
-        },
+      GA4: [
+        [
+          'event',
+          'view_item_list',
+          {
+            currency: currency,
+            items: [{{#each products.list}}{item_id: '{{ cond reportSkuItemNo reportSkuItemNo reportSkuId }}', item_name: '{{ title }}', price: '{{#money_exchange_convert_price productMinPrice}}{{ replace_by_regex integer group 'g' '' }}{{ cond fraction '.' '' }}{{ fraction }}{{/money_exchange_convert_price}}', currency: currency, item_list_name: collectionName, item_category: '{{ customCategoryName }}',  index: {{ @index }} + 1 }{{#unless @last}},{{/unless}}{{/each}}]
+          },
+        ],
       ],
-    ],
-    GAR: [
-    [
-        'event',
-        'view_item_list',
-        {
-          items: [{{#forEach top_ten_products_list}}{id: '{{ reportSkuId }}', google_business_vertical: 'retail'}{{#unless isLast}},{{/unless}}{{/forEach}}]
-        }
-      ]
-    ],
-    GARemarketing: [
-    [
-        'event',
-        'view_item_list',
-        {
-          ecomm_prodid: [{{#forEach top_ten_products_list}}'{{ reportSkuId }}'{{#unless isLast}},{{/unless}}{{/forEach}}],
-          ecomm_pagetype: {{#if sortationId}}'category'{{else}}'other'{{/if}},
-          ecomm_pcat: collectionName,
-          ecomm_category : {{#if sortationId}}'{{ sortationId }}'{{else}}''{{/if}},
-        }
-      ]
-    ],
+      GAR: [
+      [
+          'event',
+          'view_item_list',
+          {
+            items: [{{#forEach top_ten_products_list}}{id: GARSkuIds('{{ reportSkuId }}'), google_business_vertical: 'retail'}{{#unless isLast}},{{/unless}}{{/forEach}}]
+          }
+        ]
+      ],
+      GARemarketing: [
+      [
+          'event',
+          'view_item_list',
+          {
+            ecomm_prodid: [{{#forEach top_ten_products_list}}GARSkuIds('{{ reportSkuId }}'){{#unless isLast}},{{/unless}}{{/forEach}}],
+            ecomm_pagetype: {{#if sortationId}}'category'{{else}}'other'{{/if}},
+            ecomm_pcat: collectionName,
+            ecomm_category : {{#if sortationId}}'{{ sortationId }}'{{else}}''{{/if}},
+          }
+        ]
+      ],
+    }
   }
 
   window.__PRELOAD_STATE__ = window.__PRELOAD_STATE__ || {};
   window.__PRELOAD_STATE__.productTrackData = window.__PRELOAD_STATE__.productTrackData || {};
   window.__PRELOAD_STATE__.productTrackData.plp = {
     "hd": hdPvTrackData,
-    "thirdPart": thirdPartPvTrackData
+    "thirdPart": getThirdPartPvTrackData
   }
 }()
 </script>

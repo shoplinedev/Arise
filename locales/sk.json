@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Zľavové kódy prekračujú limit množstva",
       "existCode": "Zľavový kód už existuje",
-      "freeShipping": {
-        " existCode": "Zľavový kód na dopravu zadarmo sa opakuje"
-      },
       "list": {
         "unavailable": "Platnosť všetkých zľavových kódov vypršala"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Platnosť zľavového kódu vypršala"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Platba kód kupónu pre dopravu zadarmo - krajina sa nezhoduje",
-        "logistics-fee-over-limit": "Zľavový kód kupónu na dopravu zadarmo - poštovné prekračuje limit"
-      },
-      "code_overdue": "Platnosť kód kupónu vypršala",
-      "code_user_exceedLimit": "Počet prípadov, kedy používateľ túto aktivitu použije, prekročí limit",
-      "code_user_notSupport": "Používateľ nemôže používať túto aktivitu",
       "coupon_code_amount": "Kupón",
       "coupon_code_length_limit": "Kód kupónu nemôže presiahnuť {{range}} znakov.",
       "expected_discount": "Zľava"
@@ -87,6 +77,12 @@
       "buy_limit1": "Za túto zľavnenú cenu zostalo iba {{stock}} kusov",
       "buy_limit2": "Súčasne si môžete kúpiť maximálne {{stock}} produktov so zľavami",
       "buy_limit3": "So zľavami si môžete kúpiť iba {{stock}} kus(ov) tohto produktu"
+    },
+    "error": {
+      "default": "Chyba pri načítaní zdrojov",
+      "noshipping": "Žiadny voliteľný plán nákladu",
+      "order": "Nepodarilo sa požiadať o postupnosť",
+      "renew": "Aktualizácia údajov sa nepodarilo"
     },
     "general": {
       "continue_as_a_guest": "Pokračujte ako hosť",
@@ -102,7 +98,6 @@
       "none_existent": "Tovar neexistuje",
       "view_cart": "Zobraziť košík"
     },
-    "lack_multilingualism": "*Tento výpis sa nenačítal, môžete kontaktovať zákaznícky servis a nahlásiť situáciu*",
     "next_step": {
       "calculated_taxes_fees": "Dane a poštovné vypočítané pri pokladni"
     },
@@ -432,9 +427,9 @@
       "send_success": "Ďakujeme, že ste nás kontaktovali, ozveme sa vám čo najskôr."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Chyba formátu email adresy",
-      "subscribe_success": "Prihlásenie na odber bolo úspešné",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Prihlásenie na odber bolo úspešné"
     },
     "general": {
       "accept": "Prijať",
@@ -575,6 +570,7 @@
       "leave_us_message": "Prosím zadajte svoju správu",
       "leave_us_message_get_back": "Zanechajte nám prosím správu a my sa vám čo najskôr ozveme",
       "link_preview_does_not_support": "Operácia pre ukážku odkazu nie je podporovaná",
+      "load_more": "Zobraziť viac",
       "maximum_length_of_message": "Maximálna dĺžka vašej správy by nemala byť väčšia ako 1500 slov",
       "message": "Vaša správa",
       "more_payment_options": "viac možností platby",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Zaokrúhľovanie"
+    },
     "payments-name": {
       "COD": "Platba na dobierku",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Na túto objednávku bola uplatnená zľava. Nemôžete pridať ďalšiu zľavu"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Zľavový kód na dopravu zadarmo sa opakuje"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Platba kód kupónu pre dopravu zadarmo - krajina sa nezhoduje",
+        "logistics-fee-over-limit": "Zľavový kód kupónu na dopravu zadarmo - poštovné prekračuje limit"
+      },
       "code_error": "Kód redukcie je zle pochopený",
       "code_item_unmatched": "{{discountCode}} zadané správne, ale cena alebo množstvo tovaru nespĺňa požiadavky",
+      "code_overdue": "Platnosť kód kupónu vypršala",
+      "code_user_exceedLimit": "Počet prípadov, kedy používateľ túto aktivitu použije, prekročí limit",
+      "code_user_notSupport": "Používateľ nemôže používať túto aktivitu",
       "coupon_code": "kód kupónu",
       "coupon_invalid_for_the_shipping_method": "Kupón {{discountCode}} je platný pre spôsob dopravy",
       "discount_codes_cannot_stack": "Už existuje preferenčná udalosť pre produkt, ktorá sa nemôže použiť spolu s inými preferenčnými udalosťami",
@@ -742,6 +753,7 @@
       "removed": "NEPLATNÉ",
       "sold_out": "vypredané"
     },
+    "lack_multilingualism": "*Tento výpis sa nenačítal, môžete kontaktovať zákaznícky servis a nahlásiť situáciu*",
     "notices": {
       "insufficient_product_inventory": "Nedostatočné zásoby produktov",
       "network": "Chyba siete",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Zrušiť",
+      "enquire": "Pokračovať v Objednávke s Apple Pay?",
+      "paywith": "Platiť"
+    },
     "customer": {
       "error_message_1": "Prihláste ma na odber e-mailov, aby ste mohli dostávať aktualizácie, prístup k exkluzívnym ponukám a ďalšie.",
       "error_message_1001": "Chyba hesla",

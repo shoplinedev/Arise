@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Les codes de réduction dépassent la limite de quantité",
       "existCode": "Le code de réduction existe déjà",
-      "freeShipping": {
-        " existCode": "Répétition de code de réduction pour la livraison gratuite"
-      },
       "list": {
         "unavailable": "Tous les codes de réduction ont expiré"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Le code de réduction a expiré"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Code de réduction de livraison gratuite payant - Inadéquation des pays",
-        "logistics-fee-over-limit": "Code de réduction de livraison gratuite - L’expédition dépasse la limite"
-      },
-      "code_overdue": "Le code de réduction a expiré",
-      "code_user_exceedLimit": "Le nombre de fois que l’utilisateur utilise l’activité dépasse la limite",
-      "code_user_notSupport": "Les utilisateurs ne peuvent pas utiliser l’activité",
       "coupon_code_amount": "Code promotionnel",
       "coupon_code_length_limit": "Le code promotionnel ne doit pas dépasser {{range}} caractères",
       "expected_discount": "Remise estimée"
@@ -87,6 +77,12 @@
       "buy_limit1": "Seuls {{stock}} articles restent au prix de cette offre d’article",
       "buy_limit2": "Vous pouvez acheter jusqu'à {{stock}} pièces à prix réduit en même temps",
       "buy_limit3": "Le prix réduit de cette marchandise ne prend en charge que l'achat de {{stock}} pièces"
+    },
+    "error": {
+      "default": "Echec du chargement de la ressource",
+      "noshipping": "Il n’y a pas d’options d’expédition disponibles",
+      "order": "Echec de La demande de commande",
+      "renew": "Echec de la mise à jour des données"
     },
     "general": {
       "continue_as_a_guest": "Continuer à visiter en tant qu'invité",
@@ -102,7 +98,6 @@
       "none_existent": "L’article n’existe pas",
       "view_cart": "Voir le panier"
     },
-    "lack_multilingualism": "*Cette déclaration n’a pas pu se charger, vous pouvez contacter le service client pour refléter la situation*",
     "next_step": {
       "calculated_taxes_fees": "Les taxes et les frais de transport seront calculés à l'étape suivante"
     },
@@ -432,9 +427,9 @@
       "send_success": "Merci de nous contacter, nous vous répondrons dès que possible."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Format d'adresse e-mail non valide",
-      "subscribe_success": "Abonné",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Abonné"
     },
     "general": {
       "accept": "Accepter",
@@ -575,6 +570,7 @@
       "leave_us_message": "Veuillez remplir le message",
       "leave_us_message_get_back": "Veuillez laisser un message concernant votre consultation et nous vous contacterons dans les plus brefs délais",
       "link_preview_does_not_support": "Le pré-lien ne prend pas en charge cette opération",
+      "load_more": "Afficher plus",
       "maximum_length_of_message": "La longueur du message ne dépasse pas 1500 mots",
       "message": "Message",
       "more_payment_options": "Plus d'options de paiement",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Arrondir"
+    },
     "payments-name": {
       "COD": "Paiement à la livraison",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Les remises à durée limitée et les activités de code de coupon s'excluent mutuellement"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Répétition de code de réduction pour la livraison gratuite"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Code de réduction de livraison gratuite payant - Inadéquation des pays",
+        "logistics-fee-over-limit": "Code de réduction de livraison gratuite - L’expédition dépasse la limite"
+      },
       "code_error": "Veuillez saisir un code promotionnel valide",
       "code_item_unmatched": "Les marchandises de votre panier ne s'appliquent pas aux codes promotionnel {{discountCode}}",
+      "code_overdue": "Le code de réduction a expiré",
+      "code_user_exceedLimit": "Le nombre de fois que l’utilisateur utilise l’activité dépasse la limite",
+      "code_user_notSupport": "Les utilisateurs ne peuvent pas utiliser l’activité",
       "coupon_code": "Code coupon",
       "coupon_invalid_for_the_shipping_method": "Le code promo {{discountCode}} n'est pas applicable à la méthode logistique actuelle",
       "discount_codes_cannot_stack": "Il existe déjà une réduction sur l’article qui ne peut pas être superposée à d’autres réductions",
@@ -742,6 +753,7 @@
       "removed": "Retiré de la vente",
       "sold_out": "Vendu"
     },
+    "lack_multilingualism": "*Cette déclaration n’a pas pu se charger, vous pouvez contacter le service client pour refléter la situation*",
     "notices": {
       "insufficient_product_inventory": "Stock de produits insuffisant",
       "network": "Erreur réseau",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Annulez",
+      "enquire": "Continuezp à passer la commande avec Apple Pay?",
+      "paywith": "Payez avec"
+    },
     "customer": {
       "error_message_1": "Inscrivez-vous sur l'é-mail pour obtenir des mises à jour et des offres exclusives et plus encore",
       "error_message_1001": "Erreur de mot de passe",

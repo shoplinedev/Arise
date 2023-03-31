@@ -57,7 +57,7 @@ all_collections:
  'theme-shared/utils/report/const.js'
  'theme-shared/utils/dataReport/tool.js'
  'theme-shared/utils/dataReport/ga.js'
- 'theme-shared/utils/dataReport/ads.js'
+ 'theme-shared/utils/dataReport/gad.js'
  'theme-shared/utils/dataReport/fb.js'
  'theme-shared/utils/tradeReport/const.js'
  'theme-shared/utils/tradeReport/index.js'
@@ -164,7 +164,7 @@ all_collections:
 	{{/if}}
 {{/if}}
 {{!-- header --}}
-<div class="header-sticky-wrapper __sl-custom-track-stage-header" data-color-scheme="{{ section.settings.color_scheme }}">
+<div class="header-sticky-wrapper __sl-custom-track-stage-header {{#if section.settings.main_menu_link_list_effect}}header-wrapper-menu--effect{{/if}} {{#if section.settings.header_division}}header-division{{/if}}" data-color-scheme="{{ section.settings.color_scheme }}">
 	<div id="stage-headerWrapper" class="header__wrapper {{#if overlay_header}}header--is-light header-wrapper--sticky{{/if}}" data-overlay="{{ overlay_header }}">
     <div id="stage-header" data-sticky="{{ boolean section.settings.header_style }}" data-section-id="{{ section.id }}">
       <div class="header__main-wrap">
@@ -248,6 +248,12 @@ all_collections:
       "id": "group_header__1",
       "direction": "horizontal",
       "info": "t:sections.header.settings.group_header__1.info"
+    },
+    {
+      "type": "switch",
+      "id": "main_menu_link_list_effect",
+      "label": "t:sections.header.settings.main_menu_link_list_effect.label",
+      "default": false
     },
     {
       "type": "menu_picker",
@@ -381,6 +387,12 @@ all_collections:
       "id": "show_currency_flags",
       "label": "t:sections.header.settings.show_currency_flags.label",
       "default": true
+    },
+    {
+      "id": "header_division",
+      "type": "switch",
+      "label": "t:sections.header.settings.header_division.label",
+      "default": false
     }
   ]
 }

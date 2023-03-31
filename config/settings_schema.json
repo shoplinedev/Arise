@@ -211,13 +211,13 @@
         "id": "type_title_font",
         "type": "font_picker",
         "label": "t:settings_schema.font.settings.type_title_font.label",
-        "default": "Arimo:700"
+        "default": "Assistant:regular"
       },
       {
         "id": "type_title_letter_spacing",
         "type": "range",
         "label": "t:settings_schema.font.settings.type_title_letter_spacing.label",
-        "default": "0",
+        "default": "50",
         "min": -75,
         "max": 250,
         "step": 25,
@@ -227,7 +227,7 @@
         "id": "type_title_size",
         "type": "range",
         "label": "t:settings_schema.font.settings.type_title_size.label",
-        "default": "36",
+        "default": "34",
         "min": 22,
         "max": 60,
         "unit": "px"
@@ -256,13 +256,13 @@
         "id": "type_body_font",
         "type": "font_picker",
         "label": "t:settings_schema.font.settings.type_body_font.label",
-        "default": "Libre Franklin"
+        "default": "Assistant:regular"
       },
       {
         "id": "type_body_letter_spacing",
         "type": "range",
         "label": "t:settings_schema.font.settings.type_body_letter_spacing.label",
-        "default": "25",
+        "default": "50",
         "min": -75,
         "max": 250,
         "step": 25,
@@ -272,7 +272,7 @@
         "id": "type_body_size",
         "type": "range",
         "label": "t:settings_schema.font.settings.type_body_size.label",
-        "default": "16",
+        "default": "14",
         "min": 12,
         "max": 20,
         "unit": "px"
@@ -386,7 +386,8 @@
       },
       {
         "type": "group_header",
-        "label": "t:settings_schema.design.settings.group_header__2.label"
+        "label": "t:settings_schema.design.settings.group_header__2.label",
+        "id": "group_header__2"
       },
       {
         "id": "show_breadcrumb",
@@ -1190,7 +1191,7 @@
         "max": 40,
         "step": 2,
         "unit": "px",
-        "default": 2
+        "default": 40
       },
       {
         "type": "group_header",
@@ -1201,6 +1202,28 @@
         "id": "product_add_to_cart",
         "type": "switch",
         "label": "t:settings_schema.product.settings.product_add_to_cart.label",
+        "default": false
+      },
+      {
+        "id": "product_add_to_cart_pc_position",
+        "type": "select",
+        "options": [
+          {
+            "value": "center",
+            "label": "t:settings_schema.product.settings.product_add_to_cart_pc_position.options__0.label"
+          },
+          {
+            "value": "under",
+            "label": "t:settings_schema.product.settings.product_add_to_cart_pc_position.options__1.label"
+          }
+        ],
+        "label": "t:settings_schema.product.settings.product_add_to_cart_pc_position.label",
+        "default": "center"
+      },
+      {
+        "id": "enabled_mobile_product_add_to_cart",
+        "type": "switch",
+        "label": "t:settings_schema.product.settings.enabled_mobile_product_add_to_cart.label",
         "default": false
       },
       {

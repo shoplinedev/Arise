@@ -12,7 +12,7 @@ window.SLM['product/collections/main.js'] = window.SLM['product/collections/main
 
   if (pvTrackData) {
     window.HdSdk && window.HdSdk.shopTracker.report('60006260', pvTrackData.hd);
-    window.SL_EventBus && window.SL_EventBus.emit('global:thirdPartReport', pvTrackData.thirdPart);
+    window.SL_EventBus && window.SL_EventBus.emit('global:thirdPartReport', pvTrackData.thirdPart());
   }
 
   const sideBar = new Sidebar({});

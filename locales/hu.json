@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "A kedvezménykódok túllépik a mennyiségi limitet",
       "existCode": "A kedvezmény kód már létezik",
-      "freeShipping": {
-        " existCode": "Ismételt ingyenes szállításra szóló kedvezménykód"
-      },
       "list": {
         "unavailable": "Minden kedvezménykód lejárt"
       },
@@ -69,13 +66,6 @@
       "unavailable": "A kedvezmény kód lejárt"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Fizetés Ingyenes szállítás kuponkód - ország eltérés",
-        "logistics-fee-over-limit": "Ingyenes szállítás kuponkód - a szállítási díj meghaladja a korlátot"
-      },
-      "code_overdue": "A kuponkód lejárt",
-      "code_user_exceedLimit": "A felhasználó többször használta a tevékenységet, mint a korlát",
-      "code_user_notSupport": "A felhasználó nem tudja használni a tevékenységet",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Az kupon kód nem haladhatja meg a {{range}} karaktert",
       "expected_discount": "Kedvezmény"
@@ -87,6 +77,12 @@
       "buy_limit1": "Már csak {{stock}} darab maradt ezen a kedvezményes áron",
       "buy_limit2": "Egyszerre legfeljebb {{stock}} terméket vásárolhat a kedvezménnyel",
       "buy_limit3": "Ebből a termékből csak {{stock}} darabot vásárolhat a kedvezményekkel"
+    },
+    "error": {
+      "default": "Nem sikerült betölteni az erőforrásokat",
+      "noshipping": "Nincs választható fuvarterv",
+      "order": "Nem sikerült lekérni a rendelést",
+      "renew": "Nem sikerült frissíteni az adatokat"
     },
     "general": {
       "continue_as_a_guest": "Továbbra is vendégként",
@@ -102,7 +98,6 @@
       "none_existent": "A termék nem létezik",
       "view_cart": "Kosár megtekintése"
     },
-    "lack_multilingualism": "*Ez az utasítás nem sikerült betölteni. Kérjük, vegye fel a kapcsolatot az ügyfélszolgálattal, hogy tükrözze a helyzetet*",
     "next_step": {
       "calculated_taxes_fees": "Az adókat és a szállítási költséget fizetésnél számítják ki"
     },
@@ -432,9 +427,9 @@
       "send_success": "Köszönjük, hogy felvette velünk a kapcsolatot, a lehető leghamarabb fel fogjuk venni Önnel a kapcsolatot. "
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Hibás e-mail cím formátum",
-      "subscribe_success": "Sikeres feliratkozás",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Sikeres feliratkozás"
     },
     "general": {
       "accept": "Elfogadás",
@@ -575,6 +570,7 @@
       "leave_us_message": "Kéjük, írja be üzenetét",
       "leave_us_message_get_back": "Kérjük, hagyjon nekünk üzenetet, és a lehető leghamarabb felkeressük",
       "link_preview_does_not_support": "A hivatkozás előnézet nem támogatott",
+      "load_more": "Mutass többet",
       "maximum_length_of_message": "Az üzenet maximális hossza nem haladhatja meg az 1500 szót",
       "message": "Az Ön üzenete",
       "more_payment_options": "további fizetési lehetőségek",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Kerekítés"
+    },
     "payments-name": {
       "COD": "Készpénzben átvételkor",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Kedvezményt adtunk erre a rendelésre. Nem adhat hozzá másik kedvezményt"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Ismételt ingyenes szállításra szóló kedvezménykód"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Fizetés Ingyenes szállítás kuponkód - ország eltérés",
+        "logistics-fee-over-limit": "Ingyenes szállítás kuponkód - a szállítási díj meghaladja a korlátot"
+      },
       "code_error": "A kedvezmény kódja hibásan van megadva",
       "code_item_unmatched": "A {{discountCode}} helyesen van megadva, de az áru ára vagy mennyisége nem felel meg a követelményeknek",
+      "code_overdue": "A kuponkód lejárt",
+      "code_user_exceedLimit": "A felhasználó többször használta a tevékenységet, mint a korlát",
+      "code_user_notSupport": "A felhasználó nem tudja használni a tevékenységet",
       "coupon_code": "Kuponkód",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} kupon érvényesíthető a szállítási módhoz",
       "discount_codes_cannot_stack": "A termékhez már tartozik egy kedvezmény, amely nem használható fel másik kedvezménnyel együtt.",
@@ -742,6 +753,7 @@
       "removed": "ÉRVÉNYTELEN",
       "sold_out": "Elfogyott"
     },
+    "lack_multilingualism": "*Ez az utasítás nem sikerült betölteni. Kérjük, vegye fel a kapcsolatot az ügyfélszolgálattal, hogy tükrözze a helyzetet*",
     "notices": {
       "insufficient_product_inventory": "Nincs elegendő termékkészlet",
       "network": "Hálózati hiba",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Mégse",
+      "enquire": "Folytatja a megrendelés rögzítését Apple Pay használatával?",
+      "paywith": "Fizetési mód"
+    },
     "customer": {
       "error_message_1": "Iratkozzon fel e-mailekre, hogy értesítéseket kaphassak, exkluzív ajánlatokhoz férhessenek hozzá és még sok minden mást kaphassak.",
       "error_message_1001": "Jelszó hiba",

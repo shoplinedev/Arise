@@ -79,10 +79,32 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
       this.bindCountryChange();
     }
 
+    removeOpenAnimation() {
+      const $countryButton = $(this.selectors.countryButton);
+      const $localeButton = $(this.selectors.localeButton);
+      const $currencyButton = $(this.selectors.currencyButton);
+
+      if ($countryButton.length > 0) {
+        $countryButton.removeClass('open-animation');
+      }
+
+      if ($localeButton.length > 0) {
+        $localeButton.removeClass('open-animation');
+      }
+
+      if ($currencyButton.length > 0) {
+        $currencyButton.removeClass('open-animation');
+      }
+    }
+
     bindDropdownClick(selector) {
       this.$on('click', selector, e => {
         const $dropdownContainer = $(e.target).parents('.locale-currency');
         const $dropdownList = $dropdownContainer.find(this.selectors.dropdownList);
+        const hasDropdownVisibleClass = $dropdownList.hasClass(this.classes.dropdownVisibleClass);
+        const $currentElem = $(e.currentTarget);
+        this.removeOpenAnimation();
+        $(e.currentTarget).toggleClass('open-animation', !hasDropdownVisibleClass);
 
         if ($dropdownList.hasClass(this.classes.dropdownVisibleClass)) {
           $dropdownList.removeClass(this.classes.dropdownVisibleClass);
@@ -100,6 +122,7 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
 
           if (target !== $dropdownContainer[0] && !$dropdownContainer[0].contains(target)) {
             $dropdownList.removeClass(this.classes.dropdownVisibleClass);
+            $currentElem.toggleClass('open-animation', false);
             this.$off(tempEventType);
           }
         });
@@ -112,6 +135,7 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
 
     bindLanguageChange() {
       this.$on('click', `${this.selectors.localeContainer} li`, e => {
+        this.removeOpenAnimation();
         const $target = $(e.currentTarget);
         const alias = $target.data('alias');
         const text = $target.data('name');
@@ -125,6 +149,7 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
 
     bindCountryChange() {
       this.$on('click', `${this.selectors.countryContainer} li`, e => {
+        this.removeOpenAnimation();
         const $target = $(e.currentTarget);
         const alias = $target.data('alias');
         const text = $target.data('name');
@@ -146,6 +171,7 @@ window.SLM['stage/header/scripts/locale-currency.js'] = window.SLM['stage/header
 
     bindCurrencyChange() {
       this.$on('click', `${this.selectors.currencyContainer} li`, e => {
+        this.removeOpenAnimation();
         const $target = $(e.currentTarget);
         const code = $target.data('currency-code');
         const symbol = $target.data('currency-symbol');

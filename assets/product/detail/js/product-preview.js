@@ -28,7 +28,7 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
   const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const nullishCoalescingOperator = window['SLM']['product/utils/nullishCoalescingOperator.js'].default;
   const newCurrency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
-  const { handleDiscountCodeUpdate, handleFlashSaleUpdate, handleAutoCouponBannerUpdate, handleAutoCouponAddToCartUpdate, setAddToCartSpu, setAddToCartActiveSku } = window['SLM']['theme-shared/biz-com/sales/discount-specified-sku/index.js'];
+  const { handleDiscountCodeUpdate, handleAutoCouponBannerUpdate, handleAutoCouponAddToCartUpdate, setAddToCartSpu, setAddToCartActiveSku } = window['SLM']['theme-shared/biz-com/sales/discount-specified-sku/index.js'];
   const request = window['SLM']['theme-shared/utils/request.js'].default;
 
   const trackProductDetailPageView = ({
@@ -121,12 +121,12 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         currency: getCurrencyCode(),
         value: convertPrice(newActiveSku && newActiveSku.price),
         items: [{
-          id: newActiveSku && newActiveSku.skuSeq,
+          id: window.SL_GetReportArg && window.SL_GetReportArg('GAR', 'sku_id', newActiveSku && newActiveSku.skuSeq),
           google_business_vertical: 'retail'
         }]
       }]],
       GARemarketing: [['event', 'view_item', {
-        ecomm_prodid: newActiveSku && newActiveSku.skuSeq,
+        ecomm_prodid: window.SL_GetReportArg && window.SL_GetReportArg('GAR', 'sku_id', newActiveSku && newActiveSku.skuSeq),
         ecomm_pagetype: 'product',
         ecomm_category: get(spu, 'sortationList[0].sortationId'),
         ecomm_pcat: get(spu, 'sortationList[0].sortationName'),
@@ -348,7 +348,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         unmountedDiscountCoupon = handleDiscountCodeUpdate(id, spu, discountCodeActivityList, buyerId);
         unmountPromotionTags = handleAutoCouponBannerUpdate(id, spu, autoDiscountActivityList, `#product-info_${id}`);
         handleAutoCouponAddToCartUpdate(spu, autoDiscountActivityList);
-        handleFlashSaleUpdate(spu, timeLimitActivityList, id);
       });
     };
 

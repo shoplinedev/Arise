@@ -8,7 +8,8 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
   const { getSyncData } = window['SLM']['theme-shared/utils/dataAccessor.js'];
   const qs = window['query-string']['*'];
   const { SmartPayment, mergeParams } = window['SLM']['theme-shared/components/smart-payment/index.js'];
-  const { getSubscription, getPurchaseSDKCheckoutData, PageType, HandleClassType, createElement, isFn } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
+  const { newExpressCheckoutButton } = window['SLM']['theme-shared/components/payment-button/express_checkout.js'];
+  const { getSubscription, getPurchaseSDKCheckoutData, PageType, HandleClassType, createElement, isFn, isNewExpressCheckout } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const PaymentUpdate = 'Payment::Update';
   const CartUpdate = 'Cart::CartDetailUpdate';
   const logger = loggerService.pipeOwner('SmartPayment');
@@ -18,6 +19,7 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
     constructor(config) {
       this.config = config;
       this.instanceMap = {};
+      this.expressCheckoutButtonList = [];
       this.isSubscription = getSubscription(config.pageType);
       this.parentId = config.props.domId;
       this.elementId = `${config.props.domId}_normal`;
@@ -29,6 +31,18 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
 
     get currentId() {
       return this.isSubscription ? this.subscriptionElementId : this.elementId;
+    }
+
+    renderElement(dom) {
+      createElement(dom.id, this.parentId);
+
+      if (isNewExpressCheckout(this.config.pageType)) {
+        this.expressCheckoutButtonList.push(newExpressCheckoutButton({
+          domId: dom.id,
+          pageType: this.config.pageType,
+          isSubscription: dom.isSubscription
+        }));
+      }
     }
 
     initRender() {
@@ -43,7 +57,7 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
 
       const handleDom = domIdList => {
         domIdList.forEach(dom => {
-          createElement(dom.id, this.parentId);
+          this.renderElement(dom);
         });
         return domIdList;
       };
@@ -71,6 +85,10 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
     async init() {
       for (const item of this.initRender()) {
         await this.render(item);
+      }
+
+      if (isNewExpressCheckout(this.config.pageType)) {
+        this.expressCheckoutButtonList.forEach(item => item.removeSkeleton());
       }
     }
 
@@ -160,6 +178,10 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
           }
         },
         onDynamicNotify: data => {
+          if (isNewExpressCheckout(this.config.pageType)) {
+            return;
+          }
+
           if (this.hasDynamicNotify) {
             return;
           }
@@ -183,6 +205,13 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
 
           if (isFn(this.config.onError)) {
             this.config.onError(error, type, extData);
+          }
+        },
+        onAllButtonsInitFail: () => {
+          if (!isNewExpressCheckout(this.config.pageType)) return;
+
+          if (isFn(this.config.onAllButtonsInitFail)) {
+            this.config.onAllButtonsInitFail();
           }
         }
       });
@@ -266,7 +295,7 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
               item
             }
           });
-          createElement(currentId, this.parentId);
+          this.renderElement(item);
           await this.render(item);
         }
 

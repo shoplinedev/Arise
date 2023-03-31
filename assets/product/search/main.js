@@ -11,7 +11,7 @@ window.SLM['product/search/main.js'] = window.SLM['product/search/main.js'] || f
     window.HdSdk && window.HdSdk.shopTracker.report('60006259', pvTrackData.hd);
 
     if (pvTrackData.thirdPart) {
-      window.SL_EventBus && window.SL_EventBus.emit('global:thirdPartReport', pvTrackData.thirdPart);
+      window.SL_EventBus && window.SL_EventBus.emit('global:thirdPartReport', pvTrackData.thirdPart());
     }
   }
 

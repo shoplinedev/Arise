@@ -1,4 +1,6 @@
 {{assign 'spuInfo' product.spu }}
-<div class="product-abstract">
-  <div data-ssr-plugin-product-subTitle class="subTitle shopline-element-subtitle body-font body3 text-left">{{ spuInfo.subTitle }}</div>
+{{assign 'fontSize' settings.font_size}}
+{{assign 'upperCase' settings.is_upper_case}}
+<div class="product-abstract body3">
+  <div data-ssr-plugin-product-subTitle class="subTitle shopline-element-subtitle body-font text-left font-size-{{fontSize}}" style="text-transform:{{cond upperCase 'uppercase' 'initial'}}">{{ spuInfo.subTitle }}</div>
 </div>

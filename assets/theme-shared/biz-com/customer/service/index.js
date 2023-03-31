@@ -49,7 +49,7 @@ window.SLM['theme-shared/biz-com/customer/service/index.js'] = window.SLM['theme
   _exports.signUpUpdate = signUpUpdate;
 
   function getPolicyPageContent(params) {
-    return request.get(`/merchant/render/page/${params.pageType}/${params.id}`);
+    return request.get(`/site/render/page/${params.pageType}/${params.id}`);
   }
 
   _exports.getPolicyPageContent = getPolicyPageContent;

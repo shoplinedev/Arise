@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Sooduskoodid ületavad kogusepiirangut",
       "existCode": "Sooduskood on juba olemas",
-      "freeShipping": {
-        " existCode": "Korratakse tasuta veose sooduskood"
-      },
       "list": {
         "unavailable": "Kõik sooduskoodid on aegunud"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Sooduskood on aegunud"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Makse kupongikood tasuta kohaletoimetamiseks - riik ei sobi",
-        "logistics-fee-over-limit": "Kupongikood tasuta kohaletoimetamiseks - saatmiskulud ületavad piiri"
-      },
-      "code_overdue": "Kupongikood on aegunud",
-      "code_user_exceedLimit": "Mitu korda kasutaja seda tegevust kasutab, ületab piiri",
-      "code_user_notSupport": "Kasutaja ei saa seda tegevust kasutada",
       "coupon_code_amount": "Kupong",
       "coupon_code_length_limit": "Kupongikood ei tohi ületada {{range}} tähemärki.",
       "expected_discount": "Soodushind"
@@ -87,6 +77,12 @@
       "buy_limit1": "Selle soodushinnaga tooteid on laos ainult {{stock}} tk",
       "buy_limit2": "Soodushinnaga saad korraga osta kuni {{stock}} toodet",
       "buy_limit3": "Seda toodet saad soodushinnaga osta ainult {{stock}} tükki"
+    },
+    "error": {
+      "default": "Vigade laadimise ressursid",
+      "noshipping": "Valikuline saatmiskava puudub",
+      "order": "Ei saanud jada küsida",
+      "renew": "Andmete värskendamine ebaõnnestus"
     },
     "general": {
       "continue_as_a_guest": "Jätkake külalisena",
@@ -102,7 +98,6 @@
       "none_existent": "Kaupu pole olemas",
       "view_cart": "Vaata ostukorvi"
     },
-    "lack_multilingualism": "*Selle avalduse laadimine ebaõnnestus. Palun võtke ühendust klienditeenindusega, et kajastada olukorda*",
     "next_step": {
       "calculated_taxes_fees": "Maksud ja saatmiskulud arvutatakse kassas"
     },
@@ -432,9 +427,9 @@
       "send_success": "Täname, et võtsite meiega ühendust ja me vastame teile niipea kui võimalik."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Vale e-posti aadressi formaat",
-      "subscribe_success": "Tellimine õnnestus",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Tellimine õnnestus"
     },
     "general": {
       "accept": "Aktsepteerida",
@@ -575,6 +570,7 @@
       "leave_us_message": "Sisesta oma sõnum",
       "leave_us_message_get_back": "Jäta meile sõnum ja me võtame sinuga esimesel võimalusel ühendust",
       "link_preview_does_not_support": "Toimingut lingi eelvaateks ei toetata",
+      "load_more": "Laadige rohkem",
       "maximum_length_of_message": "Sinu sõnumi maksimaalne pikkus ei tohi ületada 1500 sõna",
       "message": "Sinu sõnum",
       "more_payment_options": "rohkem maksevõimalusi",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Ümardamine"
+    },
     "payments-name": {
       "COD": "Tasumine kättesaamisel",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Sellele tellimusele rakendati allahindlust. Teisi soodustusi lisada ei saa."
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Korratakse tasuta veose sooduskood"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Makse kupongikood tasuta kohaletoimetamiseks - riik ei sobi",
+        "logistics-fee-over-limit": "Kupongikood tasuta kohaletoimetamiseks - saatmiskulud ületavad piiri"
+      },
       "code_error": "Allahindluse kood on sisestatud valesti",
       "code_item_unmatched": "{{discountCode}} on sisestatud õigesti, kuid toodete hind või kogus ei vasta nõuetele.",
+      "code_overdue": "Kupongikood on aegunud",
+      "code_user_exceedLimit": "Mitu korda kasutaja seda tegevust kasutab, ületab piiri",
+      "code_user_notSupport": "Kasutaja ei saa seda tegevust kasutada",
       "coupon_code": "Kupongiko.",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} kupong kehtib tarneviisile",
       "discount_codes_cannot_stack": "Tootel on juba soodustus, seega ei saa seda kasutada koos teiste soodustustega",
@@ -742,6 +753,7 @@
       "removed": "KEHTETU",
       "sold_out": "Välja müüdud"
     },
+    "lack_multilingualism": "*Selle avalduse laadimine ebaõnnestus. Palun võtke ühendust klienditeenindusega, et kajastada olukorda*",
     "notices": {
       "insufficient_product_inventory": "Ebapiisav tootevaru",
       "network": "Võrguviga",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Tühistama",
+      "enquire": "Jätkake tellimuse esitamist Apple Pay'ga?",
+      "paywith": "Maksa"
+    },
     "customer": {
       "error_message_1": "Registreeruge mulle e-kirjade saamiseks, et saada värskendusi, juurdepääsu eksklusiivsetele pakkumistele ja palju muud.",
       "error_message_1001": "Parooli viga",

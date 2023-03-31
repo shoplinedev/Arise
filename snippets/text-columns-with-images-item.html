@@ -15,6 +15,11 @@
 {{/if}}
 
 {{assign classes (default class '')}}
+{{assign 'content_padding' '24px'}}
+
+{{#if request.is_mobile}}
+  {{assign 'content_padding' '0px'}}
+{{/if}}
 
 {{#with this as |global|}}
   {{assign 'linkObj' (useLink this.settings.jump_link)}}
@@ -42,7 +47,7 @@
       {{/if}}
       <div class="text-columns-with-images-item__main">
           {{#if this.settings.image.url}}
-          <div class="text-columns-with-images-item__image text-columns-with-images-item__image--{{image_style}}" style="width: {{image_width}}">
+          <div class="text-columns-with-images-item__image text-columns-with-images-item__image--{{image_style}}" style="width: calc({{image_width}} - {{content_padding}})">
             <a
               {{{linkObj.hrefAttr}}}
               class="text-columns-with-images-item__link __sl-custom-track-stage-textColumnsWithImages-item"
@@ -67,7 +72,7 @@
                 {{{linkObj.hrefAttr}}}
                 class="__sl-custom-track-stage-textColumnsWithImages-item text-columns-with-images-item__button text-columns-with-images-item__button--{{text_align}} body4 d-flex">
                 <span class="button-text">{{this.settings.button_text}}</span>
-                <span class="button-arrow">{{ snippet 'icons/icon_arrow_down' }}</span>
+                <span class="button-arrow">{{ snippet 'icons/icon_arrow' }}</span>
               </a>
             {{/if}}
             </div>

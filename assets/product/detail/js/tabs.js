@@ -42,11 +42,15 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
     }
 
     requestCollapseTitle(ids) {
+      if (!ids || !ids.length) {
+        return Promise.resolve();
+      }
+
       const {
         lang
       } = this;
       return request({
-        url: 'merchant/render/page/basic/infos',
+        url: 'site/render/page/basic/infos',
         method: 'GET',
         params: {
           pageIds: ids.join(',')
@@ -80,7 +84,7 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
       }
 
       return request({
-        url: `merchant/render/page/${CUSTOM_PAGE_TYPE}/${id}`,
+        url: `site/render/page/${CUSTOM_PAGE_TYPE}/${id}`,
         method: 'GET'
       }).then(res => {
         if (res && res.data) {

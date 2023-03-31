@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Kody rabatowe przekraczają limit ilościowy",
       "existCode": "Kod rabatowy już istnieje",
-      "freeShipping": {
-        " existCode": "Kod rabatowy na dostawę się powtarza"
-      },
       "list": {
         "unavailable": "Wszystkie kody rabatowe wygasły"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Kod rabatowy wygasł"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Płacić kod rabatowy na dostawę nie pasuje krajowi",
-        "logistics-fee-over-limit": "Kod rabatowy na dostawę - koszt za dostawę przekracza limit"
-      },
-      "code_overdue": "Kod rabatowy przeterminowany",
-      "code_user_exceedLimit": "Razy wykorzystania z tej działalności klienta przekracza limit",
-      "code_user_notSupport": "Klient nie może wykorzystać z tej działalności",
       "coupon_code_amount": "Zniżka za pomocą kodu zniżkowego",
       "coupon_code_length_limit": "Długość kodu promocyjnego nie może przekraczać {{range}}",
       "expected_discount": "Przewidywana zniżka"
@@ -87,6 +77,12 @@
       "buy_limit1": "Tylko zostaje {{stock}} sztuk tego produkt w zniżkowej cenie",
       "buy_limit2": "tylko wolno jednocześnie kupić {{stock}} sztuk produktu z zniżką",
       "buy_limit3": "tylko wolno kupić {{stock}} sztuk tego produktu za zniżkową cenę"
+    },
+    "error": {
+      "default": "Wgranie zasobu nieudane",
+      "noshipping": "Brak dostępnych opcji dostawy",
+      "order": "Żądanie zamówienia nie powiodło się",
+      "renew": "Nie udało się zaktualizować danych"
     },
     "general": {
       "continue_as_a_guest": "Odwiedź stronę jako gość",
@@ -102,7 +98,6 @@
       "none_existent": "Towar nie jest dostępny",
       "view_cart": "sprawdź koszyk"
     },
-    "lack_multilingualism": "*Nie udało się załadować tego zestawienia, skontaktuj się z obsługą klienta, aby zgłosić sytuację*",
     "next_step": {
       "calculated_taxes_fees": "Kolejnie przeliczyć podatki i koszty za dostawę"
     },
@@ -432,9 +427,9 @@
       "send_success": "Dziękujemy za kontakt, będziemy odpowiadać jak najszybciej. "
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Nieprawidłowa forma adresu e-maila",
-      "subscribe_success": "Pomyślnie zasubskrybowano",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Pomyślnie zasubskrybowano"
     },
     "general": {
       "accept": "Akceptuję",
@@ -575,6 +570,7 @@
       "leave_us_message": "Proszę wpisać komentarz",
       "leave_us_message_get_back": "Proszę na pisać swoje komentarze, skontaktujemy się z Panem/Panią jak najszybciej",
       "link_preview_does_not_support": "Link do podglądu nie obsługuje tej operacji",
+      "load_more": "Pokaż więcej",
       "maximum_length_of_message": "Długość komatarzy nie przekracza 1500 słów",
       "message": "Komentarz",
       "more_payment_options": "Więcej opcji zapłaty",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Zaokrąglenie"
+    },
     "payments-name": {
       "COD": "Płatność za pobraniem",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "rabaty czasowe i działania związane z kodem kuponów wzajemnie się wykluczają"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Kod rabatowy na dostawę się powtarza"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Płacić kod rabatowy na dostawę nie pasuje krajowi",
+        "logistics-fee-over-limit": "Kod rabatowy na dostawę - koszt za dostawę przekracza limit"
+      },
       "code_error": "Błędnie wpisano kodu promocyjnego",
       "code_item_unmatched": "{{discountCode}} prawidłowo wpisano, ale cena lub ilość produktów nie zgada się ze standardami",
+      "code_overdue": "Kod rabatowy przeterminowany",
+      "code_user_exceedLimit": "Razy wykorzystania z tej działalności klienta przekracza limit",
+      "code_user_notSupport": "Klient nie może wykorzystać z tej działalności",
       "coupon_code": "Kod zniżkowy",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} kod zniżkowy nie jest odpowiedni na tę metodę dostawy na bieżąco",
       "discount_codes_cannot_stack": "Produkt już brał udział w promocji, nie może posługiwać inną ulgą",
@@ -742,6 +753,7 @@
       "removed": "Już są niedostępne",
       "sold_out": "Wyprzedany"
     },
+    "lack_multilingualism": "*Nie udało się załadować tego zestawienia, skontaktuj się z obsługą klienta, aby zgłosić sytuację*",
     "notices": {
       "insufficient_product_inventory": "Niewystarczające zapasy produktów",
       "network": "Nieprawidłowe połączenie z interentem",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Anulować",
+      "enquire": "Kontynuować składanie zamówienia za pomocą Apple Pay?",
+      "paywith": "Zapłacić"
+    },
     "customer": {
       "error_message_1": "rejestruj się e-mailem, żeby otrzymać informacje o nowościach i ulgach itd.",
       "error_message_1001": "Fałszywe hasło",

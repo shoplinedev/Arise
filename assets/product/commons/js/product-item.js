@@ -9,6 +9,7 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
   const previewModal = window['SLM']['product/commons/js/preview-modal/index.js'].default;
   const quickAddModal = window['SLM']['product/commons/js/quick-add-modal.js'].default;
   const { processPrice } = window['SLM']['commons/utils/convertPrice.js'];
+  const isMobile = window['SLM']['commons/utils/isMobile.js'].default;
   const hdReport = new ProductItemReport();
   const isPad = SL_State.get('request.is_mobile') || document.ontouchmove !== undefined;
   $('body').delegate('.js-product-item-quick-view', 'click', function (e) {
@@ -43,10 +44,6 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
       status
     });
   });
-  $('body').on('click', '.js-product-item-sold-out', e => {
-    e.preventDefault();
-    e.stopPropagation();
-  });
   window.SL_EventBus.on('global:currency:format', ({
     currencyCode: code,
     lang
@@ -76,6 +73,7 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
   $('body').on('mouseenter', '.js-product-inner-wrap', function (e) {
     e.preventDefault();
     e.stopPropagation();
+    if (isMobile()) return;
     const $item = $(this);
     const $parent = $item.parent();
     const $btns = $item.find('.js-product-item__actions');
@@ -97,6 +95,7 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
   $('body').on('mouseleave', '.js-product-inner-wrap', function (e) {
     e.preventDefault();
     e.stopPropagation();
+    if (isMobile()) return;
     const $item = $(this);
     const $parent = $item.parent();
     const $btns = $item.find('.js-product-item__actions');

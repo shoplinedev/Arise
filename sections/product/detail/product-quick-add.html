@@ -1,25 +1,39 @@
+<script>
+  if (!window.SL_ReportArgsMap) {
+    window.SL_ReportArgsMap = {}
+  }
+
+  if (!window.SL_ReportArgsMap.GAR) {
+    window.SL_ReportArgsMap.GAR = {
+      sku_id: {}
+    }
+  }
+
+  window.SL_ReportArgsMap.GAR.sku_id = Object.assign(window.SL_ReportArgsMap.GAR.sku_id, {{{JSONstringify (default variants.gmc_sku_feed_id '{}')}}} );
+
+</script>
 {{ assign statePrefix product }}
 {{ preload_state statePrefix }}
 
 <!-- 判断是否预览环境 -->
 {{#if templateAlias '===' 'PreviewProductsDetail'}}
-  {{assign 'isPreviewProduct' true}}
+  {{ assign 'isPreviewProduct' true }}
 {{else}}
-  {{assign 'isPreviewProduct' false}}
+  {{ assign 'isPreviewProduct' false }}
 {{/if}}
 
 {{!-- sku选中相关数据 --}}
 {{ assign 'initSku' (product_default_sku product.sku.skuList product.spu.soldOut request.uri.query.sku true product.spu.inquiry isPreviewProduct) }}
-{{assign 'productPrice' (product_sku_price (default initSku.selectSku initSku.minPriceSku))}}
-{{assign 'showMemberMark' (default initSku.selectSku.showMemberMark initSku.minPriceSku.showMemberMark)}}
+{{ assign 'productPrice' (product_sku_price (default initSku.selectSku initSku.minPriceSku)) }}
+{{ assign 'showMemberMark' (default initSku.selectSku.showMemberMark initSku.minPriceSku.showMemberMark) }}
 
-{{assign 'discount_text' null}}
+{{ assign 'discount_text' null }}
 {{!-- 当存在原价，则计算折扣 --}}
 {{#if productPrice.originPrice}}
   {{#if theme.settings.product_discount_style '===' 'number'}}
-    {{assign 'discount_text' (subtract productPrice.originPrice productPrice.salesPrice)}}
+    {{ assign 'discount_text' (subtract productPrice.originPrice productPrice.salesPrice) }}
   {{else}}
-    {{assign 'discount_text' (round (multiply (subtract 1 (divide productPrice.salesPrice productPrice.originPrice)) 100))}}
+    {{ assign 'discount_text' (round (multiply (subtract 1 (divide productPrice.salesPrice productPrice.originPrice)) 100)) }}
   {{/if}}
 {{/if}}
 
@@ -28,20 +42,20 @@
   <div class="quick-add-modal__body">
     <div data-ssr-plugin-title-top></div>
     <div class="quick-add-mpdal-sku">
-      {{ snippet 'product/commons/sku-trade/sku-trade' attr=(product_sku_map2array product.sku.skuAttributeMap initSku.selectSku) id=id productSkuStyle=theme.settings.product_sku_style selectSkuSeq=initSku.selectSku.skuSeq}}
+      {{ snippet 'product/commons/sku-trade/sku-trade' attr=(product_sku_map2array product.sku.skuAttributeMap initSku.selectSku) id=id productSkuStyle=theme.settings.product_sku_style selectSkuSeq=initSku.selectSku.skuSeq }}
     </div>
 
     {{#if (and (isFalsey product.spu.inquiry) theme.settings.product_count_​selector)}}
       <div class="products-detail-quantity">
-        {{ snippet 'product/detail/product-quantity' selectSku=initSku.selectSku id=id className="" }}
+        {{ snippet 'product/detail/product-quantity' selectSku=initSku.selectSku id=id className='' }}
       </div>
     {{/if}}
 
     <div class="product-price">
-      <div class="price body-font body2 product-info-price_{{id}}" product_discount="{{theme.settings.product_discount}}">
-        {{#if (boolean theme.settings.superscript_decimals) }}
-          <span class="product-price-sales_{{id}} notranslate fw-bold product-price-item">
-            {{#money_exchange_convert_price productPrice.salesPrice }}
+      <div class="price body-font body2 product-info-price_{{ id }}" product_discount="{{ theme.settings.product_discount }}">
+        {{#if (boolean theme.settings.superscript_decimals)}}
+          <span class="product-price-sales_{{ id }} notranslate fw-bold product-price-item">
+            {{#money_exchange_convert_price productPrice.salesPrice}}
               {{#if symbolOrder '==' 'prefix'}}
                 <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
               {{else}}
@@ -50,17 +64,17 @@
             {{/money_exchange_convert_price}}
           </span>
         {{else}}
-          <span class="product-price-sales_{{id}} notranslate fw-bold product-price-item">
+          <span class="product-price-sales_{{ id }} notranslate fw-bold product-price-item">
             {{ money_exchange_convert_with_currency productPrice.salesPrice }}
           </span>
         {{/if}}
-        <span class="product-price-vip_{{id}} vipPrice {{cond showMemberMark '' 'hide'}}" data-vip-tag="big"></span>
+        <span class="product-price-vip_{{ id }} vipPrice {{ cond showMemberMark '' 'hide' }}" data-vip-tag="big"></span>
         {{!-- (含税费) --}}
         {{ snippet 'product/detail/product-tax' }}
         <span
-          class="originPrice notranslate fw-bold product-price-item product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
-          {{#if (boolean theme.settings.superscript_decimals) }}
-            {{#money_exchange_convert_price productPrice.originPrice }}
+          class="originPrice notranslate fw-bold product-price-item product-price-origin_{{ id }} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
+          {{#if (boolean theme.settings.superscript_decimals)}}
+            {{#money_exchange_convert_price productPrice.originPrice}}
               {{#if symbolOrder '==' 'prefix'}}
                 <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
               {{else}}
@@ -73,24 +87,24 @@
         </span>
         {{#if theme.settings.product_discount}}
           <span
-            class="discount body4 product-price-discount_{{id}} {{#or (boolean productPrice.originPrice '<=' productPrice.salesPrice) spuInfo.soldout (boolean discount_text '<=' 0)}}hide{{/or}}"
-            product_discount_style="{{theme.settings.product_discount_style}}">
-            {{#if (and (is (typeOf productPrice.originPrice) 'number') (is (typeOf productPrice.salesPrice) 'number')) }}
+            class="discount body4 product-price-discount_{{ id }} {{#or (boolean productPrice.originPrice '<=' productPrice.salesPrice) spuInfo.soldout (boolean discount_text '<=' 0)}}hide{{/or}}"
+            product_discount_style="{{ theme.settings.product_discount_style }}">
+            {{#if (and (is (typeOf productPrice.originPrice) 'number') (is (typeOf productPrice.salesPrice) 'number'))}}
                 {{#if theme.settings.product_discount_style '===' 'number'}}
                   {{#money_exchange_convert_price discount_text}}
                     {{#if fraction '===' '00'}}
                       {{#if symbolOrder '==' 'prefix'}}
-                        {{assign 'priceVal' (append currencySymbol integer) }}
+                        {{ assign 'priceVal' (append currencySymbol integer) }}
                       {{else}}
-                        {{assign 'priceVal' (append integer currencySymbol) }}
+                        {{ assign 'priceVal' (append integer currencySymbol) }}
                       {{/if}}
                     {{else}}
-                      {{assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
+                      {{ assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
                     {{/if}}
-                    {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate">' priceVal '</span>')}}}
+                    {{{ t 'products.product_list.save' priceDom=(append '<span class="notranslate">' priceVal '</span>') }}}
                   {{/money_exchange_convert_price}}
                 {{else}}
-                   {{t 'products.product_list.save_ratio' price=discount_text }}
+                   {{ t 'products.product_list.save_ratio' price=discount_text }}
                 {{/if}}
             {{/if}}
           </span>

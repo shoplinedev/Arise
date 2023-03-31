@@ -26,6 +26,7 @@ all_collections:
  'vendors/js-cookie.min.js'
  'vendors/@yy_sl-theme-shared.min.js'
  'vendors/@sl_smart-payment.min.js'
+ 'vendors/@yy_sl-ec-tracker.min.js'
  'vendors/@sl_cart.min.js'
  'vendors/@funnyecho_hamon.min.js'
  'vendors/@sl_logger.min.js'
@@ -98,7 +99,7 @@ all_collections:
  'theme-shared/utils/report/const.js'
  'theme-shared/utils/dataReport/tool.js'
  'theme-shared/utils/dataReport/ga.js'
- 'theme-shared/utils/dataReport/ads.js'
+ 'theme-shared/utils/dataReport/gad.js'
  'theme-shared/utils/dataReport/fb.js'
  'theme-shared/utils/tradeReport/const.js'
  'theme-shared/utils/tradeReport/index.js'
@@ -107,8 +108,12 @@ all_collections:
  'theme-shared/utils/constant.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/components/hbs/products/checkedEvent/index.js'
+ 'theme-shared/components/smart-payment/constants.js'
  'theme-shared/components/smart-payment/utils.js'
+ 'theme-shared/components/smart-payment/services.js'
  'theme-shared/components/smart-payment/index.js'
+ 'theme-shared/components/payment-button/utils.js'
+ 'theme-shared/components/payment-button/express_checkout.js'
  'theme-shared/components/smart-payment/payments.js'
  'theme-shared/events/product/paypal-fallback/index.js'
  'theme-shared/events/trade/interior-event/index.js'
@@ -153,6 +158,8 @@ all_collections:
  'commons/utils/dynamicImportMiniCart.js'
  'commons/cart/globalEvent.js'
  'commons/utils/debounce.js'
+ 'theme-shared/components/payment-button/index.js'
+ 'product/detail/js/payment_button.js'
  'theme-shared/report/product/add-to-cart.js'
  'product/detail/js/product-button-report.js'
  'product/detail/js/product-button.js'
@@ -184,16 +191,12 @@ all_collections:
  'commons/utils/url.js'
  'theme-shared/report/product/product-preview.js'
  'product/utils/nullishCoalescingOperator.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/countdown.js'
- 'theme-shared/components/hbs/shared/utils/main.js'
- 'theme-shared/components/hbs/shared/utils/helper.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/helpers/index.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-info.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/get-html.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/flash-sale/index.js'
  'theme-shared/report/hiido/index.js'
  'theme-shared/biz-com/sales/discount-specified-sku/helpers/drawer.js'
  'theme-shared/biz-com/sales/discount-specified-sku/helpers/effectFc.js'
+ 'theme-shared/components/hbs/shared/utils/main.js'
+ 'theme-shared/components/hbs/shared/utils/helper.js'
+ 'theme-shared/biz-com/sales/discount-specified-sku/helpers/index.js'
  'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-info.js'
  'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-html.js'
  'theme-shared/biz-com/sales/discount-specified-sku/discount-code/index.js'
@@ -217,6 +220,7 @@ all_collections:
 }}
 
 {{ assign 'settings' section.settings }}
+{{ assign 'is_lcp_section' (not (has (after sections_order 2) section.id)) }}
 
 {{ snippet 'global-border-shadow-style' color_scheme=settings.color_scheme sectionId=section.id type='card' }}
 
@@ -235,11 +239,16 @@ all_collections:
         {{#with (lookup ../section.blocks blockId)}}
 
           {{ assign 'force_card_left' false }}
+          {{ assign 'is_lcp_block' false }}
           {{#if (and (boolean ../../settings.desktop_layout '===' 'left') '&&' @first)}}
             {{ assign 'force_card_left' true }}
+            {{ assign 'is_lcp_block' ../../is_lcp_section }}
           {{else}}{{#if (and (boolean ../../settings.desktop_layout '===' 'right') '&&' @last)}}
             {{ assign 'focus_card_right' true }}
+            {{ assign 'is_lcp_block' ../../is_lcp_section }}
           {{/if}}{{/if}}
+
+          {{ assign 'is_big_block' (or force_card_left focus_card_right) }}
 
           {{ assign 'imageFit' settings.image_padding }}
           {{#if settings.image_padding '===' 'fit'}}
@@ -285,8 +294,14 @@ all_collections:
                   >
                     <script type="text/json" id="Video-data-{{ id }}">{{{ stringify settings }}}</script>
                     {{#if (boolean settings.cover_image.url)}}
+                      {{ assign 'image_size' (img_size settings.cover_image.url) }}
                       <div class="video__cover">
-                        <img alt="{{ settings.cover_image.alt }}" class="video__cover-img lozad" data-src="{{ settings.cover_image.url }}" data-sizes="auto">
+                        <img
+                          alt="{{ settings.cover_image.alt }}"
+                          class="video__cover-img lozad"
+                          width="{{ image_size.width }}"
+                          height="{{ image_size.height }}"
+                          {{{ get 'responsiveAttr' (image_responsive settings.cover_image.url pcSize=(cond is_big_block '66vw' '33vw') mSize='100%' useLazyLoad=(not is_lcp_block)) }}}>
                         <div class="video-overlay">
                           {{#if settings.video_url}}
                             <div class="video-overlay__button" data-controls="Video-{{ id }}">
@@ -368,7 +383,7 @@ all_collections:
                 {{ assign 'backgroundColor' '#f3f3f3' }}
               {{/if}}
               <div class="multi-media-splicing__content multi-media-splicing__procontent {{ hasImageClass }}">
-                {{ snippet 'product/commons/product-item' moduleType='multi-media-splicing' section=this spu=product_spu imageList=images forbiddenBtn=true noHoverAniEffect=true imageFit=imageFit backgroundColor=backgroundColor shopline_attributes='' }}
+                {{ snippet 'product/commons/product-item' moduleType='multi-media-splicing' section=this spu=product_spu imageList=images forbiddenBtn=true noHoverAniEffect=true imageFit=imageFit backgroundColor=backgroundColor shopline_attributes='' closeLazy=is_lcp_block pcSize=(cond is_big_block '66vw' '33vw') mSize='100%' }}
               </div>
             </div>
           {{else}}{{#if (trim type) '===' 'collection'}}
@@ -382,7 +397,7 @@ all_collections:
               <div class="multi-media-splicing__content {{ hasImageClass }}">
               {{!-- 获取配色方案的文本色值 --}}
               {{ assign 'titleColor' (get (append 'color_scheme_' ../../settings.color_scheme '_text') ../../theme.settings) }}
-              {{ snippet 'product/commons/collection-item' sortationData=category titleColor=titleColor imageFit=imageFit shopline_attributes='' }}
+              {{ snippet 'product/commons/collection-item' isMultiMediaSplicing=true sortationData=category titleColor=titleColor imageFit=imageFit shopline_attributes='' closeLazy=is_lcp_block pcSize=(cond is_big_block '66vw' '33vw') mSize='100%' }}
               </div>
             </div>
           {{else}}{{#if (trim type) '===' 'image'}}
@@ -390,7 +405,13 @@ all_collections:
               <div class="multi-media-splicing__content">
                 <div class="collage-image__wrapper">
                   {{#if settings.image.url}}
-                    <img alt="{{ settings.image.alt }}" class="lozad multi-media-splicing__image" data-sizes="auto" data-src="{{ settings.image.url }}" />
+                    {{ assign 'image_size' (img_size settings.image.url) }}
+                    <img
+                      alt="{{ settings.image.alt }}"
+                      class="lozad multi-media-splicing__image"
+                      width="{{ image_size.width }}"
+                      height="{{ image_size.height }}"
+                      {{{ get 'responsiveAttr' (image_responsive settings.image.url pcSize=(cond is_big_block '66vw' '33vw') mSize='100%' useLazyLoad=(not is_lcp_block)) }}} />
                   {{else}}
                     {{ snippet 'icons/icon_image' class='multi-media-splicing__image multi-media-splicing__no-image' }}
                   {{/if}}

@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Atlaižu kodi pārsniedz daudzuma limitu",
       "existCode": "Atlaides kods jau pastāv",
-      "freeShipping": {
-        " existCode": "Tiek atkārtots bezmaksas kravas atlaide kods"
-      },
       "list": {
         "unavailable": "Visi atlaižu kodi ir beigušies"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Atlaides kods ir beidzies"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Apmaksas kupona kods bezmaksas piegādei - valsts nav piemērota",
-        "logistics-fee-over-limit": "Kupona kods bezmaksas piegādei – piegādes izmaksas pārsniedz robežu"
-      },
-      "code_overdue": "Kupona kods derīguma termiņš ir beidzies",
-      "code_user_exceedLimit": "Cik reizes lietotājs izmanto šo darbību, pārsniedz ierobežojumu",
-      "code_user_notSupport": "Lietotājs nevar izmantot šo darbību",
       "coupon_code_amount": "Kupons",
       "coupon_code_length_limit": "Kupona kods nedrīkst pārsniegt {{range}} rakstzīmes.",
       "expected_discount": "Atlaide"
@@ -87,6 +77,12 @@
       "buy_limit1": "Vairāk nekā {{stock}} gabali ar šo atlaides cenu",
       "buy_limit2": "Jūs varat iegādāties ne vairāk kā{{stock}} produktu (-us) ar atlaidēm vienlaikus",
       "buy_limit3": "Jūs varat iegādāties tikai šī produkta (-us) {{stock}} gabalu (-us) ar atlaidēm"
+    },
+    "error": {
+      "default": "Neizdevās iekraušanas resursi",
+      "noshipping": "Nav izvēles kravas plāna",
+      "order": "Neizdevās pieprasījuma pasūtījumi",
+      "renew": "Neizdevās atjaunināt datus"
     },
     "general": {
       "continue_as_a_guest": "Turpiniet kā viesis",
@@ -102,7 +98,6 @@
       "none_existent": "Preču neeksistē",
       "view_cart": "Parādiet groza"
     },
-    "lack_multilingualism": "*Šis paziņojums nav ielādēts. Lūdzu, sazinieties ar klientu apkalpošanas dienestu, lai atspoguļotu situāciju*",
     "next_step": {
       "calculated_taxes_fees": "Nodokļi un piegāde aprēķināta kasē"
     },
@@ -432,9 +427,9 @@
       "send_success": "Paldies, ka sazinājāties ar mums, un mēs atbildēsim jums pēc iespējas ātrāk."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Kļūda, ievadot e-pasta adreses",
-      "subscribe_success": "Abonēšanas panākumi",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Abonēšanas panākumi"
     },
     "general": {
       "accept": "Pieņemt",
@@ -575,6 +570,7 @@
       "leave_us_message": "Lūdzu, ievadiet savu ziņojumu",
       "leave_us_message_get_back": "Lūdzu, atstājiet mums ziņojumu, un mēs jums atbildēsim, cik drīz vien iespējams",
       "link_preview_does_not_support": "Saites pārskata darbība netiek atbalstīta",
+      "load_more": "Ielādēt vairāk",
       "maximum_length_of_message": "Jūsu ziņojuma maksimālais garums nedrīkst pārsniegt 1500 vārdus",
       "message": "Jūsu ziņa",
       "more_payment_options": "Vairāk norēķinu iespēju",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Noapaļošana"
+    },
     "payments-name": {
       "COD": "Maksājums pēc piegādes",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Šim rīkojumam ir piemērots samazinājums. Jūs nevarat pievienot vēl vienu samazinājumu."
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Tiek atkārtots bezmaksas kravas atlaide kods"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Apmaksas kupona kods bezmaksas piegādei - valsts nav piemērota",
+        "logistics-fee-over-limit": "Kupona kods bezmaksas piegādei – piegādes izmaksas pārsniedz robežu"
+      },
       "code_error": "Samazināšanas kods bija slikti saprotams",
       "code_item_unmatched": "{{discountCode}}ir ievadīts pareizi, taču preču cena vai daudzums neatbilst prasībām",
+      "code_overdue": "Kupona kods derīguma termiņš ir beidzies",
+      "code_user_exceedLimit": "Cik reizes lietotājs izmanto šo darbību, pārsniedz ierobežojumu",
+      "code_user_notSupport": "Lietotājs nevar izmantot šo darbību",
       "coupon_code": "Samazināšanas kods",
       "coupon_invalid_for_the_shipping_method": "Kupons {{discountCode}} ir derīgs nosūtīšanas metodei",
       "discount_codes_cannot_stack": "Šim produktam jau ir atvieglota akcija, ko nevar izmantot kopā ar citiem atvieglotiem akcijām",
@@ -742,6 +753,7 @@
       "removed": "Nederīgu",
       "sold_out": "Pārdevies"
     },
+    "lack_multilingualism": "*Šis paziņojums nav ielādēts. Lūdzu, sazinieties ar klientu apkalpošanas dienestu, lai atspoguļotu situāciju*",
     "notices": {
       "insufficient_product_inventory": "Nepietiekams produktu uzskaitījums",
       "network": "Tīkla kļūda",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Atcelt",
+      "enquire": "Vai turpināt veikt pasūtījumu pakalpojumā Apple Pay?",
+      "paywith": "Maksāt ar"
+    },
     "customer": {
       "error_message_1": "Reģistrējieties e-pastiem, lai saņemtu atjauninājumus, piekļuvi ekskluzīviem piedāvājumiem un daudz ko citu.",
       "error_message_1001": "Parolis kļūda",

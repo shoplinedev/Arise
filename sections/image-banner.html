@@ -109,14 +109,15 @@
   </div>
 
   {{!-- m 端 --}}
-  <div class="stage-image-banner {{#or banner1.url banner2.url}}image-banner-loaded{{/or}} d-md-none {{#if (isTruthy mobile_flatten)}}stage-image-banner--m-flatten{{else}}stage-image-banner--m-normal {{/if}}" data-section-type="image-banner" data-section-id="{{ section.id }}">
-    <div class="banner-container" >
+  <div class="stage-image-banner {{#and banner1.url banner2.url}}image-banner-loaded__both{{/and}} {{#or banner1.url banner2.url}}image-banner-loaded--mobile{{/or}} d-md-none {{#if (isTruthy mobile_flatten)}}stage-image-banner--m-flatten{{else}}stage-image-banner--m-normal {{/if}}" data-section-type="image-banner" data-section-id="{{ section.id }}">
+    <div class="banner-container {{#unless show_mobile_textarea}}banner-container__inner-image{{/unless}}">
       {{#and (isFalsey banner1.url) (isFalsey banner2.url)}}
           {{ snippet 'icons/icon_slideshow_mobile_placeholder' class='d-md-none default-image' }}
         {{/and}}
         {{#if banner1.url}}
           <div class="banner-item-wrapper first-banner
             banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}
+            {{#and banner1.url banner2.url}}banner-item--half{{/and}}
           ">
             <div style="padding-bottom: {{ banner-ratio }};">
               <img class="lozad banner-item banner-mobile-item" id="banner1"
@@ -166,6 +167,7 @@
         {{#if banner2.url}}
           <div class="banner-item-wrapper second-banner
           banner-item-wrapper--size-{{#if (isFalsey override_banner_height)}}{{ banner_height_size }}{{else}}none{{/if}}
+          {{#and banner1.url banner2.url}}banner-item--half{{/and}}
           ">
             <div style="padding-bottom: {{ banner-ratio }};">
               <img class="lozad banner-item banner-mobile-item" id="banner2"

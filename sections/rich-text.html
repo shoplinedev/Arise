@@ -2,10 +2,12 @@
 
 {{ assign 'color_scheme' section.settings.color_scheme }}
 {{ assign 'normal_width' section.settings.normal_width }}
+{{ assign 'text_align' section.settings.text_align }}
+{{ assign 'pc_content_position' section.settings.pc_content_position }}
 {{ assign 'blocks' section.blocks }}
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 
-<section class="__sl-custom-track-stage-richText rich-text__container color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' ''}}--padding{{/if}}">
+<section class="__sl-custom-track-stage-richText rich-text__container color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' ''}}--padding{{/if}}{{#unless normal_width}} rich-text__flex-layout rich-text__flex-layout-{{ pc_content_position }}{{/unless}}" style="text-align: {{ text_align }}">
   <div class="container {{#unless normal_width}}rich-text__normal-width{{/unless}}">
     {{#each blocks}}
       {{#if (trim type) '===' 'heading'}}
@@ -158,6 +160,46 @@
       "id": "normal_width",
       "default": true,
       "label": "t:sections.rich-text.settings.normal_width.label"
+    },
+    {
+      "type": "select",
+      "id": "pc_content_position",
+      "label": "t:sections.rich-text.settings.pc_content_position.label",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.rich-text.settings.pc_content_position.options__0.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.rich-text.settings.pc_content_position.options__1.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.rich-text.settings.pc_content_position.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "t:sections.rich-text.settings.text_align.label",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.rich-text.settings.text_align.options__0.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.rich-text.settings.text_align.options__1.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.rich-text.settings.text_align.options__2.label"
+        }
+      ]
     }
   ],
   "presets": [
@@ -189,7 +231,9 @@
       ],
       "settings": {
         "color_scheme": "",
-        "normal_width": true
+        "normal_width": true,
+        "pc_content_position": "center",
+        "text_align": "center"
       }
     }
   ]

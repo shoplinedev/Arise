@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Rabattkoder överstiger kvantitetsgränsen",
       "existCode": "Rabattkoden finns redan",
-      "freeShipping": {
-        " existCode": "Duplicera gratis fraktkupongkod"
-      },
       "list": {
         "unavailable": "Alla rabattkoder har gått ut"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Rabattkoden har gått ut"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Gratis fraktkupongkod betalad - inkompatibelt land",
-        "logistics-fee-over-limit": "Gratis fraktkupongkod - Leverans över gränsen"
-      },
-      "code_overdue": "Kupongkod har gått ut",
-      "code_user_exceedLimit": "Antalet gånger användaren använde denna aktivitet överskrider gränsen",
-      "code_user_notSupport": "Användaren kan inte använda den här aktiviteten",
       "coupon_code_amount": "Kupong",
       "coupon_code_length_limit": "Kampanjkoden får inte överstiga {{range}} tecken",
       "expected_discount": "Rabatt"
@@ -87,6 +77,12 @@
       "buy_limit1": "Endast {{stock}} bitar återstår till detta rabattpris",
       "buy_limit2": "Du kan köpa så många produkter som möjligt {{stock}} med rabatter samtidigt",
       "buy_limit3": "Du kan bara köpa {{stock}} delar av denna produkt med rabatter"
+    },
+    "error": {
+      "default": "Det gick inte laddning resurser",
+      "noshipping": "Ingen valfri godsplan",
+      "order": "Det gick inte att begära beställning",
+      "renew": "Det gick inte att uppdatera data"
     },
     "general": {
       "continue_as_a_guest": "Fortsätt som gäst",
@@ -102,7 +98,6 @@
       "none_existent": "Produkten finns inte",
       "view_cart": "Visa varukorg"
     },
-    "lack_multilingualism": "*Denna meningen kunde inte laddas, du kan kontakta kundservice för att rapportera situationen*",
     "next_step": {
       "calculated_taxes_fees": "Skatter och fraktkostnader beräknade i kassan"
     },
@@ -432,9 +427,9 @@
       "send_success": "Tack för att du kontaktar oss, vi återkommer till dig så snart som möjligt."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "E-postadressformatfel",
-      "subscribe_success": "Prenumerera framgång",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Prenumerera framgång"
     },
     "general": {
       "accept": "Acceptera",
@@ -575,6 +570,7 @@
       "leave_us_message": "Ange ditt meddelande",
       "leave_us_message_get_back": "Lämna oss ett meddelande så svarar vi på dig så snart som möjligt",
       "link_preview_does_not_support": "Åtgärden för länköversikten stöds inte",
+      "load_more": "Ladda mer",
       "maximum_length_of_message": "Den maximala längden på ditt meddelande bör inte överstiga 1500 ord",
       "message": "Ditt meddelande",
       "more_payment_options": "Fler betalningsalternativ",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Avrundning"
+    },
     "payments-name": {
       "COD": "Leverans mot återbetalning",
       "Paypal": "PayPal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "En minskning har tillämpats på denna beställning. Kan inte lägga till ytterligare en reduktion."
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Duplicera gratis fraktkupongkod"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Gratis fraktkupongkod betalad - inkompatibelt land",
+        "logistics-fee-over-limit": "Gratis fraktkupongkod - Leverans över gränsen"
+      },
       "code_error": "Minskningskoden anges felaktigt",
       "code_item_unmatched": "{{discountCode}} anges korrekt, men priset eller mängden på varorna uppfyller inte kraven",
+      "code_overdue": "Kupongkod har gått ut",
+      "code_user_exceedLimit": "Antalet gånger användaren använde denna aktivitet överskrider gränsen",
+      "code_user_notSupport": "Användaren kan inte använda den här aktiviteten",
       "coupon_code": "Kampanjkod",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} Kupongen är giltig för leveransmetoden",
       "discount_codes_cannot_stack": "Det är redan ett favoritevenemang för produkten, som inte kan användas i samband med andra favoritevenemang",
@@ -742,6 +753,7 @@
       "removed": "OGILTIG",
       "sold_out": "Slutsålt"
     },
+    "lack_multilingualism": "*Denna meningen kunde inte laddas, du kan kontakta kundservice för att rapportera situationen*",
     "notices": {
       "insufficient_product_inventory": "Otillräcklig produktinventar",
       "network": "Nätverksfel",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Avbryt",
+      "enquire": "Fortsätt betala med Apple Pay?",
+      "paywith": "Betala med"
+    },
     "customer": {
       "error_message_1": "Registrera mig för e-post för att få uppdateringar, tillgång till exklusiva erbjudanden och mer.",
       "error_message_1001": "Lösenordsfel",

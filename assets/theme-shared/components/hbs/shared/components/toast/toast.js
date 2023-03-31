@@ -118,8 +118,10 @@ window.SLM['theme-shared/components/hbs/shared/components/toast/toast.js'] = win
     }
 
     render() {
-      const template = getTemplate(this.options, this.type || this.options.type);
-      this.$toast = $(template);
+      const templateType = this.type || this.options.type;
+      const template = getTemplate(this.options, templateType);
+      const $template = $(template);
+      const templateClass = $template.attr('class');
       this.$target = $(this.options.target);
       const {
         $target
@@ -129,7 +131,8 @@ window.SLM['theme-shared/components/hbs/shared/components/toast/toast.js'] = win
         $target.css('position', 'relative');
       }
 
-      $target.append(this.$toast);
+      $target.append($template);
+      this.$toast = templateType === LOADING ? $target.find(`[class="${templateClass}"]`) : $template;
     }
 
     open(content = '', duration) {

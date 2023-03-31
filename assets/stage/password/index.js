@@ -61,7 +61,7 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
         const isMatched = password.toLowerCase() === this.storeInfo.password.toLowerCase();
 
         if (isMatched) {
-          document.cookie = `l_spwd=1`;
+          document.cookie = `l_spwd=1; path=/`;
           window.location.href = this.getUrlParam('redirect_url') || '/';
         } else {
           this.toast.open(t('general.password.password_is_error'), 2000);

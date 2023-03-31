@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Codurile de reducere depășesc limita de cantitate",
       "existCode": "Codul de reducere există deja",
-      "freeShipping": {
-        " existCode": "Coduri reducere duplicate pentru livrare gratuită"
-      },
       "list": {
         "unavailable": "Toate codurile de reducere au expirat"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Codul de reducere a expirat"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Plată Cod cupon livrare gratuită- nu se potrivește țara",
-        "logistics-fee-over-limit": "Cod cupon livrare gratuită-costul de livrare depășește limita"
-      },
-      "code_overdue": "Codul cupon a expirat",
-      "code_user_exceedLimit": "Utilizatorul a folosit activitatea peste numărul limită",
-      "code_user_notSupport": "Utilizatorul nu poate folosi activitatea",
       "coupon_code_amount": "Cupon",
       "coupon_code_length_limit": "Codul cuponului nu poate depăși {{range}} de caractere",
       "expected_discount": "Reducere"
@@ -87,6 +77,12 @@
       "buy_limit1": "Au mai rămas {{stock}} (de) bucăți cu prețul redus",
       "buy_limit2": "Puteți cumpăra cel mult {{stock}} bucată(i) cu reduceri în același timp",
       "buy_limit3": "Puteți achiziționa {{stock}} bucată(i) din produs cu reduceri"
+    },
+    "error": {
+      "default": "Nu s-a putut realiza încărcarea resurselor",
+      "noshipping": "Fără plan de transport opțional",
+      "order": "Nu s-a putut solicita comanda",
+      "renew": "Nu s-a putut realiza actualizarea datelor"
     },
     "general": {
       "continue_as_a_guest": "Continuați ca oaspete",
@@ -102,7 +98,6 @@
       "none_existent": "Produsul nu exista",
       "view_cart": "Vizualizare coș"
     },
-    "lack_multilingualism": "*Această instrucțiune nu s-a încărcat. Vă rugăm să contactați serviciul clienți pentru a reflecta situația*",
     "next_step": {
       "calculated_taxes_fees": "Taxele și livrarea vor fi calculate la finalizarea comenzii"
     },
@@ -432,9 +427,9 @@
       "send_success": "Vă mulțumim că ne-ați contactat și vom reveni către dvs. cât mai curând posibil."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Eroare formatare adresă de e-mail",
-      "subscribe_success": "Abonare reușită",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Abonare reușită"
     },
     "general": {
       "accept": "Acceptă",
@@ -575,6 +570,7 @@
       "leave_us_message": "Introduceți mesajul dvs.",
       "leave_us_message_get_back": "Lăsați-ne un mesaj și vom reveni către dvs. cât mai repede posibil",
       "link_preview_does_not_support": "Operația pentru linkul de previzualizare nu este acceptată",
+      "load_more": "Arată mai mult",
       "maximum_length_of_message": "Lungimea maximă a mesajului dvs. nu trebuie să fie mai mare de 1500 de cuvinte",
       "message": "Mesajul dvs.",
       "more_payment_options": "mai multe opțiuni de plată",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Rotunjire"
+    },
     "payments-name": {
       "COD": "Numerar la livrare",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "O reducere a fost aplicată pentru comandă. Nu puteți adăuga altă reducere"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Coduri reducere duplicate pentru livrare gratuită"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Plată Cod cupon livrare gratuită- nu se potrivește țara",
+        "logistics-fee-over-limit": "Cod cupon livrare gratuită-costul de livrare depășește limita"
+      },
       "code_error": "Codul de reducere nu este introdus corect",
       "code_item_unmatched": "{{discountCode}} este introdus corect, dar prețul sau cantitatea bunurilor nu respectă cerințele",
+      "code_overdue": "Codul cupon a expirat",
+      "code_user_exceedLimit": "Utilizatorul a folosit activitatea peste numărul limită",
+      "code_user_notSupport": "Utilizatorul nu poate folosi activitatea",
       "coupon_code": "Cod de cupon",
       "coupon_invalid_for_the_shipping_method": "Cuponul {{discountCode}} este valid pentru metoda de livrare",
       "discount_codes_cannot_stack": "Există deja un eveniment preferențial pentru produs, care nu poate fi folosit împreună cu alte evenimente preferențiale.",
@@ -742,6 +753,7 @@
       "removed": "NEVALID",
       "sold_out": "Vândut"
     },
+    "lack_multilingualism": "*Această instrucțiune nu s-a încărcat. Vă rugăm să contactați serviciul clienți pentru a reflecta situația*",
     "notices": {
       "insufficient_product_inventory": "Inventar insuficient pentru produs",
       "network": "Eroare de rețea",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Anulați",
+      "enquire": "Continuați să plasați comanda cu Apple Pay?",
+      "paywith": "Plătiți cu"
+    },
     "customer": {
       "error_message_1": "Înscrie-mă pentru e-mailuri pentru a primi actualizări, acces la oferte exclusive și multe altele.",
       "error_message_1001": "Eroare parolă",

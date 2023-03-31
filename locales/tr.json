@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "İndirim kodları miktar sınırını aşıyor",
       "existCode": "İndirim kodu zaten var",
-      "freeShipping": {
-        " existCode": "Navlunsuz için indirim kodu yinelendi"
-      },
       "list": {
         "unavailable": "Tüm indirim kodlarının süresi doldu"
       },
@@ -69,13 +66,6 @@
       "unavailable": "İndirim kodunun süresi doldu"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Ücretsiz kargo kupon kodu — ülke ile eşleşmiyor",
-        "logistics-fee-over-limit": "Ücretsiz kargo kupon kodu — navlun bedeli belirlenen sınırı aşıyor"
-      },
-      "code_overdue": "Kupon kodunun kullanım süresi doldu",
-      "code_user_exceedLimit": "Kullanıcının bu kampanyadan yararlanma sayısı belirlenen sınırı aşıyor",
-      "code_user_notSupport": "Kullanıcı bu kampanyadan yararlanamaz",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Kupon kodu {{range}} karakteri aşamaz.",
       "expected_discount": "İndirim"
@@ -87,6 +77,12 @@
       "buy_limit1": "Bu indirimli fiyatların geçerli olduğu kalan son {{stock}} parça",
       "buy_limit2": "İndirimli fiyatlardan aynı anda en fazla {{stock}} ürün satın alabilirsiniz.",
       "buy_limit3": "İndirimli fiyatları kullanarak bu üründen yalnızca {{stock}} adet satın alabilirsiniz"
+    },
+    "error": {
+      "default": "Kaynak yüklenirken hata oluştu",
+      "noshipping": "İsteğe bağlı navlun planı yok",
+      "order": "Bir dizi istenemedi",
+      "renew": "Veriler güncellenemedi"
     },
     "general": {
       "continue_as_a_guest": "misafir olarak devam et",
@@ -102,7 +98,6 @@
       "none_existent": "Ürünler mevcut değil",
       "view_cart": "Sepeti görüntüle"
     },
-    "lack_multilingualism": "*Bu ifade yüklenemedi, durumu bildirmek için müşteri hizmetleriyle iletişime geçebilirsiniz*",
     "next_step": {
       "calculated_taxes_fees": "Ödeme anında hesaplanan vergiler ve kargo ücreti"
     },
@@ -432,9 +427,9 @@
       "send_success": "Bizimle iletişime geçtiğiniz için teşekkür ederiz, mümkün olan en kısa sürede size dönüş yapacağız."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "E-posta adresi formatı hatalı",
-      "subscribe_success": "Abonelik başarılı",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Abonelik başarılı"
     },
     "general": {
       "accept": "Kabul et",
@@ -575,6 +570,7 @@
       "leave_us_message": "Lütfen mesajınızı girin",
       "leave_us_message_get_back": "Lütfen bize bir mesaj bırakın ve en kısa sürede size geri dönüş yapacağız",
       "link_preview_does_not_support": "Bağlantı önizleme işlemi desteklenmiyor",
+      "load_more": "Daha fazla göster",
       "maximum_length_of_message": "Mesajınızın uzunluğu maksimum 1500 kelimeden fazla olmamalıdır",
       "message": "Mesajınız",
       "more_payment_options": "daha fazla ödeme seçeneği",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Yuvarlama"
+    },
     "payments-name": {
       "COD": "Kapıda ödeme",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Bu siparişe indirim uygulandı. Başka indirim ekleyemezsiniz"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Navlunsuz için indirim kodu yinelendi"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Ücretsiz kargo kupon kodu — ülke ile eşleşmiyor",
+        "logistics-fee-over-limit": "Ücretsiz kargo kupon kodu — navlun bedeli belirlenen sınırı aşıyor"
+      },
       "code_error": "İndirim kodu yanlış girildi",
       "code_item_unmatched": "{{discountCode}} doğru girildi ama ürün fiyatı ya da miktarı gereklilikleri karşılamıyor",
+      "code_overdue": "Kupon kodunun kullanım süresi doldu",
+      "code_user_exceedLimit": "Kullanıcının bu kampanyadan yararlanma sayısı belirlenen sınırı aşıyor",
+      "code_user_notSupport": "Kullanıcı bu kampanyadan yararlanamaz",
       "coupon_code": "Kupon Kodu",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} kuponu, kargo yöntemi için geçerlidir",
       "discount_codes_cannot_stack": "Ürün için hali hazırda diğer ayrıcalıklı etkinliklerle birlikte kullanılamayan bir ayrıcalıklı etkinlik var",
@@ -742,6 +753,7 @@
       "removed": "GEÇERSİZ",
       "sold_out": "hepsi satıldı"
     },
+    "lack_multilingualism": "*Bu ifade yüklenemedi, durumu bildirmek için müşteri hizmetleriyle iletişime geçebilirsiniz*",
     "notices": {
       "insufficient_product_inventory": "Ürün envanteri yetersiz",
       "network": "Ağ Hatası",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "İptal et",
+      "enquire": "Apple Pay ile sipariş verme işlemine devam edilsin mi?",
+      "paywith": "Ödeme aracı"
+    },
     "customer": {
       "error_message_1": "Güncellemeleri almak, özel fırsatlara erişmek ve daha fazlası için e-posta almak için beni kaydedin.",
       "error_message_1001": "Parola hatası",

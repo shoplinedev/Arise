@@ -89,7 +89,7 @@
       "default": true
     }
   ],
-  "max_blocks": 16,
+  "max_blocks": 30,
   "blocks": [
     {
       "type": "@app"
@@ -98,14 +98,70 @@
       "type": "title",
       "icon": "title",
       "name": "t:sections.featured-product.blocks.title.name",
-      "settings": [],
+      "settings": [
+        {
+          "type": "select",
+          "id": "font_size",
+          "label": "t:sections.featured-product.blocks.title.settings.font_size.label",
+          "default": "medium",
+          "options": [
+            {
+              "value": "extra-large",
+              "label": "t:sections.featured-product.blocks.title.settings.font_size.options__0.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.featured-product.blocks.title.settings.font_size.options__1.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.featured-product.blocks.title.settings.font_size.options__2.label"
+            },
+            {
+              "value": "small",
+              "label": "t:sections.featured-product.blocks.title.settings.font_size.options__3.label"
+            }
+          ]
+        }
+      ],
       "limit": 1
     },
     {
       "type": "abstract",
       "icon": "paragraph",
       "name": "t:sections.featured-product.blocks.abstract.name",
-      "settings": [],
+      "settings": [
+        {
+          "type": "select",
+          "id": "font_size",
+          "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.label",
+          "default": "medium",
+          "options": [
+            {
+              "value": "extra-large",
+              "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.options__0.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.options__1.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.options__2.label"
+            },
+            {
+              "value": "small",
+              "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.options__3.label"
+            }
+          ]
+        },
+        {
+          "id": "is_upper_case",
+          "type": "switch",
+          "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.is_upper_case.label",
+          "default": false
+        }
+      ],
       "limit": 1
     },
     {
@@ -205,6 +261,57 @@
           "limit": 0,
           "label": "t:sections.featured-product.blocks.viewMoreBtn.settings.btnText.label",
           "default": "Learn More"
+        }
+      ]
+    },
+    {
+      "type": "cutLine",
+      "icon": "normal",
+      "name": "t:sections.featured-product.blocks.cutLine.name",
+      "settings": [
+        {
+          "id": "pc_show",
+          "type": "switch",
+          "label": "t:sections.featured-product.blocks.cutLine.settings.pc_show.label",
+          "default": true
+        },
+        {
+          "id": "mobile_show",
+          "type": "switch",
+          "label": "t:sections.featured-product.blocks.cutLine.settings.mobile_show.label",
+          "default": true
+        },
+        {
+          "id": "background_color",
+          "type": "color_picker",
+          "label": "t:sections.featured-product.blocks.cutLine.settings.background_color.label",
+          "default": "rgba(0, 0, 0, 0.05)"
+        },
+        {
+          "id": "cutline_style",
+          "type": "select",
+          "options": [
+            {
+              "value": "blankSpace",
+              "label": "t:sections.featured-product.blocks.cutLine.settings.cutline_style.options__0.label"
+            },
+            {
+              "value": "fullColumn",
+              "label": "t:sections.featured-product.blocks.cutLine.settings.cutline_style.options__1.label"
+            }
+          ],
+          "label": "t:sections.featured-product.blocks.cutLine.settings.cutline_style.label",
+          "default": "blankSpace"
+        },
+        {
+          "id": "cutline_size",
+          "type": "range",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "unit": "px",
+          "label": "t:sections.featured-product.blocks.cutLine.settings.cutline_size.label",
+          "default": 1
         }
       ]
     },

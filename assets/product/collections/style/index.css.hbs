@@ -28,8 +28,9 @@
 .product-list-sort .product-list-sort-arrow{
   color:rgba(var(--color-text));
   line-height:0;
+  pointer-events:none;
   position:absolute;
-  right:12px;
+  right:0;
   top:50%;
   transform:translateY(-50%);
 }
@@ -54,6 +55,9 @@
     text-overflow:ellipsis;
     white-space:nowrap;
     width:180px;
+  }
+  .product-list-sort select>option{
+    text-align:right;
   }
 }
 

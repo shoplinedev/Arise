@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Rabatkoder overstiger mængdegrænsen",
       "existCode": "Rabatkoden findes allerede",
-      "freeShipping": {
-        " existCode": "Rabatkode til gentagen gratis forsendelse"
-      },
       "list": {
         "unavailable": "Alle rabatkoder er udløbet"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Rabatkoden er udløbet"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Betalings kuponkode til gratis forsendelse - land stemmer ikke overens",
-        "logistics-fee-over-limit": "Kuponkode til gratis forsendelse - fragtomkostninger overskrider grænsen"
-      },
-      "code_overdue": "Kuponkode er udløbet",
-      "code_user_exceedLimit": "Antallet af gange, brugeren bruger denne aktivitet, overskrider grænsen",
-      "code_user_notSupport": "Brugeren kan ikke bruge denne aktivitet",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Kuponkoden må ikke være på mere end {{range}} tegn.",
       "expected_discount": "Rabat"
@@ -87,6 +77,12 @@
       "buy_limit1": "Kun {{stock}} stykker tilbage med denne rabatpris",
       "buy_limit2": "Du kan højst købe {{stock}} produkt(er) med rabatterne på samme tid",
       "buy_limit3": "Du kan kun købe {{stock}} stk. af dette produkt med rabatterne"
+    },
+    "error": {
+      "default": "Fejl ved indlæsning af ressourcer",
+      "noshipping": "Ingen valgfri fragtplan",
+      "order": "Kunne ikke bede om en sekvens",
+      "renew": "Kunne ikke opdatere data"
     },
     "general": {
       "continue_as_a_guest": "Fortsæt som gæst",
@@ -102,7 +98,6 @@
       "none_existent": "Varer findes ikke",
       "view_cart": "Vis indkøbsvogn"
     },
-    "lack_multilingualism": "*Denne erklæring kunne ikke indlæses. Kontakt venligst kundeservice for at få situationen beskrevet*",
     "next_step": {
       "calculated_taxes_fees": "Skatter og forsendelse beregnet ved udlevering"
     },
@@ -432,9 +427,9 @@
       "send_success": "Tak fordi du kontaktede os, og vi vil svare dig så hurtigt som muligt."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Fejl i mail adresse format",
-      "subscribe_success": "Abonner på succes",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Abonner på succes"
     },
     "general": {
       "accept": "Modtage",
@@ -575,6 +570,7 @@
       "leave_us_message": "Indtast din besked",
       "leave_us_message_get_back": "Lad os få en besked, og så vender vi tilbage til Dem så hurtigt som muligt",
       "link_preview_does_not_support": "Handlingen for eksempelvisningen af kæden understøttes ikke",
+      "load_more": "Læs mere",
       "maximum_length_of_message": "Den maksimale længde af din meddelelse må ikke være mere end 1.500 ord",
       "message": "Din besked",
       "more_payment_options": "flere betalingsmuligheder",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Afrunding"
+    },
     "payments-name": {
       "COD": "Kontanter ved levering",
       "Paypal": "Betaling",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Der er anvendt en rabat på denne ordre. Du kan ikke tilføje en ekstra rabat."
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Rabatkode til gentagen gratis forsendelse"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Betalings kuponkode til gratis forsendelse - land stemmer ikke overens",
+        "logistics-fee-over-limit": "Kuponkode til gratis forsendelse - fragtomkostninger overskrider grænsen"
+      },
       "code_error": "Rabatkoden er angivet forkert",
       "code_item_unmatched": "{{discountCode}} er angivet korrekt, men prisen eller mængden af varerne opfylder ikke kravene",
+      "code_overdue": "Kuponkode er udløbet",
+      "code_user_exceedLimit": "Antallet af gange, brugeren bruger denne aktivitet, overskrider grænsen",
+      "code_user_notSupport": "Brugeren kan ikke bruge denne aktivitet",
       "coupon_code": "Kuponkode",
       "coupon_invalid_for_the_shipping_method": "Kuponen {{discountCode}} er gyldig for forsendelsesmetoden",
       "discount_codes_cannot_stack": "Der er allerede en favorit begivenhed for produktet, som ikke kan bruges i forbindelse med andre foretrukne begivenheder",
@@ -742,6 +753,7 @@
       "removed": "UGYLDIG",
       "sold_out": "Solgt ud"
     },
+    "lack_multilingualism": "*Denne erklæring kunne ikke indlæses. Kontakt venligst kundeservice for at få situationen beskrevet*",
     "notices": {
       "insufficient_product_inventory": "Utilstrækkelig produktopgørelse",
       "network": "Netværksfejl",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Aflyse",
+      "enquire": "Fortsæt med at afgive ordren med Apple Pay?",
+      "paywith": "Betal med"
+    },
     "customer": {
       "error_message_1": "Tilmeld mig e-mails for at modtage opdateringer, adgang til eksklusive tilbud og meget mere.",
       "error_message_1001": "Adgangskodefejl",

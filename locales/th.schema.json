@@ -25,6 +25,18 @@
               "options__3": {
                 "label": "จับคู่สี3"
               }
+            },
+            "text_align": {
+              "label": "การจัดตำแหน่งข้อความ",
+              "options__0": {
+                "label": "ชิดซ้าย"
+              },
+              "options__1": {
+                "label": "ศูนย์กลาง"
+              },
+              "options__2": {
+                "label": "ชิดขวา"
+              }
             }
           }
         }
@@ -384,6 +396,9 @@
           "info": "ปุ่มจะแสดงก็ต่อเมื่อ \"จำนวนสินค้าสูงสุด\" น้อยกว่าหรือเท่ากับจำนวนสินค้าในหมวดนี้",
           "label": "ข้อความปุ่ม"
         },
+        "full_width": {
+          "label": "แสดงโดยความกว้างเต็มหน้าจอ"
+        },
         "group_header__0": {
           "label": "รายการ"
         },
@@ -451,6 +466,32 @@
         "buy-button": {
           "name": "ปุ่มซื้อ"
         },
+        "cutLine": {
+          "name": "เส้นแบ่ง",
+          "settings": {
+            "background_color": {
+              "label": "สีของเส้นแบ่ง"
+            },
+            "cutline_size": {
+              "label": "ความหนาของเส้นแบ่งบนมือถือ"
+            },
+            "cutline_style": {
+              "label": "รูปแบบเส้นแบ่งบนมือถือ",
+              "options__0": {
+                "label": "การแบ่งด้วยพื้นที่ว่างเปล่า"
+              },
+              "options__1": {
+                "label": "การแบ่งด้วยทั้งคอลัมน์"
+              }
+            },
+            "mobile_show": {
+              "label": "แสดงผลบนมือถือ"
+            },
+            "pc_show": {
+              "label": "แสดงผลบนคอมพิวเตอร์"
+            }
+          }
+        },
         "description": {
           "name": "รายละเอียดสินค้า"
         },
@@ -494,7 +535,24 @@
           }
         },
         "title": {
-          "name": "หัวข้อ"
+          "name": "หัวข้อ",
+          "settings": {
+            "font_size": {
+              "label": "ขนาดตัวอักษรของหัวข้อ",
+              "options__0": {
+                "label": "ใหญ่มาก"
+              },
+              "options__1": {
+                "label": "ใหญ่"
+              },
+              "options__2": {
+                "label": "กลาง"
+              },
+              "options__3": {
+                "label": "เล็ก"
+              }
+            }
+          }
         },
         "viewMoreBtn": {
           "name": "ดูปุ่มเพิ่มเติม",
@@ -612,11 +670,20 @@
         "copyright_text": {
           "label": "ข้อความลิขสิทธิ์เพิ่มเติม"
         },
+        "footer_division": {
+          "label": "เส้นแบ่งส่วนท้ายของคอมพิวเตอร์"
+        },
         "group_header__0": {
           "label": "การสมัครอีเมล"
         },
         "group_header__1": {
           "label": "เนื้อหาเพิ่มเติม"
+        },
+        "padding_bottom": {
+          "label": "แพคดิงด้านล่าง"
+        },
+        "padding_top": {
+          "label": "แพคดิงด้านบน"
         },
         "show_copyright": {
           "label": "แสดงข้อมูลลิขสิทธิ์"
@@ -686,6 +753,9 @@
           "info": "[ปลั๊กอินนำทางเมนูเพิ่มเติม](https://apps.shopline.com/detail/?appId=64637)",
           "label": "เมนู"
         },
+        "header_division": {
+          "label": "แสดงเส้นแบ่งโมดูล"
+        },
         "header_full_width": {
           "label": "ความกว้างเต็มหน้าจอในส่วนหัว"
         },
@@ -697,6 +767,9 @@
         },
         "main_menu_link_list": {
           "label": "เมนูนำทาง"
+        },
+        "main_menu_link_list_effect": {
+          "label": "ภาพเคลื่อนไหวดึงเมนูการนำทางลง"
         },
         "mega_menu_images": {
           "info": "[ดูวิธีตั้งค่าบทแนะนำเมนูสุดยอด](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
@@ -731,6 +804,12 @@
           "options__2": {
             "label": "LOGO ตรงกลาง เมนูเปลี่ยนบรรทัด"
           }
+        },
+        "padding_bottom": {
+          "label": "แพคดิงด้านล่าง"
+        },
+        "padding_top": {
+          "label": "แพคดิงด้านบน"
         },
         "show_cart_entry": {
           "label": "แสดงทางเข้าตะกร้าสินค้า"
@@ -1824,7 +1903,27 @@
     "product_detail_product-preview": {
       "blocks": {
         "abstract": {
-          "name": "สรุป"
+          "name": "สรุป",
+          "settings": {
+            "font_size": {
+              "label": "ขนาดตัวอักษรของข้อความ",
+              "options__0": {
+                "label": "ใหญ่มาก"
+              },
+              "options__1": {
+                "label": "ใหญ่"
+              },
+              "options__2": {
+                "label": "กลาง"
+              },
+              "options__3": {
+                "label": "เล็ก"
+              }
+            },
+            "is_upper_case": {
+              "label": "ตัวพิมพ์ใหญ่ทั้งหมด"
+            }
+          }
         },
         "buy-button": {
           "name": "ปุ่มซื้อ",
@@ -1832,6 +1931,32 @@
             "group_header__0": {
               "info": "[เรียนรู้ข้อมูลเพิ่มเติม](https://apps.shopline.com/detail/?appId=23033)",
               "label": "หากต้องการใช้ฟังก์ชันตะกร้าสินค้าแบบลอย โปรดเพิ่มปลั๊กอิน Add to cart"
+            }
+          }
+        },
+        "cutLine": {
+          "name": "เส้นแบ่ง",
+          "settings": {
+            "background_color": {
+              "label": "สีของเส้นแบ่ง"
+            },
+            "cutline_size": {
+              "label": "ความหนาของเส้นแบ่งบนมือถือ"
+            },
+            "cutline_style": {
+              "label": "รูปแบบเส้นแบ่งบนมือถือ",
+              "options__0": {
+                "label": "การแบ่งด้วยพื้นที่ว่างเปล่า"
+              },
+              "options__1": {
+                "label": "การแบ่งด้วยทั้งคอลัมน์"
+              }
+            },
+            "mobile_show": {
+              "label": "แสดงผลบนมือถือ"
+            },
+            "pc_show": {
+              "label": "แสดงผลบนคอมพิวเตอร์"
             }
           }
         },
@@ -2156,7 +2281,24 @@
           }
         },
         "title": {
-          "name": "หัวข้อ"
+          "name": "หัวข้อ",
+          "settings": {
+            "font_size": {
+              "label": "ขนาดตัวอักษรของหัวข้อ",
+              "options__0": {
+                "label": "ใหญ่มาก"
+              },
+              "options__1": {
+                "label": "ใหญ่"
+              },
+              "options__2": {
+                "label": "กลาง"
+              },
+              "options__3": {
+                "label": "เล็ก"
+              }
+            }
+          }
         }
       },
       "name": "รายละเอียดสินค้า",
@@ -2415,6 +2557,30 @@
         },
         "normal_width": {
           "label": "ใช้ความกว้างคอลัมน์มาตรฐาน"
+        },
+        "pc_content_position": {
+          "label": "ตำแหน่งเนื้อหาบนคอมพิวเตอร์",
+          "options__0": {
+            "label": "ชิดซ้าย"
+          },
+          "options__1": {
+            "label": "ศูนย์กลาง"
+          },
+          "options__2": {
+            "label": "ชิดขวา"
+          }
+        },
+        "text_align": {
+          "label": "รูปแบบการจัดตำแหน่งเนื้อหา",
+          "options__0": {
+            "label": "จัดแนวข้อความชิดซ้าย"
+          },
+          "options__1": {
+            "label": "ตรงกลาง"
+          },
+          "options__2": {
+            "label": "จัดแนวข้อความชิดขวา"
+          }
         }
       }
     },
@@ -3676,11 +3842,23 @@
     "product": {
       "name": "สินค้า",
       "settings": {
+        "enabled_mobile_product_add_to_cart": {
+          "label": "ซื้อด่วนบนเทอร์มินัลมือถือ"
+        },
         "group_header__0": {
           "label": "รายการสินค้า"
         },
         "product_add_to_cart": {
           "label": "รองรับการซื้ออย่างรวดเร็ว"
+        },
+        "product_add_to_cart_pc_position": {
+          "label": "เพิ่มตำแหน่งบนคอมพิวเตอร์อย่างรวดเร็ว",
+          "options__0": {
+            "label": "ศูนย์กลาง"
+          },
+          "options__1": {
+            "label": "ด้านล่างโดยตรง"
+          }
         },
         "product_discount": {
           "label": "แสดงส่วนลด"

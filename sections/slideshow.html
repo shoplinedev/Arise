@@ -92,17 +92,17 @@
                 {{ assign 'button_alpha' (color_extract this.settings.color_accent 'alpha') }}
                 {{ assign 'overlay_opacity' (default this.settings.overlay_opacity 0) }}
 
-                .slideshow__slide--{{ @key }} .hero__image-wrapper:after {
+                #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .hero__image-wrapper:after {
                   opacity: {{ divide overlay_opacity 100 }};
                 }
-                .slideshow__slide--{{ @key }} .hero__image {
+                #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .hero__image {
                   object-position: {{ this.settings.focal_point }};
                 }
-                .slideshow__slide--{{ @key }} .hero__title {
+                #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .hero__title {
                   font-size: {{ this.settings.title_size }}px;
                 }
                 @media only screen and (max-width: 749px) {
-                  .slideshow__slide--{{ @key }} .hero__title {
+                  #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .hero__title {
                     font-size: {{ multiply this.settings.title_size 0.5 }}px;
                   }
                 }

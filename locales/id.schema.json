@@ -25,6 +25,18 @@
               "options__3": {
                 "label": "Pencocokan warna 3"
               }
+            },
+            "text_align": {
+              "label": "Perataan teks",
+              "options__0": {
+                "label": "Di sebelah kiri"
+              },
+              "options__1": {
+                "label": "di tengah"
+              },
+              "options__2": {
+                "label": "Di sebelah kanan"
+              }
             }
           }
         }
@@ -384,6 +396,9 @@
           "info": "Jika \"jumlah produk maksimal\" kecil dan sama kategori ini",
           "label": "Tulisan tombol"
         },
+        "full_width": {
+          "label": "Tampilan lebar layar penuh"
+        },
         "group_header__0": {
           "label": "Daftar"
         },
@@ -451,6 +466,32 @@
         "buy-button": {
           "name": "Tombol beli"
         },
+        "cutLine": {
+          "name": "Garis pemisah",
+          "settings": {
+            "background_color": {
+              "label": "Warna garis pemisah"
+            },
+            "cutline_size": {
+              "label": "Ketebalan garis pemisah port seluler"
+            },
+            "cutline_style": {
+              "label": "Gaya garis pemisah port seluler",
+              "options__0": {
+                "label": "Pemisah ruang putih"
+              },
+              "options__1": {
+                "label": "Pemisah kolom"
+              }
+            },
+            "mobile_show": {
+              "label": "Tampilkan di portseluler"
+            },
+            "pc_show": {
+              "label": "Tampilkan di port PC"
+            }
+          }
+        },
         "description": {
           "name": "Deskripsi produk"
         },
@@ -494,7 +535,24 @@
           }
         },
         "title": {
-          "name": "Judul"
+          "name": "Judul",
+          "settings": {
+            "font_size": {
+              "label": "Ukuran font header",
+              "options__0": {
+                "label": "Ukuran super"
+              },
+              "options__1": {
+                "label": "Besar"
+              },
+              "options__2": {
+                "label": "Sedang"
+              },
+              "options__3": {
+                "label": "Kecil"
+              }
+            }
+          }
         },
         "viewMoreBtn": {
           "name": "Lihat lebih banyak tombol",
@@ -612,11 +670,20 @@
         "copyright_text": {
           "label": "Dokumen hak cipta tambahan"
         },
+        "footer_division": {
+          "label": "Garis pemisah footer sisi komputer"
+        },
         "group_header__0": {
           "label": "Langganan email"
         },
         "group_header__1": {
           "label": "Tambah isi"
+        },
+        "padding_bottom": {
+          "label": "Isian bawah"
+        },
+        "padding_top": {
+          "label": "Isian atas"
         },
         "show_copyright": {
           "label": "Tampilkan Informasi Hak Cipta"
@@ -686,6 +753,9 @@
           "info": "[Plug-in navigasi menu lainnya](https://apps.shopline.com/detail/?appId=64637)",
           "label": "Menu"
         },
+        "header_division": {
+          "label": "Tampilkan garis pemisah modul"
+        },
         "header_full_width": {
           "label": "lebar layar penuh di header"
         },
@@ -697,6 +767,9 @@
         },
         "main_menu_link_list": {
           "label": "Menu navigasi"
+        },
+        "main_menu_link_list_effect": {
+          "label": "Tarik efek ke bawah menu navigasi"
         },
         "mega_menu_images": {
           "info": "[Lihat cara menyiapkan tutorial Super-Menu](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
@@ -731,6 +804,12 @@
           "options__2": {
             "label": "LOGO berada di tengah, menu ganti baris"
           }
+        },
+        "padding_bottom": {
+          "label": "Isian bawah"
+        },
+        "padding_top": {
+          "label": "Isian atas"
         },
         "show_cart_entry": {
           "label": "Tampilkan pintu masuk troli"
@@ -1824,7 +1903,27 @@
     "product_detail_product-preview": {
       "blocks": {
         "abstract": {
-          "name": "Abstrak"
+          "name": "Abstrak",
+          "settings": {
+            "font_size": {
+              "label": "Ukuran font teks",
+              "options__0": {
+                "label": "Ukuran super"
+              },
+              "options__1": {
+                "label": "Besar"
+              },
+              "options__2": {
+                "label": "Sedang"
+              },
+              "options__3": {
+                "label": "Kecil"
+              }
+            },
+            "is_upper_case": {
+              "label": "Semua huruf besar"
+            }
+          }
         },
         "buy-button": {
           "name": "Tombol beli",
@@ -1832,6 +1931,32 @@
             "group_header__0": {
               "info": "[untuk informasi lebih lanjut](https://apps.shopline.com/detail/?appId=23033)",
               "label": "Untuk menggunakan fitur troli yang menarik bagian bawah, silakan tambahkan plugin Tambahkan ke keranjang"
+            }
+          }
+        },
+        "cutLine": {
+          "name": "Garis pemisah",
+          "settings": {
+            "background_color": {
+              "label": "Warna garis pemisah"
+            },
+            "cutline_size": {
+              "label": "Ketebalan garis pemisah port seluler"
+            },
+            "cutline_style": {
+              "label": "Gaya garis pemisah port seluler",
+              "options__0": {
+                "label": "Pemisah ruang putih"
+              },
+              "options__1": {
+                "label": "Pemisah kolom"
+              }
+            },
+            "mobile_show": {
+              "label": "Tampilkan di portseluler"
+            },
+            "pc_show": {
+              "label": "Tampilkan di port PC"
             }
           }
         },
@@ -2156,7 +2281,24 @@
           }
         },
         "title": {
-          "name": "Judul"
+          "name": "Judul",
+          "settings": {
+            "font_size": {
+              "label": "Ukuran font header",
+              "options__0": {
+                "label": "Ukuran super"
+              },
+              "options__1": {
+                "label": "Besar"
+              },
+              "options__2": {
+                "label": "Sedang"
+              },
+              "options__3": {
+                "label": "Kecil"
+              }
+            }
+          }
         }
       },
       "name": "Rincian barang dagangan",
@@ -2415,6 +2557,30 @@
         },
         "normal_width": {
           "label": "Gunakan lebar kolom standar"
+        },
+        "pc_content_position": {
+          "label": "Lokasi konten port PC",
+          "options__0": {
+            "label": "Di sebelah kiri"
+          },
+          "options__1": {
+            "label": "di tengah"
+          },
+          "options__2": {
+            "label": "Di sebelah kanan"
+          }
+        },
+        "text_align": {
+          "label": "Penyelarasan konten",
+          "options__0": {
+            "label": "Kiri sejajar"
+          },
+          "options__1": {
+            "label": "Kurang rata"
+          },
+          "options__2": {
+            "label": "Kanan sejajar"
+          }
         }
       }
     },
@@ -3676,11 +3842,23 @@
     "product": {
       "name": "Produk",
       "settings": {
+        "enabled_mobile_product_add_to_cart": {
+          "label": "Pembelian tambahan cepat port seluler"
+        },
         "group_header__0": {
           "label": "Daftar barang"
         },
         "product_add_to_cart": {
           "label": "Mendukung pembelian cepat"
+        },
+        "product_add_to_cart_pc_position": {
+          "label": "Lokasi pembelian tambahan cepat lokasi port PC",
+          "options__0": {
+            "label": "di tengah"
+          },
+          "options__1": {
+            "label": "Tepat di bawah"
+          }
         },
         "product_discount": {
           "label": "Tampilkan diskon"

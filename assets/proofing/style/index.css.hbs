@@ -1138,7 +1138,7 @@ input{
   font-family:var(--type-title-font);
   font-style:var(--type-title-font-style);
   font-weight:var(--type-title-font-weight, 700);
-  letter-spacing:calc(var(--type-title-letter-spacing) / 1000);
+  letter-spacing:var(--type-title-letter-spacing);
   line-height:var(--type-title-line-height);
 }
 
@@ -1250,11 +1250,34 @@ input{
     font-size:calc(var(--type-title-size) * .5555555556);
   }
 }
+.font-size-extra-large{
+  --font-size-scale:1.8;
+}
+
+.font-size-extra-large,.font-size-large{
+  font-size:calc(1em * var(--font-size-scale));
+}
+
+.font-size-large{
+  --font-size-scale:1.2;
+}
+
+.font-size-medium{
+  --font-size-scale:1;
+}
+
+.font-size-medium,.font-size-small{
+  font-size:calc(1em * var(--font-size-scale));
+}
+
+.font-size-small{
+  --font-size-scale:0.8;
+}
 .body-font,.body1,.body2,.body3,.body4,.body5,.body6{
   font-family:var(--type-body-font);
   font-style:var(--type-body-font-style);
   font-weight:var(--type-body-font-weight, 400);
-  letter-spacing:calc(var(--type-body-letter-spacing) / 1000);
+  letter-spacing:var(--type-body-letter-spacing);
   line-height:var(--type-body-line-height);
 }
 
@@ -1316,14 +1339,14 @@ input{
   font-family:var(--type-body-font);
   font-style:var(--type-body-font-style);
   font-weight:var(--type-body-font-weight, 400);
-  letter-spacing:calc(var(--type-body-letter-spacing) / 1000);
+  letter-spacing:var(--type-body-letter-spacing);
   line-height:var(--type-body-line-height);
 }
 [data-type_navigation_font=title] .navigation-font{
   font-family:var(--type-title-font);
   font-style:var(--type-title-font-style);
   font-weight:var(--type-title-font-weight, 700);
-  letter-spacing:calc(var(--type-title-letter-spacing) / 1000);
+  letter-spacing:var(--type-title-letter-spacing);
   line-height:var(--type-title-line-height);
 }
 

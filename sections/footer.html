@@ -78,59 +78,57 @@ all_collections:
             <div class="footer__block-divider d-md-none entry-line"></div>
           {{/each}}
         {{/with}}
-        </div>
+      </div>
         {{ assign 'has_social_logos' false }}
         {{#with theme.settings}}
           {{#or social_facebook_link social_twitter_link social_pinterest_link social_instagram_link social_snapchat_link social_tiktok_link social_youtube_link social_linkedin_link}}
             {{ object_set ../../this 'has_social_logos' true }}
           {{/or}}
         {{/with}}
-        <div class="{{#or showLetter has_social_logos}}footer_social--divider {{/or}}{{#if showLetter}}footer_social-hasletter {{/if}}footer__block-social-container row g-4 {{ footInlineClass }}">
-          {{#if showLetter}}
-            {{!-- 邮件订阅 --}}
-            <div class="footer__block-subscribe">
-              {{ snippet 'footer-news-letter' }}
-            </div>
-          {{/if}}
-          {{#if showSocialLogos}}
-            {{!-- 社交媒体 --}}
-            <div class="footer__block-social">
-              {{ snippet 'footer-social' }}
-            </div>
-          {{/if}}
-          {{#or showLetter showSocialLogos}}
-            <div class="footer__block-divider d-md-none entry-line"></div>
-          {{/or}}
-        </div>
-      </div>
-    </div>
-    <div class="footer__corner entry-line">
-      <div class="footer__corner-wrapper container">
-        <div class="footer__corner-top">
-          {{#or section.settings.show_locale_selector section.settings.show_currency_selector section.settings.show_country_selector}}
-            <div class="footer__tool-container">
-              {{ snippet 'header/locale-currency' settings=section.settings position='footer' }}
-            </div>
-          {{/or}}
-
-          {{#if section.settings.show_pay_channel.show}}
-            {{ snippet 'footer-pay-channel' }}
-          {{/if}}
-        </div>
-        <div class="footer__corner-bottom">
-          {{ assign 'copyright_prefix' (t 'general.footer.copyright' year=(year) storeName=storeInfo.name) }}
-          <div class="footer-copy-box sl-a-tag">
-          {{#or section.settings.show_copyright copyright_prefix}}
-            <p class="footer__copyright">{{ copyright_prefix }}&nbsp;</p>{{{ section.settings.copyright_text }}}
-          {{/or}}
-          {{#if section.settings.show_powered}}
-            <p class="footer__powered">{{{ powered_by_link }}}</p>
-          {{/if}}
+      <div class="{{#or showLetter has_social_logos}}footer_social--divider {{/or}}{{#if showLetter}}footer_social-hasletter {{/if}}footer__block-social-container row g-4 {{ footInlineClass }}">
+        {{#if showLetter}}
+          {{!-- 邮件订阅 --}}
+          <div class="footer__block-subscribe">
+            {{ snippet 'footer-news-letter' }}
           </div>
+        {{/if}}
+        {{#if showSocialLogos}}
+          {{!-- 社交媒体 --}}
+          <div class="footer__block-social">
+            {{ snippet 'footer-social' }}
+          </div>
+        {{/if}}
+        {{#or showLetter showSocialLogos}}
+          <div class="footer__block-divider d-md-none entry-line"></div>
+        {{/or}}
+      </div>
+    </div>
+  </div>
+  <div class="footer__corner entry-line {{#if section.settings.footer_division}}footer-division{{/if}}">
+    <div class="footer__corner-wrapper container">
+      <div class="footer__corner-top">
+        {{#or section.settings.show_locale_selector section.settings.show_currency_selector section.settings.show_country_selector}}
+          <div class="footer__tool-container">
+            {{ snippet 'header/locale-currency' settings=section.settings position='footer' }}
+          </div>
+        {{/or}}
+
+        {{#if section.settings.show_pay_channel.show}}
+          {{ snippet 'footer-pay-channel' }}
+        {{/if}}
+      </div>
+      <div class="footer__corner-bottom">
+        {{ assign 'copyright_prefix' (t 'general.footer.copyright' year=(year) storeName=storeInfo.name) }}
+        <div class="footer-copy-box sl-a-tag">
+        {{#or section.settings.show_copyright copyright_prefix}}
+          <p class="footer__copyright">{{ copyright_prefix }}&nbsp;</p>{{{ section.settings.copyright_text }}}
+        {{/or}}
+        {{#if section.settings.show_powered}}
+          <p class="footer__powered">{{{ powered_by_link }}}</p>
+        {{/if}}
         </div>
       </div>
     </div>
-
   </div>
 </footer>
 
@@ -250,6 +248,12 @@ all_collections:
       "type": "richtext",
       "id": "copyright_text",
       "label": "t:sections.footer.settings.copyright_text.label"
+    },
+    {
+      "id": "footer_division",
+      "type": "switch",
+      "label": "t:sections.footer.settings.footer_division.label",
+      "default": false
     }
   ],
   "blocks": [

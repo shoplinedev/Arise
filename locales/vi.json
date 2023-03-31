@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Mã giảm giá vượt quá giới hạn số lượng",
       "existCode": "Mã giảm giá đã tồn tại",
-      "freeShipping": {
-        " existCode": "Trùng mã miễn phí vận chuyển"
-      },
       "list": {
         "unavailable": "Tất cả các mã giảm giá đã hết hạn"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Mã giảm giá đã hết hạn"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Thanh toán mã miễn phí vận chuyển - Quốc gia không khớp",
-        "logistics-fee-over-limit": "Mã miễn phí vận chuyển - Vận chuyển quá giới hạn"
-      },
-      "code_overdue": "Mã giảm giá đã hết hạn",
-      "code_user_exceedLimit": "Số lần người dùng đã sử dụng hoạt động này vượt quá giới hạn cho phép",
-      "code_user_notSupport": "Người dùng không thể sử dụng hoạt động này",
       "coupon_code_amount": "Giảm giá mã coupon",
       "coupon_code_length_limit": "Mã giảm giá không được vượt quá {{range}} ký tự",
       "expected_discount": "Giảm giá ước tính"
@@ -87,6 +77,12 @@
       "buy_limit1": "Chỉ còn {{stock}} sản phẩm với giá khuyến mãi",
       "buy_limit2": "Bạn có thể mua cùng lúc tối đa {{stock}} sản phẩm với giá khuyến mãi",
       "buy_limit3": "Bạn chỉ có thể mua {{stock}} sản phẩm này với giá khuyến mãi"
+    },
+    "error": {
+      "default": "Tải không thành công tài nguyên",
+      "noshipping": "Không có phương án phí vận chuyển có thể chọn",
+      "order": "Yêu cầu đặt hàng không thành công",
+      "renew": "Dữ liệu cập nhật không thành công"
     },
     "general": {
       "continue_as_a_guest": "Tiếp tục với tư cách khách",
@@ -102,7 +98,6 @@
       "none_existent": "Hàng hóa không tồn tại",
       "view_cart": "Xem giỏ hàng"
     },
-    "lack_multilingualism": "*Không thể tải hướng dẫn này. Vui lòng liên hệ bộ phận chăm sóc khách hàng để phản ánh tình hình*",
     "next_step": {
       "calculated_taxes_fees": "Thuế và phí vận chuyển sẽ được tính khi thanh toán"
     },
@@ -432,9 +427,9 @@
       "send_success": "Cảm ơn bạn đã liên hệ chúng tôi, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Email không hợp lệ",
-      "subscribe_success": "Đăng ký thành công",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Đăng ký thành công"
     },
     "general": {
       "accept": "Đồng ý",
@@ -575,6 +570,7 @@
       "leave_us_message": "Vui lòng nhập nội dung tin nhắn",
       "leave_us_message_get_back": "Vui lòng để lại tin nhắn cho chúng tôi, chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất",
       "link_preview_does_not_support": "Link xem trước không hỗ trợ thao tác này",
+      "load_more": "Tải thêm",
       "maximum_length_of_message": "Độ dài tin nhắn tối đa không quá 1500 ký tự",
       "message": "Nội dung tin nhắn",
       "more_payment_options": "Các phương thức thanh toán khác",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Làm tròn"
+    },
     "payments-name": {
       "COD": "Thanh toán khi giao hàng",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Đơn hàng này đã được áp dụng giảm giá. Bạn không thể thêm chương trình giảm giá khác."
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Trùng mã miễn phí vận chuyển"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Thanh toán mã miễn phí vận chuyển - Quốc gia không khớp",
+        "logistics-fee-over-limit": "Mã miễn phí vận chuyển - Vận chuyển quá giới hạn"
+      },
       "code_error": "Vui lòng nhập mã giảm giá hợp lệ",
       "code_item_unmatched": "Mã giảm giá {{discountCode}} không hợp lệ cho các sản phẩm trong giỏ hàng của bạn",
+      "code_overdue": "Mã giảm giá đã hết hạn",
+      "code_user_exceedLimit": "Số lần người dùng đã sử dụng hoạt động này vượt quá giới hạn cho phép",
+      "code_user_notSupport": "Người dùng không thể sử dụng hoạt động này",
       "coupon_code": "Mã giảm giá",
       "coupon_invalid_for_the_shipping_method": "Mã giảm giá {{discountCode}} không được áp dụng cho phương thức vận chuyển hiện tại",
       "discount_codes_cannot_stack": "Không áp dụng cộng dồn các mã giảm giá. Mỗi đơn hàng chỉ được áp dụng một chương trình giảm giá.",
@@ -742,6 +753,7 @@
       "removed": "Đã hủy đăng",
       "sold_out": "Hết hàng"
     },
+    "lack_multilingualism": "*Không thể tải hướng dẫn này. Vui lòng liên hệ bộ phận chăm sóc khách hàng để phản ánh tình hình*",
     "notices": {
       "insufficient_product_inventory": "Tồn kho sản phẩm không đủ",
       "network": "Lỗi mạng",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Hủy",
+      "enquire": "Tiếp tục đặt hàng bằng Apple Pay?",
+      "paywith": "Thanh toán bằng"
+    },
     "customer": {
       "error_message_1": "Đăng ký thành viên để hưởng nhiều ưu đãi độc quyền từ chúng tôi",
       "error_message_1001": "Mật khẩu sai",

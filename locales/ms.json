@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Kod diskaun melebihi had kuantiti",
       "existCode": "Kod diskaun sudah wujud",
-      "freeShipping": {
-        " existCode": "Penduaan Kod Kupon Penghantaran Percuma"
-      },
       "list": {
         "unavailable": "Semua kod diskaun telah tamat tempoh"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Kod diskaun telah tamat tempoh"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Bayar Kod Kupon Penghantaran Percuma - Negara Tidak Sepadan",
-        "logistics-fee-over-limit": "Kod Kupon Penghantaran Percuma - Penghantaran Melebihi Had"
-      },
-      "code_overdue": "Kod kupon telah tamat tempoh",
-      "code_user_exceedLimit": "Bilangan kali pengguna telah menggunakan aktiviti ini melebihi had",
-      "code_user_notSupport": "Pengguna tidak boleh menggunakan aktiviti ini",
       "coupon_code_amount": "Kupon",
       "coupon_code_length_limit": "Kod kupon tidak boleh melebihi {{range}} aksara",
       "expected_discount": "Diskaun"
@@ -87,6 +77,12 @@
       "buy_limit1": "Hanya {{stock}} unit yang tinggal dengan harga diskaun ini",
       "buy_limit2": "Anda boleh membeli paling banyak {{stock}} produk dengan diskaun pada masa yang sama",
       "buy_limit3": "Anda hanya boleh membeli {{stock}} unit bagi produk ini dengan diskaun"
+    },
+    "error": {
+      "default": "Gagal memuatkan sumber",
+      "noshipping": "Tiada pelan kos pengangkutan pilihan",
+      "order": "Permintaan buat pesanan gagal",
+      "renew": "Gagal mengemas kini data"
     },
     "general": {
       "continue_as_a_guest": "Teruskan sebagai tetamu",
@@ -102,7 +98,6 @@
       "none_existent": "Barang tak ada",
       "view_cart": "Lihat kart"
     },
-    "lack_multilingualism": "*Ayat ini gagal dimuat, anda boleh menghubungi bahagian khidmat pelanggan untuk membuat aduan tentang keadaan ini*",
     "next_step": {
       "calculated_taxes_fees": "Cukai dan penghantaran dikira semasa semakan keluar"
     },
@@ -432,9 +427,9 @@
       "send_success": "Terima kasih kerana menghubungi kami, kami akan menghubungi anda secepat mungkin."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Ralat format alamat e-mel",
-      "subscribe_success": "Langganan berjaya",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Langganan berjaya"
     },
     "general": {
       "accept": "Terima",
@@ -575,6 +570,7 @@
       "leave_us_message": "Sila masukkan mesej anda",
       "leave_us_message_get_back": "Sila tinggalkan mesej buat kami dan kami akan menghubungi anda secepat mungkin",
       "link_preview_does_not_support": "Operasi untuk pratonton pautan tidak disokong",
+      "load_more": "Muatkan lebih banyak",
       "maximum_length_of_message": "Panjang maksimum mesej anda hendaklah tidak melebihi 1500 perkataan",
       "message": "Mesej anda",
       "more_payment_options": "lebih banyak opsyen bayaran",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Membundarkan"
+    },
     "payments-name": {
       "COD": "Bayar tunai waktu terima",
       "Paypal": "PayPal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Diskaun telah digunakan kepada pesanan ini. Anda tidak boleh menambahkan diskaun lain."
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Penduaan Kod Kupon Penghantaran Percuma"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Bayar Kod Kupon Penghantaran Percuma - Negara Tidak Sepadan",
+        "logistics-fee-over-limit": "Kod Kupon Penghantaran Percuma - Penghantaran Melebihi Had"
+      },
       "code_error": "Masukkan kupon yang sah",
       "code_item_unmatched": "{{discountCode}} dimasukkan dengan betul tetapi harga atau kuantiti barangan tidak memenuhi keperluan",
+      "code_overdue": "Kod kupon telah tamat tempoh",
+      "code_user_exceedLimit": "Bilangan kali pengguna telah menggunakan aktiviti ini melebihi had",
+      "code_user_notSupport": "Pengguna tidak boleh menggunakan aktiviti ini",
       "coupon_code": "Kod Kupon",
       "coupon_invalid_for_the_shipping_method": "Kupon {{discountCode}} sah untuk kaedah penghantaran",
       "discount_codes_cannot_stack": "Telah terdapat acara keutamaan bagi produk, yang tidak boleh digunakan bersama-sama dengan acara keutamaan lain",
@@ -742,6 +753,7 @@
       "removed": "TIDAK SAH",
       "sold_out": "Habis dijual"
     },
+    "lack_multilingualism": "*Ayat ini gagal dimuat, anda boleh menghubungi bahagian khidmat pelanggan untuk membuat aduan tentang keadaan ini*",
     "notices": {
       "insufficient_product_inventory": "Inventori produk tidak mencukupi",
       "network": "Ralat Rangkaian",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Batal",
+      "enquire": "Teruskan untuk membuat pesanan dengan Apple Pay?",
+      "paywith": "Bayar dengan"
+    },
     "customer": {
       "error_message_1": "Daftar saya untuk e-mel untuk menerima kemas kini, akses kepada tawaran eksklusif dan banyak lagi.",
       "error_message_1001": "Ralat kata laluan",

@@ -25,6 +25,18 @@
               "options__3": {
                 "label": "Phối màu 3"
               }
+            },
+            "text_align": {
+              "label": "Phương thức căn chỉnh văn bản",
+              "options__0": {
+                "label": "Ở bên trái"
+              },
+              "options__1": {
+                "label": "Căn giữa"
+              },
+              "options__2": {
+                "label": "Ở bên phải"
+              }
             }
           }
         }
@@ -384,6 +396,9 @@
           "info": "Nút sẽ chỉ được hiển thị nếu \"Số lượng sản phẩm tối đa\" nhỏ hơn hoặc bằng số lượng sản phẩm trong danh mục phân loại này",
           "label": "Nội dung nút"
         },
+        "full_width": {
+          "label": "Hiển thị chiều rộng toàn màn hình"
+        },
         "group_header__0": {
           "label": "Xếp hàng"
         },
@@ -451,6 +466,32 @@
         "buy-button": {
           "name": "Nút mua"
         },
+        "cutLine": {
+          "name": "Trang phân cách",
+          "settings": {
+            "background_color": {
+              "label": "Màu đường phân cách"
+            },
+            "cutline_size": {
+              "label": "Độ dày của đường phân cách trên đầu thiết bị di động"
+            },
+            "cutline_style": {
+              "label": "Kiểu đường phân cách đầu thiết bị di động",
+              "options__0": {
+                "label": "Phân cách khoảng trắng"
+              },
+              "options__1": {
+                "label": "Phân cách nhiều cột thông báo"
+              }
+            },
+            "mobile_show": {
+              "label": "Hiển thị trên di động"
+            },
+            "pc_show": {
+              "label": "Hiển thị trên máy tính"
+            }
+          }
+        },
         "description": {
           "name": "Mô tả Sản phẩm"
         },
@@ -494,7 +535,24 @@
           }
         },
         "title": {
-          "name": "Tiêu đề"
+          "name": "Tiêu đề",
+          "settings": {
+            "font_size": {
+              "label": "Cỡ chữ tiêu đề",
+              "options__0": {
+                "label": "Siêu lớn"
+              },
+              "options__1": {
+                "label": "to"
+              },
+              "options__2": {
+                "label": "vừa"
+              },
+              "options__3": {
+                "label": "nhỏ"
+              }
+            }
+          }
         },
         "viewMoreBtn": {
           "name": "Xem các nút khác",
@@ -612,11 +670,20 @@
         "copyright_text": {
           "label": "Kèm thêm hồ sơ bản quyền"
         },
+        "footer_division": {
+          "label": "Đường phân chia chân trang bên máy tính"
+        },
         "group_header__0": {
           "label": "Đăng ký Email"
         },
         "group_header__1": {
           "label": "Thêm nội dung"
+        },
+        "padding_bottom": {
+          "label": "Điền bổ sung phần dưới cùng"
+        },
+        "padding_top": {
+          "label": "Điền bổ sung phần trên cùng"
         },
         "show_copyright": {
           "label": "Hiển thị thông tin bản quyền"
@@ -686,6 +753,9 @@
           "info": "[Nhiều trình cắm điều hướng menu hơn](https://apps.shopline.com/detail/?appId=64637)",
           "label": "Menu"
         },
+        "header_division": {
+          "label": "Hiển thị đường phân cách mô đun"
+        },
         "header_full_width": {
           "label": "chiều rộng toàn màn hình trong tiêu đề"
         },
@@ -697,6 +767,9 @@
         },
         "main_menu_link_list": {
           "label": "hướng dẫn trình đơn"
+        },
+        "main_menu_link_list_effect": {
+          "label": "Hiệu ứng kéo xuống menu điều hướng"
         },
         "mega_menu_images": {
           "info": "[Xem hướng dẫn cài đặt siêu menu như thế nào](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
@@ -731,6 +804,12 @@
           "options__2": {
             "label": "LOGO ở giữa, menu xuống dòng"
           }
+        },
+        "padding_bottom": {
+          "label": "Điền bổ sung phần dưới cùng"
+        },
+        "padding_top": {
+          "label": "Điền bổ sung phần trên cùng"
         },
         "show_cart_entry": {
           "label": "Hiển thị mục nhập giỏ hàng"
@@ -1824,7 +1903,27 @@
     "product_detail_product-preview": {
       "blocks": {
         "abstract": {
-          "name": "Tóm lược"
+          "name": "Tóm lược",
+          "settings": {
+            "font_size": {
+              "label": "Cỡ chữ văn bản",
+              "options__0": {
+                "label": "Siêu lớn"
+              },
+              "options__1": {
+                "label": "to"
+              },
+              "options__2": {
+                "label": "vừa"
+              },
+              "options__3": {
+                "label": "nhỏ"
+              }
+            },
+            "is_upper_case": {
+              "label": "Viết hoa tất cả các chữ"
+            }
+          }
         },
         "buy-button": {
           "name": "Nút mua",
@@ -1832,6 +1931,32 @@
             "group_header__0": {
               "info": "[Tìm hiểu thông tin chi tiết](https://apps.shopline.com/detail/?appId=23033)",
               "label": "Nếu cần sử dụng chức năng giỏ mua hàng nổi dưới đáy hút lên, vui lòng thêm trình cắm Add to cart"
+            }
+          }
+        },
+        "cutLine": {
+          "name": "Trang phân cách",
+          "settings": {
+            "background_color": {
+              "label": "Màu đường phân cách"
+            },
+            "cutline_size": {
+              "label": "Độ dày của đường phân cách trên đầu thiết bị di động"
+            },
+            "cutline_style": {
+              "label": "Kiểu đường phân cách đầu thiết bị di động",
+              "options__0": {
+                "label": "Phân cách khoảng trắng"
+              },
+              "options__1": {
+                "label": "Phân cách nhiều cột thông báo"
+              }
+            },
+            "mobile_show": {
+              "label": "Hiển thị trên di động"
+            },
+            "pc_show": {
+              "label": "Hiển thị trên máy tính"
             }
           }
         },
@@ -2156,7 +2281,24 @@
           }
         },
         "title": {
-          "name": "Tiêu đề"
+          "name": "Tiêu đề",
+          "settings": {
+            "font_size": {
+              "label": "Cỡ chữ tiêu đề",
+              "options__0": {
+                "label": "Siêu lớn"
+              },
+              "options__1": {
+                "label": "to"
+              },
+              "options__2": {
+                "label": "vừa"
+              },
+              "options__3": {
+                "label": "nhỏ"
+              }
+            }
+          }
         }
       },
       "name": "Chi tiết sản phẩm",
@@ -2415,6 +2557,30 @@
         },
         "normal_width": {
           "label": "Sử dụng rộng cột tiêu chuẩn"
+        },
+        "pc_content_position": {
+          "label": "Vị trí nội dung trên máy tính",
+          "options__0": {
+            "label": "Ở bên trái"
+          },
+          "options__1": {
+            "label": "Căn giữa"
+          },
+          "options__2": {
+            "label": "Ở bên phải"
+          }
+        },
+        "text_align": {
+          "label": "Cách căn chỉnh nội dung",
+          "options__0": {
+            "label": "Căn lề trái"
+          },
+          "options__1": {
+            "label": "Xếp thẳng bên trong"
+          },
+          "options__2": {
+            "label": "Căn lề phải"
+          }
         }
       }
     },
@@ -3676,11 +3842,23 @@
     "product": {
       "name": "Sản phẩm",
       "settings": {
+        "enabled_mobile_product_add_to_cart": {
+          "label": "Mua thêm nhanh trên đầu thiêt bị di động"
+        },
         "group_header__0": {
           "label": "Danh sách sản phẩm"
         },
         "product_add_to_cart": {
           "label": "Ủng hộ nhanh chóng cho vào giỏ hàng"
+        },
+        "product_add_to_cart_pc_position": {
+          "label": "Vị trí mua thêm nhanh trên đầu máy tính",
+          "options__0": {
+            "label": "Căn giữa"
+          },
+          "options__1": {
+            "label": "Phía dưới chính giữa"
+          }
         },
         "product_discount": {
           "label": "Hiển thị ưu đãi"

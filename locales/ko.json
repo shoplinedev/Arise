@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "할인 코드가 수량 제한을 초과합니다",
       "existCode": "할인 코드가 이미 있습니다.",
-      "freeShipping": {
-        " existCode": "무료배송 할인코드 중복"
-      },
       "list": {
         "unavailable": "모든 할인 코드가 만료되었습니다"
       },
@@ -69,13 +66,6 @@
       "unavailable": "할인 코드가 만료되었습니다"
     },
     "discount": {
-      "code": {
-        "country_not_support": "배송비 무료코드 결제 - 국가불합치입니다",
-        "logistics-fee-over-limit": "배송비 무료 할인 코드 - 배송비 초과 한도"
-      },
-      "code_overdue": "할인코드가 만료되었습니다",
-      "code_user_exceedLimit": "사용자가 이 활동을 사용하는 횟수가 제한을 초과합니다",
-      "code_user_notSupport": "사용자는 이 활동을 사용할 수 없습니다",
       "coupon_code_amount": "혜택코드 혜택",
       "coupon_code_length_limit": "혜택코드는 {{range}}길이를 초과할수 없습니다",
       "expected_discount": "예상 혜택"
@@ -87,6 +77,12 @@
       "buy_limit1": "이 상품 할인가는 {{stock}}건만 남았습니다.",
       "buy_limit2": "최다 동시에 {{stock}}건을 구매할 때의 혜택가격 상품",
       "buy_limit3": "이 상품 혜택 가격은 {{stock}}건을 구매할 때만 가능하고"
+    },
+    "error": {
+      "default": "리소스 로드 실패",
+      "noshipping": "옵션운임안",
+      "order": "주문 요청 실패",
+      "renew": "데이터 업데이트 실패"
     },
     "general": {
       "continue_as_a_guest": "계속 방문객의 신분으로 방문하기",
@@ -102,7 +98,6 @@
       "none_existent": "상품이 존재하지 않습니다",
       "view_cart": "바구니 보기"
     },
-    "lack_multilingualism": "*이 문구는 로딩에 실패하였으며, 고객센터에 연락하여 상황을 반영할 수 있습니다*",
     "next_step": {
       "calculated_taxes_fees": "다음으로 세금과 운비를 계산합니다"
     },
@@ -432,9 +427,9 @@
       "send_success": "연락 주셔서 감사합니다.빠른 시일 내에 회답 드리겠습니다."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "이메일 주소 격식이 틀렸습니다",
-      "subscribe_success": "구독 성공",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "구독 성공"
     },
     "general": {
       "accept": "받아들이다.",
@@ -575,6 +570,7 @@
       "leave_us_message": "댓글을 남겨주세요",
       "leave_us_message_get_back": "당신의 문의 내용을 입력하세요. 빨리 회신하겠습니다",
       "link_preview_does_not_support": "링크는 이 작업을 지지하지 않습니다",
+      "load_more": "많이 보여드리도록 하겠습니다",
       "maximum_length_of_message": "댓글 갈이는 1500자를 넘으면 안됩니다",
       "message": "댓글",
       "more_payment_options": "더 많은 지불 옵션",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "반올림"
+    },
     "payments-name": {
       "COD": "물건을 받고 지불합니다",
       "Paypal": "PayPal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "제한시간 할인과 혜택 번호 활동을 서로 갈라놓기"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "무료배송 할인코드 중복"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "배송비 무료코드 결제 - 국가불합치입니다",
+        "logistics-fee-over-limit": "배송비 무료 할인 코드 - 배송비 초과 한도"
+      },
       "code_error": "혜택코드 입력 오류",
       "code_item_unmatched": "{{discountCode}}입력 정확, 하지만 상품 가격 혹은 수량 오류",
+      "code_overdue": "할인코드가 만료되었습니다",
+      "code_user_exceedLimit": "사용자가 이 활동을 사용하는 횟수가 제한을 초과합니다",
+      "code_user_notSupport": "사용자는 이 활동을 사용할 수 없습니다",
       "coupon_code": "혜택코드",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} 혜택 번호는 이 물류 방식에 적합하지 않습니다",
       "discount_codes_cannot_stack": "상품은 이미 하나의 할인 이벤트가 존재하므로 다른 혜택과 겹칠 수 없습니다",
@@ -742,6 +753,7 @@
       "removed": "이미 내림",
       "sold_out": "품절입니다."
     },
+    "lack_multilingualism": "*이 문구는 로딩에 실패하였으며, 고객센터에 연락하여 상황을 반영할 수 있습니다*",
     "notices": {
       "insufficient_product_inventory": "이미 상품 제한 수량을 초과했습니다",
       "network": "인터넷 이상",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "취소",
+      "enquire": "Apple Pay를 계속 사용하여 결제를 완료하시겠습니까?",
+      "paywith": "통과"
+    },
     "customer": {
       "error_message_1": "이메일을 등록하여 업데이트, 독점 혜택 등의 정보를 얻습니다",
       "error_message_1001": "비밀번호 오류",

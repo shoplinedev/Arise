@@ -25,6 +25,18 @@
               "options__3": {
                 "label": "配色3"
               }
+            },
+            "text_align": {
+              "label": "文本对齐方式",
+              "options__0": {
+                "label": "居左"
+              },
+              "options__1": {
+                "label": "居中"
+              },
+              "options__2": {
+                "label": "居右"
+              }
             }
           }
         }
@@ -384,6 +396,9 @@
           "info": "若“最大商品数量”小于等于该分类下的商品数量，才会展示按钮",
           "label": "按钮文案"
         },
+        "full_width": {
+          "label": "全屏宽度展示"
+        },
         "group_header__0": {
           "label": "列表"
         },
@@ -451,6 +466,32 @@
         "buy-button": {
           "name": "购买按钮"
         },
+        "cutLine": {
+          "name": "分割线",
+          "settings": {
+            "background_color": {
+              "label": "分割线颜色"
+            },
+            "cutline_size": {
+              "label": "移动端分割线粗细"
+            },
+            "cutline_style": {
+              "label": "移动端分割线样式",
+              "options__0": {
+                "label": "留白分割"
+              },
+              "options__1": {
+                "label": "通栏分割"
+              }
+            },
+            "mobile_show": {
+              "label": "在移动端展示"
+            },
+            "pc_show": {
+              "label": "在电脑端展示"
+            }
+          }
+        },
         "description": {
           "name": "商品描述"
         },
@@ -494,7 +535,24 @@
           }
         },
         "title": {
-          "name": "标题"
+          "name": "标题",
+          "settings": {
+            "font_size": {
+              "label": "标题字体大小",
+              "options__0": {
+                "label": "超大"
+              },
+              "options__1": {
+                "label": "大"
+              },
+              "options__2": {
+                "label": "中"
+              },
+              "options__3": {
+                "label": "小"
+              }
+            }
+          }
         },
         "viewMoreBtn": {
           "name": "查看更多按钮",
@@ -612,11 +670,20 @@
         "copyright_text": {
           "label": "附加版权文案"
         },
+        "footer_division": {
+          "label": "电脑端页脚分割线"
+        },
         "group_header__0": {
           "label": "邮件订阅"
         },
         "group_header__1": {
           "label": "附加内容"
+        },
+        "padding_bottom": {
+          "label": "底部填充"
+        },
+        "padding_top": {
+          "label": "顶部填充"
         },
         "show_copyright": {
           "label": "展示版权信息"
@@ -686,6 +753,9 @@
           "info": "[更多菜单导航插件](https://apps.shopline.com/detail/?appId=64637)",
           "label": "菜单"
         },
+        "header_division": {
+          "label": "显示模块分割线"
+        },
         "header_full_width": {
           "label": "页头固定全屏宽度"
         },
@@ -697,6 +767,9 @@
         },
         "main_menu_link_list": {
           "label": "导航菜单"
+        },
+        "main_menu_link_list_effect": {
+          "label": "导航菜单下拉动效"
         },
         "mega_menu_images": {
           "info": "[查看如何设置超级菜单教程](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
@@ -731,6 +804,12 @@
           "options__2": {
             "label": "LOGO居中，菜单换行"
           }
+        },
+        "padding_bottom": {
+          "label": "底部填充"
+        },
+        "padding_top": {
+          "label": "顶部填充"
         },
         "show_cart_entry": {
           "label": "显示购物车入口"
@@ -1824,7 +1903,27 @@
     "product_detail_product-preview": {
       "blocks": {
         "abstract": {
-          "name": "摘要"
+          "name": "摘要",
+          "settings": {
+            "font_size": {
+              "label": "文本字体大小",
+              "options__0": {
+                "label": "超大"
+              },
+              "options__1": {
+                "label": "大"
+              },
+              "options__2": {
+                "label": "中"
+              },
+              "options__3": {
+                "label": "小"
+              }
+            },
+            "is_upper_case": {
+              "label": "文字全部大写"
+            }
+          }
         },
         "buy-button": {
           "name": "购买按钮",
@@ -1832,6 +1931,32 @@
             "group_header__0": {
               "info": "[了解详细信息](https://apps.shopline.com/detail/?appId=23033)",
               "label": "若要使用吸底悬浮购物车功能，请添加Add to cart插件"
+            }
+          }
+        },
+        "cutLine": {
+          "name": "分割线",
+          "settings": {
+            "background_color": {
+              "label": "分割线颜色"
+            },
+            "cutline_size": {
+              "label": "移动端分割线粗细"
+            },
+            "cutline_style": {
+              "label": "移动端分割线样式",
+              "options__0": {
+                "label": "留白分割"
+              },
+              "options__1": {
+                "label": "通栏分割"
+              }
+            },
+            "mobile_show": {
+              "label": "在移动端展示"
+            },
+            "pc_show": {
+              "label": "在电脑端展示"
             }
           }
         },
@@ -2156,7 +2281,24 @@
           }
         },
         "title": {
-          "name": "标题"
+          "name": "标题",
+          "settings": {
+            "font_size": {
+              "label": "标题字体大小",
+              "options__0": {
+                "label": "超大"
+              },
+              "options__1": {
+                "label": "大"
+              },
+              "options__2": {
+                "label": "中"
+              },
+              "options__3": {
+                "label": "小"
+              }
+            }
+          }
         }
       },
       "name": "商品详情",
@@ -2415,6 +2557,30 @@
         },
         "normal_width": {
           "label": "使用标准列宽"
+        },
+        "pc_content_position": {
+          "label": "电脑端内容位置",
+          "options__0": {
+            "label": "居左"
+          },
+          "options__1": {
+            "label": "居中"
+          },
+          "options__2": {
+            "label": "居右"
+          }
+        },
+        "text_align": {
+          "label": "内容对齐方式",
+          "options__0": {
+            "label": "居左对齐"
+          },
+          "options__1": {
+            "label": "居中对齐"
+          },
+          "options__2": {
+            "label": "居右对齐"
+          }
         }
       }
     },
@@ -3676,11 +3842,23 @@
     "product": {
       "name": "商品",
       "settings": {
+        "enabled_mobile_product_add_to_cart": {
+          "label": "移动端快速加购"
+        },
         "group_header__0": {
           "label": "商品列表"
         },
         "product_add_to_cart": {
           "label": "支持快速加购"
+        },
+        "product_add_to_cart_pc_position": {
+          "label": "电脑端快速加购位置",
+          "options__0": {
+            "label": "居中"
+          },
+          "options__1": {
+            "label": "正下方"
+          }
         },
         "product_discount": {
           "label": "展示优惠"

@@ -60,9 +60,12 @@ ${escape(title)}
 	</li>`;
   };
 
-  const renderDynamicItem = (data, searchKey) => data.map(item => {
-    return renderSearchResultItem(item, searchKey);
-  }).join('');
+  const renderDynamicItem = (data, searchKey) => {
+    virtualReport.reportSearchSuggestItem(true);
+    return data.map(item => {
+      return renderSearchResultItem(item, searchKey);
+    }).join('');
+  };
 
   const renderSearchResult = (data, searchKey) => {
     return renderFirstKey(searchKey) + renderDynamicItem(data, searchKey);
@@ -304,6 +307,7 @@ ${escape(title)}
 
         if (!searchValue) {
           $list.html('');
+          virtualReport.reportSearchSuggestItem(false);
           return;
         }
 

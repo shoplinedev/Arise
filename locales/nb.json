@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Rabattkoder overskrider mengdegrensen",
       "existCode": "Rabattkoden finnes allerede",
-      "freeShipping": {
-        " existCode": "Dupliser Gratis frakt kupongkode"
-      },
       "list": {
         "unavailable": "Alle rabattkoder er utløpt"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Rabattkoden er utløpt"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Gratis frakt kupongkode betalt - inkompatibelt land",
-        "logistics-fee-over-limit": "Gratis frakt kupongkode - frakt over grensen"
-      },
-      "code_overdue": "Kupongkode er utløpt",
-      "code_user_exceedLimit": "Antall ganger brukeren brukte denne aktiviteten, overskrider grensen",
-      "code_user_notSupport": "Brukeren kan ikke bruke denne aktiviteten",
       "coupon_code_amount": "Kupong",
       "coupon_code_length_limit": "Kupongkoden kan ikke overskride {{range}} tegn",
       "expected_discount": "Rabatt"
@@ -87,6 +77,12 @@
       "buy_limit1": "Bare {{stock}}-stykker igjen med denne rabattprisen",
       "buy_limit2": "Du kan kjøpe maksimalt {{stock}} produkt(er) med rabattene samtidig",
       "buy_limit3": "Du kan bare kjøpe {{stock}} deler av dette produktet med rabattene"
+    },
+    "error": {
+      "default": "Feil ved lasting av ressurser",
+      "noshipping": "Ingen valgfri godsplan",
+      "order": "Kunne ikke be om en rekkefølge",
+      "renew": "Kunne ikke oppdatere data"
     },
     "general": {
       "continue_as_a_guest": "Fortsett som gjest",
@@ -102,7 +98,6 @@
       "none_existent": "Produktet eksisterer ikke",
       "view_cart": "Vis handlekurv"
     },
-    "lack_multilingualism": "*Denne setningen kunne ikke lastes inn, du kan kontakte kundeservice for å rapportere situasjonen*",
     "next_step": {
       "calculated_taxes_fees": "Avgifter og frakt beregnet i kassen"
     },
@@ -432,9 +427,9 @@
       "send_success": "Takk for at du kontakter oss, vi vil komme tilbake til deg så snart som mulig."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "E-postadressen har formatfeil",
-      "subscribe_success": "Abonner vellykket",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Abonner vellykket"
     },
     "general": {
       "accept": "Godta",
@@ -575,6 +570,7 @@
       "leave_us_message": "Skriv inn meldingen",
       "leave_us_message_get_back": "Legg igjen en beskjed, så ringer vi tilbake så snart som mulig",
       "link_preview_does_not_support": "Operasjonen for forhåndsvisning av kobling støttes ikke",
+      "load_more": "Last mer",
       "maximum_length_of_message": "Den maksimale lengden på meldingen bør ikke inneholde mer enn 1500 ord",
       "message": "Meldingen din",
       "more_payment_options": "flere betalingsalternativer",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Avrunding"
+    },
     "payments-name": {
       "COD": "Kontant ved levering",
       "Paypal": "PayPal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "En rabatt er brukt på denne ordren. Du kan ikke legge til en ny rabatt."
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Dupliser Gratis frakt kupongkode"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Gratis frakt kupongkode betalt - inkompatibelt land",
+        "logistics-fee-over-limit": "Gratis frakt kupongkode - frakt over grensen"
+      },
       "code_error": "Rabattkoden er feil oppgitt",
       "code_item_unmatched": "{{discountCode}} er angitt riktig, men prisen eller kvantiteten på varene oppfyller ikke kravene",
+      "code_overdue": "Kupongkode er utløpt",
+      "code_user_exceedLimit": "Antall ganger brukeren brukte denne aktiviteten, overskrider grensen",
+      "code_user_notSupport": "Brukeren kan ikke bruke denne aktiviteten",
       "coupon_code": "Kupongkode",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}}kupong er gyldig for fraktmetoden",
       "discount_codes_cannot_stack": "Det er allerede en favorittbegivenhet for produktet, som ikke kan brukes i forbindelse med andre favorittarrangementer",
@@ -742,6 +753,7 @@
       "removed": "UGYLDIG",
       "sold_out": "Utsolgt"
     },
+    "lack_multilingualism": "*Denne setningen kunne ikke lastes inn, du kan kontakte kundeservice for å rapportere situasjonen*",
     "notices": {
       "insufficient_product_inventory": "Utilstrekkelig varelager",
       "network": "Nettverksfeil",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Annullere",
+      "enquire": "Fortsette å betale med Apple Pay?",
+      "paywith": "Betale med"
+    },
     "customer": {
       "error_message_1": "Registrer meg for e-poster for å motta oppdateringer, tilgang til eksklusive tilbud og mer.",
       "error_message_1001": "Feil ved passord",

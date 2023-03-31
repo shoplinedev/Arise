@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Slevové kódy překračují limit množství",
       "existCode": "Slevový kód již existuje",
-      "freeShipping": {
-        " existCode": "Doprava Zdarma Kupon Kód Duplikace"
-      },
       "list": {
         "unavailable": "Platnost všech slevových kódů vypršela"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Platnost slevového kódu vypršela"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Platit Doprava Zdarma Kupon Kód - Země Nesoulad",
-        "logistics-fee-over-limit": "Doprava Zdarma Kód Kupónu-Doprava Přes Limit"
-      },
-      "code_overdue": "Platnost kódu kupónu vypršela",
-      "code_user_exceedLimit": "Počet případů, kdy uživatel tuto aktivitu použil, překročí limit",
-      "code_user_notSupport": "Uživatel nemůže tuto aktivitu používat",
       "coupon_code_amount": "Kupón",
       "coupon_code_length_limit": "Kód kupónu nesmí přesáhnout {{range}} znaků",
       "expected_discount": "Sleva"
@@ -87,6 +77,12 @@
       "buy_limit1": "S touto slevovou cenou zbývají pouze {{stock}}kusů",
       "buy_limit2": "Můžete si současně koupit maximálně {{stock}} produktů se slevami",
       "buy_limit3": "Se slevami můžete zakoupit pouze {{stock}} kusy tohoto produktu"
+    },
+    "error": {
+      "default": "Načítání prostředků se nezdařilo",
+      "noshipping": "Žádný volitelný plán přepravy",
+      "order": "Nelze požádat o objednávky",
+      "renew": "Aktualizace dat se nezdařila"
     },
     "general": {
       "continue_as_a_guest": "Pokračujte jako host",
@@ -102,7 +98,6 @@
       "none_existent": "Produkt neexistuje",
       "view_cart": "Prohlédnout košík"
     },
-    "lack_multilingualism": "*Tuto větu se nepodařilo načíst, můžete kontaktovat zákaznický servis a nahlásit situaci*",
     "next_step": {
       "calculated_taxes_fees": "Daně a doprava vypočítané při pokladně"
     },
@@ -432,9 +427,9 @@
       "send_success": "Děkujeme, že jste nás kontaktovali, ozveme se vám co nejdříve."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Chybný formát e-mailové adresy",
-      "subscribe_success": "Přihlásit úspěch",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Přihlásit úspěch"
     },
     "general": {
       "accept": "Přijmout",
@@ -575,6 +570,7 @@
       "leave_us_message": "Zadejte prosím svou zprávu",
       "leave_us_message_get_back": "Zanechte nám prosím zprávu a my se vám ozveme co nejdříve",
       "link_preview_does_not_support": "Operace pro náhled odkazu není podporována",
+      "load_more": "Načíst více",
       "maximum_length_of_message": "Maximální délka zprávy by neměla být větší než 1500 slov",
       "message": "Vaše zpráva",
       "more_payment_options": "více platebních možností",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Zaokrouhlování"
+    },
     "payments-name": {
       "COD": "Dobírka",
       "Paypal": "PayPal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Na tuto objednávku byla uplatněna sleva. Další slevu nelze přidat."
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Doprava Zdarma Kupon Kód Duplikace"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Platit Doprava Zdarma Kupon Kód - Země Nesoulad",
+        "logistics-fee-over-limit": "Doprava Zdarma Kód Kupónu-Doprava Přes Limit"
+      },
       "code_error": "Slevový kód je zadán nesprávně",
       "code_item_unmatched": "{{discountCode}} byl správně zadán, ale cena nebo množství zboží nesplňuje požadavky",
+      "code_overdue": "Platnost kódu kupónu vypršela",
+      "code_user_exceedLimit": "Počet případů, kdy uživatel tuto aktivitu použil, překročí limit",
+      "code_user_notSupport": "Uživatel nemůže tuto aktivitu používat",
       "coupon_code": "Kód kupónu",
       "coupon_invalid_for_the_shipping_method": "Kupón {{discountCode}} je platný pro daný způsob dopravy",
       "discount_codes_cannot_stack": "Pro produkt již existuje preferenční událost, kterou nelze použít společně s jinými preferenčními akcemi",
@@ -742,6 +753,7 @@
       "removed": "NEPLATNÝ",
       "sold_out": "Vyprodáno"
     },
+    "lack_multilingualism": "*Tuto větu se nepodařilo načíst, můžete kontaktovat zákaznický servis a nahlásit situaci*",
     "notices": {
       "insufficient_product_inventory": "Nedostatečný inventář produktů",
       "network": "Chyba Sítě",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Zrušit",
+      "enquire": "Pokračovat v zadávání objednávky pomocí Apple Pay?",
+      "paywith": "Zaplatit čím"
+    },
     "customer": {
       "error_message_1": "Přihlaste se k odběru e-mailů, abyste mohli dostávat aktualizace, přístup k exkluzivním nabídkám a další.",
       "error_message_1001": "Chyba hesla",

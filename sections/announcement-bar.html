@@ -33,12 +33,11 @@
     {{#each section.block_order as | blockId |}}
       {{#with (lookup ../section.blocks blockId)}}
         {{#if (isTruthy settings.notice_link_text)}}
-          <div class="announcement-swiper-slide color-scheme-{{ settings.notice_style }}" {{{ shopline_attributes }}}>
+          <div class="announcement-swiper-slide announcement-{{ settings.text_align }}-align color-scheme-{{ settings.notice_style }}" {{{ shopline_attributes }}}>
             {{ assign 'linkItem' (useLink settings.notice_link request.uri.query) }}
             <div class="__sl-custom-track-stage-header-announcementItem container body4 {{#if linkItem.finalSrc}}announcement-haslink{{/if}}">
-              <a {{{ linkItem.hrefAttr }}} class="announcement__text">
-                {{{ replace settings.notice_link_text ' ' '&nbsp;' }}}
-              </a>
+              <!--请勿将我格式化换行，可能导致:'~'不生效，出现首位内容换行的情况-->
+              <a {{{ linkItem.hrefAttr }}} class="announcement__text" style="white-space: pre-wrap;">{{ settings.notice_link_text }}</a>
             </div>
           </div>
         {{/if}}
@@ -118,6 +117,26 @@
           "type": "url",
           "id": "notice_link",
           "label": "t:sections.announcement-bar.blocks.item.settings.notice_link.label"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "t:sections.announcement-bar.blocks.item.settings.text_align.label",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.announcement-bar.blocks.item.settings.text_align.options__0.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.announcement-bar.blocks.item.settings.text_align.options__1.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.announcement-bar.blocks.item.settings.text_align.options__2.label"
+            }
+          ]
         }
       ]
     }

@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Kode diskon melebihi batas kuantitas",
       "existCode": "Kode diskon sudah ada",
-      "freeShipping": {
-        " existCode": "Gandakan kode diskon pengiriman gratis"
-      },
       "list": {
         "unavailable": "Semua kode diskon telah kedaluwarsa"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Kode diskon telah kedaluwarsa"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Pembayaran Kode diskon pengiriman gratis - Negara tidak cocok",
-        "logistics-fee-over-limit": "Kode diskon pengiriman gratis - ongkos pengiriman melebihi batas"
-      },
-      "code_overdue": "Kode diskon telah kedaluwarsa",
-      "code_user_exceedLimit": "Frekuensi pengguna menggunakan aktivitas ini melebihi batas",
-      "code_user_notSupport": "Pengguna tidak dapat menggunakan aktivitas ini",
       "coupon_code_amount": "Diskon kode kupon",
       "coupon_code_length_limit": "Panjang kode kupon tidak boleh melebihi {{range}}",
       "expected_discount": "Diskon yang diharapkan"
@@ -87,6 +77,12 @@
       "buy_limit1": "Produk harga diskon ini hanya tersisa {{stock}}",
       "buy_limit2": "Pada waktu bersamaan maksimum dapat beli {{stock}} produk dengan harga diskon",
       "buy_limit3": "Kupon produk ini hanya mendukung beli {{stock}} buah"
+    },
+    "error": {
+      "default": "Pemuatan sumber daya gagal",
+      "noshipping": "Paket pengiriman opsional",
+      "order": "Permintaan pesanan gagal",
+      "renew": "Memperbarui data gagal"
     },
     "general": {
       "continue_as_a_guest": "Terus mengakses sebagai tamu",
@@ -102,7 +98,6 @@
       "none_existent": "Produk tidak ada",
       "view_cart": "Lihat troli"
     },
-    "lack_multilingualism": "*Kalimat ini gagal memuat, Anda dapat menghubungi layanan pelanggan untuk melaporkan situasi*",
     "next_step": {
       "calculated_taxes_fees": "Selanjutnya menghitung pajak dan biaya pengiriman"
     },
@@ -432,9 +427,9 @@
       "send_success": "Terimakasih Anda hubungi kami, kami akan respon Anda dengan cepat"
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Format alamat email salah",
-      "subscribe_success": "Sukses pesan",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Sukses pesan"
     },
     "general": {
       "accept": "Terima",
@@ -575,6 +570,7 @@
       "leave_us_message": "Silakan isi pesan",
       "leave_us_message_get_back": "Silakan tinggalkan pesan pertanyaan Anda, kami akan menghubungi Anda sesegera mungkin",
       "link_preview_does_not_support": "Tautan pratinjau tidak mendukung operasi ini",
+      "load_more": "Tampilkan lebih banyak",
       "maximum_length_of_message": "Panjang pesan tidak boleh lebih dari 1,500kata",
       "message": "Pesan",
       "more_payment_options": "Opsi pembayaran lainnya",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "pembulatan"
+    },
     "payments-name": {
       "COD": "Bayar di tempat (COD)",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Pergabungan diskon terbatas waktu dan promo kegiatan kupon"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Gandakan kode diskon pengiriman gratis"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Pembayaran Kode diskon pengiriman gratis - Negara tidak cocok",
+        "logistics-fee-over-limit": "Kode diskon pengiriman gratis - ongkos pengiriman melebihi batas"
+      },
       "code_error": "Kode kupon salah dimasukkan",
       "code_item_unmatched": "{{discountCode}} dimasukkan benar, tetapi harga atau jumlah produk tidak sesuai persyaratan",
+      "code_overdue": "Kode diskon telah kedaluwarsa",
+      "code_user_exceedLimit": "Frekuensi pengguna menggunakan aktivitas ini melebihi batas",
+      "code_user_notSupport": "Pengguna tidak dapat menggunakan aktivitas ini",
       "coupon_code": "Kode promo",
       "coupon_invalid_for_the_shipping_method": "Kode kupon {{discountCode}} tidak berlaku untuk metode pengiriman saat ini",
       "discount_codes_cannot_stack": "Sudah ada diskon untuk produk ini, tidak dapat digabungkan dengan diskon lain",
@@ -742,6 +753,7 @@
       "removed": "Telah dihapus",
       "sold_out": "Terjual habis"
     },
+    "lack_multilingualism": "*Kalimat ini gagal memuat, Anda dapat menghubungi layanan pelanggan untuk melaporkan situasi*",
     "notices": {
       "insufficient_product_inventory": "Stok produk tidak mencukupi",
       "network": "Internet abnormal",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Batal",
+      "enquire": "Lanjutkan melakukan pemesanan dengan Apple Pay?",
+      "paywith": "Bayar melalui"
+    },
     "customer": {
       "error_message_1": "Mendaftarkan email untuk dapatkan informasi terbaru dan informasi promo, dll.",
       "error_message_1001": "Kata sandi salah",

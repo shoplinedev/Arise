@@ -48,7 +48,7 @@
         fallbacksSrc=(itemAt defaultImg randomIndex)
         fallbacksBgColor="#f3f3f3"
         imagePosition=(join (split bgDisplayPosition '_') ' ')
-        closeLazy=(cond (and (boolean index '<=' 1) (boolean templateAlias '==' 'AllCollections')) true false)
+        closeLazy=(default closeLazy (cond (and (boolean index '<=' 1) (boolean templateAlias '==' 'AllCollections')) true false))
         pcSize=pcSize
         mSize=mSize
       }}
@@ -59,6 +59,9 @@
         {{showTitle}}
       {{else}}
         Example Collection
+      {{/if}}
+      {{#if isMultiMediaSplicing}}
+        {{snippet 'icons/icon_arrow' class='multi-media-splicing__icon'}}
       {{/if}}
     </div>
 </a>

@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "折扣码超过数量限制",
       "existCode": "折扣码已存在",
-      "freeShipping": {
-        " existCode": "免运费折扣码重复"
-      },
       "list": {
         "unavailable": "所有折扣码均已失效"
       },
@@ -69,13 +66,6 @@
       "unavailable": "折扣码失效"
     },
     "discount": {
-      "code": {
-        "country_not_support": "支付 免邮优惠码-国家不匹配",
-        "logistics-fee-over-limit": "免邮优惠码-运费超过限制"
-      },
-      "code_overdue": "优惠码已过期",
-      "code_user_exceedLimit": "用户使用该活动次数超过限制",
-      "code_user_notSupport": "用户不能使用该活动",
       "coupon_code_amount": "优惠码优惠",
       "coupon_code_length_limit": "优惠码不能超过{{range}}长度",
       "expected_discount": "预计优惠"
@@ -87,6 +77,12 @@
       "buy_limit1": "此商品优惠价仅剩{{stock}}件",
       "buy_limit2": "最多可同时购买{{stock}} 件优惠价商品",
       "buy_limit3": "此商品优惠价仅支持买{{stock}}件"
+    },
+    "error": {
+      "default": "加载资源失败",
+      "noshipping": "无可选的运费方案",
+      "order": "下单请求失败",
+      "renew": "更新数据失败"
     },
     "general": {
       "continue_as_a_guest": "继续以访客身份访问",
@@ -102,7 +98,6 @@
       "none_existent": "商品不存在",
       "view_cart": "查看购物车"
     },
-    "lack_multilingualism": "*此语句加载失败，可联系客服反映情况*",
     "next_step": {
       "calculated_taxes_fees": "下一步将计算税费和运费"
     },
@@ -432,9 +427,9 @@
       "send_success": "谢谢您联系我们，我们将尽快回复您。"
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "电子邮件地址格式错误",
-      "subscribe_success": "订阅成功",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "订阅成功"
     },
     "general": {
       "accept": "接受",
@@ -575,6 +570,7 @@
       "leave_us_message": "请填写留言",
       "leave_us_message_get_back": "请留言你的咨询内容，我们将会尽快与你联系",
       "link_preview_does_not_support": "预览链接不支持此操作",
+      "load_more": "展示更多",
       "maximum_length_of_message": "留言长度不超过1500个字",
       "message": "留言",
       "more_payment_options": "更多支付选项",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "舍入"
+    },
     "payments-name": {
       "COD": "货到付款",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "限时折扣和优惠码活动互斥"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "免运费折扣码重复"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "支付 免邮优惠码-国家不匹配",
+        "logistics-fee-over-limit": "免邮优惠码-运费超过限制"
+      },
       "code_error": "优惠码输入错误",
       "code_item_unmatched": "{{discountCode}}输入正确，但商品价格或数量不符合要求",
+      "code_overdue": "优惠码已过期",
+      "code_user_exceedLimit": "用户使用该活动次数超过限制",
+      "code_user_notSupport": "用户不能使用该活动",
       "coupon_code": "优惠码",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} 优惠码不适用当前物流方式",
       "discount_codes_cannot_stack": "商品已经存在一个优惠活动，不可与其他优惠叠加",
@@ -742,6 +753,7 @@
       "removed": "已下架",
       "sold_out": "售罄"
     },
+    "lack_multilingualism": "*此语句加载失败，可联系客服反映情况*",
     "notices": {
       "insufficient_product_inventory": "商品库存不足",
       "network": "网络异常",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "取消",
+      "enquire": "继续使用Apple Pay完成支付吗？",
+      "paywith": "通过"
+    },
     "customer": {
       "error_message_1": "注册电子邮件以获取更新和独家优惠等信息",
       "error_message_1001": "密码错误",

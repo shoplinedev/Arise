@@ -53,7 +53,8 @@ window.SLM['theme-shared/report/stage/const.js'] = window.SLM['theme-shared/repo
     navItem: 108,
     announcement: 109,
     socialItem: 110,
-    newsletter: 111
+    newsletter: 111,
+    searchSuggest: 112
   };
   _exports.virtualComponentEnum = virtualComponentEnum;
   const virtualPageEnum = {

@@ -2,7 +2,6 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/biz-com/sales/discount-specified-sku/index.js'] = window.SLM['theme-shared/biz-com/sales/discount-specified-sku/index.js'] || function () {
   const _exports = {};
-  const flashSaleRender = window['SLM']['theme-shared/biz-com/sales/discount-specified-sku/flash-sale/index.js'].default;
   const discountCodeRender = window['SLM']['theme-shared/biz-com/sales/discount-specified-sku/discount-code/index.js'].default;
   const autoCouponBannerRender = window['SLM']['theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-banner/index.js'].default;
   const { autoCouponAddToCartRender, setAddToCartActiveSku, setAddToCartSpu } = window['SLM']['theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/index.js'];
@@ -23,45 +22,6 @@ window.SLM['theme-shared/biz-com/sales/discount-specified-sku/index.js'] = windo
 
     $('#discount-code-slot').html('');
     return null;
-  };
-
-  const handleFlashSaleUpdate = (spuInfo, timeLimitActivityList, id) => {
-    const $targetDom = $(`#product-sku-trade-data_${id}`).parents('.product-preview-container');
-    const {
-      getHtml,
-      run,
-      isRender
-    } = flashSaleRender();
-    const countDownSlotStyleId = 'count_down_slot_style_dom';
-
-    if (isRender(spuInfo, timeLimitActivityList)) {
-      const html = getHtml(timeLimitActivityList);
-
-      if (id && id !== 'productDetail') {
-        $targetDom.find('.flash-sale-slot').html(html);
-      } else {
-        $('.flash-sale-slot').html(html);
-
-        if (!document.getElementById(`${countDownSlotStyleId}`)) {
-          const styleEle = document.createElement('style');
-          styleEle.id = countDownSlotStyleId;
-          styleEle.textContent = `[data-m-widget-scope='countDownTimer'],.countdown-component {
-          display: none !important;
-        }`;
-          document.head.appendChild(styleEle);
-        }
-      }
-
-      run(timeLimitActivityList);
-    } else if (id && id !== 'productDetail') {
-      $targetDom.find('.flash-sale-slot').html('');
-    } else {
-      $('.flash-sale-slot').html('');
-
-      if (document.getElementById(`${countDownSlotStyleId}`)) {
-        document.head.removeChild(document.getElementById(`${countDownSlotStyleId}`));
-      }
-    }
   };
 
   const handleAutoCouponBannerUpdate = (id, spuInfo, autoDiscountActivityList, parent) => {
@@ -99,7 +59,6 @@ window.SLM['theme-shared/biz-com/sales/discount-specified-sku/index.js'] = windo
   };
 
   _exports.handleDiscountCodeUpdate = handleDiscountCodeUpdate;
-  _exports.handleFlashSaleUpdate = handleFlashSaleUpdate;
   _exports.handleAutoCouponBannerUpdate = handleAutoCouponBannerUpdate;
   _exports.handleAutoCouponAddToCartUpdate = handleAutoCouponAddToCartUpdate;
   _exports.setAddToCartActiveSku = setAddToCartActiveSku;

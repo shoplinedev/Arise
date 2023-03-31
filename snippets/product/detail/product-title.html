@@ -1,4 +1,5 @@
 {{assign 'spuInfo' product.spu }}
-<div class="product-title">
-  <h1 class="title shopline-element-title title-font title4 text-left">{{ spuInfo.title }}</h1>
+{{assign 'fontSize' settings.font_size}}
+<div class="product-title title4">
+  <h1 class="title shopline-element-title title-font text-left font-size-{{fontSize}}">{{ spuInfo.title }}</h1>
 </div>

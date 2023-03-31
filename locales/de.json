@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Rabattcodes überschreiten das Mengenlimit",
       "existCode": "Rabattcode existiert bereits",
-      "freeShipping": {
-        " existCode": "Der Rabattcode für kostenlosen Versand wird wiederholt"
-      },
       "list": {
         "unavailable": "Alle Rabattcodes sind abgelaufen"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Rabattcode ist abgelaufen"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Zahlung Rabattcode für kostenlosen Versand - Land stimmt nicht überein",
-        "logistics-fee-over-limit": "Rabattcode für kostenlosen Versand - Die Versandkosten überschreiten das Limit"
-      },
-      "code_overdue": "Der Rabattcode ist abgelaufen",
-      "code_user_exceedLimit": "Der Benutzer hat die Aktivität mehr als das Limit verwendet",
-      "code_user_notSupport": "Der Nutzer darf diese Aktivität nicht verwenden",
       "coupon_code_amount": "Rabatt für den Angebotscode",
       "coupon_code_length_limit": "Der Angebotscode darf nicht länger als {{range}} Zeichen sein",
       "expected_discount": "Geschätzter Rabatt"
@@ -87,6 +77,12 @@
       "buy_limit1": "Nur noch {{stock}}Artikel zum Sonderpreis übrig",
       "buy_limit2": "Maximal können Sie {{stock}} Artikel zum Aktionspreis gleichzeitig kaufen",
       "buy_limit3": "Der Aktionspreis dieses Artikels gilt nur für den Kauf von {{stock}} Stück"
+    },
+    "error": {
+      "default": "Laden von Ressourcen fehlgeschlagen",
+      "noshipping": "Keine Versandoptionen verfügbar",
+      "order": "Bestellanfrage fehlgeschlagen",
+      "renew": "Aktualisierung der Daten fehlgeschlagen"
     },
     "general": {
       "continue_as_a_guest": "Als Gast fortfahren",
@@ -102,7 +98,6 @@
       "none_existent": "Der Artikel existiert nicht",
       "view_cart": "Warenkorb ansehen"
     },
-    "lack_multilingualism": "*Laden dieser Anweisung fehlgeschlagen, wenden Sie sich bitte an unseren Kundendienst, um die Situation zu melden*",
     "next_step": {
       "calculated_taxes_fees": "Steuern und Frachtkosten werden im nächsten Schritt berechnet"
     },
@@ -432,9 +427,9 @@
       "send_success": "Vielen Dank für Ihre Kontaktaufnahme. Wir werden uns so schnell wie möglich bei Ihnen melden."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Ungültiges Format der E-Mail-Adresse",
-      "subscribe_success": "Abonniert",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Abonniert"
     },
     "general": {
       "accept": "Akzeptieren",
@@ -575,6 +570,7 @@
       "leave_us_message": "Nachricht eingeben",
       "leave_us_message_get_back": "Wir freuen uns auf Ihre Nachricht und werden Sie so schnell wie möglich kontaktieren",
       "link_preview_does_not_support": "Die Link-Vorschau ist nicht verfügbar",
+      "load_more": "Mehr anzeigen",
       "maximum_length_of_message": "Ihre Nachricht darf nicht größer als 1500 Zeichen sein",
       "message": "Nachricht",
       "more_payment_options": "Weitere Zahlungsoptionen",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Rundung"
+    },
     "payments-name": {
       "COD": "Bargeld bei Lieferung",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "befristete Rabattaktionen sind nicht mit anderen Gutscheincode kombinierbar"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Der Rabattcode für kostenlosen Versand wird wiederholt"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Zahlung Rabattcode für kostenlosen Versand - Land stimmt nicht überein",
+        "logistics-fee-over-limit": "Rabattcode für kostenlosen Versand - Die Versandkosten überschreiten das Limit"
+      },
       "code_error": "Bitte geben Sie einen gültigen Rabattcode ein",
       "code_item_unmatched": "Der Rabatt von {{discountCode}} gilt nicht für Ihre Artikel im Warenkorb.",
+      "code_overdue": "Der Rabattcode ist abgelaufen",
+      "code_user_exceedLimit": "Der Benutzer hat die Aktivität mehr als das Limit verwendet",
+      "code_user_notSupport": "Der Nutzer darf diese Aktivität nicht verwenden",
       "coupon_code": "Coupon-Code",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}}Dieser Rabattcode ist für die aktuelle Versandart nicht anwendbar",
       "discount_codes_cannot_stack": "Für dieses Produkt gibt es bereits ein Angebot und kann nicht mit anderen Angeboten kombiniert werden",
@@ -742,6 +753,7 @@
       "removed": "Aus Regalen entfernt",
       "sold_out": "Ausverkauft"
     },
+    "lack_multilingualism": "*Laden dieser Anweisung fehlgeschlagen, wenden Sie sich bitte an unseren Kundendienst, um die Situation zu melden*",
     "notices": {
       "insufficient_product_inventory": "Unzureichender Produktbestand",
       "network": "Netzwerkfehler",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Stornieren",
+      "enquire": "Verwenden Sie weiterhin Apple Pay, um Zahlungen durchzuführen?",
+      "paywith": "Bezahlen mit"
+    },
     "customer": {
       "error_message_1": "Bitte melden Sie mich per E-Mail für exklusive Angebote und Aktionen an.",
       "error_message_1001": "Kennwortfehler",

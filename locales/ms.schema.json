@@ -25,6 +25,18 @@
               "options__3": {
                 "label": "Warna 3"
               }
+            },
+            "text_align": {
+              "label": "Kaedah menyelaraskan teks",
+              "options__0": {
+                "label": "Sebelah kiri"
+              },
+              "options__1": {
+                "label": "Berpusat"
+              },
+              "options__2": {
+                "label": "Sebelah kanan"
+              }
             }
           }
         }
@@ -384,6 +396,9 @@
           "info": "Jika “bilangan maksimum produk” lebih kecil daripada bilangan di bawah kategori produk tersebut, butang baru akan dipaparkan",
           "label": "Salinan butang"
         },
+        "full_width": {
+          "label": "Paparan lebar skrin penuh"
+        },
         "group_header__0": {
           "label": "Senarai"
         },
@@ -451,6 +466,32 @@
         "buy-button": {
           "name": "Butang beli"
         },
+        "cutLine": {
+          "name": "Garisan berpecah",
+          "settings": {
+            "background_color": {
+              "label": "Warna garis pemisah"
+            },
+            "cutline_size": {
+              "label": "Ketebalan garis pemisah versi mudah alih"
+            },
+            "cutline_style": {
+              "label": "Rekabentu garis pemisah versi mudah alih",
+              "options__0": {
+                "label": "Pemisahan kosong"
+              },
+              "options__1": {
+                "label": "Pemisahan bar"
+              }
+            },
+            "mobile_show": {
+              "label": "Menunjukkan di telefon bimbit"
+            },
+            "pc_show": {
+              "label": "Menunjukkan di komputer"
+            }
+          }
+        },
         "description": {
           "name": "Huraian produk"
         },
@@ -494,7 +535,24 @@
           }
         },
         "title": {
-          "name": "Tajuk"
+          "name": "Tajuk",
+          "settings": {
+            "font_size": {
+              "label": "Saiz fon tajuk",
+              "options__0": {
+                "label": "Besar super"
+              },
+              "options__1": {
+                "label": "Besar"
+              },
+              "options__2": {
+                "label": "Tengah"
+              },
+              "options__3": {
+                "label": "Kecil"
+              }
+            }
+          }
         },
         "viewMoreBtn": {
           "name": "Lihat lebih banyak butang",
@@ -612,11 +670,20 @@
         "copyright_text": {
           "label": "Salinan hak cipta tambahan"
         },
+        "footer_division": {
+          "label": "Garis pemisah pengaki sisi komputer"
+        },
         "group_header__0": {
           "label": "Langganan E-mel"
         },
         "group_header__1": {
           "label": "Tambah kandungan"
+        },
+        "padding_bottom": {
+          "label": "Pengisian bahagian bawah"
+        },
+        "padding_top": {
+          "label": "Pengisian bahagian atas"
         },
         "show_copyright": {
           "label": "Tunjuk maklumat hak cipta"
@@ -686,6 +753,9 @@
           "info": "[Lebib banyak plugin navigasi menu](https://apps.shopline.com/detail/?appId=64637)",
           "label": "Menu"
         },
+        "header_division": {
+          "label": "Papar garis pembahagi modul"
+        },
         "header_full_width": {
           "label": "lebar skrin penuh dalam pengepala"
         },
@@ -697,6 +767,9 @@
         },
         "main_menu_link_list": {
           "label": "Menu navigasi"
+        },
+        "main_menu_link_list_effect": {
+          "label": "kesan tarik di bawah menu navigasi"
         },
         "mega_menu_images": {
           "info": "[lihat tutorial untuk menetapkan menu super](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)",
@@ -731,6 +804,12 @@
           "options__2": {
             "label": "LOGO di tengah, menu tukar silang"
           }
+        },
+        "padding_bottom": {
+          "label": "Pengisian bahagian bawah"
+        },
+        "padding_top": {
+          "label": "Pengisian bahagian atas"
         },
         "show_cart_entry": {
           "label": "Paparkan pintu masuk troli beli-belah"
@@ -1824,7 +1903,27 @@
     "product_detail_product-preview": {
       "blocks": {
         "abstract": {
-          "name": "Ringkasan"
+          "name": "Ringkasan",
+          "settings": {
+            "font_size": {
+              "label": "Saiz fon teks",
+              "options__0": {
+                "label": "Besar super"
+              },
+              "options__1": {
+                "label": "Besar"
+              },
+              "options__2": {
+                "label": "Tengah"
+              },
+              "options__3": {
+                "label": "Kecil"
+              }
+            },
+            "is_upper_case": {
+              "label": "Semua perkataan huruf besar"
+            }
+          }
         },
         "buy-button": {
           "name": "Butang beli",
@@ -1832,6 +1931,32 @@
             "group_header__0": {
               "info": "[untuk maklumat lanjut](https://apps.shopline.com/detail/?appId=23033)",
               "label": "Untuk menggunakan ciri keranjang belanja levitation sedutan, tambah plugin Add to cart"
+            }
+          }
+        },
+        "cutLine": {
+          "name": "Garisan berpecah",
+          "settings": {
+            "background_color": {
+              "label": "Warna garis pemisah"
+            },
+            "cutline_size": {
+              "label": "Ketebalan garis pemisah versi mudah alih"
+            },
+            "cutline_style": {
+              "label": "Rekabentu garis pemisah versi mudah alih",
+              "options__0": {
+                "label": "Pemisahan kosong"
+              },
+              "options__1": {
+                "label": "Pemisahan bar"
+              }
+            },
+            "mobile_show": {
+              "label": "Menunjukkan di telefon bimbit"
+            },
+            "pc_show": {
+              "label": "Menunjukkan di komputer"
             }
           }
         },
@@ -2156,7 +2281,24 @@
           }
         },
         "title": {
-          "name": "Tajuk"
+          "name": "Tajuk",
+          "settings": {
+            "font_size": {
+              "label": "Saiz fon tajuk",
+              "options__0": {
+                "label": "Besar super"
+              },
+              "options__1": {
+                "label": "Besar"
+              },
+              "options__2": {
+                "label": "Tengah"
+              },
+              "options__3": {
+                "label": "Kecil"
+              }
+            }
+          }
         }
       },
       "name": "Maklumat produk",
@@ -2415,6 +2557,30 @@
         },
         "normal_width": {
           "label": "Guna lebar lajur standard"
+        },
+        "pc_content_position": {
+          "label": "Lokasi kandungan komputer",
+          "options__0": {
+            "label": "Sebelah kiri"
+          },
+          "options__1": {
+            "label": "Berpusat"
+          },
+          "options__2": {
+            "label": "Sebelah kanan"
+          }
+        },
+        "text_align": {
+          "label": "Kaedah penjajaran kandungan",
+          "options__0": {
+            "label": "Penjajaran sebelah kiri"
+          },
+          "options__1": {
+            "label": "Jajar tengah"
+          },
+          "options__2": {
+            "label": "Penjajaran sebelah kanan"
+          }
         }
       }
     },
@@ -3676,11 +3842,23 @@
     "product": {
       "name": "Produk",
       "settings": {
+        "enabled_mobile_product_add_to_cart": {
+          "label": "Tambahan pembelian cepat di versi mudah alih"
+        },
         "group_header__0": {
           "label": "Senarai produk"
         },
         "product_add_to_cart": {
           "label": "Sokong pembelian pantas"
+        },
+        "product_add_to_cart_pc_position": {
+          "label": "Lokasi tambahan pembelian cepat di versi komputer",
+          "options__0": {
+            "label": "Berpusat"
+          },
+          "options__1": {
+            "label": "Bawah tengah"
+          }
         },
         "product_discount": {
           "label": "Paparkan diskaun"

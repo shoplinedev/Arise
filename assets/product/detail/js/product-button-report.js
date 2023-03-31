@@ -77,12 +77,12 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
         currency: getCurrencyCode(),
         value: totalPrice,
         items: [{
-          id: skuId,
+          id: window.SL_GetReportArg && window.SL_GetReportArg('GAR', 'sku_id', skuId),
           google_business_vertical: 'retail'
         }]
       }]],
       GARemarketing: [['event', 'add_to_cart', {
-        ecomm_prodid: skuId,
+        ecomm_prodid: window.SL_GetReportArg && window.SL_GetReportArg('GAR', 'sku_id', skuId),
         ecomm_pagetype: 'cart',
         currency: getCurrencyCode(),
         ecomm_totalvalue: totalPrice

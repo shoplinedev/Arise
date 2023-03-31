@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "割引コードが数量制限を超えています",
       "existCode": "割引コードは既に存在します",
-      "freeShipping": {
-        " existCode": "送料無料クーポンコードが重複しています"
-      },
       "list": {
         "unavailable": "すべての割引コードの有効期限が切れています"
       },
@@ -69,13 +66,6 @@
       "unavailable": "割引コードの有効期限が切れています"
     },
     "discount": {
-      "code": {
-        "country_not_support": "送料無料クーポンコードで支払う - 適用する国ではありません",
-        "logistics-fee-over-limit": "送料無料クーポンコード - 配送料が制限を超えています"
-      },
-      "code_overdue": "クーポンコードの有効期限が切れています",
-      "code_user_exceedLimit": "ユーザーがこのイベントを使用する回数の制限を超えています",
-      "code_user_notSupport": "ユーザーはこのイベントを使用できません",
       "coupon_code_amount": "クーポンコードの提供",
       "coupon_code_length_limit": "クーポンコードは {{range}} 文字以内で入力してください",
       "expected_discount": "見積割引"
@@ -87,6 +77,12 @@
       "buy_limit1": "本商品を割引価格で購入可能件数が{{stock}}件です",
       "buy_limit2": "最大{{stock}}点の割引商品を同時に購入できます",
       "buy_limit3": "本商品の特別価格は{{stock}}点の購入のみをサポートしています"
+    },
+    "error": {
+      "default": "リソースの読み込みに失敗しました",
+      "noshipping": "利用できる送料オプションはありません",
+      "order": "注文リクエストが失敗しました",
+      "renew": "データの更新が失敗しました"
     },
     "general": {
       "continue_as_a_guest": "ビジターとして続く",
@@ -102,7 +98,6 @@
       "none_existent": "製品が存在しません",
       "view_cart": "カートを見る"
     },
-    "lack_multilingualism": "*このステートメントが読み込めに失敗しました。カスタマー サービスに連絡して状況を報告することができます*",
     "next_step": {
       "calculated_taxes_fees": "税金と運賃は次のステップで計算されます"
     },
@@ -432,9 +427,9 @@
       "send_success": "ご連絡誠にありがとうございます、なるべく早く返事が出せるようにいたします。"
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "メールアドレスの形式が無効です",
-      "subscribe_success": "購読しました",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "購読しました"
     },
     "general": {
       "accept": "受け入れる",
@@ -575,6 +570,7 @@
       "leave_us_message": "コメントを入力してください",
       "leave_us_message_get_back": "お問い合わせ内容はコメントで残してください。なるべく早くご連絡いたします",
       "link_preview_does_not_support": "リンクプレビューの操作はサポートされていません",
+      "load_more": "もっと",
       "maximum_length_of_message": "コメントの長さは1500文字以内に制限されました",
       "message": "コメント",
       "more_payment_options": "その他の支払いオプション",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "丸め"
+    },
     "payments-name": {
       "COD": "代金引換",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "期間限定割引とクーポンコードを組み合わせて使用​​することができません。"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "送料無料クーポンコードが重複しています"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "送料無料クーポンコードで支払う - 適用する国ではありません",
+        "logistics-fee-over-limit": "送料無料クーポンコード - 配送料が制限を超えています"
+      },
       "code_error": "有効なるクーポンコードを入力してください。",
       "code_item_unmatched": "{{discountCode}}のクーポンコードがカード内の商品に適用できません。",
+      "code_overdue": "クーポンコードの有効期限が切れています",
+      "code_user_exceedLimit": "ユーザーがこのイベントを使用する回数の制限を超えています",
+      "code_user_notSupport": "ユーザーはこのイベントを使用できません",
       "coupon_code": "クーポンコード",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} クーポンコードは今の配送方法に適用されていません",
       "discount_codes_cannot_stack": "この商品にはすでに割引があり、他の割引と重ねることはできません。",
@@ -742,6 +753,7 @@
       "removed": "棚から削除されました",
       "sold_out": "在庫切れ"
     },
+    "lack_multilingualism": "*このステートメントが読み込めに失敗しました。カスタマー サービスに連絡して状況を報告することができます*",
     "notices": {
       "insufficient_product_inventory": "商品の在庫が不足しています",
       "network": "ネットワークエラー",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "キャンセル",
+      "enquire": "引き続き Apple Pay で支払しますか?",
+      "paywith": "...で支払う"
+    },
     "customer": {
       "error_message_1": "メールアドレスに登録して、最新情報や限定オファーなどを入手しましょう",
       "error_message_1001": "パスワードエラー",

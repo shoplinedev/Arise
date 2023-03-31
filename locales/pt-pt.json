@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "O código de desconto excede o limite de quantidade",
       "existCode": "O código de desconto já existe",
-      "freeShipping": {
-        " existCode": "Código de desconto de frete gratuito repetido"
-      },
       "list": {
         "unavailable": "Todos os códigos de desconto expiraram"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Código de desconto expirado"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Pagamento código do cupão de envio gratuito - País não compatível",
-        "logistics-fee-over-limit": "Código do cupão de envio gratuito - custo de envio excede o limite"
-      },
-      "code_overdue": "O código do cupão expirou",
-      "code_user_exceedLimit": "O utilizador já utilizou o evento mais vezes do que o limite",
-      "code_user_notSupport": "O utilizador não pode utilizar este evento",
       "coupon_code_amount": "Oferta de código de oferta",
       "coupon_code_length_limit": "Os códigos de oferta não podem exceder o comprimento de {{range}}.",
       "expected_discount": "Oferta estimada"
@@ -87,6 +77,12 @@
       "buy_limit1": "Só restam {{stock}} pcs deste item em oferta",
       "buy_limit2": "Pode comprar até {{stock}} itens ao mesmo tempo",
       "buy_limit3": "O preço especial para este item só é válido para a compra de {{stock}} pcs."
+    },
+    "error": {
+      "default": "Falha no carregamento de recursos",
+      "noshipping": "Nenhum plano opcional de frete",
+      "order": "Falha na solicitação de pedido",
+      "renew": "Falha na atualização de dados"
     },
     "general": {
       "continue_as_a_guest": "Continuar a visitar como convidado",
@@ -102,7 +98,6 @@
       "none_existent": "O item não existe",
       "view_cart": "Ver carrinho"
     },
-    "lack_multilingualism": "*Esta declaração não foi carregada, pode contactar o serviço ao cliente para comunicar a situação*.",
     "next_step": {
       "calculated_taxes_fees": "Os encargos fiscais e de envio serão calculados na próxima etapa"
     },
@@ -432,9 +427,9 @@
       "send_success": "Obrigado por nos contactar, entraremos em contacto consigo o mais rapidamente possível."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "Formato de endereço de correio electrónico incorrecto",
-      "subscribe_success": "Subscrição realizada",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Subscrição realizada"
     },
     "general": {
       "accept": "Aceitar",
@@ -575,6 +570,7 @@
       "leave_us_message": "Por favor preencha a mensagem",
       "leave_us_message_get_back": "Por favor deixe uma mensagem sobre a sua consulta e entraremos em contacto consigo o mais rapidamente possível",
       "link_preview_does_not_support": "O link de pré-visualização não suporta esta operação",
+      "load_more": "Mostrar mais",
       "maximum_length_of_message": "O comprimento da mensagem não deve exceder 1500 caracteres",
       "message": "Deixar mensagem",
       "more_payment_options": "Mais opções de pagamento",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Arredondamento"
+    },
     "payments-name": {
       "COD": "Pagamento na entrega",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Os descontos por tempo limitado e a actividade de código de cupão são mutuamente exclusivos"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Código de desconto de frete gratuito repetido"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Pagamento código do cupão de envio gratuito - País não compatível",
+        "logistics-fee-over-limit": "Código do cupão de envio gratuito - custo de envio excede o limite"
+      },
       "code_error": "Código de oferta introduzido incorrectamente",
       "code_item_unmatched": "{{discountCode}} correctamente introduzido, mas o preço ou a quantidade do artigo não corresponde à exigência",
+      "code_overdue": "O código do cupão expirou",
+      "code_user_exceedLimit": "O utilizador já utilizou o evento mais vezes do que o limite",
+      "code_user_notSupport": "O utilizador não pode utilizar este evento",
       "coupon_code": "Código de oferta",
       "coupon_invalid_for_the_shipping_method": "O código de oferta {{discountCode}} não se aplica ao método de envio actual",
       "discount_codes_cannot_stack": "Uma oferta já existe para o item e não pode ser acumulada com outras ofertas",
@@ -742,6 +753,7 @@
       "removed": "Removido",
       "sold_out": "Esgotado"
     },
+    "lack_multilingualism": "*Esta declaração não foi carregada, pode contactar o serviço ao cliente para comunicar a situação*.",
     "notices": {
       "insufficient_product_inventory": "Estoque de item insuficiente",
       "network": "Rede anormal",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Cancelar",
+      "enquire": "Continuar a fazer a encomenda com a Apple Pay?",
+      "paywith": "Pagar com"
+    },
     "customer": {
       "error_message_1": "Registe o correio electrónico para receber actualizações, ofertas exclusivas, etc.",
       "error_message_1001": "Palavra-passe incorrecta",

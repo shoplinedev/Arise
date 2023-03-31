@@ -1,58 +1,102 @@
-{{ assign 'PaypalWay' "Paypal" }}
-{{ assign 'oneButton' (or (inArray (default productSettleButtonConfig.payments []) PaypalWay) productSettleButtonConfig.buyNow) }}
+{{assign "isNewExpressCheckout" paymentButtonConfig.newProcess}}
+{{assign "PaypalWay" "Paypal"}}
+{{assign
+  "oneButton"
+  (or (inArray (default productSettleButtonConfig.payments) PaypalWay) productSettleButtonConfig.buyNow)
+}}
 {{#if oneButton}}
-  {{ assign 'buttonClass' "btn-secondary" }}
+  {{assign "buttonClass" "btn-secondary"}}
 {{else}}
-  {{ assign 'buttonClass' "btn-primary" }}
+  {{assign "buttonClass" "btn-primary"}}
 {{/if}}
 <!-- 判断是否预览环境 -->
-{{#if templateAlias '===' 'PreviewProductsDetail'}}
-  {{assign 'isPreviewProduct' true}}
+{{#if templateAlias "===" "PreviewProductsDetail"}}
+  {{assign "isPreviewProduct" true}}
 {{else}}
-  {{assign 'isPreviewProduct' false}}
+  {{assign "isPreviewProduct" false}}
 {{/if}}
 
-{{!-- TODO: 一个方案兼顾ssr和csr场景 --}}
-{{#if request.design_mode }}
-  {{ preload_state 'productSettleButtonConfig' }}
+{{! TODO: 一个方案兼顾ssr和csr场景 }}
+{{#if request.design_mode}}
+  {{preload_state "productSettleButtonConfig"}}
   <script>
   window.SL_State && window.SL_State.set("productSettleButtonConfig", {{{JSONstringify productSettleButtonConfig}}})
-</script>
+  </script>
 {{else}}
   {{#if isAjax}}
     <script>
       window.SL_State && window.SL_State.set("productSettleButtonConfig", {{{JSONstringify productSettleButtonConfig}}})
     </script>
   {{else}}
-    {{ preload_state 'productSettleButtonConfig' }}
+    {{preload_state "productSettleButtonConfig"}}
   {{/if}}
 {{/if}}
 
-<div {{#if id "productDetail"}}data-ssr-plugin-pdp-checkout-button-list{{/if}} class="product-button-list" id="product-button-list_{{id}}">
+<div
+  {{#if id "productDetail"}}data-ssr-plugin-pdp-checkout-button-list{{/if}}
+  class="product-button-list"
+  id="product-button-list_{{id}}"
+>
   {{#if product.spu.inquiry}}
-    <button data-ssr-plugin-pdp-button-inquiry type="button" class="btn btn-primary btn-lg product-inquiry__contactusButton" id="JS-inquiry-price-button_{{id}}">{{t 'general.contact_us.contact_us'}}</button>
+    <button
+      data-ssr-plugin-pdp-button-inquiry
+      type="button"
+      class="btn btn-primary btn-lg product-inquiry__contactusButton"
+      id="JS-inquiry-price-button_{{id}}"
+    >{{t "general.contact_us.contact_us"}}</button>
   {{else}}
 
-    <button data-ssr-plugin-pdp-button-sold-out class="sold-out-button btn btn-primary btn-lg disabled pdp_sold_out_{{id}} {{#not isSoldOut}}hide{{/not}}" type="button">
-      {{ t 'products.general.sold_out' }}
+    <button
+      data-ssr-plugin-pdp-button-sold-out
+      class="sold-out-button btn btn-primary btn-lg disabled pdp_sold_out_{{id}} {{#not isSoldOut}}hide{{/not}}"
+      type="button"
+    >
+      {{t "products.general.sold_out"}}
     </button>
-    <button data-ssr-plugin-pdp-button-addtocart class="__sl-custom-track-add-to-cart-btn add-to-cart shopline-element-add-to-cart btn {{buttonClass}} btn-lg pdp_add_to_cart_{{id}} {{#if isSoldOut}}hide{{/if}}" type="button">
-      <span class="pdp_button_text fw-bold">{{ t 'products.product_list.add_to_cart' }}</span>
+    <button
+      data-ssr-plugin-pdp-button-addtocart
+      class="__sl-custom-track-add-to-cart-btn add-to-cart shopline-element-add-to-cart btn
+        {{buttonClass}}
+        btn-lg
+        pdp_add_to_cart_{{id}}
+        {{#if isSoldOut}}hide{{/if}}"
+      type="button"
+    >
+      <span class="pdp_button_text fw-bold">{{t "products.product_list.add_to_cart"}}</span>
     </button>
-    {{#if productSettleButtonConfig.buyNow}}
-      <button data-ssr-plugin-pdp-button-buy-now class="buy-now shopline-element-buy-now btn btn-primary btn-lg pdp_buy_now_{{id}} __sl-custom-track-product-detail-buy-now {{#if isSoldOut}}hide{{/if}}">
-        <span class="pdp_button_text fw-bold">{{t 'cart.cart.buy_now'}}</span>
-      </button>
-    {{/if}}
-    {{#inArray (default productSettleButtonConfig.payments []) PaypalWay}}
-      <div id="pdp_paypal_{{id}}" class="paypay-button shopline-element-paypal disabled {{#if isSoldOut}}hide{{/if}}">
-        {{#if isPreviewProduct}}
-          <div class="product-button-paypal-preview-mask"></div>
+
+    {{#if isNewExpressCheckout}}
+      <div id="payment_button_{{id}}" data-attr="isSoldOut={{isSoldOut}}&id={{id}}"></div>
+      {{#forEach paymentButtonConfig.buttonLocationDataList}}
+        {{#if buttonLocation '===' 'productDetail'}}
+          {{#if isSystem}}
+            <div class="pdp_buy_now_{{../id}} product-more-payment-button {{#if isSoldOut}}hide{{/if}}"></div>
+          {{/if}}
         {{/if}}
-      </div>
-      {{#if productSettleButtonConfig.originConfig.system}}
-        <div class="pdp_buy_now_{{id}} product-more-payment-button {{#if isSoldOut}}hide{{/if}}"></div>
+      {{/forEach}}
+    {{else}}
+      {{#if productSettleButtonConfig.buyNow}}
+        <button
+          data-ssr-plugin-pdp-button-buy-now
+          class="buy-now shopline-element-buy-now btn btn-primary btn-lg
+            pdp_buy_now_{{id}}
+            __sl-custom-track-product-detail-buy-now
+            {{#if isSoldOut}}hide{{/if}}"
+        >
+          <span class="pdp_button_text fw-bold">{{t "cart.cart.buy_now"}}</span>
+        </button>
       {{/if}}
-    {{/inArray}}
+      {{#inArray (default productSettleButtonConfig.payments) PaypalWay}}
+        <div id="pdp_paypal_{{id}}" class="paypay-button shopline-element-paypal disabled {{#if isSoldOut}}hide{{/if}}">
+          {{#if isPreviewProduct}}
+            <div class="product-button-paypal-preview-mask"></div>
+          {{/if}}
+        </div>
+        {{#if productSettleButtonConfig.originConfig.system}}
+          <div class="pdp_buy_now_{{id}} product-more-payment-button {{#if isSoldOut}}hide{{/if}}"></div>
+        {{/if}}
+      {{/inArray}}
+    {{/if}}
+
   {{/if}}
 </div>

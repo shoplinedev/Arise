@@ -57,9 +57,6 @@
     "couponCode": {
       "exceedLimit": "Nuolaidų kodai viršija kiekio limitą",
       "existCode": "Nuolaidos kodas jau yra",
-      "freeShipping": {
-        " existCode": "Dublikuoti nemokamo siuntimo nuolaidos kodus"
-      },
       "list": {
         "unavailable": "Baigėsi visų nuolaidų kodų galiojimo laikas"
       },
@@ -69,13 +66,6 @@
       "unavailable": "Baigėsi nuolaidos kodas"
     },
     "discount": {
-      "code": {
-        "country_not_support": "Mokėjimas Nemokamo siuntimo kupono kodas - šalies skiriasi",
-        "logistics-fee-over-limit": "Nemokamo siuntimo kupono kodas - siuntimo išlaidos viršija ribą"
-      },
-      "code_overdue": "Kupono kodas nebegalioja",
-      "code_user_exceedLimit": "Vartotojas naudoja veiklą daugiau kartų nei riba",
-      "code_user_notSupport": "Vartotojas negali naudoti veiklos",
       "coupon_code_amount": "Kuponas",
       "coupon_code_length_limit": "Kupono kodas negali viršyti {{range}} simbolių",
       "expected_discount": "Nuolaida"
@@ -87,6 +77,12 @@
       "buy_limit1": "Tik {{stock}} vnt. liko su šia nuolaida",
       "buy_limit2": "Tuo pačiu metu galite pirkti daugiausia {{stock}} prekių su nuolaida",
       "buy_limit3": "Galite tik pirkti šios prekės {{stock}} vnt. su nuolaidomis"
+    },
+    "error": {
+      "default": "Nepavyko įkelti išteklių",
+      "noshipping": "Nėra pasirinktinio krovos plano",
+      "order": "Nepavyko pateikti užsakymo užklausos",
+      "renew": "Nepavyko atnaujinti duomenų"
     },
     "general": {
       "continue_as_a_guest": "Tęskite kaip svečias",
@@ -102,7 +98,6 @@
       "none_existent": "Prekė neegzistuoja",
       "view_cart": "Peržiūrėti vežimėlį"
     },
-    "lack_multilingualism": "* Šio pareiškimo įkelti nepavyko. Susisiekite su klientų aptarnavimo tarnyba, kad paaiškintumėte situaciją*",
     "next_step": {
       "calculated_taxes_fees": "Mokesčiai ir siuntimas apskaičiuotas galutiniam pirkimui"
     },
@@ -432,9 +427,9 @@
       "send_success": "Dėkoju, kad kreipiamės į mus ir atsakysime jums kuo skubiau."
     },
     "footer": {
+      "copyright": "© {{year}} {{storeName}}",
       "subscribe_format_error": "El. pašto adreso formato klaida",
-      "subscribe_success": "Prenumeruoti sėkmę",
-      "copyright": "© {{year}} {{storeName}}"
+      "subscribe_success": "Prenumeruoti sėkmę"
     },
     "general": {
       "accept": "Priimti",
@@ -575,6 +570,7 @@
       "leave_us_message": "Prašome įvesti savo pranešimą",
       "leave_us_message_get_back": "Prašome palikti mums pranešimą ir kuo skubiau pateiksime atsakymą",
       "link_preview_does_not_support": "Nuorodos peržiūros operacija nepalaikoma",
+      "load_more": "Rodyti daugiau",
       "maximum_length_of_message": "Maksimalus jūsų pranešimų ilgis turi būti ne daugiau nei 1500 žodžių",
       "message": "Jūsų pranešimas",
       "more_payment_options": "daugiau mokėjimo parinkčių",
@@ -702,6 +698,9 @@
     }
   },
   "trade": {
+    "order_summary": {
+      "rounding": "Apvalinimas"
+    },
     "payments-name": {
       "COD": "Apmokėti grynais pristačius",
       "Paypal": "Paypal",
@@ -716,9 +715,21 @@
     "contact": {
       "discounts_stack_not": "Nuolaida taikoma šiam užsakymui. Negalite pridėti kitos nuolaidos"
     },
+    "couponCode": {
+      "freeShipping": {
+        "existCode": "Dublikuoti nemokamo siuntimo nuolaidos kodus"
+      }
+    },
     "discount": {
+      "code": {
+        "country_not_support": "Mokėjimas Nemokamo siuntimo kupono kodas - šalies skiriasi",
+        "logistics-fee-over-limit": "Nemokamo siuntimo kupono kodas - siuntimo išlaidos viršija ribą"
+      },
       "code_error": "Nuolaidos kodas įvestas neteisingai",
       "code_item_unmatched": "{{discountCode}} įvestas teisingai, bet prekių kaina ar kiekis neatitinka reikalavimų",
+      "code_overdue": "Kupono kodas nebegalioja",
+      "code_user_exceedLimit": "Vartotojas naudoja veiklą daugiau kartų nei riba",
+      "code_user_notSupport": "Vartotojas negali naudoti veiklos",
       "coupon_code": "Kupono kodas",
       "coupon_invalid_for_the_shipping_method": "{{discountCode}} kuponas galioja siuntimo būdui",
       "discount_codes_cannot_stack": "Jau yra pasirinktas renginys produktui, kurio negalima naudoti su kitais pasirenkamais renginiais.",
@@ -742,6 +753,7 @@
       "removed": "NEGALIOJANTIS",
       "sold_out": "Išparduota"
     },
+    "lack_multilingualism": "* Šio pareiškimo įkelti nepavyko. Susisiekite su klientų aptarnavimo tarnyba, kad paaiškintumėte situaciją*",
     "notices": {
       "insufficient_product_inventory": "Nepakankamas prekių inventorius",
       "network": "Tinklo klaida",
@@ -766,6 +778,11 @@
     }
   },
   "unvisiable": {
+    "applepay": {
+      "cancel": "Atšaukti",
+      "enquire": "Tęsti užsakymo teikimą su „Apple Pay“?",
+      "paywith": "Mokėti"
+    },
     "customer": {
       "error_message_1": "Užsiregistruokite, kad gaučiau el. laiškus, kad gaučiau naujienas, prieigą prie išskirtinių pasiūlymų ir dar daugiau.",
       "error_message_1001": "Slaptažodžio klaida",

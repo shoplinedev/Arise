@@ -28,6 +28,12 @@ input{
 .locale-currency.is_dropdown button span{
   color:currentColor;
 }
+.locale-currency.is_dropdown button .dropdown__icon--arrow{
+  transition:transform .2s;
+}
+.locale-currency.is_dropdown button.open-animation .dropdown__icon--arrow{
+  transform:rotate(-180deg);
+}
 .locale-currency.is_dropdown .dropdown__list{
   background-color:rgba(var(--color-page-background));
   bottom:auto;
