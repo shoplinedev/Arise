@@ -110,7 +110,6 @@
  'vendors/scroll-lock.min.js'
  'vendors/@yy_sl-mc.min.js'
  'vendors/querystring.min.js'
- 'vendors/tinycolor2.min.js'
  'theme-shared/utils/sectionsLoad/index.js'
  'theme-shared/utils/event-bus.js'
  'theme-shared/utils/parsePathToArray.js'
@@ -160,6 +159,9 @@
  'theme-shared/components/smart-payment/constants.js'
  'theme-shared/components/smart-payment/utils.js'
  'theme-shared/components/smart-payment/services.js'
+ 'theme-shared/components/smart-payment/reporter/constants.js'
+ 'theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'
+ 'theme-shared/components/smart-payment/reporter/ThirdPartReport.js'
  'theme-shared/components/smart-payment/index.js'
  'theme-shared/components/payment-button/utils.js'
  'theme-shared/components/payment-button/express_checkout.js'
@@ -260,23 +262,6 @@
  'theme-shared/report/stage/const.js'
  'theme-shared/report/product/product-preview.js'
  'product/utils/nullishCoalescingOperator.js'
- 'theme-shared/report/hiido/index.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/helpers/drawer.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/helpers/effectFc.js'
- 'theme-shared/components/hbs/shared/utils/main.js'
- 'theme-shared/components/hbs/shared/utils/helper.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/helpers/index.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-info.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/get-html.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/discount-code/index.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/get-info.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/helpers/promotionTag.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/get-html.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-banner/index.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/get-sku-attribute-names.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/add-to-cart-report.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/auto-coupon/auto-coupon-add-to-cart/index.js'
- 'theme-shared/biz-com/sales/discount-specified-sku/index.js'
  'product/detail/js/product-preview.js'
  'product/detail/js/csrSku.js'
  'product/detail/main.js' 
@@ -377,7 +362,7 @@
                     <div id="bundle-add_to_cart"></div>
 
                     {{!-- 批量加购 --}}
-                    <div id="auto-coupon-add-to-cart-slot"></div>
+                    <div class="auto-coupon-add-to-cart-plugin"></div>
                     {{ snippet 'product/detail/payment-security' displayPosition='PRODUCT_DETAIL' }}
                   </div>
                   {{/if}}

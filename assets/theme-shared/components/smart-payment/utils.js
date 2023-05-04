@@ -338,6 +338,42 @@ window.SLM['theme-shared/components/smart-payment/utils.js'] = window.SLM['theme
 
   _exports.formatPayChannelData = formatPayChannelData;
 
+  const formatShippingLabel = (payChannelData, {
+    expressCheckoutChannelInfo
+  }) => {
+    if (expressCheckoutChannelInfo.channelCode === CHANNEL_CODE.SLpayments) {
+      const getShippingLabel = params => {
+        if (!params) return;
+        const {
+          defaultSelectedOptionId,
+          shippingOptions
+        } = params;
+
+        if (defaultSelectedOptionId && Array.isArray(shippingOptions)) {
+          const option = shippingOptions.find(item => item.id === defaultSelectedOptionId);
+
+          if (option) {
+            return option.label;
+          }
+        }
+      };
+
+      return getShippingLabel(payChannelData.newShippingOptionParameters || payChannelData.shippingOptionParameters);
+    }
+
+    if (expressCheckoutChannelInfo.channelCode === CHANNEL_CODE.StripeOther) {
+      if (Array.isArray(payChannelData.shippingOptions)) {
+        const option = payChannelData.shippingOptions.find(item => item.selected);
+
+        if (option) {
+          return option.label;
+        }
+      }
+    }
+  };
+
+  _exports.formatShippingLabel = formatShippingLabel;
+
   const getPageI18nText = (page, type) => {
     if (page === PageType.Checkout) {
       return t(I18N_KEY_MAP.checkout[type]) || '';

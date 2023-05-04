@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Vul de wachtwoord opnieuw in",
       "sep": "Sep",
       "september": "September",
-      "set_password": "Stel een wachtwoord in van 6-18 cijfers",
+      "set_password": "Het wachtwoord moet 6-18 tekens lang zijn, bestaande uit cijfers, hoofdletters en kleine letters",
       "sign__out": "Uitloggen",
       "sign_in": "Inloggen",
       "sign_up": "Registreren",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Recent bekeken producten"
     }
   },
+  "reduction_code": {
+    "giftcard": "Cadeaubonnen"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Geldig tot: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Beperkte tijd promotie",
       "flash_sale_tip": "Aankooplimiet: {{count}} artikelen",
       "hot_sale": "Hete verkoop",
+      "product_tabs_benefit_amount_locked": "krijg {{benefitAmount}} korting",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} korting is vrijgespeeld",
       "product_tabs_benefit_discount_locked": "krijg {{offPercent}}% korting",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% korting is vrijgespeeld",
       "product_tabs_benefit_free_locked": "gratis aanbod",
       "product_tabs_benefit_free_unlocked": "gratis aanbod is vrijgespeeld",
       "product_tabs_benefit_unlocked_tip": "U kunt nu genieten van productkorting",
+      "product_tabs_code_benefit_amount_unlocked": "Krijg {{benefitCount}} bij {{benefitAmount}} KORTING",
       "product_tabs_code_benefit_discount_unlocked": "Krijg {{benefitCount}} bij {{offPercent}}% KORTING",
       "product_tabs_code_benefit_free_unlocked": "Krijg {{benefitCount}} GRATIS",
       "product_tabs_threshold": "koop {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Totaal",
       "total_sum": "Totaal"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Deze kortingscode {{discountCode}} is ongeldig voor het verkoopkanaal"
+    },
     "policy": {
       "refund_policy": "Teruggavebeleid"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Service fout",
       "error_message_5": "Service fout",
       "error_message_6": "Service fout",
-      "error_message_7": "Stel een wachtwoord in van 6-18 cijfers"
+      "error_message_7": "Het wachtwoord moet 6-18 tekens lang zijn, bestaande uit cijfers, hoofdletters en kleine letters"
     },
     "editorSwitchCountryTip": "Het wisselen van land wordt momenteel niet ondersteund in de editor."
   }

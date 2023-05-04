@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Por favor, introduza novamente uma palavra-passe",
       "sep": "Setembro",
       "september": "Setembro",
-      "set_password": "Por favor defina uma palavra-passe de 6-18 dígitos",
+      "set_password": "A senha deve ter de 6 a 18 caracteres, consistindo de números, letras maiúsculas e minúsculas",
       "sign__out": "Terminar sessão",
       "sign_in": "Login",
       "sign_up": "Registar",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Itens vistos recentemente"
     }
   },
+  "reduction_code": {
+    "giftcard": "Cartão presente"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Válido até: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH SALE",
       "flash_sale_tip": "Limite de compra: {{count}} artigo",
       "hot_sale": "Hot sale!",
+      "product_tabs_benefit_amount_locked": "Redução grátis {{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} de redução grátis desbloqueado!",
       "product_tabs_benefit_discount_locked": "Redução grátis {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% de redução grátis desbloqueado!",
       "product_tabs_benefit_free_locked": "item grátis",
       "product_tabs_benefit_free_unlocked": "Item gratuito desbloqueado!",
       "product_tabs_benefit_unlocked_tip": "Pode agora desfrutar de descontos em itens",
+      "product_tabs_code_benefit_amount_unlocked": "Compre {{benefitCount}} pcs com {{benefitAmount}} de desconto",
       "product_tabs_code_benefit_discount_unlocked": "Compre {{benefitCount}} pcs com {{offPercent}}% de desconto",
       "product_tabs_code_benefit_free_unlocked": "Ganhe {{benefitCount}} pcs gratuitamente",
       "product_tabs_threshold": "Comprar {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Total",
       "total_sum": "Total"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Este código de desconto {{discountCode}} é inválido para o canal de vendas"
+    },
     "policy": {
       "refund_policy": "Política de reembolso"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Erro de serviço",
       "error_message_5": "Erro de serviço",
       "error_message_6": "Erro de serviço",
-      "error_message_7": "Por favor defina uma palavra-passe de 6-18 dígitos"
+      "error_message_7": "A senha deve ter de 6 a 18 caracteres, consistindo de números, letras maiúsculas e minúsculas"
     },
     "editorSwitchCountryTip": "A mudança de país não é suportada pelo editor no momento"
   }

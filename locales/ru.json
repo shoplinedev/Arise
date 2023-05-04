@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Пожалуйста, введите пароль еще раз",
       "sep": "Сен",
       "september": "Сентябрь",
-      "set_password": "Пожалуйста, установите пароль 6-18 битов",
+      "set_password": "Пароль должен состоять из 6-18 символов, состоящих из цифр, прописных и строчных букв.",
       "sign__out": "Выход из логина",
       "sign_in": "Логин",
       "sign_up": "Регистрация",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Недавно просмотренные продукты"
     }
   },
+  "reduction_code": {
+    "giftcard": "Подарочная карта"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Срок действия до: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Флэш-распродажа",
       "flash_sale_tip": "Количество ограничения покупки: {{count}} товаров",
       "hot_sale": "В горячей продаже",
+      "product_tabs_benefit_amount_locked": "Облегчение {{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "Облегчение {{benefitAmount}} разблокировано!",
       "product_tabs_benefit_discount_locked": "Облегчение {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "Облегчение {{offPercent}}% разблокировано!",
       "product_tabs_benefit_free_locked": "Бесплатный товар",
       "product_tabs_benefit_free_unlocked": "Бесплатный товар разблокирован!",
       "product_tabs_benefit_unlocked_tip": "Теперь вы можете пользоваться скидками на товары",
+      "product_tabs_code_benefit_amount_unlocked": "Купите {{benefitCount}} штук со скидкой {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Купите {{benefitCount}} штук со скидкой {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Получите {{benefitCount}} штук бесплатно",
       "product_tabs_threshold": "Купите {т}",
@@ -769,6 +775,9 @@
       "total": "Итог",
       "total_sum": "Итог"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Данный код скидки {{discountCode}} не действителен для данного канала продажи"
+    },
     "policy": {
       "refund_policy": "Политика возврата"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Аномальный сервис",
       "error_message_5": "Аномальный сервис",
       "error_message_6": "Аномальный сервис",
-      "error_message_7": "Пожалуйста, установите пароль 6-18 битов"
+      "error_message_7": "Пароль должен состоять из 6-18 символов, состоящих из цифр, прописных и строчных букв."
     },
     "editorSwitchCountryTip": "В редакторе не поддерживается переключение стран"
   }

@@ -329,7 +329,7 @@
       "send_verification_code_hint": "パスワードを再入力してください",
       "sep": "9月",
       "september": "9月",
-      "set_password": "6 文字以上 18 文字以下のパスワードを設定してください。",
+      "set_password": "パスワードは、数字、大文字、小文字で構成される 6 ～ 18 文字である必要があります",
       "sign__out": "サインアウト",
       "sign_in": "サインイン",
       "sign_up": "サインアップ",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "最近チェックした商品"
     }
   },
+  "reduction_code": {
+    "giftcard": "ギフトカード"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "有効期限は{{endTime}}までです",
@@ -664,11 +667,14 @@
       "flash_sale_text": "タイムセール",
       "flash_sale_tip": "購入制限: {{count}} 点の商品",
       "hot_sale": "好評発売中",
+      "product_tabs_benefit_amount_locked": "{{benefitAmount}} OFF",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} OFFのロックが解除されました！",
       "product_tabs_benefit_discount_locked": "{{offPercent}}％ OFF",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}％ OFFのロックが解除されました！",
       "product_tabs_benefit_free_locked": "無料商品",
       "product_tabs_benefit_free_unlocked": "無料商品のロックが解除されました！",
       "product_tabs_benefit_unlocked_tip": "商品割引が受けられることになりました",
+      "product_tabs_code_benefit_amount_unlocked": "{{benefitAmount}}割引で{{benefitCount}}点商品を購入します",
       "product_tabs_code_benefit_discount_unlocked": "{{offPercent}}％割引で{{benefitCount}}点商品を購入します",
       "product_tabs_code_benefit_free_unlocked": "無料で{{benefitCount}}点商品を取得します",
       "product_tabs_threshold": "{{threshold}} を購入する",
@@ -769,6 +775,9 @@
       "total": "合計",
       "total_sum": "合計"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "このクーポンコード {{discountCode}} は、この販売チャネルに適用されていません"
+    },
     "policy": {
       "refund_policy": "代金返却方針"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "サーバーエラー",
       "error_message_5": "サーバーエラー",
       "error_message_6": "サーバーエラー",
-      "error_message_7": "6 文字以上 18 文字以下のパスワードを設定してください。"
+      "error_message_7": "パスワードは、数字、大文字、小文字で構成される 6 ～ 18 文字である必要があります"
     },
     "editorSwitchCountryTip": "エディタで国の切り替えがサポートされていません"
   }

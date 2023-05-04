@@ -2375,6 +2375,15 @@
         "product_show_swiper_arrow": {
           "label": "Menampilkan panah slide"
         },
+        "thumbnail_position": {
+          "label": "Posisi thumbnail",
+          "options__0": {
+            "label": "di sebelah gambar produk"
+          },
+          "options__1": {
+            "label": "bawah gambar produk"
+          }
+        },
         "video_autoplay": {
           "info": "Setelah fungsi ini diaktifkan, video dibisukan secara default. Jika video YouTube diaktifkan, tidak ada suara yang dapat diputar",
           "label": "Putar otomatis video"
@@ -3191,6 +3200,7 @@
       "name": "Troli",
       "settings": {
         "cart_open_type": {
+          "info": "Produk yang dikonfigurasi plug-in seperti POD tidak dapat ditampilkan di troli mini",
           "label": "Cara tambah beli",
           "options__0": {
             "label": "Troli mini"

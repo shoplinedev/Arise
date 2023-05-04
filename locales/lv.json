@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Lūdzu, vēlreiz ievadiet paroli",
       "sep": "sept.",
       "september": "septembris",
-      "set_password": "Lūdzu, definējiet paroli ar vismaz 6 rakstzīmju garumu un maksimālo 18 rakstzīmju garumu.",
+      "set_password": "Parolei jābūt 6-18 rakstzīmēm, kas sastāv no cipariem, lielajiem un mazajiem burtiem",
       "sign__out": "Izrakstīties",
       "sign_in": "Pierakstieties",
       "sign_up": "PIERAKSTĪŠANĀS",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Jaunākie produkti, ar kuriem konsultējās"
     }
   },
+  "reduction_code": {
+    "giftcard": "Dāvanu kartes"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Derīgs līdz: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH PĀRDOŠANA",
       "flash_sale_tip": "Pirkums ierobežot: {{count}} posteņi(em)",
       "hot_sale": "Lieli pārdošanas apjomi!",
+      "product_tabs_benefit_amount_locked": "Saņemt {{benefitAmount}} atlaidi",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} atlaidi atbloķēta!",
       "product_tabs_benefit_discount_locked": "Saņemt {{offPercent}}% atlaidi",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% atlaidi atbloķēta!",
       "product_tabs_benefit_free_locked": "Bezmaksas piedāvājums",
       "product_tabs_benefit_free_unlocked": "Bezmaksas piedāvājums ir atbloķēts!",
       "product_tabs_benefit_unlocked_tip": "Jūs varat baudīt atlaidi produktam",
+      "product_tabs_code_benefit_amount_unlocked": "Pērciet {{benefitCount}} gabalus ar atlaidi {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Pērciet {{benefitCount}} gabalus ar atlaidi {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Iegūstiet {{benefitCount}} bezmaksas gabalus",
       "product_tabs_threshold": "Pirkums {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Kopsumma",
       "total_sum": "Kopsumma"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Šis atlaides kods {{discountCode}} nav derīgs pārdošanas kanālam"
+    },
     "policy": {
       "refund_policy": "Atmaksa politika"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Pakalpojumu izņēmumi",
       "error_message_5": "Pakalpojumu izņēmumi",
       "error_message_6": "Pakalpojumu izņēmumi",
-      "error_message_7": "Lūdzu, definējiet paroli ar vismaz 6 rakstzīmju garumu un maksimālo 18 rakstzīmju garumu."
+      "error_message_7": "Parolei jābūt 6-18 rakstzīmēm, kas sastāv no cipariem, lielajiem un mazajiem burtiem"
     },
     "editorSwitchCountryTip": "Valstu pārslēgšana šobrīd redaktorā nav atbalstīta"
   }

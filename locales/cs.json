@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Zadejte heslo znovu",
       "sep": "Zář",
       "september": "Září",
-      "set_password": "Nastavte si heslo s minimální délkou 6 znaků a maximální délkou 18 znaků",
+      "set_password": "Heslo musí mít 6–18 znaků složených z číslic, velkých a malých písmen",
       "sign__out": "Odhlásit Se",
       "sign_in": "PŘIHLÁSIT",
       "sign_up": "ZAREGISTROVAT",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Nedávno Prohlížené Výrobky"
     }
   },
+  "reduction_code": {
+    "giftcard": "Dárkové Poukazy"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Platí do: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "BLESKOVÝ VÝPRODEJ",
       "flash_sale_tip": "Nákupní limit: {{count}} položka(y)",
       "hot_sale": "Žhavá sleva!",
+      "product_tabs_benefit_amount_locked": "Získejte {{benefitAmount}} slevy",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} slevy je odemčeno！",
       "product_tabs_benefit_discount_locked": "Získejte {{offPercent}}% slevy",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% slevy je odemčeno！",
       "product_tabs_benefit_free_locked": "Nabídka zdarma",
       "product_tabs_benefit_free_unlocked": "Nabídka zdarma je odemčena！",
       "product_tabs_benefit_unlocked_tip": "Nyní, užijte si produktovou slevu",
+      "product_tabs_code_benefit_amount_unlocked": "Koupit {{benefitCount}} kusů se slevou {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Koupit {{benefitCount}} kusů se slevou {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Získejte {{benefitCount}} kusů zdarma",
       "product_tabs_threshold": "Kupte si {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Celkový",
       "total_sum": "Celkový"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Tento slevový kód {{discountCode}} je pro prodejní kanál neplatný"
+    },
     "policy": {
       "refund_policy": "Zásady pro vrácení peněz"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Výjimka služby",
       "error_message_5": "Výjimka služby",
       "error_message_6": "Výjimka služby",
-      "error_message_7": "Nastavte si heslo s minimální délkou 6 znaků a maximální délkou 18 znaků"
+      "error_message_7": "Heslo musí mít 6–18 znaků složených z číslic, velkých a malých písmen"
     },
     "editorSwitchCountryTip": "Editor nepodporuje přepínání zemí"
   }

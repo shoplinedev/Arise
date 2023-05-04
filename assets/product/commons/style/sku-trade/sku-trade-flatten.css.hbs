@@ -32,25 +32,40 @@ input{
 .color-scheme-1 .product-sku-trade-flatten .spec-box .attr-box .attr-value:after{
   box-shadow:0 0 0 var(--sku-selector-border-thickness) rgba(var(--color-scheme-1-text), var(--sku-selector-border-opacity)), 0 0 0 var(--sku-selector-border-thickness) var(--btn-border-background-color);
 }
-
-.color-scheme-1 .product-sku-trade-flatten .spec-box .attr-box .attr-value:hover:after,.product-sku-trade-flatten .spec-box .attr-box .attr-value.active:after{
+.product-sku-trade-flatten .spec-box .attr-box .attr-value.active:after{
   box-shadow:0 0 0 calc(var(--sku-selector-border-thickness) + 1px) rgba(var(--color-scheme-1-text), 100%), 0 0 0 calc(var(--sku-selector-border-thickness) + 1px) var(--btn-border-background-color);
+}
+
+@media (min-width:750px){
+  .color-scheme-1 .product-sku-trade-flatten .spec-box .attr-box .attr-value:hover:after{
+    box-shadow:0 0 0 calc(var(--sku-selector-border-thickness) + 1px) rgba(var(--color-scheme-1-text), 100%), 0 0 0 calc(var(--sku-selector-border-thickness) + 1px) var(--btn-border-background-color);
+  }
 }
 
 .color-scheme-2 .product-sku-trade-flatten .spec-box .attr-box .attr-value:after{
   box-shadow:0 0 0 var(--sku-selector-border-thickness) rgba(var(--color-scheme-2-text), var(--sku-selector-border-opacity)), 0 0 0 var(--sku-selector-border-thickness) var(--btn-border-background-color);
 }
-
-.color-scheme-2 .product-sku-trade-flatten .spec-box .attr-box .attr-value:hover:after,.product-sku-trade-flatten .spec-box .attr-box .attr-value.active:after{
+.product-sku-trade-flatten .spec-box .attr-box .attr-value.active:after{
   box-shadow:0 0 0 calc(var(--sku-selector-border-thickness) + 1px) rgba(var(--color-scheme-2-text), 100%), 0 0 0 calc(var(--sku-selector-border-thickness) + 1px) var(--btn-border-background-color);
+}
+
+@media (min-width:750px){
+  .color-scheme-2 .product-sku-trade-flatten .spec-box .attr-box .attr-value:hover:after{
+    box-shadow:0 0 0 calc(var(--sku-selector-border-thickness) + 1px) rgba(var(--color-scheme-2-text), 100%), 0 0 0 calc(var(--sku-selector-border-thickness) + 1px) var(--btn-border-background-color);
+  }
 }
 
 .color-scheme-3 .product-sku-trade-flatten .spec-box .attr-box .attr-value:after{
   box-shadow:0 0 0 var(--sku-selector-border-thickness) rgba(var(--color-scheme-3-text), var(--sku-selector-border-opacity)), 0 0 0 var(--sku-selector-border-thickness) var(--btn-border-background-color);
 }
-
-.color-scheme-3 .product-sku-trade-flatten .spec-box .attr-box .attr-value:hover:after,.product-sku-trade-flatten .spec-box .attr-box .attr-value.active:after{
+.product-sku-trade-flatten .spec-box .attr-box .attr-value.active:after{
   box-shadow:0 0 0 calc(var(--sku-selector-border-thickness) + 1px) rgba(var(--color-scheme-3-text), 100%), 0 0 0 calc(var(--sku-selector-border-thickness) + 1px) var(--btn-border-background-color);
+}
+
+@media (min-width:750px){
+  .color-scheme-3 .product-sku-trade-flatten .spec-box .attr-box .attr-value:hover:after{
+    box-shadow:0 0 0 calc(var(--sku-selector-border-thickness) + 1px) rgba(var(--color-scheme-3-text), 100%), 0 0 0 calc(var(--sku-selector-border-thickness) + 1px) var(--btn-border-background-color);
+  }
 }
 
 .product-sku-trade-flatten .spec-box .attr-box .attr-value{
@@ -81,9 +96,17 @@ input{
   transition:box-shadow .1s ease;
   z-index:1;
 }
-
-.product-sku-trade-flatten .spec-box .attr-box .attr-value.active:after,.product-sku-trade-flatten .spec-box .attr-box .attr-value:hover:after{
+.product-sku-trade-flatten .spec-box .attr-box .attr-value.active:after{
   box-shadow:0 0 0 calc(var(--sku-selector-border-thickness) + 1px) rgba(var(--color-text), 100%), 0 0 0 calc(var(--sku-selector-border-thickness) + 1px) var(--btn-border-background-color);
+}
+
+@media (min-width:750px){
+  .product-sku-trade-flatten .spec-box .attr-box .attr-value:hover:after{
+    box-shadow:0 0 0 calc(var(--sku-selector-border-thickness) + 1px) rgba(var(--color-text), 100%), 0 0 0 calc(var(--sku-selector-border-thickness) + 1px) var(--btn-border-background-color);
+  }
+  .product-sku-trade-flatten .spec-box .attr-box .attr-value:not(.active):hover:after{
+    opacity:.6;
+  }
 }
 .product-sku-trade-flatten .spec-box .attr-box .attr-value .value-text{
   word-break:break-word;

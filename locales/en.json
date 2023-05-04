@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Please enter the password again",
       "sep": "Sep",
       "september": "September",
-      "set_password": "Please set a password with a minimum length of 6 characters and a maximum length of 18 characters.",
+      "set_password": "Password must be 6-18 characters consisting of numbers, uppercase and lowercase letters",
       "sign__out": "Sign Out",
       "sign_in": "Sign In",
       "sign_up": "Register",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Recently Viewed Products"
     }
   },
+  "reduction_code": {
+    "giftcard": "Gift Cards"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "until: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH SALE",
       "flash_sale_tip": "Purchase limit: {{count}} items",
       "hot_sale": "Best selling",
+      "product_tabs_benefit_amount_locked": "get {{benefitAmount}} off",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} off is unlocked！",
       "product_tabs_benefit_discount_locked": "get {{offPercent}}% off",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% off is unlocked！",
       "product_tabs_benefit_free_locked": "free offer",
       "product_tabs_benefit_free_unlocked": "free offer is unlocked！",
       "product_tabs_benefit_unlocked_tip": "You can now enjoy product discount",
+      "product_tabs_code_benefit_amount_unlocked": "Get {{benefitCount}} at {{benefitAmount}} OFF",
       "product_tabs_code_benefit_discount_unlocked": "Get {{benefitCount}} at {{offPercent}}% OFF",
       "product_tabs_code_benefit_free_unlocked": "Get {{benefitCount}} FREE",
       "product_tabs_threshold": "buy {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Total",
       "total_sum": "Total"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "This discount code {{discountCode}} is invalid for the sales channel"
+    },
     "policy": {
       "refund_policy": "Refund policy"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "The system is busy, please try again later",
       "error_message_5": "The system is busy, please try again later",
       "error_message_6": "The system is busy, please try again later",
-      "error_message_7": "Please set a password with a minimum length of 6 characters and a maximum length of 18 characters."
+      "error_message_7": "Password must be 6-18 characters consisting of numbers, uppercase and lowercase letters"
     },
     "editorSwitchCountryTip": "Unable to change the country in editor"
   }

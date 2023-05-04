@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Моля, въведете паролата отново",
       "sep": "сеп",
       "september": "септември",
-      "set_password": "Моля, задайте парола с дължина от минимум 6 знака и максимална дължина от 18 знака",
+      "set_password": "Паролата трябва да е от 6-18 знака, състоящи се от цифри, главни и малки букви",
       "sign__out": "Излизане",
       "sign_in": "ВПИСВАНЕ",
       "sign_up": "Регистриране",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Наскоро разгледане продукти"
     }
   },
+  "reduction_code": {
+    "giftcard": "Подаръчни карти"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Валидно до {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Светкавична продажба",
       "flash_sale_tip": "Ограничение на покупката: {{count}} елемента",
       "hot_sale": "Гореща разпродажба!",
+      "product_tabs_benefit_amount_locked": "Вземете {{benefitAmount}} отстъпка",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} отстъпка са отключени!",
       "product_tabs_benefit_discount_locked": "Вземете {{offPercent}}% отстъпка",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% отстъпка са отключени!",
       "product_tabs_benefit_free_locked": "Безплатен артикул",
       "product_tabs_benefit_free_unlocked": "Безплатния артикул е отключен!",
       "product_tabs_benefit_unlocked_tip": "Вече можете да се възползвате от намалението на продукта",
+      "product_tabs_code_benefit_amount_unlocked": "Купете {{benefitCount}} бройки с {{benefitAmount}} отстъпка",
       "product_tabs_code_benefit_discount_unlocked": "Купете {{benefitCount}} бройки с {{offPercent}}% отстъпка",
       "product_tabs_code_benefit_free_unlocked": "Вземете {{benefitCount}} бройки безплатно",
       "product_tabs_threshold": "Купете {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Общо",
       "total_sum": "Общо"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Този код за отстъпка {{discountCode}} е невалиден за канала за продажби"
+    },
     "policy": {
       "refund_policy": "Политика за възстановяване на суми"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Изключения при обслужване",
       "error_message_5": "Изключения при обслужване",
       "error_message_6": "Изключения при обслужване",
-      "error_message_7": "Моля, задайте парола с дължина от минимум 6 знака и максимална дължина от 18 знака"
+      "error_message_7": "Паролата трябва да е от 6-18 знака, състоящи се от цифри, главни и малки букви"
     },
     "editorSwitchCountryTip": "В редактора не се поддържа превключване на държави"
   }

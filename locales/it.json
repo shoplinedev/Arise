@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Inserisci nuovamente la password",
       "sep": "set",
       "september": "settembre",
-      "set_password": "Imposta una password di 6-18 cifre",
+      "set_password": "La password deve contenere da 6 a 18 caratteri composti da numeri, lettere maiuscole e minuscole",
       "sign__out": "Esci",
       "sign_in": "Accedi",
       "sign_up": "Iscriviti",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Prodotti visualizzati ultimamente"
     }
   },
+  "reduction_code": {
+    "giftcard": "Carta di regalo"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Valido fino al: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Offerta di lampo",
       "flash_sale_tip": "Limite di acquisto: {{count}} articoli",
       "hot_sale": "In vendita",
+      "product_tabs_benefit_amount_locked": "{{benefitAmount}} di sconto",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} di sconto sbloccato!",
       "product_tabs_benefit_discount_locked": "{{offPercent}}% di sconto",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% di sconto sbloccato!",
       "product_tabs_benefit_free_locked": "Articolo gratuito",
       "product_tabs_benefit_free_unlocked": "Articolo gratuito sbloccato!",
       "product_tabs_benefit_unlocked_tip": "Ora puoi goderti uno sconto sugli articoli",
+      "product_tabs_code_benefit_amount_unlocked": "Acquista {{benefitCount}} pezzi con uno sconto di {{benefitAmount}}.",
       "product_tabs_code_benefit_discount_unlocked": "Acquista {{benefitCount}} pezzi con uno sconto di {{offPercent}}%.",
       "product_tabs_code_benefit_free_unlocked": "Ottieni {{benefitCount}} pezzi gratis",
       "product_tabs_threshold": "Acquista {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Totale",
       "total_sum": "Totale"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Questo codice di sconto {{discountCode}} non è valido per questo canale di vendita"
+    },
     "policy": {
       "refund_policy": "Politica di rimborso"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Errore del servizio",
       "error_message_5": "Errore del servizio",
       "error_message_6": "Errore del servizio",
-      "error_message_7": "Imposta una password di 6-18 cifre"
+      "error_message_7": "La password deve contenere da 6 a 18 caratteri composti da numeri, lettere maiuscole e minuscole"
     },
     "editorSwitchCountryTip": "È impossibile cambiare il paese in quest'editor"
   }

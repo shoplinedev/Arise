@@ -4,7 +4,8 @@ window.SLM['theme-shared/components/smart-payment/constants.js'] = window.SLM['t
   const _exports = {};
   const CHANNEL_CODE = {
     Paypal: 'Paypal',
-    SLpayments: 'SLpayments'
+    SLpayments: 'SLpayments',
+    StripeOther: 'StripeOther'
   };
   _exports.CHANNEL_CODE = CHANNEL_CODE;
   const METHOD_CODE = {

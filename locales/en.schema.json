@@ -2375,6 +2375,15 @@
         "product_show_swiper_arrow": {
           "label": "Display sliding arrow"
         },
+        "thumbnail_position": {
+          "label": "Thumbnail position",
+          "options__0": {
+            "label": "Beside the product image"
+          },
+          "options__1": {
+            "label": "Below the product image"
+          }
+        },
         "video_autoplay": {
           "info": "Once enabled, video will be automatically muted, and YouTube videos cannot be played with sounds",
           "label": "Video autoplay"
@@ -3191,6 +3200,7 @@
       "name": "Cart",
       "settings": {
         "cart_open_type": {
+          "info": "Products configured by POD and other plugins cannot be displayed in mini shopping cart",
           "label": "Modes of adding products to the shopping cart",
           "options__0": {
             "label": "Mini shopping cart"

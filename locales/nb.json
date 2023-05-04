@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Vennligst skriv inn passordet på nytt",
       "sep": "sep.",
       "september": "september",
-      "set_password": "Angi et passord med en minimumslengde på 6 tegn og en maksimal lengde på 18 tegn",
+      "set_password": "Passord må bestå av 6-18 tegn bestående av tall, store og små bokstaver",
       "sign__out": "Logg Av",
       "sign_in": "LOGG INN",
       "sign_up": "MELDE SEG PÅ",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Nylig Viste Produkter"
     }
   },
+  "reduction_code": {
+    "giftcard": "Gavekort"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Den er gyldig til: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH-SALG",
       "flash_sale_tip": "Kjøpsgrense: {{count}} ting(er)",
       "hot_sale": "Hot salg!",
+      "product_tabs_benefit_amount_locked": "Get {{benefitAmount}} rabatt",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} rabatt låst opp!",
       "product_tabs_benefit_discount_locked": "Get {{offPercent}}% rabatt",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% rabatt låst opp!",
       "product_tabs_benefit_free_locked": "Gratis tilbud",
       "product_tabs_benefit_free_unlocked": "Gratis tilbudet er ulåst!",
       "product_tabs_benefit_unlocked_tip": "Du kan glede deg over rabatt på produktet",
+      "product_tabs_code_benefit_amount_unlocked": "Kjøp {{benefitCount}} stykker med rabatt {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Kjøp {{benefitCount}} stykker med rabatt {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Få {{benefitCount}} gratis stykker",
       "product_tabs_threshold": "Kjøp {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Totalt",
       "total_sum": "Totalt"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Denne rabattkoden {{discountCode}} er ugyldig for salgskanalen"
+    },
     "policy": {
       "refund_policy": "Retningslinjer for refusjon"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Service unntak",
       "error_message_5": "Service unntak",
       "error_message_6": "Service unntak",
-      "error_message_7": "Angi et passord med en minimumslengde på 6 tegn og en maksimal lengde på 18 tegn"
+      "error_message_7": "Passord må bestå av 6-18 tegn bestående av tall, store og små bokstaver"
     },
     "editorSwitchCountryTip": "Landsendring er ikke kompatibel med editoren"
   }

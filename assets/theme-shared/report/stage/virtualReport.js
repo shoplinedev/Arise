@@ -17,6 +17,7 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         header: '.__sl-custom-track-stage-header',
         btnUser: '.__sl-custom-track-stage-header-user',
         btnCart: '.__sl-custom-track-stage-header-cart',
+        btnSearch: '.__sl-custom-track-stage-header-search',
         announcementItem: '.__sl-custom-track-stage-header-announcementItem',
         newsletter: '.__sl-custom-track-stage-header-newsletter',
         btnNewsletter: '.__sl-custom-track-stage-header-newsletter-button',
@@ -55,6 +56,12 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         selector: selMap.header,
         moreInfo: {
           module_type: sectionTypeEnum.header
+        }
+      });
+      this.bindClick({
+        selector: selMap.btnSearch,
+        moreInfo: {
+          component: virtualComponentEnum.search
         }
       });
       this.bindClick({

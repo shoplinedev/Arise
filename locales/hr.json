@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Molimo unesite lozinku ponovo",
       "sep": "ruj",
       "september": "rujan",
-      "set_password": "Molimo postavite lozinku sa minimalnom dužinom od 6 znakova i sa maksimalnom dužinom od 18 znakova.",
+      "set_password": "Lozinka mora imati 6-18 znakova koji se sastoje od brojeva, velikih i malih slova",
       "sign__out": "Odjavi se",
       "sign_in": "PRIJAVITE SE",
       "sign_up": "UPIŠITE SE",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Nedavno Gledani Proizvodi"
     }
   },
+  "reduction_code": {
+    "giftcard": "Poklon kartice"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Važeće do: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH RASPRODAJA",
       "flash_sale_tip": "Ograničenje kupnje na: {{count}} stavke",
       "hot_sale": "Rasprodaja!",
+      "product_tabs_benefit_amount_locked": "Ostvarite {{benefitAmount}} popusta",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} popusta je otključano!",
       "product_tabs_benefit_discount_locked": "Ostvarite {{offPercent}}% popusta",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% popusta je otključano!",
       "product_tabs_benefit_free_locked": "Besplatna ponuda",
       "product_tabs_benefit_free_unlocked": "Besplatna ponuda je otključana!",
       "product_tabs_benefit_unlocked_tip": "Sada možete uživati u popustu na proizvod",
+      "product_tabs_code_benefit_amount_unlocked": "Kupite {{benefitCount}} komada uz {{benefitAmount}} popusta",
       "product_tabs_code_benefit_discount_unlocked": "Kupite {{benefitCount}} komada uz {{offPercent}}% popusta",
       "product_tabs_code_benefit_free_unlocked": "Dobijte {{benefitCount}} komada besplatno",
       "product_tabs_threshold": "Kupite {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Ukupno",
       "total_sum": "Ukupno"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Ovaj kod za popust {{discountCode}} nije valjan za prodajni kanal"
+    },
     "policy": {
       "refund_policy": "Politika povrata novca"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Iznimke usluga",
       "error_message_5": "Iznimke usluga",
       "error_message_6": "Iznimke usluga",
-      "error_message_7": "Molimo postavite lozinku sa minimalnom dužinom od 6 znakova i sa maksimalnom dužinom od 18 znakova."
+      "error_message_7": "Lozinka mora imati 6-18 znakova koji se sastoje od brojeva, velikih i malih slova"
     },
     "editorSwitchCountryTip": "Prebacivanje zemalja nije podržano u uređivaču"
   }

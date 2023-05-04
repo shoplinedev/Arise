@@ -12,13 +12,13 @@
   {{!-- 移动isMobile端展示1个，非移动端展示3个，用js控制 --}}
   <div class="sales__promotionTags-packUp">
     {{#each benefitConditions}}
-      {{#if @index "<" 3}}
+      {{#if @index "<" 1}}
 
         {{ snippet 'activity/promotion-tag' className="sales__promotion-tags-tag sales__promotion-tags-tag-hook" benefitCondition=this benefitType=../benefitType shopline_attributes=this.shopline_attributes }}
       {{/if}}
     {{/each}}
     {{!-- 商品详情页展示布局 --}}
-    {{#if benefitConditions.length '>=' 3}}
+    {{#if benefitConditions.length '>=' 2}}
       <div class="sales__promotionTags-switch">
         <i class="sales__promotionTags-switchIcon __sl-track_click" data-track-event_name="click_component" data-track-custom_component="view_more">
           {{snippet 'activity/arrow_down'}}

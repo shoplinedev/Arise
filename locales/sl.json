@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Ponovno vnesite geslo",
       "sep": "sep.",
       "september": "september",
-      "set_password": "Nastavite geslo z najmanjšo dolžino 6 znakov in največjo dolžino 18 znakov.",
+      "set_password": "Geslo mora vsebovati 6-18 znakov, sestavljenih iz številk, velikih in malih črk",
       "sign__out": "Odjava",
       "sign_in": "PRIJAVA",
       "sign_up": "PRIJAVITE SE",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Nedavno pregledani izdelki"
     }
   },
+  "reduction_code": {
+    "giftcard": "Darilne kartice"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Velja do: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "HITRA PRODAJA",
       "flash_sale_tip": "Omejitev nakupa: {{count}} predmetov",
       "hot_sale": "Vroča prodaja!",
+      "product_tabs_benefit_amount_locked": "Dobi {{benefitAmount}} popust",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} popust odklenjena!",
       "product_tabs_benefit_discount_locked": "Dobi {{offPercent}} % popust",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% popust odklenjena!",
       "product_tabs_benefit_free_locked": "Brezplačna ponudba",
       "product_tabs_benefit_free_unlocked": "Brezplačna ponudba je odklenjena!",
       "product_tabs_benefit_unlocked_tip": "Zdaj lahko uživate popust na izdelek",
+      "product_tabs_code_benefit_amount_unlocked": "Kupite {{benefitCount}} kosov z {{benefitAmount}} popustom",
       "product_tabs_code_benefit_discount_unlocked": "Kupite {{benefitCount}} kosov z {{offPercent}}% popustom",
       "product_tabs_code_benefit_free_unlocked": "Pridobite {{benefitCount}} kosov brezplačno",
       "product_tabs_threshold": "Nakup {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Skupaj",
       "total_sum": "Skupaj"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Ta koda popusta {{discountCode}} je neveljavna za prodajni kanal"
+    },
     "policy": {
       "refund_policy": "Pravilnik o vračilu denarja"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Izjeme pri storitvah",
       "error_message_5": "Izjeme pri storitvah",
       "error_message_6": "Izjeme pri storitvah",
-      "error_message_7": "Nastavite geslo z najmanjšo dolžino 6 znakov in največjo dolžino 18 znakov."
+      "error_message_7": "Geslo mora vsebovati 6-18 znakov, sestavljenih iz številk, velikih in malih črk"
     },
     "editorSwitchCountryTip": "Preklapljanje med državami v urejevalniku ni podprto"
   }

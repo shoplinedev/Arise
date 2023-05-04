@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Ange lösenord igen",
       "sep": "sep.",
       "september": "september",
-      "set_password": "Ta bort ett lösenord med en längd på minst 6 tecken och en maximal längd på 18 tecken",
+      "set_password": "Lösenordet måste vara 6-18 tecken bestående av siffror, versaler och gemener",
       "sign__out": "Logga Ut",
       "sign_in": "LOGGA IN",
       "sign_up": "SKRIVA PÅ",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Senaste Konsulterade Produkter"
     }
   },
+  "reduction_code": {
+    "giftcard": "Presentkort"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Gäller till: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH-FÖRSÄLJNING",
       "flash_sale_tip": "Köpgräns: {{count}} sak(er)",
       "hot_sale": "Stor försäljning!",
+      "product_tabs_benefit_amount_locked": "Få {{benefitAmount}} rabatt",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} rabatt olåst!",
       "product_tabs_benefit_discount_locked": "Få {{offPercent}}% rabatt",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% rabatt olåst!",
       "product_tabs_benefit_free_locked": "Gratis erbjudande",
       "product_tabs_benefit_free_unlocked": "Gratis erbjudandet är olåst!",
       "product_tabs_benefit_unlocked_tip": "Nu kan du få rabatt på produkten",
+      "product_tabs_code_benefit_amount_unlocked": "Köp {{benefitCount}} bitar med rabatt {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Köp {{benefitCount}} bitar med rabatt {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Få {{benefitCount}} gratis bitar",
       "product_tabs_threshold": "Köp {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Totalet",
       "total_sum": "Totalet"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Denna rabattkod {{discountCode}} är ogiltig för försäljningskanalen"
+    },
     "policy": {
       "refund_policy": "Återbetalningspolicy"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Service Undantag",
       "error_message_5": "Service Undantag",
       "error_message_6": "Service Undantag",
-      "error_message_7": "Ta bort ett lösenord med en längd på minst 6 tecken och en maximal längd på 18 tecken"
+      "error_message_7": "Lösenordet måste vara 6-18 tecken bestående av siffror, versaler och gemener"
     },
     "editorSwitchCountryTip": "Landsbyte är inte kompatibelt med redaktören"
   }

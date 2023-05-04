@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Introduce otra vez la contraseña",
       "sep": "Sep",
       "september": "Septiembre",
-      "set_password": "Por favor configura la contraseña de 6 a 18 caracteres",
+      "set_password": "La contraseña debe tener entre 6 y 18 caracteres que constan de números, letras mayúsculas y minúsculas",
       "sign__out": "Cerrar sesión",
       "sign_in": "Iniciar sesión",
       "sign_up": "Registrarse",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Artículos que has visto"
     }
   },
+  "reduction_code": {
+    "giftcard": "Tarjeta de regalo"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Válido hasta: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Promoción de límite de tiempo",
       "flash_sale_tip": "Límite: {{count}} artículos",
       "hot_sale": "A la venta",
+      "product_tabs_benefit_amount_locked": "Un ahorro de {{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "¡Un ahorro de {{benefitAmount}} desbloqueado!",
       "product_tabs_benefit_discount_locked": "Un ahorro de {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "¡Un ahorro de {{offPercent}}% desbloqueado!",
       "product_tabs_benefit_free_locked": "Artículo gratuito",
       "product_tabs_benefit_free_unlocked": "¡Artículo gratuito desbloqueado!",
       "product_tabs_benefit_unlocked_tip": "Ahora puede disfrutar de una oferta en los artículos",
+      "product_tabs_code_benefit_amount_unlocked": "Comprar {{benefitCount}} piezas con un descuento de {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Comprar {{benefitCount}} piezas con un descuento de {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Obtener {{benefitCount}} piezas gratis",
       "product_tabs_threshold": "Comprar {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Total",
       "total_sum": "Total"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Este código de descuento {{discountCode}} no es aplicable al canal de venta"
+    },
     "policy": {
       "refund_policy": "Politica de reembolso"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Error de servicio",
       "error_message_5": "Error de servicio",
       "error_message_6": "Error de servicio",
-      "error_message_7": "Por favor configura la contraseña de 6 a 18 caracteres"
+      "error_message_7": "La contraseña debe tener entre 6 y 18 caracteres que constan de números, letras mayúsculas y minúsculas"
     },
     "editorSwitchCountryTip": "Ahora no admite cambiar de país en el editor."
   }

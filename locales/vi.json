@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Vui lòng nhập lại mật khẩu",
       "sep": "Thg 9",
       "september": "Tháng Chín",
-      "set_password": "Vui lòng đặt mật khẩu có độ dài tối thiểu là 6 ký tự và độ dài tối đa là 18 ký tự",
+      "set_password": "Mật khẩu phải có 6-18 ký tự bao gồm số, chữ hoa và chữ thường",
       "sign__out": "Đăng xuất",
       "sign_in": "ĐĂNG NHẬP",
       "sign_up": "ĐĂNG KÝ",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Sản phẩm đã xem gần đây"
     }
   },
+  "reduction_code": {
+    "giftcard": "Thẻ quà tặng"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "có hiệu lực đến: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH SALE",
       "flash_sale_tip": "Giới hạn mua: {{count}} mặt hàng",
       "hot_sale": "Sản phẩm bán chạy",
+      "product_tabs_benefit_amount_locked": "Được giảm {{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "Đã mở khóa ưu đãi {{benefitAmount}}!",
       "product_tabs_benefit_discount_locked": "Được giảm {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "Đã mở khóa ưu đãi {{offPercent}}%!",
       "product_tabs_benefit_free_locked": "Ưu đãi miễn phí",
       "product_tabs_benefit_free_unlocked": "Đã mở khóa ưu đãi miễn phí!",
       "product_tabs_benefit_unlocked_tip": "Giờ bạn có thể mua sản phẩm với ưu đãi giảm giá",
+      "product_tabs_code_benefit_amount_unlocked": "Mua {{benefitCount}} phần với chiết khấu {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Mua {{benefitCount}} phần với chiết khấu {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Nhận {{benefitCount}} phần miễn phí",
       "product_tabs_threshold": "Mua {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Tổng cộng",
       "total_sum": "Tổng cộng"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Mã chiết khấu {{discountCode}} này không áp dụng cho kênh bán hàng lần này"
+    },
     "policy": {
       "refund_policy": "Chính sách hoàn tiền"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Ngoại lệ dịch vụ",
       "error_message_5": "Ngoại lệ dịch vụ",
       "error_message_6": "Ngoại lệ dịch vụ",
-      "error_message_7": "Vui lòng đặt mật khẩu có độ dài tối thiểu là 6 ký tự và độ dài tối đa là 18 ký tự"
+      "error_message_7": "Mật khẩu phải có 6-18 ký tự bao gồm số, chữ hoa và chữ thường"
     },
     "editorSwitchCountryTip": "Trình chỉnh sửa này không hỗ trợ chuyển đổi quốc gia"
   }

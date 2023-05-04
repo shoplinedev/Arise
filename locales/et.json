@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Sisesta parool uuesti",
       "sep": "sept",
       "september": "september",
-      "set_password": "Määra parool, mille pikkus on vähemalt 6 tähemärki ja kõige rohkem 18 tähemärki.",
+      "set_password": "Parool peab koosnema 6-18 tähemärgist, mis koosneb numbritest, suur- ja väiketähtedest",
       "sign__out": "Logi välja",
       "sign_in": "LOGI SISSE",
       "sign_up": "REGISTREERU",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Hiljuti vaadatud tooted"
     }
   },
+  "reduction_code": {
+    "giftcard": "Kinkekaardid"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Kehtib kuni: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "VÄLKMÜÜK",
       "flash_sale_tip": "Ost piirangud: {{count}} kaupade(te)",
       "hot_sale": "Kuum allahindlus!",
+      "product_tabs_benefit_amount_locked": "Hankige {{benefitAmount}} allahindlust",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} allahindlust lukustamata!",
       "product_tabs_benefit_discount_locked": "Hankige {{offPercent}}% allahindlust",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% allahindlust lukustamata!",
       "product_tabs_benefit_free_locked": "Tasuta pakkumine",
       "product_tabs_benefit_free_unlocked": "Tasuta pakkumine on lukustamata!",
       "product_tabs_benefit_unlocked_tip": "Saate nautida toote allahindlust",
+      "product_tabs_code_benefit_amount_unlocked": "Osta {{benefitCount}} tükid allahindlusega {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Osta {{benefitCount}} tükid allahindlusega {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Hankige {{benefitCount}} tasuta tükid",
       "product_tabs_threshold": "Osta {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Kokku",
       "total_sum": "Kokku"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "See allahindluskood {{discountCode}} on müügikanali jaoks kehtetu"
+    },
     "policy": {
       "refund_policy": "Tagasimaksete põhimõtted"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Teenuse erandid",
       "error_message_5": "Teenuse erandid",
       "error_message_6": "Teenuse erandid",
-      "error_message_7": "Määra parool, mille pikkus on vähemalt 6 tähemärki ja kõige rohkem 18 tähemärki."
+      "error_message_7": "Parool peab koosnema 6-18 tähemärgist, mis koosneb numbritest, suur- ja väiketähtedest"
     },
     "editorSwitchCountryTip": "Riigivahetust ei toetata hetkel redaktoris"
   }

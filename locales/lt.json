@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Prašome įvesti slaptažodį dar kartą",
       "sep": "rugs.",
       "september": "rugsėjis",
-      "set_password": "Prašome nustatyti slaptažodį minimaliai 6 simbolių ilgio ir maksimaliai 18 simbolių ilgio",
+      "set_password": "Slaptažodis turi būti sudarytas iš 6-18 simbolių, sudarytų iš skaičių, didžiųjų ir mažųjų raidžių",
       "sign__out": "Atsijungti",
       "sign_in": "PRISIJUNGTI",
       "sign_up": "REGISTRUOTIS",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Naujausiai peržiūrėtos prekės"
     }
   },
+  "reduction_code": {
+    "giftcard": "Dovanų kortelės"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Galioja iki {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "MOMENTINIS PARDAVIMAS",
       "flash_sale_tip": "Pirkinio riba: {{count}} prekių",
       "hot_sale": "Išpardavimas!",
+      "product_tabs_benefit_amount_locked": "Gaukite {{benefitAmount}} nuolaidą",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} nuolaida atrakinta!",
       "product_tabs_benefit_discount_locked": "Gaukite {{offPercent}}% nuolaidą",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% nuolaida atrakinta!",
       "product_tabs_benefit_free_locked": "Nemokama prekė",
       "product_tabs_benefit_free_unlocked": "Nemokama prekė atrakinta!",
       "product_tabs_benefit_unlocked_tip": "Dabar prekei galite mėgautis nuolaida",
+      "product_tabs_code_benefit_amount_unlocked": "Įsigykite {{benefitCount}} vnt. su {{benefitAmount}} nuolaida",
       "product_tabs_code_benefit_discount_unlocked": "Įsigykite {{benefitCount}} vnt. su {{offPercent}}% nuolaida",
       "product_tabs_code_benefit_free_unlocked": "Gaukite {{benefitCount}} vnt. nemokamai",
       "product_tabs_threshold": "Pirkite {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Bendroji suma",
       "total_sum": "Bendroji suma"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Šis nuolaidos kodas {{discountCode}} negalioja pardavimo kanalui"
+    },
     "policy": {
       "refund_policy": "Grąžinimo politika"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Paslaugos išimtys",
       "error_message_5": "Paslaugos išimtys",
       "error_message_6": "Paslaugos išimtys",
-      "error_message_7": "Prašome nustatyti slaptažodį minimaliai 6 simbolių ilgio ir maksimaliai 18 simbolių ilgio"
+      "error_message_7": "Slaptažodis turi būti sudarytas iš 6-18 simbolių, sudarytų iš skaičių, didžiųjų ir mažųjų raidžių"
     },
     "editorSwitchCountryTip": "Redagavimo priemonėje nepalaikomas šalių keitimas"
   }

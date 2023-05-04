@@ -2375,6 +2375,15 @@
         "product_show_swiper_arrow": {
           "label": "Hiển thị mũi tên trượt"
         },
+        "thumbnail_position": {
+          "label": "Thu nhỏ vị trí ảnh",
+          "options__0": {
+            "label": "Bên ạnh ảnh sản phẩm"
+          },
+          "options__1": {
+            "label": "Bên dưới ảnh sản phẩm"
+          }
+        },
         "video_autoplay": {
           "info": "Sau khi mở, video mặc định bị tắt tiếng, nếu là video Youtube thì không thể phát âm thanh",
           "label": "Tự động phát video"
@@ -3191,6 +3200,7 @@
       "name": "Giỏ hàng",
       "settings": {
         "cart_open_type": {
+          "info": "Không thể hiển thị các sản phẩm được cấu hình bởi các trình cắm như POD trong giỏ mua hàng mini",
           "label": "Cách thêm vào giỏ hàng",
           "options__0": {
             "label": "Giỏ hàng mini"

@@ -13,20 +13,27 @@
   {{assign 'header_logo_size_mobile' '200' }}
 {{/unless}}
 
-{{#if templateAlias '===' 'Home' }}
-  {{ assign 'url' (append request.uri.domain  request.uri.url) }}
-  <script type="application/ld+json">
+<script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "Organization",
       "name": "{{ storeInfo.name }}",
-      "url": "{{url}}",
       {{#if this.settings.logo.url}}
-        "logo": "{{this.settings.logo.url}}"
+        "logo": "{{this.settings.logo.url}}",
       {{/if }}
+      "sameAs": [
+      "{{ theme.settings.social_twitter_link }}",
+      "{{ theme.settings.social_facebook_link }}",
+      "{{ theme.settings.social_pinterest_link }}",
+      "{{ theme.settings.social_instagram_link }}",
+      "{{ theme.settings.social_tiktok_link }}",
+      "{{ theme.settings.social_linkedin_link }}",
+      "{{ theme.settings.social_snapchat_link }}",
+      "{{ theme.settings.social_youtube_link }}"
+    ],
+    "url": "{{ request.origin }}"
     }
-  </script>
-{{/if}}
+</script>
 
 {{#if has_logo}}
     {{#with this as |global|}}
@@ -86,7 +93,7 @@
                          {{{get 'responsiveAttr' (
                            image_responsive this.settings.logo.url
                            breakpoints=(append (multiply header_logo_size 1) ',' (multiply header_logo_size 2) ',' (multiply header_logo_size 3))
-                           pcSize=(append header_logo_size 'px') 
+                           pcSize=(append header_logo_size 'px')
                            mSize=null
                            useLazyLoad=false
                           )}}}

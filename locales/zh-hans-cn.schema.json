@@ -2375,6 +2375,15 @@
         "product_show_swiper_arrow": {
           "label": "展示滑动箭头"
         },
+        "thumbnail_position": {
+          "label": "缩略图位置",
+          "options__0": {
+            "label": "商品图旁边"
+          },
+          "options__1": {
+            "label": "商品图下方"
+          }
+        },
         "video_autoplay": {
           "info": "开启后视频默认静音，若为YouTube视频则无法播放声音",
           "label": "自动播放视频"
@@ -3191,6 +3200,7 @@
       "name": "购物车",
       "settings": {
         "cart_open_type": {
+          "info": "mini购物车中无法显示POD等插件配置过的商品",
           "label": "加购方式",
           "options__0": {
             "label": "mini购物车"

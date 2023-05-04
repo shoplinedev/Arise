@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Introduceți parola din nou",
       "sep": "Sept",
       "september": "Septembrie",
-      "set_password": "Setați o parolă cu o lungime minimă de 6 caractere și o lungime maximă de 18 de caractere",
+      "set_password": "Parola trebuie să aibă 6-18 caractere, compuse din cifre, litere mari și minuscule",
       "sign__out": "Deconectare",
       "sign_in": "AUTENTIFICARE",
       "sign_up": "ÎNSCRIERE",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Produse recent vizualizate"
     }
   },
+  "reduction_code": {
+    "giftcard": "Carduri cadou"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Valabil până la: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "VÂNZARE RAPIDĂ",
       "flash_sale_tip": "Limită de achiziție: {{count}} articole",
       "hot_sale": "Trend vânzare!",
+      "product_tabs_benefit_amount_locked": "Primește {{benefitAmount}} reducere",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} reducere disponibilă!",
       "product_tabs_benefit_discount_locked": "Primește {{offPercent}}% reducere",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% reducere disponibilă!",
       "product_tabs_benefit_free_locked": "Obiect gratis",
       "product_tabs_benefit_free_unlocked": "Obiectul gratis este deblocat!",
       "product_tabs_benefit_unlocked_tip": "Acum puteți obține o reducere la produs",
+      "product_tabs_code_benefit_amount_unlocked": "Cumpărați {{benefitCount}} bucăți la {{benefitAmount}} reducere",
       "product_tabs_code_benefit_discount_unlocked": "Cumpărați {{benefitCount}} bucăți la {{offPercent}}% reducere",
       "product_tabs_code_benefit_free_unlocked": "Luați {{benefitCount}} bucăți gratis",
       "product_tabs_threshold": "Cumpără {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Total",
       "total_sum": "Total"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Acest cod de reducere {{discountCode}} nu este valabil pentru canalul de vânzări"
+    },
     "policy": {
       "refund_policy": "Politică de rambursare"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Service pentru excepții",
       "error_message_5": "Service pentru excepții",
       "error_message_6": "Service pentru excepții",
-      "error_message_7": "Setați o parolă cu o lungime minimă de 6 caractere și o lungime maximă de 18 de caractere"
+      "error_message_7": "Parola trebuie să aibă 6-18 caractere, compuse din cifre, litere mari și minuscule"
     },
     "editorSwitchCountryTip": "Schimbarea țărilor nu are suport în editor"
   }

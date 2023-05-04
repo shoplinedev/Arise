@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Lütfen parolayı tekrar girin",
       "sep": "Eyl",
       "september": "Eylül",
-      "set_password": "Lütfen minimum 6 karakter, maksimum ise 18 karakter uzunluğunda bir parola belirleyin.",
+      "set_password": "Şifre, sayılardan, büyük ve küçük harflerden oluşan 6-18 karakter olmalıdır.",
       "sign__out": "Oturumu Kapat",
       "sign_in": "OTURUM AÇ",
       "sign_up": "ÜYE OL",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Son Görüntülenen Ürünler"
     }
   },
+  "reduction_code": {
+    "giftcard": "Hediye Kartları"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Son geçerlilik tarihi: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "SINIRLI SÜRELİ İNDİRİM",
       "flash_sale_tip": "Satın alma sınırı: {{count}} adet",
       "hot_sale": "Canlı satış!",
+      "product_tabs_benefit_amount_locked": "{{benefitAmount}} indirim alın",
+      "product_tabs_benefit_amount_unlocked": "{0} indirim kilidi açıldı!",
       "product_tabs_benefit_discount_locked": "%{{offPercent}} indirim alın",
       "product_tabs_benefit_discount_unlocked": "%{0} indirim kilidi açıldı!",
       "product_tabs_benefit_free_locked": "Ücretsiz teklif",
       "product_tabs_benefit_free_unlocked": "Ücretsiz teklif kilidi açıldı!",
       "product_tabs_benefit_unlocked_tip": "Şu anda ürün indiriminin keyfini çıkarabilirsiniz",
+      "product_tabs_code_benefit_amount_unlocked": "{{benefitAmount}} indirimle {{benefitCount}} parça alın",
       "product_tabs_code_benefit_discount_unlocked": "%{{offPercent}} indirimle {{benefitCount}} parça alın",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} parça ücretsiz alın",
       "product_tabs_threshold": "{{threshold}} satın alın",
@@ -769,6 +775,9 @@
       "total": "Toplam",
       "total_sum": "Toplam"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Bu indirim kodu {{discountCode}} satış kanalı için geçersizdir"
+    },
     "policy": {
       "refund_policy": "Geri ödeme politikası"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Servis istisnaları",
       "error_message_5": "Servis istisnaları",
       "error_message_6": "Servis istisnaları",
-      "error_message_7": "Lütfen minimum 6 karakter, maksimum ise 18 karakter uzunluğunda bir parola belirleyin."
+      "error_message_7": "Şifre, sayılardan, büyük ve küçük harflerden oluşan 6-18 karakter olmalıdır."
     },
     "editorSwitchCountryTip": "Ülke değiştirme özelliği editörde desteklenmemektedir"
   }

@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Syötä salasana uudelleen",
       "sep": "Syys",
       "september": "Syyskuu",
-      "set_password": "Syötä salasana, jonka vähimmäispituus on 6 merkkiä ja maksimipituus 18 merkkiä.",
+      "set_password": "Salasanan tulee olla 6-18 merkkiä, joka koostuu numeroista, isoista ja pienistä kirjaimista",
       "sign__out": "Kirjaudu ulos",
       "sign_in": "KIRJAUDU SISÄÄN",
       "sign_up": "KIRJAUDU",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Äskeittäin katsotut tuotteet"
     }
   },
+  "reduction_code": {
+    "giftcard": "Lahjakortit"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Voimassa: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH-MYYNTI",
       "flash_sale_tip": "Osto rajoitus: {{count}} asia(t)",
       "hot_sale": "Nyt myynnissä!",
+      "product_tabs_benefit_amount_locked": "Saat {{benefitAmount}}-alennuksen",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}}-alennus on avattu!",
       "product_tabs_benefit_discount_locked": "Saat {{offPercent}}%-alennuksen",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}%-alennus on avattu!",
       "product_tabs_benefit_free_locked": "Ilmainen tarjous",
       "product_tabs_benefit_free_unlocked": "Ilmainen tarjous on avattu!",
       "product_tabs_benefit_unlocked_tip": "Voit nyt nauttia tuotteen alennuksesta",
+      "product_tabs_code_benefit_amount_unlocked": "Hanki {{benefitCount}} {{benefitAmount}} POIS PÄÄLTÄ",
       "product_tabs_code_benefit_discount_unlocked": "Hanki {{benefitCount}} {{offPercent}}% POIS PÄÄLTÄ",
       "product_tabs_code_benefit_free_unlocked": "Hanki {{benefitCount}} ILMAISEKSI",
       "product_tabs_threshold": "Osta {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Yhteensä",
       "total_sum": "Yhteensä"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Tämä alennuskoodi {{discountCode}} ei kelpaa myyntikanavalle"
+    },
     "policy": {
       "refund_policy": "Palautusoikeus"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Palvelu Poikkeus",
       "error_message_5": "Palvelu Poikkeus",
       "error_message_6": "Palvelu Poikkeus",
-      "error_message_7": "Syötä salasana, jonka vähimmäispituus on 6 merkkiä ja maksimipituus 18 merkkiä."
+      "error_message_7": "Salasanan tulee olla 6-18 merkkiä, joka koostuu numeroista, isoista ja pienistä kirjaimista"
     },
     "editorSwitchCountryTip": "Toimittaja ei tue maiden vaihtoa"
   }

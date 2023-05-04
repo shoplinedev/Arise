@@ -329,7 +329,7 @@
       "send_verification_code_hint": "โปรดป้อนรหัสผ่านอีกครั้ง",
       "sep": "ก.ย.",
       "september": "กันยายน",
-      "set_password": "โปรดตั้งค่ารหัสผ่านให้มีความยาวอย่างน้อย 6 ตัวอักษรและสูงสุด 18 ตัวอักษร",
+      "set_password": "รหัสผ่านต้องมีความยาว 6-18 ตัวอักษร ประกอบด้วยตัวเลข ตัวพิมพ์ใหญ่ และตัวพิมพ์เล็ก",
       "sign__out": "ออกจากระบบ",
       "sign_in": "ลงชื่อเข้าใช้",
       "sign_up": "ลงทะเบียน",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "สินค้าที่ดูล่าสุด"
     }
   },
+  "reduction_code": {
+    "giftcard": "บัตรของขวัญ"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "ใช้ได้ถึง: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH SALE",
       "flash_sale_tip": "จำนวนจำกัดซื้อไม่เกิน: {{count}} ชิ้น",
       "hot_sale": "สินค้าขายดี",
+      "product_tabs_benefit_amount_locked": "ส่วนลด {{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "ปลดล็อกส่วนลด {{benefitAmount}} แล้ว!",
       "product_tabs_benefit_discount_locked": "ส่วนลด {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "ปลดล็อกส่วนลด {{offPercent}}% แล้ว!",
       "product_tabs_benefit_free_locked": "สินค้าฟรี",
       "product_tabs_benefit_free_unlocked": "ปลดล็อกสินค้าฟรี!",
       "product_tabs_benefit_unlocked_tip": "ตอนนี้คุณสามารถรับสินค้าส่วนลด",
+      "product_tabs_code_benefit_amount_unlocked": "ซื้อ{{benefitCount}}ชิ้นในราคาส่วนลด{{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "ซื้อ{{benefitCount}}ชิ้นในราคาส่วนลด{{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "รับ{{benefitCount}}ชิ้นฟรี",
       "product_tabs_threshold": "ซื้อ {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "ยอดรวมทั้งสิ้น",
       "total_sum": "ยอดรวมทั้งสิ้น"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "รหัสส่วนลด {{discountCode}} นี้ใช้กับช่องทางการขายนี้ไม่ได้"
+    },
     "policy": {
       "refund_policy": "นโยบายการคืนเงิน"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "การบริการผิดปกติ",
       "error_message_5": "การบริการผิดปกติ",
       "error_message_6": "การบริการผิดปกติ",
-      "error_message_7": "โปรดตั้งค่ารหัสผ่านให้มีความยาวอย่างน้อย 6 ตัวอักษรและสูงสุด 18 ตัวอักษร"
+      "error_message_7": "รหัสผ่านต้องมีความยาว 6-18 ตัวอักษร ประกอบด้วยตัวเลข ตัวพิมพ์ใหญ่ และตัวพิมพ์เล็ก"
     },
     "editorSwitchCountryTip": "ตัวแก้ไขไม่รองรับการสลับเปลี่ยนประเทศ"
   }

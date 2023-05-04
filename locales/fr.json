@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Veuillez saisir à nouveau le mot de passe",
       "sep": "Sep",
       "september": "Septembre",
-      "set_password": "Veuillez définir un mot de passe comportant entre 6 caractères et 18 caractères",
+      "set_password": "Le mot de passe doit être composé de 6 à 18 caractères composés de chiffres, de lettres majuscules et minuscules",
       "sign__out": "Se déconnecter",
       "sign_in": "Se connecter",
       "sign_up": "S'inscrire",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Derniers produits consultés"
     }
   },
+  "reduction_code": {
+    "giftcard": "Carte cadeau"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Valable jusqu’à :{{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Promotions d’une durée limitée",
       "flash_sale_tip": "Quantité limitée: {{count}} pièces",
       "hot_sale": "A la vente",
+      "product_tabs_benefit_amount_locked": "Réduction {{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "Réduction {{benefitAmount}} a débloqué!",
       "product_tabs_benefit_discount_locked": "Réduction {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "Réduction {{offPercent}}% a débloqué!",
       "product_tabs_benefit_free_locked": "Article gratuit",
       "product_tabs_benefit_free_unlocked": "Les articles gratuits ont débloqués",
       "product_tabs_benefit_unlocked_tip": "Vous pouvez maintenant profiter des offres des articles",
+      "product_tabs_code_benefit_amount_unlocked": "{{benefitAmount}} de réduction sur {{benefitCount}}pièces",
       "product_tabs_code_benefit_discount_unlocked": "{{offPercent}}% de réduction sur {{benefitCount}}pièces",
       "product_tabs_code_benefit_free_unlocked": "Obtenir {{benefitCount}}pièces gratuitement",
       "product_tabs_threshold": "Achetez {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Total",
       "total_sum": "Total"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Ce code de réduction {{discountCode}} ne s’applique pas à ce canal de vente"
+    },
     "policy": {
       "refund_policy": "Politique de remboursement"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Erreur de service",
       "error_message_5": "Erreur de service",
       "error_message_6": "Erreur de service",
-      "error_message_7": "Veuillez définir un mot de passe comportant entre 6 caractères et 18 caractères"
+      "error_message_7": "Le mot de passe doit être composé de 6 à 18 caractères composés de chiffres, de lettres majuscules et minuscules"
     },
     "editorSwitchCountryTip": "Le changement de pays n’est actuellement pas pris en charge dans l’éditeur"
   }

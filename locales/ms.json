@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Sila masukkan kata laluan sekali lagi",
       "sep": "Sep",
       "september": "September",
-      "set_password": "Sila tetapkan kata laluan. dengan panjang minimum 6 aksara dan panjang maksimum 18 aksara",
+      "set_password": "Kata laluan mestilah 6-18 aksara yang terdiri daripada nombor, huruf besar dan huruf kecil",
       "sign__out": "Daftar Keluar",
       "sign_in": "DAFTAR MASUK",
       "sign_up": "DAFTAR",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Produk Dipaparkan Baru-baru Ini"
     }
   },
+  "reduction_code": {
+    "giftcard": "Kad Hadiah"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Sah sehingga: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "JUALAN KILAT",
       "flash_sale_tip": "Had pembelian: {{count}} item",
       "hot_sale": "Jualan hangat!",
+      "product_tabs_benefit_amount_locked": "Dapatkan potongan {{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "Potongan {{benefitAmount}} telah dibuka!",
       "product_tabs_benefit_discount_locked": "Dapatkan potongan {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "Potongan {{offPercent}}% telah dibuka!",
       "product_tabs_benefit_free_locked": "Tawaran percuma",
       "product_tabs_benefit_free_unlocked": "Tawaran percuma telah dibuka!",
       "product_tabs_benefit_unlocked_tip": "Anda kini boleh menikmati diskaun produk",
+      "product_tabs_code_benefit_amount_unlocked": "Beli {{benefitCount}} unit dengan {{benefitAmount}} diskaun",
       "product_tabs_code_benefit_discount_unlocked": "Beli {{benefitCount}} unit dengan {{offPercent}}% diskaun",
       "product_tabs_code_benefit_free_unlocked": "Dapatkan {{benefitCount}} unit secara percuma",
       "product_tabs_threshold": "Beli {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Jumlah",
       "total_sum": "Jumlah"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Kod diskaun ini {{discountCode}} tidak terpakai kepada saluran jualan ini"
+    },
     "policy": {
       "refund_policy": "Dasar bayaran balik"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Pengecualian perkhidmatan",
       "error_message_5": "Pengecualian perkhidmatan",
       "error_message_6": "Pengecualian perkhidmatan",
-      "error_message_7": "Sila tetapkan kata laluan. dengan panjang minimum 6 aksara dan panjang maksimum 18 aksara"
+      "error_message_7": "Kata laluan mestilah 6-18 aksara yang terdiri daripada nombor, huruf besar dan huruf kecil"
     },
     "editorSwitchCountryTip": "Pertukaran negara tidak disokong dalam editor"
   }

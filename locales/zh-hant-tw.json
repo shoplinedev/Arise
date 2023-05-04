@@ -329,7 +329,7 @@
       "send_verification_code_hint": "請再次輸入密碼",
       "sep": "九月",
       "september": "九月",
-      "set_password": "請設定最小長度 6 個字元且最大長度 18 個字元的密碼。",
+      "set_password": "請設置6-18位密碼，支持輸入大小寫字母及數字",
       "sign__out": "登出",
       "sign_in": "登入",
       "sign_up": "註冊",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "最近瀏覽商品"
     }
   },
+  "reduction_code": {
+    "giftcard": "禮品卡"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "有效期至: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "限時促銷",
       "flash_sale_tip": "限購數量：{{count}}件",
       "hot_sale": "熱賣中",
+      "product_tabs_benefit_amount_locked": "減免{{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "已解鎖減免{{benefitAmount}}！",
       "product_tabs_benefit_discount_locked": "減免{{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "已解鎖減免{{offPercent}}%！",
       "product_tabs_benefit_free_locked": "免費商品",
       "product_tabs_benefit_free_unlocked": "已解鎖免費商品！",
       "product_tabs_benefit_unlocked_tip": "您現在可以享受商品優惠",
+      "product_tabs_code_benefit_amount_unlocked": "以 {{benefitAmount}} 的折扣購買 {{benefitCount}}件",
       "product_tabs_code_benefit_discount_unlocked": "以 {{offPercent}}% 的折扣購買 {{benefitCount}}件",
       "product_tabs_code_benefit_free_unlocked": "免費獲得{{benefitCount}}件",
       "product_tabs_threshold": "購買{{threshold}}",
@@ -769,6 +775,9 @@
       "total": "總計",
       "total_sum": "總計"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "此折扣碼{{discountCode}}不適用於本次銷售渠道"
+    },
     "policy": {
       "refund_policy": "退款政策"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "服務異常",
       "error_message_5": "服務異常",
       "error_message_6": "服務異常",
-      "error_message_7": "請設定最小長度 6 個字元且最大長度 18 個字元的密碼。"
+      "error_message_7": "請設置6-18位密碼，支持輸入大小寫字母及數字"
     },
     "editorSwitchCountryTip": "編輯器內暫不支持切換國家"
   }

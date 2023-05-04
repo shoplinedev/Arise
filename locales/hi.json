@@ -329,7 +329,7 @@
       "send_verification_code_hint": "कृपया पासवर्ड फिर से दर्ज करें",
       "sep": "सित",
       "september": "सितंबर",
-      "set_password": "कृपया एक पासवर्ड सेट करें जिसकी लंबाई कम से कम 6 वर्ण और अधिकतम लंबाई 18 वर्ण हो।",
+      "set_password": "पासवर्ड संख्या, अपरकेस और लोअरकेस अक्षरों से युक्त 6-18 वर्णों का होना चाहिए",
       "sign__out": "साइन आउट",
       "sign_in": "साइन इन करें",
       "sign_up": "साइन अप करें",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "हाल ही में देखे गए उत्पाद"
     }
   },
+  "reduction_code": {
+    "giftcard": "गिफ्ट कार्ड"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "तक मान्य: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "तेज़ बिक्री",
       "flash_sale_tip": "खरीदारी की सीमा: {{count}} आइटम",
       "hot_sale": "धमाकेदार सेल!",
+      "product_tabs_benefit_amount_locked": "{{benefitAmount}} छूट पाएं",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} छूट अनलॉक हो गई है!",
       "product_tabs_benefit_discount_locked": "{{offPercent}}% छूट पाएं",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% छूट अनलॉक हो गई है!",
       "product_tabs_benefit_free_locked": "मुफ़्त ऑफ़र",
       "product_tabs_benefit_free_unlocked": "मुफ़्त ऑफ़र अनलॉक हो गई है!",
       "product_tabs_benefit_unlocked_tip": "अब आप उत्पाद छूट का लाभ उठा सकते हैं",
+      "product_tabs_code_benefit_amount_unlocked": "{{benefitCount}} टुकड़े {{benefitAmount}} छूट में खरीदे",
       "product_tabs_code_benefit_discount_unlocked": "{{benefitCount}} टुकड़े {{offPercent}}% छूट में खरीदे",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} टुकड़े मुफ्त में पाए",
       "product_tabs_threshold": "ख़रीदें {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "कुल",
       "total_sum": "कुल"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "यह डिस्काउंट कोड {{discountCode}} बिक्री चैनल के लिए अमान्य है"
+    },
     "policy": {
       "refund_policy": "धन वापसी नीति"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "सेवा के अपवाद",
       "error_message_5": "सेवा के अपवाद",
       "error_message_6": "सेवा के अपवाद",
-      "error_message_7": "कृपया एक पासवर्ड सेट करें जिसकी लंबाई कम से कम 6 वर्ण और अधिकतम लंबाई 18 वर्ण हो।"
+      "error_message_7": "पासवर्ड संख्या, अपरकेस और लोअरकेस अक्षरों से युक्त 6-18 वर्णों का होना चाहिए"
     },
     "editorSwitchCountryTip": "संपादक में देश बदलना समर्थित नहीं है"
   }

@@ -6,14 +6,14 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
   const loggerService = window['@yy/sl-theme-shared']['/utils/logger/sentry'].default;
   const HidooTracker = window['@yy/sl-ec-tracker']['/lib/tracker/baseParams'].default;
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
-  const Cookies = window['js-cookie']['default'];
-  const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
-  const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const { SL_EventBus } = window['SLM']['theme-shared/utils/event-bus.js'];
-  const { isFn, getExpressCheckoutWithScenes, handleResponseRedirect, isNewExpressCheckout, formatPayChannelData, getPageI18nText, paymentToast } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
+  const { isFn, getExpressCheckoutWithScenes, handleResponseRedirect, isNewExpressCheckout, formatPayChannelData, formatShippingLabel, getPageI18nText, paymentToast } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const { HD_EVENT_NAME } = window['SLM']['theme-shared/utils/tradeReport/const.js'];
   const { CHANNEL_CODE, METHOD_CODE, BUY_SCENE_MAP, PROCESSING_DATA_SESSION_KEY, ACTION_TYPE, ERROR_TYPE, I18N_APPLEPAY_KEY, SERVER_ERROR_CODE, SERVER_ERROR_MSG, ErrorDiscountCode } = window['SLM']['theme-shared/components/smart-payment/constants.js'];
   const { getFirstLoadConfig, expressDetail, expressCreate } = window['SLM']['theme-shared/components/smart-payment/services.js'];
+  const { checkoutHiidoReportV2 } = window['SLM']['theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'];
+  const { EventNameType } = window['SLM']['theme-shared/components/smart-payment/reporter/constants.js'];
+  const { thirdPartReportOrderStart, thirdPartReportPaymentInfo, thirdPartReportOrderCompleteStep } = window['SLM']['theme-shared/components/smart-payment/reporter/ThirdPartReport.js'];
   const {
     PAYPAL_CHECKOUT
   } = HD_EVENT_NAME;
@@ -72,6 +72,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
       let passThrough = '';
       let priceInfo = null;
       let productInfos = null;
+      let shippingMethodName = '';
 
       const updateCreateOrderParams = data => {
         basicInfo = data.basicInfo;
@@ -115,7 +116,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               abandonedOrderInfo: abandonedInfo
             } = returnValue;
 
-            if (channelCode === CHANNEL_CODE.SLpayments && (methodCode === METHOD_CODE.ApplePay || methodCode === METHOD_CODE.GooglePay)) {
+            if ((channelCode === CHANNEL_CODE.SLpayments || channelCode === CHANNEL_CODE.StripeOther) && (methodCode === METHOD_CODE.ApplePay || methodCode === METHOD_CODE.GooglePay)) {
               const {
                 seq,
                 mark,
@@ -156,6 +157,9 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
                 paymentConfig.payChannelData = formatPayChannelData(paymentConfig.payChannelData, {
                   expressCheckoutChannelInfo
                 });
+                shippingMethodName = formatShippingLabel(paymentConfig.payChannelData, {
+                  expressCheckoutChannelInfo
+                });
                 returnValue.paymentConfig = paymentConfig;
               }
             }
@@ -183,119 +187,22 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
         },
         onChannelModalSuccess: () => {
           try {
-            let fbDataEventId = '';
-            const fbData = JSON.parse(Cookies.get(`${abandonedOrderInfo.seq}_fb_data`) || '{}');
-
-            if (fbData && fbData.ed) {
-              fbDataEventId = fbData.ed;
-            } else {
-              fbDataEventId = getEventID();
-            }
-
-            const eventId = `initiateCheckout${fbDataEventId}`;
-            const price = priceInfo.originalSettleSumAmount || priceInfo.orderAmount;
-            const currency = SL_State.get('currencyCode');
-            let quantity = 0;
-            let spuIds = [];
-            const skuIds = [];
-
-            try {
-              spuIds = productInfos.map(item => {
-                quantity += item.productNum;
-                skuIds.push(item.productSku);
-                return item.productSeq;
-              });
-            } catch (error) {
-              throw new Error(`上报发生错误: ${error.message}`);
-            }
-
-            spuIds = Array.from(new Set(spuIds));
-            const params = {
-              GA: [['event', 'begin_checkout', {
-                value: price,
-                currency,
-                items: productInfos.map(item => {
-                  return {
-                    id: item.itemNo || item.productSku,
-                    name: item.productName,
-                    quantity: item.productNum,
-                    price: String(currencyUtil.formatNumber(item.finalPrice)),
-                    variant: (item.productSkuAttrList || []).join(','),
-                    category: item.customCategoryName
-                  };
-                })
-              }]],
-              GA4: [['event', 'begin_checkout', {
-                value: price,
-                currency,
-                items: productInfos.map(item => {
-                  return {
-                    item_id: item.itemNo || item.productSku,
-                    item_name: item.productName,
-                    quantity: item.productNum,
-                    price: currencyUtil.formatCurrency(item.finalPrice || 0),
-                    item_variant: (item.productSkuAttrList || []).join(','),
-                    item_category: item.customCategoryName
-                  };
-                })
-              }]],
-              GAAds: [['event', 'conversion', {
-                currency,
-                value: price
-              }, 'VISIT-SETTLE-PAGE'], ['event', 'conversion', {
-                currency,
-                value: price
-              }]],
-              FBPixel: [['track', 'InitiateCheckout', {
-                content_type: 'product_group',
-                content_ids: spuIds,
-                value: price,
-                num_items: quantity,
-                currency
-              }, {
-                eventID: eventId
-              }]]
-            };
-            SL_EventBus.emit && SL_EventBus.emit('global:thirdPartReport', params);
-            window.Shopline.Analytics.track({
-              name: 'orderStart',
-              payload: {
-                eventId,
-                value: price,
-                list: (productInfos || []).map(item => {
-                  return {
-                    spuId: item.productSeq,
-                    skuId: item.productSku,
-                    skuItemNo: item.itemNo,
-                    title: item.productName,
-                    variant: (item.productSkuAttrList || []).join(','),
-                    price: item.finalPrice,
-                    quantity: item.productNum,
-                    category: item.customCategoryName
-                  };
-                })
-              }
+            const amount = priceInfo.originalSettleSumAmount || priceInfo.orderAmount;
+            const currency = marketInfo.marketCurrencyCode;
+            thirdPartReportOrderStart({
+              seq: abandonedOrderInfo.seq,
+              amount,
+              productInfos
             });
-            const content_ids = new Set();
-            const variantion_id = [];
-            productInfos.forEach(item => {
-              variantion_id.push(item.productSku);
-              content_ids.add(item.productSeq);
+            checkoutHiidoReportV2.reportConversionEvent(EventNameType.InitiateCheckout, {
+              payment_method: expressCheckoutChannelInfo.channelCode,
+              coupon_code: basicInfo.discountCode,
+              currency,
+              orderAmount: amount,
+              productInfos,
+              basicInfo,
+              otherInfo
             });
-            const reportData = {
-              page: -999,
-              component: -999,
-              module: 158,
-              action_type: -999,
-              event_name: 'InitiateCheckout',
-              value: currencyUtil.formatNumber(price).toString(),
-              currency: SL_State.get('currencyCode'),
-              content_ids: [...content_ids.values()].join(','),
-              variantion_id: variantion_id.join(','),
-              quantity: quantity.toString()
-            };
-            if (!window.HdSdk) return;
-            window.HdSdk.shopTracker.collect(reportData);
           } catch (error) {
             logger.error(`${loggerPrefix} 上报出错`, {
               error
@@ -349,6 +256,9 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
           const payChannelData = formatPayChannelData(detailRes.data.payChannelData, {
             expressCheckoutChannelInfo
           });
+          shippingMethodName = formatShippingLabel(payChannelData, {
+            expressCheckoutChannelInfo
+          });
           return payChannelData;
         },
         createOrder: async ({
@@ -381,6 +291,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
             height
           } = window.screen;
           const javaEnabled = window.navigator.javaEnabled().toString();
+          const addPaymentInfoEventId = `addPaymentInfo${getEventID()}`;
           const params = {
             abandonedOrderInfo,
             expressCheckoutChannelInfo,
@@ -401,8 +312,9 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               eventName: 'AddPaymentInfo',
               dataId,
               eventTime: Date.now(),
-              eventId: `addPaymentInfo${getEventID()}`,
-              currency: marketInfo.marketCurrencyCode
+              eventId: addPaymentInfoEventId,
+              currency: marketInfo.marketCurrencyCode,
+              payAmount: priceInfo.originalSettleSumAmount
             },
             clientInfo: {
               transactionWebSite: window.location.href,
@@ -434,6 +346,40 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
           });
           if (createRes.error || !createRes.data) return createRes;
           if (handleResponseRedirect(createRes.data)) return;
+
+          try {
+            thirdPartReportOrderCompleteStep({
+              amount: priceInfo.originalSettleSumAmount,
+              productInfos,
+              shipping_method: shippingMethodName
+            });
+            thirdPartReportPaymentInfo({
+              eventId: addPaymentInfoEventId,
+              amount: priceInfo.originalSettleSumAmount,
+              price: priceInfo.productSumAmount,
+              productInfos,
+              channelCode: expressCheckoutChannelInfo.channelCode
+            });
+            const amount = priceInfo.originalSettleSumAmount || priceInfo.orderAmount;
+            const currency = marketInfo.marketCurrencyCode;
+            const reportData = {
+              payment_method: expressCheckoutChannelInfo.channelCode,
+              shipping_method: shippingMethodName,
+              coupon_code: basicInfo.discountCode,
+              currency,
+              orderAmount: amount,
+              productInfos: createRes.data.productInfos || [],
+              basicInfo,
+              otherInfo
+            };
+            checkoutHiidoReportV2.reportConversionEvent(EventNameType.AddCustomerInfo, reportData);
+            checkoutHiidoReportV2.reportConversionEvent(EventNameType.AddShippingInfo, reportData);
+            checkoutHiidoReportV2.reportAddPaymentInfo(reportData);
+          } catch (error) {
+            logger.error(`${loggerPrefix} 上报出错`, {
+              error
+            });
+          }
 
           try {
             const {
@@ -491,7 +437,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
             this.config.onError(error, type, extData);
           }
         },
-        logger
+        loggerFn: () => loggerService.pipeOwner('SmartPayment')
       });
       this.currentController = new Payment(config);
       await this.currentController.render();

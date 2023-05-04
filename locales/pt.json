@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Insira a senha novamente",
       "sep": "Set",
       "september": "Setembro",
-      "set_password": "Defina uma senha de 6-18 caracteres",
+      "set_password": "A senha deve ter de 6 a 18 caracteres, consistindo de números, letras maiúsculas e minúsculas",
       "sign__out": "Sair",
       "sign_in": "Entre",
       "sign_up": "Inscreva-se",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Produtos vistos recentemente"
     }
   },
+  "reduction_code": {
+    "giftcard": "Cartão oferta"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Válido até: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Promoção por tempo limitado",
       "flash_sale_tip": "Limite de compra: {{count}} itens",
       "hot_sale": "Venda quente",
+      "product_tabs_benefit_amount_locked": "{{benefitAmount}} de desconto",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} de desconto desbloqueado！",
       "product_tabs_benefit_discount_locked": "{{offPercent}}% de desconto",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% de desconto desbloqueado！",
       "product_tabs_benefit_free_locked": "Item gratuito",
       "product_tabs_benefit_free_unlocked": "Item gratuito desbloqueado!",
       "product_tabs_benefit_unlocked_tip": "Agora você pode aproveitar as ofertas de produtos",
+      "product_tabs_code_benefit_amount_unlocked": "Compre {{benefitCount}} com {{benefitAmount}} de desconto",
       "product_tabs_code_benefit_discount_unlocked": "Compre {{benefitCount}} com {{offPercent}}% de desconto",
       "product_tabs_code_benefit_free_unlocked": "Ganhe {{benefitCount}} grátis",
       "product_tabs_threshold": "Comprar {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Total",
       "total_sum": "Total"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Este código de desconto {{discountCode}} não é válido para este canal de vendas"
+    },
     "policy": {
       "refund_policy": "Politica de reembolso"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Erro de serviço",
       "error_message_5": "Erro de serviço",
       "error_message_6": "Erro de serviço",
-      "error_message_7": "Defina uma senha de 6-18 caracteres"
+      "error_message_7": "A senha deve ter de 6 a 18 caracteres, consistindo de números, letras maiúsculas e minúsculas"
     },
     "editorSwitchCountryTip": "A mudança de país não é atualmente suportada pelo editor"
   }

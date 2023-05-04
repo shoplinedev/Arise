@@ -28,8 +28,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
   const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const nullishCoalescingOperator = window['SLM']['product/utils/nullishCoalescingOperator.js'].default;
   const newCurrency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
-  const { handleDiscountCodeUpdate, handleAutoCouponBannerUpdate, handleAutoCouponAddToCartUpdate, setAddToCartSpu, setAddToCartActiveSku } = window['SLM']['theme-shared/biz-com/sales/discount-specified-sku/index.js'];
-  const request = window['SLM']['theme-shared/utils/request.js'].default;
 
   const trackProductDetailPageView = ({
     sku_id,
@@ -320,37 +318,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
 
     let unmountedDiscountCoupon = null;
     let unmountPromotionTags = null;
-    setAddToCartSpu(spu, sku);
-
-    const handleSaleDiscountInfo = activeSku => {
-      if (typeof unmountedDiscountCoupon === 'function') {
-        unmountedDiscountCoupon();
-      }
-
-      if (typeof unmountPromotionTags === 'function') {
-        unmountPromotionTags();
-      }
-
-      request({
-        url: 'sale/activity/list/byProduct',
-        method: 'POST',
-        data: {
-          productId: spu.spuSeq,
-          selectedSkuId: activeSku && activeSku.skuSeq || null
-        }
-      }).then(res => {
-        const {
-          autoDiscountActivityList,
-          discountCodeActivityList,
-          timeLimitActivityList,
-          buyerId
-        } = res && res.data || {};
-        unmountedDiscountCoupon = handleDiscountCodeUpdate(id, spu, discountCodeActivityList, buyerId);
-        unmountPromotionTags = handleAutoCouponBannerUpdate(id, spu, autoDiscountActivityList, `#product-info_${id}`);
-        handleAutoCouponAddToCartUpdate(spu, autoDiscountActivityList);
-      });
-    };
-
     const skuDataPool = new DataWatcher();
     const skuTrade = initSku({
       id,
@@ -384,7 +351,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         if (activeSku) {
           quantityStepper.setActiveSku(activeSku);
           ButtonGroup.setActiveSku(activeSku);
-          setAddToCartActiveSku(activeSku);
           content_sku_id = activeSku.skuSeq;
           price = convertPrice(activeSku.price || 0);
           emitProductSkuChange({
@@ -443,10 +409,8 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
             setProductPrice(id, statePath, activeSku);
             quantityStepper.setActiveSku(activeSku);
             ButtonGroup.setActiveSku(activeSku);
-            setAddToCartActiveSku(activeSku);
           }
         });
-        handleSaleDiscountInfo(activeSku);
       },
       onChange: activeSku => {
         if (activeSku) {
@@ -474,7 +438,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
           quantity: get(quantityStepper, 'skuStepper.data.value') || 1,
           ...getSkuChangeData(activeSku)
         });
-        handleSaleDiscountInfo(activeSku);
       }
     });
 

@@ -25,6 +25,7 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
       this.elementId = `${config.props.domId}_normal`;
       this.subscriptionElementId = `${config.props.domId}_subscription`;
       this.hasDynamicNotify = false;
+      this.hasAllButtonsInitFail = false;
       this.returnUrl = '';
       this.addListener();
     }
@@ -208,10 +209,11 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
           }
         },
         onAllButtonsInitFail: () => {
-          if (!isNewExpressCheckout(this.config.pageType)) return;
+          if (!isNewExpressCheckout(this.config.pageType) || this.hasAllButtonsInitFail) return;
 
           if (isFn(this.config.onAllButtonsInitFail)) {
             this.config.onAllButtonsInitFail();
+            this.hasAllButtonsInitFail = true;
           }
         }
       });

@@ -73,6 +73,9 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
         rules: [{
           message: t('customer.general.password_empty_hint'),
           required: true
+        }, {
+          message: t('unvisiable.customer.error_message_1001'),
+          pattern: MEMBER_PASSWORD_PATTERN
         }]
       };
     },

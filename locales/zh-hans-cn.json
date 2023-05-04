@@ -329,7 +329,7 @@
       "send_verification_code_hint": "请再次输入密码",
       "sep": "九月",
       "september": "九月",
-      "set_password": "请设置6-18位密码",
+      "set_password": "请设置6-18位密码，支持输入大小写字母及数字",
       "sign__out": "退出登录",
       "sign_in": "登录",
       "sign_up": "注册",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "最近浏览商品"
     }
   },
+  "reduction_code": {
+    "giftcard": "礼品卡"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "有效期至: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH SALE",
       "flash_sale_tip": "限购数量：{{count}}件",
       "hot_sale": "Hot sale!",
+      "product_tabs_benefit_amount_locked": "减免{{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "已解锁减免{{benefitAmount}}！",
       "product_tabs_benefit_discount_locked": "减免{{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "已解锁减免{{offPercent}}%！",
       "product_tabs_benefit_free_locked": "免费商品",
       "product_tabs_benefit_free_unlocked": "已解锁免费商品！",
       "product_tabs_benefit_unlocked_tip": "您现在可以享受商品优惠",
+      "product_tabs_code_benefit_amount_unlocked": "以 {{benefitAmount}} 的折扣购买 {{benefitCount}}件",
       "product_tabs_code_benefit_discount_unlocked": "以 {{offPercent}}% 的折扣购买 {{benefitCount}}件",
       "product_tabs_code_benefit_free_unlocked": "免费获得{{benefitCount}}件",
       "product_tabs_threshold": "购买{{threshold}}",
@@ -769,6 +775,9 @@
       "total": "共计",
       "total_sum": "合计"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "此折扣码{{discountCode}}不适用于本次销售渠道"
+    },
     "policy": {
       "refund_policy": "退款政策"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "服务异常",
       "error_message_5": "服务异常",
       "error_message_6": "服务异常",
-      "error_message_7": "请设置6-18位密码"
+      "error_message_7": "请设置6-18位密码，支持输入大小写字母及数字"
     },
     "editorSwitchCountryTip": "编辑器内暂不支持切换国家"
   }

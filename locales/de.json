@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Bitte geben Sie das Kennwort erneut ein",
       "sep": "Sep",
       "september": "September",
-      "set_password": "Bitte legen Sie ein Kennwort mit einer Mindestlänge von 6 Zeichen und einer maximalen Länge von 18 Zeichen fest.",
+      "set_password": "Das Passwort muss 6-18 Zeichen lang sein und aus Zahlen, Groß- und Kleinbuchstaben bestehen",
       "sign__out": "Abmelden",
       "sign_in": "Anmelden",
       "sign_up": "Registrieren",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Zuletzt angesehen"
     }
   },
+  "reduction_code": {
+    "giftcard": "Geschenkkarte"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Die Gültigkeit ist bis: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Blitzangebot",
       "flash_sale_tip": "Kauflimit: {{count}} Artikel",
       "hot_sale": "Im heißen Verkauf",
+      "product_tabs_benefit_amount_locked": "{{benefitAmount}} redudzieren",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} Reduzierung freigeschaltet!",
       "product_tabs_benefit_discount_locked": "{{offPercent}}% redudzieren",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% Reduzierung freigeschaltet!",
       "product_tabs_benefit_free_locked": "Gratisprodukt",
       "product_tabs_benefit_free_unlocked": "Gratisprodukt freigeschaltet!",
       "product_tabs_benefit_unlocked_tip": "Genießen Sie jetzt die Produktrabatte!",
+      "product_tabs_code_benefit_amount_unlocked": "Mit {{benefitAmount}} Rabatt kaufen Sie {{benefitCount}} Stück",
       "product_tabs_code_benefit_discount_unlocked": "Mit {{offPercent}}% Rabatt kaufen Sie {{benefitCount}} Stück",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} Stück gratis erhalten",
       "product_tabs_threshold": "{{threshold}} kaufen",
@@ -769,6 +775,9 @@
       "total": "Gesamt",
       "total_sum": "Gesamt"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Dieser Rabattcode {{discountCode}} ist für diesen Verkaufskanal nicht gültig"
+    },
     "policy": {
       "refund_policy": "Rückgaberecht"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_5": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_6": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
-      "error_message_7": "Bitte legen Sie ein Kennwort mit einer Mindestlänge von 6 Zeichen und einer maximalen Länge von 18 Zeichen fest."
+      "error_message_7": "Das Passwort muss 6-18 Zeichen lang sein und aus Zahlen, Groß- und Kleinbuchstaben bestehen"
     },
     "editorSwitchCountryTip": "Der Länderwechsel wird derzeit im Editor nicht unterstützt."
   }

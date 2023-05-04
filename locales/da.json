@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Indtast adgangskoden igen",
       "sep": "Sep",
       "september": "September",
-      "set_password": "Angiv en adgangskode med en længde på mindst 6 tegn og højst 18 tegn.",
+      "set_password": "Adgangskoden skal bestå af 6-18 tegn bestående af tal, store og små bogstaver",
       "sign__out": "Log af",
       "sign_in": "LOGGER PÅ",
       "sign_up": "TILMELD DIG",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Senest viste produkter"
     }
   },
+  "reduction_code": {
+    "giftcard": "Gavekort"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Gyldig indtil: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "FLASH-SALG",
       "flash_sale_tip": "Købet grænse: {{count}} vare(r)",
       "hot_sale": "Varmt salg!",
+      "product_tabs_benefit_amount_locked": "Få {{benefitAmount}} rabat",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} rabat låst op!",
       "product_tabs_benefit_discount_locked": "Få {{offPercent}}% rabat",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% rabat låst op!",
       "product_tabs_benefit_free_locked": "Gratis tilbud",
       "product_tabs_benefit_free_unlocked": "Gratis tilbud er låst op!",
       "product_tabs_benefit_unlocked_tip": "Du kan nyde en rabat på produktet",
+      "product_tabs_code_benefit_amount_unlocked": "Få {{benefitCount}} stykker til en {{benefitAmount}} rabat",
       "product_tabs_code_benefit_discount_unlocked": "Få {{benefitCount}} stykker til en {{offPercent}}% rabat",
       "product_tabs_code_benefit_free_unlocked": "Få {{benefitCount}}gratis",
       "product_tabs_threshold": "Køb {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "I alt",
       "total_sum": "I alt"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Denne rabatkode {{discountCode}} er ugyldig for salgskanalen"
+    },
     "policy": {
       "refund_policy": "Tilbagebetalingspolitik"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Service undtagelser",
       "error_message_5": "Service undtagelser",
       "error_message_6": "Service undtagelser",
-      "error_message_7": "Angiv en adgangskode med en længde på mindst 6 tegn og højst 18 tegn."
+      "error_message_7": "Adgangskoden skal bestå af 6-18 tegn bestående af tal, store og små bogstaver"
     },
     "editorSwitchCountryTip": "Landeskift er ikke understøttet i editoren i øjeblikket"
   }

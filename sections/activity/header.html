@@ -1,113 +1,115 @@
 {{!-- 活动海报 --}}
-<div class="activity__poster">
-  {{#if activity.bannerPicUrlMobile }}
-    {{!-- 移动端图片 --}}
-    <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrlMobile }}" />
-  {{else}}
+{{#or (compare activity.promotionSubType '===' 1) (compare activity.isDesignMakerInstall '===' true)}}
+  <div class="activity__poster">
+    {{#if activity.bannerPicUrlMobile }}
+      {{!-- 移动端图片 --}}
+      <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrlMobile }}" />
+    {{else}}
+      {{#if activity.bannerPicUrl }}
+        {{!-- 无移动端标签有pc端图片获取pc端图片 --}}
+        <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrl }}" />
+      {{/if}}
+    {{/if}}
     {{#if activity.bannerPicUrl }}
-      {{!-- 无移动端标签有pc端图片获取pc端图片 --}}
-      <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrl }}" />
-    {{/if}}
-  {{/if}}
-  {{#if activity.bannerPicUrl }}
-    {{!-- pc端图片 --}}
-    <img class="activity__poster-pc d-none d-md-block" src="{{ activity.bannerPicUrl }}" />
-  {{/if}}
-</div>
-{{!-- 活动横幅 --}}
-{{ assign 'now' (dayjs method='valueOf')}}
-{{ assign 'salesCustom' (object_create)}}
-{{#if activity.salesEnvCustomInfo}}
-  {{ assign 'salesCustom' activity.salesEnvCustomInfo.landingPageConfig}}
-{{/if}}
-{{#if (and (compare salesCustom.bannerActivated  '===' 'true') (or (compare activity.promotionSubType '===' 3) (compare now '<' activity.endTime)))}}
-  {{ assign 'cellStyle' (append 'background-color:' salesCustom.countDownBgColor ';color:' salesCustom.countDownTextColor ';')}}
-  <div class="activity__countdown" style="background-color:{{salesCustom.bannerBgColor}};color:{{salesCustom.bannerTextColor}};">
-    {{#if (or salesCustom.bannerText (and (compare salesCustom.showCountDown '===' 'true') (compare now '<' activity.endTime)))}}
-      <div class="countdown-content">
-        {{!-- 文案 --}}
-        <span class="wrapAnywhere">{{salesCustom.bannerText}}</span>
-        {{!-- 倒计时 --}}
-        {{#if (and (compare salesCustom.showCountDown '===' 'true') (compare now '<' activity.endTime))}}
-          <span class="countdown-cells notranslate" style="color:{{salesCustom.countDownBgColor}};">{{#if salesCustom.countDownUnit '===' 'mode1'}}<span class="time-cell day"
-                style="{{cellStyle}}">0</span><span class="daySplit">:</span>{{/if}}<span class="time-cell hour" style="{{cellStyle}}">00</span>:<span class="time-cell minute"
-              style="{{cellStyle}}">00</span>:<span class="time-cell second" style="{{cellStyle}}">00</span>
-          </span>
-        {{/if}}
-      </div>
-    {{/if}}
-    {{#if activity.promotionSubType '===' 3}}
-      {{!-- 优惠码 --}}
-      {{ assign 'benefitCondition' (itemAt activity.benefitConditions 0)}}
-      <div class="activity__countdown-coupon" style="color:{{salesCustom.discountCodeBgColor}}">
-        <i class="coupon-left-icon">
-          <svg width="12" height="43" viewBox="0 0 12 43" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 0C1.79086 0 0 2.75025 0 6.14286V16.5857C2.20914 16.5857 4 18.1074 4 21.5C4 24.8926 2.20914 26.4143 0 26.4143V36.8571C0 40.2497 1.79086 43 4 43H12V0H4Z"
-              fill="currentColor" />
-          </svg>
-        </i>
-        <i class="coupon-right-icon">
-          <svg width="12" height="43" viewBox="0 0 12 43" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M8 43C10.2091 43 12 40.2497 12 36.8571L12 26.4143C9.79086 26.4143 8 24.8926 8 21.5C8 18.1074 9.79086 16.5857 12 16.5857L12 6.14286C12 2.75025 10.2091 -1.56562e-07 8 -3.49691e-07L3.75918e-06 -1.04907e-06L0 43L8 43Z"
-              fill="currentColor" />
-          </svg>
-        </i>
-        <div class="coupon-content" style="background-color:{{salesCustom.discountCodeBgColor}};color:{{salesCustom.discountCodeTextColor}};">
-          <div class="coupon-left">
-            {{#if (compare activity.benefitType '===' 1)}}
-              {{!-- 金额 --}}
-              {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=(javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(money_exchange_convert_with_currency benefitCondition.benefit.benefitAmount))))}}
-            {{else if (compare activity.benefitType '===' 2)}}
-              {{!-- 折扣 --}}
-              {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
-              {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=percentage))}}
-            {{else if (compare activity.benefitType '===' 3)}}
-              {{!-- 免运费 --}}
-              {{ assign 'benefitText' (t 'sales.general.activity_banner_free_shipping')}}
-            {{/if}}
-            {{#if activity.benefitType '===' 12}}
-              {{!-- 买x送y --}}
-              {{#if benefitCondition.benefit.discount '===' 0}}
-                {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_free_content'))}}
-              {{else}}
-                {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
-                {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_discount_content' discount=percentage))}}
-              {{/if}}
-              {{!-- 买x送y门槛文案 --}}
-              {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
-                {{!-- 金额 --}}
-                {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))}}
-              {{else}}
-                {{!-- 百分比折扣 --}}
-                {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
-              {{/if}}
-              {{ assign 'thresholdText' (noTranslationHTML (t "sales.discount_coupon.buy_x_get_y_threshold" threshold=__threshold benefitCount=benefitCondition.benefit.benefitCount))}}
-            {{else}}
-              {{!-- 其他折扣码门槛文案 --}}
-              {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
-                {{!-- 金额 --}}
-                {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))}}
-              {{else}}
-                {{!-- 百分比折扣 --}}
-                {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
-              {{/if}}
-              {{ assign 'thresholdText' (noTranslationHTML (t "sales.general.activity_banner_threshold" threshold=__threshold))}}
-            {{/if}}
-            {{!-- 门槛 --}}
-            {{#if benefitCondition.benefitEvent.type '!==' -1}}
-              <span class="condition wrapAnywhere">{{thresholdText}}</span>
-            {{/if}}
-            {{!-- 优惠 --}}
-            <span class="benefit wrapAnywhere">{{benefitText}}</span>
-          </div>
-          <button class="coupon_copy wrapAnywhere"
-            style="background-color:{{salesCustom.copyBtnBgColor}};color:{{salesCustom.copyBtnTextColor}};">{{t "sales.general.activity_banner_copy_text"}}</button>
-        </div>
-      </div>
+      {{!-- pc端图片 --}}
+      <img class="activity__poster-pc d-none d-md-block" src="{{ activity.bannerPicUrl }}" />
     {{/if}}
   </div>
-{{/if}}
+  {{!-- 活动横幅 --}}
+  {{ assign 'now' (dayjs method='valueOf')}}
+  {{ assign 'salesCustom' (object_create)}}
+  {{#if activity.salesEnvCustomInfo}}
+    {{ assign 'salesCustom' activity.salesEnvCustomInfo.landingPageConfig}}
+  {{/if}}
+  {{#if (compare salesCustom.bannerActivated  '===' 'true')}}
+    {{ assign 'cellStyle' (append 'background-color:' salesCustom.countDownBgColor ';color:' salesCustom.countDownTextColor ';')}}
+    <div class="activity__countdown" style="background-color:{{salesCustom.bannerBgColor}};color:{{salesCustom.bannerTextColor}};">
+      {{#if (or salesCustom.bannerText (and (compare salesCustom.showCountDown '===' 'true') (compare now '<' activity.endTime)))}}
+        <div class="countdown-content">
+          {{!-- 文案 --}}
+          <span class="wrapAnywhere">{{salesCustom.bannerText}}</span>
+          {{!-- 倒计时 --}}
+          {{#if (and (compare salesCustom.showCountDown '===' 'true') (compare now '<' activity.endTime))}}
+            <span class="countdown-cells notranslate" style="color:{{salesCustom.countDownBgColor}};">{{#if salesCustom.countDownUnit '===' 'mode1'}}<span class="time-cell day"
+                  style="{{cellStyle}}">0</span><span class="daySplit">:</span>{{/if}}<span class="time-cell hour" style="{{cellStyle}}">00</span>:<span class="time-cell minute"
+                style="{{cellStyle}}">00</span>:<span class="time-cell second" style="{{cellStyle}}">00</span>
+            </span>
+          {{/if}}
+        </div>
+      {{/if}}
+      {{#if activity.promotionSubType '===' 3}}
+        {{!-- 优惠码 --}}
+        {{ assign 'benefitCondition' (itemAt activity.benefitConditions 0)}}
+        <div class="activity__countdown-coupon" style="color:{{salesCustom.discountCodeBgColor}}">
+          <i class="coupon-left-icon">
+            <svg width="12" height="43" viewBox="0 0 12 43" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0C1.79086 0 0 2.75025 0 6.14286V16.5857C2.20914 16.5857 4 18.1074 4 21.5C4 24.8926 2.20914 26.4143 0 26.4143V36.8571C0 40.2497 1.79086 43 4 43H12V0H4Z"
+                fill="currentColor" />
+            </svg>
+          </i>
+          <i class="coupon-right-icon">
+            <svg width="12" height="43" viewBox="0 0 12 43" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M8 43C10.2091 43 12 40.2497 12 36.8571L12 26.4143C9.79086 26.4143 8 24.8926 8 21.5C8 18.1074 9.79086 16.5857 12 16.5857L12 6.14286C12 2.75025 10.2091 -1.56562e-07 8 -3.49691e-07L3.75918e-06 -1.04907e-06L0 43L8 43Z"
+                fill="currentColor" />
+            </svg>
+          </i>
+          <div class="coupon-content" style="background-color:{{salesCustom.discountCodeBgColor}};color:{{salesCustom.discountCodeTextColor}};">
+            <div class="coupon-left">
+              {{#if (compare activity.benefitType '===' 1)}}
+                {{!-- 金额 --}}
+                {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=(javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(money_exchange_convert_with_currency benefitCondition.benefit.benefitAmount))))}}
+              {{else if (compare activity.benefitType '===' 2)}}
+                {{!-- 折扣 --}}
+                {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
+                {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=percentage))}}
+              {{else if (compare activity.benefitType '===' 3)}}
+                {{!-- 免运费 --}}
+                {{ assign 'benefitText' (t 'sales.general.activity_banner_free_shipping')}}
+              {{/if}}
+              {{#if activity.benefitType '===' 12}}
+                {{!-- 买x送y --}}
+                {{#if benefitCondition.benefit.discount '===' 0}}
+                  {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_free_content'))}}
+                {{else}}
+                  {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
+                  {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_discount_content' discount=percentage))}}
+                {{/if}}
+                {{!-- 买x送y门槛文案 --}}
+                {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
+                  {{!-- 金额 --}}
+                  {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))}}
+                {{else}}
+                  {{!-- 百分比折扣 --}}
+                  {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
+                {{/if}}
+                {{ assign 'thresholdText' (noTranslationHTML (t "sales.discount_coupon.buy_x_get_y_threshold" threshold=__threshold benefitCount=benefitCondition.benefit.benefitCount))}}
+              {{else}}
+                {{!-- 其他折扣码门槛文案 --}}
+                {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
+                  {{!-- 金额 --}}
+                  {{ assign '__threshold' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))}}
+                {{else}}
+                  {{!-- 百分比折扣 --}}
+                  {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
+                {{/if}}
+                {{ assign 'thresholdText' (noTranslationHTML (t "sales.general.activity_banner_threshold" threshold=__threshold))}}
+              {{/if}}
+              {{!-- 门槛 --}}
+              {{#if benefitCondition.benefitEvent.type '!==' -1}}
+                <span class="condition wrapAnywhere">{{thresholdText}}</span>
+              {{/if}}
+              {{!-- 优惠 --}}
+              <span class="benefit wrapAnywhere">{{benefitText}}</span>
+            </div>
+            <button class="coupon_copy wrapAnywhere"
+              style="background-color:{{salesCustom.copyBtnBgColor}};color:{{salesCustom.copyBtnTextColor}};">{{t "sales.general.activity_banner_copy_text"}}</button>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
+{{/or}}
 {{!-- 活动信息 --}}
 <div class="container activity__info" style="padding: 0 20px;">
   {{!-- 活动标题 --}}

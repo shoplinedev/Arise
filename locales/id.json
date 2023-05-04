@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Silakan masukkan kata sandi lagi",
       "sep": "Sep",
       "september": "September",
-      "set_password": "Silakan setel kata sandi dengan 6-18 digit",
+      "set_password": "Password harus terdiri dari 6-18 karakter yang terdiri dari angka, huruf besar dan huruf kecil",
       "sign__out": "Keluar dari login",
       "sign_in": "Login",
       "sign_up": "Pendaftaran",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Produk yang baru dilihat"
     }
   },
+  "reduction_code": {
+    "giftcard": "Kartu hadiah"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Berlaku sampai tanggal: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Penjualan waktu terbatas",
       "flash_sale_tip": "Jumlah terbatas: {{count}}",
       "hot_sale": "Panas dijual",
+      "product_tabs_benefit_amount_locked": "diskon {{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} diskon dibuka!",
       "product_tabs_benefit_discount_locked": "diskon {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% diskon dibuka!",
       "product_tabs_benefit_free_locked": "Produk gratis",
       "product_tabs_benefit_free_unlocked": "Produk gratis yang dibuka!",
       "product_tabs_benefit_unlocked_tip": "Anda sekarang dapat menikmati diskon produk",
+      "product_tabs_code_benefit_amount_unlocked": "Dapatkan {{{benefitCount}}} dengan diskon{{{benefitAmount}}}",
       "product_tabs_code_benefit_discount_unlocked": "Dapatkan {{{benefitCount}}} dengan diskon{{{offPercent}}}%",
       "product_tabs_code_benefit_free_unlocked": "Dapatkan {{{benefitCount}}} yang gartis",
       "product_tabs_threshold": "Beli {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Total",
       "total_sum": "Total"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Kode diskon ini {{discountCode}} tidak berlaku untuk saluran penjualan ini"
+    },
     "policy": {
       "refund_policy": "Kebijakan pengembalian uang"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Layanan abnormal",
       "error_message_5": "Layanan abnormal",
       "error_message_6": "Layanan abnormal",
-      "error_message_7": "Silakan setel kata sandi dengan 6-18 digit"
+      "error_message_7": "Password harus terdiri dari 6-18 karakter yang terdiri dari angka, huruf besar dan huruf kecil"
     },
     "editorSwitchCountryTip": "Tidak mendukung beralih negara di dalam editor"
   }

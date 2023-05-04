@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Írja be a jelszót újra",
       "sep": "Szep",
       "september": "Szeptember",
-      "set_password": "Kérjük, állítson be egy minimum 6 karakter hosszúságú és legfeljebb 18 karakter hosszúságú jelszót",
+      "set_password": "A jelszónak 6-18 karakterből kell állnia, amely számokból, nagy- és kisbetűkből áll",
       "sign__out": "Kijelentkezés",
       "sign_in": "BEJELENTKEZÉS",
       "sign_up": "REGISZTRÁCIÓ",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Nemrég megtekintett termékek"
     }
   },
+  "reduction_code": {
+    "giftcard": "Ajándékkártyák"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Érvényesség vége: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "VILLÁMAKCIÓ",
       "flash_sale_tip": "Vásárlási korlát: {{count}} termék",
       "hot_sale": "Óriási leárazás!",
+      "product_tabs_benefit_amount_locked": "Szerezzen {{benefitAmount}} kedvezményt",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} kedvezmény érhető el!",
       "product_tabs_benefit_discount_locked": "Szerezzen {{offPercent}}% kedvezményt",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% kedvezmény érhető el!",
       "product_tabs_benefit_free_locked": "Ingyenes tétel",
       "product_tabs_benefit_free_unlocked": "Az ingyenes tétel elérhető!",
       "product_tabs_benefit_unlocked_tip": "Most termékkedvezményben részesülhet",
+      "product_tabs_code_benefit_amount_unlocked": "Vásároljon {{benefitCount}} darabot {{benefitAmount}} kedvezménnyel",
       "product_tabs_code_benefit_discount_unlocked": "Vásároljon {{benefitCount}} darabot {{offPercent}}% kedvezménnyel",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}} darabot ingyen kap",
       "product_tabs_threshold": "Vásároljon {{threshold}} értékben",
@@ -769,6 +775,9 @@
       "total": "Összesen",
       "total_sum": "Összesen"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Ez a kedvezménykód {{discountCode}} érvénytelen az értékesítési csatornán."
+    },
     "policy": {
       "refund_policy": "Visszatérítési szabályzat"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Szolgáltatás kivételek",
       "error_message_5": "Szolgáltatás kivételek",
       "error_message_6": "Szolgáltatás kivételek",
-      "error_message_7": "Kérjük, állítson be egy minimum 6 karakter hosszúságú és legfeljebb 18 karakter hosszúságú jelszót"
+      "error_message_7": "A jelszónak 6-18 karakterből kell állnia, amely számokból, nagy- és kisbetűkből áll"
     },
     "editorSwitchCountryTip": "A szerkesztő nem támogatja az országok közötti váltást"
   }

@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Zadajte heslo znova",
       "sep": "Sep",
       "september": "September",
-      "set_password": "Nastavte si heslo s minimálnou dĺžkou 6 znakov a maximálnou dĺžkou 18 znakov.",
+      "set_password": "Heslo musí mať 6-18 znakov, ktoré pozostávajú z číslic, veľkých a malých písmen",
       "sign__out": "Odhlásiť sa",
       "sign_in": "PRIHLÁSIŤ SA",
       "sign_up": "ZAREGISTROVAŤ SA",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Naposledy prezerané produkty"
     }
   },
+  "reduction_code": {
+    "giftcard": "Darčekové karty"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Platné do: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "BLESKOVÝ VÝPREDAJ",
       "flash_sale_tip": "Limit nákupu: {{count}} položky",
       "hot_sale": "Veľký výpredaj!",
+      "product_tabs_benefit_amount_locked": "Získajte {{benefitAmount}} zľavu",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} zľavu bola odomknutá!",
       "product_tabs_benefit_discount_locked": "Získajte {{offPercent}}% zľavu",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% zľavu bola odomknutá!",
       "product_tabs_benefit_free_locked": "Bezplatná ponuka",
       "product_tabs_benefit_free_unlocked": "Bezplatná ponuka je odomknutá!",
       "product_tabs_benefit_unlocked_tip": "Teraz si môžete užiť zľavu na produkt",
+      "product_tabs_code_benefit_amount_unlocked": "Kúpiť kusoch {{benefitCount}} so zľavou {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Kúpiť kusoch {{benefitCount}} so zľavou {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Získajte {{benefitCount}} voľné kusoch",
       "product_tabs_threshold": "Kúpiť {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Celkom",
       "total_sum": "Celkom"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Tento zľavový kód {{discountCode}} je neplatný pre predajný kanál"
+    },
     "policy": {
       "refund_policy": "Pravidlá vrátenia peňazí"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Abnormálna služba",
       "error_message_5": "Abnormálna služba",
       "error_message_6": "Abnormálna služba",
-      "error_message_7": "Nastavte si heslo s minimálnou dĺžkou 6 znakov a maximálnou dĺžkou 18 znakov."
+      "error_message_7": "Heslo musí mať 6-18 znakov, ktoré pozostávajú z číslic, veľkých a malých písmen"
     },
     "editorSwitchCountryTip": "Prepínanie krajín nie je v editore podporované"
   }

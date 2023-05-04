@@ -329,7 +329,7 @@
       "send_verification_code_hint": "비밀번호를 다시 입력하세요",
       "sep": "9월",
       "september": "9월",
-      "set_password": "6-18자리 비밀번호를 설정하세요",
+      "set_password": "비밀번호는 숫자, 대문자, 소문자로 구성된 6~18자여야 합니다.",
       "sign__out": "로그아웃",
       "sign_in": "로그인",
       "sign_up": "등록",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "최근 둘러본 상품"
     }
   },
+  "reduction_code": {
+    "giftcard": "기프트 카드"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "유효기간 {{endTime}} 까지입니다.",
@@ -664,11 +667,14 @@
       "flash_sale_text": "시간제한 판촉",
       "flash_sale_tip": "구매 제한 수량: {{count}}건",
       "hot_sale": "절찬 판매중",
+      "product_tabs_benefit_amount_locked": "{{benefitAmount}} 감면해 드립니다",
+      "product_tabs_benefit_amount_unlocked": "{{benefitAmount}} 감면 해제되었습니다!",
       "product_tabs_benefit_discount_locked": "{{offPercent}}% 감면해 드립니다",
       "product_tabs_benefit_discount_unlocked": "{{offPercent}}% 감면 해제되었습니다!",
       "product_tabs_benefit_free_locked": "무료 상품",
       "product_tabs_benefit_free_unlocked": "잠금이 해제된 무료 상품입니다!",
       "product_tabs_benefit_unlocked_tip": "당신은 지금 상품 혜택을 누릴 수 있습니다",
+      "product_tabs_code_benefit_amount_unlocked": "{{benefitAmount}} 할인된 가격으로 {{benefitCount}}개 구매합니다",
       "product_tabs_code_benefit_discount_unlocked": "{{offPercent}}% 할인된 가격으로 {{benefitCount}}개 구매합니다",
       "product_tabs_code_benefit_free_unlocked": "{{benefitCount}}개를 무료로 받으실 수 있습니다",
       "product_tabs_threshold": "구매 {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "총",
       "total_sum": "합계"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "이 할인코드 {{discountCode}}는 이번 판매채널에 적용되지 않습니다"
+    },
     "policy": {
       "refund_policy": "환불 정책"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "서비스가 이상합니다",
       "error_message_5": "서비스가 이상합니다",
       "error_message_6": "서비스가 이상합니다",
-      "error_message_7": "6-18자리 비밀번호를 설정하세요"
+      "error_message_7": "비밀번호는 숫자, 대문자, 소문자로 구성된 6~18자여야 합니다."
     },
     "editorSwitchCountryTip": "편집기에서 국가 전환을 지원하지 않습니다"
   }

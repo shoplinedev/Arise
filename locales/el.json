@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Παρακαλούμε εισαγάγετε ξανά τον κωδικό πρόσβασης",
       "sep": "Σεπ",
       "september": "Σεπτέμβριος",
-      "set_password": "Παρακαλούμε ορίστε έναν κωδικό πρόσβασης με ελάχιστο μήκος 6 χαρακτήρων και μέγιστο μήκος 18 χαρακτήρων",
+      "set_password": "Ο κωδικός πρόσβασης πρέπει να αποτελείται από 6-18 χαρακτήρες και να αποτελείται από αριθμούς, κεφαλαία και πεζά γράμματα",
       "sign__out": "Αποσύνδεση",
       "sign_in": "ΣΥΝΔΕΣΗ",
       "sign_up": "Εγγραφή",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Προϊόντα που προβλήθηκαν πρόσφατα"
     }
   },
+  "reduction_code": {
+    "giftcard": "Δωροκάρτες"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Ισχύει έως: {{endTime}}",
@@ -664,11 +667,14 @@
       "flash_sale_text": "ΑΜΕΣΗ ΠΏΛΗΣΗ",
       "flash_sale_tip": "Όριο αγοράς: {{count}} είδη",
       "hot_sale": "Πολύ καλή προσφορά!",
+      "product_tabs_benefit_amount_locked": "Λάβετε {{benefitAmount}} έκπτωση",
+      "product_tabs_benefit_amount_unlocked": "Η {{benefitAmount}} έκπτωση ξεκλειδώθηκε!",
       "product_tabs_benefit_discount_locked": "Λάβετε {{offPercent}}% έκπτωση",
       "product_tabs_benefit_discount_unlocked": "Η {{offPercent}}% έκπτωση ξεκλειδώθηκε!",
       "product_tabs_benefit_free_locked": "Δωρεάν είδος",
       "product_tabs_benefit_free_unlocked": "Το δωρεάν είδος είναι ξεκλείδωτο!",
       "product_tabs_benefit_unlocked_tip": "Τώρα μπορείτε να απολαύσετε έκπτωση στο προϊόν",
+      "product_tabs_code_benefit_amount_unlocked": "Αγοράστε {{benefitCount}} τεμάχια με έκπτωση {{benefitAmount}}",
       "product_tabs_code_benefit_discount_unlocked": "Αγοράστε {{benefitCount}} τεμάχια με έκπτωση {{offPercent}}%",
       "product_tabs_code_benefit_free_unlocked": "Αποκτήστε {{benefitCount}} τεμάχια δωρεάν",
       "product_tabs_threshold": "Αγοράστε {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Σύνολο",
       "total_sum": "Σύνολο"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Αυτός ο κωδικός έκπτωσης {{discountCode}} είναι άκυρος για το κανάλι πωλήσεων"
+    },
     "policy": {
       "refund_policy": "Πολιτική επιστροφής"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Εξαιρέσεις παροχής υπηρεσιών",
       "error_message_5": "Εξαιρέσεις παροχής υπηρεσιών",
       "error_message_6": "Εξαιρέσεις παροχής υπηρεσιών",
-      "error_message_7": "Παρακαλούμε ορίστε έναν κωδικό πρόσβασης με ελάχιστο μήκος 6 χαρακτήρων και μέγιστο μήκος 18 χαρακτήρων"
+      "error_message_7": "Ο κωδικός πρόσβασης πρέπει να αποτελείται από 6-18 χαρακτήρες και να αποτελείται από αριθμούς, κεφαλαία και πεζά γράμματα"
     },
     "editorSwitchCountryTip": "Η εναλλαγή των χωρών δεν υποστηρίζεται από το πρόγραμμα επεξεργασίας"
   }

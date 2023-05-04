@@ -4,7 +4,7 @@ window.SLM['theme-shared/biz-com/customer/constant/pattern.js'] = window.SLM['th
   const _exports = {};
   const EMAIL_PATTERN = /^([\w-.+]+)@([\w-.]+)\.([\w-.]+)$/;
   _exports.EMAIL_PATTERN = EMAIL_PATTERN;
-  const MEMBER_PASSWORD_PATTERN = /^.{6,18}$/i;
+  const MEMBER_PASSWORD_PATTERN = /^[\x20-\xff]{6,18}$/i;
   _exports.MEMBER_PASSWORD_PATTERN = MEMBER_PASSWORD_PATTERN;
   const PHONE_PATTERN = {
     '+86': /^1[3-9]\d{9}$/,

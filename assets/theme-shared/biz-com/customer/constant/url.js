@@ -28,9 +28,9 @@ window.SLM['theme-shared/biz-com/customer/constant/url.js'] = window.SLM['theme-
   _exports.LOGISTICS_ADDRESS_LAYER = LOGISTICS_ADDRESS_LAYER;
   const LOGISTICS_ADDRESS_TEMPLATE = '/logistics/addr/template/get';
   _exports.LOGISTICS_ADDRESS_TEMPLATE = LOGISTICS_ADDRESS_TEMPLATE;
-  const PLACE_AUTOCOMPLETE = '/places/autocomplete';
+  const PLACE_AUTOCOMPLETE = '/logistics/places/autocomplete';
   _exports.PLACE_AUTOCOMPLETE = PLACE_AUTOCOMPLETE;
-  const PLACE_DETAIL = '/places/detail';
+  const PLACE_DETAIL = '/logistics/places/detail';
   _exports.PLACE_DETAIL = PLACE_DETAIL;
   return _exports;
 }();

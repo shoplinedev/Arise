@@ -329,7 +329,7 @@
       "send_verification_code_hint": "Proszę wpisać hasło ponownie",
       "sep": "Wrz",
       "september": "Wrzesień",
-      "set_password": "Proszę ustawić hasło składające się z 6-18 cyfr",
+      "set_password": "Hasło musi składać się z 6-18 znaków składających się z cyfr, wielkich i małych liter",
       "sign__out": "Wylogować się",
       "sign_in": "Zalogowanie",
       "sign_up": "Rejestracja",
@@ -624,6 +624,9 @@
       "recently_viewed_products": "Ostatnio oglądane produkty"
     }
   },
+  "reduction_code": {
+    "giftcard": "karta podarunkowa"
+  },
   "sales": {
     "discount_coupon": {
       "active_date_until": "Czas ważności sięga po: {{endTime}}.",
@@ -664,11 +667,14 @@
       "flash_sale_text": "Promocja tymczasowa",
       "flash_sale_tip": "Limit zakupów: {{count}} sztuki",
       "hot_sale": "W sprzedaniu",
+      "product_tabs_benefit_amount_locked": "Zmniejsz {{benefitAmount}}",
+      "product_tabs_benefit_amount_unlocked": "Już odblokowano zmniejszenie o {{benefitAmount}}！",
       "product_tabs_benefit_discount_locked": "Zmniejsz {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "Już odblokowano zmniejszenie o {{offPercent}}%！",
       "product_tabs_benefit_free_locked": "Bezpłatny produkt",
       "product_tabs_benefit_free_unlocked": "Już odblokowano bezpłatny produkt！",
       "product_tabs_benefit_unlocked_tip": "Teraz możesz cieszyć się ulgą produktu.",
+      "product_tabs_code_benefit_amount_unlocked": "Kup {{benefitCount}} sztuk z {{benefitAmount}} rabatem",
       "product_tabs_code_benefit_discount_unlocked": "Kup {{benefitCount}} sztuk z {{offPercent}}% rabatem",
       "product_tabs_code_benefit_free_unlocked": "Zdobądź {{benefitCount}} sztuk za darmo",
       "product_tabs_threshold": "Kup {{threshold}}",
@@ -769,6 +775,9 @@
       "total": "Suma",
       "total_sum": "Suma"
     },
+    "payment_disconut_channelinvalid_code": {
+      "tips": "Ten kod rabatowy {{discountCode}} nie dotyczy tego sposobu sprzedaży"
+    },
     "policy": {
       "refund_policy": "Polityka zwrotów"
     },
@@ -838,7 +847,7 @@
       "error_message_4": "Usługa działa nienormalnie",
       "error_message_5": "Usługa działa nienormalnie",
       "error_message_6": "Usługa działa nienormalnie",
-      "error_message_7": "Proszę ustawić hasło składające się z 6-18 cyfr"
+      "error_message_7": "Hasło musi składać się z 6-18 znaków składających się z cyfr, wielkich i małych liter"
     },
     "editorSwitchCountryTip": "Nie można zmienić kraju lub regionu w edytorze"
   }

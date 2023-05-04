@@ -16,7 +16,22 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/index.js']
       return '';
     }
 
-    return getPromotionBarContent(promotion, rootWrapper);
+    let saleExtInfo = {};
+
+    try {
+      if (typeof promotion.saleExtInfo === 'string') {
+        saleExtInfo = JSON.parse(promotion.saleExtInfo);
+      }
+    } catch (e) {
+      console.warn('json.parse saleExtInfo value err:', e);
+      saleExtInfo = {};
+    }
+
+    if (saleExtInfo.showAutoCartBanner) {
+      return getPromotionBarContent(promotion, rootWrapper);
+    }
+
+    return '';
   };
 
   _exports.getContent = getContent;
