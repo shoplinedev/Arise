@@ -831,6 +831,15 @@
           "info": "若要添加语言，可前往[语言设置](/admin/settings/lang)",
           "label": "展示语言选择器"
         },
+        "show_locale_selector_position": {
+          "label": "语言/国家选择器展示位置",
+          "options__0": {
+            "label": "页头上方"
+          },
+          "options__1": {
+            "label": "个人中心图标旁边"
+          }
+        },
         "show_search_entry": {
           "label": "显示搜索入口"
         },
@@ -1960,6 +1969,17 @@
             }
           }
         },
+        "description-collapse": {
+          "name": "商品描述（手风琴）",
+          "settings": {
+            "fold": {
+              "label": "折叠展示"
+            },
+            "title": {
+              "label": "标题"
+            }
+          }
+        },
         "description": {
           "name": "商品描述",
           "settings": {
@@ -2745,6 +2765,15 @@
               },
               "options__5": {
                 "label": "右下方"
+              },
+              "options__6": {
+                "label": "正上方"
+              },
+              "options__7": {
+                "label": "左上方"
+              },
+              "options__8": {
+                "label": "右上方"
               }
             },
             "title": {

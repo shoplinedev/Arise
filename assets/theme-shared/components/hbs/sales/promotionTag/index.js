@@ -9,6 +9,11 @@ window.SLM['theme-shared/components/hbs/sales/promotionTag/index.js'] = window.S
     return str;
   }
 
+  const BenefitValueTypeEnum = {
+    AMOUNT: 1,
+    DISCOUNT: 2
+  };
+
   function promotionTag(currency, safeString = defaultSafeString) {
     function setWrapper(value, warper) {
       return safeString(warper ? `<span class="notranslate ${warper.class}" style="font-size: 14px; font-weight: bold;${nc(warper.style, '')}">${value}</span>` : value);
@@ -27,26 +32,26 @@ window.SLM['theme-shared/components/hbs/sales/promotionTag/index.js'] = window.S
       NUMBER: 1
     };
 
-    function formatBenefitNum(str, type, options) {
+    function formatBenefitNum(str, props, options) {
       if (str === undefined) {
         return '';
       }
 
       const num = Number(str) || 0;
 
-      if (get(type, 'thresholdType') === ThresholdTypeEnum.NUMBER) {
+      if (get(props, 'thresholdType') === ThresholdTypeEnum.NUMBER) {
         return num;
       }
 
-      if (get(type, 'benefitType') === BenefitTypeEnum.DISCOUNT || get(type, 'benefitType') === BenefitTypeEnum.NTH_PRICE || get(type, 'benefitType') === BenefitTypeEnum.BUY_X_GET_Y) {
-        return `${100 - num}%`;
-      }
-
-      if (get(type, 'benefitType') === BenefitTypeEnum.PRICE || get(type, 'thresholdType') === ThresholdTypeEnum.PRICE) {
+      if (get(props, 'benefitValueType') === BenefitValueTypeEnum.AMOUNT || get(props, 'benefitType') === BenefitTypeEnum.PRICE || get(props, 'thresholdType') === ThresholdTypeEnum.PRICE) {
         return `<span data-amount="${num}">${currency ? currency(num, options) : ''}</span>`;
       }
 
-      if (get(type, 'benefitType') === BenefitTypeEnum.FREELOWESTPRICE) {
+      if (get(props, 'benefitValueType') === BenefitValueTypeEnum.DISCOUNT || get(props, 'benefitType') === BenefitTypeEnum.DISCOUNT || get(props, 'benefitType') === BenefitTypeEnum.NTH_PRICE || get(props, 'benefitType') === BenefitTypeEnum.BUY_X_GET_Y) {
+        return `${100 - num}%`;
+      }
+
+      if (get(props, 'benefitType') === BenefitTypeEnum.FREELOWESTPRICE) {
         return num.toString();
       }
 
@@ -102,7 +107,8 @@ window.SLM['theme-shared/components/hbs/sales/promotionTag/index.js'] = window.S
         path: completePath,
         params: {
           save: setWrapper(formatBenefitNum(nc(benefitAmount, discount, benefitCount, 0), {
-            benefitType
+            benefitType,
+            benefitValueType: (benefitType === BenefitTypeEnum.BUY_X_GET_Y || benefitType === BenefitTypeEnum.NTH_PRICE) && benefitAmount ? BenefitValueTypeEnum.AMOUNT : undefined
           }, options), { ...warper,
             class: `sales__promotionReminder-save ${nc(get(warper, 'class'), '')}`
           }),

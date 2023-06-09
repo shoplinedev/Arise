@@ -70,6 +70,12 @@ input{
   display:inline-block;
   white-space:nowrap;
 }
+@media (max-width:749.98px){
+  .locale-currency.is_dropdown .dropdown__list li span{
+    white-space:normal;
+    word-break:break-word;
+  }
+}
 .locale-currency.is_dropdown .dropdown__list.is-selected .dropdown__list span{
   border-bottom:1px solid;
 }
@@ -153,6 +159,13 @@ input{
 .locale-currency.is_dropdown[data-position=footer] .dropdown__list{
   bottom:100%;
   top:unset;
+}
+@media (max-width:749.98px){
+  .locale-currency.is_dropdown[data-position=footer] .dropdown__list{
+    max-width:50vw;
+    min-width:100%;
+    width:max-content;
+  }
 }
 
 .locale-currency.is_dropdown[data-currency] .dropdown__list{

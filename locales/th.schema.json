@@ -831,6 +831,15 @@
           "info": "หากต้องการเพิ่มภาษา ให้ไปที่ [การตั้งค่าภาษา](/admin/settings/lang)",
           "label": "แสดงตัวเลือกภาษา"
         },
+        "show_locale_selector_position": {
+          "label": "ตำแหน่งตัวเลือกภาษา/ประเทศ",
+          "options__0": {
+            "label": "ด้านบนของส่วนหัว"
+          },
+          "options__1": {
+            "label": "ถัดจากไอคอนศูนย์ส่วนบุคคล"
+          }
+        },
         "show_search_entry": {
           "label": "แสดงทางเข้าการค้นหา"
         },
@@ -1960,6 +1969,17 @@
             }
           }
         },
+        "description-collapse": {
+          "name": "รายละเอียดสินค้า(หีบเพลง)",
+          "settings": {
+            "fold": {
+              "label": "แสดงแบบเก็บ"
+            },
+            "title": {
+              "label": "หัวข้อ"
+            }
+          }
+        },
         "description": {
           "name": "รายละเอียดสินค้า",
           "settings": {
@@ -2745,6 +2765,15 @@
               },
               "options__5": {
                 "label": "ล่างขวา"
+              },
+              "options__6": {
+                "label": "ด้านบนโดยตรง"
+              },
+              "options__7": {
+                "label": "บนซ้าย"
+              },
+              "options__8": {
+                "label": "บนขวา"
               }
             },
             "title": {

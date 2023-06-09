@@ -1,0 +1,18 @@
+{{assign 'pageData' (get id pages)}}
+{{#snippet "product/commons/base-collapse-item" customTitleClass="body2" id=id fold=fold isSyncData=true}}
+  {{#child 'header'}}
+    {{#and icon (boolean icon '!=' 'none')}}
+    <span class="base-collapse-item__icon">{{snippet "product/commons/additional-icons" icon=icon icon_color=theme.settings.color_text}}</span>
+    {{/and}}
+    <span class="base-collapse-item__title">
+      {{cond title title pageData.name.default }}
+    </span>
+  {{/child}}
+  {{#child 'content'}}
+    <div class="desc">{{{desc}}}</div>
+    <div class="main-page-content">
+      {{{pageData.htmlConfig}}}
+      {{{ content }}}
+    </div>
+  {{/child}}
+{{/snippet}}

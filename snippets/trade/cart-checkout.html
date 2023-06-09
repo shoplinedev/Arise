@@ -1,7 +1,7 @@
 {{assign "isNewExpressCheckout" paymentButtonConfig.newProcess}}
 
 {{#if isNewExpressCheckout}}
-  <div id="payment_button_{{id}}" class="{{trade_cart_type}}__trade-cart-checkout"></div>
+  <div id="payment_button_{{id}}" class="{{trade_cart_type}}__trade-cart-checkout payment-button-container"></div>
 {{else}}
   <div class="{{trade_cart_type}}__trade-cart-checkout">
     {{#if (boolean payChannelInfo.showSpbBtn)}}

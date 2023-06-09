@@ -15,7 +15,7 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
 
   class CartReport extends TradeReport {
     setRemoveItemParams(params, extraItems) {
-      logger.info(`normal 主站购物车 数据上报 设置移除商品params setRemoveItemParams`, {
+      logger.info(`normal 主站购物车 数据上报 设置移除商品 params setRemoveItemParams`, {
         data: {
           cartToken,
           params,
@@ -85,7 +85,7 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
       }
 
       res.value = currencyUtil.formatCurrency(res.value || 0).toString();
-      logger.info(`normal 主站购物车 数据上报 设置移除商品params setRemoveItemParams`, {
+      logger.info(`normal 主站购物车 数据上报 设置移除商品 params setRemoveItemParams`, {
         data: {
           cartToken,
           params,
@@ -146,17 +146,16 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
         });
         this.touch(data);
       } catch (e) {
-        logger.info(`normal 主站购物车 数据上报 移除商品 上报报错 removeItem`, {
+        logger.error(`normal 主站购物车 数据上报 移除商品 上报报错 removeItem`, {
           data: {
             cartToken,
             params,
-            extraItems,
-            error: e
+            extraItems
           },
+          error: e,
           action: Action.EditCart,
-          status: LoggerStatus.Start
+          errorLevel: 'P0'
         });
-        console.error(e);
       }
     }
 
@@ -199,10 +198,25 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
         action: Action.InitCart,
         status: LoggerStatus.Start
       });
-      this.reportViewCart({
-        params,
-        actionType: ClickType.ViewCart
-      });
+
+      try {
+        this.reportViewCart({
+          params,
+          actionType: ClickType.ViewCart
+        });
+      } catch (error) {
+        logger.error(`mini 主站购物车 数据上报 viewCart 失败`, {
+          data: {
+            cartToken,
+            reportInfo: { ...params,
+              actionType: ClickType.ViewCart
+            }
+          },
+          error,
+          action: Action.ReportCart,
+          status: LoggerStatus.Failure
+        });
+      }
     }
 
   }

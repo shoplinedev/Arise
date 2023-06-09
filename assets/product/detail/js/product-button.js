@@ -10,6 +10,7 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
   const { checkoutEnd } = window['SLM']['theme-shared/components/hbs/products/checkedEvent/index.js'];
   const { isNewExpressCheckout, ButtonType } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const { Payments, PageType } = window['SLM']['theme-shared/components/smart-payment/payments.js'];
+  const { NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW } = window['SLM']['theme-shared/components/payment-button/constants.js'];
   const { setPayPalReportReq } = window['SLM']['theme-shared/utils/tradeReport/index.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const get = window['lodash']['get'];
@@ -49,20 +50,36 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
     });
   };
 
+  const SMART_PAYMENT_BUTTON_HEIGHT = 43;
+
   class ButtonEvent {
     constructor(props) {
       const {
         id
       } = props;
+      this.paymentButtonModuleInstance = null;
       this.isNewExpressCheckout = isNewExpressCheckout(PageType.ProductDetail);
 
       if (this.isNewExpressCheckout) {
-        PayemtnButtonModule.newButtonModule({
+        this.paymentButtonModuleInstance = PayemtnButtonModule.newButtonModule({
           elementId: id,
           pageType: PageType.ProductDetail,
           cbFn: domMap => this.init({ ...props,
             payPayId: domMap[ButtonType.ExpressCheckoutButton]
-          })
+          }),
+          setCheckoutParams: async () => {
+            return {
+              productButtonId: this.id,
+              products: this.transProducts(this.products),
+              extra: {
+                stage: this.getStage(),
+                query: {
+                  spb: true
+                }
+              },
+              dataReportReq: this.getDataReportReq()
+            };
+          }
         });
         return;
       }
@@ -96,12 +113,12 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       this.paypalReportData = {};
       this.spu = spu;
       this.sku = sku;
+      this.id = id;
       this.initPaypal();
       this.initEvent();
       this.toast = new Toast();
       this.initLoading();
       this.num = 1;
-      this.id = id;
       this.page = String(id).startsWith('productRecommendModal') ? '123' : pageMapping[SL_State.get('templateAlias')];
       this.modalType = modalType;
       this.position = position;
@@ -197,15 +214,6 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       });
     }
 
-    getReportReg() {
-      return {
-        products: this.transProducts(this.products).map(product => ({ ...product,
-          productPrice: newCurrency.unformatCurrency(convertPrice(product.productPrice))
-        })),
-        currency: getCurrencyCode()
-      };
-    }
-
     getDataReportReq() {
       return setPayPalReportReq({
         products: this.transProducts(this.products).map(product => ({ ...product,
@@ -218,13 +226,26 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
 
     async renderSmartPayment() {
       const stage = this.getStage();
+
+      const renderDefaultBuyNow = () => {
+        if (!this.buttonConfig.buyNow) {
+          this.extraBuyNow();
+        }
+
+        if (!this.isNewExpressCheckout) {
+          $(`#${this.payPayId}`).remove();
+        }
+
+        $(this.buyButton).filter('.product-more-payment-button').remove();
+      };
+
       this.SmartPaymentComponent = new Payments({
         pageType: PageType.ProductDetail,
         props: {
           domId: this.payPayId,
           dynamic: get(this, 'buttonConfig.originConfig.system'),
           styleOptions: {
-            height: $(`#${this.payPayId}`).height() || 43
+            height: SMART_PAYMENT_BUTTON_HEIGHT
           }
         },
         emitData: {
@@ -248,24 +269,14 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           message
         }) => this.toast.open(message),
         onDynamicNotify: () => {
-          if (!this.buttonConfig.buyNow) {
-            this.extraBuyNow();
-          }
-
-          $(`#${this.payPayId}`).remove();
-          $(this.buyButton).filter('.product-more-payment-button').remove();
+          renderDefaultBuyNow();
         },
         onAllButtonsInitFail: () => {
-          if (!this.buttonConfig.buyNow) {
-            this.extraBuyNow();
-          }
-
-          $(`#${this.payPayId}`).remove();
-          $(this.buyButton).filter('.product-more-payment-button').remove();
+          renderDefaultBuyNow();
         },
         afterInit: () => {
           if (!this.activeSku) {
-            this.setPaypalDisabled();
+            this.setSmartPaymentDisabled();
           }
 
           $(this.buyButton).filter('.product-more-payment-button').html(t('products.product_details.more_payment_options'));
@@ -284,7 +295,10 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
     }
 
     extraBuyNow() {
-      const buyNow = `<button data-ssr-plugin-pdp-button-buy-now class="buy-now shopline-element-buy-now btn btn-primary btn-lg ${this.buyButton.substr(1)} __sl-custom-track-product-detail-buy-now paypalAddBuyNow">
+      const paymentButtonContainer = $(`#product-button-list_${this.id}`);
+      const buyNowButton = paymentButtonContainer.find(`.${NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW}`);
+      if (buyNowButton.length > 0) return;
+      const buyNow = `<button data-ssr-plugin-pdp-button-buy-now class="buy-now shopline-element-buy-now btn btn-primary btn-lg ${this.buyButton.substr(1)} __sl-custom-track-product-detail-buy-now paypalAddBuyNow ${NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW}">
         <span class="pdp_button_text fw-bold">${t('cart.cart.buy_now')}</span>
       </button>`;
       const buyNowEl = $(buyNow);
@@ -538,28 +552,35 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       this.activeSku = sku ? { ...sku,
         name: this.spu.title
       } : null;
-      this.setPayPalProduct();
-      this.setPaypalDisabled();
+      this.setSmartPaymentDisabled();
 
       if (sku) {
         this.setTradeButtonHide(sku.soldOut);
+
+        if (this.paymentButtonModuleInstance) {
+          this.paymentButtonModuleInstance.setDisplay(!sku.soldOut);
+        }
       }
     }
 
     setActiveSkuNum(num) {
       this.num = num;
-      if (!this.activeSku) return;
-      this.setPayPalProduct();
     }
 
-    setPaypalDisabled() {
+    setSmartPaymentDisabled() {
       if (!this.activeSku) {
-        this.PayPalButton && this.PayPalButton.setDisabled(true);
+        if (this.paymentButtonModuleInstance) {
+          this.paymentButtonModuleInstance.setDisabled(true);
+        }
+
         this.SmartPaymentComponent && this.SmartPaymentComponent.setDisabled(this.activeSku);
         return;
       }
 
-      this.PayPalButton && this.PayPalButton.setDisabled(false);
+      if (this.paymentButtonModuleInstance) {
+        this.paymentButtonModuleInstance.setDisabled(false);
+      }
+
       this.SmartPaymentComponent && this.SmartPaymentComponent.setDisabled(this.activeSku);
     }
 
@@ -571,13 +592,6 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         name: get(this, 'spu.title'),
         price: get(this, 'activeSku.price')
       }];
-    }
-
-    setPayPalProduct() {
-      if ($(`#${this.payPayId}`).length === 0 || !this.activeSku) return;
-      this.PayPalButton && this.PayPalButton.setProducts(this.products.map(product => ({ ...product,
-        price: newCurrency.unformatCurrency(convertPrice(product.price))
-      })));
     }
 
     setTradeButtonHide(show) {

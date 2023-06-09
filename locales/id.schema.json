@@ -831,6 +831,15 @@
           "info": "Jika perlu menambahkan bahasa, silahkan buka [Pengaturan Bahasa](/admin/settings/lang)",
           "label": "Tampilkan pilihan bahasa"
         },
+        "show_locale_selector_position": {
+          "label": "Pemilih bahasa/negara menampilkan lokasi",
+          "options__0": {
+            "label": "Atas tajuk"
+          },
+          "options__1": {
+            "label": "Di samping ikon pusat pribadi"
+          }
+        },
         "show_search_entry": {
           "label": "Tampilkan pintu masuk pencarian"
         },
@@ -1960,6 +1969,17 @@
             }
           }
         },
+        "description-collapse": {
+          "name": "Deskripsi Produk (Akordeon)",
+          "settings": {
+            "fold": {
+              "label": "Tampilan lipat"
+            },
+            "title": {
+              "label": "Judul"
+            }
+          }
+        },
         "description": {
           "name": "Deskripsi produk",
           "settings": {
@@ -2745,6 +2765,15 @@
               },
               "options__5": {
                 "label": "Kanan Bawah"
+              },
+              "options__6": {
+                "label": "Tepat di atas"
+              },
+              "options__7": {
+                "label": "Kiri atas"
+              },
+              "options__8": {
+                "label": "Kanan atas"
               }
             },
             "title": {

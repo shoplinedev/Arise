@@ -15,6 +15,9 @@
   <div class="giftCardWrapper {{#if invalid}}disabled{{/if}}">
     <div class="giftCardBox">
       <div class="giftCardBg">
+        {{#if (isTruthy show_pos_qr_code)}}
+          <div class="giftCardQrCode" data-gift-code="{{gift_card.code}}"></div>
+        {{/if}}
         <div class="giftCardCode notranslate">{{ gift_card.code }}</div>
       </div>
     </div>

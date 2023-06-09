@@ -232,9 +232,6 @@
 .product-button-list>button:last-child{
   margin-bottom:0;
 }
-.product-button-list .express-checkout-button-list{
-  margin-bottom:10px;
-}
 .product-button-list .add-to-cart>.pdp_button_text,.product-button-list .buy-now>.pdp_button_text{
   line-height:1.6;
 }
@@ -298,6 +295,75 @@
   .product-button-list .product-more-payment-button{
     font-size:12px;
   }
+}
+.product-button-list .fast-checkout-button-item{
+  background-color:#60f5b2;
+  border-color:#60f5b2;
+  color:#052855;
+  font-family:PingFang SC;
+  margin:10px 0;
+  position:relative;
+}
+.product-button-list .fast-checkout-button-item:active,.product-button-list .fast-checkout-button-item:focus,.product-button-list .fast-checkout-button-item:hover{
+  color:#052855;
+}
+.product-button-list .fast-checkout-button-item:hover{
+  background-color:#60e1b2;
+  border-color:#60e1b2;
+}
+.product-button-list .fast-checkout-button-item:active,.product-button-list .fast-checkout-button-item:focus{
+  background-color:#60ffb2;
+  border-color:#60ffb2;
+}
+.product-button-list .fast-checkout-button-item .fast-checkout-btn-loading-icon{
+  display:none;
+  height:16px;
+  margin-left:-8px;
+  margin-top:-8px;
+  width:16px;
+}
+.product-button-list .fast-checkout-button-item .fast-checkout-btn-loading-icon svg{
+  display:block;
+  height:100%;
+  width:100%;
+}
+.product-button-list .fast-checkout-button-item.fast-checkout-btn-loading{
+  opacity:.4;
+}
+.product-button-list .fast-checkout-button-item.fast-checkout-btn-loading .fast-checkout-button-item-container{
+  visibility:hidden;
+}
+.product-button-list .fast-checkout-button-item.fast-checkout-btn-loading .fast-checkout-btn-loading-icon{
+  animation:btn-loading linear 1.5s infinite;
+  display:block;
+  left:50%;
+  position:absolute;
+  top:50%;
+}
+.product-button-list .fast-checkout-button-item .fast-checkout-button-item-container{
+  align-items:center;
+  display:flex;
+  justify-content:center;
+}
+.product-button-list .fast-checkout-button-item span{
+  font-style:normal;
+  font-weight:400;
+}
+.product-button-list .fast-checkout-button-item .fast-checkout-button-prefix+span{
+  font-family:PingFang SC;
+  letter-spacing:-.02em;
+  margin-inline-start:4px;
+  text-transform:capitalize;
+}
+.product-button-list .fast-checkout-button-prefix{
+  text-rendering:optimizeLegibility;
+  color:inherit;
+  display:inline-block;
+  font-style:normal;
+  line-height:0;
+  text-align:center;
+  text-transform:none;
+  vertical-align:-.25em;
 }
 
 .productSecurityPayment{
@@ -840,6 +906,9 @@ body .pswp__ui--hidden{
 .product_pc_productImageContainer.product_layoutColumn .product_thumbsColumnContainer .productImageThumbsWrapper .thumbsImageItem img[src],.product_pc_productImageContainer.product_layoutColumn .product_thumbsColumnContainer .productImageThumbsWrapper .thumbsImageItem img[srcset]{
   opacity:1;
 }
+.product_pc_productImageContainer.product_layoutColumn .product_thumbsColumnContainer .productImageThumbsWrapper .thumbsImageItem.customImageRatio img{
+  object-fit:cover;
+}
 .product_pc_productImageContainer.product_layoutColumn .product_thumbsColumnContainer .productImageThumbsWrapper .thumbsImageItem:last-child{
   margin-bottom:0;
 }
@@ -949,6 +1018,9 @@ body .pswp__ui--hidden{
 }
 .product_pc_productImageContainer.product_layoutRow .product_thumbsRowContainer .productImageThumbsWrapper .thumbsImageItem img :not([srcset]),.product_pc_productImageContainer.product_layoutRow .product_thumbsRowContainer .productImageThumbsWrapper .thumbsImageItem img:not([src]){
   opacity:0;
+}
+.product_pc_productImageContainer.product_layoutRow .product_thumbsRowContainer .productImageThumbsWrapper .thumbsImageItem.customImageRatio img{
+  object-fit:cover;
 }
 .product_pc_productImageContainer.product_layoutRow .product_thumbsRowContainer .productImageThumbsWrapper .thumbsImageItem:last-child{
   margin-right:0 !important;
@@ -1257,7 +1329,7 @@ body .pswp__ui--hidden{
   position:relative;
   width:100%;
 }
-.product_mobile_productImageContainer .product_productImages .swiper-slide:not(:first-child){
+.product_mobile_productImageContainer .product_productImages .swiper-slide:not(.initial-slide){
   height:0;
 }
 .product_mobile_productImageContainer .product_productImages .swiper-slide .swiper-slide-box{

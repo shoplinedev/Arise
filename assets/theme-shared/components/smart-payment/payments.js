@@ -9,7 +9,8 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
   const qs = window['query-string']['*'];
   const { SmartPayment, mergeParams } = window['SLM']['theme-shared/components/smart-payment/index.js'];
   const { newExpressCheckoutButton } = window['SLM']['theme-shared/components/payment-button/express_checkout.js'];
-  const { getSubscription, getPurchaseSDKCheckoutData, PageType, HandleClassType, createElement, isFn, isNewExpressCheckout } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
+  const { getSubscription, getPurchaseSDKCheckoutData, PageType, HandleClassType, createElement, isFn, isNewExpressCheckout, paymentToast, getPageI18nText } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
+  const { ERROR_TYPE } = window['SLM']['theme-shared/components/smart-payment/constants.js'];
   const PaymentUpdate = 'Payment::Update';
   const CartUpdate = 'Cart::CartDetailUpdate';
   const logger = loggerService.pipeOwner('SmartPayment');
@@ -173,6 +174,10 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
               dataReportReq
             };
           } catch (error) {
+            paymentToast({
+              page: this.config.pageType,
+              content: getPageI18nText(this.config.pageType, ERROR_TYPE.CreateFail)
+            });
             return {
               valid: false
             };
@@ -206,14 +211,6 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
 
           if (isFn(this.config.onError)) {
             this.config.onError(error, type, extData);
-          }
-        },
-        onAllButtonsInitFail: () => {
-          if (!isNewExpressCheckout(this.config.pageType) || this.hasAllButtonsInitFail) return;
-
-          if (isFn(this.config.onAllButtonsInitFail)) {
-            this.config.onAllButtonsInitFail();
-            this.hasAllButtonsInitFail = true;
           }
         }
       });

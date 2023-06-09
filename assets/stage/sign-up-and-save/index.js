@@ -25,7 +25,8 @@ window.SLM['stage/sign-up-and-save/index.js'] = window.SLM['stage/sign-up-and-sa
       const post = debounce(300, val => {
         const params = {
           subscribeAccountType: 'email',
-          subscribeAccount: val
+          subscribeAccount: val,
+          consentCollectedFrom: 'SignUpSection'
         };
         const referralCode = window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value;
 

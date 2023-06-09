@@ -1,4 +1,5 @@
-{{assign 'typeValue' '1'}}
+{{assign 'typeValue' (default (get 'sortType' (first sortTypesList )) '1')}}
+
 {{#if request.uri.query.sort_type}}
   {{assign 'typeValue' request.uri.query.sort_type}}
 {{/if}}
@@ -7,10 +8,34 @@
     {{snippet 'icons/icon_collapse_arrow'}}
   </span>
   <select class="body3" name="collection-sort" id="collection-sort">
-    <option {{#if typeValue '===' '1'}}selected{{/if}} value="1">{{t "products.product_list.recommend"}}</option>
-    <option {{#if typeValue '===' '2'}}selected{{/if}} value="2">{{t "products.product_list.top_sellers"}}</option>
-    <option {{#if typeValue '===' '3'}}selected{{/if}} value="3">{{t "products.product_list.new_arrivals"}}</option>
-    <option {{#if typeValue '===' '4'}}selected{{/if}} value="4">{{t "products.product_list.price_low_to_high"}}</option>
-    <option {{#if typeValue '===' '5'}}selected{{/if}} value="5">{{t "products.product_list.price_high_to_low"}}</option>
+    {{#each sortTypesList as |sortItem|}}
+      {{~#capture 'text'~}}
+        {{#if (trim sortItem.sortName)}}
+          {{sortItem.sortName}}
+        {{else}}
+          {{#case sortItem.sortType}}
+            {{#when 1}}
+              {{t "products.product_list.recommend"}}
+            {{/when}}
+            {{#when 2}}
+              {{t "products.product_list.top_sellers"}}
+            {{/when}}
+            {{#when 3}}
+              {{t "products.product_list.new_arrivals"}}
+            {{/when}}
+            {{#when 4}}
+              {{t "products.product_list.price_low_to_high"}}
+            {{/when}}
+            {{#when 5}}
+              {{t "products.product_list.price_high_to_low"}}
+            {{/when}}
+            {{#when 6}}
+              {{t "products.product_list.new_products"}}
+            {{/when}}
+          {{/case}}
+        {{/if}}
+      {{~/capture~}}
+      <option {{#if (toInt ../typeValue) '===' (toInt sortItem.sortType)}}selected{{/if}} value="{{sortItem.sortType}}">{{text}}</option>
+    {{/each}}
   </select>
 </div>

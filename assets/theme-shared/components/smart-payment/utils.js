@@ -71,7 +71,8 @@ window.SLM['theme-shared/components/smart-payment/utils.js'] = window.SLM['theme
   _exports.convertPageType = convertPageType;
   const ButtonType = {
     ExpressCheckoutButton: 'expressCheckoutButton',
-    NormalButton: 'normalButton'
+    NormalButton: 'normalButton',
+    FastCheckoutButton: 'fastCheckoutButton'
   };
   _exports.ButtonType = ButtonType;
   const ButtonName = {
@@ -149,6 +150,43 @@ window.SLM['theme-shared/components/smart-payment/utils.js'] = window.SLM['theme
 
   _exports.isNewExpressCheckout = isNewExpressCheckout;
 
+  const getExpressCheckoutList = ({
+    pageType,
+    buttonLocationDataList,
+    isSubscription = false
+  }) => {
+    const pageData = buttonLocationDataList.find(item => item.buttonLocation === convertPageType(pageType));
+    if (!pageData || !pageData.buttonTypeDataList || !isArray(pageData.buttonTypeDataList)) return [];
+    const buttonConfig = pageData.buttonTypeDataList.find(item => item.buttonType === ButtonType.ExpressCheckoutButton);
+    if (!buttonConfig || !isArray(buttonConfig.buttonNameDataList)) return [];
+    const payments = buttonConfig.buttonNameDataList.map(item => {
+      return item.buttonConfigData;
+    }).filter(_ => !!_);
+
+    if (isSubscription) {
+      return payments.filter(item => item.methodCode === METHOD_CODE.Paypal);
+    }
+
+    return payments;
+  };
+
+  _exports.getExpressCheckoutList = getExpressCheckoutList;
+
+  const getFastCheckoutList = ({
+    pageType
+  }) => {
+    const {
+      buttonLocationDataList
+    } = getPaymentInfo(convertPageType(pageType));
+    const buttonInfo = buttonLocationDataList.find(item => item.buttonLocation === convertPageType(pageType));
+    if (!buttonInfo || !buttonInfo.buttonTypeDataList || !isArray(buttonInfo.buttonTypeDataList)) return [];
+    const buttonConfig = buttonInfo.buttonTypeDataList.find(item => item.buttonType === ButtonType.FastCheckoutButton);
+    if (!buttonConfig || !isArray(buttonConfig.buttonNameDataList)) return [];
+    return buttonConfig.buttonNameDataList;
+  };
+
+  _exports.getFastCheckoutList = getFastCheckoutList;
+
   const getExpressCheckout = ({
     pageType,
     code
@@ -163,13 +201,10 @@ window.SLM['theme-shared/components/smart-payment/utils.js'] = window.SLM['theme
     }
 
     if (!buttonLocationDataList.length) return [];
-    const pageData = buttonLocationDataList.find(item => item.buttonLocation === convertPageType(pageType));
-    if (!pageData || !pageData.buttonTypeDataList || !isArray(pageData.buttonTypeDataList)) return [];
-    const buttonConfig = pageData.buttonTypeDataList.find(item => item.buttonType === ButtonType.ExpressCheckoutButton);
-    if (!buttonConfig || !isArray(buttonConfig.buttonNameDataList)) return [];
-    const payments = buttonConfig.buttonNameDataList.map(item => {
-      return item.buttonConfigData;
-    }).filter(_ => !!_);
+    const payments = getExpressCheckoutList({
+      pageType,
+      buttonLocationDataList
+    });
     if (!code) return payments;
     return payments.find(item => item.channelCode === code);
   };

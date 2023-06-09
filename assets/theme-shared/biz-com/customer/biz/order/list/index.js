@@ -6,7 +6,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
   const ScrollPagination = window['SLM']['theme-shared/utils/scrollPagination/index.js'].default;
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
-  const { convertFormat } = window['SLM']['theme-shared/utils/newCurrency/CurrencyConvert.js'];
+  const CurrencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const LoggerService = window['@yy/sl-theme-shared']['/utils/logger/sentry'].default;
   const { Status } = window['@yy/sl-theme-shared']['/utils/logger/sentry'];
   const { Owner, Action } = window['SLM']['theme-shared/biz-com/customer/biz/order/list/loggerReport.js'];
@@ -127,8 +127,9 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
         bizOrderStatus,
         productImage,
         productNum,
-        orderAmount
+        transCurrency
       } = data;
+      const orderAmount = data.orderAmount || 0;
       const statusContent = this.getOrderStatusInfo(data);
       const header = `
       <div class="customer-order-sku-item-header">
@@ -167,7 +168,9 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
             <div class="total-info">
               <p>
                 <span>${t('transaction.payment.total')}</span>
-                <span class="total notranslate" data-amount="${orderAmount}">${convertFormat(orderAmount || 0)}</span>
+                <span class="total notranslate" data-amount="${orderAmount}">${CurrencyUtil.format(orderAmount, {
+        code: transCurrency
+      })}</span>
               </p>
             </div>
           </div>

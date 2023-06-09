@@ -18,15 +18,26 @@
 
   {{! 购物车营销数据则生成一个当前活动的step===1的营销数据 }}
   {{#if (and (not promotion) (not hasGiftPlugin) activity)}}
-    {{assign "benefitType" activity.benefitType}}
-    {{assign "benefitCondition" activity.benefitConditions.[0]}}
-    {{assign "type" benefitCondition.benefitEvent.type}}
-    {{assign "benefit" (default benefitCondition.benefit.discount benefitCondition.benefit.benefitAmount)}}
-    {{assign "amount" benefitCondition.benefitEvent.minThreshold}}
-    {{assign "benefitCount" benefitCondition.benefit.benefitCount}}
-    {{assign "extMap" (object_create bannerText=cartBannerText.hitNone)}}
-    {{assign "promotionBenefit" (object_create type=type benefit=benefit amount=amount benefitCount=benefitCount extMap=extMap)}}
-    {{assign "promotion" (object_create benefitType=benefitType promotionBenefitList=(arrayify promotionBenefit))}}
+    {{ assign 'benefitType' activity.benefitType}}
+    {{ assign 'benefitCondition' activity.benefitConditions.[0]}}
+    {{#if (or (compare benefitType '===' 11) (compare benefitType '===' 12))}}
+      {{#if benefitCondition.benefit.benefitAmount}}
+        {{ assign 'benefitValueType' '1'}}
+      {{else}}
+        {{ assign 'benefitValueType' '2'}}
+      {{/if}}
+    {{/if}}
+    {{ assign 'type' benefitCondition.benefitEvent.type}}
+    {{#if (or (compare benefitType '===' 2) (compare benefitValueType '===' '2'))}}
+      {{ assign 'benefit' benefitCondition.benefit.discount }}
+    {{else}}
+      {{ assign 'benefit' benefitCondition.benefit.benefitAmount}}
+    {{/if}}
+    {{ assign 'amount' benefitCondition.benefitEvent.minThreshold}}
+    {{ assign 'benefitCount' benefitCondition.benefit.benefitCount}}
+    {{ assign 'extMap' (object_create bannerText=activity.cartBannerText.hitNone benefitValueType=benefitValueType)}}
+    {{ assign 'promotionBenefit' (object_create type=type benefit=benefit amount=amount benefitCount=benefitCount extMap=extMap)}}
+    {{ assign 'promotion' (object_create benefitType=benefitType promotionBenefitList=(arrayify promotionBenefit))}}
   {{/if}}
   <div class="activity__cart custom-body-color {{hasHide}}" id="activity-cart">
     {{! 营销提示信息 }}
@@ -36,11 +47,12 @@
         {{assign "hasHide" "d-none"}}
       {{/if}}
       <div class="activity__salesTip container body4 {{hasHide}}">
-        <span id="activity-salesTip" class="notranslate">
-          {{! 购物提示文案 }}
+        <span id="activity-salesTip"  class="notranslate">
+          {{!-- 购物提示文案 --}}
           {{#if (and promotion (not hasGiftPlugin))}}
-            {{assign "config" (sales_promotion_reminder_translate promotion)}}
-            {{noTranslationHTML (javascript_template promotionBenefit.extMap.bannerText config.params (toRegex "\{\s*(\w+)\s*\}" flags="g"))}}
+            {{ assign "config" (sales_promotion_reminder_translate promotion)}}
+            {{ noTranslationHTML (javascript_template promotionBenefit.extMap.bannerText config.params (toRegex '\{\s*(\w+)\s*\}' flags="g"))}}
+          {{else}}
           {{/if}}
         </span>
       </div>

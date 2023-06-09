@@ -17,13 +17,17 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
     PRICE: 0,
     NUMBER: 1
   };
+  const BenefitValueTypeEnum = {
+    AMOUNT: '1',
+    DISCOUNT: '2'
+  };
 
   function defaultSafeString(str) {
     return str;
   }
 
-  function getBenefitValue(benefitType, current, isNext = false) {
-    if (benefitType === BenefitTypeEnum.PRICE && !isNext) {
+  function getBenefitValue(benefitType, current, isNext = false, benefitValueType = null) {
+    if ((benefitType === BenefitTypeEnum.PRICE || benefitValueType === BenefitValueTypeEnum.AMOUNT) && !isNext) {
       return get(current, 'amount');
     }
 
@@ -75,20 +79,21 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
       return '';
     }
 
-    function formatBenefitNum(str, types, options = {}) {
+    function formatBenefitNum(str, props, options = {}) {
       if (str === undefined) {
         return '';
       }
 
       const num = Number(str) || 0;
-      const benefitType = get(types, 'benefitType');
+      const benefitType = get(props, 'benefitType');
+      const benefitValueType = get(props, 'benefitValueType');
 
-      if (benefitType === BenefitTypeEnum.DISCOUNT || benefitType === BenefitTypeEnum.BUY_X_GET_Y || benefitType === BenefitTypeEnum.NTH_PRICE) {
-        return `${100 - num}%`;
+      if (benefitValueType === BenefitValueTypeEnum.AMOUNT || benefitType === BenefitTypeEnum.NTH_FIXED_PRICE || benefitType === BenefitTypeEnum.PRICE) {
+        return `<span data-amount="${num}">${currency ? currency(num, options) : ''}</span>`;
       }
 
-      if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE || benefitType === BenefitTypeEnum.PRICE) {
-        return `<span data-amount="${num}">${currency ? currency(num, options) : ''}</span>`;
+      if (benefitValueType === BenefitValueTypeEnum.DISCOUNT || benefitType === BenefitTypeEnum.DISCOUNT || benefitType === BenefitTypeEnum.BUY_X_GET_Y || benefitType === BenefitTypeEnum.NTH_PRICE) {
+        return `${100 - num}%`;
       }
 
       if (benefitType === BenefitTypeEnum.FREELOWESTPRICE) {
@@ -137,7 +142,8 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
         const basePath = `sales.promotion.cart_reminder.b${benefitType}_t${thresholdType}_s${step}`;
         let completePath = basePath;
         const {
-          meetThreshold
+          meetThreshold,
+          benefitValueType
         } = extMap;
         let extra = '';
 
@@ -186,11 +192,13 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
           }
         }
 
-        const saved = formatBenefitNum(getBenefitValue(benefitType, current), {
-          benefitType
+        const saved = formatBenefitNum(getBenefitValue(benefitType, current, false, benefitValueType), {
+          benefitType,
+          benefitValueType
         }, options);
-        const willSave = formatBenefitNum(getBenefitValue(benefitType, next, true), {
-          benefitType
+        const willSave = formatBenefitNum(getBenefitValue(benefitType, next, true, benefitValueType), {
+          benefitType,
+          benefitValueType
         }, options);
         const threshold = formatThreshold(get(next, 'amount'), {
           thresholdType,

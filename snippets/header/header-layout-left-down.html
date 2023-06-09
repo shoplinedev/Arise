@@ -38,6 +38,11 @@
       {{/if}}
 
       <div data-ssr-plugin-wishlist="header" class="header__item header__item--buttons">
+        {{#if settings.show_locale_selector_position 'aside'}}
+        <div class="toolbar__select d-md-flex d-none">
+          {{snippet 'header/locale-currency' settings=settings position="header"}}
+        </div>
+        {{/if}}
         {{#if settings.show_search_entry}}
           {{snippet "header-btns" btns="search" classnames="header__layout--search-btn"}}
         {{/if}}

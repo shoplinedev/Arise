@@ -3,12 +3,14 @@ window.SLM = window.SLM || {};
 window.SLM['theme-shared/components/payment-button/utils.js'] = window.SLM['theme-shared/components/payment-button/utils.js'] || function () {
   const _exports = {};
   const { createElement, getPaymentInfo } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
-  const PAYMENT_BUTTON_COMMON__STYLE_ID = 'payment-button-common-style-id';
-  _exports.PAYMENT_BUTTON_COMMON__STYLE_ID = PAYMENT_BUTTON_COMMON__STYLE_ID;
-  const PAYMENT_BUTTON_COMMON_ANIMATED = 'payment-button-common-animated';
-  _exports.PAYMENT_BUTTON_COMMON_ANIMATED = PAYMENT_BUTTON_COMMON_ANIMATED;
-  const PAYMENT_BUTTON_COMMON_ITEM = 'payment-button-common-item';
-  _exports.PAYMENT_BUTTON_COMMON_ITEM = PAYMENT_BUTTON_COMMON_ITEM;
+  const { EXPRESS_PAYMENT_BUTTON_COMMON_ITEM, PAYMENT_BUTTON_COMMON_ANIMATED, PAYMENT_BUTTON_COMMON_ITEM_MASK, EXPRESS_PAYMENT_BUTTON_AP, EXPRESS_PAYMENT_BUTTON_GP, EXPRESS_PAYMENT_BUTTON_PAYPAL } = window['SLM']['theme-shared/components/payment-button/constants.js'];
+  const { METHOD_CODE } = window['SLM']['theme-shared/components/smart-payment/constants.js'];
+
+  const isProductPreview = () => {
+    return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
+  };
+
+  _exports.isProductPreview = isProductPreview;
 
   const getAttrs = str => {
     const list = str.split('&');
@@ -26,9 +28,30 @@ window.SLM['theme-shared/components/payment-button/utils.js'] = window.SLM['them
     list.forEach(item => {
       const currentDomId = `${domId}_${item.methodCode}`;
       item.currentDomId = currentDomId;
+      let expressPaymentBtnClass = '';
+
+      switch (item.methodCode) {
+        case METHOD_CODE.GooglePay:
+          expressPaymentBtnClass = EXPRESS_PAYMENT_BUTTON_GP;
+          break;
+
+        case METHOD_CODE.ApplePay:
+          expressPaymentBtnClass = EXPRESS_PAYMENT_BUTTON_AP;
+          break;
+
+        case METHOD_CODE.Paypal:
+        default:
+          expressPaymentBtnClass = EXPRESS_PAYMENT_BUTTON_PAYPAL;
+          break;
+      }
+
       createElement(currentDomId, domId, {
-        class: `${PAYMENT_BUTTON_COMMON_ITEM} ${PAYMENT_BUTTON_COMMON_ANIMATED}`
+        class: `${EXPRESS_PAYMENT_BUTTON_COMMON_ITEM} ${PAYMENT_BUTTON_COMMON_ANIMATED} ${expressPaymentBtnClass}`
       });
+
+      if (isProductPreview()) {
+        $(`#${currentDomId}`).prepend(`<div class="${PAYMENT_BUTTON_COMMON_ITEM_MASK}"></div>`);
+      }
     });
   };
 

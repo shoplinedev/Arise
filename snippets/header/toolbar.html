@@ -1,6 +1,8 @@
 {{assign 'settings' section.settings}}
 {{assign 'toolbar_menu_data' (get settings.toolbar_menu navigations) }}
+{{assign 'show_locale_selector_position' settings.show_locale_selector_position}}
 
+{{#or (boolean show_locale_selector_position '===' 'top') (and (isTruthy toolbar_menu_data) (gt (size toolbar_menu_data.nodeTree) 0)) settings.toolbar_social}}
 <div class="header__top"  data-color-scheme="{{color_scheme}}">
     <div class="container{{#if settings.show_tool_full}}-fluid{{/if}} g-2 g-md-5 toolbar d-none d-lg-flex {{#if section.settings.header_full_width}}header__full_screen_width{{/if}}">
         {{#if (isTruthy toolbar_menu_data)}}
@@ -85,8 +87,11 @@
             </div>
         {{/if}}
         {{!-- Currency & Language --}}
+        {{#if show_locale_selector_position 'top'}}
         <div class="toolbar__select">
             {{snippet 'header/locale-currency' settings=settings position="header"}}
         </div>
+        {{/if}}
     </div>
 </div>
+{{/or}}

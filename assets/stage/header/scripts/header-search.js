@@ -22,7 +22,7 @@ window.SLM['stage/header/scripts/header-search.js'] = window.SLM['stage/header/s
   };
 
   const getSearchResultUrl = (key, type) => {
-    return `/products/search?keyword=${encodeURIComponent(key.trim())}&type=${SEARCH_TYPE[type]}`;
+    return `/search?keyword=${encodeURIComponent(key.trim())}&type=${SEARCH_TYPE[type]}`;
   };
 
   const renderSearchResultItem = (item, searchKey) => {

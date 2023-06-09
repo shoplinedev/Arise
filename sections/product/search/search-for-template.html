@@ -2,8 +2,10 @@
 
 {{!-- define computed props --}}
 {{ assign 'keyword' (get 'keyword' request.uri.query) }}
-{{ assign 'total' (get 'total' products) }}
-{{ assign 'count' (length products.list) }}
+{{ assign 'total' (get 'total' product_search) }}
+{{ assign 'count' (length product_search.list) }}
+{{ assign 'pageNum' (get 'pageNum' product_search) }}
+{{ assign 'pageSize' 48 }}
 
 <main class="product-search__container section-gap">
   <div class="product-search__body container">
@@ -43,7 +45,26 @@
         {{/if}}
       </div>
     </div>
-    {{ snippet 'product/commons/product-item-list' colNum=section.settings.pc_cols mbColNum=section.settings.md_cols listData=products.list pageSize=48 pageNum=products.pageNum total=products.total className='__sl-custom-track-product-item-search' }}
+    <div class="product-list-item-parent-controller row row-cols-{{ section.settings.md_cols }} row-cols-md-{{ section.settings.pc_cols }}">
+      {{#each product_search.list as | item |}}
+        {{#if item.object_type '===' 'product'}}
+          <div class="col product-item-list">
+            {{ snippet 'product/commons/product-item' spu=item index=@index className='__sl-custom-track-product-item-search' }}
+          </div>
+        {{/if}}
+        {{#if item.object_type '===' 'collection'}}
+          {{ snippet 'collection-card' item=item }}
+        {{/if}}
+        {{#if (isFalsey item.object_type)}}
+          <div class="col product-item-list">
+            {{ snippet 'product/commons/product-item' spu=item index=@index className='__sl-custom-track-product-item-search' }}
+          </div>
+        {{/if}}
+      {{/each}}
+    </div>
+    {{#if total '>' pageSize}}
+      {{ snippet 'product/commons/pagination' mode='href' id='pagination' total=total pageSize=pageSize current=pageNum request=request }}
+    {{/if}}
   </div>
 </main>
 {{!-- 推荐商品 --}}
@@ -80,8 +101,7 @@
     },
     {
       "type": "group_header",
-      "label": "t:sections.product_search_search-for-template.settings.group_header__0.label",
-      "id": "group_header__0"
+      "label": "t:sections.product_search_search-for-template.settings.group_header__0.label"
     },
     {
       "id": "product_image_ratio",

@@ -9,13 +9,26 @@ window.SLM['cart/script/main.js'] = window.SLM['cart/script/main.js'] || functio
   const { Status: LoggerStatus } = window['SLM']['commons/logger/index.js'];
   const logger = LoggerService.pipeOwner(`${Owner.MainCart} main.js`);
   const cartToken = Cookie.get('t_cart');
-  CartModule.initCartModule('main');
-  logger.info('main购物车主站', {
+  logger.info('main 购物车主站', {
     data: {
       cartToken
     },
     action: Action.InitCart,
     status: LoggerStatus.Start
   });
+
+  try {
+    CartModule.initCartModule('main');
+  } catch (error) {
+    logger.error('main 购物车主站 初始化失败', {
+      data: {
+        cartToken
+      },
+      error,
+      action: Action.InitCart,
+      errorLevel: 'P0'
+    });
+  }
+
   return _exports;
 }();

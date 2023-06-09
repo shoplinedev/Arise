@@ -69,7 +69,10 @@
               {{/if}}
               {{#if activity.benefitType '===' 12}}
                 {{!-- 买x送y --}}
-                {{#if benefitCondition.benefit.discount '===' 0}}
+                {{#if benefitCondition.benefit.benefitAmount}}
+                  {{ assign '__benefitAmount' (javascript_template '<span class="notranslate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(money_exchange_convert_with_currency benefitCondition.benefit.benefitAmount))}}
+                  {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_discount_content' discount=__benefitAmount))}}
+                {{else if (compare benefitCondition.benefit.discount '===' 0)}}
                   {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_free_content'))}}
                 {{else}}
                   {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}

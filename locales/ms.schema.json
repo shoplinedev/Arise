@@ -831,6 +831,15 @@
           "info": "Jika anda ingin menambah bahasa, anda boleh pergi ke [tetapan bahasa](/admin/settings/lang)",
           "label": "Tunjuk pemilih bahasa"
         },
+        "show_locale_selector_position": {
+          "label": "Lokasi paparan pemilih bahasa/negara",
+          "options__0": {
+            "label": "Di atas pengepala"
+          },
+          "options__1": {
+            "label": "Di sebelah ikon pusat peribadi"
+          }
+        },
         "show_search_entry": {
           "label": "Paparkan pintu masuk carian"
         },
@@ -1960,6 +1969,17 @@
             }
           }
         },
+        "description-collapse": {
+          "name": "Penerangan produk (Akordion)",
+          "settings": {
+            "fold": {
+              "label": "Paparan lipat"
+            },
+            "title": {
+              "label": "Tajuk"
+            }
+          }
+        },
         "description": {
           "name": "Huraian produk",
           "settings": {
@@ -2745,6 +2765,15 @@
               },
               "options__5": {
                 "label": "Bawah kanan"
+              },
+              "options__6": {
+                "label": "Atas tengah"
+              },
+              "options__7": {
+                "label": "Atas kiri"
+              },
+              "options__8": {
+                "label": "Atas kanan"
               }
             },
             "title": {

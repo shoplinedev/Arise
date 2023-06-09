@@ -1,0 +1,15 @@
+<div class="search-collection-card">
+  <a href="{{#if (isFalsey item.url)}}javascript:;{{else}}{{item.url}}{{/if}}" class="search-collection-card__cover" >
+    <div class="search-collection-card__title body4">
+      <div class="search-collection-card__tag">
+        {{ snippet 'icons/icon_search_collection_tag' }}
+      </div>
+      <div class="search-collection-card__text">
+        {{ item.title }}
+      </div>
+    </div>
+    {{#if item.featured_image.src}}
+      <img class="lozad" data-sizes="auto" data-src="{{item.featured_image.src}}" alt="{{item.featured_image.alt}}">
+    {{/if}}
+  </a>
+</div>

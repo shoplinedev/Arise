@@ -18,7 +18,6 @@ all_collections:
  'vendors/js-cookie.min.js'
  'vendors/@sl_cart.min.js'
  'vendors/@funnyecho_hamon.min.js'
- 'vendors/@sl_logger.min.js'
  'vendors/@yy_sl-theme-shared.min.js'
  'theme-shared/utils/request.js'
  'commons/base/BaseClass.js'
@@ -214,8 +213,7 @@ all_collections:
     },
     {
       "type": "group_header",
-      "label": "t:sections.header.settings.group_header__0.label",
-      "id": "group_header__0"
+      "label": "t:sections.header.settings.group_header__0.label"
     },
     {
       "type": "image_picker",
@@ -245,7 +243,6 @@ all_collections:
     {
       "type": "group_header",
       "label": "t:sections.header.settings.group_header__1.label",
-      "id": "group_header__1",
       "direction": "horizontal",
       "info": "t:sections.header.settings.group_header__1.info"
     },
@@ -361,6 +358,22 @@ all_collections:
       "id": "show_cart_entry",
       "default": true,
       "label": "t:sections.header.settings.show_cart_entry.label"
+    },
+    {
+      "type": "select",
+      "id": "show_locale_selector_position",
+      "default": "aside",
+      "label": "t:sections.header.settings.show_locale_selector_position.label",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.header.settings.show_locale_selector_position.options__0.label"
+        },
+        {
+          "value": "aside",
+          "label": "t:sections.header.settings.show_locale_selector_position.options__1.label"
+        }
+      ]
     },
     {
       "type": "switch",

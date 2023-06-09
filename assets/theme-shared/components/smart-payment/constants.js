@@ -40,12 +40,6 @@ window.SLM['theme-shared/components/smart-payment/constants.js'] = window.SLM['t
     CreateTimeout: 'createTimeout'
   };
   _exports.ERROR_TYPE = ERROR_TYPE;
-  const I18N_APPLEPAY_KEY = {
-    ENQUIRE: 'applepay.enquire',
-    PAYWITH: 'applepay.paywith',
-    CANCEL: 'applepay.cancel'
-  };
-  _exports.I18N_APPLEPAY_KEY = I18N_APPLEPAY_KEY;
   const I18N_KEY_MAP = {
     themes: {
       [ERROR_TYPE.InitFail]: 'cart.error.default',
@@ -54,10 +48,7 @@ window.SLM['theme-shared/components/smart-payment/constants.js'] = window.SLM['t
       [ERROR_TYPE.InvalidDiscountCode]: 'transaction.discount.code_error',
       [ERROR_TYPE.DiscountCodeExists]: 'cart.couponCode.existCode',
       [ERROR_TYPE.CreateFail]: 'cart.error.order',
-      [ERROR_TYPE.CreateTimeout]: 'cart.error.order.overtime',
-      [I18N_APPLEPAY_KEY.ENQUIRE]: 'unvisiable.applepay.enquire',
-      [I18N_APPLEPAY_KEY.PAYWITH]: 'unvisiable.applepay.paywith',
-      [I18N_APPLEPAY_KEY.CANCEL]: 'unvisiable.applepay.cancel'
+      [ERROR_TYPE.CreateTimeout]: 'cart.error.order.overtime'
     },
     checkout: {
       [ERROR_TYPE.InitFail]: 'checkout&system.error.default',
@@ -66,10 +57,7 @@ window.SLM['theme-shared/components/smart-payment/constants.js'] = window.SLM['t
       [ERROR_TYPE.InvalidDiscountCode]: 'checkout&system.discount_code.error',
       [ERROR_TYPE.DiscountCodeExists]: 'checkout&system.discount_code.already_exist',
       [ERROR_TYPE.CreateFail]: 'checkout&system.error.order',
-      [ERROR_TYPE.CreateTimeout]: 'checkout&system.error.order.overtime',
-      [I18N_APPLEPAY_KEY.ENQUIRE]: 'checkout.applepay.enquire',
-      [I18N_APPLEPAY_KEY.PAYWITH]: 'checkout.applepay.paywith',
-      [I18N_APPLEPAY_KEY.CANCEL]: 'checkout.applepay.cancel'
+      [ERROR_TYPE.CreateTimeout]: 'checkout&system.error.order.overtime'
     }
   };
   _exports.I18N_KEY_MAP = I18N_KEY_MAP;

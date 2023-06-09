@@ -86,15 +86,29 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
         action: Action.InitCart,
         status: LoggerStatus.Start
       });
-      this.activeItems = cartData ? cartData.activeItems || [] : [];
-      this.inactiveItems = cartData ? cartData.inactiveItems || [] : [];
-      this.preprocessDiscountData();
-      this.reset();
-      this.listenPlatformChange();
-      this.listenCartDataUpdate();
-      this.listenCartSkuInfoPreview();
-      this.listenSelectContentReport();
-      promotionLimited.initialModel();
+
+      try {
+        this.activeItems = cartData ? cartData.activeItems || [] : [];
+        this.inactiveItems = cartData ? cartData.inactiveItems || [] : [];
+        this.preprocessDiscountData();
+        this.reset();
+        this.listenPlatformChange();
+        this.listenCartDataUpdate();
+        this.listenCartSkuInfoPreview();
+        this.listenSelectContentReport();
+        promotionLimited.initialModel();
+      } catch (error) {
+        logger.error(`normal 主站购物车 SkuCard init 失败`, {
+          data: {
+            cartToken,
+            cartData
+          },
+          error,
+          action: Action.InitCart,
+          errorLevel: 'P0'
+        });
+      }
+
       logger.info(`normal 主站购物车 SkuCard init`, {
         data: {
           cartToken,
@@ -136,65 +150,105 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
     }
 
     reset(isRerender) {
-      const {
-        activeItems,
-        inactiveItems
-      } = this;
-      logger.info(`normal 主站购物车 SkuCard reset`, {
-        data: {
-          cartToken,
+      try {
+        const {
           activeItems,
           inactiveItems
-        },
-        action: Action.EditCart,
-        status: LoggerStatus.Start
-      });
-      this.needUnbindEleList = [];
-      this.listenImageLoadEvent();
-      this.activeItems.forEach && this.activeItems.forEach((activeItem, findex) => {
-        activeItem.itemList && activeItem.itemList.forEach && activeItem.itemList.forEach((item, index) => {
+        } = this;
+        logger.info(`normal 主站购物车 SkuCard reset`, {
+          data: {
+            cartToken,
+            activeItems,
+            inactiveItems
+          },
+          action: Action.EditCart,
+          status: LoggerStatus.Start
+        });
+        this.needUnbindEleList = [];
+        this.listenImageLoadEvent();
+        this.activeItems.forEach && this.activeItems.forEach((activeItem, findex) => {
+          activeItem.itemList && activeItem.itemList.forEach && activeItem.itemList.forEach((item, index) => {
+            const {
+              skuId,
+              spuId,
+              groupId,
+              uniqueSeq,
+              businessFlag = {}
+            } = item;
+            const {
+              singleAdjustNum,
+              singleDelete
+            } = businessFlag || {};
+            const rootId = `${this.tradeCartType}-card-sku-item-${nullishCoalescingOperator(groupId, '')}-${spuId}-${skuId}-${uniqueSeq}`;
+            const root = $(`#${rootId}`);
+
+            const renderEditBtn = () => {
+              logger.info(`normal 主站购物车 SkuCard reset activeItems initStepper/removeBtn`, {
+                data: {
+                  cartToken,
+                  isRerender,
+                  root,
+                  item,
+                  id: `${findex}-${index}`
+                },
+                action: Action.EditCart,
+                status: LoggerStatus.Start
+              });
+
+              if (singleAdjustNum) {
+                this.initStepper(root, item, `${findex}-${index}`);
+              }
+
+              if (singleDelete) {
+                this.initRemoveButton(root, item);
+              }
+
+              logger.info(`normal 主站购物车 SkuCard reset initStepper/removeBtn`, {
+                data: {
+                  cartToken,
+                  isRerender,
+                  root,
+                  item,
+                  id: `${findex}-${index}`
+                },
+                action: Action.EditCart,
+                status: LoggerStatus.Success
+              });
+            };
+
+            if (!isRerender) {
+              jQuery(renderEditBtn);
+            } else {
+              renderEditBtn();
+            }
+          });
+        });
+        this.inactiveItems.forEach && this.inactiveItems.forEach(item => {
           const {
             skuId,
             spuId,
             groupId,
-            uniqueSeq,
-            businessFlag = {}
+            uniqueSeq
           } = item;
-          const {
-            singleAdjustNum,
-            singleDelete
-          } = businessFlag || {};
           const rootId = `${this.tradeCartType}-card-sku-item-${nullishCoalescingOperator(groupId, '')}-${spuId}-${skuId}-${uniqueSeq}`;
           const root = $(`#${rootId}`);
 
-          const renderEditBtn = () => {
-            logger.info(`normal 主站购物车 SkuCard reset activeItems initStepper/removeBtn`, {
+          const renderRemoveBtn = () => {
+            logger.info(`normal 主站购物车 SkuCard reset inactiveItems initRemoveBtn`, {
               data: {
                 cartToken,
-                isRerender,
-                root,
-                item,
-                id: `${findex}-${index}`
+                activeItems,
+                inactiveItems
               },
               action: Action.EditCart,
               status: LoggerStatus.Start
             });
-
-            if (singleAdjustNum) {
-              this.initStepper(root, item, `${findex}-${index}`);
-            }
-
-            if (singleDelete) {
-              this.initRemoveButton(root, item);
-            }
-
-            logger.info(`normal 主站购物车 SkuCard reset initStepper/removeBtn`, {
+            this.initRemoveButton(root, item);
+            logger.info(`normal 主站购物车 SkuCard reset inactiveItems initRemoveBtn`, {
               data: {
                 cartToken,
-                isRerender,
-                root,
-                item,
-                id: `${findex}-${index}`
+                activeItems,
+                inactiveItems
               },
               action: Action.EditCart,
               status: LoggerStatus.Success
@@ -202,37 +256,26 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
           };
 
           if (!isRerender) {
-            jQuery(renderEditBtn);
+            jQuery(renderRemoveBtn);
           } else {
-            renderEditBtn();
+            renderRemoveBtn();
           }
         });
-      });
-      this.inactiveItems.forEach && this.inactiveItems.forEach(item => {
-        const {
-          skuId,
-          spuId,
-          groupId,
-          uniqueSeq
-        } = item;
-        const rootId = `${this.tradeCartType}-card-sku-item-${nullishCoalescingOperator(groupId, '')}-${spuId}-${skuId}-${uniqueSeq}`;
-        const root = $(`#${rootId}`);
 
-        const renderRemoveBtn = () => {
-          logger.info(`normal 主站购物车 SkuCard reset inactiveItems initRemoveBtn`, {
+        const renderClearBtn = () => {
+          logger.info(`normal 主站购物车 SkuCard reset inactiveItems initClearBtn`, {
             data: {
               cartToken,
-              activeItems,
               inactiveItems
             },
             action: Action.EditCart,
             status: LoggerStatus.Start
           });
-          this.initRemoveButton(root, item);
-          logger.info(`normal 主站购物车 SkuCard reset inactiveItems initRemoveBtn`, {
+          this.getDeviceInfo();
+          this.initRemoveAllButton(this.inactiveItems);
+          logger.info(`normal 主站购物车 SkuCard reset inactiveItems initClearBtn`, {
             data: {
               cartToken,
-              activeItems,
               inactiveItems
             },
             action: Action.EditCart,
@@ -241,48 +284,30 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
         };
 
         if (!isRerender) {
-          jQuery(renderRemoveBtn);
+          jQuery(renderClearBtn);
         } else {
-          renderRemoveBtn();
+          renderClearBtn();
         }
-      });
 
-      const renderClearBtn = () => {
-        logger.info(`normal 主站购物车 SkuCard reset inactiveItems initClearBtn`, {
+        logger.info(`normal 主站购物车 SkuCard reset`, {
           data: {
             cartToken,
-            inactiveItems
-          },
-          action: Action.EditCart,
-          status: LoggerStatus.Start
-        });
-        this.getDeviceInfo();
-        this.initRemoveAllButton(this.inactiveItems);
-        logger.info(`normal 主站购物车 SkuCard reset inactiveItems initClearBtn`, {
-          data: {
-            cartToken,
+            activeItems,
             inactiveItems
           },
           action: Action.EditCart,
           status: LoggerStatus.Success
         });
-      };
-
-      if (!isRerender) {
-        jQuery(renderClearBtn);
-      } else {
-        renderClearBtn();
+      } catch (error) {
+        logger.error(`normal 主站购物车 SkuCard reset`, {
+          data: {
+            cartToken
+          },
+          error,
+          action: Action.EditCart,
+          errorLevel: 'P0'
+        });
       }
-
-      logger.info(`normal 主站购物车 SkuCard reset`, {
-        data: {
-          cartToken,
-          activeItems,
-          inactiveItems
-        },
-        action: Action.EditCart,
-        status: LoggerStatus.Success
-      });
     }
 
     getRendering() {
@@ -831,7 +856,7 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
           status: LoggerStatus.Success
         });
       } catch (e) {
-        logger.info(`normal 主站购物车 SkuCard reRender`, {
+        logger.error(`normal 主站购物车 SkuCard reRender`, {
           data: {
             cartToken,
             cartInfo: data
@@ -839,7 +864,6 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
           action: Action.EditCart,
           error: e
         });
-        console.log(e);
       }
     }
 
@@ -890,7 +914,19 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
           activeItems,
           itemNo
         });
-        stepper.init();
+
+        try {
+          stepper.init();
+        } catch (error) {
+          logger.error(`normal 主站购物车 SkuCard initStepper`, {
+            data: {
+              cartToken
+            },
+            action: Action.EditCart,
+            error
+          });
+        }
+
         this.needUnbindEleList.push(stepper);
       }
     }

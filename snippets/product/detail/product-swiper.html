@@ -64,8 +64,16 @@
         <div class="productImageThumbs">
           <div class="productImageThumbsWrapper">
             {{#each mediaList }}
-              <div class="swiper-slide thumbsImageItem">
-                <figure style="padding-bottom:{{append (default (get 'ratio' (img_size resource)) 100) '%'}}">
+              {{assign "originThumbImageRatio" (append (default (get 'ratio' (img_size resource)) 100) '%')}}
+              {{assign "customThumbImageClass" ""}}
+              {{#if ../thumb_image_ratio}}
+                {{assign "thumbImageRatio" ../thumb_image_ratio}}
+                {{assign "customThumbImageClass" "customImageRatio"}}
+              {{else}}
+                {{assign "thumbImageRatio" originThumbImageRatio}}
+              {{/if}}
+              <div class="swiper-slide thumbsImageItem {{customThumbImageClass}}">
+                <figure style="padding-bottom:{{thumbImageRatio}}">
                   {{#if type '===' 'VIDEO' }}
                     {{ assign 'resourceUrl' (urlParse resource)}}
 
@@ -226,8 +234,16 @@
         <div class="productImageThumbs">
           <div class="swiper-wrapper productImageThumbsWrapper">
             {{#each mediaList }}
-              <div class="swiper-slide thumbsImageItem">
-                <figure style="padding-bottom:{{append (default (get 'ratio' (img_size resource)) 100) '%'}}">
+              {{assign "originThumbImageRatio" (append (default (get 'ratio' (img_size resource)) 100) '%')}}
+              {{assign "customThumbImageClass" ""}}
+              {{#if ../thumb_image_ratio}}
+                {{assign "thumbImageRatio" ../thumb_image_ratio}}
+                {{assign "customThumbImageClass" "customImageRatio"}}
+              {{else}}
+                {{assign "thumbImageRatio" originThumbImageRatio}}
+              {{/if}}
+              <div class="swiper-slide thumbsImageItem {{customThumbImageClass}}">
+                <figure style="padding-bottom:{{thumbImageRatio}}">
                   {{#if type '===' 'VIDEO' }}
                     {{ assign 'resourceUrl' (urlParse resource)}}
 
@@ -398,13 +414,23 @@
   >
     <div class="swiper-container product_productImages shopline-element-product-image">
       {{#if mediaList.length }}
-        <div class="swiper-wrapper {{#or (boolean mediaList.length '===' 1) (boolean isVideoFirst.type '===' 'VIDEO') (boolean isVideoLast.type '===' 'VIDEO')}}hasVideoFl{{/or}}">
+        {{assign 'is_no_loop' (or (boolean mediaList.length '===' 1) (boolean isVideoFirst.type '===' 'VIDEO') (boolean isVideoLast.type '===' 'VIDEO'))}}
+        {{#capture 'swiper_wrapper_style'}}
+          {{#if initialSlide}}
+            {{#if (and (isFalsey mobileProductImageIsFull) is_no_loop)}}
+              transform: translate3d(calc(75% * -{{initialSlide}} + 12.5%), 0, 0);
+            {{else}}
+              transform: translate3d(-{{ multiply initialSlide (cond mobileProductImageIsFull 100 75) }}%, 0, 0);
+            {{/if}}
+          {{/if}}
+        {{/capture}}
+        <div class="swiper-wrapper {{#if is_no_loop}}hasVideoFl{{/if}}" style="{{swiper_wrapper_style}}">
           {{#each mediaList }}
             {{#if type '===' 'VIDEO' }}
               {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
 {{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
 
-              <div class="swiper-slide videoItem" data-video-platform="{{ cond isYoutube 'youtube' 'sl' }}" data-index="{{ @index }}" data-length="{{ ../mediaList.length }}">
+              <div class="swiper-slide videoItem {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" data-video-platform="{{ cond isYoutube 'youtube' 'sl' }}" data-index="{{ @index }}" data-length="{{ ../mediaList.length }}">
                 <div
                   class="swiper-slide-box"
                   data-image-ratio="{{ videoCoverRatio }}"
@@ -468,7 +494,7 @@
                 </div>
               </div>
             {{else if type '===' 'IMAGE'}}
-              <div class="swiper-slide imageItem">
+              <div class="swiper-slide imageItem {{#if @index '==' ../initialSlide}}initial-slide{{/if}}">
                 <div
                   class="swiper-slide-box"
                   data-image-ratio="{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}"
@@ -476,7 +502,7 @@
                   style="padding-bottom: {{#and ../needSkuCover (boolean @index '==' 0 )}}{{ append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}"
                 >
                 {{#if (boolean ../templateAlias '===' 'ProductsDetail')}}
-                  {{ snippet 'product/detail/product-swiper-img' isPreload=true useLazyLoad=(cond (boolean @index '==' ../initialSlide ) false true) type='mImage' class=(cond (boolean @index "!==" ../initialSlide) 'product_photoSwipe_image' 'lozad product_photoSwipe_image') }}
+                  {{ snippet 'product/detail/product-swiper-img' isPreload=true useLazyLoad=(cond (boolean @index '==' ../initialSlide ) false true) type='mImage' class=(cond (boolean @index "==" ../initialSlide) 'product_photoSwipe_image' 'lozad product_photoSwipe_image') }}
                 {{else}}
                   {{ snippet 'product/detail/product-swiper-img' type='mImage' class='lozad product_photoSwipe_image' }}
                 {{/if}}

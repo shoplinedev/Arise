@@ -1,6 +1,6 @@
 {{assign 'limit' (length main_menu.nodeTree)}}
 {{assign 'startAt' 0}}
-<ul class="desktop-site-nav {{#if settings.navigation_layout '===' 'middle-line'}}desktop-site-nav__center{{/if}}" data-navigation-effect="{{settings.main_menu_link_list_effect}}">
+<ul class="desktop-site-nav {{#if settings.navigation_layout '===' 'middle-line'}}desktop-site-nav__center{{/if}}" data-navigation-layout="{{settings.navigation_layout}}" data-navigation-effect="{{settings.main_menu_link_list_effect}}">
     {{#with this as |global|}}
       {{#each main_menu.nodeTree}}
         {{assign 'has_dropdown' false}}

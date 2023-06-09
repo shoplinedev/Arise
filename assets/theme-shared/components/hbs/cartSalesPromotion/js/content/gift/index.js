@@ -95,10 +95,10 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/gift/index
         warper
       } = configs;
       const savedCount = setWrapper(hasSelectedGiftQuantity, { ...warper,
-        class: `sales__promotionReminder-saved ${nc(get(warper, 'class'))}`
+        class: `sales__promotionReminder-saved discountText  ${nc(get(warper, 'class'))}`
       });
       const willSaveCount = setWrapper(hasSelectedGiftQuantity < 1 && current ? nc(get(current, 'extMap.realBenefitValue'), get(current, 'benefitCount')) : nc(get(next, 'extMap.realBenefitValue'), get(next, 'benefitCount')), { ...warper,
-        class: `sales__promotionReminder-willSave custom-sale-color ${nc(get(warper, 'class'))}`
+        class: `sales__promotionReminder-willSave discountText custom-sale-color ${nc(get(warper, 'class'))}`
       });
       return {
         path: getI18nKey(step, configs, get(current, 'type') || get(next, 'type')),
@@ -108,7 +108,7 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/gift/index
           willSave: willSaveCount,
           willSaveCount,
           threshold: setWrapper(formatBenefitNum(next || current), { ...warper,
-            class: `sales__promotionReminder-threshold custom-sale-color ${nc(get(warper, 'class'), '')}`
+            class: `sales__promotionReminder-threshold discountText custom-sale-color ${nc(get(warper, 'class'), '')}`
           })
         },
         step,
@@ -128,12 +128,39 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/gift/index
   const getGiftContent = (promotion, rootWrapper, options = {}) => {
     const isPCMainCart = rootWrapper.hasClass('main') && rootWrapper.hasClass('is-pc');
     const config = getGiftConfig(promotion, options);
+    const isMobile = window && window.SL_State && window.SL_State.get('request.is_mobile');
     const bannerText = get(promotion, 'promotionBenefitList[0].extMap.bannerText');
+    const cartBannerStyleStr = get(promotion, 'promotionBenefitList[0].extMap.cartBannerStyle');
+    let cartBannerStyle = {};
+
+    try {
+      cartBannerStyle = JSON.parse(cartBannerStyleStr);
+    } catch (err) {}
+
+    const pcBannerBgImg = cartBannerStyle.cartPage_bannerBgImg || '';
+    const bannerBgImg = isMobile ? cartBannerStyle.cartPage_mobileBannerBgImg || pcBannerBgImg : pcBannerBgImg;
     const promotionTemplate = bannerText ? template(bannerText, config.params, {
       prefix: '{'
     }) : '';
+    const styleScript = cartBannerStyle.cartPage_discountTextColor ? `<style type="text/css">
+        [data-promotionseq="${promotion.promotionSeq}"] {
+          background-color:  ${cartBannerStyle.cartPage_bannerBgColor || ''};
+          color:  ${cartBannerStyle.cartPage_textColor || ''};
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-image: ${bannerBgImg ? `url(${bannerBgImg})` : ''}
+        }
+        [data-promotionseq="${promotion.promotionSeq}"] .discountText {
+          color:  ${cartBannerStyle.cartPage_discountTextColor || ''};
+        }
+        [data-promotionseq="${promotion.promotionSeq}"] .cart-sku-list-promotion-module-arrow svg path {
+          stroke: ${cartBannerStyle.cartPage_textColor || ''};
+        }
+      </style>` : '';
     return `
   <div class="cart-sku-list-promotion-module salesPluginGift__promotion" data-widget-scope="gift" data-activityseq="${promotion.activitySeq}" data-promotionseq="${promotion.promotionSeq}">
+    ${styleScript}
     <div class="notranslate">
       ${promotionTemplate}
     </div>

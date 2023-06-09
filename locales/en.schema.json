@@ -831,6 +831,15 @@
           "info": "Go to [language setting](/admin/settings/lang) for setup",
           "label": "Display the language selector"
         },
+        "show_locale_selector_position": {
+          "label": "Display position of language/country selector",
+          "options__0": {
+            "label": "Above the header"
+          },
+          "options__1": {
+            "label": "Beside the personal center icon"
+          }
+        },
         "show_search_entry": {
           "label": "Display search entrance"
         },
@@ -1960,6 +1969,17 @@
             }
           }
         },
+        "description-collapse": {
+          "name": "Product description (Accordion)",
+          "settings": {
+            "fold": {
+              "label": "Folded display"
+            },
+            "title": {
+              "label": "Title"
+            }
+          }
+        },
         "description": {
           "name": "Product description",
           "settings": {
@@ -2745,6 +2765,15 @@
               },
               "options__5": {
                 "label": "Bottom right"
+              },
+              "options__6": {
+                "label": "Above"
+              },
+              "options__7": {
+                "label": "Upper left"
+              },
+              "options__8": {
+                "label": "Upper right"
               }
             },
             "title": {

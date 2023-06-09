@@ -1,10 +1,12 @@
 {{ assign 'promotion' _promotion}}
-{{ assign 'gift_promotion_config' (sales_promotion_reminder_translate data)}}
+{{ assign "giftPromotionWarper" (object_create class="discountText")}}
+{{ assign 'gift_promotion_config' (sales_promotion_reminder_translate data (object_create warper=giftPromotionWarper))}}
 {{ assign 'selectText' (t 'sales.gift.select')}}
 {{ assign 'promotionBenefit' (itemAt promotion.promotionBenefitList 0) }}
 
 <div class="cart-sku-list-promotion-module salesPluginGift__promotion" data-widget-scope="gift" data-activityseq="{{promotion.activitySeq}}"
   data-promotionseq="{{promotion.promotionSeq}}">
+  {{snippet 'sales/sales-promotion-custom-style' promotion=promotion isMobile=request.is_mobile}}
   <div class="notranslate">
     {{noTranslationHTML (javascript_template promotionBenefit.extMap.bannerText gift_promotion_config.params (toRegex '\{\s*(\w+)\s*\}' flags="g"))}}
   </div>

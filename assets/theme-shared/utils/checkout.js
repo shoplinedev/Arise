@@ -16,6 +16,7 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
   const { redirectTo } = window['SLM']['theme-shared/utils/url.js'];
   const { SERVER_ERROR_CODE } = window['SLM']['theme-shared/utils/constant.js'];
+  const { I18N_KEY_MAP, ERROR_TYPE } = window['SLM']['theme-shared/components/smart-payment/constants.js'];
   const {
     GO_TO_CHECKOUT
   } = HD_EVENT_NAME;
@@ -275,16 +276,23 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
         abandonedOrderMark
       });
 
-      if (code === SERVER_ERROR_CODE.AMOUNT_EXCEEDS_LIMIT) {
-        Toast.init({
-          content: t('cart.checkout.max_amount_limit')
-        });
-      }
+      switch (code) {
+        case SERVER_ERROR_CODE.AMOUNT_EXCEEDS_LIMIT:
+          Toast.init({
+            content: t('cart.checkout.max_amount_limit')
+          });
+          break;
 
-      if (code === SERVER_ERROR_CODE.ABANDONED_RISK_CONTROL) {
-        Toast.init({
-          content: t('general.abandon.Order.risk')
-        });
+        case SERVER_ERROR_CODE.ABANDONED_RISK_CONTROL:
+          Toast.init({
+            content: t('general.abandon.Order.risk')
+          });
+          break;
+
+        default:
+          Toast.init({
+            content: t(I18N_KEY_MAP.themes[ERROR_TYPE.CreateFail])
+          });
       }
 
       return Promise.reject(error);

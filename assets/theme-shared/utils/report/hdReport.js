@@ -6,6 +6,7 @@ window.SLM['theme-shared/utils/report/hdReport.js'] = window.SLM['theme-shared/u
   const dayjs = window['dayjs']['default'];
   const utc = window['dayjs']['/plugin/utc'].default;
   const timezone = window['dayjs']['/plugin/timezone'].default;
+  const { sessionId } = window['@sl/logger'];
   const geEnv = window['SLM']['theme-shared/utils/get-env.js'].default;
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   dayjs.extend(utc);
@@ -59,6 +60,7 @@ window.SLM['theme-shared/utils/report/hdReport.js'] = window.SLM['theme-shared/u
             pid,
             update_mode: Shopline.updateMode ? Shopline.updateMode.toString() || '' : undefined,
             time_offset: timeOffset,
+            trade_logger_id: sessionId.get(),
             ...data
           };
 

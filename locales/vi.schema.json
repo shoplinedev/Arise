@@ -831,6 +831,15 @@
           "info": "Nếu cần thêm ngôn ngữ, có thể vào phần [Cài đặt ngôn ngữ](/admin/settings/lang)",
           "label": "Bày ra máy chọn ngôn ngữ"
         },
+        "show_locale_selector_position": {
+          "label": "Vị trí hiển thị trình chọn ngôn ngữ/quốc gia",
+          "options__0": {
+            "label": "Đầu tiêu đề"
+          },
+          "options__1": {
+            "label": "Bên cạnh biểu tượng trung tâm cá nhân"
+          }
+        },
         "show_search_entry": {
           "label": "Hiển thị mục nhập tìm kiếm"
         },
@@ -1960,6 +1969,17 @@
             }
           }
         },
+        "description-collapse": {
+          "name": "Mô tả sản phẩm (Đàn accordion)",
+          "settings": {
+            "fold": {
+              "label": "Hiển thị dạng gấp"
+            },
+            "title": {
+              "label": "Tiêu đề"
+            }
+          }
+        },
         "description": {
           "name": "Mô tả Sản phẩm",
           "settings": {
@@ -2745,6 +2765,15 @@
               },
               "options__5": {
                 "label": "Phía dưới bên phải"
+              },
+              "options__6": {
+                "label": "Phía trên chính giữa"
+              },
+              "options__7": {
+                "label": "Phía trên bên trái"
+              },
+              "options__8": {
+                "label": "Phía trên bên phải"
               }
             },
             "title": {

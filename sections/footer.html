@@ -120,9 +120,9 @@ all_collections:
       <div class="footer__corner-bottom">
         {{ assign 'copyright_prefix' (t 'general.footer.copyright' year=(year) storeName=storeInfo.name) }}
         <div class="footer-copy-box sl-a-tag">
-        {{#or section.settings.show_copyright copyright_prefix}}
-          <p class="footer__copyright">{{ copyright_prefix }}&nbsp;</p>{{{ section.settings.copyright_text }}}
-        {{/or}}
+        {{#and section.settings.show_copyright (trim copyright_prefix)}}
+          <p class="footer__copyright">{{{ copyright_prefix }}}&nbsp;</p>{{{ section.settings.copyright_text }}}
+        {{/and}}
         {{#if section.settings.show_powered}}
           <p class="footer__powered">{{{ powered_by_link }}}</p>
         {{/if}}
@@ -163,8 +163,7 @@ all_collections:
     },
     {
       "type": "group_header",
-      "label": "t:sections.footer.settings.group_header__0.label",
-      "id": "group_header__0"
+      "label": "t:sections.footer.settings.group_header__0.label"
     },
     {
       "type": "switch",
@@ -192,8 +191,7 @@ all_collections:
     },
     {
       "type": "group_header",
-      "label": "t:sections.footer.settings.group_header__1.label",
-      "id": "group_header__1"
+      "label": "t:sections.footer.settings.group_header__1.label"
     },
     {
       "type": "switch",

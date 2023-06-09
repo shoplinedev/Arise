@@ -1,0 +1,30 @@
+window.SLM = window.SLM || {};
+
+window.SLM['theme-shared/components/payment-button/constants.js'] = window.SLM['theme-shared/components/payment-button/constants.js'] || function () {
+  const _exports = {};
+  const PAYMENT_BUTTON_COMMON__STYLE_ID = 'payment-button-common-style-id';
+  _exports.PAYMENT_BUTTON_COMMON__STYLE_ID = PAYMENT_BUTTON_COMMON__STYLE_ID;
+  const PAYMENT_BUTTON_COMMON_ANIMATED = 'payment-button-common-animated';
+  _exports.PAYMENT_BUTTON_COMMON_ANIMATED = PAYMENT_BUTTON_COMMON_ANIMATED;
+  const PAYMENT_BUTTON_COMMON_ITEM_MASK = 'payment-button-common-item-mask';
+  _exports.PAYMENT_BUTTON_COMMON_ITEM_MASK = PAYMENT_BUTTON_COMMON_ITEM_MASK;
+  const PAYMENT_BUTTON_CONTAINER = 'payment-button-container';
+  _exports.PAYMENT_BUTTON_CONTAINER = PAYMENT_BUTTON_CONTAINER;
+  const EXPRESS_PAYMENT_BUTTON_CONTAINER = 'express-payment-button-container';
+  _exports.EXPRESS_PAYMENT_BUTTON_CONTAINER = EXPRESS_PAYMENT_BUTTON_CONTAINER;
+  const EXPRESS_PAYMENT_BUTTON_COMMON_ITEM = 'express-payment-button-common-item';
+  _exports.EXPRESS_PAYMENT_BUTTON_COMMON_ITEM = EXPRESS_PAYMENT_BUTTON_COMMON_ITEM;
+  const EXPRESS_PAYMENT_BUTTON_PAYPAL = 'express-payment-button-paypal';
+  _exports.EXPRESS_PAYMENT_BUTTON_PAYPAL = EXPRESS_PAYMENT_BUTTON_PAYPAL;
+  const EXPRESS_PAYMENT_BUTTON_GP = 'express-payment-button-google-pay';
+  _exports.EXPRESS_PAYMENT_BUTTON_GP = EXPRESS_PAYMENT_BUTTON_GP;
+  const EXPRESS_PAYMENT_BUTTON_AP = 'express-payment-button-apple-pay';
+  _exports.EXPRESS_PAYMENT_BUTTON_AP = EXPRESS_PAYMENT_BUTTON_AP;
+  const NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW = 'product-buy-now-button';
+  _exports.NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW = NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW;
+  const NORMAL_PAYMENT_BUTTON_PRODUCT_MORE_OPTIONS = 'product-more-payment-button';
+  _exports.NORMAL_PAYMENT_BUTTON_PRODUCT_MORE_OPTIONS = NORMAL_PAYMENT_BUTTON_PRODUCT_MORE_OPTIONS;
+  const NORMAL_PAYMENT_BUTTON_CART_CHECKOUT = 'cart-checkout-button';
+  _exports.NORMAL_PAYMENT_BUTTON_CART_CHECKOUT = NORMAL_PAYMENT_BUTTON_CART_CHECKOUT;
+  return _exports;
+}();

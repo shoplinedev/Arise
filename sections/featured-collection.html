@@ -28,7 +28,6 @@ all_collections:
  'vendors/@yy_sl-ec-tracker.min.js'
  'vendors/@sl_cart.min.js'
  'vendors/@funnyecho_hamon.min.js'
- 'vendors/@sl_logger.min.js'
  'vendors/@yy_sl-mc.min.js'
  'vendors/querystring.min.js'
  'theme-shared/utils/event-bus.js'
@@ -91,15 +90,16 @@ all_collections:
  'theme-shared/utils/dataAccessor.js'
  'theme-shared/utils/url.js'
  'theme-shared/utils/constant.js'
+ 'theme-shared/components/smart-payment/constants.js'
  'theme-shared/utils/checkout.js'
  'theme-shared/components/hbs/products/checkedEvent/index.js'
- 'theme-shared/components/smart-payment/constants.js'
  'theme-shared/components/smart-payment/utils.js'
  'theme-shared/components/smart-payment/services.js'
  'theme-shared/components/smart-payment/reporter/constants.js'
  'theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'
  'theme-shared/components/smart-payment/reporter/ThirdPartReport.js'
  'theme-shared/components/smart-payment/index.js'
+ 'theme-shared/components/payment-button/constants.js'
  'theme-shared/components/payment-button/utils.js'
  'theme-shared/components/payment-button/express_checkout.js'
  'theme-shared/components/smart-payment/payments.js'
@@ -146,6 +146,7 @@ all_collections:
  'commons/utils/dynamicImportMiniCart.js'
  'commons/cart/globalEvent.js'
  'commons/utils/debounce.js'
+ 'theme-shared/components/payment-button/shopby_fast_checkout.js'
  'theme-shared/components/payment-button/index.js'
  'product/detail/js/payment_button.js'
  'theme-shared/report/product/add-to-cart.js'
@@ -286,8 +287,7 @@ all_collections:
     },
     {
       "type": "group_header",
-      "label": "t:sections.featured-collection.settings.group_header__0.label",
-      "id": "group_header__0"
+      "label": "t:sections.featured-collection.settings.group_header__0.label"
     },
     {
       "id": "products_num",
@@ -338,8 +338,7 @@ all_collections:
     },
     {
       "type": "group_header",
-      "label": "t:sections.featured-collection.settings.group_header__1.label",
-      "id": "group_header__1"
+      "label": "t:sections.featured-collection.settings.group_header__1.label"
     },
     {
       "id": "product_image_ratio",

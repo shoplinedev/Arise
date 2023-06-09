@@ -1,0 +1,72 @@
+{{ assign 'benefitType' promotion.benefitType }}
+
+{{#if benefitType "==" 7 }}
+{{ assign 'promotionBenefit' (itemAt promotion.promotionBenefitList 0) }}
+
+{{assign "styleScript" ""}}
+
+{{ assign 'cartBannerStyleStr' promotionBenefit.extMap.cartBannerStyle }}
+
+  {{#if cartBannerStyleStr}}
+    {{ assign 'cartBannerStyle' (JSONparse cartBannerStyleStr) }}
+
+    {{#if cartBannerStyle}}
+    
+      {{assign "cartPage_bannerBgColor" (default cartBannerStyle.cartPage_bannerBgColor '')}}
+      {{assign "cartPage_textColor" (default cartBannerStyle.cartPage_textColor '')}}
+      {{assign "cartPage_discountTextColor" (default cartBannerStyle.cartPage_discountTextColor '')}}
+
+      {{assign "pcBannerBgImg" (default cartBannerStyle.cartPage_bannerBgImg '')}}        
+
+      {{#if isMobile}}
+
+        {{#if cartBannerStyle.cartPage_mobileBannerBgImg}}
+          {{assign "bannerBgImg" cartBannerStyle.cartPage_mobileBannerBgImg}}        
+        {{else }}
+          {{assign "bannerBgImg" pcBannerBgImg}}        
+        {{/if}}
+
+      {{else}}
+        {{assign "bannerBgImg" pcBannerBgImg}}        
+      {{/if}}
+
+    {{/if}}
+
+  {{/if}}
+
+{{else }}
+{{/if}}
+
+{{#if cartBannerStyle}}
+  <style type="text/css">
+    [data-promotionseq="{{promotion.promotionSeq}}"] {
+      background-color: {{cartPage_bannerBgColor}};
+      color: {{cartPage_textColor}};
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: {{cartPage_bannerBgColor}};
+      background-color: {{cartPage_bannerBgColor}};
+      background-image: 
+      {{#if bannerBgImg}}
+        url(
+          {{bannerBgImg}}
+        )
+      {{else}}
+      none
+      {{/if}}
+      ;
+    }
+
+    [data-promotionseq="{{promotion.promotionSeq}}"] 
+    .cart-sku-list-promotion-module-arrow svg path
+    {
+      stroke: {{cartPage_textColor}};
+    }
+    [data-promotionseq="{{promotion.promotionSeq}}"] 
+    .discountText
+    {
+      color: {{cartPage_discountTextColor}};
+    }
+  </style>
+{{/if}}

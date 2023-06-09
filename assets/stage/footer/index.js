@@ -76,7 +76,8 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
       const post = debounce(300, val => {
         const params = {
           subscribeAccountType: 'email',
-          subscribeAccount: val
+          subscribeAccount: val,
+          consentCollectedFrom: 'PageFooter'
         };
         const SLMemberPlugin = window.SLMemberPlugin || {};
         const memberReferralCode = SLMemberPlugin.memberReferralCode || {};

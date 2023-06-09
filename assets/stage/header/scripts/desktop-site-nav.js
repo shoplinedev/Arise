@@ -35,7 +35,14 @@ window.SLM['stage/header/scripts/desktop-site-nav.js'] = window.SLM['stage/heade
       const headerHeight = $mainHeader.offsetHeight;
       const menuNavHeight = element.offsetHeight;
       const delta = headerHeight - menuNavHeight;
+      const {
+        navigationLayout
+      } = $menuNav.dataset;
       let submenuDropdownTop = menuNavHeight + Math.floor(delta / 2);
+
+      if (navigationLayout.endsWith('-line')) {
+        submenuDropdownTop = menuNavHeight;
+      }
 
       if (isMegamenu) {
         submenuDropdownTop = headerHeight;

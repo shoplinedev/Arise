@@ -11,6 +11,15 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
   const Render = window['SLM']['commons/sales/simpleRender.js'].default;
   const CartInfoKey = 'cartInfo';
   const GIFT_PLUGIN_TYPE = 7;
+  const BenefitTypeEnum = {
+    DISCOUNT: 2,
+    NTH_PRICE: 11,
+    BUY_X_GET_Y: 12
+  };
+  const BenefitValueTypeEnum = {
+    AMOUNT: '1',
+    DISCOUNT: '2'
+  };
 
   const init = () => {
     const cartNode = $('#activity-cart');
@@ -34,16 +43,23 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
           benefitEvent,
           benefit
         } = condition;
+        let benefitValueType;
+
+        if (benefitType === BenefitTypeEnum.BUY_X_GET_Y || benefitType === BenefitTypeEnum.NTH_PRICE) {
+          benefitValueType = !benefit.benefitAmount ? BenefitValueTypeEnum.DISCOUNT : BenefitValueTypeEnum.AMOUNT;
+        }
+
         return {
           benefitType,
           promotionBenefitList: [{
             type: condition.benefitEvent.type,
             hit: false,
-            benefit: benefitEvent.type === 1 ? benefit.discount : benefit.benefitAmount,
+            benefit: benefitType === BenefitTypeEnum.DISCOUNT || benefitValueType === BenefitValueTypeEnum.DISCOUNT ? benefit.discount : benefit.benefitAmount,
             amount: benefitEvent.minThreshold,
             benefitCount: benefit.benefitCount,
             extMap: {
-              bannerText: get(cartBannerText, 'hitNone')
+              bannerText: get(cartBannerText, 'hitNone'),
+              benefitValueType
             }
           }]
         };

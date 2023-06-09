@@ -16,11 +16,13 @@ window.SLM['product/detail/js/payment_button.js'] = window.SLM['product/detail/j
       const {
         elementId,
         pageType,
-        cbFn
+        cbFn,
+        setCheckoutParams
       } = this.config;
       const instance = new PaymentButton({
         id: elementId,
-        pageType
+        pageType,
+        setCheckoutParams
       });
       const domIds = instance.getRenderId();
       this.instanceMap[elementId] = {
@@ -33,17 +35,35 @@ window.SLM['product/detail/js/payment_button.js'] = window.SLM['product/detail/j
       }
     }
 
+    setDisabled(val) {
+      const currentInstanceMap = this.instanceMap[this.config.elementId];
+
+      if (currentInstanceMap && currentInstanceMap.instance) {
+        currentInstanceMap.instance.setDisabled(val);
+      }
+    }
+
+    setDisplay(val) {
+      const currentInstanceMap = this.instanceMap[this.config.elementId];
+
+      if (currentInstanceMap && currentInstanceMap.instance) {
+        currentInstanceMap.instance.setDisplay(val);
+      }
+    }
+
   }
 
   function newButtonModule({
     elementId,
     pageType,
-    cbFn
+    cbFn,
+    setCheckoutParams
   }) {
     return new PayemtnButtonModule({
       elementId,
       pageType,
-      cbFn
+      cbFn,
+      setCheckoutParams
     });
   }
 
