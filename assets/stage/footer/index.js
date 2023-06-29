@@ -98,7 +98,6 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
             });
           }
         }).catch(err => {
-          console.log('subscribe error', err);
           Toast.init({
             content: t('general.footer.subscribe_format_error')
           });

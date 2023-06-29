@@ -1,14 +1,19 @@
-{{ assign 'ogTitle' 'Collections' }}
-{{ assign 'ogDescription' storeInfo.name }}
+{{!-- @todo  &ndash;-会被解析成&amp;ndash;导致"-"不是预期值 --}}
+{{ assign 'title' (append page_title ' - ' shop.name) }}
+{{ assign 'description' (default page_description shop.name) }}
+{{ assign 'keywords' (default page_keyword shop.name) }}
+
+{{ assign 'ogTitle' title }}
+{{ assign 'ogDescription' description }}
 {{ assign 'url' (append request.uri.domain request.uri.url) }}
 {{#if page_image}}
   {{ assign 'image' page_image }}
 {{else}}
   {{ assign 'image' theme.settings.co_checkout_image.url }}
 {{/if}}
-{{ assign 'seoTitle' 'Collections' }}
-{{ assign 'seoDescription' '' }}
-{{ assign 'keywords' '' }}
+{{ assign 'seoTitle' title }}
+{{ assign 'seoDescription' description }}
+{{ assign 'keywords' keywords }}
 {{ assign 'card' 'summary_large_image' }}
 {{ assign 'type' 'collection' }}
 

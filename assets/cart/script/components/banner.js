@@ -185,7 +185,7 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
 
     getItemAmount(data) {
       return `
-      <span class="notranslate body2 text_bold" data-amount=${data.price}>${this.getPriceInfo(data.price)}</span>
+      <span class="isolate notranslate body2 text_bold" data-amount=${data.price}>${this.getPriceInfo(data.price)}</span>
       <span
       class="notranslate body2 text_bold trade-cart-sku-item-info-amount-sign">x&nbsp;<span
         class="notranslate body2 text_bold trade-cart-sku-item-info-amount-count">${this.addedItemInfo.num}</span>

@@ -1,0 +1,28 @@
+input{
+  -webkit-appearance:none;
+}
+.product-list-title{
+  flex:none;
+  flex-grow:0;
+  line-height:100%;
+  margin-bottom:40px;
+  order:0;
+  word-break:break-word;
+}
+
+@media (max-width:749.98px){
+  .product-list-title{
+    margin-bottom:30px;
+  }
+}
+[data-type_title_text_align=left] .product-section-title{
+  text-align:right;
+}
+
+[data-type_title_text_align=center] .product-section-title{
+  text-align:center;
+}
+
+[data-type_title_text_align=right] .product-section-title{
+  text-align:left;
+}

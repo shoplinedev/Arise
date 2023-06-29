@@ -17,7 +17,7 @@
     {{/if}}
   {{/if}}
   {{#if benefitCondition.benefitEvent.type '===' 0}}
-    {{assign 'threshold' (noTranslationHTML (t "sales.general.product_tabs_threshold" threshold=(javascript_template '<span data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))))}}
+    {{assign 'threshold' (noTranslationHTML (t "sales.general.product_tabs_threshold" threshold=(javascript_template '<span class="isolate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))))}}
   {{else}}
     {{assign 'threshold' (t 'sales.general.product_tabs_threshold' threshold=benefitCondition.benefitEvent.minThreshold)}}
   {{/if}}
@@ -30,7 +30,7 @@
     {{/if}}
   {{else if benefitCondition.benefit.benefitAmount}}
     {{!-- 买x送y tab 支持固定金额 --}}
-    {{assign '__benefitAmount' (javascript_template '<span data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(money_exchange_convert_with_currency benefitCondition.benefit.benefitAmount))}}
+    {{assign '__benefitAmount' (javascript_template '<span class="isolate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(money_exchange_convert_with_currency benefitCondition.benefit.benefitAmount))}}
     {{assign 'benefit' (noTranslationHTML (t 'sales.general.product_tabs_benefit_amount_locked' benefitAmount=__benefitAmount))}}
     {{#if activity.promotionSubType '===' 3}}
       {{assign 'benefitUnlock' (noTranslationHTML (t 'sales.general.product_tabs_code_benefit_amount_unlocked' benefitAmount=__benefitAmount benefitCount=benefitCondition.benefit.benefitCount))}}

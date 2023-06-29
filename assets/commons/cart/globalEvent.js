@@ -8,8 +8,13 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
   const { getSyncData } = window['SLM']['theme-shared/utils/dataAccessor.js'];
   const { setAddtoCart } = window['SLM']['theme-shared/utils/tradeReport/index.js'];
   const { OPEN_MINI_CART, ADD_TO_CART, CONTROL_CART_BASIS } = window['SLM']['theme-shared/events/trade/interior-event/index.js'];
+  const CartSidebarRender = window['SLM']['theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'].default;
   const { listenCartReport } = window['SLM']['theme-shared/utils/tradeReport/eventListen.js'];
-  const { DRAWER_EVENT_NAME, DRAWER_OPERATORS } = window['SLM']['theme-shared/components/hbs/shared/components/topDrawer/const.js'];
+  const { reportMiniCartView } = window['SLM']['theme-shared/utils/tradeReport/hdReportV2.js'];
+  const { DRAWER_EVENT_NAME: TOP_DRAWER_EVENT_NAME, DRAWER_OPERATORS } = window['SLM']['theme-shared/components/hbs/shared/components/topDrawer/const.js'];
+  const { DRAWER_EVENT_NAME } = window['SLM']['theme-shared/components/hbs/shared/components/drawer/const.js'];
+  const { initMiniStyleWhenOpen, hasSecuritySection } = window['SLM']['cart/script/biz/sticky-cart/index.js'];
+  const { setStickyContAnimate, setFixedContentStyle, listenElementMutation } = window['SLM']['cart/script/biz/sticky-cart/helper.js'];
   const Service = window['SLM']['cart/script/service/index.js'].default;
   const CartService = window['SLM']['cart/script/service/cart/index.js'].default;
   const responseCodeVO = window['SLM']['cart/script/domain/vo/responseCode.js'].default;
@@ -49,24 +54,84 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
   const noop = () => {};
 
   listenCartReport();
+  let miniCartContainerFixedObserver = null;
+
+  function listenMiniCartStickContainerChange() {
+    if (miniCartContainerFixedObserver) {
+      miniCartContainerFixedObserver.disconnect();
+      miniCartContainerFixedObserver = null;
+    }
+
+    if ($(`.miniCart__stick_container_fixed_observer`).length > 0) {
+      miniCartContainerFixedObserver = listenElementMutation($(`.miniCart__stick_container_fixed_observer`).get(0), () => {
+        $('#cart-drawer .trade_cart_not_empty_wrapper').prop('hadSet', false);
+        setTimeout(() => {
+          setFixedContentStyle('#cart-drawer .trade_cart_not_empty_wrapper', $('#cart-drawer .miniCart__stick_container_fixed_observer').outerHeight() + 20);
+        }, 0);
+      }, {
+        attributes: true,
+        childList: true,
+        subtree: true
+      });
+    }
+  }
+
   interior.on(OPEN_MINI_CART, async ({
     data = {},
     onSuccess = noop
   } = {}) => {
-    onSuccess(data);
-    window.location.href = window.Shopline.redirectTo('/cart');
+    const cartId = 'cart-drawer';
+    const {
+      needToFetch = true
+    } = data;
+
+    if (cartOpenType === 'newpage' || cartOpenType === 'minicart' || cartOpenType === 'cartremain') {
+      onSuccess(data);
+      window.location.href = window.Shopline.redirectTo('/cart');
+    } else {
+      await dynamicImportMiniCart();
+
+      if (needToFetch) {
+        await CartService.takeCartService().getCartDetail();
+      }
+
+      interior.emit(DRAWER_EVENT_NAME, {
+        id: cartId,
+        status: 'open',
+        onOpen: onSuccess
+      });
+      initMiniStyleWhenOpen();
+      reportMiniCartView();
+      listenMiniCartStickContainerChange();
+      CartSidebarRender({
+        data: {
+          dom: {
+            id: cartId
+          }
+        }
+      });
+      setTimeout(() => {
+        if (hasSecuritySection) {
+          setStickyContAnimate({
+            viewportSelector: '.miniCart_vp_container',
+            containerSelector: '.miniCart__stick_container'
+          });
+        }
+      }, 300);
+    }
   });
   window.SL_EventBus.on(OPEN_TOP_CART, async () => {
     await dynamicImportMiniCart();
-    window.SL_EventBus.emit(DRAWER_EVENT_NAME, {
-      id: 'cart-select',
-      operator: DRAWER_OPERATORS.OPEN
+    window.SL_EventBus.emit(cartOpenType === 'minicart' ? TOP_DRAWER_EVENT_NAME : DRAWER_EVENT_NAME, {
+      id: cartOpenType === 'minicart' ? 'cart-select' : 'cart-drawer',
+      operator: DRAWER_OPERATORS.OPEN,
+      status: 'open'
     });
   });
 
   const closeMiniCart = () => {
-    window.SL_EventBus.emit(DRAWER_EVENT_NAME, {
-      id: 'cart-select',
+    window.SL_EventBus.emit(cartOpenType === 'minicart' ? TOP_DRAWER_EVENT_NAME : DRAWER_EVENT_NAME, {
+      id: cartOpenType === 'minicart' ? 'cart-select' : 'cart-drawer',
       operator: DRAWER_OPERATORS.CLOSE
     });
   };
@@ -99,7 +164,7 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
     };
 
     try {
-      if (cartOpenType !== 'newpage' && cartOpenType !== 'cartremain') {
+      if (cartOpenType !== 'newpage') {
         closeMiniCart();
         await dynamicImportMiniCart();
       }
@@ -168,9 +233,11 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
           }
         }
 
-        if (cartOpenType === 'cartremain') return;
+        if (cartOpenType === 'cartremain') {
+          return;
+        }
 
-        if (cartOpenType !== 'newpage') {
+        if (cartOpenType === 'minicart') {
           window.SL_EventBus.emit(OPEN_CART_BANNER, {
             data: { ...res.data.itemDetail
             },

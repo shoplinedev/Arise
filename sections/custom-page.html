@@ -1,7 +1,11 @@
 {{ assign 'currentPageInfo' (get section.settings.page_id pages) }}
 {{ assign 'prefix' 'stage-main-page' }}
 
-{{ combine_asset_tag 'stage/custom-page/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/custom-page/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/custom-page/index.css' inline=true}}
+{{/if}}
 <!-- stage/custom-page/index.js -->
 {{ combine_asset_tag 
  'commons/utils/createShadowDom.js'

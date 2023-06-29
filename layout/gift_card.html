@@ -22,7 +22,11 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   {{ content_for_header }}
-  {{ combine_asset_tag 'product/giftCard/style/index.css' inline=true }}
+  {{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'product/giftCard/style/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'product/giftCard/style/index.css' inline=true}}
+{{/if}}
 </head>
 
 <body class="template--le template__{{ replace template '/' '-' }}">

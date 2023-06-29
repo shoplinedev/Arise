@@ -2,7 +2,7 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme-shared/components/smart-payment/index.js'] || function () {
   const _exports = {};
-  const { Payment, PayMode, PaymentProps, Paypal, mergeParams } = window['@sl/smart-payment'];
+  const { Payment, PayMode, PaymentProps, Paypal, mergeParams, getClientInfo } = window['@sl/smart-payment'];
   const loggerService = window['@yy/sl-theme-shared']['/utils/logger/sentry'].default;
   const HidooTracker = window['@yy/sl-ec-tracker']['/lib/tracker/baseParams'].default;
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
@@ -35,17 +35,12 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
         }
       });
 
-      if (!(payments && Array.isArray(payments))) {
+      if (!(payments && Array.isArray(payments)) || payments.length === 0) {
         logger.error(`${loggerPrefix} payments入参非法`, {
           data: {
             payments
           }
         });
-        return;
-      }
-
-      if (payments.length === 0) {
-        logger.info(`${loggerPrefix} payments为空`);
         return;
       }
 
@@ -65,6 +60,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
       let priceInfo = null;
       let productInfos = null;
       let shippingMethodName = '';
+      const clientInfo = getClientInfo();
 
       const updateCreateOrderParams = data => {
         basicInfo = data.basicInfo;
@@ -274,16 +270,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
             dataId = window.HdSdk.shopTracker.getDataId();
           }
 
-          const {
-            userAgent,
-            language
-          } = window.navigator;
-          const {
-            colorDepth,
-            width,
-            height
-          } = window.screen;
-          const javaEnabled = window.navigator.javaEnabled().toString();
           const addPaymentInfoEventId = `addPaymentInfo${getEventID()}`;
           const params = {
             abandonedOrderInfo,
@@ -309,18 +295,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               currency: marketInfo.marketCurrencyCode,
               payAmount: priceInfo.originalSettleSumAmount
             },
-            clientInfo: {
-              transactionWebSite: window.location.href,
-              javaEnabled,
-              colorDepth: colorDepth.toString(),
-              screenHeight: width.toString(),
-              screenWidth: height.toString(),
-              timeZoneOffset: new Date().getTimezoneOffset().toString(),
-              accept: 'application/json',
-              userAgent,
-              language,
-              javaScriptEnabled: 'true'
-            }
+            clientInfo
           };
           const createRes = await expressCreate(params).catch(error => {
             logger.error('快捷支付下单失败', {

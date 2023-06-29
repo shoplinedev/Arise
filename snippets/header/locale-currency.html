@@ -1,4 +1,8 @@
-{{ combine_asset_tag 'stage/header/style/mod/locale-currency.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/header/style/mod/locale-currency.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/header/style/mod/locale-currency.css' inline=true}}
+{{/if}}
 <!-- stage/header/scripts/locale-currency.js -->
 {{ combine_asset_tag 
  'vendors/lodash.min.js'

@@ -17,7 +17,6 @@ window.SLM['theme-shared/components/hbs/shared/components/toast/toast.js'] = win
 
     for (t in animations) {
       if (el.style[t] !== undefined) {
-        console.log('anim...');
         return animations[t];
       }
     }

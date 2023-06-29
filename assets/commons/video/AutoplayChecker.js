@@ -82,7 +82,6 @@ window.SLM['commons/video/AutoplayChecker.js'] = window.SLM['commons/video/Autop
       this.supportState = {};
       this.completed = false;
       isAutoplaySupported(result => {
-        console.log(result);
         this.supportState = result;
         this.completed = true;
         window.SL_EventBus.emit('stage:checkAutoplayComplete', this.supportState);

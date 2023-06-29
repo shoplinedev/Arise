@@ -18,7 +18,11 @@
   @media (min-width: 749.98px) {
     .section-gap .product-recommend {
       .product-item-swiper-list  {
-        margin-right: 0;
+        {{#if request.document_direction '===' 'rtl'}}
+          margin-left: 0;
+        {{else}}
+          margin-right: 0;
+        {{/if}}
       }
     }
   }

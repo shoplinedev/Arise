@@ -5,6 +5,9 @@
         "item": {
           "name": "Thông cáo",
           "settings": {
+            "announcement_division_bottom": {
+              "label": "Hiển thị đường phân cách"
+            },
             "notice_link": {
               "label": "Link chuyển đổi"
             },
@@ -515,7 +518,13 @@
           "name": "Giá"
         },
         "quantity": {
-          "name": "Bộ chọn số lượng"
+          "name": "Bộ chọn số lượng",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "Khi tồn kho nhỏ hơn 10, số lượng tồn kho sẽ được hiển thị bên dưới bộ chọn số lượng",
+              "label": "Hiển thị cảnh báo số lượng khi tồn kho thấp"
+            }
+          }
         },
         "share": {
           "name": "Chia sẻ"
@@ -756,6 +765,9 @@
         "header_division": {
           "label": "Hiển thị đường phân cách mô đun"
         },
+        "header_division_bottom": {
+          "label": "Hiển thị đường phân chia bên dưới tiêu đề"
+        },
         "header_full_width": {
           "label": "chiều rộng toàn màn hình trong tiêu đề"
         },
@@ -825,7 +837,7 @@
           "label": "Bày ra máy chọn tiền tệ"
         },
         "show_line_separator": {
-          "label": "Hiển thị đường phân cách"
+          "label": "Hiển thị đường phân chia khi menu đổi dòng"
         },
         "show_locale_selector": {
           "info": "Nếu cần thêm ngôn ngữ, có thể vào phần [Cài đặt ngôn ngữ](/admin/settings/lang)",
@@ -2019,6 +2031,9 @@
             "product_custom_tab1": {
               "label": "Nội dung tuỳ chỉnh 1"
             },
+            "product_custom_tab1_custom_icon": {
+              "label": "Ảnh tuỳ chọn"
+            },
             "product_custom_tab1_desc": {
               "label": "Mô tả văn bản"
             },
@@ -2070,6 +2085,9 @@
             "product_custom_tab2": {
               "label": "Nội dung tuỳ chỉnh 2"
             },
+            "product_custom_tab2_custom_icon": {
+              "label": "Ảnh tuỳ chọn"
+            },
             "product_custom_tab2_desc": {
               "label": "Mô tả văn bản"
             },
@@ -2120,6 +2138,9 @@
             },
             "product_custom_tab3": {
               "label": "Nội dung tuỳ chỉnh 3"
+            },
+            "product_custom_tab3_custom_icon": {
+              "label": "Ảnh tuỳ chọn"
             },
             "product_custom_tab3_desc": {
               "label": "Mô tả văn bản"
@@ -2273,7 +2294,13 @@
           }
         },
         "quantity": {
-          "name": "Bộ chọn số lượng"
+          "name": "Bộ chọn số lượng",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "Khi tồn kho nhỏ hơn 10, số lượng tồn kho sẽ được hiển thị bên dưới bộ chọn số lượng",
+              "label": "Hiển thị cảnh báo số lượng khi tồn kho thấp"
+            }
+          }
         },
         "share": {
           "name": "Chia sẻ"
@@ -2472,6 +2499,9 @@
         "group_header__0": {
           "label": "Điền bổ sung phân vùng"
         },
+        "group_header__2": {
+          "label": "Bài viết trên blog"
+        },
         "md_cols": {
           "label": "Số cột trên điện thoại di động",
           "options__0": {
@@ -2510,6 +2540,12 @@
           "options__4": {
             "label": "2:3"
           }
+        },
+        "show_article_author": {
+          "label": "Hiển thị tác giả"
+        },
+        "show_article_date": {
+          "label": "Hiển thị ngày tháng"
         }
       }
     },
@@ -3239,6 +3275,9 @@
           },
           "options__2": {
             "label": "Đã thêm thành công lời nhắc mua thêm"
+          },
+          "options__3": {
+            "label": "Mở ngăn kéo"
           }
         }
       }

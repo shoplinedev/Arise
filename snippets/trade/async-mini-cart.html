@@ -1,4 +1,8 @@
-{{#if (boolean theme.settings.cart_open_type '===' 'minicart' '||' templateAlias '===' 'Cart')}}
+{{#if (boolean theme.settings.cart_open_type '===' 'drawer')}}
+  {{#snippet 'global_drawer' id="cart-drawer" position="right" title=(t 'general.header.cart') type="cart"}}
+    <div id="trade_mini_cart_ajax"></div>
+  {{/snippet}}
+{{else if (boolean theme.settings.cart_open_type '!=' 'newpage' '||' templateAlias '===' 'Cart')}}
   {{#snippet 'global-top-drawer' id="cart-select" frameType="shadow"}}
     <div id="trade_mini_cart_ajax"></div>
   {{/snippet}}

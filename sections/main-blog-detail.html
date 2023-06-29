@@ -5,7 +5,11 @@ all_collections:
   need_first_product: false
 ---
 
-{{ combine_asset_tag 'stage/blog/detail/style/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/blog/detail/style/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/blog/detail/style/index.css' inline=true}}
+{{/if}}
 
 <main class="blog-container container" data-section-type="blog-detail" data-section-id="{{ section.id }}">
   {{ assign 'settings' section.settings }}

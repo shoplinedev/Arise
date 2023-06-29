@@ -1,4 +1,8 @@
-{{ combine_asset_tag 'product/search/style/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'product/search/style/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'product/search/style/index.css' inline=true}}
+{{/if}}
 
 {{!-- define computed props --}}
 {{ assign 'keyword' (get 'keyword' request.uri.query) }}

@@ -7,6 +7,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/third-part-login.js'] = wi
   const { stringifyUrl } = window['SLM']['theme-shared/biz-com/customer/utils/url.js'];
   const { THIRD_EXTRA_PARAMS, THIRD_DEFAULT_REGION, CHANNEL_TO_METHOD } = window['SLM']['theme-shared/biz-com/customer/constant/const.js'];
   const { THIRD_LOGIN_HREF, SIGN_IN } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
   const { thirdLoginAndBind, thirdLoginAndBindByBindToken, bindUidAccountMix, saveThirdChannelInfo } = window['SLM']['theme-shared/biz-com/customer/service/index.js'];
   const THIRD_BUTTON_CLASS = 'sign-in__third-button';
 
@@ -64,7 +65,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/third-part-login.js'] = wi
       const {
         appid: SLAppid
       } = this.form.configs;
-      const THIRD_REDIRET_URL = `${window.location.origin}${SIGN_IN}`;
+      const THIRD_REDIRET_URL = `${window.location.origin}${redirectTo(SIGN_IN)}`;
 
       if (!thirdLoginConfigVos) {
         return [];

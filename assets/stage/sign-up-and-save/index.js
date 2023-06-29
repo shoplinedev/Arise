@@ -41,7 +41,6 @@ window.SLM['stage/sign-up-and-save/index.js'] = window.SLM['stage/sign-up-and-sa
             this.toast.open(t('general.footer.subscribe_format_error'), 2000);
           }
         }).catch(err => {
-          console.log('subscribe error', err);
           this.toast.open(t('general.footer.subscribe_format_error'), 2000);
         });
       });

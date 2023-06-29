@@ -5,6 +5,9 @@
         "item": {
           "name": "公告",
           "settings": {
+            "announcement_division_bottom": {
+              "label": "显示分割线"
+            },
             "notice_link": {
               "label": "跳转链接"
             },
@@ -515,7 +518,13 @@
           "name": "价格"
         },
         "quantity": {
-          "name": "数量选择器"
+          "name": "数量选择器",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "库存低于10个时，将在数量选择器下方显示库存数量",
+              "label": "库存低时显示数量提示"
+            }
+          }
         },
         "share": {
           "name": "分享"
@@ -756,6 +765,9 @@
         "header_division": {
           "label": "显示模块分割线"
         },
+        "header_division_bottom": {
+          "label": "页头下方显示分割线"
+        },
         "header_full_width": {
           "label": "页头固定全屏宽度"
         },
@@ -825,7 +837,7 @@
           "label": "展示货币选择器"
         },
         "show_line_separator": {
-          "label": "显示分割线"
+          "label": "菜单换行时展示分割线"
         },
         "show_locale_selector": {
           "info": "若要添加语言，可前往[语言设置](/admin/settings/lang)",
@@ -2019,6 +2031,9 @@
             "product_custom_tab1": {
               "label": "自定义内容1"
             },
+            "product_custom_tab1_custom_icon": {
+              "label": "自定义图片"
+            },
             "product_custom_tab1_desc": {
               "label": "文本描述"
             },
@@ -2070,6 +2085,9 @@
             "product_custom_tab2": {
               "label": "自定义内容2"
             },
+            "product_custom_tab2_custom_icon": {
+              "label": "自定义图片"
+            },
             "product_custom_tab2_desc": {
               "label": "文本描述"
             },
@@ -2120,6 +2138,9 @@
             },
             "product_custom_tab3": {
               "label": "自定义内容3"
+            },
+            "product_custom_tab3_custom_icon": {
+              "label": "自定义图片"
             },
             "product_custom_tab3_desc": {
               "label": "文本描述"
@@ -2273,7 +2294,13 @@
           }
         },
         "quantity": {
-          "name": "数量选择器"
+          "name": "数量选择器",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "库存低于10个时，将在数量选择器下方显示库存数量",
+              "label": "库存低时显示数量提示"
+            }
+          }
         },
         "share": {
           "name": "分享"
@@ -2472,6 +2499,9 @@
         "group_header__0": {
           "label": "分区填充"
         },
+        "group_header__2": {
+          "label": "博客文章"
+        },
         "md_cols": {
           "label": "移动端列数",
           "options__0": {
@@ -2510,6 +2540,12 @@
           "options__4": {
             "label": "2:3"
           }
+        },
+        "show_article_author": {
+          "label": "显示作者"
+        },
+        "show_article_date": {
+          "label": "显示日期"
         }
       }
     },
@@ -3239,6 +3275,9 @@
           },
           "options__2": {
             "label": "已成功加购提示"
+          },
+          "options__3": {
+            "label": "打开抽屉"
           }
         }
       }

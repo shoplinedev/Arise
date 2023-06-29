@@ -176,12 +176,12 @@
           {{/each}}
         </div>
         {{#if showSwiperArrow}}
-          <div class="product-photo-swiper-button product-photo-swiper-button-prev swiper-button-prev_pc_{{selectorId}}">
+          <div class="icon directional product-photo-swiper-button product-photo-swiper-button-prev swiper-button-prev_pc_{{selectorId}}">
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M8 1L3 6L8 11" stroke-width="1.5" stroke-linecap="round"/>
   </svg>  
 </div>
-<div class="product-photo-swiper-button product-photo-swiper-button-next swiper-button-next_pc_{{selectorId}}">
+<div class="icon directional product-photo-swiper-button product-photo-swiper-button-next swiper-button-next_pc_{{selectorId}}">
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round"/>
   </svg>
@@ -194,12 +194,12 @@
           </div>
         </div>
         {{#if showSwiperArrow}}
-          <div class="product-photo-swiper-button product-photo-swiper-button-prev swiper-button-prev_pc_{{selectorId}}">
+          <div class="icon directional product-photo-swiper-button product-photo-swiper-button-prev swiper-button-prev_pc_{{selectorId}}">
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M8 1L3 6L8 11" stroke-width="1.5" stroke-linecap="round"/>
   </svg>  
 </div>
-<div class="product-photo-swiper-button product-photo-swiper-button-next swiper-button-next_pc_{{selectorId}}">
+<div class="icon directional product-photo-swiper-button product-photo-swiper-button-next swiper-button-next_pc_{{selectorId}}">
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round"/>
   </svg>
@@ -589,8 +589,7 @@
       <div class="normal-thumbnail-button normal-thumbnail-button-next">{{ snippet 'icons/icon_arrow_thumbnail' }}</div>
     </div>
     {{else}}
-    <div class="product_mobile_thumbnail_container" style="display: {{#or (isFalsey mediaList.length) (boolean mediaList.length '<=' '1')}}none{{/or}};">
-      <div style="visibility: {{ cond (boolean mediaList.length '>' '3') 'visible' 'hidden' }}" class="thumbnail_button_prev_{{ selectorId }} thumbnail-button-prev thumbnail-button">{{ snippet 'icons/icon_arrow_thumbnail' }}</div>
+    <div class="product_mobile_thumbnail_container {{#if mediaList.length '<=' '3'}}product_mobile_thumbnail_container--center{{/if}}" style="display: {{#or (isFalsey mediaList.length) (boolean mediaList.length '<=' '1')}}none{{/or}};" >
       <div class="swiper-container">
         <div class="swiper-wrapper">
           {{#each mediaList}}
@@ -615,7 +614,6 @@
           {{/each}}
         </div>
       </div>
-      <div style="visibility: {{ cond (boolean mediaList.length '>' '3') 'visible' 'hidden' }}" class="thumbnail_button_next_{{ selectorId }} thumbnail-button-next thumbnail-button">{{ snippet 'icons/icon_arrow_thumbnail' }}</div>
     </div>
     {{/if}}
 

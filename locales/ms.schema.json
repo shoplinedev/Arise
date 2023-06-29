@@ -5,6 +5,9 @@
         "item": {
           "name": "Pengumuman",
           "settings": {
+            "announcement_division_bottom": {
+              "label": "Tunjuk garis pemisah"
+            },
             "notice_link": {
               "label": "Pautan lompat"
             },
@@ -515,7 +518,13 @@
           "name": "Harga"
         },
         "quantity": {
-          "name": "Mesin pemilihan bilangan"
+          "name": "Mesin pemilihan bilangan",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "Apabila inventori kurang daripada 10, kuantiti inventori dipaparkan di bawah pemilih kuantiti",
+              "label": "Papar petunjuk kuantiti apabila inventori rendah"
+            }
+          }
         },
         "share": {
           "name": "Kongsi"
@@ -756,6 +765,9 @@
         "header_division": {
           "label": "Papar garis pembahagi modul"
         },
+        "header_division_bottom": {
+          "label": "Papar garis pemisah di bawah pengepala halaman"
+        },
         "header_full_width": {
           "label": "lebar skrin penuh dalam pengepala"
         },
@@ -825,7 +837,7 @@
           "label": "Tunjuk pemilih mata wang"
         },
         "show_line_separator": {
-          "label": "Tunjuk garis pemisah"
+          "label": "Papar garisan pemisah apabila menu dibungkus"
         },
         "show_locale_selector": {
           "info": "Jika anda ingin menambah bahasa, anda boleh pergi ke [tetapan bahasa](/admin/settings/lang)",
@@ -2019,6 +2031,9 @@
             "product_custom_tab1": {
               "label": "Tetapkan kandungan tersuai 1"
             },
+            "product_custom_tab1_custom_icon": {
+              "label": "Gambar tersuai"
+            },
             "product_custom_tab1_desc": {
               "label": "Definisi teks"
             },
@@ -2070,6 +2085,9 @@
             "product_custom_tab2": {
               "label": "Tetapkan kandungan tersuai 2"
             },
+            "product_custom_tab2_custom_icon": {
+              "label": "Gambar tersuai"
+            },
             "product_custom_tab2_desc": {
               "label": "Definisi teks"
             },
@@ -2120,6 +2138,9 @@
             },
             "product_custom_tab3": {
               "label": "Tetapkan kandungan tersuai 3"
+            },
+            "product_custom_tab3_custom_icon": {
+              "label": "Gambar tersuai"
             },
             "product_custom_tab3_desc": {
               "label": "Definisi teks"
@@ -2273,7 +2294,13 @@
           }
         },
         "quantity": {
-          "name": "Mesin pemilihan bilangan"
+          "name": "Mesin pemilihan bilangan",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "Apabila inventori kurang daripada 10, kuantiti inventori dipaparkan di bawah pemilih kuantiti",
+              "label": "Papar petunjuk kuantiti apabila inventori rendah"
+            }
+          }
         },
         "share": {
           "name": "Kongsi"
@@ -2472,6 +2499,9 @@
         "group_header__0": {
           "label": "Pengisian bahagian berasingan"
         },
+        "group_header__2": {
+          "label": "Aktikel blog"
+        },
         "md_cols": {
           "label": "Bilangan lajur di mudah alih",
           "options__0": {
@@ -2510,6 +2540,12 @@
           "options__4": {
             "label": "2:3"
           }
+        },
+        "show_article_author": {
+          "label": "Tunjuk pengarang"
+        },
+        "show_article_date": {
+          "label": "Tunjuk Tarikh"
         }
       }
     },
@@ -3239,6 +3275,9 @@
           },
           "options__2": {
             "label": "Notifikasi tentang dah berjaya menambahkan pembelian"
+          },
+          "options__3": {
+            "label": "Buka laci"
           }
         }
       }

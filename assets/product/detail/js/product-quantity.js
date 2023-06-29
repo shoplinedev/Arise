@@ -88,8 +88,6 @@ window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail
     }
 
     render() {
-      console.log(this.activeSku);
-
       if (this.isShowTips) {
         const showTips = this.isTrackStock() && this.activeSku && this.activeSku.stock < 10 && this.activeSku.stock > 0;
 

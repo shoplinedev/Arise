@@ -10,8 +10,6 @@ window.SLM['product/collections/js/infiniteScrollList.js'] = window.SLM['product
     const threshold = options.threshold ? options.threshold : 0;
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        console.log('infinite scroll observe...', entry);
-
         if (entry.isIntersecting) {
           if (typeof options.callback === 'function') {
             options.callback(entry);

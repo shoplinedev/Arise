@@ -32,13 +32,10 @@ window.SLM['product/detail/js/product-swiper.js'] = window.SLM['product/detail/j
               swiper: {
                 el: `${mobilePrefixCls} .product_mobile_thumbnail_container .swiper-container`,
                 spaceBetween: 10,
-                slidesPerView: 3,
+                slidesPerView: 3.5,
                 watchSlidesVisibility: true,
-                slidesPerGroup: 3,
-                navigation: {
-                  nextEl: `.thumbnail_button_next_${selectorId}`,
-                  prevEl: `.thumbnail_button_prev_${selectorId}`
-                }
+                slidesPerGroup: 1,
+                navigation: false
               }
             }
           }

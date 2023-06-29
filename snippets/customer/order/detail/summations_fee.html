@@ -15,13 +15,13 @@
     {{/if}}
   </div>
 
-  <div class="customer_order_summations__amount textRight {{#if suffixCls }} {{suffixCls}} {{else}}black{{/if}}">
+  <div class="customer_order_summations__amount textRight isolate {{#if suffixCls }} {{suffixCls}} {{else}}black{{/if}}">
     <span style="display:flex;">
       <span class="customer_order_summations__amount_reduce {{#if showReduce }} {{else}} hide {{/if}}">-</span>
       <span class="customer_order_summations__amount-box">
         <span class="customer_order_summations__amount-price">
           {{#if (typeOf value) '==' 'number' }}
-            <span class="notranslate no-change" data-amount="{{value}}">{{money_with_currency value code=@root.basicInfo.settleCurrencyCode}}</span>
+            <span class="notranslate no-change isolate" data-amount="{{value}}">{{money_with_currency value code=@root.basicInfo.settleCurrencyCode}}</span>
           {{else }}
             {{!-- 如果是字符，则传入来的是多语言的key --}}
             {{t value}}
@@ -36,7 +36,7 @@
     {{else if (boolean  key '==' 'settleSumAmount' '&&' pageData.basicInfo.taxesIncluded)}}
       {{!-- 含税订单，要在总额下面展示对应的含税价 --}}
       <div class="customer_order_summations_remark">
-        {{ noTranslationHTML (t 'cart.order.tax_included' price=(javascript_template '<span class="notranslate no-change" data-amount="${amount}">${num}</span>' num=(money_with_currency pageData.priceInfo.taxesIncludedSumAmount code=@root.basicInfo.settleCurrencyCode) amount=pageData.priceInfo.taxesIncludedSumAmount) ) }}
+        {{ noTranslationHTML (t 'cart.order.tax_included' price=(javascript_template '<span class="notranslate no-change isolate" data-amount="${amount}">${num}</span>' num=(money_with_currency pageData.priceInfo.taxesIncludedSumAmount code=@root.basicInfo.settleCurrencyCode) amount=pageData.priceInfo.taxesIncludedSumAmount) ) }}
       </div>
     {{/if}}
   </div>

@@ -5,6 +5,9 @@
         "item": {
           "name": "Pemberitahuan",
           "settings": {
+            "announcement_division_bottom": {
+              "label": "Tunjukkan garis pemisah"
+            },
             "notice_link": {
               "label": "lompat link"
             },
@@ -515,7 +518,13 @@
           "name": "Harga"
         },
         "quantity": {
-          "name": "Pemilih kuantitas"
+          "name": "Pemilih kuantitas",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "Ketika stok di bawah 10, stok akan ditampilkan di bawah pemilih kuantitas",
+              "label": "Tampilkan permintaan kuantitas saat stok rendah"
+            }
+          }
         },
         "share": {
           "name": "Bagikan"
@@ -756,6 +765,9 @@
         "header_division": {
           "label": "Tampilkan garis pemisah modul"
         },
+        "header_division_bottom": {
+          "label": "Perlihatkan garis pemisah di bawah tajuk"
+        },
         "header_full_width": {
           "label": "lebar layar penuh di header"
         },
@@ -825,7 +837,7 @@
           "label": "Tampilkan pilihan mata uang"
         },
         "show_line_separator": {
-          "label": "Tunjukkan garis pemisah"
+          "label": "Perlihatkan garis pemisah saat menu selesai"
         },
         "show_locale_selector": {
           "info": "Jika perlu menambahkan bahasa, silahkan buka [Pengaturan Bahasa](/admin/settings/lang)",
@@ -2019,6 +2031,9 @@
             "product_custom_tab1": {
               "label": "Konten kustom 1"
             },
+            "product_custom_tab1_custom_icon": {
+              "label": "Gambar kustom"
+            },
             "product_custom_tab1_desc": {
               "label": "Deskripsi teks"
             },
@@ -2070,6 +2085,9 @@
             "product_custom_tab2": {
               "label": "Konten kustom 2"
             },
+            "product_custom_tab2_custom_icon": {
+              "label": "Gambar kustom"
+            },
             "product_custom_tab2_desc": {
               "label": "Deskripsi teks"
             },
@@ -2120,6 +2138,9 @@
             },
             "product_custom_tab3": {
               "label": "Konten kustom 3"
+            },
+            "product_custom_tab3_custom_icon": {
+              "label": "Gambar kustom"
             },
             "product_custom_tab3_desc": {
               "label": "Deskripsi teks"
@@ -2273,7 +2294,13 @@
           }
         },
         "quantity": {
-          "name": "Pemilih kuantitas"
+          "name": "Pemilih kuantitas",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "Ketika stok di bawah 10, stok akan ditampilkan di bawah pemilih kuantitas",
+              "label": "Tampilkan permintaan kuantitas saat stok rendah"
+            }
+          }
         },
         "share": {
           "name": "Bagikan"
@@ -2472,6 +2499,9 @@
         "group_header__0": {
           "label": "Isian partisi"
         },
+        "group_header__2": {
+          "label": "Artikel Blog"
+        },
         "md_cols": {
           "label": "Jumlah kolom terminal PC",
           "options__0": {
@@ -2510,6 +2540,12 @@
           "options__4": {
             "label": "2:3"
           }
+        },
+        "show_article_author": {
+          "label": "Tampilkan Penulis"
+        },
+        "show_article_date": {
+          "label": "Tampilkan Tanggal"
         }
       }
     },
@@ -3239,6 +3275,9 @@
           },
           "options__2": {
             "label": "Tips pembelian tambahan berhasil"
+          },
+          "options__3": {
+            "label": "Buka laci"
           }
         }
       }

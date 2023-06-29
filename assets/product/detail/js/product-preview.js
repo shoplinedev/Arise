@@ -215,7 +215,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
     });
     const attr = $(`#product-in-stock_${id}`).attr('stock-number');
     const isShowTips = attr === 'false' || attr === undefined ? true : false;
-    console.log('isShowTips', isShowTips);
     const quantityStepper = new SkuQuality({
       id,
       sku,
@@ -335,7 +334,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         activeSkuCache = activeSku;
         let content_sku_id = '';
         let price = null;
-        console.log('sku Init', activeSku);
         inquiryPriceModal.setActiveSku(activeSku);
         const hdReportViewCurSku = getHdReportViewCurSku(activeSkuCache);
 

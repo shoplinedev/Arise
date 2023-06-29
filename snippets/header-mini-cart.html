@@ -1,3 +1,3 @@
-<div class="mini-cart__drawer-slot container">
+<div class="mini-cart__drawer-slot container" {{#if theme.settings.cart_open_type '===' 'drawer'}}data-cart-open="drawer"{{/if}}>
     {{snippet 'trade/async-mini-cart'}}
 </div>

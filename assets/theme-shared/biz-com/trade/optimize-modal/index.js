@@ -130,9 +130,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
           event_name: 'inventory_shortage',
           custom_component: 'continue'
         }, this.cid);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
 
       this.eventCallback(source, btnClassList, callback);
     }
@@ -278,9 +276,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
                   event_name: 'click_component',
                   custom_component: 'continue'
                 }, id);
-              } catch (e) {
-                console.log(e);
-              }
+              } catch (e) {}
 
               callback && (await callback($target));
               this.hideModal();
@@ -300,9 +296,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
                   event_name: 'click_component',
                   custom_component: 'back'
                 }, id);
-              } catch (e) {
-                console.log(e);
-              }
+              } catch (e) {}
 
               window.location.href = redirectTo('/cart');
               return false;
@@ -321,9 +315,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
                   event_name: 'click_component',
                   custom_component: 'back'
                 }, id);
-              } catch (e) {
-                console.log(e);
-              }
+              } catch (e) {}
 
               window.location.href = redirectTo('/cart');
               return false;

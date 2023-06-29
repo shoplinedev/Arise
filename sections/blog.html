@@ -3,7 +3,11 @@ blogs:
   limit: {{ section.settings.limit }}
 ---
 
-{{ combine_asset_tag 'stage/blog-section/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/blog-section/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/blog-section/index.css' inline=true}}
+{{/if}}
 
 {{ assign 'collectionId' section.settings.blog_collection_id }}
 {{ assign 'blogData' (get_blogs_data collectionId all_blogs section.settings.limit) }}

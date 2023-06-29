@@ -560,73 +560,6 @@ body[data-type_navigation_uppercase*=true] .d-site--nav__item{
   color:currentColor;
 }
 
-.header__icon-statement{
-  align-items:center;
-  color:rgba(var(--color-text));
-  display:flex;
-  justify-content:center;
-  margin-left:20px;
-}
-.header__icon-statement.header__icon-statement-ismobile{
-  display:none;
-}
-.header__icon-statement:hover{
-  color:rgba(var(--color-text));
-}
-.header__icon-statement svg{
-  flex-shrink:0;
-  width:30px;
-}
-.header__icon-statement path{
-  fill:currentColor;
-}
-.header__icon-statement .header__icon-right{
-  margin-left:10px;
-}
-.header__icon-statement .header__icon-title{
-  flex-shrink:0;
-  font-size:14px;
-  line-height:22px;
-  max-width:200px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-.header__icon-statement .header__icon-title:first-child{
-  font-size:16px;
-  font-weight:600;
-}
-
-@media (max-width:959.98px){
-  .header__icon-statement,.is-sticky .header__layout-container .header__icon-statement-ismobile{
-    display:none;
-  }
-  .header__icon-statement .header__icon-title{
-    font-size:12px;
-    max-width:100%;
-  }
-  .header__icon-statement .header__icon-title:first-child{
-    font-size:14px;
-    font-weight:600;
-  }
-  .header__icon-statement .header__icon-title+.header__icon-title{
-    margin-left:10px;
-  }
-  .header__icon-statement svg{
-    height:16px;
-    width:16px;
-  }
-  .header__icon-statement.header__icon-statement-ismobile{
-    background-color:rgba(var(--color-page-background));
-    display:flex;
-    margin-left:0;
-    padding-bottom:10px;
-  }
-  .header__icon-statement.header__icon-statement-ismobile .header__icon-right{
-    display:flex;
-    overflow:hidden;
-  }
-}
 .header__search--container{
   bottom:200%;
   display:none;
@@ -676,7 +609,7 @@ body[data-type_navigation_uppercase*=true] .d-site--nav__item{
 
 @media (max-width:749.98px){
   .header__search--container .header__search--form{
-    padding:15px 0;
+    align-items:center;
   }
 }
 .header__search--container .header__search--btn{
@@ -698,6 +631,7 @@ body[data-type_navigation_uppercase*=true] .d-site--nav__item{
   color:inherit;
   flex:1 1 auto;
   max-width:100%;
+  min-height:42px;
   outline:none;
   padding:8px 10px;
   width:100px;
@@ -2060,6 +1994,7 @@ input[type=radio]{
 }
 .trade_cart_empty_wrapper .mini-cart-title{
   margin-top:140px;
+  text-align:center;
 }
 @media screen and (max-width:999px){
   .trade_cart_empty_wrapper{
@@ -3249,6 +3184,9 @@ input[type=radio]{
   cursor:pointer;
   line-height:1;
 }
+.trade_coupon__code__btn-del.float{
+  float:right;
+}
 .trade_coupon_invalid_tips{
   align-items:center;
   background-color:rgba(var(--color-text), .1);
@@ -4403,6 +4341,10 @@ input{
   }
 }
 
+#cart-drawer .trade_mini_cart{
+  margin:0;
+}
+
 .trade-cart-product-recommend-margin{
   margin-bottom:60px;
   margin-top:50px;
@@ -4521,7 +4463,7 @@ input{
   width:30%;
 }
 
-.cart__stick_container{
+.cart__stick_container,.miniCart__stick_container,.miniCart__stick_container_fixed{
   background:rgba(var(--color-page-background));
   border-top:1px solid rgba(var(--color-entry-line));
   bottom:0;
@@ -4533,18 +4475,22 @@ input{
   width:100%;
   z-index:9;
 }
-.cart__stick_container .trade_money_desc_top{
+.cart__stick_container .trade_money_desc_top,.miniCart__stick_container .trade_money_desc_top,.miniCart__stick_container_fixed .trade_money_desc_top{
   display:block;
 }
-.cart__stick_container .trade_money_desc_bottom{
+.cart__stick_container .trade_money_desc_bottom,.miniCart__stick_container .trade_money_desc_bottom,.miniCart__stick_container_fixed .trade_money_desc_bottom{
   display:none;
 }
-.cart__stick_container .trade-shopping-money-desc{
+.cart__stick_container .trade-shopping-money-desc,.miniCart__stick_container .trade-shopping-money-desc,.miniCart__stick_container_fixed .trade-shopping-money-desc{
   margin-top:0;
 }
 
 .cart__stick_container{
   position:fixed;
+}
+
+.miniCart__stick_container_fixed{
+  display:block;
 }
 
 #cart-drawer{
@@ -5112,7 +5058,7 @@ input{
   position:relative;
   right:0;
   width:100%;
-  z-index:8;
+  z-index:133;
 }
 
 .header__layout--left-down .header__item--searchBar{

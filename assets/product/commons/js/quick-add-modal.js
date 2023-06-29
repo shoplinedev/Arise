@@ -144,9 +144,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       queryObj = { ...query
       };
       modalPrefix = queryObj.modalPrefix ? `${queryObj.modalPrefix}_product_quick_add_` : 'product_quick_add_';
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
 
     const page = modalPrefix.startsWith('productRecommendModal') ? '123' : pageMapping[SL_State.get('templateAlias')];
 

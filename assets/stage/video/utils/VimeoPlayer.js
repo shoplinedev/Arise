@@ -37,7 +37,6 @@ window.SLM['stage/video/utils/VimeoPlayer.js'] = window.SLM['stage/video/utils/V
 
     init() {
       vimeoReady = true;
-      console.log(this.options);
       this.player = new window.Vimeo.Player(this.el, this.options);
       this.player.ready().then(this.playerReady.bind(this));
     }

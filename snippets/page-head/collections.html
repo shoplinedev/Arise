@@ -1,2 +1,6 @@
 {{ preload_state 'sortation.sortation.title' }}
-{{ combine_asset_tag 'product/collections/style/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'product/collections/style/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'product/collections/style/index.css' inline=true}}
+{{/if}}

@@ -6,21 +6,31 @@ window.SLM['theme-shared/biz-com/customer/commons/captcha-modal/index.js'] = win
   const { loadArmorCaptcha } = window['SLM']['theme-shared/biz-com/customer/helpers/captcha.js'];
   const { getLanguage } = window['SLM']['theme-shared/biz-com/customer/utils/helper.js'];
   let cacheModal = null;
-  let cacheArmorCaptcha = null;
-  let lang = null;
   const contentId = `captcha-content`;
 
   const openCaptchaModal = async ({
+    params = {},
     onSuccess
   }) => {
+    const createArmorCaptcha = () => {
+      return loadArmorCaptcha({
+        captchaType: params.hitPunish,
+        bizParam: {
+          serialNo: params.serialNo
+        },
+        wrapId: contentId,
+        lang: getLanguage(),
+        onSuccess: token => {
+          cacheModal.hide();
+          onSuccess && onSuccess(token);
+        }
+      });
+    };
+
     if (cacheModal) {
+      $(`#${cacheModal.modalId} #${contentId}`).html('');
       cacheModal.show();
-      cacheArmorCaptcha && cacheArmorCaptcha.reset();
-
-      if (lang !== getLanguage()) {
-        cacheArmorCaptcha.changeLanguage(getLanguage());
-      }
-
+      await createArmorCaptcha();
       return;
     }
 
@@ -42,15 +52,7 @@ window.SLM['theme-shared/biz-com/customer/commons/captcha-modal/index.js'] = win
         cacheModal.hide();
       }
     });
-    lang = getLanguage();
-    cacheArmorCaptcha = await loadArmorCaptcha({
-      wrapId: contentId,
-      lang,
-      onSuccess: token => {
-        cacheModal.hide();
-        onSuccess && onSuccess(token);
-      }
-    });
+    await createArmorCaptcha();
   };
 
   let captchaToken = null;
@@ -77,6 +79,7 @@ window.SLM['theme-shared/biz-com/customer/commons/captcha-modal/index.js'] = win
 
       if (CAPTCHA_CODE.includes(e.rescode)) {
         openCaptchaModal({
+          params: e.data,
           onSuccess: async token => {
             captchaToken = token;
 

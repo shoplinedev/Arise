@@ -1,4 +1,8 @@
-{{ combine_asset_tag 'stage/rich-text/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/rich-text/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/rich-text/index.css' inline=true}}
+{{/if}}
 
 {{ assign 'color_scheme' section.settings.color_scheme }}
 {{ assign 'normal_width' section.settings.normal_width }}
@@ -7,7 +11,7 @@
 {{ assign 'blocks' section.blocks }}
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 
-<section class="__sl-custom-track-stage-richText rich-text__container color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' ''}}--padding{{/if}}{{#unless normal_width}} rich-text__flex-layout rich-text__flex-layout-{{ pc_content_position }}{{/unless}}" style="text-align: {{ text_align }}">
+<section class="__sl-custom-track-stage-richText rich-text__container color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' ''}}--padding{{/if}}{{#unless normal_width}} rich-text__flex-layout rich-text__flex-layout-{{ pc_content_position }}{{/unless}} text-{{ text_align }}">
   <div class="container {{#unless normal_width}}rich-text__normal-width{{/unless}}">
     {{#each blocks}}
       {{#if (trim type) '===' 'heading'}}

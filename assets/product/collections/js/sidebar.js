@@ -85,8 +85,6 @@ window.SLM['product/collections/js/sidebar.js'] = window.SLM['product/collection
     }
 
     setTransitionHeight(container, height, isOpen) {
-      console.log('container, height, isOpen', container, height, isOpen);
-
       if (height === 0) {
         container.css('height', `0px`);
       } else {
@@ -106,7 +104,6 @@ window.SLM['product/collections/js/sidebar.js'] = window.SLM['product/collection
       const box = el.siblings(this.collapsePanelSelectors.module);
       if (!box) return;
       const boxHeight = box.find(this.collapsePanelSelectors.moduleInner).outerHeight();
-      console.log('box', boxHeight);
 
       if (isOpen) {
         el.removeClass(this.collapsePanelClasses.show);

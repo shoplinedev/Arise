@@ -66,7 +66,9 @@
     </button>
 
     {{#if isNewExpressCheckout}}
-      <div id="payment_button_{{id}}" class="payment-button-container" data-attr="isSoldOut={{isSoldOut}}&id={{id}}"></div>
+      <div id="payment_button_{{id}}" class="payment-button-container" data-attr="isSoldOut={{isSoldOut}}&id={{id}}">
+        {{ snippet 'trade/buynow-text' }}
+      </div>
       {{#forEach paymentButtonConfig.buttonLocationDataList}}
         {{#if buttonLocation '===' 'productDetail'}}
           {{#if isSystem}}
@@ -83,7 +85,7 @@
             __sl-custom-track-product-detail-buy-now
             {{#if isSoldOut}}hide{{/if}}"
         >
-          <span class="pdp_button_text fw-bold">{{t "cart.cart.buy_now"}}</span>
+          {{ snippet 'trade/buynow-text' }}
         </button>
       {{/if}}
       {{#inArray (default productSettleButtonConfig.payments) PaypalWay}}

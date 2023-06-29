@@ -26,9 +26,7 @@ window.SLM['commons/video/VideoJs.js'] = window.SLM['commons/video/VideoJs.js'] 
   const defaultEvents = {
     onReady() {},
 
-    onStateChange(e) {
-      console.log('onStateChange', e.data);
-    },
+    onStateChange(e) {},
 
     onPlaybackRateChange() {},
 
@@ -47,7 +45,6 @@ window.SLM['commons/video/VideoJs.js'] = window.SLM['commons/video/VideoJs.js'] 
       events = {},
       ...otherOpts
     }) {
-      console.log(containerId, events, otherOpts);
       let $el = null;
       const $video = document.createElement('video');
       $video.style.width = '100%';
@@ -136,7 +133,6 @@ window.SLM['commons/video/VideoJs.js'] = window.SLM['commons/video/VideoJs.js'] 
     }
 
     readyHandler(e) {
-      console.log('readyHandler');
       this.loadDataHandler(e);
     }
 
@@ -153,7 +149,6 @@ window.SLM['commons/video/VideoJs.js'] = window.SLM['commons/video/VideoJs.js'] 
       }
 
       if (autoplay && muted) {
-        console.log('命中：只有静音才能自动播放视频~');
         this.mute();
       }
 

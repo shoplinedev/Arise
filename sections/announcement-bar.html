@@ -1,6 +1,14 @@
-{{ combine_asset_tag 'stage/announcement-bar/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/announcement-bar/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/announcement-bar/index.css' inline=true}}
+{{/if}}
 <!-- stage/announcement-bar/index.js -->
-{{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
+{{else}}
+  {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{/if}}
 {{ combine_asset_tag 
  'vendors/swiper.min.js'
  'theme-shared/utils/sectionsLoad/index.js'

@@ -16,7 +16,11 @@
 {{!-- {{ assign 'is_auto_scale' (default image_height '') }} --}}
 {{ assign 'ratio' (append (default (get 'ratio' (img_size image.url)) 100) '%') }}
 
-{{ combine_asset_tag 'stage/image-with-text/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/image-with-text/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/image-with-text/index.css' inline=true}}
+{{/if}}
 
 {{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='media' }}
 

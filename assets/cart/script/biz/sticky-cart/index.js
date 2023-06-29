@@ -132,7 +132,7 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
     });
 
     if (!hasSecuritySection) {
-      setFixedContentStyle('#cart-select .trade_cart_not_empty_wrapper', $('#cart-select .miniCart__stick_container_fixed').outerHeight() + 48);
+      setFixedContentStyle('#cart-drawer .trade_cart_not_empty_wrapper', $('#cart-drawer .miniCart__stick_container_fixed').outerHeight() + 20);
     }
 
     const cartInfo = SL_State.get('cartInfo');

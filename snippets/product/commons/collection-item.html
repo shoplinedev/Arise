@@ -47,7 +47,7 @@
         alt=sortationCoverImgAlt
         fallbacksSrc=(itemAt defaultImg randomIndex)
         fallbacksBgColor="#f3f3f3"
-        imagePosition=(join (split bgDisplayPosition '_') ' ')
+        imagePosition=(join (split bgDisplayPosition '_') '-')
         closeLazy=(default closeLazy (cond (and (boolean index '<=' 1) (boolean templateAlias '==' 'AllCollections')) true false))
         pcSize=pcSize
         mSize=mSize

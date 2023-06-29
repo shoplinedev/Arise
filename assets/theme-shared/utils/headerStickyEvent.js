@@ -74,10 +74,7 @@ window.SLM['theme-shared/utils/headerStickyEvent.js'] = window.SLM['theme-shared
         if ($el.css('position') === 'sticky') {
           const h = $el.height();
 
-          if (that.isDebug) {
-            console.log('header sticky event debug element', $el);
-            console.log('header sticky event debug element height', h);
-          }
+          if (that.isDebug) {}
 
           height = Math.max(height, h);
         }

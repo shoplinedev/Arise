@@ -28,7 +28,10 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/base.js'] = window.SL
 
     setError(res) {
       const value = getUdbResponseLanguageErrorKey(res && res.rescode) || res && res.resmsg;
-      $(`#${this.formId} .customer__error`).text(t(value)).show();
+
+      if (value) {
+        $(`#${this.formId} .customer__error`).text(t(value)).show();
+      }
     }
 
     clearError() {

@@ -5,7 +5,11 @@ all_collections:
   need_first_product: false
 ---
 
-{{ combine_asset_tag 'stage/blog/list/style/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/blog/list/style/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/blog/list/style/index.css' inline=true}}
+{{/if}}
 
 <main class="blogs-container container">
   {{ assign 'listHandle' (default blogs.handle (url_decode request.uri.params.listHandle)) }}

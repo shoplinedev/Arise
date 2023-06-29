@@ -1,4 +1,8 @@
-{{ combine_asset_tag 'product/commons/style/sku-trade/sku-trade-select.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'product/commons/style/sku-trade/sku-trade-select.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'product/commons/style/sku-trade/sku-trade-select.css' inline=true}}
+{{/if}}
 {{#with this as | global |}}
 {{#if (length attr)}}
 <div class="product-sku-trade-select shopline-element-sku-trade-select" data-ssr-plugin-sku id="{{ id }}">

@@ -25,7 +25,11 @@
   {{/if}}
 {{/if}}
 
-{{ combine_asset_tag 'stage/image-banner/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/image-banner/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/image-banner/index.css' inline=true}}
+{{/if}}
 
 {{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='content' }}
 

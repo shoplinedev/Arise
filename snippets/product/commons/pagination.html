@@ -1,4 +1,8 @@
-{{ combine_asset_tag 'product/commons/style/pagination.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'product/commons/style/pagination.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'product/commons/style/pagination.css' inline=true}}
+{{/if}}
 
 {{#pagination id=id wrapperClass=wrapperClass total=total pageSize=pageSize current=current isMobile=request.is_mobile uri=request.uri mode=mode}}
 {{!-- <div class="pagination_data">

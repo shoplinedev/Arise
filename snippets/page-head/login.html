@@ -1,1 +1,5 @@
-  {{ combine_asset_tag 'customer/sign-in/index.css' inline=true }}
+  {{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'customer/sign-in/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'customer/sign-in/index.css' inline=true}}
+{{/if}}

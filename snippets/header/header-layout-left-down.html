@@ -70,5 +70,7 @@
     </div>
   </div>
 
-  {{snippet "header-mini-cart"}}
+  {{#if theme.settings.cart_open_type '!==' 'drawer'}}
+    {{ snippet 'header-mini-cart' }}
+  {{/if}}
 </div>

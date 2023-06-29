@@ -1,10 +1,22 @@
 {{ layout none }}
 <div class="trade_mini_cart">
+  {{#if theme.settings.cart_open_type '===' 'minicart'}}
   {{ snippet 'trade/banner' }}
+  {{else}}
+  {{ snippet 'trade/drawer-mini-cart' }}
+  {{/if}}
 </div>
 <!-- cart/script/mini-cart.js -->
-{{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-{{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
+{{else}}
+  {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+{{/if}}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
+{{else}}
+  {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
+{{/if}}
 {{ combine_asset_tag 
  'vendors/debug.min.js'
  'vendors/@yy_sl-theme-shared.min.js'
@@ -145,11 +157,11 @@
  'cart/script/biz/trade-coupon/index.js'
  'cart/script/biz/checkout/effect.js'
  'cart/script/biz/checkout/module_checkout.js'
- 'cart/script/biz/checkout-error/index.js'
  'cart/script/biz/checkout/module_express_checkout.js'
  'theme-shared/components/payment-button/shopby_fast_checkout.js'
  'theme-shared/components/payment-button/index.js'
  'cart/script/biz/checkout/payment_button.js'
+ 'cart/script/biz/checkout-error/index.js'
  'cart/script/domain/adapter/svc/internal/config.js'
  'cart/script/domain/adapter/svc/internal/transport.js'
  'cart/script/domain/adapter/svc/index.js'
@@ -157,8 +169,12 @@
  'cart/script/service/index.js'
  'cart/script/biz/cart/contant.js'
  'theme-shared/events/trade/interior-event/index.js'
+ 'theme-shared/events/utils/api-logger.js'
+ 'theme-shared/events/trade/enum/index.js'
+ 'theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'
  'theme-shared/utils/tradeReport/hdReportV2.js'
  'theme-shared/utils/tradeReport/eventListen.js'
+ 'theme-shared/components/hbs/shared/components/drawer/const.js'
  'commons/utils/dynamicImportMiniCart.js'
  'commons/cart/globalEvent.js'
  'cart/script/components/banner.js'

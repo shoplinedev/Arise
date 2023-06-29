@@ -41,8 +41,13 @@
       <style>
         .product-list-filter {
           width: 256px !important;
-          padding: 0 10px 0 0;
-          margin: 0 12px 0 0;
+          {{#if request.document_direction '===' 'rtl'}}
+            padding: 0 0 0 10px;
+            margin: 0 0 0 12px;
+          {{else}}
+            padding: 0 10px 0 0;
+            margin: 0 12px 0 0;
+          {{/if}}
         }
       </style>
       <div class="product-list-sidebar-group">
@@ -76,8 +81,13 @@
             <style>
               .product-list-filter {
                 width: 256px !important;
-                padding: 0 10px 0 0;
-                margin: 0 12px 0 0;
+                {{#if request.document_direction '===' 'rtl'}}
+                  padding: 0 0 0 10px;
+                  margin: 0 0 0 12px;
+                {{else}}
+                  padding: 0 10px 0 0;
+                  margin: 0 12px 0 0;
+                {{/if}}
               }
             </style>
           {{/if}}
@@ -87,13 +97,13 @@
           <li class="product-list-sidebar-box-ul-menuItem ">
             <a href={{navDetail.url}} target={{navDetail.target}} rel="noreferrer" class="body3">{{navDetail.name}}</a>
             {{#if childNodes.length '>' 0}}
-              <ul class="product-list-sidebar-box-ul" style="padding-left: 15px">
+              <ul class="product-list-sidebar-box-ul left-gap">
                 {{#each childNodes as |navItem|}}
                   {{ assign 'navDetail' (navLink navItem global.request.uri.query global.request.locale) }}
-                  <li class="product-list-sidebar-box-ul-menuItem">
+                  <li class="product-list-sidebar-box-ul-menuItem ">
                     <a href={{navDetail.url}} target={{navDetail.target}} rel="noreferrer" class="body3">{{navDetail.name}}</a>
                     {{#if childNodes.length '>' 0}}
-                      <ul class="product-list-sidebar-box-ul" style="padding-left: 15px">
+                      <ul class="product-list-sidebar-box-ul left-gap">
                         {{#each childNodes as |navItem|}}
                           {{ assign 'navDetail' (navLink navItem global.request.uri.query global.request.locale) }}
                           <li class="product-list-sidebar-box-ul-menuItem ">
@@ -118,8 +128,13 @@
     <style>
       .product-list-filter {
         width: 256px !important;
-        padding: 0 10px 0 0;
-        margin: 0 12px 0 0;
+        {{#if request.document_direction '===' 'rtl'}}
+          padding: 0 0 0 10px;
+          margin: 0 0 0 12px;
+        {{else}}
+          padding: 0 10px 0 0;
+          margin: 0 12px 0 0;
+        {{/if}}
       }
       .product-list-child-category-list{
         display:  block !important;

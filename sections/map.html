@@ -1,4 +1,8 @@
-{{ combine_asset_tag 'stage/map/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/map/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/map/index.css' inline=true}}
+{{/if}}
 <!-- stage/map/index.js -->
 {{ combine_asset_tag 
  'theme-shared/utils/sectionsLoad/index.js'
@@ -29,7 +33,7 @@
         {{#if (and section.settings.address section.settings.btn_text)}}
           <a class="__sl-custom-track-stage-map-button sl-map__btn btn btn-primary" href="{{ google_map_search_url }}" target="__blank">
             {{#if section.settings.pushpin}}
-              {{ snippet 'icons/icon_location1' classes='btn-icon' }}
+              {{ snippet 'icons/icon_location' classes='btn-icon' }}
             {{/if}}
             <span class="btn-text">{{ section.settings.btn_text }}</span>
           </a>
@@ -46,7 +50,7 @@
           {{ assign 'iframe_url' (append 'https://www.google.com/maps/embed/v1/place?key=' section.settings.google_api_secret_key '&q=' address '&language=' request.locale) }}
           <iframe class="sl-map__iframe" frameborder="0" src="{{ iframe_url }}"></iframe>
         {{else}}{{#if section.settings.image}}
-          {{ snippet 'global-image' image=section.settings.image scale=1 image-style=(append 'object-position: ' section.settings.image_position ';') pcSize='1/2' }}
+          {{ snippet 'global-image' image=section.settings.image scale=1 image-class=(append 'image-position-' (replace section.settings.image_position ' ' '-')) pcSize='1/2' }}
         {{else}}
           {{ snippet 'icons/icon_slideshow_placeholder' class='sl-map__empty-img' }}
         {{/if}}{{/if}}

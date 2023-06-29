@@ -13,7 +13,7 @@ window.SLM['theme-shared/components/hbs/productImages/js/product-photoSwipeHtml.
       </div>
       <div class="pswp__ui pswp__ui--hidden">
         <button class="pswp__button pswp__button--arrow--left" title="Previous">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="icon directional" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 1L3 6L8 11" stroke-width="1.5" stroke-linecap="round"/>
           </svg>        
         </button>
@@ -24,7 +24,7 @@ window.SLM['theme-shared/components/hbs/productImages/js/product-photoSwipeHtml.
           </svg>
         </button>
         <button class="pswp__button pswp__button--arrow--right" title="Next">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="icon directional" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </button>

@@ -23,7 +23,11 @@
   type="text/javascript" 
   defer=true
 }}
-{{ combine_asset_tag 'product/recently-viewed/product-recently-viewed.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'product/recently-viewed/product-recently-viewed.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'product/recently-viewed/product-recently-viewed.css' inline=true}}
+{{/if}}
 
 {{ assign 'show_product_number' section.settings.show_product_number }}
 <div class="{{#isFalsey (boolean hiddenMount)}}section-gap container{{/isFalsey}}" 

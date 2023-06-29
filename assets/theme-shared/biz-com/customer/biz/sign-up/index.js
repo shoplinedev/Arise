@@ -279,7 +279,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
           return;
         }
 
-        redirectPage(redirectTo(USER_CENTER));
+        redirectPage(USER_CENTER);
       });
     }
 

@@ -15,13 +15,13 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
   const LoggerService = window['SLM']['commons/logger/index.js'].default;
   const { Status: LoggerStatus } = window['SLM']['commons/logger/index.js'];
   const SkuCard = window['SLM']['cart/script/components/sku-card.js'].default;
-  const { initMainCartSticky, listenHeaderSectionChange } = window['SLM']['cart/script/biz/sticky-cart/index.js'];
+  const { initMainCartSticky, listenHeaderSectionChange, initMiniCartSticky } = window['SLM']['cart/script/biz/sticky-cart/index.js'];
   const SummationModule = window['SLM']['cart/script/biz/trade-summations/index.js'].default;
   const initCoupon = window['SLM']['cart/script/biz/trade-coupon/index.js'].default;
   const CheckoutModule = window['SLM']['cart/script/biz/checkout/module_checkout.js'].default;
-  const CheckoutErrorModule = window['SLM']['cart/script/biz/checkout-error/index.js'].default;
   const { newExpressCheckoutModule } = window['SLM']['cart/script/biz/checkout/module_express_checkout.js'];
   const PayemtnButtonModule = window['SLM']['cart/script/biz/checkout/payment_button.js'].default;
+  const CheckoutErrorModule = window['SLM']['cart/script/biz/checkout-error/index.js'].default;
   const CartService = window['SLM']['cart/script/service/cart/index.js'].default;
   const Service = window['SLM']['cart/script/service/index.js'].default;
   const context = window['SLM']['cart/script/utils/context/index.js'].default;
@@ -59,7 +59,7 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
             } = convertPrice($(this).attr('data-amount'));
             $(this).html(formattedPriceStr);
           } else {
-            $(this).html(convertFormat($(this).attr('data-amount')));
+            $(this).text(convertFormat($(this).attr('data-amount')));
           }
         });
       });
@@ -157,11 +157,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
           }
         }
 
-        this._skuCardComponent = new SkuCard(ctx, this._cartType);
-
-        this._skuCardComponent.init();
-
-        SummationModule.init();
         logger.info(`normal 主站购物车 SummationModule 初始化 _init`, {
           data: {
             cartToken
@@ -176,19 +171,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
           action: Action.InitCart,
           status: LoggerStatus.Start
         });
-
-        try {
-          initCoupon();
-        } catch (error) {
-          logger.error(`非 main 主站购物车 Coupon 初始化失败`, {
-            data: {
-              cartToken
-            },
-            action: Action.InitCart,
-            error,
-            errorLevel: 'P0'
-          });
-        }
       } else {
         listenHeaderSectionChange();
         new TopDrawer('cart-select');
@@ -196,7 +178,16 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
         this._initBanner();
 
         initTradeCheckbox();
-        CartBanner.init();
+        const cartOpenType = window.SL_State.get('theme.settings.cart_open_type');
+
+        if (cartOpenType === 'drawer') {
+          initMiniCartSticky();
+          SummationModule.init();
+          initCoupon();
+        } else {
+          CartBanner.init();
+        }
+
         logger.info(`normal 主站购物车 CartBanner 初始化 _init`, {
           data: {
             cartToken
@@ -204,6 +195,14 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
           action: Action.InitCart,
           status: LoggerStatus.Start
         });
+      }
+
+      const cartOpenType = window.SL_State.get('theme.settings.cart_open_type');
+
+      if (cartOpenType === 'drawer' || this._cartType === 'main') {
+        this._skuCardComponent = new SkuCard(ctx, this._cartType);
+
+        this._skuCardComponent.init();
       }
 
       if (!isNewExpressCheckout(PageType.Cart) || this._cartType !== 'main') {

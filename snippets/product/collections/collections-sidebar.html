@@ -18,8 +18,13 @@
   <style>
     .product-list-filter {
       width: 256px !important;
-      padding: 0 10px 0 0;
-      margin: 0 12px 0 0;
+      {{#if request.document_direction '===' 'rtl'}}
+        padding: 0 0 0 10px;
+        margin: 0 0 0 12px;
+      {{else}}
+        padding: 0 10px 0 0;
+        margin: 0 12px 0 0;
+      {{/if}}
     }
   </style>
 {{/unless}}

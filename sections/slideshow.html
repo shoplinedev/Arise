@@ -3,9 +3,17 @@
 {{ assign 'transition_type' (get 'transition_type' section.settings 'simple') }}
 {{ assign 'is_lcp_section' (not (has (after sections_order 2) section.id)) }}
 
-{{ combine_asset_tag 'stage/slideshow/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/slideshow/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/slideshow/index.css' inline=true}}
+{{/if}}
 <!-- stage/slideshow/index.js -->
-{{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
+{{else}}
+  {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{/if}}
 {{ combine_asset_tag 
  'vendors/swiper.min.js'
  'theme-shared/utils/sectionsLoad/index.js'
@@ -95,9 +103,6 @@
                 #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .hero__image-wrapper:after {
                   opacity: {{ divide overlay_opacity 100 }};
                 }
-                #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .hero__image {
-                  object-position: {{ this.settings.focal_point }};
-                }
                 #Slideshow-{{ ../section.id }} .slideshow__slide--{{ @key }} .hero__title {
                   font-size: {{ this.settings.title_size }}px;
                 }
@@ -174,7 +179,7 @@
                     {{#if has_image}}
                       {{#if this.settings.image.url}}
                         <img
-                          class="hero__image {{#if not_lcp_slide}}lozad{{/if}} {{#if has_mobile_image}}d-none d-md-block{{/if}}"
+                          class="hero__image image-position-{{ replace this.settings.focal_point ' ' '-' }} {{#if not_lcp_slide}}lozad{{/if}} {{#if has_mobile_image}}d-none d-md-block{{/if}}"
                           {{{ get 'responsiveAttr' (image_responsive this.settings.image.url mSize=(cond has_mobile_image null '100vw') useLazyLoad=not_lcp_slide) }}}
                           alt="{{ this.settings.image.alt }}"
                           data-aspectratio-url="{{ img_url this.settings.image.url width=100 }}"
@@ -186,7 +191,7 @@
                       {{/if}}
                       {{#if this.settings.image_mobile.url}}
                         <img
-                          class="hero__image {{#if not_lcp_slide}}lozad{{/if}} hero__image--mobile d-md-none"
+                          class="hero__image image-position-{{ replace this.settings.focal_point ' ' '-' }} {{#if not_lcp_slide}}lozad{{/if}} hero__image--mobile d-md-none"
                           {{{ get 'responsiveAttr' (image_responsive this.settings.image_mobile.url pcSize=null mSize='100vw' useLazyLoad=not_lcp_slide) }}}
                           alt="{{ this.settings.image_mobile.alt }}"
                           data-aspectratio-url="{{ img_url this.settings.image_mobile.url width=100 }}"

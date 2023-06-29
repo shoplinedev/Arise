@@ -118,9 +118,7 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
       queryObj = { ...query
       };
       modalPrefix = queryObj.modalPrefix || 'productModal_';
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
 
     if (modalMap[spuSeq]) {
       handleProductDescVideoByOpenModal(spuSeq);

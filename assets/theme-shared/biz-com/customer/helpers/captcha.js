@@ -26,9 +26,28 @@ window.SLM['theme-shared/biz-com/customer/helpers/captcha.js'] = window.SLM['the
     lang,
     onSuccess,
     onFail,
-    onClose
+    onClose,
+    captchaType = 'blockPuzzle',
+    bizParam = {}
   }) => {
-    if (captchaInstance) {
+    const options = {
+      wrapId,
+      lang,
+      onSuccess: (...args) => {
+        captchaInstance && captchaInstance.destroy && captchaInstance.destroy();
+        onSuccess && onSuccess(...args);
+      },
+      onFail,
+      onClose,
+      origin: window.location.origin,
+      appCode: config.APP_CODE,
+      captchaScene: 'user',
+      captchaType,
+      bizParam
+    };
+
+    if (window.ArmorCaptcha) {
+      captchaInstance = new window.ArmorCaptcha(options);
       return Promise.resolve(captchaInstance);
     }
 
@@ -36,16 +55,7 @@ window.SLM['theme-shared/biz-com/customer/helpers/captcha.js'] = window.SLM['the
       const {
         ArmorCaptcha
       } = window;
-      captchaInstance = new ArmorCaptcha({
-        wrapId,
-        lang,
-        onSuccess,
-        onFail,
-        onClose,
-        origin: window.location.origin,
-        appCode: config.APP_CODE,
-        captchaScene: 'user'
-      });
+      captchaInstance = new ArmorCaptcha(options);
       return captchaInstance;
     });
   };

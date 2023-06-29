@@ -54,7 +54,7 @@
     <div class="product-price">
       <div class="price body-font body2 product-info-price_{{ id }}" product_discount="{{ theme.settings.product_discount }}">
         {{#if (boolean theme.settings.superscript_decimals)}}
-          <span class="product-price-sales_{{ id }} notranslate fw-bold product-price-item">
+          <span class="product-price-sales_{{ id }} notranslate isolate fw-bold product-price-item">
             {{#money_exchange_convert_price productPrice.salesPrice}}
               {{#if symbolOrder '==' 'prefix'}}
                 <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
@@ -64,7 +64,7 @@
             {{/money_exchange_convert_price}}
           </span>
         {{else}}
-          <span class="product-price-sales_{{ id }} notranslate fw-bold product-price-item">
+          <span class="product-price-sales_{{ id }} isolate notranslate fw-bold product-price-item">
             {{ money_exchange_convert_with_currency productPrice.salesPrice }}
           </span>
         {{/if}}
@@ -72,7 +72,7 @@
         {{!-- (含税费) --}}
         {{ snippet 'product/detail/product-tax' }}
         <span
-          class="originPrice notranslate fw-bold product-price-item product-price-origin_{{ id }} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
+          class="originPrice notranslate isolate fw-bold product-price-item product-price-origin_{{ id }} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
           {{#if (boolean theme.settings.superscript_decimals)}}
             {{#money_exchange_convert_price productPrice.originPrice}}
               {{#if symbolOrder '==' 'prefix'}}
@@ -101,7 +101,7 @@
                     {{else}}
                       {{ assign 'priceVal' (money_exchange_convert_with_currency discount_text) }}
                     {{/if}}
-                    {{{ t 'products.product_list.save' priceDom=(append '<span class="notranslate">' priceVal '</span>') }}}
+                    {{{ t 'products.product_list.save' priceDom=(append '<span class="notranslate isolate">' priceVal '</span>') }}}
                   {{/money_exchange_convert_price}}
                 {{else}}
                    {{ t 'products.product_list.save_ratio' price=discount_text }}

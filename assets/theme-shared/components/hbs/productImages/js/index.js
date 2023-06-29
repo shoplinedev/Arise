@@ -787,7 +787,6 @@ window.SLM['theme-shared/components/hbs/productImages/js/index.js'] = window.SLM
         }
 
         const emptyDom = $(`${this.id}`).find('.product-detail-empty-image');
-        console.log('emptyDom', emptyDom.length);
 
         if (emptyDom.length > 0) {
           emptyDom.css('paddingBottom', '100%');

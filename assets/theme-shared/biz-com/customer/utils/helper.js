@@ -4,6 +4,7 @@ window.SLM['theme-shared/biz-com/customer/utils/helper.js'] = window.SLM['theme-
   const _exports = {};
   const { getUrlQuery, getUrlAllQuery } = window['SLM']['theme-shared/biz-com/customer/utils/url.js'];
   const { DEFAULT_LANGUAGE } = window['SLM']['theme-shared/biz-com/customer/constant/const.js'];
+  const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
 
   function unique(arr) {
     return arr.filter((item, index) => {
@@ -62,7 +63,7 @@ window.SLM['theme-shared/biz-com/customer/utils/helper.js'] = window.SLM['theme-
 
   function redirectPage(pathname) {
     const redirectUrl = getRedirectUrl();
-    window.location.href = redirectUrl || pathname;
+    window.location.href = redirectUrl || redirectTo(pathname);
   }
 
   _exports.redirectPage = redirectPage;

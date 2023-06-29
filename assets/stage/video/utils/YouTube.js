@@ -23,15 +23,9 @@ window.SLM['stage/video/utils/YouTube.js'] = window.SLM['stage/video/utils/YouTu
       playsinline: true
     },
     events: {
-      onReady: event => {
-        console.log(event);
-      },
-      onStateChange: event => {
-        console.log('change', event);
-      },
-      onError: event => {
-        console.log('onError', event);
-      }
+      onReady: event => {},
+      onStateChange: event => {},
+      onError: event => {}
     }
   };
 

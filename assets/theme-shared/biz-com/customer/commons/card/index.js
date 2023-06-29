@@ -41,9 +41,7 @@ window.SLM['theme-shared/biz-com/customer/commons/card/index.js'] = window.SLM['
             await (this.onSave && this.onSave());
             $(this.detailEleSelector).show();
             $(this.editEleSelector).hide();
-          } catch (err) {
-            console.log(err);
-          }
+          } catch (err) {}
 
           $(this.saveBtnSelector).removeClass('disabled btn--loading');
         });

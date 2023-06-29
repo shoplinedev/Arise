@@ -3,6 +3,8 @@
     <style>
       .mce-content-body img {
         opacity: 0;
+        max-width: 100%;
+        height: auto;
       }
       .mce-content-body img[srcset],
       .mce-content-body img[src] {
@@ -23,7 +25,11 @@
 
       .mce-content-body .table-wraper-fix{
         padding-bottom: 1px;
-        padding-right: 1px;
+        {{#if request.document_direction '===' 'rtl'}}
+          padding-left: 1px;
+        {{else}}
+          padding-right: 1px;
+        {{/if}}
       }
 
       @media (min-width: 749.98px){

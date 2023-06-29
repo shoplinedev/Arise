@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ storeInfo.languageSetting.storeLanguage }}">
+<html lang="{{ storeInfo.languageSetting.storeLanguage }}" dir="{{ request.document_direction }}">
 
 <head>
   <meta charset="UTF-8">
@@ -27,7 +27,11 @@
   {{!-- title 标签逻辑 --}}
   {{ snippet 'title-tag/creator' }}
 
-  {{ combine_asset_tag 'commons/layout/theme/index.css' inline=true }}
+  {{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'commons/layout/theme/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'commons/layout/theme/index.css' inline=true}}
+{{/if}}
 
   {{ preload_state 'imgNoReferrerSwitch' }}
 
@@ -36,10 +40,26 @@
   {{ snippet 'pre-script' }}
 
   <!-- commons/layout/theme/index.js -->
-{{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-{{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
-{{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
-{{ combine_asset_tag 'vendors/normalize.css.min.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
+{{else}}
+  {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+{{/if}}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
+{{else}}
+  {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
+{{/if}}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
+{{else}}
+  {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+{{/if}}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'vendors/normalize.css.min.rtl.css' inline=true }}
+{{else}}
+  {{ combine_asset_tag 'vendors/normalize.css.min.css' inline=true }}
+{{/if}}
 {{ combine_asset_tag 
  'vendors/eventemitter3.min.js'
  'vendors/js-cookie.min.js'
@@ -153,11 +173,22 @@
  'theme-shared/components/payment-button/express_checkout.js'
  'theme-shared/components/smart-payment/payments.js'
  'theme-shared/events/product/paypal-fallback/index.js'
+ 'theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'
  'theme-shared/utils/report/hd-const.js'
  'theme-shared/utils/tradeReport/hdReport.js'
  'theme-shared/utils/tradeReport/hdReportV2.js'
  'theme-shared/utils/tradeReport/eventListen.js'
  'theme-shared/components/hbs/shared/components/topDrawer/const.js'
+ 'theme-shared/components/hbs/shared/components/drawer/const.js'
+ 'commons/logger/index.js'
+ 'commons/utils/isMobile.js'
+ 'commons/utils/throttle.js'
+ 'commons/utils/main.js'
+ 'commons/utils/helper.js'
+ 'commons/utils/index.js'
+ 'cart/script/biz/sticky-cart/helper.js'
+ 'cart/script/report/cartReport.js'
+ 'cart/script/biz/sticky-cart/index.js'
  'cart/script/domain/adapter/svc/internal/config.js'
  'cart/script/domain/adapter/svc/internal/transport.js'
  'cart/script/domain/adapter/svc/index.js'
@@ -189,7 +220,6 @@
  'cart/script/service/cart/hooks.js'
  'cart/script/service/cart/service.js'
  'cart/script/service/cart/index.js'
- 'commons/logger/index.js'
  'cart/script/service/index.js'
  'commons/utils/dynamicImportMiniCart.js'
  'commons/cart/globalEvent.js'
@@ -207,7 +237,6 @@
  'product/utils/sku/skuUtil.js'
  'product/utils/sku/skuFilter.js'
  'product/commons/js/sku-trade/base-sku-trade.js'
- 'commons/utils/isMobile.js'
  'product/commons/js/sku-trade/sku-trade-flatten.js'
  'theme-shared/components/hbs/shared/utils/imgUrl.js'
  'theme-shared/components/hbs/productImages/js/product-photoSwipeHtml.js'

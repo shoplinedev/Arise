@@ -16,7 +16,7 @@ window.SLM['stage/text-columns-with-images/index.js'] = window.SLM['stage/text-c
     navigationPrev: '.text-columns-arrow--left'
   };
   const navigation_arrow_icon = `
-<svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="icon directional" width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M1.5 9.3994L5.44971 5.4497L1.50001 1.5" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
 </svg>
 `;

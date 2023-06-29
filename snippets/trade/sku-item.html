@@ -101,18 +101,18 @@
             {{#if (boolean (toInt data.lineLevelTotalDiscount) '>' 0 '&&' (toInt data.originalLinePrice) '>' (toInt data.finalLinePrice))}}
               {{#money_exchange_convert_price data.originalLinePrice }}
                 {{#if symbolOrder '==' 'prefix'}}
-                  <span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount={{data.originalLinePrice}}>{{ currencySymbol }}{{ integer }}<sup class="body6">{{ fraction }}</sup></span>
+                  <span class="trade-cart-sku-item-info-amount-through isolate notranslate body5" data-amount={{data.originalLinePrice}}>{{ currencySymbol }}{{ integer }}<sup class="body6">{{ fraction }}</sup></span>
                 {{else}}
-                  <span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount={{data.originalLinePrice}}>{{ integer }}<sup
+                  <span class="trade-cart-sku-item-info-amount-through isolate notranslate body5" data-amount={{data.originalLinePrice}}>{{ integer }}<sup
                     class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span></span>
                 {{/if}}
               {{/money_exchange_convert_price}}
             {{/if}}
             {{#money_exchange_convert_price data.finalLinePrice }}
               {{#if symbolOrder '==' 'prefix'}}
-                <span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount={{data.finalLinePrice}}><span>{{ currencySymbol }}{{ integer }}<sup class="body6">{{ fraction }}</sup></span>
+                <span class="trade-cart-sku-item-real-price isolate notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount={{data.finalLinePrice}}><span>{{ currencySymbol }}{{ integer }}<sup class="body6">{{ fraction }}</sup></span>
               {{else}}
-                 <span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount={{data.finalLinePrice}}><span>{{ integer }}<sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span></span>
+                 <span class="trade-cart-sku-item-real-price isolate notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount={{data.finalLinePrice}}><span>{{ integer }}<sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span></span>
               {{/if}}
             {{/money_exchange_convert_price}}
               {{#if (toInt data.priceType) '==' 1}}
@@ -123,9 +123,9 @@
             </span>
           {{else}}
             {{#if (boolean (toInt data.lineLevelTotalDiscount) '>' 0 '&&' (toInt data.originalLinePrice) '>' (toInt data.finalLinePrice))}}
-              <span class="trade-cart-sku-item-info-amount-through notranslate" data-amount={{data.originalLinePrice}}>{{money_exchange_convert_with_currency data.originalLinePrice}}</span>
+              <span class="trade-cart-sku-item-info-amount-through isolate notranslate" data-amount={{data.originalLinePrice}}>{{money_exchange_convert_with_currency data.originalLinePrice}}</span>
             {{/if}}
-            <span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price" data-amount={{data.finalLinePrice}}>
+            <span class="trade-cart-sku-item-real-price isolate notranslate trade-cart-sku-item-info-amount-sale-price" data-amount={{data.finalLinePrice}}>
               {{money_exchange_convert_with_currency data.finalLinePrice}}{{#if (toInt data.priceType) '==' 1}}<span class="trade-cart-sku-item-info-tag" data-vip-tag="small"></span>{{/if}}
               {{!-- 实际价格右侧插槽 --}}
               <span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>
@@ -142,7 +142,7 @@
                   <span>&nbsp;{{discountApplication.title}}</span>
                 {{/if}}
               </div>
-              <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion"
+              <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="isolate notranslate is-promotion"
                   data-amount={{amount}}>{{money_exchange_convert_with_currency amount}}</span><span>)</span>
               </div>
             </div>

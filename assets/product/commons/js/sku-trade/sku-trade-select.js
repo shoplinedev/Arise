@@ -20,7 +20,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         this.currentEntry && this.currentEntry.removeClass && this.currentEntry.removeClass('open');
         this.currentDropdown && this.currentDropdown.fadeOut && this.currentDropdown.fadeOut(200);
         this.hidePopup();
-        console.log('closeItem');
         this.currentEntry = null;
         this.currentDropdown = null;
         this.currentIndex = null;
@@ -44,7 +43,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         this.currentDropdown = dropdown;
         dropdown.fadeIn(200);
         this.showPopup();
-        console.log('openItem');
         $(window).on('click', this.closeItem);
       };
     }

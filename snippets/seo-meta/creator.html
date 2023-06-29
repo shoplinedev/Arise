@@ -22,6 +22,8 @@
   {{ snippet 'seo-meta/collections'}}
 {{else if templateAlias '===' 'AllCollections'}}
   {{ snippet 'seo-meta/collections-all'}}
+{{else if templateAlias '===' 'ProductsSearch'}}
+  {{ snippet 'seo-meta/search'}}
   {{!-- !!! 请使用 else if进行逻辑分发，否则无法兜底默认值 !!! --}}
 {{else}}
   {{!-- 默认seo逻辑 --}}

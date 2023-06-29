@@ -1,4 +1,8 @@
-{{ combine_asset_tag 'stage/featured-product/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/featured-product/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/featured-product/index.css' inline=true}}
+{{/if}}
 
 {{ assign 'product' (get section.settings.product_id all_products) }}
 {{ assign 'notEmpty' (boolean (isTruthy section.settings.product_id) '&&' (isTruthy (get 'spu.shelves' product))) }}
@@ -200,7 +204,15 @@
       "type": "quantity",
       "icon": "normal",
       "name": "t:sections.featured-product.blocks.quantity.name",
-      "settings": [],
+      "settings": [
+        {
+          "id": "is_show_stock_hint",
+          "type": "switch",
+          "label": "t:sections.featured-product.blocks.quantity.settings.is_show_stock_hint.label",
+          "info": "t:sections.featured-product.blocks.quantity.settings.is_show_stock_hint.info",
+          "default": true
+        }
+      ],
       "limit": 1
     },
     {

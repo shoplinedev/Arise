@@ -69,7 +69,7 @@
                 {{else}}
                   {{assign "priceVal" (money_exchange_convert_with_currency discount_text)}}
                 {{/if}}
-                {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate"  data-product-price="' discount_text '" data-product-save-price="true">' priceVal '</span>') }}}
+                {{{t 'products.product_list.save'  priceDom=(append '<span class="notranslate isolate"  data-product-price="' discount_text '" data-product-save-price="true">' priceVal '</span>') }}}
               {{/money_exchange_convert_price}}
             {{else}}
               {{t "products.product_list.save_ratio" price=discount_text}}
@@ -78,7 +78,7 @@
         {{/if}}
       {{/if}}
       <div class="product-tooltip__price">
-        <div class="price body2 notranslate {{#if (isFalsey productPrice.originPrice)}}is-normal{{/if}}" data-product-price="{{productPrice.salesPrice}}">
+        <div class="price body2 isolate notranslate {{#if (isFalsey productPrice.originPrice)}}is-normal{{/if}}" data-product-price="{{productPrice.salesPrice}}">
           {{#if (boolean theme.settings.superscript_decimals)}}
             {{#money_exchange_convert_price productPrice.salesPrice}}
               <span class="price__compare-at" style="order: {{#if symbolOrder '==' 'prefix'}}0{{else}}1{{/if}};">
@@ -101,7 +101,7 @@
           </span>
         {{/if}}
         {{#if productPrice.originPrice}}
-          <div class="price body5 is-original notranslate" data-product-price="{{productPrice.originPrice}}">
+          <div class="price body5 is-original isolate notranslate" data-product-price="{{productPrice.originPrice}}">
             {{#if (boolean theme.settings.superscript_decimals)}}
               {{#money_exchange_convert_price productPrice.originPrice}}
                 <span class="price__compare-at" style="order: {{#if symbolOrder '==' 'prefix'}}0{{else}}1{{/if}};">

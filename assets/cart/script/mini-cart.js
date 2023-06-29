@@ -6,6 +6,7 @@ window.SLM['cart/script/mini-cart.js'] = window.SLM['cart/script/mini-cart.js'] 
   const Cookie = window['js-cookie']['default'];
   const { Owner, Action } = window['@yy/sl-theme-shared']['/utils/logger/sentryReport'];
   const CartModule = window['SLM']['cart/script/biz/cart/index.js'].default;
+  const { renderMiniCart } = window['SLM']['commons/utils/dynamicImportMiniCart.js'];
   const LoggerService = window['SLM']['commons/logger/index.js'].default;
   const { Status: LoggerStatus } = window['SLM']['commons/logger/index.js'];
   const sentryLogger = LoggerService.pipeOwner(`${Owner.miniCart} mini-cart.js`);
@@ -20,5 +21,18 @@ window.SLM['cart/script/mini-cart.js'] = window.SLM['cart/script/mini-cart.js'] 
     status: LoggerStatus.Start
   });
   CartModule.initCartModule('sidebar');
+  $(document).on('shopline:section:load', async e => {
+    if (e.detail.sectionId === 'header') {
+      await renderMiniCart();
+      logger.info('mini购物车 编辑器', {
+        data: {
+          cartToken
+        },
+        action: Action.InitCart,
+        status: LoggerStatus.Start
+      });
+      CartModule.initCartModule('sidebar');
+    }
+  });
   return _exports;
 }();

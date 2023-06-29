@@ -12,7 +12,11 @@
   type="text/javascript" 
   defer=true
 }}
-{{ combine_asset_tag 'product/commons/style/sku-stepper.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'product/commons/style/sku-stepper.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'product/commons/style/sku-stepper.css' inline=true}}
+{{/if}}
 
 <div class="product-stepper {{#if disabled}}disabled{{/if}}" id="{{ id }}">
   <span class="stepper-before disabled">{{ snippet 'product/commons/svg/minus' }}</span>

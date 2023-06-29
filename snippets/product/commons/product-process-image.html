@@ -25,7 +25,11 @@ alt: 图片alt
 {{#if imageFit}}
   {{ assign '_imageFit' imageFit }}
 {{/if}}
-{{ combine_asset_tag 'product/commons/style/product-process-image.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'product/commons/style/product-process-image.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'product/commons/style/product-process-image.css' inline=true}}
+{{/if}}
 
 {{ assign 'imageResponsive' (image_responsive src pcSize=pcSize mSize=mSize containerMaxWidth=containerMaxWidth) }}
 <div class="product-box-content-image" {{#if _imageRatio '!==' '0'}} style="padding-bottom:{{ _imageRatio }}%" {{/if}}>
@@ -34,13 +38,13 @@ alt: 图片alt
   style="{{#if backgroundColor}} background-color: {{ backgroundColor }}; {{/if}}" data-plugin-product-item-img-ele>
   <img {{!-- 如果图片地址为空，直接走占位符逻辑，图片透明度为零 --}}
     referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"
-    style="{{#if (isFalsey src)}}opacity: 0;{{/if}}{{#if imagePosition}}object-position: {{ imagePosition }};{{/if}} object-fit: {{ _imageFit }};{{#if _imageRatio '===' '0'}} height:{{ _placeholderHeight }}px {{/if}}"
+    style="{{#if (isFalsey src)}}opacity: 0;{{/if}} object-fit: {{ _imageFit }};{{#if _imageRatio '===' '0'}} height:{{ _placeholderHeight }}px {{/if}}"
     {{#if closeLazy}}
       src="{{ get 'srcAttr' imageResponsive }}"
       srcset="{{ get 'srcsetAttr' imageResponsive }}"
       sizes="{{ get 'sizesAttr' imageResponsive }}"
     {{else}}
-      class="lozad"
+      class="lozad {{#if imagePosition}}image-position-{{ replace imagePosition ' ' '-' }}{{/if}}"
       data-sizes="auto"
       data-src="{{ src }}"
     {{/if}}

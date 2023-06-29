@@ -69,6 +69,30 @@ window.SLM['theme-shared/components/payment-button/utils.js'] = window.SLM['them
 
   _exports.getNormalDomId = getNormalDomId;
 
+  const getNormalPlaceholderElementClassName = domId => {
+    const ele = document.getElementById(`payment_button_placeholder_${domId}`);
+    const fallbackClassList = ['pdp_button_text', 'body5', 'ls-30p', 'fw-bold'];
+
+    if (!ele) {
+      return fallbackClassList.join(' ');
+    }
+
+    const {
+      classList
+    } = ele;
+
+    if ('remove' in ele) {
+      typeof ele.remove === 'function' && ele.remove();
+    }
+
+    const classNames = Array.prototype.slice.call(classList);
+    const findIndex = classNames.indexOf('hide');
+    classNames.splice(findIndex, 1);
+    return classNames.join(' ');
+  };
+
+  _exports.getNormalPlaceholderElementClassName = getNormalPlaceholderElementClassName;
+
   const getConfig = pageType => {
     const pageData = getPaymentInfo(pageType);
     if (!pageData || !pageData.buttonLocationDataList) return [];

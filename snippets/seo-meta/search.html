@@ -1,0 +1,106 @@
+{{!-- @todo  &ndash;-会被解析成&amp;ndash;导致横岗失效 --}}
+{{ assign 'title' (append page_title ' - ' shop.name) }}
+{{ assign 'description' (default page_description shop.name) }}
+{{ assign 'keywords' (default page_keyword shop.name) }}
+
+{{ assign 'ogTitle' title }}
+{{ assign 'ogDescription' description }}
+{{ assign 'url' (append request.uri.domain request.uri.url) }}
+{{#if page_image}}
+  {{ assign 'image' page_image }}
+{{else}}
+  {{ assign 'image' theme.settings.co_checkout_image.url }}
+{{/if}}
+{{ assign 'seoTitle' title }}
+{{ assign 'seoDescription' description }}
+{{ assign 'keywords' keywords }}
+
+  
+
+{{assign '_image' 'https://img.myshopline.com/image/shopline/3439ce4a1e15489193fd9ac622e1143e.png'}}
+{{assign 'twitterCard' (default card 'summary_large_image') }}
+
+{{! 如果存在传入的图片使用传入的 没有使用店铺log 在没有使用兜底图片 }}
+{{#if image}}
+  {{assign '_image' image}}
+{{/if}}
+{{assign 'title' (default seoTitle '')}}
+
+{{#if canonicalUrl }}
+  {{assign '_canonicalUrl' canonicalUrl}}
+{{else}}
+  {{assign '_canonicalUrl' url}}
+{{/if}}
+
+{{#if title}}
+<meta name="title" content="{{title}}" />
+{{/if}}
+{{!-- keyword 插入到title 和 description 中间 --}}
+{{#if keywords }}
+<meta name="keywords" content="{{keywords}}" /> 
+{{/if}}
+
+{{! 没有desc 不展示 }}
+{{#if seoDescription}}
+  <meta name="description" content="{{sanitize seoDescription}}" />
+{{/if}}
+
+{{! 商详页之前的标签 先保留其他页面不需要传入  }}
+{{! 重复网址 seo 定向到主站 }}
+
+{{!-- canonical 和 alternate 迁移至 layout scripts 项目 --}}
+{{!-- {{#if _canonicalUrl}}
+  <link rel="canonical" href="{{_canonicalUrl}}" />
+  <link rel="alternate" href="{{_canonicalUrl}}" />
+{{/if}} --}}
+
+{{! meta link }}
+{{#if url}}
+  <meta property="og:url" content="{{url}}" />
+{{/if}}
+
+{{#if storeInfo.name}}
+  <meta property="og:site_name" content="{{storeInfo.name}}" />
+{{/if}}
+
+{{! meta title }}
+{{#if ogTitle}}
+  <meta property="og:title" content="{{ogTitle}}" />
+{{/if}}
+
+{{#if ogDescription}}
+  <meta property="og:description" content="{{sanitize ogDescription}}" />
+{{/if}}
+
+{{! meta fb type }}
+{{#if type}}
+  <meta property="og:type" content="{{type}}" />
+{{/if}}
+
+{{#if _image}}
+  <meta property="og:image" content="{{_image}}" />
+  <meta property="og:image:secure_url" content="{{_image}}" />
+  <meta name="twitter:image" content="{{_image}}" />
+{{/if}}
+
+{{#if ogTitle}}
+  <meta name="twitter:title" content="{{ogTitle}}" />
+{{/if}}
+
+{{! meta description }}
+{{#if ogDescription}}
+  <meta name="twitter:description" content="{{sanitize ogDescription}}" />
+{{/if}}
+
+{{! meta twitter card }}
+{{#if card}}
+  <meta name="twitter:card" content="{{twitterCard}}" />
+{{/if}}
+
+{{!-- meta hide product --}}
+{{#and  (boolean templateAlias '===' 'ProductsDetail')  (isFalsey product.spu.visible)}}
+  <meta name='robots' content='noindex' />
+{{/and}}
+
+
+

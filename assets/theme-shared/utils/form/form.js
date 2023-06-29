@@ -84,8 +84,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
 
         if (inp) {
           inp.addEventListener('change', e => {
-            console.log('input-change', this.config.validateTrigger);
-
             if (this.config.validateTrigger === ValidateTrigger.ONNATIVECHANGE) {
               const target = e.target;
               const parentNode = this.recursionFindParent(target, formItemName);

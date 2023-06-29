@@ -5,6 +5,9 @@
         "item": {
           "name": "公告",
           "settings": {
+            "announcement_division_bottom": {
+              "label": "顯示分割線"
+            },
             "notice_link": {
               "label": "跳轉鏈接"
             },
@@ -515,7 +518,13 @@
           "name": "價格"
         },
         "quantity": {
-          "name": "數量選擇器"
+          "name": "數量選擇器",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "庫存低於10個時，將在數量選擇器下方顯示庫存數量",
+              "label": "庫存低時顯示數量提示"
+            }
+          }
         },
         "share": {
           "name": "分享"
@@ -756,6 +765,9 @@
         "header_division": {
           "label": "顯示模塊分割線"
         },
+        "header_division_bottom": {
+          "label": "頁頭下方顯示分割線"
+        },
         "header_full_width": {
           "label": "頁頭固定全屏寬度"
         },
@@ -825,7 +837,7 @@
           "label": "展示貨幣選擇器"
         },
         "show_line_separator": {
-          "label": "顯示分割線"
+          "label": "菜單換行時展示分割線"
         },
         "show_locale_selector": {
           "info": "若要添加語言，可前往[語言設置](/admin/settings/lang)",
@@ -2019,6 +2031,9 @@
             "product_custom_tab1": {
               "label": "自定義內容1"
             },
+            "product_custom_tab1_custom_icon": {
+              "label": "自定義圖片"
+            },
             "product_custom_tab1_desc": {
               "label": "文本描述"
             },
@@ -2070,6 +2085,9 @@
             "product_custom_tab2": {
               "label": "自定義內容2"
             },
+            "product_custom_tab2_custom_icon": {
+              "label": "自定義圖片"
+            },
             "product_custom_tab2_desc": {
               "label": "文本描述"
             },
@@ -2120,6 +2138,9 @@
             },
             "product_custom_tab3": {
               "label": "自定義內容3"
+            },
+            "product_custom_tab3_custom_icon": {
+              "label": "自定義圖片"
             },
             "product_custom_tab3_desc": {
               "label": "文本描述"
@@ -2273,7 +2294,13 @@
           }
         },
         "quantity": {
-          "name": "數量選擇器"
+          "name": "數量選擇器",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "庫存低於10個時，將在數量選擇器下方顯示庫存數量",
+              "label": "庫存低時顯示數量提示"
+            }
+          }
         },
         "share": {
           "name": "分享"
@@ -2472,6 +2499,9 @@
         "group_header__0": {
           "label": "分區填充"
         },
+        "group_header__2": {
+          "label": "博客文章"
+        },
         "md_cols": {
           "label": "移動端列數",
           "options__0": {
@@ -2510,6 +2540,12 @@
           "options__4": {
             "label": "2:3"
           }
+        },
+        "show_article_author": {
+          "label": "顯示作者"
+        },
+        "show_article_date": {
+          "label": "顯示日期"
         }
       }
     },
@@ -3239,6 +3275,9 @@
           },
           "options__2": {
             "label": "已成功加購提示"
+          },
+          "options__3": {
+            "label": "打開抽屜"
           }
         }
       }

@@ -1,6 +1,10 @@
 {{ assign 'color_scheme' section.settings.color_scheme }}
 
-{{ combine_asset_tag 'stage/faqs/style/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/faqs/style/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/faqs/style/index.css' inline=true}}
+{{/if}}
 <!-- stage/faqs/index.js -->
 {{ combine_asset_tag 
  'theme-shared/utils/sectionsLoad/index.js'

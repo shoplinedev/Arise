@@ -50,7 +50,11 @@
     #shopline-section-{{sectionId}} .global-drawer-border-shadow {
     box-sizing: border-box;
     border-style: solid;
-    border-width: 0 {{theme.settings.drawer_border_thickness}}px 0 0;
+    {{#if request.document_direction '===' 'rtl'}}
+      border-width: 0 0 0 {{theme.settings.card_border_thickness}}px;
+    {{else}}
+      border-width: 0 {{theme.settings.card_border_thickness}}px 0 0;
+    {{/if}}
     border-color: {{color_border}};
     filter: drop-shadow({{theme.settings.drawer_shadow_offset_x}}px {{theme.settings.drawer_shadow_offset_y}}px {{theme.settings.drawer_shadow_blur}}px {{color_shadow}})
     }
@@ -62,7 +66,11 @@
     #shopline-section-{{sectionId}} .global-card-border-shadow {
     box-sizing: border-box;
     border-style: solid;
+    {{#if request.document_direction '===' 'rtl'}}
+    border-width: 0 0 0 {{theme.settings.card_border_thickness}}px;
+    {{else}}
     border-width: 0 {{theme.settings.card_border_thickness}}px 0 0;
+    {{/if}}
     border-color: {{color_border}};
     filter: drop-shadow({{theme.settings.card_shadow_offset_x}}px {{theme.settings.card_shadow_offset_y}}px {{theme.settings.card_shadow_blur}}px {{color_shadow}})
     }

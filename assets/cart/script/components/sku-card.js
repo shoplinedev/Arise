@@ -629,17 +629,17 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
         } = convertPrice(data.finalLinePrice);
 
         if (isShowScribingPrice) {
-          return `<span class="trade-cart-sku-item-info-amount-through notranslate body5" data-amount=${data.originalLinePrice}>${productPriceFormattedPriceStr}</span><span class="trade-cart-sku-item-real-price notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.finalLinePrice}><span>${priceFormattedPriceStr}</span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+          return `<span class="trade-cart-sku-item-info-amount-through isolate notranslate body5" data-amount=${data.originalLinePrice}>${productPriceFormattedPriceStr}</span><span class="trade-cart-sku-item-real-price isolate notranslate body2 text_bold trade-cart-sku-item-info-amount-sale-price" data-amount=${data.finalLinePrice}><span>${priceFormattedPriceStr}</span>  ${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
         }
 
-        return `<span class="trade-cart-sku-item-real-price notranslate body2 text_bold" data-amount=${data.finalLinePrice}><span>${priceFormattedPriceStr}</span>${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+        return `<span class="trade-cart-sku-item-real-price isolate notranslate body2 text_bold" data-amount=${data.finalLinePrice}><span>${priceFormattedPriceStr}</span>${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
       }
 
       if (isShowScribingPrice) {
-        return `<span class="trade-cart-sku-item-info-amount-through notranslate" data-amount=${data.originalLinePrice}>${format(data.originalLinePrice)}</span><span class="trade-cart-sku-item-real-price notranslate trade-cart-sku-item-info-amount-sale-price" data-amount=${data.finalLinePrice}>${format(data.finalLinePrice)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+        return `<span class="trade-cart-sku-item-info-amount-through isolate notranslate" data-amount=${data.originalLinePrice}>${format(data.originalLinePrice)}</span><span class="trade-cart-sku-item-real-price isolate notranslate trade-cart-sku-item-info-amount-sale-price" data-amount=${data.finalLinePrice}>${format(data.finalLinePrice)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
       }
 
-      return `<span class="trade-cart-sku-item-real-price notranslate" data-amount=${data.finalLinePrice}>${format(data.finalLinePrice)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
+      return `<span class="trade-cart-sku-item-real-price isolate notranslate" data-amount=${data.finalLinePrice}>${format(data.finalLinePrice)}${this.getVipTag(data)}<span class="slot-cart slot-cart-price-end" data-slot-cart-price-end></span>`;
     }
 
     getVipTag(data) {
@@ -659,7 +659,7 @@ window.SLM['cart/script/components/sku-card.js'] = window.SLM['cart/script/compo
             </svg>
             ${item.discountApplication.title ? `<span>&nbsp;${item.discountApplication.title}</span>` : ''}
           </div>
-          <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="notranslate is-promotion" data-amount=${item.amount}>${format(item.amount)}</span><span>)</span></div>
+          <div class="trade-cart-sku-item-info-discount-number"><span>&nbsp;(-</span><span class="isolate notranslate is-promotion" data-amount=${item.amount}>${format(item.amount)}</span><span>)</span></div>
         </div>`;
           return str;
         }, '');

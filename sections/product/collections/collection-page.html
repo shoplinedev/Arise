@@ -1,8 +1,6 @@
 ---
 # 商品列表
 products:
-  # 是否预取商品描述信息，默认值：false
-  description: true
   limit: {{ section.settings.per_page_num }}
   cursor: {{ cond (isFalsey request.uri.query.loadMore) (cond section.settings.infinite_scroll 1 request.uri.query.page_num) request.uri.query.page_num }}
 

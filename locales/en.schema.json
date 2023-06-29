@@ -5,6 +5,9 @@
         "item": {
           "name": "Announce",
           "settings": {
+            "announcement_division_bottom": {
+              "label": "Display the divider"
+            },
             "notice_link": {
               "label": "URL"
             },
@@ -515,7 +518,13 @@
           "name": "Price"
         },
         "quantity": {
-          "name": "Quantity selector"
+          "name": "Quantity selector",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "Display inventory quantity below the quantity selector when inventory is less than 10 pieces",
+              "label": "Display quantity prompt when inventory is at low level"
+            }
+          }
         },
         "share": {
           "name": "Share"
@@ -756,6 +765,9 @@
         "header_division": {
           "label": "Display divider"
         },
+        "header_division_bottom": {
+          "label": "Display divider below the header"
+        },
         "header_full_width": {
           "label": "fullscreen width in header"
         },
@@ -825,7 +837,7 @@
           "label": "Display the currency selector"
         },
         "show_line_separator": {
-          "label": "Display the divider"
+          "label": "Display divider when breaking lines of menu"
         },
         "show_locale_selector": {
           "info": "Go to [language setting](/admin/settings/lang) for setup",
@@ -2019,6 +2031,9 @@
             "product_custom_tab1": {
               "label": "Custom content 1"
             },
+            "product_custom_tab1_custom_icon": {
+              "label": "Custom image"
+            },
             "product_custom_tab1_desc": {
               "label": "File description"
             },
@@ -2070,6 +2085,9 @@
             "product_custom_tab2": {
               "label": "Custom content 2"
             },
+            "product_custom_tab2_custom_icon": {
+              "label": "Custom image"
+            },
             "product_custom_tab2_desc": {
               "label": "File description"
             },
@@ -2120,6 +2138,9 @@
             },
             "product_custom_tab3": {
               "label": "Custom content 3"
+            },
+            "product_custom_tab3_custom_icon": {
+              "label": "Custom image"
             },
             "product_custom_tab3_desc": {
               "label": "File description"
@@ -2273,7 +2294,13 @@
           }
         },
         "quantity": {
-          "name": "Quantity selector"
+          "name": "Quantity selector",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "Display inventory quantity below the quantity selector when inventory is less than 10 pieces",
+              "label": "Display quantity prompt when inventory is at low level"
+            }
+          }
         },
         "share": {
           "name": "Share"
@@ -2472,6 +2499,9 @@
         "group_header__0": {
           "label": "Padding by section"
         },
+        "group_header__2": {
+          "label": "Article"
+        },
         "md_cols": {
           "label": "Number of columns on mobile",
           "options__0": {
@@ -2510,6 +2540,12 @@
           "options__4": {
             "label": "2:3"
           }
+        },
+        "show_article_author": {
+          "label": "Display author"
+        },
+        "show_article_date": {
+          "label": "Display date"
         }
       }
     },
@@ -3239,6 +3275,9 @@
           },
           "options__2": {
             "label": "Successful add-to-cart notification"
+          },
+          "options__3": {
+            "label": "Open the drawer"
           }
         }
       }

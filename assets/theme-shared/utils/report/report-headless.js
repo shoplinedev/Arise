@@ -63,9 +63,7 @@ window.SLM['theme-shared/utils/report/report-headless.js'] = window.SLM['theme-s
           const flag = await detectMap[key]();
           result[key] = String(+flag);
         }
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
 
       window.HdSdk && window.HdSdk.shopTracker.report('85000101', result);
       window.removeEventListener('DOMContentLoaded', report);

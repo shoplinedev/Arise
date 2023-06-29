@@ -3,8 +3,8 @@ window.SLM = window.SLM || {};
 window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['theme-shared/components/payment-button/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
-  const { getAttrs, getNormalDomId, getExpressCheckoutDomId, getConfig } = window['SLM']['theme-shared/components/payment-button/utils.js'];
-  const { PAYMENT_BUTTON_COMMON__STYLE_ID, PAYMENT_BUTTON_COMMON_ANIMATED, PAYMENT_BUTTON_COMMON_ITEM_MASK, EXPRESS_PAYMENT_BUTTON_COMMON_ITEM, EXPRESS_PAYMENT_BUTTON_CONTAINER, NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW, NORMAL_PAYMENT_BUTTON_CART_CHECKOUT } = window['SLM']['theme-shared/components/payment-button/constants.js'];
+  const { getAttrs, getNormalDomId, getExpressCheckoutDomId, getConfig, getNormalPlaceholderElementClassName } = window['SLM']['theme-shared/components/payment-button/utils.js'];
+  const { PAYMENT_BUTTON_COMMON__STYLE_ID, PAYMENT_BUTTON_COMMON_ANIMATED, PAYMENT_BUTTON_COMMON_ITEM_MASK, EXPRESS_PAYMENT_BUTTON_COMMON_ITEM, EXPRESS_PAYMENT_BUTTON_CONTAINER, NORMAL_PAYMENT_BUTTON_CART_CHECKOUT, NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW } = window['SLM']['theme-shared/components/payment-button/constants.js'];
   const { PageType, ButtonType, ButtonName, convertPageType } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const ShopbyFastCheckoutButton = window['SLM']['theme-shared/components/payment-button/shopby_fast_checkout.js'].default;
 
@@ -120,17 +120,17 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
 
         if (item.buttonType === ButtonType.NormalButton) {
           const domId = getNormalDomId(this.domId);
+          const className = getNormalPlaceholderElementClassName(this.config.id);
+          const buttonClassNameList = [NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW, 'buy-now', 'shopline-element-buy-now', 'btn', 'btn-primary', 'btn-lg', 'product-button-list-btn-wrap', `pdp_buy_now_${this.config.id}`, '__sl-custom-track-product-detail-buy-now', `${this.domAttr.isSoldOut ? 'hide' : ''}`];
           item.buttonNameDataList.forEach(innerItem => {
             if (innerItem.buttonName === ButtonName.BUY_NOW) {
               const str = `
               <button
                 id=${domId}
-                data-ssr-plugin-pdp-button-buy-now 
-                class="${NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW} buy-now shopline-element-buy-now btn btn-primary btn-lg 
-                product-button-list-btn-wrap pdp_buy_now_${this.config.id} __sl-custom-track-product-detail-buy-now 
-                ${this.domAttr.isSoldOut ? 'hide' : ''}"
+                data-ssr-plugin-pdp-button-buy-now
+                class="${buttonClassNameList.join(' ')}"
               >
-                <span class="pdp_button_text body5 ls-30p fw-bold">${t('cart.cart.buy_now')}</span>
+                <span class="${className}">${t('cart.cart.buy_now')}</span>
               </button>
             `;
               parentDom.insertAdjacentHTML('afterbegin', str);

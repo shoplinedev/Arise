@@ -1,0 +1,36 @@
+input{
+  -webkit-appearance:none;
+}
+
+.product-box-content-image,.product-process-image{
+  height:100%;
+  position:relative;
+  width:100%;
+}
+
+.product-process-image{
+  align-items:flex-start;
+  background:rgba(var(--color-image-background));
+  display:flex;
+  opacity:.01;
+  transition:opacity .4s ease;
+}
+.product-process-image img{
+  height:100%;
+  transition:height .4s ease;
+  width:100%;
+}
+.product-process-image.placeholder-border{
+  background-color:rgba(var(--color-text), .05);
+  background-image:var(--sl-asset-product-commons-svg-default-img--svg);
+  background-position:50%;
+  background-repeat:no-repeat;
+  height:0;
+  opacity:1;
+  padding-bottom:100%;
+}
+.product-process-image.fix-product-image-con{
+  position:absolute;
+  right:0;
+  top:0;
+}

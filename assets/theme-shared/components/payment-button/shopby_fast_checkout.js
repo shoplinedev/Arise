@@ -237,6 +237,7 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
 
   function newShopbyFastCheckoutButton(config) {
     const parentDom = document.getElementById(config.domId);
+    if (!parentDom) return;
     const divEle = document.createElement('div');
     divEle.setAttribute('id', `${config.domId}_fastCheckout`);
     divEle.setAttribute('class', `${EXPRESS_PAYMENT_BUTTON_COMMON_ITEM} fast-checkout-button`);

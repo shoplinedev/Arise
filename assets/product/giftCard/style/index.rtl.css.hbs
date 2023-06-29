@@ -1,0 +1,181 @@
+#giftCardPage{
+  box-sizing:border-box;
+  margin:0 auto;
+  max-width:680px;
+  padding:40px 80px;
+}
+#giftCardPage .storeName{
+  color:#1e1e1e;
+  font-size:32px;
+  font-weight:700;
+  line-height:39px;
+  text-align:center;
+}
+#giftCardPage .giftCardStatus{
+  color:#1e1e1e;
+  font-size:24px;
+  font-weight:600;
+  line-height:1.5;
+  margin:20px 0;
+  text-align:center;
+}
+#giftCardPage .giftCardWrapper{
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 0 4px rgba(0,0,0,.04), 0 8px 16px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+#giftCardPage .giftCardWrapper .giftCardBox{
+  position:relative;
+  width:100%;
+}
+#giftCardPage .giftCardWrapper .giftCardBox .giftCardBg{
+  background-image:url(https://img.myshopline.com/image/official/a4277ef9ce9744809be9bde7b1495a93.jpeg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  padding-bottom:47.7%;
+  width:100%;
+}
+#giftCardPage .giftCardWrapper .giftCardBox .giftCardCode{
+  background:hsla(0,0%,100%,.8);
+  border:1px dashed #000;
+  border-radius:4px;
+  bottom:8%;
+  color:#1e1e1e;
+  font-size:20px;
+  font-weight:500;
+  left:0;
+  line-height:20px;
+  margin:0 auto;
+  padding:16px 24px;
+  position:absolute;
+  right:0;
+  text-align:center;
+  user-select:all;
+  width:54.8%;
+}
+#giftCardPage .giftCardWrapper .giftCardBox .giftCardQrCode{
+  background:#fff;
+  border-radius:6px;
+  bottom:35%;
+  height:0;
+  left:0;
+  line-height:20px;
+  margin:0 auto;
+  overflow:hidden;
+  padding-top:25.2%;
+  position:absolute;
+  right:0;
+  text-align:center;
+  width:25.2%;
+}
+#giftCardPage .giftCardWrapper .giftCardBox .giftCardQrCode img{
+  height:100%;
+  position:absolute;
+  right:0;
+  top:0;
+  width:100%;
+}
+#giftCardPage .giftCardWrapper .giftCardInfo{
+  padding:16px 20px;
+}
+#giftCardPage .giftCardWrapper .giftCardInfo .item{
+  align-items:center;
+  display:flex;
+  justify-content:space-between;
+  margin-top:8px;
+}
+#giftCardPage .giftCardWrapper .giftCardInfo .item:first-child{
+  margin-top:0;
+}
+#giftCardPage .giftCardWrapper .giftCardInfo .item .name{
+  color:rgba(30,30,30,.6);
+  font-size:14px;
+  line-height:16px;
+}
+#giftCardPage .giftCardWrapper .giftCardInfo .item .content{
+  color:#1e1e1e;
+  flex-shrink:0;
+  font-size:16px;
+  font-weight:600;
+  line-height:22px;
+  text-align:left;
+}
+#giftCardPage .giftCardWrapper .giftCardInfo .item .content .hmsDate{
+  color:rgba(30,30,30,.6);
+  font-size:14px;
+  font-weight:400;
+}
+#giftCardPage .giftCardWrapper .giftCardInfo .item .content .ytdDate{
+  align-items:center;
+  display:flex;
+  justify-content:flex-end;
+}
+#giftCardPage .giftCardWrapper .giftCardInfo .item .content .ytdDate em{
+  font-style:normal;
+  margin:0 5px;
+}
+#giftCardPage .giftCardWrapper.disabled .giftCardBox .giftCardBg{
+  background-image:url(https://img.myshopline.com/image/official/b26a6aa580dd4d2c8708ca4352d52a87.jpeg);
+}
+#giftCardPage .giftCardWrapper.disabled .giftCardBox .giftCardCode{
+  border-color:rgba(0,0,0,.6);
+  opacity:.6;
+  text-decoration-line:line-through;
+}
+#giftCardPage .giftCardWrapper.disabled .giftCardBox .giftCardQrCode img{
+  opacity:.7;
+}
+#giftCardPage .giftCardUseBox{
+  padding:40px 0;
+  text-align:center;
+}
+#giftCardPage .giftCardUseBox .useBtn{
+  background:#1e1e1e;
+  border-radius:4px;
+  color:#fff;
+  display:inline-block;
+  font-size:16px;
+  font-weight:600;
+  line-height:1.4;
+  margin:0 auto;
+  min-width:200px;
+  padding:16px 60px;
+  text-decoration:none;
+}
+#giftCardPage .giftCardUseBox .useExplain{
+  color:rgba(30,30,30,.6);
+  font-size:14px;
+  line-height:20px;
+  margin-top:12px;
+}
+
+@media screen and (max-width:750px){
+  #giftCardPage{
+    max-width:520px;
+    padding:40px 20px;
+  }
+  #giftCardPage .storeName{
+    font-size:28px;
+    line-height:34px;
+  }
+  #giftCardPage .giftCardStatus{
+    font-size:20px;
+  }
+  #giftCardPage .giftCardWrapper .giftCardBox .giftCardCode{
+    font-size:16px;
+    padding:8px 16px;
+    width:66.2%;
+  }
+  #giftCardPage .giftCardWrapper .giftCardInfo .item .name{
+    font-size:12px;
+    line-height:16px;
+  }
+  #giftCardPage .giftCardWrapper .giftCardInfo .item .content{
+    font-size:14px;
+    line-height:20px;
+  }
+  #giftCardPage .giftCardWrapper .giftCardInfo .item .content .hmsDate{
+    font-size:12px;
+  }
+}

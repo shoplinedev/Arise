@@ -29,7 +29,7 @@
   {{#unless section.settings.autoplay}}
     {{#if (boolean section.settings.cover.url)}}
       <div class="video__cover">
-        <img class="video-bg-img video__cover-img lozad"
+        <img class="video-bg-img video__cover-img lozad {{video_cover_img_class}}"
         data-src="{{section.settings.cover.url}}" data-sizes="auto"  alt="{{section.settings.cover.alt}}"
 >
         <div class="video-overlay">

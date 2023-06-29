@@ -66,8 +66,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
             this.renderHtml();
 
             this.handleResponse = e => {
-              console.log('------------', e);
-
               if (e.event === 'rendered') {} else if (e.event === 'checkbox') {
                 this.checkboxState = e.state;
               } else if (e.event === 'not_you') {} else if (e.event === 'hidden') {}

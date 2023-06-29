@@ -9,8 +9,25 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/i
 
   const getPromotionBarContent = (promotion, rootWrapper) => {
     const isPCMainCart = rootWrapper.hasClass('main') && rootWrapper.hasClass('is-pc');
+    let saleExtInfo = {};
+
+    try {
+      if (typeof promotion.saleExtInfo === 'string') {
+        saleExtInfo = JSON.parse(promotion.saleExtInfo);
+      }
+    } catch (e) {
+      console.warn('json.parse saleExtInfo value err:', e);
+      saleExtInfo = {};
+    }
+
+    const bannerBgColor = get(saleExtInfo, 'cartBannerStyle.bannerBgColor');
+    const bannerTextColor = get(saleExtInfo, 'cartBannerStyle.bannerTextColor');
+    const discountTextColor = get(saleExtInfo, 'cartBannerStyle.discountTextColor');
     const config = getShoppingReminderConfig(promotion, {
-      lineBreak: !isPCMainCart
+      lineBreak: !isPCMainCart,
+      warper: {
+        style: `color: ${discountTextColor}`
+      }
     });
     const needJump = get(config, 'step') !== 3;
     const bannerText = get(promotion, 'promotionBenefitList[0].extMap.bannerText');
@@ -23,14 +40,14 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/i
 
     if (needJump) {
       return `
-      <div class="cart-sku-list-promotion-module-can-jump notranslate">
+      <div class="cart-sku-list-promotion-module-can-jump notranslate" style="background: ${bannerBgColor}">
         <a href="${redirectTo(`/activity/${promotion.activitySeq}?type=pool${extMap.meetThreshold === 'true' ? '&query_product_type=2' : ''}`)}" class="cart-sku-list-promotion-module-can-jump-wrapper">
-          <div>
+          <div style="color: ${bannerTextColor}">
             ${promotionTemplate}
           </div>
           <div class="cart-sku-list-promotion-module-can-jump-arrow" style="font-size:0;">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M4 11L9 6L4 1" stroke-width="1.5" stroke-linecap="round" style="stroke:${bannerTextColor};"/>
             </svg>
           </div>
         </a>
@@ -39,8 +56,8 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/i
     }
 
     return `
-    <div class="cart-sku-list-promotion-module notranslate">
-      <span>
+    <div class="cart-sku-list-promotion-module notranslate" style="background: ${bannerBgColor}">
+      <span style="color: ${bannerTextColor}">
         ${promotionTemplate}
       </span>
     </div>

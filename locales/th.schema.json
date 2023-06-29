@@ -5,6 +5,9 @@
         "item": {
           "name": "ประกาศ",
           "settings": {
+            "announcement_division_bottom": {
+              "label": "แสดงเส้นแบ่ง"
+            },
             "notice_link": {
               "label": "ลิงก์กระโดดข้าม"
             },
@@ -515,7 +518,13 @@
           "name": "ราคา"
         },
         "quantity": {
-          "name": "ตัวเลือกจำนวน"
+          "name": "ตัวเลือกจำนวน",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "เมื่อสินค้าคงคลังน้อยกว่า 10 ปริมาณสินค้าคงคลังจะแสดงด้านล่างตัวเลือกปริมาณ",
+              "label": "แสดงการแจ้งเตือนปริมาณเมื่อสต็อกเหลือน้อย"
+            }
+          }
         },
         "share": {
           "name": "แบ่งปัน"
@@ -756,6 +765,9 @@
         "header_division": {
           "label": "แสดงเส้นแบ่งโมดูล"
         },
+        "header_division_bottom": {
+          "label": "แสดงเส้นแบ่งด้านล่างส่วนหัว"
+        },
         "header_full_width": {
           "label": "ความกว้างเต็มหน้าจอในส่วนหัว"
         },
@@ -825,7 +837,7 @@
           "label": "แสดงตัวเลือกสกุลเงิน"
         },
         "show_line_separator": {
-          "label": "แสดงเส้นแบ่ง"
+          "label": "แสดงเส้นแบ่งเมื่อตัดเมนู"
         },
         "show_locale_selector": {
           "info": "หากต้องการเพิ่มภาษา ให้ไปที่ [การตั้งค่าภาษา](/admin/settings/lang)",
@@ -2019,6 +2031,9 @@
             "product_custom_tab1": {
               "label": "เนื้อหาที่กำหนดเอง 1"
             },
+            "product_custom_tab1_custom_icon": {
+              "label": "รูปภาพที่กำหนดเอง"
+            },
             "product_custom_tab1_desc": {
               "label": "คำอธิบายข้อความ"
             },
@@ -2070,6 +2085,9 @@
             "product_custom_tab2": {
               "label": "เนื้อหาที่กำหนดเอง2"
             },
+            "product_custom_tab2_custom_icon": {
+              "label": "รูปภาพที่กำหนดเอง"
+            },
             "product_custom_tab2_desc": {
               "label": "คำอธิบายข้อความ"
             },
@@ -2120,6 +2138,9 @@
             },
             "product_custom_tab3": {
               "label": "เนื้อหาที่กำหนดเอง3"
+            },
+            "product_custom_tab3_custom_icon": {
+              "label": "รูปภาพที่กำหนดเอง"
             },
             "product_custom_tab3_desc": {
               "label": "คำอธิบายข้อความ"
@@ -2273,7 +2294,13 @@
           }
         },
         "quantity": {
-          "name": "ตัวเลือกจำนวน"
+          "name": "ตัวเลือกจำนวน",
+          "settings": {
+            "is_show_stock_hint": {
+              "info": "เมื่อสินค้าคงคลังน้อยกว่า 10 ปริมาณสินค้าคงคลังจะแสดงด้านล่างตัวเลือกปริมาณ",
+              "label": "แสดงการแจ้งเตือนปริมาณเมื่อสต็อกเหลือน้อย"
+            }
+          }
         },
         "share": {
           "name": "แบ่งปัน"
@@ -2472,6 +2499,9 @@
         "group_header__0": {
           "label": "แพคดิงในโซน"
         },
+        "group_header__2": {
+          "label": "โพสต์บล็อก"
+        },
         "md_cols": {
           "label": "จำนวนคอลัมน์บนมือถือ",
           "options__0": {
@@ -2510,6 +2540,12 @@
           "options__4": {
             "label": "2:3"
           }
+        },
+        "show_article_author": {
+          "label": "แสดงผู้เขียน"
+        },
+        "show_article_date": {
+          "label": "แสดงวันที่"
         }
       }
     },
@@ -3239,6 +3275,9 @@
           },
           "options__2": {
             "label": "แจ้งการเพิ่มเข้าในตะกร้าสำเร็จ"
+          },
+          "options__3": {
+            "label": "เปิดลิ้นชัก"
           }
         }
       }

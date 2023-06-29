@@ -1,4 +1,8 @@
-{{ combine_asset_tag 'stage/video/index.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'stage/video/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'stage/video/index.css' inline=true}}
+{{/if}}
 <!-- stage/video/index.js -->
 {{ combine_asset_tag 
  'theme-shared/utils/sectionsLoad/index.js'
@@ -28,12 +32,12 @@
       <h2 class="video__title title4 section-title text-center {{#if full_width}}container{{/if}}">{{ section.settings.title }}</h2>
     {{/if}}
 
-    {{#style}}
+    {{!-- {{#style}}
       {{ assign 'background_position' (join (split section.settings.background_position '-') ' ') }}
       .video--{{ section.id }} .video__cover .video__cover-img {
         object-position: {{ background_position }};
       }
-    {{/style}}
+    {{/style}} --}}
     {{ object_set section.settings 'video_url' section.settings.url }}
     <div
       class="global-media-border-shadow"
@@ -41,7 +45,7 @@
       data-section-id="{{ section.id }}"
       data-section-type="video"
     >
-      {{ snippet 'video-item' }}
+      {{ snippet 'video-item' video_cover_img_class=(append 'image-position-' section.settings.background_position) }}
     </div>
   </div>
 </section>

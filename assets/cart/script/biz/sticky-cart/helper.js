@@ -47,6 +47,7 @@ window.SLM['cart/script/biz/sticky-cart/helper.js'] = window.SLM['cart/script/bi
   }) => {
     const fixedObserver = new MutationObserver(callback);
     fixedObserver.observe(target, options);
+    return fixedObserver;
   };
 
   _exports.listenElementMutation = listenElementMutation;

@@ -29,7 +29,7 @@
         checked=memberPointInfo.use
         parentClass="cart-member-point-checkbox"
       }}
-      <div class="trade_summations_fee__desc {{#if memberPointInfo.use }} hide {{else}} {{/if}}">{{t 'transaction.refund.deduct_point' deductMemberPointNum=memberPointInfo.deductMemberPointNum}} <span class="deductMemberPointAmount">{{money_exchange_convert_with_currency memberPointInfo.deductMemberPointAmount}}</span></div>
+      <div class="trade_summations_fee__desc {{#if memberPointInfo.use }} hide {{else}} {{/if}}">{{t 'transaction.refund.deduct_point' deductMemberPointNum=memberPointInfo.deductMemberPointNum}} <span class="deductMemberPointAmount isolate">{{money_exchange_convert_with_currency memberPointInfo.deductMemberPointAmount}}</span></div>
     </div>
   {{/if}}
   <div class="trade_summations__amount col textRight {{#if showDetail}}showDetail{{/if}} {{#if suffixCls }} {{suffixCls}} {{else}}black{{/if}}">
@@ -38,13 +38,13 @@
       {{#if useSuperscriptDecimals}}
         {{#money_exchange_convert_price value }}
           {{#if symbolOrder '==' 'prefix'}}
-            <span class="trade_summations__amount-box notranslate text_bold" data-amount={{value}}>{{ currencySymbol }}{{ integer }}<sup class="body6">{{ fraction }}</sup></span>
+            <span class="trade_summations__amount-box isolate notranslate text_bold" data-amount={{value}}>{{ currencySymbol }}{{ integer }}<sup class="body6">{{ fraction }}</sup></span>
           {{else}}
-            <span class="trade_summations__amount-box notranslate text_bold" data-amount={{value}}>{{ integer }}<sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span></span>
+            <span class="trade_summations__amount-box isolate notranslate text_bold" data-amount={{value}}>{{ integer }}<sup class="body6">{{ fraction }}</sup><span>{{ currencySymbol }}</span></span>
           {{/if}}
         {{/money_exchange_convert_price}}
       {{else}}
-        <span class="trade_summations__amount-box notranslate" data-amount={{value}}>{{money_exchange_convert_with_currency value}}</span>
+        <span class="trade_summations__amount-box isolate notranslate" data-amount={{value}}>{{money_exchange_convert_with_currency value}}</span>
       {{/if}}
     {{else }}
       <span class="trade_summations__amount-box">

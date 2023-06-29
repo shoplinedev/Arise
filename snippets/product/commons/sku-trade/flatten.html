@@ -1,4 +1,8 @@
-{{ combine_asset_tag 'product/commons/style/sku-trade/sku-trade-flatten.css' inline=true }}
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'product/commons/style/sku-trade/sku-trade-flatten.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'product/commons/style/sku-trade/sku-trade-flatten.css' inline=true}}
+{{/if}}
 
 {{#if (length attr)}}
 <div style="{{ style }}" class="product-sku-trade-flatten shopline-element-sku-trade-flatten" data-ssr-plugin-sku id="{{ id }}">
