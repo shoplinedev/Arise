@@ -4,7 +4,6 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
   const _exports = {};
   const Cookie = window['js-cookie']['default'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const get = window['lodash']['get'];
   const { Owner, Action } = window['@yy/sl-theme-shared']['/utils/logger/sentryReport'];
   const LoggerService = window['SLM']['commons/logger/index.js'].default;
   const { Status: LoggerStatus } = window['SLM']['commons/logger/index.js'];
@@ -12,11 +11,8 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
   const throttle = window['SLM']['commons/utils/throttle.js'].default;
   const { setFixedContentStyle, setStickyContAnimate, listenElementMutation, listenElementIntersection } = window['SLM']['cart/script/biz/sticky-cart/helper.js'];
   const cartReport = window['SLM']['cart/script/report/cartReport.js'].default;
-  const tradeSettleConfig = SL_State.get('tradeSettleConfig');
   const logger = LoggerService.pipeOwner(`${Owner.Cart} biz/sticky-cart/index.js`);
   const cartToken = Cookie.get('t_cart');
-  const hasSecuritySection = get(tradeSettleConfig, 'paymentSecurity.displayPosition', []).includes('CART') || get(tradeSettleConfig, 'afterSaleGuarantee.displayPosition', []).includes('CART');
-  _exports.hasSecuritySection = hasSecuritySection;
 
   const initMainCartSticky = () => {
     if (isMobile()) {
@@ -94,23 +90,6 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
       status: LoggerStatus.Success
     });
 
-    if (hasSecuritySection) {
-      $('#cart-select .trade_cart_not_empty_wrapper').on('scroll', throttle(20, () => {
-        setStickyContAnimate({
-          viewportSelector: '.miniCart_vp_container',
-          containerSelector: '.miniCart__stick_container'
-        });
-      }));
-      listenElementMutation($('.trade-cart-sku-list').get(0), () => {
-        setTimeout(() => {
-          setStickyContAnimate({
-            viewportSelector: '.miniCart_vp_container',
-            containerSelector: '.miniCart__stick_container'
-          });
-        }, 300);
-      });
-    }
-
     (() => {
       const height = $('.mini-cart__drawer-slot').position().top || 0;
       const positionTop = $('.header-sticky-wrapper').position().top || 0;
@@ -130,11 +109,7 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
       action: Action.InitCart,
       status: LoggerStatus.Success
     });
-
-    if (!hasSecuritySection) {
-      setFixedContentStyle('#cart-drawer .trade_cart_not_empty_wrapper', $('#cart-drawer .miniCart__stick_container_fixed').outerHeight() + 20);
-    }
-
+    setFixedContentStyle('#cart-drawer .trade_cart_not_empty_wrapper', $('#cart-drawer .miniCart__stick_container_fixed').outerHeight() + 20);
     const cartInfo = SL_State.get('cartInfo');
     logger.info(`mini 主站购物车 数据上报 initMiniStyleWhenOpen`, {
       data: {

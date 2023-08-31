@@ -95,6 +95,11 @@
       "custom_preview": "Персонализиран преглед",
       "empty_cart": "Количката ви в момента е празна.",
       "item_left": "{{stock}} броя налични",
+      "market": {
+        "illegal": {
+          "excludedState": "Пазарният продукт е незаконен и продуктът се изважда от пазара"
+        }
+      },
       "none_existent": "Продуктът не съществува",
       "view_cart": "Вижте количката"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Можете да качите само до 5 ваучера."
     },
     "detail": {
+      "dutyFee": "Тарифа",
       "orderstatus": {
         "detail": "Детайл"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "ДОБАВИ В КОЛИЧКАТА",
       "filter": "Филтър",
+      "filters_selected": "Избрани са {{count}}",
       "from_price_html": "От {{price}}",
       "less": "По-малко",
       "load_more_tip": "Зареждат се още елементи",

@@ -1,0 +1,72 @@
+{{assign "conact_icon_1" this.settings.conact_icon_1}}
+{{assign "conact_text_1" this.settings.conact_text_1}}
+{{assign "conact_icon_2" this.settings.conact_icon_2}}
+{{assign "conact_text_2" this.settings.conact_text_2}}
+{{assign "conact_icon_3" this.settings.conact_icon_3}}
+{{assign "conact_text_3" this.settings.conact_text_3}}
+{{assign "conact_icon_4" this.settings.conact_icon_4}}
+{{assign "conact_text_4" this.settings.conact_text_4}}
+{{assign "conact_icon_5" this.settings.conact_icon_5}}
+{{assign "conact_text_5" this.settings.conact_text_5}}
+<div class="footer__conact footer__block d-none d-md-block">
+  {{snippet "footer-block-header"}}
+
+  <div class="footer__block-wrapper">
+    <div class="footer__block-content">
+      <div class="footer__conact-list">
+        {{#if conact_text_1}}
+          {{snippet "footer-conact-block" icon=conact_icon_1 text=conact_text_1}}
+        {{/if}}
+        {{#if conact_text_2}}
+          {{snippet "footer-conact-block" icon=conact_icon_2 text=conact_text_2}}
+        {{/if}}
+        {{#if conact_text_3}}
+          {{snippet "footer-conact-block" icon=conact_icon_3 text=conact_text_3}}
+        {{/if}}
+        {{#if conact_text_4}}
+          {{snippet "footer-conact-block" icon=conact_icon_4 text=conact_text_4}}
+        {{/if}}
+        {{#if conact_text_5}}
+          {{snippet "footer-conact-block" icon=conact_icon_5 text=conact_text_5}}
+        {{/if}}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="footer__conact footer__block footer__menu d-md-none">
+  {{#snippet "global-dropdown-list" relatedId=sectionId status=false}}
+    {{#child "trigger"}}
+      {{#snippet "footer-block-header" normalTitle="Menu"}}
+        {{snippet "icons/icon_dropdown_list_open" classes="close-icon"}}
+        {{snippet "icons/icon_arrow_down" classes="open-icon"}}
+      {{/snippet}}
+    {{/child}}
+
+    {{#child "dropdownList"}}
+      <div class="footer__block-wrapper" data-dropdown-list data-animation-type="SlipIn">
+        <div class="footer__block-content">
+          <div class="footer__conact-list">
+            {{#if conact_text_1}}
+              {{snippet "footer-conact-block" icon=conact_icon_1 text=conact_text_1}}
+            {{/if}}
+            {{#if conact_text_2}}
+              {{snippet "footer-conact-block" icon=conact_icon_2 text=conact_text_2}}
+            {{/if}}
+            {{#if conact_text_3}}
+              {{snippet "footer-conact-block" icon=conact_icon_3 text=conact_text_3}}
+            {{/if}}
+            {{#if conact_text_4}}
+              {{snippet "footer-conact-block" icon=conact_icon_4 text=conact_text_4}}
+            {{/if}}
+            {{#if conact_text_5}}
+              {{snippet "footer-conact-block" icon=conact_icon_5 text=conact_text_5}}
+            {{/if}}
+          </div>
+
+        </div>
+      </div>
+    {{/child}}
+  {{/snippet}}
+</div>

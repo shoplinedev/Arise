@@ -1,0 +1,12 @@
+<div class="search-page-card">
+  <a href="{{#if (isFalsey item.url)}}javascript:;{{else}}{{item.url}}{{/if}}" class="search-page-card__cover" >
+    <div class="search-page-card__title body4">
+      <div class="search-page-card__tag">
+        {{ snippet 'icons/icon_search_page_tag' }}
+      </div>
+      <div class="search-page-card__text fw-bold">
+        {{ item.title }}
+      </div>
+    </div>
+  </a>
+</div>

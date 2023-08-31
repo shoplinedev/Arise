@@ -38,7 +38,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
     }
 
     beforeCreate() {
-      if (window.location.pathname.includes('/user/signIn') && window.SL_State && window.SL_State.get('request.cookie.osudb_uid')) {
+      if (window.location.pathname.includes('/user/signIn') && window.SL_State && window.SL_State.get('request.is_login')) {
         window.location.href = redirectTo(USER_CENTER);
         return false;
       }

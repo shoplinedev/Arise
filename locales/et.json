@@ -95,6 +95,11 @@
       "custom_preview": "Kohandatud eelvaade",
       "empty_cart": "Sinu ostukorv on praegu tühi.",
       "item_left": "Laos {{stock}} tükki",
+      "market": {
+        "illegal": {
+          "excludedState": "Kommertskaubad on ebaseaduslikud ja kaubad jäetakse turult välja"
+        }
+      },
       "none_existent": "Kaupu pole olemas",
       "view_cart": "Vaata ostukorvi"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Saate üles laadida kuni 5 vautšerit."
     },
     "detail": {
+      "dutyFee": "Tariif",
       "orderstatus": {
         "detail": "Detail"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "LISA OSTUKORVI",
       "filter": "Filter",
+      "filters_selected": "{{count}} on valitud",
       "from_price_html": "Alates {{price}}",
       "less": "vähem",
       "load_more_tip": "Rohkemate üksuste laadimine",

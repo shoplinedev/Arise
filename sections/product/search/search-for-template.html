@@ -59,6 +59,12 @@
         {{#if item.object_type '===' 'collection'}}
           {{ snippet 'collection-card' item=item }}
         {{/if}}
+        {{#if item.object_type '===' 'article'}}
+          {{ snippet 'article-card' item=item show_article_author=../section.settings.show_article_author show_article_date=../section.settings.show_article_date }}
+        {{/if}}
+        {{#if item.object_type '===' 'page'}}
+          {{ snippet 'page-card' item=item }}
+        {{/if}}
         {{#if (isFalsey item.object_type)}}
           <div class="col product-item-list">
             {{ snippet 'product/commons/product-item' spu=item index=@index className='__sl-custom-track-product-item-search' }}
@@ -156,6 +162,22 @@
       "type": "switch",
       "label": "t:sections.product_search_search-for-template.settings.product_hover_show_next.label",
       "default": false
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.product_search_search-for-template.settings.group_header__1.label"
+    },
+    {
+      "id": "show_article_author",
+      "type": "switch",
+      "label": "t:sections.product_search_search-for-template.settings.show_article_author.label",
+      "default": true
+    },
+    {
+      "id": "show_article_date",
+      "type": "switch",
+      "label": "t:sections.product_search_search-for-template.settings.show_article_date.label",
+      "default": true
     }
   ],
   "default": {
@@ -165,7 +187,9 @@
       "display_type": "all",
       "product_image_ratio": "0",
       "product_fill_type": "contain",
-      "product_hover_show_next": false
+      "product_hover_show_next": false,
+      "show_article_author": true,
+      "show_article_date": true
     }
   }
 }

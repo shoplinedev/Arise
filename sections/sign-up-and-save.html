@@ -11,26 +11,41 @@
   {{ combine_asset_tag 'stage/sign-up-and-save/index.css' inline=true}}
 {{/if}}
 <!-- stage/sign-up-and-save/index.js -->
-{{ combine_asset_tag 
- 'vendors/axios.min.js'
- 'vendors/query-string.min.js'
- 'vendors/lodash.min.js'
- 'theme-shared/utils/request.js'
- 'theme-shared/utils/sectionsLoad/index.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/utils/i18n.js'
- 'theme-shared/utils/emailReg.js'
- 'commons/utils/checkEmail.js'
- 'commons/utils/debounce.js'
- 'theme-shared/components/hbs/shared/components/toast/toast.js'
- 'commons/components/toast/toast.js'
- 'theme-shared/components/hbs/shared/components/toast/loading.js'
- 'commons/components/toast/loading.js'
- 'commons/components/toast/index.js'
- 'stage/sign-up-and-save/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/axios.rlp.min.js'
+      'vendors/query-string.rlp.min.js'
+      'vendors/lodash.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/axios.min.js'
+      'vendors/query-string.min.js'
+      'vendors/lodash.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/request.js'
+    'theme-shared/utils/sectionsLoad/index.js'
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/utils/emailReg.js'
+    'commons/utils/checkEmail.js'
+    'commons/utils/debounce.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'commons/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'commons/components/toast/loading.js'
+    'commons/components/toast/index.js'
+    'stage/sign-up-and-save/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 <div class="stage-newsletter __sl-custom-track-stage-newsletter" data-section-type="sign-up-and-save" data-section-id="{{ section.id }}">
     <div class="section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}} container{{#if show_newsletter_full}}-fluid{{/if}} color-scheme-{{ color_scheme }}">
@@ -48,6 +63,7 @@
               <div {{{ this.shopline_attributes }}} class="newsletter__btnGroup">
                 <div class="newsletter__input--wrapper">
                   <input class="newsletter__input __sl-custom-track-stage-newsletter-input" placeholder="{{ settings.placeholder }}"></input>
+                  <label class="newsletter__label">{{ settings.placeholder }}</label>
                 </div>
 
                 <button class="__sl-custom-track-stage-newsletter-button newsletter__btn btn btn-primary fw-bold {{#isFalsey (trim settings.button_text)}}has-icon{{/isFalsey}}">
@@ -136,18 +152,18 @@
       "limit": 1,
       "type": "button",
       "icon": "normal",
-      "name": "t:sections.sign-up-and-save.blocks.button_text.name",
+      "name": "t:sections.sign-up-and-save.blocks.button.name",
       "settings": [
         {
           "id": "button_text",
           "type": "text",
-          "label": "t:sections.sign-up-and-save.blocks.button_text.settings.button_text.label",
+          "label": "t:sections.sign-up-and-save.blocks.button.settings.button_text.label",
           "default": ""
         },
         {
           "type": "text",
           "id": "placeholder",
-          "label": "t:sections.sign-up-and-save.blocks.button_text.settings.placeholder.label",
+          "label": "t:sections.sign-up-and-save.blocks.button.settings.placeholder.label",
           "default": "Enter your email"
         }
       ]

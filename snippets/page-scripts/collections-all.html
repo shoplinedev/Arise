@@ -1,11 +1,23 @@
 <!-- product/collections-all/main.js -->
-{{ combine_asset_tag 
- 'vendors/uuid.min.js'
- 'theme-shared/utils/report/page.js'
- 'theme-shared/utils/report/tool.js'
- 'theme-shared/report/common/baseReport.js'
- 'theme-shared/report/product/collection-item.js'
- 'product/collections-all/main.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/uuid.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/uuid.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/report/page.js'
+    'theme-shared/utils/report/tool.js'
+    'theme-shared/report/common/baseReport.js'
+    'theme-shared/report/product/collection-item.js'
+    'product/collections-all/main.js'
+    type="text/javascript"
+    defer=true
+  }}

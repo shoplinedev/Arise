@@ -87,7 +87,7 @@ window.SLM['theme-shared/utils/dataReport/index.js'] = window.SLM['theme-shared/
 
       if (extra && extra.abandonedOrderSeq && extra.event_scenes === 'buy_now') {
         Cookies.set(`${extra.abandonedOrderSeq}_fb_data`, {
-          tp: 2,
+          tp: 1,
           et: Date.now(),
           ed: eid
         });

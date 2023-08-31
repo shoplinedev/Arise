@@ -1,17 +1,30 @@
 <!-- product/commons/js/sku-stepper.js -->
-{{ combine_asset_tag 
- 'vendors/lodash.min.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/utils/i18n.js'
- 'theme-shared/components/hbs/shared/components/toast/toast.js'
- 'commons/components/toast/toast.js'
- 'theme-shared/components/hbs/shared/components/toast/loading.js'
- 'commons/components/toast/loading.js'
- 'commons/components/toast/index.js'
- 'product/commons/js/sku-stepper.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/lodash.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/lodash.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'commons/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'commons/components/toast/loading.js'
+    'commons/components/toast/index.js'
+    'product/commons/js/sku-stepper.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 {{#if request.document_direction '===' 'rtl'}}
   {{ combine_asset_tag 'product/commons/style/sku-stepper.rtl.css' inline=true}}
 {{else}}

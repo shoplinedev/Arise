@@ -1,0 +1,29 @@
+<div class="search-article-card">
+  <a href="{{#if (isFalsey item.url)}}javascript:;{{else}}{{item.url}}{{/if}}" class="search-article-card-wrapper">
+    {{#if item.image.src}}
+      <img src="{{ item.image.src }}">
+    {{/if}}
+    <div class="search-article-card-info">
+      <div class="search-article-card-title-wrapper">
+        <div class="search-article-card__tag">
+          {{ snippet 'icons/icon_search_article_tag' }}
+        </div>
+        <div class="search-article-card-title body5 fw-bold">{{ item.title }}</div>
+      </div>
+      {{#or show_article_date show_article_author}}
+      <div class="search-article-card-extra body4">
+        {{#if show_article_date}}
+        <div class="search-article-card-date">{{ date item.published_at '%B %d, %Y'}}</div>
+        {{/if}}
+        {{#and show_article_date show_article_author}}
+        <div class="search-article-card-line"></div>
+        {{/and}}
+        {{#if show_article_author}}
+        <div class="search-article-card-author">{{ item.author }}</div>
+        {{/if}}
+      </div>
+      {{/or}}
+    </div>
+  </a>
+</div>
+

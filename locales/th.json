@@ -95,6 +95,11 @@
       "custom_preview": "ตัวอย่างแบบกำหนดเอง",
       "empty_cart": "ไม่มีสินค้าในตะกร้าสินค้าของคุณขณะนี้",
       "item_left": "เหลือเพียง {{stock}} รายการเท่านั้น",
+      "market": {
+        "illegal": {
+          "excludedState": "สินค้าในตลาดผิดกฎหมาย สินค้านั้นถูกแยกออกจากตลาด"
+        }
+      },
       "none_existent": "ไม่มีสินค้า",
       "view_cart": "ตรวจสอบตะกร้าสินค้า"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "คุณสามารถอัปโหลดคูปองได้สูงสุด 5 ใบเท่านั้น"
     },
     "detail": {
+      "dutyFee": "ภาษีอากร",
       "orderstatus": {
         "detail": "รายละเอียด"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "เพิ่มลงในตะกร้า",
       "filter": "กรอง",
+      "filters_selected": "เลือก {{count}} รายการแล้ว",
       "from_price_html": "จาก {{price}}",
       "less": "น้อยลง",
       "load_more_tip": "โหลดรายการเพิ่มเติม",

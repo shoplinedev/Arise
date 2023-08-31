@@ -105,7 +105,7 @@ window.SLM['theme-shared/utils/tradeReport/tradeReport.js'] = window.SLM['theme-
       }
     });
     Cookies.set(`${seq}_fb_data`, {
-      tp: eventID ? 2 : 1,
+      tp: 1,
       et: Date.now(),
       ed: eventID || getEventID()
     });

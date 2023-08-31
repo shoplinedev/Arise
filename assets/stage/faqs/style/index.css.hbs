@@ -45,13 +45,24 @@ input{
 }
 .faq__collapse-wrap .faq__collapse-content{
   margin-top:12px;
-  overflow:hidden;
+  max-height:360px;
+  overflow:auto;
+  padding-bottom:1px;
   transform:translateY(40px);
   transition:transform .3s cubic-bezier(.25, .46, .45, .94);
 }
 
 .faq__collapse-wrap+.faq__collapse-title{
   margin-top:20px;
+}
+
+.faq__collapse-title-align--center{
+  justify-content:center;
+}
+
+.faq__collapse-content-align--center{
+  display:grid;
+  justify-items:center;
 }
 
 .faq__richtext{

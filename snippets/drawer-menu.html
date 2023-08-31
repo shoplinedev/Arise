@@ -20,6 +20,10 @@
 	{{assign 'country_selector' true}}
 {{/if}}
 
+{{assign "locale_drawer_id" (append drawer_id "__menu-drawer-locale" )}}
+{{assign "country_drawer_id" (append drawer_id "__menu-drawer-country" )}}
+{{assign "currency_drawer_id" (append drawer_id "__menu-drawer-currency" )}}
+
 <div data-ssr-plugin-wishlist="menu-drawer" class="drawer-menu__container">
   <div class="drawer-menu__wrapper">
     {{snippet 'drawer-menu-nav' animation_row=animation_row }}
@@ -32,7 +36,7 @@
               {{/with}}
               <div class="split-bottom stage-drawer__animation--appear appear-delay-{{ animation_row }}"></div>
               <div class="grid__item stage-drawer__animation--appear appear-delay-{{ global.animation_row }}">
-                  <span class="click body5 locale-currency mobile-nav__link notranslate j-stage-locale __sl-custom-track-stage-locale" data-drawer="menu-drawer-locale">
+                  <span class="click body5 locale-currency mobile-nav__link notranslate j-stage-locale __sl-custom-track-stage-locale" data-drawer="{{locale_drawer_id}}">
                       <span>{{global.localization.language.endonym_name}}</span>
                       {{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
                   </span>
@@ -45,7 +49,7 @@
 							{{assign 'animation_row' (plus global.animation_row 1)}}
 						{{/with}}
 						<div class="grid__item stage-drawer__animation--appear appear-delay-{{ global.animation_row }}">
-							<span class="click body5 locale-currency mobile-nav__link notranslate j-stage-country __sl-custom-track-stage-country" data-drawer="menu-drawer-country">
+							<span class="click body5 locale-currency mobile-nav__link notranslate j-stage-country __sl-custom-track-stage-country" data-drawer="{{country_drawer_id}}">
 								<span>{{global.localization.country.name}}（{{global.localization.country.currency.iso_code}} {{global.localization.country.currency.symbol}}）</span>
 								{{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
 							</span>
@@ -57,7 +61,7 @@
 							{{assign 'animation_row' (plus global.animation_row 1)}}
 						{{/with}}
 						<div class="grid__item stage-drawer__animation--appear appear-delay-{{ global.animation_row }}">
-							<span class="click body5 locale-currency mobile-nav__link notranslate j-stage-currency __sl-custom-track-stage-currency" data-drawer="menu-drawer-currency">
+							<span class="click body5 locale-currency mobile-nav__link notranslate j-stage-currency __sl-custom-track-stage-currency" data-drawer="{{currency_drawer_id}}">
 								<span>{{#if global.show_currency_symbol}}{{global.initialCurrency.currencySymbol}}{{/if}} {{global.initialCurrency.currencyCode}}</span>
 								{{ snippet 'icons/icon_arrow_down' classes="locale-currency__icon--arrow"}}
 							</span>
@@ -70,7 +74,7 @@
 
 {{#if locale_selector}}
 	{{assign 'sub_animation_row' 1 }}
-	{{#snippet 'global_drawer' id="menu-drawer-locale" position=drawer_position level=2}}
+	{{#snippet 'global_drawer' id=locale_drawer_id position=drawer_position level=2}}
 		{{#with this as |global|}}
 			<ul class="drawer-menu-locale-currency locale-currency" data-locale>
 				{{#each global.localization.available_languages}}
@@ -90,7 +94,7 @@
 
 {{#if country_selector}}
 	{{assign 'sub_animation_row' 1 }}
-	{{#snippet 'global_drawer' id="menu-drawer-country" position=drawer_position level=2}}
+	{{#snippet 'global_drawer' id=country_drawer_id position=drawer_position level=2}}
 		{{#with this as |global|}}
 			<ul class="drawer-menu-locale-currency locale-currency" data-country>
 				{{#each global.localization.available_contries}}
@@ -110,7 +114,7 @@
 
 {{#if currency_selector}}
 	{{assign 'sub_animation_row_currency' 1 }}
-	{{#snippet 'global_drawer' id="menu-drawer-currency" position=drawer_position level=2}}
+	{{#snippet 'global_drawer' id=currency_drawer_id position=drawer_position level=2}}
 		{{#with this as |global|}}
 			<div class="drawer-menu-locale-currency locale-currency" data-currency>
 				<div class="currency-search stage-drawer-sub__animation--appear appear-delay-{{ global.sub_animation_row_currency }}">

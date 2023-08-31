@@ -17,7 +17,9 @@
         "product_show_swiper_arrow": false,
         "pc_breadcrumbs": true,
         "thumbnail_position": "bottom",
-        "mb_breadcrumbs": false
+        "mb_breadcrumbs": false,
+        "product_mobile_picture_mode": "full",
+        "main_image_ratio": "auto"
       },
       "blocks": {
         "block-1": {
@@ -30,7 +32,12 @@
         },
         "block-3": {
           "type": "price",
-          "settings": {}
+          "settings": {
+            "show_order": "discount_sell_origin",
+            "sell_font_size": "font_size_small",
+            "origin_font_size": "font_size_small",
+            "sell_font_bold": true
+          }
         },
         "block-4": {
           "type": "sku-selector",
@@ -47,19 +54,26 @@
         "block-6": {
           "type": "product-sell-info",
           "settings": {
+            "layout": "vertical",
             "product_sales_point_1_icon": "globe",
+            "product_sales_point_1_custom_icon": "",
             "product_sales_point_1": "Free worldwide shipping",
             "product_sales_point_2_icon": "checkmark",
+            "product_sales_point_2_custom_icon": "",
             "product_sales_point_2": "Free returns",
             "product_sales_point_3_icon": "leaf",
+            "product_sales_point_3_custom_icon": "",
             "product_sales_point_3": "Carbon neutral",
             "product_sales_point_4_icon": "lock",
+            "product_sales_point_4_custom_icon": "",
             "product_sales_point_4": "Secure payments"
           }
         },
         "block-7": {
           "type": "buy-button",
-          "settings": {}
+          "settings": {
+            "button_layout": "embed"
+          }
         },
         "block-8": {
           "type": "description",

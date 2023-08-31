@@ -13,8 +13,8 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
   const { reportMiniCartView } = window['SLM']['theme-shared/utils/tradeReport/hdReportV2.js'];
   const { DRAWER_EVENT_NAME: TOP_DRAWER_EVENT_NAME, DRAWER_OPERATORS } = window['SLM']['theme-shared/components/hbs/shared/components/topDrawer/const.js'];
   const { DRAWER_EVENT_NAME } = window['SLM']['theme-shared/components/hbs/shared/components/drawer/const.js'];
-  const { initMiniStyleWhenOpen, hasSecuritySection } = window['SLM']['cart/script/biz/sticky-cart/index.js'];
-  const { setStickyContAnimate, setFixedContentStyle, listenElementMutation } = window['SLM']['cart/script/biz/sticky-cart/helper.js'];
+  const { initMiniStyleWhenOpen } = window['SLM']['cart/script/biz/sticky-cart/index.js'];
+  const { setFixedContentStyle, listenElementMutation } = window['SLM']['cart/script/biz/sticky-cart/helper.js'];
   const Service = window['SLM']['cart/script/service/index.js'].default;
   const CartService = window['SLM']['cart/script/service/cart/index.js'].default;
   const responseCodeVO = window['SLM']['cart/script/domain/vo/responseCode.js'].default;
@@ -110,14 +110,6 @@ window.SLM['commons/cart/globalEvent.js'] = window.SLM['commons/cart/globalEvent
           }
         }
       });
-      setTimeout(() => {
-        if (hasSecuritySection) {
-          setStickyContAnimate({
-            viewportSelector: '.miniCart_vp_container',
-            containerSelector: '.miniCart__stick_container'
-          });
-        }
-      }, 300);
     }
   });
   window.SL_EventBus.on(OPEN_TOP_CART, async () => {

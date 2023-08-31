@@ -7,12 +7,18 @@
   {{ combine_asset_tag 'stage/custom-page/index.css' inline=true}}
 {{/if}}
 <!-- stage/custom-page/index.js -->
-{{ combine_asset_tag 
- 'commons/utils/createShadowDom.js'
- 'stage/custom-page/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    
+  {{else}}
+    
+  {{/if}}
+  {{ combine_asset_tag 
+    'commons/utils/createShadowDom.js'
+    'stage/custom-page/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 <div class="__sl-custom-track-stage-customPage color-scheme-{{ section.settings.color_scheme }} section-gap{{#if (isTruthy section.settings.color_scheme '!==' 'none')}}--padding{{/if}}">
   <div class='container {{ prefix }}__container '>

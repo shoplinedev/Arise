@@ -14,6 +14,7 @@ window.SLM['theme-shared/utils/constant.js'] = window.SLM['theme-shared/utils/co
     USE_INTEGRAL: 'use_integral',
     ADD_TIPS: 'add_tips',
     APPLY_COUPON: 'use_discount_code',
+    CHANGE_PO_NUMBER: 'change_po_number',
     NEXT_STEP: 'next_step',
     LAST_STEP: 'last_step',
     CREATE_ORDER: 'create_order_check',

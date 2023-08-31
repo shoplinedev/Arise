@@ -578,7 +578,11 @@ window.SLM['theme-shared/utils/lazysizes/lazysizes.js'] = window.SLM['theme-shar
         _: function () {
           started = Date.now();
           lazysizes.elements = document.getElementsByClassName(lazySizesCfg.lazyClass);
-          lazysizes.extraElements = [];
+
+          if (typeof lazysizes.extraElements === 'undefined') {
+            lazysizes.extraElements = [];
+          }
+
           preloadElems = document.getElementsByClassName(lazySizesCfg.lazyClass + ' ' + lazySizesCfg.preloadClass);
           addEventListener('scroll', throttledCheckElements, true);
           addEventListener('resize', throttledCheckElements, true);

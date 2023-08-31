@@ -4,14 +4,20 @@
   {{ combine_asset_tag 'commons/components/global-drawer/index.css' inline=true}}
 {{/if}}
 <!-- commons/components/global-drawer/index.js -->
-{{ combine_asset_tag 
- 'theme-shared/components/hbs/shared/base/BaseClass.js'
- 'theme-shared/components/hbs/shared/components/drawer/const.js'
- 'theme-shared/components/hbs/shared/components/drawer/index.js'
- 'commons/components/global-drawer/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    
+  {{else}}
+    
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/components/hbs/shared/base/BaseClass.js'
+    'theme-shared/components/hbs/shared/components/drawer/const.js'
+    'theme-shared/components/hbs/shared/components/drawer/index.js'
+    'commons/components/global-drawer/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 {{ assign 'is_nested' false }}
 {{#if level '>' 1}}

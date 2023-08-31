@@ -2,7 +2,6 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] || function () {
   const _exports = {};
-  const dayjs = window['dayjs']['default'];
   const ScrollPagination = window['SLM']['theme-shared/utils/scrollPagination/index.js'].default;
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -13,7 +12,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
   const { getOrderList } = window['SLM']['theme-shared/biz-com/customer/service/orders.js'];
   const { cidMap, reportPageView, reportPageLeave } = window['SLM']['theme-shared/biz-com/customer/reports/orders.js'];
   const { bizOrderStatusEnum, DeliveryStatusI18n, PayStatusI18n } = window['SLM']['theme-shared/biz-com/customer/biz/order/constants.js'];
-  const { initCurrencyChangeListener } = window['SLM']['theme-shared/biz-com/customer/biz/order/utils.js'];
+  const { initCurrencyChangeListener, formateTimeWithGMT } = window['SLM']['theme-shared/biz-com/customer/biz/order/utils.js'];
   const { redirectTo } = window['SLM']['theme-shared/utils/url.js'];
   const sentryLogger = LoggerService.pipeOwner(Owner.OrderList);
   const isMobile = SL_State.get('request.is_mobile');
@@ -139,7 +138,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
       })}</span>
         <div class="create-time">
           <span>${t('order.order_details.time')}</span>
-          <span>${dayjs(createTime).format('YYYY-MM-DD HH:mm A')}</span>
+          <span>${formateTimeWithGMT(createTime)}</span>
         </div>
       </div>
       ${+bizOrderStatus === bizOrderStatusEnum.CANCELED ? `<span class="status cancelled">
@@ -200,23 +199,11 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
       });
     }
 
-    formatTime() {
-      const dateEles = $(listContainerCls).find('[data-date-format]');
-      dateEles.each(function () {
-        const {
-          date,
-          dateFormat
-        } = $(this).data();
-        $(this).show().text(dayjs(date).format(dateFormat || 'YYYY-MM-DD HH:mm A'));
-      });
-    }
-
     init() {
       reportPageView(cidMap.customer);
       $(document).on('DOMContentLoaded', () => {
         this.bindEvent();
         initCurrencyChangeListener(listContainerCls);
-        this.formatTime();
 
         if (!this._isEmpty) {
           new ScrollPagination({

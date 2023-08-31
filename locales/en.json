@@ -95,6 +95,11 @@
       "custom_preview": "Custom preview",
       "empty_cart": "Your cart is currently empty.",
       "item_left": "Only {{stock}} item(s) left",
+      "market": {
+        "illegal": {
+          "excludedState": "The market goods are illegal, and this product is in an excluded state in the market."
+        }
+      },
       "none_existent": "Product does not exist",
       "view_cart": "View cart"
     },
@@ -202,7 +207,7 @@
       "password": "Password",
       "personal__info": "Personal Information",
       "personal__information": "Personal",
-      "phone": "Phone",
+      "phone": "SMS",
       "reset_password_error_hint": "Please bind email or mobile phone first",
       "revoke": "Cancel closing",
       "revoke_message": "This account is under process for closing, account data will be deleted at {{time}}, you can cancel the process before that date.",
@@ -310,7 +315,7 @@
       "orders": "Orders",
       "password": "Password",
       "password_empty_hint": "Please enter password",
-      "phone": "Mobile phone number",
+      "phone": "Phone",
       "phone_empty_message": "Please enter mobile phone number",
       "phone_error_message": "Please enter a mobile phone number with valid format",
       "phone_number_error_message": "Please enter a valid phone number",
@@ -334,7 +339,7 @@
       "sign_in": "Sign In",
       "sign_up": "Register",
       "su": "Su",
-      "subscription_desc": "You can get store's latest activity information",
+      "subscription_desc": "Get the latest updates from our store",
       "sun": "Sun",
       "sunday": "Sunday",
       "th": "Th",
@@ -369,7 +374,7 @@
       "send": "Send"
     },
     "phone": {
-      "mobile_common": "Phone number"
+      "mobile_common": "Phone"
     },
     "register": {
       "privacy_policy": "Privacy Policy",
@@ -382,15 +387,15 @@
       "email_subscription_text": "Subscribe E-mail promotion",
       "line": "LINE",
       "messenger": "Messenger",
-      "phone": "Phone",
-      "phone_subscription_text": "Subscribe phone promotion",
+      "phone": "SMS",
+      "phone_subscription_text": "Optin to get SMS alerts",
       "reason_other_length": "You can enter at most 300 characters",
       "reason_other_placeholder": "Enter content",
       "save_button": "SAVE",
       "subscribe_button": "SUBSCRIBE",
       "subscription_cancel_text": "UNSUBSCRIBE",
       "subscription_hint": "Subscribed",
-      "subscription_title": "Subscription",
+      "subscription_title": "Subscriptions",
       "unsubscribe": "Unsubscribe",
       "unsubscribe_btn": "Unsubscribe",
       "unsubscribe_confirm_text": "Unsubscribe",
@@ -440,7 +445,7 @@
       "no_data": "No data available",
       "pack_up": "Pack up",
       "privacy_policy": "Privacy Policy",
-      "tel_phone": "Phone number",
+      "tel_phone": "Phone",
       "tips": "This website uses cookies to ensure you can get the best experience on our website.",
       "title": "We care about your privacy",
       "username": "Name"
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "You can only upload up to 5 vouchers."
     },
     "detail": {
+      "dutyFee": "Duty",
       "orderstatus": {
         "detail": "Details"
       }
@@ -576,7 +582,7 @@
       "more_payment_options": "More payment options",
       "name": "Name",
       "optional": "Optional",
-      "phone_number": "Phone number",
+      "phone_number": "Phone",
       "product_enquiry": "Product enquiry",
       "submission_failed": "Submission failed, please try again",
       "submission_successfully": "Submitted successfully",
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "Add to cart",
       "filter": "Filter",
+      "filters_selected": "{{count}} selected",
       "from_price_html": "From {{price}}",
       "less": "less",
       "load_more_tip": "Loading more items",

@@ -1,12 +1,25 @@
 <!-- product/collections/header.js -->
-{{ combine_asset_tag 
- 'vendors/lodash.min.js'
- 'theme-shared/utils/sectionsLoad/index.js'
- 'product/collections/js/banner.js'
- 'product/collections/header.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/lodash.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/lodash.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/sectionsLoad/index.js'
+    'product/collections/js/banner.js'
+    'product/collections/header.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 <!-- snippet -->
 <div class="product-list-banner" 
   data-section-type="collections-header"

@@ -95,6 +95,11 @@
       "custom_preview": "Previzualizare personalizată",
       "empty_cart": "Coșul dvs. este gol momentan.",
       "item_left": "{{stock}} (de) bucăți în stoc",
+      "market": {
+        "illegal": {
+          "excludedState": "Produsul de pe piață este ilegal, iar produsul este exclus de pe piață"
+        }
+      },
       "none_existent": "Produsul nu exista",
       "view_cart": "Vizualizare coș"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Puteți încărca doar până la 5 vouchere."
     },
     "detail": {
+      "dutyFee": "Tarifar",
       "orderstatus": {
         "detail": "Detaliu"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "ADAUGĂ LA COȘ",
       "filter": "Filtru",
+      "filters_selected": "{{count}} au fost selectate",
       "from_price_html": "Începând de la {{price}}",
       "less": "Mai puține",
       "load_more_tip": "Se încarcă mai multe articole",

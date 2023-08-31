@@ -95,6 +95,11 @@
       "custom_preview": "Prilagođeni pregled",
       "empty_cart": "Vaša košarica je trenutno prazna.",
       "item_left": "{{stock}} komadi na stanju",
+      "market": {
+        "illegal": {
+          "excludedState": "Proizvod na tržištu je nelegalan, te je isključen iz tržišta"
+        }
+      },
       "none_existent": "Roba ne postoji",
       "view_cart": "Pogledaj košaricu"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Možete učitati najviše 5 bonova."
     },
     "detail": {
+      "dutyFee": "Tarifa",
       "orderstatus": {
         "detail": "Detalj"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "DODAJ U KOŠARICU",
       "filter": "Filter",
+      "filters_selected": "{{count}} su odabrani",
       "from_price_html": "Od {{price}}",
       "less": "manje",
       "load_more_tip": "Učitavanje više stavki",

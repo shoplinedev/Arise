@@ -11,6 +11,7 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
   const { PageType, HandleClassType, getPurchaseSDKCheckoutData, getSubscription } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const { EXPRESS_PAYMENT_BUTTON_COMMON_ITEM } = window['SLM']['theme-shared/components/payment-button/constants.js'];
   const { isProductPreview } = window['SLM']['theme-shared/components/payment-button/utils.js'];
+  const { BrowserPreloadStateFields } = window['SLM']['theme-shared/const/preload-state-fields.js'];
 
   const noop = () => {};
 
@@ -55,7 +56,7 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
         nextAction,
         abandonedOrderInfo,
         marketInfo
-      } = SL_State.get('checkout');
+      } = SL_State.get(BrowserPreloadStateFields.TRADE_CHECKOUT);
       this.jumpToFastCheckoutPage(nextAction, abandonedOrderInfo, marketInfo.marketRegionCountryCode);
     }
 

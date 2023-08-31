@@ -2,7 +2,7 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme-shared/components/smart-payment/index.js'] || function () {
   const _exports = {};
-  const { Payment, PayMode, PaymentProps, Paypal, mergeParams, getClientInfo } = window['@sl/smart-payment'];
+  const { Payment, PayMode, Paypal, mergeParams, getClientInfo } = window['@sl/smart-payment'];
   const loggerService = window['@yy/sl-theme-shared']['/utils/logger/sentry'].default;
   const HidooTracker = window['@yy/sl-ec-tracker']['/lib/tracker/baseParams'].default;
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
@@ -36,7 +36,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
       });
 
       if (!(payments && Array.isArray(payments)) || payments.length === 0) {
-        logger.error(`${loggerPrefix} payments入参非法`, {
+        logger.info(`${loggerPrefix} payments入参`, {
           data: {
             payments
           }
@@ -460,7 +460,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
   _exports.Payment = Payment;
   _exports.Paypal = Paypal;
   _exports.PayMode = PayMode;
-  _exports.PaymentProps = PaymentProps;
   _exports.mergeParams = mergeParams;
   return _exports;
 }();

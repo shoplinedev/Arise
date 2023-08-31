@@ -95,6 +95,11 @@
       "custom_preview": "맞춤 미리보기",
       "empty_cart": "당신의 바구니가 비었습니다",
       "item_left": "{{stock}}건이 남았습니다",
+      "market": {
+        "illegal": {
+          "excludedState": "시장상품은 불법이고, 이 상품은 시장에서 배제된 상태이다."
+        }
+      },
       "none_existent": "상품이 존재하지 않습니다",
       "view_cart": "바구니 보기"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "바우처는 최대 5개까지만 업로드할 수 있습니다."
     },
     "detail": {
+      "dutyFee": "관세",
       "orderstatus": {
         "detail": "상세"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "바구니에 담기",
       "filter": "선택",
+      "filters_selected": "{{count}}개 선택됩니다",
       "from_price_html": "{{price}}에서",
       "less": "태그를 줄입니다",
       "load_more_tip": "더 많은 항목을 불러옵니다",

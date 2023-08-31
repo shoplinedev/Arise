@@ -95,6 +95,11 @@
       "custom_preview": "Personlig översikt",
       "empty_cart": "Din köpkorg är tom.",
       "item_left": "{{stock}} delar i stock",
+      "market": {
+        "illegal": {
+          "excludedState": "Kommersiella varor är olagliga och varor utesluts från marknaden"
+        }
+      },
       "none_existent": "Produkten finns inte",
       "view_cart": "Visa varukorg"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Du kan bara ladda upp upp till 5 kuponger."
     },
     "detail": {
+      "dutyFee": "Taxa",
       "orderstatus": {
         "detail": "Detalj"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "LÄGG TILL KARTA",
       "filter": "Filtrera",
+      "filters_selected": "{{count}} har valts",
       "from_price_html": "Från {{price}}",
       "less": "mindre",
       "load_more_tip": "Laddar fler objekt",

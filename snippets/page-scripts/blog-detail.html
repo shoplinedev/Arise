@@ -1,32 +1,53 @@
 {{!-- js在这个snippet引入是为了 js不会因为section设置隐藏了而没有，进而导致上报也丢失 --}}
 <!-- stage/blog/detail/index.js -->
-{{ combine_asset_tag 
- 'vendors/lodash.min.js'
- 'vendors/eventemitter3.min.js'
- 'vendors/axios.min.js'
- 'vendors/query-string.min.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/utils/i18n.js'
- 'theme-shared/utils/event-bus.js'
- 'theme-shared/utils/form/form.js'
- 'theme-shared/utils/form/index.js'
- 'theme-shared/utils/emailReg.js'
- 'theme-shared/utils/request.js'
- 'theme-shared/utils/sectionsLoad/index.js'
- 'theme-shared/components/hbs/shared/components/toast/toast.js'
- 'commons/components/toast/toast.js'
- 'theme-shared/components/hbs/shared/components/toast/loading.js'
- 'commons/components/toast/loading.js'
- 'commons/components/toast/index.js'
- 'stage/blog/detail/script/report.js'
- 'stage/blog/detail/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/lodash.rlp.min.js'
+      'vendors/eventemitter3.rlp.min.js'
+      'vendors/axios.rlp.min.js'
+      'vendors/query-string.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/lodash.min.js'
+      'vendors/eventemitter3.min.js'
+      'vendors/axios.min.js'
+      'vendors/query-string.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/utils/event-bus.js'
+    'theme-shared/utils/form/form.js'
+    'theme-shared/utils/form/index.js'
+    'theme-shared/utils/emailReg.js'
+    'theme-shared/utils/request.js'
+    'theme-shared/utils/sectionsLoad/index.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'commons/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'commons/components/toast/loading.js'
+    'commons/components/toast/index.js'
+    'stage/blog/detail/script/report.js'
+    'stage/blog/detail/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 <!-- commons/thirdPartyShare/index.js -->
-{{ combine_asset_tag 
- 'theme-shared/components/hbs/thirdPartyShare/js/index.js'
- 'commons/thirdPartyShare/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    
+  {{else}}
+    
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/components/hbs/thirdPartyShare/js/index.js'
+    'commons/thirdPartyShare/index.js'
+    type="text/javascript"
+    defer=true
+  }}

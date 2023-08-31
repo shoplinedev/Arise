@@ -95,6 +95,11 @@
       "custom_preview": "Vlastný náhľad",
       "empty_cart": "Váš košík je momentálne prázdny.",
       "item_left": "{{stock}} kusov na sklade",
+      "market": {
+        "illegal": {
+          "excludedState": "Produkt na trhu je nezákonný a výrobok je vylúčený z trhu"
+        }
+      },
       "none_existent": "Tovar neexistuje",
       "view_cart": "Zobraziť košík"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Môžete nahrať maximálne 5 kupónov."
     },
     "detail": {
+      "dutyFee": "Tarifa",
       "orderstatus": {
         "detail": "Detail"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "PRIDAŤ DO KOŠÍKA",
       "filter": "Filter",
+      "filters_selected": "{{count}} boli vybratí",
       "from_price_html": "Od {{price}}",
       "less": "menej štítkov",
       "load_more_tip": "Načítava sa viac položiek",

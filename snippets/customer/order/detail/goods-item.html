@@ -38,30 +38,32 @@
     </div>
     {{! 遍历 pod 商品的属性 }}
     {{#each propertyInfoList}}
-      {{#if type '==' 'text'}}
-        <div class="goods-item-good-common" translate="no" {{{ this.shopline_attributes }}}>
-          {{name}}: {{value}}
-        </div>
-      {{else if type '==' 'link'}}
-        <div {{{ this.shopline_attributes }}}>
-          <span class="goods-item-good-common">
-            {{name}}:
-          </span>
-          <a target="_blank" href={{first urls 1}} class="goods-item-good-watch">
-            {{! 点击查看 }}
-            {{t 'cart.item.click_to_view'}}
-          </a>
-        </div>
-      {{else if type '==' 'picture'}}
-        <div {{{ this.shopline_attributes }}} translate="no">
-          <span class="goods-item-good-common">
-            {{name}}:
-          </span>
-          <a class="goods-item-good-preview" data-urls="{{urls}}">
-            {{! 定制预览 }}
-            {{t 'cart.item.custom_preview'}}
-          </a>
-        </div>
+      {{#if show "==" true}}
+        {{#if type '==' 'text'}}
+          <div class="goods-item-good-common" translate="no" {{{ this.shopline_attributes }}}>
+            {{name}}: {{value}}
+          </div>
+        {{else if type '==' 'link'}}
+          <div {{{ this.shopline_attributes }}}>
+            <span class="goods-item-good-common">
+              {{name}}:
+            </span>
+            <a target="_blank" href={{first urls 1}} class="goods-item-good-watch">
+              {{! 点击查看 }}
+              {{t 'cart.item.click_to_view'}}
+            </a>
+          </div>
+        {{else if type '==' 'picture'}}
+          <div {{{ this.shopline_attributes }}} translate="no">
+            <span class="goods-item-good-common">
+              {{name}}:
+            </span>
+            <a class="goods-item-good-preview" data-urls="{{urls}}">
+              {{! 定制预览 }}
+              {{t 'cart.item.custom_preview'}}
+            </a>
+          </div>
+        {{/if}}
       {{/if}}
     {{/each}}
     {{! 预售商品的属性 }}

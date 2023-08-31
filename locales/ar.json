@@ -95,6 +95,11 @@
       "custom_preview": "معاينة مخصصة",
       "empty_cart": "سلة التسوق الخاصة بك فارغة حاليا.",
       "item_left": "العناصر المتبقية {{stock}}",
+      "market": {
+        "illegal": {
+          "excludedState": "منتج السوق غير قانوني ، والمنتج مستثنى من السوق"
+        }
+      },
       "none_existent": "المنتج غير موجود",
       "view_cart": "عرض سلة التسوق"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "يدعم تحميل ما يصل إلى 5 قسائم"
     },
     "detail": {
+      "dutyFee": "الرسوم الجمركية",
       "orderstatus": {
         "detail": "التفاصيل"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "أضف إلى السلة",
       "filter": "تصفية",
+      "filters_selected": "تم اختيار {{count}}",
       "from_price_html": "من {{price}}",
       "less": "تسميات أقل",
       "load_more_tip": "تحميل المزيد من العناصر",
@@ -670,7 +677,7 @@
       "hot_sale": "Hot sale!",
       "product_tabs_benefit_amount_locked": "خصم {{benefitAmount}}",
       "product_tabs_benefit_amount_unlocked": "تم فتح الخصم {{benefitAmount}}!",
-      "product_tabs_benefit_discount_locked": "خصم {{{offPercent}}}%",
+      "product_tabs_benefit_discount_locked": "خصم {{offPercent}}%",
       "product_tabs_benefit_discount_unlocked": "تم فتح الخصم {{offPercent}}%!",
       "product_tabs_benefit_free_locked": "عروض مجانية",
       "product_tabs_benefit_free_unlocked": "تم فتح العروض المجانية!",

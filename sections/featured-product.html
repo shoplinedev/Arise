@@ -50,7 +50,17 @@
 {{#schema}}
 {
   "name": "t:sections.featured-product.name",
-  "templates": ["index","collections_all","collection","cart","blogs/list","blogs/detail","404","products/search","page"],
+  "templates": [
+    "index",
+    "collections_all",
+    "collection",
+    "cart",
+    "blogs/list",
+    "blogs/detail",
+    "404",
+    "products/search",
+    "page"
+  ],
   "settings": [
     {
       "type": "product_picker",
@@ -139,31 +149,31 @@
         {
           "type": "select",
           "id": "font_size",
-          "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.label",
+          "label": "t:sections.featured-product.blocks.abstract.settings.font_size.label",
           "default": "medium",
           "options": [
             {
               "value": "extra-large",
-              "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.options__0.label"
+              "label": "t:sections.featured-product.blocks.abstract.settings.font_size.options__0.label"
             },
             {
               "value": "large",
-              "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.options__1.label"
+              "label": "t:sections.featured-product.blocks.abstract.settings.font_size.options__1.label"
             },
             {
               "value": "medium",
-              "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.options__2.label"
+              "label": "t:sections.featured-product.blocks.abstract.settings.font_size.options__2.label"
             },
             {
               "value": "small",
-              "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.font_size.options__3.label"
+              "label": "t:sections.featured-product.blocks.abstract.settings.font_size.options__3.label"
             }
           ]
         },
         {
           "id": "is_upper_case",
           "type": "switch",
-          "label": "t:sections.product_detail_product-preview.blocks.abstract.settings.is_upper_case.label",
+          "label": "t:sections.featured-product.blocks.abstract.settings.is_upper_case.label",
           "default": false
         }
       ],
@@ -255,7 +265,7 @@
       "name": "t:sections.featured-product.blocks.plainText.name",
       "settings": [
         {
-          "type": "text",
+          "type": "richtext",
           "id": "plainText",
           "limit": 0,
           "label": "t:sections.featured-product.blocks.plainText.settings.plainText.label"

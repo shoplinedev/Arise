@@ -95,6 +95,11 @@
       "custom_preview": "Brugerdefineret eksempel",
       "empty_cart": "Din indkøbsvogn er tom i øjeblikket.",
       "item_left": "{{stock}} stykker på lager",
+      "market": {
+        "illegal": {
+          "excludedState": "Kommercielle varer er ulovlige, og varer er udelukket fra markedet"
+        }
+      },
       "none_existent": "Varer findes ikke",
       "view_cart": "Vis indkøbsvogn"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Du kan kun uploade op til 5 værdibeviser."
     },
     "detail": {
+      "dutyFee": "Tarif",
       "orderstatus": {
         "detail": "Detalje"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "FØJ TIL KORT",
       "filter": "Filtrer",
+      "filters_selected": "{{count}} er blevet valgt",
       "from_price_html": "Fra {{price}}",
       "less": "mindre",
       "load_more_tip": "Indlæser flere varer",

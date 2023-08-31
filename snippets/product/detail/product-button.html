@@ -16,6 +16,9 @@
   {{assign "isPreviewProduct" false}}
 {{/if}}
 
+{{! product-quick-add section 里面没有 buy button 的配置，这里可以兜底一下 }}
+{{assign "button_layout" (default block.settings.button_layout "embed")}}
+
 {{! TODO: 一个方案兼顾ssr和csr场景 }}
 {{#if request.design_mode}}
   {{preload_state "productSettleButtonConfig"}}
@@ -36,6 +39,7 @@
   {{#if id "productDetail"}}data-ssr-plugin-pdp-checkout-button-list{{/if}}
   class="product-button-list"
   id="product-button-list_{{id}}"
+  data-buy-button-layout="{{button_layout}}"
 >
   {{#if product.spu.inquiry}}
     <button
@@ -46,48 +50,19 @@
     >{{t "general.contact_us.contact_us"}}</button>
   {{else}}
 
-    <button
-      data-ssr-plugin-pdp-button-sold-out
-      class="sold-out-button btn btn-primary btn-lg disabled pdp_sold_out_{{id}} {{#not isSoldOut}}hide{{/not}}"
-      type="button"
-    >
-      {{t "products.general.sold_out"}}
-    </button>
-    <button
-      data-ssr-plugin-pdp-button-addtocart
-      class="__sl-custom-track-add-to-cart-btn add-to-cart shopline-element-add-to-cart btn
-        {{buttonClass}}
-        btn-lg
-        pdp_add_to_cart_{{id}}
-        {{#if isSoldOut}}hide{{/if}}"
-      type="button"
-    >
-      <span class="pdp_button_text fw-bold">{{t "products.product_list.add_to_cart"}}</span>
-    </button>
+    {{! float 不需要在 m 端显示 }}
+    <div class="{{#and (if button_layout '===' 'float') (isFalsey forModal)}}d-none{{/and}} d-md-block button-group
+    {{#and (if button_layout '===' 'both') (isFalsey forModal)}}JProductButton_embed{{/and}}">
+      {{snippet "product/detail/product-button-group" isNewExpressCheckout=isNewExpressCheckout id=id isSoldOut=isSoldOut layout="embed"}}
+    </div>
 
-    {{#if isNewExpressCheckout}}
-      <div id="payment_button_{{id}}" class="payment-button-container" data-attr="isSoldOut={{isSoldOut}}&id={{id}}">
-        {{ snippet 'trade/buynow-text' }}
+    {{#and (if button_layout "!==" "embed") (isFalsey forModal)}}
+      <div class="d-md-none product-button--float JProductButton_float">
+        {{snippet "product/detail/product-button-group" isNewExpressCheckout=isNewExpressCheckout id=id isSoldOut=isSoldOut layout="float"}}
       </div>
-      {{#forEach paymentButtonConfig.buttonLocationDataList}}
-        {{#if buttonLocation '===' 'productDetail'}}
-          {{#if isSystem}}
-            <div class="pdp_buy_now_{{../id}} product-more-payment-button {{#if isSoldOut}}hide{{/if}}"></div>
-          {{/if}}
-        {{/if}}
-      {{/forEach}}
-    {{else}}
-      {{#if productSettleButtonConfig.buyNow}}
-        <button
-          data-ssr-plugin-pdp-button-buy-now
-          class="buy-now shopline-element-buy-now btn btn-primary btn-lg
-            pdp_buy_now_{{id}}
-            __sl-custom-track-product-detail-buy-now
-            {{#if isSoldOut}}hide{{/if}}"
-        >
-          {{ snippet 'trade/buynow-text' }}
-        </button>
-      {{/if}}
+    {{/and}}
+
+    {{#unless isNewExpressCheckout}}
       {{#inArray (default productSettleButtonConfig.payments) PaypalWay}}
         <div id="pdp_paypal_{{id}}" class="paypay-button shopline-element-paypal disabled {{#if isSoldOut}}hide{{/if}}">
           {{#if isPreviewProduct}}
@@ -98,7 +73,7 @@
           <div class="pdp_buy_now_{{id}} product-more-payment-button {{#if isSoldOut}}hide{{/if}}"></div>
         {{/if}}
       {{/inArray}}
-    {{/if}}
+    {{/unless}}
 
   {{/if}}
 </div>

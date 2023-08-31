@@ -9,6 +9,7 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
   const { headerStickyEvent } = window['SLM']['theme-shared/utils/headerStickyEvent.js'];
   const Base = window['SLM']['commons/base/BaseClass.js'].default;
   const { OPEN_MINI_CART, CLOSE_MINI_CART } = window['SLM']['commons/cart/globalEvent.js'];
+  const isMobile = window['SLM']['commons/utils/isMobile.js'].default;
 
   class Header extends Base {
     constructor() {
@@ -288,8 +289,10 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         $(this.selectors.layoutContainer).toggleClass(this.classes.activeNavClass);
       });
       this.$on('click', this.selectors.drawerBtn, () => {
+        const hasMobileMenu = $('#mobile-menu-drawer').length > 0;
+        const id = isMobile() && hasMobileMenu ? 'mobile-menu-drawer' : 'menu-drawer';
         window.SL_EventBus.emit(DRAWER_EVENT_NAME, {
-          id: 'menu-drawer',
+          id,
           status: 'open'
         });
       });

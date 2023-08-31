@@ -4,7 +4,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/statusBar.js'] = wind
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-  const dayjs = window['dayjs']['default'];
+  const { formateTimeWithGMT } = window['SLM']['theme-shared/biz-com/customer/biz/order/utils.js'];
   const pageData = SL_State.get('customer.order') || {};
   const {
     basicInfo
@@ -25,7 +25,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/statusBar.js'] = wind
     });
     const dateEl = document.createElement('div');
     dateEl.className = 'status-bar-date';
-    dateEl.textContent = `${t('order.order_details.time')} ${dayjs(basicInfo && basicInfo.createTime).format('YYYY-MM-DD HH:mm A')}`;
+    dateEl.textContent = `${t('order.order_details.time')} ${formateTimeWithGMT(basicInfo && basicInfo.createTime)}`;
     containerEl.appendChild(numberEl);
     containerEl.appendChild(dateEl);
 

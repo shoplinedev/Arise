@@ -11,18 +11,36 @@ all_collections:
   {{ combine_asset_tag 'stage/collection-list/index.css' inline=true}}
 {{/if}}
 <!-- stage/collection-list/index.js -->
-{{#if request.document_direction '===' 'rtl'}}
-  {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
-{{else}}
-  {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
-{{/if}}
-{{ combine_asset_tag 
- 'vendors/swiper.min.js'
- 'theme-shared/utils/sectionsLoad/index.js'
- 'stage/collection-list/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{#if request.document_direction '===' 'rtl'}}
+      {{ combine_asset_tag 'vendors/swiper.rlp.min.rtl.css' inline=true }}
+    {{else}}
+      {{ combine_asset_tag 'vendors/swiper.rlp.min.css' inline=true }}
+    {{/if}}
+    {{ combine_asset_tag 
+      'vendors/swiper.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{#if request.document_direction '===' 'rtl'}}
+      {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
+    {{else}}
+      {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+    {{/if}}
+    {{ combine_asset_tag 
+      'vendors/swiper.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/sectionsLoad/index.js'
+    'stage/collection-list/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 {{ assign 'title' section.settings.title }}

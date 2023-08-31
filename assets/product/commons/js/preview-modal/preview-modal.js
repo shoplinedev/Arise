@@ -32,7 +32,8 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
         themeId: getUrlQuery('themeId'),
         ignoreRedirect: getUrlQuery('ignoreRedirect'),
         engineType: getUrlQuery('engineType'),
-        sourcePage: SL_State.get('templateAlias')
+        sourcePage: SL_State.get('templateAlias'),
+        isJsonSettings: true
       }
     });
   }

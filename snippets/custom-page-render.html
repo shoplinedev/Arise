@@ -2,7 +2,7 @@
 .custom-page-render-container iframe{max-width:100%}.custom-page-render-container img{height:auto;max-width:100%}.custom-page-render-container table{word-break: initial;}
 </style>
 
-<div class="custom-page-render-container">
+<div class="custom-page-render-container sl-richtext">
   {{#if forPage}}
     {{snippet 'rich-text-for-shaw-dom' className='bottom' content=(rich_editor_format pageConfig lazyLoadIframe=true)}}
   {{else}}

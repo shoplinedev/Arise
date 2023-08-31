@@ -1,0 +1,60 @@
+{{ log 'oneColumn' 111 }}
+
+{{ assign 'pcMediaList' mediaList }}
+{{#if (boolean needSkuCover '&&' (isFalsey showSkuImg))}}
+  {{ assign 'pcMediaList' (JSONparse '[]') }}
+  {{ assign 'allMediaList' spu.mediaList }}
+  {{ assign 'skuInAllMediaListIndex' (array_find_index allMediaList coverImgObj.url 'resource') }}
+  {{ assign 'pcMediaList' (array_extras pcMediaList 'push' (itemAt allMediaList skuInAllMediaListIndex)) }}
+  {{#each mediaList}}
+    {{ array-push ../pcMediaList this }}
+  {{/each}}
+{{/if}}
+{{ log 'pcMediaList' pcMediaList.length }}
+{{!-- 商品图首屏展示前40张 --}}
+{{ assign 'mediaListFirst' (array-slice pcMediaList 0 40) }}
+<div class="d-none d-md-block">
+  <div data-init-index="{{ initialSlide }}" class="product_pc_flatten_productImage shopline-element-product-image product_productImages_tile {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">
+    {{#if mediaListFirst.length}}
+    {{#each mediaListFirst}}
+      <div {{{ this.shopline_attributes }}} class="flatten_ImageItem">
+        <span data-spu-col-img="{{ resource }}" data-index="{{ @index }}"></span>
+        {{#if type '===' 'VIDEO'}}
+          {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
+{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
+
+          <figure class="videoItem" data-index="{{ @index }}" style="padding-bottom: {{ videoCoverRatio }}">
+            {{#if isYoutube}}
+              <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover this.resource) }}"></div>
+              <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover this.resource) }}" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
+            {{else}}
+              <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ this.cover }}">
+                <source src="{{ this.resource }}" type="video/mp4">
+              </video>
+              <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url this.cover width=1800 }}" data-src="{{ this.cover }}" alt="">
+            {{/if}}
+          </figure>
+        {{else}}{{#if type '===' 'IMAGE'}}
+          <figure data-index="{{ @index }}" class="imageItem imageItem--{{ ../pc_magnifier_type }}" style="padding-bottom: {{ append (default (get 'ratio' (img_size resource)) 100) '%' }}">
+            {{ snippet 'product/detail/product-swiper-img' type='pcOneColImage' }}
+            {{#if ../pc_magnifier_type '==' 'hover'}}
+                {{ assign 'image_width' (get 'width' (img_size resource)) }}
+                {{ assign 'image_height' (get 'height' (img_size resource)) }}
+                <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ resource }}" class="lozad imageItem--hover" alt="{{ alt }}">
+            {{/if}}
+          </figure>
+        {{/if}}{{/if}}
+      </div>
+    {{/each}}
+    <div class="more-pic-btn btn btn-outline-primary btn-sm notranslate">{{ t 'products.product_details.load_more' }}</div>
+      <div class="col-img-tips">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="3" width="16" height="22" rx="8" stroke="{{ theme.settings.color_text }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M14 8V12" stroke="{{ theme.settings.color_text }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    {{else}}
+    <div class="product-detail-empty-image shopline-element-product-image"></div>
+    {{/if}}
+  </div>
+</div>

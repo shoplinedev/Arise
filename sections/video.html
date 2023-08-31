@@ -4,23 +4,29 @@
   {{ combine_asset_tag 'stage/video/index.css' inline=true}}
 {{/if}}
 <!-- stage/video/index.js -->
-{{ combine_asset_tag 
- 'theme-shared/utils/sectionsLoad/index.js'
- 'stage/video/utils/Player.js'
- 'commons/video/LibraryLoader.js'
- 'commons/video/state.js'
- 'commons/video/YoutubeReadyWatcher.js'
- 'stage/video/utils/YouTube.js'
- 'stage/video/utils/LibraryLoader.js'
- 'stage/video/utils/VimeoPlayer.js'
- 'commons/video/AutoplayChecker.js'
- 'commons/video/VideoJs.js'
- 'commons/utils/init-when-visible.js'
- 'stage/video/utils/video.js'
- 'stage/video/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    
+  {{else}}
+    
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/sectionsLoad/index.js'
+    'stage/video/utils/Player.js'
+    'commons/video/LibraryLoader.js'
+    'commons/video/state.js'
+    'commons/video/YoutubeReadyWatcher.js'
+    'stage/video/utils/YouTube.js'
+    'stage/video/utils/LibraryLoader.js'
+    'stage/video/utils/VimeoPlayer.js'
+    'commons/video/AutoplayChecker.js'
+    'commons/video/VideoJs.js'
+    'commons/utils/init-when-visible.js'
+    'stage/video/utils/video.js'
+    'stage/video/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 {{ assign 'full_width' section.settings.full_width }}
 
@@ -73,6 +79,7 @@
       "type": "switch",
       "id": "autoplay",
       "label": "t:sections.video.settings.autoplay.label",
+      "info": "t:sections.video.settings.autoplay.info",
       "default": false
     },
     {

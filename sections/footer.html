@@ -2,63 +2,131 @@
 all_collections:
   need_first_product: false
 ---
-
 {{#if request.document_direction '===' 'rtl'}}
   {{ combine_asset_tag 'stage/footer/style/index.rtl.css' inline=true}}
 {{else}}
   {{ combine_asset_tag 'stage/footer/style/index.css' inline=true}}
 {{/if}}
 <!-- stage/footer/index.js -->
-{{ combine_asset_tag 
- 'vendors/axios.min.js'
- 'vendors/query-string.min.js'
- 'vendors/lodash.min.js'
- 'vendors/eventemitter3.min.js'
- 'theme-shared/utils/request.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/utils/i18n.js'
- 'theme-shared/utils/event-bus.js'
- 'commons/utils/main.js'
- 'commons/utils/helper.js'
- 'commons/utils/index.js'
- 'commons/base/BaseClass.js'
- 'theme-shared/utils/emailReg.js'
- 'commons/utils/checkEmail.js'
- 'commons/utils/debounce.js'
- 'theme-shared/components/hbs/shared/components/toast/toast.js'
- 'commons/components/toast/toast.js'
- 'theme-shared/components/hbs/shared/components/toast/loading.js'
- 'commons/components/toast/loading.js'
- 'commons/components/toast/index.js'
- 'commons/components/dropdownList/index.js'
- 'stage/footer/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/axios.rlp.min.js'
+      'vendors/query-string.rlp.min.js'
+      'vendors/lodash.rlp.min.js'
+      'vendors/eventemitter3.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/axios.min.js'
+      'vendors/query-string.min.js'
+      'vendors/lodash.min.js'
+      'vendors/eventemitter3.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/request.js'
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/utils/event-bus.js'
+    'commons/utils/main.js'
+    'commons/utils/helper.js'
+    'commons/utils/index.js'
+    'commons/base/BaseClass.js'
+    'theme-shared/utils/emailReg.js'
+    'commons/utils/checkEmail.js'
+    'commons/utils/debounce.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'commons/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'commons/components/toast/loading.js'
+    'commons/components/toast/index.js'
+    'commons/components/dropdownList/index.js'
+    'stage/footer/index.js'
+    type="text/javascript"
+    defer=true
+  }}
 
+
+{{ assign 'footer_menu' (get section.settings.copyright_menu navigations) }}
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 {{ assign 'showLetter' section.settings.show_letter_subscribe }}
 {{ assign 'showSocialLogos' section.settings.show_social_media }}
 {{ assign 'color_scheme' section.settings.color_scheme_subscribe }}
-{{ assign 'footerBlockLength' (length blocks) }}
-
-{{ assign 'col' 3 }}
-{{#if (boolean footerBlockLength '>=' 4)}}
-  {{ assign 'col' 4 }}
-{{else}}
-  {{ assign 'col' footerBlockLength }}
+{{ assign 'col' section.settings.blocks_col }}
+{{#if (length section.blocks) '<' col}}
+  {{ assign 'col' (length section.blocks) }}
+{{/if}}
+{{ assign 'align_type' (append 'footer_content_' (default section.settings.align_type 'left')) }}
+{{ assign 'letter_is_block_up' false }}
+{{#if section.settings.letter_show_type '===' 'up'}}
+  {{ assign 'letter_is_block_up' true }}
+{{/if}}
+{{ assign 'media_is_block_up' false }}
+{{#if section.settings.media_show_type '===' 'up'}}
+  {{ assign 'media_is_block_up' true }}
 {{/if}}
 
-{{#if (boolean showLetter '&&' showSocialLogos)}}
-  {{ assign 'footInlineClass' 'footer__block-social-container__space-between' }}
-{{else}}
-  {{ assign 'footInlineClass' 'footer__block-social-container__center' }}
-{{/if}}
+{{ assign 'has_social_logos' false }}
+{{#with this as | global |}}
+  {{#with global.theme.settings}}
+    {{#or social_facebook_link social_twitter_link social_pinterest_link social_instagram_link social_snapchat_link social_tiktok_link social_youtube_link social_linkedin_link social_whatsapp_link}}
+      {{#with global}}
+        {{ assign 'has_social_logos' true }}
+      {{/with}}
+    {{/or}}
+  {{/with}}
+{{/with}}
+{{#unless has_social_logos}}
+  {{ assign 'showSocialLogos' false }}
+{{/unless}}
+{{ assign 'is_db_col' false }}
+{{#and (isFalsey section.settings.letter_pc_show_row) (isFalsey section.settings.media_pc_show_row)}}
+  {{ assign 'is_db_col' true }}
+{{/and}}
+{{ assign 'is_db_show' false }}
+{{#and showLetter showSocialLogos}}
+  {{ assign 'is_db_show' true }}
+{{/and}}
+<footer
+  id="stage-footer"
+  class="__sl-custom-track-stage-footer color-scheme-{{ color_scheme }} {{ align_type }}"
+  style="--padding-top:{{ default (append section.settings.padding_top 'px') '40px' }};--padding-bottom:{{ default (append section.settings.padding_bottom 'px') '40px' }};--padding-left:{{ default (append section.settings.padding_left 'px') '30px' }};--padding-right:{{ default (append section.settings.padding_right 'px') '30px' }};--media-icon-width:{{ section.settings.media_icon_width }}px;--media-icon-padding:{{ section.settings.media_icon_padding }}px;"
 
-<footer id="stage-footer" class="__sl-custom-track-stage-footer color-scheme-{{ color_scheme }}">
+>
   <div class="footer__wrapper entry-line">
     <div class="footer__body container g-4 g-md-5">
-      <div class="footer__block-container row row-cols-md-{{ col }} {{#if col '===' 1}}footer__block-container--text-center{{/if}}">
+      {{#or letter_is_block_up media_is_block_up}}
+        {{ assign 'align_class' 'content-align-row' }}
+        {{#and letter_is_block_up media_is_block_up}}
+          {{#and is_db_col is_db_show}}
+            {{ assign 'align_class' 'content-align-col' }}
+          {{/and}}
+        {{/and}}
+        {{ assign 'is_single' true }}
+        <div class="footer__block-social-container footer-letter-media-up {{ align_class }}">
+          {{#and showLetter letter_is_block_up}}
+            {{ assign 'is_single' false }}
+            {{!-- 邮件订阅 --}}
+            <div class="footer__block-subscribe letter-size--{{ section.settings.letter_show_size }}">
+              {{ snippet 'footer-news-letter' data=section }}
+            </div>
+          {{/and}}
+          {{#and showSocialLogos media_is_block_up}}
+            {{!-- 社交媒体 --}}
+            <div class="footer__block-social {{#if is_single}}footer__block-social--nomargin{{/if}}">
+              {{ snippet 'footer-social' }}
+            </div>
+          {{/and}}
+        </div>
+      {{/or}}
+      <div
+        class="footer__block-container row
+          row-cols-md-{{ col }}"
+      >
         {{#with section as | section |}}
           {{#each blocks}}
             {{!-- 快速导航 --}}
@@ -75,41 +143,64 @@ all_collections:
             {{/if}}
             {{!-- 图片 --}}
             {{#if type '===' 'image'}}
-              <div class="footer__block-image" {{{ this.shopline_attributes }}}>
+              <div class="footer__block footer__block-image" {{{ this.shopline_attributes }}}>
                 {{ snippet 'footer-image' }}
               </div>
+            {{/if}}
+            {{!-- Email subscriptions --}}
+            {{#if type '===' 'newsletter'}}
+              <div class="footer__block" {{{ this.shopline_attributes }}}>
+                {{ snippet 'footer-block-header' }}
+                {{ snippet 'footer-news-letter' data=this }}
+              </div>
+            {{/if}}
+            {{#if type '===' 'social_media'}}
+              <div class="footer__block" {{{ this.shopline_attributes }}} style="--block-media-icon-width:{{ default (append settings.block_media_icon_width 'px') '28px' }};--block-media-icon-padding:{{ default (append settings.block_media_icon_padding 'px') '8px' }};">
+                {{ snippet 'footer-social' data=this }}
+              </div>
+            {{/if}}
+            {{!-- conact --}}
+            {{#if type '===' 'conact'}}
+              {{ snippet 'footer-conact' sectionId=section.id }}
+            {{/if}}
+            {{!-- logo list --}}
+            {{#if type '===' 'logo_list'}}
+              {{ snippet 'footer-logo-list' sectionId=section.id }}
             {{/if}}
             <div class="footer__block-divider d-md-none entry-line"></div>
           {{/each}}
         {{/with}}
       </div>
-        {{ assign 'has_social_logos' false }}
-        {{#with theme.settings}}
-          {{#or social_facebook_link social_twitter_link social_pinterest_link social_instagram_link social_snapchat_link social_tiktok_link social_youtube_link social_linkedin_link}}
-            {{ object_set ../../this 'has_social_logos' true }}
-          {{/or}}
-        {{/with}}
-      <div class="{{#or showLetter has_social_logos}}footer_social--divider {{/or}}{{#if showLetter}}footer_social-hasletter {{/if}}footer__block-social-container row g-4 {{ footInlineClass }}">
-        {{#if showLetter}}
-          {{!-- 邮件订阅 --}}
-          <div class="footer__block-subscribe">
-            {{ snippet 'footer-news-letter' }}
-          </div>
-        {{/if}}
-        {{#if showSocialLogos}}
-          {{!-- 社交媒体 --}}
-          <div class="footer__block-social">
-            {{ snippet 'footer-social' }}
-          </div>
-        {{/if}}
-        {{#or showLetter showSocialLogos}}
-          <div class="footer__block-divider d-md-none entry-line"></div>
-        {{/or}}
-      </div>
+      {{#or (isFalsey letter_is_block_up) (isFalsey media_is_block_up)}}
+        {{ assign 'align_class' 'content-align-row' }}
+        {{#and (isFalsey letter_is_block_up) (isFalsey media_is_block_up)}}
+          {{#and is_db_col is_db_show}}
+            {{ assign 'align_class' 'content-align-col' }}
+          {{/and}}
+        {{/and}}
+        <div class="footer__block-social-container footer-letter-media-down {{ align_class }}">
+          {{#and showLetter (isFalsey letter_is_block_up)}}
+            {{ assign 'has_letter' true }}
+            {{!-- 邮件订阅 --}}
+            <div class="footer__block-subscribe letter-size--{{ section.settings.letter_show_size }}">
+              {{ snippet 'footer-news-letter' data=section }}
+            </div>
+          {{/and}}
+          {{#and showSocialLogos (isFalsey media_is_block_up)}}
+            {{!-- 社交媒体 --}}
+            <div class="footer__block-social {{#unless has_letter}}footer__block-social--nomargin{{/unless}}">
+              {{ snippet 'footer-social' }}
+            </div>
+          {{/and}}
+        </div>
+      {{/or}}
     </div>
   </div>
   <div class="footer__corner entry-line {{#if section.settings.footer_division}}footer-division{{/if}}">
-    <div class="footer__corner-wrapper container">
+    <div
+      class="footer__corner-wrapper container
+        {{#if section.settings.copyright_show_type '===' 'vertical'}}content_vertical{{/if}}"
+    >
       <div class="footer__corner-top">
         {{#or section.settings.show_locale_selector section.settings.show_currency_selector section.settings.show_country_selector}}
           <div class="footer__tool-container">
@@ -121,16 +212,25 @@ all_collections:
           {{ snippet 'footer-pay-channel' }}
         {{/if}}
       </div>
-      <div class="footer__corner-bottom">
-        {{ assign 'copyright_prefix' (t 'general.footer.copyright' year=(year) storeName=storeInfo.name) }}
-        <div class="footer-copy-box sl-a-tag">
-        {{#and section.settings.show_copyright (trim copyright_prefix)}}
-          <p class="footer__copyright">{{{ copyright_prefix }}}&nbsp;</p>{{{ section.settings.copyright_text }}}
-        {{/and}}
-        {{#if section.settings.show_powered}}
-          <p class="footer__powered">{{{ powered_by_link }}}</p>
-        {{/if}}
+      <div
+        class="footer__corner-bottom
+          {{#if section.settings.copyright_menu_type '===' 'copyright_left'}}corner-content__left{{/if}}"
+      >
+        <div class="footer__cp-box">
+          {{ assign 'copyright_prefix' (t 'general.footer.copyright' year=(year) storeName=storeInfo.name) }}
+          <div class="footer-copy-box sl-a-tag">
+            {{#and section.settings.show_copyright (trim copyright_prefix)}}
+              <p class="footer__copyright">{{{ copyright_prefix }}}&nbsp;</p>{{{ section.settings.copyright_text }}}
+            {{/and}}
+            {{#if section.settings.show_powered}}
+              <p class="footer__powered">{{{ powered_by_link }}}</p>
+            {{/if}}
+          </div>
         </div>
+        {{#if section.settings.copyright_menu}}
+          {{ assign 'navigation' (get section.settings.copyright_menu navigations) }}
+          {{ snippet 'footer-menu-copyright' navigation=navigation }}
+        {{/if}}
       </div>
     </div>
   </div>
@@ -170,10 +270,122 @@ all_collections:
       "label": "t:sections.footer.settings.group_header__0.label"
     },
     {
+      "type": "range",
+      "id": "blocks_col",
+      "label": "t:sections.footer.settings.blocks_col.label",
+      "default": 4,
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "unit": "t:sections.footer.settings.blocks_col.unit"
+    },
+    {
+      "type": "select",
+      "id": "align_type",
+      "label": "t:sections.footer.settings.align_type.label",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.footer.settings.align_type.options__0.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.footer.settings.align_type.options__1.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.footer.settings.padding_top.label",
+      "default": 40,
+      "max": 100,
+      "min": 0,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.footer.settings.padding_bottom.label",
+      "default": 40,
+      "max": 100,
+      "min": 0,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "t:sections.footer.settings.padding_left.label",
+      "default": 30,
+      "max": 400,
+      "min": 10,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "t:sections.footer.settings.padding_right.label",
+      "default": 30,
+      "max": 400,
+      "min": 10,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.footer.settings.group_header__1.label"
+    },
+    {
       "type": "switch",
       "id": "show_letter_subscribe",
       "label": "t:sections.footer.settings.show_letter_subscribe.label",
       "default": true
+    },
+    {
+      "type": "switch",
+      "id": "letter_pc_show_row",
+      "label": "t:sections.footer.settings.letter_pc_show_row.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "letter_show_type",
+      "label": "t:sections.footer.settings.letter_show_type.label",
+      "options": [
+        {
+          "value": "up",
+          "label": "t:sections.footer.settings.letter_show_type.options__0.label"
+        },
+        {
+          "value": "down",
+          "label": "t:sections.footer.settings.letter_show_type.options__1.label"
+        }
+      ],
+      "default": "down"
+    },
+    {
+      "type": "select",
+      "id": "letter_show_size",
+      "label": "t:sections.footer.settings.letter_show_size.label",
+      "options": [
+        {
+          "value": "small",
+          "label": "t:sections.footer.settings.letter_show_size.options__0.label"
+        },
+        {
+          "value": "middle",
+          "label": "t:sections.footer.settings.letter_show_size.options__1.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.footer.settings.letter_show_size.options__2.label"
+        }
+      ],
+      "default": "small"
     },
     {
       "type": "richtext",
@@ -195,13 +407,80 @@ all_collections:
     },
     {
       "type": "group_header",
-      "label": "t:sections.footer.settings.group_header__1.label"
+      "label": "t:sections.footer.settings.group_header__2.label"
     },
     {
       "type": "switch",
       "id": "show_social_media",
       "label": "t:sections.footer.settings.show_social_media.label",
       "default": true
+    },
+    {
+      "type": "switch",
+      "id": "media_pc_show_row",
+      "label": "t:sections.footer.settings.media_pc_show_row.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "media_show_type",
+      "label": "t:sections.footer.settings.media_show_type.label",
+      "options": [
+        {
+          "value": "up",
+          "label": "t:sections.footer.settings.media_show_type.options__0.label"
+        },
+        {
+          "value": "down",
+          "label": "t:sections.footer.settings.media_show_type.options__1.label"
+        }
+      ],
+      "default": "down"
+    },
+    {
+      "type": "range",
+      "id": "media_icon_width",
+      "label": "t:sections.footer.settings.media_icon_width.label",
+      "default": 28,
+      "max": 88,
+      "min": 24,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "media_icon_padding",
+      "label": "t:sections.footer.settings.media_icon_padding.label",
+      "default": 8,
+      "max": 40,
+      "min": 8,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "group_header",
+      "label": "t:sections.footer.settings.group_header__3.label"
+    },
+    {
+      "type": "select",
+      "id": "copyright_show_type",
+      "label": "t:sections.footer.settings.copyright_show_type.label",
+      "options": [
+        {
+          "value": "flatten",
+          "label": "t:sections.footer.settings.copyright_show_type.options__0.label"
+        },
+        {
+          "value": "vertical",
+          "label": "t:sections.footer.settings.copyright_show_type.options__1.label"
+        }
+      ],
+      "default": "flatten"
+    },
+    {
+      "type": "choosePaymentIcons",
+      "id": "show_pay_channel",
+      "label": "t:sections.footer.settings.show_pay_channel.label"
     },
     {
       "type": "switch",
@@ -214,6 +493,7 @@ all_collections:
       "type": "switch",
       "id": "show_country_selector",
       "label": "t:sections.footer.settings.show_country_selector.label",
+      "info": "t:sections.footer.settings.show_country_selector.info",
       "default": false
     },
     {
@@ -228,11 +508,6 @@ all_collections:
       "id": "show_currency_flags",
       "label": "t:sections.footer.settings.show_currency_flags.label",
       "default": false
-    },
-    {
-      "type": "choosePaymentIcons",
-      "id": "show_pay_channel",
-      "label": "t:sections.footer.settings.show_pay_channel.label"
     },
     {
       "type": "switch",
@@ -256,9 +531,84 @@ all_collections:
       "type": "switch",
       "label": "t:sections.footer.settings.footer_division.label",
       "default": false
+    },
+    {
+      "type": "menu_picker",
+      "id": "copyright_menu",
+      "label": "t:sections.footer.settings.copyright_menu.label"
+    },
+    {
+      "type": "select",
+      "id": "copyright_menu_type",
+      "label": "t:sections.footer.settings.copyright_menu_type.label",
+      "options": [
+        {
+          "value": "copyright_top",
+          "label": "t:sections.footer.settings.copyright_menu_type.options__0.label"
+        },
+        {
+          "value": "copyright_left",
+          "label": "t:sections.footer.settings.copyright_menu_type.options__1.label"
+        }
+      ],
+      "default": "copyright_top"
     }
   ],
   "blocks": [
+    {
+      "limit": 1,
+      "type": "newsletter",
+      "icon": "email",
+      "name": "t:sections.footer.blocks.newsletter.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.footer.blocks.newsletter.settings.title.label",
+          "default": "Sign up and save"
+        },
+        {
+          "type": "richtext",
+          "id": "subscribe_letter_title",
+          "label": "t:sections.footer.blocks.newsletter.settings.subscribe_letter_title.label",
+          "default": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
+        }
+      ]
+    },
+    {
+      "limit": 1,
+      "type": "social_media",
+      "icon": "normal",
+      "name": "t:sections.footer.blocks.social_media.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.footer.blocks.social_media.settings.title.label",
+          "default": "Follow us"
+        },
+        {
+          "type": "range",
+          "id": "block_media_icon_width",
+          "label": "t:sections.footer.blocks.social_media.settings.block_media_icon_width.label",
+          "default": 28,
+          "max": 88,
+          "min": 24,
+          "step": 1,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "block_media_icon_padding",
+          "label": "t:sections.footer.blocks.social_media.settings.block_media_icon_padding.label",
+          "default": 8,
+          "max": 40,
+          "min": 8,
+          "step": 1,
+          "unit": "px"
+        }
+      ]
+    },
     {
       "type": "menu",
       "icon": "normal",
@@ -324,22 +674,392 @@ all_collections:
         {
           "type": "select",
           "id": "align",
-          "label": "t:sections.footer.blocks.select.settings.align.label",
+          "label": "t:sections.footer.blocks.image.settings.align.label",
           "options": [
             {
               "value": "left",
-              "label": "t:sections.footer.blocks.select.settings.align.options__0.label"
+              "label": "t:sections.footer.blocks.image.settings.align.options__0.label"
             },
             {
               "value": "center",
-              "label": "t:sections.footer.blocks.select.settings.align.options__1.label"
+              "label": "t:sections.footer.blocks.image.settings.align.options__1.label"
             },
             {
               "value": "right",
-              "label": "t:sections.footer.blocks.select.settings.align.options__2.label"
+              "label": "t:sections.footer.blocks.image.settings.align.options__2.label"
             }
           ],
           "default": "center"
+        }
+      ]
+    },
+    {
+      "limit": 5,
+      "type": "conact",
+      "icon": "image",
+      "name": "t:sections.footer.blocks.conact.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.footer.blocks.conact.settings.title.label",
+          "default": "Contact us"
+        },
+        {
+          "type": "select",
+          "id": "conact_icon_1",
+          "default": "address",
+          "label": "t:sections.footer.blocks.conact.settings.conact_icon_1.label",
+          "options": [
+            {
+              "value": "address",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_1.options__0.label"
+            },
+            {
+              "value": "tel",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_1.options__1.label"
+            },
+            {
+              "value": "phone",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_1.options__2.label"
+            },
+            {
+              "value": "wechat",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_1.options__3.label"
+            },
+            {
+              "value": "email",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_1.options__4.label"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "conact_text_1",
+          "label": "t:sections.footer.blocks.conact.settings.conact_text_1.label",
+          "default": "235 Fake St. London, UK"
+        },
+        {
+          "type": "select",
+          "id": "conact_icon_2",
+          "default": "tel",
+          "label": "t:sections.footer.blocks.conact.settings.conact_icon_2.label",
+          "options": [
+            {
+              "value": "address",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_2.options__0.label"
+            },
+            {
+              "value": "tel",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_2.options__1.label"
+            },
+            {
+              "value": "phone",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_2.options__2.label"
+            },
+            {
+              "value": "wechat",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_2.options__3.label"
+            },
+            {
+              "value": "email",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_2.options__4.label"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "conact_text_2",
+          "label": "t:sections.footer.blocks.conact.settings.conact_text_2.label",
+          "default": "+44 020 34473471"
+        },
+        {
+          "type": "select",
+          "id": "conact_icon_3",
+          "default": "email",
+          "label": "t:sections.footer.blocks.conact.settings.conact_icon_3.label",
+          "options": [
+            {
+              "value": "address",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_3.options__0.label"
+            },
+            {
+              "value": "tel",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_3.options__1.label"
+            },
+            {
+              "value": "phone",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_3.options__2.label"
+            },
+            {
+              "value": "wechat",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_3.options__3.label"
+            },
+            {
+              "value": "email",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_3.options__4.label"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "conact_text_3",
+          "label": "t:sections.footer.blocks.conact.settings.conact_text_3.label",
+          "default": "info@chanrolapparel.com"
+        },
+        {
+          "type": "select",
+          "id": "conact_icon_4",
+          "default": "",
+          "label": "t:sections.footer.blocks.conact.settings.conact_icon_4.label",
+          "options": [
+            {
+              "value": "address",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_4.options__0.label"
+            },
+            {
+              "value": "tel",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_4.options__1.label"
+            },
+            {
+              "value": "phone",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_4.options__2.label"
+            },
+            {
+              "value": "wechat",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_4.options__3.label"
+            },
+            {
+              "value": "email",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_4.options__4.label"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "conact_text_4",
+          "label": "t:sections.footer.blocks.conact.settings.conact_text_4.label",
+          "default": ""
+        },
+        {
+          "type": "select",
+          "id": "conact_icon_5",
+          "default": "",
+          "label": "t:sections.footer.blocks.conact.settings.conact_icon_5.label",
+          "options": [
+            {
+              "value": "address",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_5.options__0.label"
+            },
+            {
+              "value": "tel",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_5.options__1.label"
+            },
+            {
+              "value": "phone",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_5.options__2.label"
+            },
+            {
+              "value": "wechat",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_5.options__3.label"
+            },
+            {
+              "value": "email",
+              "label": "t:sections.footer.blocks.conact.settings.conact_icon_5.options__4.label"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "conact_text_5",
+          "label": "t:sections.footer.blocks.conact.settings.conact_text_5.label",
+          "default": ""
+        }
+      ]
+    },
+    {
+      "limit": 5,
+      "type": "logo_list",
+      "icon": "image",
+      "name": "t:sections.footer.blocks.logo_list.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.footer.blocks.logo_list.settings.title.label",
+          "default": "Service"
+        },
+        {
+          "type": "select",
+          "id": "icon_1",
+          "default": "van",
+          "label": "t:sections.footer.blocks.logo_list.settings.icon_1.label",
+          "options": [
+            {
+              "value": "checkbox",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_1.options__0.label"
+            },
+            {
+              "value": "earth",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_1.options__1.label"
+            },
+            {
+              "value": "green",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_1.options__2.label"
+            },
+            {
+              "value": "package",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_1.options__3.label"
+            },
+            {
+              "value": "safe",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_1.options__4.label"
+            },
+            {
+              "value": "van",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_1.options__5.label"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "t:sections.footer.blocks.logo_list.settings.image_1.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text_1",
+          "label": "t:sections.footer.blocks.logo_list.settings.text_1.label",
+          "default": "Fast and free delivery"
+        },
+        {
+          "type": "select",
+          "id": "icon_2",
+          "default": "package",
+          "label": "t:sections.footer.blocks.logo_list.settings.icon_2.label",
+          "options": [
+            {
+              "value": "checkbox",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_2.options__0.label"
+            },
+            {
+              "value": "earth",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_2.options__1.label"
+            },
+            {
+              "value": "green",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_2.options__2.label"
+            },
+            {
+              "value": "package",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_2.options__3.label"
+            },
+            {
+              "value": "safe",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_2.options__4.label"
+            },
+            {
+              "value": "van",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_2.options__5.label"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "t:sections.footer.blocks.logo_list.settings.image_2.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text_2",
+          "label": "t:sections.footer.blocks.logo_list.settings.text_2.label",
+          "default": "30 day refund guarantee"
+        },
+        {
+          "type": "select",
+          "id": "icon_3",
+          "default": "safe",
+          "label": "t:sections.footer.blocks.logo_list.settings.icon_3.label",
+          "options": [
+            {
+              "value": "checkbox",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_3.options__0.label"
+            },
+            {
+              "value": "earth",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_3.options__1.label"
+            },
+            {
+              "value": "green",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_3.options__2.label"
+            },
+            {
+              "value": "package",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_3.options__3.label"
+            },
+            {
+              "value": "safe",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_3.options__4.label"
+            },
+            {
+              "value": "van",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_3.options__5.label"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "t:sections.footer.blocks.logo_list.settings.image_3.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text_3",
+          "label": "t:sections.footer.blocks.logo_list.settings.text_3.label",
+          "default": "Worry free guarantee"
+        },
+        {
+          "type": "select",
+          "id": "icon_4",
+          "default": "checkbox",
+          "label": "t:sections.footer.blocks.logo_list.settings.icon_4.label",
+          "options": [
+            {
+              "value": "checkbox",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_4.options__0.label"
+            },
+            {
+              "value": "earth",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_4.options__1.label"
+            },
+            {
+              "value": "green",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_4.options__2.label"
+            },
+            {
+              "value": "package",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_4.options__3.label"
+            },
+            {
+              "value": "safe",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_4.options__4.label"
+            },
+            {
+              "value": "van",
+              "label": "t:sections.footer.blocks.logo_list.settings.icon_4.options__5.label"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "t:sections.footer.blocks.logo_list.settings.image_4.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text_4",
+          "label": "t:sections.footer.blocks.logo_list.settings.text_4.label",
+          "default": "Lifetime customer support"
         }
       ]
     }
@@ -371,6 +1091,16 @@ all_collections:
       "show_locale_selector": false,
       "show_currency_selector": false,
       "show_currency_flags": true,
+      "blocks_col": 4,
+      "align_type": "left",
+      "padding_left": 30,
+      "padding_right": 30,
+      "padding_top": 40,
+      "padding_bottom": 40,
+      "letter_show_type": "down",
+      "media_show_type": "down",
+      "letter_pc_show_row": false,
+      "media_pc_show_row": false,
       "show_pay_channel": {
         "show": false,
         "pay_channel_list": [

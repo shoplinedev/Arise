@@ -95,6 +95,11 @@
       "custom_preview": "Benutzerdefinierte Vorschau",
       "empty_cart": "Ihr Warenkorb ist derzeit leer.",
       "item_left": "{{stock}} auf Lager",
+      "market": {
+        "illegal": {
+          "excludedState": "Das vermarktete Produkt ist illegal und wird vom Markt ausgeschlossen"
+        }
+      },
       "none_existent": "Der Artikel existiert nicht",
       "view_cart": "Warenkorb ansehen"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Sie können nur bis zu 5 Gutscheine hochladen."
     },
     "detail": {
+      "dutyFee": "Zölle",
       "orderstatus": {
         "detail": "Details"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "ZUM WARENKORB HINZUFÜGEN",
       "filter": "Filter",
+      "filters_selected": "{{count}} ausgewählt",
       "from_price_html": "Ab {{price}}",
       "less": "Weniger Tags",
       "load_more_tip": "Weitere Inhalte laden",

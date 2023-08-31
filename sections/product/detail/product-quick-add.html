@@ -114,14 +114,14 @@
   </div>
 
   {{#if (not request.is_mobile)}}
-    <div class="quick-add-modal__footer">
+    <div class="quick-add-modal__footer" data-scroll-lock-scrollable>
       {{ snippet 'product/detail/product-button' isSoldOut=(or product.spu.soldOut initSku.selectSku.soldOut) id=id }}
     </div>
   {{/if}}
 </div>
 
 {{#if request.is_mobile}}
-  <div class="quick-add-modal__footer">
+  <div class="quick-add-modal__footer" data-scroll-lock-scrollable>
     {{ snippet 'product/detail/product-button' isSoldOut=(or product.spu.soldOut initSku.selectSku.soldOut) id=id }}
   </div>
 {{/if}}

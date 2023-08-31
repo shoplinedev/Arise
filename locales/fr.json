@@ -95,6 +95,11 @@
       "custom_preview": "Aperçu personnalisé",
       "empty_cart": "Votre panier est actuellement vide.",
       "item_left": "{{stock}} pièces restantes",
+      "market": {
+        "illegal": {
+          "excludedState": "Les marchandises marchandes sont illégales et les marchandises sont exclues du marché"
+        }
+      },
       "none_existent": "L’article n’existe pas",
       "view_cart": "Voir le panier"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Vous ne pouvez télécharger que jusqu'à 5 bons."
     },
     "detail": {
+      "dutyFee": "Tariffi",
       "orderstatus": {
         "detail": "Détails"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "AJOUTER AU PANIER",
       "filter": "Filtre",
+      "filters_selected": "{{count}} sélectionné",
       "from_price_html": "À partir de {{price}}",
       "less": "Moins d’étiquettes",
       "load_more_tip": "Charger plus d'articles",

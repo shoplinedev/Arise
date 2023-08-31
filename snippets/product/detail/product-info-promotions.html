@@ -8,10 +8,3 @@
 {{/not}}
 
 <div class="discount-style-plugin"></div>
-
-
-{{!-- 询盘商品不显示倒计时和限时促销挂件 --}}
-{{#not product.spu.inquiry}}
-  {{!-- 营销赠品 --}}
-  {{ snippet 'product/detail/gift-plugin-container' }}
-{{/not}}

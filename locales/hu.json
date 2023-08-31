@@ -95,6 +95,11 @@
       "custom_preview": "Egyedi előnézet",
       "empty_cart": "Az Ön kosara most üres.",
       "item_left": "{{stock}} darab van raktáron",
+      "market": {
+        "illegal": {
+          "excludedState": "A piaci termék nem megengedett, és a termék ki van zárva a piacról"
+        }
+      },
       "none_existent": "A termék nem létezik",
       "view_cart": "Kosár megtekintése"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Legfeljebb 5 utalványt tölthet fel."
     },
     "detail": {
+      "dutyFee": "Tarifa",
       "orderstatus": {
         "detail": "Részlet"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "KOSÁRBA",
       "filter": "Szűrő",
+      "filters_selected": "{{count}} lett kiválasztva",
       "from_price_html": "{{price}} ártól",
       "less": "Kevesebb",
       "load_more_tip": "További elemek betöltése",

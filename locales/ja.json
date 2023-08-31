@@ -95,6 +95,11 @@
       "custom_preview": "カスタムプレビュー",
       "empty_cart": "あなたのカートは現在空です。",
       "item_left": "{{stock}} pieces in stock",
+      "market": {
+        "illegal": {
+          "excludedState": "マーケットの商品が違法であり、本商品はマーケットから削除されている状態となりました。"
+        }
+      },
       "none_existent": "製品が存在しません",
       "view_cart": "カートを見る"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "アップロードできるバウチャーは5つまでです。"
     },
     "detail": {
+      "dutyFee": "関税",
       "orderstatus": {
         "detail": "詳細"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "カートに追加",
       "filter": "フィルター",
+      "filters_selected": "{{count}}点が選択されました",
       "from_price_html": "{{price}} より",
       "less": "レス",
       "load_more_tip": "もっとアイテムをロードする",

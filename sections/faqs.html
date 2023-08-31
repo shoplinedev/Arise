@@ -6,12 +6,18 @@
   {{ combine_asset_tag 'stage/faqs/style/index.css' inline=true}}
 {{/if}}
 <!-- stage/faqs/index.js -->
-{{ combine_asset_tag 
- 'theme-shared/utils/sectionsLoad/index.js'
- 'stage/faqs/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    
+  {{else}}
+    
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/sectionsLoad/index.js'
+    'stage/faqs/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 <div class="color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}" data-section-type="faqs" data-section-id="{{ section.id }}">
   <div class="faq__wrapper container __sl-custom-track-stage-faqs">
@@ -22,7 +28,7 @@
             {{#each block_order as | blockId |}}
                 {{#with (lookup ../blocks blockId)}}
                     {{#if type '===' 'textRow'}}
-                        {{ snippet 'faq-collapse' theme=../../../theme.settings title=settings.title content=settings.question_text color_scheme=section.settings.color_scheme shopline_attributes=shopline_attributes }}
+                        {{ snippet 'faq-collapse' theme=../../../theme.settings title=settings.title content=settings.question_text align=settings.textrow_align color_scheme=section.settings.color_scheme shopline_attributes=shopline_attributes }}
                     {{/if}}
                     {{#if type '===' 'richText'}}
                         {{ snippet 'faq-richtext' title=settings.title content=settings.richtext_text align=settings.richtext_align shopline_attributes=shopline_attributes }}
@@ -88,6 +94,20 @@
           "type": "richtext",
           "default": "Use this text to answer questions in as much detail as possible for your customers.",
           "label": "t:sections.faqs.blocks.textRow.settings.question_text.label"
+        },
+        {
+          "id": "textrow_align",
+          "type": "text_align",
+          "label": "t:sections.faqs.blocks.textRow.settings.textrow_align.label",
+          "default": "left",
+          "options": [
+            {
+              "value": "left"
+            },
+            {
+              "value": "center"
+            }
+          ]
         }
       ]
     },

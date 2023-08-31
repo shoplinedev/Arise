@@ -17,7 +17,8 @@ window.SLM['theme-shared/utils/currency/getCurrencyCode.js'] = window.SLM['theme
       group,
       fraction
     } = getConvertPrice(price);
-    return Number(integer.replace(new RegExp(group, 'g'), '') + (fraction ? `.${fraction}` : ''));
+    const integerWithoutGroup = group ? integer.split(group).join('') : integer;
+    return Number(integerWithoutGroup + (fraction ? `.${fraction}` : ''));
   };
 
   _exports.convertPrice = convertPrice;

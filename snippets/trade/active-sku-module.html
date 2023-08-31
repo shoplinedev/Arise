@@ -13,11 +13,6 @@
 
 <div class="cart-sku-list-promotion">
   {{#if _promotion.benefitType '===' 7}}
-    {{#if _promotion.promotionBenefitList.length '>=' 1}}
-      {{#if _promotion.promotionBenefitList.[0].extMap.hideGiftBanner '!==' 'true'}}
-        {{snippet 'sales/promotion-module-gift'}}
-      {{/if}}
-    {{/if}}
   {{/if}}
   {{#if (isTruthy _saleExtInfo.showAutoCartBanner)}}
     {{snippet 'sales/promotion-module-discount'}}

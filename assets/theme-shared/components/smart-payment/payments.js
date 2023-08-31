@@ -11,6 +11,7 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
   const { newExpressCheckoutButton } = window['SLM']['theme-shared/components/payment-button/express_checkout.js'];
   const { getSubscription, getPurchaseSDKCheckoutData, PageType, HandleClassType, createElement, isFn, isNewExpressCheckout, paymentToast, getPageI18nText } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const { ERROR_TYPE } = window['SLM']['theme-shared/components/smart-payment/constants.js'];
+  const { BrowserPreloadStateFields } = window['SLM']['theme-shared/const/preload-state-fields.js'];
   const PaymentUpdate = 'Payment::Update';
   const CartUpdate = 'Cart::CartDetailUpdate';
   const logger = loggerService.pipeOwner('SmartPayment');
@@ -36,7 +37,10 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
     }
 
     renderElement(dom) {
-      createElement(dom.id, this.parentId);
+      createElement({
+        id: dom.id,
+        parentId: this.parentId
+      });
 
       if (isNewExpressCheckout(this.config.pageType)) {
         this.expressCheckoutButtonList.push(newExpressCheckoutButton({
@@ -140,14 +144,12 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
             }
 
             const {
-              extra,
-              dataReportReq
+              extra
             } = checkoutParams;
             logger.info(`${loggerPrefix} beforeCreateOrder setCheckoutParams`, {
               data: {
                 products,
-                extra,
-                dataReportReq
+                extra
               }
             });
             const {
@@ -166,12 +168,11 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
             this.returnUrl = returnUrl;
             const {
               orderFrom
-            } = SL_State.get('checkout.otherInfo') || {};
+            } = SL_State.get(`${BrowserPreloadStateFields.TRADE_CHECKOUT}.otherInfo`) || {};
             return {
               abandonedOrderInfo: abandonedInfo,
               orderFrom: getSyncData('orderFrom') || orderFrom,
-              returnUrl,
-              dataReportReq
+              returnUrl
             };
           } catch (error) {
             paymentToast({

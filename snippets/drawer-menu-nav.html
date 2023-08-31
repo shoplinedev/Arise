@@ -13,7 +13,7 @@
                 {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
                 {{!--{{assign 'is_open' (is_nav_active this global.request.uri.path)}}--}}
                 {{#if has_dropdown}}
-                    <div class="nav-pd mobile-nav__has-sublist">
+                    <div class="nav-pd mobile-nav__has-sublist {{#unless navItem.hrefAttr}}mobile-nav__empty-url{{/unless}}">
                         <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body3 mobile-nav__link mobile-nav__link--top-level" id="Label-{{ this.id }}">
                             {{ navItem.name }}
                         </a>
@@ -47,7 +47,7 @@
                                     {{/if}}
 
                                     <li class="mobile-nav__item" {{{ this.shopline_attributes }}}>
-                                        <div class="mobile-nav__child-item nav-pd">
+                                        <div class="mobile-nav__child-item nav-pd {{#unless navItem.hrefAttr}}mobile-nav__empty-url{{/unless}}">
                                             <a class="__sl-custom-track-stage-navItem body5 mobile-nav__link" id="Sublabel-{{ this.id }}" {{{navItem.hrefAttr}}}>
                                                 {{navItem.name}}
                                             </a>

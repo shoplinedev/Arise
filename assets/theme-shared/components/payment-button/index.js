@@ -4,7 +4,7 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { getAttrs, getNormalDomId, getExpressCheckoutDomId, getConfig, getNormalPlaceholderElementClassName } = window['SLM']['theme-shared/components/payment-button/utils.js'];
-  const { PAYMENT_BUTTON_COMMON__STYLE_ID, PAYMENT_BUTTON_COMMON_ANIMATED, PAYMENT_BUTTON_COMMON_ITEM_MASK, EXPRESS_PAYMENT_BUTTON_COMMON_ITEM, EXPRESS_PAYMENT_BUTTON_CONTAINER, NORMAL_PAYMENT_BUTTON_CART_CHECKOUT, NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW } = window['SLM']['theme-shared/components/payment-button/constants.js'];
+  const { PAYMENT_BUTTON_COMMON__STYLE_ID, PAYMENT_BUTTON_COMMON_ANIMATED, PAYMENT_BUTTON_COMMON_ITEM_MASK, EXPRESS_PAYMENT_BUTTON_COMMON_ITEM, EXPRESS_PAYMENT_BUTTON_CONTAINER, NORMAL_PAYMENT_BUTTON_CART_CHECKOUT, NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW, NORMAL_PAYMENT_BUTTON_PRODUCT_MORE_OPTIONS } = window['SLM']['theme-shared/components/payment-button/constants.js'];
   const { PageType, ButtonType, ButtonName, convertPageType } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const ShopbyFastCheckoutButton = window['SLM']['theme-shared/components/payment-button/shopby_fast_checkout.js'].default;
 
@@ -121,7 +121,7 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
         if (item.buttonType === ButtonType.NormalButton) {
           const domId = getNormalDomId(this.domId);
           const className = getNormalPlaceholderElementClassName(this.config.id);
-          const buttonClassNameList = [NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW, 'buy-now', 'shopline-element-buy-now', 'btn', 'btn-primary', 'btn-lg', 'product-button-list-btn-wrap', `pdp_buy_now_${this.config.id}`, '__sl-custom-track-product-detail-buy-now', `${this.domAttr.isSoldOut ? 'hide' : ''}`];
+          const buttonClassNameList = [NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW, 'buy-now', 'shopline-element-buy-now', 'btn', 'btn-primary', 'btn-lg', 'product-button-list-btn-wrap', `pdp_buy_now_${this.config.id}`, '__sl-custom-track-product-detail-buy-now', `${this.domAttr.isSoldOut === 'true' ? 'hide' : ''}`];
           item.buttonNameDataList.forEach(innerItem => {
             if (innerItem.buttonName === ButtonName.BUY_NOW) {
               const str = `
@@ -134,6 +134,11 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
               </button>
             `;
               parentDom.insertAdjacentHTML('afterbegin', str);
+              const morePaymentOptions = parentDom.parentNode.querySelector(`.${NORMAL_PAYMENT_BUTTON_PRODUCT_MORE_OPTIONS}`);
+
+              if (morePaymentOptions) {
+                morePaymentOptions.remove();
+              }
             }
           });
           this.renderDomIdMap[item.buttonType] = domId;

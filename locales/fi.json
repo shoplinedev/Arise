@@ -95,6 +95,11 @@
       "custom_preview": "Mukautettu esikatselu",
       "empty_cart": "Ostoskorisi on tällä hetkellä tyhjä.",
       "item_left": "{{stock}} kpl varastossa",
+      "market": {
+        "illegal": {
+          "excludedState": "Markkinoiden tuotteet ovat laittomia, tuotteet suljetaan pois markkinoilta"
+        }
+      },
       "none_existent": "Tavaransa ovat olemattomat",
       "view_cart": "Näytä ostoskori"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Voit ladata enintään 5 kuponkia."
     },
     "detail": {
+      "dutyFee": "Tariffi",
       "orderstatus": {
         "detail": "Yksityiskohta"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "LISÄÄ OSTSKORIIN",
       "filter": "Suodatin",
+      "filters_selected": "{{count}} on valittu",
       "from_price_html": "Alkaen {{price}}",
       "less": "vähemmän",
       "load_more_tip": "Ladataan lisää kohteita",

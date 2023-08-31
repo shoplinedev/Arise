@@ -95,6 +95,11 @@
       "custom_preview": "Özel önizleme",
       "empty_cart": "Sepetiniz şu anda boş.",
       "item_left": "{{stock}} adet stokta",
+      "market": {
+        "illegal": {
+          "excludedState": "Piyasa ürünü yasal olmadığı için ürün piyasadan kaldırıldı"
+        }
+      },
       "none_existent": "Ürünler mevcut değil",
       "view_cart": "Sepeti görüntüle"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "En fazla 5 kupon yükleyebilirsiniz."
     },
     "detail": {
+      "dutyFee": "Tarife",
       "orderstatus": {
         "detail": "Detay"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "SEPETE EKLE",
       "filter": "Filtre",
+      "filters_selected": "{{count}} seçilmiştir",
       "from_price_html": "{{price}} başlayan fiyatlarla",
       "less": "az",
       "load_more_tip": "Daha fazla öğe yükleniyor",

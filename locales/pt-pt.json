@@ -95,6 +95,11 @@
       "custom_preview": "Pré-visualização personalizada",
       "empty_cart": "O seu carrinho de compras está actualmente vazio.",
       "item_left": "Restam {{stock}} pcs",
+      "market": {
+        "illegal": {
+          "excludedState": "O produto no mercado é ilegal e está excluído do mercado"
+        }
+      },
       "none_existent": "O item não existe",
       "view_cart": "Ver carrinho"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Podem ser carregados até 5 vouchers"
     },
     "detail": {
+      "dutyFee": "Tarifa",
       "orderstatus": {
         "detail": "Detalhes"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "Adicionar ao carrinho",
       "filter": "Filtro",
+      "filters_selected": "{{count}} foram selecionados",
       "from_price_html": "A partir de {{price}}",
       "less": "Menos tags",
       "load_more_tip": "Carregar mais itens",

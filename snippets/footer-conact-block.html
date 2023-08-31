@@ -1,0 +1,29 @@
+<div class="footer__conact-block header-menu__footer-border-bottom-color">
+  {{#if icon}}
+    <div class="footer__conact-icon">
+      {{#if icon '===' 'address'}}
+        {{snippet 'icons/icon_conact_address'}}
+      {{/if}}
+      {{#if icon '===' 'tel'}}
+        {{snippet 'icons/icon_conact_tel'}}
+      {{/if}}
+      {{#if icon '===' 'phone'}}
+        {{snippet 'icons/icon_conact_phone'}}
+      {{/if}}
+      {{#if icon '===' 'wechat'}}
+        {{snippet 'icons/icon_conact_wechat'}}
+      {{/if}}
+      {{#if icon '===' 'email'}}
+        {{snippet 'icons/icon_conact_email'}}
+      {{/if}}
+    </div>
+  {{/if}}
+
+  {{#if text}}
+    {{assign 'ele' 'div'}}
+    {{#if icon '===' 'email'}}
+      {{assign 'ele' 'a'}}
+    {{/if}}
+    <{{ele}} class="footer__conact-text body5" {{#if icon '===' 'email'}}href="mailto:{{text}}"{{/if}}>{{text}}</{{ele}}>
+  {{/if}}
+</div>

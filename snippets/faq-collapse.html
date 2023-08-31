@@ -4,10 +4,10 @@
 {{/if}}
 
 {{ assign 'borderColor' (rgba borderColor 0.1) }}
-<div class="faq__collapse-title body3" {{{shopline_attributes}}}>
+<div class="faq__collapse-title body3 faq__collapse-title-align--{{align}}" {{{shopline_attributes}}}>
     {{ snippet 'icons/icon_collapse_down' textColor=theme.color_text borderColor=borderColor cls="faq__collapse-icon"}}
     {{title}}
 </div>
 <div class="faq__collapse-wrap">
-    <div class="faq__collapse-content body3 sl-richtext">{{{content}}}</div>
+    <div class="faq__collapse-content faq__collapse-content-align--{{align}} body3 sl-richtext">{{{content}}}</div>
 </div>

@@ -24,6 +24,7 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
   const debounce = window['SLM']['commons/utils/debounce.js'].default;
   const PayemtnButtonModule = window['SLM']['product/detail/js/payment_button.js'].default;
   const { addToCartThirdReport, addToCartHdReport, buyNowHdReport, paypalHdReport } = window['SLM']['product/detail/js/product-button-report.js'];
+  const FloatButton = window['SLM']['product/detail/js/float-button.js'].default;
 
   function getHdSdkDateId() {
     return window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.getDataId && window.HdSdk.shopTracker.getDataId();
@@ -114,6 +115,9 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       this.spu = spu;
       this.sku = sku;
       this.id = id;
+      this.floatButton = new FloatButton({
+        id
+      });
       this.initPaypal();
       this.initEvent();
       this.toast = new Toast();
@@ -228,9 +232,7 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       const stage = this.getStage();
 
       const renderDefaultBuyNow = () => {
-        if (!this.buttonConfig.buyNow) {
-          this.extraBuyNow();
-        }
+        this.extraBuyNow();
 
         if (!this.isNewExpressCheckout) {
           $(`#${this.payPayId}`).remove();
@@ -613,6 +615,10 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
 
     isPreview() {
       return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
+    }
+
+    destroy() {
+      this.floatButton.destory();
     }
 
   }

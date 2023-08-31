@@ -4,32 +4,47 @@
   {{ combine_asset_tag 'stage/header/style/mod/locale-currency.css' inline=true}}
 {{/if}}
 <!-- stage/header/scripts/locale-currency.js -->
-{{ combine_asset_tag 
- 'vendors/lodash.min.js'
- 'vendors/uuid.min.js'
- 'vendors/js-cookie.min.js'
- 'theme-shared/components/localization/form.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/utils/i18n.js'
- 'theme-shared/components/hbs/shared/components/toast/toast.js'
- 'commons/components/toast/toast.js'
- 'theme-shared/components/hbs/shared/components/toast/loading.js'
- 'commons/components/toast/loading.js'
- 'commons/components/toast/index.js'
- 'commons/base/BaseClass.js'
- 'theme-shared/utils/report/page.js'
- 'theme-shared/utils/report/tool.js'
- 'theme-shared/report/common/baseReport.js'
- 'theme-shared/report/common/inputReport.js'
- 'theme-shared/report/common/hoverReport.js'
- 'theme-shared/report/stage/const.js'
- 'theme-shared/report/stage/index.js'
- 'theme-shared/report/stage/virtualReport.js'
- 'commons/report/virtualReport.js'
- 'stage/header/scripts/locale-currency.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/lodash.rlp.min.js'
+      'vendors/uuid.rlp.min.js'
+      'vendors/js-cookie.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/lodash.min.js'
+      'vendors/uuid.min.js'
+      'vendors/js-cookie.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/components/localization/form.js'
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'commons/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'commons/components/toast/loading.js'
+    'commons/components/toast/index.js'
+    'commons/base/BaseClass.js'
+    'theme-shared/utils/report/page.js'
+    'theme-shared/utils/report/tool.js'
+    'theme-shared/report/common/baseReport.js'
+    'theme-shared/report/common/inputReport.js'
+    'theme-shared/report/common/hoverReport.js'
+    'theme-shared/report/stage/const.js'
+    'theme-shared/report/stage/index.js'
+    'theme-shared/report/stage/virtualReport.js'
+    'commons/report/virtualReport.js'
+    'stage/header/scripts/locale-currency.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 {{ assign 'currency_selector' false }}
 {{ assign 'locale_selector' false }}
@@ -131,7 +146,7 @@
 					{{#each localization.available_contries}}
             <li {{{ this.shopline_attributes }}} class="text-left" data-alias="{{ iso_code }}" data-name="{{ name }}（{{ currency.iso_code }} {{ currency.symbol }}）">
 							<span class="click">
-								<span class="body5 align-middle">{{ name }}（{{ currency.iso_code }} {{ currency.symbol }}）</span>
+								<span class="body5 align-middle">{{ name }}<bdi>（{{ currency.iso_code }} {{ currency.symbol }}）</bdi></span>
 							</span>
 						</li>
 					{{/each}}

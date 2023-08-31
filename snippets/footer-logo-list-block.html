@@ -1,0 +1,32 @@
+<div class="footer__conact-block header-menu__footer-border-bottom-color">
+  {{#or icon image}}
+    <div class="footer__conact-icon">
+      {{#if image}}
+        <img src="{{image}}" class="logo-list-icon" alt="{{alt}}"/>
+      {{else}}
+        {{#if icon "===" "checkbox"}}
+          {{snippet "icons/icon_logo_list_checkbox"}}
+        {{/if}}
+        {{#if icon "===" "van"}}
+          {{snippet "icons/icon_logo_list_van"}}
+        {{/if}}
+        {{#if icon "===" "earth"}}
+          {{snippet "icons/icon_logo_list_earth"}}
+        {{/if}}
+        {{#if icon "===" "green"}}
+          {{snippet "icons/icon_logo_list_green"}}
+        {{/if}}
+        {{#if icon "===" "package"}}
+          {{snippet "icons/icon_logo_list_package"}}
+        {{/if}}
+        {{#if icon "===" "safe"}}
+          {{snippet "icons/icon_logo_list_safe"}}
+        {{/if}}
+      {{/if}}
+    </div>
+  {{/or}}
+
+  {{#if text}}
+    <div class="footer__conact-text sl-richtext body5">{{{text}}}</div>
+  {{/if}}
+</div>

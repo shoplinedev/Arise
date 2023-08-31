@@ -4,12 +4,18 @@
   {{ combine_asset_tag 'stage/map/index.css' inline=true}}
 {{/if}}
 <!-- stage/map/index.js -->
-{{ combine_asset_tag 
- 'theme-shared/utils/sectionsLoad/index.js'
- 'stage/map/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    
+  {{else}}
+    
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/sectionsLoad/index.js'
+    'stage/map/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 {{ assign 'shoplineMap' section }}
 {{ preload_state 'shoplineMap.settings' }}

@@ -9,132 +9,160 @@ all_collections:
   {{ combine_asset_tag 'stage/header/style/index.css' inline=true}}
 {{/if}}
 <!-- stage/header/index.js -->
-{{#if request.document_direction '===' 'rtl'}}
-  {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
-{{else}}
-  {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-{{/if}}
-{{#if request.document_direction '===' 'rtl'}}
-  {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
-{{else}}
-  {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
-{{/if}}
-{{ combine_asset_tag 
- 'vendors/axios.min.js'
- 'vendors/query-string.min.js'
- 'vendors/uuid.min.js'
- 'vendors/lodash.min.js'
- 'vendors/debug.min.js'
- 'vendors/eventemitter3.min.js'
- 'vendors/@sl_currency-tools-core.min.js'
- 'vendors/js-cookie.min.js'
- 'vendors/@yy_sl-theme-shared.min.js'
- 'vendors/@sl_cart.min.js'
- 'vendors/@funnyecho_hamon.min.js'
- 'theme-shared/utils/request.js'
- 'commons/base/BaseClass.js'
- 'theme-shared/utils/report/page.js'
- 'theme-shared/utils/report/tool.js'
- 'theme-shared/report/common/baseReport.js'
- 'theme-shared/report/common/inputReport.js'
- 'theme-shared/report/common/hoverReport.js'
- 'theme-shared/report/stage/const.js'
- 'theme-shared/report/stage/index.js'
- 'theme-shared/report/stage/virtualReport.js'
- 'commons/report/virtualReport.js'
- 'stage/header/scripts/header-search.js'
- 'stage/header/scripts/drawer-menu.js'
- 'theme-shared/components/hbs/shared/base/BaseClass.js'
- 'theme-shared/components/hbs/shared/components/topDrawer/const.js'
- 'theme-shared/components/hbs/shared/components/topDrawer/index.js'
- 'commons/components/topDrawer/index.js'
- 'stage/header/scripts/mobile-locale-currency-drawer.js'
- 'theme-shared/utils/stickyElementManager.js'
- 'theme-shared/components/hbs/shared/components/drawer/const.js'
- 'theme-shared/utils/get-env.js'
- 'theme-shared/utils/createLogger.js'
- 'theme-shared/events/utils/api-logger.js'
- 'theme-shared/events/stage/enum/index.js'
- 'theme-shared/events/stage/developer-api/header-sticky/index.js'
- 'theme-shared/utils/headerStickyEvent.js'
- 'theme-shared/utils/event-bus.js'
- 'theme-shared/utils/parsePathToArray.js'
- 'theme-shared/utils/state-selector.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/utils/i18n.js'
- 'theme-shared/utils/dataAccessor.js'
- 'theme-shared/utils/newCurrency/CurrencyConvert.js'
- 'theme-shared/utils/newCurrency/index.js'
- 'theme-shared/utils/report/const.js'
- 'theme-shared/utils/dataReport/tool.js'
- 'theme-shared/utils/dataReport/ga.js'
- 'theme-shared/utils/dataReport/gad.js'
- 'theme-shared/utils/dataReport/fb.js'
- 'theme-shared/utils/tradeReport/const.js'
- 'theme-shared/utils/tradeReport/index.js'
- 'theme-shared/events/trade/interior-event/index.js'
- 'theme-shared/events/trade/enum/index.js'
- 'theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'
- 'theme-shared/utils/report/hd-const.js'
- 'theme-shared/utils/tradeReport/hdReport.js'
- 'theme-shared/utils/tradeReport/hdReportV2.js'
- 'theme-shared/utils/tradeReport/eventListen.js'
- 'commons/logger/index.js'
- 'commons/utils/isMobile.js'
- 'commons/utils/throttle.js'
- 'commons/utils/main.js'
- 'commons/utils/helper.js'
- 'commons/utils/index.js'
- 'cart/script/biz/sticky-cart/helper.js'
- 'theme-shared/utils/currency/getCurrencyCode.js'
- 'cart/script/report/cartReport.js'
- 'cart/script/biz/sticky-cart/index.js'
- 'cart/script/domain/adapter/svc/internal/config.js'
- 'cart/script/domain/adapter/svc/internal/transport.js'
- 'cart/script/domain/adapter/svc/index.js'
- 'cart/script/domain/adapter/storage/constant.js'
- 'cart/script/domain/adapter/storage/index.js'
- 'cart/script/utils/event-bus/index.js'
- 'cart/script/domain/adapter/svc/internal/constant.js'
- 'cart/script/domain/adapter/svc/cart.js'
- 'cart/script/domain/adapter/svc/voucher.js'
- 'cart/script/domain/adapter/svc/coupon.js'
- 'cart/script/domain/model/helpers.js'
- 'cart/script/domain/adapter/svc/order.js'
- 'cart/script/constant/responseCode.js'
- 'cart/script/constant/cartQuantity.js'
- 'cart/script/domain/model/cart.js'
- 'cart/script/constant/stockType.js'
- 'cart/script/domain/vo/productStock.js'
- 'cart/script/constant/priceType.js'
- 'cart/script/domain/vo/productPriceType.js'
- 'cart/script/utils/object.js'
- 'cart/script/domain/model/cartItem.js'
- 'cart/script/domain/vo/responseCode.js'
- 'cart/script/domain/model/response.js'
- 'cart/script/domain/model/promotionCode.js'
- 'theme-shared/biz-com/trade/optimize-modal/constant.js'
- 'theme-shared/biz-com/trade/optimize-modal/cartChangeItem.js'
- 'cart/script/domain/vo/productVerifyType.js'
- 'cart/script/domain/model/cartVerifyItem.js'
- 'cart/script/service/cart/hooks.js'
- 'cart/script/service/cart/service.js'
- 'cart/script/service/cart/index.js'
- 'cart/script/service/index.js'
- 'commons/utils/dynamicImportMiniCart.js'
- 'theme-shared/components/hbs/shared/components/toast/toast.js'
- 'commons/components/toast/toast.js'
- 'theme-shared/components/hbs/shared/components/toast/loading.js'
- 'commons/components/toast/loading.js'
- 'commons/components/toast/index.js'
- 'commons/cart/globalEvent.js'
- 'stage/header/scripts/desktop-site-nav.js'
- 'stage/header/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{#if request.document_direction '===' 'rtl'}}
+      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.rtl.css' inline=true }}
+      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.rtl.css' inline=true }}
+    {{else}}
+      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.css' inline=true }}
+      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.css' inline=true }}
+    {{/if}}
+    {{ combine_asset_tag 
+      'vendors/axios.rlp.min.js'
+      'vendors/query-string.rlp.min.js'
+      'vendors/uuid.rlp.min.js'
+      'vendors/lodash.rlp.min.js'
+      'vendors/debug.rlp.min.js'
+      'vendors/eventemitter3.rlp.min.js'
+      'vendors/@sl_currency-tools-core.rlp.min.js'
+      'vendors/js-cookie.rlp.min.js'
+      'vendors/@yy_sl-theme-shared.rlp.min.js'
+      'vendors/@sl_cart.rlp.min.js'
+      'vendors/@funnyecho_hamon.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{#if request.document_direction '===' 'rtl'}}
+      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
+      {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
+    {{else}}
+      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+      {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
+    {{/if}}
+    {{ combine_asset_tag 
+      'vendors/axios.min.js'
+      'vendors/query-string.min.js'
+      'vendors/uuid.min.js'
+      'vendors/lodash.min.js'
+      'vendors/debug.min.js'
+      'vendors/eventemitter3.min.js'
+      'vendors/@sl_currency-tools-core.min.js'
+      'vendors/js-cookie.min.js'
+      'vendors/@yy_sl-theme-shared.min.js'
+      'vendors/@sl_cart.min.js'
+      'vendors/@funnyecho_hamon.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/request.js'
+    'commons/base/BaseClass.js'
+    'theme-shared/utils/report/page.js'
+    'theme-shared/utils/report/tool.js'
+    'theme-shared/report/common/baseReport.js'
+    'theme-shared/report/common/inputReport.js'
+    'theme-shared/report/common/hoverReport.js'
+    'theme-shared/report/stage/const.js'
+    'theme-shared/report/stage/index.js'
+    'theme-shared/report/stage/virtualReport.js'
+    'commons/report/virtualReport.js'
+    'stage/header/scripts/header-search.js'
+    'stage/header/scripts/drawer-menu.js'
+    'theme-shared/components/hbs/shared/base/BaseClass.js'
+    'theme-shared/components/hbs/shared/components/topDrawer/const.js'
+    'theme-shared/components/hbs/shared/components/topDrawer/index.js'
+    'commons/components/topDrawer/index.js'
+    'stage/header/scripts/mobile-locale-currency-drawer.js'
+    'theme-shared/utils/stickyElementManager.js'
+    'theme-shared/components/hbs/shared/components/drawer/const.js'
+    'theme-shared/utils/get-env.js'
+    'theme-shared/utils/createLogger.js'
+    'theme-shared/events/utils/api-logger.js'
+    'theme-shared/events/stage/enum/index.js'
+    'theme-shared/events/stage/developer-api/header-sticky/index.js'
+    'theme-shared/utils/headerStickyEvent.js'
+    'theme-shared/utils/event-bus.js'
+    'theme-shared/utils/parsePathToArray.js'
+    'theme-shared/utils/state-selector.js'
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/utils/dataAccessor.js'
+    'theme-shared/utils/newCurrency/CurrencyConvert.js'
+    'theme-shared/utils/newCurrency/index.js'
+    'theme-shared/utils/report/const.js'
+    'theme-shared/utils/dataReport/tool.js'
+    'theme-shared/utils/dataReport/ga.js'
+    'theme-shared/utils/dataReport/gad.js'
+    'theme-shared/utils/dataReport/fb.js'
+    'theme-shared/utils/tradeReport/const.js'
+    'theme-shared/utils/tradeReport/index.js'
+    'theme-shared/events/trade/interior-event/index.js'
+    'theme-shared/events/trade/enum/index.js'
+    'theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'
+    'theme-shared/utils/report/hd-const.js'
+    'theme-shared/utils/tradeReport/hdReport.js'
+    'theme-shared/utils/tradeReport/hdReportV2.js'
+    'theme-shared/utils/tradeReport/eventListen.js'
+    'commons/logger/index.js'
+    'commons/utils/isMobile.js'
+    'commons/utils/throttle.js'
+    'commons/utils/main.js'
+    'commons/utils/helper.js'
+    'commons/utils/index.js'
+    'cart/script/biz/sticky-cart/helper.js'
+    'theme-shared/utils/currency/getCurrencyCode.js'
+    'cart/script/report/cartReport.js'
+    'cart/script/biz/sticky-cart/index.js'
+    'cart/script/domain/adapter/svc/internal/config.js'
+    'cart/script/domain/adapter/svc/internal/transport.js'
+    'cart/script/domain/adapter/svc/index.js'
+    'cart/script/domain/adapter/storage/constant.js'
+    'cart/script/domain/adapter/storage/index.js'
+    'cart/script/utils/event-bus/index.js'
+    'cart/script/domain/adapter/svc/internal/constant.js'
+    'cart/script/domain/adapter/svc/cart.js'
+    'cart/script/domain/adapter/svc/voucher.js'
+    'cart/script/domain/adapter/svc/coupon.js'
+    'cart/script/domain/model/helpers.js'
+    'cart/script/domain/adapter/svc/order.js'
+    'cart/script/constant/responseCode.js'
+    'cart/script/constant/cartQuantity.js'
+    'cart/script/domain/model/cart.js'
+    'cart/script/constant/stockType.js'
+    'cart/script/domain/vo/productStock.js'
+    'cart/script/constant/priceType.js'
+    'cart/script/domain/vo/productPriceType.js'
+    'cart/script/utils/object.js'
+    'cart/script/domain/model/cartItem.js'
+    'cart/script/domain/vo/responseCode.js'
+    'cart/script/domain/model/response.js'
+    'cart/script/domain/model/promotionCode.js'
+    'theme-shared/biz-com/trade/optimize-modal/constant.js'
+    'theme-shared/biz-com/trade/optimize-modal/cartChangeItem.js'
+    'cart/script/domain/vo/productVerifyType.js'
+    'cart/script/domain/model/cartVerifyItem.js'
+    'cart/script/service/cart/hooks.js'
+    'cart/script/service/cart/service.js'
+    'cart/script/service/cart/index.js'
+    'cart/script/service/index.js'
+    'commons/utils/dynamicImportMiniCart.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'commons/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'commons/components/toast/loading.js'
+    'commons/components/toast/index.js'
+    'commons/cart/globalEvent.js'
+    'stage/header/scripts/desktop-site-nav.js'
+    'stage/header/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 {{ assign 'main_menu' (get section.settings.main_menu_link_list navigations) }}
+{{ assign 'mobile_main_menu' (get section.settings.mobile_main_menu_link_list navigations) }}
 {{ assign 'settings' section.settings }}
 {{ assign 'show_toolbar' false }}
 
@@ -154,20 +182,32 @@ all_collections:
 {{/if}}
 
 {{!-- 侧边栏导航 --}}
-{{#snippet 'global_drawer' id='menu-drawer' position='left'}}
+{{ assign 'drawer_id' 'menu-drawer' }}
+{{#snippet 'global_drawer' id=drawer_id position='left'}}
   {{#if section.settings.show_user_entry}}
-  {{#inArray (cond storeInfo.storeTags storeInfo.storeTags (arrayify '')) 'DEVELOPER'}}
-  {{!-- 开发店铺不展示 --}}
-  {{else}}
     {{#child 'head'}}
       {{ snippet 'header-btns' btns='user' classnames='menu-drawer__header' }}
     {{/child}}
-  {{/inArray}}
   {{/if}}
   {{#child}}
-    {{ snippet 'drawer-menu' main_menu=main_menu drawer_position='left' blockObj=blockObj }}
+    {{ snippet 'drawer-menu' drawer_id=drawer_id main_menu=main_menu drawer_position='left' blockObj=blockObj }}
   {{/child}}
 {{/snippet}}
+
+{{!-- 移动端侧边栏菜单 --}}
+{{#and (if section.settings.mobile_main_menu_link_list) (if mobile_main_menu.handle '!==' main_menu.handle)}}
+  {{ assign 'mobile_drawer_id' 'mobile-menu-drawer' }}
+  {{#snippet 'global_drawer' id=mobile_drawer_id position='left'}}
+    {{#if section.settings.show_user_entry}}
+      {{#child 'head'}}
+        {{ snippet 'header-btns' btns='user' classnames='menu-drawer__header' }}
+      {{/child}}
+    {{/if}}
+    {{#child}}
+      {{ snippet 'drawer-menu' drawer_id=mobile_drawer_id main_menu=mobile_main_menu drawer_position='left' blockObj=blockObj }}
+    {{/child}}
+  {{/snippet}}
+{{/and}}
 
 {{ snippet 'global-border-shadow-style' color_scheme=section.settings.color_scheme sectionId=section.id type='modal' }}
 
@@ -185,7 +225,7 @@ all_collections:
 	{{/if}}
 {{/if}}
 {{!-- header --}}
-<div class="header-sticky-wrapper __sl-custom-track-stage-header {{#if section.settings.main_menu_link_list_effect}}header-wrapper-menu--effect{{/if}} {{#if section.settings.header_division}}header-division{{/if}}" data-color-scheme="{{ section.settings.color_scheme }}">
+<div class="header-sticky-wrapper __sl-custom-track-stage-header {{#if section.settings.main_menu_link_list_effect}}header-wrapper-menu--effect{{/if}}" data-color-scheme="{{ section.settings.color_scheme }}">
 	<div id="stage-headerWrapper" class="header__wrapper {{#if overlay_header}}header--is-light header-wrapper--sticky{{/if}}" data-overlay="{{ overlay_header }}">
     <div id="stage-header" data-sticky="{{ boolean section.settings.header_style }}" data-section-id="{{ section.id }}">
       <div class="header__main-wrap">
@@ -238,6 +278,12 @@ all_collections:
       "default": false
     },
     {
+      "id": "header_division_bottom",
+      "type": "switch",
+      "label": "t:sections.header.settings.header_division_bottom.label",
+      "default": false
+    },
+    {
       "type": "group_header",
       "label": "t:sections.header.settings.group_header__0.label"
     },
@@ -285,6 +331,27 @@ all_collections:
       "default": "head"
     },
     {
+      "type": "menu_picker",
+      "id": "mobile_main_menu_link_list",
+      "label": "t:sections.header.settings.mobile_main_menu_link_list.label"
+    },
+    {
+      "type": "select",
+      "id": "main_menu_layout",
+      "label": "t:sections.header.settings.main_menu_layout.label",
+      "default": "dropdown",
+      "options": [
+        {
+          "value": "dropdown",
+          "label": "t:sections.header.settings.main_menu_layout.options__0.label"
+        },
+        {
+          "value": "drawer",
+          "label": "t:sections.header.settings.main_menu_layout.options__1.label"
+        }
+      ]
+    },
+    {
       "type": "select",
       "id": "navigation_layout",
       "label": "t:sections.header.settings.navigation_layout.label",
@@ -299,8 +366,12 @@ all_collections:
           "label": "t:sections.header.settings.navigation_layout.options__1.label"
         },
         {
-          "value": "middle-line",
+          "value": "middle-left",
           "label": "t:sections.header.settings.navigation_layout.options__2.label"
+        },
+        {
+          "value": "middle-line",
+          "label": "t:sections.header.settings.navigation_layout.options__3.label"
         }
       ]
     },
@@ -412,6 +483,7 @@ all_collections:
       "type": "switch",
       "id": "show_country_selector",
       "label": "t:sections.header.settings.show_country_selector.label",
+      "info": "t:sections.header.settings.show_country_selector.info",
       "default": false
     },
     {
@@ -426,12 +498,6 @@ all_collections:
       "id": "show_currency_flags",
       "label": "t:sections.header.settings.show_currency_flags.label",
       "default": true
-    },
-    {
-      "id": "header_division",
-      "type": "switch",
-      "label": "t:sections.header.settings.header_division.label",
-      "default": false
     }
   ]
 }

@@ -1,6 +1,10 @@
+{{#if productMobileThumbnailImageHide '==' 'hide'}}
+  {{ assign 'mobile_class' (append 'product_pagination--' product_mobile_image_switch_position) }}
+{{/if}}
+
 {{ assign 'productImageSizeObj' (JSONparse '{"large": 1704, "medium":1420, "small": 1136}')  }}
 {{ assign 'productWidth' (get productImageSize productImageSizeObj) }}
-{{ assign 'mediaList' spu.mediaList}}
+{{ assign 'mediaList' (default spu.mediaList (JSONparse '[]')) }}
 
 {{#if (isFalsey showSkuImg)}}
   {{ assign 'mainMediaList' (JSONparse '[]') }}
@@ -23,6 +27,29 @@
 {{ assign 'isVideoFirst' (first mediaList)}}
 {{ assign 'isVideoLast' (last mediaList)}}
 
+{{#capture 'compProductMobilePictureMode'}}
+  {{#if productMobilePictureMode '==' 'twoHalf' }}
+    {{#if (boolean (boolean mediaList.length '==' 1) '||' (boolean mediaList.length '==' 0))}}
+      full
+    {{else if mediaList.length '==' 2}}
+      oneHalf
+    {{else}}
+      twoHalf
+    {{/if}}
+  {{else if productMobilePictureMode '==' 'oneHalf' }}
+    {{#if (boolean (boolean mediaList.length '==' 1) '||' (boolean mediaList.length '==' 0))}}
+      full
+    {{else}}
+      oneHalf
+    {{/if}}
+  {{else if productMobilePictureMode '==' 'full' }}
+    full
+  {{/if}}
+{{/capture}}
+
+{{ assign 'trimProductMobilePictureMode' (trim compProductMobilePictureMode)}}
+
+
 <input type="hidden" value="{{ productImageScale }}" class="product_productImageScale_{{selectorId}}">
 <input type="hidden" value="{{ videoMute }}" class="product_productVideoMute_{{selectorId}}">
 <input type="hidden" value="{{ videoLoop }}" class="product_productVideoLoop_{{selectorId}}">
@@ -31,8 +58,11 @@
 <input type="hidden" value="{{ showSkuImg }}" class="product_productImageShowSkuImg_{{selectorId}}">
 <input type="hidden" value="{{ showSwiperArrow }}" class="product_productImageShowSwiperArrow_{{selectorId}}">
 <input type="hidden" value="{{ pc_magnifier_type }}" class="product_productImageMagnifierType_{{selectorId}}">
+<input type="hidden" data-debug="{{ trimProductMobilePictureMode }}" value="{{ trimProductMobilePictureMode }}" class="product_productMobilePictureMode_{{selectorId}}">
+
 
     <input type="hidden" value="{{ productImageShowStyle }}" class="product_productImageShowStyle_{{ selectorId }}">
+    <input type="hidden" value="{{ get 'url' coverImgObj }}" class="product_productImageActiveSkuImage_{{ selectorId }}">
     <input type="hidden" value="{{ productMobileThumbnailImageHide }}" class="product_productMobileThumbnailImageHide_{{ selectorId }}">
 
 <div data-ssr-product-swiper ></div>
@@ -43,7 +73,7 @@
 
 <input type="hidden" value="{{ needSkuCover }}" class="product_productImageNeedSkuCover_{{selectorId}}">
 
-{{#if (boolean productImageShowStyle '!=' 'flatten') true }}
+{{#if (boolean (boolean productImageShowStyle '!=' 'flatten') '&&' (boolean productImageShowStyle '!=' 'one_column') '&&' (boolean productImageShowStyle '!=' 'two_column')) true }}
 <div class="d-none d-md-block">
   <div
     data-initial-slide="{{initialSlide}}"
@@ -156,7 +186,11 @@
                 {{/if}}
               </div>
             {{else if type '===' 'IMAGE'}}
-              <div class="swiper-slide firstInit imageItem imageItem--{{default ../pc_magnifier_type 'pointer'}} {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" data-bottom="height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}" style="transform: translate3d(calc(-100% * {{@index}}), 0px, 0px);height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}">
+                {{#if ../main_image_ratio '!==' 'auto'}}
+        {{ assign 'image_ratio' ../main_image_ratio }}
+    {{/if}}
+
+              <div class="swiper-slide firstInit imageItem imageItem--{{default ../pc_magnifier_type 'pointer'}} {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" data-bottom="height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default image_ratio (default (get 'ratio' (img_size ../coverImgObj.url)) 100)) '%'}}{{else}}{{ append (default image_ratio (default (get 'ratio' (img_size resource)) 100)) '%'}}{{/and}}" style="transform: translate3d(calc(-100% * {{@index}}), 0px, 0px);height:0;padding-bottom:{{#and ../needSkuCover (boolean @index '==' 0 )}}{{append (default image_ratio (default (get 'ratio' (img_size ../coverImgObj.url)) 100)) '%'}}{{else}}{{ append (default image_ratio (default (get 'ratio' (img_size resource)) 100)) '%'}}{{/and}}">
                 {{#if @index '==' ../initialSlide }}
                   {{#if ../templateAlias '===' 'ProductsDetail'}}
                     {{ snippet 'product/detail/product-swiper-img' type='pcImage' class='lozad product_photoSwipe_image' useLazyLoad=false }}
@@ -281,138 +315,30 @@
   </div>
 </div>
 {{else}}
-      {{#if mediaList.length}}
-      {{ assign 'firstItem' (first mediaList) }}
-      {{ assign 'exceptFirstMediaList' (after mediaList 1) }}
-      <div class="product_productImages_tile shopline-element-product-image {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">
-        <div class="row row-cols-md-1 gx-md-4 flattenFirstItem">
-          <div class="flattenFirstItemWrapper">
-            <div class="normalItem" style="display: {{ cond coverImgObj.url 'none' 'block' }}">
-              {{#if firstItem.type '==' 'VIDEO'}}
-                {{ assign 'isYoutube' (boolean (get 'hostname' (urlParse firstItem.resource)) '==' 'www.youtube.com') }}
-                {{ assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size firstItem.cover)) '56.25') '%')) }}
-                <div class="videoItem" data-index="0" style="padding-bottom: {{ videoCoverRatio }}">
-                  {{#if isYoutube}}
-                    <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover firstItem.resource) }}"></div>
-                    <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover firstItem.resource) }}" data-src="{{ get 'middle' (getYouTubeCover firstItem.resource) }}" alt="">
-                  {{else}}
-                    <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ firstItem.cover }}">
-                      <source src="{{ firstItem.resource }}" type="video/mp4">
-                    </video>
-                    <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.cover width=1800 }}" data-src="{{ firstItem.cover }}" alt="">
-                  {{/if}}
-                </div>
-              {{else}}
-                <div class="imageItem imageItem--{{ pc_magnifier_type }}" style="padding-bottom: {{ append (default (get 'ratio' (img_size firstItem.resource)) 100) '%' }}" data-index="0">
-                  <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"   onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.resource width=1800 }}" alt="{{ firstItem.alt }}">
-                  {{#if pc_magnifier_type '==' 'hover'}}
-                    {{ assign 'image_width' (get 'width' (img_size firstItem.resource)) }}
-                    {{ assign 'image_height' (get 'height' (img_size firstItem.resource)) }}
-                    <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" class="lozad imageItem--hover" alt="{{ firstItem.alt }}">
-                  {{/if}}
-                </div>
-              {{/if}}
-            </div>
-            <div class="product_pc_skuImage_flatten product_pc_skuImage_flatten--{{ pc_magnifier_type }}" style="display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
-              {{#if coverImgObj.url}}
-                <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="">
-                {{#if pc_magnifier_type '==' 'hover'}}
-                  {{ assign 'image_width' (get 'width' (img_size coverImgObj.url)) }}
-                  {{ assign 'image_height' (get 'height' (img_size coverImgObj.url)) }}
-                  <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" class="lozad imageItem--hover" alt="{{ alt }}">
-                {{/if}}
-              {{/if}}
-            </div>
-          </div>
-        </div>
-        <div class="exceptFirstMediaList row row-cols-md-2 gx-md-4">
-          <div class="product_images_firstCol">
-            {{#each exceptFirstMediaList}}
-              {{#ifEven @index}}
-                {{#if this.type '==' 'VIDEO'}}
-                  {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
-{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
-
-                  <div class="videoItem" data-index="{{ add @index 1 }}" style="padding-bottom: {{ videoCoverRatio }}">
-                    {{#if isYoutube}}
-                      <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover this.resource) }}"></div>
-                      <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover this.resource) }}" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
-                    {{else}}
-                      <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ this.cover }}">
-                        <source src="{{ this.resource }}" type="video/mp4">
-                      </video>
-                      <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url this.cover width=1800 }}" data-src="{{ this.cover }}" alt="">
-                    {{/if}}
-                  </div>
-                {{else}}
-                  {{ assign 'class' (append 'imageItem--' ../pc_magnifier_type) }}
-                  {{#snippet 'product/detail/product-swiper-img' class=class type='pcTwoColImage' index=(add @index 1)}}
-                    {{#if pc_magnifier_type '==' 'hover'}}
-                      {{ assign 'image_width' (get 'width' (img_size resource)) }}
-                      {{ assign 'image_height' (get 'height' (img_size resource)) }}
-                      <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ resource }}" class="lozad imageItem--hover" alt="{{ alt }}">
-                    {{/if}}
-                  {{/snippet}}
-                {{/if}}
-              {{/ifEven}}
-            {{/each}}
-          </div>
-          <div class="product_images_secondCol">
-            {{#each exceptFirstMediaList}}
-              {{#ifOdd @index}}
-                {{#if this.type '==' 'VIDEO'}}
-                  {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
-{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
-
-                  <div class="videoItem" data-index="{{ add @index 1 }}" style="padding-bottom: {{ videoCoverRatio }}">
-                    {{#if isYoutube}}
-                      <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover this.resource) }}"></div>
-                      <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover this.resource) }}" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
-                    {{else}}
-                      <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ this.cover }}">
-                        <source src="{{ this.resource }}" type="video/mp4">
-                      </video>
-                      <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url this.cover width=1800 }}" data-src="{{ this.cover }}" alt="">
-                    {{/if}}
-                  </div>
-                {{else}}
-                  {{ assign 'class' (append 'imageItem--' ../pc_magnifier_type) }}
-                  {{#snippet 'product/detail/product-swiper-img' class=class type='pcTwoColImage' index=(add @index 1)}}
-                    {{#if pc_magnifier_type '==' 'hover'}}
-                      {{ assign 'image_width' (get 'width' (img_size resource)) }}
-                      {{ assign 'image_height' (get 'height' (img_size resource)) }}
-                      <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ resource }}" class="lozad imageItem--hover" alt="{{ alt }}">
-                    {{/if}}
-                  {{/snippet}}
-                {{/if}}
-              {{/ifOdd}}
-            {{/each}}
-          </div>
-        </div>
-      </div>
-    {{else}}
-      <div class="product_productImages_tile shopline-element-product-image product-detail-empty-image {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}" style="padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') '100%' }}">
-        <div class="product_pc_skuImage_flatten" style="width: 100%; position:absolute; display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
-          {{#if coverImgObj.url}}
-            <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}">
-            {{#if pc_magnifier_type '==' 'hover'}}
-              {{ assign 'image_width' (get 'width' (img_size coverImgObj.url)) }}
-              {{ assign 'image_height' (get 'height' (img_size coverImgObj.url)) }}
-              <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" class="lozad imageItem--hover" alt="{{ alt }}">
-            {{/if}}
-          {{/if}}
-        </div>
-      </div>
-    {{/if}}
+      {{#if productImageShowStyle '===' 'two_column'}}
+      {{ snippet 'product/detail/product-picture-two-column' }}
+    {{else}}{{#if productImageShowStyle '===' 'one_column'}}
+      {{ snippet 'product/detail/product-picture-one-column' }}
+    {{else}}{{#if productImageShowStyle '===' 'flatten'}}
+      {{ snippet 'product/detail/product-picture-flatten' }}
+    {{/if}}{{/if}}{{/if}}
 
 {{/if}}
+
+{{#capture 'canShowSlideByScreen'}}
+  {{#if (boolean trimProductMobilePictureMode '===' 'oneHalf')}}
+    2
+  {{else}}
+    3
+  {{/if}}
+{{/capture}}
 
 <div class="d-md-none">
   <div
     data-initial-slide="{{initialSlide}}"
-    class="hideBulletsPagination d-md-none product_mobile_productImageContainer {{ cond (boolean selectorId) (append 'execute_productImages_mobile_' selectorId) '' }} {{#isFalsey mobileProductImageIsFull }}middleWidth{{/isFalsey}}"
+    class="{{append 'hideBulletsPagination' ' ' mobile_class}} d-md-none product_mobile_productImageContainer_{{trimProductMobilePictureMode}} product_mobile_productImageContainer {{ cond (boolean selectorId) (append 'execute_productImages_mobile_' selectorId) '' }} {{#isFalsey mobileProductImageIsFull }}middleWidth{{/isFalsey}}"
   >
-    <div class="swiper-container product_productImages shopline-element-product-image">
+    <div class="swiper-container product_productImages {{trimProductMobilePictureMode}} {{p}} shopline-element-product-image">
       {{#if mediaList.length }}
         {{assign 'is_no_loop' (or (boolean mediaList.length '===' 1) (boolean isVideoFirst.type '===' 'VIDEO') (boolean isVideoLast.type '===' 'VIDEO'))}}
         {{#capture 'swiper_wrapper_style'}}
@@ -420,17 +346,59 @@
             {{#if (and (isFalsey mobileProductImageIsFull) is_no_loop)}}
               transform: translate3d(calc(75% * -{{initialSlide}} + 12.5%), 0, 0);
             {{else}}
-              transform: translate3d(-{{ multiply initialSlide (cond mobileProductImageIsFull 100 75) }}%, 0, 0);
+              {{#if (boolean (boolean trimProductMobilePictureMode '===' 'oneHalf') '||' (boolean trimProductMobilePictureMode '===' 'twoHalf'))}}
+                {{assign 'lastInitialSlideByScreen' (minus mediaList.length initialSlide)}}                
+                {{#capture 'slideWidth'}}
+                  {{#if (boolean trimProductMobilePictureMode '===' 'oneHalf')}}
+                    ((100% - 0.5 * 5px) / 1.5 + 5px)
+                  {{else}}
+                    ((100% - 1.5 * 5px) / 2.5 + 5px)
+                  {{/if}}
+                {{/capture}}
+                {{#if canShowSlideByScreen '>' lastInitialSlideByScreen}}
+                  {{#capture 'slideIndex'}}
+                    {{#if (boolean (minus mediaList.length (minus canShowSlideByScreen 0.5)) '>' '0')}}
+                      -{{minus mediaList.length (minus canShowSlideByScreen 0.5)}}
+                    {{else}}
+                      0
+                    {{/if}}
+                  {{/capture}}
+                  transform: translate3d(calc({{slideIndex}} * {{slideWidth}}), 0px, 0px);
+                {{else}}
+                  transform: translate3d(calc(-{{initialSlide}} * {{slideWidth}} ), 0, 0);
+                {{/if}}
+              {{else}}
+                transform: translate3d(-{{ multiply initialSlide (cond mobileProductImageIsFull 100 75) }}%, 0, 0);
+              {{/if}}
             {{/if}}
           {{/if}}
         {{/capture}}
         <div class="swiper-wrapper {{#if is_no_loop}}hasVideoFl{{/if}}" style="{{swiper_wrapper_style}}">
           {{#each mediaList }}
+             {{#capture 'initialSlideClass'}}
+              {{#if (boolean (boolean ../trimProductMobilePictureMode '===' 'oneHalf') '||' (boolean ../trimProductMobilePictureMode '===' 'twoHalf'))}}
+                  
+                  {{assign 'needShowSlideNum' (minus ../mediaList.length ../canShowSlideByScreen)}}
+                  {{#if ../initialSlide '>' needShowSlideNum }}
+                    {{#if @index '>=' needShowSlideNum}} 
+                      initial-slide
+                    {{/if}}
+                  {{else}}
+                    {{#and (if ../canShowSlideByScreen ">" (minus @index ../initialSlide)) (if (minus @index ../initialSlide) ">=" 0)}} 
+                      initial-slide
+                    {{/and}}
+                  {{/if}}
+              {{else}}
+                {{#if @index '==' ../initialSlide}}
+                  initial-slide
+                {{/if}}
+              {{/if}}
+            {{/capture}}
             {{#if type '===' 'VIDEO' }}
               {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
 {{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
 
-              <div class="swiper-slide videoItem {{#if @index '==' ../initialSlide}}initial-slide{{/if}}" data-video-platform="{{ cond isYoutube 'youtube' 'sl' }}" data-index="{{ @index }}" data-length="{{ ../mediaList.length }}">
+              <div class="swiper-slide videoItem {{initialSlideClass}}" data-video-platform="{{ cond isYoutube 'youtube' 'sl' }}" data-index="{{ @index }}" data-length="{{ ../mediaList.length }}">
                 <div
                   class="swiper-slide-box"
                   data-image-ratio="{{ videoCoverRatio }}"
@@ -494,12 +462,16 @@
                 </div>
               </div>
             {{else if type '===' 'IMAGE'}}
-              <div class="swiper-slide imageItem {{#if @index '==' ../initialSlide}}initial-slide{{/if}}">
+                  {{#if ../main_image_ratio '!==' 'auto'}}
+        {{ assign 'image_ratio' ../main_image_ratio }}
+    {{/if}}
+
+              <div class="swiper-slide imageItem {{initialSlideClass}}" data-index="{{ @index }}">
                 <div
                   class="swiper-slide-box"
-                  data-image-ratio="{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}"
-                  data-sku-image-ratio="{{#and ../needSkuCover (boolean @index '==' 0 )}}{{ append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{/and}}"
-                  style="padding-bottom: {{#and ../needSkuCover (boolean @index '==' 0 )}}{{ append (default (get 'ratio' (img_size ../coverImgObj.url)) 100) '%'}}{{else}}{{ append (default (get 'ratio' (img_size resource)) 100) '%'}}{{/and}}"
+                  data-image-ratio="{{ append (default (default image_ratio (get 'ratio' (img_size resource)) 100)) '%'}}"
+                  data-sku-image-ratio="{{#and ../needSkuCover (boolean @index '==' 0 )}}{{ append (default image_ratio (default (get 'ratio' (img_size ../coverImgObj.url)) 100)) '%'}}{{/and}}"
+                  style="padding-bottom: {{#and ../needSkuCover (boolean @index '==' 0 )}}{{ append (default image_ratio (default (get 'ratio' (img_size ../coverImgObj.url)) 100)) '%'}}{{else}}{{ append (default image_ratio (default (get 'ratio' (img_size resource)) 100)) '%'}}{{/and}}"
                 >
                 {{#if (boolean ../templateAlias '===' 'ProductsDetail')}}
                   {{ snippet 'product/detail/product-swiper-img' isPreload=true useLazyLoad=(cond (boolean @index '==' ../initialSlide ) false true) type='mImage' class=(cond (boolean @index "==" ../initialSlide) 'product_photoSwipe_image' 'lozad product_photoSwipe_image') }}
@@ -583,11 +555,45 @@
       </div>
     </div>
         {{#if productMobileThumbnailImageHide '==' 'hide'}}
-    <div class="product_mobile_thumbnail_pagination" style="display: {{#or (isFalsey mediaList.length) (boolean mediaList.length '<=' '1')}}none{{/or}};">
-      <div class="normal-thumbnail-button normal-thumbnail-button-prev disabled">{{ snippet 'icons/icon_arrow_thumbnail' }}</div>
-      <div class="pagination-content" data-total="{{ mediaList.length }}">1/{{ mediaList.length }}</div>
-      <div class="normal-thumbnail-button normal-thumbnail-button-next">{{ snippet 'icons/icon_arrow_thumbnail' }}</div>
-    </div>
+      {{#or (isFalsey mediaList.length) (if mediaList.length '<=' '1')}}
+        {{ assign 'pagination_classs' 'd-none' }}
+      {{/or}}
+      {{#capture 'paginationNum'}}
+        {{#if trimProductMobilePictureMode '==' 'twoHalf'}}
+          {{ minus mediaList.length 1 }}
+        {{else}}
+          {{ mediaList.length }}
+        {{/if}}
+      {{/capture}}
+
+      {{#case product_mobile_image_switch_style}}
+        {{#when 'progress'}}
+          <div class="product_mobile_thumbnail_pagination product-pagination__progress {{ pagination_classs }}" data-pagination-type="{{ product_mobile_image_switch_style }}">
+            <div class="product-pagination__progress-inner">
+              <div class="product-pagination__progress-inner-bg" data-total="{{ trim paginationNum }}" style="width: {{ toFixed (times (divide 1 paginationNum) 100) 3 }}%"></div>
+            </div>
+          </div>
+        {{/when}}
+        {{#when 'dot'}}
+          <div class="product_mobile_thumbnail_pagination product-pagination__dot {{ pagination_classs }}" data-pagination-type="{{ product_mobile_image_switch_style }}">
+            {{#each mediaList}}
+              {{#if (plus @index 1) '<=' ../paginationNum}}
+                <a href="javascript:void(0);" class="tap-area" data-total="{{ trim ../paginationNum }}"></a>
+              {{/if}}
+            {{/each}}
+          </div>
+        {{/when}}
+        {{#when 'hide'}}
+
+        {{/when}}
+        {{#when 'number'}}
+        <div class="product_mobile_thumbnail_pagination product-pagination__number {{ pagination_classs }}" data-pagination-type="{{ product_mobile_image_switch_style }}">
+          <div class="icon directional normal-thumbnail-button normal-thumbnail-button-prev disabled">{{ snippet 'icons/icon_arrow_thumbnail' }}</div>
+          <div class="pagination-content" data-total="{{ paginationNum }}">1/{{ paginationNum }}</div>
+          <div class="icon directional normal-thumbnail-button normal-thumbnail-button-next">{{ snippet 'icons/icon_arrow_thumbnail' }}</div>
+        </div>
+        {{/when}}
+      {{/case}}
     {{else}}
     <div class="product_mobile_thumbnail_container {{#if mediaList.length '<=' '3'}}product_mobile_thumbnail_container--center{{/if}}" style="display: {{#or (isFalsey mediaList.length) (boolean mediaList.length '<=' '1')}}none{{/or}};" >
       <div class="swiper-container">

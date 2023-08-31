@@ -1,9 +1,20 @@
+{{assign 'cart_continue_url' theme.settings.cart_continue_url}}
+{{assign 'continue_redirect_to' (redirect_to '/collections')}}
+
+{{#if cart_continue_url}}
+  {{assign 'continue_link_item' (useLink cart_continue_url request.uri.query)}}
+
+  {{#if continue_link_item.finalSrc}}
+    {{assign 'continue_redirect_to' continue_link_item.finalSrc}}
+  {{/if}}
+{{/if}}
+
 {{#if is_empty}}
   <div class="empty-cart-continue-btn">
-    <a href="{{redirect_to '/collections'}}">
+    <a href="{{continue_redirect_to}}">
       <button class="trade-cart-continue-btn body3">{{ t 'cart.checkout_proceeding.continue_shopping' }}</button>
     </a>
   </div>
 {{else}}
-  <button class="btn btn-primary btn-sm trade-cart-non-empty-continue-btn body3" onclick="window.location.href='{{redirect_to '/collections'}}'">{{ t 'cart.checkout_proceeding.continue_shopping' }}</button>
+  <button class="btn btn-primary btn-sm trade-cart-non-empty-continue-btn body3" onclick="window.location.href='{{continue_redirect_to}}'">{{ t 'cart.checkout_proceeding.continue_shopping' }}</button>
 {{/if}}

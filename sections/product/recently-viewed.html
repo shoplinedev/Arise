@@ -1,28 +1,46 @@
 
 <!-- product/recently-viewed/index.js -->
-{{ combine_asset_tag 
- 'vendors/eventemitter3.min.js'
- 'vendors/@sl_currency-tools-core.min.js'
- 'vendors/uuid.min.js'
- 'vendors/lodash.min.js'
- 'vendors/axios.min.js'
- 'vendors/query-string.min.js'
- 'theme-shared/utils/event-bus.js'
- 'theme-shared/utils/parsePathToArray.js'
- 'theme-shared/utils/state-selector.js'
- 'theme-shared/utils/newCurrency/CurrencyConvert.js'
- 'theme-shared/utils/newCurrency/index.js'
- 'theme-shared/utils/currency/getCurrencyCode.js'
- 'theme-shared/utils/report/page.js'
- 'theme-shared/utils/report/tool.js'
- 'theme-shared/report/common/baseReport.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/components/hbs/productRecently/fetchTemplate.js'
- 'theme-shared/utils/sectionsLoad/index.js'
- 'product/recently-viewed/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.rlp.min.js'
+      'vendors/@sl_currency-tools-core.rlp.min.js'
+      'vendors/uuid.rlp.min.js'
+      'vendors/lodash.rlp.min.js'
+      'vendors/axios.rlp.min.js'
+      'vendors/query-string.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.min.js'
+      'vendors/@sl_currency-tools-core.min.js'
+      'vendors/uuid.min.js'
+      'vendors/lodash.min.js'
+      'vendors/axios.min.js'
+      'vendors/query-string.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/event-bus.js'
+    'theme-shared/utils/parsePathToArray.js'
+    'theme-shared/utils/state-selector.js'
+    'theme-shared/utils/newCurrency/CurrencyConvert.js'
+    'theme-shared/utils/newCurrency/index.js'
+    'theme-shared/utils/currency/getCurrencyCode.js'
+    'theme-shared/utils/report/page.js'
+    'theme-shared/utils/report/tool.js'
+    'theme-shared/report/common/baseReport.js'
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/components/hbs/productRecently/fetchTemplate.js'
+    'theme-shared/utils/sectionsLoad/index.js'
+    'product/recently-viewed/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 {{#if request.document_direction '===' 'rtl'}}
   {{ combine_asset_tag 'product/recently-viewed/product-recently-viewed.rtl.css' inline=true}}
 {{else}}

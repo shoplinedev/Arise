@@ -2,7 +2,7 @@ window.SLM = window.SLM || {};
 
 window.SLM['theme-shared/components/payment-button/utils.js'] = window.SLM['theme-shared/components/payment-button/utils.js'] || function () {
   const _exports = {};
-  const { createElement, getPaymentInfo } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
+  const { createElement, getPaymentInfo, ElementPlace } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const { EXPRESS_PAYMENT_BUTTON_COMMON_ITEM, PAYMENT_BUTTON_COMMON_ANIMATED, PAYMENT_BUTTON_COMMON_ITEM_MASK, EXPRESS_PAYMENT_BUTTON_AP, EXPRESS_PAYMENT_BUTTON_GP, EXPRESS_PAYMENT_BUTTON_PAYPAL } = window['SLM']['theme-shared/components/payment-button/constants.js'];
   const { METHOD_CODE } = window['SLM']['theme-shared/components/smart-payment/constants.js'];
 
@@ -29,6 +29,7 @@ window.SLM['theme-shared/components/payment-button/utils.js'] = window.SLM['them
       const currentDomId = `${domId}_${item.methodCode}`;
       item.currentDomId = currentDomId;
       let expressPaymentBtnClass = '';
+      let place = '';
 
       switch (item.methodCode) {
         case METHOD_CODE.GooglePay:
@@ -41,12 +42,18 @@ window.SLM['theme-shared/components/payment-button/utils.js'] = window.SLM['them
 
         case METHOD_CODE.Paypal:
         default:
+          place = ElementPlace.Before;
           expressPaymentBtnClass = EXPRESS_PAYMENT_BUTTON_PAYPAL;
           break;
       }
 
-      createElement(currentDomId, domId, {
-        class: `${EXPRESS_PAYMENT_BUTTON_COMMON_ITEM} ${PAYMENT_BUTTON_COMMON_ANIMATED} ${expressPaymentBtnClass}`
+      createElement({
+        id: currentDomId,
+        parentId: domId,
+        attr: {
+          class: `${EXPRESS_PAYMENT_BUTTON_COMMON_ITEM} ${PAYMENT_BUTTON_COMMON_ANIMATED} ${expressPaymentBtnClass}`
+        },
+        place
       });
 
       if (isProductPreview()) {

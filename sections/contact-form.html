@@ -6,28 +6,44 @@
   {{ combine_asset_tag 'stage/contact-form/index.css' inline=true}}
 {{/if}}
 <!-- stage/contact-form/index.js -->
-{{ combine_asset_tag 
- 'vendors/eventemitter3.min.js'
- 'vendors/axios.min.js'
- 'vendors/query-string.min.js'
- 'vendors/lodash.min.js'
- 'theme-shared/utils/event-bus.js'
- 'theme-shared/utils/form/form.js'
- 'theme-shared/utils/form/index.js'
- 'theme-shared/utils/request.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/utils/i18n.js'
- 'theme-shared/utils/emailReg.js'
- 'theme-shared/utils/sectionsLoad/index.js'
- 'theme-shared/components/hbs/shared/components/toast/toast.js'
- 'commons/components/toast/toast.js'
- 'theme-shared/components/hbs/shared/components/toast/loading.js'
- 'commons/components/toast/loading.js'
- 'commons/components/toast/index.js'
- 'stage/contact-form/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.rlp.min.js'
+      'vendors/axios.rlp.min.js'
+      'vendors/query-string.rlp.min.js'
+      'vendors/lodash.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.min.js'
+      'vendors/axios.min.js'
+      'vendors/query-string.min.js'
+      'vendors/lodash.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/event-bus.js'
+    'theme-shared/utils/form/form.js'
+    'theme-shared/utils/form/index.js'
+    'theme-shared/utils/request.js'
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/utils/emailReg.js'
+    'theme-shared/utils/sectionsLoad/index.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'commons/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'commons/components/toast/loading.js'
+    'commons/components/toast/index.js'
+    'stage/contact-form/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 {{ assign 'textColor' theme.settings.color_text }}
 {{#if section.settings.color_scheme '!==' 'none'}}

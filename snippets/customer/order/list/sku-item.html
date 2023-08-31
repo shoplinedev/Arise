@@ -8,7 +8,7 @@
           {{!-- 时间 --}}
           <div class="create-time">
             <span>{{t 'order.order_details.time'}}</span>
-            <span class="hide" data-date-format="YYYY-MM-DD HH:mm A" data-date="{{createTime}}">{{dayjs method='format' init=createTime format='YYYY-MM-DD HH:mm A'}}</span>
+            <span>{{dayjs method='format' init=createTime format='YYYY-MM-DD HH:mm A (z)' tz=@root.storeInfo.timezone}}</span>
           </div>
         </div>
         {{!-- 状态，目前只有「已取消」才需要展示 --}}

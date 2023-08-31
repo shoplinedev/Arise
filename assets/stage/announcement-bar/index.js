@@ -72,7 +72,7 @@ window.SLM['stage/announcement-bar/index.js'] = window.SLM['stage/announcement-b
     }
 
     initSwiperHeight() {
-      const height = $(this.container).height();
+      const height = $(this.container).height().toFixed(0);
       $(this.selectors.announcementSwiperWrapper).css('height', height);
     }
 

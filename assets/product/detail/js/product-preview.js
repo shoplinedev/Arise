@@ -19,6 +19,7 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
   const InquiryPriceModal = window['SLM']['product/detail/inquiry-price-modal.js'].default;
   const createShadowDom = window['SLM']['product/commons/js/createShadowDom.js'].default;
   const Tabs = window['SLM']['product/detail/js/tabs.js'].default;
+  const { ModalWithHtml } = window['SLM']['commons/components/modal/index.js'];
   const ProductCollapse = window['SLM']['product/detail/js/product-collapse.js'].default;
   const get = window['lodash']['get'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -156,6 +157,50 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       return () => undefined;
     }
 
+    const productPopup = () => {
+      const eventBindCallback = evt => {
+        const dom = evt.currentTarget;
+        const {
+          displayProductDesc,
+          page: pageId
+        } = dom.dataset;
+        const $content = dom.querySelector('.js-product-content');
+        const $description = dom.querySelector('.js-product-description');
+        const content = $content ? $content.textContent : '';
+        const description = $description ? $description.textContent : '';
+        const pages = SL_State.get('pages');
+        const selectedPage = pages[pageId];
+        let finalHtml = '';
+
+        if (displayProductDesc === 'true') {
+          finalHtml = description;
+        } else if (typeof content === 'string' && content.trim()) {
+          finalHtml = content;
+        } else if (selectedPage && selectedPage.htmlConfig) {
+          finalHtml = selectedPage.htmlConfig;
+        }
+
+        const modal = new ModalWithHtml({
+          children: finalHtml,
+          bodyClassName: 'sl-richtext product-popup__container',
+          destroyedOnClosed: true,
+          zIndex: 128
+        });
+        modal.show();
+      };
+
+      $(document.body).on('click', '.js-product-popup', eventBindCallback);
+      return () => {
+        $(document.body).off('click', '.js-product-popup', eventBindCallback);
+      };
+    };
+
+    let unbindProductPopup;
+
+    if (id === 'productDetail') {
+      unbindProductPopup = productPopup();
+    }
+
     const removePositionListener = listenPosition({
       id,
       offsetTop,
@@ -166,6 +211,7 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
 
     try {
       productImagesInstance = new ProductImages({
+        spuSeq: spu.spuSeq,
         mediaList: spu.mediaList,
         selectorId: id,
         skuList: sku && sku.skuList,
@@ -500,6 +546,10 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         });
       },
       destroy: () => {
+        if (typeof unbindProductPopup === 'function') {
+          unbindProductPopup();
+        }
+
         inquiryPriceModal.unbindEvents();
 
         if (typeof unmountedDiscountCoupon === 'function') {

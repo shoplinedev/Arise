@@ -9,6 +9,7 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/renderer
   const Form = window['SLM']['theme-shared/utils/form/index.js'].default;
   const { ADDRESS_RULES, getFieldAttrs } = window['SLM']['theme-shared/biz-com/customer/biz/address/const/fields.js'];
   const { createAutocompleteService } = window['SLM']['theme-shared/biz-com/customer/biz/address/address-component/adapter.js'];
+  const { getLanguage } = window['SLM']['theme-shared/biz-com/customer/utils/helper.js'];
   const PRESET_SELECT_OPTION = '--no-value--';
   const autocompleteService = createAutocompleteService();
 
@@ -163,11 +164,9 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/renderer
     });
 
     if (shouldBind(model.addressInfo.countryCode, fieldName)) {
-      const unbindCurrentAutocomplete = bind(contextBuilder().withAutocompleteService(autocompleteService).withRenderer(createAutocompleteRenderer($controlFrag.querySelector('.sl-input'))).withAutocompleteHooks({
-        beforePlaceSelect() {
-          $control.removeEventListener('change', onChangeHandler);
-        },
-
+      const unbindCurrentAutocomplete = bind(contextBuilder().withAutocompleteService(autocompleteService).withRenderer(createAutocompleteRenderer($controlFrag.querySelector('.sl-input'), () => {
+        $control.removeEventListener('change', onChangeHandler);
+      })).withAutocompleteHooks({
         placeSelected(params) {
           const {
             candidates
@@ -208,6 +207,7 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/renderer
   }
 
   function litSelectControl(props) {
+    const lang = getLanguage();
     const {
       model,
       fieldName
@@ -227,6 +227,14 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/renderer
             disabled: false,
             selected: addressBook.code === value
           });
+        });
+      }
+
+      if (lang && lang.toLowerCase() === 'en') {
+        options.sort(function (a, b) {
+          if (!b.text) return -1;
+          if (!a.text) return 1;
+          return a.text.localeCompare(b.text);
         });
       }
 
@@ -280,7 +288,7 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/renderer
 
   _exports.exportLayoutClassList = exportLayoutClassList;
 
-  function createAutocompleteRenderer($control) {
+  function createAutocompleteRenderer($control, onPredictionSelected) {
     const $frag = strToFrag(litAutocompleteContainer()).cloneNode(true);
     const $container = $frag.firstChild;
     let $list = $container.querySelector('ul');
@@ -302,6 +310,12 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/renderer
         predictions.forEach(prediction => {
           const $frag = strToFrag(litAutocompletePrediction(prediction)).cloneNode(true);
           $frag.firstChild.addEventListener('click', e => {
+            if (typeof onPredictionSelected === 'function') {
+              try {
+                onPredictionSelected();
+              } catch (_) {}
+            }
+
             predictionSelected(prediction);
             e.preventDefault();
           });

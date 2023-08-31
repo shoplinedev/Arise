@@ -1,0 +1,62 @@
+<button
+  data-ssr-plugin-pdp-button-sold-out
+  class="sold-out-button btn btn-primary btn-lg disabled pdp_sold_out_{{id}} {{#not isSoldOut}}hide{{/not}}"
+  type="button"
+>
+  {{t "products.general.sold_out"}}
+</button>
+<button
+  data-ssr-plugin-pdp-button-addtocart
+  class="__sl-custom-track-add-to-cart-btn add-to-cart shopline-element-add-to-cart btn
+    {{buttonClass}}
+    btn-lg
+    pdp_add_to_cart_{{id}}
+    {{#if isSoldOut}}hide{{/if}}"
+  type="button"
+>
+  <span class="pdp_button_text fw-bold">{{t "products.product_list.add_to_cart"}}</span>
+</button>
+
+{{#if layout "===" "embed"}}
+  {{#if isNewExpressCheckout}}
+    <div id="payment_button_{{id}}" class="payment-button-container" data-attr="isSoldOut={{isSoldOut}}&id={{id}}">
+      {{snippet "trade/buynow-text"}}
+    </div>
+    {{#forEach paymentButtonConfig.buttonLocationDataList}}
+      {{#if buttonLocation "===" "productDetail"}}
+        {{#if isSystem}}
+          <div class="pdp_buy_now_{{../id}} product-more-payment-button {{#if isSoldOut}}hide{{/if}}"></div>
+        {{/if}}
+      {{/if}}
+    {{/forEach}}
+  {{else}}
+    {{#if productSettleButtonConfig.buyNow}}
+      <button
+        data-ssr-plugin-pdp-button-buy-now
+        class="buy-now shopline-element-buy-now btn btn-primary btn-lg
+          pdp_buy_now_{{id}}
+          __sl-custom-track-product-detail-buy-now
+          {{#if isSoldOut}}hide{{/if}}"
+      >
+        {{snippet "trade/buynow-text"}}
+      </button>
+    {{/if}}
+  {{/if}}
+{{/if}}
+
+{{#if layout "===" "float"}}
+  {{#if productSettleButtonConfig.buyNow}}
+    {{#unless isSoldOut}}
+      <button
+        class="__sl-custom-track-product-detail-buy-now float-btn--buy buy-now shopline-element-buy-now btn btn-primary
+          {{#if isSoldOut}}
+            disabled
+          {{else}}
+            pdp_buy_now_{{id}}
+          {{/if}}"
+      >
+        <span class="pdp_button_text fw-bold">{{t "cart.cart.buy_now"}}</span>
+      </button>
+    {{/unless}}
+  {{/if}}
+{{/if}}

@@ -110,6 +110,7 @@
       "product_add_to_cart": true,
       "product_add_to_cart_pc_position": "center",
       "enabled_mobile_product_add_to_cart": false,
+      "product_mobile_quick_add_button_style": "button",
       "product_title_show_type": "full_display",
       "product_mobile_title_show": true,
       "cart_open_type": "minicart",
@@ -146,7 +147,15 @@
       "co_color_btn_bg": "#276EAF",
       "co_color_err_color": "#F04949",
       "co_color_msg_color": "#276EAF",
-      "show_breadcrumb": true
+      "show_breadcrumb": true,
+      "co_type_title_font":{
+        "lib": "system",
+        "value": "System"
+      },
+      "co_type_body_font":{
+        "lib": "system",
+        "value": "System"
+      }
     },
     "sections": {
       "announcement-bar": {
@@ -172,6 +181,7 @@
           "mega_menu_images": false,
           "mega_menu_images_ratio": "50",
           "navigation_layout": "left-left",
+          "main_menu_layout": "dropdown",
           "header_style": true,
           "show_line_separator": true,
           "show_search_entry": true,
@@ -195,6 +205,16 @@
           "show_currency_selector": false,
           "show_currency_flags": true,
           "show_country_selector": false,
+          "blocks_col": 4,
+          "align_type": "left",
+          "padding_left":30,
+          "padding_right":30,
+          "padding_top":40,
+          "padding_bottom":30,
+          "letter_show_type":"down",
+          "media_show_type":"down",
+          "letter_pc_show_row":false,
+          "media_pc_show_row":false,
           "show_pay_channel": {
             "show": false,
             "pay_channel_list": [
@@ -249,8 +269,6 @@
           "subscribe_letter_button_text": "",
           "subscribe_letter_placeholder": "Enter your email",
           "show_social_media": true,
-          "padding_top": 40,
-          "padding_bottom": 30,
           "footer_division": false
         },
         "disabled": false,
@@ -393,6 +411,7 @@
         "product_add_to_cart": true,
         "product_add_to_cart_pc_position": "center",
         "enabled_mobile_product_add_to_cart": false,
+        "product_mobile_quick_add_button_style": "button",
         "product_title_show_type": "full_display",
         "product_mobile_title_show": true,
         "cart_open_type": "minicart",
@@ -428,7 +447,15 @@
         "co_color_btn_bg": "#276EAF",
         "co_color_err_color": "#F04949",
         "co_color_msg_color": "#276EAF",
-        "show_breadcrumb": true
+        "show_breadcrumb": true,
+        "co_type_title_font":{
+          "lib": "system",
+          "value": "System"
+        },
+        "co_type_body_font":{
+          "lib": "system",
+          "value": "System"
+        }
       },
       "sections": {
         "announcement-bar": {

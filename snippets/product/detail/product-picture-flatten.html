@@ -1,0 +1,123 @@
+{{#if mediaList.length}}
+  {{ assign 'firstItem' (first mediaList) }}
+  {{ assign 'exceptFirstMediaList' (after mediaList 1) }}
+  <div class="product_productImages_tile shopline-element-product-image {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">
+    <div class="row row-cols-md-1 gx-md-4 flattenFirstItem">
+      <div class="flattenFirstItemWrapper">
+        <div class="normalItem" style="display: {{ cond coverImgObj.url 'none' 'block' }}">
+          {{#if firstItem.type '==' 'VIDEO'}}
+            {{ assign 'isYoutube' (boolean (get 'hostname' (urlParse firstItem.resource)) '==' 'www.youtube.com') }}
+            {{ assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size firstItem.cover)) '56.25') '%')) }}
+            <div class="videoItem" data-index="0" style="padding-bottom: {{ videoCoverRatio }}">
+              {{#if isYoutube}}
+                <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover firstItem.resource) }}"></div>
+                <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover firstItem.resource) }}" data-src="{{ get 'middle' (getYouTubeCover firstItem.resource) }}" alt="">
+              {{else}}
+                <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ firstItem.cover }}">
+                  <source src="{{ firstItem.resource }}" type="video/mp4">
+                </video>
+                <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.cover width=1800 }}" data-src="{{ firstItem.cover }}" alt="">
+              {{/if}}
+            </div>
+          {{else}}
+            <div class="imageItem imageItem--{{ pc_magnifier_type }}" style="padding-bottom: {{ append (default (get 'ratio' (img_size firstItem.resource)) 100) '%' }}" data-index="0">
+              <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"   onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url firstItem.resource width=1800 }}" alt="{{ firstItem.alt }}">
+              {{#if pc_magnifier_type '==' 'hover'}}
+                {{ assign 'image_width' (get 'width' (img_size firstItem.resource)) }}
+                {{ assign 'image_height' (get 'height' (img_size firstItem.resource)) }}
+                <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ firstItem.resource }}" class="lozad imageItem--hover" alt="{{ firstItem.alt }}">
+              {{/if}}
+            </div>
+          {{/if}}
+        </div>
+        <div class="product_pc_skuImage_flatten product_pc_skuImage_flatten--{{ pc_magnifier_type }}" style="display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
+          {{#if coverImgObj.url}}
+            <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="">
+            {{#if pc_magnifier_type '==' 'hover'}}
+              {{ assign 'image_width' (get 'width' (img_size coverImgObj.url)) }}
+              {{ assign 'image_height' (get 'height' (img_size coverImgObj.url)) }}
+              <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" class="lozad imageItem--hover" alt="{{ alt }}">
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div class="exceptFirstMediaList row row-cols-md-2 gx-md-4">
+      <div class="product_images_firstCol">
+        {{#each exceptFirstMediaList}}
+          {{#ifEven @index}}
+            {{#if this.type '==' 'VIDEO'}}
+              {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
+{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
+
+              <div class="videoItem" data-index="{{ add @index 1 }}" style="padding-bottom: {{ videoCoverRatio }}">
+                {{#if isYoutube}}
+                  <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover this.resource) }}"></div>
+                  <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover this.resource) }}" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
+                {{else}}
+                  <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ this.cover }}">
+                    <source src="{{ this.resource }}" type="video/mp4">
+                  </video>
+                  <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url this.cover width=1800 }}" data-src="{{ this.cover }}" alt="">
+                {{/if}}
+              </div>
+            {{else}}
+              {{ assign 'class' (append 'imageItem--' ../pc_magnifier_type) }}
+              {{#snippet 'product/detail/product-swiper-img' class=class type='pcTwoColImage' index=(add @index 1)}}
+                {{#if pc_magnifier_type '==' 'hover'}}
+                  {{ assign 'image_width' (get 'width' (img_size resource)) }}
+                  {{ assign 'image_height' (get 'height' (img_size resource)) }}
+                  <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ resource }}" class="lozad imageItem--hover" alt="{{ alt }}">
+                {{/if}}
+              {{/snippet}}
+            {{/if}}
+          {{/ifEven}}
+        {{/each}}
+      </div>
+      <div class="product_images_secondCol">
+        {{#each exceptFirstMediaList}}
+          {{#ifOdd @index}}
+            {{#if this.type '==' 'VIDEO'}}
+              {{assign 'isYoutube' (boolean (get 'hostname' (urlParse resource)) '==' 'www.youtube.com') }}
+{{assign 'videoCoverRatio' (cond isYoutube '56.25%' (append (default (get 'ratio' (img_size cover)) '56.25') '%'))}}
+
+              <div class="videoItem" data-index="{{ add @index 1 }}" style="padding-bottom: {{ videoCoverRatio }}">
+                {{#if isYoutube}}
+                  <div class="product_youTubeVideoBox" data-video-id="{{ get 'videoId' (getYouTubeCover this.resource) }}"></div>
+                  <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ get 'middle' (getYouTubeCover this.resource) }}" data-src="{{ get 'middle' (getYouTubeCover this.resource) }}" alt="">
+                {{else}}
+                  <video class="product_slVideoContainer" disablepictureinpicture controls webkit-playsinline playsinline controlslist="nodownload nofullscreen" poster="{{ this.cover }}">
+                    <source src="{{ this.resource }}" type="video/mp4">
+                  </video>
+                  <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url this.cover width=1800 }}" data-src="{{ this.cover }}" alt="">
+                {{/if}}
+              </div>
+            {{else}}
+              {{ assign 'class' (append 'imageItem--' ../pc_magnifier_type) }}
+              {{#snippet 'product/detail/product-swiper-img' class=class type='pcTwoColImage' index=(add @index 1)}}
+                {{#if pc_magnifier_type '==' 'hover'}}
+                  {{ assign 'image_width' (get 'width' (img_size resource)) }}
+                  {{ assign 'image_height' (get 'height' (img_size resource)) }}
+                  <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ resource }}" class="lozad imageItem--hover" alt="{{ alt }}">
+                {{/if}}
+              {{/snippet}}
+            {{/if}}
+          {{/ifOdd}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+{{else}}
+  <div class="product_productImages_tile shopline-element-product-image product-detail-empty-image {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}" style="padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') '100%' }}">
+    <div class="product_pc_skuImage_flatten product_pc_skuImage_flatten--{{ pc_magnifier_type }}" style="width: 100%; position:absolute; display: {{ cond coverImgObj.url 'block' 'none' }}; padding-bottom: {{ cond coverImgObj.url (append (default (get 'ratio' (img_size coverImgObj.url)) 100) '%') 0 }}">
+      {{#if coverImgObj.url}}
+        <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" data-sizes="auto" class="lozad product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" alt="{{ coverImgObj.alt }}">
+        {{#if pc_magnifier_type '==' 'hover'}}
+          {{ assign 'image_width' (get 'width' (img_size coverImgObj.url)) }}
+          {{ assign 'image_height' (get 'height' (img_size coverImgObj.url)) }}
+          <img data-width="{{ image_width }}" data-height="{{ image_height }}" referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-src="{{ coverImgObj.url }}" class="lozad imageItem--hover" alt="{{ alt }}">
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+{{/if}}

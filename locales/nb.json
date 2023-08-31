@@ -95,6 +95,11 @@
       "custom_preview": "Egendefinert forhåndsvisning",
       "empty_cart": "Handlekurven er tom.",
       "item_left": "{{stock}}-stykker på lager",
+      "market": {
+        "illegal": {
+          "excludedState": "Kommersielle varer er ulovlige og varer er ekskludert fra markedet"
+        }
+      },
       "none_existent": "Produktet eksisterer ikke",
       "view_cart": "Vis handlekurv"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Du kan bare laste opp opptil 5 kuponger."
     },
     "detail": {
+      "dutyFee": "Toll",
       "orderstatus": {
         "detail": "Detalj"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "LEGG TIL I HANDLEKURV",
       "filter": "Filter",
+      "filters_selected": "{{count}} er valgt",
       "from_price_html": "Fra {{price}}",
       "less": "mindre",
       "load_more_tip": "Laster inn flere varer",

@@ -55,8 +55,7 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
       useMemberPoint = null,
       discountCode = null,
       bundledActivitySeq = null,
-      orderFrom = null,
-      dataReportReq
+      orderFrom = null
     } = {}) => {
       const marketLanguage = window.Shopline.locale;
       const displayLanguage = Cookies.get('userSelectLocale') || store.get('request.cookie.userSelectLocale');
@@ -67,7 +66,6 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
         bundledActivitySeq,
         useMemberPoint,
         orderFrom,
-        dataReportReq,
         languageInfo: {
           marketLanguage,
           displayLanguage
@@ -126,7 +124,6 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
         onBeforeJump,
         report,
         needReport,
-        reportParamsExt,
         abandonedOrderSeq,
         abandonedOrderMark
       } = extra;
@@ -147,7 +144,6 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
         associateCart,
         discountCode: _discountCode,
         orderFrom: getSyncData('orderFrom'),
-        dataReportReq: reportParamsExt,
         ...rest
       };
 
@@ -273,7 +269,9 @@ window.SLM['theme-shared/utils/checkout.js'] = window.SLM['theme-shared/utils/ch
       logger.error(`[成单请求报错]${code ? `[code: ${code}` : ''}${message ? `[msg: ${message}]` : ''}`, {
         error,
         abandonedOrderSeq,
-        abandonedOrderMark
+        abandonedOrderMark,
+        products,
+        extra
       });
 
       switch (code) {

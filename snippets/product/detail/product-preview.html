@@ -62,6 +62,12 @@
 {{ assign 'product_info_sticky' (default section.settings.product_info_sticky true) }}
 {{!-- 移动端是否显示缩略图 --}}
 {{ assign 'product_mobile_thumbnail_image_hide' (default section.settings.product_mobile_thumbnail_image_hide 'hide') }}
+{{!-- 移动端图片切换样式 --}}
+{{ assign 'product_mobile_image_switch_style' (default section.settings.product_mobile_image_switch_style 'number') }}
+{{!-- 移动端图片切换位置 --}}
+{{ assign 'product_mobile_image_switch_position' (default section.settings.product_mobile_image_switch_position 'bottom') }}
+{{!-- 移动端大图布局模式 --}}
+{{ assign 'product_mobile_picture_mode' (default section.settings.product_mobile_picture_mode 'full') }}
 {{!-- 商品图是否包含sku图 --}}
 {{ assign 'product_image_show_sku_image' (default section.settings.product_image_show_sku_image true) }}
 {{!-- 展示滑动箭头 --}}
@@ -88,216 +94,282 @@
 {{/if}}
 {{#unless notAllowLoadJs}}
 <!-- product/detail/main.js -->
-{{#if request.document_direction '===' 'rtl'}}
-  {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
-{{else}}
-  {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-{{/if}}
-{{#if request.document_direction '===' 'rtl'}}
-  {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
-{{else}}
-  {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
-{{/if}}
-{{#if request.document_direction '===' 'rtl'}}
-  {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
-{{else}}
-  {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
-{{/if}}
-{{ combine_asset_tag 
- 'vendors/eventemitter3.min.js'
- 'vendors/js-cookie.min.js'
- 'vendors/dayjs.min.js'
- 'vendors/@sl_logger.min.js'
- 'vendors/debug.min.js'
- 'vendors/uuid.min.js'
- 'vendors/@sl_currency-tools-core.min.js'
- 'vendors/lodash.min.js'
- 'vendors/axios.min.js'
- 'vendors/query-string.min.js'
- 'vendors/@yy_sl-theme-shared.min.js'
- 'vendors/@sl_smart-payment.min.js'
- 'vendors/@yy_sl-ec-tracker.min.js'
- 'vendors/@sl_cart.min.js'
- 'vendors/@funnyecho_hamon.min.js'
- 'vendors/url.min.js'
- 'vendors/swiper.min.js'
- 'vendors/photoswipe.min.js'
- 'vendors/yt-player.min.js'
- 'vendors/scroll-lock.min.js'
- 'vendors/@yy_sl-mc.min.js'
- 'vendors/querystring.min.js'
- 'theme-shared/utils/sectionsLoad/index.js'
- 'theme-shared/utils/event-bus.js'
- 'theme-shared/utils/parsePathToArray.js'
- 'theme-shared/utils/state-selector.js'
- 'theme-shared/utils/get-env.js'
- 'theme-shared/utils/report/hdReport.js'
- 'theme-shared/utils/report/@hiido.js'
- 'theme-shared/utils/createLogger.js'
- 'theme-shared/utils/report/utils.js'
- 'theme-shared/utils/report/const.js'
- 'theme-shared/utils/report/index.js'
- 'theme-shared/utils/report/tool.js'
- 'theme-shared/utils/newCurrency/CurrencyConvert.js'
- 'theme-shared/utils/newCurrency/index.js'
- 'theme-shared/utils/currency/getCurrencyCode.js'
- 'product/detail/js/report.js'
- 'theme-shared/utils/sku/DataWatcher.js'
- 'theme-shared/events/utils/api-logger.js'
- 'theme-shared/events/product/sku-change/index.js'
- 'theme-shared/events/product/sku-changed/index.js'
- 'theme-shared/events/product/preview-init/index.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/utils/i18n.js'
- 'theme-shared/components/hbs/shared/components/toast/toast.js'
- 'theme-shared/components/hbs/shared/components/toast/loading.js'
- 'theme-shared/components/hbs/shared/components/toast/index.js'
- 'theme-shared/components/hbs/flashSale/index.js'
- 'commons/components/toast/toast.js'
- 'commons/components/toast/loading.js'
- 'commons/components/toast/index.js'
- 'product/commons/js/sku-stepper.js'
- 'product/detail/js/product-quantity.js'
- 'theme-shared/utils/report/pageMapping.js'
- 'theme-shared/utils/request.js'
- 'theme-shared/utils/url-adaptor.js'
- 'theme-shared/utils/dataReport/tool.js'
- 'theme-shared/utils/dataReport/ga.js'
- 'theme-shared/utils/dataReport/gad.js'
- 'theme-shared/utils/dataReport/fb.js'
- 'theme-shared/utils/tradeReport/const.js'
- 'theme-shared/utils/tradeReport/index.js'
- 'theme-shared/utils/dataAccessor.js'
- 'theme-shared/utils/url.js'
- 'theme-shared/utils/constant.js'
- 'theme-shared/components/smart-payment/constants.js'
- 'theme-shared/utils/checkout.js'
- 'theme-shared/components/hbs/products/checkedEvent/index.js'
- 'theme-shared/components/smart-payment/utils.js'
- 'theme-shared/components/smart-payment/services.js'
- 'theme-shared/components/smart-payment/reporter/constants.js'
- 'theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'
- 'theme-shared/components/smart-payment/reporter/ThirdPartReport.js'
- 'theme-shared/components/smart-payment/index.js'
- 'theme-shared/components/payment-button/constants.js'
- 'theme-shared/components/payment-button/utils.js'
- 'theme-shared/components/payment-button/express_checkout.js'
- 'theme-shared/components/smart-payment/payments.js'
- 'theme-shared/utils/report/page.js'
- 'theme-shared/report/product/utils/index.js'
- 'theme-shared/events/product/paypal-fallback/index.js'
- 'theme-shared/events/trade/interior-event/index.js'
- 'theme-shared/events/trade/enum/index.js'
- 'theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'
- 'theme-shared/utils/report/hd-const.js'
- 'theme-shared/utils/tradeReport/hdReport.js'
- 'theme-shared/utils/tradeReport/hdReportV2.js'
- 'theme-shared/utils/tradeReport/eventListen.js'
- 'theme-shared/components/hbs/shared/components/topDrawer/const.js'
- 'theme-shared/components/hbs/shared/components/drawer/const.js'
- 'commons/logger/index.js'
- 'commons/utils/isMobile.js'
- 'commons/utils/throttle.js'
- 'commons/utils/main.js'
- 'commons/utils/helper.js'
- 'commons/utils/index.js'
- 'cart/script/biz/sticky-cart/helper.js'
- 'cart/script/report/cartReport.js'
- 'cart/script/biz/sticky-cart/index.js'
- 'cart/script/domain/adapter/svc/internal/config.js'
- 'cart/script/domain/adapter/svc/internal/transport.js'
- 'cart/script/domain/adapter/svc/index.js'
- 'cart/script/domain/adapter/storage/constant.js'
- 'cart/script/domain/adapter/storage/index.js'
- 'cart/script/utils/event-bus/index.js'
- 'cart/script/domain/adapter/svc/internal/constant.js'
- 'cart/script/domain/adapter/svc/cart.js'
- 'cart/script/domain/adapter/svc/voucher.js'
- 'cart/script/domain/adapter/svc/coupon.js'
- 'cart/script/domain/model/helpers.js'
- 'cart/script/domain/adapter/svc/order.js'
- 'cart/script/constant/responseCode.js'
- 'cart/script/constant/cartQuantity.js'
- 'cart/script/domain/model/cart.js'
- 'cart/script/constant/stockType.js'
- 'cart/script/domain/vo/productStock.js'
- 'cart/script/constant/priceType.js'
- 'cart/script/domain/vo/productPriceType.js'
- 'cart/script/utils/object.js'
- 'cart/script/domain/model/cartItem.js'
- 'cart/script/domain/vo/responseCode.js'
- 'cart/script/domain/model/response.js'
- 'cart/script/domain/model/promotionCode.js'
- 'theme-shared/biz-com/trade/optimize-modal/constant.js'
- 'theme-shared/biz-com/trade/optimize-modal/cartChangeItem.js'
- 'cart/script/domain/vo/productVerifyType.js'
- 'cart/script/domain/model/cartVerifyItem.js'
- 'cart/script/service/cart/hooks.js'
- 'cart/script/service/cart/service.js'
- 'cart/script/service/cart/index.js'
- 'cart/script/service/index.js'
- 'commons/utils/dynamicImportMiniCart.js'
- 'commons/cart/globalEvent.js'
- 'commons/utils/debounce.js'
- 'theme-shared/components/payment-button/shopby_fast_checkout.js'
- 'theme-shared/components/payment-button/index.js'
- 'product/detail/js/payment_button.js'
- 'theme-shared/report/product/add-to-cart.js'
- 'product/detail/js/product-button-report.js'
- 'product/detail/js/product-button.js'
- 'commons/utils/convertPrice.js'
- 'product/commons/js/product-info.js'
- 'theme-shared/utils/img-size.js'
- 'theme-shared/components/hbs/productImages/js/product-photoSwipeHtml.js'
- 'theme-shared/components/hbs/shared/utils/imgUrl.js'
- 'theme-shared/components/hbs/shared/utils/getYouTubeCover.js'
- 'theme-shared/utils/lozad/util.js'
- 'theme-shared/utils/lozad/plugins/normal.js'
- 'theme-shared/utils/lozad/plugins/image-gif-poster.js'
- 'theme-shared/components/hbs/productImages/js/index.js'
- 'product/detail/js/product-swiper.js'
- 'product/detail/js/layout.js'
- 'product/utils/sku/skuUtil.js'
- 'product/utils/sku/skuFilter.js'
- 'product/commons/js/sku-trade/base-sku-trade.js'
- 'product/commons/js/sku-trade/sku-trade-flatten.js'
- 'theme-shared/components/hbs/productImages/js/modal.js'
- 'theme-shared/components/hbs/shared/utils/bem.js'
- 'theme-shared/components/hbs/shared/components/modal/common.js'
- 'commons/components/modal/common.js'
- 'product/commons/js/sku-trade/sku-trade-select.js'
- 'product/detail/js/sku-trade.js'
- 'theme-shared/utils/form/form.js'
- 'theme-shared/utils/form/index.js'
- 'theme-shared/utils/sku/firstAvailableSku.js'
- 'theme-shared/report/customArgs/index.js'
- 'theme-shared/report/product/detail/inquiry-modal-report.js'
- 'commons/base/BaseClass.js'
- 'theme-shared/components/hbs/shared/components/modal/lite.js'
- 'commons/components/modal/lite.js'
- 'theme-shared/components/hbs/shared/base/BaseClass.js'
- 'theme-shared/components/hbs/shared/components/modal/full.js'
- 'commons/components/modal/full.js'
- 'commons/components/modal/index.js'
- 'product/detail/inquiry-price-modal.js'
- 'product/commons/js/createShadowDom.js'
- 'product/detail/js/tabs.js'
- 'product/detail/js/product-collapse.js'
- 'theme-shared/components/hbs/thirdPartyShare/js/index.js'
- 'commons/thirdPartyShare/index.js'
- 'commons/utils/url.js'
- 'theme-shared/report/common/baseReport.js'
- 'theme-shared/report/stage/const.js'
- 'theme-shared/report/product/product-preview.js'
- 'product/utils/nullishCoalescingOperator.js'
- 'product/detail/js/product-preview.js'
- 'product/detail/js/csrSku.js'
- 'product/detail/main.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{#if request.document_direction '===' 'rtl'}}
+      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.rtl.css' inline=true }}
+      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.rtl.css' inline=true }}
+      {{ combine_asset_tag 'vendors/swiper.rlp.min.rtl.css' inline=true }}
+    {{else}}
+      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.css' inline=true }}
+      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.css' inline=true }}
+      {{ combine_asset_tag 'vendors/swiper.rlp.min.css' inline=true }}
+    {{/if}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.rlp.min.js'
+      'vendors/js-cookie.rlp.min.js'
+      'vendors/dayjs.rlp.min.js'
+      'vendors/@sl_logger.rlp.min.js'
+      'vendors/debug.rlp.min.js'
+      'vendors/uuid.rlp.min.js'
+      'vendors/@sl_currency-tools-core.rlp.min.js'
+      'vendors/lodash.rlp.min.js'
+      'vendors/axios.rlp.min.js'
+      'vendors/query-string.rlp.min.js'
+      'vendors/@yy_sl-theme-shared.rlp.min.js'
+      'vendors/@sl_smart-payment.rlp.min.js'
+      'vendors/@yy_sl-ec-tracker.rlp.min.js'
+      'vendors/@sl_cart.rlp.min.js'
+      'vendors/@funnyecho_hamon.rlp.min.js'
+      'vendors/url.rlp.min.js'
+      'vendors/swiper.rlp.min.js'
+      'vendors/photoswipe.rlp.min.js'
+      'vendors/yt-player.rlp.min.js'
+      'vendors/scroll-lock.rlp.min.js'
+      'vendors/@yy_sl-mc.rlp.min.js'
+      'vendors/querystring.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{#if request.document_direction '===' 'rtl'}}
+      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
+      {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
+      {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
+    {{else}}
+      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+      {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
+      {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+    {{/if}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.min.js'
+      'vendors/js-cookie.min.js'
+      'vendors/dayjs.min.js'
+      'vendors/@sl_logger.min.js'
+      'vendors/debug.min.js'
+      'vendors/uuid.min.js'
+      'vendors/@sl_currency-tools-core.min.js'
+      'vendors/lodash.min.js'
+      'vendors/axios.min.js'
+      'vendors/query-string.min.js'
+      'vendors/@yy_sl-theme-shared.min.js'
+      'vendors/@sl_smart-payment.min.js'
+      'vendors/@yy_sl-ec-tracker.min.js'
+      'vendors/@sl_cart.min.js'
+      'vendors/@funnyecho_hamon.min.js'
+      'vendors/url.min.js'
+      'vendors/swiper.min.js'
+      'vendors/photoswipe.min.js'
+      'vendors/yt-player.min.js'
+      'vendors/scroll-lock.min.js'
+      'vendors/@yy_sl-mc.min.js'
+      'vendors/querystring.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/sectionsLoad/index.js'
+    'theme-shared/utils/event-bus.js'
+    'theme-shared/utils/parsePathToArray.js'
+    'theme-shared/utils/state-selector.js'
+    'theme-shared/utils/get-env.js'
+    'theme-shared/utils/report/hdReport.js'
+    'theme-shared/utils/report/@hiido.js'
+    'theme-shared/utils/createLogger.js'
+    'theme-shared/utils/report/utils.js'
+    'theme-shared/utils/report/const.js'
+    'theme-shared/utils/report/index.js'
+    'theme-shared/utils/report/tool.js'
+    'theme-shared/utils/newCurrency/CurrencyConvert.js'
+    'theme-shared/utils/newCurrency/index.js'
+    'theme-shared/utils/currency/getCurrencyCode.js'
+    'product/detail/js/report.js'
+    'theme-shared/utils/sku/DataWatcher.js'
+    'theme-shared/events/utils/api-logger.js'
+    'theme-shared/events/product/sku-change/index.js'
+    'theme-shared/events/product/sku-changed/index.js'
+    'theme-shared/events/product/preview-init/index.js'
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'theme-shared/components/hbs/shared/components/toast/index.js'
+    'theme-shared/components/hbs/flashSale/index.js'
+    'commons/components/toast/toast.js'
+    'commons/components/toast/loading.js'
+    'commons/components/toast/index.js'
+    'product/commons/js/sku-stepper.js'
+    'product/detail/js/product-quantity.js'
+    'theme-shared/utils/report/pageMapping.js'
+    'theme-shared/utils/request.js'
+    'theme-shared/utils/url-adaptor.js'
+    'theme-shared/utils/dataReport/tool.js'
+    'theme-shared/utils/dataReport/ga.js'
+    'theme-shared/utils/dataReport/gad.js'
+    'theme-shared/utils/dataReport/fb.js'
+    'theme-shared/utils/tradeReport/const.js'
+    'theme-shared/utils/tradeReport/index.js'
+    'theme-shared/utils/dataAccessor.js'
+    'theme-shared/utils/url.js'
+    'theme-shared/utils/constant.js'
+    'theme-shared/components/smart-payment/constants.js'
+    'theme-shared/utils/checkout.js'
+    'theme-shared/components/hbs/products/checkedEvent/index.js'
+    'theme-shared/const/preload-state-fields.js'
+    'theme-shared/components/smart-payment/utils.js'
+    'theme-shared/components/smart-payment/services.js'
+    'theme-shared/components/smart-payment/reporter/constants.js'
+    'theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'
+    'theme-shared/components/smart-payment/reporter/ThirdPartReport.js'
+    'theme-shared/components/smart-payment/index.js'
+    'theme-shared/components/payment-button/constants.js'
+    'theme-shared/components/payment-button/utils.js'
+    'theme-shared/components/payment-button/express_checkout.js'
+    'theme-shared/components/smart-payment/payments.js'
+    'theme-shared/utils/report/page.js'
+    'theme-shared/report/product/utils/index.js'
+    'theme-shared/events/product/paypal-fallback/index.js'
+    'theme-shared/events/trade/interior-event/index.js'
+    'theme-shared/events/trade/enum/index.js'
+    'theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'
+    'theme-shared/utils/report/hd-const.js'
+    'theme-shared/utils/tradeReport/hdReport.js'
+    'theme-shared/utils/tradeReport/hdReportV2.js'
+    'theme-shared/utils/tradeReport/eventListen.js'
+    'theme-shared/components/hbs/shared/components/topDrawer/const.js'
+    'theme-shared/components/hbs/shared/components/drawer/const.js'
+    'commons/logger/index.js'
+    'commons/utils/isMobile.js'
+    'commons/utils/throttle.js'
+    'commons/utils/main.js'
+    'commons/utils/helper.js'
+    'commons/utils/index.js'
+    'cart/script/biz/sticky-cart/helper.js'
+    'cart/script/report/cartReport.js'
+    'cart/script/biz/sticky-cart/index.js'
+    'cart/script/domain/adapter/svc/internal/config.js'
+    'cart/script/domain/adapter/svc/internal/transport.js'
+    'cart/script/domain/adapter/svc/index.js'
+    'cart/script/domain/adapter/storage/constant.js'
+    'cart/script/domain/adapter/storage/index.js'
+    'cart/script/utils/event-bus/index.js'
+    'cart/script/domain/adapter/svc/internal/constant.js'
+    'cart/script/domain/adapter/svc/cart.js'
+    'cart/script/domain/adapter/svc/voucher.js'
+    'cart/script/domain/adapter/svc/coupon.js'
+    'cart/script/domain/model/helpers.js'
+    'cart/script/domain/adapter/svc/order.js'
+    'cart/script/constant/responseCode.js'
+    'cart/script/constant/cartQuantity.js'
+    'cart/script/domain/model/cart.js'
+    'cart/script/constant/stockType.js'
+    'cart/script/domain/vo/productStock.js'
+    'cart/script/constant/priceType.js'
+    'cart/script/domain/vo/productPriceType.js'
+    'cart/script/utils/object.js'
+    'cart/script/domain/model/cartItem.js'
+    'cart/script/domain/vo/responseCode.js'
+    'cart/script/domain/model/response.js'
+    'cart/script/domain/model/promotionCode.js'
+    'theme-shared/biz-com/trade/optimize-modal/constant.js'
+    'theme-shared/biz-com/trade/optimize-modal/cartChangeItem.js'
+    'cart/script/domain/vo/productVerifyType.js'
+    'cart/script/domain/model/cartVerifyItem.js'
+    'cart/script/service/cart/hooks.js'
+    'cart/script/service/cart/service.js'
+    'cart/script/service/cart/index.js'
+    'cart/script/service/index.js'
+    'commons/utils/dynamicImportMiniCart.js'
+    'commons/cart/globalEvent.js'
+    'commons/utils/debounce.js'
+    'theme-shared/components/payment-button/shopby_fast_checkout.js'
+    'theme-shared/components/payment-button/index.js'
+    'product/detail/js/payment_button.js'
+    'theme-shared/report/product/add-to-cart.js'
+    'product/detail/js/product-button-report.js'
+    'product/detail/js/float-button.js'
+    'product/detail/js/product-button.js'
+    'commons/utils/convertPrice.js'
+    'product/commons/js/product-info.js'
+    'theme-shared/utils/img-size.js'
+    'theme-shared/components/hbs/productImages/js/product-photoSwipeHtml.js'
+    'theme-shared/components/hbs/shared/utils/imgUrl.js'
+    'theme-shared/components/hbs/shared/utils/getYouTubeCover.js'
+    'theme-shared/utils/lozad/util.js'
+    'theme-shared/utils/lozad/plugins/normal.js'
+    'theme-shared/utils/lozad/plugins/image-gif-poster.js'
+    'theme-shared/components/hbs/productImages/js/index.js'
+    'product/detail/js/product-swiper.js'
+    'product/detail/js/layout.js'
+    'product/utils/sku/skuUtil.js'
+    'product/utils/sku/skuFilter.js'
+    'product/commons/js/sku-trade/base-sku-trade.js'
+    'product/commons/js/sku-trade/sku-trade-flatten.js'
+    'theme-shared/components/hbs/productImages/js/modal.js'
+    'theme-shared/components/hbs/shared/utils/bem.js'
+    'theme-shared/components/hbs/shared/components/modal/common.js'
+    'commons/components/modal/common.js'
+    'product/commons/js/sku-trade/sku-trade-select.js'
+    'product/detail/js/sku-trade.js'
+    'theme-shared/utils/form/form.js'
+    'theme-shared/utils/form/index.js'
+    'theme-shared/utils/sku/firstAvailableSku.js'
+    'theme-shared/report/customArgs/index.js'
+    'theme-shared/report/product/detail/inquiry-modal-report.js'
+    'commons/base/BaseClass.js'
+    'theme-shared/components/hbs/shared/components/modal/lite.js'
+    'commons/components/modal/lite.js'
+    'theme-shared/components/hbs/shared/base/BaseClass.js'
+    'theme-shared/components/hbs/shared/components/modal/full.js'
+    'commons/components/modal/full.js'
+    'commons/components/modal/index.js'
+    'product/detail/inquiry-price-modal.js'
+    'product/commons/js/createShadowDom.js'
+    'product/detail/js/tabs.js'
+    'product/detail/js/product-collapse.js'
+    'theme-shared/components/hbs/thirdPartyShare/js/index.js'
+    'commons/thirdPartyShare/index.js'
+    'commons/utils/url.js'
+    'theme-shared/report/common/baseReport.js'
+    'theme-shared/report/stage/const.js'
+    'theme-shared/report/product/product-preview.js'
+    'product/utils/nullishCoalescingOperator.js'
+    'product/detail/js/product-preview.js'
+    'product/detail/js/csrSku.js'
+    'product/detail/main.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 {{/unless}}
 
+{{#capture 'productImageStickyCls'}}
+  {{#and (boolean product_image_show_style '!=' 'flatten') (boolean product_image_show_style '!=' 'two_column') (boolean product_image_show_style '!=' 'one_column') (isTruthy product_info_sticky)}}
+    product-detail-sticky
+  {{/and}}
+{{/capture}}
+
+{{#capture 'productImageStickyId'}}
+  {{#and (boolean product_image_show_style '!=' 'flatten') (boolean product_image_show_style '!=' 'two_column') (boolean product_image_show_style '!=' 'one_column') (isTruthy product_info_sticky)}}
+    product-detail-sticky_{{ id }}
+  {{/and}}
+{{/capture}}
+
+{{#capture 'productInfoStickyCls'}}
+  {{#if (boolean (boolean product_image_show_style '==' 'flatten') '&&' (isTruthy product_info_sticky))}}
+    product-detail-sticky
+  {{else}}{{#if (or (boolean product_image_show_style '==' 'two_column') (boolean product_image_show_style '==' 'one_column'))}}
+    product-detail-sticky
+  {{/if}}{{/if}}
+{{/capture}}
+
+{{#capture 'productInfoStickyId'}}
+  {{#if (boolean (boolean product_image_show_style '==' 'flatten') '&&' (isTruthy product_info_sticky))}}
+    product-detail-sticky_{{ id }}
+  {{else}}{{#if (or (boolean product_image_show_style '==' 'two_column') (boolean product_image_show_style '==' 'one_column'))}}
+    product-detail-sticky_{{ id }}
+  {{/if}}{{/if}}
+{{/capture}}
 
 <div class="product-preview-container __sl-custom-track-{{ id }}"
   data-bnm="{{ product_mobile_thumbnail_image_hide }}"
@@ -309,8 +381,8 @@
 >
   <div class="product-preview-row product-detail-img-postion__{{ product_image_position }}">
     <div class="product-detail-col-img__{{ product_image_size }} product-detail-col-img">
-      <div class="{{#and (boolean product_image_show_style '!=' 'flatten') (isTruthy product_info_sticky)}}product-detail-sticky{{/and}}" id="{{#and (boolean product_image_show_style '!=' 'flatten') (isTruthy product_info_sticky)}}product-detail-sticky_{{ id }}{{/and}}">
-        {{ snippet 'product/detail/product-swiper' selectorId=id showThumbnailArrow=show_thumbnail_arrow mobileProductImageIsFull=(if image_width_in_mobile 'full') thumbsDirection=thumbnail_position productImagePos=product_image_position productImageScale=product_image_scale videoMute=video_mute videoLoop=video_loop videoAutoplay=video_autoplay spu=product.spu selectSku=initSku.selectSku productImageSize=product_image_size showSkuImg=product_image_show_sku_image showSwiperArrow=product_show_swiper_arrow productImageShowStyle=product_image_show_style productMobileThumbnailImageHide=product_mobile_thumbnail_image_hide pc_magnifier_type=pc_magnifier_type }}
+      <div class="{{ productImageStickyCls }}" id="{{ productImageStickyId }}">
+        {{ snippet 'product/detail/product-swiper' selectorId=id showThumbnailArrow=show_thumbnail_arrow mobileProductImageIsFull=(if image_width_in_mobile 'full') thumbsDirection=thumbnail_position productImagePos=product_image_position productImageScale=product_image_scale videoMute=video_mute videoLoop=video_loop videoAutoplay=video_autoplay spu=product.spu selectSku=initSku.selectSku productImageSize=product_image_size showSkuImg=product_image_show_sku_image showSwiperArrow=product_show_swiper_arrow productImageShowStyle=product_image_show_style productMobileThumbnailImageHide=product_mobile_thumbnail_image_hide product_mobile_image_switch_style=product_mobile_image_switch_style product_mobile_image_switch_position=product_mobile_image_switch_position productMobilePictureMode=product_mobile_picture_mode pc_magnifier_type=pc_magnifier_type main_image_ratio=section.settings.main_image_ratio }}
         <script>window.lazySizes.loader.immediatelyCheckElems()</script>
       </div>
     </div>
@@ -319,7 +391,7 @@
     {{ snippet 'product/detail/product-preview-promotions' }}
 
     <div class="product-detail-col-info__{{ product_image_size }} product-detail-col-info">
-      <div class="product-main_imgps__{{ product_image_position }} {{#and (boolean product_image_show_style '==' 'flatten') (isTruthy product_info_sticky)}} product-detail-sticky {{/and}}" id="{{#and (boolean product_image_show_style '==' 'flatten') (isTruthy product_info_sticky)}}product-detail-sticky_{{ id }}{{/and}}">
+      <div class="product-main_imgps__{{ product_image_position }} {{ productInfoStickyCls }}" id="{{ productInfoStickyId }}">
         <div class="sticky-main-view">
           {{#if (and (boolean id '===' 'productDetail'))}}
             {{ snippet 'product/detail/product-crumbs' }}
@@ -359,7 +431,7 @@
                   {{/if}}
                   {{#if type '===' 'price'}}
                   <div class="product-block-item" data-ssr-block-price>
-                    {{ snippet 'product/detail/product-price' theme=../theme id=../id showMemberMark=../initSku.selectSku.showMemberMark productPrice=(product_sku_price (default ../initSku.selectSku ../initSku.minPriceSku) product.spu) product=../product }}
+                    {{ snippet 'product/detail/product-price' settings=settings theme=../theme id=../id showMemberMark=../initSku.selectSku.showMemberMark productPrice=(product_sku_price (default ../initSku.selectSku ../initSku.minPriceSku) product.spu) product=../product }}
                   </div>
                   {{/if}}
                   {{#if type '===' 'sku-selector'}}
@@ -387,7 +459,7 @@
                   {{#if type '===' 'buy-button'}}
                   <div class="product-block-item" data-ssr-block-buy-button>
 
-                    {{ snippet 'product/detail/product-button' isSoldOut=(or ../product.spu.soldOut ../initSku.selectSku.soldOut) id=../id }}
+                    {{ snippet 'product/detail/product-button' forModal=../forModal isSoldOut=(or ../product.spu.soldOut ../initSku.selectSku.soldOut) id=../id block=this }}
                     {{ snippet 'product/detail/third-party-list' thirdPartyData=(product_thirdparty_combine ../product.spu) }}
                     {{#with global}}
                     {{!-- 捆绑销售挂载点 --}}
@@ -397,7 +469,6 @@
 
                     {{!-- 批量加购 --}}
                     <div class="auto-coupon-add-to-cart-plugin"></div>
-                    {{ snippet 'product/detail/payment-security' displayPosition='PRODUCT_DETAIL' }}
                   </div>
                   {{/if}}
                   {{!-- 查看更多按钮 --}}
@@ -759,8 +830,8 @@
                   </div>
                   {{/if}}
                   {{#if type '===' 'plainText'}}
-                  <div class="product-block-item" data-ssr-block-plainText>
-                    {{ settings.plainText }}
+                  <div class="product-block-item {{ settings.plainTextStyle }}" data-ssr-block-plainText>
+                    {{{ settings.plainText }}}
                   </div>
                   {{/if}}
                   {{#if type '===' 'stockNumber'}}
@@ -795,6 +866,135 @@
                   <div class="product-block-item">
                     <div data-ssr-plugin-product-skuItemNo class="product-info-skuItemNo_{{ ../id }} shopline-element-skuItemNo body-font body3 text-left">{{ ../initSku.selectSku.itemNo }}</div>
                   </div>
+                  {{/if}}
+                  {{!-- 弹出窗口 --}}
+                  {{#if type '===' 'popup_link'}}
+                  <div class="product-block-item">
+                    <button
+                      class="btn btn-link product-popup-modal__button js-product-popup"
+                      data-display-product-desc="{{ settings.display_product_desc }}"
+                      data-page="{{ settings.page }}"
+                      >
+                      <textarea class="d-none js-product-content">
+                        {{{ rich_editor_format settings.content lazyLoadIframe=true }}}
+                      </textarea>
+                      <textarea class="d-none js-product-description">
+                        {{ snippet 'product/detail/product-description' description=../description }}
+                      </textarea>
+                      {{#case settings.icon}}
+                        {{#when 'payment'}}
+                          {{ snippet 'icons/icon_safe_payment' }}
+                        {{/when}}
+                        {{#when 'package'}}
+                          {{ snippet 'icons/icon_package' }}
+                        {{/when}}
+                        {{#when 'email'}}
+                          {{ snippet 'icons/icon_email' }}
+                        {{/when}}
+                        {{#when 'location'}}
+                          {{ snippet 'icons/icon_location' }}
+                        {{/when}}
+                        {{#when 'customer'}}
+                          {{ snippet 'icons/icon_customer' }}
+                        {{/when}}
+                        {{#when 'chat'}}
+                          {{ snippet 'icons/icon_chat' }}
+                        {{/when}}
+                      {{/case}}
+                      <span>{{ settings.text }}</span>
+                    </button>
+                  </div>
+                  {{/if}}
+                  {{!-- 图片 --}}
+                  {{#if type '===' 'image_link'}}
+                    <div class="product-link__images product-block-item product-link__images--{{ settings.image_layout }} product-link__images--{{ settings.image_fill_type }}">
+                      {{#if settings.image_1.url}}
+                        <div class="product-link__images-item">
+                          {{#if settings.image_1_link}}
+                            {{ assign 'linkItem1' (useLink settings.image_1_link request.uri.query) }}
+                            <a {{{ linkItem1.hrefAttr }}}>
+                          {{/if}}
+                            {{ snippet 'global-image' image=settings.image_1 }}
+                          {{#if settings.image_1_link}}
+                            </a>
+                          {{/if}}
+                        </div>
+                      {{/if}}
+                      {{#if settings.image_2.url}}
+                        <div class="product-link__images-item">
+                          {{#if settings.image_2_link}}
+                            {{ assign 'linkItem2' (useLink settings.image_2_link request.uri.query) }}
+                            <a {{{ linkItem2.hrefAttr }}}>
+                          {{/if}}
+                            {{ snippet 'global-image' image=settings.image_2 }}
+                          {{#if settings.image_2_link}}
+                            </a>
+                          {{/if}}
+                        </div>
+                      {{/if}}
+                      {{#if settings.image_3.url}}
+                        <div class="product-link__images-item">
+                          {{#if settings.image_3_link}}
+                            {{ assign 'linkItem3' (useLink settings.image_3_link request.uri.query) }}
+                            <a {{{ linkItem3.hrefAttr }}}>
+                          {{/if}}
+                            {{ snippet 'global-image' image=settings.image_3 }}
+                          {{#if settings.image_3_link}}
+                            </a>
+                          {{/if}}
+                        </div>
+                      {{/if}}
+                    </div>
+                  {{/if}}
+                  {{!-- 按钮 --}}
+                  {{#if type '===' 'button_link'}}
+                    {{#if settings.button_text}}
+                      {{#if settings.button_style '===' 'fill'}}
+                        {{ assign 'button_class_name' 'btn-primary' }}
+                      {{else}}
+                        {{ assign 'button_class_name' 'btn-outline-primary' }}
+                      {{/if}}
+                      {{ assign 'button_background_color_alhpa' (color_extract settings.button_background_color 'alpha') }}
+                      {{ assign 'button_text_color_alhpa' (color_extract settings.button_text_color 'alpha') }}
+                      <div class="product-link__button product-link__button--{{ id }} product-block-item button-size__{{ settings.button_size }} button-style__{{ settings.button_style }} {{#if settings.button_stretch}}button-width__full{{/if}}">
+                        <style>
+                        {{#if button_background_color_alhpa '>' 0}}
+                          .product-link__button--{{ id }}.button-style__fill .product-link__button-btn:after {
+                            --btn-border-background-color: {{ settings.button_background_color }};
+                          }
+                          .product-link__button--{{ id }}.button-style__fill .product-link__button-btn:hover:after {
+                            --btn-border-background-color: {{ settings.button_background_color }};
+                          }
+                        {{/if}}
+                        .product-link__button--{{ id }}.button-style__fill .product-link__button-btn {
+                          {{#if button_background_color_alhpa '>' 0}}
+                          background-color: {{ settings.button_background_color }};
+                          {{/if}}
+                          {{#if button_text_color_alhpa '>' 0}}
+                          color: {{ settings.button_text_color }};
+                          {{/if}}
+                        }
+                        {{#if button_text_color_alhpa '>' 0}}
+                        .product-link__button--{{ id }}.button-style__border .product-link__button-btn {
+                          border-color: {{ settings.button_text_color }};
+                          color: {{ settings.button_text_color }};
+                        }
+                        {{/if}}
+                        </style>
+                        {{#if settings.button_link}}
+                          {{ assign 'linkItem' (useLink settings.button_link request.uri.query) }}
+                          <a {{{ linkItem.hrefAttr }}} class="btn product-link__button-btn {{ button_class_name }}">
+                        {{else}}
+                          <button class="btn product-link__button-btn {{ button_class_name }}">
+                        {{/if}}
+                          {{ settings.button_text }}
+                        {{#if settings.button_link}}
+                          </a>
+                        {{else}}
+                          </button>
+                        {{/if}}
+                      </div>
+                    {{/if}}
                   {{/if}}
                 {{/each}}
                 {{#if isHideSkuSelector}}

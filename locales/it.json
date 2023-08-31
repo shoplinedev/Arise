@@ -95,6 +95,11 @@
       "custom_preview": "Anteprima personalizzata",
       "empty_cart": "Il tuo carrello è attualmente vuoto.",
       "item_left": "{{stock}} pezzi in rimanenza",
+      "market": {
+        "illegal": {
+          "excludedState": "Il prodotto del mercato è illegale, il prodotto è escluso dal mercato"
+        }
+      },
       "none_existent": "L'articolo non esiste",
       "view_cart": "Vedi il carrello"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Puoi caricare solo fino a 5 voucher."
     },
     "detail": {
+      "dutyFee": "Tariffa doganale",
       "orderstatus": {
         "detail": "Dettagli"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "Aggiungi al carrello",
       "filter": "Filtro",
+      "filters_selected": "{{count}} selezionati",
       "from_price_html": "da {{price}}",
       "less": "Meno etichette",
       "load_more_tip": "Carica più articoli",

@@ -1,11 +1,21 @@
-{{assign 'title' this.section.settings.subscribe_letter_title}}
-{{assign 'button_text' this.section.settings.subscribe_letter_button_text}}
-{{assign 'placeholder' this.section.settings.subscribe_letter_placeholder}}
+{{assign 'title' data.settings.subscribe_letter_title}}
+{{assign 'button_text' (default data.settings.subscribe_letter_button_text '')}}
+{{assign 'placeholder' (default data.settings.subscribe_letter_placeholder 'Enter your email')}}
+{{assign "title_size" "body5"}}
+{{#if data.settings.letter_show_size "===" 'small'}}
+  {{assign "title_size" "body3"}}
+{{/if}}
+{{#if data.settings.letter_show_size "===" 'middle'}}
+  {{assign "title_size" "body2"}}
+{{/if}}
+{{#if data.settings.letter_show_size "===" 'large'}}
+  {{assign "title_size" "body1"}}
+{{/if}}
 
 <div class="footer__newsletter shopline-element-footer-newsletter __sl-custom-track-stage-footer-newsletter">
   {{!-- {{ snippet 'footer-block-header' }} --}}
   {{#if title}}
-    <div class="body3 footer_newsletter-title footer__block-title sl-richtext">{{{title}}}</div>
+    <div class="footer_newsletter-title footer__block-title sl-richtext {{title_size}}">{{{title}}}</div>
   {{/if}}
 
   <div class="footer__newsletter-input">
@@ -13,6 +23,7 @@
       <button class="btn btn-primary btn-sm __sl-custom-track-stage-footer-newsletter-button">&nbsp;</button>
       <div class="footer__newsletter-input-base">
         <input class="body4 entry-line __sl-custom-track-stage-footer-newsletter-input" type="text" placeholder="{{placeholder}}">
+        <label class="footer__newsletter-input-label">{{placeholder}}</label>
       </div>
     </div>
     <button class="__sl-custom-track-stage-footer-newsletter-button footer__newsletter-btn {{#isFalsey (trim button_text)}}has-icon{{/isFalsey}}">

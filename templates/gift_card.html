@@ -14,10 +14,13 @@
   {{/if}}
   <div class="giftCardWrapper {{#if invalid}}disabled{{/if}}">
     <div class="giftCardBox">
-      <div class="giftCardBg">
+      <div class="giftCardBg {{#or show_pos_qr_code  show_pos_bar_code}}hasCodeImg{{/or}}">
         {{#if (isTruthy show_pos_qr_code)}}
           <div class="giftCardQrCode" data-gift-code="{{gift_card.code}}"></div>
         {{/if}}
+        {{#if (isTruthy show_pos_bar_code)}}
+        <div class="giftCardBarcode" data-gift-code="{{gift_card.code}}"><img id='giftCardBarcodeImg' /></div>
+       {{/if}}
         <div class="giftCardCode notranslate">{{ gift_card.code }}</div>
       </div>
     </div>

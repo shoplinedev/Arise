@@ -94,10 +94,10 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
           }
         });
 
-        if (!$item.data('isInitShadowDom')) {
+        if (!$item.data('isinitshadowdom')) {
           const html = $item.find('.base-collapse-item__content').html();
           self.transContentByShadowDom($item, html);
-          $item.data('isInitShadowDom', true);
+          $item.data('isinitshadowdom', true);
         }
       });
       this.requestCollapseTitle(ids);
@@ -169,10 +169,10 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
           return;
         }
 
-        if (!$item.data('isInitShadowDom')) {
+        if (!$item.data('isinitshadowdom')) {
           const html = $item.find('.base-collapse-item__content').html();
           self.transContentByShadowDom($item, html);
-          $item.data('isInitShadowDom', true);
+          $item.data('isinitshadowdom', true);
         }
 
         self.open($item);

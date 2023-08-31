@@ -90,6 +90,8 @@ window.SLM['theme-shared/components/hbs/productImages/js/index.js'] = window.SLM
       this.productShowSwiperArrow = String($(`.product_productImageShowSwiperArrow_${selectorId}`).val()) === 'true';
       this.productShowSkuCover = String($(`.product_productImageNeedSkuCover_${selectorId}`).val()) === 'true';
       this.mobileWidthRatio = $(mobileWrapperSelector).hasClass('middleWidth') ? 0.75 : 1;
+      this.productMobilePictureMode = $(`.product_productMobilePictureMode_${selectorId}`).val();
+      this.picIsOneHalfOrTwoHalf = this.productMobilePictureMode && (this.productMobilePictureMode.includes('oneHalf') || this.productMobilePictureMode.includes('twoHalf'));
       this.productImageLength = $('.product_productImageLength').val();
       this.id = pcWrapperSelector;
       this.selectorId = selectorId;
@@ -309,7 +311,8 @@ window.SLM['theme-shared/components/hbs/productImages/js/index.js'] = window.SLM
         const {
           activeIndex
         } = platform === 'mobile' ? self.mobileSwiper : self.swiper;
-        const mobileIndexByLoop = self.getSwiperIsLoop() ? triggerThis.data('swiper-slide-index') : activeIndex;
+        const mobileIndex = self.picIsOneHalfOrTwoHalf ? triggerThis.data('index') : activeIndex;
+        const mobileIndexByLoop = self.getSwiperIsLoop() ? triggerThis.data('swiper-slide-index') : mobileIndex;
         const index = platform === 'mobile' ? mobileIndexByLoop : activeIndex;
         self.handlePhotoSwiper(self.slideItems, index);
       });
@@ -1201,7 +1204,7 @@ window.SLM['theme-shared/components/hbs/productImages/js/index.js'] = window.SLM
         }
 
         const ratio = imgSize(item.resource).ratio || '100%';
-        return `<div class="swiper-slide imageItem" style="height: auto">
+        return `<div class="swiper-slide imageItem" data-index="${index}" style="height: auto">
 <div class="swiper-slide-box" data-image-ratio="${ratio}" data-sku-image-ratio="100%" style="padding-bottom: ${ratio}">
 <img ${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ''}  onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="${item.resource}" ${index !== 0 ? 'data-' : ''}src="${item.resource}" alt="" class="swiper-lazy product_photoSwipe_image">${this.productImageScale ? `<div class="scaleImageIcon"><div class="scaleImageIconSvg"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="13" cy="12" r="7.5" /><path d="M18.5 17.5L23 22.5" stroke-linecap="round" /></svg></div></div>` : ''}</div>
 </div>`;

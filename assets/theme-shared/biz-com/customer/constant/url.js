@@ -13,7 +13,7 @@ window.SLM['theme-shared/biz-com/customer/constant/url.js'] = window.SLM['theme-
   const UNSUB = '/user/unsubscribe';
   _exports.UNSUB = UNSUB;
   const THIRD_LOGIN_HREF = {
-    facebook: 'https://www.facebook.com/v8.0/dialog/oauth',
+    facebook: 'https://www.facebook.com/v17.0/dialog/oauth',
     line: 'https://access.line.me/oauth2/v2.1/authorize',
     google: 'https://accounts.google.com/o/oauth2/v2/auth'
   };

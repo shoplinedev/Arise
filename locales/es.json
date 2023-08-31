@@ -95,6 +95,11 @@
       "custom_preview": "Vista previa personalizada",
       "empty_cart": "Su carrito está vacío.",
       "item_left": "Queda {{stock}} artículo(s)",
+      "market": {
+        "illegal": {
+          "excludedState": "El producto del mercado es ilegal, y está excluido del mercado"
+        }
+      },
       "none_existent": "El artículo no existe",
       "view_cart": "Ver el carrito"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Solo puedes cargar hasta 5 cupones."
     },
     "detail": {
+      "dutyFee": "Aranceles",
       "orderstatus": {
         "detail": "Detalles"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "Agregar al carrito",
       "filter": "Filtrar",
+      "filters_selected": "{{count}} seleccionado(s)",
       "from_price_html": "Desde {{price}}",
       "less": "Menos etiquetas",
       "load_more_tip": "Cargar más ítems",

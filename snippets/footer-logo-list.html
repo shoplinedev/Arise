@@ -1,0 +1,72 @@
+{{assign "icon_1" this.settings.icon_1}}
+{{assign "text_1" this.settings.text_1}}
+{{assign "image_1" this.settings.image_1.url}}
+{{assign "alt_1" this.settings.image_1.alt}}
+{{assign "icon_2" this.settings.icon_2}}
+{{assign "text_2" this.settings.text_2}}
+{{assign "image_2" this.settings.image_2.url}}
+{{assign "alt_2" this.settings.image_2.alt}}
+{{assign "icon_3" this.settings.icon_3}}
+{{assign "text_3" this.settings.text_3}}
+{{assign "image_3" this.settings.image_3.url}}
+{{assign "alt_3" this.settings.image_3.alt}}
+{{assign "icon_4" this.settings.icon_4}}
+{{assign "text_4" this.settings.text_4}}
+{{assign "image_4" this.settings.image_4.url}}
+{{assign "alt_4" this.settings.image_4.alt}}
+
+<div class="footer__conact footer__block d-none d-md-block">
+  {{snippet "footer-block-header"}}
+  <div class="footer__block-wrapper">
+    <div class="footer__block-content">
+      <div class="footer__conact-list">
+        {{#if text_1}}
+          {{snippet "footer-logo-list-block" icon=icon_1 text=text_1 image=image_1 alt=alt_1}}
+        {{/if}}
+        {{#if text_2}}
+          {{snippet "footer-logo-list-block" icon=icon_2 text=text_2 image=image_2 alt=alt_2}}
+        {{/if}}
+        {{#if text_3}}
+          {{snippet "footer-logo-list-block" icon=icon_3 text=text_3 image=image_3 alt=alt_3}}
+        {{/if}}
+        {{#if text_4}}
+          {{snippet "footer-logo-list-block" icon=icon_4 text=text_4 image=image_4 alt=alt_4}}
+        {{/if}}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="footer__conact footer__block footer__menu d-md-none">
+  {{#snippet "global-dropdown-list" relatedId=sectionId status=false}}
+    {{#child "trigger"}}
+      {{#snippet "footer-block-header" normalTitle="Menu"}}
+        {{snippet "icons/icon_dropdown_list_open" classes="close-icon"}}
+        {{snippet "icons/icon_arrow_down" classes="open-icon"}}
+      {{/snippet}}
+    {{/child}}
+
+    {{#child "dropdownList"}}
+      <div class="footer__block-wrapper">
+        <div class="footer__block-content">
+          <div class="footer__conact-list">
+            {{#if text_1}}
+              {{snippet "footer-logo-list-block" icon=icon_1 text=text_1 image=image_1}}
+            {{/if}}
+            {{#if text_2}}
+              {{snippet "footer-logo-list-block" icon=icon_2 text=text_2 image=image_2}}
+            {{/if}}
+            {{#if text_3}}
+              {{snippet "footer-logo-list-block" icon=icon_3 text=text_3 image=image_3}}
+            {{/if}}
+            {{#if text_4}}
+              {{snippet "footer-logo-list-block" icon=icon_4 text=text_4 image=image_4}}
+            {{/if}}
+          </div>
+
+        </div>
+      </div>
+    {{/child}}
+  {{/snippet}}
+</div>

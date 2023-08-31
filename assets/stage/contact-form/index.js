@@ -9,7 +9,7 @@ window.SLM['stage/contact-form/index.js'] = window.SLM['stage/contact-form/index
   const { registrySectionConstructor } = window['SLM']['theme-shared/utils/sectionsLoad/index.js'];
   const Toast = window['SLM']['commons/components/toast/index.js'].default;
   const emailRE = EMAIL_VALID_REGEXP;
-  const SEND_API = '/merchant/form/contactUs';
+  const SEND_API = '/site/form/contactUs';
   const toast = new Toast({
     content: 'content',
     className: 'contact-form__toast',

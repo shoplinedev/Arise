@@ -11,7 +11,7 @@ all_collections:
   {{ combine_asset_tag 'stage/blog/detail/style/index.css' inline=true}}
 {{/if}}
 
-<main class="blog-container container" data-section-type="blog-detail" data-section-id="{{ section.id }}">
+<main class="blog-container container blog-layout--{{ section.settings.alignment }}" data-section-type="blog-detail" data-section-id="{{ section.id }}">
   {{ assign 'settings' section.settings }}
   {{ assign 'homeText' (t 'general.general.home') }}
 
@@ -69,7 +69,7 @@ all_collections:
       {{ title }}
     </h1>
     {{#if (and (or settings.is_show_date settings.is_show_author) (or author publishTime))}}
-      <p class="blog__extra-info body4">
+      <p class="blog__extra-info body3">
         {{ assign 'showDate' (and settings.is_show_date publishTime) }}
         {{ assign 'showAuthor' (and settings.is_show_author author) }}
         {{#if showDate}}
@@ -91,7 +91,7 @@ all_collections:
 
   <div class="blog__main-box">
     <div class="blog__main {{#if settings.position '===' 'left'}}blog__main--right{{/if}}">
-      <div class="blog__content body3">
+      <div class="blog__content body3 sl-richtext">
         {{{ rich_editor_format content lazyLoadIframe=true }}}
       </div>
 
@@ -453,6 +453,22 @@ all_collections:
   "max_blocks": 3,
   "settings": [
     {
+      "type": "select",
+      "id": "alignment",
+      "default": "left",
+      "label": "t:sections.main-blog-detail.settings.alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.main-blog-detail.settings.alignment.options__0.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.main-blog-detail.settings.alignment.options__1.label"
+        }
+      ]
+    },
+    {
       "type": "group_header",
       "label": "t:sections.main-blog-detail.settings.group_header__0.label"
     },
@@ -674,6 +690,7 @@ all_collections:
   ],
   "default": {
     "settings": {
+      "alignment": "left",
       "is_show_author": true,
       "is_show_date": true,
       "is_show_breadcrumb": true,

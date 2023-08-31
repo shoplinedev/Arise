@@ -36,6 +36,9 @@
   padding-bottom:47.7%;
   width:100%;
 }
+#giftCardPage .giftCardWrapper .giftCardBox .giftCardBg.hasCodeImg{
+  background-image:url(https://img.myshopline.com/image/official/270a8d680b5a45f7bc6458097b6cb362.jpeg);
+}
 #giftCardPage .giftCardWrapper .giftCardBox .giftCardCode{
   background:hsla(0,0%,100%,.8);
   border:1px dashed #000;
@@ -75,6 +78,43 @@
   position:absolute;
   top:0;
   width:100%;
+}
+#giftCardPage .giftCardWrapper .giftCardBox .giftCardBarcode{
+  background:#fff;
+  border-radius:6px;
+  bottom:45%;
+  height:80px;
+  left:0;
+  line-height:20px;
+  margin:0 auto;
+  overflow:hidden;
+  padding:4px 24px;
+  position:absolute;
+  right:0;
+  text-align:center;
+  width:54.8%;
+}
+#giftCardPage .giftCardWrapper .giftCardBox .giftCardBarcode img{
+  left:50%;
+  max-height:94%;
+  max-width:98%;
+  position:absolute;
+  top:50%;
+  transform:translate(-50%, -50%);
+}
+#giftCardPage .giftCardWrapper .giftCardBox .giftCardBarcode+.giftCardCode{
+  bottom:17%;
+}
+@media screen and (max-width:750px){
+  #giftCardPage .giftCardWrapper .giftCardBox .giftCardBarcode{
+    bottom:38%;
+    height:76px;
+    padding:4px 16px;
+    width:66.2%;
+  }
+  #giftCardPage .giftCardWrapper .giftCardBox .giftCardBarcode+.giftCardCode{
+    bottom:8%;
+  }
 }
 #giftCardPage .giftCardWrapper .giftCardInfo{
   padding:16px 20px;

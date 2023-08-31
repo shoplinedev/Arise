@@ -1,43 +1,63 @@
 <!-- product/search/main.js -->
-{{ combine_asset_tag 
- 'vendors/eventemitter3.min.js'
- 'vendors/lodash.min.js'
- 'vendors/uuid.min.js'
- 'vendors/@sl_currency-tools-core.min.js'
- 'vendors/js-cookie.min.js'
- 'vendors/dayjs.min.js'
- 'vendors/@sl_logger.min.js'
- 'vendors/debug.min.js'
- 'theme-shared/utils/event-bus.js'
- 'theme-shared/utils/parsePathToArray.js'
- 'theme-shared/utils/state-selector.js'
- 'theme-shared/utils/report/page.js'
- 'theme-shared/report/product/utils/index.js'
- 'theme-shared/utils/report/tool.js'
- 'theme-shared/report/common/baseReport.js'
- 'theme-shared/utils/newCurrency/CurrencyConvert.js'
- 'theme-shared/utils/newCurrency/index.js'
- 'theme-shared/utils/currency/getCurrencyCode.js'
- 'theme-shared/report/product/search-item.js'
- 'theme-shared/report/stage/const.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/report/product/product-item.js'
- 'theme-shared/utils/get-env.js'
- 'theme-shared/utils/report/hdReport.js'
- 'theme-shared/utils/report/@hiido.js'
- 'theme-shared/utils/createLogger.js'
- 'theme-shared/utils/report/utils.js'
- 'theme-shared/utils/report/const.js'
- 'theme-shared/utils/report/index.js'
- 'commons/report/index.js'
- 'commons/base/BaseClass.js'
- 'product/search/report.js'
- 'commons/utils/bem.js'
- 'product/search/search-input.js'
- 'product/search/main.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.rlp.min.js'
+      'vendors/lodash.rlp.min.js'
+      'vendors/uuid.rlp.min.js'
+      'vendors/@sl_currency-tools-core.rlp.min.js'
+      'vendors/js-cookie.rlp.min.js'
+      'vendors/dayjs.rlp.min.js'
+      'vendors/@sl_logger.rlp.min.js'
+      'vendors/debug.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.min.js'
+      'vendors/lodash.min.js'
+      'vendors/uuid.min.js'
+      'vendors/@sl_currency-tools-core.min.js'
+      'vendors/js-cookie.min.js'
+      'vendors/dayjs.min.js'
+      'vendors/@sl_logger.min.js'
+      'vendors/debug.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/event-bus.js'
+    'theme-shared/utils/parsePathToArray.js'
+    'theme-shared/utils/state-selector.js'
+    'theme-shared/utils/report/page.js'
+    'theme-shared/report/product/utils/index.js'
+    'theme-shared/utils/report/tool.js'
+    'theme-shared/report/common/baseReport.js'
+    'theme-shared/utils/newCurrency/CurrencyConvert.js'
+    'theme-shared/utils/newCurrency/index.js'
+    'theme-shared/utils/currency/getCurrencyCode.js'
+    'theme-shared/report/product/search-item.js'
+    'theme-shared/report/stage/const.js'
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/report/product/product-item.js'
+    'theme-shared/utils/get-env.js'
+    'theme-shared/utils/report/hdReport.js'
+    'theme-shared/utils/report/@hiido.js'
+    'theme-shared/utils/createLogger.js'
+    'theme-shared/utils/report/utils.js'
+    'theme-shared/utils/report/const.js'
+    'theme-shared/utils/report/index.js'
+    'commons/report/index.js'
+    'commons/base/BaseClass.js'
+    'product/search/report.js'
+    'commons/utils/bem.js'
+    'product/search/search-input.js'
+    'product/search/main.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 <script>
   if (!window.SL_ReportArgsMap) {
     window.SL_ReportArgsMap = {}

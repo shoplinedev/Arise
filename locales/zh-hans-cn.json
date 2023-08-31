@@ -95,6 +95,11 @@
       "custom_preview": "定制预览",
       "empty_cart": "您的购物车目前是空的。",
       "item_left": "剩余{{stock}}件",
+      "market": {
+        "illegal": {
+          "excludedState": "市场商品非法,该商品在市场是排除状态"
+        }
+      },
       "none_existent": "商品不存在",
       "view_cart": "查看购物车"
     },
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "最多支持上传5个凭证"
     },
     "detail": {
+      "dutyFee": "关税",
       "orderstatus": {
         "detail": "详细"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "添加到购物车",
       "filter": "筛选",
+      "filters_selected": "已选择{{count}}个",
       "from_price_html": "{{price}} 起",
       "less": "更少标签",
       "load_more_tip": "加载更多项目",

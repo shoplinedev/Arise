@@ -99,12 +99,38 @@ input{
 .newsletter__input--wrapper:hover:after{
   box-shadow:0 0 0 calc(var(--input-border-thickness) + 1px) rgba(var(--color-text), var(--input-border-opacity)), 0 0 0 calc(var(--input-border-thickness) + 1px) var(--btn-border-background-color);
 }
+.newsletter__label{
+  color:rgba(var(--color-light-text));
+  left:12px;
+  overflow:hidden;
+  pointer-events:none;
+  position:absolute;
+  right:0;
+  text-overflow:ellipsis;
+  top:50%;
+  transform:translateY(-50%);
+  transform-origin:left top;
+  transition:transform .3s ease;
+  word-break:break-word;
+}
 .newsletter__input{
   border:initial;
   border-radius:var(--input-border-radius-outset);
   height:100%;
-  padding:calc(var(--input-border-thickness) + 15.7px) calc(var(--input-border-thickness) + 12px);
+  padding:24px 12px 8px;
   width:100%;
+}
+.newsletter__input::placeholder{
+  opacity:0;
+}
+.newsletter__input:-webkit-autofill~.newsletter__label,.newsletter__input:focus~.newsletter__label,.newsletter__input:not(:placeholder-shown)~.newsletter__label{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  transform:scale(.8) translateY(-100%);
+  white-space:nowrap;
+  width:100%;
+  word-break:normal;
 }
 .newsletter__btn{
   align-items:center;

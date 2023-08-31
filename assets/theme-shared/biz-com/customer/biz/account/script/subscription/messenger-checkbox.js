@@ -10,7 +10,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
   <div class="fb-messenger-checkbox"
     style="margin-left: -12px;margin-right: -12px;margin-top: 0 !important;"
     size="medium"
-    opt_in_type="marketing"
     page_id=""
     messenger_app_id=""
     ref=""
@@ -38,7 +37,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
       } = window.SL_State.get('theme.settings') || {};
       this.skin = colorExtract(co_background_color, 'contrast') === 'rgb(0, 0, 0)' ? 'light' : 'dark';
       window.Shopline.event.on('Checkout::CheckoutDetailUpdate', async data => {
-        console.info('data', data);
         const buyerId = data && data.buyerInfo && data.buyerInfo.buyerId;
         const configPage = data && data.basicInfo && data.basicInfo.configPage;
         const step = data && data.basicInfo && data.basicInfo.step;

@@ -22,7 +22,7 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
     }
 
     async getStoreInfo() {
-      const response = await request.get('/merchant/store/front/pwd');
+      const response = await request.get('/site/store/front/pwd');
       const result = response.data;
       return result;
     }
@@ -46,7 +46,6 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
 
     initEvent(container) {
       const inputDom = container.find('.js_password_input');
-      const backMainDom = container.find('.js_password_back_main');
       inputDom.on('keydown', e => {
         if (e.keyCode === 13) {
           e.preventDefault();
@@ -68,10 +67,6 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
           inputDom.val('');
         }
       }
-
-      if (backMainDom) {
-        backMainDom.setAttribute('href', this.getAdminPwdUrl());
-      }
     }
 
     getUrlParam(name) {
@@ -80,19 +75,6 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
       if (!window.location.search.substr(1)) return null;
       const r = window.location.search.substr(1).match(reg);
       return r ? decodeURIComponent(r[2]) : null;
-    }
-
-    getAdminPwdUrl() {
-      const tail = '/admin/';
-      const top = window.Shopline && window.Shopline.handle || window.__INITIAL_STATE__ && window.__INITIAL_STATE__.storeInfo.handle;
-      const envUrlMap = {
-        develop: `${top}.myshoplinedev.com`,
-        staging: `${top}.myshoplinestg.com`,
-        preview: `${top}.preview.myshopline.com`,
-        product: `${top}.myshopline.com`
-      };
-      const baseUrl = envUrlMap[window.__ENV__.APP_ENV] + tail;
-      return `${window.location.protocol}//${baseUrl}`;
     }
 
     toggleShow(container) {

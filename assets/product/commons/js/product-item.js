@@ -15,6 +15,8 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
   $('body').delegate('.js-product-item-quick-view', 'click', function (e) {
     e.preventDefault();
     e.stopPropagation();
+    const $current = $(e.currentTarget);
+    if ($current.hasClass('disabled')) return;
     const spuSeq = $(this).data('spu-seq');
     const uniqueKey = $(this).data('unique-key');
     const query = $(this).data('query');
@@ -30,6 +32,7 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
     e.preventDefault();
     e.stopPropagation();
     const $current = $(e.currentTarget);
+    if ($current.hasClass('disabled')) return;
     const itemIndex = $current.data('index');
     const spuSeq = $current.data('spu-seq');
     const uniqueKey = $current.data('unique-key');
@@ -64,6 +67,9 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
   if (isPad) {
     $('.product-item__inner-wrap .product-item__actions').css({
       display: 'block'
+    });
+    $('.product-item__inner-wrap .js-product-item__actions').css({
+      display: ''
     });
     $('.product-item__inner-wrap').removeClass('js-product-inner-wrap');
     $('#collectionsAjaxInner').addClass('pad');

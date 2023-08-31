@@ -4,23 +4,43 @@
   {{ combine_asset_tag 'stage/testimonials/index.css' inline=true}}
 {{/if}}
 <!-- stage/testimonials/index.js -->
-{{#if request.document_direction '===' 'rtl'}}
-  {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
-{{else}}
-  {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
-{{/if}}
-{{ combine_asset_tag 
- 'vendors/eventemitter3.min.js'
- 'vendors/lodash.min.js'
- 'vendors/swiper.min.js'
- 'theme-shared/utils/sectionsLoad/index.js'
- 'theme-shared/utils/event-bus.js'
- 'commons/utils/main.js'
- 'commons/utils/helper.js'
- 'stage/testimonials/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{#if request.document_direction '===' 'rtl'}}
+      {{ combine_asset_tag 'vendors/swiper.rlp.min.rtl.css' inline=true }}
+    {{else}}
+      {{ combine_asset_tag 'vendors/swiper.rlp.min.css' inline=true }}
+    {{/if}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.rlp.min.js'
+      'vendors/lodash.rlp.min.js'
+      'vendors/swiper.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{#if request.document_direction '===' 'rtl'}}
+      {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
+    {{else}}
+      {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+    {{/if}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.min.js'
+      'vendors/lodash.min.js'
+      'vendors/swiper.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/sectionsLoad/index.js'
+    'theme-shared/utils/event-bus.js'
+    'commons/utils/main.js'
+    'commons/utils/helper.js'
+    'stage/testimonials/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 {{ assign 'title' section.settings.title }}
@@ -29,11 +49,11 @@
 
 {{#style}}
   [data-section-id="{{ section.id }}"] .testimonials__swiper {
-    width: calc((100% / 3 * {{ block_length }}) + ({{ theme.settings.grid_vertical_space }}px / 3 * {{ block_length }}));
+    width: calc((100% / 3 * {{ block_length }}) + ({{ theme.settings.grid_horizontal_space }}px / 3 * {{ block_length }}));
   }
   @media (max-width: 749.98px) {
     [data-section-id="{{ section.id }}"] .testimonials__swiper {
-      width: calc((100% + {{ theme.settings.grid_vertical_space }}px) * {{ block_length }});
+      width: calc((100% + {{ theme.settings.grid_horizontal_space }}px) * {{ block_length }});
     }
   }
 {{/style}}

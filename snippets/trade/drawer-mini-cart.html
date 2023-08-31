@@ -26,44 +26,22 @@
     <div data-ssr-product-recommend-bottom></div>
   </div>
 
-  {{#if (cart_show_security tradeSettleConfig) }}
-    {{!-- <div class="miniCart_vp_container"> --}}
-    {{! 优惠码 }}
-    {{snippet 'trade/coupon' trade_cart_type="sidebar"}}
-    {{! 金额汇总 }}
-    <div class="miniCart_vp_container">
-      {{snippet 'trade/summations'}}
-      {{snippet 'trade/cart-amount-error-alert' totalAmount=cartInfo.totalAmount}}
-      {{!-- 结算信息底部插槽 --}}
-      <div class="slot-cart slot-cart-calculation-end" data-slot-mini-cart-calculation-end></div>
-      {{snippet 'trade/cart-shopping-money-desc' classes="trade_money_desc_top"}}
-      {{snippet 'trade/cart-checkout' id="mini-cart-spb" trade_cart_type="sidebar"}}
-      {{snippet 'trade/cart-shopping-money-desc' classes="trade_money_desc_bottom"}}
-      {{snippet 'trade/cart-checkout-error' trade_cart_type="sidebar"}}
-      {{!-- 结算模块底部插槽 --}}
-      <div class="slot-cart slot-cart-checkout-end" data-slot-mini-cart-checkout-end></div>
-    </div>
+  {{! 优惠码 }}
+  {{snippet 'trade/coupon' trade_cart_type="sidebar"}}
 
-    {{snippet 'trade/safety-logo'}}
-  {{else}}
-    {{! 优惠码 }}
-    {{snippet 'trade/coupon' trade_cart_type="sidebar"}}
-  {{/if}}
+  <div class="miniCart__stick_container_fixed miniCart__stick_container_fixed_observer">
+    {{snippet 'trade/summations'}}
+    {{snippet 'trade/cart-amount-error-alert' totalAmount=cartInfo.totalAmount}}
+    {{!-- 结算信息底部插槽 --}}
+    <div class="slot-cart slot-cart-calculation-end" data-slot-mini-cart-calculation-end></div>
+    {{snippet 'trade/cart-shopping-money-desc' classes="trade_money_desc_top"}}
+    {{snippet 'trade/cart-checkout' id="mini-cart-spb" trade_cart_type="sidebar"}}
+    {{snippet 'trade/cart-shopping-money-desc' classes="trade_money_desc_bottom"}}
+    {{snippet 'trade/cart-checkout-error' trade_cart_type="sidebar"}}
+    {{!-- 结算模块底部插槽 --}}
+    <div class="slot-cart slot-cart-checkout-end slot-cart-checkout-end_top" data-slot-mini-cart-checkout-end></div>
+  </div>
 
-  {{#if (cart_show_security tradeSettleConfig) '===' false }}
-    <div class="miniCart__stick_container_fixed miniCart__stick_container_fixed_observer">
-      {{snippet 'trade/summations'}}
-      {{snippet 'trade/cart-amount-error-alert' totalAmount=cartInfo.totalAmount}}
-      {{!-- 结算信息底部插槽 --}}
-      <div class="slot-cart slot-cart-calculation-end" data-slot-mini-cart-calculation-end></div>
-      {{snippet 'trade/cart-shopping-money-desc' classes="trade_money_desc_top"}}
-      {{snippet 'trade/cart-checkout' id="mini-cart-spb" trade_cart_type="sidebar"}}
-      {{snippet 'trade/cart-shopping-money-desc' classes="trade_money_desc_bottom"}}
-      {{snippet 'trade/cart-checkout-error' trade_cart_type="sidebar"}}
-      {{!-- 结算模块底部插槽 --}}
-      <div class="slot-cart slot-cart-checkout-end slot-cart-checkout-end_top" data-slot-mini-cart-checkout-end></div>
-    </div>
-  {{/if}}
 
   <div class="miniCart__stick_container">
     {{! 金额汇总 }}

@@ -1,0 +1,25 @@
+<div class="footer__menu--copyright">
+  {{#with this as |global|}}
+    {{#if navigation}}
+      <div class="footer__menu--main body5">
+        {{#each navigation.nodeTree as |navItem|}}
+          {{assign "query" global.request.uri.query}}
+          {{assign "locale" global.request.locale}}
+          {{assign "allCollections" global.all_collections}}
+          {{assign "allProducts" global.all_products}}
+          {{assign "navDetail" (navLink navItem query locale allCollections allProducts)}}
+          {{#if @index ">" 0}}
+            <div class="line body5">|</div>
+          {{/if}}
+          <div class="item" {{{navItem.shopline_attributes}}}>
+            <a
+              class="footer__menu--cp-hover __sl-custom-track-stage-navItem"
+              {{{navDetail.hrefAttr}}}
+              rel="noreferrer"
+            >{{navDetail.name}}</a>
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+  {{/with}}
+</div>

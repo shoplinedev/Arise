@@ -157,7 +157,7 @@ window.SLM['theme-shared/utils/tradeReport/index.js'] = window.SLM['theme-shared
       }
     });
     const data = {
-      tp: eventID ? 2 : 1,
+      tp: 1,
       et: Date.now(),
       ed: eventID || getEventID()
     };

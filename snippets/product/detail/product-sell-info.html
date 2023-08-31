@@ -1,32 +1,57 @@
 {{ assign "salesIndexArr" (JSONparse '["1", "2", "3", "4"]' )}}
 
+
+{{assign 'num' '0'}}
+
+{{#with this as |global|}}
+{{#each salesIndexArr}}
+  {{#if (trim (get (append 'product_sales_point_' this) ../settings)) }}
+    {{#with global}}
+      {{assign 'num' (plus global.num '1')}}
+    {{/with}}
+  {{/if}}
+{{/each}}
+{{/with}}
+
+{{#capture 'gridNum'}}
+  {{~#if num '==' '1'}}onlyOne
+  {{~else if num '==' '2'}}onlyTwo
+  {{~else if num '>' '2'}}overThree
+  {{~else}}overThree
+  {{/if}}
+{{/capture}}
+
 {{!-- 销售信息模块 --}}
-<div class="product-sell-info shopline-element-sell-info" id="product-sell-info_{{id}}">
+<div data-c="{{ num }}" class="product-sell-info shopline-element-sell-info {{gridNum}} product-sell-info-{{settings.layout}}" id="product-sell-info_{{id}}">
   {{#each salesIndexArr}}
     {{#if (trim (get (append 'product_sales_point_' this) ../settings)) }}
       <div class="product-sell-box">
         <div class="product-sell-icon">
-          {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'checkmark'}}
-            {{snippet 'icons/icon_sell_checkmark' }}
-          {{/if}}
-          {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'globe'}}
-            {{snippet 'icons/icon_sell_globe' }}
-          {{/if}}
-          {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'leaf'}}
-            {{snippet 'icons/icon_sell_leaf' }}
-          {{/if}}
-          {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'lock'}}
-            {{snippet 'icons/icon_sell_lock' }}
-          {{/if}}
-          {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'package'}}
-            {{snippet 'icons/icon_sell_package' }}
-          {{/if}}
-          {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'truck'}}
-            {{snippet 'icons/icon_sell_truck' }}
+          {{#if (get 'url' (get (append 'product_sales_point_' this '_custom_icon') ../settings))}}
+            <img class="lozad" style="width: 24px;height: 24px;object-fit: cover" src="{{ get 'url' (get (append 'product_sales_point_' this '_custom_icon') ../settings) }}" alt="">
+          {{else}}
+            {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'checkmark'}}
+              {{snippet 'icons/icon_sell_checkmark' }}
+            {{/if}}
+            {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'globe'}}
+              {{snippet 'icons/icon_sell_globe' }}
+            {{/if}}
+            {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'leaf'}}
+              {{snippet 'icons/icon_sell_leaf' }}
+            {{/if}}
+            {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'lock'}}
+              {{snippet 'icons/icon_sell_lock' }}
+            {{/if}}
+            {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'package'}}
+              {{snippet 'icons/icon_sell_package' }}
+            {{/if}}
+            {{#if (get (append 'product_sales_point_' this '_icon') ../settings) '==' 'truck'}}
+              {{snippet 'icons/icon_sell_truck' }}
+            {{/if}}
           {{/if}}
         </div>
         <div class="product-sell-text body3">
-          {{ get (append 'product_sales_point_' this) ../settings }}
+          {{{ get (append 'product_sales_point_' this) ../settings }}}
         </div>
       </div>
     {{/if}}

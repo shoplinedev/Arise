@@ -38,6 +38,35 @@ input{
     width:100%;
   }
 }
+
+.announcement-division-bottom{
+  position:relative;
+}
+.announcement-division-bottom:after{
+  background-color:rgba(var(--color-entry-line));
+  bottom:0;
+  content:"";
+  height:1px;
+  left:0;
+  position:absolute;
+  width:100%;
+}
+
+.color-scheme-.announcement-division-bottom:after{
+  background-color:rgba(var(--color-text), .15);
+}
+
+.color-scheme-1.announcement-division-bottom:after{
+  background-color:rgba(var(--color-scheme-1-text), .15);
+}
+
+.color-scheme-2.announcement-division-bottom:after{
+  background-color:rgba(var(--color-scheme-2-text), .15);
+}
+
+.color-scheme-3.announcement-division-bottom:after{
+  background-color:rgba(var(--color-scheme-3-text), .15);
+}
 .announcement-bar__container[data-display-mode="3"] .announcement-swiper-slide,.announcement-bar__container[data-display-mode="4"] .announcement-swiper-slide{
   flex-shrink:0;
   width:100%;

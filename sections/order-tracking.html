@@ -4,51 +4,68 @@
   {{ combine_asset_tag 'stage/order-tracking/index.css' inline=true}}
 {{/if}}
 <!-- stage/order-tracking/index.js -->
-{{ combine_asset_tag 
- 'vendors/eventemitter3.min.js'
- 'vendors/lodash.min.js'
- 'vendors/scroll-lock.min.js'
- 'vendors/axios.min.js'
- 'vendors/query-string.min.js'
- 'theme-shared/utils/sectionsLoad/index.js'
- 'theme-shared/utils/get-env.js'
- 'theme-shared/utils/event-bus.js'
- 'theme-shared/utils/form/form.js'
- 'theme-shared/utils/form/index.js'
- 'theme-shared/utils/syntax-patch.js'
- 'theme-shared/utils/i18n.js'
- 'theme-shared/utils/countries.js'
- 'theme-shared/utils/pattern.js'
- 'theme-shared/biz-com/orderTracking/utils/index.js'
- 'theme-shared/biz-com/orderTracking/templates/getCodeSelect.js'
- 'theme-shared/biz-com/orderTracking/form-item/username.js'
- 'theme-shared/biz-com/orderTracking/form-item/verifycode.js'
- 'theme-shared/biz-com/orderTracking/form/install.js'
- 'theme-shared/components/hbs/shared/components/toast/toast.js'
- 'theme-shared/components/hbs/shared/components/toast/loading.js'
- 'theme-shared/components/hbs/shared/components/toast/index.js'
- 'theme-shared/biz-com/orderTracking/form/index.js'
- 'theme-shared/biz-com/orderTracking/form/getFormFields.js'
- 'theme-shared/utils/parsePathToArray.js'
- 'theme-shared/utils/state-selector.js'
- 'theme-shared/components/hbs/shared/utils/bem.js'
- 'theme-shared/components/hbs/shared/components/modal/common.js'
- 'theme-shared/components/hbs/shared/components/modal/lite.js'
- 'theme-shared/components/hbs/shared/base/BaseClass.js'
- 'theme-shared/components/hbs/shared/components/modal/full.js'
- 'theme-shared/components/hbs/shared/components/modal/index.js'
- 'theme-shared/biz-com/orderTracking/utils/loadScript.js'
- 'theme-shared/biz-com/orderTracking/captcha-modal/captcha.js'
- 'theme-shared/biz-com/orderTracking/captcha-modal/index.js'
- 'theme-shared/biz-com/orderTracking/captcha-modal/riskControl.js'
- 'theme-shared/utils/request.js'
- 'theme-shared/biz-com/orderTracking/service/request.js'
- 'theme-shared/biz-com/orderTracking/service/index.js'
- 'theme-shared/biz-com/orderTracking/index.js'
- 'stage/order-tracking/index.js' 
-  type="text/javascript" 
-  defer=true
-}}
+  {{#if @root.use_modern_optimization}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.rlp.min.js'
+      'vendors/lodash.rlp.min.js'
+      'vendors/scroll-lock.rlp.min.js'
+      'vendors/axios.rlp.min.js'
+      'vendors/query-string.rlp.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{else}}
+    {{ combine_asset_tag 
+      'vendors/eventemitter3.min.js'
+      'vendors/lodash.min.js'
+      'vendors/scroll-lock.min.js'
+      'vendors/axios.min.js'
+      'vendors/query-string.min.js'
+      type="text/javascript"
+      defer=true
+    }}
+  {{/if}}
+  {{ combine_asset_tag 
+    'theme-shared/utils/sectionsLoad/index.js'
+    'theme-shared/utils/get-env.js'
+    'theme-shared/utils/event-bus.js'
+    'theme-shared/utils/form/form.js'
+    'theme-shared/utils/form/index.js'
+    'theme-shared/utils/syntax-patch.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/utils/countries.js'
+    'theme-shared/utils/pattern.js'
+    'theme-shared/biz-com/orderTracking/utils/index.js'
+    'theme-shared/biz-com/orderTracking/templates/getCodeSelect.js'
+    'theme-shared/biz-com/orderTracking/form-item/username.js'
+    'theme-shared/biz-com/orderTracking/form-item/verifycode.js'
+    'theme-shared/biz-com/orderTracking/form/install.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'theme-shared/components/hbs/shared/components/toast/index.js'
+    'theme-shared/biz-com/orderTracking/form/index.js'
+    'theme-shared/biz-com/orderTracking/form/getFormFields.js'
+    'theme-shared/utils/parsePathToArray.js'
+    'theme-shared/utils/state-selector.js'
+    'theme-shared/components/hbs/shared/utils/bem.js'
+    'theme-shared/components/hbs/shared/components/modal/common.js'
+    'theme-shared/components/hbs/shared/components/modal/lite.js'
+    'theme-shared/components/hbs/shared/base/BaseClass.js'
+    'theme-shared/components/hbs/shared/components/modal/full.js'
+    'theme-shared/components/hbs/shared/components/modal/index.js'
+    'theme-shared/biz-com/orderTracking/utils/loadScript.js'
+    'theme-shared/biz-com/orderTracking/captcha-modal/captcha.js'
+    'theme-shared/biz-com/orderTracking/captcha-modal/index.js'
+    'theme-shared/biz-com/orderTracking/captcha-modal/riskControl.js'
+    'theme-shared/utils/request.js'
+    'theme-shared/biz-com/orderTracking/service/request.js'
+    'theme-shared/biz-com/orderTracking/service/index.js'
+    'theme-shared/biz-com/orderTracking/index.js'
+    'stage/order-tracking/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
 <div class="order-tracking__container" data-section-type="order-tracking" data-section-id="{{ section.id }}">
   <div class="order-tracking__order-box">
     <form class="order-tracking__form" id="JorderTrackingForm">

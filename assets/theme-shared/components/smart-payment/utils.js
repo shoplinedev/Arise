@@ -10,6 +10,7 @@ window.SLM['theme-shared/components/smart-payment/utils.js'] = window.SLM['theme
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const { CHANNEL_CODE, METHOD_CODE, I18N_KEY_MAP, ERROR_TYPE, ACTION_TYPE } = window['SLM']['theme-shared/components/smart-payment/constants.js'];
+  const { BrowserPreloadStateFields } = window['SLM']['theme-shared/const/preload-state-fields.js'];
 
   const onTradeTag = key => {
     switch (key) {
@@ -115,8 +116,17 @@ window.SLM['theme-shared/components/smart-payment/utils.js'] = window.SLM['theme
   };
 
   _exports.getPurchaseSDKCheckoutData = getPurchaseSDKCheckoutData;
+  const ElementPlace = {
+    Before: 'Before'
+  };
+  _exports.ElementPlace = ElementPlace;
 
-  const createElement = (id, parentId, attr) => {
+  const createElement = ({
+    id,
+    parentId,
+    attr,
+    place
+  }) => {
     if ($.contains(`#${parentId}`, `#${id}`)) {
       return;
     }
@@ -129,14 +139,20 @@ window.SLM['theme-shared/components/smart-payment/utils.js'] = window.SLM['theme
       });
     }
 
-    $(`#${parentId}`).append(ele);
+    const parentEle = $(`#${parentId}`);
+
+    if (place === ElementPlace.Before) {
+      parentEle.prepend(ele);
+    } else {
+      parentEle.append(ele);
+    }
   };
 
   _exports.createElement = createElement;
 
   const getPaymentInfo = pageType => {
     if (convertPageType(pageType) === PageType.Checkout) {
-      return SL_State.get('checkout.paymentButtonConfig') || {};
+      return SL_State.get(`${BrowserPreloadStateFields.TRADE_CHECKOUT}.paymentButtonConfig`) || {};
     }
 
     return SL_State.get('paymentButtonConfig') || {};

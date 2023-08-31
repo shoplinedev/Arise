@@ -97,11 +97,25 @@ input{
   white-space:nowrap;
 }
 .product-sku-trade-select .spec-box .select-box .select-entry .entry-arrow{
-  background-color:var(--color-text);
-  height:11px;
-  mask-image:var(--sl-asset-product-commons-svg-arrow--svg);
+  align-items:center;
+  display:flex;
+  height:10px;
+  justify-content:center;
+  position:relative;
+  transform-origin:center;
   transition:transform .2s;
   width:10px;
+}
+.product-sku-trade-select .spec-box .select-box .select-entry .entry-arrow:before{
+  border-bottom:1px solid;
+  border-left:1px solid;
+  color:rgba(var(--color-text));
+  content:"";
+  height:7px;
+  position:absolute;
+  -webkit-transform:rotate(-45deg);
+  transform:rotate(-45deg) translate(2px, -2px);
+  width:7px;
 }
 .product-sku-trade-select .spec-box .select-box .select-entry.open .entry-arrow{
   transform:rotate(180deg);

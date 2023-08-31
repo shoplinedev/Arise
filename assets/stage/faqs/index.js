@@ -30,7 +30,7 @@ window.SLM['stage/faqs/index.js'] = window.SLM['stage/faqs/index.js'] || functio
         } else {
           $wrapper.addClass('active');
           $target.addClass('active');
-          $wrapper.height($content.outerHeight(true));
+          $wrapper.height($content.outerHeight(true) + 1);
         }
       });
     }

@@ -95,6 +95,11 @@
       "custom_preview": "Tùy chỉnh xem trước",
       "empty_cart": "Giỏ hàng của bạn hiện đang trống.",
       "item_left": "Chỉ còn {{stock}} sản phẩm",
+      "market": {
+        "illegal": {
+          "excludedState": "Sản phẩm thị trường là bất hợp pháp và sản phẩm này ở trạng thái bị loại khỏi thị trường"
+        }
+      },
       "none_existent": "Hàng hóa không tồn tại",
       "view_cart": "Xem giỏ hàng"
     },
@@ -201,7 +206,7 @@
       "not_set": "Chưa cài đặt",
       "password": "Mật khẩu",
       "personal__info": "Thông tin cá nhân",
-      "personal__information": "Thông tin cá nhâ",
+      "personal__information": "Thông tin cá nhân",
       "phone": "Số Điện Thoại cố Định",
       "reset_password_error_hint": "Vui lòng liên kết email hoặc số điện thoại di động trước",
       "revoke": "Hủy đóng",
@@ -491,6 +496,7 @@
       "voucher_amount_limit": "Bạn chỉ có thể tải lên tối đa 5 phiếu thưởng."
     },
     "detail": {
+      "dutyFee": "Thuế Quan",
       "orderstatus": {
         "detail": "Chi tiết"
       }
@@ -587,6 +593,7 @@
     "product_list": {
       "add_to_cart": "THÊM VÀO GIỎ HÀNG",
       "filter": "Lọc",
+      "filters_selected": "Đã chọn {{count}}",
       "from_price_html": "Từ {{price}}",
       "less": "ít hơn",
       "load_more_tip": "Đang tải thêm các mặt hàng",
