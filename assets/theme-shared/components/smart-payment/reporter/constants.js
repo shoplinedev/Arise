@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/smart-payment/reporter/constants.js'] = window.SLM['theme-shared/components/smart-payment/reporter/constants.js'] || function () {
   const _exports = {};
   const EventNameType = {

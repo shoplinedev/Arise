@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail/js/product-quantity.js'] || function () {
   const _exports = {};
   const DataWatcher = window['SLM']['theme-shared/utils/sku/DataWatcher.js'].default;
@@ -9,7 +8,6 @@ window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail
   const SkuStepper = window['SLM']['product/commons/js/sku-stepper.js'].default;
   const initValue = 1;
   _exports.initValue = initValue;
-
   class SkuQuality {
     constructor({
       sku,
@@ -36,27 +34,21 @@ window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail
       this.isShowTips = isShowTips;
       this.init();
     }
-
     getMax() {
       if (this.fixedMax) {
         return this.fixedMax;
       }
-
       if (!this.activeSku) {
         return 99999;
       }
-
       if (this.isTrackStock() && this.isCheckStock) {
         return this.activeSku.stock > 0 ? Math.min(99999, this.activeSku.stock) : 1;
       }
-
       return 99999;
     }
-
     isTrackStock() {
       return !get(this.activeSku, 'infiniteStock') && !get(this.activeSku, 'allowOversold');
     }
-
     init() {
       this.skuStepper = new SkuStepper({
         domReady: true,
@@ -70,27 +62,22 @@ window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail
           if (num !== this.dataPool.quantity) {
             this.dataPool.quantity = num;
           }
-
           this.onChange && this.onChange(num);
         }
       });
-
       if (this.isOpenFlashSale) {
         new FlashSale({
           id: `${this.id}`
         }).init();
       }
-
       this.dataPool.quantity = initValue;
       this.dataPool.watch(['quantity'], () => {
         this.setCurrentNum(this.dataPool.quantity);
       });
     }
-
     render() {
       if (this.isShowTips) {
         const showTips = this.isTrackStock() && this.activeSku && this.activeSku.stock < 10 && this.activeSku.stock > 0;
-
         if (showTips) {
           const content = t(`cart.stock.limit`, {
             stock: this.activeSku.stock
@@ -101,7 +88,6 @@ window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail
         }
       } else {
         let content = '';
-
         if (!this.activeSku) {
           content = '0';
           $(`#product-in-stock_${this.id} .stock-num`).html(content);
@@ -118,13 +104,11 @@ window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail
           } else if (!this.activeSku.infiniteStock && this.activeSku.allowOversold) {
             content = t('products.product_details.in_stock');
           }
-
           $(`#product-in-stock_${this.id} .stock-num`).html(content);
           $(`#product-in-stock_${this.id}`).removeClass('stock-hide');
         }
       }
     }
-
     setErrorTips(show, content) {
       if (show) {
         $(this.root).children('.stepper-tip').html(content).removeClass('hide');
@@ -132,17 +116,15 @@ window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail
         $(this.root).children('.stepper-tip').addClass('hide');
       }
     }
-
     setCurrentNum(num) {
-      const data = { ...this.skuStepper.data,
+      const data = {
+        ...this.skuStepper.data,
         value: num
       };
       this.skuStepper.setStepperData(data);
     }
-
     setActiveSku(sku) {
       let current = this.skuStepper.data.value < 0 ? 1 : this.skuStepper.data.value;
-
       if (!sku) {
         this.activeSku = null;
         const stepperData = {
@@ -154,19 +136,15 @@ window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail
         this.render();
         return;
       }
-
       this.activeSku = sku;
-
       if (current > this.getMax()) {
         current = this.getMax();
-
         if (!sku.soldOut && this.isShowTips) {
           this.skuStepper.toast.open(t(`cart.stock.limit`, {
             stock: current
           }), 1000);
         }
       }
-
       const stepperData = {
         value: current,
         max: this.getMax(),
@@ -175,9 +153,7 @@ window.SLM['product/detail/js/product-quantity.js'] = window.SLM['product/detail
       this.skuStepper.setStepperData(stepperData);
       this.render();
     }
-
   }
-
   _exports.default = SkuQuality;
   return _exports;
 }();

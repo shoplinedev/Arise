@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/csrSku.js'] = window.SLM['product/detail/js/csrSku.js'] || function () {
   const _exports = {};
   const http = window['SLM']['theme-shared/utils/request.js'].default;
-
   function getCsrProductInfo({
     id,
     productId
@@ -20,7 +18,6 @@ window.SLM['product/detail/js/csrSku.js'] = window.SLM['product/detail/js/csrSku
       });
     });
   }
-
   _exports.default = getCsrProductInfo;
   return _exports;
 }();

@@ -1,16 +1,13 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.js'] || function () {
   const _exports = {};
   const YouTube = window['SLM']['stage/video/utils/YouTube.js'].default;
   const VimeoPlayer = window['SLM']['stage/video/utils/VimeoPlayer.js'].default;
   const SlVideoPlayer = window['SLM']['commons/video/VideoJs.js'].default;
   const initWhenVisible = window['SLM']['commons/utils/init-when-visible.js'].default;
-
   window.vimeoApiReady = function () {
     window.SL_EventBus.emit('stage:vimeoReady');
   };
-
   const selectors = {
     playVideoBtn: '.video-overlay__button',
     videoData: '.video-data'
@@ -18,7 +15,6 @@ window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.j
   const classes = {
     playing: 'video--playing'
   };
-
   class Video {
     constructor(container, options = {}) {
       this.settings = {};
@@ -28,11 +24,9 @@ window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.j
       this.container = container;
       this.options = options;
       this.sectionId = container.data('id');
-
       try {
         this.settings = JSON.parse(container.find(`#Video-data-${this.sectionId}`).text());
       } catch (err) {}
-
       this.initEvent();
       initWhenVisible({
         element: container,
@@ -40,7 +34,6 @@ window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.j
         threshold: 500
       });
     }
-
     init() {
       const {
         container: video
@@ -61,7 +54,6 @@ window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.j
       const events = {
         onReady: this.onVideoPlayerReady.bind(this)
       };
-
       switch (type) {
         case 'youtube':
           this.initYoutubeVideo(dataDiv.attr('id'), {
@@ -73,7 +65,6 @@ window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.j
             events
           });
           break;
-
         case 'vimeo':
           this.initVimeoVideo(dataDiv.attr('id'), {
             videoId,
@@ -84,7 +75,6 @@ window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.j
             events
           });
           break;
-
         case 'slvideo':
           this.initSlVideo(dataDiv[0], {
             src: videoUrl,
@@ -95,34 +85,27 @@ window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.j
             events
           });
           break;
-
         default:
       }
     }
-
     initYoutubeVideo(videoId, options) {
       this.player = new YouTube(videoId, options);
     }
-
     initVimeoVideo(videoId, options) {
       this.player = new VimeoPlayer(`#${videoId}`, options);
     }
-
     initSlVideo(videoEl, options) {
       this.player = new SlVideoPlayer(videoEl, options);
     }
-
     initEvent() {
       this.container.find(selectors.playVideoBtn).on('click', () => {
         this.startVideoOnClick();
         this.options && this.options.clickCallback && this.options.clickCallback();
       });
     }
-
     onVideoPlayerReady() {
       if (this.settings.autoplay) {
         this.player.playVideo();
-
         if (this.settings.quiet) {
           this.player.mute();
         } else {
@@ -131,9 +114,7 @@ window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.j
         }
       }
     }
-
     initAutoplay() {}
-
     startVideoOnClick() {
       this.container.addClass(classes.playing);
       const {
@@ -141,13 +122,10 @@ window.SLM['stage/video/utils/video.js'] = window.SLM['stage/video/utils/video.j
       } = this;
       player.playVideo();
     }
-
     onUnload() {
       this.player && this.player.destroy();
     }
-
   }
-
   _exports.default = Video;
   Video.type = 'video';
   return _exports;

@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/sign-up/subscribe.js'] = window.SLM['theme-shared/biz-com/customer/biz/sign-up/subscribe.js'] || function () {
   const _exports = {};
   const { setSubscriptionStateNoLogin } = window['SLM']['theme-shared/biz-com/customer/service/index.js'];
-
   class Subscribe {
     constructor({
       formId,
@@ -16,29 +14,23 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/subscribe.js'] = window.SL
       this.showSubscription = true;
       this.checkedSubscriptionEmail = true;
     }
-
     toggleSubscriptionCheckbox(status) {
       if (this.showSubscription === status) {
         return;
       }
-
       this.showSubscription = status;
       status ? this.$subscribe.show() : this.$subscribe.hide();
     }
-
     setSubscriptionEmail(status) {
       if (status) {
         this.$$reports && this.$$reports.reportCheckSubscriptionBox && this.$$reports.reportCheckSubscriptionBox();
       }
-
       this.checkedSubscriptionEmail = status;
     }
-
     onSubscribeEmail(account) {
       if (!this.showSubscription || !this.checkedSubscriptionEmail) {
         return;
       }
-
       setSubscriptionStateNoLogin({
         subscribeChannel: 'register',
         subscribeAccountType: 'email',
@@ -46,9 +38,7 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/subscribe.js'] = window.SL
         state: 1
       });
     }
-
   }
-
   _exports.default = Subscribe;
   return _exports;
 }();

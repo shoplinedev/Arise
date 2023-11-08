@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] || function () {
   const _exports = {};
   const ScrollPagination = window['SLM']['theme-shared/utils/scrollPagination/index.js'].default;
@@ -10,39 +9,29 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
   const { Status } = window['@yy/sl-theme-shared']['/utils/logger/sentry'];
   const { Owner, Action } = window['SLM']['theme-shared/biz-com/customer/biz/order/list/loggerReport.js'];
   const { getOrderList } = window['SLM']['theme-shared/biz-com/customer/service/orders.js'];
-  const { cidMap, reportPageView, reportPageLeave } = window['SLM']['theme-shared/biz-com/customer/reports/orders.js'];
   const { bizOrderStatusEnum, DeliveryStatusI18n, PayStatusI18n } = window['SLM']['theme-shared/biz-com/customer/biz/order/constants.js'];
   const { initCurrencyChangeListener, formateTimeWithGMT } = window['SLM']['theme-shared/biz-com/customer/biz/order/utils.js'];
   const { redirectTo } = window['SLM']['theme-shared/utils/url.js'];
   const sentryLogger = LoggerService.pipeOwner(Owner.OrderList);
   const isMobile = SL_State.get('request.is_mobile');
   const listContainerCls = '.customer-order-list';
-
   const jump = ({
     pageType,
     id
   }) => {
     let href = redirectTo('');
-
     switch (pageType) {
       case 'plp':
         href = `${window.location.origin}${redirectTo('/collections')}`;
         break;
-
       case 'detail':
         href = `${window.location.origin}${redirectTo(`/user/orders/${id}`)}`;
         break;
-
       default:
         break;
     }
-
-    reportPageLeave(cidMap.customer, {
-      page_dest: href
-    });
     window.location.href = href;
   };
-
   class CustomerOrderList {
     constructor() {
       const {
@@ -50,7 +39,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
         pageSize,
         lastPage
       } = SL_State.get('customer.orders') || {};
-
       if (!pageNum) {
         this._isEmpty = true;
       } else {
@@ -59,7 +47,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
           pageSize
         };
       }
-
       this._isLastPage = lastPage;
       sentryLogger.info('订单列表初始化', {
         action: Action.Init,
@@ -68,7 +55,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
         }
       });
     }
-
     getOrderStatusInfo(data) {
       const {
         bizPayStatus,
@@ -117,7 +103,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
       <span>${DeliveryStatusI18n[bizDeliveryStatus]}</span>
     </div>`;
     }
-
     getSkuItem(data) {
       const {
         orderSeq,
@@ -178,13 +163,11 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
     `;
       return html;
     }
-
     getLastPageDom() {
       return `
     <p class='no-more'>- ${t('order.order_list.no_more_info')} -</p>
     `;
     }
-
     bindEvent() {
       $('.customer-order-list').on('click', '.customer-order-sku-item', function goDetail() {
         jump({
@@ -198,13 +181,10 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
         });
       });
     }
-
     init() {
-      reportPageView(cidMap.customer);
       $(document).on('DOMContentLoaded', () => {
         this.bindEvent();
         initCurrencyChangeListener(listContainerCls);
-
         if (!this._isEmpty) {
           new ScrollPagination({
             load: async () => {
@@ -213,33 +193,25 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
                   noMore: true
                 };
               }
-
               let result = '';
-
               try {
                 const res = await getOrderList(this.requestParams);
-
                 if (!res.success) {
-                  console.error(`[订单列表接口]请求失败，请求入参为${JSON.stringify(this.requestParams)}`);
+                  console.error(`[Order List API] Request failed. Request parameters were: ${JSON.stringify(this.requestParams)}`);
                   return;
                 }
-
                 const {
                   list,
                   lastPage
                 } = res.data || {};
-
                 for (let i = 0; i < list.length; i += 1) {
                   result += this.getSkuItem(list[i]);
                 }
-
                 this.requestParams.pageNum += 1;
-
                 if (lastPage) {
                   this._isLastPage = lastPage;
                   result += this.getLastPageDom();
                 }
-
                 $(`${listContainerCls} .main-wrapper`).append(result);
                 window.lozadObserver && window.lozadObserver.observe();
               } catch (err) {
@@ -253,7 +225,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
                 });
                 console.error(err);
               }
-
               return {
                 noMore: false
               };
@@ -264,9 +235,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/list/index.js'] = window.SLM
         }
       });
     }
-
   }
-
   _exports.default = CustomerOrderList;
   return _exports;
 }();

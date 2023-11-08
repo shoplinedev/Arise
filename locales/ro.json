@@ -104,7 +104,8 @@
       "view_cart": "Vizualizare coș"
     },
     "next_step": {
-      "calculated_taxes_fees": "Taxele și livrarea vor fi calculate la finalizarea comenzii"
+      "calculated_taxes_fees": "Taxele și livrarea vor fi calculate la finalizarea comenzii",
+      "included_taxes_fees": "Taxa inclusă și transportul calculat la finalizare"
     },
     "notices": {
       "change_password_after_verification": "Puteți schimba parola după verificare",
@@ -230,6 +231,7 @@
       "copy_success": "Codul cupon copiat",
       "discount_title": "Activează contul și primește cod de reducere",
       "normal_title": "Activează contul",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Înregistrați-vă pentru e-mailuri pentru a primi actualizări, acces la oferte exclusive, și mai multe.",
       "success_title": "Felicitări pentru primirea reducerii",
       "token_expired": "Link-ul tău a expirat"
@@ -337,6 +339,7 @@
       "set_password": "Parola trebuie să aibă 6-18 caractere, compuse din cifre, litere mari și minuscule",
       "sign__out": "Deconectare",
       "sign_in": "AUTENTIFICARE",
+      "sign_in_activate": "Codul de verificare a fost trimis în contul dvs. {{account}}. Puteți activa contul dvs. după verificare",
       "sign_up": "ÎNSCRIERE",
       "su": "D",
       "subscription_desc": "Obțineți cele mai recente știri despre activitatea de afaceri",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Vă mulțumim pentru abonare. Pentru a beneficia de o experiență mai bună, vă puteți autentifica."
     },
     "message": {
+      "format_error": "Format mesaj fără suport",
       "input_placeholder": "Doriți să lăsați un mesaj?",
       "message": "Mesaj",
       "send": "Trimite"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Categorie"
     },
+    "facets": {
+      "in_stock_only": "Numai în stoc",
+      "sort_button": "Evaluare"
+    },
     "general": {
       "no_product_data_found": "Nu a fost găsită nicio informație despre produs. Vă rugăm să încercați din nou mai târziu",
       "sold_out": "Vândut",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Cumpărați de pe LOTTE",
       "go_to_yahoo_by_link": "Cumpărați de pe Yahoo",
       "in_stock": "În stoc",
+      "inventory_in_stock": "Bunuri în stoc",
+      "inventory_in_stock_show_count": "Inventar: Rămas {{ quantity }}",
+      "inventory_low_stock": "Inventar scăzut",
+      "inventory_low_stock_show_count": "Inventar scăzut: Rămas {{ quantity }}",
+      "inventory_out_of_stock": "Stoc epuizat",
+      "inventory_out_of_stock_continue_selling": "Bunuri în stoc",
       "inventory_quantity": "Date de inventar",
       "leave_us_message": "Introduceți mesajul dvs.",
       "leave_us_message_get_back": "Lăsați-ne un mesaj și vom reveni către dvs. cât mai repede posibil",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} au fost selectate",
       "from_price_html": "Începând de la {{price}}",
       "less": "Mai puține",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} din {{total}} obiecte",
       "load_more_tip": "Se încarcă mai multe articole",
       "more": "Mai multe",
       "new_arrivals": "Noutăți",
@@ -612,7 +627,8 @@
       "save": "Reducere {{{priceDom}}}",
       "save_byjs": "Reducere {{priceDom}}",
       "save_ratio": "Reducere {{price}}%",
-      "select_product_all_options": "Selectați mai întâi prima mărime a produsului!",
+      "select_product_all_options": "Varianta de produs selectată este incompletă sau indisponibilă. Vă rugăm să alegeți din nou",
+      "sort_button": "Evaluare",
       "top_sellers": "Top vânzări",
       "more__product_num": "{{num}} Produse",
       "one_product_num": "{{num}} Produs",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Continuă cumpărăturile",
       "more": "Mai mult",
+      "saved": "salvat",
       "total": "Total",
       "total_sum": "Total"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Întreruperea serviciului. Vă rugăm să încercați din nou mai târziu.",
       "error_message_2014": "Contul este în risc",
       "error_message_2016": "Contul este în risc",
+      "error_message_2020": "Sistemul este ocupat, vă rugăm să încercați din nou mai târziu",
       "error_message_3": "Service pentru excepții",
       "error_message_3001": "Întreruperea serviciului. Vă rugăm să încercați din nou mai târziu.",
       "error_message_3002": "Utilizatorii care nu sunt asociați cu telefoanele mobile/adresele electronice încearcă să-și schimbe parolele",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-mailul a fost asociat cu alte conturi",
       "error_message_3014": "Transmitere nereușită mesaj text/șablon de e-mail",
       "error_message_3015": "Contul a fost activat",
+      "error_message_3021": "Sistemul este ocupat, vă rugăm să încercați din nou mai târziu",
       "error_message_3022": "Link expirat",
       "error_message_3023": "Link-ul este incorect",
       "error_message_3024": "Eroare link parametru",
       "error_message_3026": "Eroare de format de cont",
+      "error_message_3029": "Deocamdată nu suportăm activarea numărului de telefon mobil",
       "error_message_4": "Service pentru excepții",
       "error_message_5": "Service pentru excepții",
       "error_message_6": "Service pentru excepții",
       "error_message_7": "Parola trebuie să aibă 6-18 caractere, compuse din cifre, litere mari și minuscule"
     },
-    "editorSwitchCountryTip": "Schimbarea țărilor nu are suport în editor"
+    "editorSwitchCountryTip": "Schimbarea țărilor nu are suport în editor",
+    "shopby": {
+      "button": {
+        "show": "Securizat și mai rapid"
+      }
+    }
   }
 }

@@ -1,39 +1,20 @@
   <!-- customer/sign-up/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/url.rlp.min.js'
-      'vendors/querystring.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/scroll-lock.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/dayjs.rlp.min.js'
-      'vendors/air-datepicker.rlp.min.js'
-      'vendors/rolldate.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/url.min.js'
-      'vendors/querystring.min.js'
-      'vendors/lodash.min.js'
-      'vendors/eventemitter3.min.js'
-      'vendors/scroll-lock.min.js'
-      'vendors/js-cookie.min.js'
-      'vendors/uuid.min.js'
-      'vendors/dayjs.min.js'
-      'vendors/air-datepicker.min.js'
-      'vendors/rolldate.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/url.min.js'
+    'vendors/querystring.min.js'
+    'vendors/lodash.min.js'
+    'vendors/eventemitter3.min.js'
+    'vendors/scroll-lock.min.js'
+    'vendors/js-cookie.min.js'
+    'vendors/uuid.min.js'
+    'vendors/dayjs.min.js'
+    'vendors/air-datepicker.min.js'
+    'vendors/rolldate.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/request.js'
     'theme-shared/biz-com/customer/helpers/request.js'

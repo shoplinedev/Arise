@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/events/trade/enum/index.js'] = window.SLM['theme-shared/events/trade/enum/index.js'] || function () {
   const _exports = {};
   const SIDEBAR_RENDER = 'Cart::SidebarRender';

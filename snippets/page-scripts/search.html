@@ -1,31 +1,16 @@
 <!-- product/search/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      'vendors/dayjs.rlp.min.js'
-      'vendors/@sl_logger.rlp.min.js'
-      'vendors/debug.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.min.js'
-      'vendors/lodash.min.js'
-      'vendors/uuid.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      'vendors/js-cookie.min.js'
-      'vendors/dayjs.min.js'
-      'vendors/@sl_logger.min.js'
-      'vendors/debug.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/eventemitter3.min.js'
+    'vendors/lodash.min.js'
+    'vendors/uuid.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    'vendors/js-cookie.min.js'
+    'vendors/dayjs.min.js'
+    'vendors/@sl_logger.min.js'
+    'vendors/debug.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/event-bus.js'
     'theme-shared/utils/parsePathToArray.js'

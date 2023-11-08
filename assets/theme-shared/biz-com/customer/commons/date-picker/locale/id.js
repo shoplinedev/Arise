@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/commons/date-picker/locale/id.js'] = window.SLM['theme-shared/biz-com/customer/commons/date-picker/locale/id.js'] || function () {
   const _exports = {};
   _exports.default = {

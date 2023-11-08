@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/components/sku-filter-modal/base/common.js'] = window.SLM['cart/script/components/sku-filter-modal/base/common.js'] || function () {
   const _exports = {};
   const createNamespace = window['SLM']['commons/utils/bem.js'].default;

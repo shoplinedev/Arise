@@ -13,9 +13,9 @@
     class='__sl-custom-track-stage-featuredProduct container'>
     <div class="{{#if (isTruthy notEmpty)}}not-empty{{/if}} {{ prefix }}--wrapped {{#if (isFalsey section.settings.show_background)}}section-gap{{else}}box-padding{{/if}}">
       {{#if (isTruthy notEmpty)}}
-      {{ snippet 'product/detail/product-preview' moduleName='featuredProduct' id=section.id statePrefix=(append 'product_' section.settings.product_id) product=product description=product.desc section=section statePath=(append 'product_' section.settings.product_id) }}
-    {{else}}
-      {{!-- 未配置商品展示默认图 --}}
+        {{ snippet 'product/detail/product-preview' moduleName='featuredProduct' id=section.id statePrefix=(append 'product_' section.settings.product_id) product=product description=product.desc section=section statePath=(append 'product_' section.settings.product_id) }}
+      {{else}}
+
       <div class="{{ prefix }}--empty">
         <div class="{{ prefix }}--empty-image">{{ snippet 'icons/icon_empty_product' }}</div>
         <div class="{{ prefix }}--empty-text">

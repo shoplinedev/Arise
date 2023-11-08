@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/url-adaptor.js'] = window.SLM['theme-shared/utils/url-adaptor.js'] || function () {
   const _exports = {};
   const qs = window['query-string']['*'];
@@ -10,18 +9,20 @@ window.SLM['theme-shared/utils/url-adaptor.js'] = window.SLM['theme-shared/utils
     }
   };
   _exports.queryStringConfig = queryStringConfig;
-
   const adaptor = (url, {
     query,
     fragmentIdentifier,
     fullQuery = true
   } = {}) => {
-    const currentUrl = qs.parseUrl(window.location.href, { ...queryStringConfig.options,
+    const currentUrl = qs.parseUrl(window.location.href, {
+      ...queryStringConfig.options,
       parseFragmentIdentifier: true
     });
-    const allQuery = fullQuery ? { ...(currentUrl.query || {}),
+    const allQuery = fullQuery ? {
+      ...(currentUrl.query || {}),
       ...(query || {})
-    } : { ...query
+    } : {
+      ...query
     };
     const passUrl = qs.stringifyUrl({
       url,
@@ -37,7 +38,6 @@ window.SLM['theme-shared/utils/url-adaptor.js'] = window.SLM['theme-shared/utils
       wholeUrl
     };
   };
-
   _exports.adaptor = adaptor;
   return _exports;
 }();

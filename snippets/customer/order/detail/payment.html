@@ -20,7 +20,7 @@
               {{snippet 'customer/order/detail/payment-method' payChannelName=payChannelName payMethod=payMethod defaultDesensitizedPayerAccount=defaultDesensitizedPayerAccount}} -
             </span>
             <span class="no-change notranslate isolate" data-amount="{{payAmount}}">{{money_with_currency payAmount code=@root.basicInfo.settleCurrencyCode}}</span>
-            <a data-pay-seq="{{paySeq}}" data-index="{{index}}" class="content-pay-value-status-detail">
+            <a href="javascript:;" data-pay-seq="{{paySeq}}" data-index="{{index}}" class="content-pay-value-status-detail">
               {{t 'order.payment.detail'}}
             </a>
           </p>
@@ -33,7 +33,7 @@
         {{t 'order.payment.billing_address'}}
       </div>
       <div id="contentPayValueAddress" class="content-pay-value">
-        {{!-- 账单地址占位符 --}}
+
       </div>
     </div>
   </div>

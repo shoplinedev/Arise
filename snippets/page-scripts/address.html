@@ -1,33 +1,17 @@
   <!-- customer/address/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/lodash.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/url.rlp.min.js'
-      'vendors/querystring.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/@sl_address-autocomplete.rlp.min.js'
-      'vendors/@sl_address-component.rlp.min.js'
-      'vendors/@sl_address-renderer-autofill.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/lodash.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/url.min.js'
-      'vendors/querystring.min.js'
-      'vendors/eventemitter3.min.js'
-      'vendors/@sl_address-autocomplete.min.js'
-      'vendors/@sl_address-component.min.js'
-      'vendors/@sl_address-renderer-autofill.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/lodash.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/url.min.js'
+    'vendors/querystring.min.js'
+    'vendors/eventemitter3.min.js'
+    'vendors/@sl_address-autocomplete.min.js'
+    'vendors/@sl_address-component.min.js'
+    'vendors/@sl_address-renderer-autofill.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/syntax-patch.js'
     'theme-shared/utils/i18n.js'

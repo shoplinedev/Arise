@@ -104,7 +104,8 @@
       "view_cart": "عرض سلة التسوق"
     },
     "next_step": {
-      "calculated_taxes_fees": "سيتم احتساب الضرائب والشحن في الخطوة التالية"
+      "calculated_taxes_fees": "سيتم احتساب الضرائب والشحن في الخطوة التالية",
+      "included_taxes_fees": "شامل الضريبة وحساب الشحن عند الخروج"
     },
     "notices": {
       "change_password_after_verification": "يمكن تغيير كلمة المرور بعد التحقق",
@@ -230,6 +231,7 @@
       "copy_success": "تم نسخ القسيمة",
       "discount_title": "تفعيل الحساب والحصول على كود الخصم",
       "normal_title": "تفعيل الحساب",
+      "normal_title_with_discount_code": "",
       "subscription_text": "اشترك في رسائل البريد الإلكتروني لتلقي التحديثات والوصول إلى العروض الحصرية والمزيد.",
       "success_title": "مبروك على الخصم الخاص بك",
       "token_expired": "انتهت صلاحية الرابط الخاص بك"
@@ -337,6 +339,7 @@
       "set_password": "يرجى تعيين كلمة مرور مكونة من 6-18 رقما ، ويدعم إدخال الأحرف الكبيرة والصغيرة والأرقام",
       "sign__out": "تسجيل الخروج",
       "sign_in": "تسجيل الدخول",
+      "sign_in_activate": "",
       "sign_up": "تسجيل",
       "su": "يوم",
       "subscription_desc": "يمكنك الحصول على آخر أخبار أنشطة المتجر",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "شكرا لك على الاشتراك.يمكنك تسجيل الدخول للحصول على تجربة أفضل."
     },
     "message": {
+      "format_error": "تنسيق الرسالة غير مدعوم",
       "input_placeholder": "هل لديك أي شيء لترك رسالة?",
       "message": "الأخبار",
       "send": "إرسال"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "التصنيف"
     },
+    "facets": {
+      "in_stock_only": "عرض العناصر المتوفرة فقط",
+      "sort_button": "فرز"
+    },
     "general": {
       "no_product_data_found": "لا توجد بيانات للمنتج الحالي ، يرجى المحاولة مرة أخرى في وقت لاحق",
       "sold_out": "نفدت",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "اذهب للتسوق على لوت",
       "go_to_yahoo_by_link": "اذهب للتسوق على ياهو",
       "in_stock": "يوجد مخزون",
+      "inventory_in_stock": "",
+      "inventory_in_stock_show_count": "",
+      "inventory_low_stock": "",
+      "inventory_low_stock_show_count": "",
+      "inventory_out_of_stock": "",
+      "inventory_out_of_stock_continue_selling": "",
       "inventory_quantity": "عدد المخزون",
       "leave_us_message": "يرجى كتابة الرسالة",
       "leave_us_message_get_back": "يرجى ترك رسالة لمحتوى الاستشارة الخاص بك ، وسوف نتصل بك في أقرب وقت ممكن",
@@ -596,6 +610,7 @@
       "filters_selected": "تم اختيار {{count}}",
       "from_price_html": "من {{price}}",
       "less": "تسميات أقل",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} / {{total}} العناصر",
       "load_more_tip": "تحميل المزيد من العناصر",
       "more": "المزيد من التسميات",
       "new_arrivals": "أحدث المنتجات",
@@ -612,7 +627,8 @@
       "save": "خصم {{{priceDom}}}",
       "save_byjs": "خصم {{priceDom}}",
       "save_ratio": "خصم {{price}}%",
-      "select_product_all_options": "يرجى تحديد جميع سمات المنتج",
+      "select_product_all_options": "النوع المحدد للمنتج غير مكتمل أو غير متوفر. يرجى اختيار مرة أخرى",
+      "sort_button": "فرز",
       "top_sellers": "الأكثر بيعاً",
       "more__product_num": "منتج {{num}}",
       "one_product_num": "منتج {{num}}",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "مواصلة التسوق",
       "more": "المزيد",
+      "saved": "أنقذ",
       "total": "الإجمالي الكلي",
       "total_sum": "الإجمالي الكلي"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "النظام مشغول ، يرجى المحاولة مرة أخرى",
       "error_message_2014": "الحساب في خطر",
       "error_message_2016": "الحساب في خطر",
+      "error_message_2020": "",
       "error_message_3": "النظام مشغول",
       "error_message_3001": "النظام مشغول ، يرجى المحاولة مرة أخرى",
       "error_message_3002": "يحاول المستخدم الذي لم يقم بربط الهاتف / البريد الإلكتروني تغيير كلمة المرور",
@@ -850,15 +868,22 @@
       "error_message_3010": "البريد الإلكتروني مرتبط بالفعل",
       "error_message_3014": "فشل في إرسال الرمز",
       "error_message_3015": "تم تفعيل الحساب",
+      "error_message_3021": "",
       "error_message_3022": "انتهت صلاحية الرابط",
       "error_message_3023": "خطأ في تنسيق الارتباط",
       "error_message_3024": "الارتباط خاطئ",
       "error_message_3026": "تنسيق الحساب خاطئ",
+      "error_message_3029": "",
       "error_message_4": "النظام مشغول",
       "error_message_5": "النظام مشغول",
       "error_message_6": "النظام مشغول",
       "error_message_7": "يجب أن تتكون كلمة المرور من 6 إلى 18 حرفًا وتتكون من أرقام وأحرف كبيرة وصغيرة"
     },
-    "editorSwitchCountryTip": "لا يدعم المحرر تبديل البلدان حاليًا"
+    "editorSwitchCountryTip": "لا يدعم المحرر تبديل البلدان حاليًا",
+    "shopby": {
+      "button": {
+        "show": "آمن و سريع"
+      }
+    }
   }
 }

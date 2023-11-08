@@ -1,0 +1,48 @@
+{{assign 'taxesIncluded' tradeSettleConfig.taxesIncluded}}
+{{assign "summation_key_alias" (object_create)}}
+{{snippet "trade/commons/summation_key_alias" data=summation_key_alias}}
+
+{{#trade_with_summations pageType="cart" keyAlias=summation_key_alias}}
+  {{! 费用列表 这里顺序不能变，UI跟产品定了的 @吴婉楠 @狄璇 }}
+  <div id="trade-summations" class="trade_summations body3 trade_summations_fold">
+    {{#each summations}}
+      {{#unless (boolean key "==" "realAmount")}}
+        {{include
+          "snippets/trade/trade_summations_fee"
+          label=(cond customLabel customLabel (t label))
+          key=key
+          value=value
+          showWithZeroValue=showWithZeroValue
+          showReduce=showReduce
+          suffixCls=suffixCls
+          tips=(t tips)
+          showTips=showTips
+          showDetail=showDetail
+          memberPointInfo=memberPointInfo
+          hideCls=hideCls
+        }}
+      {{/unless}}
+    {{/each}}
+    {{snippet "trade/cart-shopping-money-desc" taxesIncluded=../taxesIncluded classes="trade_money_desc_fold"}}
+  </div>
+  <div class="trade_summations body3 trade_summations_settleSumAmount">
+    <div class="trade_summations_fee">
+      <div class="textLeft settleSumAmount">
+        {{t "transaction.payment.total"}}
+      </div>
+      <div class="trade_summations__amount textRight settleSumAmount">
+        <span class="sale-color {{#if (isFalsey cartTotalDiscount)}}hide{{/if}}">
+          {{t "transaction.payment.saved"}}
+          <span class="notranslate settleSumAmount__cartTotalDiscount">{{money_exchange_convert_with_currency cartTotalDiscount}}</span>
+        </span>
+        <span class="trade_summations__amount-box notranslate settleSumAmount__realAmount" data-hide-total="{{hideTotalAmount}}" data-amount={{realAmount}}>
+          {{money_exchange_convert_with_currency realAmount}}
+        </span>
+        <span class="cart-fold-up {{#if hideTotalAmount}}hide{{/if}}">
+          {{snippet "icons/icon_arrow_down2"}}
+        </span>
+      </div>
+    </div>
+    {{snippet "trade/cart-shopping-money-desc" taxesIncluded=../taxesIncluded classes="trade_money_desc_fold" hide=(isFalsey hideTotalAmount)}}
+  </div>
+{{/trade_with_summations}}

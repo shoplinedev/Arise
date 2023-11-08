@@ -1,17 +1,9 @@
 <!-- product/commons/js/sku-stepper.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/lodash.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/lodash.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/lodash.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/syntax-patch.js'
     'theme-shared/utils/i18n.js'
@@ -31,8 +23,26 @@
   {{ combine_asset_tag 'product/commons/style/sku-stepper.css' inline=true}}
 {{/if}}
 
-<div class="product-stepper {{#if disabled}}disabled{{/if}}" id="{{ id }}">
-  <span class="stepper-before disabled">{{ snippet 'product/commons/svg/minus' }}</span>
+<div class="product-stepper {{ border_style }}-border {{#if disabled}}disabled{{/if}}" id="{{ id }}">
+  <span class="stepper-before disabled">
+    {{#case border_style}}
+      {{#when 'line' 'outline'}}
+        {{ snippet 'product/commons/svg/minus' }}
+      {{/when}}
+      {{#when 'none'}}
+        {{ snippet 'icons/icon-minus-hollow' }}
+      {{/when}}
+    {{/case}}
+  </span>
   <input type="text" class="stepper-input body3" value="{{ value }}" autocomplete="off" />
-  <span class="stepper-after">{{ snippet 'product/commons/svg/add' }}</span>
+  <span class="stepper-after">
+    {{#case border_style}}
+      {{#when 'line' 'outline'}}
+        {{ snippet 'product/commons/svg/add' }}
+      {{/when}}
+      {{#when 'none'}}
+        {{ snippet 'icons/icon-plus-hollow' }}
+      {{/when}}
+    {{/case}}
+  </span>
 </div>

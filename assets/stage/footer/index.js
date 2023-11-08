@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || function () {
   const _exports = {};
   const request = window['SLM']['theme-shared/utils/request.js'].default;
@@ -12,7 +11,6 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
   const {
     listenPlatform
   } = utils.helper;
-
   class Footer extends Base {
     constructor() {
       super();
@@ -25,12 +23,10 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
         this.reset();
       });
     }
-
     init() {
       this.bindEvent();
       this.initMobileToolkit();
     }
-
     initMobileToolkit() {
       const $item = $('#stage-footer .j-locale-currency-flag');
       const $root = $('#stage-footer');
@@ -41,37 +37,29 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
       const locale_selector = $item.data('locale');
       const country_selector = $item.data('country');
       const show_currency_symbol = $item.data('currency-symbol');
-
       if (locale_selector) {
         $localeBtn.addClass('show');
       }
-
       if (country_selector) {
         $countryBtn.addClass('show');
       }
-
       if (currency_selector) {
         $currencyBtn.addClass('show');
-
         if (show_currency_symbol) {
           $currencyBtn.find('.currency-symbol').addClass('show');
         }
       }
     }
-
     reset() {
       this.offEvent();
       this.init();
     }
-
     offEvent() {
       this.$off('click');
     }
-
     bindEvent() {
       this.bindSubscription();
     }
-
     bindSubscription() {
       const post = debounce(300, val => {
         const params = {
@@ -82,11 +70,9 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
         const SLMemberPlugin = window.SLMemberPlugin || {};
         const memberReferralCode = SLMemberPlugin.memberReferralCode || {};
         const referralCode = memberReferralCode.value || null;
-
         if (referralCode) {
           params.referralCode = referralCode;
         }
-
         request.post('/user/front/users/footersub', params).then(res => {
           if (res.success) {
             Toast.init({
@@ -106,20 +92,16 @@ window.SLM['stage/footer/index.js'] = window.SLM['stage/footer/index.js'] || fun
       this.$on('click', '.footer__newsletter-btn', e => {
         const $input = $(e.currentTarget).parent().find('input');
         const value = $input.val();
-
         if (checkEmail(value) !== true) {
           Toast.init({
             content: t('general.footer.subscribe_format_error')
           });
           return;
         }
-
         post(value);
       });
     }
-
   }
-
   const instance = new Footer();
   $(document).on('shopline:section:load', () => {
     instance.reset();

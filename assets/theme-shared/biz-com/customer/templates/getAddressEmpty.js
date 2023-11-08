@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/templates/getAddressEmpty.js'] = window.SLM['theme-shared/biz-com/customer/templates/getAddressEmpty.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
-
   _exports.default = () => {
     return `
     <div class="address--empty">
@@ -30,6 +28,5 @@ window.SLM['theme-shared/biz-com/customer/templates/getAddressEmpty.js'] = windo
     </div>
   `;
   };
-
   return _exports;
 }();

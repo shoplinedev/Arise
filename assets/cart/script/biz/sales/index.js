@@ -1,11 +1,9 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/biz/sales/index.js'] = window.SLM['cart/script/biz/sales/index.js'] || function () {
   const _exports = {};
   const slotRender = window['SLM']['theme-shared/biz-com/sales/cart-slot/index.js'].default;
   const CartControlCartBasis = 'Cart::ControlCartBasis';
   const CartCartDetailUpdate = 'Cart::CartDetailUpdate';
-
   const init = function () {
     try {
       const handleCartUpdate = data => {
@@ -15,7 +13,6 @@ window.SLM['cart/script/biz/sales/index.js'] = window.SLM['cart/script/biz/sales
           });
         }
       };
-
       window.Shopline.event.emit(CartControlCartBasis, {
         data: {
           cartDetail: true
@@ -28,7 +25,6 @@ window.SLM['cart/script/biz/sales/index.js'] = window.SLM['cart/script/biz/sales
       console.error(err);
     }
   };
-
   window.__CART_SALE_JS_LOADED = window.__CART_SALE_JS_LOADED || init();
   return _exports;
 }();

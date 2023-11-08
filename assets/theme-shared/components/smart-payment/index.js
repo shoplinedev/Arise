@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme-shared/components/smart-payment/index.js'] || function () {
   const _exports = {};
   const { Payment, PayMode, Paypal, mergeParams, getClientInfo } = window['@sl/smart-payment'];
@@ -15,17 +14,15 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
   const { checkoutHiidoReportV2 } = window['SLM']['theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'];
   const { EventNameType } = window['SLM']['theme-shared/components/smart-payment/reporter/constants.js'];
   const { thirdPartReportOrderStart, thirdPartReportPaymentInfo, thirdPartReportOrderCompleteStep } = window['SLM']['theme-shared/components/smart-payment/reporter/ThirdPartReport.js'];
+  const { loggerSdkPrefix: loggerPrefix } = window['SLM']['theme-shared/components/locales/index.js'];
   const {
     PAYPAL_CHECKOUT
   } = HD_EVENT_NAME;
   const logger = loggerService.pipeOwner('SmartPayment');
-  const loggerPrefix = '[shared]快速支付SDK';
-
   class SmartPayment {
     constructor(config) {
       this.config = config;
     }
-
     async renderSmartPayment(list) {
       let payments = list || getExpressCheckoutWithScenes({
         pageType: this.config.pageType,
@@ -34,7 +31,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
           isSubscription: this.config.props.isSubscription
         }
       });
-
       if (!(payments && Array.isArray(payments)) || payments.length === 0) {
         logger.info(`${loggerPrefix} payments入参`, {
           data: {
@@ -43,13 +39,12 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
         });
         return;
       }
-
       if (!isNewExpressCheckout(this.config.pageType)) {
-        payments = payments.map(item => ({ ...item,
+        payments = payments.map(item => ({
+          ...item,
           currentDomId: this.config.props.domId
         }));
       }
-
       let abandonedOrderInfo = null;
       let expressCheckoutChannelInfo = null;
       let basicInfo = null;
@@ -61,23 +56,19 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
       let productInfos = null;
       let shippingMethodName = '';
       const clientInfo = getClientInfo();
-
       const updateCreateOrderParams = data => {
         basicInfo = data.basicInfo;
         otherInfo = data.otherInfo;
         buyerInfo = data.buyerInfo;
         marketInfo = data.marketInfo;
         passThrough = data.passThrough;
-
         if (data.priceInfo) {
           priceInfo = data.priceInfo;
         }
-
         if (data.productInfos) {
           productInfos = data.productInfos;
         }
       };
-
       const config = mergeParams(this.config, {
         language: SL_State.get('request.locale') || 'en',
         payments,
@@ -91,20 +82,17 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               valid: false
             };
           }
-
           try {
             const beforeCreateOrderRes = await this.config.beforeCreateOrder();
-
             if (beforeCreateOrderRes.valid === false) {
               return beforeCreateOrderRes;
             }
-
-            const returnValue = { ...beforeCreateOrderRes
+            const returnValue = {
+              ...beforeCreateOrderRes
             };
             const {
               abandonedOrderInfo: abandonedInfo
             } = returnValue;
-
             if ((channelCode === CHANNEL_CODE.SLpayments || channelCode === CHANNEL_CODE.StripeOther) && (methodCode === METHOD_CODE.ApplePay || methodCode === METHOD_CODE.GooglePay)) {
               const {
                 seq,
@@ -135,13 +123,13 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
                 }
               };
               const firstLoadRes = await getFirstLoadConfig(params);
-
               if (firstLoadRes.data) {
                 if (handleResponseRedirect(firstLoadRes.data)) return {
                   valid: false
                 };
                 updateCreateOrderParams(firstLoadRes.data);
-                const paymentConfig = { ...firstLoadRes.data
+                const paymentConfig = {
+                  ...firstLoadRes.data
                 };
                 paymentConfig.payChannelData = formatPayChannelData(paymentConfig.payChannelData, {
                   expressCheckoutChannelInfo
@@ -152,7 +140,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
                 returnValue.paymentConfig = paymentConfig;
               }
             }
-
             return returnValue;
           } catch (error) {
             if (error.code === SERVER_ERROR_CODE.NoShippingOption) {
@@ -168,16 +155,15 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
                 onError: this.config.onError
               });
             }
-
             return {
               valid: false
             };
           }
         },
-        onChannelModalSuccess: () => {
+        onChannelModalSuccess: paymentInfo => {
           try {
             const amount = priceInfo.originalSettleSumAmount || priceInfo.orderAmount;
-            const currency = marketInfo.marketCurrencyCode;
+            const currency = paymentInfo.settleCurrency;
             thirdPartReportOrderStart({
               seq: abandonedOrderInfo.seq,
               amount,
@@ -202,7 +188,8 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
           const params = {
             abandonedOrderInfo,
             expressCheckoutChannelInfo,
-            basicInfo: { ...basicInfo,
+            basicInfo: {
+              ...basicInfo,
               action
             },
             otherInfo,
@@ -222,19 +209,15 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               code: ERROR_TYPE.UpdateFail,
               message: getPageI18nText(this.config.pageType, ERROR_TYPE.UpdateFail)
             };
-
             if (err.code === SERVER_ERROR_CODE.NoShippingOption) {
               error.message = getPageI18nText(this.config.pageType, ERROR_TYPE.NoShippingOption);
             }
-
             if (err.code === SERVER_ERROR_CODE.DiscountCode && ErrorDiscountCode.includes(err.msg)) {
               error.message = getPageI18nText(this.config.pageType, ERROR_TYPE.InvalidDiscountCode);
             }
-
             if (err.code === SERVER_ERROR_CODE.DiscountCode && err.msg === SERVER_ERROR_MSG.DISCOUNT_CODE_REPEAT) {
               error.message = getPageI18nText(this.config.pageType, ERROR_TYPE.DiscountCodeExists);
             }
-
             return {
               error
             };
@@ -250,32 +233,29 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
           });
           return payChannelData;
         },
-        createOrder: async ({
+        createOrder: async (paymentInfo, {
           payChannelData,
           token
         }) => {
           let dfpToken = '';
-
           if (window.__DF__ && typeof window.__DF__.getToken === 'function') {
             dfpToken = window.__DF__.getToken();
           }
-
           const {
             sid = '',
             createAt = Date.now()
           } = HidooTracker.getSessionId() || {};
           let dataId = '';
-
           if (window.HdSdk && window.HdSdk.shopTracker && typeof window.HdSdk.shopTracker.getDataId === 'function') {
             dataId = window.HdSdk.shopTracker.getDataId();
           }
-
           const addPaymentInfoEventId = `addPaymentInfo${getEventID()}`;
           const params = {
             abandonedOrderInfo,
             expressCheckoutChannelInfo,
             basicInfo,
-            otherInfo: { ...otherInfo,
+            otherInfo: {
+              ...otherInfo,
               dfpToken
             },
             buyerInfo,
@@ -292,7 +272,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               dataId,
               eventTime: Date.now(),
               eventId: addPaymentInfoEventId,
-              currency: marketInfo.marketCurrencyCode,
+              currency: paymentInfo.settleCurrency,
               payAmount: priceInfo.originalSettleSumAmount
             },
             clientInfo
@@ -314,7 +294,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
           });
           if (createRes.error || !createRes.data) return createRes;
           if (handleResponseRedirect(createRes.data)) return;
-
           try {
             thirdPartReportOrderCompleteStep({
               amount: priceInfo.originalSettleSumAmount,
@@ -329,7 +308,7 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               channelCode: expressCheckoutChannelInfo.channelCode
             });
             const amount = priceInfo.originalSettleSumAmount || priceInfo.orderAmount;
-            const currency = marketInfo.marketCurrencyCode;
+            const currency = paymentInfo.settleCurrency;
             const reportData = {
               payment_method: expressCheckoutChannelInfo.channelCode,
               shipping_method: shippingMethodName,
@@ -348,7 +327,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               error
             });
           }
-
           try {
             const {
               orderMark,
@@ -389,7 +367,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               }
             });
           }
-
           if (isFn(this.config.afterCreateOrder)) {
             this.config.afterCreateOrder(status);
           }
@@ -402,7 +379,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               onError: this.config.onError
             });
           }
-
           if (type === ACTION_TYPE.Pay && extData.channelCode === CHANNEL_CODE.Paypal) {
             paymentToast({
               page: this.config.pageType,
@@ -410,7 +386,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
               onError: this.config.onError
             });
           }
-
           if (isFn(this.config.onError)) {
             this.config.onError(error, type, extData);
           }
@@ -422,7 +397,6 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
             pageType: this.config.pageType
           });
           if (fcButtonList && fcButtonList.length) return;
-
           if (isFn(this.config.onAllButtonsInitFail)) {
             this.config.onAllButtonsInitFail();
             this.hasAllButtonsInitFail = true;
@@ -433,29 +407,24 @@ window.SLM['theme-shared/components/smart-payment/index.js'] = window.SLM['theme
       await this.currentController.render();
       return this.currentController;
     }
-
     async init() {
       await this.renderSmartPayment();
     }
-
     rerender(list = []) {
-      const payments = list.map(item => ({ ...item,
+      const payments = list.map(item => ({
+        ...item,
         currentDomId: `${this.config.props.domId}_${item.methodCode}`
       }));
-
       if (this.currentController) {
         this.currentController.rerender(payments);
       } else {
         this.renderSmartPayment(payments);
       }
     }
-
     setDisabled(disabled) {
       this.currentController && this.currentController.setDisabled(disabled);
     }
-
   }
-
   _exports.SmartPayment = SmartPayment;
   _exports.Payment = Payment;
   _exports.Paypal = Paypal;

@@ -104,7 +104,8 @@
       "view_cart": "查看購物車"
     },
     "next_step": {
-      "calculated_taxes_fees": "將在下一個步驟計算稅金和運費"
+      "calculated_taxes_fees": "將在下一個步驟計算稅金和運費",
+      "included_taxes_fees": "已含稅且運費在結帳時計算"
     },
     "notices": {
       "change_password_after_verification": "您可以在驗證後變更密碼",
@@ -230,6 +231,7 @@
       "copy_success": "優惠券已復制",
       "discount_title": "激活賬號並獲取折扣碼",
       "normal_title": "激活賬號",
+      "normal_title_with_discount_code": "",
       "subscription_text": "訂閱電子郵件以接收更新、訪問獨家優惠等。",
       "success_title": "恭喜您獲得折扣",
       "token_expired": "您的鏈接已失效"
@@ -337,6 +339,7 @@
       "set_password": "請設置6-18位密碼，支持輸入大小寫字母及數字",
       "sign__out": "登出",
       "sign_in": "登入",
+      "sign_in_activate": "驗證碼已發送至您的帳戶{{account}}，驗證後即可啟動帳戶。",
       "sign_up": "註冊",
       "su": "日",
       "subscription_desc": "可以獲取店舖的最新活動消息",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "感謝您的訂閱。您可以登錄以獲得更好的體驗。"
     },
     "message": {
+      "format_error": "消息格式不支持",
       "input_placeholder": "您有什麼想留言的嗎？",
       "message": "訊息",
       "send": "傳送"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "分類"
     },
+    "facets": {
+      "in_stock_only": "僅顯示有貨",
+      "sort_button": "排序"
+    },
     "general": {
       "no_product_data_found": "找不到產品資料。請稍後再試",
       "sold_out": "已售罄",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "前往 LOTTE",
       "go_to_yahoo_by_link": "前往 Yahoo",
       "in_stock": "有貨",
+      "inventory_in_stock": "現貨",
+      "inventory_in_stock_show_count": "庫存：剩餘 {{ quantity }}",
+      "inventory_low_stock": "低庫存",
+      "inventory_low_stock_show_count": "低庫存：剩餘 {{ quantity }}",
+      "inventory_out_of_stock": "缺貨",
+      "inventory_out_of_stock_continue_selling": "現貨",
       "inventory_quantity": "庫存數",
       "leave_us_message": "請填寫留言",
       "leave_us_message_get_back": "請留言你的諮詢內容，我們將會盡快與你聯繫",
@@ -596,6 +610,7 @@
       "filters_selected": "已選擇{{count}}個",
       "from_price_html": "{{price}} 起",
       "less": "更少標籤",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} / {{total}} 項目",
       "load_more_tip": "加載更多項目",
       "more": "更多標籤",
       "new_arrivals": "新品",
@@ -612,7 +627,8 @@
       "save": "優惠 {{{priceDom}}}",
       "save_byjs": "優惠 {{priceDom}}",
       "save_ratio": "優惠 {{price}}%",
-      "select_product_all_options": "請選擇該商品的全部屬性",
+      "select_product_all_options": "選擇的商品規格不完整或不可用，請重新選擇",
+      "sort_button": "排序",
       "top_sellers": "熱賣商品",
       "more__product_num": "{{num}} 商品",
       "one_product_num": "{{num}} 商品",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "繼續購物",
       "more": "更多",
+      "saved": "已節省",
       "total": "總計",
       "total_sum": "總計"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "服務異常，稍後重試",
       "error_message_2014": "賬號有風險",
       "error_message_2016": "賬號有風險",
+      "error_message_2020": "系統繁忙，請稍後再試",
       "error_message_3": "服務異常",
       "error_message_3001": "服務異常，稍後重試",
       "error_message_3002": "不正當操作",
@@ -850,15 +868,22 @@
       "error_message_3010": "該電子郵件已和其他帳戶綁定",
       "error_message_3014": "傳送代碼失敗",
       "error_message_3015": "該賬號已激活",
+      "error_message_3021": "系統繁忙，請稍後再試",
       "error_message_3022": "鏈接已失效",
       "error_message_3023": "鏈接格式錯誤",
       "error_message_3024": "鏈接參數錯誤",
       "error_message_3026": "帳號格式錯誤",
+      "error_message_3029": "暫不支援手機號激活",
       "error_message_4": "服務異常",
       "error_message_5": "服務異常",
       "error_message_6": "服務異常",
       "error_message_7": "請設置6-18位密碼，支持輸入大小寫字母及數字"
     },
-    "editorSwitchCountryTip": "編輯器內暫不支持切換國家"
+    "editorSwitchCountryTip": "編輯器內暫不支持切換國家",
+    "shopby": {
+      "button": {
+        "show": "安全快捷"
+      }
+    }
   }
 }

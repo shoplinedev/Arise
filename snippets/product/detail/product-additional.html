@@ -4,10 +4,10 @@
     {{#and icon (boolean icon '!=' 'none')}}
     <span class="base-collapse-item__icon">
       {{#if (typeOf icon) '===' 'string'}}
-        {{!-- 预设图标 --}}
+        
         {{snippet "product/commons/additional-icons" icon=icon icon_color=theme.settings.color_text}}
       {{else}}
-        {{!-- 自定义图标 --}}
+        
         <img class="lozad" data-src="{{icon.url}}" data-sizes="auto" alt="{{ icon.alt }}" />
       {{/if}}
     </span>

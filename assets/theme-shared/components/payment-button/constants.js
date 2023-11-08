@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/payment-button/constants.js'] = window.SLM['theme-shared/components/payment-button/constants.js'] || function () {
   const _exports = {};
   const PAYMENT_BUTTON_COMMON__STYLE_ID = 'payment-button-common-style-id';

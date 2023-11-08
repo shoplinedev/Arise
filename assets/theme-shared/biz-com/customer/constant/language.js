@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/constant/language.js'] = window.SLM['theme-shared/biz-com/customer/constant/language.js'] || function () {
   const _exports = {};
   const LANGUAGE_MAP = {

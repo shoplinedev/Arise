@@ -104,7 +104,8 @@
       "view_cart": "查看购物车"
     },
     "next_step": {
-      "calculated_taxes_fees": "下一步将计算税费和运费"
+      "calculated_taxes_fees": "下一步将计算税费和运费",
+      "included_taxes_fees": "已含税且运费在结账时计算"
     },
     "notices": {
       "change_password_after_verification": "完成验证后可修改密码",
@@ -230,6 +231,7 @@
       "copy_success": "优惠券已复制",
       "discount_title": "激活账号并获取折扣码",
       "normal_title": "激活账号",
+      "normal_title_with_discount_code": "激活账号并获取折扣码",
       "subscription_text": "订阅电子邮件以接收更新、访问独家优惠等。",
       "success_title": "恭喜您获得折扣",
       "token_expired": "您的链接已失效"
@@ -337,6 +339,7 @@
       "set_password": "请设置6-18位密码，支持输入大小写字母及数字",
       "sign__out": "退出登录",
       "sign_in": "登录",
+      "sign_in_activate": "验证码已发送至您的帐户{{account}}， 验证后即可激活账户。",
       "sign_up": "注册",
       "su": "日",
       "subscription_desc": "可以获取店铺的最新活动消息",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "感谢您的订阅。您可以登录以获得更好的体验。"
     },
     "message": {
+      "format_error": "消息格式不支持",
       "input_placeholder": "您有什么要留言的吗？",
       "message": "消息",
       "send": "发送"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "分类"
     },
+    "facets": {
+      "in_stock_only": "仅显示有货",
+      "sort_button": "排序"
+    },
     "general": {
       "no_product_data_found": "暂无当前商品数据，请稍后再试",
       "sold_out": "已售罄",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "去乐天购物",
       "go_to_yahoo_by_link": "去雅虎购物",
       "in_stock": "有货",
+      "inventory_in_stock": "现货",
+      "inventory_in_stock_show_count": "库存：剩余 {{ quantity }}",
+      "inventory_low_stock": "低库存",
+      "inventory_low_stock_show_count": "低库存：剩余 {{ quantity }}",
+      "inventory_out_of_stock": "缺货",
+      "inventory_out_of_stock_continue_selling": "现货",
       "inventory_quantity": "库存数",
       "leave_us_message": "请填写留言",
       "leave_us_message_get_back": "请留言你的咨询内容，我们将会尽快与你联系",
@@ -596,6 +610,7 @@
       "filters_selected": "已选择{{count}}个",
       "from_price_html": "{{price}} 起",
       "less": "更少标签",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} / {{total}} 项目",
       "load_more_tip": "加载更多项目",
       "more": "更多标签",
       "new_arrivals": "最新上架",
@@ -612,7 +627,8 @@
       "save": "优惠 {{{priceDom}}}",
       "save_byjs": "优惠 {{priceDom}}",
       "save_ratio": "优惠 {{price}}%",
-      "select_product_all_options": "请选择该商品的全部属性",
+      "select_product_all_options": "选择的商品规格不完整或不可用，请重新选择",
+      "sort_button": "排序",
       "top_sellers": "热销",
       "more__product_num": "{{num}} 商品",
       "one_product_num": "{{num}} 商品",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "继续购物",
       "more": "更多",
+      "saved": "已节省",
       "total": "共计",
       "total_sum": "合计"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "服务异常，稍后重试",
       "error_message_2014": "账号有风险",
       "error_message_2016": "账号有风险",
+      "error_message_2020": "系统繁忙，请稍后再试",
       "error_message_3": "服务异常",
       "error_message_3001": "服务异常，稍后重试",
       "error_message_3002": "未绑定手机/邮箱的用户尝试修改密码",
@@ -850,15 +868,22 @@
       "error_message_3010": "邮箱已存在绑定",
       "error_message_3014": "短信/邮件模板渲染失败",
       "error_message_3015": "该账号已激活",
+      "error_message_3021": "系统繁忙，请稍后再试",
       "error_message_3022": "链接已失效",
       "error_message_3023": "链接格式错误",
       "error_message_3024": "链接参数错误",
       "error_message_3026": "账号格式错误",
+      "error_message_3029": "暂不支持手机号激活",
       "error_message_4": "服务异常",
       "error_message_5": "服务异常",
       "error_message_6": "服务异常",
       "error_message_7": "请设置6-18位密码，支持输入大小写字母及数字"
     },
-    "editorSwitchCountryTip": "编辑器内暂不支持切换国家"
+    "editorSwitchCountryTip": "编辑器内暂不支持切换国家",
+    "shopby": {
+      "button": {
+        "show": "安全快捷"
+      }
+    }
   }
 }

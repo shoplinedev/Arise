@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/events/customer/enum/index.js'] = window.SLM['theme-shared/events/customer/enum/index.js'] || function () {
   const _exports = {};
   const LOGIN_MODAL = 'Customer::LoginModal';

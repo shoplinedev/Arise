@@ -1,8 +1,8 @@
 {{ preload_state 'customer.orders' }}
 
-{{!-- 个人中心公共布局 --}}
+
 {{#snippet 'customer/user-center-container' }}
-  {{!-- 订单列表主体 --}}
+  
   {{#with customer.orders}}
     <div class="shopline-element-order-history-list customer-order-list">
       <main class="main-wrapper" role="main">
@@ -11,7 +11,7 @@
             {{include 'snippets/customer/order/list/sku-item' data=this}}
           {{/each}}
         {{else}}
-          {{!-- 无订单数据 --}}
+          
           <div class="empty">
             <p class="empty-title">
               {{t 'order.order_list.no_record'}}
@@ -45,6 +45,6 @@
 
 <script>
     window.__I18N__ = window.__I18N__ || {};
-    window.__I18N__['order'] = {{{ JSONstringify (t 'order') }}};
-    window.__I18N__['trade'] = {{{ JSONstringify (t 'trade') }}};
+    window.__I18N__['order'] = {{{ json (t 'order') }}};
+    window.__I18N__['trade'] = {{{ json (t 'trade') }}};
 </script>

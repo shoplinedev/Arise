@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/header/scripts/drawer-menu.js'] = window.SLM['stage/header/scripts/drawer-menu.js'] || function () {
   const _exports = {};
   const Base = window['SLM']['commons/base/BaseClass.js'].default;
-
   class DrawerMenu extends Base {
     constructor() {
       super();
@@ -26,23 +24,18 @@ window.SLM['stage/header/scripts/drawer-menu.js'] = window.SLM['stage/header/scr
       this.bindDrawer();
       this.bindLocaleCurrencyChange();
     }
-
     modifyParent($button, addHeight, isOpen) {
       const parent = $button.parents(`div${this.selector.sublist}`);
-
       if (!parent.length) {
         return;
       }
-
       parent.height(parent.height());
-
       if (isOpen) {
         parent.height(parent.height() + addHeight);
       } else {
         parent.height(parent.height() - addHeight);
       }
     }
-
     bindEvent() {
       this.$on('click', this.selector.trigger, e => {
         const $button = $(e.currentTarget);
@@ -50,7 +43,6 @@ window.SLM['stage/header/scripts/drawer-menu.js'] = window.SLM['stage/header/scr
         const $controls = $(`#${controlsId}`);
         const $inner = $controls.find(this.selector.inner);
         const height = $inner.height();
-
         if ($button.hasClass(this.classes.openClass)) {
           $controls.height(height);
           $button.removeClass(this.classes.openClass);
@@ -69,7 +61,6 @@ window.SLM['stage/header/scripts/drawer-menu.js'] = window.SLM['stage/header/scr
         }
       });
     }
-
     bindDrawer() {
       this.$on('click', this.selector.localeCurrency, e => {
         const $target = $(e.currentTarget);
@@ -80,7 +71,6 @@ window.SLM['stage/header/scripts/drawer-menu.js'] = window.SLM['stage/header/scr
         });
       });
     }
-
     bindLocaleCurrencyChange() {
       this.$on('click', `${this.selector.localeCurrencyContainer} li`, e => {
         const $target = $(e.currentTarget);
@@ -91,13 +81,10 @@ window.SLM['stage/header/scripts/drawer-menu.js'] = window.SLM['stage/header/scr
         });
       });
     }
-
     off() {
       this.$offAll();
     }
-
   }
-
   let instance = new DrawerMenu();
   $(document).on('shopline:section:load', () => {
     instance.off();

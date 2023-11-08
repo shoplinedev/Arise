@@ -1,8 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] || function () {
   const _exports = {};
-  const { getLoginInitConfig, getMemberInitConfig, getDeleteAccountInitConfig, getRetrieveInitConfig, getActivateTokenInitConfig, getRetrieveTokenInitConfig } = window['SLM']['theme-shared/biz-com/customer/service/index.js'];
+  const { getLoginInitConfig, getMemberInitConfig, getDeleteAccountInitConfig, getRetrieveInitConfig, getActivateTokenInitConfig, getRetrieveTokenInitConfig, getActivateCodeInitConfig } = window['SLM']['theme-shared/biz-com/customer/service/index.js'];
   const { getMethodList, passVerify } = window['SLM']['theme-shared/biz-com/customer/service/common.js'];
   const { getBindEmailInitConfig, getBindPhoneInitConfig } = window['SLM']['theme-shared/biz-com/customer/service/bind.js'];
   const { getChangePasswordInitConfig } = window['SLM']['theme-shared/biz-com/customer/service/reset.js'];
@@ -13,13 +12,12 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = win
   const { SIGN_IN } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const storage = window['SLM']['theme-shared/biz-com/customer/utils/storage.js'].default;
   const { getLanguage, redirectPage } = window['SLM']['theme-shared/biz-com/customer/utils/helper.js'];
-
   const extLangRequestBody = data => {
-    return { ...(data || {}),
+    return {
+      ...(data || {}),
       lang: getLanguage()
     };
   };
-
   const getUniversalInitConfig = init => {
     return async params => {
       const {
@@ -42,7 +40,6 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = win
         emailMask
       } = methods && methods[0] || {};
       let oauth;
-
       if (method === 'pass') {
         const {
           data: {
@@ -54,7 +51,6 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = win
         }));
         oauth = oauthToken;
       }
-
       return {
         stoken: newStoken || stoken,
         _method: method,
@@ -64,9 +60,7 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = win
       };
     };
   };
-
   _exports.getUniversalInitConfig = getUniversalInitConfig;
-
   _exports.default = ({
     params,
     formType,
@@ -85,12 +79,10 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = win
     let getInitConfig = null;
     let ticketType;
     let eventid = '';
-
     if (formType === 'signIn') {
       getInitConfig = getLoginInitConfig;
       loginType = 'email';
       eventid = FBPixelEventID;
-
       if (type === 'member' && mode !== 'email') {
         loginType = 'acct';
       }
@@ -98,7 +90,6 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = win
       if (type === 'member') {
         getInitConfig = getMemberInitConfig;
       }
-
       eventid = FBPixelEventID;
     } else if (formType === 'activate') {
       if (token) {
@@ -120,7 +111,6 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = win
       } else if (mode === 'phone') {
         getInitConfig = getUniversalInitConfig(getBindPhoneInitConfig);
       }
-
       ticketType = '1';
     } else if (formType === 'passwordNew') {
       getInitConfig = getRetrieveInitConfig;
@@ -129,10 +119,11 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = win
     } else if (formType === 'delete-account') {
       getInitConfig = getUniversalInitConfig(getDeleteAccountInitConfig);
       ticketType = '1';
+    } else if (formType === 'activateByCode') {
+      getInitConfig = getActivateCodeInitConfig;
     } else {
       getInitConfig = () => Promise.resolve();
     }
-
     const init = dfptoken => getInitConfig && getInitConfig({
       appid,
       subappid,
@@ -181,23 +172,18 @@ window.SLM['theme-shared/biz-com/customer/commons/customer/getUdbInfo.js'] = win
         }
       }
     });
-
-    if (['signIn', 'signUp', 'bind', 'reset', 'passwordNew', 'passwordNewToken', 'activate'].includes(formType)) {
+    if (['signIn', 'signUp', 'bind', 'reset', 'passwordNew', 'passwordNewToken', 'activate', 'activateByCode'].includes(formType)) {
       const token = window.__DF__ && window.__DF__.getToken();
-
       if (token) {
         return init(token);
       }
-
       return getRiskControlToken().then(dfptoken => {
         return init(dfptoken);
       }).catch(() => {
         return init();
       });
     }
-
     return init();
   };
-
   return _exports;
 }();

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/service/index.js'] = window.SLM['cart/script/service/index.js'] || function () {
   const _exports = {};
   const Cookie = window['js-cookie']['default'];
@@ -13,7 +12,6 @@ window.SLM['cart/script/service/index.js'] = window.SLM['cart/script/service/ind
   const logger = LoggerService.pipeOwner(`${Owner.Cart} cart/script/service/index.js`);
   const cartToken = Cookie.get('t_cart');
   let initialized = false;
-
   function init() {
     if (initialized) return;
     initialized = true;
@@ -29,7 +27,6 @@ window.SLM['cart/script/service/index.js'] = window.SLM['cart/script/service/ind
       status: LoggerStatus.Success
     });
   }
-
   _exports.default = {
     init
   };

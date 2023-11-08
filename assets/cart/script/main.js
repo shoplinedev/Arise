@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/main.js'] = window.SLM['cart/script/main.js'] || function () {
   const _exports = {};
   const Cookie = window['js-cookie']['default'];
@@ -16,7 +15,6 @@ window.SLM['cart/script/main.js'] = window.SLM['cart/script/main.js'] || functio
     action: Action.InitCart,
     status: LoggerStatus.Start
   });
-
   try {
     CartModule.initCartModule('main');
   } catch (error) {
@@ -29,6 +27,5 @@ window.SLM['cart/script/main.js'] = window.SLM['cart/script/main.js'] || functio
       errorLevel: 'P0'
     });
   }
-
   return _exports;
 }();

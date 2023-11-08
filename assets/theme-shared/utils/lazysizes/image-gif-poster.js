@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/lazysizes/image-gif-poster.js'] = window.SLM['theme-shared/utils/lazysizes/image-gif-poster.js'] || function () {
   const _exports = {};
   const { EnumAttributes } = window['SLM']['theme-shared/utils/lazysizes/constants.js'];
   const { isElementType, isGif, isS3FileUrl, SLFile, transformSrcset } = window['SLM']['theme-shared/utils/lazysizes/util.js'];
-
   function getPosterUrl(url) {
     if (!isGif(url) || !isS3FileUrl(url)) return;
     const file = new SLFile(url);
@@ -14,44 +12,35 @@ window.SLM['theme-shared/utils/lazysizes/image-gif-poster.js'] = window.SLM['the
     file.suffix = 'png';
     return file;
   }
-
   function getPosterData({
     src,
     srcset
   }) {
     const data = {};
-
     if (src) {
       data.src = getPosterUrl(src);
     }
-
     if (srcset) {
       let srcsetHasPoster = false;
       data.srcset = transformSrcset(srcset, (url, breakpoint) => {
         const posterUrl = getPosterUrl(url);
-
         if (posterUrl) {
           srcsetHasPoster = true;
           return [posterUrl, breakpoint];
         }
-
         return [url, breakpoint];
       });
       if (!srcsetHasPoster) delete data.srcset;
     }
-
     if (data.src || data.srcset) return data;
   }
-
   _exports.default = event => {
     const element = event.target;
-
     if (isElementType(element, 'img')) {
       const src = element.getAttribute(EnumAttributes.Src);
       const srcset = element.getAttribute(EnumAttributes.Srcset);
       const sizes = element._lazysizesWidth;
       let isSeted = false;
-
       const setImageData = ({
         src,
         srcset
@@ -62,7 +51,6 @@ window.SLM['theme-shared/utils/lazysizes/image-gif-poster.js'] = window.SLM['the
         if (src) img.src = src;
         return img;
       };
-
       const setImageSrc = () => {
         if (isSeted) return;
         setImageData({
@@ -71,12 +59,10 @@ window.SLM['theme-shared/utils/lazysizes/image-gif-poster.js'] = window.SLM['the
         }, element);
         isSeted = true;
       };
-
       const posterData = getPosterData({
         src,
         srcset
       });
-
       if (posterData) {
         const bgImg = setImageData({
           src,
@@ -90,6 +76,5 @@ window.SLM['theme-shared/utils/lazysizes/image-gif-poster.js'] = window.SLM['the
       }
     }
   };
-
   return _exports;
 }();

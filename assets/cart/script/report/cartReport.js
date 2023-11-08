@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/cartReport.js'] || function () {
   const _exports = {};
   const Cookie = window['js-cookie']['default'];
@@ -12,7 +11,6 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
   const { Status: LoggerStatus } = window['SLM']['commons/logger/index.js'];
   const logger = LoggerService.pipeOwner(`${Owner.Cart} report/cartReport.js`);
   const cartToken = Cookie.get('t_cart');
-
   class CartReport extends TradeReport {
     setRemoveItemParams(params, extraItems) {
       logger.info(`normal 主站购物车 数据上报 设置移除商品 params setRemoveItemParams`, {
@@ -28,7 +26,6 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
         productItems: [],
         value: 0
       };
-
       if (Array.isArray(params)) {
         params.forEach(({
           skuId,
@@ -61,7 +58,6 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
         res.value += currencyUtil.unformatCurrency(convertPrice(params.price)) * (params && params.num ? params.num : 0);
         res.productItems.push(product);
       }
-
       if (Array.isArray(extraItems)) {
         extraItems.forEach(({
           skuId,
@@ -83,7 +79,6 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
           });
         });
       }
-
       res.value = currencyUtil.formatCurrency(res.value || 0).toString();
       logger.info(`normal 主站购物车 数据上报 设置移除商品 params setRemoveItemParams`, {
         data: {
@@ -97,7 +92,6 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
       });
       return res;
     }
-
     selectContent({
       skuId,
       name,
@@ -106,7 +100,8 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
       itemNo,
       ...rest
     }) {
-      const value = { ...rest,
+      const value = {
+        ...rest,
         skuId: itemNo || skuId,
         name,
         price: convertPrice(price || 0).toString(),
@@ -127,7 +122,6 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
       });
       this.touch(data);
     }
-
     removeItem(params, extraItems) {
       try {
         const data = {
@@ -158,7 +152,6 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
         });
       }
     }
-
     viewCart(cartInfo) {
       logger.info(`mini 主站购物车 数据上报 viewCart`, {
         data: {
@@ -168,11 +161,9 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
         action: Action.InitCart,
         status: LoggerStatus.Start
       });
-
       if (!cartInfo.activeItems) {
         return;
       }
-
       const params = {
         amount: convertPrice(cartInfo.realAmount || 0),
         items: []
@@ -182,7 +173,8 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
       } = cartInfo;
       activeItems.map(activeItem => {
         params.items = [...params.items, ...activeItem.itemList.map(item => {
-          return { ...item,
+          return {
+            ...item,
             price: currencyUtil.unformatCurrency(convertPrice(item.price)).toString()
           };
         })];
@@ -191,14 +183,14 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
       logger.info(`mini 主站购物车 数据上报 viewCart`, {
         data: {
           cartToken,
-          reportInfo: { ...params,
+          reportInfo: {
+            ...params,
             actionType: ClickType.ViewCart
           }
         },
         action: Action.InitCart,
         status: LoggerStatus.Start
       });
-
       try {
         this.reportViewCart({
           params,
@@ -208,7 +200,8 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
         logger.error(`mini 主站购物车 数据上报 viewCart 失败`, {
           data: {
             cartToken,
-            reportInfo: { ...params,
+            reportInfo: {
+              ...params,
               actionType: ClickType.ViewCart
             }
           },
@@ -218,9 +211,7 @@ window.SLM['cart/script/report/cartReport.js'] = window.SLM['cart/script/report/
         });
       }
     }
-
   }
-
   const cartReport = new CartReport();
   _exports.default = cartReport;
   return _exports;

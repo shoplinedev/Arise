@@ -1,16 +1,13 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/index.js'] = window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/index.js'] || function () {
   const _exports = {};
   const template = window['SLM']['theme-shared/utils/template.js'].default;
   const getShoppingReminderConfig = window['SLM']['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/getPromotionReminder.js'].default;
   const { get } = window['SLM']['theme-shared/utils/syntax-patch.js'];
   const { redirectTo } = window['SLM']['theme-shared/components/hbs/cartSalesPromotion/js/content/helpers/format.js'];
-
   const getPromotionBarContent = (promotion, rootWrapper) => {
     const isPCMainCart = rootWrapper.hasClass('main') && rootWrapper.hasClass('is-pc');
     let saleExtInfo = {};
-
     try {
       if (typeof promotion.saleExtInfo === 'string') {
         saleExtInfo = JSON.parse(promotion.saleExtInfo);
@@ -19,7 +16,6 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/i
       console.warn('json.parse saleExtInfo value err:', e);
       saleExtInfo = {};
     }
-
     const bannerBgColor = get(saleExtInfo, 'cartBannerStyle.bannerBgColor');
     const bannerTextColor = get(saleExtInfo, 'cartBannerStyle.bannerTextColor');
     const discountTextColor = get(saleExtInfo, 'cartBannerStyle.discountTextColor');
@@ -37,7 +33,6 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/i
     const {
       extMap = {}
     } = config.params;
-
     if (needJump) {
       return `
       <div class="cart-sku-list-promotion-module-can-jump notranslate" style="background: ${bannerBgColor}">
@@ -54,7 +49,6 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/i
       </div>
     `;
     }
-
     return `
     <div class="cart-sku-list-promotion-module notranslate" style="background: ${bannerBgColor}">
       <span style="color: ${bannerTextColor}">
@@ -63,7 +57,6 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/reminder/i
     </div>
   `;
   };
-
   _exports.default = getPromotionBarContent;
   return _exports;
 }();

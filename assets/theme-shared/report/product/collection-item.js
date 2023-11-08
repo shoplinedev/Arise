@@ -1,15 +1,12 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/product/collection-item.js'] = window.SLM['theme-shared/report/product/collection-item.js'] || function () {
   const _exports = {};
   const { BaseReport } = window['SLM']['theme-shared/report/common/baseReport.js'];
   const collectionItemCls = '.__sl-custom-track-collection-item';
   _exports.collectionItemCls = collectionItemCls;
-
   const fcNull = () => {
     return undefined;
   };
-
   class CollectionItemReport extends BaseReport {
     constructor({
       selector,
@@ -32,15 +29,11 @@ window.SLM['theme-shared/report/product/collection-item.js'] = window.SLM['theme
       this.bindClick();
       this.bindExpose();
     }
-
     bindClick() {
       const __this = this;
-
       $('body').on('click', __this.selector, function () {
         const _this = $(this);
-
         const id = _this.attr('data-sortation-id');
-
         __this.click({
           collection_id: id,
           ...__this.currentData,
@@ -48,10 +41,8 @@ window.SLM['theme-shared/report/product/collection-item.js'] = window.SLM['theme
         });
       });
     }
-
     bindExpose() {
       const __this = this;
-
       __this.view({
         selector: `${__this.selector}`,
         customParams: target => {
@@ -66,9 +57,7 @@ window.SLM['theme-shared/report/product/collection-item.js'] = window.SLM['theme
         }
       });
     }
-
   }
-
   function initCollectionItemReport({
     selector,
     reportTargetCb
@@ -79,7 +68,6 @@ window.SLM['theme-shared/report/product/collection-item.js'] = window.SLM['theme
     });
     return report;
   }
-
   _exports.initCollectionItemReport = initCollectionItemReport;
   _exports.default = CollectionItemReport;
   return _exports;

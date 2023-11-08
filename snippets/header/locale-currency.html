@@ -4,23 +4,13 @@
   {{ combine_asset_tag 'stage/header/style/mod/locale-currency.css' inline=true}}
 {{/if}}
 <!-- stage/header/scripts/locale-currency.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/lodash.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/lodash.min.js'
-      'vendors/uuid.min.js'
-      'vendors/js-cookie.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/lodash.min.js'
+    'vendors/uuid.min.js'
+    'vendors/js-cookie.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/components/localization/form.js'
     'theme-shared/utils/syntax-patch.js'

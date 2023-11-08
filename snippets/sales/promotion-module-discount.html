@@ -19,7 +19,7 @@
 {{ assign "_promotion_config_" (sales_promotion_reminder_translate promotion (object_create lineBreak=is-mobile warper=warper))}}
 
 
-{{!-- 完成活动门槛，且在买x送y活动中已经选中了y商品，这不需要跳转 --}}
+
 {{#if _promotion_config_.step '==' 3}}
   <div class="cart-sku-list-promotion-module notranslate" style="background:{{cartBannerStyle.bannerBgColor}};">
     <span style="color: {{cartBannerStyle.bannerTextColor}};">

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report.js'] || function () {
   const _exports = {};
   const { collectObserver } = window['SLM']['theme-shared/utils/report/index.js'];
@@ -10,13 +9,11 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
   const currentSpu = SL_State.get('product.spu');
   const EVENT_ID = '60006253';
   const parent = '#page-product-detail';
-
   function hdReport(options) {
     if (window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.report) {
       window.HdSdk.shopTracker.report(EVENT_ID, options);
     }
   }
-
   function clickCompReport(custom_component) {
     hdReport({
       event_name: 'click_component',
@@ -24,7 +21,6 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
       custom_component
     });
   }
-
   function exposeCompReport(custom_component) {
     hdReport({
       event_name: 'component_view',
@@ -32,7 +28,6 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
       custom_component
     });
   }
-
   const exposeConfig = {
     amazon: {
       cls: 'product_thirdParty_amazon',
@@ -71,7 +66,6 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
       statName: 'view_more'
     }
   };
-
   function collectExposeObserver() {
     Object.keys(exposeConfig).forEach(item => {
       const selector = exposeConfig[item].cls;
@@ -80,7 +74,6 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
       });
     });
   }
-
   $(function () {
     $(document.body).on('click', `${parent} .__sl-custom-track-product-recommend-item`, function () {
       const productId = $(this).data('id');
@@ -138,35 +131,27 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
       if ($(target).hasClass(exposeConfig.amazon.cls)) {
         exposeCompReport(exposeConfig.amazon.statName);
       }
-
       if ($(target).hasClass(exposeConfig.productDesc.cls)) {
         exposeCompReport(exposeConfig.productDesc.statName);
       }
-
       if ($(target).hasClass(exposeConfig.pcReviews.cls)) {
         exposeCompReport(exposeConfig.pcReviews.statName);
       }
-
       if ($(target).hasClass(exposeConfig.mReviews.cls)) {
         exposeCompReport(exposeConfig.mReviews.statName);
       }
-
       if ($(target).hasClass(exposeConfig.thirdPartyShare.cls)) {
         exposeCompReport(exposeConfig.thirdPartyShare.statName);
       }
-
       if ($(target).hasClass(exposeConfig.mMoreReviews.cls)) {
         exposeCompReport(exposeConfig.mMoreReviews.statName);
       }
-
       if ($(target).hasClass(exposeConfig.buyNow.cls)) {
         exposeCompReport(exposeConfig.buyNow.statName);
       }
-
       if ($(target).hasClass(exposeConfig.moreBundling.cls)) {
         exposeCompReport(exposeConfig.moreBundling.statName);
       }
-
       if ($(target).hasClass(exposeConfig.viewMore.cls)) {
         exposeCompReport(exposeConfig.viewMore.statName);
       }
@@ -179,7 +164,6 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
           event_name: 'sku_click',
           sku_id: sku.skuSeq
         });
-
         if (window.HdSdk) {
           window.HdSdk.shopTracker.collect({
             page: 105,
@@ -189,7 +173,6 @@ window.SLM['product/detail/js/report.js'] = window.SLM['product/detail/js/report
             spu_id: sku.spuSeq
           });
         }
-
         window.SL_EventBus.emit('global:thirdPartReport', {
           FBPixel: [['track', 'ViewContent', {
             content_ids: [sku && sku.spuSeq],

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/video/state.js'] = window.SLM['commons/video/state.js'] || function () {
   const _exports = {};
   const playerState = {

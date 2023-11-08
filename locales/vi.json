@@ -104,7 +104,8 @@
       "view_cart": "Xem giỏ hàng"
     },
     "next_step": {
-      "calculated_taxes_fees": "Thuế và phí vận chuyển sẽ được tính khi thanh toán"
+      "calculated_taxes_fees": "Thuế và phí vận chuyển sẽ được tính khi thanh toán",
+      "included_taxes_fees": "Đã bao gồm thuế và phí vận chuyển được tính khi thanh toán"
     },
     "notices": {
       "change_password_after_verification": "Bạn có thể thay đổi mật khẩu sau khi xác minh",
@@ -230,6 +231,7 @@
       "copy_success": "Đã sao chép mã phiếu thưởng",
       "discount_title": "Kích hoạt tài khoản và nhận mã giảm giá",
       "normal_title": "Kích hoạt tài khoản",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Đăng ký để nhận thông tin cập nhật qua email, truy cập vào các ưu đãi độc quyền và hơn thế nữa.",
       "success_title": "Chúc mừng bạn đã nhận được giảm giá lớn",
       "token_expired": "Liên kết đã hết hạn"
@@ -337,6 +339,7 @@
       "set_password": "Mật khẩu phải có 6-18 ký tự bao gồm số, chữ hoa và chữ thường",
       "sign__out": "Đăng xuất",
       "sign_in": "ĐĂNG NHẬP",
+      "sign_in_activate": "Mã xác minh đã được gửi tới tài khoản của bạn {{account}}. Bạn có thể kích hoạt tài khoản của mình sau khi xác minh",
       "sign_up": "ĐĂNG KÝ",
       "su": "CN",
       "subscription_desc": "Nhận tin tức mới nhất về cửa hàng",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Cảm ơn bạn đã đăng ký. Bạn có thể đăng nhập để có trải nghiệm tốt hơn."
     },
     "message": {
+      "format_error": "Định dạng tin nhắn không được hỗ trợ",
       "input_placeholder": "Bạn có muốn để lại tin nhắn không?",
       "message": "Tin nhắn",
       "send": "Gửi"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Danh mục"
     },
+    "facets": {
+      "in_stock_only": "Chỉ còn hàng",
+      "sort_button": "Phân loại"
+    },
     "general": {
       "no_product_data_found": "Không tìm thấy thông tin sản phẩm. Vui lòng thử lại sau.",
       "sold_out": "Hết hàng",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Mua trên Rakuten",
       "go_to_yahoo_by_link": "Mua trên Yahoo",
       "in_stock": "Còn kho",
+      "inventory_in_stock": "",
+      "inventory_in_stock_show_count": "",
+      "inventory_low_stock": "",
+      "inventory_low_stock_show_count": "",
+      "inventory_out_of_stock": "",
+      "inventory_out_of_stock_continue_selling": "",
       "inventory_quantity": "Số lượng tồn kho",
       "leave_us_message": "Vui lòng nhập nội dung tin nhắn",
       "leave_us_message_get_back": "Vui lòng để lại tin nhắn cho chúng tôi, chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất",
@@ -596,6 +610,7 @@
       "filters_selected": "Đã chọn {{count}}",
       "from_price_html": "Từ {{price}}",
       "less": "ít hơn",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} trong số {{total}} mục",
       "load_more_tip": "Đang tải thêm các mặt hàng",
       "more": "nhiều hơn",
       "new_arrivals": "Hàng mới về",
@@ -612,7 +627,8 @@
       "save": "Giảm {{{priceDom}}}",
       "save_byjs": "Giảm {{priceDom}}",
       "save_ratio": "Giảm {{price}}%",
-      "select_product_all_options": "Vui lòng chọn tất cả tuỳ chọn của sản phẩm!",
+      "select_product_all_options": "Biến thể sản phẩm đã chọn không đầy đủ hoặc không khả dụng. Vui lòng chọn lại.",
+      "sort_button": "Phân loại",
       "top_sellers": "Sản phẩm bán chạy",
       "more__product_num": "{{num}} sản phẩm",
       "one_product_num": "{{num}} sản phẩm",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Tiếp tục mua sắm",
       "more": "Thêm",
+      "saved": "đã lưu",
       "total": "Tổng cộng",
       "total_sum": "Tổng cộng"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Ngoại lệ dịch vụ, hãy thử lại sau",
       "error_message_2014": "Tài khoản đang gặp rủi ro",
       "error_message_2016": "Tài khoản đang gặp rủi ro",
+      "error_message_2020": "Hệ thống đang bận, vui lòng thử lại sau",
       "error_message_3": "Ngoại lệ dịch vụ",
       "error_message_3001": "Ngoại lệ dịch vụ, hãy thử lại sau",
       "error_message_3002": "Người dùng không liên kết với hộp thư/số điện thoại di động cố gắng thay đổi mật khẩu của họ",
@@ -850,15 +868,22 @@
       "error_message_3010": "Email đã bị gán vào tài khoản khác",
       "error_message_3014": "Tìm nạp mẫu thư/tin nhắn không thành công",
       "error_message_3015": "Tài khoản đã được kích hoạt",
+      "error_message_3021": "Hệ thống đang bận, vui lòng thử lại sau",
       "error_message_3022": "Liên kết đã hết hạn",
       "error_message_3023": "Liên kết sai định dạng",
       "error_message_3024": "Liên kết sai",
       "error_message_3026": "Lỗi định dạng tài khoản",
+      "error_message_3029": "Hiện tại không hỗ trợ kích hoạt số điện thoại di động",
       "error_message_4": "Ngoại lệ dịch vụ",
       "error_message_5": "Ngoại lệ dịch vụ",
       "error_message_6": "Ngoại lệ dịch vụ",
       "error_message_7": "Mật khẩu phải có 6-18 ký tự bao gồm số, chữ hoa và chữ thường"
     },
-    "editorSwitchCountryTip": "Trình chỉnh sửa này không hỗ trợ chuyển đổi quốc gia"
+    "editorSwitchCountryTip": "Trình chỉnh sửa này không hỗ trợ chuyển đổi quốc gia",
+    "shopby": {
+      "button": {
+        "show": "An toàn và nhanh hơn"
+      }
+    }
   }
 }

@@ -104,7 +104,8 @@
       "view_cart": "Winkelwagen bekijken"
     },
     "next_step": {
-      "calculated_taxes_fees": "De volgende stap is het berekenen van belasting en bezorgkosten"
+      "calculated_taxes_fees": "De volgende stap is het berekenen van belasting en bezorgkosten",
+      "included_taxes_fees": "Inclusief belasting en verzendkosten berekend bij het afrekenen"
     },
     "notices": {
       "change_password_after_verification": "Wachtwoord kan worden gewijzigd na het voltooien van de validatie",
@@ -230,6 +231,7 @@
       "copy_success": "De bon is gekopieerd",
       "discount_title": "Activeer account en ontvang een kortingscode",
       "normal_title": "Activeer account",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Meld u aan voor e-mails om updates te ontvangen, toegang tot exclusieve aanbiedingen en meer.",
       "success_title": "Gefeliciteerd met het krijgen van een korting",
       "token_expired": "Uw link is verlopen"
@@ -337,6 +339,7 @@
       "set_password": "Het wachtwoord moet 6-18 tekens lang zijn, bestaande uit cijfers, hoofdletters en kleine letters",
       "sign__out": "Uitloggen",
       "sign_in": "Inloggen",
+      "sign_in_activate": "Verificatiecode is verzonden naar uw account {{account}}, u kunt uw account activeren na verificatie.",
       "sign_up": "Registreren",
       "su": "zo",
       "subscription_desc": "Ontvang het laatste nieuws over de evenement van de winkel",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Bedankt voor uw inschrijving. U kunt inloggen voor een betere ervaring."
     },
     "message": {
+      "format_error": "Berichtformaat niet ondersteund",
       "input_placeholder": "Heeft u een bericht achter te laten?",
       "message": "Bericht",
       "send": "Verzenden"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Collecties"
     },
+    "facets": {
+      "in_stock_only": "Alleen op voorraad",
+      "sort_button": "Sorteren"
+    },
     "general": {
       "no_product_data_found": "Geen gegevens van dit artikel, probeer het later nog eens",
       "sold_out": "Niet op voorraad",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Ga winkelen bij Rakuten",
       "go_to_yahoo_by_link": "Ga winkelen bij Yahoo",
       "in_stock": "Voorraad beschikbaar",
+      "inventory_in_stock": "Op voorraad",
+      "inventory_in_stock_show_count": "Op voorraad: Resterende {{ quantity }}",
+      "inventory_low_stock": "Laag op voorraad",
+      "inventory_low_stock_show_count": "Laag op voorraad: Resterende {{ quantity }}",
+      "inventory_out_of_stock": "Niet op voorraad",
+      "inventory_out_of_stock_continue_selling": "Op voorraad",
       "inventory_quantity": "Aantal inventaris",
       "leave_us_message": "Vul de bericht in",
       "leave_us_message_get_back": "Laat een bericht achter met uw vraag en wij zullen zo spoedig mogelijk contact met u opnemen",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} zijn geselecteerd",
       "from_price_html": "van {{price}}",
       "less": "Minder labels",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} van {{total}} items",
       "load_more_tip": "Meer items laden",
       "more": "Meer labels",
       "new_arrivals": "Nieuwe releases",
@@ -612,7 +627,8 @@
       "save": "Bespaar {{{priceDom}}}",
       "save_byjs": "Bespaar {{priceDom}}",
       "save_ratio": "{{price}}% korting",
-      "select_product_all_options": "Kies eerst de productspecificatie",
+      "select_product_all_options": "De geselecteerde productvariant is onvolledig of niet beschikbaar. Kies alstublieft opnieuw",
+      "sort_button": "Sorteren",
       "top_sellers": "Bestseller",
       "more__product_num": "{{num}} Producten",
       "one_product_num": "{{num}} Product",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Ga verder met winkelen",
       "more": "Koop meer",
+      "saved": "opgeslagen",
       "total": "Totaal",
       "total_sum": "Totaal"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Service uitzondering, probeer later opnieuw",
       "error_message_2014": "Account is in gevaar",
       "error_message_2016": "Account is in gevaar",
+      "error_message_2020": "Het systeem is bezet, probeer het later opnieuw",
       "error_message_3": "Service fout",
       "error_message_3001": "Service uitzondering, probeer later opnieuw",
       "error_message_3002": "Gebruikers die niet aan een telefoon/e-mail gebonden zijn, probeert de wachtwoord te wijzigen",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-mail al gebonden",
       "error_message_3014": "SMS/email sjabloon rendering mislukt",
       "error_message_3015": "De account is geactiveerd",
+      "error_message_3021": "Het systeem is bezet, probeer het later opnieuw",
       "error_message_3022": "De link is verlopen",
       "error_message_3023": "Link formaat fout",
       "error_message_3024": "Link parameter fout",
       "error_message_3026": "Verkeerd formaat van het account",
+      "error_message_3029": "Activering via mobiele telefoon is op dit moment niet beschikbaar.",
       "error_message_4": "Service fout",
       "error_message_5": "Service fout",
       "error_message_6": "Service fout",
       "error_message_7": "Het wachtwoord moet 6-18 tekens lang zijn, bestaande uit cijfers, hoofdletters en kleine letters"
     },
-    "editorSwitchCountryTip": "Het wisselen van land wordt momenteel niet ondersteund in de editor."
+    "editorSwitchCountryTip": "Het wisselen van land wordt momenteel niet ondersteund in de editor.",
+    "shopby": {
+      "button": {
+        "show": "Veilig en sneller"
+      }
+    }
   }
 }

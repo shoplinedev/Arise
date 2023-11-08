@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/orderTracking/captcha-modal/riskControl.js'] = window.SLM['theme-shared/biz-com/orderTracking/captcha-modal/riskControl.js'] || function () {
   const _exports = {};
   const getEnv = window['SLM']['theme-shared/utils/get-env.js'].default;
@@ -25,7 +24,6 @@ window.SLM['theme-shared/biz-com/orderTracking/captcha-modal/riskControl.js'] = 
     orderBtnToken: null
   };
   let dfInstance = null;
-
   const initRiskHumanToken = () => {
     const checker = window.DeviceFingerprint.mmc({
       env: DF_ENV[config.APP_ENV || 'prd'],
@@ -39,12 +37,10 @@ window.SLM['theme-shared/biz-com/orderTracking/captcha-modal/riskControl.js'] = 
       riskHumanToken.orderBtnToken = token;
     });
   };
-
   const loadRiskControl = () => {
     if (dfInstance) {
       return Promise.resolve(dfInstance);
     }
-
     return loadScript(RISK_CONTROL_URL).then(() => {
       dfInstance = window.DeviceFingerprint && window.DeviceFingerprint({
         env: DF_ENV[config.APP_ENV || 'prd'],
@@ -54,9 +50,7 @@ window.SLM['theme-shared/biz-com/orderTracking/captcha-modal/riskControl.js'] = 
       return dfInstance;
     });
   };
-
   _exports.loadRiskControl = loadRiskControl;
-
   const getRiskHumanToken = () => {
     return new Promise(resolve => {
       setTimeout(() => {
@@ -64,15 +58,12 @@ window.SLM['theme-shared/biz-com/orderTracking/captcha-modal/riskControl.js'] = 
       }, 600);
     });
   };
-
   _exports.getRiskHumanToken = getRiskHumanToken;
-
   const getRiskControlToken = () => {
     return loadRiskControl().then(df => {
       return df && df.getToken();
     });
   };
-
   _exports.getRiskControlToken = getRiskControlToken;
   return _exports;
 }();

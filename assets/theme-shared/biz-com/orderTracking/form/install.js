@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/orderTracking/form/install.js'] = window.SLM['theme-shared/biz-com/orderTracking/form/install.js'] || function () {
   const _exports = {};
   const Username = window['SLM']['theme-shared/biz-com/orderTracking/form-item/username.js'].default;
@@ -8,7 +7,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/install.js'] = window.SLM['t
     username: Username,
     verifycode: Verifycode
   };
-
   _exports.default = (formInstance, fields, defaultFormValue = {}) => {
     const formItems = {};
     const initFields = fields.map(({
@@ -25,7 +23,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/install.js'] = window.SLM['t
         values[key] = defaultFormValue[key];
         return values;
       }, {});
-
       if (Constructor) {
         const instance = new Constructor({
           name,
@@ -36,11 +33,9 @@ window.SLM['theme-shared/biz-com/orderTracking/form/install.js'] = window.SLM['t
           ...args,
           ...dependenciesValue
         });
-
         if (defaultFormValue[name]) {
           $(formInstance.el).find(`input[name=${name}]`).val(defaultFormValue[name]);
         }
-
         const {
           rules: defaultRules = []
         } = instance && instance.install && instance.install() || {};
@@ -51,7 +46,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/install.js'] = window.SLM['t
           rules: rules.concat(defaultRules)
         };
       }
-
       return {
         name,
         value,
@@ -64,7 +58,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/install.js'] = window.SLM['t
       rules
     }) => {
       formInstance.setRule(rules, name);
-
       if (value) {
         formInstance.setLocalsValue(name, value);
       }
@@ -78,7 +71,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/install.js'] = window.SLM['t
       subscriptField && subscriptField.forEach(field => {
         const currentInstance = formItems[field && field.type];
         const $$watch = currentInstance && currentInstance.$$watch;
-
         if (typeof $$watch === 'function') {
           $$watch && $$watch.call(currentInstance, {
             name: key,
@@ -91,6 +83,5 @@ window.SLM['theme-shared/biz-com/orderTracking/form/install.js'] = window.SLM['t
     });
     return formItems;
   };
-
   return _exports;
 }();

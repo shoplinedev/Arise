@@ -1,10 +1,4 @@
-{{!--
-    此snippet 用于页面seo meta标签逻辑注入
-    具体生成逻辑将由这里进行路由分发。
 
-    !!! 为了此snippet的单一职责，这里只写路由，具体逻辑请自行分发到自己的snippet中处理  !!!
-    snippet 应在此文件夹内创建，文件名建议以页面名称命名。
- --}}
 
 {{#if templateAlias '===' 'Home'}}
   {{snippet 'seo-meta/home' }}
@@ -24,8 +18,8 @@
   {{ snippet 'seo-meta/collections-all'}}
 {{else if templateAlias '===' 'ProductsSearch'}}
   {{ snippet 'seo-meta/search'}}
-  {{!-- !!! 请使用 else if进行逻辑分发，否则无法兜底默认值 !!! --}}
+  
 {{else}}
-  {{!-- 默认seo逻辑 --}}
+  
   {{snippet 'seo-meta/default' }}
 {{/if}}

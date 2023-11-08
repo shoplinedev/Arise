@@ -20,6 +20,10 @@
           "options__3": {
             "label": "上下切换"
           }
+        },
+        "show_social_media": {
+          "label": "显示社交媒体",
+          "info": "若公告栏布局为紧凑布局/平铺展示，则始终不展示社交媒体"
         }
       },
       "blocks": {
@@ -174,6 +178,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "collection_image_shape": {
+          "label": "分类图片形状",
+          "options__0": {
+            "label": "方形"
+          },
+          "options__1": {
+            "label": "圆形"
           }
         },
         "color_scheme": {
@@ -428,6 +441,9 @@
         "button_text": {
           "label": "按钮文案",
           "info": "若“最大商品数量”小于等于该分类下的商品数量，才会展示按钮"
+        },
+        "button_follow_endof_list": {
+          "label": "移动端查看更多按钮显示在列表末尾"
         },
         "group_header__1": {
           "label": "商品图"
@@ -734,10 +750,10 @@
           }
         },
         "media_icon_width": {
-          "label": "图标宽度"
+          "label": "电脑端图标宽度"
         },
         "media_icon_padding": {
-          "label": "图标间距"
+          "label": "电脑端图标间距"
         },
         "group_header__3": {
           "label": "附加内容"
@@ -813,10 +829,10 @@
               "label": "标题"
             },
             "block_media_icon_width": {
-              "label": "图标宽度"
+              "label": "电脑端图标宽度"
             },
             "block_media_icon_padding": {
-              "label": "图标间距"
+              "label": "电脑端图标间距"
             }
           }
         },
@@ -1172,6 +1188,14 @@
             "label": "LOGO居中，菜单换行"
           }
         },
+        "mobile_top_menu": {
+          "label": "移动端置顶菜单",
+          "info": "配置后菜单将固定置于移动端页头底部，可左右滑动切换展示"
+        },
+        "mobile_top_menu_show_home": {
+          "label": "置顶菜单仅显示在首页",
+          "info": "配置后置顶菜单将仅展示在首页"
+        },
         "mega_menu_images": {
           "label": "显示超级菜单图片",
           "info": "[查看如何设置超级菜单教程](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)"
@@ -1189,6 +1213,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "user_mobile_layout": {
+          "label": "移动端个人中心位置",
+          "options__0": {
+            "label": "展示在首页"
+          },
+          "options__1": {
+            "label": "展示在菜单栏"
           }
         },
         "header_style": {
@@ -1213,6 +1246,27 @@
         },
         "show_user_entry": {
           "label": "显示个人中心入口"
+        },
+        "hover_show_user_menu": {
+          "label": "PC端hover个人中心图标，展示下拉框"
+        },
+        "user_menu_text_1": {
+          "label": "下拉框文案1"
+        },
+        "user_menu_link_1": {
+          "label": "下拉框链接1"
+        },
+        "user_menu_text_2": {
+          "label": "下拉框文案2"
+        },
+        "user_menu_link_2": {
+          "label": "下拉框链接2"
+        },
+        "user_menu_text_3": {
+          "label": "下拉框文案3"
+        },
+        "user_menu_link_3": {
+          "label": "下拉框链接3"
         },
         "show_cart_entry": {
           "label": "显示购物车入口"
@@ -2152,6 +2206,12 @@
         "banner_image_mobile": {
           "label": "移动端Banner图"
         },
+        "pc_collection_img_height": {
+          "label": "电脑端分类图高度"
+        },
+        "md_collection_img_height": {
+          "label": "移动端分类图高度"
+        },
         "parallax_scroll": {
           "label": "滚动视差",
           "info": "开启视差效果会裁减部分图片以达到效果"
@@ -2173,6 +2233,18 @@
         },
         "per_page_num": {
           "label": "每页商品数量"
+        },
+        "mobile_list_layout": {
+          "label": "移动端默认显示布局",
+          "options__0": {
+            "label": "1列"
+          },
+          "options__1": {
+            "label": "2列"
+          }
+        },
+        "mobile_show_style_switch": {
+          "label": "移动端显示布局切换"
         },
         "infinite_scroll": {
           "label": "启用无限滚动"
@@ -2518,6 +2590,16 @@
               "options__3": {
                 "label": "小"
               }
+            },
+            "font_size_flexible": {
+              "label": "字体大小灵活配置",
+              "info": "开启后可自行指定字体大小"
+            },
+            "title_pc_font_size": {
+              "label": "电脑端字体大小"
+            },
+            "title_mobile_font_size": {
+              "label": "移动端字体大小"
             }
           }
         },
@@ -2548,7 +2630,7 @@
           "name": "价格",
           "settings": {
             "show_order": {
-              "label": "价格展示顺序",
+              "label": "价格/优惠展示方式",
               "options__0": {
                 "label": "优惠标签、售价、原价"
               },
@@ -2557,6 +2639,12 @@
               },
               "options__2": {
                 "label": "原价、售价、优惠标签"
+              },
+              "options__3": {
+                "label": "售价、优惠标签"
+              },
+              "options__4": {
+                "label": "优惠标签、售价"
               }
             },
             "sell_font_size": {
@@ -2589,6 +2677,22 @@
                 "label": "超大"
               }
             },
+            "font_size_flexible": {
+              "label": "字体大小灵活配置",
+              "info": "开启后可自行指定字体大小"
+            },
+            "sale_price_pc_font_size": {
+              "label": "电脑端售价字体大小"
+            },
+            "sale_price_mobile_font_size": {
+              "label": "移动端售价字体大小"
+            },
+            "regular_price_pc_font_size": {
+              "label": "电脑端原价（划线价）字体大小"
+            },
+            "regular_price_mobile_font_size": {
+              "label": "移动端原价（划线价）字体大小"
+            },
             "sell_font_bold": {
               "label": "售价字体加粗显示"
             }
@@ -2605,6 +2709,27 @@
               "options__1": {
                 "label": "下拉框"
               }
+            },
+            "sizes": {
+              "label": "显示大小",
+              "options__0": {
+                "label": "小"
+              },
+              "options__1": {
+                "label": "中"
+              },
+              "options__2": {
+                "label": "大"
+              }
+            },
+            "layout_direction": {
+              "label": "显示布局",
+              "options__0": {
+                "label": "上下布局"
+              },
+              "options__1": {
+                "label": "左右布局"
+              }
             }
           }
         },
@@ -2614,6 +2739,36 @@
             "is_show_stock_hint": {
               "label": "库存低时显示数量提示",
               "info": "库存低于10个时，将在数量选择器下方显示库存数量"
+            },
+            "width": {
+              "label": "显示宽度",
+              "options__0": {
+                "label": "1/2列宽"
+              },
+              "options__1": {
+                "label": "全列宽"
+              }
+            },
+            "layout_direction": {
+              "label": "显示布局",
+              "options__0": {
+                "label": "上下布局"
+              },
+              "options__1": {
+                "label": "左右布局"
+              }
+            },
+            "border_style": {
+              "label": "显示样式",
+              "options__0": {
+                "label": "线条样式"
+              },
+              "options__1": {
+                "label": "描边样式"
+              },
+              "options__2": {
+                "label": "无框样式"
+              }
             }
           }
         },
@@ -4412,6 +4567,15 @@
             "label": "按钮样式"
           }
         },
+        "product_card_content_align": {
+          "label": "商品卡片内容对齐方式",
+          "options__0": {
+            "label": "居左"
+          },
+          "options__1": {
+            "label": "居中"
+          }
+        },
         "product_title_show_type": {
           "label": "商品标题展示规则",
           "options__0": {
@@ -4628,7 +4792,7 @@
           "label": "Facebook"
         },
         "social_twitter_link": {
-          "label": "Twitter"
+          "label": "X（Twitter）"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -4651,6 +4815,12 @@
         "social_whatsapp_link": {
           "label": "WhatsApp"
         },
+        "social_line_link": {
+          "label": "Line"
+        },
+        "social_kakao_link": {
+          "label": "Kakao"
+        },
         "group_header__1": {
           "label": "分享",
           "info": "在商品详情页、博客页提供分享操作"
@@ -4665,7 +4835,7 @@
           "label": "分享到Facebook"
         },
         "share_to_twitter": {
-          "label": "分享到Twitter"
+          "label": "分享到X（Twitter）"
         },
         "share_to_pinterest": {
           "label": "分享到Pinterest"

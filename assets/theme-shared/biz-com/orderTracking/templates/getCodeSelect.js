@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/orderTracking/templates/getCodeSelect.js'] = window.SLM['theme-shared/biz-com/orderTracking/templates/getCodeSelect.js'] || function () {
   const _exports = {};
   const { countries, countriesCodeMap } = window['SLM']['theme-shared/utils/countries.js'];
   const CODE_SELECT_CLASS = 'form-item__codeSelect';
-
   _exports.default = defaultIso2 => {
     const optionStr = countries.map(({
       name,
@@ -27,6 +25,5 @@ window.SLM['theme-shared/biz-com/orderTracking/templates/getCodeSelect.js'] = wi
     </div>
   `;
   };
-
   return _exports;
 }();

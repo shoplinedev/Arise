@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['product/commons/js/preview-modal/preview-modal.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -13,7 +12,6 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
   const { Loading } = window['SLM']['commons/components/toast/index.js'];
   const initPreview = window['SLM']['product/detail/js/product-preview.js'].default;
   const { getUrlQuery } = window['SLM']['commons/utils/url.js'];
-
   function modalExpose(modalPrefix) {
     if (window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.report) {
       window.HdSdk.shopTracker.report('60006263', {
@@ -22,11 +20,11 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
       });
     }
   }
-
   function fetchDetail(uniqueKey, params) {
     const queryUrl = window.Shopline.redirectTo(`/products/${uniqueKey}`);
     return axios.get(queryUrl, {
-      params: { ...params,
+      params: {
+        ...params,
         view: 'modal',
         preview: getUrlQuery('preview'),
         themeId: getUrlQuery('themeId'),
@@ -37,13 +35,10 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
       }
     });
   }
-
   function createContent() {
     return $('<div class="product-preview-modal-content" data-scroll-lock-scrollable></div>');
   }
-
   const previewProductDescVideoMap = {};
-
   function collectProductDescVideo(children, id) {
     const productDescDom = children.find('[data-ssr-plugin-detail-description]');
     const video = productDescDom.find('video');
@@ -52,23 +47,19 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
       return src && isYoutube(src);
     });
     previewProductDescVideoMap[id] = {};
-
     if (video.length > 0) {
       previewProductDescVideoMap[id].videoList = video;
     }
-
     if (youtubeIframe.length > 0) {
       previewProductDescVideoMap[id].youtubeIframeList = youtubeIframe;
     }
   }
-
   function handleProductDescVideoByCloseModal(id) {
     const videoMap = previewProductDescVideoMap[id] || {};
     const {
       videoList,
       youtubeIframeList
     } = videoMap;
-
     if (videoList && videoList.each) {
       videoList.each((index, item) => {
         if (item.pause) {
@@ -76,7 +67,6 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
         }
       });
     }
-
     if (youtubeIframeList && youtubeIframeList.each) {
       youtubeIframeList.each((index, item) => {
         const src = $(item).attr('src');
@@ -85,27 +75,22 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
       });
     }
   }
-
   function handleProductDescVideoByOpenModal(id) {
     const videoMap = previewProductDescVideoMap[id] || {};
     const {
       youtubeIframeList
     } = videoMap;
-
     if (youtubeIframeList && youtubeIframeList.each) {
       youtubeIframeList.each((index, item) => {
         const src = $(item).attr('data-resource-url');
-
         if (src) {
           $(item).attr('src', src);
         }
       });
     }
   }
-
   const modalMap = {};
   const previewMap = {};
-
   function previewModal({
     spuSeq,
     uniqueKey,
@@ -114,13 +99,12 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
   }) {
     let modalPrefix = 'productModal_';
     let queryObj = {};
-
     try {
-      queryObj = { ...query
+      queryObj = {
+        ...query
       };
       modalPrefix = queryObj.modalPrefix || 'productModal_';
     } catch (e) {}
-
     if (modalMap[spuSeq]) {
       handleProductDescVideoByOpenModal(spuSeq);
       modalMap[spuSeq].show && modalMap[spuSeq].show();
@@ -167,7 +151,6 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
         window.SL_EventBus.emit('global.activeIcon.show', {
           type: 'vip'
         });
-
         try {
           const preview = initPreview({
             module: 'quickViewModal',
@@ -207,10 +190,8 @@ window.SLM['product/commons/js/preview-modal/preview-modal.js'] = window.SLM['pr
         modal.destroy();
       });
     }
-
     return modalMap[spuSeq];
   }
-
   _exports.default = previewModal;
   return _exports;
 }();

@@ -1,78 +1,41 @@
 
 <!-- product/collections/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/url.rlp.min.js'
-      'vendors/querystring.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/debug.rlp.min.js'
-      'vendors/scroll-lock.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/swiper.rlp.min.js'
-      'vendors/photoswipe.rlp.min.js'
-      'vendors/yt-player.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      'vendors/@yy_sl-theme-shared.rlp.min.js'
-      'vendors/@sl_smart-payment.rlp.min.js'
-      'vendors/@yy_sl-ec-tracker.rlp.min.js'
-      'vendors/@sl_cart.rlp.min.js'
-      'vendors/@funnyecho_hamon.rlp.min.js'
-      'vendors/@yy_sl-mc.rlp.min.js'
-      'vendors/dayjs.rlp.min.js'
-      'vendors/@sl_logger.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+  {{#if request.document_direction '===' 'rtl'}}
+    {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
   {{else}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.min.js'
-      'vendors/url.min.js'
-      'vendors/querystring.min.js'
-      'vendors/lodash.min.js'
-      'vendors/debug.min.js'
-      'vendors/scroll-lock.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/swiper.min.js'
-      'vendors/photoswipe.min.js'
-      'vendors/yt-player.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      'vendors/uuid.min.js'
-      'vendors/js-cookie.min.js'
-      'vendors/@yy_sl-theme-shared.min.js'
-      'vendors/@sl_smart-payment.min.js'
-      'vendors/@yy_sl-ec-tracker.min.js'
-      'vendors/@sl_cart.min.js'
-      'vendors/@funnyecho_hamon.min.js'
-      'vendors/@yy_sl-mc.min.js'
-      'vendors/dayjs.min.js'
-      'vendors/@sl_logger.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+    {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
   {{/if}}
+  {{ combine_asset_tag 
+    'vendors/eventemitter3.min.js'
+    'vendors/url.min.js'
+    'vendors/querystring.min.js'
+    'vendors/lodash.min.js'
+    'vendors/debug.min.js'
+    'vendors/scroll-lock.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/swiper.min.js'
+    'vendors/photoswipe.min.js'
+    'vendors/yt-player.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    'vendors/uuid.min.js'
+    'vendors/js-cookie.min.js'
+    'vendors/@sl_smart-payment.min.js'
+    'vendors/@yy_sl-theme-shared.min.js'
+    'vendors/@yy_sl-ec-tracker.min.js'
+    'vendors/@sl_pay-button.min.js'
+    'vendors/@sl_cart.min.js'
+    'vendors/@funnyecho_hamon.min.js'
+    'vendors/@yy_sl-mc.min.js'
+    'vendors/dayjs.min.js'
+    'vendors/@sl_logger.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/sectionsLoad/index.js'
     'theme-shared/utils/event-bus.js'
@@ -128,6 +91,7 @@
     'product/commons/js/sku-stepper.js'
     'product/detail/js/product-quantity.js'
     'theme-shared/utils/request.js'
+    'theme-shared/utils/retryRequest.js'
     'theme-shared/utils/url-adaptor.js'
     'theme-shared/utils/report/const.js'
     'theme-shared/utils/dataReport/tool.js'
@@ -135,20 +99,21 @@
     'theme-shared/utils/dataReport/gad.js'
     'theme-shared/utils/dataReport/fb.js'
     'theme-shared/utils/report/tool.js'
-    'theme-shared/utils/tradeReport/const.js'
     'theme-shared/utils/tradeReport/index.js'
+    'theme-shared/components/smart-payment/constants.js'
+    'theme-shared/const/preload-state-fields.js'
+    'theme-shared/components/smart-payment/utils.js'
+    'theme-shared/utils/tradeReport/const.js'
     'theme-shared/utils/dataAccessor.js'
     'theme-shared/utils/url.js'
     'theme-shared/utils/constant.js'
-    'theme-shared/components/smart-payment/constants.js'
     'theme-shared/utils/checkout.js'
     'theme-shared/components/hbs/products/checkedEvent/index.js'
-    'theme-shared/const/preload-state-fields.js'
-    'theme-shared/components/smart-payment/utils.js'
     'theme-shared/components/smart-payment/services.js'
     'theme-shared/components/smart-payment/reporter/constants.js'
     'theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'
     'theme-shared/components/smart-payment/reporter/ThirdPartReport.js'
+    'theme-shared/components/locales/index.js'
     'theme-shared/components/smart-payment/index.js'
     'theme-shared/components/payment-button/constants.js'
     'theme-shared/components/payment-button/utils.js'
@@ -158,11 +123,11 @@
     'theme-shared/report/product/utils/index.js'
     'theme-shared/events/product/paypal-fallback/index.js'
     'theme-shared/utils/currency/getCurrencyCode.js'
+    'theme-shared/components/pay-button/payment-button/utils.js'
+    'theme-shared/components/pay-button/payment-button/index.js'
     'theme-shared/events/trade/interior-event/index.js'
     'theme-shared/events/trade/enum/index.js'
     'theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'
-    'theme-shared/utils/report/hd-const.js'
-    'theme-shared/utils/tradeReport/hdReport.js'
     'theme-shared/utils/tradeReport/hdReportV2.js'
     'theme-shared/utils/tradeReport/eventListen.js'
     'theme-shared/components/hbs/shared/components/drawer/const.js'
@@ -208,6 +173,8 @@
     'cart/script/service/cart/index.js'
     'cart/script/service/index.js'
     'commons/utils/dynamicImportMiniCart.js'
+    'commons/cart/errorCode.js'
+    'commons/cart/handleAddToCartErrorCodeToast.js'
     'commons/cart/globalEvent.js'
     'commons/utils/debounce.js'
     'theme-shared/components/payment-button/shopby_fast_checkout.js'
@@ -274,7 +241,7 @@
 
 </script>
 
-{{!-- hbs set埋点变量 csr去执行上报  --}}
+
 <script>
 !function () {
   var sortBy = {

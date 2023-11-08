@@ -1,11 +1,9 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/shared/components/modal/full.js'] = window.SLM['theme-shared/components/hbs/shared/components/modal/full.js'] || function () {
   const _exports = {};
   const Base = window['SLM']['theme-shared/components/hbs/shared/base/BaseClass.js'].default;
   const { bem, visibleClassName, animationClassMap, disablePageScroll, enablePageScroll, HIDDEN, VISIBLE, DEFAULT_MODAL_ID_PRE, maskClosableClass } = window['SLM']['theme-shared/components/hbs/shared/components/modal/common.js'];
   let uuid = 0;
-
   class ModalWithHtml extends Base {
     constructor(options = {}) {
       super('mp:modal:full');
@@ -27,21 +25,17 @@ window.SLM['theme-shared/components/hbs/shared/components/modal/full.js'] = wind
       this.destroyed = false;
       this.init();
     }
-
     init() {
       const $modal = $(`#${this.modalId}`);
-
       if ($modal.length > 0) {
         this.$modal = $modal;
         this.$setPortals($modal);
         return;
       }
-
       this.$modal = this.buildModalHtml();
       this.$setPortals(this.$modal);
       this.bindEvents();
     }
-
     buildModalHtml() {
       const {
         zIndex,
@@ -68,37 +62,29 @@ window.SLM['theme-shared/components/hbs/shared/components/modal/full.js'] = wind
       </div>
     `;
       const $modal = $(modalHtml);
-
       if (containerClassName) {
         $modal.find(`.${bem('container')}`).addClass(containerClassName);
       }
-
       if (bodyClassName) {
         $modal.find(`.${bem('body')}`).addClass(bodyClassName);
       }
-
       if (children) {
         $modal.find(`.${bem('body')}`).append(children);
       }
-
       if ((typeof zIndex === 'number' || typeof zIndex === 'string') && zIndex !== '') {
         $modal.css('z-index', zIndex);
       }
-
       return $modal;
     }
-
     setContent(content) {
       this.config.content = content;
       this.$modal.find(`.${bem('body')}`).html(content);
     }
-
     show() {
       if (this.destroyed) {
         this.destroyed = false;
         this.unBindEvents = this.bindEvents();
       }
-
       const $modalBody = this.$modal.find(`.${bem('body')}`);
       this.$modal.appendTo(document.body);
       disablePageScroll($modalBody.get(0));
@@ -106,7 +92,6 @@ window.SLM['theme-shared/components/hbs/shared/components/modal/full.js'] = wind
       this.$modal.addClass([visibleClassName, animationClassMap.visible]).removeClass(animationClassMap.hidden);
       this.toggleMaskClassName();
     }
-
     hide(force) {
       const $modalBody = this.$modal.find(`.${bem('body')}`);
       this.visibleState = HIDDEN;
@@ -114,32 +99,25 @@ window.SLM['theme-shared/components/hbs/shared/components/modal/full.js'] = wind
       window.SL_EventBus.emit('global:popup:close');
       this.toggleMaskClassName();
       this.$modal.addClass(animationClassMap.hidden).removeClass(animationClassMap.visible);
-
       if (force) {
         this.afterAnimation();
       }
-
       if (typeof this.config.closeCallback === 'function') {
         this.config.closeCallback(this.$modal);
       }
     }
-
     toggleMaskClassName() {
       if (this.config.maskClosable) {
         this.$modal.find(`.${bem('mask')}`).toggleClass(maskClosableClass, this.visibleState === VISIBLE);
       }
     }
-
     afterAnimation() {
       this.$modal.toggleClass(visibleClassName, this.visibleState === VISIBLE);
-
       if (typeof this.config.afterClose === 'function') {
         this.config.afterClose(this.$modal);
       }
-
       this.destroy();
     }
-
     destroy() {
       if (this.config.destroyedOnClosed && this.visibleState === HIDDEN) {
         this.$modal.remove();
@@ -147,23 +125,17 @@ window.SLM['theme-shared/components/hbs/shared/components/modal/full.js'] = wind
         this.destroyed = true;
       }
     }
-
     bindEvents() {
       this.$onPortals('click', `.${bem('close')}`, this.hide.bind(this, false));
-
       if (this.config.maskClosable) {
         this.$onPortals('click', `.${bem('mask')}`, this.hide.bind(this, false));
       }
-
       this.$onPortals('animationend', `.${bem('container')}`, this.afterAnimation.bind(this));
     }
-
     detachEvents() {
       this.$offAll();
     }
-
   }
-
   _exports.default = ModalWithHtml;
   return _exports;
 }();

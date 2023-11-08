@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/constant/url.js'] = window.SLM['theme-shared/biz-com/customer/constant/url.js'] || function () {
   const _exports = {};
   const HOME = '/';
@@ -15,12 +14,13 @@ window.SLM['theme-shared/biz-com/customer/constant/url.js'] = window.SLM['theme-
   const THIRD_LOGIN_HREF = {
     facebook: 'https://www.facebook.com/v17.0/dialog/oauth',
     line: 'https://access.line.me/oauth2/v2.1/authorize',
-    google: 'https://accounts.google.com/o/oauth2/v2/auth'
+    google: 'https://accounts.google.com/o/oauth2/v2/auth',
+    tiktok: 'https://www.tiktok.com/v2/auth/authorize'
   };
   _exports.THIRD_LOGIN_HREF = THIRD_LOGIN_HREF;
   const THIRD_REDIRET_URL = typeof window === 'undefined' ? '' : `${window.location.origin}${SIGN_IN}`;
   _exports.THIRD_REDIRET_URL = THIRD_REDIRET_URL;
-  const LOGISTICS_COUNTRIES = '/logistics/countries';
+  const LOGISTICS_COUNTRIES = '/logistics/countries/v2';
   _exports.LOGISTICS_COUNTRIES = LOGISTICS_COUNTRIES;
   const LOGISTICS_ADDRESS_LIBRARY = '/logistics/address/library';
   _exports.LOGISTICS_ADDRESS_LIBRARY = LOGISTICS_ADDRESS_LIBRARY;

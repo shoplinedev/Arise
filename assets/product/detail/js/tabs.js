@@ -1,11 +1,9 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'] || function () {
   const _exports = {};
   const request = window['SLM']['theme-shared/utils/request.js'].default;
   const { shadowDomStyle } = window['SLM']['product/commons/js/createShadowDom.js'];
   const CUSTOM_PAGE_TYPE = 3;
-
   class Tabs {
     constructor({
       root
@@ -16,12 +14,10 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
       this.init();
       this.requestCollapseTitle(this.ids);
       this.bindEvent();
-
       if (!this.tabs.hasClass('active')) {
         this.openTab(this.tabs.eq(0));
       }
     }
-
     init() {
       const tabs = this.root.find('.product-tabs-nav').find('.product-tabs-tab');
       this.tabs = tabs;
@@ -30,22 +26,18 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
       tabs.each((_, el) => {
         const $el = $(el);
         const id = $el.data('id');
-
         if (id) {
           this.ids.push(id);
         }
-
         if ($el.hasClass('active')) {
           this.showKey = $el.data('key');
         }
       });
     }
-
     requestCollapseTitle(ids) {
       if (!ids || !ids.length) {
         return Promise.resolve();
       }
-
       const {
         lang
       } = this;
@@ -59,7 +51,8 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
         if (res && Array.isArray(res.data)) {
           const data = res.data.reduce((fin, item) => {
             const name = item.name ? item.name[lang] : '';
-            return { ...fin,
+            return {
+              ...fin,
               [item.id]: name
             };
           }, {});
@@ -67,22 +60,18 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
         }
       });
     }
-
     setCollapseTitle(data) {
       this.tabs.each((_, el) => {
         const title = data[$(el).data('id')];
-
         if (title) {
           $(el).text(title);
         }
       });
     }
-
     requestCollapseContent(id, content) {
       if (this.cacheRequest && this.cacheData[id]) {
         return Promise.resolve(this.cacheData[id]);
       }
-
       return request({
         url: `site/render/page/${CUSTOM_PAGE_TYPE}/${id}`,
         method: 'GET'
@@ -92,7 +81,6 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
         }
       });
     }
-
     setCollapseContent(data, content) {
       const html = this.getCustomPageContent(data && data.htmlConfig);
       const shadow = $(content).children('.product-tabs-shadow');
@@ -103,11 +91,9 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
       $(shadowRoot).append(shadowDomStyle.clone());
       $(shadowRoot).append(html);
     }
-
     getCustomPageContent(pageConfig) {
       return `<div class="custom-page-render-container">${pageConfig}</div>`;
     }
-
     openTab(tab) {
       const key = tab.data('key');
       const id = tab.data('id');
@@ -126,18 +112,14 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
           return true;
         }
       });
-
       if (!tab.prop('loaded')) {
         tab.prop('loaded', true);
-
         if (id) {
           this.requestCollapseContent(id, content);
         }
       }
-
       this.showKey = key;
     }
-
     bindEvent() {
       const that = this;
       const {
@@ -146,11 +128,9 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
       tabs.on('click', function () {
         const tab = $(this);
         const key = tab.data('key');
-
         if (that.showKey === key) {
           return;
         }
-
         tab.get(0).scrollIntoView({
           block: 'nearest',
           behavior: 'smooth',
@@ -159,9 +139,7 @@ window.SLM['product/detail/js/tabs.js'] = window.SLM['product/detail/js/tabs.js'
         that.openTab(tab);
       });
     }
-
   }
-
   _exports.default = Tabs;
   return _exports;
 }();

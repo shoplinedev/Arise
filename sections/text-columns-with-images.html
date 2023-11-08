@@ -14,7 +14,7 @@
 
 {{ assign 'pcCols' section.settings.pc_cols }}
 {{ assign 'mdCols' section.settings.md_cols }}
-{{!-- 如果只配置了一个block 无视配置的列数，永远一列 --}}
+
 {{#if (boolean (length blocks) '==' 1)}}
   {{ assign 'pcCols' 1 }}
   {{ assign 'mdCols' 1 }}
@@ -29,12 +29,12 @@
   {{ assign 'noSpacing' 'true' }}
 {{/and}}
 
-{{!-- 有 border 的时候强制增加 padding --}}
+
 {{#and (boolean theme.settings.content_border_thickness '>=' 1)}}
 {{ assign 'noSpacing' 'false' }}
 {{/and}}
 
-{{!-- 有 shadow 的时候强制增加 padding --}}
+
 {{#if (boolean theme.settings.content_shadow_opacity '>=' 1)}}
 {{ assign 'noSpacing' 'false' }}
 {{/if}}
@@ -45,33 +45,18 @@
   {{ combine_asset_tag 'stage/text-columns-with-images/styles/index.css' inline=true}}
 {{/if}}
 <!-- stage/text-columns-with-images/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/swiper.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+  {{#if request.document_direction '===' 'rtl'}}
+    {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
   {{else}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.min.js'
-      'vendors/lodash.min.js'
-      'vendors/swiper.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+    {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
   {{/if}}
+  {{ combine_asset_tag 
+    'vendors/eventemitter3.min.js'
+    'vendors/lodash.min.js'
+    'vendors/swiper.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/sectionsLoad/index.js'
     'theme-shared/utils/event-bus.js'

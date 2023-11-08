@@ -3,15 +3,15 @@
     <div class="wrapper">
       <div class="customer-order-sku-item-header">
         <div>
-          {{!-- 单号 --}}
+          
           <span class="seq">{{t 'order.order_status.sequence'  id=appOrderSeq }}</span>
-          {{!-- 时间 --}}
+          
           <div class="create-time">
             <span>{{t 'order.order_details.time'}}</span>
             <span>{{dayjs method='format' init=createTime format='YYYY-MM-DD HH:mm A (z)' tz=@root.storeInfo.timezone}}</span>
           </div>
         </div>
-        {{!-- 状态，目前只有「已取消」才需要展示 --}}
+        
         {{#if (boolean bizOrderStatus '==' 400)}}
           <span class="status cancelled">
             {{t 'order.order_status.canceled'}}
@@ -22,7 +22,7 @@
         <div class="item-info">
           <div class="sku-item-image">
             {{#if productImage}}
-              <img class="lozad" data-src="{{ productImage }}" />
+              <img class="lozad" data-src="{{ productImage }}" alt="" />
             {{else}}
               <div class="sku-item-image-fallback"></div>
             {{/if}}
@@ -38,7 +38,7 @@
         </div>
 
         <div class="pay-status-pc {{#if @root.request.is_mobile}}hide{{/if}}">
-          {{!-- 支付状态 --}}
+          
           <p class="status-box">
             <span class="svg-wrapper">
               <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@
               {{snippet 'customer/order/list/order-pay-status' status=bizPayStatus}}
             </span>
           </p>
-          {{!-- 发货状态 --}}
+          
           <p class="status-box">
             <span class="svg-wrapper">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

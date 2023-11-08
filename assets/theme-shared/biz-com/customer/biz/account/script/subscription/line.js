@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.js'] || function () {
   const _exports = {};
   const { getSubscriptAuths, updateLineAuth, updateSubscriptions } = window['SLM']['theme-shared/biz-com/customer/service/account.js'];
@@ -9,7 +8,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.j
   const PROMPT = 'consent';
   const FINISH = 'finish';
   const REPLACE_SCOPE = '{REDIRECTURL}';
-
   class Line {
     constructor({
       btn,
@@ -20,11 +18,9 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.j
       this.lineProps = {};
       this.init();
     }
-
     init() {
       this.initLine();
     }
-
     initEvent() {
       this.$btn.on('click', () => {
         this.lineProps.state = `${Date.now()}`;
@@ -40,7 +36,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.j
         this.listenMessage(event);
       }, false);
     }
-
     initLine() {
       getSubscriptAuths({
         platform: 'line'
@@ -54,7 +49,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.j
         this.initEvent();
       });
     }
-
     launchTransit(targetUrl) {
       const {
         redirectUrl
@@ -62,7 +56,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.j
       const url = targetUrl.replace(REPLACE_SCOPE, window.encodeURIComponent(redirectUrl));
       window.open(url, '', `width=${600},height=${600}`);
     }
-
     listenMessage({
       data,
       origin
@@ -70,17 +63,14 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.j
       if (origin !== window.location.origin) {
         return false;
       }
-
       const {
         ref,
         state,
         code
       } = data;
-
       if (!code) {
         return false;
       }
-
       if (state === this.lineProps.state && ref === FINISH) {
         updateLineAuth({
           code,
@@ -93,7 +83,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.j
               platform: 'line'
             });
           }
-
           return Promise.reject();
         }).then(({
           success,
@@ -112,9 +101,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/line.j
         });
       }
     }
-
   }
-
   _exports.default = Line;
   return _exports;
 }();

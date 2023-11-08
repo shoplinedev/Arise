@@ -1,16 +1,13 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/product-swiper-mobile-thumbnail.js'] = window.SLM['product/detail/js/product-swiper-mobile-thumbnail.js'] || function () {
   const _exports = {};
   const Swiper = window['swiper']['default'];
   const { Pagination, Navigation } = window['swiper'];
   Swiper.use([Navigation, Pagination]);
-
   class ProductImagesMobileThumbnail {
     constructor(config) {
       this.swiper = this.init(config);
     }
-
     init(config) {
       const {
         el,
@@ -25,9 +22,7 @@ window.SLM['product/detail/js/product-swiper-mobile-thumbnail.js'] = window.SLM[
       });
       return thumbnailSwiper;
     }
-
   }
-
   _exports.default = ProductImagesMobileThumbnail;
   return _exports;
 }();

@@ -1,8 +1,6 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/helpers/getCartInfo.js'] = window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/helpers/getCartInfo.js'] || function () {
   const _exports = {};
-
   const getCartInfo = () => {
     return new Promise((resolve, reject) => {
       window.Shopline.event.emit('Cart::UseCart', {
@@ -21,7 +19,6 @@ window.SLM['theme-shared/components/hbs/cartSalesPromotion/js/content/helpers/ge
       });
     });
   };
-
   _exports.default = getCartInfo;
   return _exports;
 }();

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/blog/detail/index.js'] = window.SLM['stage/blog/detail/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -38,7 +37,6 @@ window.SLM['stage/blog/detail/index.js'] = window.SLM['stage/blog/detail/index.j
       required: true
     }]
   }];
-
   class BlogDetail {
     constructor(container) {
       this.submitBtn = container.find('.blog__form-submit');
@@ -47,7 +45,6 @@ window.SLM['stage/blog/detail/index.js'] = window.SLM['stage/blog/detail/index.j
       this.commentForm.init();
       this.commentForm.setFields(fields);
     }
-
     validateForm() {
       return new Promise((resolve, reject) => {
         this.commentForm.validateFields().then(res => {
@@ -59,27 +56,24 @@ window.SLM['stage/blog/detail/index.js'] = window.SLM['stage/blog/detail/index.j
         });
       });
     }
-
     initSubmitBtn() {
       this.submitBtn.on('click', async event => {
         event.preventDefault();
         await this.validateForm();
         const contactData = this.commentForm.getFieldsValue();
-
         try {
           const {
             data
-          } = await request.post(SEND_API, { ...contactData,
+          } = await request.post(SEND_API, {
+            ...contactData,
             blogId: this.commentForm.el.dataset.blogId
           });
           const commentConfig = +this.commentForm.el.dataset.commentConfig;
-
           if (commentConfig === 1) {
             toast.open(t(`blog.comment.submit_audit_tip`));
           } else {
             toast.open(t(`blog.comment.success`));
           }
-
           this.commentForm.setFields(fields);
           redirectBlogComment(data.id);
         } catch (error) {
@@ -87,30 +81,23 @@ window.SLM['stage/blog/detail/index.js'] = window.SLM['stage/blog/detail/index.j
         }
       });
     }
-
     onUnload() {
       this.commentForm.destroy();
       this.submitBtn.off('click');
     }
-
   }
-
   BlogDetail.type = 'blog-detail';
-
   function redirectBlogComment(commentId) {
     const url = new URL(window.location.href);
     const query = new URLSearchParams(window.location.search);
     const old = query.get('comment');
-
     if (old) {
       query.set('comment', `${old},${commentId}`);
     } else {
       query.set('comment', commentId);
     }
-
     window.location.href = `${url.origin + url.pathname}?${query.toString()}`;
   }
-
   registrySectionConstructor(BlogDetail.type, BlogDetail);
   return _exports;
 }();

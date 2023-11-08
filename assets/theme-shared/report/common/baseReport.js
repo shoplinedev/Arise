@@ -1,60 +1,46 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-shared/report/common/baseReport.js'] || function () {
   const _exports = {};
   const pageMap = window['SLM']['theme-shared/utils/report/page.js'].default;
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
-
   function findSectionId(selector) {
     if (!selector || !$(selector)) {
       return;
     }
-
     const id = $(selector).closest('.shopline-section').attr('id');
     const trueId = id ? id.replace('shopline-section-', '') : '';
     return trueId;
   }
-
   _exports.findSectionId = findSectionId;
-
   class BaseReport {
     static getPage() {
       const alias = window.SL_State.get('templateAlias');
       const template = window.SL_State.get('template');
-
       if (alias !== 'Page') {
         return pageMap[alias] || alias;
       }
-
       const isCustomPage = template.toLowerCase() === alias.toLowerCase();
       return isCustomPage ? pageMap.Page.custom_page : pageMap.Page.smart_landing_page;
     }
-
     constructor(page) {
       this.page = page || BaseReport.getPage() || '';
     }
-
     static collect(params) {
       if (!window.HdSdk) {
         return;
       }
-
       window.HdSdk.shopTracker.collect(params);
     }
-
     static expose(params) {
       if (!window.HdSdk) {
         return;
       }
-
       window.HdSdk.shopTracker.expose(params);
     }
-
     click(customParams) {
       if (!window.HdSdk) {
         return;
       }
-
       const params = {
         page: this.page,
         action_type: 102,
@@ -63,7 +49,6 @@ window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-share
       };
       window.HdSdk.shopTracker.collect(params);
     }
-
     handleView({
       selector,
       targetList,
@@ -76,21 +61,20 @@ window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-share
       if (!window.HdSdk) {
         return;
       }
-
       const commonParams = {
         page: this.page
       };
-      const objectParams = { ...commonParams,
+      const objectParams = {
+        ...commonParams,
         ...customParams
       };
-
       const funcParams = target => {
         const funcCustomParams = customParams(target);
-        return { ...commonParams,
+        return {
+          ...commonParams,
           ...funcCustomParams
         };
       };
-
       window.HdSdk.shopTracker.expose({
         selector,
         targetList,
@@ -102,7 +86,6 @@ window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-share
         }
       });
     }
-
     view({
       selector,
       targetList,
@@ -121,7 +104,6 @@ window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-share
         viewType: 'view'
       });
     }
-
     viewSuccess({
       selector,
       targetList,
@@ -140,7 +122,6 @@ window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-share
         viewType: 'viewSuccess'
       });
     }
-
     viewContent({
       selector,
       targetList,
@@ -162,7 +143,6 @@ window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-share
         customParams: params
       });
     }
-
     viewItemList({
       selector,
       customParams
@@ -181,7 +161,6 @@ window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-share
         customParams: params
       });
     }
-
     selectContent({
       baseParams,
       customParams
@@ -215,7 +194,6 @@ window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-share
       };
       BaseReport.collect(params);
     }
-
     searchResults({
       baseParams,
       customParams
@@ -231,9 +209,7 @@ window.SLM['theme-shared/report/common/baseReport.js'] = window.SLM['theme-share
       };
       BaseReport.collect(params);
     }
-
   }
-
   _exports.BaseReport = BaseReport;
   return _exports;
 }();

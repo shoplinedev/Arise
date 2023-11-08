@@ -1,6 +1,6 @@
 {{ assign 'navigation' (get settings.menu navigations) }}
 
-{{!-- pc端菜单 --}}
+
 <div class="footer__menu d-none d-md-block">
   {{ snippet 'footer-block-header' normalTitle="Menu" }}
 
@@ -24,7 +24,7 @@
   </div>
 </div>
 
-{{!-- 移动端菜单 --}}
+
 <div class="footer__menu d-md-none">
   {{#snippet 'global-dropdown-list' relatedId=sectionId status=false}}
     {{#child 'trigger'}}

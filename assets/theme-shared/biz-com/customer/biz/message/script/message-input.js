@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/message/script/message-input.js'] = window.SLM['theme-shared/biz-com/customer/biz/message/script/message-input.js'] || function () {
   const _exports = {};
   const { escape } = window['html-escaper'];
@@ -7,7 +6,6 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-input.js'] 
   const Upload = window['SLM']['theme-shared/biz-com/customer/commons/upload/index.js'].default;
   const { ESenderType, ESendStatus } = window['SLM']['theme-shared/biz-com/customer/biz/message/const.js'];
   const { reportMessageSubmit } = window['SLM']['theme-shared/biz-com/customer/reports/message.js'];
-
   class MessageInput {
     constructor({
       onSuccess
@@ -23,13 +21,11 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-input.js'] 
       this.image = null;
       this.init();
     }
-
     clearImage() {
       this.image = null;
       this.$uploadPreview.hide();
       this.$upload.show();
     }
-
     init() {
       this.upload = new Upload({
         id: 'customer-message-input',
@@ -46,11 +42,9 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-input.js'] 
       this.$send.on('click', () => {
         const text = this.$input.val();
         const img = this.image;
-
         if (this.loading || !text && !img) {
           return false;
         }
-
         this.loading = true;
         reportMessageSubmit();
         const params = {
@@ -78,9 +72,7 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-input.js'] 
         });
       });
     }
-
   }
-
   _exports.default = MessageInput;
   return _exports;
 }();

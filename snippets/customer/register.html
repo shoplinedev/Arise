@@ -1,5 +1,5 @@
 {{ assign 'id' (default id 'customer-register')}}
-{{!-- showType: page 页面，modal 弹窗 --}}
+
 {{ assign 'showType' (default showType 'page')}}
 
 {{ preload_state 'customer_address' }}
@@ -22,8 +22,8 @@
 ]')) }}
 
 <div class="customer sign-up" id="{{ id }}">
-  <h2 class="customer__title">{{t 'customer.general.sign_up'}}</h2>
-  {{!-- <p class="customer__error">{{t 'customer.general.error_message_2002'}}</p> --}}
+  <h2 class="title-font customer__title">{{t 'customer.general.sign_up'}}</h2>
+
 
   <form class="customer__form shopline-element-customer-sign-up-form">
     {{snippet 'customer/form-item/username' class="shopline-element-customer-sign-up-form-account" types=(split registerConfig.types ',') }}
@@ -65,7 +65,7 @@
           {{#formItem "firstName" "class='customer__form-item'"}}
             {{#snippet
               'customer/base/sl-input'
-              attrs='maxlength="128"'
+              attrs='maxlength="128" autocapitalize="on"'
               name="firstName"
               type="text"
               placeholder=(t 'customer.account.first_name')
@@ -79,7 +79,7 @@
           {{#formItem "lastName" "class='customer__form-item'"}}
             {{#snippet
               'customer/base/sl-input'
-              attrs='maxlength="128"'
+              attrs='maxlength="128" autocapitalize="on"'
               name="lastName"
               type="text"
               placeholder=(t 'customer.account.last_name')
@@ -93,7 +93,7 @@
 
     {{#if registerConfig.birthdayCheck}}
       {{#formItem "birthday" "class='customer__form-item'"}}
-        {{!-- TODO: 这里传 id 是为了适配 DatePicker 组件，DatePicker 组件逻辑待调整 --}}
+
         {{#if showType 'page'}}
           {{ assign 'registerBirthdaySelectId' (cond isMobile 'register-birthday-mobile' 'register-birthday-pc')}}
         {{else}}
@@ -145,11 +145,11 @@
         {{#snippet 'customer/base/sl-checkbox' checked=false }}
           <span>{{ t 'customer.register.tips_agree_with_the_shop' }}</span>
           {{#if hasPrivacyPolicy}}
-            <a href="javascript:void(0);" class="sign-up__link sign-up__privacy-policy" data-path="/policies/privacy-policy">{{ t 'customer.register.privacy_policy' }}</a>
+            <a href="javascript:;" class="sign-up__link sign-up__privacy-policy" data-path="/policies/privacy-policy">{{ t 'customer.register.privacy_policy' }}</a>
           {{/if}}
           {{#if hasTermsOfService}}
             <span>{{ t 'customer.general.and_button' }}</span>
-            <a href="javascript:void(0);" class="sign-up__link sign-up__service-terms" data-path="/policies/terms-of-service">{{ t 'customer.register.terms_of_service' }}</a>
+            <a href="javascript:;" class="sign-up__link sign-up__service-terms" data-path="/policies/terms-of-service">{{ t 'customer.register.terms_of_service' }}</a>
           {{/if}}
         {{/snippet}}
       {{/formItem}}
@@ -165,7 +165,7 @@
   </form>
 
   {{#if showType 'page'}}
-    {{!-- 弹窗不显示这个跳转链接 --}}
+
     <div class="sign-up__footer-link text-center">
       {{assign 'search' (default (get 'search' (urlParse request.uri.url 'json')) '')}}
       <a href="{{redirect_to (append '/user/signIn' search)}}" class="sign-up__link">{{ t 'customer.register.go_to_login' }}</a>
@@ -173,6 +173,6 @@
   {{/if}}
 </div>
 
-{{!-- 用户条款弹窗 --}}
+
 {{ assign 'modalId' (append id '-modal')}}
 {{#snippet 'product/commons/base-modal' modalId=modalId animationType="fade"}}{{/snippet}}

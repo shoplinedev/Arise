@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] || function () {
   const _exports = {};
   const Modal = window['SLM']['theme-shared/components/hbs/shared/components/modal/index.js'].default;
@@ -10,7 +9,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
   const MODAL_ID = 'delete-address-confirm-modal';
-
   class Address extends Card {
     constructor({
       id
@@ -21,12 +19,10 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
       this.currentDeleteAddressSeq = null;
       this.$currentDeleteAddressItem = null;
     }
-
     init() {
       this.initModal();
       this.bindEvents();
     }
-
     initModal() {
       const modal = new Modal({
         modalId: MODAL_ID
@@ -34,14 +30,12 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
       modal.init();
       this.modal = modal;
     }
-
     bindEvents() {
       this.bindRemoveAddress();
       $(`#${this.id} .address__btn--edit`).click(() => reportEditAddress());
       $(`#${this.id} .address__link`).click(() => reportClickNewAddress());
       $(`#${this.id} .address__btn--add`).click(() => reportClickNewAddress());
     }
-
     bindRemoveAddress() {
       $(`#${this.id} .address__list`).on('click', '.address__btn--remove', async e => {
         e.preventDefault();
@@ -55,7 +49,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
       $(`#${this.modal.modalId} .delete-address-confirm__footer`).on('click', '.btn', async e => {
         const $target = $(e.currentTarget);
         const isSubmit = $target.hasClass('submit-button');
-
         if (isSubmit) {
           try {
             await deleteAddress({
@@ -73,12 +66,10 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
         }
       });
     }
-
     removeEmitRefresh($target) {
       const $list = $target.parents('.address__list');
       $target.parents('.address__item').remove();
       const $items = $list.find('.address__item');
-
       if ($items.length < 1) {
         const $address = $(`#${this.id} .address`);
         $address.html(getAddressEmpty());
@@ -88,9 +79,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
         $(`#${this.id} .address--max`).remove();
       }
     }
-
     render() {}
-
     getAddButton() {
       const isMobile = window && window.SL_State && window.SL_State.get('request.is_mobile');
       const iconStr = `
@@ -102,13 +91,11 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
       <span>${t('customer.address.add_address')}</span>
     `;
       let boxButtonStr = iconStr;
-
       if (isMobile) {
         boxButtonStr = `
         <button class="sl-btn btn btn-primary col-24">${iconStr}</button>
       `;
       }
-
       return `
       <div class="address__add-box">
         <a class="address__btn address__btn--add" href="${redirectTo('/user/address/new')}">
@@ -117,9 +104,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/address.js'] = wind
       </div>
     `;
     }
-
   }
-
   _exports.default = Address;
   return _exports;
 }();

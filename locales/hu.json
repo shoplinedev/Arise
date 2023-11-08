@@ -104,7 +104,8 @@
       "view_cart": "Kosár megtekintése"
     },
     "next_step": {
-      "calculated_taxes_fees": "Az adókat és a szállítási költséget fizetésnél számítják ki"
+      "calculated_taxes_fees": "Az adókat és a szállítási költséget fizetésnél számítják ki",
+      "included_taxes_fees": "Tartalmazza az áfát és a szállítási költséget a fizetéskor számítjuk ki"
     },
     "notices": {
       "change_password_after_verification": "Az ellenőrzés után módosíthatja a jelszót",
@@ -230,6 +231,7 @@
       "copy_success": "Kuponkód átmásolva",
       "discount_title": "Aktiválja fiókját és kedvezménykódot kap",
       "normal_title": "Fiók aktiválás",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Iratkozzon fel az e-mailekre és friss híreket kap, valamint hozzáfér az exkluzív ajánlatokhoz és még sok máshoz.",
       "success_title": "Gratulálunk, nagyszerű kedvezményt kapott",
       "token_expired": "Az Ön hivatkozása lejárt"
@@ -337,6 +339,7 @@
       "set_password": "A jelszónak 6-18 karakterből kell állnia, amely számokból, nagy- és kisbetűkből áll",
       "sign__out": "Kijelentkezés",
       "sign_in": "BEJELENTKEZÉS",
+      "sign_in_activate": "Az ellenőrző kódot elküldtük a számlájára {{account}}. Az ellenőrzést követően aktiválhatja fiókját",
       "sign_up": "REGISZTRÁCIÓ",
       "su": "V",
       "subscription_desc": "Értesülhet az üzlet tevékenységéről szóló legújabb hírekről",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Köszönjük, hogy feliratkozott. Bejelentkezzen be a jobb élményért."
     },
     "message": {
+      "format_error": "Az üzenet formátuma nem támogatott",
       "input_placeholder": "Van valami, amit el akar mondani?",
       "message": "Üzenet",
       "send": "Küldés"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kategória"
     },
+    "facets": {
+      "in_stock_only": "Csak raktáron",
+      "sort_button": "Változat"
+    },
     "general": {
       "no_product_data_found": "Nem található termékadat. Kérjük, később próbálja újra",
       "sold_out": "Elfogyott",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Vásároljon a LOTTE-n",
       "go_to_yahoo_by_link": "Vásároljon a Yahoo-n",
       "in_stock": "Raktáron",
+      "inventory_in_stock": "Készleten lévő áruk",
+      "inventory_in_stock_show_count": "Készlet: Fennmaradó {{ quantity }}",
+      "inventory_low_stock": "Alacsony készlet",
+      "inventory_low_stock_show_count": "Alacsony készlet: Fennmaradó {{ quantity }}",
+      "inventory_out_of_stock": "Nincs készleten",
+      "inventory_out_of_stock_continue_selling": "Készleten lévő áruk",
       "inventory_quantity": "Készlet adatok",
       "leave_us_message": "Kéjük, írja be üzenetét",
       "leave_us_message_get_back": "Kérjük, hagyjon nekünk üzenetet, és a lehető leghamarabb felkeressük",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} lett kiválasztva",
       "from_price_html": "{{price}} ártól",
       "less": "Kevesebb",
+      "load_more_desc": "{{total}} tételből {{current_offset}} ~ {{last_current_offset}}",
       "load_more_tip": "További elemek betöltése",
       "more": "Több",
       "new_arrivals": "Újonnan érkezett",
@@ -612,7 +627,8 @@
       "save": "Kedvezmény {{{priceDom}}}",
       "save_byjs": "Kedvezmény {{priceDom}}",
       "save_ratio": "{{price}}% kedvezmény",
-      "select_product_all_options": "Kérjük, először válassza ki termék méretét!",
+      "select_product_all_options": "A kiválasztott termékvariáns hiányos vagy nem elérhető. Kérjük, válasszon újra",
+      "sort_button": "Változat",
       "top_sellers": "Legfelkapottabb",
       "more__product_num": "{{num}} Termékek",
       "one_product_num": "{{num}} Termék",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Folytasd a vásárlást",
       "more": "Több",
+      "saved": "Takarított meg",
       "total": "Összesen",
       "total_sum": "Összesen"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Szolgáltatás kimaradás. Kérjük, később próbálja újra.",
       "error_message_2014": "A fiók veszélyben van",
       "error_message_2016": "A fiók veszélyben van",
+      "error_message_2020": "A rendszer foglalt, kérjük, próbálja meg később újra",
       "error_message_3": "Szolgáltatás kivételek",
       "error_message_3001": "Szolgáltatás kimaradás. Kérjük, később próbálja újra.",
       "error_message_3002": "Mobiltelefonhoz/postafiókhoz nem kötött felhasználók próbálják meg megváltoztatni a jelszavaikat",
@@ -850,15 +868,22 @@
       "error_message_3010": "Az e-mail más fiókokhoz lett csatolva",
       "error_message_3014": "Szöveges üzenet/levél sablon megjelenítés nem sikerült",
       "error_message_3015": "A fiók aktiválva lett",
+      "error_message_3021": "A rendszer foglalt, kérjük, próbálja meg később újra",
       "error_message_3022": "A hivatkozás lejárt",
       "error_message_3023": "A hivatkozás hibás",
       "error_message_3024": "Hivatkozásparaméter-hiba",
       "error_message_3026": "Fiók formátum hiba",
+      "error_message_3029": "Egyelőre nem támogatjuk a mobiltelefonszám aktiválását",
       "error_message_4": "Szolgáltatás kivételek",
       "error_message_5": "Szolgáltatás kivételek",
       "error_message_6": "Szolgáltatás kivételek",
       "error_message_7": "A jelszónak 6-18 karakterből kell állnia, amely számokból, nagy- és kisbetűkből áll"
     },
-    "editorSwitchCountryTip": "A szerkesztő nem támogatja az országok közötti váltást"
+    "editorSwitchCountryTip": "A szerkesztő nem támogatja az országok közötti váltást",
+    "shopby": {
+      "button": {
+        "show": "Biztonságos és gyorsabb"
+      }
+    }
   }
 }

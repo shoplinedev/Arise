@@ -8,6 +8,8 @@
       "settings": {
         "show_category_name": true,
         "show_category_cover": true,
+        "pc_collection_img_height":"420",
+        "md_collection_img_height":"250",
         "parallax_scroll": false
       }
     },
@@ -24,12 +26,12 @@
         "md_cols": 2,
         "filter_enable": true,
         "support_multiple": true,
-        "padding-top": 0,
-        "padding-bottom": 0,
         "product_sub_title": "hide",
         "infinite_scroll": false,
         "show_orgin_price": true,
-        "price_show_type": "from_lowest_price"
+        "price_show_type": "from_lowest_price",
+        "mobile_list_layout": 2,
+        "mobile_show_style_switch": true
       },
       "blocks": {
         "a": {

@@ -85,6 +85,24 @@
             {{/if}}
           </a>
         {{/if}}
+        {{#if social_line_link}}
+          <a href="{{social_line_link}}" target="_blank">
+            {{#if show_official_icon}}
+              {{ snippet 'icons/icon_official_line' prefix="footer" }}
+            {{else}}
+              {{ snippet 'icons/icon_social_line' }}
+            {{/if}}
+          </a>
+        {{/if}}
+        {{#if social_kakao_link}}
+          <a href="{{social_kakao_link}}" target="_blank">
+            {{#if show_official_icon}}
+              {{ snippet 'icons/icon_official_kakao' prefix="footer" }}
+            {{else}}
+              {{ snippet 'icons/icon_social_kakao' }}
+            {{/if}}
+          </a>
+        {{/if}}
       </div>
     {{/with}}
   </div>

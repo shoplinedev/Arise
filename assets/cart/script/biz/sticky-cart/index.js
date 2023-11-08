@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz/sticky-cart/index.js'] || function () {
   const _exports = {};
   const Cookie = window['js-cookie']['default'];
@@ -13,7 +12,6 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
   const cartReport = window['SLM']['cart/script/report/cartReport.js'].default;
   const logger = LoggerService.pipeOwner(`${Owner.Cart} biz/sticky-cart/index.js`);
   const cartToken = Cookie.get('t_cart');
-
   const initMainCartSticky = () => {
     if (isMobile()) {
       logger.info(`main 主站购物车 initMainCartSticky`, {
@@ -45,10 +43,8 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
       }, 300);
     }
   };
-
   _exports.initMainCartSticky = initMainCartSticky;
   let intersectionObserver;
-
   const handleHeaderVisibleToggle = isVisible => {
     if (!isVisible) {
       $('.mini-cart__drawer-slot').css('position', 'fixed').css('top', 0);
@@ -56,31 +52,25 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
       $('.mini-cart__drawer-slot').css('position', 'absolute').css('top', '');
     }
   };
-
   const listenHeaderIntersection = () => {
     const isHeaderSticky = $('#stage-header').attr('data-sticky');
-
     if (isHeaderSticky !== 'true') {
       intersectionObserver = listenElementIntersection($('.header__main').get(0), handleHeaderVisibleToggle);
     }
   };
-
   const listenEditorSectionChange = () => {
     $(document).on('shopline:section:load', () => {
       intersectionObserver && intersectionObserver.disconnect && intersectionObserver.disconnect();
       listenHeaderIntersection();
     });
   };
-
   const listenHeaderSectionChange = () => {
     setTimeout(() => {
       listenHeaderIntersection();
       listenEditorSectionChange();
     }, 0);
   };
-
   _exports.listenHeaderSectionChange = listenHeaderSectionChange;
-
   const initMiniCartSticky = () => {
     logger.info(`mini 主站购物车 initMiniCartSticky`, {
       data: {
@@ -89,7 +79,6 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
       action: Action.InitCart,
       status: LoggerStatus.Success
     });
-
     (() => {
       const height = $('.mini-cart__drawer-slot').position().top || 0;
       const positionTop = $('.header-sticky-wrapper').position().top || 0;
@@ -98,9 +87,7 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
       $('#cart-select .trade_cart_not_empty_wrapper').css('max-height', `${mh}px`);
     })();
   };
-
   _exports.initMiniCartSticky = initMiniCartSticky;
-
   const initMiniStyleWhenOpen = () => {
     logger.info(`mini 主站购物车 初始化 initMiniStyleWhenOpen`, {
       data: {
@@ -121,9 +108,7 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
     });
     cartReport.viewCart(cartInfo);
   };
-
   _exports.initMiniStyleWhenOpen = initMiniStyleWhenOpen;
-
   const toggleVisibility = (cartType, visibility) => {
     logger.info(`normal 主站购物车 切换展示 toggleVisibility`, {
       data: {
@@ -147,7 +132,6 @@ window.SLM['cart/script/biz/sticky-cart/index.js'] = window.SLM['cart/script/biz
       status: LoggerStatus.Success
     });
   };
-
   _exports.toggleVisibility = toggleVisibility;
   return _exports;
 }();

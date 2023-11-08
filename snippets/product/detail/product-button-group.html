@@ -1,3 +1,14 @@
+
+{{#if isNewExpressCheckout}}
+  {{#if paymentButtonConfig.grayscaleButtonLocation}}
+    {{#contains paymentButtonConfig.grayscaleButtonLocation "productDetail"}}
+      {{ assign "isButtonNeedFirstLineRow" (or (compare case '===' 'pdp_float') (compare case '===' 'quick_add_modal')) }}
+    {{/contains}}
+  {{/if}}
+{{/if}}
+
+
+{{!-- 快速加购 --}}
 <button
   data-ssr-plugin-pdp-button-sold-out
   class="sold-out-button btn btn-primary btn-lg disabled pdp_sold_out_{{id}} {{#not isSoldOut}}hide{{/not}}"
@@ -5,30 +16,58 @@
 >
   {{t "products.general.sold_out"}}
 </button>
-<button
-  data-ssr-plugin-pdp-button-addtocart
-  class="__sl-custom-track-add-to-cart-btn add-to-cart shopline-element-add-to-cart btn
-    {{buttonClass}}
-    btn-lg
-    pdp_add_to_cart_{{id}}
-    {{#if isSoldOut}}hide{{/if}}"
-  type="button"
->
-  <span class="pdp_button_text fw-bold">{{t "products.product_list.add_to_cart"}}</span>
-</button>
+<div class="pay-button-theme-container {{#if isButtonNeedFirstLineRow}}pay-button-theme-first-line-container{{/if}}">
+  <div id="pay-button-theme-add-to-cart-{{id}}" class="pay-button-theme-add-to-cart">
+    <button
+      data-ssr-plugin-pdp-button-addtocart
+      class="__sl-custom-track-add-to-cart-btn add-to-cart shopline-element-add-to-cart btn
+        {{buttonClass}}
+        btn-lg
+        pdp_add_to_cart_{{id}}
+        {{#if isSoldOut}}hide{{/if}}"
+      type="button"
+    >
+      <span class="pdp_button_text fw-bold">{{t "products.product_list.add_to_cart"}}</span>
+    </button>
+  </div>
+  {{#if isButtonNeedFirstLineRow}}
+    {{#if case '===' 'quick_add_modal'}}
+      {{!-- buy now&atc button first line row layout for quick add mobile modal --}}
+      <div id="pay-button-theme-buy-now-{{id}}" class="pay-button-theme-buy-now"></div>
+    {{/if}}
+    {{#if case '===' 'pdp_float'}}
+      {{!-- buy now&atc button first line row layout for pdp float--}}
+      <div id="pay-button-theme-buy-now-float-{{id}}" class="pay-button-theme-buy-now"></div>
+    {{/if}}
+  {{/if}}
+</div>
 
+
+
+{{!-- buynow 正常按钮 --}}
 {{#if layout "===" "embed"}}
   {{#if isNewExpressCheckout}}
-    <div id="payment_button_{{id}}" class="payment-button-container" data-attr="isSoldOut={{isSoldOut}}&id={{id}}">
-      {{snippet "trade/buynow-text"}}
-    </div>
-    {{#forEach paymentButtonConfig.buttonLocationDataList}}
-      {{#if buttonLocation "===" "productDetail"}}
-        {{#if isSystem}}
-          <div class="pdp_buy_now_{{../id}} product-more-payment-button {{#if isSoldOut}}hide{{/if}}"></div>
+    {{assign "grayscaleButtonLocation" false}}
+    {{#if paymentButtonConfig.grayscaleButtonLocation}}
+      {{#contains paymentButtonConfig.grayscaleButtonLocation "productDetail"}}
+        {{assign "grayscaleButtonLocation" true}}
+      {{/contains}}
+    {{/if}}
+
+    {{#if (boolean (isFalsey paymentButtonConfig) "||" grayscaleButtonLocation)}}
+      <div id="payment_button_{{id}}" data-is-sold-out="{{isSoldOut}}"></div>
+    {{else}}
+      <div id="payment_button_{{id}}" class="payment-button-container" data-attr="isSoldOut={{isSoldOut}}&id={{id}}">
+        {{snippet "trade/buynow-text"}}
+      </div>
+      {{#forEach paymentButtonConfig.buttonLocationDataList}}
+        {{#if buttonLocation "===" "productDetail"}}
+          {{#if isSystem}}
+            <div class="pdp_buy_now_{{../id}} product-more-payment-button {{#if isSoldOut}}hide{{/if}}"></div>
+          {{/if}}
         {{/if}}
-      {{/if}}
-    {{/forEach}}
+      {{/forEach}}
+    {{/if}}
   {{else}}
     {{#if productSettleButtonConfig.buyNow}}
       <button
@@ -44,9 +83,35 @@
   {{/if}}
 {{/if}}
 
+{{!-- buynow 悬浮按钮 --}}
 {{#if layout "===" "float"}}
-  {{#if productSettleButtonConfig.buyNow}}
-    {{#unless isSoldOut}}
+  {{#unless isSoldOut}}
+    {{#if isNewExpressCheckout}}
+      {{assign "grayscaleButtonLocation" false}}
+      {{#if paymentButtonConfig.grayscaleButtonLocation}}
+        {{#contains paymentButtonConfig.grayscaleButtonLocation "productDetail"}}
+          {{assign "grayscaleButtonLocation" true}}
+        {{/contains}}
+      {{/if}}
+      {{#if (boolean (isFalsey paymentButtonConfig) "||" grayscaleButtonLocation)}}
+        <div id="payment_button_{{id}}--float" data-is-sold-out="{{isSoldOut}}"></div>
+      {{else}}
+        {{#if productSettleButtonConfig.buyNow}}
+          {{#unless isSoldOut}}
+            <button
+              class="__sl-custom-track-product-detail-buy-now float-btn--buy buy-now shopline-element-buy-now btn btn-primary
+                {{#if isSoldOut}}
+                  disabled
+                {{else}}
+                  pdp_buy_now_{{id}}
+                {{/if}}"
+            >
+              <span class="pdp_button_text fw-bold">{{t "cart.cart.buy_now"}}</span>
+            </button>
+          {{/unless}}
+        {{/if}}
+      {{/if}}
+    {{else}}
       <button
         class="__sl-custom-track-product-detail-buy-now float-btn--buy buy-now shopline-element-buy-now btn btn-primary
           {{#if isSoldOut}}
@@ -55,8 +120,9 @@
             pdp_buy_now_{{id}}
           {{/if}}"
       >
-        <span class="pdp_button_text fw-bold">{{t "cart.cart.buy_now"}}</span>
+        {{snippet "trade/buynow-text"}}
+        {{!-- <span class="pdp_button_text fw-bold">{{t "cart.cart.buy_now"}}</span> --}}
       </button>
-    {{/unless}}
-  {{/if}}
+    {{/if}}
+  {{/unless}}
 {{/if}}

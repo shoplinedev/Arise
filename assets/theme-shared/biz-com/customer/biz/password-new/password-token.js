@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/password-new/password-token.js'] = window.SLM['theme-shared/biz-com/customer/biz/password-new/password-token.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -11,7 +10,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-token.js'] =
   const { RESET_PASSWORD_TOKEN_EXPIRED } = window['SLM']['theme-shared/biz-com/customer/constant/const.js'];
   const { SIGN_IN, USER_CENTER } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const { redirectPage } = window['SLM']['theme-shared/biz-com/customer/utils/helper.js'];
-
   class PasswordToken extends Customer {
     constructor({
       id,
@@ -26,9 +24,9 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-token.js'] =
       this.setFormId = setFormId;
       this.setInstance = null;
     }
-
     onResetConfirm(data) {
-      return resetPasswordByToken({ ...this.UDBParams,
+      return resetPasswordByToken({
+        ...this.UDBParams,
         pwd: data.password
       }).then(() => {
         redirectPage(USER_CENTER);
@@ -38,11 +36,9 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-token.js'] =
           storage.sessionStorage.set(RESET_PASSWORD_TOKEN_EXPIRED, true);
           redirectPage(SIGN_IN);
         }
-
         return Promise.reject(e);
       });
     }
-
     init() {
       this.setInstance = new PasswordSet({
         id: this.setFormId,
@@ -50,7 +46,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-token.js'] =
           if (this.query.token === 'preview') {
             return Promise.resolve();
           }
-
           return this.onResetConfirm(data);
         }
       });
@@ -58,9 +53,7 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-token.js'] =
         account: this.UDBParams.emailMask || ''
       }));
     }
-
   }
-
   _exports.default = PasswordToken;
   return _exports;
 }();

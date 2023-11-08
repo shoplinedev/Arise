@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/report/hd-const.js'] = window.SLM['theme-shared/utils/report/hd-const.js'] || function () {
   const _exports = {};
   const eventName = {

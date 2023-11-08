@@ -104,7 +104,8 @@
       "view_cart": "Voir le panier"
     },
     "next_step": {
-      "calculated_taxes_fees": "Les taxes et les frais de transport seront calculés à l'étape suivante"
+      "calculated_taxes_fees": "Les taxes et les frais de transport seront calculés à l'étape suivante",
+      "included_taxes_fees": "Taxes incluses et frais de port calculés à la caisse"
     },
     "notices": {
       "change_password_after_verification": "Vous pouvez modifier le mot de passe après vérification",
@@ -230,6 +231,7 @@
       "copy_success": "Le coupon a été copié",
       "discount_title": "Activez votre compte et obtenez un code de réduction",
       "normal_title": "Activer le compte",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Abonnez-vous aux e-mails pour recevoir des mises à jour, accéder à des offres exclusives, etc.",
       "success_title": "Félicitations pour avoir obtenu la réduction",
       "token_expired": "Votre lien a expiré"
@@ -337,6 +339,7 @@
       "set_password": "Le mot de passe doit être composé de 6 à 18 caractères composés de chiffres, de lettres majuscules et minuscules",
       "sign__out": "Se déconnecter",
       "sign_in": "Se connecter",
+      "sign_in_activate": "Le code de vérification a été envoyé à votre compte{{account}}, vous pouvez activer votre compte après vérification.",
       "sign_up": "S'inscrire",
       "su": "Di",
       "subscription_desc": "Recevoir les dernières actualités de la boutique",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Merci pour votre abonnement. Vous pouvez vous connecter pour une meilleure expérience."
     },
     "message": {
+      "format_error": "Le format du message n’est pas pris en charge",
       "input_placeholder": "Y a-t-il un sujet pour lequel vous souhaitez laisser un message ?",
       "message": "Message",
       "send": "Envoyer"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Collections"
     },
+    "facets": {
+      "in_stock_only": "En stock uniquement",
+      "sort_button": "Trier"
+    },
     "general": {
       "no_product_data_found": "Aucune donnée trouvée concernant le produit. Veuillez réessayer plus tard",
       "sold_out": "Épuisé",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Accéder à LOTTE",
       "go_to_yahoo_by_link": "Accéder à Yahoo",
       "in_stock": "Disponible",
+      "inventory_in_stock": "Marchandise disponible",
+      "inventory_in_stock_show_count": "Stock : {{ quantity }} restant",
+      "inventory_low_stock": "Faible inventaire",
+      "inventory_low_stock_show_count": "Faible inventaire : {{ quantity }} restant",
+      "inventory_out_of_stock": "Rupture de stock",
+      "inventory_out_of_stock_continue_selling": "Marchandise disponible",
       "inventory_quantity": "Numéro d’inventaire",
       "leave_us_message": "Veuillez remplir le message",
       "leave_us_message_get_back": "Veuillez laisser un message concernant votre consultation et nous vous contacterons dans les plus brefs délais",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} sélectionné",
       "from_price_html": "À partir de {{price}}",
       "less": "Moins d’étiquettes",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} d’éléments {{total}}",
       "load_more_tip": "Charger plus d'articles",
       "more": "Plus d’étiquettes",
       "new_arrivals": "Nouveautés",
@@ -612,7 +627,8 @@
       "save": "Réduction de {{{priceDom}}}",
       "save_byjs": "Réduction de {{priceDom}}",
       "save_ratio": "{{price}}% de réduction",
-      "select_product_all_options": "Veuillez sélectionner tous les attributs de marchandise",
+      "select_product_all_options": "La variante de produit sélectionnée est incomplète ou indisponible. Veuillez choisir à nouveau",
+      "sort_button": "Trier",
       "top_sellers": "Meilleurs vendeurs",
       "more__product_num": "{{num}} productions",
       "one_product_num": "{{num}} production",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Continuer vos achats",
       "more": "Acheter plus",
+      "saved": "Économisé",
       "total": "Total",
       "total_sum": "Total"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Exception de service, réessayer plus tard",
       "error_message_2014": "Le compte est risqué",
       "error_message_2016": "Le compte est risqué",
+      "error_message_2020": "Le système est occupé, veuillez réessayer plus tard",
       "error_message_3": "Erreur de service",
       "error_message_3001": "Exception de service, réessayer plus tard",
       "error_message_3002": "Opération illégale",
@@ -850,15 +868,22 @@
       "error_message_3010": "L'e-mail a été lié à d'autres comptes",
       "error_message_3014": "Échec de l'envoi du code",
       "error_message_3015": "Le compte est activé",
+      "error_message_3021": "Le système est occupé, veuillez réessayer plus tard",
       "error_message_3022": "Le lien a expiré",
       "error_message_3023": "Erreur de format de lien",
       "error_message_3024": "Erreur de paramètre de lien",
       "error_message_3026": "Le format du compte est incorrect",
+      "error_message_3029": "L'activation de téléphone mobile n'est pas disponible pour le moment.",
       "error_message_4": "Erreur de service",
       "error_message_5": "Erreur de service",
       "error_message_6": "Erreur de service",
       "error_message_7": "Le mot de passe doit être composé de 6 à 18 caractères composés de chiffres, de lettres majuscules et minuscules"
     },
-    "editorSwitchCountryTip": "Le changement de pays n’est actuellement pas pris en charge dans l’éditeur"
+    "editorSwitchCountryTip": "Le changement de pays n’est actuellement pas pris en charge dans l’éditeur",
+    "shopby": {
+      "button": {
+        "show": "Sûr et rapide"
+      }
+    }
   }
 }

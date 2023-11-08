@@ -6,7 +6,7 @@
 {{#if type '===' 'pcThumbImage'}} 
 <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"   onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="{{ class }}" {{{get 'responsiveAttr' (image_responsive resource breakpoints=_thumbBreakPoint pcSize=(append _thumbBreakPoint 'px') mSize=_mSize) }}} alt="{{alt}}">
 {{else if type '===' 'pcImage'}}
-<!-- 这里要拆开写属性是因为swiper lazy要用data-sizes -->
+
   {{ assign 'imageResponsive' (image_responsive resource pcSize=_pcSize mSize=_mSize useLazyLoad=useLazyLoad) }}
   <img referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}" onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" data-photoswipe-src="{{ img_url resource width=1800 }}" {{#if useLazyLoad}}data-sizes="{{get 'sizesAttr' imageResponsive }}" data-srcset="{{get 'srcsetAttr' imageResponsive }}" data-src="{{get 'srcAttr' imageResponsive }}"{{else}}{{{get 'responsiveAttr' imageResponsive }}}{{/if}} alt="{{alt}}" class="{{ class }}">
 {{else if type '===' 'pcSkuImage'}}

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/constant/const.js'] = window.SLM['theme-shared/biz-com/customer/constant/const.js'] || function () {
   const _exports = {};
   const getEnv = window['SLM']['theme-shared/utils/get-env.js'].default;
@@ -24,6 +23,9 @@ window.SLM['theme-shared/biz-com/customer/constant/const.js'] = window.SLM['them
     google: {
       scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid',
       access_type: 'offline'
+    },
+    tiktok: {
+      scope: 'user.info.basic'
     }
   };
   _exports.THIRD_EXTRA_PARAMS = THIRD_EXTRA_PARAMS;

@@ -1,1 +1,3 @@
-<div class="trade-shopping-money-desc body4 {{classes}}">{{t 'cart.next_step.calculated_taxes_fees'}}</div>
+<div class="trade-shopping-money-desc body4 {{classes}} {{#if hide}}hide{{/if}}">{{#if taxesIncluded}}{{t
+      "cart.next_step.included_taxes_fees"
+    }}{{else}}{{t "cart.next_step.calculated_taxes_fees"}}{{/if}}</div>

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/order/utils.js'] = window.SLM['theme-shared/biz-com/customer/biz/order/utils.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -12,7 +11,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/utils.js'] = window.SLM['the
   dayjs.extend(tz);
   dayjs.extend(advancedFormat);
   const timezone = SL_State.get('storeInfo.timezone');
-
   function initCurrencyChangeListener(selector) {
     const cartRootNode = $(selector || document);
     SL_State.on('currencyCode', () => {
@@ -24,19 +22,14 @@ window.SLM['theme-shared/biz-com/customer/biz/order/utils.js'] = window.SLM['the
       });
     });
   }
-
   _exports.initCurrencyChangeListener = initCurrencyChangeListener;
-
   function formatTime(time) {
     return dayjs(time).format('YYYY-MM-DD HH:mm');
   }
-
   _exports.formatTime = formatTime;
-
   function formateTimeWithGMT(time) {
     return dayjs(time).tz(timezone).format('YYYY-MM-DD HH:mm A (z)');
   }
-
   _exports.formateTimeWithGMT = formateTimeWithGMT;
   return _exports;
 }();

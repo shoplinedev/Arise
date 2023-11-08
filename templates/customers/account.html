@@ -1,7 +1,7 @@
 {{ preload_state 'customer_address' }}
 {{ preload_state 'customer' }}
 
-{{!-- 注销展示状态(1.不显示, 2.正常展示 3.待删除（+删除时间）) --}}
+
 {{ assign 'deleteAcccountStatus' customer.customerLogoutFrontDto.logoutStatus}}
 {{ assign 'isDeleteAccounting' (boolean deleteAcccountStatus '===' 3)}}
 

@@ -4,7 +4,6 @@
     var history_browse_products = window.localStorage.getItem('history_browse_products') || [];
     var currencyProductId = '{{ product.spu.spuSeq }}';
     if (history_browse_products) {
-      // 要去重、最新访问要放首位、最多只能10条数据
       var history_browse_products_arr = typeof history_browse_products === 'string' ? history_browse_products.split(',') : history_browse_products;
       var currencyProductIdIndex = history_browse_products_arr.indexOf(currencyProductId);
       if (currencyProductIdIndex === -1) {

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-phone.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-phone.js'] || function () {
   const _exports = {};
   const Modal = window['SLM']['theme-shared/components/hbs/shared/components/modal/index.js'].default;
@@ -10,7 +9,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-phon
   const { createAccountBindFlow } = window['SLM']['theme-shared/biz-com/customer/biz/account/script/account/account-bind.js'];
   const { parsePhoneString } = window['SLM']['theme-shared/biz-com/customer/helpers/formatPhone.js'];
   const { countriesCodeMap } = window['SLM']['theme-shared/biz-com/customer/constant/countries.js'];
-
   class ModifyPhone {
     constructor({
       id,
@@ -37,18 +35,15 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-phon
       this.onModifyPhoneRequest = onModify;
       this.init();
     }
-
     init() {
       this.initModal();
       this.initForm();
     }
-
     initModal() {
       this.modifyPhoneModal = new Modal({
         modalId: this.id
       });
     }
-
     initForm() {
       const fields = getFormFields(['phone']);
       this.form = new Form({
@@ -66,7 +61,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-phon
         this.onFieldValueChange && this.onFieldValueChange(changedValue);
       });
     }
-
     onSubmit(data) {
       const {
         phone: phoneString,
@@ -74,7 +68,8 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-phon
       } = data || {};
       return this.onModifyPhoneRequest(phoneString).then(() => {
         const userInfoDTO = SL_State.get('customer.userInfoDTO');
-        SL_State.set('customer.userInfoDTO', { ...userInfoDTO,
+        SL_State.set('customer.userInfoDTO', {
+          ...userInfoDTO,
           phone: phoneString
         });
         this.phoneString = phoneString;
@@ -90,7 +85,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-phon
         this.onSuccess(phoneString);
       });
     }
-
     show() {
       const {
         formInstance,
@@ -103,13 +97,10 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-phon
       formInstance.resetErrStatus();
       this.modifyPhoneModal.show();
     }
-
     hide() {
       this.modifyPhoneModal.hide();
     }
-
   }
-
   _exports.default = ModifyPhone;
   return _exports;
 }();

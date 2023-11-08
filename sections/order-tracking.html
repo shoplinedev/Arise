@@ -4,27 +4,15 @@
   {{ combine_asset_tag 'stage/order-tracking/index.css' inline=true}}
 {{/if}}
 <!-- stage/order-tracking/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/scroll-lock.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.min.js'
-      'vendors/lodash.min.js'
-      'vendors/scroll-lock.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/eventemitter3.min.js'
+    'vendors/lodash.min.js'
+    'vendors/scroll-lock.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/sectionsLoad/index.js'
     'theme-shared/utils/get-env.js'

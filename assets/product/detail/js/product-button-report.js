@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/detail/js/product-button-report.js'] || function () {
   const _exports = {};
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
@@ -8,7 +7,6 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
   const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
   const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const dataReportAddToCart = window['@yy/sl-theme-shared']['/events/data-report/add-to-cart'].default;
-
   function reportAddToCartEvent(data) {
     try {
       dataReportAddToCart(data);
@@ -16,9 +14,7 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
       console.error(e);
     }
   }
-
   _exports.reportAddToCartEvent = reportAddToCartEvent;
-
   function addToCartThirdReport({
     spuId,
     name,
@@ -100,15 +96,12 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
     });
     return eventID;
   }
-
   _exports.addToCartThirdReport = addToCartThirdReport;
-
   function report(eventId, data) {
     if (window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.report) {
       window.HdSdk.shopTracker.report(eventId, data);
     }
   }
-
   function addToCartHdReport({
     spuId,
     skuId,
@@ -161,9 +154,7 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
       }
     });
   }
-
   _exports.addToCartHdReport = addToCartHdReport;
-
   function buyNowHdReport({
     spuId,
     skuId,
@@ -215,16 +206,15 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
       }
     });
   }
-
   _exports.buyNowHdReport = buyNowHdReport;
-
   function paypalHdReport(data) {
     const {
       cartId,
       ...rest
     } = data;
     const position = nullishCoalescingOperator(data.position, '') === '' ? '' : Number(data.position) + 1;
-    report('60006263', { ...rest,
+    report('60006263', {
+      ...rest,
       price: convertPrice(data.price),
       currency: getCurrencyCode(),
       position
@@ -250,7 +240,6 @@ window.SLM['product/detail/js/product-button-report.js'] = window.SLM['product/d
       }
     });
   }
-
   _exports.paypalHdReport = paypalHdReport;
   return _exports;
 }();

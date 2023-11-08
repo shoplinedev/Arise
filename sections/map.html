@@ -4,11 +4,7 @@
   {{ combine_asset_tag 'stage/map/index.css' inline=true}}
 {{/if}}
 <!-- stage/map/index.js -->
-  {{#if @root.use_modern_optimization}}
-    
-  {{else}}
-    
-  {{/if}}
+  
   {{ combine_asset_tag 
     'theme-shared/utils/sectionsLoad/index.js'
     'stage/map/index.js'
@@ -24,7 +20,7 @@
 {{ assign 'google_map_search_url' (append 'https://maps.google.com/?daddr=' address) }}
 
 <div class="__sl-custom-track-stage-map sl-map container" data-section-type="map" data-section-id="{{ section.id }}">
-  {{!-- 信息块 --}}
+  
   <div class="sl-map__block-wrapper sl-map__block-wrapper--nature">
     <div class="sl-map__block">
       <div class="sl-map__info">
@@ -48,7 +44,7 @@
     </div>
   </div>
 
-  {{!-- 展示块 --}}
+  
   <div class="sl-map__block-wrapper sl-map__block-wrapper--full">
     <div class="sl-map__block">
       <div class="sl-map__display">

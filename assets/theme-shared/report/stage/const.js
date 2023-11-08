@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/stage/const.js'] = window.SLM['theme-shared/report/stage/const.js'] || function () {
   const _exports = {};
   const sectionTypeEnum = {

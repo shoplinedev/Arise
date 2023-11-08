@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/login-modal/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/login-modal/index.js'] || function () {
   const _exports = {};
   const Login = window['SLM']['theme-shared/biz-com/customer/biz/sign-in/index.js'].default;
@@ -16,31 +15,29 @@ window.SLM['theme-shared/biz-com/customer/biz/login-modal/index.js'] = window.SL
   const defaultOptions = {
     modalId: MODAL_ID
   };
-
   class LoginModal {
     constructor(options = {}) {
-      this.options = { ...defaultOptions,
+      this.options = {
+        ...defaultOptions,
         ...options
       };
       this.modalId = this.options.modalId;
       this.modalInstance = null;
       this.loginInstance = null;
       this.registerInstance = null;
-
       if (!window.__SL_$__) {
         window.__SL_$__ = window.jQuery;
       }
-
       reportPageView();
       return this.init();
     }
-
     async init() {
       try {
         this.loginInstance = new Login({
           id: `${this.modalId}-signIn` || LOGIN_ID,
           isModal: true,
-          success: () => this.refresh()
+          success: () => this.refresh(),
+          error: e => this.onError(e)
         });
         this.registerInstance = new Register({
           id: `${this.modalId}-signUp` || REGISTER_ID,
@@ -51,17 +48,13 @@ window.SLM['theme-shared/biz-com/customer/biz/login-modal/index.js'] = window.SL
       } catch (e) {
         console.error(e);
       }
-
       return this;
     }
-
     bindEvents() {
       const isMobile = window && window.SL_State && window.SL_State.get('request.is_mobile');
-
       if (!isMobile) {
         return;
       }
-
       const $modal = $('#login-modal-container');
       $modal.on('click', '.login-modal__tab-item', e => {
         const $target = $(e.currentTarget);
@@ -73,14 +66,20 @@ window.SLM['theme-shared/biz-com/customer/biz/login-modal/index.js'] = window.SL
         });
       });
     }
-
+    onError(e) {
+      if (e && e.rescode === '1038') {
+        const login = document.querySelector(`#login-modal-container .login-container`);
+        const register = document.querySelector(`#login-modal-container .register-container`);
+        const third = document.querySelector('#login-modal-container .sign-in__third');
+        register.classList.add('is-hidden');
+        login.classList.add('is-unregistered');
+        third.classList.add('is-hidden');
+      }
+    }
     refresh() {
       window.location.reload();
     }
-
   }
-
   _exports.default = () => new LoginModal({});
-
   return _exports;
 }();

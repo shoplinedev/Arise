@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/confirm-sub-modal.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/confirm-sub-modal.js'] || function () {
   const _exports = {};
   const Modal = window['SLM']['theme-shared/components/hbs/shared/components/modal/index.js'].default;
@@ -9,7 +8,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/confir
   const getFormFields = window['SLM']['theme-shared/biz-com/customer/helpers/getFormFields.js'].default;
   const Form = window['SLM']['theme-shared/biz-com/customer/commons/form/index.js'].default;
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
-
   class ConfirmSubModal {
     constructor({
       id,
@@ -23,18 +21,15 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/confir
       this.toast = new Toast();
       this.init();
     }
-
     init() {
       this.initModal();
       this.initForm();
     }
-
     initModal() {
       this.confirmSubModal = new Modal({
         modalId: this.id
       });
     }
-
     initForm() {
       const fields = getFormFields(['email']);
       this.form = new Form({
@@ -52,7 +47,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/confir
         }
       });
     }
-
     show() {
       const {
         formInstance
@@ -64,13 +58,10 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/confir
       SLInput.find(`[name="email"]`).attr('disabled', true);
       this.confirmSubModal.show();
     }
-
     hide() {
       this.confirmSubModal.hide();
     }
-
   }
-
   _exports.default = ConfirmSubModal;
   return _exports;
 }();

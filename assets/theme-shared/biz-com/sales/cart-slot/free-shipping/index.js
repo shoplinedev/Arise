@@ -1,11 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/sales/cart-slot/free-shipping/index.js'] = window.SLM['theme-shared/biz-com/sales/cart-slot/free-shipping/index.js'] || function () {
   const _exports = {};
-
   const render = () => {
     const run = () => {};
-
     return {
       html: `<span class="discount-sale__free-shipping notranslate">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +19,6 @@ window.SLM['theme-shared/biz-com/sales/cart-slot/free-shipping/index.js'] = wind
       run
     };
   };
-
   _exports.default = render;
   return _exports;
 }();

@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/trade/optimize-modal/skuFilter.js'] = window.SLM['theme-shared/biz-com/trade/optimize-modal/skuFilter.js'] || function () {
   const _exports = {};
   const { StatusEnum } = window['SLM']['theme-shared/biz-com/trade/optimize-modal/constant.js'];
-
   function getSkuFilter(list) {
     const limitList = [];
     const filterList = [];
@@ -19,7 +17,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/skuFilter.js'] = window.SL
       filterList
     };
   }
-
   function getVerifiedCartItemList(list) {
     if (!list || list.length <= 0) return [];
     return list.map(verifyItem => {
@@ -30,26 +27,23 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/skuFilter.js'] = window.SL
       const {
         errorInfo
       } = cartChangeItem || {};
-
       if (!errorInfo) {
-        return { ...cartItem
+        return {
+          ...cartItem
         };
       }
-
       const {
         targetNum
       } = errorInfo;
-
       if (targetNum > 0) {
-        return { ...cartItem,
+        return {
+          ...cartItem,
           num: targetNum
         };
       }
-
       return null;
     }).filter(v => !!v);
   }
-
   _exports.getSkuFilter = getSkuFilter;
   _exports.getVerifiedCartItemList = getVerifiedCartItemList;
   return _exports;

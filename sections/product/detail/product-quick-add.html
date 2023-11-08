@@ -15,20 +15,20 @@
 {{ assign statePrefix product }}
 {{ preload_state statePrefix }}
 
-<!-- 判断是否预览环境 -->
+
 {{#if templateAlias '===' 'PreviewProductsDetail'}}
   {{ assign 'isPreviewProduct' true }}
 {{else}}
   {{ assign 'isPreviewProduct' false }}
 {{/if}}
 
-{{!-- sku选中相关数据 --}}
+
 {{ assign 'initSku' (product_default_sku product.sku.skuList product.spu.soldOut request.uri.query.sku true product.spu.inquiry isPreviewProduct) }}
 {{ assign 'productPrice' (product_sku_price (default initSku.selectSku initSku.minPriceSku)) }}
 {{ assign 'showMemberMark' (default initSku.selectSku.showMemberMark initSku.minPriceSku.showMemberMark) }}
 
 {{ assign 'discount_text' null }}
-{{!-- 当存在原价，则计算折扣 --}}
+
 {{#if productPrice.originPrice}}
   {{#if theme.settings.product_discount_style '===' 'number'}}
     {{ assign 'discount_text' (subtract productPrice.originPrice productPrice.salesPrice) }}
@@ -37,9 +37,14 @@
   {{/if}}
 {{/if}}
 
-<!-- html content start -->
+{{ assign 'grayFooterCls' 'overflow-auto-scroll' }}
+{{#if paymentButtonConfig.grayscaleButtonLocation}}
+  {{#contains paymentButtonConfig.grayscaleButtonLocation 'productDetail'}}
+    {{ assign 'grayFooterCls' '' }}
+  {{/contains}}
+{{/if}}
 <div class="quick-add-modal__wrapper">
-  <div class="quick-add-modal__body">
+  <div class="quick-add-modal__body" data-scroll-lock-scrollable>
     <div data-ssr-plugin-title-top></div>
     <div class="quick-add-mpdal-sku">
       {{ snippet 'product/commons/sku-trade/sku-trade' attr=(product_sku_map2array product.sku.skuAttributeMap initSku.selectSku) id=id productSkuStyle=theme.settings.product_sku_style selectSkuSeq=initSku.selectSku.skuSeq }}
@@ -69,7 +74,7 @@
           </span>
         {{/if}}
         <span class="product-price-vip_{{ id }} vipPrice {{ cond showMemberMark '' 'hide' }}" data-vip-tag="big"></span>
-        {{!-- (含税费) --}}
+
         {{ snippet 'product/detail/product-tax' }}
         <span
           class="originPrice notranslate isolate fw-bold product-price-item product-price-origin_{{ id }} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
@@ -112,16 +117,7 @@
       </div>
     </div>
   </div>
-
-  {{#if (not request.is_mobile)}}
-    <div class="quick-add-modal__footer" data-scroll-lock-scrollable>
-      {{ snippet 'product/detail/product-button' isSoldOut=(or product.spu.soldOut initSku.selectSku.soldOut) id=id }}
-    </div>
-  {{/if}}
-</div>
-
-{{#if request.is_mobile}}
-  <div class="quick-add-modal__footer" data-scroll-lock-scrollable>
-    {{ snippet 'product/detail/product-button' isSoldOut=(or product.spu.soldOut initSku.selectSku.soldOut) id=id }}
+  <div class="quick-add-modal__footer {{ grayFooterCls }}" data-scroll-lock-scrollable>
+    {{ snippet 'product/detail/product-button' isSoldOut=(or product.spu.soldOut initSku.selectSku.soldOut) id=id case='quick_add_modal' }}
   </div>
-{{/if}}
+</div>

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -20,7 +19,6 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
   const { SIGN_IN, USER_CENTER } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/toast.js'].default;
   const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
-
   class ActivateAccount extends Customer {
     constructor({
       id
@@ -47,17 +45,14 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
       this.$discountCode = $(`#${this.formId} .customer-activate__discount`);
       this.$discountCodeImg = $(`#${this.formId} .customer-activate__discount-img img`);
     }
-
     beforeCreate() {
       this.$form.on('submit', e => {
         e.preventDefault();
       });
-
       if (!this.token && !this.email) {
         this.getEmailCustomConfig();
       } else if (this.token) {
         const registerTypes = SL_State.get('shop.store_register_config.types').split(',');
-
         if (!registerTypes.includes('email')) {
           redirectPage(SIGN_IN);
         } else {
@@ -83,12 +78,10 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
             redirectPage(SIGN_IN);
             return false;
           }
-
           this.getEmailCustomConfig();
         });
       }
     }
-
     getEmailCustomConfig() {
       getEmailCustomConfig({
         emailTemplateName: 'customer_invite_registry_diy_email',
@@ -102,7 +95,6 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
         const discountImage = customConfig && customConfig.discountBannerImage;
         const discountBackground = customConfig && customConfig.discountBgColor;
         const priceRuleId = customConfig && customConfig.priceRuleId;
-
         if (discountEnable) {
           this.discountCode = discountCode;
           this.$title.text(t('customer.activate.discount_title'));
@@ -119,23 +111,19 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
             let activateCode = data;
             const matches = activateCode.match(/\{([-+]?\d+(?:\.\d+)?)\}/g);
             const matchPrices = matches && matches.length > 0 && matches.join(',').match(/[-+]?\d+(?:\.\d+)?/g);
-
             if (matchPrices && matchPrices.length > 0) {
               activateCode = matchPrices.reduce((str, next) => {
                 return str.replace(`{${next}}`, currencyUtil.format(Number(next) * 100));
               }, activateCode);
             }
-
             this.$activateCode.text(activateCode);
           });
         } else {
           this.$title.text(t('customer.activate.normal_title'));
         }
-
         this.$container.removeClass('hidden');
       });
     }
-
     init() {
       this.toast = new Toast();
       this.registerForm = new Form({
@@ -145,7 +133,6 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
           if (!this.token && !this.email) {
             return Promise.resolve();
           }
-
           return this.onSubmit(data).catch(e => {
             this.onError(e);
           });
@@ -162,7 +149,6 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
       });
       this.bindEvents();
     }
-
     bindEvents() {
       this.registerForm && this.registerForm.formInstance && this.registerForm.formInstance.on('valuesChange', ({
         changedValue
@@ -170,37 +156,31 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
         if (typeof (changedValue && changedValue.subscription) !== 'undefined') {
           this.subscribe.setSubscriptionEmail(changedValue && changedValue.subscription);
         }
-
         if (typeof (changedValue && changedValue.policy) !== 'undefined') {
           this.policy.onCheckAgreement(changedValue && changedValue.policy);
         }
-
         this.clearError();
       });
     }
-
     onSubmit(data) {
       const checkResult = this.policy.checkAgreePolicy(data);
-
       if (!checkResult) {
         super.setError({
           resmsg: 'customer.general.user_agreement_tip'
         });
         return Promise.reject();
       }
-
       if (data && typeof data.subscription !== 'undefined') {
         this.subscribe && this.subscribe.setSubscriptionEmail(data && data.subscription);
       }
-
       const params = this.UDBParams;
-
       if (this.token) {
         const payload = {
           pwd: data.password,
           token: this.token,
           extinfo: JSON.stringify({
-            discountCodeFlag: !!this.discountCode
+            discountCodeFlag: !!this.discountCode,
+            activateAccount: true
           })
         };
         return this.onSignUp({
@@ -208,17 +188,18 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
           params
         });
       }
-
       if (this.email) {
         const payload = {
           acct: this.email,
           passwd: data.password,
           eventid: this.eid,
           extinfo: JSON.stringify({
-            discountCodeFlag: !!this.discountCode
+            discountCodeFlag: !!this.discountCode,
+            activateAccount: true
           })
         };
-        return checkAccount(super.formatRequestBody({ ...params,
+        return checkAccount(super.formatRequestBody({
+          ...params,
           acct: payload.acct
         })).then(({
           stoken
@@ -236,13 +217,13 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
         });
       }
     }
-
     onSignUp({
       payload,
       params
     }) {
       if (this.token) {
-        return activateByToken(super.formatRequestBody({ ...payload,
+        return activateByToken(super.formatRequestBody({
+          ...payload,
           ...params
         })).then(({
           data: resData
@@ -252,9 +233,9 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
           this.subscribe && this.subscribe.onSubscribeEmail && this.subscribe.onSubscribeEmail(this.subsEmail);
         });
       }
-
       if (this.email) {
-        return signUpMember(super.formatRequestBody({ ...payload,
+        return signUpMember(super.formatRequestBody({
+          ...payload,
           ...params
         })).then(({
           data: resData
@@ -265,7 +246,6 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
         });
       }
     }
-
     onSignUpSuccess({
       osudb_uid
     }) {
@@ -282,7 +262,6 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
         this.onSuccess();
       });
     }
-
     onSuccess() {
       if (this.discountCode) {
         this.showCode();
@@ -290,7 +269,6 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
         redirectPage(USER_CENTER);
       }
     }
-
     showCode() {
       this.status = 'discount';
       this.$form.hide();
@@ -328,25 +306,20 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
         this.toast.open(t('customer.activate.copy_success'));
       });
     }
-
     onError(e) {
       const registeredCode = [EMAIL_REGISTERED];
       if (!e) return;
-
       if (registeredCode.includes(e.rescode)) {
         redirectPage(SIGN_IN);
         return;
       }
-
       if (TOKEN_ERROR_CODE.includes(e.rescode)) {
         storage.sessionStorage.set(ACCOUNT_ACTIVATED_TOKEN_EXPIRED, true);
         redirectPage(SIGN_IN);
         return;
       }
-
       const fields = getFormFields(['password']);
       const lastField = fields[fields.length - 1];
-
       if (lastField && lastField.name) {
         this.registerForm && this.registerForm.formInstance.setErrMsgIntoDom([{
           name: lastField.name,
@@ -354,12 +327,9 @@ window.SLM['theme-shared/biz-com/customer/biz/activate-account/index.js'] = wind
         }]);
         return;
       }
-
       super.setError(e);
     }
-
   }
-
   _exports.default = ActivateAccount;
   return _exports;
 }();

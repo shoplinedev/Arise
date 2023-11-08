@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/biz/checkout-error/index.js'] = window.SLM['cart/script/biz/checkout-error/index.js'] || function () {
   const _exports = {};
   const valuer = window['SLM']['cart/script/valuer/index.js'].default;
-
   class CheckoutErrorModule {
     constructor(ctx, {
       $root,
@@ -14,10 +12,8 @@ window.SLM['cart/script/biz/checkout-error/index.js'] = window.SLM['cart/script/
       this.$root = $root;
       this.checkoutHooks = checkoutHooks;
       this.cartActionHooks = cartActionHooks;
-
       this._init();
     }
-
     _init() {
       this.checkoutHooks.checkoutFailed.tap(err => {
         if (err) {
@@ -36,19 +32,15 @@ window.SLM['cart/script/biz/checkout-error/index.js'] = window.SLM['cart/script/
         }
       });
     }
-
     _setError(msg) {
       if (msg) {
         this.$root.classList.add('trade-cart-checkout-error');
       } else {
         this.$root.classList.remove('trade-cart-checkout-error');
       }
-
       this.$root.textContent = msg;
     }
-
   }
-
   function newCheckoutErrorModule(ctx, $root) {
     const checkoutHooks = valuer.checkoutHooksValuer.takeCheckoutHooks(ctx);
     const cartActionHooks = valuer.cartActionHooksValuer.takeCartActionHooks(ctx);
@@ -58,7 +50,6 @@ window.SLM['cart/script/biz/checkout-error/index.js'] = window.SLM['cart/script/
       checkoutHooks
     });
   }
-
   _exports.default = {
     CheckoutErrorModule,
     newCheckoutErrorModule

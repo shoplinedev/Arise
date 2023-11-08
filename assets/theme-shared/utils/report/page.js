@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/report/page.js'] = window.SLM['theme-shared/utils/report/page.js'] || function () {
   const _exports = {};
   _exports.default = {

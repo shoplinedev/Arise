@@ -1,0 +1,12 @@
+<li
+  class="slc-select__option body3"
+  data-value="{{ value }}"
+  {{#if selected}}selected{{/if}}>
+  <svg class="slc-option__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 7.33333L6 12L14 4" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <div class="slc-option__content">
+    {{slot_content}}
+  </div>
+</li>

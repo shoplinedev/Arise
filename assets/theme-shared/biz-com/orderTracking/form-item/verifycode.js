@@ -1,30 +1,24 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { CODE_PHONE_PATTERN } = window['SLM']['theme-shared/utils/pattern.js'];
   const { getUdbErrorMessage } = window['SLM']['theme-shared/biz-com/orderTracking/utils/index.js'];
   const BUTTON_LOADING_CLASS = 'btn--loading';
-
   const formatterFormData = data => {
-    const result = { ...data
+    const result = {
+      ...data
     };
-
     if (data.phone || CODE_PHONE_PATTERN.test(data.username)) {
       const exec = CODE_PHONE_PATTERN.exec(data.phone || data.username);
-
       if (exec) {
         result[data.username ? 'username' : 'phone'] = `${exec[2]}${exec[3]}`.replace('+', '00');
         result._code = exec[1].slice(0, -exec[2].length);
       }
     }
-
     return result;
   };
-
   _exports.formatterFormData = formatterFormData;
-
   class Verifycode {
     constructor({
       form,
@@ -50,27 +44,22 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
       this.dependFormItemName = null;
       this.init();
     }
-
     $$watch({
       name,
       value
     }) {
       this.changeSendButtonStatus(name, value);
     }
-
     changeSendButtonStatus(name, value) {
       if (this.countDownTimeout) {
         return;
       }
-
       if (value === undefined) {
         return;
       }
-
       const {
         $send
       } = this;
-
       if (value) {
         this.dependFormItemName = name;
         this.form.validateFields([name]).then(res => {
@@ -86,17 +75,14 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
         $send.attr('disabled', true);
       }
     }
-
     init() {
       this.bindSendCodeEvent();
     }
-
     getValue() {
       return {
         verifycode: this.inputValue || this.$input.val() || ''
       };
     }
-
     getFormValue() {
       const value = this.inputValue || this.$input.val() || '';
       this.value = value;
@@ -104,7 +90,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
         verifycode: value
       };
     }
-
     setCountDown() {
       if (this.countDown > 0) {
         this.$send.attr('disabled', true);
@@ -117,7 +102,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
         this.clearCountDown();
       }
     }
-
     clearCountDown() {
       this.$send.removeAttr('disabled');
       this.$send.html(`${t('customer.general.send')}<div class='btn-loading__spinner'></div>`);
@@ -125,7 +109,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
       this.countDownTimeout = null;
       this.countDown = 60;
     }
-
     bindSendCodeEvent() {
       const {
         $send
@@ -133,13 +116,10 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
       let loading = false;
       $send.off('click').on('click', async e => {
         e.preventDefault();
-
         if (loading) {
           return false;
         }
-
         this.clearCountDown();
-
         try {
           loading = true;
           $(e.target).addClass(BUTTON_LOADING_CLASS);
@@ -148,7 +128,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
           this.setCountDown();
         } catch (error) {
           this.clearCountDown();
-
           if (error && (error.rescode || error.message)) {
             this.form.setErrMsgIntoDom([{
               name: this.dependFormItemName || 'verifycode',
@@ -156,18 +135,14 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
             }]);
           }
         }
-
         loading = false;
         $(e.target).removeClass(BUTTON_LOADING_CLASS);
       });
-
       if (this.immediate) {
         this.triggerSendCode();
       }
-
       if (this.watch && this.watch.length) {
         const val = this.form.getFieldValue(this.watch[0]);
-
         if (val) {
           this.changeSendButtonStatus(this.watch[0], val);
         } else {
@@ -175,7 +150,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
         }
       }
     }
-
     triggerSendCode() {
       const {
         $send
@@ -183,13 +157,10 @@ window.SLM['theme-shared/biz-com/orderTracking/form-item/verifycode.js'] = windo
       $send.removeAttr('disabled');
       $send.trigger('click');
     }
-
     reset() {
       this.clearCountDown();
     }
-
   }
-
   _exports.default = Verifycode;
   return _exports;
 }();

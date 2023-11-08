@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/account/account-bind.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/account/account-bind.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -11,14 +10,13 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/account-bin
     phone: null
   };
   const EMAIL = 'email';
-
   const initAccountBindFlow = (mode = EMAIL, refresh = false) => {
     if (udbIntermediateParameters[mode] && !refresh) {
       return udbIntermediateParameters[mode];
     }
-
     return getUdbInfo({
-      params: { ...UDB_PARAMS,
+      params: {
+        ...UDB_PARAMS,
         subappid: SL_State.get('storeInfo.storeId'),
         mode
       },
@@ -28,12 +26,10 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/account-bin
       return res;
     });
   };
-
   const modifyAccount = async (mode, value) => {
     if (!udbIntermediateParameters[mode]) {
       await initAccountBindFlow(mode);
     }
-
     const {
       appid,
       stoken,
@@ -49,7 +45,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/account-bin
     udbIntermediateParameters[mode] = null;
     return result;
   };
-
   const createAccountBindFlow = (mode = EMAIL) => {
     initAccountBindFlow(mode);
     return {
@@ -57,7 +52,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/account-bin
       onModify: value => modifyAccount(mode, value)
     };
   };
-
   _exports.createAccountBindFlow = createAccountBindFlow;
   return _exports;
 }();

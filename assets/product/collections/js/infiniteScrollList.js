@@ -1,11 +1,9 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/collections/js/infiniteScrollList.js'] = window.SLM['product/collections/js/infiniteScrollList.js'] || function () {
   const _exports = {};
   const axios = window['axios']['default'];
   const filterUpdateSection = window['SLM']['theme-shared/events/product/updateSection/index.js'].default;
   const { changeURLArg, delParam, getUrlQuery } = window['SLM']['commons/utils/url.js'];
-
   function initWhenVisible(options) {
     const threshold = options.threshold ? options.threshold : 0;
     const observer = new IntersectionObserver(entries => {
@@ -22,9 +20,7 @@ window.SLM['product/collections/js/infiniteScrollList.js'] = window.SLM['product
     observer.observe(options.observeElement[0]);
     return observer;
   }
-
   _exports.initWhenVisible = initWhenVisible;
-
   class InfiniteScrollList {
     constructor(options) {
       this.loading = false;
@@ -33,23 +29,18 @@ window.SLM['product/collections/js/infiniteScrollList.js'] = window.SLM['product
       this.init(options);
       this.destroyUpdateSectionEvent = this.listerUpdateSection();
     }
-
     deletePageNumParamByUrl() {
       const hasPageNumParam = getUrlQuery('page_num');
-
       if (hasPageNumParam) {
         const fixUrl = delParam('page_num');
         window.history.pushState({}, '', fixUrl);
       }
     }
-
     init(options) {
       this.deletePageNumParamByUrl();
-
       if (this.anchorObserverTarget) {
         this.anchorObserverTarget.disconnect();
       }
-
       const infiniteScrollAnchor = $('.product-list-infinite-scroll-anchor');
       const isInitLastPage = infiniteScrollAnchor.length <= 0;
       if (isInitLastPage) return;
@@ -62,7 +53,6 @@ window.SLM['product/collections/js/infiniteScrollList.js'] = window.SLM['product
       };
       this.anchorObserverTarget = initWhenVisible(_options);
     }
-
     listerUpdateSection() {
       const bindInit = this.init.bind(this);
       window.Shopline.event.on('Product::UpdateSection::Filter', bindInit);
@@ -72,27 +62,22 @@ window.SLM['product/collections/js/infiniteScrollList.js'] = window.SLM['product
         window.Shopline.event.off('plugin::filter::updateSection', bindInit);
       };
     }
-
     handleLoading(isLoad) {
       this.loading = isLoad;
-
       if (isLoad) {
         $('.product-list-infinite-scroll-loading').css('display', 'flex');
       } else {
         $('.product-list-infinite-scroll-loading').css('display', 'none');
       }
     }
-
     loadMore() {
       const observeEle = $('.product-list-infinite-scroll-anchor');
       const appendEle = $('.product-infinite-list-container');
       const lastPageEle = $('.product-infinite-list-lastPage');
       const isLoadMoreLastPage = lastPageEle.length > 0;
-
       if (isLoadMoreLastPage) {
         this.anchorObserverTarget.disconnect();
       }
-
       if (this.loading || isLoadMoreLastPage) return;
       const pageNum = Number(observeEle.attr('data-pageNum')) + 1;
       this.handleLoading(true);
@@ -102,7 +87,6 @@ window.SLM['product/collections/js/infiniteScrollList.js'] = window.SLM['product
         const {
           data
         } = res;
-
         if (data) {
           const children = $(data).children();
           appendEle.append(children);
@@ -117,19 +101,15 @@ window.SLM['product/collections/js/infiniteScrollList.js'] = window.SLM['product
         this.handleLoading(false);
       });
     }
-
     destroy() {
       if (this.anchorObserverTarget) {
         this.anchorObserverTarget.disconnect();
       }
-
       if (this.destroyUpdateSectionEvent) {
         this.destroyUpdateSectionEvent();
       }
     }
-
   }
-
   _exports.default = InfiniteScrollList;
   return _exports;
 }();

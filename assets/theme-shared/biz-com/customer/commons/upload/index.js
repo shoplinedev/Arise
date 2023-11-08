@@ -1,12 +1,10 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] || function () {
   const _exports = {};
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { SlAliyunOss } = window['@yy/sl-http-upload'];
   const { filterImages } = window['SLM']['theme-shared/biz-com/customer/commons/upload/fileFilter.js'];
-
   class Upload {
     constructor({
       id,
@@ -28,15 +26,12 @@ window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM
       this.$picIcon = $(`#${this.id}`).find('.sl-upload__input');
       this.init();
     }
-
     init() {
       this.initOss();
       this.initEvent();
     }
-
     setLoading(loading) {
       this.loading = loading;
-
       if (loading) {
         this.$loading.show();
         this.$picIcon.hide();
@@ -45,7 +40,6 @@ window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM
         this.$picIcon.show();
       }
     }
-
     initOss() {
       this.ossClient = new SlAliyunOss({
         businessType: 'userMessage',
@@ -53,7 +47,6 @@ window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM
         client: 'shopline-app'
       });
     }
-
     initEvent() {
       this.$input.on('change', async e => {
         const {
@@ -62,11 +55,9 @@ window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM
           maxSize
         } = this;
         let files = filterImages(Array.from(e.target.files));
-
         if (files.length === 0) {
           return;
         }
-
         if (files.length + curNum > maxNum) {
           Toast.init({
             content: t('customer.general.max_image_upload_tips', {
@@ -76,7 +67,6 @@ window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM
           e.target.value = '';
           return;
         }
-
         if (maxSize && files.some(file => file.size > maxSize * 1024 * 1024)) {
           Toast.init({
             content: t('customer.general.image_size_less_than_tips', {
@@ -85,12 +75,10 @@ window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM
           });
           files = files.filter(file => file.size < maxSize * 1024 * 1024);
           const hasCanUploadImage = files.some(file => file.size <= maxSize * 1024 * 1024);
-
           if (!hasCanUploadImage) {
             return;
           }
         }
-
         e.target.value = '';
         const tmpFileList = files.map(file => {
           file.uid = Date.now();
@@ -99,7 +87,6 @@ window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM
           };
         });
         this.setLoading(true);
-
         try {
           const res = await this.ossClient.upload({
             fileList: tmpFileList
@@ -115,11 +102,9 @@ window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM
               });
             }
           });
-
           if (successList.length) {
             this.onSuccess && this.onSuccess(successList);
           }
-
           if (failList.length) {
             this.onError && this.onError(failList);
           }
@@ -130,9 +115,7 @@ window.SLM['theme-shared/biz-com/customer/commons/upload/index.js'] = window.SLM
         }
       });
     }
-
   }
-
   _exports.default = Upload;
   return _exports;
 }();

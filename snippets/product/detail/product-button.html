@@ -1,4 +1,4 @@
-{{assign "isNewExpressCheckout" paymentButtonConfig.newProcess}}
+{{assign "isNewExpressCheckout" true}}
 {{assign "PaypalWay" "Paypal"}}
 {{assign
   "oneButton"
@@ -9,26 +9,26 @@
 {{else}}
   {{assign "buttonClass" "btn-primary"}}
 {{/if}}
-<!-- 判断是否预览环境 -->
+
 {{#if templateAlias "===" "PreviewProductsDetail"}}
   {{assign "isPreviewProduct" true}}
 {{else}}
   {{assign "isPreviewProduct" false}}
 {{/if}}
 
-{{! product-quick-add section 里面没有 buy button 的配置，这里可以兜底一下 }}
+
 {{assign "button_layout" (default block.settings.button_layout "embed")}}
 
-{{! TODO: 一个方案兼顾ssr和csr场景 }}
+
 {{#if request.design_mode}}
   {{preload_state "productSettleButtonConfig"}}
   <script>
-  window.SL_State && window.SL_State.set("productSettleButtonConfig", {{{JSONstringify productSettleButtonConfig}}})
+  window.SL_State && window.SL_State.set("productSettleButtonConfig", {{{json productSettleButtonConfig}}})
   </script>
 {{else}}
   {{#if isAjax}}
     <script>
-      window.SL_State && window.SL_State.set("productSettleButtonConfig", {{{JSONstringify productSettleButtonConfig}}})
+      window.SL_State && window.SL_State.set("productSettleButtonConfig", {{{json productSettleButtonConfig}}})
     </script>
   {{else}}
     {{preload_state "productSettleButtonConfig"}}
@@ -50,18 +50,21 @@
     >{{t "general.contact_us.contact_us"}}</button>
   {{else}}
 
-    {{! float 不需要在 m 端显示 }}
+
     <div class="{{#and (if button_layout '===' 'float') (isFalsey forModal)}}d-none{{/and}} d-md-block button-group
     {{#and (if button_layout '===' 'both') (isFalsey forModal)}}JProductButton_embed{{/and}}">
-      {{snippet "product/detail/product-button-group" isNewExpressCheckout=isNewExpressCheckout id=id isSoldOut=isSoldOut layout="embed"}}
+      {{snippet "product/detail/product-button-group" isNewExpressCheckout=isNewExpressCheckout id=id isSoldOut=isSoldOut layout="embed" case=case}}
     </div>
 
+    {{!-- 悬浮按钮，仅移动端显示 --}}
     {{#and (if button_layout "!==" "embed") (isFalsey forModal)}}
       <div class="d-md-none product-button--float JProductButton_float">
-        {{snippet "product/detail/product-button-group" isNewExpressCheckout=isNewExpressCheckout id=id isSoldOut=isSoldOut layout="float"}}
+        {{snippet "product/detail/product-button-group" isNewExpressCheckout=isNewExpressCheckout id=id isSoldOut=isSoldOut layout="float" case="pdp_float"}}
       </div>
     {{/and}}
 
+    {{!-- paypal 和 more payment --}}
+    {{!-- 悬浮按钮组不需要显示这两种类型的按钮 --}}
     {{#unless isNewExpressCheckout}}
       {{#inArray (default productSettleButtonConfig.payments) PaypalWay}}
         <div id="pdp_paypal_{{id}}" class="paypay-button shopline-element-paypal disabled {{#if isSoldOut}}hide{{/if}}">

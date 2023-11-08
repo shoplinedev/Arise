@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/payment-button/express_checkout.js'] = window.SLM['theme-shared/components/payment-button/express_checkout.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -7,15 +6,14 @@ window.SLM['theme-shared/components/payment-button/express_checkout.js'] = windo
   const { createExpressCheckoutBtn } = window['SLM']['theme-shared/components/payment-button/utils.js'];
   const { PAYMENT_BUTTON_COMMON_ANIMATED, PAYMENT_BUTTON_COMMON_ITEM_MASK } = window['SLM']['theme-shared/components/payment-button/constants.js'];
   const { convertPageType, getExpressCheckoutWithScenes } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
-
   class ExpressCheckoutButton {
     constructor(props) {
-      this.config = { ...props,
+      this.config = {
+        ...props,
         pageType: convertPageType(props.pageType)
       };
       this.renderButton();
     }
-
     renderButton() {
       const {
         pageType,
@@ -36,7 +34,6 @@ window.SLM['theme-shared/components/payment-button/express_checkout.js'] = windo
         });
       });
     }
-
     patchRender(list) {
       const {
         domId
@@ -47,14 +44,11 @@ window.SLM['theme-shared/components/payment-button/express_checkout.js'] = windo
       });
       createExpressCheckoutBtn(patchList, domId);
     }
-
     removeSkeleton() {
       const animatedSkeleton = document.querySelectorAll(`#${this.config.domId} .${PAYMENT_BUTTON_COMMON_ANIMATED}`);
       animatedSkeleton.forEach(item => item && item.classList.remove(PAYMENT_BUTTON_COMMON_ANIMATED));
     }
-
   }
-
   function newExpressCheckoutButton({
     domId,
     pageType,
@@ -66,7 +60,6 @@ window.SLM['theme-shared/components/payment-button/express_checkout.js'] = windo
       isSubscription
     });
   }
-
   _exports.ExpressCheckoutButton = ExpressCheckoutButton;
   _exports.newExpressCheckoutButton = newExpressCheckoutButton;
   return _exports;

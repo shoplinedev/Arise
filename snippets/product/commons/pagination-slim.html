@@ -4,13 +4,13 @@
   {{ combine_asset_tag 'product/commons/style/pagination.css' inline=true}}
 {{/if}}
 
-{{!-- 传入参数：current 当前页码 --}}
+
 {{ assign '_current' (default current 1) }}
-{{!-- 传入参数：pageSize 一页展示个数 --}}
+
 {{ assign '_size' (default pageSize 25) }}
-{{!-- 传入参数：enableNext 可点击下一页 --}}
+
 {{ assign '_enableNext' (default enableNext false) }}
-{{!-- 传入参数：hidden 隐藏分页组件 --}}
+
 {{ assign '_hidden' (default hidden false) }}
 
 {{ assign 'enablePrev' (gt _current 1) }}
@@ -18,16 +18,16 @@
 {{ assign 'link' request.uri.url }}
 
 {{#if (isTruthy (obj_size request.uri.query))}}
-  {{!-- 补全 page_num --}}
+  
   {{#if (isFalsey (hasOwn request.uri.query 'page_num'))}}
     {{ assign 'link' (append link (append '&page_num=' _current)) }}
   {{/if}}
-  {{!-- 补全 page_num --}}
+  
   {{#if (isFalsey (hasOwn request.uri.query 'page_size'))}}
     {{ assign 'link' (append link (append '&page_size=' _size)) }}
   {{/if}}
 {{else}}
-  {{!-- 补全 page_num 和 page_size --}}
+  
   {{ assign 'link' (append link (append (append '?page_num=' _current) (append '&page_size=' _size))) }}
 {{/if}}
 

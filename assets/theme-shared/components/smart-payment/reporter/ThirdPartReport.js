@@ -1,23 +1,18 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/smart-payment/reporter/ThirdPartReport.js'] = window.SLM['theme-shared/components/smart-payment/reporter/ThirdPartReport.js'] || function () {
   const _exports = {};
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
   const Cookies = window['js-cookie']['default'];
-
   const getFbDataEventId = seq => {
     let fbDataEventId = '';
     const fbData = JSON.parse(Cookies.get(`${seq}_fb_data`) || '{}');
-
     if (fbData && fbData.ed) {
       fbDataEventId = fbData.ed;
     } else {
       fbDataEventId = getEventID();
     }
-
     return fbDataEventId;
   };
-
   const getProductList = products => {
     return (products || []).map(item => {
       return {
@@ -32,7 +27,6 @@ window.SLM['theme-shared/components/smart-payment/reporter/ThirdPartReport.js'] 
       };
     });
   };
-
   const thirdPartReportOrderStart = ({
     seq,
     amount,
@@ -49,9 +43,7 @@ window.SLM['theme-shared/components/smart-payment/reporter/ThirdPartReport.js'] 
       }
     });
   };
-
   _exports.thirdPartReportOrderStart = thirdPartReportOrderStart;
-
   const thirdPartReportPaymentInfo = ({
     eventId,
     amount,
@@ -70,9 +62,7 @@ window.SLM['theme-shared/components/smart-payment/reporter/ThirdPartReport.js'] 
       }
     });
   };
-
   _exports.thirdPartReportPaymentInfo = thirdPartReportPaymentInfo;
-
   const thirdPartReportOrderCompleteStep = ({
     shipping_method,
     amount,
@@ -89,7 +79,6 @@ window.SLM['theme-shared/components/smart-payment/reporter/ThirdPartReport.js'] 
       whitelistTransports: ['GoogleAnalytics4']
     });
   };
-
   _exports.thirdPartReportOrderCompleteStep = thirdPartReportOrderCompleteStep;
   return _exports;
 }();

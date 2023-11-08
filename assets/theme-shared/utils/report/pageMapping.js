@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/report/pageMapping.js'] = window.SLM['theme-shared/utils/report/pageMapping.js'] || function () {
   const _exports = {};
   _exports.default = {

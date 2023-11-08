@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/constant/pattern.js'] = window.SLM['theme-shared/biz-com/customer/constant/pattern.js'] || function () {
   const _exports = {};
   const EMAIL_PATTERN = /^([\w-.+]+)@([\w-.]+)\.([\w-.]+)$/;

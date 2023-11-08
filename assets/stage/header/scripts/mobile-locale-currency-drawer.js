@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/header/scripts/mobile-locale-currency-drawer.js'] = window.SLM['stage/header/scripts/mobile-locale-currency-drawer.js'] || function () {
   const _exports = {};
   const Base = window['SLM']['commons/base/BaseClass.js'].default;
   const TopDrawer = window['SLM']['commons/components/topDrawer/index.js'].default;
-
   class DrawerMenu extends Base {
     constructor() {
       super();
@@ -29,7 +27,6 @@ window.SLM['stage/header/scripts/mobile-locale-currency-drawer.js'] = window.SLM
       this.bindEvent();
       this.bindLocaleCurrencyChange();
     }
-
     init() {
       this.drawers.currencyDrawer = new TopDrawer('global-currency-drawer', {
         fullScreen: true
@@ -41,7 +38,6 @@ window.SLM['stage/header/scripts/mobile-locale-currency-drawer.js'] = window.SLM
         fullScreen: true
       });
     }
-
     bindEvent() {
       this.$on('click', this.selector.localeBtn, () => {
         this.drawers.localeDrawer.open();
@@ -55,41 +51,34 @@ window.SLM['stage/header/scripts/mobile-locale-currency-drawer.js'] = window.SLM
         this.drawers.countryDrawer.open();
       });
     }
-
     setupCurrencyList($btn) {
       const hasSymbol = $btn.find('.currency-symbol').hasClass('show');
       const $drawerCurrencyList = $('.drawer-menu-locale-currency[data-currency] .currency-list');
-
       if (hasSymbol) {
         $drawerCurrencyList.addClass('show-symbol');
       } else {
         $drawerCurrencyList.removeClass('show-symbol');
       }
     }
-
     bindLocaleCurrencyChange() {
       this.$on('click', `${this.selector.localeCurrencyContainer} li`, e => {
         const $target = $(e.currentTarget);
         const drawerId = $target.parents(this.selector.drawer).eq(0).attr('id');
         Object.keys(this.drawers).forEach(key => {
           const drawer = this.drawers[key];
-
           if (drawer.id === drawerId) {
             drawer.close();
           }
         });
       });
     }
-
     off() {
       this.drawers.currencyDrawer.$offAll();
       this.drawers.localeDrawer.$offAll();
       this.drawers.countryDrawer.$offAll();
       this.$offAll();
     }
-
   }
-
   let instance = new DrawerMenu();
   $(document).on('shopline:section:load', () => {
     instance.off();

@@ -11,7 +11,7 @@
 {{ assign 'types' (split registerConfig.types ',')}}
 
 <div class="customer customer-activate-container hidden" id="{{ id }}">
-  <h2 class="customer__title"></h2>
+  <h2 class="title-font customer__title"></h2>
 
   <div class="customer-activate__discount hidden">
     <div class="customer-activate__discount-img">
@@ -29,7 +29,7 @@
     {{t 'customer.activate.apply_code'}}
   {{/snippet}}
 
-  {{!-- 激活账号表单 --}}
+
   <form class="customer__form">
     {{#formItem "password" "class='customer__form-item'"}}
       {{#snippet
@@ -57,11 +57,11 @@
         {{#snippet 'customer/base/sl-checkbox' checked=false }}
           <span>{{ t 'customer.register.tips_agree_with_the_shop' }}</span>
           {{#if hasPrivacyPolicy}}
-            <a href="javascript:void(0);" class="sign-up__link sign-up__privacy-policy" data-path="/policies/privacy-policy">{{ t 'customer.register.privacy_policy' }}</a>
+            <a href="javascript:;" class="sign-up__link sign-up__privacy-policy" data-path="/policies/privacy-policy">{{ t 'customer.register.privacy_policy' }}</a>
           {{/if}}
           {{#if hasTermsOfService}}
             <span>{{ t 'customer.general.and_button' }}</span>
-            <a href="javascript:void(0);" class="sign-up__link sign-up__service-terms" data-path="/policies/terms-of-service">{{ t 'customer.register.terms_of_service' }}</a>
+            <a href="javascript:;" class="sign-up__link sign-up__service-terms" data-path="/policies/terms-of-service">{{ t 'customer.register.terms_of_service' }}</a>
           {{/if}}
         {{/snippet}}
       {{/formItem}}
@@ -76,6 +76,6 @@
   </form>
 </div>
 
-{{!-- 用户条款弹窗 --}}
+
 {{ assign 'modalId' (append id '-modal')}}
 {{#snippet 'product/commons/base-modal' modalId=modalId animationType="fade"}}{{/snippet}}

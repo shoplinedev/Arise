@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/dataReport/hd.js'] = window.SLM['theme-shared/utils/dataReport/hd.js'] || function () {
   const _exports = {};
   const { ClickType, PageType } = window['SLM']['theme-shared/utils/report/const.js'];
-
   function addToCartHdReport({
     spuId,
     skuId,
@@ -28,7 +26,6 @@ window.SLM['theme-shared/utils/dataReport/hd.js'] = window.SLM['theme-shared/uti
       product_name: name
     });
   }
-
   function reportHd(page, type, data) {
     switch (page) {
       case PageType.ProductDetail:
@@ -37,18 +34,14 @@ window.SLM['theme-shared/utils/dataReport/hd.js'] = window.SLM['theme-shared/uti
           case ClickType.BeginCheckout:
             addToCartHdReport(data);
             break;
-
           default:
             break;
         }
-
         break;
-
       default:
         break;
     }
   }
-
   _exports.default = reportHd;
   return _exports;
 }();

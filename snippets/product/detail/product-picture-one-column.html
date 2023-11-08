@@ -11,7 +11,7 @@
   {{/each}}
 {{/if}}
 {{ log 'pcMediaList' pcMediaList.length }}
-{{!-- 商品图首屏展示前40张 --}}
+
 {{ assign 'mediaListFirst' (array-slice pcMediaList 0 40) }}
 <div class="d-none d-md-block">
   <div data-init-index="{{ initialSlide }}" class="product_pc_flatten_productImage shopline-element-product-image product_productImages_tile {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">

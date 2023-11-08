@@ -7,7 +7,7 @@
 {{/if}}
 {{assign 'header_logo_size' this.settings.desktop_logo_width}}
 {{assign 'header_logo_size_mobile' this.settings.mobile_logo_width }}
-{{!-- 如果没有 logo 图片的时候，店铺名称的宽度不跟随 logo 宽度 --}}
+
 {{#unless has_logo}}
   {{assign 'header_logo_size' '200' }}
   {{assign 'header_logo_size_mobile' '200' }}
@@ -88,7 +88,7 @@
             {{assign 'header_logo_height' (divide header_logo_size header_logo_scale)}}
             {{assign 'header_logo_height_mobile' (divide header_logo_size_mobile header_logo_scale)}}
                 <span class="visually-hidden notranslate">{{ global.storeInfo.name }}</span>
-                <a class="header__logo--link" href="{{global.rootUrl}}">
+                <a class="header__logo--link" href="{{#if global.rootUrl}}{{global.rootUrl}}{{else}}javascript:;{{/if}}">
                     <img class="d-none d-md-block"
                          style="height: {{header_logo_height}}px;"
                          {{{get 'responsiveAttr' (
@@ -114,7 +114,7 @@
         {{/if}}
 
         {{#if (boolean (isFalsey this.settings.logo) '||' (isFalsey this.settings.logo.url))}}
-                <a href="{{ global.rootUrl }}" class="notranslate">{{ global.storeInfo.name }}</a>
+                <a href="{{#if global.rootUrl }}{{global.rootUrl}}{{else}}javascript:;{{/if}}" class="notranslate">{{ global.storeInfo.name }}</a>
         {{/if}}
 
         {{#if global.templateAlias '===' 'Home'}}
@@ -143,7 +143,7 @@
 		<div class="shopline-element-header-logo header__logo title-font">
 	{{/if}}
 
-	<a href="{{ rootUrl }}" class="notranslate">
+	<a href="{{#if rootUrl }}{{rootUrl}}{{else}}javascript:;{{/if}}" class="notranslate">
 		{{ storeInfo.name }}
 	</a>
 

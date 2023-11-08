@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/trade/optimize-modal/constant.js'] = window.SLM['theme-shared/biz-com/trade/optimize-modal/constant.js'] || function () {
   const _exports = {};
   const verifyType = {

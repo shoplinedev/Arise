@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/commons/js/quick-add-modal.js'] || function () {
   const _exports = {};
   const axios = window['axios']['default'];
-  const { addLockableTarget } = window['scroll-lock'];
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const http = window['SLM']['theme-shared/utils/request.js'].default;
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
@@ -30,9 +28,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
   const initSku = window['SLM']['product/detail/js/sku-trade.js'].default;
   const setProductPrice = window['SLM']['product/commons/js/product-info.js'].default;
   const { ADD_TO_CART } = window['SLM']['commons/cart/globalEvent.js'];
-  const isMobile = window['SLM']['commons/utils/isMobile.js'].default;
   const nullishCoalescingOperator = window['SLM']['product/utils/nullishCoalescingOperator.js'].default;
-
   const emitProductSkuChange = data => {
     try {
       productSkuChange({
@@ -43,9 +39,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       console.error(e);
     }
   };
-
   const hdReport = new ProductQuickAddCart();
-
   const emitViewContent = data => {
     try {
       dataReportViewContent(data);
@@ -62,19 +56,15 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       console.error(e);
     }
   };
-
   const getSortationIds = spu => {
     if (spu && spu.sortationList && Array.isArray(spu.sortationList)) {
       return spu.sortationList.map(s => s.sortationId).join(',');
     }
-
     return '';
   };
-
   const modalInstanceMap = new Map();
   const previewInstanceMap = new Map();
   const quickAddLoadingClassName = 'product-item__btn--loading';
-
   function modalExpose(page) {
     if (window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.report) {
       window.HdSdk.shopTracker.report('60006263', {
@@ -83,7 +73,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       });
     }
   }
-
   const getSkuChangeData = (skuInfo = {}) => {
     const {
       spuSeq,
@@ -120,11 +109,9 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       imageBeanList
     };
   };
-
   const getReportCartId = async () => {
     return await getCartId();
   };
-
   async function quickAddModal(data) {
     const {
       spuSeq,
@@ -139,41 +126,33 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
     getReportCartId().then(id => {
       cartId = id;
     });
-
     try {
-      queryObj = { ...query
+      queryObj = {
+        ...query
       };
       modalPrefix = queryObj.modalPrefix ? `${queryObj.modalPrefix}_product_quick_add_` : 'product_quick_add_';
     } catch (e) {}
-
     const page = modalPrefix.startsWith('productRecommendModal') ? '123' : pageMapping[SL_State.get('templateAlias')];
-
     function toggleAddLoading(isLoading) {
       $button.toggleClass(buttonLoadingCls || quickAddLoadingClassName, isLoading);
     }
-
     if ($button.hasClass(buttonLoadingCls || quickAddLoadingClassName)) {
       return;
     }
-
     try {
       toggleAddLoading(true);
       const res = await getProductDetail(spuSeq);
-
       if (res.code === 'SUCCESS') {
         const productInfo = res.data;
         const skuList = nullishCoalescingOperator(get(res, 'data.sku.skuList'), []);
         const skuAttributeMap = nullishCoalescingOperator(get(res, 'data.sku.skuAttributeMap'), {});
         const isSoldOut = get(res, 'data.spu.soldOut');
         const isSingleSku = Array.isArray(skuList) && skuList.length === 1;
-
         if (isSoldOut) {
           new Toast().open(t('products.general.sold_out'), 3e3);
           return;
         }
-
         modalExpose(page);
-
         if (isSingleSku) {
           const skuInfo = skuList[0];
           addToCart({
@@ -218,9 +197,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       toggleAddLoading(false);
     }
   }
-
   _exports.default = quickAddModal;
-
   async function showModal({
     spuSeq,
     uniqueKey,
@@ -244,7 +221,7 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
         $el: document.getElementById(modalInstanceMap.get(spuSeq) && modalInstanceMap.get(spuSeq).modalId)
       });
     } else {
-      const children = $('<div class="quick-add-modal__outerWrapper"></div>');
+      const children = $('<div class="quick-add-modal__outerWrapper flex-layout"></div>');
       const modal = new ModalWithHtml({
         children,
         containerClassName: `quick-add-modal__container __sl-custom-track-quick-add-modal-${spuSeq}`,
@@ -259,14 +236,12 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
         }
       });
       modal.show();
-      modal.$modal.get(0).style.setProperty('--max-body-height', `${window.innerHeight * 0.8}px`);
       const loading = new Loading({
         target: modal.$modal.find('.mp-modal__body'),
         loadingColor: 'currentColor',
         duration: -1
       });
       loading.open();
-
       try {
         const res = await fetchModalContent(uniqueKey, modalPrefix);
         children.empty().append(res.data);
@@ -295,7 +270,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       }
     }
   }
-
   function initQuickAddModal(id, el, modal, spuSeq, position, modalContainer) {
     const sku = SL_State.get(`${id}.sku`);
     const spu = SL_State.get(`${id}.spu`);
@@ -305,7 +279,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       spu
     }, el, modal, spuSeq, position, modalContainer);
   }
-
   function initWidgets({
     id,
     sku,
@@ -345,7 +318,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
         activeSkuCache = activeSku;
         let content_sku_id = '';
         let price = null;
-
         if (activeSku) {
           changeActiveSku(activeSku);
           content_sku_id = activeSku.skuSeq;
@@ -356,7 +328,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
             ...getSkuChangeData(activeSku)
           });
         }
-
         emitViewContent({
           content_spu_id: spu.spuSeq,
           content_sku_id,
@@ -371,7 +342,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       },
       onChange: activeSku => {
         activeSkuCache = activeSku;
-
         if (activeSku) {
           emitProductSkuChange({
             type: 'change',
@@ -379,13 +349,11 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
             ...getSkuChangeData(activeSku)
           });
         }
-
         if (!activeSku && !quantityStepper.activeSku) return;
         setProductPrice(id, id, activeSku);
         changeActiveSku(activeSku);
       }
     });
-
     try {
       const _modalContainer = modal.$modal;
       productPreviewInit({
@@ -405,14 +373,12 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
     } catch (e) {
       console.error(e);
     }
-
     previewInstanceMap.set(spuSeq, {
       skuTrade,
       quantityStepper,
       emitEvent: () => {
         let content_sku_id = '';
         let price = null;
-
         if (activeSkuCache) {
           content_sku_id = activeSkuCache.skuSeq;
           price = convertPrice(activeSkuCache.price || 0);
@@ -422,7 +388,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
             ...getSkuChangeData(activeSkuCache)
           });
         }
-
         emitViewContent({
           content_spu_id: spu.spuSeq,
           content_sku_id,
@@ -437,22 +402,11 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       }
     });
     listenCurrencyCodeChange(id, id, quantityStepper);
-
     function changeActiveSku(activeSku) {
       ButtonGroup.setActiveSku(activeSku);
       quantityStepper.setActiveSku(activeSku);
-
-      if (isMobile()) {
-        const $footer = el.find('.quick-add-modal__footer');
-        const paddingBottom = $footer.outerHeight() + 10;
-        addLockableTarget($footer);
-        el.find('.quick-add-modal__body').css({
-          'padding-bottom': paddingBottom
-        });
-      }
     }
   }
-
   function addToCart({
     sku,
     spu,
@@ -462,21 +416,19 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
     position,
     cartId
   }) {
-    const activeSku = sku ? { ...sku,
+    const activeSku = sku ? {
+      ...sku,
       num: 1,
       name: spu.title
     } : null;
-
     if (isPreview()) {
       new Toast().open(t('products.product_details.link_preview_does_not_support'));
       return;
     }
-
     if (!activeSku) {
       new Toast().open(t('products.product_list.select_product_all_options'));
       return;
     }
-
     toggleAddLoading(true);
     const {
       spuSeq: spuId,
@@ -518,12 +470,14 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
         eventName: 'AddToCart'
       },
       error: () => {
-        addToCartHdReport({ ...hdReportData,
+        addToCartHdReport({
+          ...hdReportData,
           event_status: 0
         });
       },
       success: () => {
-        addToCartHdReport({ ...hdReportData,
+        addToCartHdReport({
+          ...hdReportData,
           event_status: 1
         });
         addToCartThirdReport({
@@ -537,7 +491,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
           eventID
         });
         const cartOpenType = window.SL_State.get('theme.settings.cart_open_type');
-
         if (cartOpenType === 'cartremain') {
           new Toast().open(t('products.general.added_to_cart_successfully'), 1500);
         }
@@ -547,26 +500,21 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       }
     });
   }
-
   function listenCurrencyCodeChange(id, statePath, quantityStepper) {
     window.SL_EventBus.on('global:currency:format', () => {
       setProductPrice(id, statePath, quantityStepper.activeSku);
     });
   }
-
   function isPreview() {
     return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
   }
-
   function fetchModalContent(uniqueKey, modalPrefix) {
     let recommendQuery = {};
-
     if (modalPrefix.startsWith('productRecommendModal')) {
       recommendQuery = {
         modalPrefix: 'productRecommendModal'
       };
     }
-
     const queryUrl = window.Shopline.redirectTo(`/products/${uniqueKey}`);
     return axios.get(queryUrl, {
       params: {
@@ -580,7 +528,6 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       }
     });
   }
-
   function getProductDetail(spuSeq) {
     return http.get(`/product/detail/query`, {
       params: {
@@ -588,6 +535,5 @@ window.SLM['product/commons/js/quick-add-modal.js'] = window.SLM['product/common
       }
     });
   }
-
   return _exports;
 }();

@@ -104,7 +104,8 @@
       "view_cart": "바구니 보기"
     },
     "next_step": {
-      "calculated_taxes_fees": "다음으로 세금과 운비를 계산합니다"
+      "calculated_taxes_fees": "다음으로 세금과 운비를 계산합니다",
+      "included_taxes_fees": "세금 포함 및 배송비는 결제 시 계산됩니다."
     },
     "notices": {
       "change_password_after_verification": "검증 완성후 비밀번호를 수정할 수 있습니다",
@@ -230,6 +231,7 @@
       "copy_success": "쿠폰이 복사되었습니다",
       "discount_title": "계정을 활성화하고 할인 코드를 받으십시오.",
       "normal_title": "계정을 활성화시킵니다",
+      "normal_title_with_discount_code": "",
       "subscription_text": "이메일을 구독해 업데이트 접수, 단독 혜택 방문 등을 합니다.",
       "success_title": "할인 받으신 것을 축하드립니다",
       "token_expired": "링크가 만료되었습니다"
@@ -337,6 +339,7 @@
       "set_password": "비밀번호는 숫자, 대문자, 소문자로 구성된 6~18자여야 합니다.",
       "sign__out": "로그아웃",
       "sign_in": "로그인",
+      "sign_in_activate": "고객님의 계정 {{account}}에 인증번호가 전송되어 인증 후 계정을 활성화할 수 있습니다.",
       "sign_up": "등록",
       "su": "일",
       "subscription_desc": "가게의 최신 행사 소식을 얻을 수 있습니다.",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "가입해 주셔서 감사합니다. 로그인하셔서 더 좋은 경험을 하실 수 있습니다."
     },
     "message": {
+      "format_error": "메시지 형식이 지원되지 않습니다",
       "input_placeholder": "댓글을 남기겠습니까?",
       "message": "메시지",
       "send": "발송"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "컬렉션"
     },
+    "facets": {
+      "in_stock_only": "재고만 표시",
+      "sort_button": "정렬"
+    },
     "general": {
       "no_product_data_found": "현재 상품 데이터가 없습니다. 잠시후 다시 시도하세요",
       "sold_out": "판매됨",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "롯데에서 쇼핑하기",
       "go_to_yahoo_by_link": "야후에서 쇼핑하기",
       "in_stock": "재고가 있습니다",
+      "inventory_in_stock": "현물",
+      "inventory_in_stock_show_count": "재고: 잔여 {{ quantity }}",
+      "inventory_low_stock": "저재고",
+      "inventory_low_stock_show_count": "저재고: 잔여 {{ quantity }}",
+      "inventory_out_of_stock": "품절",
+      "inventory_out_of_stock_continue_selling": "현물",
       "inventory_quantity": "재고수량",
       "leave_us_message": "댓글을 남겨주세요",
       "leave_us_message_get_back": "당신의 문의 내용을 입력하세요. 빨리 회신하겠습니다",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}}개 선택됩니다",
       "from_price_html": "{{price}}에서",
       "less": "태그를 줄입니다",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} / {{total}} 항목",
       "load_more_tip": "더 많은 항목을 불러옵니다",
       "more": "태그를 추가합니다.",
       "new_arrivals": "최신 출시",
@@ -612,7 +627,8 @@
       "save": "{{{priceDom}}} 혜택",
       "save_byjs": "{{priceDom}} 혜택",
       "save_ratio": "{{price}}% OFF",
-      "select_product_all_options": "제품 사이즈를 선택하세요!",
+      "select_product_all_options": "선택한 제품 변형은 불완전하거나 사용할 수 없습니다. 다시 선택해주세요",
+      "sort_button": "정렬",
       "top_sellers": "핫템",
       "more__product_num": "상품 개수는 {{num}} 개",
       "one_product_num": "상품 개수 {{num}} 개",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "쇼핑을 계속할 거예요",
       "more": "더보기",
+      "saved": "저장됨",
       "total": "총",
       "total_sum": "합계"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "서비스가 이상합니다. 나중에 다시 시도합니다.",
       "error_message_2014": "계좌번호는 위험이 존재합니다",
       "error_message_2016": "계좌번호는 위험이 존재합니다",
+      "error_message_2020": "시스템이 바쁩니다. 잠시 후에 다시 시도하십시오.",
       "error_message_3": "서비스가 이상합니다",
       "error_message_3001": "서비스가 이상합니다. 나중에 다시 시도합니다.",
       "error_message_3002": "핸드폰/이메일을 귀속하지 않은 사용자가 비밀번호 수정을 시도합니다",
@@ -850,15 +868,22 @@
       "error_message_3010": "이메일 이미 귀속됨",
       "error_message_3014": "메시지/이메일 템플릿 렌더링 실패",
       "error_message_3015": "계정이 활성화되었습니다",
+      "error_message_3021": "시스템이 바쁩니다. 잠시 후에 다시 시도하십시오.",
       "error_message_3022": "링크가 비활성화됨",
       "error_message_3023": "잘못된 링크 형식",
       "error_message_3024": "링크 인자 오류",
       "error_message_3026": "계정 형식 오류",
+      "error_message_3029": "휴대폰 번호 활성화는 일시적으로 지원되지 않습니다",
       "error_message_4": "서비스가 이상합니다",
       "error_message_5": "서비스가 이상합니다",
       "error_message_6": "서비스가 이상합니다",
       "error_message_7": "비밀번호는 숫자, 대문자, 소문자로 구성된 6~18자여야 합니다."
     },
-    "editorSwitchCountryTip": "편집기에서 국가 전환을 지원하지 않습니다"
+    "editorSwitchCountryTip": "편집기에서 국가 전환을 지원하지 않습니다",
+    "shopby": {
+      "button": {
+        "show": "안전하고 빠릅니다"
+      }
+    }
   }
 }

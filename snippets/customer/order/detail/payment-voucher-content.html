@@ -1,5 +1,5 @@
 <div class="sl_section--small trade-checkout-payment-voucher block-bg-color">
-  <span data-dataList="{{JSONstringify dataList}}" data-url="{{url}}" data-paySuccess="{{paySuccess}}" data-no_need_to_upload="{{noNeedToUpload}}" data-description="{{description}}"></span>
+  <span data-dataList="{{json dataList}}" data-url="{{url}}" data-paySuccess="{{paySuccess}}" data-no_need_to_upload="{{noNeedToUpload}}" data-description="{{description}}"></span>
     {{#if paySuccess}}
         <div class="trade-checkout-payment-voucher_title">{{t 'order.order_status.payment_voucher_transfer_success'}}</div>
         <div class="trade-transfer-voucher-wrapper">{{snippet 'customer/order/detail/transfer-voucher' noNeedToUpload=noNeedToUpload dataList=dataList}}</div>
@@ -9,11 +9,11 @@
             <div class="trade-checkout-payment-voucher_desc">{{ description}}</div>
         {{/if}}
         {{#if url }}
-            <img class="trade-checkout-payment-voucher_img" src="{{ url }}"/>
+            <img class="trade-checkout-payment-voucher_img" src="{{ url }}" alt=""/>
         {{/if}}
-        {{#if (boolean url '||'description) }}     
-            <div class="trade-checkout-payment-voucher_line"></div>  
-        {{/if}}  
+        {{#if (boolean url '||'description) }}
+            <div class="trade-checkout-payment-voucher_line"></div>
+        {{/if}}
         {{#unless  (boolean dataList.length '>' 4)}}
             <div class="trade-checkout-payment-voucher_desc">{{t 'cart.order.upload_bank_transfer_vouhcer_for_confirmation'}}</div>
         {{/unless}}
@@ -23,13 +23,13 @@
             {{snippet 'customer/order/detail/transfer-voucher' noNeedToUpload=noNeedToUpload dataList=dataList}}
         {{/if}}
         </div>
-        
+
         {{assign 'uploadedNum' dataList.length }}
         {{#if (boolean (boolean uploadedNum '>' 0 '&&' boolean uploadedNum '<' 5) '||' (boolean noNeedToUpload '===' false))}}
             {{snippet 'customer/order/detail/voucher-uploaded-text' num=uploadedNum }}
             {{snippet 'customer/order/detail/voucher-upload-error' }}
         {{/if}}
-   
+
         {{#if (boolean dataList.length '>' 4)}}
             <div class="trade-transfer-voucher_limit-tip">{{t 'order.checkout_order.voucher_amount_limit'}}</div>
         {{/if}}

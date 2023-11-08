@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/events/trade/developer-api/add-to-cart/index.js'] = window.SLM['theme-shared/events/trade/developer-api/add-to-cart/index.js'] || function () {
   const _exports = {};
   const apiLogger = window['SLM']['theme-shared/events/utils/api-logger.js'].default;
@@ -8,17 +7,16 @@ window.SLM['theme-shared/events/trade/developer-api/add-to-cart/index.js'] = win
   const logger = apiLogger(externalEvent.ADD_TO_CART);
   const interior = window && window.SL_EventBus;
   const external = window && window.Shopline.event;
-
   const addToCart = () => external && external.on(externalEvent.ADD_TO_CART, async argument => {
     const {
       data,
       onSuccess,
       onError
     } = argument;
-
     try {
       logger.info(`[emit]`, data);
-      interior.emit(interiorEvent.ADD_TO_CART, { ...data,
+      interior.emit(interiorEvent.ADD_TO_CART, {
+        ...data,
         success: onSuccess,
         error: onError
       });
@@ -26,7 +24,6 @@ window.SLM['theme-shared/events/trade/developer-api/add-to-cart/index.js'] = win
       onError(error);
     }
   });
-
   addToCart.apiName = externalEvent.ADD_TO_CART;
   _exports.default = addToCart;
   return _exports;

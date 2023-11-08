@@ -1,24 +1,13 @@
-{{!-- js在这个snippet引入是为了 js不会因为section设置隐藏了而没有，进而导致上报也丢失 --}}
+
 <!-- stage/blog/detail/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/lodash.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/lodash.min.js'
-      'vendors/eventemitter3.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/lodash.min.js'
+    'vendors/eventemitter3.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/syntax-patch.js'
     'theme-shared/utils/i18n.js'
@@ -40,11 +29,7 @@
   }}
 
 <!-- commons/thirdPartyShare/index.js -->
-  {{#if @root.use_modern_optimization}}
-    
-  {{else}}
-    
-  {{/if}}
+  
   {{ combine_asset_tag 
     'theme-shared/components/hbs/thirdPartyShare/js/index.js'
     'commons/thirdPartyShare/index.js'

@@ -1,12 +1,12 @@
 {{ assign 'id' (default id 'customer-password') }}
-{{!-- 有token为从邮箱重置密码，直接进入设置新密码 --}}
+
 {{ assign 'token' request.uri.query.token }}
 
 {{ preload_state 'customer_address' }}
 {{ preload_state 'shop' }}
 
 <div class="customer" id="{{ id }}">
-  <h2 class="customer__title">{{t (cond (isFalsey token) 'customer.forget_password.forget_password_tips' 'customer.forget_password.reset_password' )}}</h1>
+  <h2 class="title-font customer__title">{{t (cond (isFalsey token) 'customer.forget_password.forget_password_tips' 'customer.forget_password.reset_password' )}}</h1>
     <p class="customer__tips password-reset-tips">{{cond (isFalsey token) (t 'customer.general.verift_account_tip') (t 'customer.forget_password.tips_reset_password' account='')}}</p>
 
     {{#if (isFalsey token)}}

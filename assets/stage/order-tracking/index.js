@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/order-tracking/index.js'] = window.SLM['stage/order-tracking/index.js'] || function () {
   const _exports = {};
   const { registrySectionConstructor } = window['SLM']['theme-shared/utils/sectionsLoad/index.js'];

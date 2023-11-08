@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/sign-up-and-save/index.js'] = window.SLM['stage/sign-up-and-save/index.js'] || function () {
   const _exports = {};
   const request = window['SLM']['theme-shared/utils/request.js'].default;
@@ -8,7 +7,6 @@ window.SLM['stage/sign-up-and-save/index.js'] = window.SLM['stage/sign-up-and-sa
   const checkEmail = window['SLM']['commons/utils/checkEmail.js'].default;
   const debounce = window['SLM']['commons/utils/debounce.js'].default;
   const Toast = window['SLM']['commons/components/toast/index.js'].default;
-
   class Newsletter {
     constructor(container) {
       this.config = {
@@ -20,7 +18,6 @@ window.SLM['stage/sign-up-and-save/index.js'] = window.SLM['stage/sign-up-and-sa
       });
       this.bindSubscription(container);
     }
-
     bindSubscription(container) {
       const post = debounce(300, val => {
         const params = {
@@ -29,11 +26,9 @@ window.SLM['stage/sign-up-and-save/index.js'] = window.SLM['stage/sign-up-and-sa
           consentCollectedFrom: 'SignUpSection'
         };
         const referralCode = window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value;
-
         if (referralCode) {
           params.referralCode = referralCode;
         }
-
         request.post('/user/front/users/footersub', params).then(res => {
           if (res.success) {
             this.toast.open(t('general.footer.subscribe_success'), 2000);
@@ -47,18 +42,14 @@ window.SLM['stage/sign-up-and-save/index.js'] = window.SLM['stage/sign-up-and-sa
       container.on('click', '.newsletter__btn', () => {
         const $input = container.find('.newsletter__input');
         const value = $input.val();
-
         if (checkEmail(value) !== true) {
           this.toast.open(t('general.footer.subscribe_format_error'), 2000);
           return;
         }
-
         post(value);
       });
     }
-
   }
-
   Newsletter.type = 'sign-up-and-save';
   registrySectionConstructor(Newsletter.type, Newsletter);
   return _exports;

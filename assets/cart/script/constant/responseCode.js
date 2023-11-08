@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/constant/responseCode.js'] = window.SLM['cart/script/constant/responseCode.js'] || function () {
   const _exports = {};
   _exports.default = {

@@ -104,7 +104,8 @@
       "view_cart": "Sepeti görüntüle"
     },
     "next_step": {
-      "calculated_taxes_fees": "Ödeme anında hesaplanan vergiler ve kargo ücreti"
+      "calculated_taxes_fees": "Ödeme anında hesaplanan vergiler ve kargo ücreti",
+      "included_taxes_fees": "Vergi dahildir ve gönderim bedeli ödeme sırasında hesaplanır"
     },
     "notices": {
       "change_password_after_verification": "Doğrulamadan sonra parolayı değiştirebilirsiniz",
@@ -230,6 +231,7 @@
       "copy_success": "Kupon kodu kopyalandı",
       "discount_title": "Hesabı aktifleştirin ve indirim kodunu alın",
       "normal_title": "Hesabı aktifleştir",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Güncellemeleri almak, özel anlaşmalara erişmek ve daha fazlası için e-postalara abone olun.",
       "success_title": "Harika bir indirim aldığınız için tebrikler",
       "token_expired": "Link geçerliliği sona erdi"
@@ -337,6 +339,7 @@
       "set_password": "Şifre, sayılardan, büyük ve küçük harflerden oluşan 6-18 karakter olmalıdır.",
       "sign__out": "Oturumu Kapat",
       "sign_in": "OTURUM AÇ",
+      "sign_in_activate": "Doğrulama kodu {{account}} hesabınıza gönderildi. Doğrulamadan sonra hesabınızı etkinleştirebilirsiniz",
       "sign_up": "ÜYE OL",
       "su": "Pa",
       "subscription_desc": "Mağazadan en güncel haberleri alın",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Abone olduğunuz için teşekkür ederiz. Daha iyi bir deneyim için giriş yapabilirsiniz."
     },
     "message": {
+      "format_error": "Mesaj biçimi desteklenmiyor",
       "input_placeholder": "Mesaj bırakmak istediğiniz bir şey var mı?",
       "message": "Mesaj",
       "send": "Gönder"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kategori"
     },
+    "facets": {
+      "in_stock_only": "Sadece stoklarımızda",
+      "sort_button": "Sırala"
+    },
     "general": {
       "no_product_data_found": "Ürün verisi bulunamadı. Lütfen daha sonra tekrar deneyin",
       "sold_out": "Tümü Satıldı",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "LOTTE'de satın alın",
       "go_to_yahoo_by_link": "Yahoo'da satın alın",
       "in_stock": "Stokta var",
+      "inventory_in_stock": "Spot ürünler",
+      "inventory_in_stock_show_count": "Stok: kalan {{ quantity }}",
+      "inventory_low_stock": "Düşük envanter",
+      "inventory_low_stock_show_count": "Düşük stok: kalan {{ quantity }}",
+      "inventory_out_of_stock": "Tükendi",
+      "inventory_out_of_stock_continue_selling": "Spot ürünler",
       "inventory_quantity": "Envanter miktarı",
       "leave_us_message": "Lütfen mesajınızı girin",
       "leave_us_message_get_back": "Lütfen bize bir mesaj bırakın ve en kısa sürede size geri dönüş yapacağız",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} seçilmiştir",
       "from_price_html": "{{price}} başlayan fiyatlarla",
       "less": "az",
+      "load_more_desc": "{{total}} öğeden {{current_offset}} ~ {{last_current_offset}}",
       "load_more_tip": "Daha fazla öğe yükleniyor",
       "more": "daha fazla",
       "new_arrivals": "Yeni gelenler",
@@ -612,7 +627,8 @@
       "save": "{{{priceDom}}} tasarruf edin",
       "save_byjs": "{{priceDom}} tasarruf edin",
       "save_ratio": "{{price}}% İNDİRİM",
-      "select_product_all_options": "Lütfen önce ürün boyutunu seçin!",
+      "select_product_all_options": "Seçilen ürün varyantı eksik veya mevcut değil. Lütfen tekrar seçiniz",
+      "sort_button": "Sırala",
       "top_sellers": "En çok satanlar",
       "more__product_num": "{{num}} ürün",
       "one_product_num": "{{num}} ürün",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Alışverişe devam et",
       "more": "Daha",
+      "saved": "kaydedildi",
       "total": "Toplam",
       "total_sum": "Toplam"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Servis istisnası, sonra tekrar deneyin",
       "error_message_2014": "Hesap risk altında",
       "error_message_2016": "Hesap risk altında",
+      "error_message_2020": "Sistem meşgul, lütfen daha sonra tekrar deneyin",
       "error_message_3": "Servis istisnaları",
       "error_message_3001": "Servis istisnası, sonra tekrar deneyin",
       "error_message_3002": "Parolalarını değiştirmeye çalıştıkları cep telefonları/posta kutuları bağlı olmayan kullanıcılar",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-posta başka hesaplar tarafından bağlandı",
       "error_message_3014": "Metin mesajı/posta şablonu görselleştirme başarısız",
       "error_message_3015": "Hesap aktifleştirildi",
+      "error_message_3021": "Sistem meşgul, lütfen daha sonra tekrar deneyin",
       "error_message_3022": "Link geçerliliği sona erdi",
       "error_message_3023": "Link yanlış formata sahip",
       "error_message_3024": "Link yanlış",
       "error_message_3026": "Hesap formatı hatası",
+      "error_message_3029": "Şu an için cep telefonu numarası aktivasyonunu desteklemeyin",
       "error_message_4": "Servis istisnaları",
       "error_message_5": "Servis istisnaları",
       "error_message_6": "Servis istisnaları",
       "error_message_7": "Şifre, sayılardan, büyük ve küçük harflerden oluşan 6-18 karakter olmalıdır."
     },
-    "editorSwitchCountryTip": "Ülke değiştirme özelliği editörde desteklenmemektedir"
+    "editorSwitchCountryTip": "Ülke değiştirme özelliği editörde desteklenmemektedir",
+    "shopby": {
+      "button": {
+        "show": "Güvenli ve Daha Hızlı"
+      }
+    }
   }
 }

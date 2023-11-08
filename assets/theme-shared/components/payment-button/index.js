@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['theme-shared/components/payment-button/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -7,10 +6,11 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
   const { PAYMENT_BUTTON_COMMON__STYLE_ID, PAYMENT_BUTTON_COMMON_ANIMATED, PAYMENT_BUTTON_COMMON_ITEM_MASK, EXPRESS_PAYMENT_BUTTON_COMMON_ITEM, EXPRESS_PAYMENT_BUTTON_CONTAINER, NORMAL_PAYMENT_BUTTON_CART_CHECKOUT, NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW, NORMAL_PAYMENT_BUTTON_PRODUCT_MORE_OPTIONS } = window['SLM']['theme-shared/components/payment-button/constants.js'];
   const { PageType, ButtonType, ButtonName, convertPageType } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const ShopbyFastCheckoutButton = window['SLM']['theme-shared/components/payment-button/shopby_fast_checkout.js'].default;
-
   class PaymentButton {
     constructor(config) {
-      this.config = { ...config,
+      this.config = {
+        ...config,
+        currentRenderType: config.pageType,
         pageType: convertPageType(config.pageType)
       };
       this.domId = config.pageType === PageType.Checkout ? config.id : `payment_button_${config.id}`;
@@ -21,11 +21,9 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
       this.handleCommonElement();
       this.render();
     }
-
     getRenderId() {
       return this.renderDomIdMap;
     }
-
     handleCommonElement() {
       if (document.getElementById(PAYMENT_BUTTON_COMMON__STYLE_ID)) return;
       const styleTag = document.createElement('style');
@@ -72,38 +70,29 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
     `;
       document.body.appendChild(styleTag);
     }
-
     render() {
       const parentDom = document.getElementById(this.domId);
-
       if (!parentDom) {
         return;
       }
-
       const dataAttr = parentDom.getAttribute('data-attr');
-
       if (dataAttr) {
         this.domAttr = getAttrs(dataAttr) || {};
       }
-
       switch (this.config.pageType) {
         case PageType.ProductDetail:
           this.renderProduct();
           break;
-
         case PageType.Cart:
           this.renderCart();
           break;
-
         case PageType.Checkout:
           this.renderCheckout();
           break;
-
         default:
           break;
       }
     }
-
     renderProduct() {
       const parentDom = document.getElementById(this.domId);
       if (!parentDom) return;
@@ -111,13 +100,11 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
         if (item.buttonType === ButtonType.ExpressCheckoutButton) {
           this.renderExpressCheckout(item);
         }
-
         if (item.buttonType === ButtonType.FastCheckoutButton) {
           const domId = this.fastCheckoutButton.renderButton(parentDom);
           this.renderDomIdMap[item.buttonType] = domId;
           this.paymentButtonMap[item.buttonType] = this.fastCheckoutButton;
         }
-
         if (item.buttonType === ButtonType.NormalButton) {
           const domId = getNormalDomId(this.domId);
           const className = getNormalPlaceholderElementClassName(this.config.id);
@@ -135,7 +122,6 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
             `;
               parentDom.insertAdjacentHTML('afterbegin', str);
               const morePaymentOptions = parentDom.parentNode.querySelector(`.${NORMAL_PAYMENT_BUTTON_PRODUCT_MORE_OPTIONS}`);
-
               if (morePaymentOptions) {
                 morePaymentOptions.remove();
               }
@@ -145,7 +131,6 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
         }
       });
     }
-
     renderCart() {
       const parentDom = document.getElementById(this.domId);
       if (!parentDom) return;
@@ -153,7 +138,6 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
         if (item.buttonType === ButtonType.NormalButton) {
           item.buttonNameDataList.forEach(innerItem => {
             const domId = `${this.config.id}-slibing`;
-
             if (innerItem.buttonName === ButtonName.BUY_NOW) {
               const str = `
               <button
@@ -168,15 +152,12 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
             `;
               parentDom.insertAdjacentHTML('beforeend', str);
             }
-
             this.renderDomIdMap[item.buttonType] = domId;
           });
         }
-
         if (item.buttonType === ButtonType.ExpressCheckoutButton) {
           this.renderExpressCheckout(item);
         }
-
         if (item.buttonType === ButtonType.FastCheckoutButton) {
           const domId = this.fastCheckoutButton.renderButton(parentDom);
           this.renderDomIdMap[item.buttonType] = domId;
@@ -184,7 +165,6 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
         }
       });
     }
-
     renderExpressCheckout(item) {
       const parentDom = document.getElementById(this.domId);
       if (!parentDom) return;
@@ -197,25 +177,22 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
       parentDom.append(dom);
       this.renderDomIdMap[item.buttonType] = domId;
     }
-
     renderFastCheckoutInCheckoutPage(item) {
-      this.renderExpressCheckout({ ...item,
+      this.renderExpressCheckout({
+        ...item,
         buttonType: ButtonType.ExpressCheckoutButton
       });
     }
-
     renderCheckout() {
       this.list.forEach(item => {
         if (item.buttonType === ButtonType.ExpressCheckoutButton) {
           this.renderExpressCheckout(item);
         }
-
         if (item.buttonType === ButtonType.FastCheckoutButton) {
           this.renderFastCheckoutInCheckoutPage(item);
         }
       });
     }
-
     setDisabled(val) {
       if (this.config.pageType === PageType.ProductDetail) {
         Object.values(this.paymentButtonMap).forEach(instanceItem => {
@@ -223,7 +200,6 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
         });
       }
     }
-
     setDisplay(val) {
       if (this.config.pageType === PageType.ProductDetail) {
         Object.values(this.paymentButtonMap).forEach(instanceItem => {
@@ -231,9 +207,7 @@ window.SLM['theme-shared/components/payment-button/index.js'] = window.SLM['them
         });
       }
     }
-
   }
-
   _exports.PaymentButton = PaymentButton;
   return _exports;
 }();

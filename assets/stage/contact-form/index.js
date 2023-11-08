@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/contact-form/index.js'] = window.SLM['stage/contact-form/index.js'] || function () {
   const _exports = {};
   const Form = window['SLM']['theme-shared/utils/form/index.js'].default;
@@ -35,7 +34,6 @@ window.SLM['stage/contact-form/index.js'] = window.SLM['stage/contact-form/index
     name: 'comment',
     value: ''
   }];
-
   class ContactForm {
     constructor(container) {
       this.container = container;
@@ -46,7 +44,6 @@ window.SLM['stage/contact-form/index.js'] = window.SLM['stage/contact-form/index
       this.contactForm.setFields(fields);
       this.initSubmitBtn();
     }
-
     validateForm() {
       return new Promise((resolve, reject) => {
         this.contactForm.validateFields().then(res => {
@@ -58,13 +55,11 @@ window.SLM['stage/contact-form/index.js'] = window.SLM['stage/contact-form/index
         });
       });
     }
-
     initSubmitBtn() {
       this.submitBtn.on('click', async event => {
         event.preventDefault();
         await this.validateForm();
         const contactData = this.contactForm.getFieldsValue();
-
         try {
           await request.post(SEND_API, contactData);
           toast.open(t(`general.contact_us.send_success`));
@@ -74,14 +69,11 @@ window.SLM['stage/contact-form/index.js'] = window.SLM['stage/contact-form/index
         }
       });
     }
-
     onUnload() {
       this.contactForm.destroy();
       this.submitBtn.off('click');
     }
-
   }
-
   ContactForm.type = 'contact-form';
   registrySectionConstructor(ContactForm.type, ContactForm);
   return _exports;

@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/password-new/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/password-new/index.js'] || function () {
   const _exports = {};
   const PasswordVerify = window['SLM']['theme-shared/biz-com/customer/biz/password-new/password-verify.js'].default;
   const PasswordToken = window['SLM']['theme-shared/biz-com/customer/biz/password-new/password-token.js'].default;
-
   class PasswordNew {
     constructor({
       id = 'customer-password'
@@ -17,7 +15,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/index.js'] = window.S
       this.token = window.SL_State.get('request.uri.query.token');
       this.init();
     }
-
     init() {
       if (this.token) {
         this.tokenInstance = new PasswordToken({
@@ -33,9 +30,7 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/index.js'] = window.S
         });
       }
     }
-
   }
-
   _exports.default = PasswordNew;
   return _exports;
 }();

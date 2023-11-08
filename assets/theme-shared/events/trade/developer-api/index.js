@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/events/trade/developer-api/index.js'] = window.SLM['theme-shared/events/trade/developer-api/index.js'] || function () {
   const _exports = {};
   const navigateCheckout = window['SLM']['theme-shared/events/trade/developer-api/navigate-checkout/index.js'].default;
@@ -16,7 +15,6 @@ window.SLM['theme-shared/events/trade/developer-api/index.js'] = window.SLM['the
   const checkoutDetailUpdate = window['SLM']['theme-shared/events/trade/developer-api/checkout-detail-update/index.js'].default;
   const logger = apiLogger('register');
   const events = [navigateCheckout, getCartId, renderPaypal, navigateCart, addToCart, controlCartBasis, updateCheckoutDetail, cartDetailUpdate, checkoutDetailInit, checkoutDetailUpdate, cartLineItemUpdate];
-
   _exports.default = (...activateApiNames) => {
     const executedEvents = [];
     activateApiNames.forEach(activateApiName => {
@@ -30,6 +28,5 @@ window.SLM['theme-shared/events/trade/developer-api/index.js'] = window.SLM['the
     logger.info('executed events', executedEvents);
     return executedEvents;
   };
-
   return _exports;
 }();

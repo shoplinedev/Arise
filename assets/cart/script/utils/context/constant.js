@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/utils/context/constant.js'] = window.SLM['cart/script/utils/context/constant.js'] || function () {
   const _exports = {};
   const errCanceled = 'context done with cancellation';

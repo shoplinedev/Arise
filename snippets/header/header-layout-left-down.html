@@ -3,30 +3,30 @@
     <div class="container g-2 g-md-5 header__layout header__layout--left-down {{#if settings.header_full_width}}header__full_screen_width{{/if}}">
       <div class="header__item header__item--left d-md-flex">
 
-        {{!-- sticky 页头的 menu 按钮 --}}
+
         {{#and
           (if settings.navigation_layout '!==' 'left-left')
           (if settings.navigation_layout '!==' 'middle-left')
         }}
           <div class="header__nav-toggle j-header-nav-btn">
-            <a class="header__toggle-btn header__toggle-on">
+            <a class="header__toggle-btn header__toggle-on" href="javascript:;">
               {{snippet "icons/icon_menu"}}
             </a>
-            <a class="header__toggle-btn header__toggle-off">
+            <a class="header__toggle-btn header__toggle-off" href="javascript:;">
               {{snippet "icons/icon_header_close"}}
             </a>
           </div>
         {{/and}}
 
-        {{!-- pad 端 menu 按钮 --}}
-        <a class="header__drawer-btn j-header-drawer-btn sl-icon-hover">
+
+        <div class="header__drawer-btn j-header-drawer-btn sl-icon-hover">
           {{snippet "icons/icon_menu"}}
-        </a>
+        </div>
 
         {{#if settings.show_search_entry}}
           {{snippet "header-btns" btns="search" classnames="header__layout--search-btn"}}
         {{/if}}
-        {{! 因为原来样式上在middle-line的时候使用display none 隐藏， 既然这样直接不渲染就可以，不会造成两个h1 }}
+
         {{#and (if settings.navigation_layout "!==" "middle-line") (if settings.navigation_layout "!==" "middle-left")}}
           <div class="header__layout--logo">
             {{snippet "header/header-logo" settings=settings}}
@@ -38,10 +38,8 @@
         </div>
       </div>
 
-      {{!-- <div class="header__item header__item--searchBar d-lg-flex d-none">
-        {{snippet 'header-search-bar' id="pc-header" suggestMenu=settings.suggested_menu classnames="d-lg-flex d-none full" }}
-      </div> --}}
-      {{! 上在middle-line的时候使用渲染，不会造成两个h1 }}
+
+
       {{#or (if settings.navigation_layout "===" "middle-line") (if settings.navigation_layout "===" "middle-left")}}
         <div class="header__layout--logo">
           {{snippet "header/header-logo" settings=settings}}
@@ -58,7 +56,63 @@
           {{snippet "header-btns" btns="search" classnames="header__layout--search-btn"}}
         {{/if}}
         {{#if settings.show_user_entry}}
-          {{snippet "header-btns" maskID="mask-1" btns="user" classnames="header__user-btn"}}
+          {{assign 'user_class' 'header__user-btn'}}
+          {{#if section.settings.user_mobile_layout "===" "menu"}}
+              {{assign 'user_class' 'header__user-btn header__user-btn--hide'}}
+          {{/if}}
+          <div class="user__container">
+            {{snippet 'header-btns' maskID="mask-1" btns='user' classnames=user_class }}
+            {{#if section.settings.hover_show_user_menu}}
+              {{assign 'menu_text_1' section.settings.user_menu_text_1}}
+              {{assign 'menu_link_1' section.settings.user_menu_link_1}}
+              {{assign 'menu_text_2' section.settings.user_menu_text_2}}
+              {{assign 'menu_link_2' section.settings.user_menu_link_2}}
+              {{assign 'menu_text_3' section.settings.user_menu_text_3}}
+              {{assign 'menu_link_3' section.settings.user_menu_link_3}}
+              <ul class="user__menu-container">
+                {{#if customer}}
+                  <li class="body3 fw-bold user__menu-title">
+                    <span>{{customer.name}}</span>
+                  </li>
+                  <div class="user__menu-title-line"></div>
+                  <li class="body3">
+                    <a href="{{routes.account_order_list_url}}">{{t "customer.general.orders"}}</a>
+                  </li>
+                  <li class="body3">
+                    <a href="{{routes.account_url}}">{{t "customer.account.personal__info"}}</a>
+                  </li>
+                {{else}}
+                  <li class="body3 fw-bold user__menu-title">
+                    <a href="{{routes.account_login_url}}" style="text-decoration: underline">{{t "general.header.login"}}</a>
+                  </li>
+                  <div class="user__menu-title-line"></div>
+                  <li class="body3">
+                    <a href="{{routes.account_login_url}}">{{t "customer.general.orders"}}</a>
+                  </li>
+                {{/if}}
+                {{#if menu_text_1}}
+                  <li class="body3">
+                    <a href="{{#if menu_link_1}}{{menu_link_1}}{{else}}javascript:;{{/if}}">{{menu_text_1}}</a>
+                  </li>
+                {{/if}}
+                {{#if menu_text_2}}
+                  <li class="body3">
+                    <a href="{{#if menu_link_2}}{{menu_link_2}}{{else}}javascript:;{{/if}}">{{menu_text_2}}</a>
+                  </li>
+                {{/if}}
+                {{#if menu_text_3}}
+                  <li class="body3">
+                    <a href="{{#if menu_link_3}}{{menu_link_3}}{{else}}javascript:;{{/if}}">{{menu_text_3}}</a>
+                  </li>
+                {{/if}}
+                {{#if customer}}
+                  <li class="body3 user__menu-sign-out">
+                    <a class="user__menu-sign-out-entry" href="{{ routes.account_logout_url }}">{{t "customer.general.sign__out"}}</a>
+                  </li>
+                {{/if}}
+              </ul>
+            {{/if}}
+          </div>
         {{/if}}
         {{#if settings.show_cart_entry}}
           {{snippet "header-btns" btns="cart"}}
@@ -78,6 +132,40 @@
       {{snippet "desktop-site-nav" settings=settings main_menu=main_menu}}
     </div>
   </div>
+  {{! mobile_top_menu satrt }}
+  {{assign "is_home" false}}
+  {{#if templateAlias '===' 'Home'}}
+    {{assign "is_home" true}}
+  {{/if}}
+  {{assign "is_show_menu" true}}
+  {{#and settings.mobile_top_menu_show_home (isFalsey is_home)}}
+    {{assign "is_show_menu" false}}
+  {{/and}}
+  {{#and mobile_top_menu.nodeTree is_show_menu}}
+    <div
+      class="mobile-top-nav color-scheme-{{settings.color_scheme}}"
+    >
+      <div class="swiper-container mobile-site-nav__swiper">
+        <ul class="mobile-site-nav swiper-wrapper">
+          {{#with this as |global|}}
+            {{#each mobile_top_menu.nodeTree}}
+              {{assign "navItem" (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+              <li class="mobile-site-nav__item mobile-site-nav__item-slide">
+                <a
+                  data-node-id="{{this.id}}"
+                  class="mobile-site-nav__item__link {{#if (decodeURI global.request.uri.path) '===' this.navItem.path}} mobile-site-nav__item__link--active{{/if}} body3"
+                  {{{navItem.hrefAttr}}}
+                >
+                  <span class="mobile-site-nav__item__link__text">{{navItem.name}}</span>
+                </a>
+              </li>
+            {{/each}}
+          {{/with}}
+        </ul>
+      </div>
+    </div>
+  {{/and}}
+  {{! end mobile_top_menu }}
 
   {{#if theme.settings.cart_open_type '!==' 'drawer'}}
     {{ snippet 'header-mini-cart' }}

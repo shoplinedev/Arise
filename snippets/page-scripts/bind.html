@@ -1,35 +1,18 @@
   <!-- customer/bind/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/lodash.rlp.min.js'
-      'vendors/url.rlp.min.js'
-      'vendors/querystring.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/dayjs.rlp.min.js'
-      'vendors/scroll-lock.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/lodash.min.js'
-      'vendors/url.min.js'
-      'vendors/querystring.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/eventemitter3.min.js'
-      'vendors/js-cookie.min.js'
-      'vendors/uuid.min.js'
-      'vendors/dayjs.min.js'
-      'vendors/scroll-lock.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/lodash.min.js'
+    'vendors/url.min.js'
+    'vendors/querystring.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/eventemitter3.min.js'
+    'vendors/js-cookie.min.js'
+    'vendors/uuid.min.js'
+    'vendors/dayjs.min.js'
+    'vendors/scroll-lock.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/syntax-patch.js'
     'theme-shared/utils/i18n.js'

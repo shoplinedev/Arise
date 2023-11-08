@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['theme-shared/components/hbs/comment/js/review.js'] || function () {
   const _exports = {};
   const Form = window['SLM']['theme-shared/utils/form/index.js'].default;
@@ -11,11 +10,9 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
   const request = window['SLM']['theme-shared/utils/request.js'].default;
   const RateYo = window['SLM']['theme-shared/components/hbs/shared/components/rate/index.js'].default;
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
-
   function refreshPage() {
     location.reload();
   }
-
   const createTemplate = option => {
     const {
       id
@@ -58,12 +55,11 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
     `;
     return template;
   };
-
   const defaultOption = {};
-
   class Review {
     constructor(option = {}) {
-      this.option = { ...defaultOption,
+      this.option = {
+        ...defaultOption,
         id: 'form_id_' + uuid(16, 16),
         ...option
       };
@@ -73,13 +69,11 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
       this.upload = null;
       this.init();
     }
-
     init() {
       this.render();
       this.initForm();
       this.initEvent();
     }
-
     initForm() {
       this.form = Form.takeForm(this.option.id);
       this.form.init({
@@ -106,42 +100,34 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
         maxCount: 9,
         maxFileLength: 2 * 1024 * 1024,
         accept: 'image/jpg,image/jpeg,image/png,image/bmp',
-
         onFileBeforeUploadError(e) {
           let msg = '';
-
           switch (e) {
             case '10':
               msg = t('products.comment.only_supports__image_format');
               break;
-
             case '01':
               msg = t('products.comment.maximum_image_size', {
                 size: 2
               });
               break;
-
             case '11':
               msg = t('products.comment.only_supports__image_format') + '、' + t('products.comment.maximum_image_size', {
                 size: 2
               });
               break;
           }
-
           Toast.init({
             content: msg,
             duration: 3000
           });
         },
-
         onFileUploadError(e) {},
-
         onChange: fileList => {
           this.$dom.find('.comment-file__length__value').text(fileList.length);
         }
       });
     }
-
     initFormRule(form = this.form) {
       form.setFields([{
         name: 'content',
@@ -153,7 +139,6 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
         }]
       }]);
     }
-
     initEvent() {
       this.$dom.find('.product-comment-btn').on('click', () => {
         this.handleSubmit();
@@ -165,28 +150,23 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
           }
         } = e;
         let isChange = false;
-
         if (testEmoji(value)) {
           value = replaceEmoji(value);
           isChange = true;
         }
-
         if (value.length > 1000) {
           value = value.substring(0, 1000);
           isChange = true;
         }
-
         if (isChange) {
           this.form.setFields([{
             name: 'content',
             value
           }]);
         }
-
         this.$dom.find('[sl-form-item-name="content"]').find('.product_input-area__length__value').text(value && value.length || 0);
       });
     }
-
     checkIsUpload() {
       if (this.upload && this.upload.onLoading) {
         Toast.init({
@@ -195,10 +175,8 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
         });
         return true;
       }
-
       return false;
     }
-
     async handleSubmit({
       success,
       error,
@@ -211,7 +189,6 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
       } = value;
       content = content.trim();
       const score = this.rate.rating();
-
       if (validate.pass && score > 0) {
         if (this.checkIsUpload()) return;
         const imageList = this.upload && this.upload.fileList && this.upload.fileList.map(item => {
@@ -238,7 +215,6 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
         }, e => {
           error && error();
           this.$dom.find('.product-comment-btn').removeClass('disabled').attr('disabled', false);
-
           if (e && e.code === 'EPD1001') {
             Toast.init({
               content: t('products.comment.didnot_bought_cannot_reviewed'),
@@ -253,18 +229,14 @@ window.SLM['theme-shared/components/hbs/comment/js/review.js'] = window.SLM['the
         });
       }
     }
-
     render() {
       const template = createTemplate(this.option);
       this.$dom = $(template);
-
       if (this.option.ele) {
         $(this.option.ele).append(this.$dom);
       }
     }
-
   }
-
   _exports.default = Review;
   return _exports;
 }();

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] = window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] || function () {
   const _exports = {};
   const dayjs = window['dayjs']['default'];
@@ -7,13 +6,14 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] =
   const { queryMessageInSite } = window['SLM']['theme-shared/biz-com/customer/service/message.js'];
   const { ESenderType } = window['SLM']['theme-shared/biz-com/customer/biz/message/const.js'];
   const PreviewImage = window['SLM']['theme-shared/biz-com/customer/biz/message/script/message-preview-modal.js'].default;
-
+  const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   function getMsgHtml(msgItem) {
     const {
       content,
       contentAttachmentUrl,
       senderType,
-      createTime
+      createTime,
+      messageType
     } = msgItem;
     const time = dayjs(createTime).format('MM/DD hh:mm');
     return `
@@ -22,7 +22,8 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] =
         <span class="msg-time">${time}</span>
       </div>
       <div class="msg-wrap">
-        ${content ? `<p class="msg-text">${unescape(content)}</p>` : ''}
+        ${messageType === 13 ? `<p class="msg-text">${t('customer.message.format_error')}</p>` : ''}
+        ${messageType !== 13 && content ? `<p class="msg-text">${unescape(content)}</p>` : ''}
         ${contentAttachmentUrl ? `<div class="msg-image">
                 <img src="${contentAttachmentUrl}" alt="img" />
                 <div class="mask">
@@ -32,7 +33,6 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] =
     </div>
   `;
   }
-
   class MessageList {
     constructor() {
       this.$container = $('#customer-message-list');
@@ -43,13 +43,11 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] =
       this.length = 0;
       this.init();
     }
-
     init() {
       this.initEvent();
       this.getMsg();
       this.initScroll();
     }
-
     initEvent() {
       this.previewImage = new PreviewImage({
         id: 'customer-message-preview-modal'
@@ -59,22 +57,18 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] =
         this.previewImage.show(src);
       });
     }
-
     initScroll() {
       this.$container.on('scroll', e => {
         if (this.loading) {
           return false;
         }
-
         const containerHeight = e.target.clientHeight;
         const listHeight = this.$list[0].clientHeight;
-
         if (e.target.scrollTop + containerHeight - 30 >= listHeight) {
           this.getMsg(this.length + 20);
         }
       });
     }
-
     getMsg(length = 20) {
       this.showLoading();
       queryMessageInSite({
@@ -85,11 +79,9 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] =
         if (!data || !Array.isArray(data.list)) {
           return;
         }
-
         const {
           list
         } = data;
-
         if (list.length > this.length) {
           this.length = list.length;
           this.renderMsg(list);
@@ -98,7 +90,6 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] =
         this.hideLoading();
       });
     }
-
     renderMsg(list) {
       let msgHtml = '';
       list.forEach(msgItem => {
@@ -106,26 +97,21 @@ window.SLM['theme-shared/biz-com/customer/biz/message/script/message-list.js'] =
       });
       this.$list.html(msgHtml);
     }
-
     addMessage(item) {
       const msgHtml = getMsgHtml(item);
       this.$list.prepend(msgHtml);
     }
-
     showLoading() {
       this.loading = true;
       this.$loading.removeClass('hidden');
     }
-
     hideLoading() {
       setTimeout(() => {
         this.loading = false;
       }, 500);
       this.$loading.addClass('hidden');
     }
-
   }
-
   _exports.default = MessageList;
   return _exports;
 }();

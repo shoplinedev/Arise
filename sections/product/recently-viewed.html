@@ -1,28 +1,15 @@
 
 <!-- product/recently-viewed/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      'vendors/uuid.min.js'
-      'vendors/lodash.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/eventemitter3.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    'vendors/uuid.min.js'
+    'vendors/lodash.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/event-bus.js'
     'theme-shared/utils/parsePathToArray.js'
@@ -62,7 +49,7 @@
     {{else}}
     <div id="recently-viewed-products"></div>
   {{/if}} 
-  <!-- 仅在ssr环境下才生成 -->
+  
 </div>
 {{#schema}}
 {

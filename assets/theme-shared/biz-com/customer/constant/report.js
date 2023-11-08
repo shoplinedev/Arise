@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/constant/report.js'] = window.SLM['theme-shared/biz-com/customer/constant/report.js'] || function () {
   const _exports = {};
   const loginModalPageIdMap = {

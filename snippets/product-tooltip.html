@@ -22,7 +22,7 @@
 {{assign "title" product.title}}
 {{assign "first_image" (first (get "imageList" product))}}
 
-{{! 由于all_products这份商详数据拿不到unique id 所以直接用商品id跳转 }}
+
 {{assign "unique_id" product.spuSeq}}
 {{assign "jump_link" (redirect_to (append "/products/" unique_id))}}
 {{assign "link_attr" ""}}
@@ -31,7 +31,7 @@
 {{/if}}
 
 {{assign "discount_text" null}}
-{{! 当存在原价，则计算折扣 }}
+
 {{#if productPrice.originPrice}}
   {{#if theme.settings.product_discount_style "===" "number"}}
     {{assign "discount_text" (subtract productPrice.originPrice productPrice.salesPrice)}}
@@ -52,10 +52,10 @@
       {{title}}
     </h4>
 
-    {{! 询盘（inquiry）不展示价格 }}
+    
     {{#if (isFalsey inquiry)}}
       {{#if theme.settings.product_discount}}
-        {{! 当折扣大于零时，显示折扣 }}
+        
         {{#if (boolean productPrice.originPrice "&&" (boolean discount_text ">" 0))}}
           <span class="product-tooltip__badge body4">
             {{#if theme.settings.product_discount_style "===" "number"}}

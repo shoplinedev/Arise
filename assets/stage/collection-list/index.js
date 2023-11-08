@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/collection-list/index.js'] = window.SLM['stage/collection-list/index.js'] || function () {
   const _exports = {};
   const Swiper = window['swiper']['default'];
@@ -11,7 +10,6 @@ window.SLM['stage/collection-list/index.js'] = window.SLM['stage/collection-list
     prevBtn: 'prev-pagination-btn',
     nextBtn: 'next-pagination-btn'
   };
-
   class CollectionListSection {
     constructor(container) {
       this.container = null;
@@ -20,16 +18,13 @@ window.SLM['stage/collection-list/index.js'] = window.SLM['stage/collection-list
       if (!container.find(selectors.slide).length) return;
       this.container = container;
       this.sectionId = container.data('section-id');
-
       try {
         this.settings = JSON.parse($(`#collectionList-data-${this.sectionId}`).text());
       } catch (err) {}
-
       if (this.settings.slice_in_pc) {
         this.renderSwiper();
       }
     }
-
     renderSwiper() {
       const {
         pc_cols
@@ -50,15 +45,12 @@ window.SLM['stage/collection-list/index.js'] = window.SLM['stage/collection-list
         }
       });
     }
-
     onUnload() {
       if (this.swiper) {
         this.swiper.destroy();
       }
     }
-
   }
-
   registrySectionConstructor('collection-list', CollectionListSection);
   return _exports;
 }();

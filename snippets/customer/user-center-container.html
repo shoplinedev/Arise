@@ -1,9 +1,8 @@
 {{ assign 'isMobile' request.is_mobile }}
 
-{{!-- type 参数在匹配埋点时会用到 --}}
+
 {{ assign 'navbar' (JSONparse (append '[
   {"type": "center","path":"/user/center","text":"' (t "customer.account.personal__info") '"},
-  {"type": "message","path":"/user/message","text":"' (t "customer.message.message") '"},
   {"type": "orders","path":"/user/orders","text":"' (t "customer.general.orders") '"}
 ]')) }}
 
@@ -19,7 +18,7 @@
 
     {{#if (isFalsey isMobile)}}
       <div class="user-center__btns">
-        <a href="javascript:void(0);" class="user-center__btn--link signout-link">{{t 'customer.general.sign__out'}}</a>
+        <a href="javascript:;" class="user-center__btn--link signout-link">{{t 'customer.general.sign__out'}}</a>
       </div>
     {{/if}}
   </div>
@@ -28,7 +27,7 @@
 
   {{#if (isTruthy isMobile)}}
     <div class="user-center__btns">
-      <a href="javascript:void(0);" class="user-center__btn--link signout-link">{{t 'customer.general.sign__out'}}</a>
+      <a href="javascript:;" class="user-center__btn--link signout-link">{{t 'customer.general.sign__out'}}</a>
     </div>
   {{/if}}
 </div>

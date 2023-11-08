@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/shared/components/modal/common.js'] = window.SLM['theme-shared/components/hbs/shared/components/modal/common.js'] || function () {
   const _exports = {};
   const createNamespace = window['SLM']['theme-shared/components/hbs/shared/utils/bem.js'].default;

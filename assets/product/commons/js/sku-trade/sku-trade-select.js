@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -8,14 +7,12 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
   const { disablePageScroll, enablePageScroll } = window['SLM']['commons/components/modal/common.js'];
   const BaseSkuTrade = window['SLM']['product/commons/js/sku-trade/base-sku-trade.js'].default;
   const isMobile = window['SLM']['commons/utils/isMobile.js'].default;
-
   class SkuTradeSelect extends BaseSkuTrade {
     constructor(...args) {
       super(...args);
       this.currentIndex = null;
       this.currentEntry = null;
       this.currentDropdown = null;
-
       this.closeItem = () => {
         this.currentEntry && this.currentEntry.removeClass && this.currentEntry.removeClass('open');
         this.currentDropdown && this.currentDropdown.fadeOut && this.currentDropdown.fadeOut(200);
@@ -25,10 +22,8 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         this.currentIndex = null;
         $(window).off('click', this.closeItem);
       };
-
       this.openItem = (entry, dropdown) => {
         const currentIndex = entry.data('index');
-
         if (this.currentIndex !== null) {
           if (this.currentIndex !== currentIndex) {
             this.closeItem();
@@ -37,7 +32,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
             return;
           }
         }
-
         this.currentEntry = entry.addClass('open');
         this.currentIndex = currentIndex;
         this.currentDropdown = dropdown;
@@ -46,11 +40,9 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         $(window).on('click', this.closeItem);
       };
     }
-
     initFirstChecked() {
       super.initFirstChecked(true);
     }
-
     createPopupDom() {
       const that = this;
       const popupId = `skutradeselectpopup_${Date.now()}`;
@@ -58,7 +50,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         if (e.target.classList.contains('product-sku-trade-select-popup')) {
           this.closeItem();
         }
-
         e.stopPropagation();
       });
       const dropdown = this.popup.children('.select-popup');
@@ -75,30 +66,24 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         e.stopPropagation();
         const i = $(this).data('index');
         const active = $(this).prop('active');
-
         if (!active) {
           that.clickAttr(that.currentIndex, i);
         }
-
         that.closeItem();
       });
       $(document.body).append(this.popup);
     }
-
     showPopup() {
       if (!this.popup) {
         this.createPopupDom();
       }
-
       const index = this.currentIndex;
       const popupBody = this.popup.show().animate({
         opacity: 1
       }, 200).children('.select-popup').addClass('open');
-
       if (isMobile()) {
         disablePageScroll(popupBody.get(0));
       }
-
       if (this.dataPool.attrArray[index] && Array.isArray(this.dataPool.attrArray[index].specAttrList)) {
         this.dataPool.attrArray[index].specAttrList.forEach((valueItem, i) => {
           const disabled = this.dataPool.skuUtil.checkSpecAttrDisabled(this.dataPool.currentSpecList, valueItem.id, index);
@@ -113,21 +98,17 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         });
       }
     }
-
     hidePopup() {
       if (!this.popup) return;
-
       if (isMobile()) {
         enablePageScroll(this.popup.children('.select-popup').get(0));
       }
-
       this.popup.animate({
         opacity: 0
       }, 200, function () {
         $(this).hide().children('.select-popup').empty();
       }).children('.select-popup').removeClass('open');
     }
-
     initDom() {
       const that = this;
       this.root.children('.spec-box').each((_, el) => {
@@ -144,14 +125,12 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
           const i = $(this).data('index');
           const active = $(this).prop('active');
           that.closeItem();
-
           if (!active) {
             that.clickAttr(index, i);
           }
         });
       });
     }
-
     createAndInitDom() {
       this.clearRoot();
       const that = this;
@@ -181,7 +160,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
             const i = $(this).data('index');
             const active = $(this).prop('active');
             that.closeItem();
-
             if (!active) {
               that.clickAttr(index, i);
             }
@@ -189,7 +167,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         }
       });
     }
-
     render() {
       super.beforeUpdate();
       this.root.children('.spec-box').each((_, el) => {
@@ -203,7 +180,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         } = currentValue || {};
         const img = seletBox.children('.entry-img');
         const text = seletBox.children('.entry-text');
-
         if (imgUrl) {
           img.show().prop('src', imgUrlUtil(imgUrl, {
             width: 32,
@@ -212,7 +188,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
         } else {
           img.hide().prop('src', '');
         }
-
         if (name) {
           text.text(name);
         } else if (currentValue) {
@@ -222,20 +197,17 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
             attrName: this.dataPool.attrArray[index].specName
           }));
         }
-
         boxEl.children('.select-box').children('.select-options').children('.select-item').each((__, el_) => {
           const valueEl = $(el_);
           const i = valueEl.data('index');
           const valueItem = this.dataPool.attrArray[index].specAttrList[i];
           const disabled = this.dataPool.skuUtil.checkSpecAttrDisabled(this.dataPool.currentSpecList, valueItem.id, index);
           const active = this.dataPool.skuUtil.checkSpecAttrActive(this.dataPool.currentSpecList, valueItem.id);
-
           if (disabled) {
             valueEl.addClass('disabled');
           } else {
             valueEl.removeClass('disabled');
           }
-
           if (active) {
             valueEl.addClass('active').prop('active', true);
           } else {
@@ -245,20 +217,15 @@ window.SLM['product/commons/js/sku-trade/sku-trade-select.js'] = window.SLM['pro
       });
       super.afterUpdate();
     }
-
     destory() {
       super.destory();
       this.closeItem();
-
       if (this.popup) {
         this.popup.remove();
       }
-
       this.popup = null;
     }
-
   }
-
   _exports.default = SkuTradeSelect;
   return _exports;
 }();

@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/report/select-content.js'] = window.SLM['cart/script/report/select-content.js'] || function () {
   const _exports = {};
   const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
-
   function reportGASelectContent({
     skuId,
     name,
@@ -22,7 +20,6 @@ window.SLM['cart/script/report/select-content.js'] = window.SLM['cart/script/rep
       }]]
     });
   }
-
   _exports.default = {
     reportGASelectContent
   };

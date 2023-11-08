@@ -8,25 +8,14 @@ all_collections:
   {{ combine_asset_tag 'stage/footer/style/index.css' inline=true}}
 {{/if}}
 <!-- stage/footer/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/lodash.min.js'
-      'vendors/eventemitter3.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/lodash.min.js'
+    'vendors/eventemitter3.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/request.js'
     'theme-shared/utils/syntax-patch.js'
@@ -73,7 +62,7 @@ all_collections:
 {{ assign 'has_social_logos' false }}
 {{#with this as | global |}}
   {{#with global.theme.settings}}
-    {{#or social_facebook_link social_twitter_link social_pinterest_link social_instagram_link social_snapchat_link social_tiktok_link social_youtube_link social_linkedin_link social_whatsapp_link}}
+    {{#or social_facebook_link social_twitter_link social_pinterest_link social_instagram_link social_snapchat_link social_tiktok_link social_youtube_link social_linkedin_link social_whatsapp_link social_line_link social_kakao_link}}
       {{#with global}}
         {{ assign 'has_social_logos' true }}
       {{/with}}
@@ -110,13 +99,13 @@ all_collections:
         <div class="footer__block-social-container footer-letter-media-up {{ align_class }}">
           {{#and showLetter letter_is_block_up}}
             {{ assign 'is_single' false }}
-            {{!-- 邮件订阅 --}}
+            
             <div class="footer__block-subscribe letter-size--{{ section.settings.letter_show_size }}">
               {{ snippet 'footer-news-letter' data=section }}
             </div>
           {{/and}}
           {{#and showSocialLogos media_is_block_up}}
-            {{!-- 社交媒体 --}}
+            
             <div class="footer__block-social {{#if is_single}}footer__block-social--nomargin{{/if}}">
               {{ snippet 'footer-social' }}
             </div>
@@ -129,25 +118,25 @@ all_collections:
       >
         {{#with section as | section |}}
           {{#each blocks}}
-            {{!-- 快速导航 --}}
+            
             {{#if type '===' 'menu'}}
               <div class="footer__block" {{{ this.shopline_attributes }}}>
                 {{ snippet 'footer-menu' sectionId=section.id }}
               </div>
             {{/if}}
-            {{!-- 自定义内容 --}}
+            
             {{#if type '===' 'custom'}}
               <div class="footer__block" {{{ this.shopline_attributes }}}>
                 {{ snippet 'footer-custom' }}
               </div>
             {{/if}}
-            {{!-- 图片 --}}
+            
             {{#if type '===' 'image'}}
               <div class="footer__block footer__block-image" {{{ this.shopline_attributes }}}>
                 {{ snippet 'footer-image' }}
               </div>
             {{/if}}
-            {{!-- Email subscriptions --}}
+            
             {{#if type '===' 'newsletter'}}
               <div class="footer__block" {{{ this.shopline_attributes }}}>
                 {{ snippet 'footer-block-header' }}
@@ -159,11 +148,11 @@ all_collections:
                 {{ snippet 'footer-social' data=this }}
               </div>
             {{/if}}
-            {{!-- conact --}}
+            
             {{#if type '===' 'conact'}}
               {{ snippet 'footer-conact' sectionId=section.id }}
             {{/if}}
-            {{!-- logo list --}}
+            
             {{#if type '===' 'logo_list'}}
               {{ snippet 'footer-logo-list' sectionId=section.id }}
             {{/if}}
@@ -181,13 +170,13 @@ all_collections:
         <div class="footer__block-social-container footer-letter-media-down {{ align_class }}">
           {{#and showLetter (isFalsey letter_is_block_up)}}
             {{ assign 'has_letter' true }}
-            {{!-- 邮件订阅 --}}
+            
             <div class="footer__block-subscribe letter-size--{{ section.settings.letter_show_size }}">
               {{ snippet 'footer-news-letter' data=section }}
             </div>
           {{/and}}
           {{#and showSocialLogos (isFalsey media_is_block_up)}}
-            {{!-- 社交媒体 --}}
+            
             <div class="footer__block-social {{#unless has_letter}}footer__block-social--nomargin{{/unless}}">
               {{ snippet 'footer-social' }}
             </div>

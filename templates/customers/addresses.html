@@ -14,7 +14,7 @@
   <h1 class="address__title">{{t 'customer.address.edit_shipping_address'}}</h1>
 
   <form class="address-form">
-    {{!-- 地址组件控件容器 --}}
+    
     <div class="address-form__row row address-component-form" id="customer-address-component">
       {{#trade_checkout_receiverInfo pageType="customerAddressInfo"}}
       {{#each controls}}
@@ -23,7 +23,7 @@
       {{/trade_checkout_receiverInfo}}
     </div>
 
-    {{!-- 地址组件浏览器填充容器 --}}
+    
     <div class="address-form__row row address-component-form__autofill" id="customer-address-autofill-renderer"></div>
 
     <div class="address-form__footer">

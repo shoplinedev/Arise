@@ -1,18 +1,14 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] || function () {
   const _exports = {};
   const dayjs = window['dayjs']['default'];
   const { report, reportV2, thirdPartReport } = window['SLM']['theme-shared/biz-com/customer/reports/index.js'];
   const { pageMap, ActionType, Module, LOGIN_CID, EventName } = window['SLM']['theme-shared/biz-com/customer/constant/report.js'];
-
   const reportV1SignIn = config => report(LOGIN_CID, config);
-
   const reportSignIn = config => reportV2({
     page: pageMap.SignIn,
     ...config
   });
-
   const reportSubmitLogin = () => {
     reportSignIn({
       module: Module.normal,
@@ -21,9 +17,7 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
       event_id: 1033
     });
   };
-
   _exports.reportSubmitLogin = reportSubmitLogin;
-
   const reportToForgetPassword = () => {
     reportSignIn({
       module: Module.normal,
@@ -32,9 +26,7 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
       event_id: 1031
     });
   };
-
   _exports.reportToForgetPassword = reportToForgetPassword;
-
   const reportToSignUp = () => {
     reportSignIn({
       module: Module.normal,
@@ -43,9 +35,7 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
       event_id: 1032
     });
   };
-
   _exports.reportToSignUp = reportToSignUp;
-
   const reportLoginSuccess = () => {
     reportSignIn({
       module: Module.normal,
@@ -55,7 +45,6 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
       event_id: 1402
     });
   };
-
   _exports.reportLoginSuccess = reportLoginSuccess;
   const loginTypeToThirdPartReportConfig = {
     line: {
@@ -71,10 +60,8 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
       event_id: 1405
     }
   };
-
   const reportClickThirdPartLogin = loginType => {
     const reportConfig = loginTypeToThirdPartReportConfig[loginType];
-
     if (reportConfig) {
       reportSignIn({
         module: Module.normal,
@@ -83,9 +70,7 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
       });
     }
   };
-
   _exports.reportClickThirdPartLogin = reportClickThirdPartLogin;
-
   const thirdReportSignInCallback = method => {
     thirdPartReport({
       GA: [['event', 'login', {
@@ -96,9 +81,7 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
       }]]
     });
   };
-
   _exports.thirdReportSignInCallback = thirdReportSignInCallback;
-
   const riskReportSignIn = (isFirst = 1) => {
     const loginSuccessReportdata = {
       dimension: 0,
@@ -114,25 +97,20 @@ window.SLM['theme-shared/biz-com/customer/reports/sign-in.js'] = window.SLM['the
       ...loginSuccessReportdata
     });
   };
-
   _exports.riskReportSignIn = riskReportSignIn;
-
   const reportSignInPageView = () => {
     reportV1SignIn({
       event_name: 'component_view',
       custom_component: ['sign_in_105']
     });
   };
-
   _exports.reportSignInPageView = reportSignInPageView;
-
   const reportSignInPageLeave = page_dest => {
     reportV1SignIn({
       event_name: 'leave',
       page_dest
     });
   };
-
   _exports.reportSignInPageLeave = reportSignInPageLeave;
   return _exports;
 }();

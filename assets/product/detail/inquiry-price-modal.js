@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail/inquiry-price-modal.js'] || function () {
   const _exports = {};
   const Form = window['SLM']['theme-shared/utils/form/index.js'].default;
@@ -14,7 +13,6 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
   const Loading = window['SLM']['commons/components/toast/loading.js'].default;
   const emailRE = /^[A-Za-z0-9_./;+]+([A-Za-z0-9_./;+]+)*@([A-Za-z0-9]+\.)+[A-Za-z]{2,6}$/;
   const toast = new Toast();
-
   class InquiryPriceModal extends Base {
     constructor({
       id,
@@ -35,7 +33,6 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
         area: this.$root
       });
     }
-
     init(id) {
       if (this.spu && this.spu.inquiry) {
         this.initModal(id);
@@ -43,24 +40,20 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
         this.bindEvents();
       }
     }
-
     initModal(id) {
       this.modalInstance = new BaseModal({
         modalId: `inquiry-price_${id}`
       });
       this.modalInstance.init();
     }
-
     initForm(id) {
       this.formInstance = Form.takeForm(`JS-inquiry-modal-form_${id}`);
       this.formInstance.init();
       this.formInstance.setFields(InquiryPriceModal.getFieldsConfig());
     }
-
     setActiveSku(activeSku) {
       this.activeSku = activeSku;
     }
-
     cancelReport() {
       cancelReport({
         spu: this.spu,
@@ -73,7 +66,6 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
         region: this.formInstance.getFieldValue('region')
       });
     }
-
     bindEvents() {
       const eventHandlers = {
         submitClickHandler: async e => {
@@ -82,7 +74,6 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
               toast.open(t('products.product_details.link_preview_does_not_support'));
               return;
             }
-
             $(e.target).addClass('disabled');
             await this.validateForm();
             await this.postForm();
@@ -104,12 +95,10 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
       this.$root.parents('.mp-modal__wrapper').on('click', '.mp-modal__mask.mp-modal__closable,.mp-modal__close', () => this.cancelReport());
       $(this.buttonSelector).on('click', eventHandlers.buttonClickHandler);
     }
-
     unbindEvents() {
       this.$offAll();
       $(this.buttonSelector).off('click');
     }
-
     async postForm() {
       const inquiryInfo = this.formInstance.getFieldsValue();
       const {
@@ -146,11 +135,9 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
         region: inquiryInfo.region
       });
     }
-
     async sendInquiryInfoRun(info, loading, extraData) {
       const response = await mcUtil.sendToMerchant(info);
       loading.close();
-
       if (response.code === 'SUCCESS') {
         leadReport({
           spu: this.spu,
@@ -165,15 +152,12 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
         toast.open(t('products.product_details.submission_failed'));
       }
     }
-
     showModal() {
       this.modalInstance.show();
     }
-
     hideModal() {
       this.modalInstance.hide();
     }
-
     static getFieldsConfig() {
       const fields = [{
         name: 'email',
@@ -193,11 +177,9 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
           required: true
         }, {
           message: t('products.product_details.maximum_length_of_message'),
-
           validator(val) {
             return val.length <= 1500;
           }
-
         }]
       }, {
         name: 'name',
@@ -211,7 +193,6 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
       }];
       return fields;
     }
-
     validateForm() {
       return new Promise((resolve, reject) => {
         this.formInstance.validateFields().then(res => {
@@ -223,13 +204,10 @@ window.SLM['product/detail/inquiry-price-modal.js'] = window.SLM['product/detail
         });
       });
     }
-
     isPreview() {
       return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
     }
-
   }
-
   _exports.default = InquiryPriceModal;
   return _exports;
 }();

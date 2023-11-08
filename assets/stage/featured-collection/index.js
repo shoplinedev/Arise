@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/featured-collection/index.js'] = window.SLM['stage/featured-collection/index.js'] || function () {
   const _exports = {};
   const Swiper = window['swiper']['default'];
@@ -10,7 +9,6 @@ window.SLM['stage/featured-collection/index.js'] = window.SLM['stage/featured-co
   const selectors = {
     slide: '.featured-collection-item-slide'
   };
-
   class FeatureCollectionSection {
     constructor(container) {
       this.container = null;
@@ -20,21 +18,19 @@ window.SLM['stage/featured-collection/index.js'] = window.SLM['stage/featured-co
       this.container = container;
       this.sectionId = container.data('section-id');
       this.gridHorizontalSpace = container.data('grid-horizontal-space');
-
       try {
         this.settings = JSON.parse($(`#featuredCollection-data-${this.sectionId}`).text());
       } catch (err) {}
-
       this.renderSwiper();
     }
-
     renderSwiper() {
       const {
         pc_cols,
-        slice_in_pc
+        md_cols,
+        slice_in_pc,
+        slice_in_mobile
       } = this.settings;
-      const mbSlidesPerView = 1;
-      if (!slice_in_pc || isMobile()) return;
+      if (!isMobile() && !slice_in_pc || isMobile() && !slice_in_mobile) return;
       const that = this;
       this.swiper = new Swiper(`.featured-collection-swiper-${this.sectionId}`, {
         navigation: {
@@ -43,13 +39,13 @@ window.SLM['stage/featured-collection/index.js'] = window.SLM['stage/featured-co
         },
         watchOverflow: true,
         resizeObserver: true,
-        slidesPerView: mbSlidesPerView - 0.5,
+        slidesPerView: +md_cols + 0.1,
         slidesPerGroup: 1,
         setWrapperSize: true,
         slideClass: 'product-slide',
         breakpoints: {
           751: {
-            slidesPerView: pc_cols - 0.5
+            slidesPerView: pc_cols + 0.5
           }
         },
         on: {
@@ -57,7 +53,6 @@ window.SLM['stage/featured-collection/index.js'] = window.SLM['stage/featured-co
             that.container.on('mouseover mouseleave', '.product-slide', () => {
               that.swiper.updateSize();
             });
-
             if (swiper.slides.length > 0) {
               const slideHeight = swiper.slides[0].offsetHeight;
               const top = (slideHeight - 40) / 2;
@@ -66,17 +61,13 @@ window.SLM['stage/featured-collection/index.js'] = window.SLM['stage/featured-co
               });
             }
           }
-
         }
       });
     }
-
     onUnload() {
       this.swiper && this.swiper.destroy();
     }
-
   }
-
   registrySectionConstructor('featured-collection', FeatureCollectionSection);
   return _exports;
 }();

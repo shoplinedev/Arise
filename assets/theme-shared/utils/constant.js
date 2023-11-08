@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/constant.js'] = window.SLM['theme-shared/utils/constant.js'] || function () {
   const _exports = {};
   const SettleActionsEnum = {
@@ -50,5 +49,14 @@ window.SLM['theme-shared/utils/constant.js'] = window.SLM['theme-shared/utils/co
     ABANDONED_RISK_CONTROL: 'TRD_123768_B1409'
   };
   _exports.SERVER_ERROR_CODE = SERVER_ERROR_CODE;
+  const SAVE_FROM = {
+    EVENT: 'event',
+    STATION: 'station',
+    JUMP: 'jump',
+    PPINVALIDATE: 'paypal-invalidate',
+    CROSSFC: 'cross-fast-checkout',
+    CROSSSMARTPAYMENT: 'cross-smart-payment'
+  };
+  _exports.SAVE_FROM = SAVE_FROM;
   return _exports;
 }();

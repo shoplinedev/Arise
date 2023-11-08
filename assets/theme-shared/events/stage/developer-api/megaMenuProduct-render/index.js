@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/events/stage/developer-api/megaMenuProduct-render/index.js'] = window.SLM['theme-shared/events/stage/developer-api/megaMenuProduct-render/index.js'] || function () {
   const _exports = {};
   const apiLogger = window['SLM']['theme-shared/events/utils/api-logger.js'].default;
@@ -7,7 +6,6 @@ window.SLM['theme-shared/events/stage/developer-api/megaMenuProduct-render/index
   const EVENT_NAME = interiorEvent.MEGA_MENU_PRODUCT_RENDER;
   const logger = apiLogger(EVENT_NAME);
   const external = window.Shopline.event;
-
   const megaMenuProductRender = data => {
     logger.info(`[emit]`, data);
     return external.emit(EVENT_NAME, {
@@ -20,7 +18,6 @@ window.SLM['theme-shared/events/stage/developer-api/megaMenuProduct-render/index
       }
     });
   };
-
   megaMenuProductRender.apiName = EVENT_NAME;
   _exports.default = megaMenuProductRender;
   return _exports;

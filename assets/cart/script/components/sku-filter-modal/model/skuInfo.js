@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/components/sku-filter-modal/model/skuInfo.js'] = window.SLM['cart/script/components/sku-filter-modal/model/skuInfo.js'] || function () {
   const _exports = {};
   const statusConstant = window['SLM']['cart/script/components/sku-filter-modal/constant/status.js'].default;
-
   function unmarshalFromCartVerifyList(verifyList) {
     if (!verifyList || verifyList.length <= 0) return [];
     return verifyList.map(item => {
@@ -23,7 +21,6 @@ window.SLM['cart/script/components/sku-filter-modal/model/skuInfo.js'] = window.
       };
     });
   }
-
   _exports.default = {
     unmarshalFromCartVerifyList
   };

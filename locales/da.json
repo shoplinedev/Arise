@@ -104,7 +104,8 @@
       "view_cart": "Vis indkøbsvogn"
     },
     "next_step": {
-      "calculated_taxes_fees": "Skatter og forsendelse beregnet ved udlevering"
+      "calculated_taxes_fees": "Skatter og forsendelse beregnet ved udlevering",
+      "included_taxes_fees": "Moms inkluderet og fragt beregnes ved kassen"
     },
     "notices": {
       "change_password_after_verification": "Du kan ændre adgangskoden efter bekræftelse",
@@ -230,6 +231,7 @@
       "copy_success": "Kopieret kuponkode",
       "discount_title": "Aktivér konto og få rabatkoden",
       "normal_title": "Aktivér konto",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Abonner på e-mail for at modtage opdateringer, få adgang til eksklusive tilbud og meget mere.",
       "success_title": "Tillykke med at få en god rabat",
       "token_expired": "Linket er udløbet"
@@ -337,6 +339,7 @@
       "set_password": "Adgangskoden skal bestå af 6-18 tegn bestående af tal, store og små bogstaver",
       "sign__out": "Log af",
       "sign_in": "LOGGER PÅ",
+      "sign_in_activate": "Bekræftelseskoden er sendt til din konto {{account}}. Du kan få din konto aktiveret efter bekræftelse",
       "sign_up": "TILMELD DIG",
       "su": "Sø",
       "subscription_desc": "Få de seneste nyheder om butikken",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Tak for dit abonnement. Du kan tilmelde dig en bedre oplevelse."
     },
     "message": {
+      "format_error": "Meddelelsesformat understøttes ikke",
       "input_placeholder": "Er der noget, du vil efterlade en besked til?",
       "message": "Meddelelse",
       "send": "Send"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kategori"
     },
+    "facets": {
+      "in_stock_only": "Kun på lager",
+      "sort_button": "Sorter"
+    },
     "general": {
       "no_product_data_found": "Ingen produktdata fundet. Prøv igen senere",
       "sold_out": "Solgt Ud",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Køb i LOTTE",
       "go_to_yahoo_by_link": "Køb i Yahoo",
       "in_stock": "Lager tilgængelig",
+      "inventory_in_stock": "På lager",
+      "inventory_in_stock_show_count": "Lager: {{ quantity }} tilbage",
+      "inventory_low_stock": "Lavt lager:",
+      "inventory_low_stock_show_count": "Lavt lager: {{ quantity }} tilbage",
+      "inventory_out_of_stock": "Ikke på lager",
+      "inventory_out_of_stock_continue_selling": "På lager",
       "inventory_quantity": "Lagerantal",
       "leave_us_message": "Indtast din besked",
       "leave_us_message_get_back": "Lad os få en besked, og så vender vi tilbage til Dem så hurtigt som muligt",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} er blevet valgt",
       "from_price_html": "Fra {{price}}",
       "less": "mindre",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} af {{total}} elementer",
       "load_more_tip": "Indlæser flere varer",
       "more": "mere",
       "new_arrivals": "Ny ankomst",
@@ -612,7 +627,8 @@
       "save": "Rabat {{{priceDom}}}",
       "save_byjs": "Rabat {{priceDom}}",
       "save_ratio": "{{price}}% rabat",
-      "select_product_all_options": "Vælg produktstørrelse først!",
+      "select_product_all_options": "Den valgte produktvariant er ufuldstændig eller utilgængelig. Vælg venligst igen",
+      "sort_button": "Sorter",
       "top_sellers": "Mest populære sælgere",
       "more__product_num": "{{num}} Produkter",
       "one_product_num": "{{num}} Produkt",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Fortsæt med at shoppe",
       "more": "Mere",
+      "saved": "gemt",
       "total": "I alt",
       "total_sum": "I alt"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Serviceundtagelse, prøv igen senere",
       "error_message_2014": "Kontoen er i fare",
       "error_message_2016": "Kontoen er i fare",
+      "error_message_2020": "Systemet er optaget. Prøv igen senere",
       "error_message_3": "Service undtagelser",
       "error_message_3001": "Serviceundtagelse, prøv igen senere",
       "error_message_3002": "Brugere, der ikke er bundet til mobiltelefoner/postkasser, forsøger at ændre deres adgangskoder",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-mailen er bundet af andre konti",
       "error_message_3014": "Koden kunne ikke sendes",
       "error_message_3015": "Kontoen er aktiveret",
+      "error_message_3021": "Systemet er optaget. Prøv igen senere",
       "error_message_3022": "Linket er udløbet",
       "error_message_3023": "Linket er i det forkerte format",
       "error_message_3024": "Linket er ikke god.",
       "error_message_3026": "Fejl i kontoformat",
+      "error_message_3029": "Understøtter ikke aktivering af mobiltelefonnummer indtil videre",
       "error_message_4": "Service undtagelser",
       "error_message_5": "Service undtagelser",
       "error_message_6": "Service undtagelser",
       "error_message_7": "Adgangskoden skal bestå af 6-18 tegn bestående af tal, store og små bogstaver"
     },
-    "editorSwitchCountryTip": "Landeskift er ikke understøttet i editoren i øjeblikket"
+    "editorSwitchCountryTip": "Landeskift er ikke understøttet i editoren i øjeblikket",
+    "shopby": {
+      "button": {
+        "show": "Sikret og hurtigere"
+      }
+    }
   }
 }

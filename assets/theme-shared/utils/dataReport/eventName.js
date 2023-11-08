@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/dataReport/eventName.js'] = window.SLM['theme-shared/utils/dataReport/eventName.js'] || function () {
   const _exports = {};
   const EventNames = {

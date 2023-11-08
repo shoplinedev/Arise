@@ -1,7 +1,7 @@
-<!-- 当前选中的标签列表 -->
-{{assign 'currentUrl' (JSONparse (JSONstringify request.uri))}}
 
-{{!-- 移除 temp_hidding_filter 参数 --}}
+{{assign 'currentUrl' (JSONparse (json request.uri))}}
+
+
 {{#if tags.length '<=' 1}}
   {{#with currentUrl}}
     {{assign 'tempQuery' query}}
@@ -13,7 +13,7 @@
     {{/each}}
   {{/with}}
 {{/if}}
-{{!-- /移除 temp_hidding_filter 参数 --}}
+
 
 {{#if (isFalsey (isEmpty tags))}}
 <ul class="product_sidebar-activeTagList">

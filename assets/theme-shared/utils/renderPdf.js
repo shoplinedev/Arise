@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/renderPdf.js'] = window.SLM['theme-shared/utils/renderPdf.js'] || function () {
   const _exports = {};
   const PDFJS = window['pdfjs-dist']['/legacy/build/pdf']['*'];
@@ -10,21 +9,16 @@ window.SLM['theme-shared/utils/renderPdf.js'] = window.SLM['theme-shared/utils/r
     MB: 1024 * 1024
   };
   _exports.FILE_SIZE = FILE_SIZE;
-
   const isFunction = fn => {
     return typeof fn === 'function';
   };
-
   _exports.isFunction = isFunction;
-
   const canvasToBlob = (canvas, fileSize, callback) => {
     if (!canvas) {
-      console.error('canvas 为空！');
+      console.error('canvas is empty！');
       return;
     }
-
     let quality = 0.92;
-
     if (fileSize <= 5 * FILE_SIZE.MB) {
       quality = 1;
     } else if (fileSize > 5 * FILE_SIZE.MB && fileSize <= 10 * FILE_SIZE.MB) {
@@ -34,14 +28,11 @@ window.SLM['theme-shared/utils/renderPdf.js'] = window.SLM['theme-shared/utils/r
     } else {
       quality = 0.5;
     }
-
     canvas.toBlob(blob => {
       isFunction(callback) && callback(blob);
     }, 'image/jpeg', quality);
   };
-
   _exports.canvasToBlob = canvasToBlob;
-
   const getPdfPage = (pdfFile, pageNumber, context, fileSize, callback) => {
     pdfFile.getPage(pageNumber).then(page => {
       const viewport = page.getViewport({
@@ -64,14 +55,11 @@ window.SLM['theme-shared/utils/renderPdf.js'] = window.SLM['theme-shared/utils/r
       });
     });
   };
-
   _exports.getPdfPage = getPdfPage;
-
   const renderPdf = (file, callback) => {
     const fileSize = file.size;
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
-
     reader.onload = e => {
       const typedArray = new Uint8Array(e.target.result);
       const docTask = PDFJS.getDocument(typedArray);
@@ -87,7 +75,6 @@ window.SLM['theme-shared/utils/renderPdf.js'] = window.SLM['theme-shared/utils/r
       });
     };
   };
-
   _exports.renderPdf = renderPdf;
   return _exports;
 }();

@@ -104,7 +104,8 @@
       "view_cart": "Parādiet groza"
     },
     "next_step": {
-      "calculated_taxes_fees": "Nodokļi un piegāde aprēķināta kasē"
+      "calculated_taxes_fees": "Nodokļi un piegāde aprēķināta kasē",
+      "included_taxes_fees": "Iekļauts nodoklis, un piegāde tiek aprēķināta izrakstīšanās laikā"
     },
     "notices": {
       "change_password_after_verification": "Pēc verifikācijas varat mainīt paroli",
@@ -230,6 +231,7 @@
       "copy_success": "Kopēts kupona kodu",
       "discount_title": "Aktivizējiet kontu un saņemiet diskonta kodu",
       "normal_title": "Aktivizējiet kontu",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Abonējiet e-pastus, lai saņemtu atjauninājumus, piekļūtu ekskluzīviem piedāvājumiem un daudz ko citu.",
       "success_title": "Apsveicam ar lielas atlaides saņemšanu",
       "token_expired": "Saitē ir beidzies"
@@ -337,6 +339,7 @@
       "set_password": "Parolei jābūt 6-18 rakstzīmēm, kas sastāv no cipariem, lielajiem un mazajiem burtiem",
       "sign__out": "Izrakstīties",
       "sign_in": "Pierakstieties",
+      "sign_in_activate": "Uz jūsu kontu {{account}} ir nosūtīts verifikācijas kods. Pēc verifikācijas jūs varat aktivizēt savu kontu",
       "sign_up": "PIERAKSTĪŠANĀS",
       "su": "Sv",
       "subscription_desc": "Saņemiet jaunākās ziņas par veikalu",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Paldies par abonementu. Jūs varat reģistrēties, lai iegūtu labāku pieredzi."
     },
     "message": {
+      "format_error": "Ziņojuma formāts nav atbalstīts",
       "input_placeholder": "Vai ir kaut kas, ko vēlaties atstāt ziņu?",
       "message": "Ziņa",
       "send": "Lai nosūtītu"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kategorija"
     },
+    "facets": {
+      "in_stock_only": "Tikai noliktavā",
+      "sort_button": "Kārtot"
+    },
     "general": {
       "no_product_data_found": "Nav atrasti dati par produktu. Lūdzu, mēģiniet vēlreiz vēlāk",
       "sold_out": "Pārdevies",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Pērciet vietnē LOTTE",
       "go_to_yahoo_by_link": "Pērciet vietnē Yahoo",
       "in_stock": "Pieejamie krājumi",
+      "inventory_in_stock": "Krājumā",
+      "inventory_in_stock_show_count": "Krājumā: {{ quantity }} atlikums",
+      "inventory_low_stock": "Zems krājumā:",
+      "inventory_low_stock_show_count": "Zems krājumā: {{ quantity }} atlikums",
+      "inventory_out_of_stock": "Krājumā izsīkumu",
+      "inventory_out_of_stock_continue_selling": "Krājumā",
       "inventory_quantity": "Inventāra daudzums",
       "leave_us_message": "Lūdzu, ievadiet savu ziņojumu",
       "leave_us_message_get_back": "Lūdzu, atstājiet mums ziņojumu, un mēs jums atbildēsim, cik drīz vien iespējams",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} ir atlasīti",
       "from_price_html": "No {{price}}",
       "less": "mazāk",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} no {{total}} vienumiem",
       "load_more_tip": "Notiek citu vienumu ielāde",
       "more": "vairāk",
       "new_arrivals": "Jauna ierašanās",
@@ -612,7 +627,8 @@
       "save": "Atlaide {{{priceDom}}}",
       "save_byjs": "Atlaide {{priceDom}}",
       "save_ratio": "{{price}}% samazinājums",
-      "select_product_all_options": "Lūdzu, vispirms izvēlieties produkta izmēru !",
+      "select_product_all_options": "Atlasītā produkta variante ir nepilnīga vai nav pieejama. Lūdzu, izvēlieties vēlreiz",
+      "sort_button": "Kārtot",
       "top_sellers": "Karsti Pārdošanu",
       "more__product_num": "{{num}} Produktiem",
       "one_product_num": "{{num}} Produktu",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Turpināt iepirkties",
       "more": "Vairāk",
+      "saved": "saglabāts",
       "total": "Kopsumma",
       "total_sum": "Kopsumma"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Pakalpojuma izņēmums, mēģiniet vēlreiz vēlāk",
       "error_message_2014": "Konti ir apdraudēti",
       "error_message_2016": "Konti ir apdraudēti",
+      "error_message_2020": "Sistēma ir aizņemta, lūdzu, mēģiniet vēlreiz vēlāk",
       "error_message_3": "Pakalpojumu izņēmumi",
       "error_message_3001": "Pakalpojuma izņēmums, mēģiniet vēlreiz vēlāk",
       "error_message_3002": "Lietotāji, kas nav saistīti ar mobilajiem tālruņiem / pastkastēm, mēģina mainīt paroli",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-pasts ir saistīts ar citiem kontiem",
       "error_message_3014": "Neizdevās nosūtīt kodu",
       "error_message_3015": "Konts ir aktivizēts",
+      "error_message_3021": "Sistēma ir aizņemta, lūdzu, mēģiniet vēlreiz vēlāk",
       "error_message_3022": "Saitē ir beidzies",
       "error_message_3023": "Saitē ir nepareizā formātā",
       "error_message_3024": "Saitē nav labs",
       "error_message_3026": "Konta formāta kļūda",
+      "error_message_3029": "Pagaidām neatbalsta mobilā tālruņa numura aktivizēšanu",
       "error_message_4": "Pakalpojumu izņēmumi",
       "error_message_5": "Pakalpojumu izņēmumi",
       "error_message_6": "Pakalpojumu izņēmumi",
       "error_message_7": "Parolei jābūt 6-18 rakstzīmēm, kas sastāv no cipariem, lielajiem un mazajiem burtiem"
     },
-    "editorSwitchCountryTip": "Valstu pārslēgšana šobrīd redaktorā nav atbalstīta"
+    "editorSwitchCountryTip": "Valstu pārslēgšana šobrīd redaktorā nav atbalstīta",
+    "shopby": {
+      "button": {
+        "show": "Droši un ātrāk"
+      }
+    }
   }
 }

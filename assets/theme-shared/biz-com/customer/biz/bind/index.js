@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -10,7 +9,6 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['them
   const { reportBindPhoneToUserCenter, reportBindEmailToUserCenter } = window['SLM']['theme-shared/biz-com/customer/reports/bind.js'];
   const BindAccount = window['SLM']['theme-shared/biz-com/customer/biz/bind/account.js'].default;
   const { wrapArmorCaptcha } = window['SLM']['theme-shared/biz-com/customer/commons/captcha-modal/index.js'];
-
   class Bind extends Customer {
     constructor({
       id = 'customer-bind'
@@ -21,24 +19,21 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['them
       });
       this.$tips = null;
     }
-
     init() {
       this.$tips = $(`#${this.formId} .customer__tips`);
-      this.queryParams = { ...this.configs,
+      this.queryParams = {
+        ...this.configs,
         mode: this.query.mode
       };
       const params = this.UDBParams;
-
       if (params._method === 'pass') {
         this.initChangeAccountForm();
         return;
       }
-
       this.showAccountTips(super.formatterMask(params));
       this.initForm();
       this.bindEvents();
     }
-
     initForm() {
       const fields = this.getFieldConfigs();
       this.bindForm = new Form({
@@ -47,13 +42,11 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['them
         onSubmit: data => this.onSubmit(data)
       });
     }
-
     bindEvents() {
       $(`#${this.formId} .customer__footer-link .customer--link`).click(e => {
         this.backToUserCenter(e);
       });
     }
-
     backToUserCenter() {
       const {
         mode
@@ -64,7 +57,6 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['them
       };
       modeToReportEvent[mode] && modeToReportEvent[mode]();
     }
-
     getFieldConfigs() {
       const FIELD_TYPES = [{
         type: 'verifycode',
@@ -75,20 +67,19 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['them
       }];
       return getFormFields(FIELD_TYPES);
     }
-
     async sendVerifyCode() {
       const {
         type,
         mode
       } = this.queryParams;
       const params = this.UDBParams;
-
       if (type === 'member' && ['email', 'phone'].includes(mode)) {
         await wrapArmorCaptcha({
           onCaptureCaptcha: async captchaToken => {
             const {
               stoken: lastStoken
-            } = await sendUniversalVerificationCode({ ...params,
+            } = await sendUniversalVerificationCode({
+              ...params,
               captcha: captchaToken
             });
             super.updateToken(params, {
@@ -101,7 +92,6 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['them
         });
       }
     }
-
     showAccountTips(account) {
       const {
         mode
@@ -117,14 +107,12 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['them
     `);
       this.$tips.show();
     }
-
     async onSubmit(formValue = {}) {
       const {
         type,
         mode
       } = this.queryParams;
       const params = this.UDBParams;
-
       if (type === 'member' && ['email', 'phone'].includes(mode)) {
         const {
           stoken,
@@ -138,12 +126,9 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['them
         });
         this.verifyAccountSuccess(super.formatterMask(params));
       }
-
       this.initChangeAccountForm();
     }
-
     verifyAccountSuccess() {}
-
     initChangeAccountForm() {
       this.$tips.hide();
       $(`#${this.formId}-verify`).hide();
@@ -153,9 +138,7 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/index.js'] = window.SLM['them
         form: this
       });
     }
-
   }
-
   _exports.default = Bind;
   return _exports;
 }();

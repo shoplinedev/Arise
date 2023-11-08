@@ -1,7 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/tradeReport/const.js'] = window.SLM['theme-shared/utils/tradeReport/const.js'] || function () {
   const _exports = {};
+  const { ReportPageType } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const MINI_CART = 60006262;
   _exports.MINI_CART = MINI_CART;
   const HD_EVENT_NAME = {
@@ -37,7 +37,11 @@ window.SLM['theme-shared/utils/tradeReport/const.js'] = window.SLM['theme-shared
   const HdModule = {
     checkout: 112,
     couponCode: 118,
-    normal: -999
+    normal: -999,
+    [ReportPageType.productDetail]: 103,
+    [ReportPageType.Cart]: 104,
+    [ReportPageType.MiniCart]: 104,
+    [ReportPageType.checkout]: 104
   };
   _exports.HdModule = HdModule;
   const ActionType = {
@@ -51,8 +55,30 @@ window.SLM['theme-shared/utils/tradeReport/const.js'] = window.SLM['theme-shared
     checkout: 101,
     paypalBtn: 102,
     paylater: 129,
-    continueShopping: 146
+    continueShopping: 146,
+    fcButton: 108
   };
   _exports.HdComponent = HdComponent;
+  const HDPage = {
+    [ReportPageType.productDetail]: 101,
+    [ReportPageType.Cart]: 102,
+    [ReportPageType.MiniCart]: 103,
+    [ReportPageType.checkout]: 108
+  };
+  _exports.HDPage = HDPage;
+  const HDEventId = {
+    [ReportPageType.productDetail]: 7077,
+    [ReportPageType.Cart]: 7078,
+    [ReportPageType.MiniCart]: 7079,
+    [ReportPageType.checkout]: 7161
+  };
+  _exports.HDEventId = HDEventId;
+  const HDEventName = {
+    [ReportPageType.productDetail]: 'pdp_fc',
+    [ReportPageType.Cart]: 'cartPage_fc',
+    [ReportPageType.MiniCart]: 'miniCart_fc',
+    [ReportPageType.checkout]: 'fc_checkout_fc'
+  };
+  _exports.HDEventName = HDEventName;
   return _exports;
 }();

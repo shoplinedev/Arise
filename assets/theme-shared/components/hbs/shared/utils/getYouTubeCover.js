@@ -1,20 +1,15 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/shared/utils/getYouTubeCover.js'] = window.SLM['theme-shared/components/hbs/shared/utils/getYouTubeCover.js'] || function () {
   const _exports = {};
-
   const getYouTubeCover = videoResource => {
     if (typeof videoResource !== 'string') {
       return null;
     }
-
     const youTubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-
     const getYouTubeIdByVideoUrl = url => {
       const matches = url && url.match(youTubeRegex) || [];
       return matches[1];
     };
-
     const getVideoCover = videoId => {
       const coverUrlPrefix = `https://i.ytimg.com/vi/${videoId}`;
       return {
@@ -26,15 +21,12 @@ window.SLM['theme-shared/components/hbs/shared/utils/getYouTubeCover.js'] = wind
         videoId
       };
     };
-
     if (videoResource.indexOf('www.youtube.com') !== -1) {
       const videoId = getYouTubeIdByVideoUrl(videoResource);
       return getVideoCover(videoId);
     }
-
     return getVideoCover(videoResource);
   };
-
   _exports.default = getYouTubeCover;
   return _exports;
 }();

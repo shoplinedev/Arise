@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/templates/getCodeSelect.js'] = window.SLM['theme-shared/biz-com/customer/templates/getCodeSelect.js'] || function () {
   const _exports = {};
   const { countries, countriesCodeMap } = window['SLM']['theme-shared/biz-com/customer/constant/countries.js'];
   const CODE_SELECT_CLASS = 'form-item__codeSelect';
-
   _exports.default = defaultIso2 => {
     const optionStr = countries.map(({
       name,
@@ -27,6 +25,5 @@ window.SLM['theme-shared/biz-com/customer/templates/getCodeSelect.js'] = window.
     </div>
   `;
   };
-
   return _exports;
 }();

@@ -1,5 +1,4 @@
 ---
-# 商品列表
 products:
   limit: {{ section.settings.per_page_num }}
   cursor: {{ cond (isFalsey request.uri.query.loadMore) (cond section.settings.infinite_scroll 1 request.uri.query.page_num) request.uri.query.page_num }}
@@ -21,11 +20,36 @@ all_collections:
 {{assign 'infiniteScrollNeedLoadMore' (isTruthy request.uri.query.loadMore)}}
 {{assign 'child_category_list' (navigation_to_category all_collections navigations.head sortationId )}}
 {{assign 'subTitleShowType' section.settings.product_sub_title}}
+{{assign 'mobileListLayout' section.settings.mobile_list_layout }}
+{{assign 'urlMobileColumn' request.uri.query.mobile_grid_type }}
+{{assign 'validColumn' (arrayify (JSONparse '["1","2"]')) }}
+{{assign 'userHistoryListGrid' (cond (inArray validColumn urlMobileColumn) urlMobileColumn undefined) }}
+{{assign 'mobileGripType' (default userHistoryListGrid mobileListLayout) }}
 
 {{#if (isFalsey infiniteScrollNeedLoadMore) }}
   {{ preload_state 'products' }}
   {{ preload_state 'productSortation' }}
 {{/if}}
+ {{assign 'mb_padding_top' 20 }}
+{{#and (if section.settings.category_desc_position '===' 'top') (if (size sortation.sortation.description) '>' 0 )}}
+  {{assign 'mb_padding_top' 10 }}
+{{/and}}
+<style>
+    #shopline-section-{{section.id}} .section-gap {
+      padding-top: 25px;
+      padding-bottom: 0px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  @media (max-width: 749.98px) {
+    #shopline-section-{{section.id}} .section-gap {
+      padding-top: {{mb_padding_top}}px;
+      padding-bottom: 0px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+</style>
 
 {{#if (isFalsey infiniteScrollNeedLoadMore) }}
 <div id="collectionsAjaxInner">
@@ -68,13 +92,24 @@ all_collections:
                   </div>
                   {{#if section.settings.sorter_enable}}
                     <div class="product-list-sort-by">
-                      <div class="product-list-mobile-sort-by">
+                      <div class="product-list-mobile-sort-by body3">
                         {{snippet 'icons/icon_list_sort_by'}}
+                        <span>{{ t "products.facets.sort_button" }}</span>
                       </div>
                       {{snippet 'product/collections/collections-sort'}}
                     </div>
                   {{else}}
                     <div class="product_sort_by_placeHolder"></div>
+                  {{/if}}
+                  {{#if section.settings.mobile_show_style_switch}}
+                    <div class="d-flex d-md-none product-grid-select-container">
+                      <div class="product-grid-select {{cond (boolean mobileGripType '==' '2') 'active' : ''}}" data-column="2">
+                        {{snippet 'icons/icon_2_column'}}
+                      </div>
+                      <div class="product-grid-select {{cond (boolean mobileGripType '==' '1') 'active' : ''}}" data-column="1">
+                        {{snippet 'icons/icon_1_column'}}
+                      </div>
+                    </div>
                   {{/if}}
                 </div>
               </div>
@@ -82,7 +117,7 @@ all_collections:
 
             <div class="product-list-item-list" data-ssr-product-list-top>
               {{#if (boolean products.list.length '>' 0)}}
-                {{snippet 'product/commons/product-item-list' subTitleShowType=subTitleShowType listClassName="product-infinite-list-container" infiniteScroll=infiniteScroll effectPage="productList" gripType=gripType className='__sl-custom-track-product-list-item' colNum=itemNumByRow listData=slice_products_list pageSize=calc_page_size pageNum=products.pageNum total=products.total }}
+                {{snippet 'product/commons/product-item-list' subTitleShowType=subTitleShowType listClassName="product-infinite-list-container" infiniteScroll=infiniteScroll effectPage="productList" gripType=gripType className='__sl-custom-track-product-list-item' colNum=itemNumByRow listData=slice_products_list pageSize=calc_page_size pageNum=products.pageNum total=products.total mbColNum=mobileGripType }}
               {{else}}
                 <span class="body3">{{t "products.product_list.no_product"}}</span>
               {{/if}}
@@ -115,7 +150,7 @@ all_collections:
     </div>
   </div>
 
-  {{!-- 推荐商品 --}}
+
   {{snippet 'product/product-recommend' }}
 </div>
 {{else}}
@@ -160,6 +195,28 @@ all_collections:
       "min": 8,
       "max": 48,
       "step": 4
+    },
+    {
+      "type": "select",
+      "id": "mobile_list_layout",
+      "label": "t:sections.product_collections_collection-page.settings.mobile_list_layout.label",
+      "options": [
+        {
+          "value": 1,
+          "label": "t:sections.product_collections_collection-page.settings.mobile_list_layout.options__0.label"
+        },
+        {
+          "value": 2,
+          "label": "t:sections.product_collections_collection-page.settings.mobile_list_layout.options__1.label"
+        }
+      ],
+      "default": 2
+    },
+    {
+      "type": "switch",
+      "id": "mobile_show_style_switch",
+      "label": "t:sections.product_collections_collection-page.settings.mobile_show_style_switch.label",
+      "default": false
     },
     {
       "type": "switch",

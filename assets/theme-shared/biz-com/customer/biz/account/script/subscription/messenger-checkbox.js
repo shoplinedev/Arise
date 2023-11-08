@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messenger-checkbox.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messenger-checkbox.js'] || function () {
   const _exports = {};
   const fb = window['SLM']['theme-shared/biz-com/customer/biz/account/script/subscription/facebookSDK/index.js'].default;
@@ -17,7 +16,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
     skin=""
   </div>
 `;
-
   class Messenger {
     constructor() {
       this.fbProps = {};
@@ -30,7 +28,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
       this.$messengerPlugin = null;
       this.init();
     }
-
     init() {
       const {
         co_background_color
@@ -40,7 +37,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
         const buyerId = data && data.buyerInfo && data.buyerInfo.buyerId;
         const configPage = data && data.basicInfo && data.basicInfo.configPage;
         const step = data && data.basicInfo && data.basicInfo.step;
-
         if (buyerId && buyerId !== this.uid && (configPage === 1 || configPage === 3 && step === 'contact_information')) {
           this.uid = buyerId;
           getBdApiInfo(this.uid).then(({
@@ -51,30 +47,24 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
               this.$messengerPlugin = null;
               window.FB.Event.unsubscribe('messenger_checkbox', this.handleResponse);
             }
-
             if (data.bdApiStatus !== 1 || data.subscribeStatus === 1) {
               return false;
             }
-
             this.fbProps = {
               appId: data.appId,
               userRef: `${this.uid}-${new Date().getTime()}`,
               pageId: data.pageId
             };
             this.renderHtml();
-
             this.handleResponse = e => {
               if (e.event === 'rendered') {} else if (e.event === 'checkbox') {
                 this.checkboxState = e.state;
               } else if (e.event === 'not_you') {} else if (e.event === 'hidden') {}
             };
-
             this.initFb();
           });
         }
-
         const action = data && data.extraDetailInfo && data.extraDetailInfo.action;
-
         if ((action === 'create_order_check' || action === 'next_step') && !this.hasSubmit && this.checkboxState === 'checked') {
           window.FB.CheckboxPlugin.confirm({
             app_id: this.fbProps.appId,
@@ -86,7 +76,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
         }
       });
     }
-
     initFb() {
       this.fb = fb.init({
         appId: this.fbProps.appId,
@@ -96,7 +85,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
         window.FB.Event.subscribe('messenger_checkbox', this.handleResponse);
       });
     }
-
     renderHtml() {
       const $messengerPlugin = $(MESSENGER_PLUGIN);
       $messengerPlugin.attr('messenger_app_id', this.fbProps.appId);
@@ -107,9 +95,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
       this.$messenger.append($messengerPlugin);
       this.$messengerPlugin = $messengerPlugin;
     }
-
   }
-
   _exports.default = new Messenger();
   return _exports;
 }();

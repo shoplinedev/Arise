@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/search/report.js'] = window.SLM['product/search/report.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -13,7 +12,6 @@ window.SLM['product/search/report.js'] = window.SLM['product/search/report.js'] 
   const productItemSelector = '.__sl-custom-track-product-item-search';
   const hdReport = new SearchItemReport();
   const hdItemReport = new ProductItemReport();
-
   function startReport() {
     const {
       exitPageExposure,
@@ -41,7 +39,6 @@ window.SLM['product/search/report.js'] = window.SLM['product/search/report.js'] 
     });
     searchHdReport();
   }
-
   function searchHdReport() {
     let productList = SL_State.get('products.list');
     productList = productList !== undefined ? productList : null;
@@ -64,7 +61,8 @@ window.SLM['product/search/report.js'] = window.SLM['product/search/report.js'] 
           component: 101,
           action_type: 101
         },
-        productInfo: { ...product,
+        productInfo: {
+          ...product,
           index
         },
         extInfo: {
@@ -73,7 +71,6 @@ window.SLM['product/search/report.js'] = window.SLM['product/search/report.js'] 
       });
     });
   }
-
   function bindEventReport(event) {
     let searchRequest = SL_State.get('request');
     searchRequest = searchRequest !== undefined ? searchRequest : null;
@@ -93,7 +90,6 @@ window.SLM['product/search/report.js'] = window.SLM['product/search/report.js'] 
       });
     });
   }
-
   startReport();
   return _exports;
 }();

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/product/product-quickAddCart.js'] = window.SLM['theme-shared/report/product/product-quickAddCart.js'] || function () {
   const _exports = {};
   const { BaseReport } = window['SLM']['theme-shared/report/common/baseReport.js'];
@@ -14,7 +13,6 @@ window.SLM['theme-shared/report/product/product-quickAddCart.js'] = window.SLM['
     105: 101,
     115: 103
   };
-
   class ProductQuickAddCart extends BaseReport {
     quickAddCartView(reportData) {
       validParams(reportData);
@@ -51,7 +49,6 @@ window.SLM['theme-shared/report/product/product-quickAddCart.js'] = window.SLM['
         customParams: params
       });
     }
-
     async btnAddToCart(reportData) {
       validParams(reportData);
       const TypeMap = {
@@ -76,7 +73,6 @@ window.SLM['theme-shared/report/product/product-quickAddCart.js'] = window.SLM['
       };
       super.collect(params);
     }
-
     itemAddToCart(reportData) {
       validParams(reportData);
       const {
@@ -105,9 +101,7 @@ window.SLM['theme-shared/report/product/product-quickAddCart.js'] = window.SLM['
       };
       super.collect(params);
     }
-
   }
-
   _exports.default = ProductQuickAddCart;
   return _exports;
 }();

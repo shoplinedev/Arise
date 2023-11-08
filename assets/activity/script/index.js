@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['activity/script/index.js'] = window.SLM['activity/script/index.js'] || function () {
   const _exports = {};
   const dayjs = window['dayjs']['default'];
@@ -16,16 +15,13 @@ window.SLM['activity/script/index.js'] = window.SLM['activity/script/index.js'] 
   const initSortSelector = window['SLM']['activity/script/sort-selector.js'].default;
   const nc = nullishCoalescingOperator;
   const EVENT_ID = '60080000';
-
   function hdReport(options) {
     get_func(window, 'HdSdk.shopTracker.report').exec(EVENT_ID, options);
   }
-
   function promotionTimeInit() {
     const node = get($('.activity__limit-time-text'), [0]);
     if (!node) return;
     const activity = SL_State.get('activity');
-
     if (get(activity, 'promotionSubType') === 1) {
       const startTimeText = activity.startTime && dayjs(activity.startTime).format('YYYY-MM-DD HH:mm');
       const endTimeText = activity.endTime && dayjs(activity.endTime).format('YYYY-MM-DD HH:mm');
@@ -33,7 +29,6 @@ window.SLM['activity/script/index.js'] = window.SLM['activity/script/index.js'] 
       if (get_func($(node).html(), 'trim').exec() !== timeText) $(node).html(timeText);
     }
   }
-
   function countdownInit() {
     const activity = SL_State.get('activity');
     const {
@@ -59,19 +54,16 @@ window.SLM['activity/script/index.js'] = window.SLM['activity/script/index.js'] 
       toast.open(t('sales.general.coupon_code_copied'));
     });
     const now = Date.now();
-
     if (hourEle && minuteEle && secondEle && showCountDown && bannerActivated && endTime && now < endTime) {
       countdown(endTime, ([d, h, m, s], interval) => {
         get_func(dayEle, 'html').exec(d);
         get_func(hourEle, 'html').exec(h);
         get_func(minuteEle, 'html').exec(m);
         get_func(secondEle, 'html').exec(s);
-
         if (d === '0') {
           get_func(dayEle, 'hide').exec();
           get_func(daySplitEle, 'hide').exec();
         }
-
         if (interval <= 0) {
           get_func(countDownCon, 'hide').exec();
         }
@@ -81,7 +73,6 @@ window.SLM['activity/script/index.js'] = window.SLM['activity/script/index.js'] 
       });
     }
   }
-
   $(document).ready(() => {
     init();
     countdownInit();
@@ -93,7 +84,6 @@ window.SLM['activity/script/index.js'] = window.SLM['activity/script/index.js'] 
       const amountNode = $('[data-amount]');
       amountNode.each(function () {
         const amount = $(this).data('amount');
-
         if (amount) {
           $(this).html(convertFormat(amount));
         }
@@ -111,7 +101,6 @@ window.SLM['activity/script/index.js'] = window.SLM['activity/script/index.js'] 
       event_id: 1020
     });
   });
-
   (function () {
     window.setInterval(() => {
       get_func(window, 'HdSdk.shopTracker.collect').exec({
@@ -123,6 +112,5 @@ window.SLM['activity/script/index.js'] = window.SLM['activity/script/index.js'] 
       });
     }, 1000);
   })();
-
   return _exports;
 }();

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-shared/report/stage/sectionReport.js'] || function () {
   const _exports = {};
   const { hdProductItemSelect, hdProductItemView } = window['SLM']['theme-shared/report/product/product-item.js'];
@@ -7,29 +6,26 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
   const { StageReport } = window['SLM']['theme-shared/report/stage/index.js'];
   const { sectionTypeEnum, virtualPageEnum } = window['SLM']['theme-shared/report/stage/const.js'];
   const { initCollectionItemReport, collectionItemCls } = window['SLM']['theme-shared/report/product/collection-item.js'];
-
   class SectionReport extends StageReport {
     constructor(sectionList) {
       super();
-      this.defaultParams = { ...this.defaultParams,
+      this.defaultParams = {
+        ...this.defaultParams,
         module: 900,
         component: 900,
         page: virtualPageEnum.dynamicSection
       };
       this.sectionList = sectionList || [];
     }
-
     init() {
       const instance = this;
       this.sectionList.forEach(type => {
         const method = instance[`${type}-report`];
-
         if (method) {
           method.call(instance);
         }
       });
     }
-
     bindSectionExpose({
       selector,
       type,
@@ -43,7 +39,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     bindSectionClick({
       selector,
       type,
@@ -59,7 +54,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         customHandler
       });
     }
-
     bindSectionFallbackClick({
       wrapperSel,
       targetSel,
@@ -77,7 +71,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     'slideshow-report'() {
       const type = 'slideshow';
       this.bindSectionExpose({
@@ -91,7 +84,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         fallbackSel: '.__sl-custom-track-stage-slideshow-wrapper'
       });
     }
-
     'collection-list-report'() {
       const type = 'collection-list';
       const wrapSel = '.__sl-custom-track-stage-colletionlist';
@@ -111,7 +103,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     'custom-html-report'() {
       const type = 'custom-html';
       this.bindSectionExpose({
@@ -119,7 +110,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-customHtml'
       });
     }
-
     'faqs-report'() {
       const type = 'faqs';
       this.bindSectionExpose({
@@ -127,7 +117,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-faqs'
       });
     }
-
     'featured-collection-report'() {
       const type = 'featured-collection';
       this.bindSectionExpose({
@@ -142,7 +131,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     'image-with-text-report'() {
       const type = 'image-with-text';
       this.bindSectionExpose({
@@ -154,7 +142,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-imageWithText-button'
       });
     }
-
     'large-image-with-text-box-report'() {
       const type = 'large-image-with-text-box';
       this.bindSectionExpose({
@@ -168,7 +155,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         fallbackSel: '.__sl-custom-track-stage-largeImageWithText'
       });
     }
-
     'logo-list-report'() {
       const type = 'logo-list';
       this.bindSectionExpose({
@@ -180,7 +166,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-logoList-item'
       });
     }
-
     'text-columns-with-images-report'() {
       const type = 'text-columns-with-images';
       this.bindSectionExpose({
@@ -192,7 +177,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-textColumnsWithImages-item'
       });
     }
-
     'video-report'() {
       const type = 'video';
       this.bindSectionExpose({
@@ -200,7 +184,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-video'
       });
     }
-
     'featured-product-report'() {
       const type = 'featured-product';
       this.bindSectionExpose({
@@ -208,7 +191,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-featuredProduct'
       });
     }
-
     'rich-text-report'() {
       const type = 'rich-text';
       this.bindSectionExpose({
@@ -220,7 +202,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-richText-button'
       });
     }
-
     'sign-up-and-save-report'() {
       const type = 'sign-up-and-save';
       this.bindSectionExpose({
@@ -236,7 +217,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-newsletter-button'
       });
     }
-
     'icon-list-report'() {
       const type = 'icon-list';
       this.bindSectionExpose({
@@ -248,7 +228,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-iconList-item'
       });
     }
-
     'promotion-grid-report'() {
       const type = 'promotion-grid';
       this.bindSectionExpose({
@@ -266,7 +245,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-promotionGrid-item'
       });
     }
-
     'split-slideshow-report'() {
       const type = 'split-slideshow';
       this.bindSectionExpose({
@@ -280,7 +258,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         fallbackSel: '.__sl-custom-track-stage-splitSlideshow-wrapper'
       });
     }
-
     'grid-report'() {
       const type = 'grid';
       this.bindSectionExpose({
@@ -292,7 +269,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-grid-item'
       });
     }
-
     'mosaic-report'() {
       const type = 'mosaic';
       this.bindSectionExpose({
@@ -304,7 +280,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-mosaic-item'
       });
     }
-
     'multilevel-filter-report'() {
       const type = 'multilevel-filter';
       this.bindSectionExpose({
@@ -316,7 +291,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-multilevelFilter-button'
       });
     }
-
     'shoppable-image-report'() {
       const type = 'shoppable-image';
       this.bindSectionExpose({
@@ -354,7 +328,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         });
       });
     }
-
     'testimonials-report'() {
       const type = 'testimonials';
       this.bindSectionExpose({
@@ -362,7 +335,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-testimonials'
       });
     }
-
     'timeline-report'() {
       const type = 'timeline';
       this.bindSectionExpose({
@@ -370,7 +342,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-timeline'
       });
     }
-
     'blog-report'() {
       const type = 'blog';
       this.bindSectionExpose({
@@ -382,7 +353,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-blog-item'
       });
     }
-
     'contact-form-report'() {
       const type = 'contact-form';
       this.bindSectionExpose({
@@ -394,7 +364,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-contactForm-button'
       });
     }
-
     'image-banner-report'() {
       const type = 'image-banner';
       this.bindSectionExpose({
@@ -406,7 +375,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-imageBanner-button'
       });
     }
-
     'multi-media-splicing-report'() {
       const type = 'multi-media-splicing';
       const wrapSel = '.__sl-custom-track-stage-multiMediaSplicing';
@@ -440,7 +408,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     'custom-page-report'() {
       const type = 'custom-page';
       this.bindSectionExpose({
@@ -448,7 +415,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-customPage'
       });
     }
-
     'map-report'() {
       const type = 'map';
       this.bindSectionExpose({
@@ -460,7 +426,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-map-button'
       });
     }
-
     'carousel-collection-list-report'() {
       const type = 'carousel-collection-list';
       this.bindSectionExpose({
@@ -472,7 +437,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-carouselCollectionList-item'
       });
     }
-
     'carousel-images-with-text-report'() {
       const type = 'carousel-images-with-text';
       this.bindSectionExpose({
@@ -484,7 +448,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-carouselImagesWithText-button'
       });
     }
-
     'featured-logo-list-report'() {
       const type = 'featured-logo-list';
       this.bindSectionExpose({
@@ -492,7 +455,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-featuredLogoList'
       });
     }
-
     'collection-with-image-report'() {
       const type = 'collection-with-image';
       this.bindSectionExpose({
@@ -511,7 +473,6 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     'offers-report'() {
       const type = 'offers';
       this.bindSectionExpose({
@@ -519,9 +480,7 @@ window.SLM['theme-shared/report/stage/sectionReport.js'] = window.SLM['theme-sha
         selector: '.__sl-custom-track-stage-offers'
       });
     }
-
   }
-
   _exports.SectionReport = SectionReport;
   return _exports;
 }();

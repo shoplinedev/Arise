@@ -1,12 +1,10 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/product/search-item.js'] = window.SLM['theme-shared/report/product/search-item.js'] || function () {
   const _exports = {};
   const { validParams } = window['SLM']['theme-shared/report/product/utils/index.js'];
   const { BaseReport } = window['SLM']['theme-shared/report/common/baseReport.js'];
   const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
   const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
-
   class SearchItemReport extends BaseReport {
     searchResults(reportData) {
       validParams(reportData);
@@ -38,7 +36,6 @@ window.SLM['theme-shared/report/product/search-item.js'] = window.SLM['theme-sha
         customParams: productsInfoParams
       });
     }
-
     itemSelect(reportData) {
       validParams(reportData);
       const {
@@ -61,7 +58,8 @@ window.SLM['theme-shared/report/product/search-item.js'] = window.SLM['theme-sha
         position: index + 1,
         status: status ? 102 : 101
       };
-      const params = { ...productInfoParams,
+      const params = {
+        ...productInfoParams,
         ...extInfo
       };
       super.selectContent({
@@ -69,9 +67,7 @@ window.SLM['theme-shared/report/product/search-item.js'] = window.SLM['theme-sha
         customParams: params
       });
     }
-
   }
-
   _exports.default = SearchItemReport;
   return _exports;
 }();

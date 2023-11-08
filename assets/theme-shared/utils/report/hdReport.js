@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/report/hdReport.js'] = window.SLM['theme-shared/utils/report/hdReport.js'] || function () {
   const _exports = {};
   const Cookies = window['js-cookie']['default'];
@@ -11,7 +10,6 @@ window.SLM['theme-shared/utils/report/hdReport.js'] = window.SLM['theme-shared/u
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   dayjs.extend(utc);
   dayjs.extend(timezone);
-
   class HdReport {
     constructor() {
       this.deviceInfo = null;
@@ -20,15 +18,12 @@ window.SLM['theme-shared/utils/report/hdReport.js'] = window.SLM['theme-shared/u
       } = geEnv();
       const Shopline = window.Shopline || {};
       let env = APP_ENV !== 'develop' ? 'product' : '';
-
       if (APP_ENV === 'preview') {
         env = APP_ENV;
       }
-
       if (Shopline.designMode) {
         env = '';
       }
-
       const debugMode = Shopline.designMode ? false : APP_ENV === 'staging' || APP_ENV === 'develop';
       const pid = window.__PRELOAD_STATE__ ? window.__PRELOAD_STATE__.serverEventId : undefined;
       const timeOffset = Shopline.systemTimestamp ? +new Date() - Shopline.systemTimestamp : 0;
@@ -46,7 +41,6 @@ window.SLM['theme-shared/utils/report/hdReport.js'] = window.SLM['theme-shared/u
           if (!that.deviceInfo && window.__DF__) {
             that.deviceInfo = await window.__DF__.getDeviceInfo();
           }
-
           const warpData = {
             theme_id: SL_State.get('themeConfig.themeId'),
             store_region: SL_State.get('storeInfo.marketStorageRegion'),
@@ -63,11 +57,9 @@ window.SLM['theme-shared/utils/report/hdReport.js'] = window.SLM['theme-shared/u
             trade_logger_id: sessionId.get(),
             ...data
           };
-
           if (!Object.prototype.hasOwnProperty.call(data, 'iframe_id') || Number(data.iframe_id) === 1) {
             warpData.iframe_id = Cookies.get('n_u') || Cookies.get('sl_iframe_id');
           }
-
           return warpData;
         }
       });
@@ -93,30 +85,23 @@ window.SLM['theme-shared/utils/report/hdReport.js'] = window.SLM['theme-shared/u
           return `${str}:${act}_${obj[act].join(',')}`;
         }, '').slice(1);
         const tempUrl = `${enhancedUrl}&_act=${joinStr}`;
-
         if (USE_REPORT_URL_STORE_IDS && USE_REPORT_URL_STORE_IDS.some(id => id === Shopline.storeId || id === 'all')) {
           if (tempUrl.indexOf('n.gif') !== -1) {
             return tempUrl.replace('/eclytics/n.gif', '/eclytics/i');
           }
-
           if (tempUrl.indexOf('o.gif') !== -1) {
             return tempUrl.replace('/eclytics/o.gif', '/eclytics/c');
           }
         }
-
         return tempUrl;
       });
     }
-
   }
-
   const hidooRp = window.SL_Report ? window.SL_Report.hdReportInstance || new HdReport() : undefined;
-
   if (!window.SL_Report || !window.SL_Report.hdReportInstance) {
     window.SL_Report = window.SL_Report || {};
     window.SL_Report.hdReportInstance = hidooRp;
   }
-
   _exports.hidooRp = hidooRp;
   _exports.HdReport = HdReport;
   return _exports;

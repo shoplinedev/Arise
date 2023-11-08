@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/sign-up/policy.js'] = window.SLM['theme-shared/biz-com/customer/biz/sign-up/policy.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -18,7 +17,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/policy.js'] = window.SLM['
     [privacyPolicyPath]: 'customer.register.privacy_policy',
     [termsOfService]: 'customer.register.terms_of_service'
   };
-
   class Policy {
     constructor({
       formId,
@@ -36,12 +34,10 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/policy.js'] = window.SLM['
       this.policyPagesContent = {};
       const policyList = window && window.SL_State && window.SL_State.get('policyList');
       this.userPolicyPages = intersectionBy(policyList, userPolicyPagesKey, 'customizePath');
-
       if (this.userPolicyPages.length > 0) {
         this.init();
       }
     }
-
     init() {
       this.modal = new ModalWithHtml({
         modalId: `${this.formId}-modal`,
@@ -52,16 +48,13 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/policy.js'] = window.SLM['
       this.getPolicyListContent();
       this.bindCustomerPolicy();
     }
-
     getPolicyListContent() {
       const {
         userPolicyPages
       } = this;
-
       if (!userPolicyPages || userPolicyPages.length < 1) {
         return;
       }
-
       const requests = userPolicyPages.map(({
         id
       }) => getPolicyPageContent({
@@ -75,13 +68,11 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/policy.js'] = window.SLM['
         }, {});
       });
     }
-
     onCheckAgreement(value) {
       if (value) {
         this.$$reports && this.$$reports.reportCheckAgreement && this.$$reports.reportCheckAgreement();
       }
     }
-
     clickPolicyReport(path) {
       if (path === privacyPolicyPath) {
         this.$$reports && this.$$reports.reportClickPrivacyPolicy && this.$$reports.reportClickPrivacyPolicy();
@@ -89,7 +80,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/policy.js'] = window.SLM['
         this.$$reports && this.$$reports.reportClickTermsService && this.$$reports.reportClickTermsService();
       }
     }
-
     bindCustomerPolicy() {
       this.$policy.on('click', '.sign-up__link', e => {
         e.stopPropagation();
@@ -101,19 +91,15 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/policy.js'] = window.SLM['
         this.modal.show();
       });
     }
-
     checkAgreePolicy({
       policy
     }) {
       if (this.userPolicyPages.length > 0 && !policy) {
         return false;
       }
-
       return true;
     }
-
   }
-
   _exports.default = Policy;
   return _exports;
 }();

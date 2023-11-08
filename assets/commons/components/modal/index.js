@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/components/modal/index.js'] = window.SLM['commons/components/modal/index.js'] || function () {
   const _exports = {};
   const { default: _default } = window['SLM']['commons/components/modal/lite.js'];

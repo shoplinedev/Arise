@@ -5,8 +5,8 @@
 
 <script>
   window.__I18N__ = window.__I18N__ || {};
-  window.__I18N__['customer'] = {{{ JSONstringify (t 'customer') }}}
-  window.__I18N__['unvisiable'] = {{{ JSONstringify (t 'unvisiable') }}}
+  window.__I18N__['customer'] = {{{ json (t 'customer') }}}
+  window.__I18N__['unvisiable'] = {{{ json (t 'unvisiable') }}}
 </script>
 
 <div class="login-modal" id="login-modal-container">
@@ -14,10 +14,10 @@
     <div class="login-modal__tabs">
       <div class="login-modal__tab-item active" data-type="login">
         <span>{{ t 'customer.general.sign_in' }}</span>
-      </div> 
+      </div>
       <div class="login-modal__tab-item" data-type="register">
         <span>{{ t 'customer.general.sign_up' }}</span>
-      </div> 
+      </div>
     </div>
   {{/if}}
 
@@ -32,43 +32,24 @@
 {{#if request.uri.query.fromTemplateAlias '===' 'Checkout'}}
   <script src="{{ assets_url 'global-vendors.min.js' }}" defer="defer"></script>
 {{/if}}
-{{!-- type 设置为 text/sl-javascript 防止 jquery 执行 js --}}
+
 <!-- customer/login-modal/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/lodash.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/url.rlp.min.js'
-      'vendors/querystring.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/dayjs.rlp.min.js'
-      'vendors/scroll-lock.rlp.min.js'
-      'vendors/air-datepicker.rlp.min.js'
-      'vendors/rolldate.rlp.min.js'
-      type="text/sl-javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/lodash.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/url.min.js'
-      'vendors/querystring.min.js'
-      'vendors/eventemitter3.min.js'
-      'vendors/js-cookie.min.js'
-      'vendors/uuid.min.js'
-      'vendors/dayjs.min.js'
-      'vendors/scroll-lock.min.js'
-      'vendors/air-datepicker.min.js'
-      'vendors/rolldate.min.js'
-      type="text/sl-javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/lodash.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/url.min.js'
+    'vendors/querystring.min.js'
+    'vendors/eventemitter3.min.js'
+    'vendors/js-cookie.min.js'
+    'vendors/uuid.min.js'
+    'vendors/dayjs.min.js'
+    'vendors/scroll-lock.min.js'
+    'vendors/air-datepicker.min.js'
+    'vendors/rolldate.min.js'
+    type="text/sl-javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/syntax-patch.js'
     'theme-shared/utils/i18n.js'

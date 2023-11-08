@@ -1,7 +1,7 @@
 
-{{!-- 传入参数：collectionData 分类列表数据 --}}
+
 {{assign '_collections' (cond (isArray collectionData) collectionData (JSONparse '[]'))}}
-{{!-- 传入参数：colNum 展示列数 --}}
+
 {{assign '_col' (default colNum 3)}}
 {{assign '_mb_col' (default mbColNum 1)}}
 

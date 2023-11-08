@@ -20,6 +20,10 @@
           "options__3": {
             "label": "Beralih ke atas dan bawah"
           }
+        },
+        "show_social_media": {
+          "label": "Tampilkan media sosial",
+          "info": "Jika tata letak papan buletin kompak / ubin, media sosial tidak pernah ditampilkan"
         }
       },
       "blocks": {
@@ -174,6 +178,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "collection_image_shape": {
+          "label": "Bentuk gambar kategori",
+          "options__0": {
+            "label": "Bentuk persegi"
+          },
+          "options__1": {
+            "label": "Bentuk lingkaran"
           }
         },
         "color_scheme": {
@@ -428,6 +441,9 @@
         "button_text": {
           "label": "Tulisan tombol",
           "info": "Jika \"jumlah produk maksimal\" kecil dan sama kategori ini"
+        },
+        "button_follow_endof_list": {
+          "label": "Tombol tampilan port seluler lainnya ditampilkan di akhir daftar"
         },
         "group_header__1": {
           "label": "Gambar produk"
@@ -734,10 +750,10 @@
           }
         },
         "media_icon_width": {
-          "label": "Lebar ikon"
+          "label": "Lebar ikon di PC"
         },
         "media_icon_padding": {
-          "label": "Penspasian ikon"
+          "label": "Penspasian ikon di PC"
         },
         "group_header__3": {
           "label": "Tambah isi"
@@ -813,10 +829,10 @@
               "label": "Judul"
             },
             "block_media_icon_width": {
-              "label": "Lebar ikon"
+              "label": "Lebar ikon di PC"
             },
             "block_media_icon_padding": {
-              "label": "Penspasian ikon"
+              "label": "Penspasian ikon di PC"
             }
           }
         },
@@ -1172,6 +1188,14 @@
             "label": "LOGO berada di tengah, menu ganti baris"
           }
         },
+        "mobile_top_menu": {
+          "label": "Memindahkan menu atas di port seluler",
+          "info": "Setelah konfigurasi, menu akan diperbaiki di bagian bawah tajuk halaman port seluler, dapat menggeser ke kiri dan kanan untuk mengganti tampilan"
+        },
+        "mobile_top_menu_show_home": {
+          "label": "Menu atas hanya muncul di beranda",
+          "info": "Menu Atas konfigurasi hanya akan ditampilkan di halaman beranda"
+        },
         "mega_menu_images": {
           "label": "Tampilkan gambar super-menu",
           "info": "[Lihat cara menyiapkan tutorial Super-Menu](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)"
@@ -1189,6 +1213,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "user_mobile_layout": {
+          "label": "Lokasi pusat pribadi port seluler",
+          "options__0": {
+            "label": "Tampilkan di beranda"
+          },
+          "options__1": {
+            "label": "Ditampilkan di bilah menu"
           }
         },
         "header_style": {
@@ -1213,6 +1246,27 @@
         },
         "show_user_entry": {
           "label": "Tampilkan pintu masuk pusat pripadi"
+        },
+        "hover_show_user_menu": {
+          "label": "Ikon pusat pribadi port PC, menampilkan kotak drop-down"
+        },
+        "user_menu_text_1": {
+          "label": "Teks tarik-turun 1"
+        },
+        "user_menu_link_1": {
+          "label": "Link tarik-turun 1"
+        },
+        "user_menu_text_2": {
+          "label": "Teks tarik-turun 2"
+        },
+        "user_menu_link_2": {
+          "label": "Link tarik-turun 2"
+        },
+        "user_menu_text_3": {
+          "label": "Teks tarik-turun 3"
+        },
+        "user_menu_link_3": {
+          "label": "Link tarik-turun 3"
         },
         "show_cart_entry": {
           "label": "Tampilkan pintu masuk troli"
@@ -2152,6 +2206,12 @@
         "banner_image_mobile": {
           "label": "Port seluler banner"
         },
+        "pc_collection_img_height": {
+          "label": "Tinggi grafik klasifikasi port PC"
+        },
+        "md_collection_img_height": {
+          "label": "Tinggi peta klasifikasi port seluler"
+        },
         "parallax_scroll": {
           "label": "Paralaks bergulir",
           "info": "Aktifkan efek paralaks akan memotong beberapa gambar untuk mencapai efeknya"
@@ -2173,6 +2233,18 @@
         },
         "per_page_num": {
           "label": "Jumlah produk setiap halaman"
+        },
+        "mobile_list_layout": {
+          "label": "Port seluler menampilkan tata letak secara default",
+          "options__0": {
+            "label": "1 kolom"
+          },
+          "options__1": {
+            "label": "2 kolom"
+          }
+        },
+        "mobile_show_style_switch": {
+          "label": "Sakelar tata letak tampilan port seluler"
         },
         "infinite_scroll": {
           "label": "Aktifkan pengguliran tanpa batas"
@@ -2518,6 +2590,16 @@
               "options__3": {
                 "label": "Kecil"
               }
+            },
+            "font_size_flexible": {
+              "label": "Ukuran font fleksibel",
+              "info": "Setelah dibuka, Anda dapat menentukan ukuran font"
+            },
+            "title_pc_font_size": {
+              "label": "Ukuran font port PC"
+            },
+            "title_mobile_font_size": {
+              "label": "Ukuran font port seluler"
             }
           }
         },
@@ -2548,7 +2630,7 @@
           "name": "Harga",
           "settings": {
             "show_order": {
-              "label": "Urutan penyajian harga",
+              "label": "Presentasi harga/diskon",
               "options__0": {
                 "label": "Label diskon, harga, harga asli"
               },
@@ -2557,6 +2639,12 @@
               },
               "options__2": {
                 "label": "Harga original, harga jual, label diskon"
+              },
+              "options__3": {
+                "label": "Harga, label diskon"
+              },
+              "options__4": {
+                "label": "Label diskon, harga"
               }
             },
             "sell_font_size": {
@@ -2589,6 +2677,22 @@
                 "label": "Ukuran super"
               }
             },
+            "font_size_flexible": {
+              "label": "Ukuran font fleksibel",
+              "info": "Setelah dibuka, Anda dapat menentukan ukuran font"
+            },
+            "sale_price_pc_font_size": {
+              "label": "Ukuran font harga port PC"
+            },
+            "sale_price_mobile_font_size": {
+              "label": "Ukuran font harga jual port seluler"
+            },
+            "regular_price_pc_font_size": {
+              "label": "Harga asli port PC (harga silang) ukuran font"
+            },
+            "regular_price_mobile_font_size": {
+              "label": "Harga asli port seluler (harga silang) ukuran font"
+            },
             "sell_font_bold": {
               "label": "Harga ditampilkan dalam font tebal"
             }
@@ -2605,6 +2709,27 @@
               "options__1": {
                 "label": "Jatuhkan kotak"
               }
+            },
+            "sizes": {
+              "label": "Ukuran layar",
+              "options__0": {
+                "label": "Kecil"
+              },
+              "options__1": {
+                "label": "Sedang"
+              },
+              "options__2": {
+                "label": "Besar"
+              }
+            },
+            "layout_direction": {
+              "label": "Tampilkan tata letak",
+              "options__0": {
+                "label": "Tata letak atas dan bawah"
+              },
+              "options__1": {
+                "label": "Tata letak kiri dan kanan"
+              }
             }
           }
         },
@@ -2614,6 +2739,36 @@
             "is_show_stock_hint": {
               "label": "Tampilkan permintaan kuantitas saat stok rendah",
               "info": "Ketika stok di bawah 10, stok akan ditampilkan di bawah pemilih kuantitas"
+            },
+            "width": {
+              "label": "Tampilkan lebar layar",
+              "options__0": {
+                "label": "Lebar kolom 1/2"
+              },
+              "options__1": {
+                "label": "Lebar kolom penuh"
+              }
+            },
+            "layout_direction": {
+              "label": "Tampilkan tata letak",
+              "options__0": {
+                "label": "Tata letak atas dan bawah"
+              },
+              "options__1": {
+                "label": "Tata letak kiri dan kanan"
+              }
+            },
+            "border_style": {
+              "label": "Tampilkan gaya",
+              "options__0": {
+                "label": "Gaya garis"
+              },
+              "options__1": {
+                "label": "Gaya stroke"
+              },
+              "options__2": {
+                "label": "Gaya tanpa bingkai"
+              }
             }
           }
         },
@@ -4412,6 +4567,15 @@
             "label": "Gaya tombol"
           }
         },
+        "product_card_content_align": {
+          "label": "Arah penyelarasan konten kartu barang",
+          "options__0": {
+            "label": "Di sebelah kiri"
+          },
+          "options__1": {
+            "label": "di tengah"
+          }
+        },
         "product_title_show_type": {
           "label": "Aturan tampilan judul produk",
           "options__0": {
@@ -4628,7 +4792,7 @@
           "label": "Facebook"
         },
         "social_twitter_link": {
-          "label": "Twitter"
+          "label": "X（Twitter）"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -4651,6 +4815,12 @@
         "social_whatsapp_link": {
           "label": "WhatsApp"
         },
+        "social_line_link": {
+          "label": "Line"
+        },
+        "social_kakao_link": {
+          "label": "Kakao"
+        },
         "group_header__1": {
           "label": "Bagikan",
           "info": "Bagikan operasi berbagi pada halaman detail produk dan halaman blog"
@@ -4665,7 +4835,7 @@
           "label": "Bagikan Facebook"
         },
         "share_to_twitter": {
-          "label": "Bagikan ke Twitter"
+          "label": "Bagikan ke X（Twitter）"
         },
         "share_to_pinterest": {
           "label": "Bagikan ke Pinterest"

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messenger.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messenger.js'] || function () {
   const _exports = {};
   const fb = window['SLM']['theme-shared/biz-com/customer/biz/account/script/subscription/facebookSDK/index.js'].default;
@@ -19,7 +18,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
     data-ref=""
   ></div>
 `;
-
   class Messenger {
     constructor({
       onSuccess
@@ -31,7 +29,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
       this.$messenger = $('#customer-center-messenger-btn');
       this.init();
     }
-
     init() {
       getSubscriptAuths({
         platform: 'messenger'
@@ -44,26 +41,21 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
           pageId: data.platformChannelId
         };
         this.renderHtml();
-
         this.handleResponse = e => {
           const {
             ref,
             event
           } = e;
-
           if (ref === this.fbProps.userRef && event === 'opt_in') {
             this.retryGetSubscriptAuth();
           }
-
           if (ref === this.fbProps.userRef && event === 'clicked') {
             reportClickSubscribeMessage();
           }
         };
-
         this.initFb();
       });
     }
-
     initFb() {
       this.fb = fb.init({
         appId: this.fbProps.appId,
@@ -72,7 +64,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
         window.FB.Event.subscribe('send_to_messenger', this.handleResponse);
       });
     }
-
     renderHtml() {
       const $messengerPlugin = $(MESSENGER_PLUGIN);
       $messengerPlugin.attr('messenger_app_id', this.fbProps.appId);
@@ -80,13 +71,11 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
       $messengerPlugin.attr('data-ref', this.fbProps.userRef);
       this.$messenger.html($messengerPlugin);
     }
-
     rebuildPlugin() {
       window.FB.Event.unsubscribe('send_to_messenger', this.handleResponse);
       this.renderHtml();
       this.initFb();
     }
-
     retryGetSubscriptAuth(count = 1) {
       this.$messenger.hide();
       this.$loading.show();
@@ -122,9 +111,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/messen
         }
       });
     }
-
   }
-
   _exports.default = Messenger;
   return _exports;
 }();

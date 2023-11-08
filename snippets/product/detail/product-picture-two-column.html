@@ -12,7 +12,7 @@
     {{ array-push ../pcMediaList this }}
   {{/each}}
 {{/if}}
-{{!-- 商品图首屏展示前40张 --}}
+
 {{ assign 'mediaListFirst' (array-slice pcMediaList 0 40) }}
 {{#if mediaListFirst.length}}
   <div data-init-index="{{ initialSlide }}" class="row shopline-element-product-image {{#if (boolean mediaListFirst.length '>' '1')}}row-cols-md-2{{/if}} gx-md-4 product_productImages_tile {{ cond (boolean selectorId) (append 'execute_productImages_pc_' selectorId) '' }} {{ cond (boolean productImageScale) 'product_productImageScale' '' }}">

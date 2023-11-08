@@ -104,7 +104,8 @@
       "view_cart": "Vaata ostukorvi"
     },
     "next_step": {
-      "calculated_taxes_fees": "Maksud ja saatmiskulud arvutatakse kassas"
+      "calculated_taxes_fees": "Maksud ja saatmiskulud arvutatakse kassas",
+      "included_taxes_fees": "Sisaldab käibemaksu ja saatmiskulu arvutatakse kassas"
     },
     "notices": {
       "change_password_after_verification": "Pärast kinnituse saamist saad parooli ära muuta",
@@ -230,6 +231,7 @@
       "copy_success": "Kupongi kood kopeeritud",
       "discount_title": "Aktiveerige konto ja saate sooduskoodi",
       "normal_title": "Aktiveerige konto",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Liituge e-kirjadega, et saada värskendusi, pääseda juurde eksklusiivsetele pakkumistele ja muule.",
       "success_title": "Palju õnne suurepärase allahindluse saamise puhul",
       "token_expired": "Link on aegunud"
@@ -337,6 +339,7 @@
       "set_password": "Parool peab koosnema 6-18 tähemärgist, mis koosneb numbritest, suur- ja väiketähtedest",
       "sign__out": "Logi välja",
       "sign_in": "LOGI SISSE",
+      "sign_in_activate": "Kinnituskood on saadetud sinu kontole {{account}}. Pärast kinnitamist saad konto aktiveerida",
       "sign_up": "REGISTREERU",
       "su": "P",
       "subscription_desc": "Hankige uusimaid uudiseid poe kohta",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Täname teid tellimus eest. Parema kogemuse saamiseks võite registreeruda."
     },
     "message": {
+      "format_error": "Sõnumi formaat ei ole toetatud",
       "input_placeholder": "Kas soovid millegi kohta sõnumi jätta?",
       "message": "Sõnum",
       "send": "Saada"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kategooria"
     },
+    "facets": {
+      "in_stock_only": "Ainult laos",
+      "sort_button": "Sorteeri"
+    },
     "general": {
       "no_product_data_found": "Tooteandmeid ei leitud. Proovi hiljem uuesti",
       "sold_out": "Välja müüdud",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Osta LOTTEst",
       "go_to_yahoo_by_link": "Osta Yahoost",
       "in_stock": "Varud on saadaval",
+      "inventory_in_stock": "Varudes",
+      "inventory_in_stock_show_count": "Varu: {{ quantity }} järelejäänud",
+      "inventory_low_stock": "Madal varu:",
+      "inventory_low_stock_show_count": "Madal varu: {{ quantity }} järelejäänu",
+      "inventory_out_of_stock": "Varu otsas",
+      "inventory_out_of_stock_continue_selling": "Varudes",
       "inventory_quantity": "Varude kogus",
       "leave_us_message": "Sisesta oma sõnum",
       "leave_us_message_get_back": "Jäta meile sõnum ja me võtame sinuga esimesel võimalusel ühendust",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} on valitud",
       "from_price_html": "Alates {{price}}",
       "less": "vähem",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} st {{total}} esemed",
       "load_more_tip": "Rohkemate üksuste laadimine",
       "more": "rohkem",
       "new_arrivals": "Uus kaup",
@@ -612,7 +627,8 @@
       "save": "Soodushind {{{priceDom}}}",
       "save_byjs": "Soodushind {{priceDom}}",
       "save_ratio": "{{price}}% allahindlus",
-      "select_product_all_options": "Vali kõigepealt toote suurus.",
+      "select_product_all_options": "Valitud tootevariant on puudulik või pole saadaval. Palun valige uuesti",
+      "sort_button": "Sorteeri",
       "top_sellers": "Müügihitid",
       "more__product_num": "{{num}} Tooted",
       "one_product_num": "{{num}} Toote",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Jätka ostlemist",
       "more": "Rohkem",
+      "saved": "Säästnud",
       "total": "Kokku",
       "total_sum": "Kokku"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Teenuse erand, proovige hiljem uuesti",
       "error_message_2014": "Kontod on ohus",
       "error_message_2016": "Kontod on ohus",
+      "error_message_2020": "Süsteem on hõivatud, proovi hiljem uuesti",
       "error_message_3": "Teenuse erandid",
       "error_message_3001": "Teenuse erand, proovige hiljem uuesti",
       "error_message_3002": "Kasutajad, kes pole seotud mobiiltelefoni/e-postiga peavad proovima muuta oma salasõnu",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-posti aadress on seotud teiste kontodega",
       "error_message_3014": "Koodi saatmine ebaõnnestus",
       "error_message_3015": "Konto on aktiveeritud",
+      "error_message_3021": "Süsteem on hõivatud, proovi hiljem uuesti",
       "error_message_3022": "Link on aegunud",
       "error_message_3023": "Link on vales vormingus",
       "error_message_3024": "Link vales",
       "error_message_3026": "Konto vormingu tõrked",
+      "error_message_3029": "Mobiiltelefoninumbri aktiveerimist esialgu ei toetata",
       "error_message_4": "Teenuse erandid",
       "error_message_5": "Teenuse erandid",
       "error_message_6": "Teenuse erandid",
       "error_message_7": "Parool peab koosnema 6-18 tähemärgist, mis koosneb numbritest, suur- ja väiketähtedest"
     },
-    "editorSwitchCountryTip": "Riigivahetust ei toetata hetkel redaktoris"
+    "editorSwitchCountryTip": "Riigivahetust ei toetata hetkel redaktoris",
+    "shopby": {
+      "button": {
+        "show": "Turvaline ja kiirem"
+      }
+    }
   }
 }

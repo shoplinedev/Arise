@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] || function () {
   const _exports = {};
   const request = window['SLM']['theme-shared/utils/request.js'].default;
@@ -8,7 +7,6 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
   const { registrySectionConstructor } = window['SLM']['theme-shared/utils/sectionsLoad/index.js'];
   const checkEmail = window['SLM']['commons/utils/checkEmail.js'].default;
   const debounce = window['SLM']['commons/utils/debounce.js'].default;
-
   class Password {
     constructor(container) {
       this.toast = new Toast({
@@ -20,30 +18,25 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
       this.storeInfo = {};
       this.initPassword(container);
     }
-
     async getStoreInfo() {
       const response = await request.get('/site/store/front/pwd');
       const result = response.data;
       return result;
     }
-
     async initPassword(container) {
       try {
         this.storeInfo = (await this.getStoreInfo()) || {};
       } catch (error) {
         return false;
       }
-
       this.fillStoreDescription(container);
       this.initEvent(container);
     }
-
     fillStoreDescription(container) {
       if (this.storeInfo.visitorTips) {
         container.find('.js_password_description').text(this.storeInfo.visitorTips);
       }
     }
-
     initEvent(container) {
       const inputDom = container.find('.js_password_input');
       inputDom.on('keydown', e => {
@@ -54,11 +47,9 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
         }
       });
       container.on('click', '.js_password_btn', run.bind(this));
-
       function run() {
         const password = inputDom.val();
         const isMatched = password.toLowerCase() === this.storeInfo.password.toLowerCase();
-
         if (isMatched) {
           document.cookie = `l_spwd=1; path=/`;
           window.location.href = this.getUrlParam('redirect_url') || '/';
@@ -68,7 +59,6 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
         }
       }
     }
-
     getUrlParam(name) {
       const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
       if (!window.location.search) return null;
@@ -76,7 +66,6 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
       const r = window.location.search.substr(1).match(reg);
       return r ? decodeURIComponent(r[2]) : null;
     }
-
     toggleShow(container) {
       const password_link = container.find('.js_password_link');
       if (!password_link[0]) return 0;
@@ -89,7 +78,6 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
         container.find('.js_password').hide();
       });
     }
-
     bindSubscription(container) {
       const post = debounce(300, val => {
         const params = {
@@ -97,11 +85,9 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
           subscribeAccount: val
         };
         const referralCode = window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value;
-
         if (referralCode) {
           params.referralCode = referralCode;
         }
-
         request.post('/user/front/users/footersub', params).then(res => {
           if (res.success) {
             this.toast.open(t('general.footer.subscribe_success'), 2000);
@@ -121,21 +107,16 @@ window.SLM['stage/password/index.js'] = window.SLM['stage/password/index.js'] ||
         }
       });
       container.on('click', '.js_password_email', run.bind(this));
-
       function run() {
         const value = inputDom.val();
-
         if (checkEmail(value) !== true) {
           this.toast.open(t('general.footer.subscribe_format_error'), 2000);
           return;
         }
-
         post(value);
       }
     }
-
   }
-
   Password.type = 'password';
   registrySectionConstructor('password', Password);
   return _exports;

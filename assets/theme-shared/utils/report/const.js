@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/report/const.js'] = window.SLM['theme-shared/utils/report/const.js'] || function () {
   const _exports = {};
   const getEnv = window['SLM']['theme-shared/utils/get-env.js'].default;

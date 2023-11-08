@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/biz/checkout/payment_button.js'] = window.SLM['cart/script/biz/checkout/payment_button.js'] || function () {
   const _exports = {};
   const { PaymentButton } = window['SLM']['theme-shared/components/payment-button/index.js'];
@@ -10,28 +9,23 @@ window.SLM['cart/script/biz/checkout/payment_button.js'] = window.SLM['cart/scri
   const { newExpressCheckoutModule } = window['SLM']['cart/script/biz/checkout/module_express_checkout.js'];
   const CartServiceValuer = window['SLM']['cart/script/valuer/cartService.js'].default;
   const checkoutEffect = window['SLM']['cart/script/biz/checkout/effect.js'].default;
-
   class PayemtnButtonModule {
     constructor(props) {
       this.config = props;
       this.instanceMap = {};
       this.renderButton();
     }
-
     get checkoutParams() {
       const cartService = CartServiceValuer.withCartService(this.config.ctx);
       const cartItemList = cartService.getCardItemList();
       const params = checkoutEffect.getCheckoutParams(this.config.ctx, cartItemList);
-
       if (params.products) {
         params.products.forEach(product => {
           product.productPrice = currencyUtils.unformatCurrency(convertPrice(product.productPrice));
         });
       }
-
       return params;
     }
-
     renderButton() {
       const {
         elementId,
@@ -48,8 +42,10 @@ window.SLM['cart/script/biz/checkout/payment_button.js'] = window.SLM['cart/scri
           } = this.checkoutParams;
           return {
             products,
-            extra: { ...extra,
-              query: { ...extra.query,
+            extra: {
+              ...extra,
+              query: {
+                ...extra.query,
                 spb: true
               }
             }
@@ -61,16 +57,13 @@ window.SLM['cart/script/biz/checkout/payment_button.js'] = window.SLM['cart/scri
         instance,
         renderDomId: domIds
       };
-
       if (domIds[ButtonType.ExpressCheckoutButton]) {
         this.renderExpressCheckout(domIds[ButtonType.ExpressCheckoutButton], domIds[ButtonType.NormalButton]);
       }
-
       if (isFunction(cbFn)) {
         cbFn();
       }
     }
-
     renderExpressCheckout(elementId, buynowId) {
       const {
         ctx,
@@ -83,9 +76,7 @@ window.SLM['cart/script/biz/checkout/payment_button.js'] = window.SLM['cart/scri
         buynowId
       });
     }
-
   }
-
   function newButtonModule({
     ctx,
     elementId,
@@ -99,7 +90,6 @@ window.SLM['cart/script/biz/checkout/payment_button.js'] = window.SLM['cart/scri
       cbFn
     });
   }
-
   _exports.default = {
     PayemtnButtonModule,
     newButtonModule

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/message/const.js'] = window.SLM['theme-shared/biz-com/customer/biz/message/const.js'] || function () {
   const _exports = {};
   const pageId = 124;

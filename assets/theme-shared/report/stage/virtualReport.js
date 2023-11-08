@@ -1,14 +1,13 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-shared/report/stage/virtualReport.js'] || function () {
   const _exports = {};
   const { StageReport } = window['SLM']['theme-shared/report/stage/index.js'];
   const { virtualComponentEnum, sectionTypeEnum, virtualPageEnum } = window['SLM']['theme-shared/report/stage/const.js'];
-
   class VirtualReport extends StageReport {
     constructor() {
       super();
-      this.defaultParams = { ...this.defaultParams,
+      this.defaultParams = {
+        ...this.defaultParams,
         module: -999,
         component: -999,
         page: virtualPageEnum.fixedSction
@@ -42,14 +41,12 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
       };
       this.suggestListShow = false;
     }
-
     inFooter(e) {
       const $target = $(e.target);
       const $footer = $target.closest(this.footerElementSelector.footer);
       const flag = $footer.length > 0;
       return flag;
     }
-
     bindHeaderReport() {
       const selMap = this.headerElementSelector;
       this.expose({
@@ -84,7 +81,6 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
       });
       this.bindSearchSuggestReport();
     }
-
     bindSocialReport() {
       const prefix = this.socialElementSelectorPrefix;
       this.bindClick({
@@ -93,17 +89,16 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
           const $socialItem = $(e.currentTarget);
           const cls = $socialItem && $socialItem.attr('class') || '';
           const hasClass = cls.indexOf(prefix) >= 0;
-
           if (!$socialItem.length || !hasClass) {
             return;
           }
-
           const {
             classList
           } = $socialItem[0];
           const sel = Array.prototype.find.call(classList, cls => cls.startsWith(prefix));
           const social_media_type = sel.replace(prefix, '');
-          const data = { ...params,
+          const data = {
+            ...params,
             social_media_type,
             component: virtualComponentEnum.socialItem,
             module_type: this.inFooter(e) ? sectionTypeEnum.footer : sectionTypeEnum.header
@@ -112,12 +107,12 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     bindNavReport() {
       this.bindClick({
         selector: this.commonElementSelector.navItem,
         customHandler: (e, params) => {
-          const data = { ...params,
+          const data = {
+            ...params,
             component: virtualComponentEnum.navItem,
             module_type: this.inFooter(e) ? sectionTypeEnum.footer : sectionTypeEnum.header
           };
@@ -125,12 +120,12 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     bindLocaleCurrencyReport() {
       this.bindClick({
         selector: this.commonElementSelector.locale,
         customHandler: (e, params) => {
-          const data = { ...params,
+          const data = {
+            ...params,
             component: virtualComponentEnum.locale,
             module_type: this.inFooter(e) ? sectionTypeEnum.footer : sectionTypeEnum.header
           };
@@ -140,7 +135,8 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
       this.bindClick({
         selector: this.commonElementSelector.currency,
         customHandler: (e, params) => {
-          const data = { ...params,
+          const data = {
+            ...params,
             component: virtualComponentEnum.currency,
             module_type: this.inFooter(e) ? sectionTypeEnum.footer : sectionTypeEnum.header
           };
@@ -148,7 +144,6 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     bindFooterReport() {
       this.expose({
         selector: this.footerElementSelector.footer,
@@ -158,7 +153,6 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
       });
       this.bindFooterNewsLetter();
     }
-
     bindFooterPromotionReport() {
       this.expose({
         selector: this.footerPromotionSelector.footerPromotion,
@@ -167,7 +161,6 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     bindFooterNewsLetter() {
       const component = virtualComponentEnum.newsletter;
       this.expose({
@@ -189,7 +182,6 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     bindHeaderNewsLetter() {
       const component = virtualComponentEnum.newsletter;
       this.expose({
@@ -211,7 +203,6 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
     reportSelectLang(e, lang) {
       const params = {
         module_type: this.inFooter(e) ? sectionTypeEnum.footer : sectionTypeEnum.header,
@@ -220,7 +211,6 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
       };
       this.click(params);
     }
-
     reportSelectCurrency(e, currency) {
       const params = {
         module_type: this.inFooter(e) ? sectionTypeEnum.footer : sectionTypeEnum.header,
@@ -229,7 +219,6 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
       };
       this.click(params);
     }
-
     reportSearch(searchWord) {
       this.collect({
         component: virtualComponentEnum.search,
@@ -237,10 +226,8 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         search_term: searchWord
       });
     }
-
     reportSearchSuggestItem(show) {
       const shouldView = !this.suggestListShow && show;
-
       if (shouldView) {
         this.collect({
           component: virtualComponentEnum.searchSuggest,
@@ -248,10 +235,8 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
           action_type: 101
         });
       }
-
       this.suggestListShow = show;
     }
-
     bindSearchSuggestReport() {
       this.bindClick({
         selector: this.headerElementSelector.searchSuggestItem,
@@ -260,9 +245,7 @@ window.SLM['theme-shared/report/stage/virtualReport.js'] = window.SLM['theme-sha
         }
       });
     }
-
   }
-
   _exports.VirtualReport = VirtualReport;
   return _exports;
 }();

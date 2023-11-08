@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/index.js'] || function () {
   const _exports = {};
   const Account = window['SLM']['theme-shared/biz-com/customer/biz/account/script/account/index.js'].default;
@@ -8,7 +7,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/index.js'] = window.SLM['t
   const Subscription = window['SLM']['theme-shared/biz-com/customer/biz/account/script/subscription/index.js'].default;
   const { revokeDeleteAccount } = window['SLM']['theme-shared/biz-com/customer/service/index.js'];
   const BUTTON_LOADING_CLASS = 'btn--loading';
-
   class Information {
     constructor() {
       this.init();
@@ -16,13 +14,11 @@ window.SLM['theme-shared/biz-com/customer/biz/account/index.js'] = window.SLM['t
       this.account = null;
       this.address = null;
     }
-
     init() {
       const $center = $('#user-center');
       $center.find('.revoke-button').click(async e => {
         const $btn = $(e.target);
         $btn.addClass(BUTTON_LOADING_CLASS);
-
         try {
           await revokeDeleteAccount();
           $center.find('.user-center__notify').hide();
@@ -30,7 +26,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/index.js'] = window.SLM['t
         } catch (e) {
           console.error(e);
         }
-
         $btn.removeClass(BUTTON_LOADING_CLASS);
       });
       this.account = new Account({
@@ -50,9 +45,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/index.js'] = window.SLM['t
         editable: false
       });
     }
-
   }
-
   _exports.default = Information;
   return _exports;
 }();

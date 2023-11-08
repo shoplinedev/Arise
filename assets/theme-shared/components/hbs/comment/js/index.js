@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/comment/js/index.js'] = window.SLM['theme-shared/components/hbs/comment/js/index.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -11,32 +10,27 @@ window.SLM['theme-shared/components/hbs/comment/js/index.js'] = window.SLM['them
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   !function () {
     let modal = null;
-
     function showConfirm(content = '', option) {
       new Confirm({
         content,
         ...option
       });
     }
-
     function showToast(content = '') {
       Toast.init({
         content,
         duration: 3000
       });
     }
-
     function requestUserAuthor() {
       return request.post('/product/detail/comment/isAllow', {
         productId: SL_State.get('productComment.spuSeq')
       });
     }
-
     function checkUserCanAdd() {
       return new Promise(async (resolve, reject) => {
         try {
           const res = await requestUserAuthor();
-
           if (res.data.isAllow) {
             resolve();
           } else {
@@ -45,15 +39,12 @@ window.SLM['theme-shared/components/hbs/comment/js/index.js'] = window.SLM['them
           }
         } catch (e) {
           reject();
-
           if (e.code === 'CUS0401') {
             showConfirm(t('products.comment.didnot_bought_sign_in_first'), {
               okName: t('products.comment.sign_in'),
-
               okCallback() {
                 window.location.href = '/user/signIn?redirectUrl=' + location.href;
               }
-
             });
           } else {
             Toast.init({
@@ -64,19 +55,16 @@ window.SLM['theme-shared/components/hbs/comment/js/index.js'] = window.SLM['them
         }
       });
     }
-
     function initEvent() {
       $(document.body).on('click', '.comment-leave-review-btn', async () => {
         const $btm = $('.comment-leave-review-btn');
         $btm.attr('disabled', true);
-
         try {
           await checkUserCanAdd();
         } catch (e) {
           $btm.attr('disabled', false);
           return;
         }
-
         $btm.remove();
         new Review({
           ele: $('.product-comment-leave-pc')[0]
@@ -85,7 +73,6 @@ window.SLM['theme-shared/components/hbs/comment/js/index.js'] = window.SLM['them
       $(document.body).on('click', '.comment-leave-review-btn--mobile', async e => {
         const target = $(e.currentTarget);
         target.attr('disabled', true);
-
         try {
           await checkUserCanAdd();
           target.attr('disabled', false);
@@ -93,7 +80,6 @@ window.SLM['theme-shared/components/hbs/comment/js/index.js'] = window.SLM['them
           target.attr('disabled', false);
           return;
         }
-
         const modal = showModal();
         modal.show();
         const review = new Review({
@@ -105,11 +91,9 @@ window.SLM['theme-shared/components/hbs/comment/js/index.js'] = window.SLM['them
             beforePost() {
               btn.addClass('disabled').attr('disabled', true).css('pointer-events', 'none');
             },
-
             error() {
               btn.removeClass('disabled').attr('disabled', false).css('pointer-events', '');
             }
-
           });
         });
         modal.$modal.find('.product-comment-mobile-modal-header-back').on('click', () => {
@@ -117,7 +101,6 @@ window.SLM['theme-shared/components/hbs/comment/js/index.js'] = window.SLM['them
         });
       });
     }
-
     function showModal() {
       return new ModalWithHtml({
         zIndex: 1005,
@@ -144,14 +127,12 @@ window.SLM['theme-shared/components/hbs/comment/js/index.js'] = window.SLM['them
         afterClose: () => {}
       });
     }
-
     function init() {
       const $btn = $('.comment-leave-review-btn');
       const $mobile = $('.comment-leave-review-btn--mobile');
       if (!$btn.length && !$mobile.length) return;
       initEvent();
     }
-
     init();
   }();
   return _exports;

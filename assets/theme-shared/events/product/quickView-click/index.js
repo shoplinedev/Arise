@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/events/product/quickView-click/index.js'] = window.SLM['theme-shared/events/product/quickView-click/index.js'] || function () {
   const _exports = {};
   const apiLogger = window['SLM']['theme-shared/events/utils/api-logger.js'].default;
@@ -10,7 +9,6 @@ window.SLM['theme-shared/events/product/quickView-click/index.js'] = window.SLM[
     CLOSE_QUICKVIEW_ADDTOCART: 'Product::CloseQuickView::AddToCart'
   };
   const external = window.Shopline && window.Shopline.event;
-
   const quickViewClick = data => {
     if (external) {
       const logger = apiLogger(EVENT_NAME[data.eventName]);
@@ -27,7 +25,6 @@ window.SLM['theme-shared/events/product/quickView-click/index.js'] = window.SLM[
       });
     }
   };
-
   _exports.default = quickViewClick;
   return _exports;
 }();

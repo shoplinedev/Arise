@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/productImages/js/product-photoSwipeHtml.js'] = window.SLM['theme-shared/components/hbs/productImages/js/product-photoSwipeHtml.js'] || function () {
   const _exports = {};
   _exports.default = `

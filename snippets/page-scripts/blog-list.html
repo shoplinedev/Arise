@@ -1,10 +1,6 @@
-{{!-- js在这个snippet引入是为了 js不会因为section设置隐藏了而没有，进而导致上报也丢失 --}}
+
 <!-- stage/blog/list/index.js -->
-  {{#if @root.use_modern_optimization}}
-    
-  {{else}}
-    
-  {{/if}}
+  
   {{ combine_asset_tag 
     'stage/blog/list/script/report.js'
     'stage/blog/list/index.js'

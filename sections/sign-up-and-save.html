@@ -2,7 +2,7 @@
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 
 {{ assign 'show_newsletter_full' section.settings.full_screen_width }}
-{{!-- {{assign 'placeholder' section.settings.placeholder }} --}}
+
 {{ assign 'color_scheme' section.settings.color_scheme }}
 
 {{#if request.document_direction '===' 'rtl'}}
@@ -11,23 +11,13 @@
   {{ combine_asset_tag 'stage/sign-up-and-save/index.css' inline=true}}
 {{/if}}
 <!-- stage/sign-up-and-save/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/lodash.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/lodash.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/request.js'
     'theme-shared/utils/sectionsLoad/index.js'

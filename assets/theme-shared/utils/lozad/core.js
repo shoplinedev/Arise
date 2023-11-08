@@ -1,24 +1,19 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/lozad/core.js'] = window.SLM['theme-shared/utils/lozad/core.js'] || function () {
   const _exports = {};
   const { support, isLoaded, getElements } = window['SLM']['theme-shared/utils/lozad/util.js'];
-
   function getValidAttrSet(plugins) {
     return Array.from(Array.from(plugins).reduce((attrSet, plugin) => {
       if (plugin.attributes) {
         plugin.attributes.forEach(attr => attrSet.add(attr));
       }
-
       return attrSet;
     }, new Set()));
   }
-
   function getHook(plugins, name, normalHook) {
     const hooks = [normalHook, ...plugins.map(plugin => plugin[name])].filter(Boolean);
     return (...args) => hooks.map(hook => hook.apply(this, args));
   }
-
   function getHooks(plugins, normalHooks) {
     return {
       init: getHook(plugins, 'init', normalHooks.init),
@@ -28,7 +23,6 @@ window.SLM['theme-shared/utils/lozad/core.js'] = window.SLM['theme-shared/utils/
       loaded: getHook(plugins, 'loaded', normalHooks.loaded)
     };
   }
-
   function getIntersectionObserver(options, loader) {
     if (support('IntersectionObserver')) {
       const {
@@ -50,7 +44,6 @@ window.SLM['theme-shared/utils/lozad/core.js'] = window.SLM['theme-shared/utils/
       });
     }
   }
-
   function getMutationObserver(options, loader, validAttrSet) {
     if (support('MutationObserver') && options.enableAutoReload) {
       return new MutationObserver(entries => {
@@ -62,7 +55,6 @@ window.SLM['theme-shared/utils/lozad/core.js'] = window.SLM['theme-shared/utils/
       });
     }
   }
-
   function lozad(selector = '.lozad', options = {}) {
     const currOpts = {
       rootMargin: '0px',
@@ -72,35 +64,27 @@ window.SLM['theme-shared/utils/lozad/core.js'] = window.SLM['theme-shared/utils/
     };
     const validAttrSet = getValidAttrSet(lozad.plugins);
     const hooks = getHooks(lozad.plugins, currOpts);
-
     const loadElement = element => {
       hooks.beforeLoad(element);
       hooks.load(element);
       hooks.loaded(element);
     };
-
     const observer = getIntersectionObserver(currOpts, loadElement);
     const mutationObserver = getMutationObserver(currOpts, loadElement, validAttrSet);
     const elements = getElements(selector, currOpts.root);
-
     for (let i = 0; i < elements.length; i++) {
       if (!isLoaded(elements[i])) hooks.prepare(elements[i]);
     }
-
     return {
       observer,
       mutationObserver,
-
       observe() {
         const elements = getElements(selector, currOpts.root);
-
         for (let i = 0; i < elements.length; i++) {
           const element = elements[i];
-
           if (isLoaded(element)) {
             continue;
           }
-
           if (mutationObserver) {
             mutationObserver.observe(elements[i], {
               subtree: true,
@@ -108,30 +92,23 @@ window.SLM['theme-shared/utils/lozad/core.js'] = window.SLM['theme-shared/utils/
               attributeFilter: Array.from(validAttrSet)
             });
           }
-
           if (observer) {
             observer.observe(element);
             continue;
           }
-
           loadElement(element);
         }
       },
-
       triggerLoad(element) {
         if (isLoaded(element)) return;
         loadElement(element);
       }
-
     };
   }
-
   lozad.plugins = [];
-
   lozad.use = function usePlugin(plugin) {
     lozad.plugins = Array.from(new Set([...lozad.plugins, plugin]));
   };
-
   _exports.default = lozad;
   return _exports;
 }();

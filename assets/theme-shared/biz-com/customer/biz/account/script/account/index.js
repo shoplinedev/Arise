@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] || function () {
   const _exports = {};
   const Modal = window['SLM']['theme-shared/components/hbs/shared/components/modal/index.js'].default;
@@ -14,7 +13,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
   const ModifyEmail = window['SLM']['theme-shared/biz-com/customer/biz/account/script/account/modify-email.js'].default;
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
   const ModifyPhone = window['SLM']['theme-shared/biz-com/customer/biz/account/script/account/modify-phone.js'].default;
-
   class Account extends Card {
     constructor({
       id,
@@ -32,32 +30,26 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
       this.deleteAccount = null;
       this.modal = null;
     }
-
     init() {
       this.$nickname = $(`#${this.id} .account-item__nickname`);
       this.bindEvents();
     }
-
     bindEvents() {
       const actionMap = {
         email: path => {
           reportClickEmailChange();
-
           if (this.userInfo.checkTag) {
             window.location.href = path;
             return;
           }
-
           this.openModifyEmailModal();
         },
         phone: path => {
           reportClickPhoneChange();
-
           if (this.userInfo.checkTag) {
             window.location.href = path;
             return;
           }
-
           this.openModifyPhoneModal();
         },
         delete: () => {
@@ -77,24 +69,20 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
         this.validateFields();
       });
     }
-
     toResetPassword(path, token) {
       const {
         phone,
         email
       } = this.userInfo;
-
       if (!phone && !email) {
         Toast.init({
           content: t('customer.account.reset_password_error_hint')
         });
         return;
       }
-
       reportClickPasswordChange();
       window.location.href = redirectTo(token ? `${path}?captcha=${token}` : path);
     }
-
     async openDeleteModal() {
       const id = 'delete-account';
       const {
@@ -104,11 +92,9 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
       let {
         modal
       } = this;
-
       if (!phone && !email) {
         return;
       }
-
       if (!modal) {
         modal = new Modal({
           modalId: id
@@ -116,20 +102,18 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
         modal.init();
         this.modal = modal;
       }
-
       modal.show();
-
       if (this.deleteAccount) {
         this.deleteAccount.show();
         return;
       }
-
       try {
         const {
           data
         } = await getStoreRegisterConfig();
         const shop = SL_State.get('shop');
-        SL_State.set('shop', { ...shop,
+        SL_State.set('shop', {
+          ...shop,
           store_register_config: data
         });
         this.deleteAccount = new DeleteAccount({
@@ -142,7 +126,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
         console.error(e);
       }
     }
-
     openModifyEmailModal() {
       if (!this.modifyEmailModal) {
         this.modifyEmailModal = new ModifyEmail({
@@ -156,10 +139,8 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
           }
         });
       }
-
       this.modifyEmailModal.show();
     }
-
     openModifyPhoneModal() {
       if (!this.modifyPhoneModal) {
         this.modifyPhoneModal = new ModifyPhone({
@@ -173,57 +154,46 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
           }
         });
       }
-
       this.modifyPhoneModal.show();
     }
-
     getFormValue() {
       return {
         firstName: this.$nickname.find('.account-item__firstname input').val().trim(),
         lastName: this.$nickname.find('.account-item__lastname input').val().trim()
       };
     }
-
     getNickname() {
       const formValue = this.getFormValue();
       return `${formValue.firstName} ${formValue.lastName}`.trim();
     }
-
     showError() {
       this.$nickname.find('.account-item__modify--error').show();
       this.$nickname.find('.sl-input').addClass('error');
     }
-
     hideError() {
       this.$nickname.find('.account-item__modify--error').hide();
       this.$nickname.find('.sl-input').removeClass('error');
     }
-
     validateFields() {
       const formValue = this.getFormValue();
       const {
         userInfo
       } = this;
-
       if (!userInfo.email && !userInfo.phone && !formValue.firstName && !formValue.lastName) {
         this.showError();
         return Promise.reject();
       }
-
       return Promise.resolve();
     }
-
     onCancel() {
       reportDropModifyInfomation();
     }
-
     onEdit() {
       reportClickEditButton();
       this.hideError();
       this.$nickname.find('.account-item__firstname input').val(this.nickname.firstName);
       this.$nickname.find('.account-item__lastname input').val(this.nickname.lastName);
     }
-
     async onSave() {
       reportEditNickname();
       await this.validateFields();
@@ -237,15 +207,12 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/index.js'] 
       reportSaveInfomation(nickname);
       this.refresh(nickname);
     }
-
     refresh(nickname) {
       this.$nickname.find('input').removeClass('error').val('');
       this.$nickname.find('.account-item__value').text(nickname || t('customer.account.not_set'));
       this.$nickname.find('.account-item__modify--error').hide();
     }
-
   }
-
   _exports.default = Account;
   return _exports;
 }();

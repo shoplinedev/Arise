@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/jquery.js'] = window.SLM['commons/jquery.js'] || function () {
   const _exports = {};
   const jquery = window['jquery']['default'];

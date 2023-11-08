@@ -104,7 +104,8 @@
       "view_cart": "Näytä ostoskori"
     },
     "next_step": {
-      "calculated_taxes_fees": "Verot ja toimituskulut lasketaan kassalla"
+      "calculated_taxes_fees": "Verot ja toimituskulut lasketaan kassalla",
+      "included_taxes_fees": "Sisältää verot ja toimituskulut lasketaan kassalla"
     },
     "notices": {
       "change_password_after_verification": "Voit vaihtaa salasanaa vahvistuksen jälkeen",
@@ -230,6 +231,7 @@
       "copy_success": "Kuponkikoodi kopioitu",
       "discount_title": "Aktivoi tili ja hanki alennuskoodi",
       "normal_title": "Aktivoi tili",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Tilaa sähköposteja saadaksesi päivityksiä, käyttääksesi eksklusiivisia tarjouksia ja paljon muuta.",
       "success_title": "Onnittelut suuren alennuksen saamisesta",
       "token_expired": "Linkki on vanhentunut"
@@ -337,6 +339,7 @@
       "set_password": "Salasanan tulee olla 6-18 merkkiä, joka koostuu numeroista, isoista ja pienistä kirjaimista",
       "sign__out": "Kirjaudu ulos",
       "sign_in": "KIRJAUDU SISÄÄN",
+      "sign_in_activate": "Vahvistuskoodi on lähetetty tilillesi {{account}}. Voit aktivoida tilisi vahvistuksen jälkeen",
       "sign_up": "KIRJAUDU",
       "su": "Su",
       "subscription_desc": "Hanki uusimmat uutiset kaupasta",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Kiitos tilaamisesta. Voit kirjautua sisään paremman kokemuksen saamiseksi."
     },
     "message": {
+      "format_error": "Viestin muotoa ei tueta",
       "input_placeholder": "Onko jotain, josta haluat jättää viestin?",
       "message": "Viesti",
       "send": "Lähetä"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kategoria"
     },
+    "facets": {
+      "in_stock_only": "Vain varastossa",
+      "sort_button": "Lajittelu"
+    },
     "general": {
       "no_product_data_found": "Tuotetietoja ei löytynyt Yritä myöhemmin uudelleen",
       "sold_out": "Loppuunmyyty",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Osta LOTTESTA",
       "go_to_yahoo_by_link": "Osta Yahoosta",
       "in_stock": "Varastossa saatavilla",
+      "inventory_in_stock": "Varastoissa",
+      "inventory_in_stock_show_count": "Varasto : {{ quantity }} jäljellä",
+      "inventory_low_stock": "Matala varasto:",
+      "inventory_low_stock_show_count": "Matala varasto: {{ quantity }} jäljellä",
+      "inventory_out_of_stock": "Varasto loppuneet",
+      "inventory_out_of_stock_continue_selling": "Varastoissa",
       "inventory_quantity": "Varaston määrä",
       "leave_us_message": "Kirjoita tähän viestisi",
       "leave_us_message_get_back": "Jätäthän meille viestin ja olemme Sinuun päin yhteydessä mahdollisimman pian.",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} on valittu",
       "from_price_html": "Alkaen {{price}}",
       "less": "vähemmän",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} {{total}}-kohteista",
       "load_more_tip": "Ladataan lisää kohteita",
       "more": "lisää",
       "new_arrivals": "Uusimmat",
@@ -612,7 +627,8 @@
       "save": "Alennus {{{priceDom}}}",
       "save_byjs": "Alennus {{priceDom}}",
       "save_ratio": "{{price}}% alennus",
-      "select_product_all_options": "Valitse ensin tuotteen koko!",
+      "select_product_all_options": "Valittu tuotevaihtoehto on puutteellinen tai ei ole saatavilla. Valitse uudelleen",
+      "sort_button": "Lajittelu",
       "top_sellers": "Myydyimmät",
       "more__product_num": "{{num}} Tuotteet",
       "one_product_num": "{{num}} Tuote",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Jatka ostoksia",
       "more": "Lisää",
+      "saved": "Säästi",
       "total": "Yhteensä",
       "total_sum": "Yhteensä"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Palvelupoikkeus, yritä myöhemmin uudelleen",
       "error_message_2014": "Tilit ovat vaarassa",
       "error_message_2016": "Tilit ovat vaarassa",
+      "error_message_2020": "Järjestelmä on varattu. Yritä myöhemmin uudelleen",
       "error_message_3": "Palvelu Poikkeus",
       "error_message_3001": "Palvelupoikkeus, yritä myöhemmin uudelleen",
       "error_message_3002": "Käyttäjät, jotka on linkitetty matkapuhelinnumeroonsa/sähköpostiinsa, yrittävät vaihtaa salasanaa",
@@ -850,15 +868,22 @@
       "error_message_3010": "Tämä sähköpostiosoite on linkitetty muihin tileihin",
       "error_message_3014": "Koodin lähettäminen epäonnistui",
       "error_message_3015": "Tili on aktivoitu",
+      "error_message_3021": "Järjestelmä on varattu. Yritä myöhemmin uudelleen",
       "error_message_3022": "Linkki on vanhentunut",
       "error_message_3023": "Linkki on väärässä muodossa",
       "error_message_3024": "Linkki ei ole hyvä.",
       "error_message_3026": "Tilin muodon virhe",
+      "error_message_3029": "Matkapuhelinnumeron aktivointi ei ole toistaiseksi mahdollista",
       "error_message_4": "Palvelu Poikkeus",
       "error_message_5": "Palvelu Poikkeus",
       "error_message_6": "Palvelu Poikkeus",
       "error_message_7": "Salasanan tulee olla 6-18 merkkiä, joka koostuu numeroista, isoista ja pienistä kirjaimista"
     },
-    "editorSwitchCountryTip": "Toimittaja ei tue maiden vaihtoa"
+    "editorSwitchCountryTip": "Toimittaja ei tue maiden vaihtoa",
+    "shopby": {
+      "button": {
+        "show": "Turvallisesti ja nopeammin"
+      }
+    }
   }
 }

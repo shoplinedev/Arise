@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/utils/event-bus/index.js'] = window.SLM['cart/script/utils/event-bus/index.js'] || function () {
   const _exports = {};
   const createLogger = window['SLM']['theme-shared/utils/createLogger.js'].default;
@@ -7,12 +6,10 @@ window.SLM['cart/script/utils/event-bus/index.js'] = window.SLM['cart/script/uti
   const emitLogger = createLogger('emit');
   const emitter = SL_EventBus;
   const oriEmit = emitter.emit;
-
   emitter.emit = function emit(event, data) {
     emitLogger.log(event, data);
     oriEmit.apply(emitter, arguments);
   };
-
   _exports.default = emitter;
   return _exports;
 }();

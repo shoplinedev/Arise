@@ -13,14 +13,14 @@
 {{/if}}
 
 {{assign "pathPrefixParam" request.uri.path}}
-{{! 有传值就用传进来的 }}
+
 {{#if pathPrefix}}
   {{assign "pathPrefixParam" pathPrefix}}
 {{/if}}
 
 {{#with this as |global|}}
   {{#with info}}
-    {{assign "linkUrl" "javascript:void(0);"}}
+    {{assign "linkUrl" "javascript:;"}}
 
     {{#if (isTruthy id)}}
       {{assign "linkUrl" (redirect_to (append global.pathPrefixParam "/" (default handle id)))}}

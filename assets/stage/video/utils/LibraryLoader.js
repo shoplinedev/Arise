@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/video/utils/LibraryLoader.js'] = window.SLM['stage/video/utils/LibraryLoader.js'] || function () {
   const _exports = {};
   const libraries = {
@@ -18,7 +17,6 @@ window.SLM['stage/video/utils/LibraryLoader.js'] = window.SLM['stage/video/utils
     requested: 'requested',
     loaded: 'loaded'
   };
-
   function createScriptTag(library, callback) {
     const tag = document.createElement('script');
     tag.src = library.src;
@@ -30,19 +28,15 @@ window.SLM['stage/video/utils/LibraryLoader.js'] = window.SLM['stage/video/utils
     });
     return tag;
   }
-
   function load(libraryName, _callback) {
     const library = libraries[libraryName];
     if (!library) return;
     if (library.status === status.requested) return;
-
     const callback = _callback || function () {};
-
     if (library.status === status.loaded) {
       callback();
       return;
     }
-
     library.status = status.requested;
     const tag = createScriptTag(library, callback);
     tag.id = library.tagId;
@@ -50,7 +44,6 @@ window.SLM['stage/video/utils/LibraryLoader.js'] = window.SLM['stage/video/utils
     const firstScriptTag = document.getElementsByTagName(library.type)[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   }
-
   const LibraryLoader = {
     load
   };

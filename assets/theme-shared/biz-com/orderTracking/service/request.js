@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/orderTracking/service/request.js'] = window.SLM['theme-shared/biz-com/orderTracking/service/request.js'] || function () {
   const _exports = {};
   const axios = window['SLM']['theme-shared/utils/request.js'].default;
@@ -12,7 +11,6 @@ window.SLM['theme-shared/biz-com/orderTracking/service/request.js'] = window.SLM
         ...options
       });
     }
-
   };
   _exports.udbRequest = udbRequest;
   const request = axios;

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/constant/stockType.js'] = window.SLM['cart/script/constant/stockType.js'] || function () {
   const _exports = {};
   _exports.default = {

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] || function () {
   const _exports = {};
   const debounce = window['lodash']['debounce'];
@@ -30,7 +29,6 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
   const unsafePage = pageMapping[alias];
   const page = pageMap[alias];
   const eventId = eventIdMap[alias];
-
   function hdReport(options) {
     window.HdSdk && window.HdSdk.shopTracker.collect({
       page,
@@ -38,7 +36,6 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       ...options
     });
   }
-
   function unsafeHdReport(options) {
     window.HdSdk && window.HdSdk.shopTracker.report(eventId, {
       page: unsafePage,
@@ -46,17 +43,14 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       ...options
     });
   }
-
   function concatVal(obj) {
     return Object.entries(obj || {}).reduce((prev, cur) => {
       if (cur[1]) {
         return `${prev}${cur[0]}:${cur[1]}\n`;
       }
-
       return prev;
     }, '');
   }
-
   function leadReport({
     spu,
     sku,
@@ -144,9 +138,7 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       input_box_val: inputBoxVal
     });
   }
-
   _exports.leadReport = leadReport;
-
   function cancelReport({
     spu,
     sku,
@@ -196,9 +188,7 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       input_box_val: inputBoxVal
     });
   }
-
   _exports.cancelReport = cancelReport;
-
   function viewReport() {
     hdReport({
       component: -999,
@@ -211,9 +201,7 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       event_name: '120'
     });
   }
-
   _exports.viewReport = viewReport;
-
   function inputReport({
     name,
     value
@@ -229,7 +217,6 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       input_box_val: value
     });
   }
-
   _exports.inputReport = inputReport;
   const debounceInput = {
     email: debounce(value => inputReport({
@@ -253,7 +240,6 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       name: 'region'
     }), 1000)
   };
-
   function listenInputChange({
     area
   }) {
@@ -265,7 +251,6 @@ window.SLM['theme-shared/report/product/detail/inquiry-modal-report.js'] = windo
       debounceInput[name] && debounceInput[name](value);
     });
   }
-
   _exports.listenInputChange = listenInputChange;
   return _exports;
 }();

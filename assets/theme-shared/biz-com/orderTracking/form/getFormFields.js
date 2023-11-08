@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/orderTracking/form/getFormFields.js'] = window.SLM['theme-shared/biz-com/orderTracking/form/getFormFields.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -20,7 +19,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/getFormFields.js'] = window.
         ...config
       };
     },
-
     phone(config = {}) {
       return {
         name: 'phone',
@@ -34,7 +32,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/getFormFields.js'] = window.
         ...config
       };
     },
-
     username(config = {}) {
       return {
         name: 'username',
@@ -48,7 +45,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/getFormFields.js'] = window.
         ...config
       };
     },
-
     verifycode(configs = {}) {
       return {
         name: 'verifycode',
@@ -61,7 +57,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/getFormFields.js'] = window.
         ...configs
       };
     },
-
     orderId(configs = {}) {
       return {
         name: 'orderId',
@@ -74,15 +69,12 @@ window.SLM['theme-shared/biz-com/orderTracking/form/getFormFields.js'] = window.
         ...configs
       };
     }
-
   };
-
   const getFormFieldsHelper = (types = []) => {
     return types.filter(type => !!type).map(item => {
       if (typeof item === 'string') {
         return formFields[item] && formFields[item]();
       }
-
       const {
         type,
         ...args
@@ -90,7 +82,6 @@ window.SLM['theme-shared/biz-com/orderTracking/form/getFormFields.js'] = window.
       return formFields[type](args);
     });
   };
-
   _exports.getFormFieldsHelper = getFormFieldsHelper;
   _exports.default = getFormFieldsHelper;
   return _exports;

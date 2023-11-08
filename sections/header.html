@@ -9,53 +9,32 @@ all_collections:
   {{ combine_asset_tag 'stage/header/style/index.css' inline=true}}
 {{/if}}
 <!-- stage/header/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/debug.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      'vendors/@yy_sl-theme-shared.rlp.min.js'
-      'vendors/@sl_cart.rlp.min.js'
-      'vendors/@funnyecho_hamon.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+  {{#if request.document_direction '===' 'rtl'}}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
+    {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
   {{else}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/uuid.min.js'
-      'vendors/lodash.min.js'
-      'vendors/debug.min.js'
-      'vendors/eventemitter3.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      'vendors/js-cookie.min.js'
-      'vendors/@yy_sl-theme-shared.min.js'
-      'vendors/@sl_cart.min.js'
-      'vendors/@funnyecho_hamon.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
+    {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
   {{/if}}
+  {{ combine_asset_tag 
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/uuid.min.js'
+    'vendors/lodash.min.js'
+    'vendors/debug.min.js'
+    'vendors/eventemitter3.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    'vendors/js-cookie.min.js'
+    'vendors/@sl_smart-payment.min.js'
+    'vendors/@yy_sl-theme-shared.min.js'
+    'vendors/@sl_cart.min.js'
+    'vendors/@funnyecho_hamon.min.js'
+    'vendors/swiper.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/request.js'
     'commons/base/BaseClass.js'
@@ -86,23 +65,27 @@ all_collections:
     'theme-shared/utils/event-bus.js'
     'theme-shared/utils/parsePathToArray.js'
     'theme-shared/utils/state-selector.js'
-    'theme-shared/utils/syntax-patch.js'
-    'theme-shared/utils/i18n.js'
     'theme-shared/utils/dataAccessor.js'
+    'theme-shared/utils/report/const.js'
     'theme-shared/utils/newCurrency/CurrencyConvert.js'
     'theme-shared/utils/newCurrency/index.js'
-    'theme-shared/utils/report/const.js'
     'theme-shared/utils/dataReport/tool.js'
     'theme-shared/utils/dataReport/ga.js'
     'theme-shared/utils/dataReport/gad.js'
+    'theme-shared/utils/syntax-patch.js'
     'theme-shared/utils/dataReport/fb.js'
-    'theme-shared/utils/tradeReport/const.js'
     'theme-shared/utils/tradeReport/index.js'
     'theme-shared/events/trade/interior-event/index.js'
     'theme-shared/events/trade/enum/index.js'
     'theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'
-    'theme-shared/utils/report/hd-const.js'
-    'theme-shared/utils/tradeReport/hdReport.js'
+    'theme-shared/utils/i18n.js'
+    'theme-shared/components/hbs/shared/components/toast/toast.js'
+    'theme-shared/components/hbs/shared/components/toast/loading.js'
+    'theme-shared/components/hbs/shared/components/toast/index.js'
+    'theme-shared/components/smart-payment/constants.js'
+    'theme-shared/const/preload-state-fields.js'
+    'theme-shared/components/smart-payment/utils.js'
+    'theme-shared/utils/tradeReport/const.js'
     'theme-shared/utils/tradeReport/hdReportV2.js'
     'theme-shared/utils/tradeReport/eventListen.js'
     'commons/logger/index.js'
@@ -148,11 +131,11 @@ all_collections:
     'cart/script/service/cart/index.js'
     'cart/script/service/index.js'
     'commons/utils/dynamicImportMiniCart.js'
-    'theme-shared/components/hbs/shared/components/toast/toast.js'
     'commons/components/toast/toast.js'
-    'theme-shared/components/hbs/shared/components/toast/loading.js'
     'commons/components/toast/loading.js'
     'commons/components/toast/index.js'
+    'commons/cart/errorCode.js'
+    'commons/cart/handleAddToCartErrorCodeToast.js'
     'commons/cart/globalEvent.js'
     'stage/header/scripts/desktop-site-nav.js'
     'stage/header/index.js'
@@ -163,6 +146,7 @@ all_collections:
 
 {{ assign 'main_menu' (get section.settings.main_menu_link_list navigations) }}
 {{ assign 'mobile_main_menu' (get section.settings.mobile_main_menu_link_list navigations) }}
+{{ assign 'mobile_top_menu' (get section.settings.mobile_top_menu navigations) }}
 {{ assign 'settings' section.settings }}
 {{ assign 'show_toolbar' false }}
 
@@ -177,16 +161,20 @@ all_collections:
 
 {{#if show_toolbar}}
   {{ snippet 'header/toolbar' }}
-  {{!-- 移动端全局语言、货币选择下拉 --}}
+
   {{ snippet 'mobile-locale-currency-drawer' }}
 {{/if}}
 
-{{!-- 侧边栏导航 --}}
+
 {{ assign 'drawer_id' 'menu-drawer' }}
 {{#snippet 'global_drawer' id=drawer_id position='left'}}
   {{#if section.settings.show_user_entry}}
     {{#child 'head'}}
-      {{ snippet 'header-btns' btns='user' classnames='menu-drawer__header' }}
+      {{ assign 'user_class' 'menu-drawer__header' }}
+      {{#if section.settings.user_mobile_layout '===' 'home'}}
+          {{ assign 'user_class' 'menu-drawer__header header__user-btn--hide' }}
+      {{/if}}
+      {{ snippet 'header-btns' btns='user' classnames=user_class }}
     {{/child}}
   {{/if}}
   {{#child}}
@@ -194,13 +182,17 @@ all_collections:
   {{/child}}
 {{/snippet}}
 
-{{!-- 移动端侧边栏菜单 --}}
+
 {{#and (if section.settings.mobile_main_menu_link_list) (if mobile_main_menu.handle '!==' main_menu.handle)}}
   {{ assign 'mobile_drawer_id' 'mobile-menu-drawer' }}
   {{#snippet 'global_drawer' id=mobile_drawer_id position='left'}}
     {{#if section.settings.show_user_entry}}
       {{#child 'head'}}
-        {{ snippet 'header-btns' btns='user' classnames='menu-drawer__header' }}
+      {{ assign 'user_class' 'menu-drawer__header' }}
+      {{#if section.settings.user_mobile_layout '===' 'home'}}
+          {{ assign 'user_class' 'menu-drawer__header header__user-btn--hide' }}
+      {{/if}}
+        {{ snippet 'header-btns' btns='user' classnames=user_class }}
       {{/child}}
     {{/if}}
     {{#child}}
@@ -211,12 +203,12 @@ all_collections:
 
 {{ snippet 'global-border-shadow-style' color_scheme=section.settings.color_scheme sectionId=section.id type='modal' }}
 
-{{!-- 首页透明页头 --}}
+
 {{ assign 'overlay_header' false }}
 {{#if (boolean section.settings.sticky_index '&&' (boolean templateAlias '===' 'Home'))}}
 	{{ assign 'overlay_header' true }}
 {{/if}}
-{{!-- 分类页透明页头 --}}
+
 {{#if (boolean section.settings.sticky_collection '&&' (boolean templateAlias '===' 'Products'))}}
 	{{#if (isTruthy sortation)}}
 		{{#if (isTruthy sortation.sortation.sortationImg)}}
@@ -224,14 +216,13 @@ all_collections:
 		{{/if}}
 	{{/if}}
 {{/if}}
-{{!-- header --}}
+
 <div class="header-sticky-wrapper __sl-custom-track-stage-header {{#if section.settings.main_menu_link_list_effect}}header-wrapper-menu--effect{{/if}}" data-color-scheme="{{ section.settings.color_scheme }}">
 	<div id="stage-headerWrapper" class="header__wrapper {{#if overlay_header}}header--is-light header-wrapper--sticky{{/if}}" data-overlay="{{ overlay_header }}">
     <div id="stage-header" data-sticky="{{ boolean section.settings.header_style }}" data-section-id="{{ section.id }}">
       <div class="header__main-wrap">
         <header class="header__main">
-          {{ snippet 'header/header-layout-left-down' settings=section.settings main_menu=main_menu }}
-          {{!-- 点击页头的输入框弹出的搜索框 --}}
+          {{ snippet 'header/header-layout-left-down' settings=section.settings main_menu=main_menu mobile_top_menu=mobile_top_menu }}
           {{ snippet 'header-search' id='header-drawer' suggestMenu=section.settings.suggested_menu }}
         </header>
       </div>
@@ -376,6 +367,20 @@ all_collections:
       ]
     },
     {
+      "type": "menu_picker",
+      "id": "mobile_top_menu",
+      "label": "t:sections.header.settings.mobile_top_menu.label",
+      "info": "t:sections.header.settings.mobile_top_menu.info",
+      "default": ""
+    },
+    {
+      "type": "switch",
+      "id": "mobile_top_menu_show_home",
+      "label": "t:sections.header.settings.mobile_top_menu_show_home.label",
+      "info": "t:sections.header.settings.mobile_top_menu_show_home.info",
+      "default": false
+    },
+    {
       "type": "switch",
       "id": "mega_menu_images",
       "label": "t:sections.header.settings.mega_menu_images.label",
@@ -403,6 +408,22 @@ all_collections:
         {
           "value": "150",
           "label": "t:sections.header.settings.mega_menu_images_ratio.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "user_mobile_layout",
+      "label": "t:sections.header.settings.user_mobile_layout.label",
+      "default": "menu",
+      "options": [
+        {
+          "value": "home",
+          "label": "t:sections.header.settings.user_mobile_layout.options__0.label"
+        },
+        {
+          "value": "menu",
+          "label": "t:sections.header.settings.user_mobile_layout.options__1.label"
         }
       ]
     },
@@ -449,6 +470,48 @@ all_collections:
       "id": "show_user_entry",
       "default": true,
       "label": "t:sections.header.settings.show_user_entry.label"
+    },
+    {
+      "type": "switch",
+      "id": "hover_show_user_menu",
+      "default": false,
+      "label": "t:sections.header.settings.hover_show_user_menu.label"
+    },
+    {
+      "type": "text",
+      "id": "user_menu_text_1",
+      "default": "",
+      "label": "t:sections.header.settings.user_menu_text_1.label"
+    },
+    {
+      "type": "url",
+      "id": "user_menu_link_1",
+      "default": "",
+      "label": "t:sections.header.settings.user_menu_link_1.label"
+    },
+    {
+      "type": "text",
+      "id": "user_menu_text_2",
+      "default": "",
+      "label": "t:sections.header.settings.user_menu_text_2.label"
+    },
+    {
+      "type": "url",
+      "id": "user_menu_link_2",
+      "default": "",
+      "label": "t:sections.header.settings.user_menu_link_2.label"
+    },
+    {
+      "type": "text",
+      "id": "user_menu_text_3",
+      "default": "",
+      "label": "t:sections.header.settings.user_menu_text_3.label"
+    },
+    {
+      "type": "url",
+      "id": "user_menu_link_3",
+      "default": "",
+      "label": "t:sections.header.settings.user_menu_link_3.label"
     },
     {
       "type": "switch",

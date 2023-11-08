@@ -2,7 +2,7 @@
   {
     "name": "Arise",
     "theme_name": "Arise",
-    "theme_version": "1.4.4",
+    "theme_version": "1.4.28",
     "theme_author": "Shopline",
     "theme_documentation_url": "",
     "theme_support_url": "",
@@ -1174,6 +1174,22 @@
         "default": "button"
       },
       {
+        "id": "product_card_content_align",
+        "type": "select",
+        "label": "t:settings_schema.product.settings.product_card_content_align.label",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:settings_schema.product.settings.product_card_content_align.options__0.label"
+          },
+          {
+            "value": "center",
+            "label": "t:settings_schema.product.settings.product_card_content_align.options__1.label"
+          }
+        ]
+      },
+      {
         "id": "product_title_show_type",
         "type": "select",
         "label": "t:settings_schema.product.settings.product_title_show_type.label",
@@ -1634,6 +1650,22 @@
         "id": "social_whatsapp_link",
         "type": "text",
         "label": "t:settings_schema.media_sosial.settings.social_whatsapp_link.label",
+        "default": "",
+        "placeholder": "http://",
+        "format": "uri"
+      },
+      {
+        "id": "social_line_link",
+        "type": "text",
+        "label": "t:settings_schema.media_sosial.settings.social_line_link.label",
+        "default": "",
+        "placeholder": "http://",
+        "format": "uri"
+      },
+      {
+        "id": "social_kakao_link",
+        "type": "text",
+        "label": "t:settings_schema.media_sosial.settings.social_kakao_link.label",
         "default": "",
         "placeholder": "http://",
         "format": "uri"

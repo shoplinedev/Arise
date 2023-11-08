@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/logger/sentryReport.js'] = window.SLM['commons/logger/sentryReport.js'] || function () {
   const _exports = {};
   const Owner = {

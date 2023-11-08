@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/cart/cart_module.js'] || function () {
   const _exports = {};
   const Cookie = window['js-cookie']['default'];
@@ -37,17 +36,14 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
   const logger = LoggerService.pipeOwner(`${Owner.cart} biz/cart/index.js`);
   const cartToken = Cookie.get('t_cart');
   const listenMap = {};
-
   class CartModule {
     constructor(cartType) {
       this._cartType = cartType;
       this._skuCardComponent = null;
       this._ctx = null;
       this._showQuickPaymentBtn = !get(tradeSettleConfig, 'cartSettleButtonConfig.justShowSettleButton', false);
-
       this._initAfterLoaded();
     }
-
     _initCurrencyChangeListener() {
       const cartRootNode = this._root;
       SL_State.on('currencyCode', () => {
@@ -64,7 +60,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
         });
       });
     }
-
     _initAfterLoaded() {
       logger.info(`normal 主站购物车 初始化 _initAfterLoaded`, {
         data: {
@@ -73,7 +68,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
         action: Action.InitCart,
         status: LoggerStatus.Success
       });
-
       if (document.readyState !== 'loading') {
         this._init();
       } else {
@@ -82,7 +76,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
         });
       }
     }
-
     _init() {
       logger.info(`normal 主站购物车 全局化 cart service _init`, {
         data: {
@@ -97,7 +90,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
       ctx = valuer.checkoutHooksValuer.withCheckoutHooks(ctx);
       ctx = valuer.cartActionHooksValuer.withCartActionHooks(ctx);
       this._ctx = ctx;
-
       if (this._cartType === 'main') {
         logger.info(`normal 主站购物车 _init`, {
           data: {
@@ -107,9 +99,8 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
           status: LoggerStatus.Start
         });
         initMainCartSticky();
-
         try {
-          SummationModule.init();
+          SummationModule.init('cart');
         } catch (error) {
           logger.error(`normal 主站购物车 _init SummationModule 初始化失败`, {
             data: {
@@ -120,9 +111,8 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
             errorLevel: 'P0'
           });
         }
-
         try {
-          initCoupon();
+          initCoupon(`.${this._cartType}`);
         } catch (error) {
           logger.error(`normal 主站购物车 _init Coupon 初始化失败`, {
             data: {
@@ -133,7 +123,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
             errorLevel: 'P0'
           });
         }
-
         if (this._showQuickPaymentBtn) {
           logger.info(`normal 主站购物车 Paypal 初始化 _init`, {
             data: {
@@ -142,7 +131,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
             action: Action.InitCart,
             status: LoggerStatus.Start
           });
-
           try {
             this._initMainPaypalModule();
           } catch (error) {
@@ -156,7 +144,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
             });
           }
         }
-
         logger.info(`normal 主站购物车 SummationModule 初始化 _init`, {
           data: {
             cartToken
@@ -174,20 +161,16 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
       } else {
         listenHeaderSectionChange();
         new TopDrawer('cart-select');
-
         this._initBanner();
-
         initTradeCheckbox();
         const cartOpenType = window.SL_State.get('theme.settings.cart_open_type');
-
         if (cartOpenType === 'drawer') {
           initMiniCartSticky();
-          SummationModule.init();
-          initCoupon();
+          SummationModule.init('miniCart');
+          initCoupon(`.${this._cartType}`);
         } else {
           CartBanner.init();
         }
-
         logger.info(`normal 主站购物车 CartBanner 初始化 _init`, {
           data: {
             cartToken
@@ -196,31 +179,22 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
           status: LoggerStatus.Start
         });
       }
-
       const cartOpenType = window.SL_State.get('theme.settings.cart_open_type');
-
       if (cartOpenType === 'drawer' || this._cartType === 'main') {
         this._skuCardComponent = new SkuCard(ctx, this._cartType);
-
         this._skuCardComponent.init();
       }
-
       if (!isNewExpressCheckout(PageType.Cart) || this._cartType !== 'main') {
         this._initCheckoutModule();
       }
-
       this._initCheckoutErrorModule();
-
       this._root = $(`.${this._cartType === 'main' ? 'trade_cart' : 'trade_mini_cart'}`);
-
       this._initCurrencyChangeListener();
-
       if (window.location.pathname === window.Shopline.redirectTo('/cart') && this._cartType === 'main') {
         const cartInfo = SL_State.get('cartInfo');
         cartReport.viewCart(cartInfo);
       }
     }
-
     _initCheckoutModule() {
       logger.info(`normal 主站购物车 结算按钮初始化 _initCheckoutModule`, {
         data: {
@@ -235,7 +209,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
       };
       nodeList.forEach(el => {
         const key = el.getAttribute('id');
-
         if (!listenMap[key]) {
           CheckoutModule.newCheckoutModule(this._ctx, el, extra);
           listenMap[key] = 1;
@@ -249,7 +222,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
         status: LoggerStatus.Success
       });
     }
-
     _initCheckoutErrorModule() {
       logger.info(`normal 主站购物车 结账错误初始化 _initCheckoutErrorModule`, {
         data: {
@@ -270,7 +242,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
         status: LoggerStatus.Success
       });
     }
-
     _initMainPaypalModule() {
       logger.info(`main 主站购物车 Paypal 初始化 _initMainPaypalModule`, {
         data: {
@@ -285,19 +256,19 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
         cbFn: () => this._initCheckoutModule(),
         elementId: 'cart-spb'
       };
-
       if (isNewExpressCheckout(PageType.Cart)) {
         PayemtnButtonModule.newButtonModule(props);
-        PayemtnButtonModule.newButtonModule({ ...props,
+        PayemtnButtonModule.newButtonModule({
+          ...props,
           elementId: 'cart-spb-fixed'
         });
       } else {
         newExpressCheckoutModule(props);
-        newExpressCheckoutModule({ ...props,
+        newExpressCheckoutModule({
+          ...props,
           elementId: 'cart-spb-fixed'
         });
       }
-
       logger.info(`main 主站购物车 Paypal 初始化 _initMainPaypalModule`, {
         data: {
           cartToken
@@ -306,7 +277,6 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
         status: LoggerStatus.Success
       });
     }
-
     _initBanner() {
       logger.info(`mini 主站购物车 banner 初始化`, {
         action: Action.InitCart,
@@ -319,9 +289,7 @@ window.SLM['cart/script/biz/cart/cart_module.js'] = window.SLM['cart/script/biz/
         });
       });
     }
-
   }
-
   _exports.default = CartModule;
   return _exports;
 }();

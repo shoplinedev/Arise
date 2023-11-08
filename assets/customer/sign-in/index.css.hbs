@@ -566,18 +566,28 @@ input{
   display:none;
 }
 
+.sign-in__activate-info{
+  color:#000;
+  line-height:20px;
+  margin-bottom:32px;
+}
+.sign-in__activate-info,.sign-in__has-registered{
+  display:none;
+  font-size:12px;
+  text-align:center;
+}
 .sign-in__has-registered{
   color:#f04949;
+  line-height:16px;
+  margin-bottom:16px;
 }
-.sign-in__from_confirm_email,.sign-in__has-registered{
+.sign-in__from_confirm_email{
+  color:#000;
   display:none;
   font-size:12px;
   line-height:16px;
   margin-bottom:16px;
   text-align:center;
-}
-.sign-in__from_confirm_email{
-  color:#000;
 }
 .sign-in__buttons{
   display:flex;
@@ -657,4 +667,7 @@ input{
   to{
     transform:rotate(1turn);
   }
+}
+.sign-in__activate-verifycode{
+  display:none;
 }

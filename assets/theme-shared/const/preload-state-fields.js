@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/const/preload-state-fields.js'] = window.SLM['theme-shared/const/preload-state-fields.js'] || function () {
   const _exports = {};
   const BrowserPreloadStateFields = {

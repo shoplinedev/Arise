@@ -11,7 +11,7 @@
 <div class="footer__paychannel">
   {{#each pay_channel_list}}
     <div class="footer__paychannel-item">
-      <img class="lozad" data-src="{{ payment_type_img_url this }}" />
+      {{payment_type_svg_tag this}}
     </div>
   {{/each}}
 </div>

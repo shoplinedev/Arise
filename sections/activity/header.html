@@ -1,21 +1,21 @@
 {{#if activity.promotionSubType '===' 1}}
-  {{!-- 活动海报 --}}
+  
   <div class="activity__poster">
     {{#if activity.bannerPicUrlMobile }}
-      {{!-- 移动端图片 --}}
-      <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrlMobile }}" />
+      
+      <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrlMobile }}" alt=""/>
     {{else}}
       {{#if activity.bannerPicUrl }}
-        {{!-- 无移动端标签有pc端图片获取pc端图片 --}}
-        <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrl }}" />
+        
+        <img class="activity__poster-mobile d-block d-md-none" src="{{ activity.bannerPicUrl }}" alt=""/>
       {{/if}}
     {{/if}}
     {{#if activity.bannerPicUrl }}
-      {{!-- pc端图片 --}}
-      <img class="activity__poster-pc d-none d-md-block" src="{{ activity.bannerPicUrl }}" />
+      
+      <img class="activity__poster-pc d-none d-md-block" src="{{ activity.bannerPicUrl }}" alt=""/>
     {{/if}}
   </div>
-  {{!-- 活动横幅 --}}
+  
   {{ assign 'now' (dayjs method='valueOf')}}
   {{ assign 'salesCustom' (object_create)}}
   {{#if activity.salesEnvCustomInfo}}
@@ -26,9 +26,9 @@
     <div class="activity__countdown" style="background-color:{{salesCustom.bannerBgColor}};color:{{salesCustom.bannerTextColor}};">
       {{#if (or salesCustom.bannerText (and (compare salesCustom.showCountDown '===' 'true') (compare now '<' activity.endTime)))}}
         <div class="countdown-content">
-          {{!-- 文案 --}}
-          <span class="wrapAnywhere">{{salesCustom.bannerText}}</span>
-          {{!-- 倒计时 --}}
+          
+          <span class="wrapAnywhere promotion-banner-text">{{salesCustom.bannerText}}</span>
+          
           {{#if (and (compare salesCustom.showCountDown '===' 'true') (compare now '<' activity.endTime))}}
             <span class="countdown-cells notranslate" style="color:{{salesCustom.countDownBgColor}};">{{#if salesCustom.countDownUnit '===' 'mode1'}}<span class="time-cell day"
                   style="{{cellStyle}}">0</span><span class="daySplit">:</span>{{/if}}<span class="time-cell hour" style="{{cellStyle}}">00</span>:<span class="time-cell minute"
@@ -38,7 +38,7 @@
         </div>
       {{/if}}
       {{#if activity.promotionSubType '===' 3}}
-        {{!-- 优惠码 --}}
+        
         {{ assign 'benefitCondition' (itemAt activity.benefitConditions 0)}}
         <div class="activity__countdown-coupon" style="color:{{salesCustom.discountCodeBgColor}}">
           <i class="coupon-left-icon">
@@ -57,18 +57,18 @@
           <div class="coupon-content" style="background-color:{{salesCustom.discountCodeBgColor}};color:{{salesCustom.discountCodeTextColor}};">
             <div class="coupon-left">
               {{#if (compare activity.benefitType '===' 1)}}
-                {{!-- 金额 --}}
+                
                 {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=(javascript_template '<span class="notranslate isolate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(money_exchange_convert_with_currency benefitCondition.benefit.benefitAmount))))}}
               {{else if (compare activity.benefitType '===' 2)}}
-                {{!-- 折扣 --}}
+                
                 {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
                 {{ assign 'benefitText' (noTranslationHTML (t 'sales.general.activity_banner_benefit' benefit=percentage))}}
               {{else if (compare activity.benefitType '===' 3)}}
-                {{!-- 免运费 --}}
+                
                 {{ assign 'benefitText' (t 'sales.general.activity_banner_free_shipping')}}
               {{/if}}
               {{#if activity.benefitType '===' 12}}
-                {{!-- 买x送y --}}
+                
                 {{#if benefitCondition.benefit.benefitAmount}}
                   {{ assign '__benefitAmount' (javascript_template '<span class="notranslate isolate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(money_exchange_convert_with_currency benefitCondition.benefit.benefitAmount))}}
                   {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_discount_content' discount=__benefitAmount))}}
@@ -78,31 +78,31 @@
                   {{ assign 'percentage' (javascript_template '<span class="notranslate">${str}</span>' str=(append benefitCondition.benefit.offPercent '%')) }}
                   {{ assign 'benefitText' (noTranslationHTML (t 'sales.discount_coupon.buy_x_get_y_discount_content' discount=percentage))}}
                 {{/if}}
-                {{!-- 买x送y门槛文案 --}}
+                
                 {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
-                  {{!-- 金额 --}}
+                  
                   {{ assign '__threshold' (javascript_template '<span class="notranslate isolate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))}}
                 {{else}}
-                  {{!-- 百分比折扣 --}}
+                  
                   {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
                 {{/if}}
                 {{ assign 'thresholdText' (noTranslationHTML (t "sales.discount_coupon.buy_x_get_y_threshold" threshold=__threshold benefitCount=benefitCondition.benefit.benefitCount))}}
               {{else}}
-                {{!-- 其他折扣码门槛文案 --}}
+                
                 {{#if (compare benefitCondition.benefitEvent.type '===' 0)}}
-                  {{!-- 金额 --}}
+                  
                   {{ assign '__threshold' (javascript_template '<span class="notranslate isolate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefitEvent.minThreshold amountStr=(money_exchange_convert_with_currency benefitCondition.benefitEvent.minThreshold))}}
                 {{else}}
-                  {{!-- 百分比折扣 --}}
+                  
                   {{ assign '__threshold' (append '' benefitCondition.benefitEvent.minThreshold)}}
                 {{/if}}
                 {{ assign 'thresholdText' (noTranslationHTML (t "sales.general.activity_banner_threshold" threshold=__threshold))}}
               {{/if}}
-              {{!-- 门槛 --}}
+              
               {{#if benefitCondition.benefitEvent.type '!==' -1}}
                 <span class="condition wrapAnywhere">{{thresholdText}}</span>
               {{/if}}
-              {{!-- 优惠 --}}
+              
               <span class="benefit wrapAnywhere">{{benefitText}}</span>
             </div>
             <button class="coupon_copy wrapAnywhere"
@@ -115,13 +115,13 @@
   {{else}}
   <div class="discount-style-plugin-activity"></div>
 {{/if}}
-{{!-- 活动信息 --}}
+
 <div class="container activity__info" style="padding: 0 20px;">
-  {{!-- 活动标题 --}}
+  
   <h1 class="title2 activity__title wrapAnywhere">
     {{ activity.defaultActivityName }}
   </h1>
-  {{!-- 活动规则 --}}
+  
   <div class="body3 activity__rules wrapAnywhere">{{ trim activity.defaultActivityRule }}</div>
   {{#if activity.promotionSubType '===' 1}}
     <div class="activity__limit">
@@ -138,17 +138,17 @@
           </i>
           <span class="activity__limit-tipText">
             {{#if activity.userLimitedType '===' 2}}
-              {{!-- 每人每款商品限购 --}}
+              
               <span>
                 {{noTranslationHTML (t 'sales.general.purchase_limit_each_item' count=(javascript_template '<span class="notranslate" style="font-weight: bold">${countStr}</span>' countStr=activity.acquirePerUserLimit))}}
               </span>
             {{else if activity.userLimitedType '===' 3}}
-              {{!-- 每商品限购 --}}
+              
               <span>
                 {{noTranslationHTML (t 'sales.general.purchase_limit_each_product' count=(javascript_template '<span class="notranslate" style="font-weight: bold">${countStr}</span>' countStr=activity.acquirePerUserLimit))}}
               </span>
             {{else}}
-              {{!-- 每人每活动限购 --}}
+              
               <span>
                 {{noTranslationHTML (t 'sales.general.purchase_limit' count=(javascript_template '<span class="notranslate" style="font-weight: bold">${countStr}</span>' countStr=activity.acquirePerUserLimit))}}
               </span>
@@ -171,7 +171,7 @@
       {{/if}}
     </div>
   {{/if}}
-  {{!-- 活动标签 --}}
+  
   {{#if (and activity.benefitConditions.length (compare activity.promotionSubType '!==' 3))}}
     <div class="activity__tags">
       {{ snippet 'activity/promotion-tags' benefitType=activity.benefitType benefitConditions=activity.benefitConditions  template=activity.discountStyleText}}

@@ -6,7 +6,7 @@
   {{else if (boolean texture '==' 'darken')}}
     <div class="scheme-darken"></div>
   {{else}}
-    <!-- NOTE: assets_url 目前不支持字符串拼接 -->
+    
     {{#if (eq texture 'marble') }}
       <img class="scheme-image lozad"
         data-srcset="
@@ -16,6 +16,7 @@
           {{assets_url 'images/texture/marble_900.png'}} 900w,
           {{assets_url 'images/texture/marble_1080.png'}} 1080w
         "
+        alt="marble-texture"
       />
     {{else if (eq texture 'paper')}}
       <img class="scheme-image lozad"
@@ -26,6 +27,7 @@
           {{assets_url 'images/texture/paper_900.png'}} 900w,
           {{assets_url 'images/texture/paper_1080.png'}} 1080w
         "
+        alt="paper-texture"
       />
     {{/if}}
   {{/if}}

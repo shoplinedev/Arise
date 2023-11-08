@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/domain/adapter/svc/internal/constant.js'] = window.SLM['cart/script/domain/adapter/svc/internal/constant.js'] || function () {
   const _exports = {};
   _exports.default = {

@@ -1,8 +1,6 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/templates/getModal.js'] = window.SLM['theme-shared/biz-com/customer/templates/getModal.js'] || function () {
   const _exports = {};
-
   _exports.default = (content, title) => {
     return `
     <div class="sign-up__modal-header">
@@ -15,6 +13,5 @@ window.SLM['theme-shared/biz-com/customer/templates/getModal.js'] = window.SLM['
     </div>
   `;
   };
-
   return _exports;
 }();

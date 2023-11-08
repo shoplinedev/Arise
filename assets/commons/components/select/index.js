@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/components/select/index.js'] = window.SLM['commons/components/select/index.js'] || function () {
   const _exports = {};
   $(document).ready(function () {

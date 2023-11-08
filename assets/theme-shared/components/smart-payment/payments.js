@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['theme-shared/components/smart-payment/payments.js'] || function () {
   const _exports = {};
   const loggerService = window['@yy/sl-theme-shared']['/utils/logger/sentry'].default;
@@ -12,11 +11,11 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
   const { getSubscription, getPurchaseSDKCheckoutData, PageType, HandleClassType, createElement, isFn, isNewExpressCheckout, paymentToast, getPageI18nText } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const { ERROR_TYPE } = window['SLM']['theme-shared/components/smart-payment/constants.js'];
   const { BrowserPreloadStateFields } = window['SLM']['theme-shared/const/preload-state-fields.js'];
+  const { loggerBusinessPrefix: loggerPrefix } = window['SLM']['theme-shared/components/locales/index.js'];
+  const { SAVE_FROM } = window['SLM']['theme-shared/utils/constant.js'];
   const PaymentUpdate = 'Payment::Update';
   const CartUpdate = 'Cart::CartDetailUpdate';
   const logger = loggerService.pipeOwner('SmartPayment');
-  const loggerPrefix = '[shared]快速支付业务';
-
   class Payments {
     constructor(config) {
       this.config = config;
@@ -31,17 +30,14 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
       this.returnUrl = '';
       this.addListener();
     }
-
     get currentId() {
       return this.isSubscription ? this.subscriptionElementId : this.elementId;
     }
-
     renderElement(dom) {
       createElement({
         id: dom.id,
         parentId: this.parentId
       });
-
       if (isNewExpressCheckout(this.config.pageType)) {
         this.expressCheckoutButtonList.push(newExpressCheckoutButton({
           domId: dom.id,
@@ -50,7 +46,6 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
         }));
       }
     }
-
     initRender() {
       const subObj = {
         id: this.subscriptionElementId,
@@ -60,48 +55,38 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
         id: this.elementId,
         isSubscription: false
       };
-
       const handleDom = domIdList => {
         domIdList.forEach(dom => {
           this.renderElement(dom);
         });
         return domIdList;
       };
-
       if (this.config.pageType === PageType.Cart) {
         return this.isSubscription ? handleDom([subObj]) : handleDom([normalObj]);
       }
-
       if (this.config.pageType === PageType.ProductDetail) {
         const res = this.isSubscription ? handleDom([subObj, normalObj]) : handleDom([normalObj]);
-
         if (this.isSubscription) {
           this.isSubscription = undefined;
           this.setDisplay({
             action: HandleClassType.Add
           });
         }
-
         return res;
       }
-
       return handleDom([normalObj]);
     }
-
     async init() {
       for (const item of this.initRender()) {
         await this.render(item);
       }
-
       if (isNewExpressCheckout(this.config.pageType)) {
         this.expressCheckoutButtonList.forEach(item => item.removeSkeleton());
       }
     }
-
     async render(item) {
       const config = mergeParams(this.config, {
         props: {
-          currency: window.Shopline.currency,
           domId: item.id,
           isSubscription: item.isSubscription,
           scriptParams: item.isSubscription ? {
@@ -114,7 +99,6 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
             logger.info(`${loggerPrefix} beforeCreateOrder 入参`, res);
             return res;
           }
-
           try {
             const checkoutParams = await this.config.setCheckoutParams();
             let valid = true;
@@ -124,7 +108,6 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
                 item
               }
             });
-
             if (item.isSubscription && this.config.pageType === PageType.ProductDetail) {
               const res = await getPurchaseSDKCheckoutData(checkoutParams.productButtonId).catch(error => {
                 logger.error(`${loggerPrefix} 获取订阅商品信息失败`, {
@@ -136,13 +119,11 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
             } else {
               products = checkoutParams.products;
             }
-
             if (!valid) {
               return {
                 valid
               };
             }
-
             const {
               extra
             } = checkoutParams;
@@ -156,15 +137,16 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
               url: returnUrl,
               needLogin,
               abandonedInfo
-            } = await checkout.save(products, extra);
-
+            } = await checkout.save(products, {
+              ...extra,
+              from: SAVE_FROM.CROSSSMARTPAYMENT
+            });
             if (needLogin) {
               window.location.href = returnUrl;
               return {
                 valid: false
               };
             }
-
             this.returnUrl = returnUrl;
             const {
               orderFrom
@@ -188,11 +170,9 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
           if (isNewExpressCheckout(this.config.pageType)) {
             return;
           }
-
           if (this.hasDynamicNotify) {
             return;
           }
-
           if (isFn(this.config.onDynamicNotify)) {
             this.config.onDynamicNotify(data);
             this.hasDynamicNotify = true;
@@ -209,7 +189,6 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
             window.location.href = url;
             return;
           }
-
           if (isFn(this.config.onError)) {
             this.config.onError(error, type, extData);
           }
@@ -218,26 +197,22 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
       this.instanceMap[item.id] = new SmartPayment(config);
       this.instanceMap[item.id] && (await this.instanceMap[item.id].init());
     }
-
     setDisabled(active) {
       logger.info(`${loggerPrefix} setDisabled`, {
         data: {
           active
         }
       });
-
       if (!active) {
         Object.keys(this.instanceMap).forEach(item => {
           this.instanceMap[item] && this.instanceMap[item].setDisabled(true);
         });
         return;
       }
-
       Object.keys(this.instanceMap).forEach(item => {
         this.instanceMap[item] && this.instanceMap[item].setDisabled(false);
       });
     }
-
     setDisplay({
       action,
       isSubscription
@@ -248,31 +223,25 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
           isSubscription
         }
       });
-
       const handleClass = (ele, action) => {
         const currentEle = document.getElementById(ele);
-
         if (currentEle) {
           if (action === HandleClassType.Add) {
             currentEle.style.display = 'none';
           }
-
           if (action === HandleClassType.Remove) {
             currentEle.style.display = 'block';
           }
         }
       };
-
       if (action) {
         handleClass(this.elementId, action);
         handleClass(this.subscriptionElementId, action);
         return;
       }
-
       handleClass(this.elementId, isSubscription ? HandleClassType.Add : HandleClassType.Remove);
       handleClass(this.subscriptionElementId, isSubscription ? HandleClassType.Remove : HandleClassType.Add);
     }
-
     addListener() {
       const changeStatus = async (isSubscription, from) => {
         const currentId = isSubscription ? this.subscriptionElementId : this.elementId;
@@ -284,7 +253,6 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
           }
         });
         if (isSubscription === this.isSubscription) return;
-
         if (!this.instanceMap[currentId]) {
           const item = {
             id: currentId,
@@ -298,13 +266,11 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
           this.renderElement(item);
           await this.render(item);
         }
-
         this.setDisplay({
           isSubscription
         });
         this.isSubscription = isSubscription;
       };
-
       if (this.config.pageType === PageType.ProductDetail) {
         let timer = null;
         window.Shopline.event.on(PaymentUpdate, async ({
@@ -321,7 +287,6 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
           this.isSubscription = false;
         }, 5000);
       }
-
       if (this.config.pageType === PageType.Cart) {
         window.Shopline.event.on(CartUpdate, async data => {
           if (data.subscriptionInfo) {
@@ -331,9 +296,7 @@ window.SLM['theme-shared/components/smart-payment/payments.js'] = window.SLM['th
         });
       }
     }
-
   }
-
   _exports.Payments = Payments;
   _exports.PageType = PageType;
   _exports.HandleClassType = HandleClassType;

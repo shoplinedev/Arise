@@ -6,10 +6,10 @@
   {{#if request.uri.query.query_product_type}}
     {{assign 'selectedTab' 2}}
     {{assign 'effectProductUrl' url}}
-    {{assign 'benefitProductUrl' 'javascript: void(0);'}}
+    {{assign 'benefitProductUrl' 'javascript:;'}}
   {{else}}
     {{assign 'selectedTab' 1}}
-    {{assign 'effectProductUrl' 'javascript: void(0);'}}
+    {{assign 'effectProductUrl' 'javascript:;'}}
     {{#if (test url (toRegex "\?"))}}
       {{assign 'benefitProductUrl' (append url '&' 'query_product_type=2')}}
     {{else}}
@@ -29,7 +29,7 @@
       {{assign 'benefitUnlock' (t 'sales.general.product_tabs_benefit_free_unlocked')}}
     {{/if}}
   {{else if benefitCondition.benefit.benefitAmount}}
-    {{!-- 买x送y tab 支持固定金额 --}}
+
     {{assign '__benefitAmount' (javascript_template '<span class="isolate" data-amount="${amount}">${amountStr}</span>' amount=benefitCondition.benefit.benefitAmount amountStr=(money_exchange_convert_with_currency benefitCondition.benefit.benefitAmount))}}
     {{assign 'benefit' (noTranslationHTML (t 'sales.general.product_tabs_benefit_amount_locked' benefitAmount=__benefitAmount))}}
     {{#if activity.promotionSubType '===' 3}}

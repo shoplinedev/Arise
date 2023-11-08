@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/user-center/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/user-center/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -18,25 +17,20 @@ window.SLM['theme-shared/biz-com/customer/biz/user-center/index.js'] = window.SL
   };
   $(() => {
     const isLogin = SL_State.get('request.is_login');
-
     if (!isLogin) {
       toSignOut().then(() => {
         window.location.href = redirectTo(SIGN_IN);
       });
     }
-
     const toast = new Toast();
     const from = getUrlQuery('from');
-
     if (from === CONFIRM_SUBSCRIBE_EMAIL) {
       const hasToast = !!sessionStorage.getItem(CONFIRM_SUBSCRIBE_EMAIL);
-
       if (!hasToast) {
         sessionStorage.setItem(CONFIRM_SUBSCRIBE_EMAIL, true);
         toast.open(t('customer.account.subscribe_confirm_tip'));
       }
     }
-
     const $center = $('#user-center');
     $center.find('.signout-link').click(() => {
       toSignOut().then(() => {

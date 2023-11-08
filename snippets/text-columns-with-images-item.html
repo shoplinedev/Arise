@@ -2,7 +2,7 @@
 {{ assign 'mobileWrapperCls' '' }}
 {{#if isMobileRowsMode}}
   {{ assign 'titleCls' 'title6' }}
-  {{!-- 移动端2列且有背景，内边距为15px --}}
+  
   {{#and (isTruthy showMask) (isFalsey noSpacing)}}
     {{ assign 'mobileWrapperCls' 'mobile-rows-spacing-when-has-bg' }}
   {{/and}}
@@ -29,7 +29,7 @@
   {{/if}}
 
   <div class="text-columns-with-images-item text-columns-with-images-item--{{text_align}} {{classes}}" {{{ shopline_attributes }}} >
-    {{!-- 内容容器没有边框大小为0时，不管全局的圆角配了多少都是0，不然图片会被挤成圆角. --}}
+    
     <div class="text-columns-with-images-item__wrapper global-content-border-shadow {{mobileWrapperCls}} {{#if theme.settings.content_border_thickness '===' 0}}no-border{{/if}}
       {{#if noSpacing '===' 'true'}}no-spacing{{/if}}"
     >
@@ -55,7 +55,7 @@
               <img
                 class="lozad"
                 data-sizes="auto"
-                data-src="{{this.settings.image.url}}" />
+                data-src="{{this.settings.image.url}}" alt="{{this.settings.image.alt}}" />
             </a>
           </div>
           {{/if}}

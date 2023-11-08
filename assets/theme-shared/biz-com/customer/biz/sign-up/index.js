@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] || function () {
   const _exports = {};
   const dayjs = window['dayjs']['default'];
@@ -19,7 +18,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
   const { wrapArmorCaptcha } = window['SLM']['theme-shared/biz-com/customer/commons/captcha-modal/index.js'];
   const DatePicker = window['SLM']['theme-shared/biz-com/customer/commons/date-picker/index.js'].default;
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
-
   class Register extends Customer {
     constructor({
       id = 'register',
@@ -37,7 +35,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
       this.subscribe = null;
       this.registerForm = null;
     }
-
     init() {
       this.$$reports && this.$$reports.reportSignUpPageView && this.$$reports.reportSignUpPageView();
       this.registerForm = new Form({
@@ -58,7 +55,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
       const {
         mode
       } = this.configs;
-
       if (['username', 'email'].includes(mode)) {
         this.subscribe = new Subscribe({
           formId: this.formId,
@@ -66,14 +62,12 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
           $$reports: this.$$reports
         });
       }
-
       this.bindEvents();
       new DatePicker({
         id: this.isModal ? 'register-birthday-modal' : 'register-birthday',
         value: ''
       });
     }
-
     getFieldConfigs() {
       const {
         mode,
@@ -81,7 +75,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
       } = this.configs;
       const accountFieldType = getAccountFieldType(mode);
       const fieldTypes = [accountFieldType, 'password'];
-
       if (verify) {
         fieldTypes.push({
           type: 'verifycode',
@@ -91,15 +84,12 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
           watch: [accountFieldType]
         });
       }
-
       return getFormFields(fieldTypes);
     }
-
     bindEvents() {
       const isPhoneInputMode = value => {
         return /^\d+$/.test(value);
       };
-
       this.registerForm && this.registerForm.formInstance && this.registerForm.formInstance.on('valuesChange', ({
         changedValue
       }) => {
@@ -107,19 +97,15 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
           const isEmailInputMode = changedValue && changedValue.username && !isPhoneInputMode(changedValue && changedValue.username) || changedValue && changedValue.email;
           this.subscribe.toggleSubscriptionCheckbox(!!isEmailInputMode);
         }
-
         if (changedValue && changedValue.email) {
           this.subscribe.toggleSubscriptionCheckbox(true);
         }
-
         if (typeof (changedValue && changedValue.subscription) !== 'undefined') {
           this.subscribe.setSubscriptionEmail(changedValue && changedValue.subscription);
         }
-
         if (typeof (changedValue && changedValue.policy) !== 'undefined') {
           this.policy.onCheckAgreement(changedValue && changedValue.policy);
         }
-
         this.clearError();
       });
       $(`#${this.formId} .sign-up__footer-link .sign-up__link`).click(e => {
@@ -129,7 +115,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         window.location.href = href;
       });
     }
-
     getExtInfo(transform) {
       const excludeFields = ['email', 'phone', 'username', 'verifycode', 'password'];
       return $(`#${this.formId} form`).serializeArray().filter(item => !excludeFields.includes(item.name)).reduce((prev, next) => {
@@ -137,25 +122,21 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         return prev;
       }, {}) || {};
     }
-
     onSubmit(data) {
       const {
         mode = 'email',
         verify
       } = this.configs;
       const checkResult = this.policy.checkAgreePolicy(data);
-
       if (!checkResult) {
         super.setError({
           resmsg: 'customer.general.user_agreement_tip'
         });
         return Promise.reject();
       }
-
       if (data && typeof data.subscription !== 'undefined') {
         this.subscribe && this.subscribe.setSubscriptionEmail(data && data.subscription);
       }
-
       const params = this.UDBParams;
       const payload = {
         acct: data.email || data.phone || data.username,
@@ -165,24 +146,21 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         eventid: this.eid
       };
       const customExtInfo = storage.sessionStorage.get(REGISTER_EXTRA_INFO);
-      const extInfo = { ...this.getExtInfo({
+      const extInfo = {
+        ...this.getExtInfo({
           gender: val => val && parseInt(val, 10) || 0,
           birthday: date => date && dayjs(date).format('YYYYMMDD') || ''
         }),
         ...customExtInfo
       };
-
       if (window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value) {
         extInfo.memberReferralCode = window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value;
       }
-
       if (Object.keys(extInfo).length > 0) {
         payload.extinfo = JSON.stringify(extInfo);
       }
-
       this.registerForm.setLoading(true);
       this.$$reports.reportSignUpSuccess && this.$$reports.reportSignUpSuccess();
-
       if (verify) {
         return this.onSignUp({
           payload,
@@ -191,8 +169,8 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
           mode
         });
       }
-
-      return checkAccount(super.formatRequestBody({ ...params,
+      return checkAccount(super.formatRequestBody({
+        ...params,
         acct: payload.acct
       })).then(({
         stoken
@@ -212,7 +190,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         return Promise.reject(res);
       });
     }
-
     onSignUp({
       payload,
       params,
@@ -221,7 +198,8 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
     }) {
       const registerAccount = (captchaToken, updateParams = {}) => {
         const formData = this.registerForm.getFormValue();
-        return signUpMember(super.formatRequestBody({ ...payload,
+        return signUpMember(super.formatRequestBody({
+          ...payload,
           ...params,
           pwd: formData.password,
           captcha: captchaToken,
@@ -235,7 +213,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
           this.subscribe && this.subscribe.onSubscribeEmail && this.subscribe.onSubscribeEmail(payload && payload.acct);
         });
       };
-
       return wrapArmorCaptcha({
         onCaptureCaptcha: registerAccount,
         onCaptchaVerifySuccess: (captchaToken, prevRequestResult) => registerAccount(captchaToken, {
@@ -250,7 +227,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         this.registerForm.setLoading(false);
       });
     }
-
     onSignUpSuccess({
       osudb_uid
     }, data, mode) {
@@ -272,17 +248,14 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
           event_name: 'leave',
           page_dest: getRedirectOriginUrl()
         });
-
         if (this.success) {
           this.success();
           this.registerForm.setLoading(true);
           return;
         }
-
         redirectPage(USER_CENTER);
       });
     }
-
     async sendVerifyCode() {
       const {
         mode,
@@ -291,11 +264,9 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
       const {
         UDBParams
       } = this;
-
       if (!mode || !verify) {
         return;
       }
-
       try {
         await wrapArmorCaptcha({
           beforeCapture: async () => {
@@ -303,7 +274,8 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
             const acct = formValue[mode];
             const {
               stoken
-            } = await checkAccount(super.formatRequestBody({ ...UDBParams,
+            } = await checkAccount(super.formatRequestBody({
+              ...UDBParams,
               acct
             }));
             super.updateToken(UDBParams, {
@@ -332,11 +304,9 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         if (!e || this.isModal) {
           return Promise.reject(e);
         }
-
         this.onError(e);
       }
     }
-
     onError(e) {
       const registeredCode = [MOBILE_REGISTERED, EMAIL_REGISTERED];
       const {
@@ -344,7 +314,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
       } = this.configs;
       const accountFieldType = getAccountFieldType(mode);
       if (!e) return;
-
       if (!this.isModal && registeredCode.includes(e.rescode)) {
         const formValue = this.registerForm && this.registerForm.getValue();
         storage.sessionStorage.set(DEFAULT_FORM_VALUE, {
@@ -355,10 +324,8 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         jumpWithSearchParams(redirectTo(SIGN_IN));
         return;
       }
-
       const fields = this.getFieldConfigs();
       const lastField = fields[fields.length - 1];
-
       if (lastField && lastField.name) {
         this.registerForm && this.registerForm.formInstance.setErrMsgIntoDom([{
           name: lastField.name,
@@ -366,18 +333,14 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-up/index.js'] = window.SLM['t
         }]);
         return;
       }
-
       super.setError(e);
     }
-
     reportSignUp(data, mode) {
       const loginMethod = data && data[mode] && data[mode].includes('@') ? 'Email' : 'Phone';
       this.$$reports && this.$$reports.thirdReportSignUpSuccess && this.$$reports.thirdReportSignUpSuccess(this.eid, loginMethod);
       this.$$reports && this.$$reports.riskReportSignIn && this.$$reports.riskReportSignIn();
     }
-
   }
-
   _exports.default = Register;
   return _exports;
 }();

@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/shared/components/confirm/index.js'] = window.SLM['theme-shared/components/hbs/shared/components/confirm/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
-
   const createTemplate = (option = {}) => {
     const {
       content,
@@ -29,59 +27,50 @@ window.SLM['theme-shared/components/hbs/shared/components/confirm/index.js'] = w
  
     `;
   };
-
   const defaultOption = {
     cancelName: t('products.product_details.cancel'),
     okName: t('customer.general.okay_common'),
     okCallback: () => {}
   };
-
   class Confirm {
     constructor(option = {}) {
       const cancelCallback = () => {
         this.cancel();
       };
-
       this.$dom = null;
-      this.option = { ...defaultOption,
+      this.option = {
+        ...defaultOption,
         cancelCallback,
         ...option
       };
       this.init();
     }
-
     init() {
       this.render();
       this.initEvent();
     }
-
     initEvent() {
       this.$dom.find('.comment-confirm__btn--cancel').on('click', () => {
         this.option.cancelCallback();
       });
       this.$dom.find('.comment-confirm__btn--ok').on('click', () => {
         const notClose = this.option.okCallback();
-
         if (notClose !== false) {
           this.cancel();
         }
       });
     }
-
     cancel() {
       this.$dom.remove();
       $('body').removeClass('comment-confirm-body-overflow-hidden');
     }
-
     render() {
       const template = createTemplate(this.option);
       this.$dom = $(template);
       $('body').append(this.$dom);
       $('body').addClass('comment-confirm-body-overflow-hidden');
     }
-
   }
-
   _exports.default = Confirm;
   return _exports;
 }();

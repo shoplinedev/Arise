@@ -10,5 +10,5 @@
   {{else if sortationList.length 1}}
   <a class="product-crumbs-cateName" href="{{ redirect_to ( append '/collections/' sortationList.[0].uniqueKey)}}">{{sortationList.[0].sortationName}}</a> /
   {{/if}}
-  <a class="product-crumbs-productName" style="opacity: .6;">{{ spuInfo.title }}</a>
+  <a href="javascript:;" class="product-crumbs-productName" style="opacity: .6;">{{ spuInfo.title }}</a>
 </div>

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/biz/checkout/module_express_checkout.js'] = window.SLM['cart/script/biz/checkout/module_express_checkout.js'] || function () {
   const _exports = {};
   const isFunction = window['lodash']['isFunction'];
@@ -14,7 +13,6 @@ window.SLM['cart/script/biz/checkout/module_express_checkout.js'] = window.SLM['
     paypal: createLogger('ExpressCheckoutModule')
   };
   let slibingNodeHeight = 0;
-
   class ExpressCheckoutModule {
     constructor({
       ctx,
@@ -31,14 +29,12 @@ window.SLM['cart/script/biz/checkout/module_express_checkout.js'] = window.SLM['
       this.$element = document.getElementById(elementId);
       this.paypalComponent = null;
       this.SmartPaymentComponent = null;
-
       if (this.$element) {
         this._init();
       } else {
         logger.paypal.error(`Failed to init paypal module. Can't get element with #${elementId}`);
       }
     }
-
     async renderSmartPayment() {
       this.SmartPaymentComponent = new Payments({
         pageType: PageType.Cart,
@@ -59,8 +55,10 @@ window.SLM['cart/script/biz/checkout/module_express_checkout.js'] = window.SLM['
           } = this.checkoutParams;
           return {
             products,
-            extra: { ...extra,
-              query: { ...extra.query,
+            extra: {
+              ...extra,
+              query: {
+                ...extra.query,
                 spb: true
               }
             }
@@ -74,33 +72,26 @@ window.SLM['cart/script/biz/checkout/module_express_checkout.js'] = window.SLM['
       });
       this.SmartPaymentComponent && (await this.SmartPaymentComponent.init());
     }
-
     get checkoutParams() {
       const cartService = CartServiceValuer.withCartService(this.ctx);
       const cartItemList = cartService.getCardItemList();
       const params = checkoutEffect.getCheckoutParams(this.ctx, cartItemList);
-
       if (params.products) {
         params.products.forEach(product => {
           product.productPrice = currencyUtils.unformatCurrency(convertPrice(product.productPrice));
         });
       }
-
       return params;
     }
-
     async _init() {
       const buynowId = isNewExpressCheckout(this.pageType) ? this.buynowId : `${this.elementId}-slibing`;
       slibingNodeHeight = slibingNodeHeight || document.getElementById(buynowId).offsetHeight;
       await this.renderSmartPayment();
-
       if (isFunction(this.cbFn)) {
         this.cbFn();
       }
     }
-
   }
-
   function newExpressCheckoutModule({
     ctx,
     elementId,
@@ -116,7 +107,6 @@ window.SLM['cart/script/biz/checkout/module_express_checkout.js'] = window.SLM['
       cbFn
     });
   }
-
   _exports.ExpressCheckoutModule = ExpressCheckoutModule;
   _exports.newExpressCheckoutModule = newExpressCheckoutModule;
   return _exports;

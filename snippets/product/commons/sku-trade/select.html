@@ -8,13 +8,13 @@
 <div class="product-sku-trade-select shopline-element-sku-trade-select" data-ssr-plugin-sku id="{{ id }}">
   {{#each attr}}
   {{#isFalsey hidden}}
-  <div class="spec-box" data-index="{{ @index }}" data-ssr-plugin-sku-item data-sku-item-name="{{ specName }}" data-sku-tooltip-position="{{ ../product_image_position }}">
+  <div class="spec-box {{ global.layout_direction }}" data-index="{{ @index }}" data-ssr-plugin-sku-item data-sku-item-name="{{ specName }}" data-sku-tooltip-position="{{ ../product_image_position }}">
     <div class="spec-title"  data-ssr-plugin-sku-item-name>
       <div class="spec-name body3">{{ specName }}</div>
     </div>
     <div class="select-box" data-ssr-sku-value-list>
-      <div class="select-entry" data-index="{{ @index }}">
-        <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  style="display: {{#isFalsey activeItem.imgUrl}}none{{/isFalsey}}" class="entry-img" src="{{ img_url activeItem.imgUrl width=32 scale=4 }}">
+      <div class="select-entry {{ global.sizes }}" data-index="{{ @index }}">
+        <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  style="display: {{#isFalsey activeItem.imgUrl}}none{{/isFalsey}}" class="entry-img" src="{{ img_url activeItem.imgUrl width=32 scale=4 }}" alt="{{ activeItem.name }}">
         <span class="entry-text body3">{{#if activeItem}}{{ activeItem.name }}{{else}}{{ t 'products.product_details.default_placeholder' attrName=specName }}{{/if}}</span>
         <span class="entry-arrow"></span>
       </div>
@@ -23,7 +23,7 @@
       {{#each specAttrList}}
         <div class="select-item" data-index="{{ @index }}">
           {{#isTruthy imgUrl}}
-            <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  class="select-img" src="{{ img_url imgUrl width=32 scale=4 }}" >
+            <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  class="select-img" src="{{ img_url imgUrl width=32 scale=4 }}" alt="{{ name }}">
           {{/isTruthy}}
           <span class="select-text" data-select-text="{{ name }}">{{ name }}</span>
           <span class="select-checked"></span>
@@ -37,17 +37,5 @@
 </div>
 {{/if}}
 {{/with}}
-{{!-- mobile popup样式节点 --}}
-{{!-- <div class="product-sku-trade-select-popup">
-  <div class="select-options body-font select-popup">
-  {{#with attr.[0].specAttrList}}
-    <div class="select-item" data-index="{{ @index }}">
-      {{#isTruthy imgUrl}}
-        <img referrerpolicy="{{#if global.imgNoReferrerSwitch}}same-origin{{/if}}"  class="select-img" src="{{ imgUrl }}" >
-      {{/isTruthy}}
-      <span class="select-text">{{ name }}</span>
-      <span class="select-checked"></span>
-    </div>
-  {{/with}}
-  </div>
-</div> --}}
+
+

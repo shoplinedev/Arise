@@ -1,7 +1,7 @@
 <div class="search-article-card">
   <a href="{{#if (isFalsey item.url)}}javascript:;{{else}}{{item.url}}{{/if}}" class="search-article-card-wrapper">
     {{#if item.image.src}}
-      <img src="{{ item.image.src }}">
+      <img src="{{ item.image.src }}" alt="{{item.image.alt}}">
     {{/if}}
     <div class="search-article-card-info">
       <div class="search-article-card-title-wrapper">

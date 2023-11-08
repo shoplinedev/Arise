@@ -38,7 +38,7 @@ blogs:
     {{#if (isTruthy blogData.collection.id)}}
     {{ assign 'blogs_url' (redirect_to (append '/blogs/' (default blogData.collection.handle blogData.collection.id))) }}
     {{else}}
-    {{ assign 'blogs_url' 'javascript:void(0)' }}
+    {{ assign 'blogs_url' 'javascript:;' }}
     {{/if}}
     <a class="btn btn-primary"
       href="{{ blogs_url }}">

@@ -7,11 +7,7 @@
   {{ combine_asset_tag 'stage/custom-page/index.css' inline=true}}
 {{/if}}
 <!-- stage/custom-page/index.js -->
-  {{#if @root.use_modern_optimization}}
-    
-  {{else}}
-    
-  {{/if}}
+  
   {{ combine_asset_tag 
     'commons/utils/createShadowDom.js'
     'stage/custom-page/index.js'

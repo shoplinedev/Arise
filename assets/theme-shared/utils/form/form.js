@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/form/form.js'] || function () {
   const _exports = {};
   const { SL_EventEmitter } = window['SLM']['theme-shared/utils/event-bus.js'];
@@ -10,14 +9,11 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
     ONNATIVECHANGE: 'onNativeChange'
   };
   _exports.ValidateTrigger = ValidateTrigger;
-
   const isPromiseFulfilledResult = result => {
     return result.status === 'fulfilled';
   };
-
   const formItemName = 'sl-form-item-name';
   const REQUIRED_SYMBOL = Symbol('required');
-
   class CustomForm {
     constructor(fid = '', {
       onDestory
@@ -30,8 +26,8 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
       this.validateRecord = {};
       this.config = {
         validateTrigger: ValidateTrigger.MANUAL,
-        requiredErrMsg: `这是必填字段!`,
-        defaultErrMsg: '请输入合法的值',
+        requiredErrMsg: `This is a required field!`,
+        defaultErrMsg: 'Please enter a valid value',
         errContainerClss: 'errClass',
         validateWhenInit: false,
         emitChangeWhenInit: false
@@ -45,10 +41,8 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
       this.on = this.eventBus.on.bind(eventBus);
       this.emit = this.eventBus.emit.bind(eventBus);
     }
-
     init(config) {
       if (this.hadInit) return false;
-
       try {
         this.initFormConfig(config);
         const formItems = this.el.querySelectorAll(`[${formItemName}]`);
@@ -67,7 +61,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         console.warn(`${this.fid} is not found, ${e}`);
       }
     }
-
     initFormConfig(config) {
       if (config) {
         Object.assign(this.config, config);
@@ -75,13 +68,11 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         if (config && config.emitChangeWhenInit) this.canEmitChange = true;
       }
     }
-
     initEventListener(el) {
       el.addEventListener('input', e => this.handleFormInputEvent(e));
       const formItems = el.querySelectorAll(`[${formItemName}]`);
       formItems.forEach(el => {
         const inp = el.querySelector('input,textarea');
-
         if (inp) {
           inp.addEventListener('change', e => {
             if (this.config.validateTrigger === ValidateTrigger.ONNATIVECHANGE) {
@@ -97,15 +88,12 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
             const parentNode = this.recursionFindParent(target, formItemName);
             if (!parentNode) return;
             const targetName = parentNode.getAttribute(formItemName);
-
             if (this.config.validateTrigger === ValidateTrigger.ONBLUR) {
               this.validateFields([targetName]);
             }
-
             if (this.config.blurSucHandler || this.config.blurErrHandler) {
               this.validateFields([targetName], false).then(res => {
                 if (!res) return;
-
                 if (res.pass) {
                   this.config && this.config.blurSucHandler && this.config.blurSucHandler(targetName, target.value, this.formEntity.data);
                 } else {
@@ -117,17 +105,14 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         }
       });
     }
-
     handleFormInputEvent(e) {
       if (!this.fid) return;
       const target = e.target;
       const parentNode = this.recursionFindParent(target, formItemName);
       if (!parentNode) return;
       const targetName = parentNode.getAttribute(formItemName);
-
       if (targetName) {
         this.canValidate = true;
-
         if (this.isRadioOrCheckbox(target, ['checkbox'])) {
           this.setLocalsValue(targetName, target.checked);
         } else {
@@ -135,7 +120,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         }
       }
     }
-
     recursionFindParent(el, attr) {
       const parent = el.parentElement;
       if (!parent) return null;
@@ -143,7 +127,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
       if (val) return parent;
       return this.recursionFindParent(parent, attr);
     }
-
     calculatePropsAndInitialData(nodeList) {
       if (nodeList.length === 0) return {
         initialData: {},
@@ -151,7 +134,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
       };
       let childrenProps = [];
       const initialData = {};
-
       try {
         childrenProps = Array.from(nodeList).map(formItem => {
           const name = formItem.getAttribute(formItemName);
@@ -161,8 +143,8 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
             if (curAttr === 'value') {
               initialData[name] = child.getAttribute(curAttr) || child.value;
             }
-
-            return { ...acc,
+            return {
+              ...acc,
               [curAttr]: child.getAttribute(curAttr)
             };
           }, {});
@@ -173,13 +155,11 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
       } catch (e) {
         console.error(`${this.fid} calculate form item error: `, e);
       }
-
       return {
         initialData,
         childrenProps
       };
     }
-
     setValues(fields) {
       fields.forEach(({
         name,
@@ -191,21 +171,17 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         this.setLocalsValue(name, value);
       });
     }
-
     setRule(rules, name) {
       const target = this.formEntity.childrenProps.find(prop => prop.name === name);
       if (target) target.rules = rules || [];
     }
-
     isRadioOrCheckbox(target, nodeTypeList = ['radio', 'checkbox']) {
       const nodeType = target && target.getAttribute('type');
       if (!nodeType) return false;
       return target.nodeName.toLocaleLowerCase() === 'input' && nodeTypeList.includes(nodeType);
     }
-
     setDomValue(parent, name, value) {
       const targets = parent.querySelectorAll(`[${formItemName}=${name}] input,[${formItemName}=${name}] select,[${formItemName}=${name}] textarea`);
-
       if (targets.length) {
         targets.forEach(target => {
           if (this.isRadioOrCheckbox(target)) {
@@ -218,18 +194,15 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         });
       }
     }
-
     setLocalsValue(name, value) {
       const changedValue = {
         [name]: value
       };
       const allValues = Object.assign(this.formEntity && this.formEntity.data, changedValue);
       let validateResultPro = null;
-
       if (this.canValidate && this.config.validateTrigger === ValidateTrigger.ONCHANGE) {
         validateResultPro = this.validateFields([name]);
       }
-
       if (this.canEmitChange) {
         this.eventBus.emit('valuesChange', {
           changedValue,
@@ -238,20 +211,18 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         });
       }
     }
-
     flattenRulesList(list) {
       return list.reduce((acc, field) => {
-        const subRules = field && field.rules.map(rule => ({ ...rule,
+        const subRules = field && field.rules.map(rule => ({
+          ...rule,
           name: field.name
         })) || [];
         return [...acc, ...subRules];
       }, []);
     }
-
     getErrTmpStr(messages, className = '') {
       return messages.reduce((acc, message) => acc += `<div class="${className}" style="margin-top: 6px;color: #f04949;font-size: 12px;line-height: 1.4;">${message}</div>`, '');
     }
-
     getErrListContainer(id, formItemContainer) {
       const target = this.el.querySelector(`[${id}]`);
       if (target) return target;
@@ -260,7 +231,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
       formItemContainer.appendChild(div);
       return div;
     }
-
     setErrMsgIntoDom(errFields) {
       errFields.forEach(({
         name,
@@ -269,28 +239,23 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         const errTmp = this.getErrTmpStr(messages, this.config.errContainerClss);
         const id = `cf-${this.fid}-${name}`;
         const target = this.el.querySelector(`[${formItemName}=${name}]`);
-
         if (!Array.from(target.classList).includes(this.config.errContainerClss)) {
           target.classList.add(this.config.errContainerClss);
         }
-
         const container = this.getErrListContainer(id, target);
         container.innerHTML = errTmp;
       });
     }
-
     removeErrList(fields) {
       fields.forEach(name => {
         const target = this.el.querySelector(`[cf-${this.fid}-${name}]`);
         if (target) target.remove();
-
         if (this.config.errContainerClss) {
           const formItemWrapper = this.el.querySelector(`[${formItemName}=${name}]`);
           formItemWrapper && formItemWrapper.classList && formItemWrapper.classList.remove && formItemWrapper.classList.remove(this.config.errContainerClss);
         }
       });
     }
-
     setErrFields(target, errFields, name, errMsg) {
       if (!target) {
         errFields.push({
@@ -301,7 +266,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         target.messages.push(errMsg);
       }
     }
-
     setFields(fields, callback, needEmit = true, needValidate = false) {
       try {
         this.canValidate = needValidate;
@@ -314,7 +278,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         this.canEmitChange = true;
       }
     }
-
     setRules(rulesField) {
       rulesField.forEach(({
         name,
@@ -323,29 +286,26 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         this.setRule(rules, name);
       });
     }
-
     getFieldValue(fieldName) {
       this.init();
       return this.formEntity.data[fieldName];
     }
-
     getFieldsValue() {
       this.init();
       return this.formEntity && this.formEntity.data;
     }
-
     async getLegalFieldsValue() {
       const result = await this.validateFields([], false);
       if (result && result.pass) return this.formEntity && this.formEntity.data;
       const unPassFields = result && result.errFields && result.errFields.map(field => field.name);
       return Object.entries(this.formEntity.data).reduce((acc, [k, v]) => {
         if (unPassFields.includes(k)) return acc;
-        return { ...acc,
+        return {
+          ...acc,
           [k]: v
         };
       }, {});
     }
-
     async validateFields(fields, handleError = true) {
       if (!this.formEntity) return null;
       const {
@@ -356,7 +316,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
       const needValidatefields = childrenProps.filter(prop => prop.rules && prop.rules.length > 0 && needValidateFieldsName && needValidateFieldsName.includes(prop.name));
       const validateList = [];
       const needValidateRules = this.flattenRulesList(needValidatefields);
-
       try {
         needValidateRules.forEach(rule => {
           const {
@@ -367,7 +326,6 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
           } = rule || {};
           const value = data[name];
           this.validateRecord[name] = value;
-
           if (value) {
             if (validator) {
               validateList.push(validator(value, data));
@@ -385,11 +343,9 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
       } catch (e) {
         console.warn(`${this.fid} calculate validator list fail:`, e);
       }
-
       const validateResult = await Promise.allSettled(validateList);
       const errFields = [];
       const successFields = new Set();
-
       for (let i = 0; i < validateResult.length; i++) {
         const {
           name,
@@ -398,11 +354,9 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         if (this.validateRecord[name] !== data[name]) return null;
         const result = validateResult[i];
         const target = errFields.find(err => err.name === name);
-
         if (isPromiseFulfilledResult(result)) {
           if (result.value === REQUIRED_SYMBOL) {
             const requiredErrMsg = needValidateRules[i] && needValidateRules[i].message || this.config.requiredErrMsg;
-
             if (!target) {
               errFields.push({
                 name,
@@ -420,16 +374,13 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
           this.setErrFields(target, errFields, name, errMsg);
         }
       }
-
       if (handleError) {
         this.removeErrList(successFields);
         this.setErrMsgIntoDom(errFields);
-
         if (errFields.length) {
           this.config.validateTrigger = this.config.validateTriggerAfterValidationFailed || ValidateTrigger.ONCHANGE;
         }
       }
-
       return errFields.length ? {
         pass: false,
         errFields
@@ -437,11 +388,9 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
         pass: true
       };
     }
-
     resetErrStatus(fields = Object.keys(this.formEntity.data)) {
       this.removeErrList(fields);
     }
-
     destroy() {
       this.el.removeEventListener('input', this.handleFormInputEvent);
       this.hadInit = false;
@@ -451,9 +400,7 @@ window.SLM['theme-shared/utils/form/form.js'] = window.SLM['theme-shared/utils/f
       this.onDestory && this.onDestory(this.fid);
       this.fid = null;
     }
-
   }
-
   _exports.default = CustomForm;
   return _exports;
 }();

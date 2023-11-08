@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/unsub-modal.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/unsub-modal.js'] || function () {
   const _exports = {};
   const Modal = window['SLM']['theme-shared/components/hbs/shared/components/modal/index.js'].default;
   const { updateSubscriptions } = window['SLM']['theme-shared/biz-com/customer/service/account.js'];
-
   class UnSubModal {
     constructor({
       id,
@@ -20,7 +18,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/unsub-
       this.$saveBtn = $(`#MpModal${id} .customer-center-unsub-modal__btns--save`);
       this.init();
     }
-
     init() {
       const modal = new Modal({
         modalId: this.id
@@ -45,21 +42,16 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/unsub-
         });
       });
     }
-
     setType(type) {
       this.type = type;
     }
-
     show() {
       this.modal.show();
     }
-
     hide() {
       this.modal.hide();
     }
-
   }
-
   _exports.default = UnSubModal;
   return _exports;
 }();

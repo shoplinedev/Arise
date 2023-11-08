@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] = window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -14,7 +13,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
   const Customer = window['SLM']['theme-shared/biz-com/customer/commons/customer/index.js'].default;
   const PasswordSet = window['SLM']['theme-shared/biz-com/customer/biz/password-new/password-set.js'].default;
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
-
   class PasswordNew extends Customer {
     constructor({
       id,
@@ -29,7 +27,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
       this.setFormId = setFormId;
       this.passwordForm = null;
     }
-
     init() {
       this.passwordForm = new Form({
         id: this.formId,
@@ -38,7 +35,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
       });
       $(`#${this.containerId} .password__buttons a`).click(() => {
         const display = $(`#${this.formId}`).css('display');
-
         if (display !== 'none') {
           reportForgetPasswordToLogin();
         } else {
@@ -46,7 +42,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
         }
       });
     }
-
     getFieldConfigs() {
       const {
         mode
@@ -61,7 +56,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
       }];
       return getFormFields(fieldTypes);
     }
-
     async sendVerifyCode() {
       const {
         mode
@@ -69,11 +63,9 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
       const {
         UDBParams
       } = this;
-
       if (!mode) {
         return;
       }
-
       const formValue = this.passwordForm && this.passwordForm.getFormValue();
       const account = formValue[mode];
       await wrapArmorCaptcha({
@@ -81,7 +73,8 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
           const {
             stoken,
             data
-          } = await getRetrievePrechk(super.formatRequestBody({ ...UDBParams,
+          } = await getRetrievePrechk(super.formatRequestBody({
+            ...UDBParams,
             account
           }));
           super.updateToken(UDBParams, {
@@ -109,7 +102,8 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
           const sendCodeFn = UDBParams._method && UDBParams._method.includes('sms') ? sendPhoneVerificationCode : sendEmailVerificationCode;
           const {
             stoken: lastStoken
-          } = await sendCodeFn(super.formatRequestBody({ ...UDBParams,
+          } = await sendCodeFn(super.formatRequestBody({
+            ...UDBParams,
             captcha: captchaToken
           }));
           super.updateToken(UDBParams, {
@@ -121,7 +115,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
         }
       });
     }
-
     initSetForm() {
       $(`#${this.formId}`).hide();
       const passwordSetForm = new PasswordSet({
@@ -133,9 +126,9 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
       }));
       $(`#${passwordSetForm.formId}`).show();
     }
-
     onResetConfirm(data) {
-      return resetPassword(super.formatRequestBody({ ...this.UDBParams,
+      return resetPassword(super.formatRequestBody({
+        ...this.UDBParams,
         pwd: data.password
       })).then(() => {
         window.location.href = redirectTo(`${SIGN_IN}${window.location.search}`);
@@ -144,7 +137,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
         return Promise.reject(error);
       });
     }
-
     onSubmit() {
       const {
         UDBParams
@@ -152,10 +144,10 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
       const {
         verifycode
       } = this.passwordForm && this.passwordForm.getFormValue();
-
       if (UDBParams.stoken) {
         const verifyCodeFn = UDBParams._method && UDBParams._method.includes('sms') ? verifyPhoneVerificationCode : verifyEmailVerificationCode;
-        return verifyCodeFn(super.formatRequestBody({ ...UDBParams,
+        return verifyCodeFn(super.formatRequestBody({
+          ...UDBParams,
           code: verifycode
         })).then(({
           stoken,
@@ -175,7 +167,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
           return Promise.reject(error);
         });
       }
-
       const error = {
         message: t('customer.general.send_error')
       };
@@ -185,9 +176,7 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-verify.js'] 
       }]);
       return Promise.reject(error);
     }
-
   }
-
   _exports.default = PasswordNew;
   return _exports;
 }();

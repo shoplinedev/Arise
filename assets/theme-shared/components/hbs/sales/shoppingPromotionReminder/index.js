@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js'] = window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js'] || function () {
   const _exports = {};
   const { nullishCoalescingOperator, get } = window['SLM']['theme-shared/utils/syntax-patch.js'];
@@ -21,88 +20,67 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
     AMOUNT: '1',
     DISCOUNT: '2'
   };
-
   function defaultSafeString(str) {
     return str;
   }
-
   function getBenefitValue(benefitType, current, isNext = false, benefitValueType = null) {
     if ((benefitType === BenefitTypeEnum.PRICE || benefitValueType === BenefitValueTypeEnum.AMOUNT) && !isNext) {
       return get(current, 'amount');
     }
-
     if (benefitType === BenefitTypeEnum.FREELOWESTPRICE) {
       return get(current, 'benefitCount');
     }
-
     if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE) {
       const extMap = get(current, 'extMap');
       return isNext ? get(extMap, 'nextFixedPrice') : get(extMap, 'fixedPrice');
     }
-
     return get(current, 'benefit');
   }
-
   function shoppingPromotionReminder(currency, safeString = defaultSafeString) {
     function setWrapper(value, warper) {
-      return safeString(warper ? `<span class="notranslate ${warper.class}" style="font-size: 14px; font-weight: bold;${nc(warper.style, '')}"> ${value} </span>` : value);
+      return safeString(warper ? `<span class="notranslate ${warper.class} sales__discount-follow-theme" style="font-size: 14px; font-weight: bold;${nc(warper.style, '')}"> ${value} </span>` : value);
     }
-
     function formatThreshold(str, types, options = {}) {
       if (str === undefined) {
         return '';
       }
-
       let num = Number(str) || 0;
       const thresholdType = get(types, 'thresholdType');
       const benefitType = get(types, 'benefitType');
-
       if (benefitType === BenefitTypeEnum.BUY_X_GET_Y && num < 0) {
         const minThreshold = get(types, 'minThreshold');
         const distance = Math.abs(num) % minThreshold;
-
         if (distance === 0) {
           num = Number(minThreshold);
         }
-
         num = distance;
       }
-
       if (thresholdType === ThresholdTypeEnum.NUMBER) {
         return num;
       }
-
       if (thresholdType === ThresholdTypeEnum.PRICE) {
         return `<span data-amount="${num}">${currency ? currency(num, options) : ''}</span>`;
       }
-
       return '';
     }
-
     function formatBenefitNum(str, props, options = {}) {
       if (str === undefined) {
         return '';
       }
-
       const num = Number(str) || 0;
       const benefitType = get(props, 'benefitType');
       const benefitValueType = get(props, 'benefitValueType');
-
       if (benefitValueType === BenefitValueTypeEnum.AMOUNT || benefitType === BenefitTypeEnum.NTH_FIXED_PRICE || benefitType === BenefitTypeEnum.PRICE) {
         return `<span data-amount="${num}">${currency ? currency(num, options) : ''}</span>`;
       }
-
       if (benefitValueType === BenefitValueTypeEnum.DISCOUNT || benefitType === BenefitTypeEnum.DISCOUNT || benefitType === BenefitTypeEnum.BUY_X_GET_Y || benefitType === BenefitTypeEnum.NTH_PRICE) {
         return `${100 - num}%`;
       }
-
       if (benefitType === BenefitTypeEnum.FREELOWESTPRICE) {
         return num;
       }
-
       return '';
     }
-
     function getShoppingReminderConfig(promotion, configs = {}, options = {}) {
       const {
         lineBreak = false,
@@ -112,12 +90,10 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
         benefitType,
         promotionBenefitList = []
       } = nc(promotion, {});
-
       if (promotionBenefitList.length) {
         let current;
         let next;
         let step;
-
         if (!get(promotionBenefitList, [1])) {
           if (promotionBenefitList[0].hit) {
             step = 3;
@@ -134,7 +110,6 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
           current = get(promotionBenefitList, [0]);
           next = get(promotionBenefitList, [1]);
         }
-
         const {
           extMap = {},
           type: thresholdType
@@ -146,7 +121,6 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
           benefitValueType
         } = extMap;
         let extra = '';
-
         if (benefitType === BenefitTypeEnum.BUY_X_GET_Y) {
           if (step === 1 && meetThreshold === 'true') {
             if (Number(get(next, 'benefit')) === 0) {
@@ -164,7 +138,6 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
             extra = '_normal';
           }
         }
-
         if (benefitType === BenefitTypeEnum.NTH_PRICE) {
           if (Number(get(current, 'benefit')) === 0) {
             completePath = `${basePath}_free`;
@@ -177,11 +150,9 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
             extra = '_normal';
           }
         }
-
         const {
           prerequisiteShippingPriceRange
         } = extMap;
-
         if (benefitType === BenefitTypeEnum.FREESHOPPING) {
           if (prerequisiteShippingPriceRange) {
             completePath = `${basePath}_upper_limit`;
@@ -191,7 +162,6 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
             extra = '_unlimited';
           }
         }
-
         const saved = formatBenefitNum(getBenefitValue(benefitType, current, false, benefitValueType), {
           benefitType,
           benefitValueType
@@ -209,17 +179,14 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
         let willSaveCount = Number(get(next, 'benefitCount'));
         let fixedAmount;
         let nextFixedAmount;
-
         if (benefitType === BenefitTypeEnum.BUY_X_GET_Y) {
           if (current) {
             savedCount = Number(nc(get(current, 'extMap.realBenefitValue'), savedCount));
           }
-
           if (next) {
             willSaveCount = Number(nc(get(next, 'extMap.realBenefitValue'), willSaveCount));
           }
         }
-
         if (benefitType === BenefitTypeEnum.NTH_FIXED_PRICE) {
           savedCount = Number(get(current, 'minThreshold'));
           willSaveCount = Number(get(next, 'minThreshold'));
@@ -231,42 +198,51 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
             benefitType
           }, options);
         }
-
         const benefitCount = Number(nc(savedCount, willSaveCount));
         return {
           path: thresholdType > -1 ? completePath : ' ',
           params: {
-            saved: setWrapper(saved, { ...warper,
+            saved: setWrapper(saved, {
+              ...warper,
               class: `sales__promotionReminder-saved custom-sale-color ${nc(get(warper, 'class'), '')}`
             }),
-            willSave: setWrapper(willSave, { ...warper,
+            willSave: setWrapper(willSave, {
+              ...warper,
               class: `sales__promotionReminder-willSave custom-sale-color ${nc(get(warper, 'class'), '')}`
             }),
-            threshold: setWrapper(threshold, { ...warper,
+            threshold: setWrapper(threshold, {
+              ...warper,
               class: `sales__promotionReminder-threshold custom-sale-color ${nc(get(warper, 'class'), '')}`
             }),
-            savedCount: setWrapper(savedCount, { ...warper,
+            savedCount: setWrapper(savedCount, {
+              ...warper,
               class: `sales__promotionReminder--benefitCount custom-sale-color ${nc(get(warper, 'class'), '')}`
             }),
-            willSaveCount: setWrapper(willSaveCount, { ...warper,
+            willSaveCount: setWrapper(willSaveCount, {
+              ...warper,
               class: `sales__promotionReminder--benefitCount custom-sale-color ${nc(get(warper, 'class'), '')}`
             }),
-            fixedAmount: setWrapper(fixedAmount, { ...warper,
+            fixedAmount: setWrapper(fixedAmount, {
+              ...warper,
               class: `sales__promotionReminder--benefitCount custom-sale-color ${nc(get(warper, 'class'), '')}`
             }),
-            nextFixedAmount: setWrapper(nextFixedAmount, { ...warper,
+            nextFixedAmount: setWrapper(nextFixedAmount, {
+              ...warper,
               class: `sales__promotionReminder--benefitCount custom-sale-color ${nc(get(warper, 'class'), '')}`
             }),
             upperLimit: benefitType === BenefitTypeEnum.FREESHOPPING && prerequisiteShippingPriceRange ? currency && currency(prerequisiteShippingPriceRange, options) : undefined,
             extMap,
             br: lineBreak ? setWrapper('<br/>') : setWrapper('<i></i>'),
-            benefitCount: benefitCount >= 0 ? setWrapper(benefitCount, { ...warper,
+            benefitCount: benefitCount >= 0 ? setWrapper(benefitCount, {
+              ...warper,
               class: `sales__promotionReminder--benefitCount custom-sale-color ${nc(get(warper, 'class'), '')}`
             }) : '',
-            currentMinThreshold: setWrapper(savedCount, { ...warper,
+            currentMinThreshold: setWrapper(savedCount, {
+              ...warper,
               class: `sales__promotionReminder-threshold custom-sale-color ${nc(get(warper, 'class'), '')}`
             }),
-            nextMinThreshold: setWrapper(willSaveCount, { ...warper,
+            nextMinThreshold: setWrapper(willSaveCount, {
+              ...warper,
               class: `sales__promotionReminder-threshold custom-sale-color ${nc(get(warper, 'class'), '')}`
             })
           },
@@ -276,17 +252,14 @@ window.SLM['theme-shared/components/hbs/sales/shoppingPromotionReminder/index.js
           extra
         };
       }
-
       return {
         path: '',
         params: {},
         step: 0
       };
     }
-
     return getShoppingReminderConfig;
   }
-
   _exports.default = shoppingPromotionReminder;
   return _exports;
 }();

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/commons/js/product-info.js'] = window.SLM['product/commons/js/product-info.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -10,18 +9,15 @@ window.SLM['product/commons/js/product-info.js'] = window.SLM['product/commons/j
   const priceOriginWrap = '.product-price-origin_';
   const priceVipWrap = '.product-price-vip_';
   const priceDiscountWrap = '.product-price-discount_';
-
   function getDiscount(showDiscount, sku) {
     const $el = $(`${priceDiscountWrap}${uniqueId}`);
     const discountSettingStyle = $el.attr('product_discount_style');
     const ratioCalc = Math.round(100 * (1 - sku.price / sku.originPrice));
     const discountText = discountSettingStyle === 'number' ? sku.originPrice - sku.price : ratioCalc;
     let isHidden = true;
-
     if (showDiscount && discountText > 0) {
       if (discountSettingStyle === 'number') {
         const discount = sku.originPrice - sku.price;
-
         if (discount > 0) {
           const {
             get: getPriceContent
@@ -44,10 +40,8 @@ window.SLM['product/commons/js/product-info.js'] = window.SLM['product/commons/j
     } else {
       isHidden = true;
     }
-
     $el.toggleClass('hide', isHidden);
   }
-
   const setSkuPrice = (spuSoldout, activeSku = {}) => {
     const discountSetting = $(`${priceWrap}${uniqueId}`).attr('product_discount');
     const {
@@ -58,7 +52,6 @@ window.SLM['product/commons/js/product-info.js'] = window.SLM['product/commons/j
     const originPrice = oriPrice > price ? oriPrice : '';
     const showDiscount = discountSetting && !spuSoldout;
     const $priceWrapperEl = $(`.price.product-info-price_${uniqueId}`);
-
     if (oriPrice > price) {
       if (!$priceWrapperEl.hasClass('product-info-price_hasDiscount')) {
         $priceWrapperEl.addClass('product-info-price_hasDiscount');
@@ -66,33 +59,26 @@ window.SLM['product/commons/js/product-info.js'] = window.SLM['product/commons/j
     } else {
       $priceWrapperEl.removeClass('product-info-price_hasDiscount');
     }
-
     processPrice($(`${priceSellWrap}${uniqueId}`), price).render();
-
     if (showMemberMark) {
       $(`${priceVipWrap}${uniqueId}`).removeClass('hide');
     } else {
       $(`${priceVipWrap}${uniqueId}`).addClass('hide');
     }
-
     if (originPrice) {
       processPrice($(`${priceOriginWrap}${uniqueId}`), originPrice).render();
       $(`${priceOriginWrap}${uniqueId}`).removeClass('hide');
     } else {
       $(`${priceOriginWrap}${uniqueId}`).addClass('hide');
     }
-
     getDiscount(showDiscount, activeSku);
   };
-
   const getHighOriginPrice = (min, item) => {
     if (min.price === item.price) {
       return min.originPrice > item.originPrice ? min : item;
     }
-
     return min.price > item.price ? item : min;
   };
-
   const checkActive = item => {
     if (item && Array.isArray(item.saleActivityResponseList)) {
       item.saleActivityResponseList.some(activity => activity.promotionType === 1 && activity.promotionSubType === 1);
@@ -100,47 +86,37 @@ window.SLM['product/commons/js/product-info.js'] = window.SLM['product/commons/j
       return undefined;
     }
   };
-
   const getMinPrice = (soldOut, skuList) => {
     if (!Array.isArray(skuList)) return undefined;
     return skuList.reduce((min, item) => {
       if (min === null) {
         return item;
       }
-
       if (checkActive(min)) {
         if (checkActive(item)) {
           return getHighOriginPrice(min, item);
         }
-
         return min;
       }
-
       if (checkActive(item)) {
         return item;
       }
-
       if (min && min.showMemberMark) {
         if (item && item.showMemberMark) {
           return getHighOriginPrice(min, item);
         }
-
         return min;
       }
-
       if (item && item.showMemberMark) {
         return item;
       }
-
       return getHighOriginPrice(min, item);
     }, null);
   };
-
   const setMinPrice = (soldOut, skuList) => {
     const minSku = getMinPrice(soldOut, skuList);
     setSkuPrice(soldOut, minSku);
   };
-
   const setProductPrice = (id, statePath, activeSku) => {
     uniqueId = id;
     const {
@@ -149,14 +125,12 @@ window.SLM['product/commons/js/product-info.js'] = window.SLM['product/commons/j
     const {
       soldOut
     } = window.SL_State.get(`${statePath}.spu`);
-
     if (activeSku) {
       setSkuPrice(soldOut, activeSku);
     } else {
       setMinPrice(soldOut, skuList);
     }
   };
-
   _exports.default = setProductPrice;
   return _exports;
 }();

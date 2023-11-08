@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/domain/adapter/storage/constant.js'] = window.SLM['cart/script/domain/adapter/storage/constant.js'] || function () {
   const _exports = {};
   const KEY_PREFIX = 'sl.trade.cart';

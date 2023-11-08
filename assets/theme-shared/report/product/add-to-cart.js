@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/product/add-to-cart.js'] = window.SLM['theme-shared/report/product/add-to-cart.js'] || function () {
   const _exports = {};
   const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
@@ -42,13 +41,11 @@ window.SLM['theme-shared/report/product/add-to-cart.js'] = window.SLM['theme-sha
     ProductsDetail: 105,
     Activity: 115
   };
-
   function findSectionId(selector) {
     const id = $(selector).closest('.shopline-section').attr('id');
     const trueId = id && id.replace('shopline-section-', '');
     return trueId;
   }
-
   function newHdReportData({
     addtocartType,
     price,
@@ -67,19 +64,16 @@ window.SLM['theme-shared/report/product/add-to-cart.js'] = window.SLM['theme-sha
     singleItem = {}
   }) {
     let config = {};
-
     if (modalType) {
       config = pageMap[modalType];
       config.page_id = pageId[SL_State.get('templateAlias')];
     } else {
       config = nullishCoalescingOperator(pageMap[SL_State.get('templateAlias')], {});
-
       if (SL_State.get('templateAlias') === 'Home') {
         config.module_type = '单个商品';
         config.component_ID = findSectionId('[data-ssr-plugin-product-detail-container]');
       }
     }
-
     const index = nullishCoalescingOperator(position, '') === '' ? '' : Number(position) + 1;
     const data = {
       component: componentMap[addtocartType],
@@ -108,7 +102,6 @@ window.SLM['theme-shared/report/product/add-to-cart.js'] = window.SLM['theme-sha
     };
     window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.collect(data);
   }
-
   _exports.newHdReportData = newHdReportData;
   return _exports;
 }();

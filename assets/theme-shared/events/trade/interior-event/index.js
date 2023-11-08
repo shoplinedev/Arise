@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/events/trade/interior-event/index.js'] = window.SLM['theme-shared/events/trade/interior-event/index.js'] || function () {
   const _exports = {};
   const OPEN_MINI_CART = Symbol('OPEN_MINI_CART');

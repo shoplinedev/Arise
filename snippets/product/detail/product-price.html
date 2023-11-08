@@ -4,7 +4,7 @@
 {{assign 'salesPlugins' product.productSale.saleActivities }}
 
 {{assign 'discount_text' null}}
-{{!-- 当存在原价，则计算折扣 --}}
+
 {{#if productPrice.originPrice}}
   {{#if theme.settings.product_discount_style '===' 'number'}}
     {{assign 'discount_text' (subtract productPrice.originPrice productPrice.salesPrice)}}
@@ -13,7 +13,27 @@
   {{/if}}
 {{/if}}
 
-
+{{!-- 这个配置只有pdp用到 --}}
+{{#and (if id '===' 'productDetail') settings.font_size_flexible}}
+  <style>
+    #product-info_{{id}} .product-sales-price {
+      font-size: {{settings.sale_price_pc_font_size}}px;
+    }
+    @media screen and (max-width: 959px) {
+      #product-info_{{id}} .product-sales-price  {
+        font-size: {{settings.sale_price_mobile_font_size}}px;
+      }
+    }
+    #product-info_{{id}} .product-origin-price {
+      font-size: {{settings.regular_price_pc_font_size}}px;
+    }
+    @media screen and (max-width: 959px) {
+      #product-info_{{id}} .product-origin-price  {
+        font-size: {{settings.regular_price_mobile_font_size}}px;
+      }
+    }
+  </style>
+{{/and}}
 <div class="product-price" id="product-info_{{id}}">
 
   {{#not product.spu.inquiry}}
@@ -44,7 +64,7 @@
           </div>
         {{/if}}
         <div class="body1 product-sales-price-wrapper">
-          <div class="body1 product-sales-price {{#if settings.sell_font_bold}}fw-bold{{/if}} {{settings.sell_font_size}} product-price-sales_{{id}} isolate notranslate">
+          <div class="body1 product-sales-price {{#if settings.sell_font_bold}}fw-bold{{/if}} {{#unless settings.font_size_flexible}}{{settings.sell_font_size}}{{/unless}} product-price-sales_{{id}} isolate notranslate">
             {{#money_exchange_convert_price productPrice.salesPrice }}
               {{#if symbolOrder '==' 'prefix'}}
                 <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
@@ -55,10 +75,9 @@
           </div>
         </div>
         <span class="product-price-vip_{{id}} vipPrice {{cond showMemberMark '' 'hide'}}" data-vip-tag="big"></span>
-        {{!-- (含税费) --}}
-        {{ snippet 'product/detail/product-tax' bool=true }}
+
         <div class="body2 product-origin-price-wrapper">
-          <div class="body2 product-origin-price {{settings.origin_font_size}} originPrice isolate notranslate product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
+          <div class="body2 product-origin-price  {{#unless settings.font_size_flexible}}{{settings.origin_font_size}}{{/unless}} originPrice isolate notranslate product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">
             {{#money_exchange_convert_price productPrice.originPrice }}
               {{#if symbolOrder '==' 'prefix'}}
                 <span>{{ currencySymbol }}</span><span>{{ integer }}</span><sup class="body6">{{ fraction }}</sup>
@@ -83,19 +102,22 @@
           </span>
         {{/if}}
         <div class="body1 product-sales-price-wrapper">
-          <span class="body1 product-sales-price {{#if settings.sell_font_bold}}fw-bold{{/if}} {{settings.sell_font_size}} product-price-sales_{{id}} isolate notranslate">{{ money_exchange_convert_with_currency productPrice.salesPrice }}</span>
+          <span class="body1 product-sales-price {{#if settings.sell_font_bold}}fw-bold{{/if}} {{#unless settings.font_size_flexible}}{{settings.sell_font_size}}{{/unless}} product-price-sales_{{id}} isolate notranslate">{{ money_exchange_convert_with_currency productPrice.salesPrice }}</span>
         </div>
         <span class="product-price-vip_{{id}} vipPrice {{cond showMemberMark '' 'hide'}}" data-vip-tag="big"></span>
-        {{!-- (含税费) --}}
-        {{ snippet 'product/detail/product-tax' bool=true }}
+
         <div class="body2 product-origin-price-wrapper">
-          <span class="body2 product-origin-price {{settings.origin_font_size}} originPrice isolate notranslate product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">{{ money_exchange_convert_with_currency productPrice.originPrice }}</span>
+          <span class="body2 product-origin-price {{#unless settings.font_size_flexible}}{{settings.origin_font_size}}{{/unless}} originPrice isolate notranslate product-price-origin_{{id}} {{#if productPrice.originPrice '<=' productPrice.salesPrice}}hide{{/if}}">{{ money_exchange_convert_with_currency productPrice.originPrice }}</span>
         </div>
       {{/if}}
     </div>
+
+    <div class="product-info-tax body6">
+      {{ snippet 'product/detail/product-tax' bool=true }}
+    </div>
   {{/not}}
 
-  {{!-- 营销：折扣码&自动折扣&限时促销&倒计时&赠品 --}}
+
   {{ snippet 'product/detail/product-info-promotions'}}
 </div>
 <div data-ssr-plugin-title-top></div>

@@ -1,15 +1,12 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'] = window.SLM['theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'] || function () {
   const _exports = {};
   const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { ModuleType, ComponentType, ActionType, PageType, EventNameType } = window['SLM']['theme-shared/components/smart-payment/reporter/constants.js'];
-
   const conversionReport = data => {
     if (!window.HdSdk) return;
     window.HdSdk.shopTracker.collect(data);
   };
-
   const checkoutHiidoReportV2 = {
     reportConversionEvent(eventName, extra) {
       const {
@@ -26,7 +23,6 @@ window.SLM['theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2
       });
       conversionReport(standardParams);
     },
-
     reportAddPaymentInfo(extra) {
       const {
         currency,
@@ -44,13 +40,13 @@ window.SLM['theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2
         basicInfo,
         shipping_method
       });
-      const params = { ...standardParams,
+      const params = {
+        ...standardParams,
         payment_method,
         coupon_code
       };
       conversionReport(params);
     },
-
     generateReportData(eventType, extra) {
       if (!eventType) return;
       const productData = this.generateProductParams(eventType, {
@@ -72,10 +68,8 @@ window.SLM['theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2
         coupon_code: '',
         shipping_method: extra.shipping_method
       };
-
       if (eventType === EventNameType.AddPaymentInfo) {
         const tradeAttributeInfo = sessionStorage.getItem('tradeAttributeInfo');
-
         if (tradeAttributeInfo) {
           const {
             referralCode
@@ -87,18 +81,14 @@ window.SLM['theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2
         delete reportData.payment_method;
         delete reportData.coupon_code;
       }
-
       if (eventType !== EventNameType.AddPaymentInfo) {
         delete reportData.billing_address_status;
       }
-
       if (eventType !== EventNameType.AddShippingInfo) {
         delete reportData.shipping_method;
       }
-
       return reportData;
     },
-
     generateProductParams(eventType, {
       productInfos
     }) {
@@ -117,7 +107,6 @@ window.SLM['theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2
       };
       return res;
     }
-
   };
   _exports.checkoutHiidoReportV2 = checkoutHiidoReportV2;
   return _exports;

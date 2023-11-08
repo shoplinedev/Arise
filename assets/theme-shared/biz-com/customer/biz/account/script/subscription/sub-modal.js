@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-modal.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-modal.js'] || function () {
   const _exports = {};
   const Modal = window['SLM']['theme-shared/components/hbs/shared/components/modal/index.js'].default;
@@ -10,7 +9,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-mo
   const { countriesDialCodeMap, countriesCodeMap } = window['SLM']['theme-shared/biz-com/customer/constant/countries.js'];
   const { DEFAULT_PHONE_ISO2, DEFAULT_PHONE_CODE2, SUBSCRIBE_STATUS_MAP } = window['SLM']['theme-shared/biz-com/customer/constant/const.js'];
   const customer_subscription = SL_State.get('customer_subscription');
-
   class SubModal {
     constructor({
       id,
@@ -33,31 +31,26 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-mo
       this.state = customer_subscription && customer_subscription[this.type].state;
       this.init();
     }
-
     init() {
       this.initModal();
       this.initForm();
       this.initEvent();
     }
-
     initEvent() {
       this.$unSubBtn.on('click', () => {
         this.onUnsub && this.onUnsub(this.type);
       });
     }
-
     initModal() {
       const modal = new Modal({
         modalId: this.id
       });
       modal.init();
       this.modal = modal;
-
       if (this.state !== SUBSCRIBE_STATUS_MAP.SUBSCRIBE) {
         this.$unSubBtn.hide();
       }
     }
-
     onUpdateSub(data) {
       return updateSubscriptions({
         state: 1,
@@ -71,7 +64,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-mo
         this.onSuccess && this.onSuccess();
       });
     }
-
     initForm() {
       const fields = getFormFields([this.type]);
       this.form = new Form({
@@ -85,11 +77,9 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-mo
         this.onFieldValueChange && this.onFieldValueChange(changedValue);
       });
     }
-
     clearFormFields() {
       this.setFormFields('');
     }
-
     setFormFields(value) {
       const {
         formInstance
@@ -98,19 +88,16 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-mo
       formInstance.setLocalsValue(this.type, value);
       formInstance.removeErrList([this.type]);
     }
-
     show() {
       this.modal.show();
       const userInfo = SL_State.get('customer.userInfoDTO');
       let defaultValue = userInfo[this.type] || '';
       let iso2 = '';
       let code = '';
-
       if (this.type === 'phone') {
         if (!defaultValue) {
           defaultValue = this.userInfo.phone || '';
         }
-
         if (countriesDialCodeMap[defaultValue.slice(2, 5)]) {
           code = defaultValue.slice(2, 5);
           iso2 = countriesDialCodeMap[code];
@@ -124,22 +111,18 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-mo
           iso2 = countriesDialCodeMap[code];
           defaultValue = defaultValue.slice(3);
         }
-
         const phoneInstance = this.form.formItemInstances.phone;
-
         if (code) {
           code = `+${code}`;
         } else {
           const iso2Original = window && window.SL_State && window.SL_State.get('customer_address.countryCode');
           iso2 = iso2Original && iso2Original.toLowerCase() || DEFAULT_PHONE_ISO2;
           code = countriesCodeMap[iso2];
-
           if (!code) {
             iso2 = DEFAULT_PHONE_ISO2;
             code = DEFAULT_PHONE_CODE2;
           }
         }
-
         phoneInstance.changeValue(`${iso2}${code}`, defaultValue);
         setTimeout(() => {
           phoneInstance.changeCodeValue(`${iso2}`);
@@ -149,10 +132,8 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-mo
           defaultValue = this.userInfo.email || '';
         }
       }
-
       this.setFormFields(defaultValue);
       const SLInput = $(`#${this.id}-form .sl-input`);
-
       if (userInfo[this.type]) {
         SLInput.addClass('subscribe__form__item--disabled');
         SLInput.find(`[name="${this.type}"]`).attr('disabled', true);
@@ -162,20 +143,16 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/sub-mo
         SLInput.find(`[name="${this.type}"]`).attr('disabled', false);
         SLInput.find('.form-item__codeSelect').attr('disabled', false);
       }
-
       if (this.state !== SUBSCRIBE_STATUS_MAP.SUBSCRIBE) {
         this.$unSubBtn.hide();
       } else {
         this.$unSubBtn.show();
       }
     }
-
     hide() {
       this.modal.hide();
     }
-
   }
-
   _exports.default = SubModal;
   return _exports;
 }();

@@ -10,7 +10,7 @@
     {{#if this.settings.image.url}}
       {{assign 'ratio' (append (default (get 'ratio' (img_size image.url)) 100) '%')}}
       <div class="footer__image-wrapper" style="padding-bottom: {{ratio}}">
-        <img class="lozad" data-sizes="auto" data-src="{{this.settings.image.url}}" />
+        <img class="lozad" data-sizes="auto" data-src="{{this.settings.image.url}}" alt="{{this.settings.image.alt}}" />
       </div>          
     {{else}}
       <div class="footer__image__default-wrapper">

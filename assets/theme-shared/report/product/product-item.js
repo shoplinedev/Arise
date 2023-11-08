@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-shared/report/product/product-item.js'] || function () {
   const _exports = {};
   const { BaseReport, findSectionId } = window['SLM']['theme-shared/report/common/baseReport.js'];
@@ -9,7 +8,6 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
   const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const { sectionTypeEnum } = window['SLM']['theme-shared/report/stage/const.js'];
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
-
   function tryDecodeURIComponent(str) {
     try {
       return decodeURIComponent(str);
@@ -17,7 +15,6 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
       return str;
     }
   }
-
   const getTagBrandTypeReportCollectionName = title => {
     let {
       pathname
@@ -26,29 +23,23 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
       search
     } = window.location;
     let collectionName = title;
-
     if (window.Shopline.routes && window.Shopline.routes.root && window.Shopline.routes.root !== '/') {
       const root = `/${window.Shopline.routes.root.replace(/\//g, '')}`;
       pathname = pathname.replace(root, '');
     }
-
     if (pathname === '/collections/types' || pathname === '/collections/brands') {
       collectionName = tryDecodeURIComponent(pathname.replace('/collections/', '') + search);
     } else {
       const pathnameArr = pathname.split('/');
-
       if (pathnameArr[pathnameArr.length - 1] === '') {
         pathnameArr.pop();
       }
-
       if (pathnameArr[1] === 'collections' && pathnameArr.length === 4) {
         collectionName += tryDecodeURIComponent(pathname.replace('/collections/', '') + search);
       }
     }
-
     return collectionName;
   };
-
   const pageItemMap = {
     101: {
       module: 900,
@@ -69,7 +60,6 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
       component: 101
     }
   };
-
   class ProductItemReport extends BaseReport {
     itemListView(reportData) {
       validParams(reportData);
@@ -98,7 +88,8 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
           quantity: 1
         }))
       };
-      const customParams = { ...productsInfoParams
+      const customParams = {
+        ...productsInfoParams
       };
       super.viewItemList({
         selector: `.__sl-custom-track-${productSortation.id ? productSortation.id : 'all-products'}`,
@@ -106,7 +97,6 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
         customParams
       });
     }
-
     itemView(reportData) {
       validParams(reportData);
       const {
@@ -140,7 +130,6 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
         customParams: params
       });
     }
-
     itemSelect(reportData) {
       validParams(reportData);
       const {
@@ -163,25 +152,22 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
         value: convertPrice(price),
         position: index + 1
       };
-      const params = { ...baseParams,
+      const params = {
+        ...baseParams,
         ...productInfoParams
       };
-
       if (this.page === 101) {
-        Object.assign(params, { ...pageItemMap[101],
+        Object.assign(params, {
+          ...pageItemMap[101],
           module_type: nullishCoalescingOperator(sectionTypeEnum[moduleType], moduleType)
         });
       }
-
       super.selectContent({
         customParams: params
       });
     }
-
   }
-
   _exports.default = ProductItemReport;
-
   function hdProductItemSelect(reportData) {
     const hdReport = new ProductItemReport();
     const {
@@ -196,9 +182,7 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
       productInfo
     });
   }
-
   _exports.hdProductItemSelect = hdProductItemSelect;
-
   function hdProductItemView(params) {
     const hdReport = new ProductItemReport();
     const {
@@ -207,12 +191,12 @@ window.SLM['theme-shared/report/product/product-item.js'] = window.SLM['theme-sh
     } = params;
     hdReport.view({
       selector: `${sectionClass} .product-item`,
-      customParams: { ...pageItemMap[hdReport.page],
+      customParams: {
+        ...pageItemMap[hdReport.page],
         ...moreInfo
       }
     });
   }
-
   _exports.hdProductItemView = hdProductItemView;
   return _exports;
 }();

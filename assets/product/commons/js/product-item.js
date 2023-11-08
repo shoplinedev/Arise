@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/js/product-item.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -52,7 +51,6 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
     lang
   }) => {
     const priceItems = $('[data-product-item-price]');
-
     for (const priceItem of priceItems) {
       const priceValue = $(priceItem).data('product-item-price');
       const isSavePrice = $(priceItem).data('product-item-save-price');
@@ -63,7 +61,6 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
       }).render();
     }
   });
-
   if (isPad) {
     $('.product-item__inner-wrap .product-item__actions').css({
       display: 'block'
@@ -75,7 +72,6 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
     $('#collectionsAjaxInner').addClass('pad');
     $('.product-item__wrapper').addClass('pad');
   }
-
   $('body').on('mouseenter', '.js-product-inner-wrap', function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -86,7 +82,6 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
     const noHoverAnimation = $item.data('no-hover-ani-effect');
     if ($btns.hasClass('show-middle-btn') || noHoverAnimation) return;
     window.clearTimeout(+$item.attr('data-timer'));
-
     if ($parent.children('.js-bg').length) {
       $item.css('height', `${$item.find('.js-product-item').outerHeight()}px`);
     } else {
@@ -115,7 +110,6 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
       $btns.removeAttr('style');
     }, 3e2));
   });
-
   const tryDecodeURIComponent = str => {
     try {
       return decodeURIComponent(str);
@@ -123,11 +117,9 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
       return str;
     }
   };
-
   const judgePageType = () => {
     const pageType = window.SL_State.get('templateAlias');
     const title = window.SL_State.get('sortation.sortation.title');
-
     if (pageType === 'Products') {
       let {
         pathname
@@ -136,40 +128,32 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
         search
       } = window.location;
       let collectionName = '';
-
       if (title) {
         collectionName = title;
       } else {
         collectionName = 'All Products';
       }
-
       if (window.Shopline.routes && window.Shopline.routes.root && window.Shopline.routes.root !== '/') {
         const root = `/${window.Shopline.routes.root.replace(/\//g, '')}`;
         pathname = pathname.replace(root, '');
       }
-
       if (pathname === '/collections/types' || pathname === '/collections/brands') {
         collectionName = tryDecodeURIComponent(pathname.replace('/collections/', '') + search);
       } else {
         const pathnameArr = pathname.split('/');
-
         if (pathnameArr[pathnameArr.length - 1] === '') {
           pathnameArr.pop();
         }
-
         if (pathnameArr[1] === 'collections' && pathnameArr.length === 4) {
           collectionName += tryDecodeURIComponent(pathname.replace('/collections/', '') + search);
         }
       }
-
       return collectionName;
     }
-
     if (pageType === 'ProductsSearch') {
       return 'Search Result';
     }
   };
-
   function thirdPartReport({
     id,
     name,
@@ -209,10 +193,8 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
       }]]
     });
   }
-
   function reportClickProduct(id) {
     const pageType = window.SL_State.get('template');
-
     if (pageType === 'collection') {
       window.HdSdk && window.HdSdk.shopTracker.report('60006260', {
         event_name: '130',
@@ -220,19 +202,16 @@ window.SLM['product/commons/js/product-item.js'] = window.SLM['product/commons/j
       });
     }
   }
-
   $(document.body).on('click', '.product-item', function () {
     const item = $(this);
     const isRecentlyProduct = item.hasClass('__sl-custom-track-product-recently-viewed-item');
     const isSearchProduct = item.hasClass('__sl-custom-track-product-item-search');
     const isRecommendProduct = item.hasClass('__sl-custom-track-product-recommend-item');
-
     if (!isSearchProduct && !isRecentlyProduct && !isRecommendProduct) {
       hdReport.itemSelect({
         productInfo: item.data()
       });
     }
-
     thirdPartReport({
       id: $(this).data('skuId'),
       name: $(this).data('name'),

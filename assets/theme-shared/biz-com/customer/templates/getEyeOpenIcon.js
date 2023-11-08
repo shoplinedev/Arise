@@ -1,8 +1,6 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/templates/getEyeOpenIcon.js'] = window.SLM['theme-shared/biz-com/customer/templates/getEyeOpenIcon.js'] || function () {
   const _exports = {};
-
   _exports.default = () => {
     return `
     <svg class="" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,6 +15,5 @@ window.SLM['theme-shared/biz-com/customer/templates/getEyeOpenIcon.js'] = window
     </svg>
   `;
   };
-
   return _exports;
 }();

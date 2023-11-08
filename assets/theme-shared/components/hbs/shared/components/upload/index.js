@@ -1,22 +1,18 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] || function () {
   const _exports = {};
   const { SlAliyunOss } = window['@yy/sl-http-upload'];
-
   function uuid(len, radix) {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
     const uuid = [];
     let i;
     radix = radix || chars.length;
-
     if (len) {
       for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix];
     } else {
       let r;
       uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
       uuid[14] = '4';
-
       for (i = 0; i < 36; i++) {
         if (!uuid[i]) {
           r = 0 | Math.random() * 16;
@@ -24,10 +20,8 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
         }
       }
     }
-
     return uuid.join('');
   }
-
   const defaultOption = {
     maxCount: 10,
     maxFileLength: 2 * 1024 * 1024,
@@ -48,7 +42,6 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
       signUrl: '/api/signature/post/sign'
     }
   };
-
   const createTemplate = option => {
     const {
       accept,
@@ -80,7 +73,6 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
         </div>
     `;
   };
-
   const createFileItemTemplate = (fileUrl, index, option) => {
     const {
       needDelete
@@ -99,10 +91,10 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
     </div>
   `;
   };
-
   class Upload {
     constructor(option = {}) {
-      this.option = { ...defaultOption,
+      this.option = {
+        ...defaultOption,
         ...option
       };
       this.fileList = [];
@@ -116,11 +108,9 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
       this.initOss();
       this.bindEvent();
     }
-
     get fileLength() {
       return this.fileList.length;
     }
-
     showFiles() {
       let html = '';
       this.fileList.forEach((item, index) => {
@@ -128,7 +118,6 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
       });
       this.$fileLists.empty().append($(html));
     }
-
     uploadFiles(files) {
       let length = files.length;
       let errCode = '';
@@ -139,21 +128,17 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
       length = fileList.length;
       fileList = fileList.filter(item => item.size <= this.option.maxFileLength);
       errCode += fileList.length < length ? '1' : '0';
-
       if (fileList.length + this.fileLength > this.option.maxCount) {
         fileList = fileList.slice(0, this.option.maxCount - this.fileLength);
       }
-
       this.showError(errCode);
       fileList.length && this.postFilesToOss(fileList);
     }
-
     showError(errCode) {
       if (errCode !== '00' && this.option.onFileBeforeUploadError) {
         this.option.onFileBeforeUploadError(errCode);
       }
     }
-
     postFilesToOss(fileList) {
       this.activeAddBnt();
       this.onLoading = true;
@@ -171,11 +156,9 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
           return item.data[0];
         }).filter(item => !!item.url) || [];
         this.fileList.push(...list);
-
         if (typeof this.option.onChange === 'function') {
           this.option.onChange(this.fileList.slice());
         }
-
         this.showFiles();
         this.changeAddBtnDisplay();
       }, e => {
@@ -185,7 +168,6 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
         this.onLoading = false;
       });
     }
-
     attrAccept(file, acceptedFiles) {
       if (file && acceptedFiles) {
         const acceptedFilesArray = Array.isArray(acceptedFiles) ? acceptedFiles : acceptedFiles.split(',');
@@ -194,28 +176,22 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
         const baseMimeType = mimeType.replace(/\/.*$/, '');
         return acceptedFilesArray.some(type => {
           const validType = type.trim();
-
           if (validType.charAt(0) === '.') {
             return fileName.toLowerCase().indexOf(validType.toLowerCase(), fileName.toLowerCase().length - validType.toLowerCase().length) !== -1;
           } else if (/\/\*$/.test(validType)) {
             return baseMimeType === validType.replace(/\/.*$/, '');
           }
-
           return mimeType === validType;
         });
       }
-
       return true;
     }
-
     showAddBtn() {
       this.$fileAddBtn.show();
     }
-
     hideAddBtn() {
       this.$fileAddBtn.hide();
     }
-
     changeAddBtnDisplay() {
       if (this.fileLength >= this.option.maxCount) {
         this.hideAddBtn();
@@ -223,15 +199,12 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
         this.showAddBtn();
       }
     }
-
     activeAddBnt() {
       this.$fileAddBtn.addClass('upload-ing').css('pointer-events', 'none');
     }
-
     unActiveAddBtn() {
       this.$fileAddBtn.removeClass('upload-ing').css('pointer-events', '');
     }
-
     bindEvent() {
       this.$fileInput.on('change', e => {
         const files = e.target.files;
@@ -245,39 +218,32 @@ window.SLM['theme-shared/components/hbs/shared/components/upload/index.js'] = wi
         const parent = $(e.currentTarget).parents('.product-upload__item');
         const index = parent.attr('data-index');
         const deleteItem = this.fileList.splice(index, 1);
-
         if (typeof this.option.onRemove === 'function') {
           this.option.onRemove(deleteItem, this.fileList.slice());
         }
-
         if (typeof this.option.onChange === 'function') {
           this.option.onChange(this.fileList.slice());
         }
-
         this.changeAddBtnDisplay();
         this.showFiles();
       });
     }
-
     initOss() {
-      this.ossClient = new SlAliyunOss({ ...this.option.ossClientOption
+      this.ossClient = new SlAliyunOss({
+        ...this.option.ossClientOption
       });
     }
-
     render() {
       const template = createTemplate(this.option);
       this.$dom = $(template);
       this.$fileInput = this.$dom.find('.product-upload-input');
       this.$fileLists = this.$dom.find('.product-upload__items');
       this.$fileAddBtn = this.$dom.find('.product-upload__btn--add');
-
       if (this.option.el) {
         $(this.option.el).append(this.$dom);
       }
     }
-
   }
-
   _exports.default = Upload;
   return _exports;
 }();

@@ -1,0 +1,103 @@
+{{#with theme.settings}}
+  <div class="social-media">
+    {{#if social_facebook_link}}
+      <a class="__sl-custom-track-stage-social-facebook" href="{{social_facebook_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_fb"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_fb"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_twitter_link}}
+      <a class="__sl-custom-track-stage-social-twitter" href="{{social_twitter_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_twitter"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_twitter"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_pinterest_link}}
+      <a class="__sl-custom-track-stage-social-pinterest" href="{{social_pinterest_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_pin"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_pin"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_instagram_link}}
+      <a class="__sl-custom-track-stage-social-instagram" href="{{social_instagram_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_ig" prefix="footer"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_ig"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_snapchat_link}}
+      <a class="__sl-custom-track-stage-social-snapchat" href="{{social_snapchat_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_snapchat" prefix="footer"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_snapchat"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_tiktok_link}}
+      <a class="__sl-custom-track-stage-social-tiktok" href="{{social_tiktok_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_tiktok"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_tiktok"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_youtube_link}}
+      <a class="__sl-custom-track-stage-social-youtube" href="{{social_youtube_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_youtube" prefix="footer"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_youtube"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_linkedin_link}}
+      <a href="{{social_linkedin_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_linkedin" prefix="footer"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_linkedin"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_whatsapp_link}}
+      <a href="{{social_whatsapp_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_whatsapp" prefix="footer"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_whatsapp"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_line_link}}
+      <a href="{{social_whatsapp_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_line" prefix="footer"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_line"}}
+        {{/if}}
+      </a>
+    {{/if}}
+    {{#if social_kakao_link}}
+      <a href="{{social_whatsapp_link}}" target="_blank">
+        {{#if show_official_icon}}
+          {{snippet "icons/icon_official_kakao" prefix="footer"}}
+        {{else}}
+          {{snippet "icons/icon_toolbar_social_kakao"}}
+        {{/if}}
+      </a>
+    {{/if}}
+  </div>
+{{/with}}

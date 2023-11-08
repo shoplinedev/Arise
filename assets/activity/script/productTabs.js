@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['activity/script/productTabs.js'] = window.SLM['activity/script/productTabs.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -8,14 +7,11 @@ window.SLM['activity/script/productTabs.js'] = window.SLM['activity/script/produ
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const CartInfoKey = 'cartInfo';
   const TooltipSelector = '.activity__productTabs .tab2';
-
   _exports.default = () => {
     const activity = SL_State.get('activity');
     const request = SL_State.get('request');
-
     if (get(activity, 'benefitType') === 12 && activity.promotionSubType === 0) {
       let tooltip;
-
       if (request.uri.query.query_product_type !== '2') {
         const colorTooltip = $(TooltipSelector).data('color_tooltip');
         tooltip = new Tooltip({
@@ -29,33 +25,25 @@ window.SLM['activity/script/productTabs.js'] = window.SLM['activity/script/produ
           zIndex: 98
         });
       }
-
       const resetTooltip = init => {
         if (!tooltip) {
           return;
         }
-
         get_func(tooltip, 'destroy').exec();
-
         if (init === false) {
           return;
         }
-
         get_func(tooltip, 'init').exec();
         tooltip.show();
         const $tooltip = tooltip.$tooltips[tooltip.$tooltips.length - 1];
-
         if (tooltip) {
           tooltip.setPosition($tooltip, tooltip.$target);
         }
       };
-
       const updateCartInfo = cartInfo => {
         const promotion = get(get_func(cartInfo.activeItems, 'find').exec(item => get(item, 'promotion.activitySeq') === activity.activitySeq), 'promotion');
-
         if (get(promotion, 'promotionBenefitList[0].hit') || get(promotion, 'promotionBenefitList[0].extMap.meetThreshold') === 'true') {
           $('.activity__productTabs .tab2').addClass('unlocked');
-
           if (!get(promotion, 'promotionBenefitList[0].hit')) {
             resetTooltip(true);
           } else {
@@ -66,7 +54,6 @@ window.SLM['activity/script/productTabs.js'] = window.SLM['activity/script/produ
           resetTooltip(false);
         }
       };
-
       $(document.body).on('click', '.activity__productTabs-tooltip i', () => {
         resetTooltip(false);
       });
@@ -75,6 +62,5 @@ window.SLM['activity/script/productTabs.js'] = window.SLM['activity/script/produ
       SL_State.on(CartInfoKey, updateCartInfo);
     }
   };
-
   return _exports;
 }();

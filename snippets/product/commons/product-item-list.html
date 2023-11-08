@@ -1,12 +1,4 @@
-{{!-- 可传参数：
-listData: 商品列表数据，字段参考plp列表数据
-colNum: 展示列数,默认展示4行
-total: 列表数据总数
-pageSize: 每一页的数量
-pageNum: 当前页数
-forbiddenBtn:禁止加购按钮
-mbColNum: 移动端展示列数 默认2 
---}}
+
 
 {{assign '_colNum' 4}}
 {{assign '_mbColNum' 2}}
@@ -17,12 +9,8 @@ mbColNum: 移动端展示列数 默认2
   {{assign '_mbColNum' mbColNum}}
 {{/if}}
 
-{{ assign 'listLayoutObj' (JSONparse (append (append '{"small_grid": "row-cols-2 row-cols-lg-3 row-cols-xl-' _colNum) ' product-list-small-grid", "list": "row-cols-1 row-cols-md-1 product-list-single-grid"}'))  }}
-
-{{ assign 'productListCls' ( default (get gripType listLayoutObj) (get 'small_grid' listLayoutObj) ) }}
-
 {{#if effectPage '==' 'productList'}}
-<div class="{{ append 'product-list-item-parent-controller row ' productListCls }} {{ append (cond listClassName listClassName '')}}" id="product-list-container">
+<div class="product-list-item-parent-controller row row-cols-{{_mbColNum}} row-cols-lg-3 row-cols-xl-{{_colNum}} product-list-small-grid {{ append (cond listClassName listClassName '')}}" id="product-list-container">
 {{else}}
 <div class="product-list-item-parent-controller row row-cols-{{_mbColNum}} row-cols-md-{{_colNum}}">
 {{/if}}

@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/report/virtualReport.js'] = window.SLM['commons/report/virtualReport.js'] || function () {
   const _exports = {};
   const { VirtualReport } = window['SLM']['theme-shared/report/stage/virtualReport.js'];
   const virtualReport = new VirtualReport();
-
   function initVirtualReport() {
     $(() => {
       virtualReport.bindHeaderReport();
@@ -15,7 +13,6 @@ window.SLM['commons/report/virtualReport.js'] = window.SLM['commons/report/virtu
       virtualReport.bindLocaleCurrencyReport();
     });
   }
-
   _exports.initVirtualReport = initVirtualReport;
   _exports.default = virtualReport;
   return _exports;

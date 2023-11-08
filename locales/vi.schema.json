@@ -20,6 +20,10 @@
           "options__3": {
             "label": "Chuyển đổi lên và xuống"
           }
+        },
+        "show_social_media": {
+          "label": "Hiển thị phương tiện truyền thông xã hội",
+          "info": "Nếu bố cục bảng thông báo là bố cục nhỏ gọn/hiển thị lát phẳng, phương tiện truyền thông xã hội sẽ không bao giờ được hiển thị"
         }
       },
       "blocks": {
@@ -174,6 +178,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "collection_image_shape": {
+          "label": "Phân loại hình dạng ảnh",
+          "options__0": {
+            "label": "Hình vuông"
+          },
+          "options__1": {
+            "label": "Hình tròn"
           }
         },
         "color_scheme": {
@@ -428,6 +441,9 @@
         "button_text": {
           "label": "Nội dung nút",
           "info": "Nút sẽ chỉ được hiển thị nếu \"Số lượng sản phẩm tối đa\" nhỏ hơn hoặc bằng số lượng sản phẩm trong danh mục phân loại này"
+        },
+        "button_follow_endof_list": {
+          "label": "Nút Xem thêm trên đầu cuối thiết bị di động hiển thị ở cuối danh sách"
         },
         "group_header__1": {
           "label": "Hình sản phẩm"
@@ -734,10 +750,10 @@
           }
         },
         "media_icon_width": {
-          "label": "Chiều rộng biểu tượng"
+          "label": "Chiều rộng biểu tượng trên PC"
         },
         "media_icon_padding": {
-          "label": "Khoảng cách biểu tượng"
+          "label": "Khoảng cách biểu tượng trên PC"
         },
         "group_header__3": {
           "label": "Thêm nội dung"
@@ -813,10 +829,10 @@
               "label": "Tiêu đề"
             },
             "block_media_icon_width": {
-              "label": "Chiều rộng biểu tượng"
+              "label": "Chiều rộng biểu tượng trên PC"
             },
             "block_media_icon_padding": {
-              "label": "Khoảng cách biểu tượng"
+              "label": "Khoảng cách biểu tượng trên PC"
             }
           }
         },
@@ -1172,6 +1188,14 @@
             "label": "LOGO ở giữa, menu xuống dòng"
           }
         },
+        "mobile_top_menu": {
+          "label": "Menu ghim đầu trang trên đầu cuối thiết bị di động",
+          "info": "Sau khi cấu hình, menu sẽ được cố định ở cuối tiêu đề đầu trang trên đầu cuối thiết bị di động, có thể trượt sang trái phải để chuyển đổi hiển thị"
+        },
+        "mobile_top_menu_show_home": {
+          "label": "Menu ghim đầu trang chỉ hiển thị trên trang chủ",
+          "info": "Sau khi cấu hình, menu ghim đầu trang sẽ chỉ hiển thị trên trang chủ"
+        },
         "mega_menu_images": {
           "label": "Hiển thị hình ảnh siêu menu",
           "info": "[Xem hướng dẫn cài đặt siêu menu như thế nào](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)"
@@ -1189,6 +1213,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "user_mobile_layout": {
+          "label": "Vị trí trung tâm cá nhân trên đầu cuối thiết bị di động",
+          "options__0": {
+            "label": "Hiển thị trên trang chủ"
+          },
+          "options__1": {
+            "label": "Hiển thị trên thanh menu"
           }
         },
         "header_style": {
@@ -1213,6 +1246,27 @@
         },
         "show_user_entry": {
           "label": "Hiển thị lối vào trung tâm cá nhân"
+        },
+        "hover_show_user_menu": {
+          "label": "Biểu tượng trung tâm cá nhân hover trên thiết bị đầu cuối máy tính, hiển thị hộp thả xuống"
+        },
+        "user_menu_text_1": {
+          "label": ""
+        },
+        "user_menu_link_1": {
+          "label": ""
+        },
+        "user_menu_text_2": {
+          "label": ""
+        },
+        "user_menu_link_2": {
+          "label": ""
+        },
+        "user_menu_text_3": {
+          "label": ""
+        },
+        "user_menu_link_3": {
+          "label": ""
         },
         "show_cart_entry": {
           "label": "Hiển thị mục nhập giỏ hàng"
@@ -2152,6 +2206,12 @@
         "banner_image_mobile": {
           "label": "Đầu thiết bị di động banner"
         },
+        "pc_collection_img_height": {
+          "label": "Chiều cao của sơ đồ phân loại trên đầu cuối thiết bị máy tính"
+        },
+        "md_collection_img_height": {
+          "label": "Chiều cao của sơ đồ phân loại trên đầu cuối thiết bị di động"
+        },
         "parallax_scroll": {
           "label": "Cuộn song song",
           "info": "Để sử dụng hiệu ứng cuộn song song, sẽ cắt bớt một phần hình ảnh để đạt được hiệu quả"
@@ -2173,6 +2233,18 @@
         },
         "per_page_num": {
           "label": "Số lượng sản phẩmtrên mỗi trang"
+        },
+        "mobile_list_layout": {
+          "label": "Bố cục hiển thị mặc định trên đầu cuối thiết bị di động",
+          "options__0": {
+            "label": "Cột 1"
+          },
+          "options__1": {
+            "label": "2 cột"
+          }
+        },
+        "mobile_show_style_switch": {
+          "label": "Chuyển đổi bố cục hiển thị trên đầu cuối thiết bị di động"
         },
         "infinite_scroll": {
           "label": "Kích hoạt cuộn vô hạn"
@@ -2518,6 +2590,16 @@
               "options__3": {
                 "label": "nhỏ"
               }
+            },
+            "font_size_flexible": {
+              "label": "Cấu hình cỡ chữ linh hoạt",
+              "info": "Sau khi bật có thể tự chỉ định cỡ chữ"
+            },
+            "title_pc_font_size": {
+              "label": "Kích thước phông chữ máy tính"
+            },
+            "title_mobile_font_size": {
+              "label": "Kích thước phông chữ di động"
             }
           }
         },
@@ -2548,7 +2630,7 @@
           "name": "Giá",
           "settings": {
             "show_order": {
-              "label": "Thứ tự hiển thị giá",
+              "label": "Phương thức hiển thị giá/ưu đãi",
               "options__0": {
                 "label": "Nhãn ưu đãi, giá bán, giá gốc"
               },
@@ -2557,6 +2639,12 @@
               },
               "options__2": {
                 "label": "Giá gốc, giá bán, nhãn ưu đãi"
+              },
+              "options__3": {
+                "label": "ราคาขาย ป้ายส่วนลด"
+              },
+              "options__4": {
+                "label": "ป้ายส่วนลด ราคาขาย"
               }
             },
             "sell_font_size": {
@@ -2589,6 +2677,22 @@
                 "label": "Siêu lớn"
               }
             },
+            "font_size_flexible": {
+              "label": "Cấu hình cỡ chữ linh hoạt",
+              "info": "Sau khi bật có thể tự chỉ định cỡ chữ"
+            },
+            "sale_price_pc_font_size": {
+              "label": "Cỡ chữ giá bán trên đầu cuối thiết bị máy tính"
+            },
+            "sale_price_mobile_font_size": {
+              "label": "Cỡ chữ giá bán trên đầu cuối thiết bị di động"
+            },
+            "regular_price_pc_font_size": {
+              "label": "Cỡ chữ giá gốc (giá gạch chân) trên đầu cuối thiết bị máy tính"
+            },
+            "regular_price_mobile_font_size": {
+              "label": "Cỡ chữ giá gốc (giá gạch chân) trên đầu cuối thiết bị di động"
+            },
             "sell_font_bold": {
               "label": "Hiển thị in đậm chữ giá bán"
             }
@@ -2605,6 +2709,27 @@
               "options__1": {
                 "label": "Khung kéo xuống"
               }
+            },
+            "sizes": {
+              "label": "Hiển thị cỡ",
+              "options__0": {
+                "label": "nhỏ"
+              },
+              "options__1": {
+                "label": "vừa"
+              },
+              "options__2": {
+                "label": "to"
+              }
+            },
+            "layout_direction": {
+              "label": "Hiển thị bố cục",
+              "options__0": {
+                "label": "Bố cục trên dưới"
+              },
+              "options__1": {
+                "label": "Bố cục trái phải"
+              }
             }
           }
         },
@@ -2614,6 +2739,36 @@
             "is_show_stock_hint": {
               "label": "Hiển thị cảnh báo số lượng khi tồn kho thấp",
               "info": "Khi tồn kho nhỏ hơn 10, số lượng tồn kho sẽ được hiển thị bên dưới bộ chọn số lượng"
+            },
+            "width": {
+              "label": "Hiển thị chiều rộng",
+              "options__0": {
+                "label": "1/2 chiều rộng cột"
+              },
+              "options__1": {
+                "label": "Toàn bộ chiều rộng cột"
+              }
+            },
+            "layout_direction": {
+              "label": "Hiển thị bố cục",
+              "options__0": {
+                "label": "Bố cục trên dưới"
+              },
+              "options__1": {
+                "label": "Bố cục trái phải"
+              }
+            },
+            "border_style": {
+              "label": "Kiểu dạng hiển thị",
+              "options__0": {
+                "label": "Kiểu dạng đường"
+              },
+              "options__1": {
+                "label": "Kiểu dạng viền"
+              },
+              "options__2": {
+                "label": "Kiểu dạng không khung"
+              }
             }
           }
         },
@@ -4412,6 +4567,15 @@
             "label": "Kiểu nút nhấn"
           }
         },
+        "product_card_content_align": {
+          "label": "Hướng căn lề nội dung thẻ sản phẩm",
+          "options__0": {
+            "label": "Ở bên trái"
+          },
+          "options__1": {
+            "label": "Căn giữa"
+          }
+        },
         "product_title_show_type": {
           "label": "Quy tắc bày ra tiêu đề sản phẩm",
           "options__0": {
@@ -4628,7 +4792,7 @@
           "label": "Facebook"
         },
         "social_twitter_link": {
-          "label": "Twitter"
+          "label": "X（Twitter）"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -4651,6 +4815,12 @@
         "social_whatsapp_link": {
           "label": "WhatsApp"
         },
+        "social_line_link": {
+          "label": "Line"
+        },
+        "social_kakao_link": {
+          "label": "Kakao"
+        },
         "group_header__1": {
           "label": "Chia sẻ",
           "info": "Cung cấp thao tác chia sẻ ở trang chi tiết sản phẩm và trang blog"
@@ -4665,7 +4835,7 @@
           "label": "Chia sẻ đến Facebook"
         },
         "share_to_twitter": {
-          "label": "Chia sẻ đến Twitter"
+          "label": "Chia sẻ đến X（Twitter）"
         },
         "share_to_pinterest": {
           "label": "Chia sẻ đến Pinterest"

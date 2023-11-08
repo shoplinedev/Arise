@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] || function () {
   const _exports = {};
   const previewImage = window['@yy/sl-pod-preview-image']['default'];
@@ -10,7 +9,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const LoggerService = window['@yy/sl-theme-shared']['/utils/logger/sentry'].default;
   const { Owner, Action } = window['SLM']['theme-shared/biz-com/customer/biz/order/detail/loggerReport.js'];
-  const { reportPageView, cidMap, customComponentMap } = window['SLM']['theme-shared/biz-com/customer/reports/orders.js'];
   const { bindTrackBtn } = window['SLM']['theme-shared/biz-com/customer/biz/order/detail/bindTrack.js'];
   const renderInformation = window['SLM']['theme-shared/biz-com/customer/biz/order/detail/information.js'].default;
   const handlePayModal = window['SLM']['theme-shared/biz-com/customer/biz/order/detail/payModal.js'].default;
@@ -24,12 +22,8 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
     createMobilePreviewVoucher,
     createDesktopPreviewVoucher
   } = modalFactory;
-
   class CustomerOrderDetail {
     init() {
-      reportPageView(cidMap.customer, {
-        custom_component: customComponentMap.orderDetail
-      });
       initCurrencyChangeListener('.customer-order-detail');
       bindTrackBtn();
       renderInformation();
@@ -46,7 +40,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
         }
       });
     }
-
     initTransferVoucherModule() {
       const uploadElements = $('.trade-file-upload');
       uploadElements.each((_, ele) => {
@@ -78,14 +71,12 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
           label: t('cart.order.paymentVoucher.format'),
           value: fileType || '-'
         }];
-
         if (receiver) {
           data.push({
             label: t('order.checkout_order.receiver_account'),
             value: receiver
           });
         }
-
         if (amount) {
           data.push({
             label: t('order.checkout_order.pay_amount'),
@@ -96,7 +87,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
               </div>`
           });
         }
-
         if (url) {
           const options = {
             imgUrls: [url],
@@ -109,11 +99,9 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
         }
       });
     }
-
     bindEvent() {
       $('.goods-item-good-content').on('click', '.goods-item-good-preview', function imgPreview() {
         const data = $(this).data();
-
         if (data && data.urls) {
           const urls = data.urls.split(',') || [];
           previewImage({
@@ -131,9 +119,7 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/index.js'] = window.S
         handlePayModal(data);
       });
     }
-
   }
-
   _exports.default = CustomerOrderDetail;
   return _exports;
 }();

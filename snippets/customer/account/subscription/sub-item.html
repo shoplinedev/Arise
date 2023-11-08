@@ -2,25 +2,25 @@
   <div class="subscription-item__wrapper">
     <span class="subscription-item__title">{{ t (append 'customer.subscription.' key) }}</span>
 
-    {{!-- 订阅按钮 --}}
+    
     {{#if key 'messenger'}}
       <div id="customer-center-messenger-btn" class="subscription-item__btn"></div>
       <button id="customer-center-messenger-loading" style="display: none;" class="btn btn-outline-primary btn-sm btn--loading disabled"></button>
     {{else}}
       <button class="btn btn-outline-primary btn-sm subscription-item__btn" type="button">{{ t 'customer.subscription.subscribe_button' }}</button>
     {{/if}}
-    {{!-- 已订阅 --}}
+    
     <div class="subscription-item__subscribed">
       <span>{{ t 'customer.subscription.subscription_hint' }}</span>
       {{snippet 'icons/icon_complete'}}
     </div>
-    {{!-- 去掉编辑, hover时变为取消订阅 --}}
+    
     <div class="subscription-item__edit">
         {{snippet 'icons/icon_cancel'}}
         <span>{{ t 'customer.subscription.unsubscribe_confirm_text' }}</span>
     </div>
 
-    {{!-- 订阅确认中显示确认按钮 --}}
+    
     {{#if key 'email'}}
     <div class="subscription-item__confirming">
        <button class="btn btn-primary btn-sm" type="button">{{ t 'customer.account.confirm_btn' }}</button>
@@ -28,7 +28,7 @@
     {{/if}}
   </div>
 
-  {{!-- 无效邮件在下方显示提示 --}}
+  
   {{#if key 'email'}}
     <div class="subscription-email-unvalid-tip">{{t 'customer.accoount.email_subscribe_invalid_tip'}}</div>
   {{/if}}

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/pre-bundle.js'] = window.SLM['commons/pre-bundle.js'] || function () {
   const _exports = {};
   const register = window['SLM']['theme-shared/events/trade/developer-api/index.js'].default;

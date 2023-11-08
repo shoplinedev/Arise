@@ -104,7 +104,8 @@
       "view_cart": "View cart"
     },
     "next_step": {
-      "calculated_taxes_fees": "Taxes and shipping fee will be calculated at checkout"
+      "calculated_taxes_fees": "Taxes and shipping fee will be calculated at checkout",
+      "included_taxes_fees": "Tax included and shipping calculated at checkout"
     },
     "notices": {
       "change_password_after_verification": "You can change password after verification",
@@ -230,6 +231,7 @@
       "copy_success": "Coupon code copied",
       "discount_title": "Activate account and get discount code",
       "normal_title": "Activate account",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Subscribe for emails to receive updates, access to exclusive deals, and more.",
       "success_title": "Congratulations on getting a great discount",
       "token_expired": "The link has expired"
@@ -337,6 +339,7 @@
       "set_password": "Password must be 6-18 characters consisting of numbers, uppercase and lowercase letters",
       "sign__out": "Sign Out",
       "sign_in": "Sign In",
+      "sign_in_activate": "Verification code has been sent to your account {{account}}. You can get your account activated after verification",
       "sign_up": "Register",
       "su": "Su",
       "subscription_desc": "Get the latest updates from our store",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Thanks for your subscription. You can login for better experience."
     },
     "message": {
+      "format_error": "Message format is not supported",
       "input_placeholder": "Would you like to leave a message?",
       "message": "Message",
       "send": "Send"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Collections"
     },
+    "facets": {
+      "in_stock_only": "In stock only",
+      "sort_button": "Sort"
+    },
     "general": {
       "no_product_data_found": "No product data found. Please try again later",
       "sold_out": "Sold Out",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Buy in Rakuten",
       "go_to_yahoo_by_link": "Buy in Yahoo",
       "in_stock": "In stock",
+      "inventory_in_stock": "In stock",
+      "inventory_in_stock_show_count": "Inventory: {{ quantity }} remaining available",
+      "inventory_low_stock": "Low inventory",
+      "inventory_low_stock_show_count": "Low inventory: {{ quantity }} remaining available",
+      "inventory_out_of_stock": "Out of stock",
+      "inventory_out_of_stock_continue_selling": "In stock",
       "inventory_quantity": "Inventory quantity",
       "leave_us_message": "Please enter your message",
       "leave_us_message_get_back": "Please leave us a message and we will get back to you as soon as possible",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} selected",
       "from_price_html": "From {{price}}",
       "less": "less",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} of {{total}} items",
       "load_more_tip": "Loading more items",
       "more": "more",
       "new_arrivals": "New arrivals",
@@ -612,7 +627,8 @@
       "save": "Save {{{priceDom}}}",
       "save_byjs": "Save {{priceDom}}",
       "save_ratio": "{{price}}% OFF",
-      "select_product_all_options": "Please select all options of this product",
+      "select_product_all_options": "The selected product variant is incomplete or unavailable. Please choose again.",
+      "sort_button": "Sort",
       "top_sellers": "Top sellers",
       "more__product_num": "{{num}} products",
       "one_product_num": "{{num}} product",
@@ -623,7 +639,7 @@
       "back_to_home": "Back to the home page",
       "ount_results": "{{count}} Results",
       "results_found_for": "{{count}} results found for \"{{keyword}}\"",
-      "search": "search",
+      "search": "Search",
       "search_no_results": "Your search for \"{{keyword}}\" did not yield any results",
       "single_results": "{{count}} Result",
       "single_results_found": "{{count}} result found for \"{{keyword}}\""
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Continue shopping",
       "more": "Shop more",
+      "saved": "Saved",
       "total": "Total",
       "total_sum": "Total"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Server error, please try again",
       "error_message_2014": "Your account is at risk",
       "error_message_2016": "Your account is at risk",
+      "error_message_2020": "The system is busy, please try again later",
       "error_message_3": "The system is busy, please try again later",
       "error_message_3001": "Server error, please try again",
       "error_message_3002": "Illegal operation",
@@ -850,15 +868,22 @@
       "error_message_3010": "The email has been bound by other accounts",
       "error_message_3014": "Send code failed",
       "error_message_3015": "The account has been activated",
+      "error_message_3021": "The system is busy, please try again later",
       "error_message_3022": "The link has expired",
       "error_message_3023": "The link has a wrong format",
       "error_message_3024": "The link is wrong",
       "error_message_3026": "Invalid account",
+      "error_message_3029": "Verification with phone number is not supported yet",
       "error_message_4": "The system is busy, please try again later",
       "error_message_5": "The system is busy, please try again later",
       "error_message_6": "The system is busy, please try again later",
       "error_message_7": "Password must be 6-18 characters consisting of numbers, uppercase and lowercase letters"
     },
-    "editorSwitchCountryTip": "Unable to change the country in editor"
+    "editorSwitchCountryTip": "Unable to change the country in editor",
+    "shopby": {
+      "button": {
+        "show": "Secured and Faster"
+      }
+    }
   }
 }

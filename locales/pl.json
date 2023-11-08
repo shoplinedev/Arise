@@ -104,7 +104,8 @@
       "view_cart": "sprawdź koszyk"
     },
     "next_step": {
-      "calculated_taxes_fees": "Kolejnie przeliczyć podatki i koszty za dostawę"
+      "calculated_taxes_fees": "Kolejnie przeliczyć podatki i koszty za dostawę",
+      "included_taxes_fees": "Podatek jest wliczony w cenę, a wysyłka obliczana przy kasie"
     },
     "notices": {
       "change_password_after_verification": "Po weryfikacji już można zmienić hasło",
@@ -230,6 +231,7 @@
       "copy_success": "Skopiowano kod rabatowy.",
       "discount_title": "Aktywizować konto i uzyskać kod rabatowy.",
       "normal_title": "Aktywizować konto.",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Subskrybuj e-mailem, żeby uzyskać nowe informacje i odwiedzić ekskluzywne rabaty.",
       "success_title": "Gratuluję, że uzyskałaś rabat.",
       "token_expired": "Twój link już jest nieważny"
@@ -337,6 +339,7 @@
       "set_password": "Hasło musi składać się z 6-18 znaków składających się z cyfr, wielkich i małych liter",
       "sign__out": "Wylogować się",
       "sign_in": "Zalogowanie",
+      "sign_in_activate": "Kod weryfikacyjny został wysłany na Twoje konto {{account}}. Po zweryfikowaniu konto będzie można aktywować.",
       "sign_up": "Rejestracja",
       "su": "Nd",
       "subscription_desc": "Można dostać najnowsze informacje działań tego sklepu.",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Dziękuję za twoją subskrypcję. Możesz się zalogować, aby dostać lepszą usługę."
     },
     "message": {
+      "format_error": "Format wiadomości nie jest obsługiwany",
       "input_placeholder": "Czy masz cośdo powiedzenia",
       "message": "Wiadomość",
       "send": "Wysłać"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kolekcje"
     },
+    "facets": {
+      "in_stock_only": "Pokaż tylko dostępne elementy",
+      "sort_button": "Sortować"
+    },
     "general": {
       "no_product_data_found": "Brak danych tego produktu, proszę spróbować później",
       "sold_out": "Wyprzedane",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Zrób zakupy na Lotte",
       "go_to_yahoo_by_link": "Zrób zakupy na Yahoo",
       "in_stock": "Dostępny produkt",
+      "inventory_in_stock": "Towary punktowe",
+      "inventory_in_stock_show_count": "Zapas: pozostało {{ quantity }}",
+      "inventory_low_stock": "niski stan zapasów",
+      "inventory_low_stock_show_count": "Mało zapasów: pozostało {{ quantity }}",
+      "inventory_out_of_stock": "obecnie brak na stanie",
+      "inventory_out_of_stock_continue_selling": "Towary punktowe",
       "inventory_quantity": "Liczba zapasów",
       "leave_us_message": "Proszę wpisać komentarz",
       "leave_us_message_get_back": "Proszę na pisać swoje komentarze, skontaktujemy się z Panem/Panią jak najszybciej",
@@ -596,6 +610,7 @@
       "filters_selected": "Wybrano {{count}}",
       "from_price_html": "z {{price}}",
       "less": "Mniej etykiet",
+      "load_more_desc": "Elementy {{current_offset}} ~ {{last_current_offset}}/{{total}}",
       "load_more_tip": "Ładuje więcej przedmiotów",
       "more": "Więcej etykiet",
       "new_arrivals": "Najnowsze towary",
@@ -612,7 +627,8 @@
       "save": "Ulga {{{priceDom}}}",
       "save_byjs": "Ulga {{priceDom}}",
       "save_ratio": "Rabat {{price}}%",
-      "select_product_all_options": "Proszę wybrać specyfikację produktu!",
+      "select_product_all_options": "Wybrana wersja produktu jest niekompletna lub niedostępna. Proszę wybrać ponownie",
+      "sort_button": "Sortować",
       "top_sellers": "Bestseller",
       "more__product_num": "{{num}} Produktów",
       "one_product_num": "{{num}} Prosuktu",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Kontynuuj zakupy.",
       "more": "Kup więcej",
+      "saved": "zapisane",
       "total": "Suma",
       "total_sum": "Suma"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Nie powiodło się, proszę spróbować ponownie później.",
       "error_message_2014": "Konto jest niebezpieczne",
       "error_message_2016": "Konto jest niebezpieczne",
+      "error_message_2020": "System jest zajęty. Spróbuj ponownie później",
       "error_message_3": "Usługa działa nienormalnie",
       "error_message_3001": "Nie powiodło się, proszę spróbować ponownie później.",
       "error_message_3002": "Użytkownik, który nie powiązał swego numeru telefonu/e-maila, próbuje zmienić hasło",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-mail już jest powiązany",
       "error_message_3014": "Nie udało się wyrenderować szablonu SMS/e-mail",
       "error_message_3015": "To konto już jest aktywizowane.",
+      "error_message_3021": "System jest zajęty. Spróbuj ponownie później",
       "error_message_3022": "Link juz nie jest ważny",
       "error_message_3023": "Zła forma linku",
       "error_message_3024": "Zła forma parametru",
       "error_message_3026": "Zła forma konta",
+      "error_message_3029": "Aktywacja numeru telefonu komórkowego nie jest obecnie obsługiwana",
       "error_message_4": "Usługa działa nienormalnie",
       "error_message_5": "Usługa działa nienormalnie",
       "error_message_6": "Usługa działa nienormalnie",
       "error_message_7": "Hasło musi składać się z 6-18 znaków składających się z cyfr, wielkich i małych liter"
     },
-    "editorSwitchCountryTip": "Nie można zmienić kraju lub regionu w edytorze"
+    "editorSwitchCountryTip": "Nie można zmienić kraju lub regionu w edytorze",
+    "shopby": {
+      "button": {
+        "show": "Bezpieczny i szybki"
+      }
+    }
   }
 }

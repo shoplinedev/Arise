@@ -1,8 +1,6 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/sku/DataWatcher.js'] = window.SLM['theme-shared/utils/sku/DataWatcher.js'] || function () {
   const _exports = {};
-
   class DataWatcher {
     constructor() {
       Object.defineProperty(this, '$watcher', {
@@ -14,28 +12,23 @@ window.SLM['theme-shared/utils/sku/DataWatcher.js'] = window.SLM['theme-shared/u
       Object.defineProperty(this, '$data', {
         value: {}
       });
-
       const bindWatcher = type => (keys, callback) => {
         const props = {};
         keys.forEach(key => {
           if (!this.$watcher[key]) {
             this.$watcher[key] = [];
           }
-
           if (!this.$afterWatcher[key]) {
             this.$afterWatcher[key] = [];
           }
-
           if (type === 'watch') {
             this.$watcher[key].push(callback);
           } else if (type === 'watchAfter') {
             this.$afterWatcher[key].push(callback);
           }
-
           if (Object.prototype.hasOwnProperty.call(this.$data, key)) {
             return;
           }
-
           this.$data[key] = this[key];
           delete this[key];
           props[key] = {
@@ -61,7 +54,6 @@ window.SLM['theme-shared/utils/sku/DataWatcher.js'] = window.SLM['theme-shared/u
         });
         Object.defineProperties(this, props);
       };
-
       Object.defineProperty(this, 'watch', {
         value: bindWatcher('watch')
       });
@@ -69,9 +61,7 @@ window.SLM['theme-shared/utils/sku/DataWatcher.js'] = window.SLM['theme-shared/u
         value: bindWatcher('watchAfter')
       });
     }
-
   }
-
   _exports.default = DataWatcher;
   return _exports;
 }();

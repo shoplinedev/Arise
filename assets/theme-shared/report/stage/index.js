@@ -1,12 +1,10 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/report/stage/index.js'] || function () {
   const _exports = {};
   const { BaseReport, findSectionId } = window['SLM']['theme-shared/report/common/baseReport.js'];
   const { InputReport } = window['SLM']['theme-shared/report/common/inputReport.js'];
   const { HoverReport } = window['SLM']['theme-shared/report/common/hoverReport.js'];
   const { sectionTypeEnum } = window['SLM']['theme-shared/report/stage/const.js'];
-
   class StageReport extends BaseReport {
     constructor() {
       super();
@@ -16,23 +14,20 @@ window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/repo
       this.inputReportMap = {};
       this.hoverReportMap = {};
     }
-
     click(params) {
-      super.click({ ...this.defaultParams,
+      super.click({
+        ...this.defaultParams,
         ...params
       });
     }
-
     expose({
       selector,
       moreInfo
     }) {
       const $els = $(selector);
-
       if (!$els.length) {
         return;
       }
-
       const paramsFn = target => {
         const id = findSectionId(target);
         const params = {
@@ -42,7 +37,6 @@ window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/repo
         };
         return params;
       };
-
       const view = {
         reportOnce: true,
         threshold: 0,
@@ -60,7 +54,6 @@ window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/repo
         viewSuccess
       });
     }
-
     bindFallbackClick({
       wrapperSel,
       targetSel,
@@ -79,22 +72,18 @@ window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/repo
         const hasTarget = $wrapper.find(targetSel).length > 0;
         const clickOnTarget = $target.closest(targetSel).length > 0;
         const clickOnFallback = $target.closest(fallbackSel).length > 0;
-
         if (hasTarget && !clickOnTarget) {
           return;
         }
-
         if (!hasTarget && clickOnFallback) {
           this.click(params);
           return;
         }
-
         if (clickOnTarget) {
           this.click(params);
         }
       });
     }
-
     bindClick({
       selector,
       moreInfo,
@@ -103,7 +92,6 @@ window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/repo
       if (!selector) {
         return;
       }
-
       $(document.body).on('click', selector, e => {
         const id = findSectionId(e.target);
         const params = {
@@ -111,7 +99,6 @@ window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/repo
           ...this.defaultParams,
           ...moreInfo
         };
-
         if (customHandler) {
           customHandler(e, params);
         } else {
@@ -119,13 +106,13 @@ window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/repo
         }
       });
     }
-
     bindInput({
       selector,
       type = '',
       moreInfo
     }) {
-      const params = { ...this.defaultParams,
+      const params = {
+        ...this.defaultParams,
         module_type: sectionTypeEnum[type] || type,
         action_type: 103,
         event_name: 'Input',
@@ -137,12 +124,12 @@ window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/repo
       });
       this.inputReportMap[selector] = instance;
     }
-
     bindHover({
       selector,
       type = ''
     }) {
-      const params = { ...this.defaultParams,
+      const params = {
+        ...this.defaultParams,
         module_type: sectionTypeEnum[type] || type,
         action_type: 109,
         event_name: 'Hover'
@@ -153,15 +140,13 @@ window.SLM['theme-shared/report/stage/index.js'] = window.SLM['theme-shared/repo
       });
       this.hoverReportMap[selector] = instance;
     }
-
     collect(params) {
-      window.HdSdk && window.HdSdk.shopTracker.collect({ ...this.defaultParams,
+      window.HdSdk && window.HdSdk.shopTracker.collect({
+        ...this.defaultParams,
         ...params
       });
     }
-
   }
-
   _exports.StageReport = StageReport;
   return _exports;
 }();

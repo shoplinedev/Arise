@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/address/const/fields.js'] = window.SLM['theme-shared/biz-com/customer/biz/address/const/fields.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -38,7 +37,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/const/fields.js'] = window
             if (value.length <= max) {
               return resolve();
             }
-
             return reject();
           });
         },
@@ -48,7 +46,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/const/fields.js'] = window
         ...props
       };
     },
-
     generalMin(min = MIN_LENGTH_2, props = {}) {
       return {
         validator: value => {
@@ -56,7 +53,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/const/fields.js'] = window
             if (value.length >= min) {
               return resolve();
             }
-
             return reject();
           });
         },
@@ -66,7 +62,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/const/fields.js'] = window
         ...props
       };
     }
-
   };
   const ADDRESS_RULES = {
     country: [ruleConfig.generalMax(), ruleConfig.generalMin()],
@@ -87,7 +82,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/const/fields.js'] = window
         if (value && !/^[+()\s-\d]{2,16}$/.test(value)) {
           return Promise.reject(t('customer.general.phone_number_error_message'));
         }
-
         return Promise.resolve();
       }
     }]
@@ -105,20 +99,16 @@ window.SLM['theme-shared/biz-com/customer/biz/address/const/fields.js'] = window
     }
   };
   _exports.FIELD_ATTRS = FIELD_ATTRS;
-
   const getFieldAttrs = fieldName => {
     const attrs = FIELD_ATTRS[fieldName];
-
     if (attrs) {
       return Object.keys(attrs).reduce((attrStr, key) => {
         attrStr += `${key}=${attrs[key]} `;
         return attrStr;
       }, '');
     }
-
     return '';
   };
-
   _exports.getFieldAttrs = getFieldAttrs;
   return _exports;
 }();

@@ -1,32 +1,26 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/utils/dataReport/ga.js'] || function () {
   const _exports = {};
   const { PageType, ClickType, eventType } = window['SLM']['theme-shared/utils/report/const.js'];
   const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { getCurrencyCode } = window['SLM']['theme-shared/utils/dataReport/tool.js'];
-
   class GoogleAnalysis {
     constructor(config) {
       this.config = config;
     }
-
     sendEventLog(eventType, data) {
-      const params = { ...data
+      const params = {
+        ...data
       };
-
       if (params && !params.currency) {
         params.currency = getCurrencyCode();
       }
-
       return ['event', eventType, params];
     }
-
     clickForEnhancedEcom(page, clickType, params) {
       let event;
       let value;
       let res = [];
-
       switch (clickType) {
         case PageType.CheckoutProgress:
         case PageType.PlaceOrder:
@@ -36,20 +30,16 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
             checkout_step: params.step
           };
           break;
-
         default:
           return res;
       }
-
       res = this.sendEventLog(event, value);
       return res;
     }
-
     click(page, type, params) {
       let value;
       let event;
       const res = [];
-
       switch (type) {
         case ClickType.SelectContent:
           event = eventType.SelectContent;
@@ -64,7 +54,6 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
             }]
           };
           break;
-
         case ClickType.AddToCart:
           event = eventType.AddToCart;
           value = {
@@ -75,13 +64,11 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
             }]
           };
           break;
-
         case ClickType.RemoveFromCart:
           event = eventType.RemoveFromCart;
           value = {
             items: []
           };
-
           if (Array.isArray(params.productItems)) {
             params.productItems.forEach(({
               skuId,
@@ -101,22 +88,16 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
               });
             });
           }
-
           break;
-
         default:
           return [];
       }
-
       res.push(this.sendEventLog(event, value));
-
       if (this.config.enableEnhancedEcom) {
         res.push(this.clickForEnhancedEcom(page, type, params));
       }
-
       return res;
     }
-
     clickGa4({
       actionType,
       params
@@ -124,7 +105,6 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
       let value;
       let event;
       const res = [];
-
       switch (actionType) {
         case ClickType.SelectContent:
           event = eventType.SelectContent;
@@ -134,7 +114,6 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
             item_category: params.customCategoryName
           };
           break;
-
         case ClickType.AddToCart:
           event = eventType.AddToCart;
           value = {
@@ -148,14 +127,12 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
             }]
           };
           break;
-
         case ClickType.RemoveFromCart:
           event = eventType.RemoveFromCart;
           value = {
             value: params.value,
             items: []
           };
-
           if (Array.isArray(params.productItems)) {
             params.productItems.forEach(({
               skuId,
@@ -175,9 +152,7 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
               });
             });
           }
-
           break;
-
         case ClickType.ViewCart:
           event = eventType.ViewCart;
           value = {
@@ -194,17 +169,13 @@ window.SLM['theme-shared/utils/dataReport/ga.js'] = window.SLM['theme-shared/uti
             })
           };
           break;
-
         default:
           return [];
       }
-
       res.push(this.sendEventLog(event, value));
       return res;
     }
-
   }
-
   const ga = new GoogleAnalysis({});
   _exports.default = ga;
   return _exports;

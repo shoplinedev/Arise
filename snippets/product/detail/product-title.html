@@ -1,5 +1,17 @@
 {{assign 'spuInfo' product.spu }}
 {{assign 'fontSize' settings.font_size}}
-<div class="product-title title4">
-  <h1 class="title shopline-element-title title-font text-left font-size-{{fontSize}}">{{ spuInfo.title }}</h1>
+{{#and (if id '===' 'productDetail') settings.font_size_flexible}}
+  <style>
+    .product-title-{{id}} h1 {
+      font-size: {{settings.title_pc_font_size}}px;
+    }
+    @media screen and (max-width: 959px) {
+      .product-title-{{id}} h1 {
+        font-size: {{settings.title_mobile_font_size}}px;
+      }
+    }
+  </style>
+{{/and}}
+<div class="product-title title4 product-title-{{id}}">
+  <h1 class="title shopline-element-title title-font text-left {{#unless settings.font_size_flexible}}font-size-{{fontSize}}{{/unless}}">{{ spuInfo.title }}</h1>
 </div>

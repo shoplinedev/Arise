@@ -3,7 +3,7 @@
 
 <div id="trade-summations" class="trade_summations body3">
   {{#trade_with_summations pageType='cart' keyAlias=summation_key_alias}}
-    {{! 费用列表 这里顺序不能变，UI跟产品定了的 @吴婉楠 @狄璇 }}
+    
     {{#each summations}}
       {{include
         'snippets/trade/trade_summations_fee'
@@ -21,7 +21,4 @@
       }}
     {{/each}}
   {{/trade_with_summations}}
-  {{#if tradeSettleConfig.taxesIncluded}}
-      <div class="trade_summations_taxes">{{ t 'cart.checkout_proceeding.tax_included' }}</div>
-  {{/if}}
 </div>

@@ -1,23 +1,12 @@
 <!-- stage/home-common/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/uuid.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/uuid.min.js'
-      'vendors/lodash.min.js'
-      'vendors/eventemitter3.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/uuid.min.js'
+    'vendors/lodash.min.js'
+    'vendors/eventemitter3.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/report/page.js'
     'theme-shared/utils/report/tool.js'

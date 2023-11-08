@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/helpers/captcha.js'] = window.SLM['theme-shared/biz-com/customer/helpers/captcha.js'] || function () {
   const _exports = {};
   const getEnv = window['SLM']['theme-shared/utils/get-env.js'].default;
@@ -20,7 +19,6 @@ window.SLM['theme-shared/biz-com/customer/helpers/captcha.js'] = window.SLM['the
   };
   const CAPTCHA_CONTROL_URL = config.IS_MAINLAND ? config.SDK_URL_OSS : config.SDK_URL_S3;
   let captchaInstance = null;
-
   const loadArmorCaptcha = ({
     wrapId = 'content',
     lang,
@@ -45,12 +43,10 @@ window.SLM['theme-shared/biz-com/customer/helpers/captcha.js'] = window.SLM['the
       captchaType,
       bizParam
     };
-
     if (window.ArmorCaptcha) {
       captchaInstance = new window.ArmorCaptcha(options);
       return Promise.resolve(captchaInstance);
     }
-
     return loadScript(CAPTCHA_CONTROL_URL).then(() => {
       const {
         ArmorCaptcha
@@ -59,7 +55,6 @@ window.SLM['theme-shared/biz-com/customer/helpers/captcha.js'] = window.SLM['the
       return captchaInstance;
     });
   };
-
   _exports.loadArmorCaptcha = loadArmorCaptcha;
   return _exports;
 }();

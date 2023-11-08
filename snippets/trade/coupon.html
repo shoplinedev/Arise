@@ -13,7 +13,7 @@
         placeholder=(t 'transaction.discount.coupon_code')}}
       {{/input}}
       <div class="trade_coupon__btns">
-        {{!-- 首屏渲染禁用“应用”按钮 --}}
+        
         <button id="trade_coupon_btn"
           class="btn btn-primary trade_coupon__btns-apply is-disabled">
           {{ t 'sales.general.apply_common' }}
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="error-tips hide"></div>
-    {{!-- 这一层盒子用来限制flex自适应的宽 --}}
+    
     <div class="trade_coupon__appliedCodeBox {{#unless hasValidDiscountCode }}hide{{/unless}}">
       {{#filter  promotionCodesList true prop='valid'}}
         <div class="trade_coupon__code">

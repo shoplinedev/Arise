@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/service/cart/service.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -24,7 +23,6 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
     UPDATE: 'cart:update'
   };
   const CartInfoKey = 'cartInfo';
-
   class CartService {
     constructor(svcAdapter, storageAdapter) {
       this._svc = svcAdapter;
@@ -37,32 +35,26 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
         this._cartDetail = data;
       });
     }
-
     get inactiveCartItemList() {
       return this._inactiveCartItemListMemo(cartDetail => {
         return modelHelper.reducer(cartDetail).next(cartModel.getInactiveCartItemList).next(cartItemModel.mergeNthProduct)();
       }, this.cartDetail);
     }
-
     get activeCartItemList() {
       return this._activeCartItemListMemo(cartDetail => {
         return modelHelper.reducer(cartDetail).next(cartModel.getActiveCartItemList).next(cartItemModel.mergeNthProduct)();
       }, this.cartDetail);
     }
-
     get cartItemList() {
       return this._cartItemListMemo(cartDetail => {
         return modelHelper.reducer(cartDetail).next(cartModel.getCartItemList).next(cartItemModel.mergeNthProduct)();
       }, this.cartDetail);
     }
-
     get cartDetail() {
       return this._cartDetail;
     }
-
     async getCartDetail() {
       const res = await cartSvc.getCart(this._svc);
-
       if (responseModel.isResolved(res)) {
         const {
           data
@@ -74,13 +66,10 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
         SL_State.set(CartInfoKey, data);
         cartEventBus.emit(CartEventBusEnum.UPDATE, data);
       }
-
       return res;
     }
-
     async updateCartState() {
       const res = await cartSvc.getCart(this._svc);
-
       if (responseModel.isResolved(res)) {
         const {
           data
@@ -91,14 +80,11 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
         });
         SL_State.set(CartInfoKey, data);
       }
-
       return res;
     }
-
     async rerenderCartDom() {
       await cartEventBus.emit(CartEventBusEnum.UPDATE, this._cartDetail);
     }
-
     async addSku({
       spuId,
       skuId,
@@ -110,7 +96,6 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
       if (!spuId || !skuId || num < 0) {
         return responseModel.rejectWithCode(responseCode.FA_INVALID_PARAMS);
       }
-
       const res = await cartSvc.addCartItem(this._svc, {
         spuId,
         skuId,
@@ -119,14 +104,11 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
         dataReportReq,
         sellingPlanId
       });
-
       if (responseModel.isResolved(res)) {
         await this.getCartDetail();
       }
-
       return res;
     }
-
     async editSku({
       spuId,
       skuId,
@@ -137,7 +119,6 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
       if (!spuId || !skuId || num < 0) {
         return responseModel.rejectWithCode(responseCode.FA_INVALID_PARAMS);
       }
-
       const skuInfo = {
         spuId,
         skuId,
@@ -146,43 +127,33 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
         productSource
       };
       const res = await cartSvc.putCartItem(this._svc, skuInfo);
-
       if (responseModel.isResolved(res)) {
         await this.getCartDetail();
       }
-
       return res;
     }
-
     async removeSkuList(skuInfoList) {
       if (Array.isArray(skuInfoList) && skuInfoList.length) {
         const res = await cartSvc.deleteCartItemList(this._svc, skuInfoList || []);
-
         if (responseModel.isResolved(res)) {
           await this.getCartDetail();
         }
-
         return res;
       }
-
       return responseModel.resolveWithData();
     }
-
     getCheckoutParams(itemList) {
       const discountCode = modelHelper.reducer(this.cartDetail).next(cartModel.getPromotionInfo).next(promotionCodeModel.getCode)();
       const useMemberPoint = get(this.cartDetail, 'memberPointInfo.use', undefined);
       let abandonSeq = null;
       let abandonMark = null;
-
       const rawAbandonInfoFromCache = this._storage.getItem(storageConstants.KEY_CART_ABANDON_INFO);
-
       if (rawAbandonInfoFromCache) {
         ({
           mark: abandonMark,
           seq: abandonSeq
         } = JSON.parse(rawAbandonInfoFromCache));
       }
-
       return modelHelper.reducer({
         associateCart: true,
         useMemberPoint
@@ -197,62 +168,46 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
         sellingPlanId: item.subscriptionInfo ? item.subscriptionInfo.sellingPlanId : undefined
       })))();
     }
-
     async toggleVoucher(used) {
       const res = await voucherSvc.toggleVoucher(this._svc, !!used);
-
       if (responseModel.isResolved(res)) {
         await this.getCartDetail();
       }
-
       return res;
     }
-
     async applyCoupon(info) {
       const res = await couponSvc.applyCoupon(this._svc, info);
-
       if (responseModel.isResolved(res)) {
         await this.getCartDetail();
       }
-
       return res;
     }
-
     async withdrawCoupon(req) {
       const couponCode = modelHelper.reducer(this._cartDetail).next(cartModel.getPromotionInfo).next(promotionCodeModel.getCode)();
-
       if (!couponCode) {
         return responseModel.rejectWithCode(responseCode.FA_COUPON_INVALID_CODE);
       }
-
       const res = await couponSvc.withdrawCoupon(this._svc, req);
-
       if (responseModel.isResolved(res)) {
         await this.getCartDetail();
       }
-
       return res;
     }
-
     async verifyCartItemList(cartItemList) {
       if (!cartItemList) {
         cartItemList = this.cartItemList;
       }
-
       return this._verifyCartItemList(cartItemList);
     }
-
     async _verifyCartItemList(cartItemList) {
       if (!Array.isArray(cartItemList)) {
         return responseModel.rejectWithCode(responseCode.FA_INVALID_PARAMS);
       }
-
       if (cartItemList.length <= 0) {
         if ((await hooks.verifyingActiveProductEmpty.callPromise()) !== false) {
           return responseModel.rejectWithCode(responseCode.FA_PRODUCT_ACTIVE_EMPTY);
         }
       }
-
       const checkRes = await cartSvc.verifyCartItemListV2(this._svc, {
         orderFrom: getSyncData('orderFrom') || 'web',
         itemList: cartItemList.map(item => {
@@ -265,25 +220,19 @@ window.SLM['cart/script/service/cart/service.js'] = window.SLM['cart/script/serv
           };
         }).filter(i => !!i.spuId && !!i.skuId)
       });
-
       if (!responseModel.isResolved(checkRes)) {
         return checkRes;
       }
-
       return responseModel.resolveWithData(cartVerifyItemModel.makeVerifyList(cartItemList, responseModel.getData(checkRes).checkItemList));
     }
-
     async getMemberPoint(use) {
       const res = await cartSvc.memberPoint(this._svc, use);
       return res;
     }
-
     getCardItemList() {
       return this.cartItemList;
     }
-
   }
-
   _exports.default = {
     CartService,
     CartEventBusEnum,

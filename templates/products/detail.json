@@ -24,7 +24,12 @@
       "blocks": {
         "block-1": {
           "type": "title",
-          "settings": {}
+          "settings": {
+            "font_size": "medium",
+            "font_size_flexible": false,
+            "title_pc_font_size": 20,
+            "title_mobile_font_size0": 20
+          }
         },
         "block-2": {
           "type": "abstract",
@@ -36,19 +41,29 @@
             "show_order": "discount_sell_origin",
             "sell_font_size": "font_size_small",
             "origin_font_size": "font_size_small",
-            "sell_font_bold": true
+            "sell_font_bold": true,
+            "font_size_flexible": false,
+            "sale_price_pc_font_size": 20,
+            "sale_price_mobile_font_size": 18,
+            "regular_price_pc_font_size": 20,
+            "regular_price_mobile_font_size": 16
           }
         },
         "block-4": {
           "type": "sku-selector",
           "settings": {
-            "sku_style": "flatten"
+            "sku_style": "flatten",
+            "layout_direction": "column",
+            "size": "medium"
           }
         },
         "block-5": {
           "type": "quantity",
           "settings": {
-            "is_show_stock_hint": true
+            "is_show_stock_hint": true,
+            "layout_direction": "column",
+            "width": "half",
+            "border_style": "outline"
           }
         },
         "block-6": {

@@ -1,8 +1,8 @@
 input{
   -webkit-appearance:none;
 }
-.product-sku-trade-select .spec-box{
-  margin-bottom:26px;
+.product-sku-trade-select .spec-box+.spec-box{
+  margin-top:26px;
 }
 .product-sku-trade-select .spec-box .spec-title{
   align-items:center;
@@ -22,7 +22,7 @@ input{
   align-items:center;
   cursor:pointer;
   display:flex;
-  padding:calc(var(--sku-selector-border-thickness) + 8px) 15px;
+  padding:calc(var(--sku-selector-border-thickness) + var(--sku-padding-y, 8px)) calc(var(--sku-selector-border-thickness) + var(--sku-padding-x, 10px));
 }
 .color-scheme-1 .product-sku-trade-select .spec-box .select-box .select-entry:after{
   box-shadow:0 0 0 var(--sku-selector-border-thickness) rgba(var(--color-scheme-1-text), var(--sku-selector-border-opacity)), 0 0 0 var(--sku-selector-border-thickness) var(--btn-border-background-color);
@@ -83,6 +83,14 @@ input{
   .product-sku-trade-select .spec-box .select-box .select-entry:hover:after{
     box-shadow:0 0 0 calc(var(--sku-selector-border-thickness) + 1px) rgba(var(--color-text), var(--sku-selector-border-opacity)), 0 0 0 calc(var(--sku-selector-border-thickness) + 1px) var(--btn-border-background-color);
   }
+}
+.product-sku-trade-select .spec-box .select-box .select-entry.small{
+  --sku-padding-x:8px;
+  --sku-padding-y:0px;
+}
+.product-sku-trade-select .spec-box .select-box .select-entry.large{
+  --sku-padding-x:12px;
+  --sku-padding-y:12px;
 }
 .product-sku-trade-select .spec-box .select-box .select-entry .entry-img{
   height:30px;
@@ -176,6 +184,21 @@ input{
 }
 .product-sku-trade-select .spec-box:last-child{
   margin-bottom:0;
+}
+.product-sku-trade-select .spec-box.line{
+  align-items:flex-start;
+  display:flex;
+  justify-content:space-between;
+}
+.product-sku-trade-select .spec-box.line .spec-title{
+  flex-shrink:0;
+  margin-left:15px;
+  max-width:35%;
+}
+.product-sku-trade-select .spec-box.line .select-box{
+  flex-shrink:0;
+  height:42px;
+  width:156px;
 }
 .product-sku-trade-select-popup{
   background-color:rgba(var(--color-mask), .6);

@@ -3,7 +3,7 @@
      <path fill-rule="evenodd" d="M5.306 6.5L0 1.194 1.194 0 6.5 5.306 11.806 0 13 1.194 7.694 6.5 13 11.806 11.806 13 6.5 7.694 1.194 13 0 11.806 5.306 6.5z">
      </path>
    </svg></button>
-   {{!-- 商品列表头部插槽 --}}
+   
 <div class="slot-cart slot-cart-list-header" data-slot-banner-cart-list-header></div>
  <div class="trade-cart-banner">
    <div class="trade-cart-banner-title title6">
@@ -24,7 +24,7 @@
           <div class="trade-cart-sku-item-info-amount body3"></div>
         </div>
      </div>
-     {{!-- 单个商品底部插槽 --}}
+     
       <div class="slot-cart slot-cart-item-end" data-slot-banner-cart-item-end></div>
    </div>
  </div>
@@ -35,7 +35,7 @@
      </span>
      <span class="notranslate body1 text_bold trade-cart-banner-summations-subtotal--price"></span>
    </div>
-  {{!-- 结算信息底部插槽 --}} 
+   
   <div class="slot-cart slot-cart-calculation-end" data-slot-banner-cart-calculation-end></div>
    <footer class="trade-cart-banner-summations-footer">
      <button class="btn trade-cart-banner-summations-footer-view-cart body3 text_bold" onclick="window.location.href='{{redirect_to "/cart"}}'"> {{t 'cart.item.view_cart'}} (<span
@@ -48,6 +48,6 @@
        </button>
      </div>
    </footer>
-   {{!-- 结算模块底部插槽 --}}
+   
     <div class="slot-cart slot-cart-checkout-end slot-cart-checkout-end_top" data-slot-banner-cart-checkout-end></div>
  </div>

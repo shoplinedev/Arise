@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/bind/account.js'] = window.SLM['theme-shared/biz-com/customer/biz/bind/account.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -13,7 +12,6 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/account.js'] = window.SLM['th
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
   const { wrapArmorCaptcha } = window['SLM']['theme-shared/biz-com/customer/commons/captcha-modal/index.js'];
   const PHONE = 'phone';
-
   class BindAccount extends BaseCustomer {
     constructor({
       id,
@@ -26,11 +24,9 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/account.js'] = window.SLM['th
       this.form = form;
       this.init();
     }
-
     init() {
       this.initForm();
     }
-
     initForm() {
       const fields = this.getFieldConfigs();
       this.bindForm = new Form({
@@ -39,7 +35,6 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/account.js'] = window.SLM['th
         onSubmit: data => this.onSubmit(data)
       });
     }
-
     getFieldConfigs() {
       const {
         mode
@@ -54,7 +49,6 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/account.js'] = window.SLM['th
       }];
       return getFormFields(FIELD_TYPES);
     }
-
     async sendVerifyCode() {
       const {
         mode
@@ -65,20 +59,20 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/account.js'] = window.SLM['th
       await wrapArmorCaptcha({
         onCaptureCaptcha: async captchaToken => {
           let res = {};
-
           if (mode === PHONE) {
-            const verifyCodePrarms = super.formatRequestBody({ ...params,
+            const verifyCodePrarms = super.formatRequestBody({
+              ...params,
               mobile: acct,
               captcha: captchaToken
             });
             res = await sendBindPhoneVerificationCode(verifyCodePrarms);
           } else {
-            const verifyCodePrarms = super.formatRequestBody({ ...params,
+            const verifyCodePrarms = super.formatRequestBody({
+              ...params,
               email: acct
             });
             res = await sendBindEmailVerificationCode(verifyCodePrarms);
           }
-
           super.updateToken(params, {
             stoken: res.stoken
           });
@@ -88,43 +82,38 @@ window.SLM['theme-shared/biz-com/customer/biz/bind/account.js'] = window.SLM['th
         }
       });
     }
-
     async onSubmit(data = {}) {
       const {
         mode
       } = this.form.queryParams;
       const params = this.form.UDBParams;
-
       if (mode === PHONE) {
-        await verifyBindPhoneVerificationCode(super.formatRequestBody({ ...params,
+        await verifyBindPhoneVerificationCode(super.formatRequestBody({
+          ...params,
           mobile: data[mode],
           smscode: data.verifycode
         }));
       } else {
-        await verifyBindEmailVerificationCode(super.formatRequestBody({ ...params,
+        await verifyBindEmailVerificationCode(super.formatRequestBody({
+          ...params,
           email: data[mode],
           emailcode: data.verifycode
         }));
       }
-
       await updateBindInfo(mode === 'phone' ? '2' : '1');
       this.showNotification();
       this.success();
     }
-
     showNotification() {
       Toast.init({
         content: t('customer.general.bind_success'),
         duration: 3000
       });
     }
-
     success() {
       redirectPage(USER_CENTER);
     }
-
   }
-
   _exports.default = BindAccount;
   return _exports;
 }();

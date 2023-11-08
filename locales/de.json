@@ -104,7 +104,8 @@
       "view_cart": "Warenkorb ansehen"
     },
     "next_step": {
-      "calculated_taxes_fees": "Steuern und Frachtkosten werden im nächsten Schritt berechnet"
+      "calculated_taxes_fees": "Steuern und Frachtkosten werden im nächsten Schritt berechnet",
+      "included_taxes_fees": "Die Mehrwertsteuer ist inbegriffen und der Versand wird an der Kasse berechnet"
     },
     "notices": {
       "change_password_after_verification": "Sie können das Kennwort nach der Überprüfung ändern",
@@ -230,6 +231,7 @@
       "copy_success": "Gutschein bereits kopiert",
       "discount_title": "Aktivieren Sie Ihr Konto und erhalten Sie einen Rabattcode",
       "normal_title": "Aktivieren Sie Ihr Konto",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Abonnieren Sie unseren Newsletter, um E-Mail-Updates zu exklusiven Angeboten und vielem mehr zu erhalten.",
       "success_title": "Herzlichen Glückwunsch zum Erhalt des Rabatts",
       "token_expired": "Ihr Link ist nicht mehr gültig"
@@ -337,6 +339,7 @@
       "set_password": "Das Passwort muss 6-18 Zeichen lang sein und aus Zahlen, Groß- und Kleinbuchstaben bestehen",
       "sign__out": "Abmelden",
       "sign_in": "Anmelden",
+      "sign_in_activate": "Der Verifizierungscode wurde an Ihr Konto{{account}} gesendet, Sie können Ihr Konto nach der Verifizierung aktivieren.",
       "sign_up": "Registrieren",
       "su": "So",
       "subscription_desc": "Erhalten Sie die aktuelle Nachrichten über die Aktivitäten des Shop",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Danke fürs Abonnieren! Sie können sich einloggen, um eine bessere Erfahrung zu erleben."
     },
     "message": {
+      "format_error": "Nachrichtenformat nicht unterstützt",
       "input_placeholder": "Gibt es etwas, für das Sie eine Nachricht hinterlassen möchten?",
       "message": "Nachricht",
       "send": "Senden"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kollektionen"
     },
+    "facets": {
+      "in_stock_only": "Nur verfügbare Artikel anzeigen",
+      "sort_button": "Sortieren"
+    },
     "general": {
       "no_product_data_found": "Keine Produktdaten gefunden. Bitte später erneut versuchen.",
       "sold_out": "Ausverkauft",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Zu LOTTE",
       "go_to_yahoo_by_link": "Zu Yahoo",
       "in_stock": "Vorrätig",
+      "inventory_in_stock": "Auf Lager",
+      "inventory_in_stock_show_count": "Lagerbestand: {{ quantity }} übrig",
+      "inventory_low_stock": "Geringer Lagerbestand",
+      "inventory_low_stock_show_count": "Geringer Lagerbestand: {{ quantity }} übrig",
+      "inventory_out_of_stock": "Nicht auf Lager",
+      "inventory_out_of_stock_continue_selling": "Auf Lager",
       "inventory_quantity": "Lagerbestand",
       "leave_us_message": "Nachricht eingeben",
       "leave_us_message_get_back": "Wir freuen uns auf Ihre Nachricht und werden Sie so schnell wie möglich kontaktieren",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} ausgewählt",
       "from_price_html": "Ab {{price}}",
       "less": "Weniger Tags",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} von {{total}} Elementen",
       "load_more_tip": "Weitere Inhalte laden",
       "more": "Mehr Tags",
       "new_arrivals": "Neu",
@@ -612,7 +627,8 @@
       "save": "{{{priceDom}}} sparen",
       "save_byjs": "{{priceDom}} sparen",
       "save_ratio": "{{price}}% Rabatt",
-      "select_product_all_options": "Bitte wählen Sie alle Optionen des Artikels",
+      "select_product_all_options": "Die ausgewählte Produktvariante ist unvollständig oder nicht verfügbar. Bitte wählen Sie erneut",
+      "sort_button": "Sortieren",
       "top_sellers": "Top-Verkäufer",
       "more__product_num": "{{num}} produkte",
       "one_product_num": "{{num}} produkt",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Einkauf fortsetzen",
       "more": "Mehr kaufen",
+      "saved": "gespart",
       "total": "Gesamt",
       "total_sum": "Gesamt"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Es ist ein Fehler aufgetreten, versuchen Sie es später erneut",
       "error_message_2014": "Das Konto ist gefährdet",
       "error_message_2016": "Das Konto ist gefährdet",
+      "error_message_2020": "Das System ist beschäftigt, bitte versuchen Sie es später noch einmal",
       "error_message_3": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_3001": "Es ist ein Fehler aufgetreten, versuchen Sie es später erneut",
       "error_message_3002": "Unzulässiger Vorgang",
@@ -850,15 +868,22 @@
       "error_message_3010": "Die E-Mail-Adresse ist mit anderen Konten verknüpft",
       "error_message_3014": "Code konnte nicht gesendet werden",
       "error_message_3015": "Das Konto wurde bereits aktiviert",
+      "error_message_3021": "Das System ist beschäftigt, bitte versuchen Sie es später noch einmal",
       "error_message_3022": "Der Link ist abgelaufen",
       "error_message_3023": "Der Link hat ein falsches Format",
       "error_message_3024": "Falsche Link-Parameter",
       "error_message_3026": "Falsches Kontoformat",
+      "error_message_3029": "Die Aktivierung der Mobiltelefonnummern ist zur Zeit nicht verfügbar.",
       "error_message_4": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_5": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_6": "Das System ist ausgelastet, bitte versuchen Sie es später erneut",
       "error_message_7": "Das Passwort muss 6-18 Zeichen lang sein und aus Zahlen, Groß- und Kleinbuchstaben bestehen"
     },
-    "editorSwitchCountryTip": "Der Länderwechsel wird derzeit im Editor nicht unterstützt."
+    "editorSwitchCountryTip": "Der Länderwechsel wird derzeit im Editor nicht unterstützt.",
+    "shopby": {
+      "button": {
+        "show": "Sicher und schnell"
+      }
+    }
   }
 }

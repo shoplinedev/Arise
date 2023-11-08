@@ -1,43 +1,22 @@
 <!-- customer/order/list/script/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/lodash.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/url.rlp.min.js'
-      'vendors/querystring.rlp.min.js'
-      'vendors/dayjs.rlp.min.js'
-      'vendors/@yy_sl-theme-shared.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+  {{#if request.document_direction '===' 'rtl'}}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
   {{else}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/lodash.min.js'
-      'vendors/eventemitter3.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/url.min.js'
-      'vendors/querystring.min.js'
-      'vendors/dayjs.min.js'
-      'vendors/@yy_sl-theme-shared.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
   {{/if}}
+  {{ combine_asset_tag 
+    'vendors/lodash.min.js'
+    'vendors/eventemitter3.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/url.min.js'
+    'vendors/querystring.min.js'
+    'vendors/dayjs.min.js'
+    'vendors/@yy_sl-theme-shared.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/scrollPagination/index.js'
     'theme-shared/utils/event-bus.js'
@@ -63,7 +42,6 @@
     'theme-shared/components/hbs/shared/components/toast/toast.js'
     'theme-shared/biz-com/customer/biz/user-center/index.js'
     'theme-shared/biz-com/customer/service/orders.js'
-    'theme-shared/biz-com/customer/reports/orders.js'
     'theme-shared/biz-com/customer/biz/order/constants.js'
     'theme-shared/biz-com/customer/biz/order/utils.js'
     'theme-shared/utils/url.js'

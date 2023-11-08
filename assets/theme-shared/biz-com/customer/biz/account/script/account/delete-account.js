@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-account.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-account.js'] || function () {
   const _exports = {};
   const dayjs = window['dayjs']['default'];
@@ -13,7 +12,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
   const BUTTON_LOADING_CLASS = 'btn--loading';
   const PHONE = 'phone';
   const TIMEOUT_CODE = 'CCU0005';
-
   class DeleteAccount extends Customer {
     constructor({
       id = 'delete-account',
@@ -34,13 +32,11 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
       this.$tips = null;
       this.bindEvents();
     }
-
     init() {
       this.$tips = this.$verify.find('.delete-account__desc');
       this.$verify.find('input').val('');
       this.initForm();
     }
-
     show() {
       if (this.verifyForm) {
         this.$verify.find('input').val('');
@@ -48,7 +44,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
         this.verifyForm.formItemInstances && this.verifyForm.formItemInstances.verifycode && this.verifyForm.formItemInstances.verifycode.triggerSendCode();
       }
     }
-
     initForm() {
       const fields = this.getFieldConfigs();
       this.verifyForm = new Form({
@@ -58,7 +53,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
       });
       this.showAccountTips(super.formatterMask(this.UDBParams));
     }
-
     showAccountTips(account) {
       const content = this.mode === PHONE ? t('customer.account.verify_phone_message', {
         phone: account
@@ -68,13 +62,11 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
       this.$tips.html(content);
       this.$tips.show();
     }
-
     bindEvents() {
       $(`#${this.containerId} .delete-account__cancel span`).click(() => {
         this.handleCancel();
       });
     }
-
     getFieldConfigs() {
       const FIELD_TYPES = [{
         type: 'verifycode',
@@ -85,7 +77,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
       }];
       return getFormFields(FIELD_TYPES);
     }
-
     async sendVerifyCode() {
       const params = this.UDBParams;
       const {
@@ -96,7 +87,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
       });
       this.showDeleteAccountMessage(super.formatterMask(params));
     }
-
     showDeleteAccountMessage(account) {
       this.$tips.html(this.mode !== PHONE ? t('customer.account.verify_email_message', {
         email: account
@@ -105,7 +95,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
       }));
       this.$tips.show();
     }
-
     async onSubmit(formValue = {}) {
       const params = this.UDBParams;
       const {
@@ -123,7 +112,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
       } = await getCurrentTime();
       this.nextStep(currentTime);
     }
-
     async nextStep(currentTime) {
       const $error = this.$notice.find('.delete-account__error');
       this.$verify.hide();
@@ -134,7 +122,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
       } = this;
       $('.delete-account__notice .submit-button').click(async e => {
         $(e.target).addClass(BUTTON_LOADING_CLASS);
-
         try {
           await deleteAccountInfo({
             busiCode: UDBParams && UDBParams.scene,
@@ -147,24 +134,20 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
             $error.show();
           }
         }
-
         $(e.target).removeClass(BUTTON_LOADING_CLASS);
       });
       $('.delete-account__notice .delete-account__deadline').html(t('customer.account.deadline', {
         time: dayjs(currentTime).add(9, 'day').format('YYYY-MM-DD')
       }));
     }
-
     onDeleteAccountSuccess() {
       this.handleCancel();
       window.location.reload();
     }
-
     handleReset() {
       this.$verify.show();
       this.$notice.hide();
     }
-
     handleCancel() {
       this.handleReset();
       this.getCustomerConfig().then(({
@@ -176,9 +159,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/delete-acco
       });
       this.onClose && this.onClose();
     }
-
   }
-
   _exports.default = DeleteAccount;
   return _exports;
 }();

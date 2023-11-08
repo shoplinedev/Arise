@@ -1,16 +1,13 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] = window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] || function () {
   const _exports = {};
   const get = window['lodash']['get'];
   const BaseSkuTrade = window['SLM']['product/commons/js/sku-trade/base-sku-trade.js'].default;
   const isMobile = window['SLM']['commons/utils/isMobile.js'].default;
-
   class SkuTrade extends BaseSkuTrade {
     getAttrValueName(index) {
       return get(this.getAttrValue(index), 'name');
     }
-
     initDom() {
       const isInMobile = isMobile();
       this.root.children('.spec-box').each((_, el) => {
@@ -23,7 +20,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] = window.SLM['pr
             this.clickAttr(index, i);
           });
           const specItem = this.dataPool.attrArray[index];
-
           if (!isInMobile && specItem && specItem.onlyShowAttrImg) {
             valueJQ.tooltip({
               targetContainer: this.targetContainer,
@@ -33,7 +29,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] = window.SLM['pr
         });
       });
     }
-
     createAndInitDom() {
       this.clearRoot();
       const isInMobile = isMobile();
@@ -50,10 +45,8 @@ window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] = window.SLM['pr
               imgUrl
             } = value;
             let valueJQ;
-
             if (imgUrl) {
               valueJQ = $(`<div class="attr-value with-img"><img${window.__PRELOAD_STATE__.imgNoReferrerSwitch ? 'referrerpolicy="same-origin"' : ''}  class="value-img" src="${imgUrl}"></div>`);
-
               if (!isInMobile && spec.onlyShowAttrImg) {
                 valueJQ.tooltip({
                   targetContainer: this.targetContainer,
@@ -65,7 +58,6 @@ window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] = window.SLM['pr
             } else {
               valueJQ = $(`<div class="attr-value"><span>${value.name}</span></div>`);
             }
-
             valueJQ.data('index', i);
             attrBox.append(valueJQ);
             valueJQ.on('click', () => {
@@ -76,11 +68,9 @@ window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] = window.SLM['pr
         }
       });
     }
-
     isPreview() {
       return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
     }
-
     render() {
       super.beforeUpdate();
       this.root.children('.spec-box').each((_, el) => {
@@ -88,30 +78,25 @@ window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] = window.SLM['pr
         const valueEls = boxEl.children('.attr-box').children('.attr-value');
         const index = boxEl.data('index');
         const nameItem = this.dataPool.attrArray[index];
-
         if (nameItem.onlyShowAttrImg) {
           const attrValue = this.getAttrValueName(index);
-
           if (attrValue) {
             boxEl.find('.spec-name').text(`${nameItem.specName}：${attrValue}`);
           } else {
             boxEl.find('.spec-name').text(nameItem.specName);
           }
         }
-
         valueEls.each((__, el_) => {
           const valueEl = $(el_);
           const i = valueEl.data('index');
           const valueItem = nameItem.specAttrList[i];
           const disabled = !this.isPreview() ? this.dataPool.skuUtil.checkSpecAttrDisabled(this.dataPool.currentSpecList, valueItem.id, index) : false;
           const active = this.dataPool.skuUtil.checkSpecAttrActive(this.dataPool.currentSpecList, valueItem.id);
-
           if (disabled) {
             valueEl.addClass('disabled').prop('disabled', true);
           } else {
             valueEl.removeClass('disabled').prop('disabled', false);
           }
-
           if (active) {
             valueEl.addClass('active');
           } else {
@@ -121,9 +106,7 @@ window.SLM['product/commons/js/sku-trade/sku-trade-flatten.js'] = window.SLM['pr
       });
       super.afterUpdate();
     }
-
   }
-
   _exports.default = SkuTrade;
   return _exports;
 }();

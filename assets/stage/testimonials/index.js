@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/testimonials/index.js'] = window.SLM['stage/testimonials/index.js'] || function () {
   const _exports = {};
   const Swiper = window['swiper']['default'];
@@ -21,14 +20,12 @@ window.SLM['stage/testimonials/index.js'] = window.SLM['stage/testimonials/index
 <path d="M1.5 9.3994L5.44971 5.4497L1.50001 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
 </svg>
 `;
-
   class Testimonials {
     constructor(container) {
       this.container = container;
       this.sectionId = container.data('section-id');
       this.init();
     }
-
     init() {
       const {
         container
@@ -55,21 +52,18 @@ window.SLM['stage/testimonials/index.js'] = window.SLM['stage/testimonials/index
           el: container.find(selectors.pagination)[0],
           clickable: true,
           type: 'custom',
-
           renderCustom(swiper, current, total) {
             return `
-            <a href="javascript:void(0);" class="testimonials__arrow--left${current === 1 ? ' testimonials__arrow--disabled' : ''}">${navigation_arrow_icon}</a>
+            <a href="javascript:;" class="testimonials__arrow--left${current === 1 ? ' testimonials__arrow--disabled' : ''}">${navigation_arrow_icon}</a>
             <span class="testimonials__arrow--text body4">${current}/${total}</span>
-            <a href="javascript:void(0);" class="testimonials__arrow--right${current === total ? ' testimonials__arrow--disabled' : ''}">${navigation_arrow_icon}</a>
+            <a href="javascript:;" class="testimonials__arrow--right${current === total ? ' testimonials__arrow--disabled' : ''}">${navigation_arrow_icon}</a>
           `;
           }
-
         }
       };
       this.swiper = new Swiper(el, swiperOptions);
       this.swiper.on('resize', swiper => {
         const currentSlidesPerGroup = this.getSlidesPerGroup();
-
         if (currentSlidesPerGroup !== swiper.params.slidesPerView) {
           swiper.params.slidesPerView = currentSlidesPerGroup;
           swiper.params.slidesPerGroup = currentSlidesPerGroup;
@@ -84,31 +78,24 @@ window.SLM['stage/testimonials/index.js'] = window.SLM['stage/testimonials/index
         this.swiper.slideNext();
       });
     }
-
     getSlidesPerGroup() {
       return helpers.getPlatform() === 'mobile' ? 1 : 3;
     }
-
     destroy() {
       this.swiper.destroy();
     }
-
   }
-
   class TestimonialsSection {
     constructor(container) {
       if (!container.find(selectors.slide).length) return;
       this.instance = new Testimonials(container);
     }
-
     onUnload() {
       if (this.instance) {
         this.instance.destroy();
       }
     }
-
   }
-
   TestimonialsSection.type = 'testimonials';
   registrySectionConstructor(TestimonialsSection.type, TestimonialsSection);
   return _exports;

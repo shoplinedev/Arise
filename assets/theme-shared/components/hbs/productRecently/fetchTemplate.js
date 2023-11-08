@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] || function () {
   const _exports = {};
   const axios = window['axios']['default'];
@@ -13,27 +12,21 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
     baseURL: '/leproxy',
     timeout: 30e3,
     withCredentials: true,
-
     paramsSerializer(params) {
       return qs.stringify(params);
     }
-
   });
-
   async function getProductsInfo(excludeProductIds, productIds) {
     const recentlyProductIds = nullishCoalescingOperator(productIds, window.localStorage.getItem('history_browse_products'));
     const realRecentlyProductIds = recentlyProductIds && recentlyProductIds.split(',').filter(item => {
       if (excludeProductIds && excludeProductIds.length > 0) {
         return excludeProductIds.indexOf(item) === -1;
       }
-
       return item;
     });
-
     if (!realRecentlyProductIds || !realRecentlyProductIds.join(',')) {
       return [];
     }
-
     const {
       data: {
         data
@@ -50,9 +43,7 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
     });
     return sortProductInfoVoList.filter(item => !!item);
   }
-
   _exports.getProductsInfo = getProductsInfo;
-
   async function fetchRecentlySection({
     sectionName = 'product/detail/recently-viewed-products',
     excludeProductIds,
@@ -69,7 +60,6 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
       }
     };
     let queryPath = '/page/section';
-
     if (mode === 'SINGLE') {
       query = {
         data: query
@@ -77,16 +67,13 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
       query.mode = mode;
       queryPath = `/page${SL_State.get('request.uri.url') || window.location.pathname + window.location.search}`;
     }
-
     const {
       data
     } = await http.post(queryPath, query);
     const html = mode === 'SINGLE' ? data && data.html : data;
     return nullishCoalescingOperator(html, '');
   }
-
   _exports.fetchRecentlySection = fetchRecentlySection;
-
   function initRecentlyReport(wrapperSelector, mountDom) {
     const report = new BaseReport();
     report.view({
@@ -98,7 +85,6 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
     });
     const recentlyItemCls = `.__sl-custom-track-product-recently-viewed-item`;
     const itemList = mountDom.querySelectorAll(`${recentlyItemCls}`);
-
     if (itemList && itemList.length > 0) {
       report.view({
         targetList: itemList,
@@ -134,7 +120,6 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
       });
     }
   }
-
   async function initProductRecentlyList({
     selector,
     sectionName,
@@ -151,18 +136,15 @@ window.SLM['theme-shared/components/hbs/productRecently/fetchTemplate.js'] = win
       mode
     });
     const mountDom = document.querySelector(selector);
-
     if (mountDom) {
       mountDom.innerHTML = data;
       initRecentlyReport(selector, mountDom);
       window.lozadObserver && window.lozadObserver.observe && window.lozadObserver.observe();
     } else {
-      console.error('请添加有效的最近浏览商品模块挂载点');
+      console.error('Please add a valid mount point for the recent product module.');
     }
-
     return data;
   }
-
   _exports.initProductRecentlyList = initProductRecentlyList;
   return _exports;
 }();

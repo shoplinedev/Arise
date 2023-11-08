@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail/js/product-collapse.js'] || function () {
   const _exports = {};
   const request = window['SLM']['theme-shared/utils/request.js'].default;
   const createShadowDom = window['SLM']['product/commons/js/createShadowDom.js'].default;
-
   function whichTransitionEvent() {
     let t;
     const el = document.createElement('fakeElement');
@@ -15,14 +13,12 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
       WebkitTransition: 'webkitTransitionEnd',
       MsTransition: 'msTransitionEnd'
     };
-
     for (t in transitions) {
       if (el.style[t] !== undefined) {
         return transitions[t];
       }
     }
   }
-
   function openCollapseByHeight(element) {
     const initHeight = $(element).innerHeight();
     element.style.height = 'auto';
@@ -31,17 +27,14 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
     $(element).css('color');
     element.style.height = `${targetHeight}px`;
   }
-
   function closeCollapseByHeight(element) {
     const initHeight = $(element).innerHeight();
     $(element).css('height', `${initHeight}px`);
     $(element).css('color');
     element.style.height = `0px`;
   }
-
   const PAGE_ID = 'pageid';
   const CUSTOM_PAGE_TYPE = 'customize';
-
   const isReJsonSdkData = originData => {
     try {
       return JSON.parse(originData);
@@ -49,9 +42,7 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
       return false;
     }
   };
-
   _exports.isReJsonSdkData = isReJsonSdkData;
-
   class Collapse {
     constructor({
       lang = 'default',
@@ -68,7 +59,6 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
       this.transitionEvent = whichTransitionEvent();
       this.init();
     }
-
     init() {
       const self = this;
       const ids = Array.from(this.$collapseAsyncItems).map(item => $(item).data(PAGE_ID)).filter(id => !!id);
@@ -79,7 +69,6 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
             $(this).css('height', 'auto');
           }
         });
-
         if ($item.hasClass('active') && $item.data(PAGE_ID)) {
           this.requestCollapseContent($item.data(PAGE_ID)).then(res => {
             this.setCollapseContent(res && res.data, $item);
@@ -93,7 +82,6 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
             $(this).css('height', 'auto');
           }
         });
-
         if (!$item.data('isinitshadowdom')) {
           const html = $item.find('.base-collapse-item__content').html();
           self.transContentByShadowDom($item, html);
@@ -103,12 +91,10 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
       this.requestCollapseTitle(ids);
       this.bindEvent();
     }
-
     requestCollapseTitle(ids) {
       if (!ids || !ids.length) {
         return Promise.resolve();
       }
-
       const {
         lang
       } = this;
@@ -122,7 +108,8 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
         if (res && Array.isArray(res.data)) {
           const data = res.data.reduce((fin, item) => {
             const name = item && item.name ? item.name[lang] : '';
-            return { ...fin,
+            return {
+              ...fin,
               [item && item.id]: name
             };
           }, {});
@@ -130,30 +117,25 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
         }
       });
     }
-
     setCollapseTitle(titleMap) {
       this.$collapseAsyncItems.each((index, item) => {
         const $item = $(item);
         const title = titleMap[$item.data(PAGE_ID)];
-
         if (title) {
           $item.find('.base-collapse-item__title').text(title);
         }
       });
     }
-
     bindEvent() {
       const self = this;
       this.$collapseAsyncItems.on('click', '.base-collapse-item__header', function () {
         const $item = $(this).closest('.base-collapse-item');
         const id = $item.data(PAGE_ID);
         const isOpen = $item.hasClass('active');
-
         if (isOpen) {
           self.close($item);
           return;
         }
-
         self.requestCollapseContent(id).then(res => {
           self.setCollapseContent(res && res.data, $item);
           self.$activeItem = $item;
@@ -163,18 +145,15 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
       this.$collapseSyncItems.on('click', '.base-collapse-item__header', function () {
         const $item = $(this).closest('.base-collapse-item');
         const isOpen = $item.hasClass('active');
-
         if (isOpen) {
           self.close($item);
           return;
         }
-
         if (!$item.data('isinitshadowdom')) {
           const html = $item.find('.base-collapse-item__content').html();
           self.transContentByShadowDom($item, html);
           $item.data('isinitshadowdom', true);
         }
-
         self.open($item);
       });
       window.SL_EventBus.on('stage:locale:change', () => {
@@ -183,7 +162,6 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
         } else {
           this.$collapseAsyncItems.each((index, item) => {
             const $item = $(item);
-
             if ($item.hasClass('active') && $item.data(PAGE_ID)) {
               this.calcCollapseContentHeight($item);
             }
@@ -191,12 +169,10 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
         }
       });
     }
-
     requestCollapseContent(id) {
       if (this.cacheRequest && this.cacheData[id]) {
         return Promise.resolve(this.cacheData[id]);
       }
-
       return request({
         url: `site/render/page/${CUSTOM_PAGE_TYPE}/${id}`,
         method: 'GET'
@@ -204,21 +180,17 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
         if (this.cacheRequest) {
           this.cacheData[id] = res;
         }
-
         return res;
       }).catch(() => {
         if (this.cacheRequest) {
           this.cacheData[id] = {};
         }
-
         return {};
       });
     }
-
     getCustomPageContent(pageConfig) {
       return `<div class="custom-page-render-container">${pageConfig}</div>`;
     }
-
     transContentByShadowDom($item, content) {
       const $content = $item.find('.base-collapse-item__content');
       $content.html(`
@@ -231,23 +203,19 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
     `);
       createShadowDom();
     }
-
     setCollapseContent(data, $item) {
       const content = this.getCustomPageContent(data && data.htmlConfig);
       this.transContentByShadowDom($item, content);
     }
-
     calcCollapseContentHeight($item) {
       const $content = $item.find('.base-collapse-item__content');
       const images = Array.from($content.find('img')).map(item => {
         return new Promise((resolve, reject) => {
           const image = new Image();
           image.src = item.src;
-
           image.onload = () => {
             resolve(image);
           };
-
           image.onerror = () => {
             reject(image);
           };
@@ -266,20 +234,16 @@ window.SLM['product/detail/js/product-collapse.js'] = window.SLM['product/detail
         });
       });
     }
-
     open($item) {
       openCollapseByHeight($item.find('.base-collapse-item__wrap').get(0));
       $item.addClass('active');
     }
-
     close($item) {
       this.$activeItem = null;
       closeCollapseByHeight($item.find('.base-collapse-item__wrap').get(0));
       $item.removeClass('active');
     }
-
   }
-
   _exports.default = Collapse;
   return _exports;
 }();

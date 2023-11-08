@@ -104,7 +104,8 @@
       "view_cart": "Ver el carrito"
     },
     "next_step": {
-      "calculated_taxes_fees": "Los impuestos y los costos de envío se calcularán en el siguiente paso"
+      "calculated_taxes_fees": "Los impuestos y los costos de envío se calcularán en el siguiente paso",
+      "included_taxes_fees": "Impuestos incluidos y envío calculado al finalizar la compra."
     },
     "notices": {
       "change_password_after_verification": "Puedes modificar la contraseña después de la verificación",
@@ -230,6 +231,7 @@
       "copy_success": "Cupón copiado",
       "discount_title": "Activar cuenta y obtener código de descuento",
       "normal_title": "Activar cuenta",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Suscríbase por correo electrónico para recibir actualizaciones, acceder a ofertas exclusivas y más.",
       "success_title": "Enhorabuena por conseguir el descuento",
       "token_expired": "Su enlace ha caducado"
@@ -337,6 +339,7 @@
       "set_password": "La contraseña debe tener entre 6 y 18 caracteres que constan de números, letras mayúsculas y minúsculas",
       "sign__out": "Cerrar sesión",
       "sign_in": "Iniciar sesión",
+      "sign_in_activate": "El código de verificación ha sido enviado a su cuenta {{account}}, puede activar su cuenta después de la verificación.",
       "sign_up": "Registrarse",
       "su": "Do",
       "subscription_desc": "Puede obtener las últimas noticias de promoción de la tienda",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Gracias por suscribirse. Puede iniciar sesión para una mejor experiencia."
     },
     "message": {
+      "format_error": "Formato de mensaje no compatible",
       "input_placeholder": "¿Tienes algo para dejar un mensaje?",
       "message": "Mensaje",
       "send": "Enviar"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Colecciones"
     },
+    "facets": {
+      "in_stock_only": "Sólo en stock",
+      "sort_button": "Ordenar"
+    },
     "general": {
       "no_product_data_found": "No hay información del artículo actual ahora, por favor inténtalo más tarde",
       "sold_out": "Agotado",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Comprar en LOTTE",
       "go_to_yahoo_by_link": "Comprar en Yahoo",
       "in_stock": "Disponible",
+      "inventory_in_stock": "En stock",
+      "inventory_in_stock_show_count": "Stock: quedan {{ quantity }}",
+      "inventory_low_stock": "Bajo stock",
+      "inventory_low_stock_show_count": "Bajo stock: quedan {{ quantity }}",
+      "inventory_out_of_stock": "Stock insuficiente",
+      "inventory_out_of_stock_continue_selling": "En stock",
       "inventory_quantity": "Número de inventario",
       "leave_us_message": "Completa el mensaje",
       "leave_us_message_get_back": "Deja tu contenido para la consulta, te responderemos lo antes posible",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} seleccionado(s)",
       "from_price_html": "Desde {{price}}",
       "less": "Menos etiquetas",
+      "load_more_desc": "",
       "load_more_tip": "Cargar más ítems",
       "more": "Más etiquetas",
       "new_arrivals": "Recién llegados",
@@ -612,7 +627,8 @@
       "save": "Ahorra {{{priceDom}}}",
       "save_byjs": "Ahorra {{priceDom}}",
       "save_ratio": "{{price}}% de descuento",
-      "select_product_all_options": "Elige todos los atributos del artículo",
+      "select_product_all_options": "La variante de producto seleccionada está incompleta o no está disponible. Por favor, elija nuevamente",
+      "sort_button": "Ordenar",
       "top_sellers": "Más vendidos",
       "more__product_num": "{{num}} Artículos",
       "one_product_num": "{{num}} Artículo",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Continúa comprando",
       "more": "Comprar más",
+      "saved": "Ahorró",
       "total": "Total",
       "total_sum": "Total"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Error de servicio, inténtelo más tarde",
       "error_message_2014": "La cuenta está en riesgo",
       "error_message_2016": "La cuenta está en riesgo",
+      "error_message_2020": "El sistema está ocupado, inténtelo más tarde",
       "error_message_3": "Error de servicio",
       "error_message_3001": "Error de servicio, inténtelo más tarde",
       "error_message_3002": "El usuario que no ha vinculado su teléfono/correo electrónico intenta modificar la contraseña",
@@ -850,15 +868,22 @@
       "error_message_3010": "El correo electrónico ha sido vinculado por otra cuenta",
       "error_message_3014": "Error al enviar el código",
       "error_message_3015": "La cuenta se ha activado",
+      "error_message_3021": "El sistema está ocupado, inténtelo más tarde",
       "error_message_3022": "El enlace ha caducado",
       "error_message_3023": "El enlace tiene un formato incorrecto",
       "error_message_3024": "El parámetro de enlace es incorrecto",
       "error_message_3026": "Error de formato de cuenta",
+      "error_message_3029": "La activación por teléfono móvil no es posible en este momento.",
       "error_message_4": "Error de servicio",
       "error_message_5": "Error de servicio",
       "error_message_6": "Error de servicio",
       "error_message_7": "La contraseña debe tener entre 6 y 18 caracteres que constan de números, letras mayúsculas y minúsculas"
     },
-    "editorSwitchCountryTip": "Ahora no admite cambiar de país en el editor."
+    "editorSwitchCountryTip": "Ahora no admite cambiar de país en el editor.",
+    "shopby": {
+      "button": {
+        "show": "Seguro y rápido"
+      }
+    }
   }
 }

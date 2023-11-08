@@ -1,10 +1,4 @@
-{{!--
-  评分组件
-  @param max Number 最大分数
-  @param value Number 当前分数
-  @param class String 自定义样式类
-  @param star-color String 星星颜色
---}}
+
 
 {{ assign 'rates' (JSONparse "[{\"value\":1},{\"value\":2},{\"value\":3},{\"value\":4},{\"value\":5}]") }}
 {{ assign 'maxRate' (default max 5) }}

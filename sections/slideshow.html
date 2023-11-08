@@ -9,29 +9,16 @@
   {{ combine_asset_tag 'stage/slideshow/index.css' inline=true}}
 {{/if}}
 <!-- stage/slideshow/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/swiper.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+  {{#if request.document_direction '===' 'rtl'}}
+    {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
   {{else}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/swiper.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+    {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
   {{/if}}
+  {{ combine_asset_tag 
+    'vendors/swiper.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/sectionsLoad/index.js'
     'stage/slideshow/swiper/effect-flickity-fade.js'
@@ -77,10 +64,10 @@
                 {{ assign 'natural_mobile_height' true }}
               {{/with}}
               {{#if (isTruthy this.settings.image_mobile.url)}}
-                {{!-- 配了m端图片， 用m端的scale --}}
+                
                 {{ assign 'natural_mobile_height_ratio' (get 'ratio' (img_size this.settings.image_mobile.url)) }}
               {{else}}{{#if (boolean (isTruthy this.settings.image.url) '&&' (isFalsey this.settings.image_mobile.url))}}
-                {{!-- 配了pc的图片， m端图片没配， 用pc的scale --}}
+                
                 {{ assign 'natural_mobile_height_ratio' (get 'ratio' (img_size this.settings.image.url)) }}
               {{/if}}{{/if}}
 
@@ -158,7 +145,7 @@
                 {{/if}}
               {{/style}}
 
-              {{!-- 非前2个组件的轮播图首图不做直出 --}}
+              
               {{ assign 'not_lcp_slide' (not (and global.is_lcp_section (if @index '===' 0))) }}
               {{ assign 'link_item' (useLink this.settings.link global.request.uri.query) }}
               {{ assign 'link_2_item' (useLink this.settings.link_2 global.request.uri.query) }}

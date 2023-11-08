@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -13,7 +12,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['t
   const { reportCheckDefaultBox, reportCancelAddress, reportSaveAddress } = window['SLM']['theme-shared/biz-com/customer/reports/address.js'];
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
-
   class CustomerAddress {
     constructor({
       id
@@ -23,14 +21,11 @@ window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['t
       this.init();
       this.toast = new Toast();
     }
-
     init() {
       const isLogin = SL_State.get('request.is_login');
-
       if (!isLogin) {
         window.location.href = redirectTo(SIGN_IN);
       }
-
       this.initForm();
       const {
         id
@@ -41,7 +36,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['t
       });
       this.bindEvents();
     }
-
     initForm() {
       this.form = new Form({
         id: this.id,
@@ -51,7 +45,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['t
         onValidate: () => this.address.validate()
       });
     }
-
     bindEvents() {
       this.form && this.form.formInstance && this.form.formInstance.on('valuesChange', ({
         changedValue
@@ -64,34 +57,29 @@ window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['t
         this.onCancel(e);
       });
     }
-
     onChangeDefCheckBox(status) {
       if (status) {
         reportCheckDefaultBox();
       }
     }
-
     onCancel() {
       reportCancelAddress();
     }
-
     async onValidate() {
       const addressRes = await this.address.validate();
-
       if (!addressRes) {
         throw new Error('Invalid address form fields');
       }
     }
-
     async onSubmit() {
       const addressData = await this.address.getAddressInfo();
       const def = $(`#${this.id} .sl-checkbox__input[type="checkbox"]`).is(':checked');
-      const formValue = { ...addressData,
+      const formValue = {
+        ...addressData,
         addressSeq: SL_State.get('request.uri.params.addressSeq'),
         mobilePhone: formatterCodePhone(addressData.mobilePhone),
         def
       };
-
       try {
         await modifyAddress(formValue);
         reportSaveAddress();
@@ -102,9 +90,7 @@ window.SLM['theme-shared/biz-com/customer/biz/address/index.js'] = window.SLM['t
         }
       }
     }
-
   }
-
   _exports.default = CustomerAddress;
   return _exports;
 }();

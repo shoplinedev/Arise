@@ -104,7 +104,8 @@
       "view_cart": "Lihat kart"
     },
     "next_step": {
-      "calculated_taxes_fees": "Cukai dan penghantaran dikira semasa semakan keluar"
+      "calculated_taxes_fees": "Cukai dan penghantaran dikira semasa semakan keluar",
+      "included_taxes_fees": "Termasuk cukai dan penghantaran dikira semasa pembayaran"
     },
     "notices": {
       "change_password_after_verification": "Anda boleh mengubah kata laluan selepas penentusahan",
@@ -230,6 +231,7 @@
       "copy_success": "Kod kupon disalin",
       "discount_title": "Aktifkan akaun dan dapatkan kod diskaun",
       "normal_title": "Aktifkan akaun",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Langgan e-mel untuk menerima kemas kini, akses kepada tawaran eksklusif dan pelbagai lagi.",
       "success_title": "Tahniah kerana mendapat jumlah diskaun yang hebat",
       "token_expired": "Pautan telah tamat tempoh"
@@ -337,6 +339,7 @@
       "set_password": "Kata laluan mestilah 6-18 aksara yang terdiri daripada nombor, huruf besar dan huruf kecil",
       "sign__out": "Daftar Keluar",
       "sign_in": "DAFTAR MASUK",
+      "sign_in_activate": "Kod pengesahan telah dihantar ke akaun anda {{account}}. Anda boleh mengaktifkan akaun anda selepas pengesahan",
       "sign_up": "DAFTAR",
       "su": "Ahd",
       "subscription_desc": "Dapatkan berita terkini tentang kedai",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Terima kasih atas langganan anda. Anda boleh log masuk untuk pengalaman yang lebih baik."
     },
     "message": {
+      "format_error": "Format mesej tidak disokong",
       "input_placeholder": "Adakah terdapat apa-apa mesej yang anda ingin tinggalkan?",
       "message": "Mesej",
       "send": "Hantar"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "kategori"
     },
+    "facets": {
+      "in_stock_only": "Dalam stok sahaja",
+      "sort_button": "Susun"
+    },
     "general": {
       "no_product_data_found": "Tiada data produk ditemui. Sila cuba lagi kemudian",
       "sold_out": "Habis Dijual",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Beli dalam LOTTE",
       "go_to_yahoo_by_link": "Beli dalam Yahoo",
       "in_stock": "Stok tersedia",
+      "inventory_in_stock": "Barangan pilihan",
+      "inventory_in_stock_show_count": "Stok: {{ quantity }} yang tinggal",
+      "inventory_low_stock": "Inventori rendah",
+      "inventory_low_stock_show_count": "Stok rendah: {{ quantity }} yang tinggal",
+      "inventory_out_of_stock": "Kehabisan stok",
+      "inventory_out_of_stock_continue_selling": "Barangan pilihan",
       "inventory_quantity": "Bilangan inventori",
       "leave_us_message": "Sila masukkan mesej anda",
       "leave_us_message_get_back": "Sila tinggalkan mesej buat kami dan kami akan menghubungi anda secepat mungkin",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} telah dipilih",
       "from_price_html": "Dari {{price}}",
       "less": "kurang",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} daripada {{total}} item",
       "load_more_tip": "Memuatkan lebih banyak item",
       "more": "lebih",
       "new_arrivals": "Ketibaan baharu",
@@ -612,7 +627,8 @@
       "save": "Diskaun {{{priceDom}}}",
       "save_byjs": "Diskaun {{priceDom}}",
       "save_ratio": "{{price}}% diskaun",
-      "select_product_all_options": "Sila pilih saiz produk terlebih dahulu!",
+      "select_product_all_options": "Varian produk yang dipilih tidak lengkap atau tidak tersedia. Sila pilih semula.",
+      "sort_button": "Susun",
       "top_sellers": "Produk yang laris",
       "more__product_num": "{{num}} produk-produk",
       "one_product_num": "{{num}} produk",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Teruskan membeli-belah",
       "more": "Lagi",
+      "saved": "disimpan",
       "total": "Jumlah",
       "total_sum": "Jumlah"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Pengecualian perkhidmatan, sila cuba lagi kemudian",
       "error_message_2014": "Akaun berisiko",
       "error_message_2016": "Akaun berisiko",
+      "error_message_2020": "Sistem sedang sibuk, sila cuba lagi kemudian",
       "error_message_3": "Pengecualian perkhidmatan",
       "error_message_3001": "Pengecualian perkhidmatan, sila cuba lagi kemudian",
       "error_message_3002": "Pengguna yang tidak terikat kepada telefon bimbit/peti mel cuba mengubah kata laluan mereka",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-mel telah diikat dengan akaun lain",
       "error_message_3014": "Pemaparan mesej teks/templat mel gagal",
       "error_message_3015": "Akaun telah diaktifkan",
+      "error_message_3021": "Sistem sedang sibuk, sila cuba lagi kemudian",
       "error_message_3022": "Pautan telah tamat tempoh",
       "error_message_3023": "Pautan mempunyai format yang salah",
       "error_message_3024": "Pautan adalah salah",
       "error_message_3026": "Ralat format akaun",
+      "error_message_3029": "Jangan menyokong pengaktifan nombor telefon mudah alih buat masa ini",
       "error_message_4": "Pengecualian perkhidmatan",
       "error_message_5": "Pengecualian perkhidmatan",
       "error_message_6": "Pengecualian perkhidmatan",
       "error_message_7": "Kata laluan mestilah 6-18 aksara yang terdiri daripada nombor, huruf besar dan huruf kecil"
     },
-    "editorSwitchCountryTip": "Pertukaran negara tidak disokong dalam editor"
+    "editorSwitchCountryTip": "Pertukaran negara tidak disokong dalam editor",
+    "shopby": {
+      "button": {
+        "show": "Selamat dan Lebih Pantas"
+      }
+    }
   }
 }

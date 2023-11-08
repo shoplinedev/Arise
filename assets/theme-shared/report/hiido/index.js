@@ -1,17 +1,13 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/report/hiido/index.js'] || function () {
   const _exports = {};
   const { get, get_func } = window['SLM']['theme-shared/utils/syntax-patch.js'];
-
   function guid() {
     function S4() {
       return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
     }
-
     return `${S4() + S4()}-${S4()}-${S4()}-${S4()}-${S4()}${S4()}${S4()}`;
   }
-
   function Hiido({
     page,
     module
@@ -28,7 +24,6 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
       effective: true
     });
   }
-
   Hiido.prototype.observerStop = function observerStop(force) {
     if (!(get(Object.keys(this.__observe), 'length') || get(Object.keys(this.__eObserve), 'length')) || force) {
       this.__observe = {};
@@ -38,14 +33,12 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
       this.__validityTimer && clearInterval(this.__validityTimer);
     }
   };
-
   Hiido.prototype.validity = function validity() {
     Object.entries(this.__observe).forEach(([uuid, {
       ele
     }]) => {
       if (ele.isConnected === false || !ele.__HIIDO_UUID__ || ele.__HIIDO_UUID__ !== uuid) {
         delete this.__observe[uuid];
-
         if (!this.__eObserve[uuid]) {
           this.__observer.unobserve(ele);
         }
@@ -56,7 +49,6 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
     }]) => {
       if (ele.isConnected === false || !ele.__HIIDO_UUID__ || ele.__HIIDO_UUID__ !== uuid) {
         delete this.__eObserve[uuid];
-
         if (!this.__observe[uuid]) {
           this.__observer.unobserve(ele);
         }
@@ -64,13 +56,11 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
     });
     this.observerStop();
   };
-
   Hiido.prototype.observerStart = function observerStart() {
     if (IntersectionObserver && !this.__observer) {
       this.__observer = new IntersectionObserver(changes => {
         changes.forEach(change => {
           const uuid = change.target.__HIIDO_UUID__;
-
           if (uuid && this.__observe[uuid] && change.intersectionRatio > 0) {
             const {
               ele,
@@ -78,24 +68,19 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
               once
             } = this.__observe[uuid];
             this.collect(options);
-
             if (once) {
               delete this.__observe[uuid];
-
               if (!this.__eObserve[uuid]) {
                 this.__observer.unobserve(ele);
               }
-
               this.observerStop();
             }
           }
-
           if (uuid && this.__eObserve[uuid] && change.intersectionRatio > 0.5) {
             if (get(this.__eObserve[uuid], 'timer')) {
               clearTimeout(this.__eObserve[uuid].timer);
               delete this.__eObserve[uuid].timer;
             }
-
             this.__eObserve[uuid].timer = setTimeout(() => {
               const {
                 ele,
@@ -103,14 +88,11 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
                 once
               } = this.__eObserve[uuid];
               this.collect(options);
-
               if (once) {
                 delete this.__eObserve[uuid];
-
                 if (!this.__observe[uuid]) {
                   this.__observer.unobserve(ele);
                 }
-
                 this.observerStop();
               }
             }, 500);
@@ -126,13 +108,10 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
       return this;
     }
   };
-
   Hiido.prototype.collect = function collect(eventId, options) {
     let obj = options;
-
     if (typeof eventId === 'object') {
       obj = eventId;
-
       if (get(obj, 'event_name') && get(this.__eventMap, get(obj, 'event_name'))) {
         obj.event_id = get(this.__eventMap, get(obj, 'event_name'));
       }
@@ -144,7 +123,6 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
         obj.event_id = eventId;
       }
     }
-
     if (obj.event_id) {
       get_func(window.HdSdk, 'shopTracker.collect').exec({
         module: -999,
@@ -155,7 +133,6 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
       });
     }
   };
-
   Hiido.prototype.exposure = function exposure(ele, options, {
     once = true,
     effective = false
@@ -163,7 +140,6 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
     setTimeout(() => {
       if (!IntersectionObserver || !ele) return;
       let eles = [];
-
       if (ele instanceof Array) {
         eles = ele.filter(e => e instanceof HTMLElement);
       } else if (typeof ele === 'string') {
@@ -171,11 +147,9 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
       } else if (ele instanceof HTMLElement) {
         eles = [ele];
       }
-
       eles.forEach(ele => {
         if (get(ele, 'isConnected') === false) return;
         let uuid;
-
         if (!(Object.values(this.__observe).find(item => item.ele === ele) || Object.values(this.__eObserve).find(item => item.ele === ele))) {
           uuid = guid();
           ele.__HIIDO_UUID__ = uuid;
@@ -186,10 +160,8 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
           uuid = guid();
           ele.__HIIDO_UUID__ = uuid;
         }
-
         get_func(this.__observer, 'unobserve').exec(ele);
         get_func(this.__observer, 'observe').exec(ele);
-
         if (effective) {
           this.__eObserve[uuid] = {
             ele,
@@ -214,7 +186,6 @@ window.SLM['theme-shared/report/hiido/index.js'] = window.SLM['theme-shared/repo
       });
     }, 300);
   };
-
   _exports.default = Hiido;
   return _exports;
 }();

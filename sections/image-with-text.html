@@ -13,7 +13,7 @@
 {{ assign 'mobile_text_align' settings.mobile_text_align }}
 {{ assign 'appBlockPrefix' 'shopline://apps' }}
 
-{{!-- {{ assign 'is_auto_scale' (default image_height '') }} --}}
+
 {{ assign 'ratio' (append (default (get 'ratio' (img_size image.url)) 100) '%') }}
 
 {{#if request.document_direction '===' 'rtl'}}
@@ -25,7 +25,7 @@
 {{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='media' }}
 
 {{ assign 'ignoreImageHeight' false }}
-{{!-- 如果开了配色或者重叠 则无视图片高度的配置，都是自适应 --}}
+
 {{#or (boolean color_scheme '!=' 'none') image_overlap_display}}
   {{ assign 'ignoreImageHeight' true }}
 {{/or}}
@@ -36,9 +36,9 @@
     pos-{{ pc_image_position }} {{#if ignoreImageHeight}}image-with-text--stretch{{/if}}
     {{#if (isTruthy image_overlap_display)}}image-with-text--overlap{{/if}}
     ">
-    <a class="__sl-custom-track-stage-imageWithText-button image-with-text__img-wrap image-with-text__img-wrap--{{ image_height }} global-media-border-shadow">
+    <div class="__sl-custom-track-stage-imageWithText-button image-with-text__img-wrap image-with-text__img-wrap--{{ image_height }} global-media-border-shadow">
       {{ snippet 'global-image' image=image image-class='image-with-text__img' empty-image-class='image-with-text__empty-img' pcSize='1/3' }}
-    </a>
+    </div>
     <div class="image-with-text__info-wrap
       {{#if (isFalsey image_overlap_display)}}color-scheme-{{ color_scheme }}{{/if}}
       ">

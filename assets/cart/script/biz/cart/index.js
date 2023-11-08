@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/biz/cart/index.js'] = window.SLM['cart/script/biz/cart/index.js'] || function () {
   const _exports = {};
   const Cookie = window['js-cookie']['default'];
@@ -10,7 +9,6 @@ window.SLM['cart/script/biz/cart/index.js'] = window.SLM['cart/script/biz/cart/i
   const logger = LoggerService.pipeOwner(`${Owner.Cart} biz/cart/index.js`);
   const cartToken = Cookie.get('t_cart');
   let cartModule;
-
   function initCartModule(cartType) {
     logger.info(`normal 主站购物车 初始化 initCartModule`, {
       data: {
@@ -30,7 +28,6 @@ window.SLM['cart/script/biz/cart/index.js'] = window.SLM['cart/script/biz/cart/i
       status: LoggerStatus.Success
     });
   }
-
   function takeCartModule() {
     logger.info(`normal 主站购物车 takeCartModule`, {
       data: {
@@ -42,7 +39,6 @@ window.SLM['cart/script/biz/cart/index.js'] = window.SLM['cart/script/biz/cart/i
     });
     return cartModule;
   }
-
   _exports.default = {
     initCartModule,
     takeCartModule

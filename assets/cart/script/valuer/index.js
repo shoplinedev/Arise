@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/valuer/index.js'] = window.SLM['cart/script/valuer/index.js'] || function () {
   const _exports = {};
   const cartItemList = window['SLM']['cart/script/valuer/cartItemList.js'].default;

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || function () {
   const _exports = {};
   const { throttle, debounce } = window['lodash'];
@@ -7,10 +6,10 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
   const { StickyElementManager } = window['SLM']['theme-shared/utils/stickyElementManager.js'];
   const { DRAWER_EVENT_NAME } = window['SLM']['theme-shared/components/hbs/shared/components/drawer/const.js'];
   const { headerStickyEvent } = window['SLM']['theme-shared/utils/headerStickyEvent.js'];
+  const Swiper = window['swiper']['default'];
   const Base = window['SLM']['commons/base/BaseClass.js'].default;
   const { OPEN_MINI_CART, CLOSE_MINI_CART } = window['SLM']['commons/cart/globalEvent.js'];
   const isMobile = window['SLM']['commons/utils/isMobile.js'].default;
-
   class Header extends Base {
     constructor() {
       super();
@@ -56,7 +55,8 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         headerBtnWrapper: '.header__item--buttons',
         menuBtn: '.header__btn--menu',
         layoutContainer: '.header__layout-container',
-        sectionOuterHeaderWrapper: '#shopline-section-header'
+        sectionOuterHeaderWrapper: '#shopline-section-header',
+        mobileTopNav: '.mobile-site-nav__swiper'
       };
       this.jq = {
         header: $(),
@@ -73,11 +73,9 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
       this.bindHeaderNav();
       const $img = $(this.selectors.logoImag);
       let waitForImg = null;
-
       if ($img.length) {
         waitForImg = $img.toArray().find(img => img.offsetParent !== null);
       }
-
       if (waitForImg) {
         if (waitForImg.complete && waitForImg.naturalHeight !== 0) {
           this.initHeader();
@@ -91,8 +89,8 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
           this.initHeader();
         });
       }
+      this.initMobileTopNav();
     }
-
     initAfterLoaded() {
       if (document.readyState !== 'loading') {
         this.bindCartCount();
@@ -102,13 +100,10 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         });
       }
     }
-
     initHeader() {
       this.config.stickyEnabled = this.jq.header.data('sticky');
-
       if (this.config.stickyEnabled) {
         const notOverlay = $(this.selectors.notOverlayId);
-
         if (notOverlay.length) {
           this.config.wrapperOverlayed = false;
           this.jq.wrapper.removeClass(this.classes.overlayedClass);
@@ -116,10 +111,8 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         } else {
           this.config.wrapperOverlayed = this.jq.wrapper.data('overlay');
         }
-
         this.stickyHeaderCheck();
       }
-
       window.SL_EventBus.on('force-header-intoView', () => {
         if (window.scrollY < 250 && window.scrollY > 0) {
           $(this.selectors.header)[0].scrollIntoView();
@@ -127,17 +120,14 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
       });
       window.SL_EventBus.on('stage:locale:change', () => {
         const domEl = this.jq.stickyHeaderWrapper[0];
-
         if (domEl && domEl.style.height) {
           domEl.style.height = 'auto';
           this.stickyHeaderHeight();
         }
       });
     }
-
     stickyHeaderCheck() {
       this.config.stickyHeader = true;
-
       if (this.config.stickyHeader) {
         this.config.forceStopSticky = false;
         this.stickyHeader();
@@ -145,7 +135,6 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         this.config.forceStopSticky = true;
       }
     }
-
     stickyHeader() {
       this.config.lastScroll = 0;
       const wrapWith = document.createElement('div');
@@ -159,34 +148,27 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
       }, 2500);
       this.$onWin('resize', debounce(this.stickyHeaderHeight.bind(this), 50));
       this.$onWin('scroll', throttle(this.stickyHeaderScroll.bind(this), 20));
-
       if (window.Shopline.designMode) {
         const $logoImage = $(this.selectors.logoImage);
-
         const onLoadHandler = () => {
           setTimeout(() => {
             this.stickyHeaderHeight();
           }, 1000);
           $logoImage.off('load');
         };
-
         $logoImage.on('load', onLoadHandler);
       }
     }
-
     stickyHeaderScroll() {
       if (!this.config.stickyEnabled) {
         return;
       }
-
       if (this.config.forceStopSticky) {
         return;
       }
-
       requestAnimationFrame(this.scrollWorker.bind(this));
       this.config.lastScroll = window.scrollY;
     }
-
     scrollWorker() {
       if (window.scrollY > 250) {
         this.doSticky();
@@ -194,7 +176,6 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         this.undoSticky();
       }
     }
-
     emitSticky(stickyActive) {
       headerStickyEvent.emitSticky(stickyActive);
       const headerHeight = $(this.selectors.header).height();
@@ -209,12 +190,10 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         stickyActive
       });
     }
-
     undoSticky() {
       if (this.config.stickyActive === false) {
         return;
       }
-
       this.config.stickyActive = false;
       this.jq.header.removeClass([this.classes.openTransitionClass, this.classes.stickyClass]);
       $(this.selectors.outerWrapper).removeClass(this.classes.outerWrapperSticky);
@@ -222,32 +201,25 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         top: 0
       });
       this.jq.stickyHeaderWrapper.eq(0).height('auto');
-
       if (this.config.wrapperOverlayed) {
         this.jq.wrapper.addClass(this.classes.overlayedClass);
       }
-
       this.emitSticky(false);
     }
-
     doSticky() {
       const stickOffsetTop = this.getStickHeaderOffsetTop();
       const isNeedRerender = !this.config.stickyActive || this.config.lastStickOffsetTop !== stickOffsetTop;
-
       if (!isNeedRerender) {
         return;
       }
-
       this.config.stickyActive = true;
       const height = $(this.selectors.header).innerHeight();
       this.jq.header.addClass(this.classes.stickyClass);
       this.jq.stickyHeaderWrapper.eq(0).height(height);
       this.jq.header.addClass(this.classes.stickyClass);
-
       if (this.config.wrapperOverlayed) {
         this.jq.wrapper.removeClass(this.classes.overlayedClass);
       }
-
       setTimeout(() => {
         this.jq.header.addClass(this.classes.openTransitionClass);
         $(this.selectors.outerWrapper).addClass(this.classes.outerWrapperSticky);
@@ -257,25 +229,20 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         });
       }, 100);
     }
-
     stickyHeaderHeight() {
       if (!this.config.stickyEnabled) {
         return;
       }
-
       const headerLayoutBackgroundHeight = $('.header__layout-background').css('height') || 0;
       const h = headerLayoutBackgroundHeight;
       this.jq.stickyHeaderWrapper[0].style.height = this.config.wrapperOverlayed ? 'auto' : `${h}px`;
     }
-
     getStickHeaderOffsetTop() {
       return headerStickyEvent.getAboveElementHeight();
     }
-
     bindCartEvent() {
       this.$on('click', this.selectors.miniCart, e => {
         const $btn = $(e.currentTarget);
-
         if ($btn.hasClass('header__btn--on')) {
           window.SL_EventBus.emit(CLOSE_MINI_CART);
         } else {
@@ -283,7 +250,6 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         }
       });
     }
-
     bindHeaderNav() {
       this.$on('click', this.selectors.navBtn, () => {
         $(this.selectors.layoutContainer).toggleClass(this.classes.activeNavClass);
@@ -297,12 +263,10 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         });
       });
     }
-
     swiperResizeHandler() {
       this.disableSwiper();
       this.activateSwiper();
     }
-
     fetchCartInfo() {
       return request({
         url: 'carts/cart/count',
@@ -313,25 +277,20 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         }
       });
     }
-
     bindCartCount() {
       window.SL_State.on('cartInfo', () => {
-        this.activeCart();
+        const num = window.SL_State.get('cartInfo.count');
+        this.activeCart(num);
       });
       this.fetchCartInfo().then(num => {
         this.activeCart(num);
       });
     }
-
-    activeCart(num = 0) {
+    activeCart(cartNum) {
       const cartBtn = $(this.selectors.cartBtn);
-
       if (!cartBtn.length) {
         return;
       }
-
-      const cartNum = window.SL_State.get('cartInfo.count') || num;
-
       if (cartNum) {
         cartBtn.removeClass(this.classes.activeCartClass).addClass(this.classes.activeCartClass);
         $(this.selectors.cartPoint).html(cartNum);
@@ -339,25 +298,28 @@ window.SLM['stage/header/index.js'] = window.SLM['stage/header/index.js'] || fun
         cartBtn.removeClass(this.classes.activeCartClass);
       }
     }
-
     offEventBus() {
       window.SL_EventBus.off('force-header-intoView');
     }
-
+    initMobileTopNav() {
+      const $wrapper = $(this.selectors.mobileTopNav);
+      if ($wrapper.length === 0) return;
+      this.swiperInstance = new Swiper(this.selectors.mobileTopNav, {
+        slideClass: 'mobile-site-nav__item-slide',
+        slidesPerView: 'auto'
+      });
+    }
     off() {
       this.$offAll();
       this.stickyElementManager.offEvent();
       this.offEventBus();
+      this.swiperInstance && this.swiperInstance.destroy();
     }
-
   }
-
   let instance = new Header();
-
   const getHeaderSectionId = () => {
     return $(instance.selectors.wrapper).data('section=id');
   };
-
   _exports.getHeaderSectionId = getHeaderSectionId;
   $(document).on('shopline:section:load', () => {
     instance.off();

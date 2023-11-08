@@ -1,14 +1,11 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/event-bus.js'] = window.SLM['theme-shared/utils/event-bus.js'] || function () {
   const _exports = {};
   const EventEmitter = window['eventemitter3']['default'];
-
   if (!window.SL_EventBus) {
     window.SL_EventBus = new EventEmitter();
     window.SL_EventEmitter = EventEmitter;
   }
-
   const {
     SL_EventBus
   } = window;

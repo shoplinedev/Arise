@@ -1,80 +1,41 @@
-{{!-- 可传参数
-forbiddenBtn  boolean 禁止按钮 默认为false
-placeholderHeight number 传入占位高度 默认为 200
-imgRealWidth 图片真实占位宽度
- --}}
+
 
 {{#unless notAllowLoadAssets}}
   <!-- product/commons/js/product-item.js -->
-  {{#if @root.use_modern_optimization}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      'vendors/debug.rlp.min.js'
-      'vendors/url.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/swiper.rlp.min.js'
-      'vendors/photoswipe.rlp.min.js'
-      'vendors/yt-player.rlp.min.js'
-      'vendors/scroll-lock.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      'vendors/@yy_sl-theme-shared.rlp.min.js'
-      'vendors/@sl_smart-payment.rlp.min.js'
-      'vendors/@yy_sl-ec-tracker.rlp.min.js'
-      'vendors/@sl_cart.rlp.min.js'
-      'vendors/@funnyecho_hamon.rlp.min.js'
-      'vendors/@yy_sl-mc.rlp.min.js'
-      'vendors/querystring.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+  {{#if request.document_direction '===' 'rtl'}}
+    {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
   {{else}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.min.js'
-      'vendors/uuid.min.js'
-      'vendors/lodash.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      'vendors/debug.min.js'
-      'vendors/url.min.js'
-      'vendors/query-string.min.js'
-      'vendors/swiper.min.js'
-      'vendors/photoswipe.min.js'
-      'vendors/yt-player.min.js'
-      'vendors/scroll-lock.min.js'
-      'vendors/axios.min.js'
-      'vendors/js-cookie.min.js'
-      'vendors/@yy_sl-theme-shared.min.js'
-      'vendors/@sl_smart-payment.min.js'
-      'vendors/@yy_sl-ec-tracker.min.js'
-      'vendors/@sl_cart.min.js'
-      'vendors/@funnyecho_hamon.min.js'
-      'vendors/@yy_sl-mc.min.js'
-      'vendors/querystring.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+    {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
   {{/if}}
+  {{ combine_asset_tag 
+    'vendors/eventemitter3.min.js'
+    'vendors/uuid.min.js'
+    'vendors/lodash.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    'vendors/debug.min.js'
+    'vendors/url.min.js'
+    'vendors/query-string.min.js'
+    'vendors/swiper.min.js'
+    'vendors/photoswipe.min.js'
+    'vendors/yt-player.min.js'
+    'vendors/scroll-lock.min.js'
+    'vendors/axios.min.js'
+    'vendors/js-cookie.min.js'
+    'vendors/@sl_smart-payment.min.js'
+    'vendors/@yy_sl-theme-shared.min.js'
+    'vendors/@yy_sl-ec-tracker.min.js'
+    'vendors/@sl_pay-button.min.js'
+    'vendors/@sl_cart.min.js'
+    'vendors/@funnyecho_hamon.min.js'
+    'vendors/@yy_sl-mc.min.js'
+    'vendors/querystring.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/event-bus.js'
     'theme-shared/utils/parsePathToArray.js'
@@ -125,37 +86,39 @@ imgRealWidth 图片真实占位宽度
     'product/commons/js/sku-stepper.js'
     'product/detail/js/product-quantity.js'
     'theme-shared/utils/request.js'
+    'theme-shared/utils/retryRequest.js'
     'theme-shared/utils/url-adaptor.js'
     'theme-shared/utils/report/const.js'
     'theme-shared/utils/dataReport/tool.js'
     'theme-shared/utils/dataReport/ga.js'
     'theme-shared/utils/dataReport/gad.js'
     'theme-shared/utils/dataReport/fb.js'
-    'theme-shared/utils/tradeReport/const.js'
     'theme-shared/utils/tradeReport/index.js'
+    'theme-shared/components/smart-payment/constants.js'
+    'theme-shared/const/preload-state-fields.js'
+    'theme-shared/components/smart-payment/utils.js'
+    'theme-shared/utils/tradeReport/const.js'
     'theme-shared/utils/dataAccessor.js'
     'theme-shared/utils/url.js'
     'theme-shared/utils/constant.js'
-    'theme-shared/components/smart-payment/constants.js'
     'theme-shared/utils/checkout.js'
     'theme-shared/components/hbs/products/checkedEvent/index.js'
-    'theme-shared/const/preload-state-fields.js'
-    'theme-shared/components/smart-payment/utils.js'
     'theme-shared/components/smart-payment/services.js'
     'theme-shared/components/smart-payment/reporter/constants.js'
     'theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'
     'theme-shared/components/smart-payment/reporter/ThirdPartReport.js'
+    'theme-shared/components/locales/index.js'
     'theme-shared/components/smart-payment/index.js'
     'theme-shared/components/payment-button/constants.js'
     'theme-shared/components/payment-button/utils.js'
     'theme-shared/components/payment-button/express_checkout.js'
     'theme-shared/components/smart-payment/payments.js'
     'theme-shared/events/product/paypal-fallback/index.js'
+    'theme-shared/components/pay-button/payment-button/utils.js'
+    'theme-shared/components/pay-button/payment-button/index.js'
     'theme-shared/events/trade/interior-event/index.js'
     'theme-shared/events/trade/enum/index.js'
     'theme-shared/events/trade/developer-api/cart-sidebar-render/index.js'
-    'theme-shared/utils/report/hd-const.js'
-    'theme-shared/utils/tradeReport/hdReport.js'
     'theme-shared/utils/tradeReport/hdReportV2.js'
     'theme-shared/utils/tradeReport/eventListen.js'
     'theme-shared/components/hbs/shared/components/topDrawer/const.js'
@@ -202,6 +165,8 @@ imgRealWidth 图片真实占位宽度
     'cart/script/service/cart/index.js'
     'cart/script/service/index.js'
     'commons/utils/dynamicImportMiniCart.js'
+    'commons/cart/errorCode.js'
+    'commons/cart/handleAddToCartErrorCodeToast.js'
     'commons/cart/globalEvent.js'
     'commons/utils/debounce.js'
     'theme-shared/components/payment-button/shopby_fast_checkout.js'
@@ -268,7 +233,7 @@ imgRealWidth 图片真实占位宽度
 {{ assign 'productMaxPrice' spu.productMaxPrice }}
 {{ assign 'showMemberMark' spu.showMemberMark }}
 {{ assign 'showFromMark' spu.showFromMark }}
-{{!-- 判断价格的from文案是否后置，只有中日韩语后置 --}}
+
 {{ assign 'showSuffixFrom' (inArray (JSONparse '["ko", "ja", "zh-hans-cn", "zh-hant-tw"]') request.locale) }}
 {{ assign 'uniqueKey' spu.uniqueKey }}
 {{ assign 'inquiry' spu.inquiry }}
@@ -287,9 +252,9 @@ imgRealWidth 图片真实占位宽度
 {{ assign 'description' (cond subTitle subTitle (cond description description '')) }}
 {{ assign 'description' (cond (lt description.length 150) description (append (array-slice description 0 150) '...')) }}
 
-{{!-- 如果有图片 --}}
+
 {{#if imageList.[0]}}
-  {{!-- 如果是自由比例，则用图片链接去获取该图片的具体比例 如果无数据取0，让图片自己撑开--}}
+
   {{#if finalRatio '===' '0'}}
     {{ assign 'finalRatio' (append (default (get 'ratio' (img_size imageList.[0])) 0) '') }}
   {{/if}}
@@ -298,10 +263,10 @@ imgRealWidth 图片真实占位宽度
   {{ assign 'product_item_image_alt' (default altList.[0] '') }}
 
 {{else}}
-  {{!-- 如果图片为空 --}}
+
   {{ assign 'product_item_image_src' false }}
 {{/if}}
-{{!-- 下一张图片链接,如果没有下一张图片,不去处理 --}}
+
 {{#if imageList.[1]}}
   {{ assign 'product_item_next_image_src' imageList.[1] }}
   {{ assign 'product_item_next_image_alt' (default altList.[1] '') }}
@@ -311,7 +276,7 @@ imgRealWidth 图片真实占位宽度
 
 {{ assign 'discount_text' null }}
 {{ assign 'isImageRounded' (isTruthy (isTruthy theme.settings.edges '===' 'rounded') '&&' (isTruthy theme.settings.product_grid_image_margin '===' '0')) }}
-{{!-- 当存在原价，则计算折扣 --}}
+
 {{#if originPrice}}
   {{#if theme.settings.product_discount_style '===' 'number'}}
     {{ assign 'discount_text' (subtract originPrice productMinPrice) }}
@@ -361,7 +326,7 @@ imgRealWidth 图片真实占位宽度
             data-unique-key='{{ uniqueKey }}'
             data-index="{{ index }}"
             data-status="{{ soldOut }}"
-            class="product-item__mobile-btn-icon product-item__btn product-item__mobile-quick-view js-product-item-quick-view" href="javascript:void(0);">
+            class="product-item__mobile-btn-icon product-item__btn product-item__mobile-quick-view js-product-item-quick-view" href="javascript:;">
               {{ snippet 'icons/icon_quick_view' }}
             </a>
           {{/if}}
@@ -372,7 +337,7 @@ imgRealWidth 图片真实占位宽度
             data-unique-key='{{ uniqueKey }}'
             data-index="{{ index }}"
             data-status="{{ soldOut }}"
-            class="product-item__mobile-btn-icon product-item__btn product-item__mobile-quick-add js-product-item-quick-add" href="javascript:void(0);">
+            class="product-item__mobile-btn-icon product-item__btn product-item__mobile-quick-add js-product-item-quick-add" href="javascript:;">
               {{ snippet 'icons/icon_quick_add' }}
             </a>
           {{/and}}
@@ -395,7 +360,7 @@ imgRealWidth 图片真实占位宽度
     >
       <div class="product-item-image-wrapper {{#if isImageRounded}}rounded{{/if}}">
         <div class="product-item__image-content">
-          {{!-- 如果没有下一张图片，不展示hover效果 --}}
+
           {{#if (boolean product_item_next_image_src '&&' section.settings.product_hover_show_next)}}
             <div class="product-item-next-image"  data-plugin-product-item-next-img-box>
               {{ snippet 'product/commons/product-process-image' backgroundColor=backgroundColor fallbacksBgColor='#f3f3f3' imageRatio=finalRatio imageFit=imageFit src=product_item_next_image_src alt=product_item_next_image_alt placeholderHeight=placeholderHeight }}
@@ -404,9 +369,9 @@ imgRealWidth 图片真实占位宽度
           <div class="product-item-image"  data-plugin-product-item-img-box>
             {{ snippet 'product/commons/product-process-image' backgroundColor=backgroundColor fallbacksBgColor='#f3f3f3' imageRatio=finalRatio imageFit=imageFit src=product_item_image_src alt=product_item_image_alt placeholderHeight=placeholderHeight closeLazy=closeLazy piSize=pcSize mSize=mSize }}
           </div>
-          {{!-- 没有soldout字段时不展示tag --}}
+
           {{#if soldOut '!==' undefined}}
-            {{!-- 询盘（inquiry）不展示tag --}}
+
             {{#if (isFalsey inquiry)}}
             <div class="product-item-card-wrapper cart-position-{{ theme.settings.product_discount_position }}">
               <div class="product-item-card-content">
@@ -414,7 +379,7 @@ imgRealWidth 图片真实占位宽度
                   <span class="product-item-soldout-tag body4 product-item-hidden-in-grid">{{ t 'products.product_list.sold_out' }}</span>
                 {{else}}
                   {{#if (boolean theme.settings.product_discount '&&' showPrice)}}
-                    {{!-- 没有优惠不展示sale tag --}}
+
                     {{#if (boolean originPrice '&&' (boolean discount_text '>' 0))}}
                       <span class="product-item-sale-tag body4 product-item-hidden-in-grid">
                         {{#if theme.settings.product_discount_tag_style '===' 'sale'}}
@@ -449,7 +414,7 @@ imgRealWidth 图片真实占位宽度
         {{#if product_add_to_cart_pc_position '===' 'center'}}
         <div class="product-item__actions js-product-item__actions">
           {{#if (boolean (isFalsey forbiddenBtn) '&&' (isFalsey inquiry))}}
-            {{!-- 询盘（inquiry）不展示加车按钮 && 手机设备不显示，包括横屏 --}}
+
             {{#if product_quick_view}}
               <button
                 type="button"
@@ -462,7 +427,7 @@ imgRealWidth 图片真实占位宽度
                   {{ t 'products.product_list.quick_shop' }}
               </button>
             {{/if}}
-            {{!-- 支持快速加入购物车 && 商品未售罄 --}}
+
             {{#if (boolean product_add_to_cart '&&' (isFalsey soldOut))}}
               <button
                 type="button"
@@ -498,10 +463,10 @@ imgRealWidth 图片真实占位宽度
           {{/if}}
         </div>
         <div data-ssr-product-item-price-top></div>
-        {{!-- 询盘（inquiry）不展示价格 --}}
+
         {{#if (boolean (isFalsey inquiry) '&&' showPrice)}}
           <div class="product-item-price">
-            {{!-- 当原价大于售价时，显示原价 --}}
+
             {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice) '&&' showOrginPrice)}}
               {{#if (boolean theme.settings.superscript_decimals)}}
                 <span data-product-item-price="{{ originPrice }}" class="product-item-origin-price body4 isolate notranslate product-item-hidden-in-list">
@@ -589,7 +554,7 @@ imgRealWidth 图片真实占位宽度
             {{#if showMemberMark}}
             <span class="product-item-vip-price" data-vip-tag="small"></span>
             {{/if}}
-            {{!-- 当原价大于售价时，显示原价 --}}
+
             {{#if (boolean originPrice '&&' (boolean originPrice '>' productMinPrice) '&&' showOrginPrice)}}
               {{#if (boolean theme.settings.superscript_decimals)}}
                 <span data-product-item-price="{{ originPrice }}" class="product-item-origin-price body4 isolate notranslate product-item-hidden-in-grid">
@@ -607,14 +572,14 @@ imgRealWidth 图片真实占位宽度
             {{/if}}
             {{#if theme.settings.product_discount}}
               {{#if soldOut '!==' undefined}}
-                {{!-- 询盘（inquiry）不展示tag --}}
+
                 {{#if (isFalsey inquiry)}}
                   {{#if soldOut}}
                     <span class="product-item-hidden-in-list product-item-tag-panel">
                       <span class="product-item-soldout-tag body4" style="position: static;">{{ t 'products.product_list.sold_out' }}</span>
                     </span>
                   {{else}}
-                    {{!-- 没有优惠不展示sale tag --}}
+
                     {{#if (boolean showPrice '&&' originPrice '&&' (boolean discount_text '>' 0))}}
                       {{#if theme.settings.product_discount_tag_style '===' 'sale'}}
                         <span class="product-item-save-price">
@@ -670,7 +635,7 @@ imgRealWidth 图片真实占位宽度
     </a>
     <div class="product-item-button-group-under{{#if enabled_mobile_product_add_to_cart}} is-show-quick-add-mobile{{/if}}{{#if product_add_to_cart_pc_position '===' 'under'}} is-show-quick-add-pc{{/if}}">
       {{#if (boolean (isFalsey forbiddenBtn) '&&' (isFalsey inquiry))}}
-        {{!-- 询盘（inquiry）不展示加车按钮 && 手机设备不显示，包括横屏 --}}
+
         {{#if product_quick_view}}
           <button
             type="button"
@@ -683,7 +648,7 @@ imgRealWidth 图片真实占位宽度
               {{ t 'products.product_list.quick_shop' }}
           </button>
         {{/if}}
-        {{!-- 支持快速加入购物车 && 商品未售罄 --}}
+
         {{#if product_add_to_cart}}
           <button
             type="button"

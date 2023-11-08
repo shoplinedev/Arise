@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -13,7 +12,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
   const { reportClickSubscribeEmailButton, reportInputSubscribeNewEmail, reportSaveSubscribeEmail, reportUnsubscribeEmail, reportClickSubscribePhoneButton, reportClickSubscribePhoneEditIcon, reportInputSubscribeNewPhone, reportSaveSubscribePhone, reportUnsubscribePhone, reportUnsubscribeLine, reportUnsubscribeMessage, reportUnsubscribeConfirm, reportUnsubscribeCancel } = window['SLM']['theme-shared/biz-com/customer/reports/account.js'];
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
   const customer_subscription = SL_State.get('customer_subscription');
-
   class Subscription extends Card {
     constructor({
       id,
@@ -41,17 +39,14 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
       this.$subLineBtn = this.$subLinetem.find('.subscription-item__btn');
       this.$unsubLineBtn = this.$subLinetem.find('.subscription-item__edit');
     }
-
     init() {
       this.initModal();
       this.initMessenger();
     }
-
     initMessenger() {
       if (!customer_subscription.messenger) {
         return false;
       }
-
       this.messenger = new Messenger({
         onSuccess: () => {
           this.handleSubSuccess('fb');
@@ -59,13 +54,11 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
         }
       });
     }
-
     initModal() {
       this.unsubModal = new UnSubModal({
         id: 'customer-center-unsubscribe-modal',
         onSuccess: () => {
           this.unsubModal.hide();
-
           if (this.type === 'email') {
             this.$subEmailItem.removeAttr('data-subscribed');
             this.$subEmailItem.attr('data-sub-state', SUBSCRIBE_STATUS_MAP.CANCEL);
@@ -81,14 +74,12 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
             this.$subMessengerItem.removeAttr('data-subscribed');
             this.messenger.rebuildPlugin();
           }
-
           const typeMap = {
             email: 'Email',
             phone: 'Phone',
             line: 'Line',
             messenger: 'Message'
           };
-
           if (typeMap[this.type]) {
             reportUnsubscribeConfirm(typeMap[this.type]);
           }
@@ -152,13 +143,11 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
         const {
           type
         } = e.target;
-
         if (type === 'button') {
           reportClickSubscribePhoneButton();
         } else {
           reportClickSubscribePhoneEditIcon();
         }
-
         this.subPhoneModal.show();
         this.type = 'phone';
       });
@@ -169,7 +158,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
         this.confirmSubModal.show();
       });
     }
-
     handleUnsub(type) {
       const typeToReportEvent = {
         email: reportUnsubscribeEmail,
@@ -182,7 +170,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
       this.unsubModal.setType(this.type);
       this.unsubModal.show();
     }
-
     handleSubSuccess(type) {
       const typeToReportEvent = {
         phone: reportSaveSubscribePhone,
@@ -190,9 +177,7 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/subscription/index.
       };
       typeToReportEvent && typeToReportEvent[type] && typeToReportEvent[type]();
     }
-
   }
-
   _exports.default = Subscription;
   return _exports;
 }();

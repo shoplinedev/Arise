@@ -1,14 +1,11 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/utils/createShadowDom.js'] = window.SLM['commons/utils/createShadowDom.js'] || function () {
   const _exports = {};
-
   const createShadowDom = () => {
     const shadowDom = $('[data-node=shadow-dom]');
     shadowDom.each((_, el) => {
       const shadowContent = $(el).prev('[data-node=shadow-content]');
       $(el).attr('class', 'shadow-dom');
-
       if (shadowContent.get(0)) {
         shadowContent.children('.mce-content-body').css('word-break', 'break-word');
         shadowContent.prepend($('<style></style>').attr({
@@ -22,14 +19,12 @@ window.SLM['commons/utils/createShadowDom.js'] = window.SLM['commons/utils/creat
         shadowContent.removeAttr('data-node');
       }
     });
-
     if (shadowDom.length) {
       document.querySelectorAll('.shadow-dom').forEach(item => {
         item.__updateLazyExtraElements__();
       });
     }
   };
-
   _exports.default = createShadowDom;
   return _exports;
 }();

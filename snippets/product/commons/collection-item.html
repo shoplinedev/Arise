@@ -1,19 +1,19 @@
 
-{{!-- 传入参数（可选）：title 标题 --}}
+
 {{assign '_title' title}}
-{{!-- 传入参数：sortationData 分类数据，参考分类页sortations数组里面的item的sortation对象 --}}
-{{assign '_sortation' (default sortationData (JSONstringify '{}'))}}
-{{!-- 传入参数：collectionData 分类列表数据 --}}
+
+{{assign '_sortation' (default sortationData (json '{}'))}}
+
 {{assign '_collections' (cond (isArray collectionData) collectionData (JSONparse '[]'))}}
-{{!-- 传入参数：imgRealWidth 图片真实占位宽度 --}}
+
 {{assign '_imgRealWidth' (default imgRealWidth 300)}}
 
 
-{{!-- 封面图展示形状（circle/square/landscape/portrait） --}}
+
 {{assign 'gridShape' (default theme.settings.collection_grid_shape 'circle')}}
-{{!-- 分类图片（collection/product） --}}
+
 {{assign 'gridImage' (default theme.settings.collection_grid_image 'collection')}}
-{{!-- 分类图片处理 --}}
+
 {{assign 'product' (default (itemAt _sortation.productList 0) (JSONparse '{}'))}}
 {{assign 'productImage' (itemAt product.imageList 0)}}
 {{assign 'productImageAlt' (itemAt product.altList 0)}}
@@ -27,7 +27,7 @@
 {{assign 'titleColor' (default titleColor theme.settings.color_text)}}
 
 {{assign 'sortationCoverImgAlt' (cond sortationData.sortationCoverImgAlt sortationData.sortationCoverImgAlt productImageAlt)}}
-{{!-- /分类图片处理 --}}
+
 {{assign 'defaultImg' (split 'https://img.myshopline.com/image/shopline/ff8b7961d80d4f3db2329083ea5872c5.png,https://img.myshopline.com/image/shopline/e034d68bed0940e48221f9689aba4851.png,https://img.myshopline.com/image/shopline/b46b403a492046b490d239399ae2744a.png' ',')}}
 {{assign 'randomIndex' (random 0 2)}}
 {{assign 'showTitle' (default _title _sortation.title)}}

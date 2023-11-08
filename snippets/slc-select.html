@@ -1,0 +1,47 @@
+{{#if request.document_direction '===' 'rtl'}}
+  {{ combine_asset_tag 'commons/components/slc-select/index.rtl.css' inline=true}}
+{{else}}
+  {{ combine_asset_tag 'commons/components/slc-select/index.css' inline=true}}
+{{/if}}
+<!-- commons/components/slc-select/index.js -->
+  
+  {{ combine_asset_tag 
+    'commons/utils/element.js'
+    'commons/utils/isMobile.js'
+    'commons/components/slc-select/index.js'
+    type="text/javascript"
+    defer=true
+  }}
+
+
+<slc-select
+  {{#if id}}id="{{ id }}"{{/if}}
+  {{#if class}}class="{{ class }}"{{/if}}>
+  <details class="slc-select">
+    <summary class="slc-select__trigger">
+      <div class="slc-select__value body3">
+        {{#if value}}
+          <span>{{ value }}</span>
+        {{else}}
+          <span class="slc-select__placeholder">{{ placeholder }}</span>
+        {{/if}}
+      </div>
+
+      <svg class="slc-select__arrow-icon" width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.89949 3.94977L5.94974 8.00003L10 3.94977" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+      </svg>
+    </summary>
+
+    <div class="slc-select__overlay"></div>
+    <div class="slc-select__content global-modal-border-shadow">
+      {{#if title}}
+        <div class="slc-select__head">
+          <div class="slc-select__title body1">{{ title }}</div>
+        </div>
+      {{/if}}
+      <ul class="slc-select__options">
+        {{ slot_content }}
+      </ul>
+    </div>
+  </details>
+</slc-select>

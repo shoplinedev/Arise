@@ -104,7 +104,8 @@
       "view_cart": "カートを見る"
     },
     "next_step": {
-      "calculated_taxes_fees": "税金と運賃は次のステップで計算されます"
+      "calculated_taxes_fees": "税金と運賃は次のステップで計算されます",
+      "included_taxes_fees": "税込み、送料はチェックアウト時に計算されます"
     },
     "notices": {
       "change_password_after_verification": "確認後にパスワードを変更できます",
@@ -230,6 +231,7 @@
       "copy_success": "クーポンコードがコピーしました",
       "discount_title": "アカウントを有効にしてクーポンコードを取得する",
       "normal_title": "アカウントを有効にする",
+      "normal_title_with_discount_code": "",
       "subscription_text": "最新情報を受け取り、限定OFFなどにアクセスするため、メールを購読しましょう",
       "success_title": "おめでとう、クーポンコードを取得しました",
       "token_expired": "リンクがすでに無効になりました"
@@ -337,6 +339,7 @@
       "set_password": "パスワードは、数字、大文字、小文字で構成される 6 ～ 18 文字である必要があります",
       "sign__out": "サインアウト",
       "sign_in": "サインイン",
+      "sign_in_activate": "確認コードがアカウント {{account}} に送信されました。確認完了すると、アカウントをアクティブ化できます。",
       "sign_up": "サインアップ",
       "su": "日",
       "subscription_desc": "ストアの最新セール情報を入手可能",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "サブスクしていただきありがとうございます。 ログインしてより良い体験を得ることができます。"
     },
     "message": {
+      "format_error": "メッセージの形式はサポートされていません",
       "input_placeholder": "メッセージを残されますか？",
       "message": "メッセージ",
       "send": "送信"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "コレクション"
     },
+    "facets": {
+      "in_stock_only": "在庫ありのみを表示",
+      "sort_button": "分類する"
+    },
     "general": {
       "no_product_data_found": "商品データが見つかりません。しばらくしてからもう一度お試しください",
       "sold_out": "完売",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "楽天 で購入する",
       "go_to_yahoo_by_link": "ヤフー で購入する",
       "in_stock": "在庫あり",
+      "inventory_in_stock": "在庫あり",
+      "inventory_in_stock_show_count": "在庫: 残り {{ quantity }}",
+      "inventory_low_stock": "在庫が少ない",
+      "inventory_low_stock_show_count": "在庫僅少: 残り {{ quantity }}",
+      "inventory_out_of_stock": "在庫切れ",
+      "inventory_out_of_stock_continue_selling": "在庫あり",
       "inventory_quantity": "在庫数",
       "leave_us_message": "コメントを入力してください",
       "leave_us_message_get_back": "お問い合わせ内容はコメントで残してください。なるべく早くご連絡いたします",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}}点が選択されました",
       "from_price_html": "{{price}} より",
       "less": "レス",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} / {{total}} 点のアイテム",
       "load_more_tip": "もっとアイテムをロードする",
       "more": "もっと",
       "new_arrivals": "新着順",
@@ -612,7 +627,8 @@
       "save": "{{{priceDom}}} 引き",
       "save_byjs": "{{priceDom}} 引き",
       "save_ratio": "{{price}}% OFF",
-      "select_product_all_options": "この商品のすべてのオプションを選択してください",
+      "select_product_all_options": "選択した商品のバリエーションは不完全または利用できません。もう一度選んでください",
+      "sort_button": "分類する",
       "top_sellers": "人気順",
       "more__product_num": "{{num}} 製品",
       "one_product_num": "{{num}} 商品",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "ショッピングを続ける",
       "more": "もっと",
+      "saved": "保存されました",
       "total": "合計",
       "total_sum": "合計"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "サーバーエラー、後でもう一度試してください",
       "error_message_2014": "このアカウントが盗まれるリスクがあります",
       "error_message_2016": "このアカウントが盗まれるリスクがあります",
+      "error_message_2020": "システムがビジー状態です。後でもう一度お試しください。",
       "error_message_3": "サーバーエラー",
       "error_message_3001": "サーバーエラー、後でもう一度試してください",
       "error_message_3002": "不正な操作",
@@ -850,15 +868,22 @@
       "error_message_3010": "このメールアドレスは他のアカウントに関連付けられています",
       "error_message_3014": "コード送信エラー",
       "error_message_3015": "アカウントが有効化されました",
+      "error_message_3021": "システムがビジー状態です。後でもう一度お試しください。",
       "error_message_3022": "リンクがすでに無効になりました",
       "error_message_3023": "リンクのフォーマットが不正です",
       "error_message_3024": "リンクパラメータエラー",
       "error_message_3026": "アカウントフォーマットエラー",
+      "error_message_3029": "携帯電話番号でアクティブ化のは現在サポートされていません",
       "error_message_4": "サーバーエラー",
       "error_message_5": "サーバーエラー",
       "error_message_6": "サーバーエラー",
       "error_message_7": "パスワードは、数字、大文字、小文字で構成される 6 ～ 18 文字である必要があります"
     },
-    "editorSwitchCountryTip": "エディタで国の切り替えがサポートされていません"
+    "editorSwitchCountryTip": "エディタで国の切り替えがサポートされていません",
+    "shopby": {
+      "button": {
+        "show": "安全かつ迅速"
+      }
+    }
   }
 }

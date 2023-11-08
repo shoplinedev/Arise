@@ -104,7 +104,8 @@
       "view_cart": "Vis handlekurv"
     },
     "next_step": {
-      "calculated_taxes_fees": "Avgifter og frakt beregnet i kassen"
+      "calculated_taxes_fees": "Avgifter og frakt beregnet i kassen",
+      "included_taxes_fees": "Inkludert moms og frakt beregnes i kassen"
     },
     "notices": {
       "change_password_after_verification": "Du kan endre passord etter bekreftelse",
@@ -230,6 +231,7 @@
       "copy_success": "Kopiert kupongkode",
       "discount_title": "Aktiver konto og få rabattkoden",
       "normal_title": "Aktiver konto",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Abonner på e-post for å motta oppdateringer, få tilgang til eksklusive tilbud og mer.",
       "success_title": "Gratulerer med å få en god rabatt",
       "token_expired": "Linken er utløpt"
@@ -337,6 +339,7 @@
       "set_password": "Passord må bestå av 6-18 tegn bestående av tall, store og små bokstaver",
       "sign__out": "Logg Av",
       "sign_in": "LOGG INN",
+      "sign_in_activate": "Verifisering kode er sendt til {{account}}-kontoen din. Du kan aktivere kontoen din etter verifisering",
       "sign_up": "MELDE SEG PÅ",
       "su": "sø",
       "subscription_desc": "Få siste nytt om butikken",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Takk for abonnement. Du kan registrere deg for en bedre opplevelse."
     },
     "message": {
+      "format_error": "Inkompatibelt melding format",
       "input_placeholder": "Er det noe du vil legge igjen en beskjed til?",
       "message": "Budskap",
       "send": "Sende"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kategori"
     },
+    "facets": {
+      "in_stock_only": "Kun på lager",
+      "sort_button": "Sorter"
+    },
     "general": {
       "no_product_data_found": "Finner ingen produktdata. Prøv på nytt senere",
       "sold_out": "Utsolgt",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Kjøp i LOTTE",
       "go_to_yahoo_by_link": "Kjøp i Yahoo",
       "in_stock": "På lager",
+      "inventory_in_stock": "Spotvarer",
+      "inventory_in_stock_show_count": "Lager: {{ quantity }} gjenstående",
+      "inventory_low_stock": "lavt inventar",
+      "inventory_low_stock_show_count": "Lavt Lager: {{ quantity }} gjenstående",
+      "inventory_out_of_stock": "Tomt på lager",
+      "inventory_out_of_stock_continue_selling": "Spotvarer",
       "inventory_quantity": "Lagerstørrelsen",
       "leave_us_message": "Skriv inn meldingen",
       "leave_us_message_get_back": "Legg igjen en beskjed, så ringer vi tilbake så snart som mulig",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} er valgt",
       "from_price_html": "Fra {{price}}",
       "less": "mindre",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} av {{total}} varer",
       "load_more_tip": "Laster inn flere varer",
       "more": "mer",
       "new_arrivals": "Nyankomne",
@@ -612,7 +627,8 @@
       "save": "Rabatt {{{priceDom}}}",
       "save_byjs": "Rabatt {{priceDom}}",
       "save_ratio": "{{price}}% avslag",
-      "select_product_all_options": "Velg produktstørrelse først!",
+      "select_product_all_options": "Den valgte produktvarianten er ufullstendig eller utilgjengelig. Vennligst velg på nytt",
+      "sort_button": "Sorter",
       "top_sellers": "Bestselgere",
       "more__product_num": "{{num}} Produkter",
       "one_product_num": "{{num}} produkt",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Fortsette å handle",
       "more": "Mer",
+      "saved": "lagret",
       "total": "Totalt",
       "total_sum": "Totalt"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Unntak i tjenesten. Prøv på nytt senere",
       "error_message_2014": "Konto i fare",
       "error_message_2016": "Konto i fare",
+      "error_message_2020": "Systemet er travelt, prøv igjen senere",
       "error_message_3": "Service unntak",
       "error_message_3001": "Unntak i tjenesten. Prøv på nytt senere",
       "error_message_3002": "Brukere som ikke er bundet til mobiltelefoner/postbokser prøver å endre passord",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-posten er bundet av andre kontoer",
       "error_message_3014": "Gjengivelse av tekstmelding/postmal mislyktes",
       "error_message_3015": "Kontoen er aktivert",
+      "error_message_3021": "Systemet er travelt, prøv igjen senere",
       "error_message_3022": "Linken er utløpt",
       "error_message_3023": "Linken har feil format",
       "error_message_3024": "Linken er feil",
       "error_message_3026": "Feil i kontoformat",
+      "error_message_3029": "Støtter ikke mobil nummer aktivering på dette tidspunktet",
       "error_message_4": "Service unntak",
       "error_message_5": "Service unntak",
       "error_message_6": "Service unntak",
       "error_message_7": "Passord må bestå av 6-18 tegn bestående av tall, store og små bokstaver"
     },
-    "editorSwitchCountryTip": "Landsendring er ikke kompatibel med editoren"
+    "editorSwitchCountryTip": "Landsendring er ikke kompatibel med editoren",
+    "shopby": {
+      "button": {
+        "show": "Trygt og raskere"
+      }
+    }
   }
 }

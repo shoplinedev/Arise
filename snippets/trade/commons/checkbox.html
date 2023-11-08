@@ -1,22 +1,16 @@
 {{#if parentClass}}
     <div class="{{parentClass}} trade_checkout_checkbox_wrapper">
 {{/if}}
-        {{#if checked}}
-        <span id="trade_checkout_checkbox" class="trade_checkout_checkbox trade_checkout_checkbox-checked">
-            <input type="checkbox" id="{{id}}" checked=true
-                class="trade_checkout_checkbox-input">
-        {{else}}
-        <span id="trade_checkout_checkbox" class="trade_checkout_checkbox">
-            <input type="checkbox" id="{{id}}"
-                class="trade_checkout_checkbox-input">
-        {{/if}}
-            <span class="trade_checkout_checkbox-inner"></span>
+    <span id="trade_checkout_checkbox" class="trade_checkout_checkbox {{#if (isTruthy checked)}}trade_checkout_checkbox-checked{{/if}}{{#if (isTruthy disabled)}}trade_checkout_checkbox-disabled{{/if}}">
+          <input type="checkbox" id="{{id}}" {{#if disabled}}disabled{{/if}} {{#if checked}}checked=true{{/if}}
+              class="trade_checkout_checkbox-input">
+        <span class="trade_checkout_checkbox-inner"></span>
+    </span>
+    {{#if children}}
+        <span class="trade_checkout_checkbox-text">
+            {{{children}}}
         </span>
-        {{#if children}}
-            <span class="trade_checkout_checkbox-text">
-                {{{children}}}
-            </span>
-        {{/if}}
+    {{/if}}
 {{#if parentClass}}
     </div>
 {{/if}}

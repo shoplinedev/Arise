@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/lozad/index.js'] = window.SLM['theme-shared/utils/lozad/index.js'] || function () {
   const _exports = {};
   const lozad = window['SLM']['theme-shared/utils/lozad/core.js'].default;

@@ -11,12 +11,17 @@
                 {{/with}}
 
                 {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
-                {{!--{{assign 'is_open' (is_nav_active this global.request.uri.path)}}--}}
+                
+                {{#if navItem.hrefAttr}}
+                  {{assign "ele" "a"}}
+                {{else}}
+                  {{assign "ele" "span"}}
+                {{/if}}
                 {{#if has_dropdown}}
                     <div class="nav-pd mobile-nav__has-sublist {{#unless navItem.hrefAttr}}mobile-nav__empty-url{{/unless}}">
-                        <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body3 mobile-nav__link mobile-nav__link--top-level" id="Label-{{ this.id }}">
+                        <{{ele}} {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body3 mobile-nav__link mobile-nav__link--top-level" id="Label-{{ this.id }}">
                             {{ navItem.name }}
-                        </a>
+                        </{{ele}}>
                         <div class="mobile-nav__toggle">
                             <button type="button" aria-controls="Linklist-{{ this.id }}" aria-labelledby="Label-{{ this.id }}"
                                     class="nav-collapsible-trigger top-level {{#if is_open}}is-open{{/if}}">
@@ -28,7 +33,7 @@
                 {{/if}}
 
                 {{#unless has_dropdown}}
-                    <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem nav-pd body3 mobile-nav__link mobile-nav__link--top-level">{{ navItem.name }}</a>
+                    <{{ele}} {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem nav-pd body3 mobile-nav__link mobile-nav__link--top-level">{{ navItem.name }}</{{ele}}>
                 {{/unless}}
 
 
@@ -45,13 +50,16 @@
                                     {{#if (length this.childNodes)}}
                                         {{assign 'has_sub_dropdown' true}}
                                     {{/if}}
-
+                                    {{#if navItem.hrefAttr}}
+                                      {{assign "ele" "a"}}
+                                    {{else}}
+                                      {{assign "ele" "span"}}
+                                    {{/if}}
                                     <li class="mobile-nav__item" {{{ this.shopline_attributes }}}>
                                         <div class="mobile-nav__child-item nav-pd {{#unless navItem.hrefAttr}}mobile-nav__empty-url{{/unless}}">
-                                            <a class="__sl-custom-track-stage-navItem body5 mobile-nav__link" id="Sublabel-{{ this.id }}" {{{navItem.hrefAttr}}}>
+                                            <{{ele}} class="__sl-custom-track-stage-navItem body5 mobile-nav__link" id="Sublabel-{{ this.id }}" {{{navItem.hrefAttr}}}>
                                                 {{navItem.name}}
-                                            </a>
-
+                                            </{{ele}}>
                                             {{#if has_sub_dropdown}}
                                                 <button type="button" aria-controls="Sublinklist-{{this.id}}" aria-labelledby="Sublabel-{{ this.id }}"
                                                         class="nav-collapsible-trigger {{#if is_open}}is-open{{/if}}">
@@ -68,10 +76,15 @@
                                                     <ul class="nav-ph">
                                                         {{#each this.childNodes}}
                                                             {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+                                                            {{#if navItem.hrefAttr}}
+                                                              {{assign "ele" "a"}}
+                                                            {{else}}
+                                                              {{assign "ele" "span"}}
+                                                            {{/if}}
                                                             <li class="mobile-nav__item nav-pd" {{{ this.shopline_attributes }}}>
-                                                                <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body5 mobile-nav__link">
+                                                                <{{ele}} {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body5 mobile-nav__link">
                                                                     {{ navItem.name }}
-                                                                </a>
+                                                                </{{ele}}>
                                                             </li>
                                                         {{/each}}
                                                     </ul>

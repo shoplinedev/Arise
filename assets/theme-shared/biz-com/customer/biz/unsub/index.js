@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] || function () {
   const _exports = {};
   const { escape } = window['html-escaper'];
@@ -9,7 +8,6 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/toast.js'].default;
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
-
   class Unsub {
     constructor({
       id
@@ -24,14 +22,11 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
       this.reasonDetail = null;
       this.init();
     }
-
     init() {
       const isLogin = SL_State.get('request.is_login');
-
       if (!isLogin) {
         window.location.href = redirectTo(SIGN_IN);
       }
-
       getSubscriptions({
         subscribeAccountTypes: 'email',
         subscribeChannel: 'center'
@@ -45,14 +40,12 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
       this.initTextarea();
       this.initEvent();
     }
-
     initTextarea() {
       const $textareaSelector = $(this.textareaSelector);
       $textareaSelector.on('input', event => {
         $textareaSelector.css('height', `${34 + 2}px`);
         const height = $textareaSelector[0].scrollHeight;
         $textareaSelector.css('height', `${height + 2}px`);
-
         if (event.target.value.length > 300) {
           $(this.textareaWrapSelector).addClass('has-error');
           this.validate = false;
@@ -60,16 +53,13 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
           $(this.textareaWrapSelector).removeClass('has-error');
           this.validate = true;
         }
-
         this.reasonDetail = event.target.value;
       });
     }
-
     initEvent() {
       $(this.reasonRadioSelector).on('change', event => {
         this.reason = event.target.value;
         $(this.submitSelector).removeAttr('disabled');
-
         if (this.reason === '6') {
           $(this.textareaWrapSelector).show();
         } else {
@@ -80,11 +70,9 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
         if (!this.reason) {
           return false;
         }
-
         if (this.reason === '6' && !this.validate) {
           return false;
         }
-
         $(this.submitSelector).attr('disabled', 'disabled').addClass('btn--loading');
         postUnSubscribe({
           subscribeAccountType: 'email',
@@ -105,9 +93,7 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub/index.js'] = window.SLM['the
         });
       });
     }
-
   }
-
   _exports.default = Unsub;
   return _exports;
 }();

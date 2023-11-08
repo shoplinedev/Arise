@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] = window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] || function () {
   const _exports = {};
   const { v4: uuid } = window['uuid'];
@@ -21,11 +20,9 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
     createMobilePreviewVoucher,
     createDesktopPreviewVoucher
   } = modalFactory;
-
   function getPageState(stateName) {
     return window.SL_State.get(stateName);
   }
-
   const ErrorCodeEnum = {
     VOUCHER_LIMIT_CODE: 'TCTQORDER_VOUCHER_LIMIT_ERROR',
     KBANK_SERVICE_TIMEOUT_ERROR: 'TCTQKBANK_SERVICE_TIMEOUT_ERROR',
@@ -33,7 +30,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
   };
   const orderSeq = getPageState('customer.order.basicInfo.orderSeq');
   const orderSeqMark = getPageState('customer.order.basicInfo.orderMark');
-
   class VoucherUpload {
     constructor(ele) {
       this.aliyunOss;
@@ -43,11 +39,9 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
       this.eleWrapper = $(ele);
       this.inputEle = $(ele).find('input');
     }
-
     init() {
       this.bindEventListener();
     }
-
     static getOssUploader() {
       if (!VoucherUpload.aliyunOss) {
         VoucherUpload.aliyunOss = new SlAliyunOss({
@@ -58,10 +52,8 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
           limitPx: 0
         });
       }
-
       return VoucherUpload.aliyunOss;
     }
-
     static getOssUploaderPdf() {
       if (!VoucherUpload.aliyunOssPdf) {
         VoucherUpload.aliyunOssPdf = new SlAliyunOss({
@@ -72,10 +64,8 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
           limitPx: 0
         });
       }
-
       return VoucherUpload.aliyunOssPdf;
     }
-
     async uploadPdfToServer() {
       const uploadPdfResult = await VoucherUpload.getOssUploaderPdf().upload({
         fileList: [{
@@ -85,7 +75,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
       });
       const uploadResultOnePage = uploadPdfResult && uploadPdfResult[0];
       const res = uploadResultOnePage && uploadResultOnePage.data && uploadResultOnePage.data[0];
-
       if (res && res.success) {
         sentryLogger.info('pdf上传成功', {
           action: Action.Upload,
@@ -102,7 +91,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
           });
           const uploadResultOne = uploadResult && uploadResult[0];
           const data = uploadResultOne && uploadResultOne.data && uploadResultOne.data[0];
-
           if (data && data.success) {
             sentryLogger.info('pdf图片上传成功', {
               action: Action.Upload,
@@ -120,13 +108,11 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
             this.reset();
             return;
           }
-
           console.error('uploadImageToServer', data, uploadResult);
           throw new Error('upload failed');
         });
       }
     }
-
     async uploadImageToServer() {
       sentryLogger.info('图片上传开始', {
         action: Action.Upload,
@@ -140,7 +126,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
       });
       const uploadResultOne = uploadResult && uploadResult[0];
       const data = uploadResultOne && uploadResultOne.data && uploadResultOne.data[0];
-
       if (data && data.success) {
         sentryLogger.info('图片上传成功', {
           action: Action.Upload,
@@ -157,20 +142,15 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
         this.reset();
         return;
       }
-
       console.error('uploadImageToServer', data, uploadResult);
       throw new Error('upload failed');
     }
-
     updateUploadDisplay() {
       const tradeCheckoutPaymentVoucherTextDom = $('#tradeCheckoutPaymentVoucherText');
-
       if (tradeCheckoutPaymentVoucherTextDom) {
         tradeCheckoutPaymentVoucherTextDom.css('display', 'block');
       }
-
       const paymentUploadNumDom = $('#tradeCheckoutPaymentUploadNum');
-
       if (paymentUploadNumDom) {
         const uploadNum = paymentUploadNumDom.attr('data-num') || 0;
         const num = Number(uploadNum) + 1;
@@ -180,14 +160,12 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
         paymentUploadNumDom.attr('data-num', num);
       }
     }
-
     uploadEffect() {
       this.updateUploadDisplay();
       this.displayPreviewModule();
       this.removeUpload();
       this.addUploadEntrance();
     }
-
     async upload() {
       if (this.file && this.file.type === 'application/pdf') {
         await this.uploadPdfToServer();
@@ -195,15 +173,12 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
         await this.uploadImageToServer();
       }
     }
-
     paymentVoucherErrorFn(blockType) {
       const paymentVoucherError = $('#tradeCheckoutPaymentVoucherError');
-
       if (paymentVoucherError) {
         paymentVoucherError.css('display', blockType);
       }
     }
-
     bindEventListener() {
       this.inputEle.on('change', async () => {
         sentryLogger.info('凭证数据更改', {
@@ -214,16 +189,13 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
         } = this.inputEle && this.inputEle.get(0) || {};
         this.file = files[0];
         const ACCEPT = ['image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/webp', 'image/svg', '.raw', 'application/pdf'];
-
         if (this.file && this.file.size > 20 * 1024 * 1024 || !ACCEPT.includes(this.file && this.file.type)) {
           this.paymentVoucherErrorFn('block');
           this.file = null;
           this.inputEle.get(0).value = null;
           return;
         }
-
         this.toggleLoading();
-
         try {
           await this.upload();
         } catch (error) {
@@ -233,7 +205,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
             status: Status.Failure
           });
           console.error('bindEventListener error', error);
-
           switch (error.code) {
             case ErrorCodeEnum.VOUCHER_LIMIT_CODE:
               Toast.init({
@@ -243,40 +214,33 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
                 window.location.reload();
               }, 300);
               break;
-
             case ErrorCodeEnum.ORDER_NOT_EXIST_ERROR:
               Toast.init({
                 content: t('cart.order.invalid_order_number')
               });
               break;
-
             case ErrorCodeEnum.KBANK_SERVICE_TIMEOUT_ERROR:
               Toast.init({
                 content: t('cart.order.try_later')
               });
               break;
-
             default:
               Toast.init({
                 content: t('cart.order.try_again')
               });
               break;
           }
-
           this.inputEle.get(0).value = null;
         }
       });
     }
-
     reset() {
       this.paymentVoucherErrorFn('none');
       this.toggleLoading();
     }
-
     toggleLoading() {
       this.eleWrapper.toggleClass('sl-component-loading');
     }
-
     generateUploadModule() {
       const template = `<div class="trade-file-upload icon-style" id="trade-file-upload_1">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -289,7 +253,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
     </div>`;
       return $(template);
     }
-
     parseVoucherInfoItemByStatus() {
       const {
         uploadTime,
@@ -305,14 +268,12 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
         <span class="trade-transfer-voucher_info-item-key">${t('order.checkout_order.reference_number')}:</span>
         <span class="trade-transfer-voucher_info-item-value">${transRef || '-'}</span>
       </div>`];
-
       if (receiverAccount) {
         result.push(` <div class="trade-transfer-voucher_info-item">
       <span class="trade-transfer-voucher_info-item-key">${t('order.checkout_order.receiver_account')}:</span>
       <span class="trade-transfer-voucher_info-item-value">${receiverAccount}</span>
     </div>`);
       }
-
       if (amount) {
         result.push(`<div class="trade-transfer-voucher_info-item">
       <span class="trade-transfer-voucher_info-item-key">${t('order.checkout_order.pay_amount')}:</span>
@@ -321,10 +282,8 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
         }) : amount}</span>
     </div>`);
       }
-
       return result.join('\n');
     }
-
     generatePreviewModule(url) {
       const template = `<div class="trade-transfer-voucher">
         <div class="trade-transfer-voucher_img">
@@ -333,7 +292,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
     </div>`;
       return $(template);
     }
-
     bindVoucherPreview(previewModule) {
       const imgDom = previewModule.find('img');
       imgDom && imgDom.on('click', e => {
@@ -358,14 +316,12 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
           label: t('cart.order.paymentVoucher.format'),
           value: fileType || '-'
         }];
-
         if (receiverAccount) {
           data.push({
             label: t('order.checkout_order.receiver_account'),
             value: receiverAccount
           });
         }
-
         if (amount) {
           data.push({
             label: t('order.checkout_order.pay_amount'),
@@ -377,7 +333,6 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
             </div>`
           });
         }
-
         if (url) {
           const options = {
             imgUrls: [url],
@@ -390,32 +345,25 @@ window.SLM['theme-shared/biz-com/customer/biz/order/detail/voucher_upload.js'] =
         }
       });
     }
-
     displayPreviewModule() {
       const previewModule = this.generatePreviewModule(this.voucherInfo.voucherUrl);
       this.bindVoucherPreview(previewModule);
       $('.trade-transfer-voucher-wrapper').append(previewModule);
     }
-
     removeUpload() {
       this.eleWrapper.remove();
     }
-
     addUploadEntrance() {
       const imageElements = $('.trade-transfer-voucher');
-
       if (imageElements.length >= 5) {
         $('.trade-checkout-payment-voucher_desc').css('display', 'none');
         return;
       }
-
       const uploadModule = this.generateUploadModule();
       $('.trade-transfer-voucher-wrapper').append(uploadModule);
       new VoucherUpload(uploadModule[0]).init();
     }
-
   }
-
   _exports.default = VoucherUpload;
   return _exports;
 }();

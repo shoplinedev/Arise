@@ -1,17 +1,9 @@
 <!-- product/collections/header.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/lodash.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/lodash.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/lodash.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/sectionsLoad/index.js'
     'product/collections/js/banner.js'
@@ -20,23 +12,30 @@
     defer=true
   }}
 
-<!-- snippet -->
-<div class="product-list-banner" 
+
+<style>
+  #shopline-section-{{ section.id }} {
+    --pc-collection-img-height: {{ section.settings.pc_collection_img_height }}px;
+    --md-collection-img-height: {{ section.settings.md_collection_img_height }}px;
+  }
+</style>
+
+<div class="product-list-banner"
   data-section-type="collections-header"
   data-section-id="{{ section.id }}"
 >
   {{#if sortationId}}
     {{ snippet 'product/collections/collections-banner' sortation=sortation.sortation settings=section.settings }}
   {{else}}
-    {{!-- 如果没有banner，加入一个特殊的div给header作为标识 --}}
+
     <div id="CollectionHeaderSection" data-section-id="shopline-section-product/collections/collection-header"
       data-section-type="shopline-section-product/collections/collection-header" class="product-list-header section-gap">
-      <!-- 全部商品列表页标题 -->
+
       <div class="product-list-header-title container">
         {{#if theme.settings.show_breadcrumb}}
         <div class="product-list-crumbs">
           <a href="{{ redirect_to '/' }}" class="product-list-header-title-url custom-body4">{{ t 'general.general.home' }} /</a>
-          <a class="product-list-header-title-url custom-body4" style="opacity: .6;">{{ t 'products.product_list.products' }}</a>
+          <a href="javascript:;" class="product-list-header-title-url custom-body4" style="opacity: .6;">{{ t 'products.product_list.products' }}</a>
         </div>
         {{/if}}
         <h1 class="product-list-header-title-productsTitle custom-title2 title2">{{ t 'products.product_list.products' }}</h1>
@@ -46,7 +45,7 @@
 </div>
 
 
-<!-- schema -->
+
 {{#schema}}
 {
   "name": "t:sections.product_collections_collection-header.name",
@@ -70,6 +69,26 @@
       "label": "t:sections.product_collections_collection-header.settings.banner_image_mobile.label"
     },
     {
+      "type": "range",
+      "id": "pc_collection_img_height",
+      "label": "t:sections.product_collections_collection-header.settings.pc_collection_img_height.label",
+      "default": "420",
+      "min": 100,
+      "max": 500,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "md_collection_img_height",
+      "label": "t:sections.product_collections_collection-header.settings.md_collection_img_height.label",
+      "default": "250",
+      "min": 80,
+      "max": 300,
+      "step": 1,
+      "unit": "px"
+    },
+    {
       "type": "switch",
       "id": "parallax_scroll",
       "label": "t:sections.product_collections_collection-header.settings.parallax_scroll.label",
@@ -81,6 +100,8 @@
     "settings": {
       "show_category_name": true,
       "show_category_cover": true,
+      "pc_collection_img_height": "420",
+      "md_collection_img_height": "250",
       "parallax_scroll": false
     }
   }

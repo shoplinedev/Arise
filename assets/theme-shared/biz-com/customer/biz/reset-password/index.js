@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -10,7 +9,6 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window
   const { reportVerifyAccountSuccess, reportChangePasswordToUserCenter } = window['SLM']['theme-shared/biz-com/customer/reports/password.js'];
   const SetPassword = window['SLM']['theme-shared/biz-com/customer/biz/reset-password/password.js'].default;
   const { wrapArmorCaptcha } = window['SLM']['theme-shared/biz-com/customer/commons/captcha-modal/index.js'];
-
   class ResetPassword extends Customer {
     constructor({
       id = 'reset-password'
@@ -21,7 +19,6 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window
       });
       this.$tips = null;
     }
-
     init() {
       this.$tips = $(`#${this.formId} .customer__tips`);
       this.queryParams = this.configs;
@@ -29,7 +26,6 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window
       this.initForm();
       $(`#${this.formId} .customer__footer-link .customer--link`).click(() => reportChangePasswordToUserCenter());
     }
-
     initForm() {
       const fields = this.getFieldConfigs();
       this.bindForm = new Form({
@@ -38,7 +34,6 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window
         onSubmit: data => this.onSubmit(data)
       });
     }
-
     getFieldConfigs() {
       const FIELD_TYPES = [{
         type: 'verifycode',
@@ -49,14 +44,14 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window
       }];
       return getFormFields(FIELD_TYPES);
     }
-
     async sendVerifyCode() {
       const params = this.UDBParams;
       await wrapArmorCaptcha({
         onCaptureCaptcha: async captchaToken => {
           const {
             stoken: lastStoken
-          } = await sendUniversalVerificationCode({ ...params,
+          } = await sendUniversalVerificationCode({
+            ...params,
             captcha: captchaToken
           });
           super.updateToken(params, {
@@ -69,7 +64,6 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window
         }
       });
     }
-
     showAccountTips(account) {
       this.$tips.html(`
       <span>${t('customer.general.verification_code_sent_tip')} ${account},</span>
@@ -78,7 +72,6 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window
     `);
       this.$tips.show();
     }
-
     async onSubmit(formValue = {}) {
       const params = this.UDBParams;
       const {
@@ -94,17 +87,14 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window
       this.verifyAccountSuccess(super.formatterMask(params));
       this.initChangeAccountForm();
     }
-
     verifyAccountSuccess() {
       const {
         mode
       } = this.query;
-
       if (!mode) {
         reportVerifyAccountSuccess();
       }
     }
-
     initChangeAccountForm() {
       this.$tips.hide();
       $(`#${this.formId}-verify`).hide();
@@ -114,9 +104,7 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/index.js'] = window
         form: this
       });
     }
-
   }
-
   _exports.default = ResetPassword;
   return _exports;
 }();

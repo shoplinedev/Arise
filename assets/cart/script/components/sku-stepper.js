@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/components/sku-stepper.js'] || function () {
   const _exports = {};
   const Cookie = window['js-cookie']['default'];
@@ -11,7 +10,6 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
   const { Status: LoggerStatus } = window['SLM']['commons/logger/index.js'];
   const Toast = window['SLM']['commons/components/toast/index.js'].default;
   const CartUtil = window['SLM']['cart/script/utils/cart-util/index.js'].default;
-  const cartHdReport = window['SLM']['cart/script/report/cartHdReport.js'].default;
   const cartReport = window['SLM']['cart/script/report/cartReport.js'].default;
   const { toggleVisibility } = window['SLM']['cart/script/biz/sticky-cart/index.js'];
   const observer = window['SLM']['cart/script/domain/model/observer.js'].default;
@@ -21,12 +19,12 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
   const modelHelper = window['SLM']['cart/script/domain/model/helpers.js'].default;
   const CartService = window['SLM']['cart/script/service/cart/index.js'].default;
   const CartItemModel = window['SLM']['cart/script/domain/model/cartItem.js'].default;
+  const responseCodeVO = window['SLM']['cart/script/domain/vo/responseCode.js'].default;
+  const handleAddToCartErrorCodeToast = window['SLM']['commons/cart/handleAddToCartErrorCodeToast.js'].default;
   const logger = LoggerService.pipeOwner(`${Owner.Cart} components/sku-stepper`);
   const cartToken = Cookie.get('t_cart');
-
   const getCursorPosition = function (element) {
     let cursorPos = 0;
-
     if (document.selection) {
       const selectRange = document.selection.createRange();
       selectRange.moveStart('character', -element.value.length);
@@ -34,27 +32,21 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
     } else if (element.selectionStart || parseInt(element.selectionStart, 10) === 0) {
       cursorPos = element.selectionStart;
     }
-
     return cursorPos;
   };
-
   const getParentId = function (ele) {
     let t = ele;
-
     while (t && t.length) {
       if (t.hasClass('trade-cart-sku-item')) {
         return t.attr('id');
       }
-
       t = t.parent();
     }
   };
-
   const toast = new Toast({
     content: 'content',
     className: 'test'
   });
-
   class SkuStepper {
     constructor({
       root,
@@ -113,7 +105,6 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
       });
       this.beforeValue = totalSkuNum;
     }
-
     init() {
       logger.info(`normal 主站购物车 skuStepper init`, {
         data: {
@@ -141,13 +132,11 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
         status: LoggerStatus.Success
       });
     }
-
     unbind() {
       this.$minusButton && this.$minusButton.off && this.$minusButton.off();
       this.$plusButton && this.$plusButton.off && this.$plusButton.off();
       this.$input && this.$input.off && this.$input.off();
     }
-
     changeItemNumReport() {
       try {
         logger.info(`normal 主站购物车 skuStepper changeItemNumReport`, {
@@ -158,14 +147,6 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
           action: Action.EditCart,
           status: LoggerStatus.Start
         });
-        cartHdReport.updateItem({
-          spuId: this.stepper.spuId,
-          skuId: this.stepper.skuId,
-          quantity: this.beforeValue,
-          price: this.stepper.price,
-          update_quantity: this.stepper.value
-        });
-
         if (this.stepper.value === 0) {
           const params = {
             spuId: this.stepper.spuId,
@@ -181,9 +162,7 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
           const products = modelHelper.reducer(CartService.takeCartService().cartItemList).next(CartItemModel.findProductWithGroupIdAndSkuId, CartItemModel.getGroupId(params), CartItemModel.getSkuId(params))() || params;
           const subProducts = modelHelper.reducer(CartService.takeCartService().cartItemList).next(CartItemModel.filterProductInGroup, CartItemModel.getGroupId(products)).next(CartItemModel.filterProductsWithParentSkuId, CartItemModel.getSkuId(products))() || [];
           cartReport.removeItem(products, subProducts);
-          cartHdReport.removeRp(params);
         }
-
         this.beforeValue = this.stepper.value;
         logger.info(`normal 主站购物车 skuStepper changeItemNumReport`, {
           data: {
@@ -206,8 +185,7 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
         console.error(e);
       }
     }
-
-    changeItemNum() {
+    async changeItemNum() {
       logger.info(`normal 主站购物车 skuStepper changeItemNum`, {
         data: {
           cartToken,
@@ -218,7 +196,12 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
       });
       this.stepper.setRendering(true);
       this.changeItemNumReport();
-      CartUtil.changeItemNum(this.stepper.spuId, this.stepper.skuId, this.stepper.value, this.stepper.groupId, this.stepper.productSource);
+      const res = await CartUtil.changeItemNum(this.stepper.spuId, this.stepper.skuId, this.stepper.value, this.stepper.groupId, this.stepper.productSource);
+      if (!responseCodeVO.isOk(res)) {
+        this.restorePreValue();
+        this.stepper.setRendering(false);
+        handleAddToCartErrorCodeToast(res);
+      }
       logger.info(`normal 主站购物车 skuStepper changeItemNum`, {
         data: {
           cartToken,
@@ -228,21 +211,17 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
         status: LoggerStatus.Success
       });
     }
-
     limitToastNum(num) {
       if (num > 0) {
         return num;
       }
-
       return '0';
     }
-
     toastLimit() {
       const {
         maxPurchaseReasonCode,
         maxPurchaseTotalNum
       } = this.stepper;
-
       if (cartLimitedEnum.NORMAL_ITEM_MAX_NUM.includes(maxPurchaseReasonCode)) {
         toast.open(I18n(`cart.item.add_limit2`));
         this.render();
@@ -258,7 +237,14 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
         }));
       }
     }
-
+    storePreValue() {
+      this.stepper.preValue = this.stepper.value;
+    }
+    restorePreValue() {
+      this.stepper.value = this.stepper.preValue;
+      this.setValue(this.stepper.value);
+      this.render();
+    }
     initEventListener() {
       this.$minusButton && this.$minusButton.on && this.$minusButton.on('click', () => {
         logger.info(`normal 主站购物车 skuStepper minusBtnClick`, {
@@ -282,8 +268,8 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
           value
         } = stepper;
         const stepValue = Math.max(value - groupTotalDiscountValue, 1);
-
         if (stepValue > 0) {
+          this.storePreValue();
           if (stepValue > maxPurchaseNum) {
             if (cartLimitedEnum.ACTIVE.includes(maxPurchaseReasonCode)) {
               toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(undefined, this.limitToastNum(maxPurchaseTotalNum)));
@@ -292,7 +278,6 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
                 stock: this.limitToastNum(maxPurchaseTotalNum)
               }));
             }
-
             if (value === 1) {
               this.stepper.value = 0;
             } else if (maxPurchaseNum > 0) {
@@ -300,12 +285,10 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
             } else {
               this.stepper.value = 1;
             }
-
             this.render();
           } else {
             this.stepper.value -= 1;
           }
-
           this.changeItemNum();
           logger.info(`normal 主站购物车 skuStepper minusBtnClick`, {
             data: {
@@ -337,16 +320,16 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
           maxPurchaseNum
         } = stepper;
         const stepValue = Math.max(value - groupTotalDiscountValue, 1);
-
         if (stepValue < maxPurchaseNum) {
+          this.storePreValue();
           this.stepper.value += 1;
           this.changeItemNum();
         } else if (stepValue === maxPurchaseNum) {
           this.toastLimit();
         } else {
           this.toastLimit();
-
           if (stepValue > maxPurchaseNum) {
+            this.storePreValue();
             this.stepper.value = maxPurchaseNum > 0 ? maxPurchaseNum + groupTotalDiscountValue : 1;
             this.render();
             this.changeItemNum();
@@ -354,7 +337,6 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
             this.render();
           }
         }
-
         logger.info(`normal 主站购物车 skuStepper plusBtnClick`, {
           data: {
             cartToken,
@@ -376,13 +358,11 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
         const regExp = new RegExp(/^\d*/);
         const input = get_func(e, 'target.value.match').exec(regExp);
         let inputVal = '';
-
         if (get(input, '0') !== '') {
           const value = e.target.value ? Number(input[0].slice(0, Math.min(input[0].length, 5))) : e.target.value;
           this.stepper.value = value;
           inputVal = value;
         }
-
         this.setValue(inputVal);
         logger.info(`normal 主站购物车 skuStepper input`, {
           data: {
@@ -396,7 +376,7 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
       });
       this.$input.on('focus', () => {
         this.setNeedForceFocus(true);
-        this.stepper.preValue = this.stepper.value;
+        this.storePreValue();
         toggleVisibility(this.cartType, false);
         SL_State.set('cartInInputMode', true);
         this.setPreFocusedInputEle({
@@ -422,7 +402,6 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
         toggleVisibility(this.cartType, true);
         SL_State.set('cartInInputMode', false);
         const value = Number(e.target.value);
-
         if (e.target.value === '') {
           this.stepper.value = 1;
           this.setValue(this.stepper.value);
@@ -440,7 +419,6 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
           } = this.stepper;
           let totalValue = value + groupTotalDiscountValue;
           const overFlag = totalValue > maxPurchaseNum;
-
           if (overFlag) {
             if (cartLimitedEnum.NORMAL_ITEM_MAX_NUM.includes(maxPurchaseReasonCode)) {
               toast.open(I18n(`cart.item.add_limit2`));
@@ -458,12 +436,10 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
               toast.open(tActiveStockLimitWithMaxPurchaseReasonCode(maxPurchaseReasonCode, this.limitToastNum(maxPurchaseTotalNum)));
             }
           }
-
           if (this.stepper.preValue !== this.stepper.value || overFlag) {
             if (overFlag) {
               totalValue = maxPurchaseNum > 0 ? maxPurchaseNum + groupTotalDiscountValue : 1;
             }
-
             this.stepper.value = totalValue;
             this.render();
             this.changeItemNum();
@@ -471,7 +447,6 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
             this.setValue(this.stepper.preValue);
           }
         }
-
         logger.info(`normal 主站购物车 skuStepper inputBlur`, {
           data: {
             cartToken,
@@ -483,7 +458,6 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
         });
       });
     }
-
     getDiscountValue(groupById = true) {
       let discountValue = 0;
       const [findex, index] = this.stepper.indexStr.split('-');
@@ -491,12 +465,10 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
       let currentIndex = 0;
       this.activeItems.forEach((active, activeIndex) => {
         otherSameSkuNum.push(...active.itemList);
-
         if (activeIndex < Number(findex)) {
           const {
             length
           } = active.itemList;
-
           if (activeIndex === 0) {
             currentIndex += length - 1;
           } else {
@@ -525,11 +497,9 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
             parentSkuId
           } = sku;
           let sameItem = String(skuId) === String(stepperSkuId) && String(spuId) === String(stepperSpuId) && !parentSkuId;
-
           if (groupById) {
             sameItem = sameItem && String(groupId) === String(stepperGroupId);
           }
-
           if (sameItem) {
             discountValue += num;
           }
@@ -539,21 +509,17 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
         discountValue
       };
     }
-
     get groupTotalDiscountValue() {
       return this.getDiscountValue().discountValue;
     }
-
     setSingleDisabled(position, disabled) {
       const prefix = '.cart-stepper-';
-
       if (disabled) {
         this.$stepper.find(`${prefix}${position}`).addClass('disabled');
       } else {
         this.$stepper.find(`${prefix}${position}`).removeClass('disabled');
       }
     }
-
     setStepperDisabled() {
       if (this.stepper.disabled) {
         this.$stepper.addClass('disabled');
@@ -561,18 +527,16 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
         this.$stepper.removeClass('disabled');
       }
     }
-
     setStepperData(obj) {
-      this.stepper = { ...this.stepper,
+      this.stepper = {
+        ...this.stepper,
         ...obj
       };
       this.render();
     }
-
     setValue(value) {
       this.$stepper.find('.cart-stepper-input').val(value);
     }
-
     render() {
       const {
         groupTotalDiscountValue,
@@ -586,9 +550,7 @@ window.SLM['cart/script/components/sku-stepper.js'] = window.SLM['cart/script/co
       this.setSingleDisabled('plus', maxPurchaseNum <= stepValue);
       this.setStepperDisabled();
     }
-
   }
-
   _exports.default = SkuStepper;
   return _exports;
 }();

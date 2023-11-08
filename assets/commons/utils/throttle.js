@@ -1,8 +1,6 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/utils/throttle.js'] = window.SLM['commons/utils/throttle.js'] || function () {
   const _exports = {};
-
   _exports.default = function (limit, callback) {
     let waiting = false;
     return function (...args) {
@@ -15,6 +13,5 @@ window.SLM['commons/utils/throttle.js'] = window.SLM['commons/utils/throttle.js'
       }
     };
   };
-
   return _exports;
 }();

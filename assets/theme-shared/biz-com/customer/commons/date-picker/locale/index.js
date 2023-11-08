@@ -1,17 +1,13 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/commons/date-picker/locale/index.js'] = window.SLM['theme-shared/biz-com/customer/commons/date-picker/locale/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
-
   const tPc = (path, hash) => {
     return t(`customer.general.${path}`, hash);
   };
-
   const tMobile = (path, hash) => {
     return t(`customer.general.${path}`, hash);
   };
-
   _exports.default = {
     pc: {
       days: [tPc('sunday'), tPc('monday'), tPc('tuesday'), tPc('wednesday'), tPc('thursday'), tPc('friday'), tPc('saturday')],

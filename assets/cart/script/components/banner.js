@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/components/banner.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -12,7 +11,6 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
   const cartReport = window['SLM']['cart/script/report/cartReport.js'].default;
   const { OPEN_CART_BANNER } = window['SLM']['commons/cart/globalEvent.js'];
   const useSuperScriptDecimals = SL_State.get('theme.settings.superscript_decimals');
-
   const encodeHTML = function (str) {
     if (typeof str === 'string') {
       return str.replace(/<|&|>/g, function (matches) {
@@ -23,29 +21,26 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
         }[matches];
       });
     }
-
     return '';
   };
-
   class CartBanner {
     constructor() {
       this.loadFailedImgSet = new Set();
       this.needUnbindEleList = [];
       this.bannerCartSummationInfo = {};
     }
-
     init() {
       this.listenNeedOpenBannerEvent();
       this.listenCartDataUpdate();
       this.listenSelectContentReport();
     }
-
     listenNeedOpenBannerEvent() {
       window.SL_EventBus.on(OPEN_CART_BANNER, ({
         data,
         onSuccess = () => {}
       }) => {
-        this.addedItemInfo = { ...data
+        this.addedItemInfo = {
+          ...data
         };
         if (!this.addedItemInfo) return;
         this.bannerData = {
@@ -57,27 +52,22 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
         onSuccess();
       });
     }
-
     listenCartDataUpdate() {
       CartService.cartEventBus.on(CartService.CartEventBusEnum.UPDATE, data => {
         this.processCartInfoData(data);
       });
     }
-
     listenImageLoadEvent() {
       const _that = this;
-
       this._root.find('.trade-cart-sku-item-image-wrapper').each((index, img) => {
         this.needUnbindEleList.push($(img));
         $(img).on('error', function () {
           $(img).parent().children('.trade-cart-sku-item-image-fallback').removeClass('hide');
           $(img).addClass('hide');
-
           _that.loadFailedImgSet.add($(img).attr('origin-src'));
         });
       });
     }
-
     listenSelectContentReport() {
       $('.trade_mini_cart').on('click', '.trade-cart-sku-item-image', function () {
         const {
@@ -90,7 +80,6 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
           itemNo,
           customCategoryName
         } = $(this).data();
-
         if (productSource === 1) {
           cartReport.selectContent({
             skuId,
@@ -103,7 +92,6 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
         }
       });
     }
-
     processCartInfoData(cartInfo) {
       const {
         count,
@@ -120,7 +108,6 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
         promotionAmount
       };
     }
-
     getPriceInfo(data) {
       if (useSuperScriptDecimals) {
         const {
@@ -128,33 +115,26 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
         } = convertPrice(data);
         return formattedPriceStr;
       }
-
       return `${format(data)}`;
     }
-
     getImageUrl(src) {
       return imgUrl(src, {
         width: 100,
         scale: 2
       });
     }
-
     getImageFallbackIfNecessary(data) {
       const url = this.getImageUrl(data.image);
-
       if (!url || this.loadFailedImgSet.has(data.image)) {
         return `<div class="trade-cart-sku-item-image-fallback"></div>`;
       }
-
       return `
     <div class="hide trade-cart-sku-item-image-fallback"></div>
     <img class="trade-cart-sku-item-image-wrapper" src="${url}" origin-src="${data.image}">
     `;
     }
-
     getItemSkuAttr(skuAttr) {
       const skuContent = [];
-
       if (skuAttr && skuAttr.length) {
         skuContent.push('<div class="trade-cart-sku-item-info-wrapper">');
         skuAttr.forEach(data => {
@@ -166,23 +146,18 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
         });
         skuContent.push('</div>');
       }
-
       return skuContent.join('\n');
     }
-
     getItemSkuCustomTips(customProductTips) {
       const tipsContent = [];
-
       if (customProductTips && customProductTips.length) {
         customProductTips.forEach(data => {
           tipsContent.push(`
         <div class="trade-cart-sku-item-info-customTip notranslate">${encodeHTML(data)}</div>`);
         });
       }
-
       return tipsContent.join('\n');
     }
-
     getItemAmount(data) {
       return `
       <span class="isolate notranslate body2 text_bold" data-amount=${data.price}>${this.getPriceInfo(data.price)}</span>
@@ -191,7 +166,6 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
         class="notranslate body2 text_bold trade-cart-sku-item-info-amount-count">${this.addedItemInfo.num}</span>
       `;
     }
-
     getImageContent(data) {
       return `
     <a class="trade-cart-sku-item-image" href="${window.Shopline.redirectTo(`/products/${data.spuId}`)}"
@@ -209,42 +183,28 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
       ${this.getImageFallbackIfNecessary(data)}
     </a>`;
     }
-
     updateCartTotalInfo(count) {
       this._cartTotal.text(count);
     }
-
     updateSubtotal(subtotal) {
       this._subtotal.attr('data-amount', subtotal);
-
       this._subtotal.html(this.getPriceInfo(subtotal));
     }
-
     updateSkuCard(itemInfo) {
       const imageBox = this._skuCard.find('.trade-cart-sku-item-image-wrapper');
-
       imageBox.html(this.getImageContent(itemInfo));
       this.updateProductDetail(itemInfo);
     }
-
     updateProductDetail(itemInfo) {
       const productNameEle = this._skuCard.find('.trade-cart-sku-item-info-title');
-
       productNameEle.html(encodeHTML(itemInfo.name));
-
       const productAttrsEle = this._skuCard.find('.trade-cart-sku-item-info-attrs');
-
       productAttrsEle.html(this.getItemSkuAttr(itemInfo.skuAttributes));
-
       const productCustomTipsEle = this._skuCard.find('.trade-cart-sku-item-info-custom');
-
       productCustomTipsEle.html(this.getItemSkuCustomTips(itemInfo.customProductTips));
-
       const productAmountEle = this._skuCard.find('.trade-cart-sku-item-info-amount');
-
       productAmountEle.html(this.getItemAmount(itemInfo));
     }
-
     reRender() {
       this.needUnbindEleList.forEach(ele => {
         ele && ele.unbind && ele.unbind();
@@ -264,9 +224,7 @@ window.SLM['cart/script/components/banner.js'] = window.SLM['cart/script/compone
         this.updateSkuCard(addedItem);
       }, 100);
     }
-
   }
-
   _exports.default = new CartBanner();
   return _exports;
 }();

@@ -5,52 +5,53 @@
 {{/if}}
 
 {{#pagination id=id wrapperClass=wrapperClass total=total pageSize=pageSize current=current isMobile=request.is_mobile uri=request.uri mode=mode}}
-{{!-- <div class="pagination_data">
-  id： {{id}}
-  wrapperClass: {{wrapperClass}}
-  total: {{ total }}
-  pageSize: {{ pageSize }}
-  current: {{ current }}
-  isMobile: {{ isMobile }}
-  threshold: {{ threshold }}
-  lastPageNum: {{ lastPageNum }}
-  boundaryThreshold: {{ boundaryThreshold }}
-  afterThreshold: {{ afterThreshold }}
-  mode: {{ mode }}
-  pageTest: {{ pageTest }}
-</div> --}}
-<div id="{{ id }}" class="{{ wrapperClass }} notranslate {{ cond isMobile 'mobile pagination body3' 'pagination body3' }} {{ cond (boolean lastPageNum '<=' 1) 'hide' '' }} {{ wrapperClass }}">
-  {{#each items}}
-    {{#if this.type '===' 'pre'}}
-      <span class="pagination_pre pagination_item" data-current={{ this.current }} data-pagenum={{ this.pagenum }}>
-        <a href="{{ this.href }}">
-          <span class="pagination_icon_arrow_color">
-            {{ snippet 'icons/icon_arrow_left_line' }}
-          </span>
-        </a>
+  {{ assign 'has_prev_page' false }}
+  {{ assign 'has_next_page' false }}
+  {{#with this as | global |}}
+    {{#each items}}
+      {{#if this.type '===' 'pre'}}
+        {{#with global}}
+          {{ assign 'has_prev_page' ../href }}
+        {{/with}}
+      {{/if}}
+      {{#if this.type '===' 'next'}}
+        {{#with global}}
+          {{ assign 'has_next_page' ../href }}
+        {{/with}}
+      {{/if}}
+    {{/each}}
+  {{/with}}
+
+  <div
+    class="{{ wrapperClass }}
+      notranslate  body3
+      {{ cond (boolean lastPageNum '<=' 1) 'hide' '' }}"
+  >
+    <div class="pagination">
+      <span class="pagination_pre pagination_item {{#unless has_prev_page}}pagination-disabled{{/unless}}">
+        {{#if has_prev_page}}<a href="{{ has_prev_page }}">{{/if}}
+        <span class="pagination_icon_arrow_color">
+          {{ snippet 'icons/icon_arrow_left_line' }}
+        </span>
+        {{#if has_prev_page}}</a>{{/if}}
       </span>
-    {{/if}}
-    {{#if this.type '===' 'next'}}
-      <span class="pagination_next pagination_item" data-current={{ this.current }} data-pagenum={{ this.pagenum }}>
-        <a href="{{ this.href }}">
-          <span class="pagination_icon_arrow_color">
-            {{ snippet 'icons/icon_arrow_right_line' }}
-          </span>
-        </a>
-      </span> 
-    {{/if}}
-    {{#if this.type '===' 'link'}}
-      <span class="{{ cond this.active 'pagination_item on' 'pagination_item' }}" data-current={{ this.current }} data-pagenum={{ this.pagenum }}>
-        {{#if this.current '===' this.pagenum}}
-          <a>
-        {{else}}
-          <a href="{{ this.href }}">
-        {{/if}}
-          {{ this.pagenum }}
-        </a>
+      <span class="pagination_next pagination_item {{#unless has_next_page}}pagination-disabled{{/unless}}">
+
+        {{#if has_next_page}}<a href="{{ has_next_page }}">{{/if}}
+        <span class="pagination_icon_arrow_color">
+          {{ snippet 'icons/icon_arrow_right_line' }}
+        </span>
+        {{#if has_next_page}}</a>{{/if}}
       </span>
+      <span class="pagination__num--container body3">{{ this.current }}/{{ this.lastPageNum }}</span>
+    </div>
+    {{ assign 'current_offset' (multiply (subtract this.current 1) this.pageSize) }}
+    {{ assign 'last_current_offset' (add current_offset this.pageSize) }}
+    {{#if this.current '==' this.lastPageNum}}
+      {{ assign 'last_current_offset' this.total }}
     {{/if}}
-    {{#if this.type '===' 'ellipsis'}}<span>...</span>{{/if}}
-  {{/each}}
-</div>
+    <div class="pagination-info body4">
+      {{ t 'products.product_list.load_more_desc' current_offset=(add current_offset 1) last_current_offset=last_current_offset total=this.total }}
+    </div>
+  </div>
 {{/pagination}}

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] || function () {
   const _exports = {};
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
@@ -7,7 +6,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const { StatusEnum, btnEnum, PropertyTypeEnum, ErrorTypeEnum } = window['SLM']['theme-shared/biz-com/trade/optimize-modal/constant.js'];
   const { splitSku, prefixer } = window['SLM']['theme-shared/biz-com/trade/optimize-modal/tool.js'];
-
   const skuNumber = ({
     num,
     stockNum,
@@ -19,7 +17,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
         ${autoAdjust ? `<span style="color: #eb8d00;">x ${stockNum}</span>` : ``}
       </div>`;
   };
-
   const skuTip = (errorType, targetNum) => {
     const isProduct = errorType === ErrorTypeEnum.LIMITED_ACTIVE_SKU_OVER;
     const isUnderProduct = errorType === ErrorTypeEnum.LIMITED_ACTIVE_STOCK_OVER;
@@ -31,7 +28,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
     })}
    </p>` : ``}`;
   };
-
   const skuInfo = (info, isMobile) => {
     const {
       productName: name = '',
@@ -82,30 +78,23 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
     ${skuTip(errorInfo && errorInfo.errorType, errorInfo && errorInfo.targetNum)}
   </div>`;
   };
-
   const checkSoldOut = sku => {
     const errorType = sku.errorInfo && sku.errorInfo.errorType;
     return [ErrorTypeEnum.SOLD_OUT, ErrorTypeEnum.SHELF_OFF, ErrorTypeEnum.DELETE, ErrorTypeEnum.GIFT_INVALID].includes(errorType);
   };
-
   const getMaskText = errorType => {
     let text = t('products.product_list.sold_out');
-
     if ([ErrorTypeEnum.SHELF_OFF, ErrorTypeEnum.GIFT_INVALID].includes(errorType)) {
       text = t('transaction.item.removed');
     }
-
     if (errorType === ErrorTypeEnum.DELETE) {
       text = t('transaction.order.deleted');
     }
-
     return text;
   };
-
   const createContent = (effectList, isMobile) => {
     let content = '';
     let num = 0;
-
     if (Array.isArray(effectList)) {
       effectList.forEach(sku => {
         num += 1;
@@ -123,19 +112,16 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
         `;
       });
     }
-
     return {
       content,
       num
     };
   };
-
   const createLimitList = ({
     list,
     isMobile
   }) => {
     let content = '';
-
     if (Array.isArray(list)) {
       list.forEach(sku => {
         if (sku.productStatus === StatusEnum.user_limit) {
@@ -154,10 +140,8 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
         }
       });
     }
-
     return content;
   };
-
   const createTitle = ({
     isLimit,
     continueBtnHide
@@ -165,40 +149,32 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
     const text = isLimit || continueBtnHide ? 'cart.notices.excess_product' : 'cart.checkout_proceeding.checkout_proceed';
     return `<p class=${prefixer('title')}>${t(text)}</p>`;
   };
-
   const createBtn = (status, continueBtnHide) => {
     let btn = ``;
-
     switch (status) {
       case btnEnum.paypal:
         btn = `<button  class="${prefixer('btn-back')}">${t('cart.checkout_proceeding.return_to_cart')}</button>
       <div id=${prefixer('btn-paypal')}></div>`;
         break;
-
       case btnEnum.empty:
         btn = `<button  class="${prefixer('btn-confirm')}">${t('cart.checkout_proceeding.confirm')}</button>`;
         break;
-
       case btnEnum.limit:
         btn = `<button  class="${prefixer('btn-limit')}">${t('cart.checkout_proceeding.return_to_cart')}</button>`;
         break;
-
       default:
         btn = `<button  class="${prefixer('btn-back')}">${t('cart.checkout_proceeding.return_to_cart')}</button>
       ${!continueBtnHide ? `<button class="${prefixer('btn-continue')}">${t('cart.checkout_proceeding.continue')}</button>` : ''}`;
     }
-
     const res = `<div class=${prefixer('btn-box')}>${btn}</div>`;
     return res;
   };
-
   const setEmpty = () => {
     return `<div class=${prefixer('none-product-modal')}>
   <p class="${prefixer('none-product-title')} entry-text">${t('cart.notices.product_selected_invalid')}</p>
   ${createBtn(btnEnum.empty, true)} 
   </div>`;
   };
-
   const setContent = ({
     effectList,
     limitList,
@@ -207,7 +183,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
   }) => {
     let content = ``;
     let btnClass = [];
-
     if (limitList && limitList.length > 0) {
       const continueBtnHide = limitList.some(sku => sku.errorInfo && sku.errorInfo.autoAdjust === false);
       content = `<div class=${prefixer('content-box')}>
@@ -241,13 +216,11 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
     ${createBtn(status, continueBtnHide)}`;
       btnClass = isPaypal ? ['btn-back'] : ['btn-continue', 'btn-back'];
     }
-
     return {
       content,
       btnClass
     };
   };
-
   const optimizeContent = ({
     effectList,
     limitList,
@@ -258,7 +231,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
   }) => {
     let btnClass = ['btn-confirm'];
     let modal = setEmpty();
-
     if (limitList && limitList.length > 0) {
       const content = setContent({
         effectList,
@@ -271,7 +243,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
   </div>`;
       btnClass = content.btnClass;
     }
-
     if (len > 0) {
       const content = setContent({
         effectList,
@@ -285,13 +256,11 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/content.js'] = window.SLM[
   </div>`;
       btnClass = content.btnClass;
     }
-
     return {
       modal,
       btnClass
     };
   };
-
   _exports.default = optimizeContent;
   return _exports;
 }();

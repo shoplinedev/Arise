@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] || function () {
   const _exports = {};
   const previewImage = window['@yy/sl-pod-preview-image']['default'];
@@ -10,18 +9,15 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
   const { unmarshalFromCartVerifyList } = window['SLM']['theme-shared/biz-com/trade/optimize-modal/skuInfo.js'];
   const { prefixer } = window['SLM']['theme-shared/biz-com/trade/optimize-modal/tool.js'];
   const { sourceEnum, productSignEid, productTypeMap } = window['SLM']['theme-shared/biz-com/trade/optimize-modal/constant.js'];
-  const { hidooRp } = window['SLM']['theme-shared/utils/tradeReport/hdReport.js'];
   const { pageMap } = window['SLM']['theme-shared/utils/tradeReport/const.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
   const currencyUtil = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
   const { redirectTo } = window['SLM']['theme-shared/utils/url.js'];
-
   const setHID = () => {
     const templateAlias = window.Shopline.uri.alias;
     const cid = templateAlias === 'Cart' ? pageMap.Cart : pageMap.MiniCart;
     return cid;
   };
-
   const ComponentType = {
     part: 101,
     all: 102,
@@ -41,7 +37,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
   };
   const CART_PAGE = 106;
   const CART_MODULE = 123;
-
   class OptimizeModal {
     constructor(config) {
       this.modalInstance = null;
@@ -55,7 +50,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
       this.moreInfoV2 = {};
       this.getCartId();
     }
-
     initModal() {
       const modalContent = {
         maskClosable: false,
@@ -66,7 +60,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
       this.modalInstance = new TradeModalWithHtml(modalContent);
       this.modalInstance.init();
     }
-
     initOptimize({
       source,
       verifyList,
@@ -78,7 +71,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
       this.isB2B = isB2B;
       this.createOptimize(source, verifyList, activeCartItemList, callback, isPaypal);
     }
-
     createOptimize(source, verifyList, activeCartItemList, callback, isPaypal = false) {
       const {
         skuList,
@@ -107,13 +99,11 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
       });
       $content.html(modal);
       this.modalInstance.setContent($content);
-
       if (len <= 0) {
         this.modalInstance.$modal.find('.trade-modal-container').addClass('trade-modal-container-empty');
       } else {
         this.modalInstance.$modal.find('.trade-modal-container').addClass('trade-modal-container-product');
       }
-
       this.showModal();
       const isEmp = len <= 0;
       const custom_component = isEmp ? customComponent.all : customComponent.part;
@@ -124,17 +114,8 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
         action_type: ActionType.view,
         component
       });
-
-      try {
-        hidooRp.event({
-          event_name: 'inventory_shortage',
-          custom_component: 'continue'
-        }, this.cid);
-      } catch (e) {}
-
       this.eventCallback(source, btnClassList, callback);
     }
-
     getCartId() {
       const that = this;
       window.Shopline && window.Shopline.event.emit('Cart::GetCartId', {
@@ -143,10 +124,8 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
             that.cartId = res.data;
           }
         }
-
       });
     }
-
     collectMoreInfo({
       limitList,
       filterList
@@ -154,7 +133,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
       if (!this.isB2B) {
         return;
       }
-
       const contentIds = new Set();
       const variantion_id = [];
       const product_price = [];
@@ -180,11 +158,9 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
         contentIds.add(productSeq);
         variantion_id.push(productSku);
         productNameSet.add(productName);
-
         if (productTypeMap[businessType]) {
           productType.add(productTypeMap[businessType]);
         }
-
         if (!productMarkList) {
           signTypeSet.add('101');
         } else {
@@ -215,37 +191,27 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
       this.moreInfoV1 = moreInfoV1;
       this.moreInfoV2 = moreInfoV2;
     }
-
     reportSign({
-      event_name,
-      custom_component,
       action_type,
       component
     }) {
       if (!this.isB2B) {
         return;
       }
-
-      hidooRp.event({ ...this.moreInfoV1,
-        event_name,
-        custom_component
-      }, this.cid);
-      window.HdSdk && window.HdSdk.shopTracker.collect({ ...this.moreInfoV2,
+      window.HdSdk && window.HdSdk.shopTracker.collect({
+        ...this.moreInfoV2,
         page: CART_PAGE,
         module: CART_MODULE,
         component,
         action_type
       });
     }
-
     hideModal() {
       this.modalInstance.hide();
     }
-
     showModal() {
       this.modalInstance.show();
     }
-
     eventCallback(source, btnClassList, callback) {
       switch (source) {
         case sourceEnum.CHECKOUT:
@@ -259,7 +225,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
             }
           });
           break;
-
         default:
           this.initBtnEvent(btnClassList, {
             'btn-continue': async $target => {
@@ -269,15 +234,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
                 action_type: ActionType.click,
                 component: ComponentType.continue
               });
-
-              try {
-                const id = this.cid;
-                hidooRp.event({
-                  event_name: 'click_component',
-                  custom_component: 'continue'
-                }, id);
-              } catch (e) {}
-
               callback && (await callback($target));
               this.hideModal();
               return this;
@@ -289,15 +245,6 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
                 action_type: ActionType.click,
                 component: ComponentType.backToCart
               });
-
-              try {
-                const id = this.cid;
-                hidooRp.event({
-                  event_name: 'click_component',
-                  custom_component: 'back'
-                }, id);
-              } catch (e) {}
-
               window.location.href = redirectTo('/cart');
               return false;
             },
@@ -308,22 +255,12 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
                 action_type: ActionType.click,
                 component: ComponentType.backToCart
               });
-
-              try {
-                const id = this.cid;
-                hidooRp.event({
-                  event_name: 'click_component',
-                  custom_component: 'back'
-                }, id);
-              } catch (e) {}
-
               window.location.href = redirectTo('/cart');
               return false;
             }
           });
       }
     }
-
     bindEvent(className, callback) {
       const btn = $(`.${prefixer(className)}`);
       btn && btn.on('click', e => {
@@ -332,11 +269,9 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
             return;
           }
         }
-
         this.hideModal();
       });
     }
-
     initBtnEvent(btnClassList, cbMap) {
       btnClassList && btnClassList.forEach(className => {
         this.bindEvent(className, cbMap[className]);
@@ -350,9 +285,7 @@ window.SLM['theme-shared/biz-com/trade/optimize-modal/index.js'] = window.SLM['t
         });
       });
     }
-
   }
-
   _exports.default = OptimizeModal;
   return _exports;
 }();

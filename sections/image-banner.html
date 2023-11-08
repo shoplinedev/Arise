@@ -34,7 +34,7 @@
 {{ snippet 'global-border-shadow-style' color_scheme=color_scheme sectionId=section.id type='content' }}
 
 <div class="__sl-custom-track-stage-imageBanner" data-section-type="image-banner" data-section-id="{{ section.id }}">
-   {{!-- pc 端 --}}
+   
   <div class="stage-image-banner {{#or banner1.url banner2.url}}image-banner-loaded{{/or}} d-md-block d-none">
     <div class="banner-container">
         {{#if banner1.url}}
@@ -42,7 +42,7 @@
             <div style="padding-bottom: {{ banner-ratio }};">
               <img class="lozad banner-item banner-pc-item" id="banner1"
                 {{{ get 'responsiveAttr' (image_responsive banner1.url pcSize=(cond banner2.url '50vw' '100vw') useLazyLoad=(not is_lcp_section)) }}}
-                {{!-- 避免依赖 js 控制图片显示 --}}
+                alt="{{ banner1.alt }}"
                 onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
             </div>
           </div>
@@ -52,7 +52,7 @@
             <div style="padding-bottom: {{ banner-ratio }};">
               <img class="lozad banner-item banner-pc-item" id="banner2"
                 {{{ get 'responsiveAttr' (image_responsive banner2.url pcSize=(cond banner1.url '50vw' '100vw') useLazyLoad=(not is_lcp_section)) }}}
-                {{!-- 避免依赖 js 控制图片显示 --}}
+                alt="{{ banner2.alt }}"
                 onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
             </div>
           </div>
@@ -62,13 +62,10 @@
         {{/and}}
       <div class="mask" style="opacity: {{ alpha_range }}%"></div>
     </div>
-    {{!--
-      1.无文本框时配色不生效
-      2.设置有文本框时无配色，则显示白色背景
-    --}}
+    
     {{#if blocksLength '>' 0}}
     <div class="content content--pos-{{ pc_position }}">
-      {{!-- 这里需要将container padding 改写成上下左右都有 --}}
+      
       <div class="container" style="padding: var(--sl-gutter-x, .75rem);">
         <div class="wrapper
         {{#and (isFalsey show_textarea) (isFalsey banner1.url) (isFalsey banner2.url)}}wrapper--default--shadow{{/and}}
@@ -112,7 +109,7 @@
     <div class="stage-image-banner-loading"><p class="progress-bar"></p></div>
   </div>
 
-  {{!-- m 端 --}}
+  
   <div class="stage-image-banner {{#and banner1.url banner2.url}}image-banner-loaded__both{{/and}} {{#or banner1.url banner2.url}}image-banner-loaded--mobile{{/or}} d-md-none {{#if (isTruthy mobile_flatten)}}stage-image-banner--m-flatten{{else}}stage-image-banner--m-normal {{/if}}" data-section-type="image-banner" data-section-id="{{ section.id }}">
     <div class="banner-container {{#unless show_mobile_textarea}}banner-container__inner-image{{/unless}}">
       {{#and (isFalsey banner1.url) (isFalsey banner2.url)}}
@@ -126,7 +123,7 @@
             <div style="padding-bottom: {{ banner-ratio }};">
               <img class="lozad banner-item banner-mobile-item" id="banner1"
                 {{{ get 'responsiveAttr' (image_responsive banner1.url useLazyLoad=(not is_lcp_section)) }}}
-                {{!-- 避免依赖 js 控制图片显示 --}}
+                alt="{{ banner1.alt }}"
                 onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
             </div>
           </div>
@@ -176,12 +173,12 @@
             <div style="padding-bottom: {{ banner-ratio }};">
               <img class="lozad banner-item banner-mobile-item" id="banner2"
                 {{{ get 'responsiveAttr' (image_responsive banner2.url useLazyLoad=(not is_lcp_section)) }}}
-                {{!-- 避免依赖 js 控制图片显示 --}}
+                alt="{{ banner2.alt }}"
                 onload="this.parentElement.parentElement.parentElement.parentElement.classList.remove('image-banner-loaded')"/>
             </div>
           </div>
         {{/if}}
-        {{!-- 开启文字在图片下方，不显示--}}
+        
         {{#if (boolean (isTruthy show_mobile_textarea) '&&' (boolean (boolean banner1.url) '||' (boolean banner2.url)))}}
         {{else}} <div class="mask" style="opacity: {{ alpha_range }}%"></div> {{/if}}
     </div>

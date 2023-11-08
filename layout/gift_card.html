@@ -32,28 +32,19 @@
 <body class="template--le template__{{ replace template '/' '-' }}">
   {{ content_for_layout }}
   <!-- product/giftCard/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/qrcode.rlp.min.js'
-      'vendors/jsbarcode.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/qrcode.min.js'
-      'vendors/jsbarcode.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/qrcode.min.js'
+    'vendors/jsbarcode.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'product/giftCard/main.js'
     type="text/javascript"
     defer=true
   }}
   
-  {{!-- 自定义代码底部 --}}
+  
   {{ content_for_footer }}
 </body>
 </html>

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/reports/user-center.js'] = window.SLM['theme-shared/biz-com/customer/reports/user-center.js'] || function () {
   const _exports = {};
   const { report, reportV2 } = window['SLM']['theme-shared/biz-com/customer/reports/index.js'];
@@ -31,22 +30,17 @@ window.SLM['theme-shared/biz-com/customer/reports/user-center.js'] = window.SLM[
       event_id: 1627
     }
   };
-
   const reportSignOut = () => {
     const alias = window.SL_State.get('templateAlias');
-
     if (pageToReportConfig[alias]) {
       reportV2(pageToReportConfig[alias]);
     }
-
     report(USER_CENTER_CID, {
       event_name: 'leave',
       page_dest: `${window.location.origin}${redirectTo('/user/signOut')}`
     });
   };
-
   _exports.reportSignOut = reportSignOut;
-
   const reportClickCenterTab = () => {
     report(USER_CENTER_CID, {
       event_name: 'click_component',
@@ -54,9 +48,7 @@ window.SLM['theme-shared/biz-com/customer/reports/user-center.js'] = window.SLM[
       custom_component: ['consumer_info']
     });
   };
-
   _exports.reportClickCenterTab = reportClickCenterTab;
-
   const reportClickMessageTab = () => {
     report(USER_CENTER_CID, {
       event_name: 'click_component',
@@ -64,9 +56,7 @@ window.SLM['theme-shared/biz-com/customer/reports/user-center.js'] = window.SLM[
       custom_component: ['message']
     });
   };
-
   _exports.reportClickMessageTab = reportClickMessageTab;
-
   const reportClickOrderTab = () => {
     report(USER_CENTER_CID, {
       event_name: 'click_component',
@@ -74,7 +64,6 @@ window.SLM['theme-shared/biz-com/customer/reports/user-center.js'] = window.SLM[
       custom_component: ['order']
     });
   };
-
   _exports.reportClickOrderTab = reportClickOrderTab;
   return _exports;
 }();

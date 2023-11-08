@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/utils/time.js'] = window.SLM['cart/script/utils/time.js'] || function () {
   const _exports = {};
   const Millisecond = 1;
@@ -14,46 +13,35 @@ window.SLM['cart/script/utils/time.js'] = window.SLM['cart/script/utils/time.js'
   _exports.Day = Day;
   const Week = Day * 7;
   _exports.Week = Week;
-
   class Time {
     constructor(v) {
       this.v = v;
     }
-
     get timestamp() {
       return this.v;
     }
-
     add(d) {
       return new Time(this.v + d);
     }
-
     sub(d) {
       return new Time(this.v - d);
     }
-
     duration(t) {
       return this.v - t.timestamp;
     }
-
   }
-
   function time(v) {
     return new Time(v);
   }
-
   function now() {
     return time(Date.now());
   }
-
   function later(dur) {
     return now().add(dur);
   }
-
   function former(dur) {
     return now().sub(dur);
   }
-
   _exports.default = {
     time,
     now,

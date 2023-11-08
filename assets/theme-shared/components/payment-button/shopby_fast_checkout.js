@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] || function () {
   const _exports = {};
   const checkout = window['SLM']['theme-shared/utils/checkout.js'].default;
@@ -8,13 +7,16 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
   const Cookies = window['js-cookie']['*'];
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
-  const { PageType, HandleClassType, getPurchaseSDKCheckoutData, getSubscription } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
+  const loggerService = window['@yy/sl-theme-shared']['/utils/logger'].default;
+  const { PageType, ReportPageType, HandleClassType, getPurchaseSDKCheckoutData, getSubscription } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const { EXPRESS_PAYMENT_BUTTON_COMMON_ITEM } = window['SLM']['theme-shared/components/payment-button/constants.js'];
   const { isProductPreview } = window['SLM']['theme-shared/components/payment-button/utils.js'];
   const { BrowserPreloadStateFields } = window['SLM']['theme-shared/const/preload-state-fields.js'];
-
+  const { ActionType, HdModule, HdComponent, HDEventName, HDEventId, HDPage } = window['SLM']['theme-shared/utils/tradeReport/const.js'];
+  const { SAVE_FROM } = window['SLM']['theme-shared/utils/constant.js'];
+  const logger = loggerService.pipeOwner('shopby-button');
   const noop = () => {};
-
+  const ShobyButtonStyleId = 'shopby-button-styles';
   const PREFIX_ICON = `<svg width="68" height="18" viewBox="0 0 68 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M14.3554 0.772522L14.3313 0.488281H11.2835L11.2668 0.781076C11.2627 0.852932 11.2607 0.926892 11.2607 1.0029V14.5641H14.3657V8.86666C14.4287 8.35695 14.6465 7.95264 15.0213 7.63644L15.0234 7.63464L15.0255 7.6328C15.4044 7.30127 15.8744 7.13003 16.4563 7.13003C16.8955 7.13003 17.2325 7.22397 17.4873 7.39011L17.4938 7.39433L17.5005 7.39823C17.7749 7.55832 17.9804 7.78526 18.1202 8.08814C18.2633 8.39812 18.34 8.77287 18.34 9.22071V14.5641H21.4243V9.24141C21.4243 8.23355 21.2225 7.33936 20.8076 6.56883C20.3967 5.80576 19.8351 5.20518 19.1236 4.7748C18.4085 4.3284 17.5992 4.10787 16.7047 4.10787C16.0374 4.10787 15.4469 4.25649 14.9475 4.56832C14.7377 4.69697 14.5435 4.83297 14.3657 4.97654V1.0236C14.3657 0.937544 14.3623 0.853814 14.3554 0.772522Z" fill="#052855"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M25.4418 4.03229C26.1167 3.73912 26.8347 3.5932 27.5927 3.5932C28.6108 3.5932 29.542 3.84101 30.3789 4.33978C31.2108 4.82179 31.8762 5.48035 32.3719 6.31141C32.8722 7.15015 33.1195 8.09606 33.1195 9.14074C33.1195 9.96627 32.9673 10.7276 32.6578 11.4202L32.6573 11.4213L32.6568 11.4225C32.3507 12.0929 31.9342 12.678 31.4076 13.1752L31.406 13.1768L31.4043 13.1784C30.8803 13.6587 30.2898 14.0306 29.6342 14.293C28.9905 14.5562 28.3231 14.6883 27.6341 14.6883C26.9319 14.6883 26.245 14.5564 25.5752 14.2943L25.5713 14.2928L25.5675 14.2912C24.9128 14.0148 24.3169 13.6293 23.7809 13.1367L23.7793 13.1353L23.7777 13.1338C23.2524 12.6376 22.8298 12.0543 22.5102 11.3861L22.509 11.3836L22.5079 11.3811C22.198 10.7023 22.0452 9.96097 22.0452 9.16144C22.0452 8.3899 22.191 7.66441 22.4849 6.98836C22.7762 6.31833 23.1777 5.72684 23.6886 5.21593C24.1991 4.70539 24.784 4.31025 25.4418 4.03229ZM27.572 6.65676C27.1143 6.65676 26.7078 6.76736 26.3449 6.98511L26.3416 6.9871L26.3382 6.989C25.9745 7.19508 25.6826 7.48553 25.4609 7.86695C25.2559 8.22928 25.1501 8.64431 25.1501 9.12004C25.1501 9.6505 25.2694 10.0955 25.4965 10.4669C25.7309 10.8364 26.0298 11.1228 26.395 11.3309C26.7783 11.5277 27.1763 11.6247 27.5927 11.6247C27.995 11.6247 28.3791 11.5279 28.7491 11.3309C29.1274 11.1231 29.4326 10.8307 29.667 10.4482L29.6689 10.4451L29.6709 10.4421C29.9102 10.0712 30.0353 9.62772 30.0353 9.09934C30.0353 8.61079 29.9231 8.19116 29.7069 7.83081L29.7049 7.82749L29.703 7.82414C29.4961 7.45903 29.2123 7.17519 28.8472 6.9683C28.4857 6.76348 28.0637 6.65676 27.572 6.65676Z" fill="#052855"/>
@@ -28,9 +30,122 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
   const SpinIcon = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1984 8.00039C13.1984 5.12851 10.8703 2.80039 7.99844 2.80039V0.400391C12.1958 0.400391 15.5984 3.80303 15.5984 8.00039C15.5984 12.1978 12.1958 15.6004 7.99844 15.6004C3.80107 15.6004 0.398438 12.1978 0.398438 8.00039H2.79844C2.79844 10.8723 5.12656 13.2004 7.99844 13.2004C10.8703 13.2004 13.1984 10.8723 13.1984 8.00039Z" fill="#052855"/>
 </svg>`;
+  const SecureyButton = `<div class="btn btn-sm shopby-btn-item shopby-securey-btn">
+  <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.4851 3.19066C8.89661 3.19066 7.60892 4.47835 7.60892 6.06679V6.98466H13.3612V6.06679C13.3612 4.47835 12.0735 3.19066 10.4851 3.19066ZM6.01787 6.06679V6.98466H5.5895C4.23763 6.98466 3.14172 8.08056 3.14172 9.43243V15.5519C3.14172 16.9037 4.23763 17.9996 5.5895 17.9996H15.3806C16.7324 17.9996 17.8284 16.9037 17.8284 15.5519V9.43243C17.8284 8.08056 16.7324 6.98466 15.3806 6.98466H14.9522V6.06679C14.9522 3.59964 12.9522 1.59961 10.4851 1.59961C8.0179 1.59961 6.01787 3.59964 6.01787 6.06679ZM5.5895 8.57571H15.3806C15.8537 8.57571 16.2373 8.95927 16.2373 9.43243V15.5519C16.2373 16.025 15.8537 16.4086 15.3806 16.4086H5.5895C5.11634 16.4086 4.73278 16.025 4.73278 15.5519V9.43243C4.73278 8.95927 5.11634 8.57571 5.5895 8.57571ZM11.2194 12.7853C11.6584 12.5313 11.9538 12.0567 11.9538 11.513C11.9538 10.7019 11.2962 10.0444 10.4851 10.0444C9.67399 10.0444 9.01645 10.7019 9.01645 11.513C9.01645 12.0566 9.31176 12.5312 9.75071 12.7852V14.4504C9.75071 14.8559 10.0795 15.1847 10.485 15.1847C10.8906 15.1847 11.2194 14.8559 11.2194 14.4504V12.7853Z" fill="#052855"/>
+  </svg>
+  <span>${t('unvisiable.shopby.button.show')}</span>
+</div>`;
+  const ButtonAnimateStyle = `
+  .shopby-btn-container {
+    overflow: hidden;
+    position: relative;
+    background-color: #60F5B2!important;
+    margin-bottom: 10px;
+  }
+  .shopby-btn-container.disabled {
+    cursor: not-allowed;
+    opacity: .3;
+  }
+  .shopby-btn-container.disabled button {
+    cursor: not-allowed;
+  }
+  .shopby-btn-container .shopby-btn-loading-container {
+    background-color: #60e1b2;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+  }
+  .shopby-btn-container .shopby-btn-loading-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    margin-top: -8px;
+  }
+  .shopby-btn-container .shopby-btn-loading-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .shopby-btn-container .shopby-btn-group {
+    width: 200%;
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+  }
+  .shopby-btn-container .shopby-btn-group .shopby-btn-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    font-family: PingFang SC;
+    background-color: #60f5b2;
+    border-color: #60f5b2;
+    color: #052855;
+  }
+  .shopby-btn-container .shopby-btn-group .shopby-btn-item:hover {
+    background-color: #60e1b2;
+    border-color: #60e1b2;
+  }
+  .shopby-btn-container .shopby-btn-group .shopby-btn-item:active, .shopby-btn-container .shopby-btn-group .shopby-btn-item:focus {
+    background-color: #60ffb2;
+    border-color: #60ffb2;
+  }
+  .shopby-btn-container .shopby-btn-group .shopby-btn-item svg {
+    margin-right: 6px;
+  }
+  .shopby-btn-container .shopby-btn-group .shopby-btn-item span {
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.02em;
+    font-size: 16px;
+  }
+  .shopby-btn-container .shopby-btn-group .shopby-securey-btn {
+    background: #3dee9f;
+  }
+  .shopby-btn-container .shopby-btn-group .shopby-securey-btn span {
+    font-weight: 600;
+  }
+  .shopby-btn-container.loading {
+    opacity: 0.4;
+  }
+  .shopby-btn-container.loading .shopby-btn-group {
+    visibility: hidden;
+  }
+  .shopby-btn-container.loading .shopby-btn-loading-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    animation: btn-loading linear 1.5s infinite;
+  }
+
+  .shopby-btn-container.loading .shopby-btn-loading-container {
+    display: block;
+  }
+`;
   const PaymentUpdate = 'Payment::Update';
   const CartUpdate = 'Cart::CartDetailUpdate';
-
+  const getCurrentBasicParams = type => {
+    return {
+      event_name: HDEventName[type],
+      event_id: HDEventId[type],
+      page: HDPage[type],
+      module: HdModule[type],
+      component: HdComponent.fcButton,
+      action_type: ActionType.click
+    };
+  };
+  const configForFC = {
+    actFields: {
+      act: 'webfastcheckouttrack',
+      project_id: 'fast-checkout'
+    }
+  };
   class ShopbyFastCheckoutButton {
     constructor(props) {
       this.config = props;
@@ -39,8 +154,11 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
       this.handle = null;
       this.hidden = false;
       this.listened = false;
+      this.isCheckoutBtnClicked = false;
     }
-
+    get isCheckoutPage() {
+      return this.config.pageType === PageType.Checkout;
+    }
     jumpToFastCheckoutPage(nextAction, abandonedOrderInfo, country) {
       const {
         storeId
@@ -48,20 +166,39 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
       const href = `${nextAction.domain}/checkouts/${storeId}/${abandonedOrderInfo.checkoutToken}`;
       const query = `?mark=${abandonedOrderInfo.mark}&clientLang=${window.Shopline.locale}&country=${country}&domain=${window.origin}`;
       const forwardUrl = `${href}${query}`;
+      this.isCheckoutBtnClicked = false;
       window.location.href = forwardUrl;
     }
-
     handleCheckoutButtonClick() {
       const {
         nextAction,
         abandonedOrderInfo,
         marketInfo
       } = SL_State.get(BrowserPreloadStateFields.TRADE_CHECKOUT);
+      if (!this.isCheckoutBtnClicked) {
+        this._reportFCButtonClick();
+      }
+      this.isCheckoutBtnClicked = true;
       this.jumpToFastCheckoutPage(nextAction, abandonedOrderInfo, marketInfo.marketRegionCountryCode);
     }
-
-    renderButton(parentDom) {
-      const text = this.config.pageType === PageType.Checkout ? '' : '<span>Checkout</span>';
+    isButtonInViewPort() {
+      const element = $(`#${this.domId}`)[0];
+      if (!element) {
+        logger.warn(`can not found shopby button container by id: ${this.domId}`);
+        return false;
+      }
+      const viewWidth = window.innerWidth || document.documentElement.clientWidth;
+      const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+      const {
+        top,
+        right,
+        bottom,
+        left,
+        height
+      } = element.getBoundingClientRect();
+      return top >= 0 && left >= 0 && right <= viewWidth && bottom <= viewHeight + height / 2;
+    }
+    getCheckoutPageButton() {
       const str = `<button
         class="btn btn-sm fast-checkout-button-item"
         id=${this.domId}
@@ -71,47 +208,101 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
           <span class="fast-checkout-button-prefix">
               ${PREFIX_ICON}
           </span>
-          ${text}
         </div>
         <div class="fast-checkout-btn-loading-icon">${SpinIcon}</div>
       </button>`;
-      parentDom.insertAdjacentHTML('beforeend', str);
-      this.addListener();
+      return str;
+    }
+    getProductOrCartPageButton() {
+      const str = `
+    <button id=${this.domId} style="width: 100%;" class="btn btn-sm shopby-btn-container">
+      &nbsp;
+      <div class="shopby-btn-group">
+        ${SecureyButton}
+        <div class="btn btn-sm shopby-btn-item shopby-text-btn">
+          ${PREFIX_ICON}
+          <span>Checkout</span>
+        </div>
+      </div>
+      <div class="shopby-btn-loading-container">
+        <div class="shopby-btn-loading-icon">${SpinIcon}</div>
+      </div>
+    </button>
+   `;
+      return str;
+    }
+    appendButtonStyle() {
+      const exitedStyle = document.getElementById(ShobyButtonStyleId);
+      if (exitedStyle) return;
+      const styleTag = document.createElement('style');
+      styleTag.innerHTML = ButtonAnimateStyle;
+      styleTag.id = ShobyButtonStyleId;
+      document.head.appendChild(styleTag);
+    }
+    renderButton(parentDom) {
+      const button = this.isCheckoutPage ? this.getCheckoutPageButton() : this.getProductOrCartPageButton();
+      !this.isCheckoutPage && this.appendButtonStyle();
+      parentDom.insertAdjacentHTML('beforeend', button);
+      this.addPluginListener();
       this.addClickListener();
+      if (!this.isCheckoutPage) {
+        this.createAnimateInterval();
+      }
+      Promise.resolve().then(() => {
+        const currentEle = document.getElementById(this.domId);
+        const buttonEle = $(currentEle).siblings('button')[0];
+        const height = buttonEle && buttonEle.offsetHeight > 0 ? buttonEle.offsetHeight : '';
+        $(currentEle).css({
+          height
+        });
+      });
       return this.domId;
     }
-
     addClickListener() {
-      if (this.config.pageType === PageType.Checkout) {
+      if (this.isCheckoutPage) {
         this.handle = this._addClickListener(this.handleCheckoutButtonClick.bind(this));
       } else {
         this.handle = this._addClickListener(this.handleButtonClick.bind(this));
       }
     }
-
+    createAnimateInterval() {
+      this.timer = setInterval(this.addAnimateClass.bind(this), 1000);
+    }
+    addAnimateClass() {
+      const btnGroup = $(`#${this.domId} .shopby-btn-group`)[0];
+      if ($(btnGroup).hasClass('shopby-button-slide-animate')) return;
+      if (this.isButtonInViewPort()) {
+        btnGroup && btnGroup.classList.add('shopby-button-slide-animate');
+        $(btnGroup).delay(50).animate({
+          left: '0%'
+        }, {
+          duration: 200
+        }).delay(1000).animate({
+          left: '-100%'
+        }, {
+          duration: 200
+        });
+        this.timer && window.clearInterval(this.timer);
+      }
+    }
     setDisplay(action, hidden) {
       const handleClass = (ele, action) => {
         const currentEle = document.getElementById(ele);
-
         if (currentEle) {
           if (action === HandleClassType.Add) {
             currentEle.style.display = 'none';
           }
-
           if (action === HandleClassType.Remove) {
             currentEle.style.display = 'block';
           }
         }
       };
-
       this.hidden = hidden;
       handleClass(this.domId, action);
     }
-
     setDisabled(val) {
       const currentEle = document.getElementById(this.domId);
       if (!currentEle) return;
-
       if (val) {
         currentEle.classList.add('disabled');
         this.removeClickListener();
@@ -120,36 +311,35 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
         this.addClickListener();
       }
     }
-
     _addClickListener(handler = noop) {
       if (this.listened) return;
       const dom = document.getElementById(this.domId);
       if (!dom) return false;
-      if (Array.from(dom.classList).includes('fast-checkout-btn-loading')) return false;
-
+      if (Array.from(dom.classList).includes('loading')) return false;
       const handle = () => {
         handler();
       };
-
       const debounced = debounce(handle, 300);
       dom.addEventListener('click', () => {
         if (debounced && debounced.cancel) {
           debounced.cancel();
         }
-
         debounced();
       });
       this.listened = true;
       return handle;
     }
-
+    _reportFCButtonClick() {
+      const currentType = ReportPageType[this.config.currentRenderType];
+      const params = getCurrentBasicParams(currentType);
+      window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.collect(params, configForFC);
+    }
     removeClickListener() {
       const dom = document.getElementById(this.domId);
       if (!dom) return false;
       dom.removeEventListener('click', this.handle);
       this.listened = false;
     }
-
     async handleButtonClick() {
       if (isProductPreview()) {
         Toast.init({
@@ -157,21 +347,22 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
         });
         return false;
       }
-
+      const textBtn = $(`#${this.domId} .shopby-text-btn`)[0];
+      const loadingContainer = $(`#${this.domId} .shopby-btn-loading-container`)[0];
+      if (textBtn && loadingContainer) {
+        loadingContainer.style.height = `${textBtn.offsetHeight}px`;
+      }
       const dom = document.getElementById(this.domId);
-      if (Array.from(dom.classList).includes('fast-checkout-btn-loading')) return false;
-
+      if (Array.from(dom.classList).includes('loading')) return false;
       try {
-        dom.classList.add('fast-checkout-btn-loading');
+        dom.classList.add('loading');
+        this._reportFCButtonClick();
         let checkoutParams = {};
-
         if (this.config.setCheckoutParams && typeof this.config.setCheckoutParams === 'function') {
           checkoutParams = await this.config.setCheckoutParams();
         }
-
         let valid = true;
         let products;
-
         if (this.isSubscription && this.config.pageType === PageType.ProductDetail) {
           const res = await getPurchaseSDKCheckoutData(checkoutParams.productButtonId).catch(() => {
             valid = false;
@@ -180,35 +371,34 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
         } else {
           products = checkoutParams.products;
         }
-
         if (!valid) {
           return {
             valid
           };
         }
-
         const {
           abandonedInfo
-        } = await checkout.save(products, checkoutParams.extra);
+        } = await checkout.save(products, {
+          ...checkoutParams.extra,
+          notSupportSubscriptionCheck: true,
+          from: SAVE_FROM.CROSSFC
+        });
         const {
           nextAction
         } = abandonedInfo || {};
         const country = Cookies.get('localization') || SL_State.get('request.cookie.localization');
         this.jumpToFastCheckoutPage(nextAction, abandonedInfo, country);
       } catch (error) {
-        dom.classList.remove('fast-checkout-btn-loading');
+        dom.classList.remove('loading');
       }
     }
-
-    addListener() {
+    addPluginListener() {
       const changeStatus = async isSubscription => {
         if (isSubscription === this.isSubscription) return;
         !this.hidden && this.setDisplay(HandleClassType.Remove);
         this.isSubscription = isSubscription;
       };
-
       let timer = null;
-
       if (this.config.pageType === PageType.ProductDetail) {
         window.Shopline.event.on(PaymentUpdate, async ({
           isSubscription
@@ -227,15 +417,12 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
       } else {
         !this.hidden && this.setDisplay(HandleClassType.Remove);
       }
-
       timer = setTimeout(() => {
         !this.hidden && this.setDisplay(HandleClassType.Remove);
         this.isSubscription = false;
       }, 5000);
     }
-
   }
-
   function newShopbyFastCheckoutButton(config) {
     const parentDom = document.getElementById(config.domId);
     if (!parentDom) return;
@@ -243,10 +430,12 @@ window.SLM['theme-shared/components/payment-button/shopby_fast_checkout.js'] = w
     divEle.setAttribute('id', `${config.domId}_fastCheckout`);
     divEle.setAttribute('class', `${EXPRESS_PAYMENT_BUTTON_COMMON_ITEM} fast-checkout-button`);
     parentDom.append(divEle);
-    const instance = new ShopbyFastCheckoutButton(config);
+    const instance = new ShopbyFastCheckoutButton({
+      ...config,
+      currentRenderType: config.pageType
+    });
     instance.renderButton(divEle);
   }
-
   _exports.newShopbyFastCheckoutButton = newShopbyFastCheckoutButton;
   _exports.default = ShopbyFastCheckoutButton;
   return _exports;

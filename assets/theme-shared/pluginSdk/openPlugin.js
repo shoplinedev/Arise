@@ -1,8 +1,6 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/pluginSdk/openPlugin.js'] = window.SLM['theme-shared/pluginSdk/openPlugin.js'] || function () {
   const _exports = {};
-
   if (!window.SL_OpenPlugin) {
     const openPlugin = {};
     Object.defineProperty(openPlugin, 'add', {
@@ -20,6 +18,5 @@ window.SLM['theme-shared/pluginSdk/openPlugin.js'] = window.SLM['theme-shared/pl
       value: openPlugin
     });
   }
-
   return _exports;
 }();

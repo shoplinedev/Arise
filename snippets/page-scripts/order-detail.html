@@ -1,55 +1,29 @@
 <script src="{{ assets_url 'pdf.min.js' }}" defer></script>
 
 <!-- customer/order/detail/script/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/scroll-lock.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/dayjs.rlp.min.js'
-      'vendors/@sl_address-serializer.rlp.min.js'
-      'vendors/@yy_sl-theme-shared.rlp.min.js'
-      'vendors/pdfjs-dist.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/@yy_sl-http-upload.rlp.min.js'
-      'vendors/@sl_ec-preview-voucher.rlp.min.js'
-      'vendors/@yy_sl-pod-preview-image.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+  {{#if request.document_direction '===' 'rtl'}}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
   {{else}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      'vendors/lodash.min.js'
-      'vendors/scroll-lock.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/dayjs.min.js'
-      'vendors/@sl_address-serializer.min.js'
-      'vendors/@yy_sl-theme-shared.min.js'
-      'vendors/pdfjs-dist.min.js'
-      'vendors/uuid.min.js'
-      'vendors/@yy_sl-http-upload.min.js'
-      'vendors/@sl_ec-preview-voucher.min.js'
-      'vendors/@yy_sl-pod-preview-image.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
   {{/if}}
+  {{ combine_asset_tag 
+    'vendors/eventemitter3.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    'vendors/lodash.min.js'
+    'vendors/scroll-lock.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/dayjs.min.js'
+    'vendors/@sl_address-serializer.min.js'
+    'vendors/@yy_sl-theme-shared.min.js'
+    'vendors/pdfjs-dist.min.js'
+    'vendors/uuid.min.js'
+    'vendors/@yy_sl-http-upload.min.js'
+    'vendors/@sl_ec-preview-voucher.min.js'
+    'vendors/@yy_sl-pod-preview-image.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/event-bus.js'
     'theme-shared/utils/parsePathToArray.js'
@@ -59,7 +33,6 @@
     'theme-shared/utils/syntax-patch.js'
     'theme-shared/utils/i18n.js'
     'theme-shared/biz-com/customer/biz/order/detail/loggerReport.js'
-    'theme-shared/biz-com/customer/reports/orders.js'
     'theme-shared/biz-com/trade/optimize-modal/tool.js'
     'theme-shared/biz-com/trade/optimize-modal/base.js'
     'theme-shared/utils/request.js'

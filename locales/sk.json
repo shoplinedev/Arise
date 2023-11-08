@@ -104,7 +104,8 @@
       "view_cart": "Zobraziť košík"
     },
     "next_step": {
-      "calculated_taxes_fees": "Dane a poštovné vypočítané pri pokladni"
+      "calculated_taxes_fees": "Dane a poštovné vypočítané pri pokladni",
+      "included_taxes_fees": "Vrátane dane a poštovné sa vypočíta pri pokladni"
     },
     "notices": {
       "change_password_after_verification": "Po overení si môžete zmeniť heslo",
@@ -230,6 +231,7 @@
       "copy_success": "Kód kupónu skopírovaný",
       "discount_title": "Aktivujte účet a získajte zľavový kód",
       "normal_title": "Aktivovať účet",
+      "normal_title_with_discount_code": "",
       "subscription_text": "Prihláste sa na odber e-mailov, aby ste mohli dostávať aktualizácie, prístup k exkluzívnym ponukám a ďalšie.",
       "success_title": "Gratulujeme k získaniu veľkej zľavy",
       "token_expired": "Platnosť odkazu vypršala"
@@ -337,6 +339,7 @@
       "set_password": "Heslo musí mať 6-18 znakov, ktoré pozostávajú z číslic, veľkých a malých písmen",
       "sign__out": "Odhlásiť sa",
       "sign_in": "PRIHLÁSIŤ SA",
+      "sign_in_activate": "Na vaše konto {{account}} bol odoslaný overovací kód. Po overení môžete svoje konto aktivovať",
       "sign_up": "ZAREGISTROVAŤ SA",
       "su": "Ne",
       "subscription_desc": "Získajte najnovšie správy o obchode",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "Ďakujeme za predplatné. Môžete sa prihlásiť pre lepší zážitok."
     },
     "message": {
+      "format_error": "Formát správy nie je podporovaný",
       "input_placeholder": "Je niečo, pre čo by ste chceli zanechať správu?",
       "message": "Správa",
       "send": "Odoslať"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "Kategória"
     },
+    "facets": {
+      "in_stock_only": "Iba na sklade",
+      "sort_button": "Hodnotenie"
+    },
     "general": {
       "no_product_data_found": "Nenašli sa žiadne údaje o produkte. Skúste to neskôr prosím",
       "sold_out": "Vypredané",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "Kúpiť na LOTTE",
       "go_to_yahoo_by_link": "Kúpiť na Yahoo",
       "in_stock": "Skladom",
+      "inventory_in_stock": "Tovar na okamžité doručenie",
+      "inventory_in_stock_show_count": "Skladové zásoby: {{ quantity }} zostávajúce položky",
+      "inventory_low_stock": "Nízke zásoby",
+      "inventory_low_stock_show_count": "Nízke zásoby: {{ quantity }} zostávajúce položky",
+      "inventory_out_of_stock": "Nie je na sklade",
+      "inventory_out_of_stock_continue_selling": "Tovar na okamžité doručenie",
       "inventory_quantity": "Množstvo zásob",
       "leave_us_message": "Prosím zadajte svoju správu",
       "leave_us_message_get_back": "Zanechajte nám prosím správu a my sa vám čo najskôr ozveme",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} boli vybratí",
       "from_price_html": "Od {{price}}",
       "less": "menej štítkov",
+      "load_more_desc": "{{current_offset}} ~ {{last_current_offset}} z {{total}} položiek",
       "load_more_tip": "Načítava sa viac položiek",
       "more": "viac značiek",
       "new_arrivals": "Nový prírastok",
@@ -612,7 +627,8 @@
       "save": "Ponuka {{{priceDom}}}",
       "save_byjs": "Ponuka {{priceDom}}",
       "save_ratio": "Zľava {{price}}%",
-      "select_product_all_options": "Najprv vyberte veľkosť produktu!",
+      "select_product_all_options": "Vybraná variant produktu je neúplná alebo nedostupná. Prosím, vyberte znovu",
+      "sort_button": "Hodnotenie",
       "top_sellers": "Najlepší predajcovia",
       "more__product_num": "{{num}} produkty",
       "one_product_num": "{{num}} produkt",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "Pokračovať v nákupe",
       "more": "Viac",
+      "saved": "uložené",
       "total": "Celkom",
       "total_sum": "Celkom"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "Výnimka služby, skúste to znova neskôr",
       "error_message_2014": "Účet v ohrození",
       "error_message_2016": "Účet v ohrození",
+      "error_message_2020": "Systém je obsadený, skúste to prosím neskôr",
       "error_message_3": "Abnormálna služba",
       "error_message_3001": "Výnimka služby, skúste to znova neskôr",
       "error_message_3002": "Používatelia, ktorí nie sú prepojení s mobilnými telefónmi / poštovými schránkami, sa snažia zmeniť svoje heslá",
@@ -850,15 +868,22 @@
       "error_message_3010": "E-mail je zviazaný na iný účet",
       "error_message_3014": "Nepodarilo sa vrátiť správu o modeli textu / e-mailu",
       "error_message_3015": "Účet bol aktivovaný",
+      "error_message_3021": "Systém je obsadený, skúste to prosím neskôr",
       "error_message_3022": "Platnosť odkazu vypršala",
       "error_message_3023": "Odkaz je v nesprávnom formáte",
       "error_message_3024": "Odkaz je nesprávny",
       "error_message_3026": "Chyby vo formáte účtu",
+      "error_message_3029": "Momentálne nepodporuje aktiváciu mobilného telefónneho čísla",
       "error_message_4": "Abnormálna služba",
       "error_message_5": "Abnormálna služba",
       "error_message_6": "Abnormálna služba",
       "error_message_7": "Heslo musí mať 6-18 znakov, ktoré pozostávajú z číslic, veľkých a malých písmen"
     },
-    "editorSwitchCountryTip": "Prepínanie krajín nie je v editore podporované"
+    "editorSwitchCountryTip": "Prepínanie krajín nie je v editore podporované",
+    "shopby": {
+      "button": {
+        "show": "Zabezpečené a rýchlejšie"
+      }
+    }
   }
 }

@@ -1,10 +1,3 @@
-{{!--
-    此snippet 用于页面级别script逻辑注入
-    具体生成逻辑将由这里进行路由分发。
-
-    !!! 为了此snippet的单一职责，这里只写路由，具体逻辑请自行分发到自己的snippet中处理  !!!
-    snippet 应在此文件夹内创建，文件名建议以页面名称命名。
- --}}
 
 {{#if templateAlias '===' 'Home'}}
   {{snippet 'page-scripts/home' }}
@@ -24,10 +17,6 @@
 
 {{#if templateAlias '===' 'Page'}}
   {{snippet 'page-scripts/page' }}
-{{/if}}
-
-{{#if templateAlias '===' 'Cart'}}
-  {{snippet 'page-scripts/cart' }}
 {{/if}}
 
 {{#if templateAlias '===' 'SignIn'}}

@@ -2,9 +2,9 @@
 {{ assign 'isTips' (and (not product.spu.soldOut) (boolean selectSku) (not selectSku.infiniteStock) (not selectSku.allowOversold) (boolean selectSku.stock '<' 10) (not selectSku.soldOut) (not stocks) is_show_stock_hint ) }}
 {{ assign 'className' (default className 'text-left')}}
 
-<div class="product-sku-quantity text-md-left {{className}}" id="product-detail-sku-quantity_{{id}}">
-  <div class="body3" style="font-weight:600">{{ t 'products.product_details.amount' }}</div>
-  {{ snippet 'product/commons/sku-stepper' disabled=false value=1 id=(append 'product-detail-sku-stepper_' id)}}
+<div class="product-sku-quantity text-md-left {{className}} {{settings.width}} {{settings.layout_direction }}" id="product-detail-sku-quantity_{{id}}">
+  <div class="body3 product-sku-quantity__label" style="font-weight:600">{{ t 'products.product_details.amount' }}</div>
+  {{ snippet 'product/commons/sku-stepper' border_style=settings.border_style disabled=false value=1 id=(append 'product-detail-sku-stepper_' id)}}
   {{#if is_show_stock_hint}}
   <div class="stepper-tip {{#not isTips}}hide{{/not}} body4">
     {{ t 'cart.stock.limit'  stock=selectSku.stock  }}

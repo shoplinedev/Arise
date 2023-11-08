@@ -7,59 +7,31 @@
   {{/if}}
 </div>
 <!-- cart/script/mini-cart.js -->
-  {{#if @root.use_modern_optimization}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.rlp.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.rlp.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/debug.rlp.min.js'
-      'vendors/@yy_sl-theme-shared.rlp.min.js'
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/@sl_smart-payment.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      'vendors/@yy_sl-ec-tracker.rlp.min.js'
-      'vendors/@sl_cart.rlp.min.js'
-      'vendors/@funnyecho_hamon.rlp.min.js'
-      'vendors/@yy_sl-pod-preview-image.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+  {{#if request.document_direction '===' 'rtl'}}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
   {{else}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.rtl.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
-      {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/debug.min.js'
-      'vendors/@yy_sl-theme-shared.min.js'
-      'vendors/eventemitter3.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      'vendors/lodash.min.js'
-      'vendors/@sl_smart-payment.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/uuid.min.js'
-      'vendors/js-cookie.min.js'
-      'vendors/@yy_sl-ec-tracker.min.js'
-      'vendors/@sl_cart.min.js'
-      'vendors/@funnyecho_hamon.min.js'
-      'vendors/@yy_sl-pod-preview-image.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+    {{ combine_asset_tag 'vendors/@yy_sl-theme-shared.min.css' inline=true }}
+    {{ combine_asset_tag 'vendors/@sl_cart.min.css' inline=true }}
   {{/if}}
+  {{ combine_asset_tag 
+    'vendors/debug.min.js'
+    'vendors/@yy_sl-theme-shared.min.js'
+    'vendors/eventemitter3.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    'vendors/lodash.min.js'
+    'vendors/@sl_smart-payment.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/uuid.min.js'
+    'vendors/js-cookie.min.js'
+    'vendors/@yy_sl-ec-tracker.min.js'
+    'vendors/@sl_cart.min.js'
+    'vendors/@funnyecho_hamon.min.js'
+    'vendors/@yy_sl-pod-preview-image.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/get-env.js'
     'theme-shared/utils/createLogger.js'
@@ -72,10 +44,6 @@
     'theme-shared/utils/parsePathToArray.js'
     'theme-shared/utils/state-selector.js'
     'theme-shared/utils/newCurrency/CurrencyConvert.js'
-    'theme-shared/utils/tradeReport/const.js'
-    'theme-shared/components/hbs/shared/base/BaseClass.js'
-    'theme-shared/components/hbs/shared/components/topDrawer/const.js'
-    'theme-shared/components/hbs/shared/components/topDrawer/index.js'
     'theme-shared/utils/syntax-patch.js'
     'theme-shared/utils/i18n.js'
     'theme-shared/components/hbs/shared/components/toast/toast.js'
@@ -84,10 +52,15 @@
     'theme-shared/components/smart-payment/constants.js'
     'theme-shared/const/preload-state-fields.js'
     'theme-shared/components/smart-payment/utils.js'
+    'theme-shared/utils/tradeReport/const.js'
+    'theme-shared/components/hbs/shared/base/BaseClass.js'
+    'theme-shared/components/hbs/shared/components/topDrawer/const.js'
+    'theme-shared/components/hbs/shared/components/topDrawer/index.js'
     'theme-shared/utils/request.js'
+    'theme-shared/utils/retryRequest.js'
     'theme-shared/utils/url-adaptor.js'
-    'theme-shared/utils/newCurrency/index.js'
     'theme-shared/utils/report/const.js'
+    'theme-shared/utils/newCurrency/index.js'
     'theme-shared/utils/dataReport/tool.js'
     'theme-shared/utils/dataReport/ga.js'
     'theme-shared/utils/dataReport/gad.js'
@@ -102,6 +75,7 @@
     'theme-shared/components/smart-payment/reporter/constants.js'
     'theme-shared/components/smart-payment/reporter/CheckoutHiidoReportV2.js'
     'theme-shared/components/smart-payment/reporter/ThirdPartReport.js'
+    'theme-shared/components/locales/index.js'
     'theme-shared/components/smart-payment/index.js'
     'theme-shared/components/payment-button/constants.js'
     'theme-shared/components/payment-button/utils.js'
@@ -150,10 +124,7 @@
     'commons/components/toast/index.js'
     'cart/script/service/cart/index.js'
     'cart/script/utils/cart-util/index.js'
-    'theme-shared/utils/report/hd-const.js'
-    'theme-shared/utils/tradeReport/hdReport.js'
     'theme-shared/utils/currency/getCurrencyCode.js'
-    'cart/script/report/cartHdReport.js'
     'cart/script/report/cartReport.js'
     'commons/utils/isMobile.js'
     'commons/utils/throttle.js'
@@ -161,6 +132,8 @@
     'cart/script/biz/sticky-cart/index.js'
     'cart/script/domain/model/observer.js'
     'cart/script/domain/model/skuPromotionVerify.js'
+    'commons/cart/errorCode.js'
+    'commons/cart/handleAddToCartErrorCodeToast.js'
     'cart/script/components/sku-stepper.js'
     'cart/script/components/remove-button.js'
     'cart/script/components/remove-all-button.js'

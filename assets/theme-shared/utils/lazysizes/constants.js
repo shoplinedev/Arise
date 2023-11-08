@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/lazysizes/constants.js'] = window.SLM['theme-shared/utils/lazysizes/constants.js'] || function () {
   const _exports = {};
   const EnumAttributes = {

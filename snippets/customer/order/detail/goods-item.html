@@ -3,7 +3,7 @@
     {{#if images}}
       <img class="lozad goods-item-good-img-big" src="{{first images 1}}" alt="" />
     {{else}}
-      {{! 商品默认图片 }}
+      
       <div class="goods-item-good-img-default goods-item-good-img-click">
         <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -36,7 +36,7 @@
         {{/each}}
       {{/if}}
     </div>
-    {{! 遍历 pod 商品的属性 }}
+    
     {{#each propertyInfoList}}
       {{#if show "==" true}}
         {{#if type '==' 'text'}}
@@ -49,7 +49,7 @@
               {{name}}:
             </span>
             <a target="_blank" href={{first urls 1}} class="goods-item-good-watch">
-              {{! 点击查看 }}
+              
               {{t 'cart.item.click_to_view'}}
             </a>
           </div>
@@ -59,14 +59,14 @@
               {{name}}:
             </span>
             <a class="goods-item-good-preview" data-urls="{{urls}}">
-              {{! 定制预览 }}
+              
               {{t 'cart.item.custom_preview'}}
             </a>
           </div>
         {{/if}}
       {{/if}}
     {{/each}}
-    {{! 预售商品的属性 }}
+    
     {{#each customProductTips}}
       <div class="goods-item-good-common" {{{ this.shopline_attributes }}}>
         {{this}}

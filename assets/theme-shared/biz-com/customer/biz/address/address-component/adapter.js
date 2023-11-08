@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.js'] = window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.js'] || function () {
   const _exports = {};
   const { createCacheableServiceBuilder, createShoplineServiceBuilder } = window['@sl/address-autocomplete'];
@@ -7,7 +6,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
   const { LOGISTICS_COUNTRIES, LOGISTICS_ADDRESS_LIBRARY, LOGISTICS_ADDRESS_LAYER, LOGISTICS_ADDRESS_TEMPLATE, PLACE_AUTOCOMPLETE, PLACE_DETAIL } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const { getLanguage } = window['SLM']['theme-shared/biz-com/customer/utils/helper.js'];
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
-
   function createAdapter() {
     const presetAddressTemplate = SL_State.get('customer_address_template');
     return {
@@ -15,19 +13,18 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
         async getCountryList() {
           const res = await request.get(LOGISTICS_COUNTRIES, {
             params: {
-              popularType: 'receiving'
+              popularType: 'receiving',
+              language: getLanguage()
             }
           });
-
           if (res.success !== true) {
             return res;
           }
-
-          return { ...res,
+          return {
+            ...res,
             data: (res.data || []).map(country => unmarshalCountryLevelInfo(country, getLanguage()))
           };
         }
-
       },
       addressBookFetcher: {
         async getAddressBook(countryCode, fieldName, code, depth) {
@@ -40,7 +37,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
               }
             });
           }
-
           if (!code) {
             return {
               success: true,
@@ -48,7 +44,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
               data: []
             };
           }
-
           return request.get(LOGISTICS_ADDRESS_LAYER, {
             params: {
               countryCode,
@@ -58,7 +53,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
             }
           });
         }
-
       },
       addressTemplateFetcher: {
         async getAddressTemplate(countryCode) {
@@ -69,7 +63,6 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
               data: presetAddressTemplate
             };
           }
-
           return request.get(LOGISTICS_ADDRESS_TEMPLATE, {
             params: {
               country: countryCode,
@@ -77,19 +70,15 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
             }
           });
         }
-
       }
     };
   }
-
   _exports.createAdapter = createAdapter;
-
   function createAutocompleteService() {
     const cacheableAutocompleteServiceBuilder = createCacheableServiceBuilder({
       onError(msg, data) {
         console.error(msg, data);
       }
-
     });
     const shoplineAutocompleteServiceBuilder = createShoplineServiceBuilder({
       autocomplete(params) {
@@ -97,35 +86,28 @@ window.SLM['theme-shared/biz-com/customer/biz/address/address-component/adapter.
           params
         });
       },
-
       detail(params) {
         return request.get(PLACE_DETAIL, {
           params
         });
       }
-
     });
     return cacheableAutocompleteServiceBuilder.build(shoplineAutocompleteServiceBuilder.build(getLanguage()));
   }
-
   _exports.createAutocompleteService = createAutocompleteService;
-
   function unmarshalCountryLevelInfo(country, language) {
     let {
       name
     } = country;
     const i18nCountryInfos = country.countryInfos || {};
     const localCountryInfo = language ? i18nCountryInfos[language] : null;
-
     if (localCountryInfo != null && localCountryInfo.name) {
       name = localCountryInfo.name;
     }
-
     return {
       code: country.countryCode,
       name
     };
   }
-
   return _exports;
 }();

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -21,7 +20,6 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
         ...config
       };
     },
-
     phone(config = {}) {
       return {
         name: 'phone',
@@ -35,7 +33,6 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
         ...config
       };
     },
-
     username(config = {}) {
       return {
         name: 'username',
@@ -49,7 +46,6 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
         ...config
       };
     },
-
     password() {
       return {
         name: 'password',
@@ -64,7 +60,6 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
         }]
       };
     },
-
     loginPassword() {
       return {
         name: 'password',
@@ -79,7 +74,6 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
         }]
       };
     },
-
     repeatPassword() {
       return {
         name: 'repeatPassword',
@@ -96,14 +90,12 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
             if (!MEMBER_PASSWORD_PATTERN.test(v)) {
               return true;
             }
-
             return record.password === record.repeatPassword;
           },
           message: t('customer.general.repeat_passport_error')
         }]
       };
     },
-
     verifycode(configs = {}) {
       return {
         name: 'verifycode',
@@ -116,9 +108,7 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
         ...configs
       };
     }
-
   };
-
   const getAccountFieldType = type => {
     const typeToFormFieldType = {
       member: 'username',
@@ -126,15 +116,12 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
     };
     return typeToFormFieldType[type] || type;
   };
-
   _exports.getAccountFieldType = getAccountFieldType;
-
   const getFormFieldsHelper = (types = []) => {
     return types.filter(type => !!type).map(item => {
       if (typeof item === 'string') {
         return formFields[item] && formFields[item]();
       }
-
       const {
         type,
         ...args
@@ -142,7 +129,6 @@ window.SLM['theme-shared/biz-com/customer/helpers/getFormFields.js'] = window.SL
       return formFields[type](args);
     });
   };
-
   _exports.getFormFieldsHelper = getFormFieldsHelper;
   _exports.default = getFormFieldsHelper;
   return _exports;

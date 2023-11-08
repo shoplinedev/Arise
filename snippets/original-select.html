@@ -1,6 +1,6 @@
 <span class="common__original-select body6 {{attr.class}}">
   {{ assign 'Options' (default options (arrayify 0))}}
-  {{!-- 获取默认选中的option --}}
+  
   {{ assign 'selectedOption' (find-in-array Options (isTruthy '1') 'selected') }}
   {{#if selectedOption}}
     {{ assign 'selectedOptions' (arrayify selectedOption) }}

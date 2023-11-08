@@ -104,7 +104,8 @@
       "view_cart": "कार्ट देंखे"
     },
     "next_step": {
-      "calculated_taxes_fees": "चेकआउट के समय कर और शिपिंग की गिनती"
+      "calculated_taxes_fees": "चेकआउट के समय कर और शिपिंग की गिनती",
+      "included_taxes_fees": "कर शामिल है और शिपिंग की गणना चेकआउट के समय की जाती है"
     },
     "notices": {
       "change_password_after_verification": "सत्यापन के बाद आप पासवर्ड बदल सकते हैं",
@@ -230,6 +231,7 @@
       "copy_success": "कूपन कोड कॉपी किया गया",
       "discount_title": "खाता सक्रिय करें और छूट कोड पाएं",
       "normal_title": "खाते को सक्रिय करें",
+      "normal_title_with_discount_code": "",
       "subscription_text": "विशेष सौदों तक पहुंच, और बहुत कुछ ईमेल से अपडेट पाने के लिए सदस्यता लें।",
       "success_title": "अच्छा छूट मिलने पर बधाई कोड",
       "token_expired": "लिंक की वैधता समाप्त हुआ"
@@ -337,6 +339,7 @@
       "set_password": "पासवर्ड संख्या, अपरकेस और लोअरकेस अक्षरों से युक्त 6-18 वर्णों का होना चाहिए",
       "sign__out": "साइन आउट",
       "sign_in": "साइन इन करें",
+      "sign_in_activate": "सत्यापन कोड आपके खाते {{account}} पर भेज दिया गया है। सत्यापन के बाद आप अपना खाता सक्रिय करवा सकते हैं",
       "sign_up": "साइन अप करें",
       "su": "रवि",
       "subscription_desc": "स्टोर के बारे में हाल के ख़बर पाएं",
@@ -369,6 +372,7 @@
       "subscribe_confirm_tip": "आपकी सदस्यता के लिए धन्यवाद। आप बेहतर अनुभव के लिए लॉगिन कर सकते हैं।"
     },
     "message": {
+      "format_error": "संदेश प्रारूप समर्थित नहीं है",
       "input_placeholder": "क्या ऐसा कुछ है जिसके लिए आप संदेश देना चाहते हैं?",
       "message": "संदेश",
       "send": "भेजें"
@@ -549,6 +553,10 @@
     "collection": {
       "collection": "श्रेणी"
     },
+    "facets": {
+      "in_stock_only": "केवल स्टॉक में",
+      "sort_button": "क्रमबद्ध"
+    },
     "general": {
       "no_product_data_found": "कोई उत्पाद डेटा नहीं मिला। बाद में पुन: प्रयास करें",
       "sold_out": "बिक गया",
@@ -572,6 +580,12 @@
       "go_to_rakuten_by_link": "LOTTE में खरीदें",
       "go_to_yahoo_by_link": "Yahoo में खरीदें",
       "in_stock": "स्टॉक में",
+      "inventory_in_stock": "हाजिर माल",
+      "inventory_in_stock_show_count": "स्टॉक: {{ quantity }} शेष",
+      "inventory_low_stock": "कम स्टॉक",
+      "inventory_low_stock_show_count": "कम स्टॉक: {{ quantity }} शेष",
+      "inventory_out_of_stock": "स्टॉक में नहीं",
+      "inventory_out_of_stock_continue_selling": "हाजिर माल",
       "inventory_quantity": "इन्वेंटरी मात्रा",
       "leave_us_message": "कृपया अपना संदेश लिखें",
       "leave_us_message_get_back": "कृपया हमें एक संदेश दें और हम जल्द से जल्द आपसे संपर्क करेंगे",
@@ -596,6 +610,7 @@
       "filters_selected": "{{count}} का चयन कर लिया गया है",
       "from_price_html": "{{price}} से",
       "less": "कम लेबल",
+      "load_more_desc": "{{total}} आइटमों में से {{current_offset}} ~ {{last_current_offset}}",
       "load_more_tip": "और आइटम लोड हो रहे हैं",
       "more": "अधिक टैग",
       "new_arrivals": "नया आगमन",
@@ -612,7 +627,8 @@
       "save": "ऑफ़र {{{priceDom}}}",
       "save_byjs": "ऑफ़र {{priceDom}}",
       "save_ratio": "{{price}}% छूट",
-      "select_product_all_options": "कृपया पहले उत्पाद का आकार चुनें!",
+      "select_product_all_options": "चयनित उत्पाद वेरिएंट अधूरा या अनुपलब्ध है। कृपया फिर से चुनें।",
+      "sort_button": "क्रमबद्ध",
       "top_sellers": "सबसे अच्चे विक्रेता",
       "more__product_num": "{{num}} उत्पादों",
       "one_product_num": "{{num}} उत्पाद",
@@ -781,6 +797,7 @@
     "payment": {
       "continue_shopping": "शॉपिंग जारी रखें",
       "more": "अधिक",
+      "saved": "बचाया",
       "total": "कुल",
       "total_sum": "कुल"
     },
@@ -837,6 +854,7 @@
       "error_message_2007": "सेवा आपत्ति, बाद में पुन:प्रयास करें",
       "error_message_2014": "खाता जोखिम में है",
       "error_message_2016": "खाता जोखिम में है",
+      "error_message_2020": "सिस्टम व्यस्त है, कृपया बाद में पुनः प्रयास करें",
       "error_message_3": "सेवा के अपवाद",
       "error_message_3001": "सेवा आपत्ति, बाद में पुन:प्रयास करें",
       "error_message_3002": "जो उपयोगकर्ता मोबाइल फोन/मेलबॉक्स से बंधे नहीं हैं, वे अपना पासवर्ड बदलने का प्रयास करते हैं",
@@ -850,15 +868,22 @@
       "error_message_3010": "ईमेल अन्य खातों द्वारा बंधा गया है",
       "error_message_3014": "टेक्स्ट संदेश/मेल टेम्प्लेट रेंडरिंग विफल",
       "error_message_3015": "खाता सक्रिय कर दिया है",
+      "error_message_3021": "सिस्टम व्यस्त है, कृपया बाद में पुनः प्रयास करें",
       "error_message_3022": "लिंक की वैधता समाप्त हुआ",
       "error_message_3023": "लिंक का तरीका गलत है",
       "error_message_3024": "लिंक गलत है",
       "error_message_3026": "अकाउंट फॉर्मेट एरर",
+      "error_message_3029": "फिलहाल मोबाइल फोन नंबर सक्रियण का समर्थन न करें",
       "error_message_4": "सेवा के अपवाद",
       "error_message_5": "सेवा के अपवाद",
       "error_message_6": "सेवा के अपवाद",
       "error_message_7": "पासवर्ड संख्या, अपरकेस और लोअरकेस अक्षरों से युक्त 6-18 वर्णों का होना चाहिए"
     },
-    "editorSwitchCountryTip": "संपादक में देश बदलना समर्थित नहीं है"
+    "editorSwitchCountryTip": "संपादक में देश बदलना समर्थित नहीं है",
+    "shopby": {
+      "button": {
+        "show": "सुरक्षित और तेज़"
+      }
+    }
   }
 }

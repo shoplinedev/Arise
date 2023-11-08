@@ -1,18 +1,9 @@
-{{!-- 可传参数：
-imageFit: 图片填充方式,'cover'|'contain',默认为'contain
-imagePosition: 图片填充方式为cover，图片展示的位置
-imageRatio: 图片容器比例,为数字字符串，'0'表示原始比例，默认为'100'
-fallbacksSrc: 为指定的兜底图，默认无兜底图
-fallbacksBgColor: 为指定的兜底图背景色值，默认无
-placeholderHeight: number 传入占位高度 默认为 200
-closeLazy: 关闭懒加载 默认false
-alt: 图片alt
---}}
+
 
 {{ assign '_imageRatio' '100' }}
 {{ assign '_imageFit' 'contain' }}
 
-{{!-- 自由比例时的占位高度 --}}
+
 {{#if placeholderHeight}}
   {{ assign '_placeholderHeight' placeholderHeight }}
 {{else}}
@@ -34,9 +25,9 @@ alt: 图片alt
 {{ assign 'imageResponsive' (image_responsive src pcSize=pcSize mSize=mSize containerMaxWidth=containerMaxWidth) }}
 <div class="product-box-content-image" {{#if _imageRatio '!==' '0'}} style="padding-bottom:{{ _imageRatio }}%" {{/if}}>
 <div
-  class="product-process-image {{!-- 如果为自由比例👉 --}}{{#if _imageRatio '!==' '0'}} fix-product-image-con {{/if}}{{!-- 如果图片地址为空，直接走占位符逻辑👉 --}}{{#if (isFalsey src)}}placeholder-border{{/if}}"
+  class="product-process-image {{#if _imageRatio '!==' '0'}} fix-product-image-con {{/if}}{{#if (isFalsey src)}}placeholder-border{{/if}}"
   style="{{#if backgroundColor}} background-color: {{ backgroundColor }}; {{/if}}" data-plugin-product-item-img-ele>
-  <img {{!-- 如果图片地址为空，直接走占位符逻辑，图片透明度为零 --}}
+  <img 
     referrerpolicy="{{#if imgNoReferrerSwitch}}same-origin{{/if}}"
     style="{{#if (isFalsey src)}}opacity: 0;{{/if}} object-fit: {{ _imageFit }};{{#if _imageRatio '===' '0'}} height:{{ _placeholderHeight }}px {{/if}}"
     {{#if closeLazy}}

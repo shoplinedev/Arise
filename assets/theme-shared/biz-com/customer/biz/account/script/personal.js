@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/personal.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/personal.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -14,7 +13,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/personal.js'] = win
     2: t('customer.account.gender_female'),
     3: t('customer.account.gender_secret')
   };
-
   class Personal extends Card {
     constructor({
       id,
@@ -41,7 +39,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/personal.js'] = win
       this.genderSelector = `#${id}-gender`;
       this.genderRadioSelector = `#${this.id} [name="personal-gender"]`;
     }
-
     init() {
       let selectDate = null;
       this.datepicker = new DatePicker({
@@ -52,7 +49,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/personal.js'] = win
             selectDate = date;
             reportChangeBirthday();
           }
-
           this.formData.birthday = dayjs(date).format('YYYYMMDD');
         }
       });
@@ -60,24 +56,21 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/personal.js'] = win
         reportChooseGender();
       });
     }
-
     getGender() {
       return $(`${this.genderRadioSelector}:checked`).val();
     }
-
     onEdit() {
       reportEditPersion();
     }
-
     onCancel() {
-      this.formData = { ...this.originData
+      this.formData = {
+        ...this.originData
       };
       $(`${this.genderRadioSelector}:checked`).removeProp('checked');
       $(`${this.genderRadioSelector}[value=${this.originData.gender}]`).prop('checked', 'checked');
       this.datepicker.setDate(this.originData.birthday);
       reportDropModifyPersonal();
     }
-
     onSave() {
       let gender = this.getGender();
       gender = gender ? parseInt(gender, 10) : 0;
@@ -88,19 +81,15 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/personal.js'] = win
         if (this.formData.birthday) {
           $(this.birthdaySelector).text(dayjs(this.formData.birthday).format('YYYY-MM-DD'));
         }
-
         if (GENDER_MAP[gender]) {
           $(this.genderSelector).text(GENDER_MAP[gender]);
         }
-
         this.originData.birthday = this.formData.birthday;
         this.originData.gender = gender;
         reportSavePersonal();
       });
     }
-
   }
-
   _exports.default = Personal;
   return _exports;
 }();

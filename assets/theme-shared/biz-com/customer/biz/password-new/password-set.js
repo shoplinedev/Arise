@@ -1,12 +1,10 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/password-new/password-set.js'] = window.SLM['theme-shared/biz-com/customer/biz/password-new/password-set.js'] || function () {
   const _exports = {};
   const { getUdbErrorMessage } = window['SLM']['theme-shared/biz-com/customer/helpers/getUdbResponseLanguageErrorKey.js'];
   const getFormFields = window['SLM']['theme-shared/biz-com/customer/helpers/getFormFields.js'].default;
   const Form = window['SLM']['theme-shared/biz-com/customer/commons/form/index.js'].default;
   const Customer = window['SLM']['theme-shared/biz-com/customer/commons/customer/index.js'].default;
-
   class PasswordSet extends Customer {
     constructor({
       id,
@@ -19,7 +17,6 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-set.js'] = w
       this.passwordForm = null;
       this.onSubmit = onSubmit;
     }
-
     init() {
       this.passwordForm = new Form({
         id: this.formId,
@@ -35,14 +32,11 @@ window.SLM['theme-shared/biz-com/customer/biz/password-new/password-set.js'] = w
         })
       });
     }
-
     getFieldConfigs() {
       const fieldTypes = ['password', 'repeatPassword'];
       return getFormFields(fieldTypes);
     }
-
   }
-
   _exports.default = PasswordSet;
   return _exports;
 }();

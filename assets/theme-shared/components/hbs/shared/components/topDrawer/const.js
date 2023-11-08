@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/shared/components/topDrawer/const.js'] = window.SLM['theme-shared/components/hbs/shared/components/topDrawer/const.js'] || function () {
   const _exports = {};
   const DRAWER_EVENT_NAME = 'stage:topDrawer';

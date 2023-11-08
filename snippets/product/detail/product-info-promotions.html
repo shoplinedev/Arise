@@ -1,6 +1,6 @@
-{{!-- 询盘商品不显示倒计时和限时促销挂件 --}}
+
 {{#not product.spu.inquiry}}
-  {{!-- 限时促销 --}}
+
   <div class="d-none d-md-block sales__flash-sale notranslate sales-promotion-plugin"></div>
   <div class="d-none d-md-block countdown-component">
     {{ snippet 'product/detail/countdown-widget' spuSeq=spuInfo.spuSeq sortationList=spuInfo.sortationList }}

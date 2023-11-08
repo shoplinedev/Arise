@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['cart/script/mini-cart.js'] = window.SLM['cart/script/mini-cart.js'] || function () {
   const _exports = {};
   const createLogger = window['SLM']['theme-shared/utils/createLogger.js'].default;

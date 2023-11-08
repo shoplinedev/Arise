@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/events/customer/developer-api/index.js'] = window.SLM['theme-shared/events/customer/developer-api/index.js'] || function () {
   const _exports = {};
   const loginModal = window['SLM']['theme-shared/events/customer/developer-api/login-modal/index.js'].default;
@@ -7,7 +6,6 @@ window.SLM['theme-shared/events/customer/developer-api/index.js'] = window.SLM['
   const apiLogger = window['SLM']['theme-shared/events/utils/api-logger.js'].default;
   const logger = apiLogger('register');
   const events = [loginModal, register];
-
   _exports.default = (...activateApiNames) => {
     const executedEvents = [];
     activateApiNames.forEach(activateApiName => {
@@ -21,6 +19,5 @@ window.SLM['theme-shared/events/customer/developer-api/index.js'] = window.SLM['
     logger.info('executed events', executedEvents);
     return executedEvents;
   };
-
   return _exports;
 }();

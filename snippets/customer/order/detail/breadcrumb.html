@@ -1,6 +1,6 @@
 {{assign 'isMobile' request.is_mobile}}
 <div class="order-breadcrumb">
-  {{!-- mobile 和 ipod --}}
+  
   <div class="order-breadcrumb-mobile-ipod">
     <a href="{{redirect_to '/user/orders'}}" class="order-url-back">
       <svg class="icon directional" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -8,7 +8,7 @@
       </svg>
       <span>{{t 'order.order_details.order'}}</a></span>
   </div>
-  {{!-- PC --}}
+  
   <div class="order-breadcrumb-pc">
     <a href="{{redirect_to '/user/orders'}}" class="order-url">{{t 'order.order_details.order'}}</a>
     <a class="order-detail-url">

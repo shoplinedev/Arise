@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/components/hbs/flashSale/index.js'] = window.SLM['theme-shared/components/hbs/flashSale/index.js'] || function () {
   const _exports = {};
   const get = window['lodash']['get'];
@@ -18,51 +17,43 @@ window.SLM['theme-shared/components/hbs/flashSale/index.js'] = window.SLM['theme
     PRODUCT_PURCHASE_LIMIITED: 2,
     ACTIVE_NOSTOCK: -1
   };
-
   const template = saleBuyLimitConfig => {
     const {
       userLimitedType,
       acquirePerUserLimit
     } = saleBuyLimitConfig || {};
-
     switch (userLimitedType) {
       case TOAST_TYPE.ACTIVE_PURCHASE_LIMIITED:
         return t('products.product_details.activity_toast_product__limit', {
           stock: acquirePerUserLimit > 0 ? acquirePerUserLimit : '0'
         });
-
       case TOAST_TYPE.PRODUCT_PURCHASE_LIMIITED:
         return t('products.product_details.activity_toast_price_limit', {
           num: acquirePerUserLimit > 0 ? acquirePerUserLimit : '0'
         });
-
       case TOAST_TYPE.ACTIVE_NOSTOCK:
         return t('products.product_details.activity_toast_title__limit');
-
       default:
         return '';
     }
   };
-
   const defaultOption = {
     id: '',
     productInfo: {}
   };
-
   class FlashSale {
     constructor(option = {}) {
-      this.option = { ...defaultOption,
+      this.option = {
+        ...defaultOption,
         ...option
       };
       this.option.productInfo[this.option.id] = {};
       this.init();
     }
-
     init() {
       this.toast = new Toast();
       this.bindEventListener();
     }
-
     bindEventListener() {
       window.SL_EventBus.on(EVENT_BUS.QUANTITY_ADD_EVENT, ([value, selector]) => {
         if (this.checkData({
@@ -85,7 +76,6 @@ window.SLM['theme-shared/components/hbs/flashSale/index.js'] = window.SLM['theme
           selector
         })) {
           this.getProductNum(value);
-
           if (!overStockLimit) {
             this.showTips(value);
           }
@@ -120,53 +110,43 @@ window.SLM['theme-shared/components/hbs/flashSale/index.js'] = window.SLM['theme
         }
       });
     }
-
     compareStock(sku) {
       const {
         stock
       } = sku || {};
-
       if (stock <= this.option.productInfo[this.option.id].productNum) {
         this.option.productInfo[this.option.id].productNum = stock;
       }
     }
-
     checkData(data) {
       const {
         id,
         selector
       } = data || {};
-
       if (id === this.option.id || selector && selector.attr('id') && selector.attr('id').indexOf(this.option.id) > -1) {
         return true;
       }
-
       return false;
     }
-
     getProductNum(value) {
       this.option.productInfo[this.option.id].productNum = value;
     }
-
     dataProcess(sku) {
       const prdInfo = this.option.productInfo[this.option.id];
       const {
         saleActivityResponseList,
         stock
       } = sku || {};
-
       if (!saleActivityResponseList) {
         this.option.productInfo[this.option.id] = {};
         return;
       }
-
       Array.isArray(saleActivityResponseList) && saleActivityResponseList.forEach(item => {
         const {
           promotionType,
           promotionSubType,
           saleBuyLimitConfig
         } = item || {};
-
         if (promotionType === 1 && promotionSubType === 1) {
           this.option.productInfo[this.option.id].activeTip = !get(item, 'saleBuyLimitConfig.allowBuyOverLimit') ? template(saleBuyLimitConfig) : '';
           prdInfo.promotionRemainStock = get(item, 'skuPromotionProduct.promotionRemainStock');
@@ -175,10 +155,8 @@ window.SLM['theme-shared/components/hbs/flashSale/index.js'] = window.SLM['theme
       });
       prdInfo.stock = stock;
     }
-
     showTips(value) {
       const prdInfo = this.option.productInfo[this.option.id] || {};
-
       if (prdInfo.activeTip && prdInfo.promotionRemainStock !== -1 && prdInfo.promotionRemainStock < value) {
         this.toast.open(template({
           userLimitedType: -1
@@ -187,9 +165,7 @@ window.SLM['theme-shared/components/hbs/flashSale/index.js'] = window.SLM['theme
         this.toast.open(prdInfo.activeTip);
       }
     }
-
   }
-
   _exports.default = FlashSale;
   return _exports;
 }();

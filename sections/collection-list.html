@@ -4,36 +4,23 @@ collection_products:
 all_collections:
   need_first_product: {{ boolean theme.settings.collection_grid_image '==' 'product' }}
 ---
-{{!-- 不需要商品数据只需要分类数据 所以设置为0 提高响应速度 --}}
+
 {{#if request.document_direction '===' 'rtl'}}
   {{ combine_asset_tag 'stage/collection-list/index.rtl.css' inline=true}}
 {{else}}
   {{ combine_asset_tag 'stage/collection-list/index.css' inline=true}}
 {{/if}}
 <!-- stage/collection-list/index.js -->
-  {{#if @root.use_modern_optimization}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.rlp.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/swiper.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+  {{#if request.document_direction '===' 'rtl'}}
+    {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
   {{else}}
-    {{#if request.document_direction '===' 'rtl'}}
-      {{ combine_asset_tag 'vendors/swiper.min.rtl.css' inline=true }}
-    {{else}}
-      {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
-    {{/if}}
-    {{ combine_asset_tag 
-      'vendors/swiper.min.js'
-      type="text/javascript"
-      defer=true
-    }}
+    {{ combine_asset_tag 'vendors/swiper.min.css' inline=true }}
   {{/if}}
+  {{ combine_asset_tag 
+    'vendors/swiper.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/sectionsLoad/index.js'
     'stage/collection-list/index.js'
@@ -44,16 +31,27 @@ all_collections:
 
 {{ assign 'blocks' (product_blocks_order_translate section 'blocks' 'block_order') }}
 {{ assign 'title' section.settings.title }}
-{{!-- {{assign 'real_product_img_width' (divide 1420 col)}} --}}
-{{!-- 分类图片比例 --}}
-{{ assign 'imageRatio' section.settings.collection_image_ratio }}
+{{ assign 'image_round' (if section.settings.collection_image_shape '===' 'round') }}
+{{ assign 'imageRatio' (ternary image_round 100 section.settings.collection_image_ratio) }}
+
+{{#if image_round}}
+  <style>
+    #collection-list-{{ section.id }} .collection-item *,
+    #collection-list-{{ section.id }} .collection-item *::after,
+    #collection-list-{{ section.id }} .collection-item *::before {
+      --card-border-radius: 50%;
+      --card-border-radius-outset: 50%;
+    }
+  </style>
+{{/if}}
+
 {{ assign 'color_scheme' section.settings.color_scheme }}
 {{ assign 'slice_in_mobile' section.settings.slice_in_mobile }}
 {{ assign 'slice_in_pc' section.settings.slice_in_pc }}
 
 {{ assign 'limitWidthClass' '' }}
 {{ assign 'col' 3 }}
-{{!-- override col‘s value --}}
+
 {{ assign 'goodsBlockLength' (length blocks) }}
 {{#if (boolean goodsBlockLength '===' 1)}}
   {{ assign 'col' 1 }}
@@ -72,15 +70,17 @@ all_collections:
 
 <script type="text/json" id="collectionList-data-{{ section.id }}">{{{ stringify section.settings }}}</script>
 
-<div class="color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}"
-     data-section-type="collection-list"
-     data-section-id="{{ section.id }}">
+<div
+  id="collection-list-{{ section.id }}"
+  class="color-scheme-{{ color_scheme }} section-gap{{#if color_scheme '!==' 'none'}}--padding{{/if}}"
+  data-section-type="collection-list"
+  data-section-id="{{ section.id }}">
   <div class="__sl-custom-track-stage-colletionlist colletionlist container {{ limitWidthStyle }} {{#if (isTruthy slice_in_mobile)}}slice_in_mobile{{/if}}">
     <h2 class="section-title colletionlist__title title4 text-center">{{ title }}</h2>
 
     {{#if slice_in_pc}}
       <div class="colletionlist__swiper d-none d-md-block">
-        {{!-- swiper 挂载点 --}}
+        
         <div class="colletionlist-swiper-{{ section.id }} colletionlist__swiper-box" >
           <div class="swiper-wrapper row row-cols-{{ pc_col }}">
           {{#each blocks}}
@@ -209,6 +209,22 @@ all_collections:
         }
       ],
       "default": "100"
+    },
+    {
+      "id": "collection_image_shape",
+      "type": "select",
+      "label": "t:sections.collection-list.settings.collection_image_shape.label",
+      "options": [
+        {
+          "value": "square",
+          "label": "t:sections.collection-list.settings.collection_image_shape.options__0.label"
+        },
+        {
+          "value": "round",
+          "label": "t:sections.collection-list.settings.collection_image_shape.options__1.label"
+        }
+      ],
+      "default": "square"
     },
     {
       "type": "select",

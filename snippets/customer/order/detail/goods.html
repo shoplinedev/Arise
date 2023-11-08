@@ -1,4 +1,4 @@
-{{!-- TODO: hbs 这里包含了商品列表和物流信息，应该改成package才对 --}}
+
 <div class="detail-goods">
   {{#if unshippedItemInfo}}
     <div class="detail-status">
@@ -17,7 +17,7 @@
         {{t 'order.order_list.package_amount' item=productSumNum num=(add index 1) }}
       </div>
     {{/if}}
-    <!-- 物流信息 -->
+    
     {{#if expressCode}}
       <div class="detail-logistic">
         <div class="detail-logistic-number">

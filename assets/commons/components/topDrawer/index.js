@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['commons/components/topDrawer/index.js'] = window.SLM['commons/components/topDrawer/index.js'] || function () {
   const _exports = {};
   const TopDrawer = window['SLM']['theme-shared/components/hbs/shared/components/topDrawer/index.js'].default;

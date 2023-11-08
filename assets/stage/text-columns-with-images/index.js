@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/text-columns-with-images/index.js'] = window.SLM['stage/text-columns-with-images/index.js'] || function () {
   const _exports = {};
   const Swiper = window['swiper']['default'];
@@ -20,14 +19,12 @@ window.SLM['stage/text-columns-with-images/index.js'] = window.SLM['stage/text-c
 <path d="M1.5 9.3994L5.44971 5.4497L1.50001 1.5" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
 </svg>
 `;
-
   class Slider {
     constructor(container) {
       this.container = container;
       this.sectionId = container.data('section-id');
       this.init();
     }
-
     init() {
       const {
         container
@@ -51,15 +48,13 @@ window.SLM['stage/text-columns-with-images/index.js'] = window.SLM['stage/text-c
           el: container.find(selectors.pagination)[0],
           clickable: true,
           type: 'custom',
-
           renderCustom(swiper, current, total) {
             return `
-            <a class="text-columns-arrow--left${current === 1 ? ' text-columns-arrow--disabled' : ''}">${navigation_arrow_icon}</a>
+            <a  href="javascript:;" class="text-columns-arrow--left${current === 1 ? ' text-columns-arrow--disabled' : ''}">${navigation_arrow_icon}</a>
             <span class="text-columns-arrow--text body4">${current}/${total}</span>
-            <a class="text-columns-arrow--right${current === total ? ' text-columns-arrow--disabled' : ''}">${navigation_arrow_icon}</a>
+            <a href="javascript:;" class="text-columns-arrow--right${current === total ? ' text-columns-arrow--disabled' : ''}">${navigation_arrow_icon}</a>
           `;
           }
-
         },
         breakpoints: {
           751: {
@@ -76,33 +71,26 @@ window.SLM['stage/text-columns-with-images/index.js'] = window.SLM['stage/text-c
         this.swiper.slideNext();
       });
     }
-
     getSlidesPerGroup() {
       return helpers.getPlatform() === 'mobile' ? 1 : 3;
     }
-
     destroy() {
       if (this.swiper) {
         this.swiper.destroy();
       }
     }
-
   }
-
   class TextColumnsWithImages {
     constructor(container) {
       if (!container.find(selectors.slide).length) return;
       this.instance = new Slider(container);
     }
-
     onUnload() {
       if (this.instance) {
         this.instance.destroy();
       }
     }
-
   }
-
   TextColumnsWithImages.type = 'text-columns-with-images';
   registrySectionConstructor(TextColumnsWithImages.type, TextColumnsWithImages);
   return _exports;

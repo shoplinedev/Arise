@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/reset-password/password.js'] = window.SLM['theme-shared/biz-com/customer/biz/reset-password/password.js'] || function () {
   const _exports = {};
   const getFormFields = window['SLM']['theme-shared/biz-com/customer/helpers/getFormFields.js'].default;
@@ -8,7 +7,6 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/password.js'] = win
   const { USER_CENTER } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const { changeAccountPassword } = window['SLM']['theme-shared/biz-com/customer/service/reset.js'];
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
-
   class PasswordSet extends BaseCustomer {
     constructor({
       id,
@@ -22,7 +20,6 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/password.js'] = win
       this.passwordForm = null;
       this.init();
     }
-
     init() {
       const fieldTypes = ['password', 'repeatPassword'];
       this.passwordForm = new Form({
@@ -31,12 +28,11 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/password.js'] = win
         onSubmit: data => this.onSubmit(data)
       });
     }
-
     onSubmit(data) {
       const params = this.form.UDBParams;
-
       try {
-        changeAccountPassword(super.formatRequestBody({ ...params,
+        changeAccountPassword(super.formatRequestBody({
+          ...params,
           pwd: data.password
         }));
         window.location.href = redirectTo(`${USER_CENTER}${window.location.search}`);
@@ -44,9 +40,7 @@ window.SLM['theme-shared/biz-com/customer/biz/reset-password/password.js'] = win
         super.setError(e);
       }
     }
-
   }
-
   _exports.default = PasswordSet;
   return _exports;
 }();

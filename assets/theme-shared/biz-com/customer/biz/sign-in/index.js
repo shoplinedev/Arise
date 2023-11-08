@@ -1,10 +1,9 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
   const Cookie = window['js-cookie']['default'];
-  const { loginAccount, signInUpdate, updateUserInfo } = window['SLM']['theme-shared/biz-com/customer/service/index.js'];
+  const { loginAccount, signInUpdate, updateUserInfo, getActivateCodePrechk, getMethodList, sendPhoneVerificationCode, sendEmailVerificationCode, activateAccountByCode } = window['SLM']['theme-shared/biz-com/customer/service/index.js'];
   const { USER_CENTER } = window['SLM']['theme-shared/biz-com/customer/constant/url.js'];
   const { getLanguage, redirectPage, getRedirectOriginUrl } = window['SLM']['theme-shared/biz-com/customer/utils/helper.js'];
   const ThirdPartLogin = window['SLM']['theme-shared/biz-com/customer/biz/sign-in/third-part-login.js'].default;
@@ -18,31 +17,33 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/toast.js'].default;
   const { getUrlQuery } = window['SLM']['theme-shared/biz-com/customer/utils/url.js'];
   const { wrapArmorCaptcha } = window['SLM']['theme-shared/biz-com/customer/commons/captcha-modal/index.js'];
+  const { getRiskHumanToken, addRiskHumanToken } = window['SLM']['theme-shared/biz-com/customer/helpers/riskControl.js'];
   const { getUdbResponseLanguageErrorKey } = window['SLM']['theme-shared/biz-com/customer/helpers/getUdbResponseLanguageErrorKey.js'];
   const { redirectTo } = window['SLM']['theme-shared/biz-com/customer/helpers/format.js'];
-
+  const riskHumanTokenKey = 'loginActivateSendToken';
   class Login extends Customer {
     constructor({
       id = 'login',
       isModal = false,
-      success = null
+      success = null,
+      error = null
     }) {
       super({
         id,
         formType: 'signIn',
         success,
-        isModal
+        isModal,
+        error
       });
       this.loginForm = null;
       this.thirdPartLogin = null;
+      this.needActivate = false;
     }
-
     beforeCreate() {
       if (window.location.pathname.includes('/user/signIn') && window.SL_State && window.SL_State.get('request.is_login')) {
         window.location.href = redirectTo(USER_CENTER);
         return false;
       }
-
       this.$$reports && this.$$reports.reportSignInPageView && this.$$reports.reportSignInPageView();
       this.thirdPartLogin = new ThirdPartLogin({
         formId: this.formId,
@@ -54,7 +55,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         code,
         state
       } = this.query;
-
       if (code) {
         this.thirdPartLogin && this.thirdPartLogin.thirdPlatformCallback(code, state, nickname => {
           this.signInCallback(nickname);
@@ -62,71 +62,59 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         return false;
       }
     }
-
     init() {
       this.toast = new Toast();
       this.initForm();
       this.bindEvents();
       this.showConfirmSubscribeTip();
     }
-
     showConfirmSubscribeTip() {
       const from = getUrlQuery('from');
-
       if (from === CONFIRM_SUBSCRIBE_EMAIL) {
         const tips = t(`customer.login.subscribe_confirm_tip`);
         $(`#${this.formId} .sign-in__from_confirm_email`).show().text(tips);
       }
     }
-
     initForm() {
       const {
         udbErrorCode
       } = this.query;
-
       if (udbErrorCode) {
         $(`#${this.formId} .customer__error`).text(t(getUdbResponseLanguageErrorKey(udbErrorCode))).show();
       }
-
       if (storage.sessionStorage.get(ACCOUNT_ACTIVATED)) {
         this.toast.open(t('customer.activate.account_activated'));
         storage.sessionStorage.del(ACCOUNT_ACTIVATED);
       }
-
       if (storage.sessionStorage.get(ACCOUNT_ACTIVATED_TOKEN_EXPIRED)) {
         $(`#${this.formId} .sign-in__has-registered`).show().text(t('customer.activate.token_expired'));
         storage.sessionStorage.del(ACCOUNT_ACTIVATED_TOKEN_EXPIRED);
       }
-
       if (storage.sessionStorage.get(RESET_PASSWORD_TOKEN_EXPIRED)) {
         $(`#${this.formId} .sign-in__has-registered`).show().text(t('customer.forget_password.token_expired'));
         storage.sessionStorage.del(RESET_PASSWORD_TOKEN_EXPIRED);
       }
-
       const formValue = storage.sessionStorage.get(DEFAULT_FORM_VALUE);
       let fields = this.getFieldConfigs();
       const {
         mode
       } = this.configs;
       const accountFieldType = getAccountFieldType(mode);
-
       if (formValue) {
         const isPhone = /^\d+$/.test(formValue[accountFieldType]);
         const tips = t(`unvisiable.customer.error_message_${isPhone ? MOBILE_REGISTERED : EMAIL_REGISTERED}`);
         $(`#${this.formId} .sign-in__has-registered`).show().text(tips);
         fields = fields.map(field => {
-          return { ...field,
+          return {
+            ...field,
             value: formValue[field.name]
           };
         });
-
         if (mode === 'email') {
           $(`#${this.formId} input[name="email"]`).val(formValue.email);
         }
-
         storage.sessionStorage.del(DEFAULT_FORM_VALUE);
       }
-
       this.loginForm = new Form({
         id: this.formId,
         fields,
@@ -134,16 +122,28 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         onSubmit: data => this.onSignIn(data)
       });
     }
-
     getFieldConfigs() {
-      const FIELD_TYPES = ['loginPassword'];
       const {
         mode
       } = this.configs;
       const accountFieldType = getAccountFieldType(mode);
-      return getFormFields([accountFieldType].concat(FIELD_TYPES));
+      const fieldTypes = [accountFieldType, 'loginPassword'];
+      fieldTypes.push({
+        type: 'verifycode',
+        on: {
+          send: () => this.sendVerifyCode()
+        },
+        watch: fieldTypes,
+        rules: [{
+          validator: v => {
+            return !(this.needActivate && !v);
+          },
+          message: t('customer.general.enter_verification_code'),
+          required: true
+        }]
+      });
+      return getFormFields(fieldTypes);
     }
-
     bindEvents() {
       $(`#${this.formId} .sign-in__guest-button`).click(() => redirectPage());
       this.reportNavigation();
@@ -151,7 +151,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         this.clearError();
       });
     }
-
     reportNavigation() {
       const pathToReport = {
         passwordNew: this.$$reports && this.$$reports.reportToForgetPassword,
@@ -165,7 +164,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         window.location.href = path;
       });
     }
-
     onSignIn(data) {
       const {
         mode = 'email'
@@ -177,43 +175,123 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         eventid: this.eid
       };
       const extInfo = {};
-
       if (window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value) {
         extInfo.memberReferralCode = window && window.SLMemberPlugin && window.SLMemberPlugin.memberReferralCode && window.SLMemberPlugin.memberReferralCode.value;
       }
-
+      if (this.needActivate) {
+        extInfo.loginActivate = true;
+      }
       if (Object.keys(extInfo).length > 0) {
         payload.extinfo = JSON.stringify(extInfo);
       }
-
       this.$$reports.reportSubmitLogin && this.$$reports.reportSubmitLogin();
-
       const onLogin = (captchaToken, updateParams = {}) => {
         const formData = this.loginForm.getFormValue();
         this.loginForm.setLoading(true);
-        return loginAccount(super.formatRequestBody({ ...payload,
+        const submitFunc = this.needActivate ? activateAccountByCode : loginAccount;
+        return submitFunc(super.formatRequestBody({
+          ...payload,
           ...params,
           pwd: formData.password,
           captcha: captchaToken,
-          stoken: updateParams.stoken || params.stoken
+          stoken: updateParams.stoken || params.stoken,
+          verifycode: formData.verifycode
         })).then(() => this.signInCallback(null, data, mode));
       };
-
       return wrapArmorCaptcha({
         onCaptureCaptcha: onLogin,
         onCaptchaVerifySuccess: (captchaToken, prevRequestResult) => onLogin(captchaToken, {
           stoken: prevRequestResult && prevRequestResult.stoken
         }),
         onError: e => {
-          this.setError(e);
+          this.handleError(e);
           this.loginForm.setLoading(false);
         }
       }).catch(e => {
-        this.setError(e);
+        this.handleError(e);
         this.loginForm.setLoading(false);
       });
     }
-
+    async handleError(e) {
+      if (e.rescode === '1038') {
+        $(`#${this.formId} .customer__title`).text(t('customer.activate.normal_title'));
+        $(`#${this.formId} .submit-button`).text(t('customer.activate.button'));
+        $(`#${this.formId} .sign-in__activate-verifycode`).show();
+        this.needActivate = true;
+        this.formType = 'activateByCode';
+        const res = await this.getCustomerConfig();
+        this.UDBParams = res;
+        addRiskHumanToken('customer-login-activate-send-btn', riskHumanTokenKey);
+        this.loginForm.formItemInstances.verifycode.triggerSendCode();
+      } else {
+        this.setError(e);
+      }
+      this.error && this.error(e);
+    }
+    async sendVerifyCode() {
+      const {
+        mode
+      } = this.configs;
+      const {
+        UDBParams
+      } = this;
+      if (!mode || !this.needActivate) {
+        return;
+      }
+      const formValue = this.loginForm && this.loginForm.getFormValue();
+      const account = formValue[mode];
+      await wrapArmorCaptcha({
+        beforeCapture: async () => {
+          const {
+            stoken,
+            data
+          } = await getActivateCodePrechk(super.formatRequestBody({
+            ...UDBParams,
+            account
+          }));
+          super.updateToken(UDBParams, {
+            stoken,
+            servcode: data && data.servcode
+          });
+          const {
+            data: {
+              methods
+            },
+            stoken: newStoken
+          } = await getMethodList(super.formatRequestBody(UDBParams));
+          const {
+            method,
+            mobileMask,
+            emailMask
+          } = methods && methods[0] || {};
+          super.updateToken(UDBParams, {
+            stoken: newStoken,
+            _method: method,
+            _mask: mobileMask || emailMask
+          });
+        },
+        onCaptureCaptcha: async captchaToken => {
+          const sendCodeFn = UDBParams._method && UDBParams._method.includes('sms') ? sendPhoneVerificationCode : sendEmailVerificationCode;
+          const mtoken = await getRiskHumanToken(riskHumanTokenKey);
+          const {
+            stoken: lastStoken
+          } = await sendCodeFn(super.formatRequestBody({
+            ...UDBParams,
+            captcha: captchaToken,
+            mtoken
+          }));
+          $(`#${this.formId} .sign-in__activate-info`).show().text(t('customer.general.sign_in_activate', {
+            account: UDBParams._mask
+          }));
+          super.updateToken(UDBParams, {
+            stoken: lastStoken
+          });
+        },
+        onCaptchaVerifySuccess: async () => {
+          this.loginForm.formItemInstances.verifycode.triggerSendCode();
+        }
+      });
+    }
     signInCallback(thirdNickName, data, mode) {
       const {
         code,
@@ -225,7 +303,8 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         language: getLanguage(),
         isThird: false
       };
-      const promises = [signInUpdate({ ...requestBody,
+      const promises = [signInUpdate({
+        ...requestBody,
         isThird: isThirdLogin
       })];
       updateUserInfo();
@@ -233,7 +312,6 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         method: data && data[mode] && data[mode].includes('@') ? 'Email' : 'Phone'
       };
       const isFirst = Number(Cookie.get('osudb_ustate')) === 0;
-
       if (isThirdLogin) {
         const {
           method,
@@ -245,11 +323,9 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         promises.push(saveInfo);
         loginParams.method = method;
       }
-
       if (!isFirst || !isThirdLogin) {
         this.$$reports && this.$$reports.thirdReportSignInCallback && this.$$reports.thirdReportSignInCallback(loginParams.method);
       }
-
       const reportIsFirst = code && isFirst ? 1 : 0;
       super.$$reports && super.$$reports.riskReportSignIn && super.$$reports.riskReportSignIn(reportIsFirst);
       Promise.all(promises).catch(e => {
@@ -257,19 +333,15 @@ window.SLM['theme-shared/biz-com/customer/biz/sign-in/index.js'] = window.SLM['t
         this.loginForm.setLoading(false);
       }).finally(() => {
         this.$$reports && this.$$reports.reportSignInPageLeave && this.$$reports.reportSignInPageLeave(getRedirectOriginUrl());
-
         if (this.success) {
           this.success && this.success();
           this.loginForm.setLoading(false);
           return;
         }
-
         redirectPage(USER_CENTER);
       });
     }
-
   }
-
   _exports.default = Login;
   return _exports;
 }();

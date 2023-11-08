@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/newCurrency/CurrencyConvert.js'] = window.SLM['theme-shared/utils/newCurrency/CurrencyConvert.js'] || function () {
   const _exports = {};
   const { setCurrencyConfig, setStoreCurrency, setDefaultToCurrency, getConvertPrice: originGetConvertPrice, convertFormat: originConvertFormat, covertCalc, convertFormatWithoutCurrency: originConvertFormatWithoutCurrency } = window['@sl/currency-tools-core'];
@@ -15,27 +14,22 @@ window.SLM['theme-shared/utils/newCurrency/CurrencyConvert.js'] = window.SLM['th
   SL_State.on('currencyCode', code => {
     setDefaultToCurrency(code);
   });
-
   const setDefault = () => {
     const toDefault = SL_State.get('currencyCode') || SL_State.get('storeInfo.currency');
     setDefaultToCurrency(toDefault);
   };
-
   const convertFormat = (...args) => {
     setDefault();
     return originConvertFormat(...args);
   };
-
   const getConvertPrice = (...args) => {
     setDefault();
     return originGetConvertPrice(...args);
   };
-
   const convertFormatWithoutCurrency = (...args) => {
     setDefault();
     return originConvertFormatWithoutCurrency(...args);
   };
-
   _exports.convertFormat = convertFormat;
   _exports.convertFormatWithoutCurrency = convertFormatWithoutCurrency;
   _exports.covertCalc = covertCalc;

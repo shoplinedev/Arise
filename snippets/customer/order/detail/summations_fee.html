@@ -23,7 +23,7 @@
           {{#if (typeOf value) '==' 'number' }}
             <span class="notranslate no-change isolate" data-amount="{{value}}">{{money_with_currency value code=@root.basicInfo.settleCurrencyCode}}</span>
           {{else }}
-            {{!-- 如果是字符，则传入来的是多语言的key --}}
+            
             {{t value}}
           {{/if}}
         </span>
@@ -34,7 +34,7 @@
         {{t 'transaction.refund.cost_points' value=pageData.priceInfo.deductMemberPointNum}}
       </div>
     {{else if (boolean  key '==' 'settleSumAmount' '&&' pageData.basicInfo.taxesIncluded)}}
-      {{!-- 含税订单，要在总额下面展示对应的含税价 --}}
+      
       <div class="customer_order_summations_remark">
         {{ noTranslationHTML (t 'cart.order.tax_included' price=(javascript_template '<span class="notranslate no-change isolate" data-amount="${amount}">${num}</span>' num=(money_with_currency pageData.priceInfo.taxesIncludedSumAmount code=@root.basicInfo.settleCurrencyCode) amount=pageData.priceInfo.taxesIncludedSumAmount) ) }}
       </div>

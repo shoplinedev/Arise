@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/js/product-preview.js'] || function () {
   const _exports = {};
   const DataWatcher = window['SLM']['theme-shared/utils/sku/DataWatcher.js'].default;
@@ -29,7 +28,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
   const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const nullishCoalescingOperator = window['SLM']['product/utils/nullishCoalescingOperator.js'].default;
   const newCurrency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
-
   const trackProductDetailPageView = ({
     sku_id,
     spu_id
@@ -45,31 +43,31 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       });
     } catch (e) {}
   };
-
   const emitProductSkuChange = data => {
     try {
-      productSkuChange({ ...data,
+      productSkuChange({
+        ...data,
         currency: window.Shopline.currency
       });
     } catch (e) {
       console.error(e);
     }
   };
-
   const emitProductSkuChanged = data => {
     try {
-      productSkuChanged({ ...data,
+      productSkuChanged({
+        ...data,
         currency: window.Shopline.currency
       });
     } catch (e) {
       console.error(e);
     }
   };
-
   const emitViewContent = data => {
     try {
       dataReportViewContent(data);
-      hdProductViewContent({ ...data,
+      hdProductViewContent({
+        ...data,
         content_sku_id: data.curSkuId,
         price: data.curSkuPrice
       });
@@ -77,15 +75,12 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       console.error(e);
     }
   };
-
   const getSortationIds = spu => {
     if (spu && spu.sortationList && Array.isArray(spu.sortationList)) {
       return spu.sortationList.map(s => s.sortationId).join(',');
     }
-
     return '';
   };
-
   function thirdPartReport({
     activeSku,
     spu,
@@ -134,7 +129,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       }]]
     });
   }
-
   function initPreview({
     id,
     statePath,
@@ -151,12 +145,10 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
     const spu = SL_State.get(`${statePath}.spu`);
     const plugin = SL_State.get(`${statePath}.plugin`);
     const viewContentSelector = `.__sl-custom-track-${id}`;
-
     if (filterShelves && !get(spu, 'shelves')) {
       console.error('no spu data or not shelves, init break');
       return () => undefined;
     }
-
     const productPopup = () => {
       const eventBindCallback = evt => {
         const dom = evt.currentTarget;
@@ -171,7 +163,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         const pages = SL_State.get('pages');
         const selectedPage = pages[pageId];
         let finalHtml = '';
-
         if (displayProductDesc === 'true') {
           finalHtml = description;
         } else if (typeof content === 'string' && content.trim()) {
@@ -179,7 +170,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         } else if (selectedPage && selectedPage.htmlConfig) {
           finalHtml = selectedPage.htmlConfig;
         }
-
         const modal = new ModalWithHtml({
           children: finalHtml,
           bodyClassName: 'sl-richtext product-popup__container',
@@ -188,19 +178,15 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         });
         modal.show();
       };
-
       $(document.body).on('click', '.js-product-popup', eventBindCallback);
       return () => {
         $(document.body).off('click', '.js-product-popup', eventBindCallback);
       };
     };
-
     let unbindProductPopup;
-
     if (id === 'productDetail') {
       unbindProductPopup = productPopup();
     }
-
     const removePositionListener = listenPosition({
       id,
       offsetTop,
@@ -208,7 +194,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
     });
     createShadowDom();
     let productImagesInstance;
-
     try {
       productImagesInstance = new ProductImages({
         spuSeq: spu.spuSeq,
@@ -237,7 +222,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         throw e;
       });
     }
-
     const inquiryPriceModal = new InquiryPriceModal({
       id,
       spu,
@@ -270,12 +254,10 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
     });
     quantityStepper.dataPool.watch(['quantity'], num => {
       ButtonGroup.setActiveSkuNum(num);
-
       if (id === 'productDetail') {
         window.productDetailDataBus.set('num', num);
         window.productDetailDataBus.emit('after:countChange', num);
       }
-
       window.SL_EventBus.emit('product:count:change', [num, id]);
     });
     new ProductCollapse({
@@ -284,7 +266,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
     new Tabs({
       root: '.product-tabs-container'
     });
-
     const getSkuChangeData = (skuInfo = {}) => {
       const {
         spuSeq,
@@ -321,9 +302,7 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         imageBeanList
       };
     };
-
     let activeSkuCache = {};
-
     const getHdReportViewCurSku = activeSku => {
       let sku_id = 'null';
       let price = 'null';
@@ -331,7 +310,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       const isBatchBuy = get(b2bData, 'moqPlan.batchBuy') && b2bData.moqPlan.applyType === 2;
       const isSoldOut = get(spu, 'soldOut') || get(activeSku, 'soldOut');
       const isSigleSku = get(sku, 'skuList.length') < 2;
-
       if (isBatchBuy) {
         sku_id = 'null';
         price = 'null';
@@ -342,25 +320,21 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         sku_id = activeSku.skuSeq;
         price = convertPrice(activeSku.price || 0);
       }
-
       return {
         curSkuId: sku_id,
         curSkuPrice: price
       };
     };
-
     function handleChangeSkuItemNo(activeSku, id) {
       const {
         itemNo
       } = activeSku || {};
-
       if (activeSku) {
         $(`.product-info-skuItemNo_${id}`).text(itemNo);
       } else {
         $(`.product-info-skuItemNo_${id}`).text('');
       }
     }
-
     let unmountedDiscountCoupon = null;
     let unmountPromotionTags = null;
     const skuDataPool = new DataWatcher();
@@ -382,7 +356,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         let price = null;
         inquiryPriceModal.setActiveSku(activeSku);
         const hdReportViewCurSku = getHdReportViewCurSku(activeSkuCache);
-
         if (id === 'productDetail') {
           window.productDetailDataBus.set('activeSku', activeSku);
           window.productDetailDataBus.emit('init:sku', activeSku);
@@ -391,7 +364,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
             spu_id: spu.spuSeq
           });
         }
-
         if (activeSku) {
           quantityStepper.setActiveSku(activeSku);
           ButtonGroup.setActiveSku(activeSku);
@@ -403,7 +375,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
             ...getSkuChangeData(activeSku)
           });
         }
-
         emitViewContent({
           content_spu_id: spu.spuSeq,
           content_sku_id,
@@ -434,7 +405,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
           if (id === 'productDetail') {
             window.productDetailDataBus.set('activeSku', activeSku);
             window.productDetailDataBus.emit('after:skuChange', activeSku);
-
             if (activeSku) {
               if (activeSku.skuSeq !== (activeSkuCache ? activeSkuCache.skuSeq : '')) {
                 window.history.replaceState({}, document.title, changeURLArg(window.location.href, 'sku', activeSku.skuSeq));
@@ -443,12 +413,10 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
               window.history.replaceState({}, document.title, delParam('sku'));
             }
           }
-
           handleChangeSkuItemNo(activeSku, id);
           activeSkuCache = activeSku;
           inquiryPriceModal.setActiveSku(activeSku);
           productImagesInstance && productImagesInstance.skuImageChange && productImagesInstance.skuImageChange(get(activeSku, 'imageBeanList[0]'));
-
           if (activeSku || quantityStepper.activeSku) {
             setProductPrice(id, statePath, activeSku);
             quantityStepper.setActiveSku(activeSku);
@@ -469,7 +437,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
             ...getSkuChangeData(activeSku)
           });
         }
-
         emitProductSkuChanged({
           type: 'change',
           id,
@@ -484,7 +451,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         });
       }
     });
-
     try {
       productPreviewInit({
         id,
@@ -505,7 +471,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
     } catch (e) {
       console.error(e);
     }
-
     window.SL_EventBus.on('global:currency:format', () => {
       setProductPrice(id, statePath, quantityStepper.activeSku);
     });
@@ -515,7 +480,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
       productEventRepeat: () => {
         let content_sku_id = '';
         let price = null;
-
         if (activeSkuCache) {
           content_sku_id = activeSkuCache.skuSeq;
           price = convertPrice(activeSkuCache.price || 0);
@@ -525,7 +489,6 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
             ...getSkuChangeData(activeSkuCache)
           });
         }
-
         thirdPartReport({
           activeSku: activeSkuCache,
           spu,
@@ -549,23 +512,18 @@ window.SLM['product/detail/js/product-preview.js'] = window.SLM['product/detail/
         if (typeof unbindProductPopup === 'function') {
           unbindProductPopup();
         }
-
         inquiryPriceModal.unbindEvents();
-
         if (typeof unmountedDiscountCoupon === 'function') {
           unmountedDiscountCoupon();
         }
-
         if (typeof unmountPromotionTags === 'function') {
           unmountPromotionTags();
         }
-
         removePositionListener();
         skuTrade.destory();
       }
     };
   }
-
   _exports.default = initPreview;
   return _exports;
 }();

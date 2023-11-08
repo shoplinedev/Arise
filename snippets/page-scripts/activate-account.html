@@ -1,39 +1,20 @@
 <!-- customer/activate-account/main.js -->
-  {{#if @root.use_modern_optimization}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.rlp.min.js'
-      'vendors/lodash.rlp.min.js'
-      'vendors/scroll-lock.rlp.min.js'
-      'vendors/axios.rlp.min.js'
-      'vendors/query-string.rlp.min.js'
-      'vendors/js-cookie.rlp.min.js'
-      'vendors/url.rlp.min.js'
-      'vendors/querystring.rlp.min.js'
-      'vendors/uuid.rlp.min.js'
-      'vendors/dayjs.rlp.min.js'
-      'vendors/@sl_currency-tools-core.rlp.min.js'
-      'vendors/copy-to-clipboard.rlp.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{else}}
-    {{ combine_asset_tag 
-      'vendors/eventemitter3.min.js'
-      'vendors/lodash.min.js'
-      'vendors/scroll-lock.min.js'
-      'vendors/axios.min.js'
-      'vendors/query-string.min.js'
-      'vendors/js-cookie.min.js'
-      'vendors/url.min.js'
-      'vendors/querystring.min.js'
-      'vendors/uuid.min.js'
-      'vendors/dayjs.min.js'
-      'vendors/@sl_currency-tools-core.min.js'
-      'vendors/copy-to-clipboard.min.js'
-      type="text/javascript"
-      defer=true
-    }}
-  {{/if}}
+  {{ combine_asset_tag 
+    'vendors/eventemitter3.min.js'
+    'vendors/lodash.min.js'
+    'vendors/scroll-lock.min.js'
+    'vendors/axios.min.js'
+    'vendors/query-string.min.js'
+    'vendors/js-cookie.min.js'
+    'vendors/url.min.js'
+    'vendors/querystring.min.js'
+    'vendors/uuid.min.js'
+    'vendors/dayjs.min.js'
+    'vendors/@sl_currency-tools-core.min.js'
+    'vendors/copy-to-clipboard.min.js'
+    type="text/javascript"
+    defer=true
+  }}
   {{ combine_asset_tag 
     'theme-shared/utils/event-bus.js'
     'theme-shared/utils/parsePathToArray.js'

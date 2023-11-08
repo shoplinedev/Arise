@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/collections/js/report.js'] = window.SLM['product/collections/js/report.js'] || function () {
   const _exports = {};
   const { collectObserver } = window['SLM']['theme-shared/utils/report/index.js'];
@@ -15,15 +14,10 @@ window.SLM['product/collections/js/report.js'] = window.SLM['product/collections
   const productMenuSelector = `.${productMenuClassName}`;
   const productMenuItemClassName = '__sl-custom-track-product-menu-item';
   const productMenuItemSelector = `.${productMenuItemClassName}`;
-
   const _productList = SL_State.get('products.list');
-
   const productList = _productList !== undefined ? _productList : null;
-
   const _productSortation = SL_State.get('productSortation');
-
   const productSortation = _productSortation !== undefined ? _productSortation : null;
-
   if (productList) {
     hdReport.itemListView({
       productsInfo: {
@@ -38,22 +32,20 @@ window.SLM['product/collections/js/report.js'] = window.SLM['product/collections
           component: 101,
           action_type: 101
         },
-        productInfo: { ...product,
+        productInfo: {
+          ...product,
           index
         }
       });
     });
   }
-
   const report = function (event_id, value) {
     if (window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.report) {
       window.HdSdk.shopTracker.report(event_id, value);
     }
   };
-
   window.SL_EventBus.on('global:hdReport:expose', target => {
     const $target = $(target);
-
     if ($target.hasClass(productItemClassName)) {
       const product_id = $target.data('id');
       const product_name = $target.data('name');
@@ -105,10 +97,10 @@ window.SLM['product/collections/js/report.js'] = window.SLM['product/collections
       event_name: 'menu_click',
       product_menu: [$(this).data('sortation-id')]
     });
-  }).on('change', '#collection-sort', function () {
+  }).on('change', '#collection-sort', function (event) {
     report(eventid, {
       event_name: 'sort_click',
-      sort_by: sortBy[$(this).val()] || sortBy[1]
+      sort_by: sortBy[event.detail] || sortBy[1]
     });
   });
   window.SL_EventBus.emit('global:hdReport:exit', [eventid]);

@@ -1,10 +1,8 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/sku-trade.js'] = window.SLM['product/detail/js/sku-trade.js'] || function () {
   const _exports = {};
   const SkuTradeFlatten = window['SLM']['product/commons/js/sku-trade/sku-trade-flatten.js'].default;
   const SkuTradeSelect = window['SLM']['product/commons/js/sku-trade/sku-trade-select.js'].default;
-
   function initSku({
     id,
     sku,
@@ -39,7 +37,6 @@ window.SLM['product/detail/js/sku-trade.js'] = window.SLM['product/detail/js/sku
     });
     return trade;
   }
-
   _exports.default = initSku;
   return _exports;
 }();

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['stage/slideshow/index.js'] = window.SLM['stage/slideshow/index.js'] || function () {
   const _exports = {};
   const Swiper = window['swiper']['default'];
@@ -21,20 +20,16 @@ window.SLM['stage/slideshow/index.js'] = window.SLM['stage/slideshow/index.js'] 
     isNatural: 'is-natural',
     isNaturalMobile: 'is-natural-mobile'
   };
-
   class Slideshow {
     constructor(container) {
       this.container = container;
       this.sectionId = container.data('section-id');
       this.settings = {};
-
       try {
         this.settings = JSON.parse($(`#Slideshow-data-${this.sectionId}`).text());
       } catch (err) {}
-
       this.init();
     }
-
     init() {
       const {
         container,
@@ -58,28 +53,21 @@ window.SLM['stage/slideshow/index.js'] = window.SLM['stage/slideshow/index.js'] 
         },
         on: {
           fadeTransitionend() {},
-
           slideChangeTransitionStart() {
             this.$el.removeClass('hero--static');
           },
-
           init() {},
-
           afterInit() {
             window.SL_EventBus.emit('parallax');
           },
-
           beforeTransitionStart(swiper) {
             swiper.$el[0].classList.add('hero-transition');
           },
-
           transitionEnd(swiper) {
             swiper.$el[0].classList.remove('hero-transition');
           }
-
         }
       };
-
       if (settings.transition_type === 'slide') {
         Object.assign(swiperOptions, {
           speed: 1000,
@@ -89,14 +77,12 @@ window.SLM['stage/slideshow/index.js'] = window.SLM['stage/slideshow/index.js'] 
           delay: 0
         });
       }
-
       if (settings.transition_type === 'scale') {
         Object.assign(swiperOptions, {
           effect: 'fade',
           speed: 800
         });
       }
-
       if (settings.autoplay) {
         Object.assign(swiperOptions, {
           autoplay: {
@@ -105,7 +91,6 @@ window.SLM['stage/slideshow/index.js'] = window.SLM['stage/slideshow/index.js'] 
           }
         });
       }
-
       switch (settings.style) {
         case 'arrows':
           Object.assign(swiperOptions, {
@@ -115,7 +100,6 @@ window.SLM['stage/slideshow/index.js'] = window.SLM['stage/slideshow/index.js'] 
             }
           });
           break;
-
         case 'dots':
         case 'bars':
           Object.assign(swiperOptions, {
@@ -125,21 +109,17 @@ window.SLM['stage/slideshow/index.js'] = window.SLM['stage/slideshow/index.js'] 
             }
           });
           break;
-
         default:
           break;
       }
-
       this.swiper = new Swiper(`#Slideshow-${sectionId}`, swiperOptions);
       const $flickityViewport = container.find(selectors.flickityViewport);
-
       if ($flickityViewport.hasClass(classes.isNatural)) {
         const $image = container.find(`[data-swiper-slide-index="0"]`).find(selectors.image).eq(0);
         if ($image.data('aspectratio')) return;
         const src = $image.data('aspectratio-url');
         const image = new Image();
         image.src = src;
-
         image.onload = e => {
           const {
             target
@@ -154,22 +134,18 @@ window.SLM['stage/slideshow/index.js'] = window.SLM['stage/slideshow/index.js'] 
         `));
         };
       }
-
       if ($flickityViewport.hasClass(classes.isNaturalMobile)) {
         const $mobileImage = container.find(selectors.imageMobile);
         let src = $mobileImage.data('aspectratio-url');
         if ($mobileImage.data('aspectratio')) return;
-
         if (!src) {
           const $pcImage = container.find(`[data-swiper-slide-index="0"]`).find(selectors.image).eq(0);
           if ($pcImage.data('aspectratio')) return;
           src = $pcImage.data('aspectratio-url');
         }
-
         if (!src) return;
         const image = new Image();
         image.src = src;
-
         image.onload = e => {
           const {
             target
@@ -185,46 +161,36 @@ window.SLM['stage/slideshow/index.js'] = window.SLM['stage/slideshow/index.js'] 
         };
       }
     }
-
     destroy() {
       console.info('swiper:destroy');
       this.swiper.destroy();
     }
-
   }
-
   class SlideshowSection {
     constructor(container) {
       if (!container.find(selectors.slide).length) return;
       this.slideshow = new Slideshow(container);
     }
-
     onUnload() {
       if (this.slideshow) {
         this.slideshow.destroy();
       }
     }
-
     onBlockDeselect() {
       if (this.slideshow.swiper.params.autoplay.enabled) {
         this.slideshow.swiper.autoplay.start();
       }
     }
-
     onBlockSelect(e) {
       const {
         index = null
       } = e.detail;
-
       if (index !== null) {
         this.slideshow.swiper.slideTo(index + 1);
       }
-
       this.slideshow.swiper.autoplay.stop();
     }
-
   }
-
   SlideshowSection.type = 'slideshow';
   registrySectionConstructor('slideshow', SlideshowSection);
   return _exports;

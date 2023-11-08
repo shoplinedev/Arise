@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/pagination.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -9,14 +8,13 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
     NEXT: 'next',
     ELLIPSIS: 'ellipsis'
   };
-
   const template = source => {
     const temp = source.map(item => {
       switch (item.type) {
         case BTN_TYPE.PRE:
           return `
           <span class="pagination_pre pagination_item" data-current=${item.current} data-pagenum="${item.pagenum}">
-            <a>
+            <a href="javascript:;">
               <span class="pagination_icon_arrow_color">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 1L3 6L8 11" stroke-width="1.5" stroke-linecap="round" stroke="currentColor"></path>
@@ -25,11 +23,10 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
             </a>
           </span>
         `;
-
         case BTN_TYPE.NEXT:
           return `
           <span class="pagination_next pagination_item" data-current=${item.current} data-pagenum="${item.pagenum}">
-            <a>
+            <a href="javascript:;">
               <span class="pagination_icon_arrow_color">
                 <svg width="12" height="12" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2.49995 9.3995L6.9497 4.94975L2.49995 0.5" stroke="currentColor" stroke-linecap="round"></path>
@@ -38,24 +35,20 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
             </a>
           </span>
         `;
-
         case BTN_TYPE.ELLIPSIS:
           return '<span>...</span>';
-
         case BTN_TYPE.LINK:
           return `
           <span class="${item.active ? 'pagination_item on' : 'pagination_item'}" data-current=${item.current} data-pagenum="${item.pagenum}">
-            <a>${item.pagenum}</a>
+            <a href="javascript:;">${item.pagenum}</a>
           </span>
         `;
-
         default:
           return '';
       }
     });
     return temp.join('');
   };
-
   const pageResponeBody = ({
     type = BTN_TYPE.LINK,
     pagenum,
@@ -69,7 +62,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
       active
     };
   };
-
   const render = options => {
     const {
       $el,
@@ -85,7 +77,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
     const afterThreshold = lastPageNum - threshold + 2;
     const source = [];
     if (lastPageNum <= 0) return;
-
     if (lastPageNum <= threshold) {
       for (let i = 1; i <= lastPageNum; i += 1) {
         if (i === 1 && i !== current) {
@@ -95,14 +86,12 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
             current
           }));
         }
-
         source.push(pageResponeBody({
           type: BTN_TYPE.LINK,
           pagenum: i,
           current,
           active: i === current
         }));
-
         if (i === lastPageNum && lastPageNum !== current) {
           source.push(pageResponeBody({
             type: BTN_TYPE.NEXT,
@@ -120,7 +109,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
             current
           }));
         }
-
         source.push(pageResponeBody({
           type: BTN_TYPE.LINK,
           pagenum: i,
@@ -128,7 +116,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
           active: i === current
         }));
       }
-
       source.push(pageResponeBody({
         type: BTN_TYPE.ELLIPSIS
       }));
@@ -156,7 +143,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
       source.push(pageResponeBody({
         type: BTN_TYPE.ELLIPSIS
       }));
-
       for (let i = boundaryThreshold - 1; i >= 0; i -= 1) {
         const tempNum = lastPageNum - i;
         source.push(pageResponeBody({
@@ -165,7 +151,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
           current,
           active: tempNum === current
         }));
-
         if (tempNum === lastPageNum && tempNum !== current) {
           source.push(pageResponeBody({
             type: BTN_TYPE.NEXT,
@@ -189,7 +174,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
       source.push(pageResponeBody({
         type: BTN_TYPE.ELLIPSIS
       }));
-
       for (let i = current - exit, len = current + exit; i <= len; i += 1) {
         source.push(pageResponeBody({
           type: BTN_TYPE.LINK,
@@ -198,7 +182,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
           active: i === current
         }));
       }
-
       source.push(pageResponeBody({
         type: BTN_TYPE.ELLIPSIS
       }));
@@ -213,26 +196,23 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
         current
       }));
     }
-
     const str = template(source);
-
     if (str) {
       $el.html(str);
     }
   };
-
   const currentPageChange = async options => {
     const {
       onChange,
       pagenum
     } = options;
     await onChange(pagenum);
-    render({ ...options,
+    render({
+      ...options,
       current: pagenum,
       pagenum: undefined
     });
   };
-
   const init = options => {
     const is_mobile = SL_State.get('request.is_mobile');
     const {
@@ -244,7 +224,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
       current = 1,
       isLoadRender
     } = options;
-
     if ($el && typeof onChange === 'function') {
       $el.on('click', function (event) {
         event.preventDefault();
@@ -254,7 +233,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
         } = event;
         const items = $(target).parents('span.pagination_item');
         const item = items[0] || items.prevObject[0];
-
         if ($(item).hasClass('pagination_item')) {
           const itemData = $(item).data();
           const attribute = itemData !== null && itemData !== undefined ? itemData : {};
@@ -265,12 +243,12 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
             isMobile,
             ...attribute
           };
-          return currentPageChange({ ...hash,
+          return currentPageChange({
+            ...hash,
             onChange
           });
         }
       });
-
       if (isLoadRender) {
         render({
           $el,
@@ -282,7 +260,6 @@ window.SLM['product/commons/js/pagination.js'] = window.SLM['product/commons/js/
       }
     }
   };
-
   _exports.default = {
     init,
     render

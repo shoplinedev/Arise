@@ -1,9 +1,7 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/unsub-feedback/index.js'] = window.SLM['theme-shared/biz-com/customer/biz/unsub-feedback/index.js'] || function () {
   const _exports = {};
   const { reportV2 } = window['SLM']['theme-shared/biz-com/customer/reports/index.js'];
-
   class UnsubFeedback {
     constructor() {
       reportV2({
@@ -14,9 +12,7 @@ window.SLM['theme-shared/biz-com/customer/biz/unsub-feedback/index.js'] = window
         event_id: 1022
       });
     }
-
   }
-
   _exports.default = UnsubFeedback;
   return _exports;
 }();

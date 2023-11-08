@@ -21,7 +21,7 @@
         </a>
       </div>
     {{else}}
-      {{!-- 大于等于5条 --}}
+
       {{#if (gte (length addressList) 50)}}
         <p class="address--max">{{ t 'customer.address.adress_full_tip' }}</p>
       {{else}}
@@ -53,7 +53,7 @@
               {{#if (isFalsey ../isMobile)}}
                 <div class="address__btns">
                   <a href="{{ redirect_to (append '/user/address/' addressSeq '/edit') }}" class="address__btn address__btn--edit">{{ snippet 'icons/icon_edit' }}</a>
-                  <a href="javascript:void(0);" class="address__btn address__btn--remove" data-seq="{{ addressSeq }}">{{ snippet 'icons/icon_remove' }}</a>
+                  <a href="javascript:;" class="address__btn address__btn--remove" data-seq="{{ addressSeq }}">{{ snippet 'icons/icon_remove' }}</a>
                 </div>
               {{/if}}
             </div>
@@ -70,7 +70,7 @@
                 {{#if (isTruthy company)}}
                 {{ array-push segments company }}
                 {{/if}}
-                
+
                 {{#if (isTruthy country)}}
                 {{ array-push segments country }}
                 {{/if}}
@@ -102,7 +102,7 @@
                 {{/if}}
 
               {{else}}
-                
+
                 {{#if (isTruthy company)}}
                 {{ array-push segments company }}
                 {{/if}}
@@ -151,7 +151,7 @@
             {{#if ../isMobile}}
               <div class="address__btns">
                 <a href="{{ redirect_to (append '/user/address/' addressSeq '/edit') }}" class="address__btn address__btn--edit">{{ snippet 'icons/icon_edit' }}</a>
-                <a href="javascript:void(0);" class="address__btn address__btn--remove" data-seq="{{ addressSeq }}">{{ snippet 'icons/icon_remove' }}</a>
+                <a href="javascript:;" class="address__btn address__btn--remove" data-seq="{{ addressSeq }}">{{ snippet 'icons/icon_remove' }}</a>
               </div>
             {{/if}}
           </div>

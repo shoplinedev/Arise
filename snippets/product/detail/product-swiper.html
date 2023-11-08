@@ -6,8 +6,12 @@
 {{ assign 'productWidth' (get productImageSize productImageSizeObj) }}
 {{ assign 'mediaList' (default spu.mediaList (JSONparse '[]')) }}
 
+
+
 {{#if (isFalsey showSkuImg)}}
+  
   {{ assign 'mainMediaList' (JSONparse '[]') }}
+  
   {{ assign 'skuMediaList' (JSONparse '[]')}}
   {{#each product.sku.skuList}}
     {{#each imageList}}
@@ -66,6 +70,7 @@
     <input type="hidden" value="{{ productMobileThumbnailImageHide }}" class="product_productMobileThumbnailImageHide_{{ selectorId }}">
 
 <div data-ssr-product-swiper ></div>
+
 
 {{ assign 'skuInMediaListIndex' (array_find_index mediaList coverImgObj.url 'resource') }}
 {{ assign 'needSkuCover' (boolean coverImgObj '&&' (boolean skuInMediaListIndex '==' -1)) }}
@@ -325,6 +330,7 @@
 
 {{/if}}
 
+
 {{#capture 'canShowSlideByScreen'}}
   {{#if (boolean trimProductMobilePictureMode '===' 'oneHalf')}}
     2
@@ -347,7 +353,9 @@
               transform: translate3d(calc(75% * -{{initialSlide}} + 12.5%), 0, 0);
             {{else}}
               {{#if (boolean (boolean trimProductMobilePictureMode '===' 'oneHalf') '||' (boolean trimProductMobilePictureMode '===' 'twoHalf'))}}
+                 
                 {{assign 'lastInitialSlideByScreen' (minus mediaList.length initialSlide)}}                
+                
                 {{#capture 'slideWidth'}}
                   {{#if (boolean trimProductMobilePictureMode '===' 'oneHalf')}}
                     ((100% - 0.5 * 5px) / 1.5 + 5px)
@@ -377,6 +385,7 @@
           {{#each mediaList }}
              {{#capture 'initialSlideClass'}}
               {{#if (boolean (boolean ../trimProductMobilePictureMode '===' 'oneHalf') '||' (boolean ../trimProductMobilePictureMode '===' 'twoHalf'))}}
+                  
                   
                   {{assign 'needShowSlideNum' (minus ../mediaList.length ../canShowSlideByScreen)}}
                   {{#if ../initialSlide '>' needShowSlideNum }}
@@ -528,7 +537,7 @@
                   {{else}}
                     {{ snippet 'product/detail/product-swiper-img' type='mSkuImage' class='lozad product_m_skuImage product_photoSwipe_image' skuImageObj=coverImgObj }}
                   {{/if}}
-                  <!-- <img onerror="this.onerror=null;this.parentElement.className+=' imageItemError';" class="lozad product_m_skuImage product_photoSwipe_image" data-photoswipe-src="{{ img_url coverImgObj.url width=1800 }}" {{{get 'responsiveAttr' (image_responsive resource pcSize=null mSize=(cond ../mobileProductImageIsFull '100vw' '75vw')) }}} alt="{{ coverImgObj.alt }}"> -->
+                  
                   {{#if productImageScale }}
                     <div class="scaleSkuImageIcon">
                       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -578,7 +587,7 @@
           <div class="product_mobile_thumbnail_pagination product-pagination__dot {{ pagination_classs }}" data-pagination-type="{{ product_mobile_image_switch_style }}">
             {{#each mediaList}}
               {{#if (plus @index 1) '<=' ../paginationNum}}
-                <a href="javascript:void(0);" class="tap-area" data-total="{{ trim ../paginationNum }}"></a>
+                <a href="javascript:;" class="tap-area" data-total="{{ trim ../paginationNum }}"></a>
               {{/if}}
             {{/each}}
           </div>

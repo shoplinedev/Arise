@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-email.js'] = window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-email.js'] || function () {
   const _exports = {};
   const Modal = window['SLM']['theme-shared/components/hbs/shared/components/modal/index.js'].default;
@@ -8,7 +7,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-emai
   const Form = window['SLM']['theme-shared/biz-com/customer/commons/form/index.js'].default;
   const Toast = window['SLM']['theme-shared/components/hbs/shared/components/toast/index.js'].default;
   const { createAccountBindFlow } = window['SLM']['theme-shared/biz-com/customer/biz/account/script/account/account-bind.js'];
-
   class ModifyEmail {
     constructor({
       id,
@@ -27,18 +25,15 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-emai
       this.onModifyPhoneRequest = onModify;
       this.init();
     }
-
     init() {
       this.initModal();
       this.initForm();
     }
-
     initModal() {
       this.modifyEmailModal = new Modal({
         modalId: this.id
       });
     }
-
     initForm() {
       const fields = getFormFields(['email']);
       this.form = new Form({
@@ -48,7 +43,8 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-emai
           const newEmail = data.email;
           return this.onModifyPhoneRequest(newEmail).then(() => {
             const userInfoDTO = SL_State.get('customer.userInfoDTO');
-            SL_State.set('customer.userInfoDTO', { ...userInfoDTO,
+            SL_State.set('customer.userInfoDTO', {
+              ...userInfoDTO,
               email: newEmail
             });
             this.email = newEmail;
@@ -63,7 +59,6 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-emai
         this.onFieldValueChange && this.onFieldValueChange(changedValue);
       });
     }
-
     show() {
       const {
         formInstance
@@ -73,13 +68,10 @@ window.SLM['theme-shared/biz-com/customer/biz/account/script/account/modify-emai
       formInstance.resetErrStatus();
       this.modifyEmailModal.show();
     }
-
     hide() {
       this.modifyEmailModal.hide();
     }
-
   }
-
   _exports.default = ModifyEmail;
   return _exports;
 }();

@@ -1,7 +1,7 @@
-{{!-- id: product-search 商品搜索页面的输入框 --}}
-{{!-- id: header-drawer 页头点击搜索图标弹出的输入框 --}}
-{{!-- id: pc-header pc端页头输入框 --}}
-{{!-- id: mb-header 移动端输入框 --}}
+
+
+
+
 {{#if searchBar}}
   <div class="searchbar__input--container">
     {{#if suggestMenu}}
@@ -29,7 +29,7 @@
   <div class="header__search--container">
     <div class="header__search">
       <div class="container {{#if section.settings.header_full_width}}header__full_screen_width{{/if}}">
-        {{!-- <div class="header__search--form-wrapper"> --}}
+
           <div class="header__search--form">
             {{#if suggestMenu}}
               {{assign 'childNode' (get suggestMenu navigations) }}
@@ -55,7 +55,7 @@
           <button type="button" class="header__search--btn header__cancel--btn j-stage-search-close">
             {{ snippet 'icons/icon_header_close' }}
           </button>
-        {{!-- </div> --}}
+
       </div>
     </div>
     <div id="header-search-predicate" class="header__search--predicate">

@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['activity/script/promotion-tags.js'] = window.SLM['activity/script/promotion-tags.js'] || function () {
   const _exports = {};
   const { disablePageScroll, enablePageScroll } = window['SLM']['theme-shared/components/hbs/shared/components/modal/common.js'];
@@ -8,34 +7,27 @@ window.SLM['activity/script/promotion-tags.js'] = window.SLM['activity/script/pr
   const helper = window['SLM']['commons/utils/helper.js'].default;
   const effectFc = window['SLM']['commons/utils/effectFc.js'].default;
   const isMobile = window['SLM']['commons/utils/isMobile.js'].default;
-
   function handleTagsShow() {
     const $tags = $('.sales__promotion-tags-tag-hook');
-
     if (!$tags[0]) {
       return;
     }
-
     if (isMobile()) {
       $tags.css('display', 'none').eq(0).css('display', 'inline-block');
     } else {
       $tags.css('display', 'inline-block');
     }
   }
-
   _exports.default = effectFc(function (parent) {
     const {
       useEffect
     } = this;
     const container = $(parent || document.body);
     const promotionTags = container.find('.sales__promotionTags');
-
     if (!promotionTags.length) {
       return;
     }
-
     handleTagsShow();
-
     if (promotionTags.hasClass('pdp')) {
       let lock = false;
       const timer = null;
@@ -44,14 +36,11 @@ window.SLM['activity/script/promotion-tags.js'] = window.SLM['activity/script/pr
           target
         } = e;
         const containerDom = promotionTags.get(0);
-
         if ($.contains(containerDom, target) || containerDom === target) {
           return;
         }
-
         if (promotionTags.hasClass('active')) {
           promotionTags.removeClass('active');
-
           if (helper.getPlatform() === 'mobile' && lock) {
             enablePageScroll();
             lock = false;
@@ -60,19 +49,16 @@ window.SLM['activity/script/promotion-tags.js'] = window.SLM['activity/script/pr
       });
       useEffect(promotionTags, 'on,off', 'click', () => {
         promotionTags.toggleClass('active');
-
         if (helper.getPlatform() === 'mobile') {
           if (promotionTags.hasClass('active') && !lock) {
             disablePageScroll();
             lock = true;
           }
-
           if (!promotionTags.hasClass('active') && lock) {
             lock = false;
             enablePageScroll();
           }
         }
-
         if (!isMobile()) {
           if (timer) {
             clearTimeout(timer);
@@ -96,7 +82,6 @@ window.SLM['activity/script/promotion-tags.js'] = window.SLM['activity/script/pr
           enablePageScroll();
           lock = false;
         }
-
         handleTagsShow();
       });
     } else {
@@ -104,7 +89,6 @@ window.SLM['activity/script/promotion-tags.js'] = window.SLM['activity/script/pr
         promotionTags.toggleClass('active');
       });
     }
-
     window.SL_EventBus.on('global:currency:format', () => {
       const amountNode = promotionTags.find('[data-amount]');
       amountNode.each(function () {

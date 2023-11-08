@@ -1,86 +1,149 @@
-{{assign 'limit' (length main_menu.nodeTree)}}
-{{assign 'startAt' 0}}
-<ul class="desktop-site-nav {{#if settings.navigation_layout '===' 'middle-line'}}desktop-site-nav__center{{/if}}" data-navigation-layout="{{settings.navigation_layout}}" data-navigation-effect="{{settings.main_menu_link_list_effect}}">
-    {{#with this as |global|}}
-      {{#each main_menu.nodeTree}}
-        {{assign 'has_dropdown' false}}
-        {{assign 'is_megamenu' false}}
-        {{#if (isTruthy (length this.childNodes))}}
-          {{assign 'has_dropdown' true}}
-          {{#if (depth_of_nav this) '>' 1}}
-            {{assign 'is_megamenu' true}}
-          {{/if}}
+{{assign "limit" (length main_menu.nodeTree)}}
+{{assign "startAt" 0}}
+<ul
+  class="desktop-site-nav {{#if settings.navigation_layout '===' 'middle-line'}}desktop-site-nav__center{{/if}}"
+  data-navigation-layout="{{settings.navigation_layout}}"
+  data-navigation-effect="{{settings.main_menu_link_list_effect}}"
+>
+  {{#with this as |global|}}
+    {{#each main_menu.nodeTree}}
+      {{assign "has_dropdown" false}}
+      {{assign "is_megamenu" false}}
+      {{#if (isTruthy (length this.childNodes))}}
+        {{assign "has_dropdown" true}}
+        {{#if (depth_of_nav this) ">" 1}}
+          {{assign "is_megamenu" true}}
         {{/if}}
-        <li data-site-nav-menu-id="{{this.id}}" class="d-site--nav__item  {{#if has_dropdown}}site-nav--has-dropdown{{/if}} {{#if is_megamenu}}site-nav--is-megamenu{{/if}}">
-            {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
-            <a class="__sl-custom-track-stage-navItem site-nav__link d-site--nav__underline navigation-font-size  {{#if has_dropdown}}site-nav__link--has-dropdown{{/if}}"
-              {{{navItem.hrefAttr}}}>
-              {{navItem.name}}
-              {{#if has_dropdown}}
-                {{ snippet 'icons/icon_arrow_down' classes="dropdown__icon--arrow" }}
-              {{/if}}
-            </a>
-            {{#if is_megamenu}}
-              <div class="site-nav__dropdown megamenu text-left">
+      {{/if}}
+      <li
+        data-site-nav-menu-id="{{this.id}}"
+        class="d-site--nav__item
+          {{#if has_dropdown}}site-nav--has-dropdown{{/if}}
+          {{#if is_megamenu}}site-nav--is-megamenu{{/if}}"
+      >
+        {{assign "navItem" (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+        {{#if navItem.hrefAttr}}
+          {{assign "ele" "a"}}
+        {{else}}
+          {{assign "ele" "div"}}
+        {{/if}}
+        <{{ele}}
+          class="__sl-custom-track-stage-navItem site-nav__link d-site--nav__underline navigation-font-size
+            {{#if has_dropdown}}site-nav__link--has-dropdown{{/if}}"
+          {{{navItem.hrefAttr}}}
+        >
+          {{navItem.name}}
+          {{#if has_dropdown}}
+            {{snippet "icons/icon_arrow_down" classes="dropdown__icon--arrow"}}
+          {{/if}}
+        </{{ele}}>
+        {{#if is_megamenu}}
+          <div class="site-nav__dropdown megamenu text-left">
 
-                <div class="container magamenu__container g-2 g-md-5">
-                  {{!-- 图片逻辑 --}}
-                  {{snippet 'desktop-site-nav-img' menu_block=menu_block }}
-                  <div class="grid-wrap">
-                    <div class="nav-grid">
-                        {{#each this.childNodes}}
-                            <div class="nav-grid__item" {{{ this.shopline_attributes }}}>
-                                {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
+            <div class="container magamenu__container g-2 g-md-5">
+              
+              {{snippet "desktop-site-nav-img" menu_block=menu_block}}
+              <div class="grid-wrap">
+                <div class="nav-grid">
+                  {{#each this.childNodes}}
+                    <div class="nav-grid__item" {{{this.shopline_attributes}}}>
+                      {{assign
+                        "navItem"
+                        (navLink this global.request.uri.query global.request.locale global.all_collections)
+                      }}
+                      {{#if navItem.hrefAttr}}
+                        {{assign "ele" "a"}}
+                      {{else}}
+                        {{assign "ele" "div"}}
+                      {{/if}}
+                      {{#if (depth_of_nav this) ">" 0}}
+                        {{#if this.nodeType "===" 3}}
+                          {{assign "subcollection_drop" (get this.pageLink global.all_collections)}}
+                          {{#if (isTruthy subcollection_drop.sortationCoverImg)}}
+                            {{#if global.section.settings.mega_menu_images}}
+                              <{{ele}}
+                                {{{navItem.hrefAttr}}}
+                                class="__sl-custom-track-stage-navItem megamenu__colection-image"
+                                style="padding-bottom: {{global.settings.mega_menu_images_ratio}}%;"
+                              >
+                                <img
+                                  class="lozad megamenu__colection-image-pic"
+                                  data-sizes="auto"
+                                  data-src="{{subcollection_drop.sortationCoverImg}}"
+                                  alt=""
+                                />
+                              </{{ele}}>
+                            {{/if}}
+                          {{/if}}
+                        {{/if}}
+                      {{/if}}
 
-                                {{#if (depth_of_nav this) '>' 0}}
-                                  {{#if this.nodeType '===' 3}}
-                                    {{assign 'subcollection_drop' (get this.pageLink global.all_collections)}}
-                                    {{#if (isTruthy subcollection_drop.sortationCoverImg)}}
-                                      {{#if global.section.settings.mega_menu_images}}
-                                        <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem megamenu__colection-image" style="padding-bottom: {{global.settings.mega_menu_images_ratio}}%;">
-                                          <img class="lozad megamenu__colection-image-pic" data-sizes="auto" data-src="{{subcollection_drop.sortationCoverImg}}" />
-                                        </a>
-                                      {{/if}}
-                                    {{/if}}
-                                  {{/if}}
-                                {{/if}}
-
-                                <div class="body3 fw-blod">
-                                    <a data-node-id="{{this.id}}" {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem site-nav__dropdown-link site-nav__node site-nav__dropdown-link--top-level">{{ navItem.name }}</a>
-                                </div>
-                                {{#each this.childNodes}}
-                                {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
-                                <div {{{ this.shopline_attributes }}}>
-                                    <a data-node-id="{{this.id}}"  class="__sl-custom-track-stage-navItem site-nav__dropdown-link site-nav__node body4" {{{navItem.hrefAttr}}}>{{navItem.name}}</a>
-                                </div>
-                                {{/each}}
-                            </div>
-                        {{/each}}
+                      <div class="body3 fw-blod">
+                        <{{ele}}
+                          data-node-id="{{this.id}}"
+                          {{{navItem.hrefAttr}}}
+                          class="__sl-custom-track-stage-navItem site-nav__dropdown-link site-nav__node site-nav__dropdown-link--top-level"
+                        >{{navItem.name}}</{{ele}}>
+                      </div>
+                      {{#each this.childNodes}}
+                        {{assign
+                          "navItem"
+                          (navLink this global.request.uri.query global.request.locale global.all_collections)
+                        }}
+                        {{#if navItem.hrefAttr}}
+                          {{assign "ele" "a"}}
+                        {{else}}
+                          {{assign "ele" "div"}}
+                        {{/if}}
+                        <div {{{this.shopline_attributes}}}>
+                          <{{ele}}
+                            data-node-id="{{this.id}}"
+                            class="__sl-custom-track-stage-navItem site-nav__dropdown-link site-nav__node body4"
+                            {{{navItem.hrefAttr}}}
+                          >{{navItem.name}}</{{ele}}>
+                        </div>
+                      {{/each}}
                     </div>
-                  </div>
+                  {{/each}}
                 </div>
               </div>
-            {{/if}}
+            </div>
+          </div>
+        {{/if}}
 
-
-          {{#unless is_megamenu}}
-            {{#if has_dropdown}}
-                <div class="site-nav__dropdown unmegamenu-container global-modal-border-shadow">
-                    <ul class="text-left">
-                        {{#each this.childNodes}}
-                        <li class="{{#if has_sub_dropdown}}site-nav__deep-dropdown-trigger{{/if}}" {{{ this.shopline_attributes }}} {{{ this.shopline_attributes }}}>
-                            {{assign 'navItem' (navLink this global.request.uri.query global.request.locale global.all_collections)}}
-                            <a {{{navItem.hrefAttr}}} class="__sl-custom-track-stage-navItem body3 site-nav__dropdown-link site-nav__dropdown-link--second-level">
-                                {{navItem.name}}
-                            </a>
-                        </li>
-                        {{/each}}
-                    </ul>
-                </div>
-            {{/if}}
-          {{/unless}}
-        </li>
-      {{/each}}
-    {{/with}}
+        {{#unless is_megamenu}}
+          {{#if has_dropdown}}
+            <div class="site-nav__dropdown unmegamenu-container global-modal-border-shadow">
+              <ul class="text-left">
+                {{#each this.childNodes}}
+                  <li
+                    class="{{#if has_sub_dropdown}}site-nav__deep-dropdown-trigger{{/if}}"
+                    {{{this.shopline_attributes}}}
+                    {{{this.shopline_attributes}}}
+                  >
+                    {{assign
+                      "navItem"
+                      (navLink this global.request.uri.query global.request.locale global.all_collections)
+                    }}
+                    {{#if navItem.hrefAttr}}
+                      {{assign "ele" "a"}}
+                    {{else}}
+                      {{assign "ele" "div"}}
+                    {{/if}}
+                    <{{ele}}
+                      {{{navItem.hrefAttr}}}
+                      class="__sl-custom-track-stage-navItem body3 site-nav__dropdown-link site-nav__dropdown-link--second-level"
+                    >
+                      {{navItem.name}}
+                    </{{ele}}>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          {{/if}}
+        {{/unless}}
+      </li>
+    {{/each}}
+  {{/with}}
 
 </ul>

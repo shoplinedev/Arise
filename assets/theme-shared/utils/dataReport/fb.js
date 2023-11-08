@@ -1,17 +1,14 @@
 window.SLM = window.SLM || {};
-
 window.SLM['theme-shared/utils/dataReport/fb.js'] = window.SLM['theme-shared/utils/dataReport/fb.js'] || function () {
   const _exports = {};
   const { nullishCoalescingOperator } = window['SLM']['theme-shared/utils/syntax-patch.js'];
   const { PageType, ClickType } = window['SLM']['theme-shared/utils/report/const.js'];
   const { getCurrencyCode } = window['SLM']['theme-shared/utils/dataReport/tool.js'];
-
   const clickFbData = (type, params) => {
     let value = null;
     let event = null;
     let evid = null;
     let res = [];
-
     switch (type) {
       case ClickType.AddToCart:
         value = {
@@ -28,17 +25,13 @@ window.SLM['theme-shared/utils/dataReport/fb.js'] = window.SLM['theme-shared/uti
         };
         res.push(['track', event, value, evid]);
         break;
-
       default:
         res = [];
     }
-
     return res;
   };
-
   const loadFbData = (page, params) => {
     let res = [];
-
     switch (page) {
       case PageType.OrderConfirm:
         res.push(['track', 'Purchase', {
@@ -51,15 +44,12 @@ window.SLM['theme-shared/utils/dataReport/fb.js'] = window.SLM['theme-shared/uti
           eventID: params && params.eventId
         }]);
         break;
-
       default:
         res = [];
         break;
     }
-
     return res;
   };
-
   _exports.clickFbData = clickFbData;
   _exports.loadFbData = loadFbData;
   return _exports;

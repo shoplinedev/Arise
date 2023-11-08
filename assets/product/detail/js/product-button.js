@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/js/product-button.js'] || function () {
   const _exports = {};
   const { t } = window['SLM']['theme-shared/utils/i18n.js'];
@@ -8,7 +7,7 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
   const { getEventID } = window['SLM']['theme-shared/utils/report/tool.js'];
   const { setSyncData } = window['SLM']['theme-shared/utils/dataAccessor.js'];
   const { checkoutEnd } = window['SLM']['theme-shared/components/hbs/products/checkedEvent/index.js'];
-  const { isNewExpressCheckout, ButtonType } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
+  const { ButtonType } = window['SLM']['theme-shared/components/smart-payment/utils.js'];
   const { Payments, PageType } = window['SLM']['theme-shared/components/smart-payment/payments.js'];
   const { NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW } = window['SLM']['theme-shared/components/payment-button/constants.js'];
   const { setPayPalReportReq } = window['SLM']['theme-shared/utils/tradeReport/index.js'];
@@ -19,75 +18,93 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
   const getCurrencyCode = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'].default;
   const { convertPrice } = window['SLM']['theme-shared/utils/currency/getCurrencyCode.js'];
   const newCurrency = window['SLM']['theme-shared/utils/newCurrency/index.js'].default;
+  const PaymentButton = window['SLM']['theme-shared/components/pay-button/payment-button/index.js'].default;
+  const { isStandard, getConfig: getbuttonLocationDataConfig } = window['SLM']['theme-shared/components/pay-button/payment-button/utils.js'];
   const { ADD_TO_CART } = window['SLM']['commons/cart/globalEvent.js'];
   const Toast = window['SLM']['commons/components/toast/index.js'].default;
   const debounce = window['SLM']['commons/utils/debounce.js'].default;
   const PayemtnButtonModule = window['SLM']['product/detail/js/payment_button.js'].default;
   const { addToCartThirdReport, addToCartHdReport, buyNowHdReport, paypalHdReport } = window['SLM']['product/detail/js/product-button-report.js'];
   const FloatButton = window['SLM']['product/detail/js/float-button.js'].default;
-
+  const isMobile = window['SLM']['commons/utils/isMobile.js'].default;
   function getHdSdkDateId() {
     return window.HdSdk && window.HdSdk.shopTracker && window.HdSdk.shopTracker.getDataId && window.HdSdk.shopTracker.getDataId();
   }
-
   const getVariant = (skuAttributeIds, skuAttributeMap) => {
     if (Array.isArray(skuAttributeIds)) {
       const ids = skuAttributeIds.map(item => {
         if (item && skuAttributeMap) {
           return get(skuAttributeMap[item.id], `skuAttributeValueMap[${item.valueId}].defaultValue`);
         }
-
         return undefined;
       });
       return ids.toString();
     }
   };
-
   _exports.getVariant = getVariant;
-
   const setChannel = () => {
     setSyncData({
       orderFrom: 'web'
     });
   };
-
   const SMART_PAYMENT_BUTTON_HEIGHT = 43;
-
   class ButtonEvent {
     constructor(props) {
       const {
         id
       } = props;
+      this.isStandard = isStandard('productDetail');
       this.paymentButtonModuleInstance = null;
-      this.isNewExpressCheckout = isNewExpressCheckout(PageType.ProductDetail);
-
+      this.buttonLocationDataConfig = getbuttonLocationDataConfig(PageType.ProductDetail);
+      this.isNewExpressCheckout = true;
       if (this.isNewExpressCheckout) {
-        this.paymentButtonModuleInstance = PayemtnButtonModule.newButtonModule({
-          elementId: id,
-          pageType: PageType.ProductDetail,
-          cbFn: domMap => this.init({ ...props,
-            payPayId: domMap[ButtonType.ExpressCheckoutButton]
-          }),
-          setCheckoutParams: async () => {
-            return {
-              productButtonId: this.id,
-              products: this.transProducts(this.products),
-              extra: {
-                stage: this.getStage(),
-                query: {
-                  spb: true
-                }
-              },
-              dataReportReq: this.getDataReportReq()
-            };
-          }
-        });
+        if (!this.buttonLocationDataConfig || this.isStandard) {
+          this.initPayButton(props);
+        } else {
+          this.paymentButtonModuleInstance = PayemtnButtonModule.newButtonModule({
+            elementId: id,
+            pageType: PageType.ProductDetail,
+            cbFn: domMap => this.init({
+              ...props,
+              payPayId: domMap[ButtonType.ExpressCheckoutButton]
+            }),
+            setCheckoutParams: async () => {
+              return {
+                productButtonId: this.id,
+                products: this.transProducts(this.products),
+                extra: {
+                  stage: this.getStage(),
+                  query: {
+                    spb: true
+                  }
+                },
+                dataReportReq: this.getDataReportReq()
+              };
+            }
+          });
+        }
         return;
       }
-
       this.init(props);
     }
-
+    getButtonStyleBySetting(id) {
+      const {
+        btn_border_thickness,
+        btn_border_radius
+      } = window.Shopline.theme.settings;
+      const borderRadius = btn_border_thickness + btn_border_radius;
+      return {
+        height: $(`#pay-button-theme-add-to-cart-${id} button`).outerHeight(),
+        borderRadius
+      };
+    }
+    extraHandleQuickAddModalButtonStyle(id, config) {
+      if (id && id.includes('product_quick_add_') && isMobile()) {
+        config.displayButtonCount = 1;
+        config.props.layout = 'buyNowRow';
+        config.props.extraBuyNowDomId = `pay-button-theme-buy-now-${id}`;
+      }
+    }
     init(props) {
       const {
         id,
@@ -118,7 +135,9 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       this.floatButton = new FloatButton({
         id
       });
-      this.initPaypal();
+      if (!this.isStandard) {
+        this.initPaypal();
+      }
       this.initEvent();
       this.toast = new Toast();
       this.initLoading();
@@ -127,11 +146,54 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       this.modalType = modalType;
       this.position = position;
     }
-
+    async initPayButton(props) {
+      this.init(props);
+      const getPurchaseSDKAction = (key, FnName) => {
+        const action = get(window, `productPurchaseSDK.channel.${FnName}.${key}`);
+        return action;
+      };
+      const buttonStyle = this.getButtonStyleBySetting(props.id);
+      const config = {
+        domId: `payment_button_${props.id}`,
+        props: {
+          isVisible: document.querySelector(`#payment_button_${props.id}`).dataset.isSoldOut === 'false',
+          style: {
+            height: buttonStyle.height,
+            'border-radius': buttonStyle.borderRadius
+          }
+        },
+        products: async () => {
+          let defaultProductData = this.transProducts(this.products);
+          const purchaseProductDataAction = getPurchaseSDKAction(this.id, 'getCheckoutDataMap');
+          if (purchaseProductDataAction) {
+            defaultProductData = (await purchaseProductDataAction()).products;
+          }
+          return defaultProductData;
+        },
+        afterSaveAbandonedOrder: resp => {
+          const action = getPurchaseSDKAction(this.id, 'onCheckoutSuccessMap');
+          if (action) {
+            action(resp);
+          }
+        }
+      };
+      this.extraHandleQuickAddModalButtonStyle(props.id, config);
+      this.payButton = new PaymentButton(config);
+      await this.payButton.render();
+      this.payButton.customButtons({
+        BUY_NOW: {
+          className: 'btn-lg buy-now-auto-height'
+        }
+      });
+      await this.floatButton.initPayButton(config);
+      if (!this.activeSku) {
+        this.payButton.setDisabled(true);
+        this.floatButton.setDisabled(true);
+      }
+    }
     async getReportCartId() {
       this.cartId = await getCartId();
     }
-
     initLoading() {
       this.addLoading = new Toast({
         duration: 0,
@@ -148,7 +210,6 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       });
       this.buyLoading.close();
     }
-
     transProducts(products = []) {
       return products.map(item => ({
         productNum: item.num,
@@ -157,7 +218,6 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         productPrice: item.price
       }));
     }
-
     needReport() {
       const dataId = getHdSdkDateId();
       const eventID = getEventID();
@@ -188,7 +248,6 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         eventName: 'AddToCart'
       };
     }
-
     getStage() {
       return checkoutEnd.getUuidAndMonitorCheckoutEnd('trade:spb:report', async status => {
         const {
@@ -217,30 +276,25 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         });
       });
     }
-
     getDataReportReq() {
       return setPayPalReportReq({
-        products: this.transProducts(this.products).map(product => ({ ...product,
+        products: this.transProducts(this.products).map(product => ({
+          ...product,
           productPrice: newCurrency.unformatCurrency(convertPrice(product.productPrice))
         })),
         currency: getCurrencyCode(),
         needReport: () => this.needReport()
       });
     }
-
     async renderSmartPayment() {
       const stage = this.getStage();
-
       const renderDefaultBuyNow = () => {
         this.extraBuyNow();
-
         if (!this.isNewExpressCheckout) {
           $(`#${this.payPayId}`).remove();
         }
-
         $(this.buyButton).filter('.product-more-payment-button').remove();
       };
-
       this.SmartPaymentComponent = new Payments({
         pageType: PageType.ProductDetail,
         props: {
@@ -280,13 +334,11 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           if (!this.activeSku) {
             this.setSmartPaymentDisabled();
           }
-
           $(this.buyButton).filter('.product-more-payment-button').html(t('products.product_details.more_payment_options'));
         }
       });
       this.SmartPaymentComponent && (await this.SmartPaymentComponent.init());
     }
-
     async initPaypal() {
       this.buttonConfig = window.SL_State.get('productSettleButtonConfig');
       setChannel();
@@ -295,7 +347,6 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         this.toast.open(t('products.product_details.link_preview_does_not_support'));
       });
     }
-
     extraBuyNow() {
       const paymentButtonContainer = $(`#product-button-list_${this.id}`);
       const buyNowButton = paymentButtonContainer.find(`.${NORMAL_PAYMENT_BUTTON_PRODUCT_BUY_NOW}`);
@@ -322,16 +373,12 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       });
       this.buyLoading.close();
     }
-
     setLoading(button, loading) {
       let dom = this.addButton;
-
       if (button === 'buy') {
         dom = this.buyButton;
       }
-
       const loadingName = `${button}Loading`;
-
       if (loading) {
         $(dom).find('.pdp_button_text').addClass('loading');
         this[loadingName].open();
@@ -342,17 +389,13 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         this[loadingName].close();
         $(dom).find('.pdp_button_text').removeClass('loading');
       }
-
       this[`${loadingName}Status`] = loading;
     }
-
     handleATCSuccess() {
       const cartOpenType = window.SL_State.get('theme.settings.cart_open_type');
       const addBtnColor = $(this.addButton).css('color');
-
       if (cartOpenType === 'cartremain') {
         const addLoadingInstance = this.addLoading;
-
         if (addLoadingInstance && addLoadingInstance.showSuccessAni) {
           addLoadingInstance.showSuccessAni({
             loadingColor: addBtnColor
@@ -366,7 +409,6 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         this.onAddSuccess && this.onAddSuccess();
       }
     }
-
     initEvent() {
       const $this = this;
       $(this.addButton).on('click', debounce(300, () => {
@@ -374,16 +416,13 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           this.toast.open(t('products.product_details.link_preview_does_not_support'));
           return;
         }
-
         if (!this.activeSku) {
           this.toast.open(t('products.product_list.select_product_all_options'));
           return;
         }
-
         if (this.addLoadingStatus) {
           return;
         }
-
         this.setLoading('add', true);
         const {
           spuSeq: spuId,
@@ -426,14 +465,16 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
             eventName: 'AddToCart'
           },
           error: (...e) => {
-            addToCartHdReport({ ...hdReportData,
+            addToCartHdReport({
+              ...hdReportData,
               event_status: 0
             });
             this.onAddError(...e);
           },
           success: () => {
             setChannel();
-            addToCartHdReport({ ...hdReportData,
+            addToCartHdReport({
+              ...hdReportData,
               event_status: 1
             });
             addToCartThirdReport({
@@ -455,7 +496,6 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
       }));
       $this.bindBuyNow();
     }
-
     bindBuyNow() {
       let dataId;
       let eventID;
@@ -486,7 +526,8 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           eventID,
           cartId: this.cartId
         };
-        buyNowHdReport({ ...hdReportData,
+        buyNowHdReport({
+          ...hdReportData,
           event_status: status
         });
       });
@@ -496,12 +537,10 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
           this.toast.open(t('products.product_details.link_preview_does_not_support'));
           return;
         }
-
         if (!this.activeSku) {
           this.toast.open(t('products.product_list.select_product_all_options'));
           return;
         }
-
         this.setLoading('buy', true);
         const product = [{
           productSeq: this.activeSku.spuSeq,
@@ -549,43 +588,47 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         });
       }));
     }
-
     setActiveSku(sku) {
-      this.activeSku = sku ? { ...sku,
+      this.activeSku = sku ? {
+        ...sku,
         name: this.spu.title
       } : null;
       this.setSmartPaymentDisabled();
-
       if (sku) {
         this.setTradeButtonHide(sku.soldOut);
-
         if (this.paymentButtonModuleInstance) {
           this.paymentButtonModuleInstance.setDisplay(!sku.soldOut);
         }
+        if (this.payButton) {
+          this.payButton.setVisible(!sku.soldOut);
+          this.floatButton.setVisible(!sku.soldOut);
+        }
       }
     }
-
     setActiveSkuNum(num) {
       this.num = num;
     }
-
     setSmartPaymentDisabled() {
       if (!this.activeSku) {
         if (this.paymentButtonModuleInstance) {
           this.paymentButtonModuleInstance.setDisabled(true);
         }
-
         this.SmartPaymentComponent && this.SmartPaymentComponent.setDisabled(this.activeSku);
+        if (this.payButton) {
+          this.payButton.setDisabled(true);
+          this.floatButton.setDisabled(true);
+        }
         return;
       }
-
       if (this.paymentButtonModuleInstance) {
         this.paymentButtonModuleInstance.setDisabled(false);
       }
-
       this.SmartPaymentComponent && this.SmartPaymentComponent.setDisabled(this.activeSku);
+      if (this.payButton) {
+        this.payButton.setDisabled(false);
+        this.floatButton.setDisabled(false);
+      }
     }
-
     get products() {
       return [{
         spuId: get(this, 'activeSku.spuSeq'),
@@ -595,7 +638,6 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         price: get(this, 'activeSku.price')
       }];
     }
-
     setTradeButtonHide(show) {
       if (!show) {
         $(this.addButton).removeClass('hide');
@@ -605,24 +647,19 @@ window.SLM['product/detail/js/product-button.js'] = window.SLM['product/detail/j
         $(this.soldOutRoot).addClass('hide');
         return;
       }
-
       $(this.addButton).addClass('hide');
       $(this.buyButton).addClass('hide');
       $(`#${this.payPayId}`).addClass('hide');
       $(this.buyButton).filter('.product-more-payment-button').addClass('hide');
       $(this.soldOutRoot).removeClass('hide');
     }
-
     isPreview() {
       return window.SL_State && window.SL_State.get('templateAlias') === 'PreviewProductsDetail';
     }
-
     destroy() {
       this.floatButton.destory();
     }
-
   }
-
   _exports.default = ButtonEvent;
   return _exports;
 }();

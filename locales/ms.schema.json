@@ -20,6 +20,10 @@
           "options__3": {
             "label": "Tukar ke atas dan ke bawah"
           }
+        },
+        "show_social_media": {
+          "label": "Tunjuk media sosial",
+          "info": "Sekiranya susun atur papan buletin adalah susun atur padat /paparan berjubin, media sosial tidak akan dipaparkan"
         }
       },
       "blocks": {
@@ -174,6 +178,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "collection_image_shape": {
+          "label": "Klasifikasi bentuk gambar",
+          "options__0": {
+            "label": "Segi empat"
+          },
+          "options__1": {
+            "label": "Bentuk bulat"
           }
         },
         "color_scheme": {
@@ -428,6 +441,9 @@
         "button_text": {
           "label": "Salinan butang",
           "info": "Jika “bilangan maksimum produk” lebih kecil daripada bilangan di bawah kategori produk tersebut, butang baru akan dipaparkan"
+        },
+        "button_follow_endof_list": {
+          "label": "Butang lihat lebih banyak pada versi mudah alih dipaparkan pada akhir senarai"
         },
         "group_header__1": {
           "label": "Gambar produk"
@@ -734,10 +750,10 @@
           }
         },
         "media_icon_width": {
-          "label": "Lebar Ikon"
+          "label": "Lebar Ikon pada PC"
         },
         "media_icon_padding": {
-          "label": "Jarak ikon"
+          "label": "Jarak ikon pada PC"
         },
         "group_header__3": {
           "label": "Tambah kandungan"
@@ -813,10 +829,10 @@
               "label": "Tajuk"
             },
             "block_media_icon_width": {
-              "label": "Lebar Ikon"
+              "label": "Lebar Ikon pada PC"
             },
             "block_media_icon_padding": {
-              "label": "Jarak ikon"
+              "label": "Jarak ikon pada PC"
             }
           }
         },
@@ -1172,6 +1188,14 @@
             "label": "LOGO di tengah, menu tukar silang"
           }
         },
+        "mobile_top_menu": {
+          "label": "Menu atas versi mudah alih",
+          "info": "Selepas konfigurasi, menu akan ditetapkan di bahagian bawah kepala halaman versi mudah alih, dan anda boleh meluncur ke kiri dan kanan untuk menukar paparan"
+        },
+        "mobile_top_menu_show_home": {
+          "label": "Menu atas hanya dipaparkan di laman utama",
+          "info": "Selepas konfigurasi, menu atas hanya akan dipaparkan di laman utama"
+        },
         "mega_menu_images": {
           "label": "Tunjuk gambar menu super",
           "info": "[lihat tutorial untuk menetapkan menu super](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)"
@@ -1189,6 +1213,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "user_mobile_layout": {
+          "label": "Lokasi pusat peribadi versi mudah alih",
+          "options__0": {
+            "label": "Papar di laman utama"
+          },
+          "options__1": {
+            "label": "Papar dalam bar menu"
           }
         },
         "header_style": {
@@ -1213,6 +1246,27 @@
         },
         "show_user_entry": {
           "label": "Paparkan pintu masuk pusat individu"
+        },
+        "hover_show_user_menu": {
+          "label": "Ikon pusat peribadi hover versi PC, memaparkan kotak tarik bawah"
+        },
+        "user_menu_text_1": {
+          "label": "Teks kotak tarik bawah 1"
+        },
+        "user_menu_link_1": {
+          "label": "Pautan kotak tarik bawah 1"
+        },
+        "user_menu_text_2": {
+          "label": "Teks kotak tarik bawah 2"
+        },
+        "user_menu_link_2": {
+          "label": "Pautan kotak tarik bawah 2"
+        },
+        "user_menu_text_3": {
+          "label": "Teks kotak tarik bawah 3"
+        },
+        "user_menu_link_3": {
+          "label": "Pautan kotak tarik bawah 3"
         },
         "show_cart_entry": {
           "label": "Paparkan pintu masuk troli beli-belah"
@@ -2152,6 +2206,12 @@
         "banner_image_mobile": {
           "label": "Mudah alih banner"
         },
+        "pc_collection_img_height": {
+          "label": "Ketinggian peta klasifikasi versi komputer"
+        },
+        "md_collection_img_height": {
+          "label": "Ketinggian peta klasifikasi versi mudah alih"
+        },
         "parallax_scroll": {
           "label": "Paralaks bergolek",
           "info": "Hidupkan kesan paralaks akan memangkas beberapa gambar untuk mencapai kesan"
@@ -2173,6 +2233,18 @@
         },
         "per_page_num": {
           "label": "Bilangan produk pada setiap halaman"
+        },
+        "mobile_list_layout": {
+          "label": "Susun atur dipapar secara lalai di versi mudah alih",
+          "options__0": {
+            "label": "1 lajur"
+          },
+          "options__1": {
+            "label": "2 lajur"
+          }
+        },
+        "mobile_show_style_switch": {
+          "label": "Penukaran susun atur dipapar di versi mudah alih"
         },
         "infinite_scroll": {
           "label": "Aktifkan tatal tanpa had"
@@ -2518,6 +2590,16 @@
               "options__3": {
                 "label": "Kecil"
               }
+            },
+            "font_size_flexible": {
+              "label": "Konfigurasi fleksibel saiz fon",
+              "info": "Boleh menentukan saiz fon apabila dibuka"
+            },
+            "title_pc_font_size": {
+              "label": "Font size komputer"
+            },
+            "title_mobile_font_size": {
+              "label": "Font size telefon bimbit"
             }
           }
         },
@@ -2548,7 +2630,7 @@
           "name": "Harga",
           "settings": {
             "show_order": {
-              "label": "Urutan paparan harga",
+              "label": "Kaedah paparan harga/diskaun",
               "options__0": {
                 "label": "label diskaun, harga jualan, harga asal"
               },
@@ -2557,6 +2639,12 @@
               },
               "options__2": {
                 "label": "Harga asal, harga jualan, label diskaun"
+              },
+              "options__3": {
+                "label": "Harga jualan, label diskaun"
+              },
+              "options__4": {
+                "label": "Label diskaun, harga jualan"
               }
             },
             "sell_font_size": {
@@ -2589,6 +2677,22 @@
                 "label": "Besar super"
               }
             },
+            "font_size_flexible": {
+              "label": "Konfigurasi fleksibel saiz fon",
+              "info": "Boleh menentukan saiz fon apabila dibuka"
+            },
+            "sale_price_pc_font_size": {
+              "label": "Saiz fon harga versi komputer"
+            },
+            "sale_price_mobile_font_size": {
+              "label": "Saiz fon harga versi mudah alih"
+            },
+            "regular_price_pc_font_size": {
+              "label": "Saiz fon harga asal (harga digariskan) versi komputer"
+            },
+            "regular_price_mobile_font_size": {
+              "label": "Saiz fon harga asal (harga digariskan) versi mudah alih"
+            },
             "sell_font_bold": {
               "label": "Tebal fon harga jualan"
             }
@@ -2605,6 +2709,27 @@
               "options__1": {
                 "label": "Bingkai tarik bawah"
               }
+            },
+            "sizes": {
+              "label": "Papar saiz",
+              "options__0": {
+                "label": "Kecil"
+              },
+              "options__1": {
+                "label": "Tengah"
+              },
+              "options__2": {
+                "label": "Besar"
+              }
+            },
+            "layout_direction": {
+              "label": "Papar bentangan",
+              "options__0": {
+                "label": "Susun atur atas dan bawah"
+              },
+              "options__1": {
+                "label": "Susun atur kiri dan kanan"
+              }
             }
           }
         },
@@ -2614,6 +2739,36 @@
             "is_show_stock_hint": {
               "label": "Papar petunjuk kuantiti apabila inventori rendah",
               "info": "Apabila inventori kurang daripada 10, kuantiti inventori dipaparkan di bawah pemilih kuantiti"
+            },
+            "width": {
+              "label": "Papar Lebar",
+              "options__0": {
+                "label": "Lebar lajur 1/2"
+              },
+              "options__1": {
+                "label": "Lebar lajur penuh"
+              }
+            },
+            "layout_direction": {
+              "label": "Papar bentangan",
+              "options__0": {
+                "label": "Susun atur atas dan bawah"
+              },
+              "options__1": {
+                "label": "Susun atur kiri dan kanan"
+              }
+            },
+            "border_style": {
+              "label": "Papar rekabentuk",
+              "options__0": {
+                "label": "Rekabentuk baris"
+              },
+              "options__1": {
+                "label": "Rekabentuk strok"
+              },
+              "options__2": {
+                "label": "Rekabentuk tanpa bingkai"
+              }
             }
           }
         },
@@ -4412,6 +4567,15 @@
             "label": "Rekabentuk butang"
           }
         },
+        "product_card_content_align": {
+          "label": "Arah penjajaran kandungan kad produk",
+          "options__0": {
+            "label": "Sebelah kiri"
+          },
+          "options__1": {
+            "label": "Berpusat"
+          }
+        },
         "product_title_show_type": {
           "label": "Peraturan paparan tajuk produk",
           "options__0": {
@@ -4628,7 +4792,7 @@
           "label": "Facebook"
         },
         "social_twitter_link": {
-          "label": "Twitter"
+          "label": "X（Twitter）"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -4651,6 +4815,12 @@
         "social_whatsapp_link": {
           "label": "WhatsApp"
         },
+        "social_line_link": {
+          "label": "Line"
+        },
+        "social_kakao_link": {
+          "label": "Kakao"
+        },
         "group_header__1": {
           "label": "Kongsi",
           "info": "Menyediakan operasi perkongsian pada halaman butiran produk dan halaman blog"
@@ -4665,7 +4835,7 @@
           "label": "Kongsi ke Facebook"
         },
         "share_to_twitter": {
-          "label": "Kongsi ke Twitter"
+          "label": "Kongsi ke X（Twitter）"
         },
         "share_to_pinterest": {
           "label": "Kongsi ke Pinterest"

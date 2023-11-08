@@ -1,5 +1,4 @@
 window.SLM = window.SLM || {};
-
 window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] || function () {
   const _exports = {};
   const { SL_State } = window['SLM']['theme-shared/utils/state-selector.js'];
@@ -20,16 +19,12 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
     AMOUNT: '1',
     DISCOUNT: '2'
   };
-
   const init = () => {
     const cartNode = $('#activity-cart');
-
     if (!cartNode.length) {
       return;
     }
-
     const activity = SL_State.get('activity');
-
     function getDefualtPromotion() {
       const {
         benefitType,
@@ -37,18 +32,15 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
         cartBannerText
       } = activity;
       const condition = benefitConditions[0];
-
       if (condition) {
         const {
           benefitEvent,
           benefit
         } = condition;
         let benefitValueType;
-
         if (benefitType === BenefitTypeEnum.BUY_X_GET_Y || benefitType === BenefitTypeEnum.NTH_PRICE) {
           benefitValueType = !benefit.benefitAmount ? BenefitValueTypeEnum.DISCOUNT : BenefitValueTypeEnum.AMOUNT;
         }
-
         return {
           benefitType,
           promotionBenefitList: [{
@@ -65,11 +57,9 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
         };
       }
     }
-
     const render = new Render([{
       path: 'activeItems',
       selector: '#activity-cartTotal',
-
       action(node, activeItems) {
         const activeItem = get_func(activeItems, 'find').exec(({
           promotion
@@ -77,16 +67,13 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
         const hasGiftPlugin = get_func(activeItems, 'findIndex').exec(({
           promotion
         }) => get(promotion, 'benefitType') === GIFT_PLUGIN_TYPE) > -1;
-
         if (!hasGiftPlugin) {
           node.innerHTML = convertFormat(get(activeItem, 'totalAmount') || 0);
         }
       }
-
     }, {
       path: 'activeItems',
       selector: '#activity-cartNum',
-
       action(node, activeItems) {
         const activeItem = get_func(activeItems, 'find').exec(({
           promotion
@@ -94,11 +81,9 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
         const hasGiftPlugin = get_func(activeItems, 'findIndex').exec(({
           promotion
         }) => get(promotion, 'benefitType') === GIFT_PLUGIN_TYPE) > -1;
-
         if (hasGiftPlugin) {
           return;
         }
-
         if (get(activeItem, 'itemList.length')) {
           node.innerHTML = activeItem.itemList.reduce((p, c) => {
             return p + c.num;
@@ -107,11 +92,9 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
           node.innerHTML = 0;
         }
       }
-
     }, {
       path: 'activeItems',
       selector: '#activity-salesTip',
-
       action(node, activeItems) {
         const activeItem = get_func(activeItems, 'find').exec(({
           promotion
@@ -119,13 +102,11 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
         const hasGiftPlugin = get_func(activeItems, 'findIndex').exec(({
           promotion
         }) => get(promotion, 'benefitType') === GIFT_PLUGIN_TYPE) > -1;
-
         if (!hasGiftPlugin) {
           const promotion = get(activeItem, 'promotion') || getDefualtPromotion();
           const {
             extMap
           } = promotion.promotionBenefitList[0];
-
           if (extMap && extMap.bannerText) {
             const config = getPromotionReminder(promotion);
             node.innerHTML = template(extMap.bannerText, config.params, {
@@ -135,21 +116,17 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
           }
         }
       }
-
     }, {
       path: 'activeItems',
       selector: '#activity-cart',
-
       action(node) {
         $(node).removeClass('d-none');
         $(document.body).css({
           paddingBottom: '104px'
         });
       }
-
     }]);
     const cartInfo = SL_State.get(CartInfoKey);
-
     if (!cartInfo) {
       request({
         url: 'carts/cart',
@@ -165,12 +142,10 @@ window.SLM['activity/script/cart.js'] = window.SLM['activity/script/cart.js'] ||
         paddingBottom: '104px'
       });
     }
-
     SL_State.on(CartInfoKey, value => {
       render.run(value);
     });
   };
-
   _exports.default = init;
   return _exports;
 }();

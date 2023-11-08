@@ -20,6 +20,10 @@
           "options__3": {
             "label": "Switch vertically"
           }
+        },
+        "show_social_media": {
+          "label": "Display social media icon",
+          "info": "If the notice board layout is set as compact/tiled, the social media will not be displayed all the time"
         }
       },
       "blocks": {
@@ -174,6 +178,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "collection_image_shape": {
+          "label": "Shape of collection image",
+          "options__0": {
+            "label": "Square"
+          },
+          "options__1": {
+            "label": "Round"
           }
         },
         "color_scheme": {
@@ -428,6 +441,9 @@
         "button_text": {
           "label": "Button text",
           "info": "Display this button only if \"Maximum product quantity\" is less than the product quantity under this category"
+        },
+        "button_follow_endof_list": {
+          "label": "Display View more button on mobile device at the end of list"
         },
         "group_header__1": {
           "label": "Product image"
@@ -734,10 +750,10 @@
           }
         },
         "media_icon_width": {
-          "label": "Icon width"
+          "label": "Icon width on PC"
         },
         "media_icon_padding": {
-          "label": "Icon spacing"
+          "label": "Icon spacing on PC"
         },
         "group_header__3": {
           "label": "Additional content"
@@ -813,10 +829,10 @@
               "label": "Title"
             },
             "block_media_icon_width": {
-              "label": "Icon width"
+              "label": "Icon width on PC"
             },
             "block_media_icon_padding": {
-              "label": "Icon spacing"
+              "label": "Icon spacing on PC"
             }
           }
         },
@@ -1172,6 +1188,14 @@
             "label": "Logo center, menu below"
           }
         },
+        "mobile_top_menu": {
+          "label": "Pin-to-top menu on mobile device",
+          "info": "When configured, the menu will be fixed at the bottom of header on mobile device, and it can be switched through horizontal slides"
+        },
+        "mobile_top_menu_show_home": {
+          "label": "Menu pinned to top will only be displayed on home page",
+          "info": "When configured, the menu pinned to top will only be displayed on the home page"
+        },
         "mega_menu_images": {
           "label": "Display super menu image",
           "info": "[How to set up super menu](https://shoplineapphelp.zendesk.com/hc/articles/4404157592217)"
@@ -1189,6 +1213,15 @@
           },
           "options__3": {
             "label": "2:3"
+          }
+        },
+        "user_mobile_layout": {
+          "label": "Personal center position on mobile device",
+          "options__0": {
+            "label": "Display in home page"
+          },
+          "options__1": {
+            "label": "Display in menu bar"
           }
         },
         "header_style": {
@@ -1213,6 +1246,27 @@
         },
         "show_user_entry": {
           "label": "Display Me entrance"
+        },
+        "hover_show_user_menu": {
+          "label": "Display the drop-down box by hovering on the personal center icon on PC"
+        },
+        "user_menu_text_1": {
+          "label": "Drop-down box text 1"
+        },
+        "user_menu_link_1": {
+          "label": "Drop-down box URL 1"
+        },
+        "user_menu_text_2": {
+          "label": "Drop-down box text 2"
+        },
+        "user_menu_link_2": {
+          "label": "Drop-down box URL 2"
+        },
+        "user_menu_text_3": {
+          "label": "Drop-down box text 3"
+        },
+        "user_menu_link_3": {
+          "label": "Drop-down box URL 3"
         },
         "show_cart_entry": {
           "label": "Display shopping cart entrance"
@@ -2152,6 +2206,12 @@
         "banner_image_mobile": {
           "label": "Mobile banner"
         },
+        "pc_collection_img_height": {
+          "label": "Category height on PC"
+        },
+        "md_collection_img_height": {
+          "label": "Category height on mobile device"
+        },
         "parallax_scroll": {
           "label": "Parallax scroll",
           "info": "When enabling the parallax effect, part of the image will be cropped to ensure the correct display."
@@ -2173,6 +2233,18 @@
         },
         "per_page_num": {
           "label": "Product quantity on each page"
+        },
+        "mobile_list_layout": {
+          "label": "Default display layout on mobile device",
+          "options__0": {
+            "label": "1 column"
+          },
+          "options__1": {
+            "label": "2 columns"
+          }
+        },
+        "mobile_show_style_switch": {
+          "label": "Display layout switching on mobile device"
         },
         "infinite_scroll": {
           "label": "Enable infinite scroll"
@@ -2518,6 +2590,16 @@
               "options__3": {
                 "label": "Small"
               }
+            },
+            "font_size_flexible": {
+              "label": "Flexible font size configuration",
+              "info": "Once enabled, you can customize the font size"
+            },
+            "title_pc_font_size": {
+              "label": "Font size on PC"
+            },
+            "title_mobile_font_size": {
+              "label": "Font size on mobile device"
             }
           }
         },
@@ -2548,7 +2630,7 @@
           "name": "Price",
           "settings": {
             "show_order": {
-              "label": "Display order of price",
+              "label": "Price/promotion display style",
               "options__0": {
                 "label": "Promotion tag, selling price, original price"
               },
@@ -2557,6 +2639,12 @@
               },
               "options__2": {
                 "label": "Original price, selling price, promotion tag"
+              },
+              "options__3": {
+                "label": "Selling price, promotion tag"
+              },
+              "options__4": {
+                "label": "Promotion tag, selling price"
               }
             },
             "sell_font_size": {
@@ -2589,6 +2677,22 @@
                 "label": "Extra large"
               }
             },
+            "font_size_flexible": {
+              "label": "Flexible font size configuration",
+              "info": "Once enabled, you can customize the font size"
+            },
+            "sale_price_pc_font_size": {
+              "label": "Selling price font size on PC"
+            },
+            "sale_price_mobile_font_size": {
+              "label": "Selling price font size on mobile device"
+            },
+            "regular_price_pc_font_size": {
+              "label": "Original price(listed price) font size on PC"
+            },
+            "regular_price_mobile_font_size": {
+              "label": "Original price(listed price) font size on mobile device"
+            },
             "sell_font_bold": {
               "label": "Bold fonts of selling price"
             }
@@ -2605,6 +2709,27 @@
               "options__1": {
                 "label": "Select"
               }
+            },
+            "sizes": {
+              "label": "Display size",
+              "options__0": {
+                "label": "Small"
+              },
+              "options__1": {
+                "label": "Center"
+              },
+              "options__2": {
+                "label": "Large"
+              }
+            },
+            "layout_direction": {
+              "label": "Display layout",
+              "options__0": {
+                "label": "Vertical layout"
+              },
+              "options__1": {
+                "label": "Horizontal layout"
+              }
             }
           }
         },
@@ -2614,6 +2739,36 @@
             "is_show_stock_hint": {
               "label": "Display quantity prompt when inventory is at low level",
               "info": "Display inventory quantity below the quantity selector when inventory is less than 10 pieces"
+            },
+            "width": {
+              "label": "Display width",
+              "options__0": {
+                "label": "1/2 column width"
+              },
+              "options__1": {
+                "label": "Overall column width"
+              }
+            },
+            "layout_direction": {
+              "label": "Display layout",
+              "options__0": {
+                "label": "Vertical layout"
+              },
+              "options__1": {
+                "label": "Horizontal layout"
+              }
+            },
+            "border_style": {
+              "label": "Display style",
+              "options__0": {
+                "label": "Line style"
+              },
+              "options__1": {
+                "label": "Border style"
+              },
+              "options__2": {
+                "label": "No-border style"
+              }
             }
           }
         },
@@ -4412,6 +4567,15 @@
             "label": "Button style"
           }
         },
+        "product_card_content_align": {
+          "label": "Product card content alignment direction",
+          "options__0": {
+            "label": "Left"
+          },
+          "options__1": {
+            "label": "Center"
+          }
+        },
         "product_title_show_type": {
           "label": "Display rule for product title",
           "options__0": {
@@ -4628,7 +4792,7 @@
           "label": "Facebook"
         },
         "social_twitter_link": {
-          "label": "Twitter"
+          "label": "X（Twitter）"
         },
         "social_pinterest_link": {
           "label": "Pinterest"
@@ -4651,6 +4815,12 @@
         "social_whatsapp_link": {
           "label": "WhatsApp"
         },
+        "social_line_link": {
+          "label": "Line"
+        },
+        "social_kakao_link": {
+          "label": "Kakao"
+        },
         "group_header__1": {
           "label": "Share",
           "info": "Enable sharing on product detail page and blog page"
@@ -4665,7 +4835,7 @@
           "label": "Share to Facebook"
         },
         "share_to_twitter": {
-          "label": "Share to Twitter"
+          "label": "Share to X（Twitter）"
         },
         "share_to_pinterest": {
           "label": "Share to Pinterest"
